@@ -1,0 +1,133 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4 
+ *
+ *
+ */
+
+  namespace ClicShopping\Apps\Catalog\Products\Classes\Shop;
+
+  use ClicShopping\OM\HTML;
+
+  class Prod {
+
+    protected $products_id;
+    protected $Id;
+
+    Public function __construct()  {
+    }
+
+    public function getID() {
+// products info
+      if (isset($_GET['products_id']) && is_numeric($_GET['products_id']) && !empty(HTML::sanitize($_GET['products_id']))) {
+        $this->Id = HTML::sanitize($_GET['products_id']);
+      } else {
+        $this->Id = null;
+      }
+
+//products_listing
+      if (is_null($this->Id) ) {
+        if (isset($_GET['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+          $this->Id = HTML::sanitize($_POST['products_id']);
+        } else {
+          global $products_id;
+          $this->Id = HTML::sanitize($products_id);
+        }
+      }
+
+      return $this->Id;
+    }
+
+
+/**
+ * Generate a product ID string value containing its product attributes combinations
+ *
+ * @param string $id The product ID
+ * @param array $params An array of product attributes
+ * @return string
+ * osc_get_uprid
+ */
+
+    public static function getProductIDString($id, $params) {
+      $string = (int)$id;
+
+      if ( is_array($params) && !empty($params) ) {
+        $attributes_check = true;
+        $attributes_ids = [];
+
+        foreach ( $params as $option => $value ) {
+          if ( is_numeric($option) && is_numeric($value) ) {
+            $attributes_ids[] = (int)$option . '}' . (int)$value;
+          } else {
+            $attributes_check = false;
+            break;
+          }
+        }
+
+        if ( $attributes_check === true ) {
+          $string .= '{' . implode(';', $attributes_ids);
+        }
+      }
+
+      return $string;
+    }
+
+/**
+ * Generate a numeric product ID without product attribute combinations
+ *
+ * @param string $id The product ID
+ * @access public
+ * osc_get_prid
+ */
+
+    public static function getProductID($id) {
+      if ( is_numeric($id) ) {
+        return $id;
+      }
+
+      $id = HTML::sanitize($id);
+      $product = explode('{', $id, 2);
+
+      return (int)$product[0];
+    }
+
+/**
+ * Products  sort by
+ *
+ * @param string $field,field of products, $direction, ascending descending
+ * @access public
+ *
+ */
+    public function setSortBy($field, $direction = '+') {
+      switch ($field) {
+        case 'model':
+          $this->_sort_by = 'p.products_model';
+          break;
+        case 'manufacturer':
+          $this->_sort_by = 'm.manufacturers_name';
+          break;
+        case 'quantity':
+          $this->_sort_by = 'p.products_quantity';
+          break;
+        case 'weight':
+          $this->_sort_by = 'p.products_weight';
+          break;
+        case 'price':
+          $this->_sort_by = 'p.products_price';
+          break;
+        case 'date_added':
+          $this->_sort_by = 'p.products_date_added';
+          break;
+      }
+
+      $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
+    }
+
+    public function setSortByDirection($direction) {
+      $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
+    }
+  }

@@ -1,0 +1,19 @@
+{
+ "title":	"E-Mail App",
+ "app": "EMail",
+ "vendor":"Communication",
+ "version":	"1.0.0",
+ "req_core_version":	"3.0",
+ "license":	"GPL-2",
+ "authors": [
+  {
+   "name": "ClicShopping",
+   "company":	"Innov-Concept Consulting",
+   "Email":	"admin@clicshopping.org",
+   "website":	"https://www.clicshopping.org"
+  }
+ ],
+ "routes": {
+  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
+ }
+}

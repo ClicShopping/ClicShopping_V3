@@ -1,0 +1,5 @@
+module_admin_dashboard_total_revenue_app_title = Total du CA sur 30 jours <br />(statut en attente, en cours et livré)
+module_admin_dashboard_total_revenue_app_description = Graphique permettant de voir l'évolution du chiffre d'affaires sur 30 jours (statut en attente, en cours et livré) basé en fonction du sous-total
+module_admin_dashboard_total_revenue_app_chart_link = Total CA journalier
+
+

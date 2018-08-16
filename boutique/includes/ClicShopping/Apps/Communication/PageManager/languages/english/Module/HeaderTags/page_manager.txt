@@ -1,0 +1,2 @@
+module_header_tags_page_manager_title = Do  you want use meta tag for Page Manager ?
+module_header_tags_page_manager_description = Add the meta tag balise in the Page Manager

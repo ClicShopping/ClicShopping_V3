@@ -1,0 +1,2 @@
+cfg_products_currency_api_key_title = Please insert the apikey from OpenxExchangeRates
+cfg_products_currency_api_key_description = You must open a free account on openexchangerates.org o allow you to make the convertion rates.

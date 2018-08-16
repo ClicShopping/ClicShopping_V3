@@ -1,0 +1,19 @@
+heading_title = Modules
+
+heading_title_modules_payment = Modules de paiement
+heading_title_modules_shipping = Modules de livraison
+heading_title_modules_order_total = Modules total commande
+heading_title_modules_action_recorder = Modules enregistrement des actions
+heading_title_modules_social_bookmarks = Modules réseaux sociaux
+heading_title_modules_header_tags = Modules référencement
+heading_title_modules_admin_dashboard = Modules Tableau de bord
+
+table_heading_status = Statut
+table_heading_modules = Modules
+table_heading_sort_order = Ordre d'affichage
+table_heading_action = Action
+text_info_api_version = Version API :
+
+button_search_module = Find a module
+
+text_module_directory = Répertoire contenant les modules :

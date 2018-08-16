@@ -1,0 +1,3 @@
+modules_products_reviews_write_customer_agreement_title = Do you want to display a message fot the customer before the sent ?
+modules_products_reviews_write_customer_agreement_description = Display a message fot the customer before the se
+

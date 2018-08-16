@@ -1,0 +1,5 @@
+
+heading_title =
+text_blog_not_found = Article non trouvé
+
+ button_continue = Continuer

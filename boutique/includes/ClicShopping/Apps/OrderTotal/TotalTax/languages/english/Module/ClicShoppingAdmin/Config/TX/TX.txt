@@ -1,0 +1,3 @@
+module_dc_title = TotalTax
+module_dc_short_title = TotalTax
+module_dc_public_title = TotalTax

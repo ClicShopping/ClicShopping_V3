@@ -1,0 +1,2 @@
+module_cfg_module_footer_suffix_title = Footer Catalog suffix
+

@@ -1,0 +1,8 @@
+
+ navbar_title = Blog
+ heading_title = Blog;
+ table_heading_image =
+ text_no_blog = No news published
+ text_number_of_blog = Number of news:
+ text_show =
+ text_all_categories = Yours categories

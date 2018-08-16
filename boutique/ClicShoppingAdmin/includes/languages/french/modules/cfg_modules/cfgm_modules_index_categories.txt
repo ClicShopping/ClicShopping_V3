@@ -1,0 +1,2 @@
+module_cfg_module_index_categories_title = Categories
+

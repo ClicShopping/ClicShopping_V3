@@ -1,0 +1,2 @@
+module_cfg_module_account_customers_title = Information clients
+

@@ -1,0 +1,6 @@
+cfg_favorites_status_title = Statut
+cfg_favorites_status_description = Souhaitez vous activer ce module à votre boutique
+
+cfg_favorites_status_true = True
+cfg_favorites_status_false = False
+

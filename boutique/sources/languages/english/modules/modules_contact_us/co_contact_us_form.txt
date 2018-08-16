@@ -1,0 +1,39 @@
+modules_contact_us_form_title = Do you want to enable the contact fields in the contact us form ?
+modules_contact_us_form_description = add the contact fields in the contact us form
+
+text_administrator_department = No department defined
+
+entry_customers_id = Your Customer number :
+entry_order = Your order number :
+entry_date = Date :
+entry_customers_phone = Phone :
+
+entry_need_customers = Please indicate the service to contact ?
+entry_customer = Question Customer :
+
+entry_note_registered = Please tell us the product model or any relevant information about the problem on the order you have made or your need<br /><br />
+entry_note_no_registered = If you apply for an order already made, please click: <a href="index.php?Account&Main">My Account</a> then choose your order number<br /><br />
+
+entry_name = Full Name:
+entry_email = E-Mail Address:
+entry_enquiry = Enquiry:
+entry_enquiry_customer = Your message :
+entry_enquiry_customer_information = Customer message :
+entry_email_object_customer = Request copy
+entry_customers_subject = Subject of your request :
+
+entry_number_email_confirmation = How many :
+send_department_company = Contact to Department :
+
+text_becarefull_download = <strong>Becarefull !</strong> For all claims, damages, please provide proof to mp4 video format jpg where pdf file with a size of less than :
+text_becarefull_download_1 = Mb. Please note that youtube video is not accepted as evidence. <br /> For more information see our terms and conditions.
+
+entry_customers_phone_dgrp = We need your phone number to eventually contact you
+entry_email_dgrp = We need your email to answer you
+
+button_continue = Continue
+
+text_privacy_conditions_description = The privacy statement are available always on {{store_name}} and can be read <a href="{{privacy_url}}" target="_blank"><u>here</u></a>.
+text_privacy_conditions_agree = Please check this box to give your consent regarding our privacy policy
+
+

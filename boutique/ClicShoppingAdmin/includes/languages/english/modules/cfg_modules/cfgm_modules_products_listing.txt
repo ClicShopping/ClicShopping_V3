@@ -1,0 +1,2 @@
+ module_cfg_module_products_listing_title = Products Listing
+

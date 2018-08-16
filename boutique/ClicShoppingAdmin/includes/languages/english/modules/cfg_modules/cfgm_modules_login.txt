@@ -1,0 +1,2 @@
+module_cfg_module_login_title = Customers login
+

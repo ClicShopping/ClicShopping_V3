@@ -1,0 +1,36 @@
+customers_id int not_null auto_increment
+customers_company varchar(255)
+customers_siret varchar(14)
+customers_ape varchar(4)
+customers_tva_intracom varchar(14)
+customers_tva_intracom_code_iso char(2)
+customers_gender char(1)
+customers_firstname varchar(255) not_null
+customers_lastname varchar(255) not_null
+customers_dob datetime
+customers_email_address varchar(255) not_null
+customers_default_address_id int
+customers_telephone varchar(255)
+customers_fax varchar(255)
+customers_password varchar(255) not_null
+customers_newsletter char(1) default(0)
+languages_id int default(1)  not_null
+customers_group_id int default(0) not_null
+member_level int(1) default(0) not_null
+customers_options_order_taxe tinyint(1) default(0) not_null
+customers_modify_company tinyint(1) default(1)  not_null
+customers_modify_address_default tinyint(1) default(1) not_null
+customers_add_address tinyint(1) default(1) not_null
+customers_cellular_phone varchar(255) null
+customers_email_validation int(1) default(0) not_null
+customer_discount decimal(4,2) default(0.00) not_null
+client_computer_ip varchar(15) null
+provider_name_client varchar(64)  null
+customer_website_company varchar(64) null
+--
+primary customers_id
+idx_customers_email_address customers_email_address
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

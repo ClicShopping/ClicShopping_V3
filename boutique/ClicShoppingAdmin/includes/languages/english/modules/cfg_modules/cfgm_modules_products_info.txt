@@ -1,0 +1,1 @@
+module_cfg_module_products_info_modules_title = Products info modules

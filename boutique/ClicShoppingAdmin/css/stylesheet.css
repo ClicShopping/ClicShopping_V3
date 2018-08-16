@@ -1,0 +1,660 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+/*
+16px ==> 1rem
+10px => 0.625rem
+*/
+
+a {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.80rem;
+}
+
+a:link {  font-size: 0.90rem; text-decoration: none; }
+a:visited {  font-size: 0.90rem; text-decoration: none; }
+a:active { font-size: 0.90rem;  text-decoration: none; }
+a:hover {  font-size: 0.90rem;  text-decoration: underline; }
+
+
+a.headerLink:link { font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
+a.headerLink:visited { font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
+a.headerLink:active {font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
+a.headerLink:hover { font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: underline; padding-top:0.3125rem;}
+
+
+
+div.contentBody {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+
+}
+
+.contentContainer {
+  padding-bottom: 0.625rem;
+}
+
+.contentContainer h2 {
+  font-size: 0.424rem;
+  text-decoration: underline;
+  font-weight: normal;
+  margin-bottom: 0;
+  padding-bottom: 0.3125rem;
+}
+
+.contentText {
+  padding: 0rem 0rem 0rem 0rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.fieldKey {
+  font-size: 0.6875rem;
+  font-weight: bold;
+  line-height: 1.5;
+  width: 12.5rem;
+}
+
+.fieldValue {
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+/* page */
+body { background-color: #ffffff; margin: 0rem; padding: 0rem;}
+.headerBar { background-color: #B3BAC5; }
+.headerBarContent { font-size: 0.625rem; color: #ffffff; font-weight: bold; padding: 0.125rem; }
+.pageHeading { font-size: 1rem; color: #FF7F50; padding-top:0.3125rem; }
+
+/* data table */
+.dataTableHeadingRow { background-color: #2969C3; color: #ffffff; }
+.dataTableRow { background-color: #F5F5F5; }
+.dataTableContent { font-size: 0.6875rem; color: #000000; }
+
+
+
+
+
+/* message box */
+
+.messageStackError, .messageStackWarning { font-size: 0.625rem; background-color: Red;  color: White;  }
+.messageStackSuccess { font-size: 0.625rem; background-color: Green;  color: White;  }
+
+table.messageStackError {
+  background-color: #FDFDFD;
+  color: Black;
+  font-size: 0.75rem;
+  text-align: left;
+  height: 20.3125rem;
+  background-repeat: repeat;
+  border: 0.0625rem solid Red;
+}
+
+table.messageStackSuccess {
+  background-color: #FDFDFD;
+  color: Black;
+  font-size: 0.75rem;
+  text-align: left;
+  height: 1.5625rem;
+  background-repeat: repeat;
+  border: 0.0625rem solid Green;
+}
+
+
+.inputRequirement {
+  font-size: 0.625rem;
+  color: #ff0000;
+}
+
+
+
+/* forms */
+
+FORM { display: inline; }
+
+/* account */
+.formArea { background-color: #f1f9fe; border-color: #7b9ebd; border-style: solid; border-width: 0.0625rem; }
+.formAreaTitle { font-size: 0.75rem; font-weight: bold; }
+
+/* attributes */
+.attributes-odd {}
+.attributes-even {}
+
+/* miscellaneous */
+.specialPrice { color: #ff0000; }
+.oldPrice { text-decoration: line-through; }
+.fieldRequired { font-size: 0.625rem; color: #ff0000; }
+
+.text { font-size: 0.6875rem; }
+.main { font-size: 0.75rem; }
+.errorText { font-size: 0.625rem; color: #ff0000; }
+
+.fa-power-off {
+  color: #ff0000;
+}
+
+#adminAppMenu {
+  float: left;
+  width: 150px;
+  padding: 0.3125rem;
+}
+
+#adminAppMenu h3 {
+  font-size: 0.6875rem;
+}
+
+#adminAppMenu ul {
+  list-style: none;
+  margin: -0.3125rem 0 -0.3125rem -0.625rem;
+  padding: 0;
+}
+
+#contentText {
+  margin-left: 160px;
+}
+
+
+.p {
+  margin: 0px 0px 0.125rem;
+}
+
+.TextDisplayNumberOfLink {
+    padding-top:1rem;
+}
+
+
+/***********************/
+/* Custom jQuery UI for gallery box */
+/**********************/
+
+.element.style {
+  display: block;
+  height: auto;
+  width: 300px;
+  top: 400px;
+  left: 580.1875rem;
+}
+
+
+#piList li {
+  margin: 0.3125rem 0;
+  padding: 0.125rem;
+}
+
+
+/* buttons */
+
+.tdbLink a { }
+
+.tdbLink button { }
+
+/* style facture */
+.mainFacture {
+  font-size: 0.75rem;
+  background-color: #DCDCDC;
+}
+
+
+/* Styles fo
+r dhtml tabbed-pages */
+.mainTitle {
+  padding-top:0.1875rem;
+  height:1.4375rem;
+  font-size: 0.75rem;
+  color: White;
+  font-weight: bold;
+  background-color:#2969C3;
+}
+
+.mainTitleTexteSeul {
+  font-size: 0.75rem;
+  color: White;
+  font-weight: bold;
+}
+
+a.mainTitleTexteSeul {
+  font-size: 0.6875rem;
+  color: White;
+  font-style: italic;
+}
+
+a.mainTitleTexteSeul:Hover {
+  font-size: 0.6875rem;
+  color: White;
+  text-decoration:underline;
+  font-style: italic;
+}
+
+.mainTable {
+  font-size: 0.75rem;
+  border-bottom: 0.0625rem solid #CCCCCC;
+}
+
+
+table.adminform {
+  background-color: #f5f5f5;
+  color: #333333;
+  font-size: 0.75rem;
+  border-bottom: dashed 0.0625rem #CCCCCC;
+  border-top: dashed 0.0625rem #CCCCCC;
+  border-left: dashed 0.0625rem #CCCCCC;
+  border-right: dashed 0.0625rem #CCCCCC;
+  text-align: left;
+/*  height: 20.3125rem;*/
+  background-repeat: repeat;
+}
+
+
+div.adminformAide {
+  background-color: #FAFAD2;
+  color: #333333;
+  font-size: 0.75rem;
+  border-bottom: dashed 0.0625rem #CCCCCC;
+  border-top: dashed 0.0625rem #CCCCCC;
+  border-left: dashed 0.0625rem #CCCCCC;
+  border-right: dashed 0.0625rem #CCCCCC;
+  text-align: left;
+/*  height: 20.3125rem;*/
+  background-repeat: repeat;
+}
+
+table.adminTitle {
+  margin-left:0px;
+}
+
+
+.adminTitle {
+  background-color: #FDFDFD;
+  color: Black;
+  font-size: 0.75rem;
+  text-align: left;
+  height: 100%  ;
+  background-repeat: repeat;
+  border: 0.0625rem solid #CCCCCC;
+  height:50px;
+  padding: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;
+  margin-left:0.625rem;
+  margin-right:0.625rem;
+}
+
+
+/***********************************************************************
+* Jscookmenu
+************************************************************************/
+
+.menuJSCookTexte {
+  font-size: 0.8125rem;
+  color: White;
+}
+
+.headerFond {
+  background-color: #222;
+}
+
+.headerLine {
+  background-color: #FF0000;
+  height:0.05rem;
+}
+
+/*************************************
+// footer
+************************************/
+
+.footerCadre {
+  background-color: #F4F4F4;
+}
+
+#footer .navbar-collapse.in {
+  position: absolute;
+  width:100%;
+  height:0px;
+}
+
+.bg-faded {
+  border-top: 0.0625rem solid #B3B3B3;
+}
+
+.navbar-inverse {
+  background-color: #E9E9E9;
+  border-top: 0.0625rem solid #B3B3B3;
+}
+.navbar {
+  min-height: 0.3125rem;
+  padding-left:0.625rem;
+  font-size:x-small;
+}
+
+span.pageManager A {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+/**********************/
+/*     Boostrap       */
+/**********************/
+
+.modal {
+  z-index: 9999;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.btn-secondary {
+  color: #373a3c;
+  background-color: #F9F9F8;
+}
+
+a.btn-secondary {
+  color: #373a3c !important;;
+}
+
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+  background-color: #f5f5f5;
+}
+
+.table>thead>tr>th {
+  border-bottom: 0rem;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  padding: 0.1875rem;
+  padding-top: 0.1875rem;
+  padding-right: 0.1875rem;
+  padding-bottom: 0.1875rem;
+  padding-left: 0.1875rem;
+  border-top: 0px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  padding: 0.5rem;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+
+td, th {
+  padding-left: 0.3125rem;
+  padding-top: 0.1875rem;
+  padding-bottom: 0.1875rem;
+  padding-right: 0.1875rem;
+}
+
+td, th {
+  padding: 0;
+}
+
+
+.dataTableContent {
+  font-size: 0.6875rem;
+  color: #000000;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+.modal-footer {
+  border-top: 0rem;
+}
+
+#loginModal {
+  top:20%;
+  overflow-y: initial;
+}
+
+a.btn {
+  color:#fff;
+}
+
+div.backgroundMenu {
+  background-image: url(../../images/ClicShoppingAdmin/menu_superfish.gif);
+  height:1.90rem;
+}
+
+.imageheaderMenu {
+  float:left;
+  height:25px;
+}
+
+
+blockquote {
+  font-size: 0.75rem;
+   border-left:none;
+}
+
+.cardStatsSuccess {
+  background-color: #28a745;
+  color:#fff
+}
+
+.cardStatsPrimary {
+  background-color: #2969C3;
+  color:#fff
+}
+
+.cardStatsInfo {
+  background-color: #5bc0de;
+  color:#fff
+}
+
+.cardStatsWarning {
+  background-color: #f0ad4e;
+  color:#fff
+}
+
+.cardStatsDanger {
+  background-color: #dc3545;
+  color:#fff
+}
+
+.StatsTitle {
+  text-transform: uppercase;
+}
+
+.StatsValue{
+}
+
+/*
+* Autocompletion
+*/
+
+ul.token-input-list {
+  overflow: hidden;
+  height: auto !important;
+  height: 1%;
+  width: 9.375rem;
+  border: 0.0625rem solid #999;
+  cursor: text;
+  font-size: 0.75rem;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  list-style-type: none;
+  clear: left;
+}
+
+ul.token-input-list li {
+  list-style-type: none;
+}
+
+ul.token-input-list li input {
+  border: 0;
+  width: 7.8125rem;
+  padding: 0.1875rem 0.5rem;
+  background-color: white;
+  -webkit-appearance: caret;
+}
+
+li.token-input-token {
+  overflow: hidden;
+  height: auto !important;
+  height: 1%;
+  margin: 0.1875rem;
+  padding: 0.1875rem 0.3125rem;
+  background-color: #d0efa0;
+  color: #000;
+  font-weight: bold;
+  cursor: default;
+  display: block;
+}
+
+li.token-input-token p {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+li.token-input-token span {
+  float: right;
+  color: #777;
+  cursor: pointer;
+}
+
+li.token-input-selected-token {
+  background-color: #08844e;
+  color: #fff;
+}
+
+.token-input-dropdown {
+  background-color: #fff;
+  border: 0.0625rem solid #eee;
+}
+
+div.tabsClicShopping {
+  border-left:0.0625rem #eee solid;
+  border-right:0.0625rem #eee solid;
+  border-bottom:0.0625rem #eee solid;
+  padding:0.3125rem 0.3125rem 0.3125rem 0.3125rem;
+  font-size: 0.75rem;
+}
+
+div.adminformAide {
+  margin-left:0.5rem;
+  margin-right:0.5rem;
+}
+
+span.adminformAideContent {
+  padding-left:0.625rem;
+}
+
+.adminformTitle {
+  background-color: #f5f5f5;
+  color: #333333;
+  border-bottom: dashed 0.0625rem #CCCCCC;
+  border-left: dashed 0.0625rem #CCCCCC;
+  border-right: dashed 0.0625rem #CCCCCC;
+  text-align: left;
+  height:100%;
+  background-repeat: repeat;
+  padding-bottom: 0.9375rem;
+  padding-top: 0.9375rem;
+  padding-left:0.625rem;
+}
+
+.adminformAide {
+  background-color: #FAFAD2;
+  color: #333333;
+  font-size: 0.75rem;
+  border-bottom: dashed 0.0625rem #CCCCCC;
+  border-top: dashed 0.0625rem #CCCCCC;
+  border-left: dashed 0.0625rem #CCCCCC;
+  border-right: dashed 0.0625rem #CCCCCC;
+  text-align: left;
+  height:100%;
+  background-repeat: repeat;
+  padding-bottom: 0.9375rem;
+  padding-top: 0.9375rem;
+  padding-left:0.625rem;
+}
+
+.centerInputFields {
+  height:1.875rem;
+  padding-top:0.625rem;
+  display: table-cell;
+  font-size: 0.75rem;
+}
+
+div.spaceRow {
+  height: 0.9375rem!important;
+  width : 100%;
+}
+
+
+div.separator {
+  padding-top: 0.625rem!important;
+  padding-bottom: 0.625rem!important;
+  width : 100%;
+  line-height : 0.0625rem;
+}
+
+/*
+boostrap 4
+*/
+
+.card {
+  padding: 10px 5px 5px 10px;
+}
+
+div.headerCard {
+  background-color:#FDFDFD;
+}
+
+.blackline {
+  background-color: #000;
+  height: 1px;
+  border: 0;
+}
+
+
+.linkHandle {
+   cursor: pointer;
+}
+
+.sortHandle {
+  cursor: move;
+}
+
+
+
+/******************************
+// Stats box
+********************************/
+.StatsTitle {
+  font-size: 0.8rem;
+}
+.StatsSubtitle {
+  font-size: 0.8rem;
+}
+.StatsValue {
+  font-size: 0.8rem;
+}
+
+
+/*********************************
+// Awesome
+********************************/
+
+
+.fa-check {
+  color : #33AC00;
+}
+
+.fa-times {
+  color : #E80000;
+}

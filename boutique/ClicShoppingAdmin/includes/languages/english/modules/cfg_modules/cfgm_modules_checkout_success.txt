@@ -1,0 +1,2 @@
+module_cfg_module_checkout_success_title = Order confirmation
+

@@ -1,0 +1,4 @@
+module_dc_title = Sub Total
+module_dc_public_title = Sub Total
+module_dc_short_title = Sub Total
+

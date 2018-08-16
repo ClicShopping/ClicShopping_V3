@@ -1,0 +1,21 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+
+#headerShortcuts {
+  margin-top: 20px;
+}
+
+.alert h2 {
+  margin-top: 0px;
+}
+
+h1 {
+  margin-top: 0px;
+}

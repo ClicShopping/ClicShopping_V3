@@ -1,0 +1,2 @@
+module_cfg_module_checkout_payment_title = Payment Confirmation
+

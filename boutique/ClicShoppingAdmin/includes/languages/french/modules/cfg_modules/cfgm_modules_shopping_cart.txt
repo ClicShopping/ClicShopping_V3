@@ -1,0 +1,2 @@
+module_cfg_module_shopping_cart_title = Panier
+

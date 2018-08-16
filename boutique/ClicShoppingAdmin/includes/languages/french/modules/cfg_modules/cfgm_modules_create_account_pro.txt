@@ -1,0 +1,2 @@
+module_cfg_module_create_account_pro_modules_title = Création de compte client B2B
+

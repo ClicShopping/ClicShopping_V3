@@ -1,0 +1,277 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+
+  use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\CLICSHOPPING;
+
+  class ms_shopping_cart_products_listing {
+    public $code;
+    public $group;
+    public $title;
+    public $description;
+    public $sort_order;
+    public $enabled = false;
+
+    public function __construct() {
+      $this->code = get_class($this);
+      $this->group = basename(__DIR__);
+
+      $this->title = CLICSHOPPING::getDef('module_shopping_cart_products_listing_title');
+      $this->description = CLICSHOPPING::getDef('module_shopping_cart_products_listing_description');
+
+      if (defined('MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS')) {
+        $this->sort_order = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER;
+        $this->enabled = (MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS == 'True');
+      }
+    }
+
+    public function execute() {
+      global $products_id, $any_out_of_stock, $products;
+//      global $products;
+
+      $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
+      $CLICSHOPPING_Template = Registry::get('Template');
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Customer = Registry::get('Customer');
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+      $CLICSHOPPING_Currencies = Registry::get('Currencies');
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Prod = Registry::get('Prod');
+      $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
+      $CLICSHOPPING_Tax = Registry::get('Tax');
+
+      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->count_contents() > 0) {
+
+        $any_out_of_stock = 0;
+        $products = $CLICSHOPPING_ShoppingCart->get_products();
+
+        $content_width = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH;
+
+        $form = HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"', ['tokenize' => true]);
+//        $form = HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"');
+
+        $endform = '</form>';
+
+        $shopping_cart = '<!-- ms_shopping_cart_products_listing -->'. "\n";
+
+        $shopping_cart .= $form;
+        $shopping_cart .= '<div class="clearfix"></div>';
+        $shopping_cart .= '<div class="separator"></div>';
+        $shopping_cart .= '<div class="col-md-'. $content_width . '">';
+        $shopping_cart .= '<table class="ModulesShoppingCartProductsListingTableHeading table table-striped table-sm">';
+        $shopping_cart .= '<thead>';
+        $shopping_cart .= '<tr class="ModulesShoppingCartProductsListingContent">';
+        $shopping_cart .= '<td class="ModulesShoppingCartProductsListingContent" width="80"></td>';
+        $shopping_cart .= '<td class="text-md-center ModulesShoppingCartProductsListingContent" width="500">' . CLICSHOPPING::getDef('table_heading_products') . '</td>';
+        $shopping_cart .= '<td class="text-md-center ModulesShoppingCartProductsListingContent" width="170">' . CLICSHOPPING::getDef('table_heading_quantity') . '</td>';
+        $shopping_cart .= '<td class="text-md-right ModulesShoppingCartProductsListingContent" width="150">' . CLICSHOPPING::getDef('table_heading_total') . '</td>';
+        $shopping_cart .= '</tr>';
+        $shopping_cart .= '</thead>';
+        $shopping_cart .= '</table>';
+        $shopping_cart .= '<div class="separator"></div>';
+        $shopping_cart .= '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
+
+        $cart = '';
+
+        for ($i=0, $n=count($products); $i<$n; $i++) {
+// Push all attributes information in an array
+          if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
+            foreach($products[$i]['attributes'] as $option => $value) {
+              $shopping_cart .= HTML::hiddenField('id[' . $products[$i]['id'] . '][' . $option . ']', $value);
+
+              $Qattributes = $CLICSHOPPING_Db->prepare('select popt.products_options_name,
+                                                               poval.products_options_values_name,
+                                                               pa.options_values_price,
+                                                               pa.price_prefix,
+                                                              pa.products_attributes_reference
+                                                        from :table_products_options popt,
+                                                             :table_products_options_values  poval,
+                                                             :table_products_attributes  pa
+                                                        where pa.products_id = :products_id
+                                                        and pa.options_id = :options_id
+                                                        and pa.options_id = popt.products_options_id
+                                                        and pa.options_values_id = :options_values_id
+                                                        and pa.options_values_id = poval.products_options_values_id
+                                                        and popt.language_id = :language_id
+                                                        and popt.language_id = :language_id
+                                                     ');
+              $Qattributes->bindInt(':products_id', $products[$i]['id'] );
+              $Qattributes->bindInt(':options_id', $option );
+              $Qattributes->bindint(':options_values_id', $value );
+              $Qattributes->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
+              $Qattributes->execute();
+
+              $products[$i][$option]['products_attributes_values_name'] = $Qattributes->value('products_options_name');
+              $products[$i][$option]['attributes_values_id'] = $value;
+              $products[$i][$option]['products_attributes_values_name'] = $Qattributes->value('products_options_values_name');
+              $products[$i][$option]['attributes_values_price'] = $Qattributes->valueDecimal('options_values_price');
+              $products[$i][$option]['price_prefix'] = $Qattributes->value('price_prefix');
+              $products[$i][$option]['products_attributes_reference'] = $Qattributes->value('products_attributes_reference');
+            }
+          }
+        }
+
+        $products_name = null;
+
+        for ($i=0, $n=count($products); $i<$n; $i++) {
+          $products_name = '<table border="0" cellspacing="2" cellpadding="2" class="ModulesShoppingCartProductsListingTableContent">';
+          $products_name .= '<tr>';
+          $products_name .= HTML::hiddenField('products_id[]', $products[$i]['id']);
+          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link('index.php', 'Cart&Delete&products_id=' . $products[$i]['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/delete.gif', CLICSHOPPING::getDef('button_remove'))) . '&nbsp;&nbsp;&nbsp;</th>';
+          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50, null, null)) . '&nbsp;&nbsp;&nbsp;</th>';
+          $products_name .= '<th valign="top" width="500">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), $products[$i]['name']);
+
+          if (STOCK_CHECK == 'True') {
+// select the good qty in B2B to decrease the stock (see checkout_process to update stock)
+            if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+              $QproductsQuantityCustomersGroupQuery = $CLICSHOPPING_Db->prepare('select products_quantity_fixed_group
+                                                                                from :table_products_groups
+                                                                                where products_id = :products_id
+                                                                                and customers_group_id = :customers_group_id
+                                                                              ');
+              $QproductsQuantityCustomersGroupQuery->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($products[$i]['id']) );
+              $QproductsQuantityCustomersGroupQuery->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID() );
+              $QproductsQuantityCustomersGroupQuery->execute();
+
+// do the exact qty in function the customer group and product
+              $products_quantity_customers_group[$i] = $QproductsQuantityCustomersGroupQuery->valueInt('products_quantity_fixed_group');
+            } else {
+              $products_quantity_customers_group[$i] = 1;
+            }
+
+            $stock_check = $CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'] * $products_quantity_customers_group[$i]);
+
+            if (!empty($stock_check)) {
+              $any_out_of_stock = 1;
+              $products_name .= '<p>' . $stock_check .'</p>';
+            }
+          }
+
+          if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
+            foreach($products[$i]['attributes'] as $option => $value) {
+              $products_name .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products[$i][$option]['products_attributes_name'] . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->display_price($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') .'</p>';
+            }
+          }
+
+          $products_name .= '</th>';
+          $products_name .= '</tr>';
+          $products_name .= '</tbody>';
+          $products_name .= '</table>';
+
+          $button_update = HTML::button(null, 'fas fa-sync btn-ShoppingCartRefresh', null, null, null, 'sm');
+
+// pourcentage
+// ticker
+          $products_id = $CLICSHOPPING_Prod::getProductID($products[$i]['id']);
+
+          $ticker =  HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' .  $products_id), HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage(), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
+          if (is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage())) $ticker = '';
+
+          $cart = '<tr>';
+          $cart .= '<td valign="top" width="60%">' . $ticker . ' ' .  $products_name . '</td>';
+          $cart .= '<td class="text-md-right">';
+          $cart .= HTML::hiddenField('products_id[' . $i . ']', $products_id, 'id="products_id' . $products_id . '"');
+          $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity') .'&nbsp;&nbsp;';
+          $cart .= '</td>';
+
+          $cart .= '<td>' . $button_update . '</td>';
+
+          $cart .= '<td class="text-md-right" valign="middle">' . $CLICSHOPPING_Currencies->display_price($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
+          $cart .= '</tr>';
+
+// display SaveMoney Hook
+          $cart .= Registry::get('Hooks')->output('Cart', 'AdditionalCheckoutSaveMoney');
+
+          ob_start();
+          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_products_listing'));
+          $shopping_cart .= ob_get_clean();
+        }
+
+        $shopping_cart .='</table>';
+
+// display Free shipping Hook
+        $shopping_cart .= Registry::get('Hooks')->output('Cart', 'FreeShipping');
+        $shopping_cart .= Registry::get('Hooks')->output('Cart', 'AdditionalCheckoutInfoProductsDiscount');
+
+        $shopping_cart .='</div>';
+        $shopping_cart .= '<!--  ms_shopping_cart_products_listing -->' . "\n";
+        $shopping_cart  .= $endform;
+
+        $CLICSHOPPING_Template->addBlock($shopping_cart, $this->group);
+      }
+    } // function execute
+
+    public function isEnabled() {
+      return $this->enabled;
+    }
+
+    public function check() {
+      return defined('MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS');
+    }
+
+    public function install() {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Do you want activate this module ?',
+          'configuration_key' => 'MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS',
+          'configuration_value' => 'True',
+          'configuration_description' => 'Do you want activate this module in your shop ?',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Veuillez selectionner la largeur de votre listing ?',
+          'configuration_key' => 'MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH',
+          'configuration_value' => '12',
+          'configuration_description' => 'Select a number between 1 and 12',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_content_module_width_pull_down',
+          'date_added' => 'now()'
+        ]
+      );
+
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Sort order',
+          'configuration_key' => 'MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER',
+          'configuration_value' => '10',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first',
+          'configuration_group_id' => '6',
+          'sort_order' => '4',
+          'set_function' => '',
+          'date_added' => 'now()'
+        ]
+      );
+
+      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
+        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
+      );
+    }
+
+    public function remove() {
+      return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
+    }
+
+    public function keys() {
+      return array (
+        'MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS',
+	      'MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH',
+        'MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER'
+      );
+    }
+  }

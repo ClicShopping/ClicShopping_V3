@@ -1,0 +1,42 @@
+heading_title = Products viewed
+module_pv_title = Products viewed
+module_pv_short_title = Products viewed
+
+text_stats_products_viewed = Products viewed
+text_configure =  configure App Module
+
+text_intro = This app allow you to include a products viewed. <br /><br />
+- Click on Configure to access / install or uninstall the app.<br />
+- The App is located in Report<br />
+
+module_pv_introduction = The install process create the database settings for this module and the access menu
+
+
+button_back = Back
+button_install_title = Install
+button_configure = Configure
+button_save = Save
+button_dialog_uninstall =  Uninstall
+button_uninstall =  Uninstall
+button_delete = Delete
+button_cancel = Cancel
+button_stats_products_viewed = Products viewed
+button_reset = Reset
+
+dialog_uninstall_title = Uninstall
+dialog_uninstall_body = Do you want install this App ?
+dialog_uninstall_title = Uninstall Module?
+dialog_uninstall_body = Are you sure you want to uninstall this module?
+
+alert_module_install_success = Module has been successfully installed.
+alert_module_uninstall_success = Module has been successfully uninstalled.
+alert_cfg_saved_success = Configuration parameters have been successfully saved.
+
+
+table_heading_number = No.
+table_heading_products = Products
+table_heading_viewed = Viewed
+table_heading_clear = Clear
+
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)

@@ -1,0 +1,33 @@
+privacy_title = Privacy Policy
+
+app_link_info = Info/Help
+app_link_privacy = Privacy
+
+privacy_body =
+<h3>PayPal Modules</h3>
+
+<p>PayPal modules send store owner, online store, and customer related information to PayPal to process order transactions. These include the following modules:</p>
+
+<ul>
+  <li>PayPal Payments Standard</li>
+  <li>PayPal Express Checkout</li>
+  <li>PayPal Payments Pro (Direct Payment)</li>
+  <li>PayPal Payments Pro (Hosted Solution)</li>
+  <li>Log In with PayPal</li>
+</ul>
+
+<p>The following information is included in API calls sent to PayPal:</p>
+
+<ul>
+  <li>PayPal account information of the seller / store owner including e-mail address and API credentials.</li>
+  <li>Customer shipping and billing addresses.</li>
+  <li>Product information including name, price, and quantity.</li>
+  <li>Shipping and tax information applicable to the order.</li>
+  <li>The order total and currency.</li>
+  <li>Store URLs to process, verify, and finalize PayPal transactions, including success, cancelled, and IPN URLs.</li>
+  <li>E-Commerce solution identification.</li>
+</ul>
+
+<div class="alert alert-info">
+  <p>The parameters of each transaction sent to and received from PayPal can be inspected on the PayPal App Log page.</p>
+</div>

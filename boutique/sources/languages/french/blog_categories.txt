@@ -1,0 +1,8 @@
+
+navbar_title = Blog
+heading_title = Blog
+table_heading_image =
+text_no_blog = Il n'y a aucun article publié
+text_number_of_blog = Nombre d'articles:
+text_show =
+text_all_categories = Nos catégories

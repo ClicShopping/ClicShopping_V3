@@ -1,0 +1,52 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+
+  namespace ClicShopping\Sites\Shop\Pages\Checkout\Classes;
+
+  use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
+
+  class CheckoutSuccess {
+
+    public static function getCheckoutSuccessOrder() {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Customer = Registry::get('Customer');
+
+      $Qorders = $CLICSHOPPING_Db->prepare('select orders_id
+                                      from :table_orders
+                                      where customers_id = :customers_id
+                                      order by date_purchased desc
+                                      limit 1
+                                    ');
+      $Qorders->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qorders->execute();
+
+      return $Qorders;
+    }
+
+    public static function getCheckoutSuccessOrderCheck() {
+      $Qorders = static::getCheckoutSuccessOrder();
+  // redirect to shopping cart page if no orders exist
+      if ($Qorders->fetch() === false) {
+        CLICSHOPPING::redirect('index.php', 'Cart');
+      }
+    }
+
+    public static function getCheckoutSuccessOrderId() {
+      $Qorders = static::getCheckoutSuccessOrder();
+
+      $orders = $Qorders->toArray();
+
+      $order_id = (int)$orders['orders_id'];
+
+      return $order_id;
+    }
+  }

@@ -1,0 +1,39 @@
+modules_contact_us_form_title = Souhaitez-vous afficher les champs de contact du formulaire de contact ?
+modules_contact_us_form_description = Affiche les champs du formulaire de contact
+
+text_administrator_department = Aucun département défini
+
+entry_customers_id = Votre numéro client :
+entry_order = Votre numéro de commande :
+entry_date = Date :
+entry_customers_phone = Téléphone :
+
+entry_need_customers = Veuillez indiquer le service à contacter ?
+entry_customer = Question Client :
+
+entry_note_registered = Veuillez nous préciser la référence du/des produits et toutes informations concernant le problème identifié sur la commande<br /><br />
+
+entry_note_no_registered = Si vous appliquez pour une commande déjà effectuée veuillez cliquer sur : <a href="index.php?Account&Main">Mon Account</a> et veuillez choisir votre numéro de commande<br /><br />
+
+entry_name = Nom, prénom
+entry_email = Adresse email
+entry_enquiry = Requête
+entry_enquiry_customer = Votre message
+entry_enquiry_customer_information = Message client
+entry_email_object_customer = Copie de la requete
+entry_customers_subject = Sujet de votre requête
+
+entry_number_email_confirmation = combien font :
+send_department_company = Contacter un département
+
+
+text_becarefull_download = <strong>Attention!</strong> Pour toutes réclamations, dégradations, veuillez fournir une preuve au format video mp4, jpg où pdf avec un fichier de taille inférieur à :
+text_becarefull_download_1 = Mb. Veuillez noter que les vidéo youtube ne sont pas acceptées comme preuve. <br />Pour de plus amples informations, veuillez consulter nos conditions générales.
+
+entry_customers_phone_dgrp = Nous avons besoin de votre numéro de téléphone pour vous contacter éventuellement
+entry_email_dgrp = Nous avons besoin de votre courriel pour vous répondre
+
+button_continue = Continuer
+
+text_privacy_conditions_description = Notre politique de confidentialité est consultable à tout moment sur {{store_name}}  en cliquant <a target="_blank" href="{{privacy_url}}"><u>ici</u></a>.
+text_privacy_conditions_agree = Veuillez cocher cette case afin de donner votre consentement concernant notre politique de confidentiali

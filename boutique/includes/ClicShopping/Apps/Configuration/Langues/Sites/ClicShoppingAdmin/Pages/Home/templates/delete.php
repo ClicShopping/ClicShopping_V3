@@ -1,0 +1,73 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4 
+ *
+ *
+ */
+
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
+  use ClicShopping\OM\ObjectInfo;
+
+  $CLICSHOPPING_Langues = Registry::get('Langues');
+  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+
+  $lID = HTML::sanitize($_GET['lID']);
+
+  $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select  *
+                                              from :table_languages
+                                              where languages_id = :languages_id
+                                              ');
+  $Qlanguages->bindInt(':languages_id', $lID);
+
+  $Qlanguages->execute();
+
+  $lInfo = new ObjectInfo($Qlanguages->toArray());
+
+
+?>
+<!-- body //-->
+<div class="contentBody">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-block headerCard">
+        <div class="row">
+          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/languages.gif', $CLICSHOPPING_Langues->getDef('heading_title'), '40', '40'); ?></span>
+          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Langues->getDef('heading_title'); ?></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator"></div>
+<?php
+  if ($Qlanguages->value('code') == DEFAULT_LANGUAGE) {
+    echo '<div class="alert alert-warning">' . $CLICSHOPPING_Langues->getDef('error_remove_default_language') . '</div>';
+  }
+?>
+  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_delete_language'); ?></strong></div>
+  <div class="adminformTitle">
+    <div class="row">
+      <div class="separator"></div>
+      <div class="col-md-12"><?php echo $CLICSHOPPING_Langues->getDef('text_info_delete_info'); ?><br/><br/></div>
+      <div class="separator"></div>
+      <div class="col-md-12"><?php echo '<strong>' . $lInfo->name . '</strong>'; ?><br/><br/></div>
+      <div class="col-md-12 text-md-center">
+        <span><br />
+<?php
+
+
+  if ($Qlanguages->value('code') != DEFAULT_LANGUAGE) {
+    echo '<span><br />' . HTML::button($CLICSHOPPING_Langues->getDef('button_delete'), null, $CLICSHOPPING_Langues->link('Langues&DeleteConfirm&page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id), 'primary', null, 'sm') . ' </span>';
+  }
+
+  echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null,  $CLICSHOPPING_Langues->link('Langues&page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm');
+?>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

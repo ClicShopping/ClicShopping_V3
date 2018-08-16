@@ -1,0 +1,108 @@
+heading_title = Preview produits
+module_pv_title = Preview produits
+module_pv_short_title = Preview produits
+
+text_products_preview =  Preview produits
+text_configure =  Configurer App Module
+
+text_intro = Cette app vous permet d'installer unsystème de gestion d'preview des produits. <br /><br />
+- Activer ce module. Pour y accéder, veuillez aller dans le Menus Produits/Previews
+
+module_pv_introduction = Le processus d'installation installe le menu
+module_pv_short_title = Preview
+
+button_install_title = Installer
+button_configure = Configurer
+button_save = Sauver
+button_dialog_uninstall =  Désinstaller
+button_uninstall =  Désinstaller
+button_delete = Supprimer
+button_preview = Preview
+button_cancel = Annuler
+button_new = Nouveau
+button_new_product = Nouveau Produit
+
+dialog_uninstall_title = Désinstaller
+dialog_uninstall_body = Souhaitez-vous installer cette App ?
+dialog_uninstall_title = Désinstaller le module?
+dialog_uninstall_body = Etes vous sur de désinstaller ce module?
+
+alert_module_install_success = Le module a été installée.
+alert_module_uninstall_success = Le module a été désinstallée.
+alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
+
+
+text_no_products = Cette prévisualisation n'esxiste pas
+
+text_products_page_refefrencement = Métadonnées pour le produit
+text_products_page_title = Titre :
+text_products_header_description = Description :
+text_products_keywords = Mots clef :
+text_products_tag = Tags produit :
+
+text_no_products = Le produit à prévisualiser n'existe plus
+
+text_products = Produits :
+text_products_price_info = Prix :
+text_products_tax_class = Classe Fiscale :
+text_products_cost = Cout d'achat fournisseur :
+text_products_handling = Autres couts :
+text_tax_excluded = taxes non comprises
+text_products_available = En stock
+
+text_user_name = Créé / Modifié par :
+text_product_date_added = Produit ajouté au catalogue le :
+text_products_shipping_delay = Délais de livraison spécifique (autre que par défaut) :
+text_products_view = Options affichage
+
+text_products_status = Statut :
+text_products_date_available = Date de disponibilité :
+text_products_dimension = Dimensions (LxHxP) :
+
+text_products_dimension_type = Type de dimension:
+text_product_available = En stock
+text_product_not_available = Hors stock
+text_products_manufacturer = Marque du produit:
+
+text_products_time_replenishment = Délais de réapprovisionnement :
+text_products_wharehouse = Nom de l'entrepot
+text_products_wharehouse_row = Rangée de l'entreprot :
+text_products_wharehouse_level_location = Niveau de localisation :
+text_products_wharehouse_packaging = Type de packaging :
+text_wharehouse = Entreprosage
+
+text_products_packaging_new = Produit neuf
+text_products_packaging_repackaged = Produit reconditionné
+
+
+text_products_name = Nom
+text_products_description = Description
+text_products_quantity = Stock
+text_products_min_order_quantity = Qté minimale pour une commande
+text_products_model = Référence :
+text_products_ean = Code barre (EAN13) :
+text_products_suppliers = Forunisseur
+text_products_sku = SKU :
+text_products_price_comparison = Exclure des comparateurs de prix ?
+text_products_volume = Volume :
+
+text_products_only_online = Seulement sur le web
+
+text_products_url = URL Externe du produit :
+text_products_url_without_http = <small>(sans http://)</small>
+text_products_presentation = Présentation
+text_products_stock = Stock
+text_products_price_public = Prix Public / taxes
+text_products_price = Prix de vente:
+text_products_price_net = Hors Taxes
+text_products_weight = Poids :
+text_products_price_kilo = Afficher le prix au kilo :
+text_products_page_seo = SEO
+
+products_view = Affichage Catalogue
+
+tab_price_group_view = Actif : Affiche le prix du groupe - Non Actif : Affiche le prix public
+tab_products_group_view = Autoriser l'affichage du produit pour les clients du groupe
+tab_products_view = Autoriser l'affichage du produit pour les clients Grand Public
+tab_orders_group_view = Autoriser la commande du produit pour les clients du groupe
+tab_orders_view = Autoriser la commande du produit pour les clients Grand Public

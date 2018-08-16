@@ -1,0 +1,4 @@
+module_dc_title = Tax
+module_dc_public_title = Tax
+module_dc_short_title = Tax
+

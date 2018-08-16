@@ -1,0 +1,4 @@
+module_admin_dashboard_total_revenue_app_title = Do you want to install Total Revenue Chart (last 30 days)
+module_admin_dashboard_total_revenue_app_description = Show the total revenue chart of the last 30 days
+module_admin_dashboard_total_revenue_app_chart_link = Total Revenue
+

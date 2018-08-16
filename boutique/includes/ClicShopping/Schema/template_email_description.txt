@@ -1,0 +1,12 @@
+template_email_id int not_null
+language_id int not_null
+template_email_name varchar(250)
+template_email_short_description varchar(250)
+template_email_description longtext
+--
+primary template_email_id language_id
+idx_template_email_name template_email_name
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

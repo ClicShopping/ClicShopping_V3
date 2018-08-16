@@ -1,0 +1,30 @@
+{
+ "title":	"Categories App",
+ "app": "Categories",
+ "vendor":"Catalog",
+ "version":	"1.0.0",
+ "req_core_version":	"3.0",
+ "license":	"GPL-2",
+ "authors": [
+  {
+   "name": "ClicShopping",
+   "company":	"Innov-Concept Consulting",
+   "email":	"admin@clicshopping.org",
+   "website":	"https://www.clicshopping.org"
+  }
+ ],
+ "modules": {
+  "HeaderTags": {
+   "Categories":	"Module\\HeaderTags\\Categories"
+  },
+  "Hooks": {
+   "ClicShoppingAdmin/Langues": {
+    "DeleteConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\DeleteConfirm",
+    "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\Insert"
+   }
+  }
+ },
+ "routes": {
+  "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
+ }
+}

@@ -1,0 +1,13 @@
+id int not_null auto_increment
+user_name varchar(255) binary not_null
+user_password varchar(255) not_null
+name varchar(255) not_null
+first_name varchar(255) not_null
+access tinyint(1) not null default (0)
+
+--
+primary id
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

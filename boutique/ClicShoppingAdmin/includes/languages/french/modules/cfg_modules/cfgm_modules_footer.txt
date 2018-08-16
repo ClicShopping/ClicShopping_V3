@@ -1,0 +1,2 @@
+module_cfg_module_footer_title = Pied de page du catalogue
+

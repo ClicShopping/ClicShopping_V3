@@ -1,0 +1,77 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+
+span.headerMultiTemplateDefaultTitle {
+  color:#524169;
+  padding-right: 0rem;
+}
+
+a.headerMultiTemplateDefaultTitle {
+  color:#524169;
+  text-decoration: underline;
+}
+
+div.headerMultiTemplateDefaultLogo {
+  padding-top: 0rem;
+  padding-left:0rem;
+}
+
+span.headerMultiTemplateDefaultShoppingCartImage {
+  text-align: right;
+  padding-left:1rem;
+  padding-top:2rem;
+}
+
+span.headerMultiTemplateDefaultShoppingCart {
+  color: #edac27;
+  font-weight: bold;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+}
+
+a.headerMultiTemplateDefaultShoppingCart {
+  color: #edac27!important;
+}
+
+span.headerMultiTemplateDefaultHeaderSearch {
+  padding-top:10px;
+  text-align: center;
+  padding-bottom: 0.625rem;
+}
+
+
+span.headerMultiTemplateDefaultPassword {
+  padding-top: 0.3125rem;
+}
+
+.headerMultiTemplateDefaultPassword a {
+  color: #7F736F;
+}
+
+span.headerMultiTemplateDefaultLoginText {
+  padding-top: 0.3125rem;
+}
+
+span.headerMultiTemplateDefaultLanguage {
+  width: 3.75rem;
+  padding-left: 0.3125rem;
+}
+
+li.headerMultiTemplateDefaultLanguage{
+  list-style-type:none;
+}
+
+.headerMultiTemplateDefaultCartLink {
+  padding-right: 5px;
+}
+
+a.headerMultiTemplateDefaultCartLink h2 {
+  font-size: 1rem!important;
+}

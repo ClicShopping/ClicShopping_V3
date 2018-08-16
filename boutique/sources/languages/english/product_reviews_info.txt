@@ -1,0 +1,4 @@
+
+ navbar_title = Reviews
+ heading_title_review_info = Customers review
+

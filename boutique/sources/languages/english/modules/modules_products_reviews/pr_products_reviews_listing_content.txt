@@ -1,0 +1,8 @@
+
+
+ modules_products_reviews_listing_content_title = Listing Commentaire : Do you to allow to customer to read the comments ?
+ modules_products_reviews_listing_content_description = Allow to customer to read the comments
+
+ modules_products_reviews_listing_content_comment = Custoemrs comments
+ modules_products_reviews_listing_content_text_result_page = Result
+ modules_products_reviews_listing_content_text_of_5_stars =  star(s)

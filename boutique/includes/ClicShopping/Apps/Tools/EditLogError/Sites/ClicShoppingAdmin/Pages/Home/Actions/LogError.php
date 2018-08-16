@@ -1,0 +1,25 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+
+  namespace ClicShopping\Apps\Tools\EditLogError\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+
+  use ClicShopping\OM\Registry;
+
+  class LogError extends \ClicShopping\OM\PagesActionsAbstract {
+    public function execute() {
+      $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
+
+      $this->page->setFile('log_error.php');
+      $this->page->data['action'] = 'LogError';
+
+      $CLICSHOPPING_EditLogError->loadDefinitions('Sites/ClicShoppingAdmin/main');
+    }
+  }

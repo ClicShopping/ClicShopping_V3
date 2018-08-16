@@ -1,0 +1,76 @@
+heading_title =  Attributs produits
+module_pa_title = Attributs produits
+module_pa_short_title = Attributs produits
+
+text_products_attributes = Attributs produits
+text_configure =  Configurer App Module
+
+text_intro = Cette app vous permet d'accéder à un formulaire de gestion des Attributs produits<br /><br />
+- Cliquez sur configurer pour accéder à l'installation ou la désinstallation l'app.<br />
+- L'App se situe dan le menu Catalogue<br />
+
+module_pa_introduction = Le processus d'install crée la base de données et le menu pour ce module
+
+button_install_title = Installer
+button_configure = Configurer
+button_save = Sauver
+button_dialog_uninstall =  Désinstaller
+button_uninstall =  Désinstaller
+button_delete = Supprimer
+button_products_attributes = Attributs produits
+button_cancel = Annuler
+button_new = Nouveau fournisseur
+button_update = Mettre à jour
+button_insert = Insérer
+
+dialog_uninstall_title = Désinstaller
+dialog_uninstall_body = Souhaitez-vous installer cette App ?
+dialog_uninstall_title = Désinstaller le module?
+dialog_uninstall_body = Etes vous sur de désinstaller ce module?
+
+alert_module_install_success = Le module a été installée.
+alert_module_uninstall_success = Le module a été désinstallée.
+alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
+
+text_result_page = Page {{listing_from}} sur {{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
+heading_title_opt = Etape 1 : Nom de l'option du produit
+heading_title_val = Etape 2 : Caractéristique des options pour le produit
+heading_title_attributes = Etape 3 : Définition des attributs des produits
+
+table_heading_id = ID
+table_heading_ref_attributes = Ref. Attribut produits
+table_heading_product = Nom du produit
+table_heading_opt_name = Nom de l'option
+table_heading_opt_value = Caratéristique de l'option
+table_heading_opt_price = Prix
+table_heading_opt_price_prefix = Préfixe
+table_heading_opt_order = Ordre affichage catalogue
+table_heading_action = Action
+table_heading_download = Produits téléchargeable :
+table_text_filename = Nom du fichier :
+table_text_max_days = Expire le :
+table_text_max_count = Compte de téléchargement maximal :
+heading_title_clone_products_attributes = Etape 4 :Cloner / Copier des attributs
+clone_products_from = de
+clone_products_to = vers
+
+title_help_attributs = Note sur les attributs
+
+text_help_attributs = <ul><strong><u>les préfixes d'attribut</u></strong> : <br /><br /><li> - La synthaxe "+" permet de multiplier l'attribut par la quantité et de l'additionner au prix</li><li>- La synthaxe "-" permet de mullitplier l'attribut par la quantité et de le soustraire au prix</li><br /><li> - N'oubliez pas aussi de paramétrer le statut de commande concernant l'autorisation de téléchargement.</li><li> - Le téléchargement de fichiers ne peut excéder : {{upload_max_filesize}}</li>'title_help_clone = Note sur les attributs
+
+title_help_clone = Note sur le clonage
+text_help_clone = <ul><strong><u>La Copie / Clonage d'attribut</u></strong> : <br /><br /><li>Vous pouvez copier un ou plusieurs attributs d'un produit sur un ou plusieurs autres produits</li><li>Pour supprimer en masse un attribut vous devez choisir un produit, puis un ou plusieurs autres produits.<br />Cliquez ensuite sur supprimer et l'ensemble des attributs sera effacé</li></ul>
+
+
+text_warning_of_delete = Certains produits utilisent cette option - il n'est pas recommandé de la supprimer.
+text_ok_to_delete = Cette option n'est utilisée par aucun produit - Il est possible de la supprimer.
+text_option_id = Option ID
+text_option_name = Nom de l'option
+
+
+onglet_step1 = Etape 1
+onglet_step2 = Etape 2
+onglet_step3 = Etape 3
+onglet_step4 = Etape 4

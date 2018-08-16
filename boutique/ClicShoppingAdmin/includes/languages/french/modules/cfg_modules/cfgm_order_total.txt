@@ -1,0 +1,2 @@
+module_cfg_module_order_total_title = Order Total
+

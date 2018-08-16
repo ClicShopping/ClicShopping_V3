@@ -1,0 +1,9 @@
+customers_group_id int default(0) not_null
+categories_id int default(0) not_null
+discount decimal(11,2) default(0.00) not_null
+--
+primary customers_group_id categories_id
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

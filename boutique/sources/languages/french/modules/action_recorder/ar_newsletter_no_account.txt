@@ -1,0 +1,2 @@
+module_action_recorder_newsletter_no_account_title = Anonymous newsletter
+module_action_recorder_newsletter_no_account_description = Record usage of the Anonymous newsletter.

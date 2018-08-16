@@ -1,0 +1,5 @@
+cfg_ec_logo_title = Do you want display PayPal logo
+cfg_ec_logo_des = Display the logo
+
+text_ec_logo_true = True
+text_ec_logo_false = False

@@ -1,0 +1,81 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4 
+ *
+ *
+ */
+
+  namespace ClicShopping\Apps\OrderTotal\SubTotal\Module\Total;
+
+  use ClicShopping\OM\Registry;
+
+  use ClicShopping\Sites\Common\B2BCommon;
+
+  use ClicShopping\Apps\OrderTotal\SubTotal\SubTotal as SubTotalApp;
+
+
+  class ST implements \ClicShopping\OM\Modules\OrderTotalInterface  {
+
+    public $code;
+    public $title;
+    public $description;
+    public $enabled;
+    public $output;
+    public $sort_order = 0;
+    public $app;
+    public $surcharge;
+    public $maximum;
+
+    public function __construct() {
+
+      if (!Registry::exists('SubTotal')) {
+        Registry::set('SubTotal', new SubTotalApp());
+      }
+
+      $this->app = Registry::get('SubTotal');
+      $this->app->loadDefinitions('Module/Shop/ST/ST');
+
+      $this->signature = 'Tax|' . $this->app->getVersion() . '|1.0';
+      $this->api_version = $this->app->getApiVersion();
+
+      $this->code = 'ST';
+      $this->title = $this->app->getDef('module_dc_title');
+      $this->public_title = $this->app->getDef('module_dc_public_title');
+
+      $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS == 'True') ? true : false;
+
+      $this->sort_order = defined('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_SORT_ORDER') && ((int)CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_SORT_ORDER > 0) ? (int)CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_SORT_ORDER : 0;
+
+      $this->output = [];
+    }
+
+    public function process() {
+
+      $CLICSHOPPING_Currencies = Registry::get('Currencies');
+      $CLICSHOPPING_Order = Registry::get('Order');
+
+      $this->output[] = array('title' => $this->title . ':',
+                              'text' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['subtotal'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
+                              'value' => $CLICSHOPPING_Order->info['subtotal']);
+  }
+
+    public function check() {
+      return defined('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS) != '');
+    }
+
+    public function install() {
+      $this->app->redirect('Configure&Install&module=ST');
+    }
+
+    public function remove() {
+      $this->app->redirect('Configure&Uninstall&module=ST');
+    }
+
+    public function keys() {
+      return array('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_SORT_ORDER');
+    }
+  }

@@ -1,0 +1,28 @@
+body {
+  background: White;
+  color: Black;
+}
+
+a img {
+  border: 0;
+}
+
+/*Couleur des Liens*/
+A {
+  color: Black;
+  text-decoration: none;
+}
+
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.error-actions {
+  margin-top:15px;
+  margin-bottom:15px;
+}
+.error-actions A {
+  margin-right:10px;
+  color: #ee0500;;
+}
+

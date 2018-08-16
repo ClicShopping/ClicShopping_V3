@@ -1,0 +1,2 @@
+module_cfg_module_payment_title = Payment
+

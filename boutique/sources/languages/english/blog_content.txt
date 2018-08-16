@@ -1,0 +1,5 @@
+
+ heading_title = Blog Article
+ text_blog_not_found = Article not found
+
+ button_continue = Continue

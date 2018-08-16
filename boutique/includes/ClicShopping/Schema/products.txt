@@ -1,0 +1,56 @@
+products_id int not_null auto_increment
+products_quantity int(4) not_null
+products_model varchar(255) null
+products_image varchar(255) null
+products_ean varchar(15) null
+products_sku varchar(15) null
+products_image_zoom varchar(255)
+products_price decimal(15,4) not_null
+products_date_added datetime not_null
+products_last_modified datetime
+products_date_available datetime
+products_weight decimal(15,4) not_null
+products_price_kilo char(1) default(0) not_null
+products_status tinyint(1) not_null
+products_tax_class_id int not_null
+manufacturers_id int
+products_ordered int default(0) not_null
+products_percentage tinyint(1) default(1) not_null
+products_view char(1) default(1) not_null
+orders_view char(1) default(1) not_null
+suppliers_id int
+products_archive tinyint(1) default(0) not_null
+products_min_qty_order int(4) default(0) not_null
+products_price_comparison char(1)  default(0) not_null
+products_dimension_width decimal(5,2) default(0.00) not_null
+products_dimension_height decimal(5,2) default(0.00) not_null
+products_dimension_depth decimal(5,2) default(0.00) not_null
+products_dimension_type varchar(50) null
+admin_user_name varchar(64) null
+products_volume varchar(50) null
+products_quantity_unit_id int default(0) not_null
+products_only_online tinyint(1) default(0) not_null
+products_image_medium varchar(255) null,
+products_weight_class_id tinyint(2) default(2) not_null
+products_cost decimal(15,2) default (0.00) not_null
+products_handling decimal(15,2) default(0.00) not_null
+products_wharehouse_time_replenishment varchar(255)  null
+products_wharehouse varchar(255) null
+products_wharehouse_row varchar(255) null
+products_wharehouse_level_location varchar(255) null
+products_packaging tinyint(1) default(0) not_null
+products_sort_order int default(0) not_null
+products_quantity_alert int(4) default(0) not_null
+products_only_shop tinyint(1) default(0) not_null
+products_download_filename varchar(255) null
+products_download_public tinyint(1) default(0) not_null
+products_type varchar(12) null
+products_barcode varchar(50) null
+--
+primary products_id
+idx_products_model products_model
+idx_products_date_added products_date_added
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

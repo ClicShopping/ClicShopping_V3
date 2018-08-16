@@ -1,0 +1,11 @@
+customers_notes_id int not_null auto_increment
+customers_id int not_null
+customers_notes text not_null
+customers_notes_date datetime
+user_administrator varchar(255) not_null
+--
+primary customers_notes_id
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

@@ -1,0 +1,13 @@
+id int not_null auto_increment
+products_id int not_null
+suppliers_id int  not_null
+customers_group_id int default(0) not_null
+discount_quantity int not_null
+discount_supplier_price decimal(10,2) not_null
+discount_customer decimal(10,2) not_null
+--
+primary id
+##
+engine innodb
+character_set utf8
+collate utf8_unicode_ci

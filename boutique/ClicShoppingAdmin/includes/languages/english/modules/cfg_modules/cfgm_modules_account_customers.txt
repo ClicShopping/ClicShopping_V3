@@ -1,0 +1,1 @@
+module_cfg_module_account_customers_title = Account_Customers

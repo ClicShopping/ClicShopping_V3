@@ -1,0 +1,5 @@
+
+navbar_title_1 = Checkout
+navbar_title_2 = Success
+heading_title = Your Order Has Been Processed!
+button_continue = Continue

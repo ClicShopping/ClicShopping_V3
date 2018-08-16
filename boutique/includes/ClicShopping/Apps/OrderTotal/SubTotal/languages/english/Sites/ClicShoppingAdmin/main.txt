@@ -1,0 +1,26 @@
+heading_title = Sub Total
+module_dc_title = Configuration
+
+text_subtotal =  Sub Total
+text_configure =  Configure App Sub Total
+
+text_intro =  This app allow you to include a SUBTOTAL on the order
+module_dc_introduction = This app allow you to include a SUBTOTAL on the order
+
+button_back = Back
+button_install_title = Install
+button_configure = Configure
+button_save = Save
+button_dialog_uninstall =  Uninstall
+button_uninstall =  Uninstall
+button_cancel = Cancel
+button_delete = Delete
+
+dialog_uninstall_title = Uninstall
+dialog_uninstall_body = Do you want install this App ?
+dialog_uninstall_title = Uninstall Module?
+dialog_uninstall_body = Are you sure you want to uninstall this module?
+
+alert_module_install_success = Module has been successfully installed.
+alert_module_uninstall_success = Module has been successfully uninstalled.
+alert_cfg_saved_success = Configuration parameters have been successfully saved.

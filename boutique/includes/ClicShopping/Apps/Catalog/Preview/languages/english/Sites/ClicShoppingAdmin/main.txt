@@ -1,0 +1,110 @@
+heading_title = Preview products
+module_pv_title = Preview products
+module_pv_short_title = Preview products
+
+text_products_preview =  Preview products
+text_configure = Configure App Module
+
+text_intro = This app allow you to include an preview pages. <br /><br />
+- Activate this module and activate the module products preview located in the products menu
+
+module_pv_introduction = The install process create the access menu
+
+button_back = Back
+button_install_title = Install
+button_configure = Configure
+button_save = Save
+button_dialog_uninstall =  Uninstall
+button_uninstall =  Uninstall
+button_delete = Delete
+button_preview = Preview
+button_cancel = Cancel
+button_new = New
+button_new_product = New product
+
+
+dialog_uninstall_title = Uninstall
+dialog_uninstall_body = Do you want install this App ?
+dialog_uninstall_title = Uninstall Module?
+dialog_uninstall_body = Are you sure you want to uninstall this module?
+
+alert_module_install_success = Module has been successfully installed.
+alert_module_uninstall_success = Module has been successfully uninstalled.
+alert_cfg_saved_success = Configuration parameters have been successfully saved.
+
+
+text_no_products = The product to preview does'nt exist
+
+text_products_page_refefrencement = Product Meta Data
+text_products_page_title = Title
+text_products_header_description = Description
+text_products_keywords = Keywords
+text_products_tag = Tags
+
+text_no_products = The product to preview does not exist
+
+text_products = Catalog:
+text_products_price_info = Sell price :
+text_products_tax_class = Tax Class :
+text_products_cost = Supplier Cost :
+text_products_handling = Others costs :
+text_tax_excluded = taxes non comprises
+text_products_available = En stock
+
+text_user_name = Created / Modified by :
+text_product_date_added = Product added our catalog on:
+text_products_shipping_delay = Specific delivery (other than by default) :
+text_products_view = Display options
+
+text_products_status = Status:
+text_products_date_available = Date available:
+text_products_dimension = Dimensions (LxHxW)
+text_products_dimension_type = Dimension type
+text_product_available = In Stock
+text_product_not_available = Out of stock
+text_products_manufacturer = Product brand:
+
+text_products_time_replenishment = Resupplying:
+text_products_wharehouse = Wharehouse name
+text_products_wharehouse_row = Wharehouse row:
+text_products_wharehouse_level_location = Location level:
+text_products_wharehouse_packaging = Packaging type:
+text_wharehouse = Storage
+text_products_packaging_new = New product
+text_products_packaging_repackaged = Product repackaged
+text_products_packaging_used = Product Used
+
+
+text_products_name = Catalog Name
+text_products_description = Catalog Description
+text_products_quantity = Stock quantity:
+text_products_min_order_quantity = Quantity minimal for a customer order :
+text_products_model = Model:
+text_products_ean = Barcode (EAN13):
+text_products_suppliers = Product supplier:
+text_products_sku = SKU :
+text_products_price_comparison = Excluding price comparison ?
+text_products_volume = Product volume :
+
+text_products_only_online = Only on the web (no selling in shop)
+
+text_products_url = Catalog URL:
+text_products_url_without_http = <small>(without https://)</small>
+text_products_presentation = Presentation
+text_products_stock = Stock
+text_products_price_public = Public price & TAXE
+text_products_price = Price
+text_products_price_net = TAX exc.
+text_products_weight = Product weight
+text_products_price_kilo = Display the price per kilo:
+text_products_page_seo = SEO
+
+products_view = Display on catalog
+
+
+tab_price_group_view = Active:  Post the price of the group - NOT Active:  Post the public price
+tab_products_group_view = To post the product for the customers of the group
+tab_products_view = To post the product for the customers general public
+tab_orders_group_view = To authorize the ordering of the product for the customers of the group
+tab_orders_view = To authorize the ordering of the product for the customers General public
+

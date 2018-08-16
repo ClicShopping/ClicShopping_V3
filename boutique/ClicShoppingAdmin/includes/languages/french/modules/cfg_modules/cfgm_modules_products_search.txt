@@ -1,0 +1,2 @@
+module_cfg_module_products_search_modules_title = Listing recherche produits
+

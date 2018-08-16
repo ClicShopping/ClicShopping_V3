@@ -1,0 +1,13 @@
+module_account_customers_history_info_invoice_title = Historique Info : Souhaitez-vous permettre au client dans les historiques de commande le détail de la commande?
+module_account_customers_history_info_invoice_description = Affiche dans l'historiques de commande le détail de la commande
+
+module_account_customers_history_info_invoice_heading_products = Produits
+module_account_customers_history_info_invoice_heading_tax = Taxe
+module_account_customers_history_info_invoice_heading_total = Total
+
+module_account_customers_history_info_invoice_heading_order_number = N  #%s
+module_account_customers_history_info_invoice_heading_order_date = Date de prise de la commande :
+module_account_customers_history_info_invoice_heading_order_total = Montant total :
+
+module_account_customers_history_info_invoice_heading_billing_information = Informations commande / facture
+

@@ -1,0 +1,52 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *
+ *
+ */
+
+/***************************
+résolution 1050
+****************************/
+@media(max-width:74rem){
+  div.InfosHeaderAdmin {
+    display: none;
+    float: left;
+  }
+  
+  span.footerHelp {
+    display: none;
+  }
+}
+
+@media(max-width:85rem){
+  div.MenuHeaderAdmin  {
+    display: none;
+  }
+}
+
+@media(max-width:40rem){
+  .logoHeading {
+    display: none;
+  }
+}
+
+/*
+// Extra small devices (portrait phones, less than ???px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 34em and up)
+@media (min-width: 34em) { ... }
+
+// Medium devices (tablets, 48em and up)
+@media (min-width: 48em) { ... }
+
+// Large devices (desktops, 62em and up)
+@media (min-width: 62em) { ... }
+
+// Extra large devices (large desktops, 75em and up)
+@media (min-width: 75em) { ... }
+*/

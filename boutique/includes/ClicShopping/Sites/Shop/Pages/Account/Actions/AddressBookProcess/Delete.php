@@ -1,0 +1,58 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4 
+ *
+ *
+ */
+
+
+  namespace ClicShopping\Sites\Shop\Pages\Account\Actions\AddressBookProcess;
+
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Registry;
+  use ClicShopping\Sites\Shop\AddressBook;
+
+  class Delete extends \ClicShopping\OM\PagesActionsAbstract  {
+
+    public function execute()  {
+
+      $CLICSHOPPING_Customer = Registry::get('Customer');
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      if (!isset($_GET['delete']) && is_numeric($_GET['delete'])) {
+        if ($_GET['delete'] == $CLICSHOPPING_Customer->getDefaultAddressID()) {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('warning_primary_address_deletion'), 'danger', 'addressbook');
+
+          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+        }
+
+        if (AddressBook::countCustomerAddressBookEntries() >= (int)MAX_ADDRESS_BOOK_ENTRIES) {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_full'), 'error', 'addressbook');
+
+          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+        } else if (AddressBook::countCustomersAddAddress() == 0) {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_add'), 'error', 'addressbook');
+
+          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+        }
+      }
+
+      if (isset($_GET['action']) && ($_GET['action'] == 'deleteconfirm') && isset($_GET['delete']) && is_numeric($_GET['delete']) && isset($_GET['formid']) && ($_GET['formid'] == md5($_SESSION['sessiontoken']))) {
+        if ($_GET['delete'] == $CLICSHOPPING_Customer->get('default_address_id') ) {
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('warning_primary_address_deletion'), 'error', 'addressbook');
+        } else {
+          AddressBook::deleteEntry($_GET['delete']);
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_address_book_entry_deleted'), 'error', 'addressbook');
+        }
+
+        $CLICSHOPPING_Hooks->call('AddressBookProcess', 'DeleteConfirm');
+
+        CLICSHOPPING::redirect('index.php', 'Account&AddressBook');
+      }
+    }
+  }
