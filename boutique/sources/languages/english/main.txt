@@ -272,7 +272,7 @@ email_text_footer = Your order is being prepared and you will be sent soon. Plea
 regards,<br /><strong>{{store_name}} Team</strong><br />
 <p>{{store_name_address}}<br />
 <u><font size="2">Confidentiality Note :</font></U><font size="2"><br />
-this message as well as the documents which would be appended are addressed exclusively to their recipient and could contain confidential information subjected to the professional secrecy or whose disclosure is prohibited under the terms of the legislation in force. So we inform the person who would receive it without being the recipient or an authorized person, that this information is confidential and that any use, copies, files or disclosure is prohibited.  If you received this message, we ask you to agree to communicate it to us by email : {{store_owner_address}}. and to proceed directly to its destruction<br />
+this message as well as the documents which would be appended are addressed exclusively to their recipient and could contain confidential information subjected to the professional secrecy or whose disclosure is prohibited under the terms of the legislation in force. So we inform the person who would receive it without being the recipient or an authorized person, that this information is confidential and that any use, copies, files or disclosure is prohibited.  If you received this message, we ask you to agree to communicate it to us by email : {{store_owner_email_address}}. and to proceed directly to its destruction<br />
 <p><font size="2">In accordance with the <strong>Law</strong> no 78-17 of January 6, 1978 known as Data-processing Law and Freedom, you are entitled to correction of your personal data or on request by email</font></div>
 
 
