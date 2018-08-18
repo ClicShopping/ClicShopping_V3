@@ -382,7 +382,7 @@
         if (is_file($sql_file)) {
             $import_queries = file_get_contents($sql_file);
         } else {
-            trigger_error('OSC\OM\Db::importSQL(): SQL file does not exist: ' . $sql_file);
+            trigger_error('CLICSHOPPING\OM\Db::importSQL(): SQL file does not exist: ' . $sql_file);
 
             return false;
         }
