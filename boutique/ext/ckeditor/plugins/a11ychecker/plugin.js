@@ -1,6 +1,6 @@
 /**
 * @license Copyright (c) 2014-2016, CKSource - Frederico Knabben. All rights reserved.
-* For licensing, see LICENSE.md or http://ckeditor.com/license
+* For licensing, see license.md or http://ckeditor.com/license
 */
 
 !function(){var t,e,n,i,s,a,r,o,c,u,l,d,h,p,f,g,m,v,b,y,x,w,C,T,k,I,E;C=function(){"use strict";function t(){}return t.prototype={fixesMapping:{},config:{}},t.prototype.constructor=t,t.fixes={},t.prototype.process=function(t,e,n){},t.prototype.filterIssues=function(t,e){if(this._filterIssue){var n=this,i=function(t){return n._filterIssue.call(n,t,e)};t.filter(i)}},t.prototype.getIssueDetails=function(t,e){},t.getFixType=function(e,n){t.fixes[e]?n&&n(t.fixes[e]):!function(i){t.fixes[e]=i,n&&n(i)}()},t.prototype.getFixes=function(t,e,n){var i=this.fixesMapping[t.id];if(i&&i.length){var s,a=[],r=function(t){a.push(t),a.length===i.length&&e(a)};for(s=0;s<i.length;s++)CKEDITOR.plugins.a11ychecker.quickFixes.getInstance({name:i[s],callback:r,issue:t,langCode:n})}else e([])},t.prototype.createConfig=function(t){return{}},t.prototype._filterIssue=null,t}(),T=function(){"use strict";function t(t,e){CKEDITOR.tools.extend(this,t,!0),this.engine=e}return t.testability={ERROR:1,WARNING:.5,NOTICE:0},

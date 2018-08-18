@@ -28,9 +28,9 @@ Select Accessibility Checker from the list of Available Plugins and add it to yo
 
 **Running on local filesystem:** You cannot run Accessibility Checker on a local filesystem, since Quail uses an `XMLHttpRequest` for fetching its resources. This is not allowed when working with the `file://` scheme.
 
-## License
+## license
 
 Copyright (c) 2014-2016 CKSource - Frederico Knabben. All rights reserved.<br>
-Licensed under the terms of the [GNU General Public License Version 2 or later (the "GPL")](http://www.gnu.org/licenses/gpl.html).
+licensed under the terms of the [GNU General Public license Version 2 or later (the "GPL")](http://www.gnu.org/licenses/gpl.html).
 
-See LICENSE.md for more information.
+See license.md for more information.
