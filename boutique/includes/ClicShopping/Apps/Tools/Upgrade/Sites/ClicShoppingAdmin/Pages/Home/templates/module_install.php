@@ -171,7 +171,7 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name; ?></a>';  ?></h4>
+                            <h4 class="modal-title"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name; ?></a>'; ?></h4>
                           </div>
                           <div class="modal-body">
                             <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_description') . $description; ?></p>
@@ -259,7 +259,7 @@
                     <div class="card">
                       <div class="card-header">
                         <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/logo_clicshopping.png', '50', '50'); ?></span>
-                        <span class="col-md-11"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name . ' - Github'; ?></span>
+                        <span class="col-md-11"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name . ' - Github'; ?></a></span>
                       </div>
                       <div class="card-block">
                         <div class="row">
