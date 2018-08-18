@@ -110,9 +110,10 @@
     $count = $CLICSHOPPING_Github->getSearchTotalCount();
 
     for ($i=0, $n=$count; $i<$n; $i++) {
-      $item = $result['items'][$i];
-      $module_real_name = $item['name'];
-      $link_html =  $item['html_url'];
+      $item = $result->items[$i];
+
+      $module_real_name = $item->name;
+      $link_html =  $item->html_url;
 
       $local_version = '';
       $temp_version = '';
@@ -171,7 +172,7 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name; ?></a>'; ?></h4>
+                            <h4 class="modal-title"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name; ?></a></h4>
                           </div>
                           <div class="modal-body">
                             <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_description') . $description; ?></p>
@@ -288,7 +289,7 @@
                                   <!-- Modal content-->
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h4 class="modal-title"><?php echo $module_real_name; ?></h4>
+                                      <h4 class="modal-title"><a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name; ?></a></h4>
                                     </div>
                                     <div class="modal-body">
                                       <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_description') . $result_content_module->description; ?></p>
@@ -386,8 +387,9 @@
     <div class="row">
         <span class="col-md-12">
 <?php
-  echo $CLICSHOPPING_Upgrade->getDef('text_search_limit') . ' ' . $CLICSHOPPING_Github->getSearchLimit() . '<br />';
-  echo $CLICSHOPPING_Upgrade->getDef('text_core_limit') . ' ' . $CLICSHOPPING_Github->getCoreLimit() . '<br />';
+  echo $CLICSHOPPING_Upgrade->getDef('text_search_limit') . ' ' . 20 / mn . '<br />';
+  echo $CLICSHOPPING_Upgrade->getDef('text_core_limit') . ' ' . 60 / mn . '<br />';
+  echo $CLICSHOPPING_Upgrade->getDef('text_rate_limit') . ' ' . 30 / mn . '<br />';
   echo $CLICSHOPPING_Upgrade->getDef('text_cache_file');
 ?>
         </span>

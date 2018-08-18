@@ -43,10 +43,6 @@
 
       $this->app = Registry::get('Upgrade');
 
-      require_once (CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/api/Github/vendor/autoload.php');
-
-      $this->github = new \Github\Client();
-
       $this->githubUrl = 'https://github.com';
       $this->githubApi = 'https://api.github.com';
       $this->githubRepo = 'repos';
@@ -252,34 +248,6 @@
     }
 
 //*************************************************************
-// Limit
-//*************************************************************
-
-/*
- * display a message if the limited is not accepted by github
- * @param
- * @return  string $message, if the limited is not accepted by github
- * @access public
- */
-    public function getSearchLimit() {
-      $searchLimit = $this->github->api('rate_limit')->getSearchLimit();
-
-      return $searchLimit;
-    }
-
-    public function getRateLimits() {
-      $rateLimits = $this->github->api('rate_limit')->getRateLimits();
-
-      return $rateLimits;
-    }
-
-    public function getCoreLimit() {
-      $CoreLimit = $this->github->api('rate_limit')->getCoreLimit();
-
-      return $CoreLimit;
-    }
-
-//*************************************************************
 // Cache
 //*************************************************************
 
@@ -428,7 +396,10 @@
 */
 // @todo add cache
     public function getSearchInsideRepo() {
-      $result = $this->github->api('search')->repositories($this->githubRepoName . '/' . $this->getSearchModule());
+      $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName .'+' . $this->getSearchModule();
+      $search_url = @file_get_contents($search, true, $this->setContext() ); //content of readme.
+
+      $result = json_decode($search_url);
 
       return $result;
     }
@@ -441,8 +412,7 @@
 */
     public function getSearchTotalCount() {
       $result = $this->getSearchInsideRepo();
-
-      $count = $result['total_count'];
+      $count = $result->total_count;
 
       return $count;
     }
