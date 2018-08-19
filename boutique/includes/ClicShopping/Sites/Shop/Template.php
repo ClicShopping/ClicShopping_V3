@@ -669,7 +669,7 @@
 
       foreach($FILES as $key => $file) {
         $result = str_replace($source_folder, '', $file);
-        $FILE_LIST[$key]['name'] = str_replace('.php', '', $result);
+        $FILE_LIST[$key]['name'] = str_replace('.' . $ext, '', $result);
       }
 
       return $FILE_LIST;

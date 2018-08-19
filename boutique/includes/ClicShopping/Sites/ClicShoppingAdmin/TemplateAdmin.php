@@ -425,4 +425,12 @@
 
       return HTML::selectMenu($this->key, $filename_array,  $filename_value);
     }
+
+
+    public function getSpecificFiles($source_folder, $filename, $ext = 'php') {
+      $result = parent::getSpecificFiles($source_folder, $filename, $ext);
+
+      return $result;
+    }
+
   }
