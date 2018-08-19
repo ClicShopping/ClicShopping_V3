@@ -64,8 +64,8 @@ text_install_files = <strong>Please read these informations before to proceed</s
     - The Json information is uploaded in the Cache directory.<br />
     - The decompression can depends of your server configuration to work or not and you must adpat the chmod directory at 777 in function.<br />
     - if it's not possible to install the module, please download, and you must install yourself the module in the good directory. <br />
-       for Officials addons : {{official}}<br />
-       for community addons : {{community}}<br />
+       for Officials addons :  https://github.com/ClicShoppingOfficialModulesV3<br />
+       for community addons : https://github.com/organizations/ClicShoppingV3Community<br />
     - The concept is in beta mode and must be improved in the time (your help is welcome)
 
 table_heading_module = Name
@@ -79,7 +79,7 @@ text_tag = Tag :
 text_module_type = Module type :
 text_directory_install = Directory Install :
 text_download = Module Download :
-text_activate = to activate the Apps copy this link in your URL : <br />
+text_activate = To activate the Apps copy this link in your URL : <br />
 text_dependance = Dependance :
 text_temp_version = Cache temp version :
 text_installed_version = Installed version :

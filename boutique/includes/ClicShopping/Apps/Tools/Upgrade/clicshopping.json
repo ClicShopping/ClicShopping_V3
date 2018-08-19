@@ -2,7 +2,7 @@
  "title":	"Github Module / Upgrade App",
  "app": "Upgrade",
  "vendor":"Tools",
- "version":	"1.0.0",
+ "version":	"1.0.2",
  "req_core_version":	"3.0",
  "license":	"GPL-2",
  "authors": [

@@ -71,21 +71,33 @@
     <div class="separator"></div>
 <?php
   if (isset($_POST['module_search'])) {
-    $module_directory = $_POST['module_search'];
+    $module_directory = HTML::sanitize($_POST['module_search']);
   } elseif (isset($_GET['template_directory'])) {
-    $module_directory = $_POST['template_directory'];
+    $module_directory = HTML::sanitize($_POST['template_directory']);
   }
 
   if (isset($_POST['install_module_template_directory'])) {
-    $module_directory = $_POST['install_module_template_directory'];
+    $module_directory = HTML::sanitize($_POST['install_module_template_directory']);
   } elseif (isset( $_POST['install_module_directory'])) {
-    $module_directory = $_POST['install_module_directory'];
+    $module_directory = HTML::sanitize($_POST['install_module_directory']);
   }
 
   if (isset($module_directory)) {
-     $result = $CLICSHOPPING_Github->getSearchInsideRepo(); // @todo implement cache
+    $file_cache_temp_array = $CLICSHOPPING_Template->getSpecificFiles($CLICSHOPPING_Github->cacheGithubTemp, $module_directory . '*', 'json');
 
-    if ($CLICSHOPPING_Github->getSearchTotalCount() == 0) {
+    if (is_array($file_cache_temp_array)) {
+      foreach ($file_cache_temp_array as $value) {
+        if (is_file($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json')) {
+          $result[] = $CLICSHOPPING_Github->getSearchInsideRepo($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json');
+        }
+      }
+      $count_file = count($file_cache_temp_array);
+    } else {
+      $result = $CLICSHOPPING_Github->getSearchInsideRepo();
+      $count_file = $CLICSHOPPING_Github->getSearchTotalCount();
+    }
+
+    if ($count_file == 0) {
 ?>
       <div class="alert alert-warning">
 <?php
@@ -98,7 +110,7 @@
 ?>
     <div class="alert alert-warning">
 <?php
-        echo $CLICSHOPPING_Upgrade->getDef('text_count_search') . ' ' . $CLICSHOPPING_Github->getSearchTotalCount();
+        echo $CLICSHOPPING_Upgrade->getDef('text_count_search') . ' ' . $count_file;
 ?>
     </div>
 <?php
@@ -107,13 +119,18 @@
     <div class="d-flex flex-wrap">
 
 <?php
-    $count = $CLICSHOPPING_Github->getSearchTotalCount();
+//    $count = $CLICSHOPPING_Github->getSearchTotalCount();
 
-    for ($i=0, $n=$count; $i<$n; $i++) {
-      $item = $result->items[$i];
-
-      $module_real_name = $item->name;
-      $link_html =  $item->html_url;
+    for ($i=0, $n=$count_file; $i<$n; $i++) {
+      if (is_null($result->items[$i])) {
+        $item = $result[$i];
+        $module_real_name = $item->title;
+        $link_html =  'https://github.com/ClicShoppingOfficialModulesV3/'. $item->title;
+      } else {
+        $item = $result->items[$i];
+        $module_real_name = $item->name;
+        $link_html =  $item->html_url;
+      }
 
       $local_version = '';
       $temp_version = '';
@@ -179,7 +196,7 @@
                             <p>
 <?php
           if (strtolower($item->type) == 'apps') {
-            echo $CLICSHOPPING_Upgrade->getDef('text_activate') . ' : ' . HTTP::typeUrlDomain('ClicShoppingAdmin')  . 'index.php?A&' . $item->module_directory . '\\' . $result_content_module->apps_name;
+            echo $CLICSHOPPING_Upgrade->getDef('text_activate') . ' : ' . HTTP::typeUrlDomain('ClicShoppingAdmin')  . 'index.php?A&' . $item->module_directory . '\\' . $item->apps_name;
           }
 ?>
                             </p>
@@ -190,7 +207,7 @@
                             <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_directory_install') . $item->install . $item->module_directory; ?></p>
                             <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_more_infos') . '<a href="' . $link_html .'" target="_blank" rel="noreferrer">Github</a>';  ?></p>
                             <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_download') . '<a href="' . $link_html .'/archive/master.zip">' . $module_real_name . '</a>';  ?></p>
-                            <p><img src="https://raw.github.com/ClicShoppingAddsOn/<?php echo $module_real_name; ?>/master/<?php echo $item->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+                            <p><img src="https://raw.github.com/ClicShoppingOfficialModulesV3/<?php echo $module_real_name; ?>/master/<?php echo $item->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $CLICSHOPPING_Upgrade->getDef('text_close'); ?></button>
@@ -203,7 +220,6 @@
                     <div class="col-md-12">
 <?php
           if ($temp_check === true) {
-            echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
 
             $error = false;
 
@@ -218,21 +234,29 @@
               }
 
               if ($error === true) {
-                echo  '<div class="text-md-right"> ' . $message . '</div>';
+                echo  '<span class="text-md-right"> ' . $message . '</span>';
               } else {
-                echo  '<div class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_not_free'), null, $marketplace_link,  'primary', ['newwindow' => 'blank'], 'sm') . '</div>';
+                echo  '<span class="text-md-right"><a href="' .$marketplace_link . '" target="_blank" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
               }
             } else {
-              if (strtolower($item->is_free) == 'yes') {
-                echo  '<div class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</div>';
-              }
+               echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
+               echo  '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
             }
 
             echo HTML::hiddenField('githubLink', $link_html .'/archive/master.zip');
             echo HTML::hiddenField('type_module', $item->type_module);
             echo HTML::hiddenField('module_real_name', $module_real_name);
             echo HTML::hiddenField('module_directory',$module_directory);
-            echo '</form>';
+
+            if (strtolower($item->is_free) == 'yes') {
+              echo '</form>';
+            }
+
+
+            if (strtolower($item->is_core) == 'yes') {
+              echo  '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
+            }
+
           }
 
           if (strtolower($item->type) == 'apps') {
@@ -247,8 +271,8 @@
             }
           }
 ?>
-                    </div>
                   </div>
+                </div>
 <?php
         }
       } else {
@@ -325,22 +349,24 @@
                             </div>
                             <div class="col-md-6 text-md-right float-md-right">
 <?php
-            echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
-
             if (strtolower($result_content_module->is_free) != 'yes') {
               echo  '<span class="text-md-right"><a href="' . $result_content_module->website_link_to_sell . '" target="_blank" class="btn btn-success btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
             } else {
+              echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
               echo  '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
             }
 
-             if (strtolower($result_content_module->is_core) == 'yes') {
-               echo  '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
-             }
+            if (strtolower($result_content_module->is_core) == 'yes') {
+              echo  '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
+            }
 
             echo HTML::hiddenField('type_module', $result_content_module->type_module);
             echo HTML::hiddenField('module_real_name', $module_real_name);
             echo HTML::hiddenField('module_directory',$module_directory);
-            echo '</form>';
+
+            if (strtolower($result_content_module->is_free) == 'yes') {
+               echo '</form>';
+            }
 
             if (strtolower($result_content_module->type) == 'apps') {
               $module = CLICSHOPPING::link('index.php', 'A&' . $result_content_module->module_directory . '\\' . $result_content_module->apps_name);
@@ -370,35 +396,34 @@
       </div>
 <?php
     }
-  } else {
+  }
 ?>
-  <div class="alert alert-info">
-    <div class="row">
-        <span class="col-md-12">
-          <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')); ?>
-          <strong><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('title_help'); ?></strong>
-        </span>
     </div>
     <div class="separator"></div>
-    <div class="row">
-      <span class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_install_files'); ?></span>
-    </div>
-    <div class="separator"></div>
-    <div class="row">
-        <span class="col-md-12">
+    <div class="col-md-12">
+      <div class="alert alert-info">
+        <div class="row">
+          <span class="col-md-12">
+            <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')); ?>
+            <strong><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('title_help'); ?></strong>
+          </span>
+        </div>
+        <div class="separator"></div>
+        <div class="row">
+          <span class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_install_files'); ?></span>
+        </div>
+        <div class="separator"></div>
+        <div class="row">
+          <span class="col-md-12">
 <?php
-  echo $CLICSHOPPING_Upgrade->getDef('text_search_limit') . ' ' . 20 / mn . '<br />';
-  echo $CLICSHOPPING_Upgrade->getDef('text_core_limit') . ' ' . 60 / mn . '<br />';
-  echo $CLICSHOPPING_Upgrade->getDef('text_rate_limit') . ' ' . 30 / mn . '<br />';
+  echo $CLICSHOPPING_Upgrade->getDef('text_search_limit') . ' 20 <br />';
+  echo $CLICSHOPPING_Upgrade->getDef('text_core_limit') . ' 60 <br />';
+  echo $CLICSHOPPING_Upgrade->getDef('text_rate_limit') . ' 30 <br />';
   echo $CLICSHOPPING_Upgrade->getDef('text_cache_file');
 ?>
-        </span>
-    </div>
-  </div>
-<?php
-}
-
-?>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

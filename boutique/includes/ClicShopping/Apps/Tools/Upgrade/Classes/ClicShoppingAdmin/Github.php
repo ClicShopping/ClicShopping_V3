@@ -32,7 +32,7 @@
     protected $githubRepoName;
     protected $saveFileFromGithub;
     protected $cacheGithub;
-    protected $cacheGithubTemp;
+    public $cacheGithubTemp;
     protected $ModuleInfosJson;
 
     public function __construct() {
@@ -248,6 +248,35 @@
     }
 
 //*************************************************************
+// Limit
+//*************************************************************
+
+/*
+ * display a message if the limited is not accepted by github
+ * @param
+ * @return  string $message, if the limited is not accepted by github
+ * @access public
+ */
+/*
+    public function getSearchLimit() {
+      $searchLimit = $this->github->api('rate_limit')->getSearchLimit();
+
+      return $searchLimit;
+    }
+
+    public function getRateLimits() {
+      $rateLimits = $this->github->api('rate_limit')->getRateLimits();
+
+      return $rateLimits;
+    }
+
+    public function getCoreLimit() {
+      $CoreLimit = $this->github->api('rate_limit')->getCoreLimit();
+
+      return $CoreLimit;
+    }
+*/
+//*************************************************************
 // Cache
 //*************************************************************
 
@@ -394,10 +423,15 @@
 * @return array $result : all ement about a github search on item search
 * @access public
 */
-// @todo add cache
-    public function getSearchInsideRepo() {
-      $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName .'+' . $this->getSearchModule();
-      $search_url = @file_get_contents($search, true, $this->setContext() ); //content of readme.
+
+    public function getSearchInsideRepo($name = null) {
+
+      if ($name === null) {
+        $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName . '+' . $this->getSearchModule();
+        $search_url = @file_get_contents($search, true, $this->setContext()); //content of readme.
+      } else {
+        $search_url = @file_get_contents($name, true, $this->setContext()); //content of readme.
+      }
 
       $result = json_decode($search_url);
 
@@ -527,6 +561,11 @@
           $source = $this->saveFileFromGithub . '/' . $file . '-master';
           $dest_default_template = CLICSHOPPING::getConfig('dir_root', 'Shop');
           @ModuleDownload::smartCopy($source, $dest_default_template);
+
+// copy in the current theme used
+//          $dest_template = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'template/' . SITE_THEMA;
+//          ModuleUpload::smartCopy($source, $dest_template);
+
 
           if (isset($source)) {
             @ModuleDownload::removeDirectory($source);

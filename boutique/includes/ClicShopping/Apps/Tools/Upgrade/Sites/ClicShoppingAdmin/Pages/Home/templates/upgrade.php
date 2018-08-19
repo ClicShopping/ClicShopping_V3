@@ -25,7 +25,6 @@
 
 
   $current_version = CLICSHOPPING::getVersion();
- // preg_match('/^(\d+\.)?(\d+\.)?(\d+)$/', $current_version, $version);
 ?>
   <div class="contentBody">
     <div class="row">
