@@ -339,6 +339,7 @@
         $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
       }
 ?>
+            <tr>
                 <td><?php echo $module->title; ?></td>
                 <td class="text-md-center"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
                 <td class="text-md-center">
@@ -373,26 +374,24 @@
     $Qcheck = $CLICSHOPPING_Db->get('configuration', 'configuration_value', ['configuration_key' => $module_key]);
 
     if ($Qcheck->fetch() !== false) {
-
       if ($Qcheck->value('configuration_value') != implode(';', $installed_modules)) {
         Registry::get('Db')->save('configuration', ['configuration_value' => implode(';', $installed_modules),
-                                                    'last_modified' => 'now()'
-                                                    ],
-                                                    ['configuration_key' => $module_key]
-                                  );
+                                                   'last_modified' => 'now()'
+                                                   ],
+                                                   ['configuration_key' => $module_key]
+                                 );
       }
     } else {
 
-      $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Installed Modules',
-                                          'configuration_key' => $module_key,
-                                          'configuration_value' => implode(';', $installed_modules) ,
-                                          'configuration_description' => 'This is automatically updated. No need to edit.',
-                                          'configuration_group_id' => 6,
-                                          'sort_order' => 0,
-                                          'date_added' => 'now()'
-                                        ]
-                      );
+      $CLICSHOPPING_Db->save('configuration', [ 'configuration_title' => 'Installed Modules',
+                                                'configuration_key' => $module_key,
+                                                'configuration_value' => implode(';', $installed_modules) ,
+                                                'configuration_description' => 'This is automatically updated. No need to edit.',
+                                                'configuration_group_id' => 6,
+                                                'sort_order' => 0,
+                                                'date_added' => 'now()'
+                                              ]
+                            );
 
     }
 
@@ -401,30 +400,27 @@
 
       if ($Qcheck->fetch() !== false) {
         $tbgroups_array = explode(';', $Qcheck->value('configuration_value'));
+
         if (!in_array($module_type, $tbgroups_array)) {
           $tbgroups_array[] = $module_type;
           sort($tbgroups_array);
 
-          $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_value' => implode(';', $tbgroups_array),
-                                          'last_modified' => 'now()'
-                                        ],
-                                        [
-                                          'configuration_key' => 'TEMPLATE_BLOCK_GROUPS'
-                                        ]
-                         );
+          $CLICSHOPPING_Db->save('configuration', ['configuration_value' => implode(';', $tbgroups_array),
+                                                   'last_modified' => 'now()'
+                                                  ],
+                                                  ['configuration_key' => 'TEMPLATE_BLOCK_GROUPS']
+                               );
         }
       } else {
-        $CLICSHOPPING_Db->save('configuration', [
-                                            'configuration_title' => 'Installed Template Block Groups',
-                                            'configuration_key' => 'TEMPLATE_BLOCK_GROUPS',
-                                            'configuration_value' => $module_type,
-                                            'configuration_description' => 'This is automatically updated. No need to edit.',
-                                            'configuration_group_id' => 6,
-                                            'sort_order' => 0,
-                                            'date_added' => 'now()'
-                                          ]
-                        );
+        $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Template Block Groups',
+                                                'configuration_key' => 'TEMPLATE_BLOCK_GROUPS',
+                                                'configuration_value' => $module_type,
+                                                'configuration_description' => 'This is automatically updated. No need to edit.',
+                                                'configuration_group_id' => 6,
+                                                'sort_order' => 0,
+                                                'date_added' => 'now()'
+                                              ]
+                              );
 
       }
     }
