@@ -25,7 +25,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (!empty($_POST['select_category_id'])) {
+      if (isset($_POST['select_category_id'])) {
         $select_category_id = HTML::sanitize($_POST['select_category_id']);
 
         $sql_data_array = ['parent_id' => $select_category_id ];
