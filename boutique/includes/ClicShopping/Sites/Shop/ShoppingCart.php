@@ -1059,7 +1059,7 @@
                                               from :table_products
                                               where products_id = :products_id
                                             ');
-        $QminOrderQty->bindInt(':products_id', (int)$products_id);
+        $QminOrderQty->bindInt(':products_id', $products_id);
 
         $QminOrderQty->execute();
         $min_order_qty_values = $QminOrderQty->valueInt('products_min_qty_order');

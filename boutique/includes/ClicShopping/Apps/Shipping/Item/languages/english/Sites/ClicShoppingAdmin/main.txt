@@ -10,7 +10,7 @@ text_intro = This app allow you to include a new shipping on your shop. <br /><b
 
 module_item_introduction = The install process create the database settings for this module and the access menu
 
-button_back = Back
+button_sort_order = Sort order
 button_install_title = Install
 button_configure = Configure
 button_save = Save

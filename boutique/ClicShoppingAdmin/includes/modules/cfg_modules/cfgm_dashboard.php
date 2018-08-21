@@ -22,8 +22,6 @@
     public $template_integration = false;
 
     public function __construct() {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
       $this->directory = CLICSHOPPING::getConfig('dir_root', $this->site) . 'includes/modules/dashboard/';
       $this->language_directory = CLICSHOPPING::getConfig('dir_root') . 'includes/languages/';
 

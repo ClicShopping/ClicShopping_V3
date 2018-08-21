@@ -4,12 +4,12 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
@@ -84,6 +84,9 @@ var CLICSHOPPING = {
           </span>
           <span class="col-md-2">
              <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_delete_menu'), null, $CLICSHOPPING_PayPal->link('Configure&DeleteMenu'), 'danger'); ?>
+          </span>
+          <span class="col-md-2">
+            <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_sort_order'), null, CLICSHOPPING::link('index.php', 'A&Configuration\Modules&Modules&set=payment'),  'primary'); ?>
           </span>
         </div>
       </div>

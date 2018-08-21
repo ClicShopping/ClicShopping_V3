@@ -15,7 +15,7 @@
 
     public $sort_order = 1000;
     public $default = '300';
-    public $app_configured = true;
+    public $app_configured = false;
 
     protected function init() {
         $this->title = $this->app->getDef('cfg_moneyorder_sort_order_title');

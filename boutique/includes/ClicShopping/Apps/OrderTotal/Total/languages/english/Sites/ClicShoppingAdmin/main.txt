@@ -7,7 +7,7 @@ text_configure =  Configure App Total
 text_intro =  This app allow you to include a Total in the order
 module_sh_introduction = This app allow you to include a Total in the order
 
-button_back = Back
+button_sort_order = Sort order
 button_install_title = Install
 button_configure = Configure
 button_save = Save

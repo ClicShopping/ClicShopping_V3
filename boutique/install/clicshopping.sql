@@ -874,6 +874,9 @@ INSERT INTO configuration VALUES(1370, 'Ordre de tri d\'affichage', 'MODULE_SHOP
 INSERT INTO configuration VALUES(1374, 'Souhaitez vous activer ce module ?', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS', 'True', 'Souhaitez vous activer ce module ?', 6, 1, NULL, '2018-08-08 18:14:30', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1375, 'Ordre de tri d\'affichage', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_SORT_ORDER', '65', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 45, NULL, '2018-08-08 18:14:30', NULL, '');
 INSERT INTO configuration VALUES(1376, 'Veuillez sélectionner les pages ou sera affiché le module', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES', 'Search&AdvancedSearch;Account&Edit;Account&Create;Account&CreatePro', 'Pages ou le module sera affiché', 6, 1, NULL, '2018-08-08 18:14:30', 'ht_datepicker_jquery_show_pages', 'ht_datepicker_jquery_edit_pages');
+INSERT INTO configuration VALUES(1377, 'cfg_products_modules_status_title', 'CLICSHOPPING_APP_MODULES_MO_STATUS', 'True', 'cfg_products_modules_status_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
+INSERT INTO configuration VALUES(1378, 'cfg_products_modules_sort_order_title', 'CLICSHOPPING_APP_MODULES_MO_SORT_ORDER', '30', 'cfg_products_modules_sort_order_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
+INSERT INTO configuration VALUES(1379, 'Parameter [Modules App]', 'MODULE_MODULES_MODULES_INSTALLED', 'Configuration\\Modules\\MO', 'Parameter [Modules App]', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
@@ -2015,7 +2018,7 @@ INSERT INTO administrator_menu VALUES(27, 'index.php?A&Configuration\\Settings&S
 INSERT INTO administrator_menu VALUES(28, 'index.php?A&Configuration\\Settings&Settings&gID=9', 13, 6, 0, 'configuration_9.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(30, 'index.php?A&Configuration\\Settings&Settings&gID=12', 13, 8, 0, 'configuration_12.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(31, 'index.php?A&Configuration\\Settings&Settings&gID=13', 13, 9, 0, 'configuration_13.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(33, 'modules.php?set=dashboard', 14, 1, 0, 'configuration_admin.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(33, 'index.php?A&Configuration\\Modules&Modules&set=dashboard', 14, 1, 0, 'configuration_admin.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(34, 'index.php?A&Configuration\\Settings&Settings&gID=21', 14, 2, 0, 'configuration_3.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(35, 'index.php?A&Configuration\\Settings&Settings&gID=23', 14, 3, 0, 'configuration_4.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(39, 'index.php?A&Configuration\\Settings&Settings&gID=26', 14, 7, 0, 'order_status_invoice.png', 0, NULL, 1);
@@ -2028,10 +2031,10 @@ INSERT INTO administrator_menu VALUES(48, 'index.php?A&Configuration\\Settings&S
 INSERT INTO administrator_menu VALUES(49, 'index.php?A&Configuration\\Settings&Settings&gID=18', 16, 1, 0, 'configuration_18.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(50, 'index.php?A&Configuration\\Settings&Settings&gID=19', 16, 2, 0, 'configuration_19.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(51, 'index.php?A&Configuration\\Settings&Settings&gID=20', 16, 3, 0, 'configuration_20.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(54, 'modules.php?set=shipping', 449, 2, 1, 'modules_shipping.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(55, 'modules.php?set=order_total', 451, 0, 1, 'modules_order_total.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(58, 'modules.php?set=social_bookmarks', 18, 1, 0, 'configuration_42.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(59, 'modules.php?set=header_tags', 18, 2, 0, 'referencement.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(54, 'index.php?A&Configuration\\Modules&Modules&set=shipping', 449, 2, 1, 'modules_shipping.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(55, 'index.php?A&Configuration\\Modules&Modules&set=order_total', 451, 0, 1, 'modules_order_total.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(58, 'index.php?A&Configuration\\Modules&Modules&set=social_bookmarks', 18, 1, 0, 'configuration_42.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(59, 'index.php?A&Configuration\\Modules&Modules&set=header_tags', 18, 2, 0, 'referencement.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(69, 'index.php?A&Configuration\\Settings&Settings&gID=14', 21, 1, 0, 'configuration_14.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(70, 'index.php?A&Configuration\\Settings&Settings&gID=10', 21, 2, 0, 'configuration_10.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(71, 'index.php?A&Configuration\\Settings&Settings&gID=15', 21, 3, 0, 'configuration_15.gif', 0, NULL, 1);
@@ -2043,38 +2046,38 @@ INSERT INTO administrator_menu VALUES(117, '', 8, 1, 0, 'configuration_session.g
 INSERT INTO administrator_menu VALUES(118, '', 8, 2, 0, 'page_manager.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(119, '', 8, 3, 0, 'client.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(120, '', 8, 4, 0, 'order_process.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(121, 'modules.php?set=modules_products_info', 8, 5, 0, 'categorie_produit.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(121, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_info', 8, 5, 0, 'categorie_produit.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(122, '', 8, 6, 0, 'communication.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(123, '', 8, 7, 0, 'miscellaneous.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(124, '', 8, 8, 0, 'layout.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(125, 'index.php?A&Configuration\\Settings&Settings&gID=43', 116, 0, 0, 'configuration_43.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(126, 'index.php?A&Configuration\\Settings&Settings&gID=4', 116, 1, 0, 'configuration_4.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(127, 'modules.php?set=modules_products_new', 117, 0, 0, 'listing_products_new.gi', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(130, 'modules.php?set=modules_products_special', 117, 3, 0, 'specials.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(131, 'modules.php?set=modules_products_search', 117, 4, 0, 'icon_search.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(132, 'modules.php?set=modules_products_listing', 117, 5, 0, 'configuration_session.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(133, 'modules.php?set=modules_products_listing', 132, 0, 0, 'products_listing.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(127, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_new', 117, 0, 0, 'listing_products_new.gi', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(130, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_special', 117, 3, 0, 'specials.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(131, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_search', 117, 4, 0, 'icon_search.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(132, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_listing', 117, 5, 0, 'configuration_session.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(133, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_listing', 132, 0, 0, 'products_listing.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(134, 'index.php?A&Configuration\\Settings&Settings&gID=8', 132, 1, 0, 'configuration_8.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(135, 'modules.php?set=modules_front_page', 118, 0, 0, 'page_manager.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(136, 'modules.php?set=modules_index_categories', 118, 1, 0, 'categorie.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(137, 'modules.php?set=modules_create_account', 119, 0, 0, 'client.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(138, 'modules.php?set=modules_create_account_pro', 119, 1, 0, 'whos_online.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(139, 'modules.php?set=modules_login', 119, 2, 0, 'client.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(140, 'modules.php?set=modules_account_customers', 119, 3, 0, 'whos_online.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(141, 'modules.php?set=modules_shopping_cart', 120, 0, 0, 'shopping_cart.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(142, 'modules.php?set=modules_checkout_shipping', 120, 1, 0, 'modules_shipping.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(143, 'modules.php?set=modules_checkout_payment', 120, 2, 0, 'modules_payment.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(144, 'modules.php?set=modules_checkout_confirmation', 120, 3, 0, 'modules_checkout_confirmation.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(145, 'modules.php?set=modules_checkout_success', 120, 4, 0, 'modules_checkout_sucess.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(146, 'modules.php?set=modules_contact_us', 122, 0, 0, 'email.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(150, 'modules.php?set=modules_tell_a_friend', 122, 2, 0, 'tellafriend.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(152, 'modules.php?set=modules_products_reviews', 122, 4, 0, 'reviews.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(135, 'index.php?A&Configuration\\Modules&Modules&set=modules_front_page', 118, 0, 0, 'page_manager.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(136, 'index.php?A&Configuration\\Modules&Modules&set=modules_index_categories', 118, 1, 0, 'categorie.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(137, 'index.php?A&Configuration\\Modules&Modules&set=modules_create_account', 119, 0, 0, 'client.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(138, 'index.php?A&Configuration\\Modules&Modules&set=modules_create_account_pro', 119, 1, 0, 'whos_online.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(139, 'index.php?A&Configuration\\Modules&Modules&set=modules_login', 119, 2, 0, 'client.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(140, 'index.php?A&Configuration\\Modules&Modules&set=modules_account_customers', 119, 3, 0, 'whos_online.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(141, 'index.php?A&Configuration\\Modules&Modules&set=modules_shopping_cart', 120, 0, 0, 'shopping_cart.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(142, 'index.php?A&Configuration\\Modules&Modules&set=modules_checkout_shipping', 120, 1, 0, 'modules_shipping.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(143, 'index.php?A&Configuration\\Modules&Modules&set=modules_checkout_payment', 120, 2, 0, 'modules_payment.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(144, 'index.php?A&Configuration\\Modules&Modules&set=modules_checkout_confirmation', 120, 3, 0, 'modules_checkout_confirmation.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(145, 'index.php?A&Configuration\\Modules&Modules&set=modules_checkout_success', 120, 4, 0, 'modules_checkout_sucess.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(146, 'index.php?A&Configuration\\Modules&Modules&set=modules_contact_us', 122, 0, 0, 'email.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(150, 'index.php?A&Configuration\\Modules&Modules&set=modules_tell_a_friend', 122, 2, 0, 'tellafriend.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(152, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_reviews', 122, 4, 0, 'reviews.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(153, 'index.php?A&Configuration\\Settings&Settings&gID=32', 122, 5, 0, 'reviews.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(154, 'modules.php?set=modules_advanced_search', 123, 0, 0, 'advanced_search.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(155, 'modules.php?set=modules_sitemap', 123, 1, 0, 'sitemap.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(156, 'modules.php?set=modules_boxes', 124, 0, 0, 'blockmenu.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(157, 'modules.php?set=modules_header', 124, 1, 0, 'header.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(158, 'modules.php?set=modules_footer', 124, 2, 0, 'footer.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(154, 'index.php?A&Configuration\\Modules&Modules&set=modules_advanced_search', 123, 0, 0, 'advanced_search.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(155, 'index.php?A&Configuration\\Modules&Modules&set=modules_sitemap', 123, 1, 0, 'sitemap.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(156, 'index.php?A&Configuration\\Modules&Modules&set=modules_boxes', 124, 0, 0, 'blockmenu.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(157, 'index.php?A&Configuration\\Modules&Modules&set=modules_header', 124, 1, 0, 'header.png', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(158, 'index.php?A&Configuration\\Modules&Modules&set=modules_footer', 124, 2, 0, 'footer.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(163, '', 0, 8, 0, '', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(164, '', 163, 0, 1, 'backup.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(170, '', 163, 2, 1, 'editor_html.png', 0, NULL, 1);
@@ -2132,7 +2135,7 @@ INSERT INTO administrator_menu VALUES(719, 'index.php?A&Tools\\SecurityCheck&Sec
 INSERT INTO administrator_menu VALUES(725, 'index.php?A&Tools\\Apps&Apps', 727, 3, 0, 'apps.png', 0, 'app_tools_apps', 1);
 INSERT INTO administrator_menu VALUES(727, '', 163, 5, 1, 'modules.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(728, 'index.php?A&Tools\\ModulesHooks&ModulesHooks', 727, 2, 1, 'hooks.png', 0, 'app_tools_modules_hooks', 1);
-INSERT INTO administrator_menu VALUES(730, 'modules.php?set=payment', 186, 0, 1, 'modules_payment.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(730, 'index.php?A&Configuration\\Modules&Modules&set=payment', 186, 0, 1, 'modules_payment.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(732, 'index.php?A&Configuration\\Languages&Languages', 19, 1, 1, 'languages.gif', 0, 'app_configuration_languages', 1);
 INSERT INTO administrator_menu VALUES(736, 'index.php?A&Configuration\\Langues&Langues', 20, 1, 1, 'languages.gif', 0, 'app_configuration_langues', 1);
 INSERT INTO administrator_menu VALUES(737, 'index.php?A&Tools\\ActionsRecorder&ActionsRecorder', 178, 1, 1, 'cadenas.gif', 0, 'app_tools_actions_recorder', 1);
@@ -2142,6 +2145,9 @@ INSERT INTO administrator_menu VALUES(742, 'index.php?A&Tools%5CServiceAPP&Servi
 INSERT INTO administrator_menu VALUES(755, 'index.php?A&Shipping\\Item&Configure&module=IT', 449, 4, 1, 'modules_shipping.gif', 0, 'app_shipping_item', NULL);
 INSERT INTO administrator_menu VALUES(756, 'index.php?A&Configuration\\Weight&Weight', 20, 4, 1, 'weight.png', 0, 'app_configuration_weight', NULL);
 INSERT INTO administrator_menu VALUES(758, 'index.php?A&Catalog\\Categories&Categories', 3, 0, 0, 'categorie.gif', 0, 'app_catalog_categories', NULL);
+INSERT INTO administrator_menu VALUES(766, 'index.php?A&Configuration\\Modules&Modules&set=order_total&list=new', 451, 0, 1, 'modules_order_total.gif', 0, NULL);
+INSERT INTO administrator_menu VALUES(767, 'index.php?A&Configuration\\Modules&Modules&set=payment&list=new', 186, 0, 1, 'modules_payment.gif', 0, NULL);
+INSERT INTO administrator_menu VALUES(768, 'index.php?A&Configuration\\Modules&Modules&set=shipping&list=new', 449, 0, 1, 'modules_shipping.gif', 0, NULL);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -2325,10 +2331,8 @@ INSERT INTO administrator_menu_description VALUES(13, 'My store', 1);
 INSERT INTO administrator_menu_description VALUES(127, 'News', 1);
 INSERT INTO administrator_menu_description VALUES(581, 'Newsletter', 1);
 INSERT INTO administrator_menu_description VALUES(581, 'Newsletter', 2);
-
 INSERT INTO administrator_menu_description VALUES(146, 'Nous contacter', 2);
 INSERT INTO administrator_menu_description VALUES(127, 'Nouveautés', 2);
-
 INSERT INTO administrator_menu_description VALUES(120, 'Order process', 1);
 INSERT INTO administrator_menu_description VALUES(145, 'Order success', 1);
 INSERT INTO administrator_menu_description VALUES(451, 'Order Total Modules', 1);
@@ -2448,6 +2452,12 @@ INSERT INTO administrator_menu_description VALUES(654, 'Zones', 1);
 INSERT INTO administrator_menu_description VALUES(654, 'Zones', 2);
 INSERT INTO administrator_menu_description VALUES(758, 'Categories', 1);
 INSERT INTO administrator_menu_description VALUES(758, 'Catégories', 2);
+INSERT INTO administrator_menu_description VALUES(766, 'Apps Order total', 1);
+INSERT INTO administrator_menu_description VALUES(766, 'Apps Total commande', 2);
+INSERT INTO administrator_menu_description VALUES(767, 'Apps Payment', 1);
+INSERT INTO administrator_menu_description VALUES(767, 'Apps Paiement', 2);
+INSERT INTO administrator_menu_description VALUES(768, 'Apps Shipping', 1);
+INSERT INTO administrator_menu_description VALUES(768, 'Apps Expédition', 2);
 
 
 INSERT INTO weight_classes VALUES (1, 'g', 1, 'Gram(s)');

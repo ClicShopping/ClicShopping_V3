@@ -4,13 +4,14 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Item = Registry::get('Item');
@@ -32,7 +33,7 @@ use ClicShopping\OM\HTML;
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/modules_modules_checkout_shipping.gif', $CLICSHOPPING_Item->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Item->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Item->getDef('button_back'), null, $CLICSHOPPING_Item->link('index.php', 'A&Shipping\Item'),  'primary'); ?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Item->getDef('button_sort_order'), null, CLICSHOPPING::link('index.php', 'A&Configuration\Modules&Modules&set=shipping'),  'primary'); ?>
         </div>
       </div>
     </div>

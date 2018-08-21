@@ -15,7 +15,7 @@
 
 //    public $sort_order = 1000;
     public $default = '200';
-    public $app_configured = true;
+    public $app_configured = false;
 
     protected function init() {
         $this->title = $this->app->getDef('cfg_order_total_subtotal_sort_order_title');

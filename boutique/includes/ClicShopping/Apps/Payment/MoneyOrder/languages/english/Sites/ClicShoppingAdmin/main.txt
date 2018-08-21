@@ -10,7 +10,7 @@ text_intro = This app allow you to include a new payment on your shop. <br /><br
 
 module_moneyorder_introduction = The install process create the database settings for this module and the access menu
 
-button_back = Back
+button_sort_order = Sort order
 button_install_title = Install
 button_configure = Configure
 button_save = Save
