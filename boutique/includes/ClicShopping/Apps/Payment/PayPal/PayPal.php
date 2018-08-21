@@ -225,7 +225,7 @@
       }
     }
 
-    function hasApiCredentials($server, $type = null) {
+    public function hasApiCredentials($server, $type = null) {
 
       $server = ($server == 'live') ? 'LIVE' : 'SANDBOX';
 
