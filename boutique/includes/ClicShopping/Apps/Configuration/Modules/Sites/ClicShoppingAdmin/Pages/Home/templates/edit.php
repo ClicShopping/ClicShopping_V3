@@ -68,7 +68,7 @@
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-  echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&Updates&set=' . $set . '&module=' . $_GET['module']));
+  echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&Update&set=' . $set . '&module=' . $_GET['module']));
 ?>
 <div class="contentBody">
   <div class="row">
