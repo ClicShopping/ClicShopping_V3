@@ -15,7 +15,7 @@ use ClicShopping\OM\CLICSHOPPING;
   <div class="separator"></div>
   <div class="page-header moduleCheckoutConfirmationDeliveryAddressPageHeader"><h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_heading_delivery'); ?></h3></div>
 <?php
-    if ($_SESSION['sendto'] != false) {
+    if ($_SESSION['sendto'] !== false) {
 ?>
       <span class="col-md-6 float-md-left">
         <div class="card moduleCheckoutConfirmationDeliveryAddressCard">
