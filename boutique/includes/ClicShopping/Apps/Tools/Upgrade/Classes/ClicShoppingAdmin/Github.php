@@ -426,7 +426,7 @@
 
     public function getSearchInsideRepo($name = null) {
 
-      if ($name === null) {
+      if (is_null($name)) {
         $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName . '+' . $this->getSearchModule();
         $search_url = @file_get_contents($search, true, $this->setContext()); //content of readme.
       } else {
