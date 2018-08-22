@@ -5,6 +5,8 @@ sort_order int(3)
 date_added datetime
 last_modified datetime
 virtual_categories tinyint(1) default(0) not_null
+status tinyint(1) default(1) not_null
+
 --
 primary categories_id
 idx_categories_parent_id parent_id
