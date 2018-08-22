@@ -16,11 +16,16 @@
 
   use ClicShopping\Sites\ClicShoppingAdmin\CallUserFuncModule;
 
+  use ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin\ModulesAdmin;
+
   $CLICSHOPPING_Modules = Registry::get('Modules');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_CfgModule = Registry::get('CfgModulesAdmin');
   $CLICSHOPPING_Db = Registry::get('Db');
+
+  Registry::set('ModulesAdmin', new ModulesAdmin());
+  $CLICSHOPPING_ModulesAdmin = Registry::get('ModulesAdmin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -44,29 +49,7 @@
 
   define('HEADING_TITLE', $CLICSHOPPING_CfgModule->get($set, 'title'));
 
-  $appModuleType = null;
-
-  switch ($module_type) {
-    case 'dashboard':
-      $appModuleType = 'AdminDashboard';
-      break;
-    case 'header_tags':
-      $appModuleType = 'HeaderTags';
-      break;
-    case 'payment':
-      $appModuleType = 'Payment';
-      break;
-
-    case 'shipping':
-      $appModuleType = 'Shipping';
-      break;
-
-    case 'order_total':
-      $appModuleType = 'OrderTotal';
-      break;
-  }
-
-  $action = (isset($_GET['action']) ? $_GET['action'] : '');
+  $appModuleType = $CLICSHOPPING_ModulesAdmin->getSwitchModules($module_type);
 
   echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&Update&set=' . $set . '&module=' . $_GET['module']));
 ?>

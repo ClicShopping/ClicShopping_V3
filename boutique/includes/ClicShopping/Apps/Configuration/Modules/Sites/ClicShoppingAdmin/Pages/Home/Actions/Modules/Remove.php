@@ -17,6 +17,8 @@
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\Apps;
 
+  use ClicShopping\Apps\Configuration\Modules\Classes\ClicShoppingAdmin\ModulesAdmin;
+
   class Remove extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
 
@@ -27,6 +29,9 @@
     public function execute() {
       $CLICSHOPPING_CfgModule = Registry::get('CfgModulesAdmin');
       $CLICSHOPPING_Modules = Registry::get('Modules');
+
+      Registry::set('ModulesAdmin', new ModulesAdmin());
+      $CLICSHOPPING_ModulesAdmin = Registry::get('ModulesAdmin');
 
       $modules = $CLICSHOPPING_CfgModule->getAll();
 
@@ -41,27 +46,7 @@
 
       $module_key = $CLICSHOPPING_CfgModule->get($set, 'key');
 
-      $appModuleType = null;
-
-      switch ($module_type) {
-        case 'dashboard':
-          $appModuleType = 'AdminDashboard';
-          break;
-        case 'header_tags':
-          $appModuleType = 'HeaderTags';
-          break;
-        case 'payment':
-          $appModuleType = 'Payment';
-          break;
-
-        case 'shipping':
-          $appModuleType = 'Shipping';
-          break;
-
-        case 'order_total':
-          $appModuleType = 'OrderTotal';
-          break;
-      }
+      $appModuleType = $CLICSHOPPING_ModulesAdmin->getSwitchModules($module_type);
 
       if (strpos($_GET['module'], '\\') !== false) {
         $class = Apps::getModuleClass($_GET['module'], $appModuleType);
