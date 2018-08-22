@@ -20,6 +20,6 @@
       $this->page->setFile('modules.php');
       $this->page->data['action'] = 'Modules';
 
-      $CLICSHOPPING_Modules->loadDefinitions('Sites/ClicShoppingAdmin/Modules');
+      $CLICSHOPPING_Modules->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

@@ -3,7 +3,7 @@ module_mo_title = Modules
 module_mo_short_title = Modules
 
 text_modules = Modules
-text_configure = Configure App Module
+text_configure = Configure Apps Modules
 
 text_intro = This app allow you to include a modules page. <br /><br />
 - Activate this module located in the Configuration menu
@@ -34,7 +34,7 @@ alert_module_install_success = Module has been successfully installed.
 alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
-text_module_directory = Modules directory
+text_module_directory = Modules directory :
 
 icon_install = Install
 icon_edit = Edit

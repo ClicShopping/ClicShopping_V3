@@ -3,7 +3,7 @@ module_mo_title = Modules
 module_mo_short_title = Modules
 
 text_modules = Module
-text_configure =  Modules App Module
+text_configure =  Modules Apps Modules
 
 text_intro = Cette app vous permet d'inclure une gestion des modules <br /><br />
 - Activer ce module qui est situé dans le menu Configuration
@@ -34,7 +34,7 @@ alert_module_install_success = Le module a été installée.
 alert_module_uninstall_success = Le module a été désinstallée.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
-text_module_directory = Répertoires des modules
+text_module_directory = Répertoires des modules :
 
 icon_install = Installer
 icon_edit = Editer
@@ -42,7 +42,7 @@ icon_sort_order = ordre de tri
 icon_delete = Supprimer
 
 table_heading_modules = Modules
-table_heading_sort_order = ordre de tri
+table_heading_sort_order = Ordre de tri
 table_heading_status = Statut
 table_heading_action = Action
 

@@ -20,6 +20,6 @@
       $this->page->setFile('edit.php');
       $this->page->data['action'] = 'Update';
 
-      $CLICSHOPPING_Modules->loadDefinitions('Sites/ClicShoppingAdmin/Modules');
+      $CLICSHOPPING_Modules->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

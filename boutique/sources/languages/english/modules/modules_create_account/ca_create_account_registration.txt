@@ -23,7 +23,7 @@ category_password = Your Password
 entry_first_name = First Name
 entry_first_name_text = *
 
-entry_last_name = Nom
+entry_last_name = Last Name
 entry_last_name_text = *
 
 entry_date_of_birth = Birth date

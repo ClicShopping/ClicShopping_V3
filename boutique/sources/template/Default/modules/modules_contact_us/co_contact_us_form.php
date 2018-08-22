@@ -68,10 +68,10 @@
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-6 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
-                  <div class="col-md-6">
+                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
+                  <div class="col-sm-6 col-md-4">
                       ' . $CLICSHOPPING_Customer->getLastName() . '  ' . $CLICSHOPPING_Customer->getFirstName() . HTML::hiddenField('name', $CLICSHOPPING_Customer->getLastName() . ' ' . $CLICSHOPPING_Customer->getFirstName()) . '
                   </div>
                 </div>
@@ -82,11 +82,11 @@
         } else {
           $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-6 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
-                  <div class="col-md-6">
-                      ' . HTML::inputField('name', null, 'required aria-required="true" id="InputName" aria-describedby="' . CLICSHOPPING::getDef('entry_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_name') . '"') . '
+                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
+                  <div class="col-sm-6 col-md-4">
+                      ' . HTML::inputField('name', null, 'required aria-required="true" id="InputName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_name') . '"') . '
                   </div>
                 </div>
               </div>
@@ -98,10 +98,10 @@
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-6 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
-                  <div class="col-md-6">
+                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
+                  <div class="col-sm-6 col-md-4">
                       ' . $CLICSHOPPING_Customer->getEmailAddress(). HTML::hiddenField('email', $CLICSHOPPING_Customer->getEmailAddress()) . '
                   </div>
                 </div>
@@ -111,11 +111,11 @@
         } else {
           $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-6 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
-                  <div class="col-md-6">
-                      ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
+                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
+                  <div class="col-sm-6 col-md-4">
+                      ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
                   </div>
                 </div>
               </div>
@@ -129,10 +129,10 @@
 
           $contact_us_form .= '
               <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-12">
                   <div class="form-group row">
-                    <label for="inputTelephone" class="col-6 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
-                    <div class="col-md-6">
+                    <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
+                    <div class="col-sm-6 col-md-4">
                       ' . $CLICSHOPPING_Customer->getTelephone() . HTML::hiddenField('customers_telephone', $CLICSHOPPING_Customer->getTelephone() ) . '
                     </div>
                   </div>
@@ -144,11 +144,11 @@
 
           $contact_us_form .= '
               <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-12">
                   <div class="form-group row">
-                    <label for="inputTelephone" class="col-6 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
-                    <div class="col-md-6">
-                      ' . HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" title="' . CLICSHOPPING::getDef('entry_customers_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_phone') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_phone') . '"', 'phone') . '
+                    <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
+                    <div class="col-sm-6 col-md-4">
+                      ' . HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_customers_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_phone') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_phone') . '"', 'phone') . '
                     </div>
                   </div>
                 </div>
@@ -164,10 +164,10 @@
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
               <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-12">
                   <div class="form-group row">
-                    <label for="entry_customers_id" class="col-6 col-form-label">' . CLICSHOPPING::getDef('entry_customers_id') . '</label>
-                    <div class="col-md-6">
+                    <label for="entry_customers_id" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_id') . '</label>
+                    <div class="col-sm-6 col-md-4">
                        ' . HTML::hiddenField('customer_id', $CLICSHOPPING_Customer->getID()) . (int)$CLICSHOPPING_Customer->getID() . '
                     </div>
                   </div>
@@ -184,10 +184,10 @@
 // customer registered with no order number
             $contact_us_form .= '
               <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-12">
                   <div class="form-group row">
-                    <label for="gender" class="col-6 col-form-label">' . CLICSHOPPING::getDef('entry_order') . '</label>
-                    <div class="col-md-6">
+                    <label for="gender" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_order') . '</label>
+                    <div class="col-sm-6 col-md-4">
                       '. $order_id . ' ' . HTML::hiddenField('order_id', (int)$order_id) . '
                     </div>
                   </div>
@@ -213,10 +213,10 @@
         if (!empty(CONTACT_DEPARTMENT_LIST)) {
           $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="CompanyDepartment" class="col-6 col-form-label">'. CLICSHOPPING::getDef('send_department_company') . '</label>
-                  <div class="col-md-6">
+                  <label for="CompanyDepartment" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('send_department_company') . '</label>
+                  <div class="col-sm-6 col-md-4">
                     ' . HTML::selectMenu('send_to', $send_to_array, null, null, false, 'inputContacUsPullDownMenu') . '
                   </div>
                 </div>
@@ -231,10 +231,10 @@
 // -------
         $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Email" class="col-6 col-form-label">'. CLICSHOPPING::getDef('entry_customers_subject') . '</label>
-                  <div class="col-md-6">
+                  <label for="Email" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_customers_subject') . '</label>
+                  <div class="col-sm-6 col-md-4">
                       ' . HTML::inputField('email_subject', null, 'required aria-required="true" id="Inputsubject" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_subject') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_subject') . '"') . '
                   </div>
                 </div>
@@ -249,9 +249,9 @@
         $contact_us_form .= '<div class="separator"></div>';
         $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="inputMessage" class="col-4 col-form-label">' . CLICSHOPPING::getDef('entry_enquiry') . '</label>
+                  <label for="inputMessage" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_enquiry') . '</label>
                   </div>
               </div>
               <div class="col-md-10">
@@ -267,9 +267,9 @@
           $contact_us_form .= '<div class="separator"></div>';
           $contact_us_form .= '
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="evidenceDocument" class="col-4 col-form-label">'. CLICSHOPPING::getDef('entry_enquiry') . '</label>
+                  <label for="evidenceDocument" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_enquiry') . '</label>
                   <div class="col-md-8">
                     ' . HTML::fileField('evidence_document', 'id="file"') . '
                   </div>
@@ -277,8 +277,8 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-7">
-                <span class="col-md-12 alert alert-warning" role="alert">' . CLICSHOPPING::getDef('text_becarefull_download') . '  '. (int)(ini_get('upload_max_filesize')) . CLICSHOPPING::getDef('text_becarefull_download_1') . '</span>
+              <div class="col-md-12">
+                <span class="alert alert-warning" role="alert">' . CLICSHOPPING::getDef('text_becarefull_download') . '  '. (int)(ini_get('upload_max_filesize')) . CLICSHOPPING::getDef('text_becarefull_download_1') . '</span>
               </div>
             </div>
           ';
@@ -290,10 +290,10 @@
         $contact_us_form .= '<div class="separator"></div>';
         $contact_us_form .= '
            <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="inputVerificationCode" class="col-4 col-form-label">'. CLICSHOPPING::getDef('entry_number_email_confirmation') . '<span class="text-warning">' . HTML::outputProtected($number_confirmation) . '</span></label>
-                  <div class="col-md-5">
+                  <label for="inputVerificationCode" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_number_email_confirmation') . '<span class="text-warning">' . HTML::outputProtected($number_confirmation) . '</span></label>
+                  <div class="col-sm-6 col-md-4">
                     ' .  HTML::inputField('number_email_confirmation', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_number_email_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_number_email_confirmation') . '"') . '
                   </div>
                 </div>

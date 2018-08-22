@@ -36,17 +36,17 @@
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_COMPANY == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true'))) {
 
      $QaccountGroup = $CLICSHOPPING_Db->prepare('select customers_company
-                                           from :table_customers
-                                           where customers_id = :customers_id
-                                         ');
+                                                 from :table_customers
+                                                 where customers_id = :customers_id
+                                               ');
      $QaccountGroup->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
      $QaccountGroup->execute();
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputCompany" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_company'); ?></label>
-                <div class="col-md-8">
+                <label for="InputCompany" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_company'); ?></label>
+                <div class="col-sm-6 col-md-4">
 <?php
   if (isset($_GET['Edit']) && is_numeric($_GET['edit'])) {
     echo HTML::inputField('company', (isset($entry['company']) ? $entry['company'] : ''), 'id="InputCompany" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
@@ -91,9 +91,9 @@
     }
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="gender" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_gender'); ?></label>
+                <label for="gender" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_gender'); ?></label>
                 <div class="col-md-5">
                   <?php echo HTML::radioField('gender', 'm', $male) . ' ' . CLICSHOPPING::getDef('male') . '&nbsp;&nbsp;' .  HTML::radioField('gender', 'f', $female) . ' ' . CLICSHOPPING::getDef('female') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
                 </div>
@@ -105,12 +105,12 @@
   }
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputFirstName" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
-                <div class="col-md-8">
+                <label for="InputFirstName" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
+                <div class="col-sm-6 col-md-4">
 <?php
-  echo HTML::inputField('firstname', ($CLICSHOPPING_Customer->hasDefaultAddress() ? $CLICSHOPPING_Customer->getFirstName() : null), 'required aria-required="true" id="InputFirstName" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
+  echo HTML::inputField('firstname', ($CLICSHOPPING_Customer->hasDefaultAddress() ? $CLICSHOPPING_Customer->getFirstName() : null), 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
   if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_FIRST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_FIRST_NAME_PRO_MIN_LENGTH > 0 ) ) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_first_name_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_first_name_text') . '</span>': '');
   }
@@ -121,12 +121,12 @@
           </div>
 
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputLastName" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
-                <div class="col-md-8">
+                <label for="InputLastName" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
+                <div class="col-sm-6 col-md-4">
 <?php
-  echo HTML::inputField('lastname', ($CLICSHOPPING_Customer->hasDefaultAddress() ? $CLICSHOPPING_Customer->getLastName() : null), 'required aria-required="true" id="InputLastName" aria-describedby="' . CLICSHOPPING::getDef('entry_last_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '" minlength="'. ENTRY_LAST_NAME_PRO_MIN_LENGTH .'"');
+  echo HTML::inputField('lastname', ($CLICSHOPPING_Customer->hasDefaultAddress() ? $CLICSHOPPING_Customer->getLastName() : null), 'required aria-required="true" id="InputLastName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_last_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '" minlength="'. ENTRY_LAST_NAME_PRO_MIN_LENGTH .'"');
   if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_LAST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_LAST_NAME_PRO_MIN_LENGTH > 0 ) ) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_last_name_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_last_name_text') . '</span>': '');
   }
@@ -139,11 +139,11 @@
   if ($_GET['newcustomer'] == 1) {
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputTelephone" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_telephone_number'); ?></label>
-                <div class="col-md-8">
-                  <?php echo HTML::inputField('telephone', null, 'rel="txtTooltipPhone" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"', 'phone'); ?>
+                <label for="InputTelephone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_telephone_number'); ?></label>
+                <div class="col-sm-6 col-md-4">
+                  <?php echo HTML::inputField('telephone', null, 'rel="txtTooltipPhone" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" autocomplete="tel" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"', 'phone'); ?>
                 </div>
               </div>
             </div>
@@ -152,11 +152,11 @@
     if (ACCOUNT_CELLULAR_PHONE == 'true') {
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputCellularPhone" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_cellular_phone_number'); ?></label>
-                <div class="col-md-8">
-                  <?php echo HTML::inputField('cellular_phone', null, 'rel="txtTooltipPhone" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" id="InputCellularPhone" aria-describedby="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"'); ?>
+                <label for="InputCellularPhone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_cellular_phone_number'); ?></label>
+                <div class="col-sm-6 col-md-4">
+                  <?php echo HTML::inputField('cellular_phone', null, 'rel="txtTooltipPhone" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" id="InputCellularPhone" autocomplete="tel" aria-describedby="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"'); ?>
                 </div>
               </div>
             </div>
@@ -167,11 +167,11 @@
     if (ACCOUNT_FAX == 'true') {
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputFax" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_fax_number'); ?></label>
-                <div class="col-md-8">
-                  <?php echo HTML::inputField('fax', null, 'id="InputFax" aria-describedby="' . CLICSHOPPING::getDef('entry_fax_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_fax_number') . '"'); ?>
+                <label for="InputFax" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_fax_number'); ?></label>
+                <div class="col-sm-6 col-md-4">
+                  <?php echo HTML::inputField('fax', null, 'id="InputFax" autocomplete="tel" aria-describedby="' . CLICSHOPPING::getDef('entry_fax_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_fax_number') . '"'); ?>
                 </div>
               </div>
             </div>
@@ -193,10 +193,10 @@
           <div class="card-text">
 
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputStreetAddress" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_street_address'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputStreetAddress" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_street_address'); ?></label>
+                  <div class="col-sm-6 col-md-4">
 <?php
   echo HTML::inputField('street_address', ($entry['street_address'] ? $entry['street_address'] : null), 'required aria-required="true" id="InputStreetAddress" aria-describedby="' . CLICSHOPPING::getDef('entry_street_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_street_address') . '" minlength="'. ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH .'"');
   if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_STREET_ADDRESS_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH > 0 ) ) {
@@ -211,10 +211,10 @@
   if (((ACCOUNT_SUBURB == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_SUBURB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
 ?>
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputSuburb" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_suburb'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputSuburb" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_suburb'); ?></label>
+                  <div class="col-sm-6 col-md-4">
                     <?php echo HTML::inputField('suburb', ($entry['suburb'] ? $entry['suburb'] : null), 'id="InputSuburb" aria-describedby="' . CLICSHOPPING::getDef('entry_suburb') . '" placeholder="' . CLICSHOPPING::getDef('entry_suburb') . '"'); ?>
                   </div>
                 </div>
@@ -224,10 +224,10 @@
   }
 ?>
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputPostCode" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_post_code'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputPostCode" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_post_code'); ?></label>
+                  <div class="col-sm-6 col-md-4">
 <?php
   echo HTML::inputField('postcode', ($entry['postcode'] ? $entry['postcode'] : null), 'required aria-required="true" id="InputPostCode" aria-describedby="' . CLICSHOPPING::getDef('entry_post_code') . '" placeholder="' . CLICSHOPPING::getDef('entry_post_code') . '"');
   if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_POSTCODE_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_POSTCODE_PRO_MIN_LENGTH > 0 ) ) {
@@ -240,10 +240,10 @@
             </div>
 
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputCity" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_city'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputCity" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_city'); ?></label>
+                  <div class="col-sm-6 col-md-4">
 <?php
   echo HTML::inputField('city', ($entry['city'] ? $entry['city'] : null), 'required aria-required="true" id="InputCity" aria-describedby="' . CLICSHOPPING::getDef('entry_city') . '" placeholder="' . CLICSHOPPING::getDef('entry_city') . '"');
   if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_CITY_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_CITY_PRO_MIN_LENGTH > 0 ) ) {
@@ -259,10 +259,10 @@
     if (ACCOUNT_STATE_DROPDOWN == 'true' && !isset($_GET['Edit'])) {
 ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputCountry" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
-                <div class="col-md-8">
+                <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
+                <div class="col-sm-6 col-md-4">
                   <?php echo HTML::selectMenuCountryList('country', null, 'onchange="update_zone(this.form);" aria-required="true"'); ?>
                   <?php echo (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
                 </div>
@@ -271,10 +271,10 @@
           </div>
 
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputState" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
+                  <div class="col-sm-6 col-md-4">
                     <?php echo HTML::selectField('state', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown(), null, 'aria-required="true"'); ?>
                     <?php echo(!is_null(CLICSHOPPING::getDef('entry_state_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>' : ''); ?>
                   </div>
@@ -287,10 +287,10 @@
 ?>
 
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputCountry" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
+                  <div class="col-sm-6 col-md-4">
                     <?php echo HTML::selectMenuCountryList('country', (isset($entry['country_id']) ? $entry['country_id'] : STORE_COUNTRY), 'aria-required="true"'); ?>
                     <?php echo (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
                   </div>
@@ -299,10 +299,10 @@
             </div>
 
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputState" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
+                  <div class="col-sm-6 col-md-4">
 <?php
     if ($process === true) {
       if ($entry_state_has_zones === true) {
@@ -349,10 +349,10 @@
       if ( defined('CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_CHECKOUT_ADDRESS_CATALOG') && (CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_CHECKOUT_ADDRESS_CATALOG == 'true' || CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_WEB_SERVICE == 'false')) {
 ?>
             <div class="row">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputNewsletter" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></label>
-                  <div class="col-md-8">
+                  <label for="InputNewsletter" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></label>
+                  <div class="col-sm-6 col-md-4">
                     <?php echo HTML::checkboxField('primary', 'on', false, 'id="InputNewsletter" aria-label="' . CLICSHOPPING::getDef('entry_newsletter') . '"') . ' ' . CLICSHOPPING::getDef('set_as_primary');  ?>
                   </div>
                 </div>
