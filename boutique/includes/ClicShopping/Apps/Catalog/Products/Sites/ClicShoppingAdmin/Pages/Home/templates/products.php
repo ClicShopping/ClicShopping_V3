@@ -177,7 +177,7 @@
 <?php
     if ($Qproducts->valueInt('products_status') == 1) {
 ?>
-                  <td class="dataTableContent" width="20px;"><?php echo '<a href="' . HTTP::getShopUrlDomain() .'index.php?Products&Description&products_id=' . $Qproducts->valueInt('products_id') . '" target="_blank" rel="noreferrer">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview_catalog.png', $CLICSHOPPING_Products->getDef('icon_preview_catalog')) . '</a>'; ?></td>
+                  <td class="dataTableContent" width="20px;"><?php echo '<a href="' . HTTP::getShopUrlDomain() .'index.php?Products&Description&products_id=' . $Qproducts->valueInt('products_id') . '" target="_blank" rel="noreferrer">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview_catalog.png', $CLICSHOPPING_Products->getDef('icon_preview')) . '</a>'; ?></td>
 <?php
     } else {
 ?>

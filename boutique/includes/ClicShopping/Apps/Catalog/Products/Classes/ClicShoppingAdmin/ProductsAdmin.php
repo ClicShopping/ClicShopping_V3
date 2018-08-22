@@ -1591,4 +1591,52 @@
 
       $this->hooks->call('Products','Save');
     }
+
+
+/**
+ * Count how many products exist in a category
+ * TABLES: products, products_to_products, products
+*/
+    public function getProductsInCategoryCount($products_id, $include_deactivated = false) {
+
+      if ($include_deactivated) {
+        $Qproducts = $this->products->db->get([
+                                                'products p',
+                                                'products_to_products p2c'
+                                              ], [
+                                                'count(*) as total'
+                                              ], [
+                                                  'p.products_id' => [
+                                                    'rel' => 'p2c.products_id'
+                                                  ],
+                                                  'p2c.products_id' => (int)$products_id
+                                                ]
+                                              );
+      } else {
+        $Qproducts = $this->products->db->get([
+                                                'products p',
+                                                'products_to_products p2c'
+                                              ], [
+                                                'count(*) as total'
+                                              ], [
+                                                  'p.products_id' => [
+                                                    'rel' => 'p2c.products_id'
+                                                  ],
+                                                  'p.products_status' => '1',
+                                                  'p2c.products_id' => (int)$products_id
+                                                ]
+                                              );
+      }
+
+      $products_count = $Qproducts->valueInt('total');
+
+      $Qchildren = $this->products->db->get('products', 'products_id', ['parent_id' => (int)$products_id]);
+
+
+      while ($Qchildren->fetch() !== false) {
+        $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
+      }
+
+      return $products_count;
+    }
   }

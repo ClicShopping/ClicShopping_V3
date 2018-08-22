@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -98,14 +98,14 @@
             <thead>
             <tr class="dataTableHeadingRow">
               <!-- // select all the product to delete -->
-              <th width="1" class="text-md-center"><input type="checkbox" onClick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
-              <th colspan="3">&nbsp;</th>
-              <th><?php echo $CLICSHOPPING_Categories->getDef('table_heading_categories_products'); ?></th>
-              <th class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></th>
-              <th class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?>&nbsp;</th>
-              <th class="text-md-center">&nbsp;</th>
-              <th class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?>&nbsp;</th>
-              <th class="text-md-right"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</th>
+              <td width="1" class="text-md-center"><input type="checkbox" onClick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+              <td colspan="3">&nbsp;</td>
+              <td><?php echo $CLICSHOPPING_Categories->getDef('table_heading_categories_products'); ?></td>
+              <td class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></td>
+              <td class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?>&nbsp;</td>
+              <td></td>
+              <td class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?>&nbsp;</td>
+              <td class="text-md-right"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</td>
             </tr>
             </thead>
             <tbody>
@@ -135,9 +135,9 @@
 ?>
                 <td class="text-md-center">&nbsp;</td>
                 <td><?php echo '<a href="' . $CLICSHOPPING_Categories->link('Categories&' . $CLICSHOPPING_CategoriesAdmin->getCategoriesPath($Qcategories->valueInt('categories_id'))) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/folder.gif', $CLICSHOPPING_Categories->getDef('icon_folder')); ?></td>
-                <td colspan="2">&nbsp;</td>
+                <td colspan="2"></td>
                 <td><?php echo '<strong>' . $Qcategories->value('categories_name') . '</strong>'; ?></td>
-                <td class="text-md-center">&nbsp;</td>
+                <td class="text-md-center"></td>
 <?php
       if (!is_null($Qcategories->value('last_modified'))) {
         echo '<td class="text-md-center">' . DateTime::toShort($Qcategories->value('last_modified')) .'</td>';

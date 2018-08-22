@@ -57,12 +57,6 @@ use ClicShopping\OM\HTML;
         if ( !empty($pi_html) ) {
           echo '    <div>' . implode('', $pi_html) . '</div>';
         }
-      } else {
-?>
-    <div class="pull-right">
-        <?php echo HTML::image(CLICSHOPPING::linkImage($products_small_image), $products_name); ?>
-      </div>
-<?php
       }
     }
 ?>
