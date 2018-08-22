@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -310,12 +310,12 @@
         $email_subject = CLICSHOPPING::getDef('email_subject_customer', ['store_name' => STORE_NAME]);
         $email_text = CLICSHOPPING::getDef('email_text_customer', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->oscMail($this->customer->getLastName(), $this->customer->getEmail(), $email_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $CLICSHOPPING_Mail->clicMail($this->customer->getLastName(), $this->customer->getEmail(), $email_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
         $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
         $email_text = CLICSHOPPING::getDef('email_text', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->oscMail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $email_text,  $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
+        $CLICSHOPPING_Mail->clicMail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $email_text,  $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
       }
     }
 

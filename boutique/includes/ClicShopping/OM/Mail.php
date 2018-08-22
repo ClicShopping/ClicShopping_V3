@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -75,7 +75,6 @@
 
 /**
    nl2br() prior PHP 4.2.0 did not convert linefeeds on all OSs (it only converted \n)
- * osc_convert_linefeeds
  */
     private function convertLinefeeds($from, $to, $string) {
 
@@ -220,9 +219,8 @@
  * @param string $from_name The name of the sender
  * @param string $from_email_address The email address of the sender
  * @access public
- * osc_mail
  */
-    Public function oscMail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address) {
+    Public function clicMail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address) {
 
       if (SEND_EMAILS != 'true') return false;
 
@@ -246,7 +244,6 @@
  * @param string return : value 0,1 the value of the test result
  * return : 1  valid email
  * return : 0 email no valid
- * osc_validate_domain_email
 */
 
     public function validateDomainEmail($email) {

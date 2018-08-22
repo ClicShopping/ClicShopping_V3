@@ -11,12 +11,8 @@
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-/*
- * osc_call_function
- */
   class CallUserFuncConfiguration {
 
     public static function execute($function, $default = null, $key = null) {

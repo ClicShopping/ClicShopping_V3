@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -199,7 +199,6 @@
  * @param string  $order_id, $restock
  * @return
  * @access public
- * osc_remove_order
  */
     public static function removeOrder($order_id, $restock = false) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -245,7 +244,6 @@
  * @param string
  * @return string orders_status_array,  name of the order status
  * @access public
- * osc_get_orders_status
  */
 
     public static function getOrdersStatus() {

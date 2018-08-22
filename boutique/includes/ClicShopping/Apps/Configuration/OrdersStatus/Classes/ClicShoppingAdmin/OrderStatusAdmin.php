@@ -26,7 +26,6 @@
 * @param string  $orders_status_id, $language_id
 * @return string $orders_status['orders_status_name'],  name of the status
 * @access public
-*osc_get_orders_status_name
 */
     Public Static function getOrdersStatusName($orders_status_id, $language_id = '') {
       $CLICSHOPPING_Language = Registry::get('Language');

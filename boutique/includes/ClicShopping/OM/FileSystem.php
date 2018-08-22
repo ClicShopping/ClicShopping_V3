@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -77,19 +77,14 @@ class FileSystem {
 
 
 
-/*
+/**
 * Recursively remove a directory or a single file
 *
 * @param string $source The source to remove
 * @access public
- * osc_remove
 */
   public static function rmFile($source) {
-    global $osc_remove_error;
-
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-
-    if (isset($osc_remove_error)) $osc_remove_error = false;
 
     if (is_dir($source)) {
       $dir = dir($source);
@@ -99,7 +94,6 @@ class FileSystem {
             static::rmFile($source . '/' . $file);
           } else {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_not_removeable')  . ' ' . $source . '/' . $file, 'error');
-            $osc_remove_error = true;
           }
         }
       }
@@ -109,25 +103,22 @@ class FileSystem {
         rmdir($source);
       } else {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_not_removeable') . ' ' . $source, 'error');
-        $osc_remove_error = true;
       }
     } else {
       if (static::isWritable($source)) {
         unlink($source);
       } else {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_not_removeable') . ' ' . $source, 'error');
-        $osc_remove_error = true;
       }
     }
   }
 
 /**
-* Parse file permissions to a human readable layout
-*
-* @param int $mode The file permission to parse
-* @access public
- * osc_get_file_permissions
-*/
+ * @access public
+ * Parse file permissions to a human readable layout
+ *
+ * @param int $mode The file permission to parse
+ */
   public function getFilePermissions($mode) {
 // determine type
     if ( ($mode & 0xC000) == 0xC000) { // unix domain socket

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -49,7 +49,6 @@
  * @param string $id The product ID
  * @param array $params An array of product attributes
  * @return string
- * osc_get_uprid
  */
 
     public static function getProductIDString($id, $params) {
@@ -81,7 +80,6 @@
  *
  * @param string $id The product ID
  * @access public
- * osc_get_prid
  */
 
     public static function getProductID($id) {

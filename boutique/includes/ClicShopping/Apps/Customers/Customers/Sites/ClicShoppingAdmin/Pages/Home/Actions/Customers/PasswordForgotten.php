@@ -62,7 +62,7 @@
         $text_password_body .=  TemplateEmailAdmin::getTemplateEmailSignature();
         $text_password_body .=  TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-        $CLICSHOPPING_Mail->oscMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $CLICSHOPPING_Customers->getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]), nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass )), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+        $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $CLICSHOPPING_Customers->getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]), nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass )), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('text_new_password') . '&nbsp;' . ($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname')), 'success');
       }
 

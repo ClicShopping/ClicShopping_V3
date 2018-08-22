@@ -112,7 +112,7 @@
             $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
             $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
 // mail report
-            $CLICSHOPPING_Mail->oscMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS,  CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS,  CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
           }
         } else {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
@@ -157,7 +157,7 @@
                                                       ]
                                   );
           }
-        } // end osc_db_num_rows
+        }
 
         CLICSHOPPING::redirect('login.php');
 
@@ -202,7 +202,7 @@
             $email_body .=  TemplateEmailAdmin::getTemplateEmailSignature();
             $email_body .=  TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-            $CLICSHOPPING_Mail->oscMail('', $username, $body_subject, sprintf($email_body, $new_password), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail('', $username, $body_subject, sprintf($email_body, $new_password), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_sent'), 'success');
           } else {

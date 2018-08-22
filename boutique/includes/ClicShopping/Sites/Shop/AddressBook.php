@@ -32,21 +32,21 @@
       }
 
       $Qaddress =$CLICSHOPPING_Db->prepare('select address_book_id,
-                                            entry_firstname as firstname,
-                                            entry_lastname as lastname,
-                                            entry_company as company,
-                                            entry_street_address as street_address,
-                                            entry_suburb as suburb,
-                                            entry_city as city,
-                                            entry_postcode as postcode,
-                                            entry_state as state,
-                                            entry_zone_id as zone_id,
-                                            entry_country_id as country_id
-                                       from :table_address_book
-                                       where customers_id = :customers_id
-                                       and address_book_id = :address_book_id
-                                       order by firstname, lastname
-                                      ');
+                                                    entry_firstname as firstname,
+                                                    entry_lastname as lastname,
+                                                    entry_company as company,
+                                                    entry_street_address as street_address,
+                                                    entry_suburb as suburb,
+                                                    entry_city as city,
+                                                    entry_postcode as postcode,
+                                                    entry_state as state,
+                                                    entry_zone_id as zone_id,
+                                                    entry_country_id as country_id
+                                         from :table_address_book
+                                         where customers_id = :customers_id
+                                         and address_book_id = :address_book_id
+                                         order by firstname, lastname
+                                        ');
       $Qaddress->bindInt(':address_book_id', $address_book_id);
       $Qaddress->bindInt(':customers_id', $id);
 
@@ -57,10 +57,17 @@
       return $address;
     }
 
-////
-// Return a formatted address
-// TABLES: customers, address_book
-//  osc_address_label
+/**
+ * Return a formatted address
+ * TABLES: customers, address_book
+ * @param $customers_id
+ * @param int $address_id
+ * @param bool $html
+ * @param string $boln
+ * @param string $eoln
+ * @return mixed
+ */
+
     public static function addressLabel($customers_id, $address_id = 1, $html = false, $boln = '', $eoln = "\n") {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Address = Registry::get('Address');
@@ -70,18 +77,18 @@
       }
 
       $Qaddress = $CLICSHOPPING_Db->prepare('select entry_firstname as firstname,
-                                              entry_lastname as lastname,
-                                              entry_company as company,
-                                              entry_street_address as street_address,
-                                              entry_suburb as suburb, entry_city as city,
-                                              entry_postcode as postcode,
-                                              entry_state as state,
-                                              entry_zone_id as zone_id,
-                                              entry_country_id as country_id
-                                       from :table_address_book
-                                       where customers_id = :customers_id
-                                       and address_book_id = :address_book_id
-                                     ');
+                                                    entry_lastname as lastname,
+                                                    entry_company as company,
+                                                    entry_street_address as street_address,
+                                                    entry_suburb as suburb, entry_city as city,
+                                                    entry_postcode as postcode,
+                                                    entry_state as state,
+                                                    entry_zone_id as zone_id,
+                                                    entry_country_id as country_id
+                                             from :table_address_book
+                                             where customers_id = :customers_id
+                                             and address_book_id = :address_book_id
+                                           ');
 
       $Qaddress->bindInt(':address_book_id', $address_id);
       $Qaddress->bindInt(':customers_id', $customers_id);
@@ -96,7 +103,6 @@
 
 /**
  * Controle autorisation au client de modifier son adresse par defaut
- * osc_count_customers_modify_address_default
  */
 
     public static function countCustomersModifyAddressDefault($id = '', $check_session = true) {
@@ -121,9 +127,9 @@
       if (ACCOUNT_MODIFY_ADRESS_DEFAULT_PRO == 'true' || $CLICSHOPPING_Customer->getCustomersGroupID() == '0' ) {
 
         $QcustomersModifyAddressDefault = $CLICSHOPPING_Db->prepare('select customers_modify_address_default
-                                                             from :table_customers
-                                                             where customers_id = :customers_id
-                                                            ');
+                                                                     from :table_customers
+                                                                     where customers_id = :customers_id
+                                                                    ');
         $QcustomersModifyAddressDefault->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID() );
 
         $QcustomersModifyAddressDefault->execute();
@@ -136,7 +142,6 @@
 
 /**
  * Controle autorisation d'ajouter une adresse selon la fiche client
- * osc_count_customers_add_address
  */
 
     public static function countCustomersAddAddress($id = null, $check_session = true) {
@@ -160,9 +165,9 @@
 
       if ( $CLICSHOPPING_Customer->getCustomersGroupID() == 0 || ACCOUNT_ADRESS_BOOK_PRO == 'true') {
         $Qaddresses = $CLICSHOPPING_Db->prepare('select customers_add_address
-                                           from :table_customers
-                                           where customers_id = :customers_id
-                                          ');
+                                                 from :table_customers
+                                                 where customers_id = :customers_id
+                                                ');
         $Qaddresses->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID() );
 
         $Qaddresses->execute();
@@ -174,7 +179,6 @@
 
 /**
  * Controle autorisation au client B2B de modifier ses informations sur la societe
- * osc_count_customers_modify_company
  */
 
     public static function countCustomersModifyCompany($id = '', $check_session = true) {
@@ -197,9 +201,9 @@
       }
 
       $QcustomersModifyCompany = $CLICSHOPPING_Db->prepare('select customers_modify_company
-                                                      from :table_customers
-                                                      where customers_id = :customers_id
-                                                    ');
+                                                            from :table_customers
+                                                            where customers_id = :customers_id
+                                                          ');
       $QcustomersModifyCompany->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID() );
 
       $QcustomersModifyCompany->execute();
@@ -221,10 +225,10 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $Qentry = $CLICSHOPPING_Db->prepare('select address_book_id
-                                      from :table_address_book
-                                      where address_book_id = :address_book_id
-                                      and customers_id = :customers_id
-                                    ');
+                                            from :table_address_book
+                                            where address_book_id = :address_book_id
+                                            and customers_id = :customers_id
+                                          ');
       $Qentry->bindInt(':address_book_id', $id);
       $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qentry->execute();
@@ -263,7 +267,6 @@
  * @param string $id, $check_session
  * @param string $addresses['total'], number of the address
  * @access public
- * osc_count_customer_address_book_entries
  */
     public static function countCustomerAddressBookEntries($id = '', $check_session = true) {
 
@@ -285,10 +288,10 @@
       }
 
       $Qaddresses = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                       from :table_address_book
-                                       where customers_id = :customers_id
-                                       limit 1
-                                      ');
+                                               from :table_address_book
+                                               where customers_id = :customers_id
+                                               limit 1
+                                              ');
       $Qaddresses->bindInt(':customers_id', (int)$id);
 
       $Qaddresses->execute();
@@ -305,7 +308,6 @@
 * @param string $id The id of the order
 * @param string $check_session of the session customer
 * @access public
-* osc_count_ustomer_orders
 */
 
     public static function countCustomerOrders($id = '', $check_session = true) {
@@ -329,13 +331,13 @@
       }
 
       $Qorders = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                      from :table_orders o,
-                                           :table_orders_status s
-                                      where o.customers_id = :customers_id
-                                      and o.orders_status = s.orders_status_id
-                                      and s.language_id = :language_id
-                                      and s.public_flag = :public_flag
-                                    ');
+                                            from :table_orders o,
+                                                 :table_orders_status s
+                                            where o.customers_id = :customers_id
+                                            and o.orders_status = s.orders_status_id
+                                            and s.language_id = :language_id
+                                            and s.public_flag = :public_flag
+                                          ');
       $Qorders->bindInt(':customers_id', (int)$id);
       $Qorders->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId());
       $Qorders->bindValue(':public_flag', '1');
@@ -361,25 +363,25 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qaddresses = $CLICSHOPPING_Db->prepare('select ab.address_book_id,
-                                                ab.entry_firstname as firstname,
-                                                 ab.entry_lastname as lastname,
-                                                 ab.entry_company as company,
-                                                 ab.entry_street_address as street_address,
-                                                 ab.entry_suburb as suburb,
-                                                 ab.entry_city as city,
-                                                 ab.entry_postcode as postcode,
-                                                 ab.entry_state as state,
-                                                 ab.entry_zone_id as zone_id,
-                                                 ab.entry_country_id as country_id,
-                                                 z.zone_code as zone_code,
-                                                 c.countries_name as country_title
-                                        from :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id),
-                                              :table_countries c
-                                        where ab.customers_id = :customers_id
-                                        and ab.entry_country_id = c.countries_id
-                                        order by ab.entry_firstname,
-                                                 ab.entry_lastname
-                                       ');
+                                                       ab.entry_firstname as firstname,
+                                                       ab.entry_lastname as lastname,
+                                                       ab.entry_company as company,
+                                                       ab.entry_street_address as street_address,
+                                                       ab.entry_suburb as suburb,
+                                                       ab.entry_city as city,
+                                                       ab.entry_postcode as postcode,
+                                                       ab.entry_state as state,
+                                                       ab.entry_zone_id as zone_id,
+                                                       ab.entry_country_id as country_id,
+                                                       z.zone_code as zone_code,
+                                                       c.countries_name as country_title
+                                              from :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id),
+                                                    :table_countries c
+                                              where ab.customers_id = :customers_id
+                                              and ab.entry_country_id = c.countries_id
+                                              order by ab.entry_firstname,
+                                                       ab.entry_lastname
+                                             ');
       $Qaddresses->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qaddresses->execute();
 
@@ -473,55 +475,55 @@
 
       if ( is_numeric($id) ) {
         $Qab = $CLICSHOPPING_Db->prepare('update :table_address_book
-                                    set customers_id = :customers_id,
-                                        entry_gender = :entry_gender,
-                                        entry_company = :entry_company,
-                                        entry_firstname = :entry_firstname,
-                                        entry_lastname = :entry_lastname,
-                                        entry_street_address = :entry_street_address,
-                                        entry_suburb = :entry_suburb,
-                                        entry_postcode = :entry_postcode,
-                                        entry_city = :entry_city,
-                                        entry_state = :entry_state,
-                                        entry_country_id = :entry_country_id,
-                                        entry_zone_id = :entry_zone_id,
-                                        entry_telephone = :entry_telephone,
-                                        entry_fax = :entry_fax
-                                    where address_book_id = :address_book_id
-                                    and customers_id = :customers_id
-                                   ');
+                                          set customers_id = :customers_id,
+                                              entry_gender = :entry_gender,
+                                              entry_company = :entry_company,
+                                              entry_firstname = :entry_firstname,
+                                              entry_lastname = :entry_lastname,
+                                              entry_street_address = :entry_street_address,
+                                              entry_suburb = :entry_suburb,
+                                              entry_postcode = :entry_postcode,
+                                              entry_city = :entry_city,
+                                              entry_state = :entry_state,
+                                              entry_country_id = :entry_country_id,
+                                              entry_zone_id = :entry_zone_id,
+                                              entry_telephone = :entry_telephone,
+                                              entry_fax = :entry_fax
+                                          where address_book_id = :address_book_id
+                                          and customers_id = :customers_id
+                                         ');
         $Qab->bindInt(':address_book_id', $id);
         $Qab->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       } else {
         $Qab = $CLICSHOPPING_Db->prepare('insert into :table_address_book (customers_id,
-                                                                      entry_gender,
-                                                                      entry_company,
-                                                                      entry_firstname,
-                                                                      entry_lastname,
-                                                                      entry_street_address,
-                                                                      entry_suburb,
-                                                                      entry_postcode,
-                                                                      entry_city,
-                                                                      entry_state,
-                                                                      entry_country_id,
-                                                                      entry_zone_id,
-                                                                      entry_telephone,
-                                                                      entry_fax)
-                                    values (:customers_id,
-                                            :entry_gender,
-                                            :entry_company,
-                                            :entry_firstname,
-                                            :entry_lastname,
-                                            :entry_street_address,
-                                            :entry_suburb,
-                                            :entry_postcode,
-                                            :entry_city,
-                                            :entry_state,
-                                            :entry_country_id,
-                                            :entry_zone_id,
-                                            :entry_telephone,
-                                            :entry_fax)
-                                    ');
+                                                                            entry_gender,
+                                                                            entry_company,
+                                                                            entry_firstname,
+                                                                            entry_lastname,
+                                                                            entry_street_address,
+                                                                            entry_suburb,
+                                                                            entry_postcode,
+                                                                            entry_city,
+                                                                            entry_state,
+                                                                            entry_country_id,
+                                                                            entry_zone_id,
+                                                                            entry_telephone,
+                                                                            entry_fax)
+                                          values (:customers_id,
+                                                  :entry_gender,
+                                                  :entry_company,
+                                                  :entry_firstname,
+                                                  :entry_lastname,
+                                                  :entry_street_address,
+                                                  :entry_suburb,
+                                                  :entry_postcode,
+                                                  :entry_city,
+                                                  :entry_state,
+                                                  :entry_country_id,
+                                                  :entry_zone_id,
+                                                  :entry_telephone,
+                                                  :entry_fax)
+                                          ');
       }
 
       $Qab->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());

@@ -223,7 +223,7 @@
             }
           }
         }
-//  } elseif (osc_has_product_attributes($products_id)) {
+//  } elseif (clic_has_product_attributes($products_id)) {
       } elseif ($this->productsCommon->getHasProductAttributes()) {
         $attributes_pass_check = false;
       }
@@ -949,13 +949,12 @@
     }
 
 /**
+ * Return a product ID with attributes
  * @param string $prid, $params
  * @return string $uprid,
  * @access public
- * osc_get_uprid
  */
-//
-// Return a product ID with attributes
+
     public function getUprid($prid, $params) {
       if (is_numeric($prid)) {
         $uprid = (int)$prid;
@@ -1013,9 +1012,12 @@
     }
 
 
-////
-// Return a product ID from a product ID with attributes
-// osc_get_prid
+/**
+ * Return a product ID from a product ID with attributes
+ * @param $uprid
+ * @return bool|int
+ */
+
     public function getPrid($uprid) {
       $pieces = explode('{', $uprid);
 

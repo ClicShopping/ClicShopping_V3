@@ -20,7 +20,6 @@
  * @param string $id, reviews_id
  * @return string status on or off
  * @access public
- * osc_set_reviews_status
  */
 
     Public static function getReviewsStatus($id, $status) {

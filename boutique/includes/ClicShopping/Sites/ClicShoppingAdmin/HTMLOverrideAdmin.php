@@ -32,7 +32,6 @@
  * @param string $string
  * @return string $string,
  * @access public
- * osc_replace_string
  */
 
     public static function sanitizeReplace($string) {
@@ -65,7 +64,6 @@
  * @param string $parameters Additional parameters for the textarea field
  * @param boolean $override Override the default value with the value found in the GET or POST scope
  * @access public
- * osc_draw_textarea_ckeditor
  */
     public static function textAreaCkeditor($name, $value = null, $width, $height, $text = null, $parameters = null, $override = true) {
 
@@ -103,7 +101,6 @@
  *
  * @param string $name The name and ID of the textarea field
  * @access public
- * osc_draw_file_field_image_ckeditor
  */
 
     public static function fileFieldImageCkEditor($name, $value = null, $width = null, $height = null) {
@@ -162,8 +159,6 @@
  * @param string $name, $parameters, $exclude
  * @return string $select_string, the pulldown value of products
  * @access public
- * equivalent osc_draw_pull_down_menu
- *osc_draw_products_pull_down
  */
     public static function selectMenuProductsPullDown($name, $parameters = '', $exclude = '', $class = 'form-control') {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -262,17 +257,17 @@
 
 
 
-////
-// javascript to dynamically update the states/provinces list when the country is changed
-// TABLES: zones
-// osc_js_zone_list
+/**
+ * javascript to dynamically update the states/provinces list when the country is changed
+ * TABLES: zones
+*/
     public static function getJsZoneList($country, $form, $field) {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcountries = $CLICSHOPPING_Db->prepare('select distinct zone_country_id
-                                                 from :table_zones
-                                                 where  zone_status = 0
-                                                 order by zone_country_id
+                                               from :table_zones
+                                               where  zone_status = 0
+                                               order by zone_country_id
                                               ');
       $Qcountries->execute();
 

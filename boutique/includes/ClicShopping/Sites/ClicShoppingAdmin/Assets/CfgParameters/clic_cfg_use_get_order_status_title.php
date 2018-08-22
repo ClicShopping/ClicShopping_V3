@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -20,7 +20,7 @@
  * @access public
  *
  */
-// osc_get_orders_status_name
+
   function clic_cfg_use_get_order_status_title($id) {
 
     $CLICSHOPPING_Language = Registry::get('Language');

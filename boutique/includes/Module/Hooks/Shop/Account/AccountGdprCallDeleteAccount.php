@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -58,7 +58,7 @@
 
           $text_email = html_entity_decode(CLICSHOPPING::getDef('module_account_customers_gdpr_email_text_message')) . "\n";
 
-          $CLICSHOPPING_Mail->oscMail($QcustomerEmail->value('customers_firstname') . ' ' . $QcustomerEmail->value('customers_lastname'), $QcustomerEmail->value('customers_email_address'), CLICSHOPPING::getDef('email_text_subject'), $text_email, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+          $CLICSHOPPING_Mail->clicMail($QcustomerEmail->value('customers_firstname') . ' ' . $QcustomerEmail->value('customers_lastname'), $QcustomerEmail->value('customers_email_address'), CLICSHOPPING::getDef('email_text_subject'), $text_email, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
           $Qdelete = $CLICSHOPPING_Db->prepare('delete
                                                 from :table_customers

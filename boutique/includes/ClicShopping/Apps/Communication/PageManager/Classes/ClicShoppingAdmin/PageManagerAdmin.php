@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -24,7 +24,6 @@
  * @param string  $pages_id, $language_id
  * @return string product['products_head_title_tag'], description name
  * @access public
- * osc_get_page_manager_head_title_tag
  */
     public static function getPageManagerHeadTitleTag($pages_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -51,7 +50,6 @@
 * @param string  $pages_id, $language_id
 * @return string $page_manager['products_head_desc_tag'], description name
 * @access public
- * osc_get_page_manager_head_desc_tag
 */
     public static function getPageManagerHeadDescTag($pages_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -78,7 +76,6 @@
 * @param string  $pages_id, $language_id
 * @return string $page_manager['products_head_keywords_tag'], keywords name
 * @access public
- * osc_get_page_manager_head_keywords_tag
 */
     public static function getPageManagerHeadKeywordsTag($pages_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');

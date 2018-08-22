@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -21,7 +21,6 @@
  * @param string products_id, status
  * @return string status on or off
  * @access public
- * osc_set_product_status
  */
 
     public static function getProductStatus($products_id, $status) {

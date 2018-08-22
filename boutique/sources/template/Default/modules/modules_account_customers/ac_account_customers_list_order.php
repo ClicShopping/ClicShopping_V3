@@ -135,7 +135,7 @@
             $account_customers_title_content .= '</div>';
             $account_customers_title_content .= '</div>';
             $account_customers_title_content .= '</div>';
-         } // osc_count_order
+         }
 
          $account_customers_title_content .= '<div class="hr"></div>';
          $account_customers_title_content .= '</div>' . "\n";

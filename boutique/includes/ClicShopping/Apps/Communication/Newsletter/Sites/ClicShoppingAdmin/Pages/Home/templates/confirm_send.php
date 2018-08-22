@@ -69,7 +69,6 @@
 
 <?php
 // delete the timeout
-//   osc_set_time_limit(0);
   flush();
 
   $module->sendCkeditor($nInfo->newsletters_id);

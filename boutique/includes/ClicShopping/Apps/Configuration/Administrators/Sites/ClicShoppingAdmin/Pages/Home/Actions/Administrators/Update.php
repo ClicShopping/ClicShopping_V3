@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -75,7 +75,7 @@
       }
 
 // mail report
-      $CLICSHOPPING_Mail->oscMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS,  $this->app->getDef('report_password_change_subject'), $this->app->getDef('report_password_change_text', ['username' => $username, ]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+      $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS,  $this->app->getDef('report_password_change_subject'), $this->app->getDef('report_password_change_text', ['username' => $username, ]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
       $this->app->redirect('Administrators&aID=' . (int)$_GET['aID']);
     }

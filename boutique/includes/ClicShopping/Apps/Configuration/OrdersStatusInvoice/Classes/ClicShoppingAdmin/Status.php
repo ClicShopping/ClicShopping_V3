@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -27,7 +27,6 @@
  * @param string  $orders_status_invoice_id, $language_id
  * @return string $orders_invoice_status['orders_status_invoice_name'],  name of the  status invoice
  * @access public
- * osc_get_orders_status_invoice_name
  */
     Public static function getOrdersStatusInvoiceName($orders_status_invoice_id, $language_id = '') {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -55,7 +54,6 @@
  * @param string  $orders_status_invoice_id, $language_id
  * @return string orders_invoice_status_array,  array if the name status invoice
  * @access public
- * osc_get_orders_invoice_status
  */
     Public static function getOrdersInvoiceStatus() {
       $CLICSHOPPING_Db = Registry::get('Db');

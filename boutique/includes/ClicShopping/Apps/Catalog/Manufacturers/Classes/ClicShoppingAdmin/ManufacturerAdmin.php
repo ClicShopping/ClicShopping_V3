@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -29,7 +29,6 @@
  * @param string  $manufacturer_id, $language_id
  * @return string $manufacturer['manufacturer_description'],  description of the manufacturer
  * @access public
- * osc_get_manufacturer_description
  */
     public function getManufacturerDescription($manufacturers_id, $language_id) {
 

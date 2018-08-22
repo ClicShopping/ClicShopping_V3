@@ -20,13 +20,12 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  /**
+/**
  * Country name name
  *
  * @param string country_id
  * @return string $country['countries_name'] the country name
  * @access public
- * osc_get_country_name
  */
 
   function clic_cfg_use_function_get_country_name($country_id) {

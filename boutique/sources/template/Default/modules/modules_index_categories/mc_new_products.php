@@ -323,9 +323,9 @@
             $CLICSHOPPING_Template->addBlock($new_prods_content, $this->group);
 
             } // max display
-          } // osc_num
-        } //
-      } // php self
+          }
+        }
+      }
     } // public function execute
 
     public function isEnabled() {

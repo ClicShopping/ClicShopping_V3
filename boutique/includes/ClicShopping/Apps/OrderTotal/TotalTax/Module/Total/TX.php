@@ -213,7 +213,7 @@
     }
 
 //We calculate $CLICSHOPPING_Order->info with updated tax values. For this to work ot_tax has to be last ot module called, just before ot_total
-    $CLICSHOPPING_Order->info['tax'] = round($gst_total, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + osc_round($pst_total,$CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + osc_round($hst_total,$CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
+    $CLICSHOPPING_Order->info['tax'] = round($gst_total, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + round($pst_total,$CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + round($hst_total,$CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
     $CLICSHOPPING_Order->info['total'] = $CLICSHOPPING_Order->info['subtotal'] + $CLICSHOPPING_Order->info['tax'] + $CLICSHOPPING_Order->info['shipping_cost'];
 
     } else {

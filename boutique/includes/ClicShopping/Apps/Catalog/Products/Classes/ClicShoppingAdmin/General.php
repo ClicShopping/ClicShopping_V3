@@ -34,7 +34,6 @@
  * @param string  $category_id, $language_id
  * @return string $category['products_name'],  name of the categorie
  * @access public
- * osc_get_category_name
  */
     public function getCategoryName($category_id, $language_id) {
       if (!$language_id) $language_id = $this->lang->getId();
@@ -43,12 +42,12 @@
       return $Qcategory->value('products_name');
     }
 
-////
-// Count how many subproducts exist in a category
-// TABLES: products
-// osc_childs_in_category_count
-// pb avec static function
 
+/**
+ * Count how many subproducts exist in a category
+ * @param $products_id
+ * @return int|mixed
+ */
     public function getChildsInCategoryCount($products_id) {
       $products_count = 0;
 
@@ -63,10 +62,12 @@
       return $products_count;
     }
 
-// Count how many products exist in a category
-// TABLES: products, products_to_products, products
-// osc_products_in_category_count
-
+/**
+ * Count how many products exist in a category
+ * @param $products_id
+ * @param bool $include_deactivated
+ * @return mixed
+ */
     public function getProductsInCategoryCount($products_id, $include_deactivated = false) {
 
       if ($include_deactivated) {
@@ -116,7 +117,6 @@
  * @param string $category_id
  * @return string
  * @access public
- * osc_remove_category
  */
     public function removeCategory($category_id) {
       $QproductsImage = $this->products->db->prepare('select products_image

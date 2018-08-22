@@ -200,8 +200,6 @@ secondes =  sec
 text_price_with_tax_tag = dont taxe -
 text_unknown_tax_rate = Taxe inconnue
 
-error_osc_mail = <strong><small>TEP ERROR:</small> Impossible d'envoyer l'email par le serveur SMTP spécifié. Vérifiez le fichier PHP.INI et corrigez le nom du serveur SMTP si nécessaire.</strong>
-
 text_ccval_error_invalid_date = La date d'expiration entrée pour cette carte de crédit n'est pas valide. Veuillez vérifier la date et réessayez.
 text_ccval_error_invalid_number = Le numéro entrée pour cette carte de crédit n'est pas valide. Veuillez vérifier le numéro et réessayez.
 text_ccval_error_unknown_card = Le code a 4 chiffres que vous avez entre est : %s. Si ce code est correct, nous n'acceptons pas ce type de carte credit. S il est errone, veuillez reessayer.

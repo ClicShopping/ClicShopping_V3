@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -128,22 +128,22 @@
             }
 
             $message_to_admin = $email_subject . ' ' . STORE_NAME  . "\n\n" . $message_info_admin . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today  .  "\n".    $num_customer_id .  "\n".  $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id  .  "\n".  $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name .  "\n".  $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address  .  "\n".  $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
-            $CLICSHOPPING_Mail->oscMail(preg_replace('/\<[^*]*/', '', $send_to_array[$send_to]), $send_to_email, $email_subject, $message_to_admin, $name, $email_address);
+            $CLICSHOPPING_Mail->clicMail(preg_replace('/\<[^*]*/', '', $send_to_array[$send_to]), $send_to_email, $email_subject, $message_to_admin, $name, $email_address);
             $contact_department = $send_to_array[$send_to];
 
 // send information to customer
             $message_to_customer = $email_subject . ' ' . STORE_NAME  . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today .  "\n".   $num_customer_id .  "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id  .  "\n"  . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' .  $customers_telephone   . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address  . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' .  $enquiry . "\n\n"  . $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n"  . $template_email_footer;
-            $CLICSHOPPING_Mail->oscMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
 
           } else {
 
             $contact_department =  $CLICSHOPPING_PageManager->getDef('text_administrator_department');
             $message_to_admin = $email_subject . ' ' . STORE_NAME  .  "\n\n"  . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today .  "\n"  .  $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id .  "\n\n"  .  $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone   . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address  . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' .  $enquiry  .  "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') .  "\n\n";
-            $CLICSHOPPING_Mail->oscMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $message_to_admin, $name, $email_address);
+            $CLICSHOPPING_Mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $message_to_admin, $name, $email_address);
 
 // send information to customer
             $message_to_customer = $email_subject . ' ' . STORE_NAME  .  "\n\n"   . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today .  "\n".  $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id .  "\n\n"  .  $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone   . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address  . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry  . "\n\n"  . $CLICSHOPPING_PageManager->getDef('entry_additional_information')  . "\n\n"  . $template_email_footer;
-            $CLICSHOPPING_Mail->oscMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'),  $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'),  $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
           }
 
 // insert the modification in the databse

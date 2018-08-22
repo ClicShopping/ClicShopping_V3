@@ -24,7 +24,6 @@
 /*
 * Return a formatted address
 *  TABLES: address_format
-*  osc_address_format
 */
   public static function addressFormat($address_format_id, $address, $html, $boln, $eoln) {
     $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -112,11 +111,12 @@
     return $address;
   }
 
+/**
+ * Returns the address_format_id for the given country
+ * @param $country_id
+ * @return int
+ */
 
-////
-// Returns the address_format_id for the given country
-// TABLES: countries;
-// osc_get_address_format_id
     public static function getAddressFormatId($country_id) {
 
       $format_id = 1;
@@ -138,7 +138,6 @@
  * @param int $id The ID of the zone
  * @access public
  * @return string
- * osc_get_zone_code
  */
 
     public static function getZoneCode($country_id, $zone_id, $default_zone) {
@@ -171,7 +170,6 @@
  * @param int $id The ID of the zone
  * @access public
  * @return string
- * osc_get_zone_name
  */
 
     public static function getZoneName($country_id, $zone_id, $default_zone) {
@@ -193,7 +191,6 @@
  * @param string $countries_id
  * @param string $with_iso_codes
  * @access public
- * osc_get_countries
  */
 
     public static function getCountries($countries_id = null, $with_iso_codes = false) {
@@ -244,7 +241,6 @@
  * Retour the name of the country
  * @param $country_id
  * @access public
- * osc_get_country_name()
  */
     public static function getCountryName($country_id) {
 
@@ -255,10 +251,9 @@
     }
 
 /**
- *  Alias function to osc_get_countries, which also returns the countries iso codes
+ *  Alias function to getCountries, which also returns the countries iso codes
  * @param string $countries_id
  * @access public
- * osc_get_countries_with_iso_codes
  */
     public function getCountriesWithIsoCodes($countries_id) {
       return static::getCountries($countries_id, true);
@@ -322,7 +317,6 @@
  * @param $country_id, if ogf the country
  * @return array $zones_array, zone of the country
  * @access public
- * osc_get_country_zones
  * Shop and Admin
  */
     public static function getCountryZones($country_id) {
@@ -355,7 +349,6 @@
  * @param $country_id, if ogf the country
  * @return array $zones_array, zone of the country
  * @access public
- * osc_prepare_country_zones_pull_down
  * Shop and Admin
  */
     public static function getPrepareCountryZonesPullDown($country_id = '') {

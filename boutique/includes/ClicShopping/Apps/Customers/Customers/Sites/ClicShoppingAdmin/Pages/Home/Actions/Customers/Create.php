@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -279,7 +279,6 @@
                              'customers_email_address' => $customers_email_address,
                              'customers_telephone' => $customers_telephone,
                              'customers_fax' => $customers_fax,
-//  'customers_password' => osc_encrypt_password($customers_password),
                              'customers_password' => $customers_password,
                              'customers_newsletter' => 1,
                              'languages_id' => (int)$customers_languages_id,

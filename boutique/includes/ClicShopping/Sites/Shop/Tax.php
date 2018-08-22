@@ -18,7 +18,6 @@
 
     protected $tax_rates = [];
 
-// osc_get_tax_rate
     public function getTaxRate($class_id, $country_id = -1, $zone_id = -1) {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -72,7 +71,6 @@
     }
 
 // Return the tax description for a zone / class
-// osc_get_tax_description
     public function getTaxRateDescription($class_id, $country_id, $zone_id) {
       global $tag;
 
@@ -122,7 +120,6 @@
       return $this->tax_rates[$class_id][$country_id][$zone_id]['description'];
     }
 
-// osc_calculate_tax
     public static function calculate($price, $tax_rate) {
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
@@ -130,7 +127,6 @@
     }
 
 
-// osc_get_tax_rate_value
     public static function displayTaxRateValue($value, $padding = null) {
       if ( !is_numeric($padding) ) {
         $padding = TAX_DECIMAL_PLACES;
@@ -169,11 +165,13 @@
       return $value . '%';
     }
 
-////
-// Add tax to a products price
-// symbol tax :display information after currency (ex : HT / TTC)
-// osc_add_tax
-
+/**
+ * Add tax to a products price
+ * symbol tax :display information after currency (ex : HT / TTC)
+ * @param $price
+ * @param $tax
+ * @return float
+ */
     public static function addTax($price, $tax) {
       global $tag;
 
@@ -225,7 +223,6 @@
  *
  * @return string $$tax_class_array, drop down with all tax title
  * @access public
- * osc_info_image
  */
 
     public static function taxClassDropDown() {

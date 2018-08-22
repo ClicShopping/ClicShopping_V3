@@ -38,9 +38,11 @@
     }
 
 
-// Returns an array with customers_groups
-// osc_get_customers_group
-//
+/**
+ * Returns an array with customers_groups
+ * @param string $default
+ * @return array
+ */
     public static function getCustomersGroup($default = '') {
       $CLICSHOPPING_Db = Registry::get('Db');
 

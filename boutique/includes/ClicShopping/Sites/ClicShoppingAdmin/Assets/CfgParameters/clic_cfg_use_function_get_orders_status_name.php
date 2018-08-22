@@ -15,11 +15,9 @@
  * @param string  $orders_status_id, $language_id
  * @return string $orders_status['orders_status_name'],  name of the status
  * @access public
- * osc_get_orders_status_name
  */
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
   function clic_cfg_use_function_get_orders_status_name($orders_status_id, $language_id = '') {
     $CLICSHOPPING_Language = Registry::get('Language');

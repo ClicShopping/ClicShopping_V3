@@ -61,7 +61,7 @@
            }
 // Products attributes
            if ($CLICSHOPPING_ProductsCommon->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1 ) {
-             $osc_has_product_attributes = $CLICSHOPPING_ProductsCommon->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
+             $clic_has_product_attributes = $CLICSHOPPING_ProductsCommon->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
            }
 // Minimum quantity to take an order
            if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {

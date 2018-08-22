@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -26,7 +26,6 @@
  * @param string  $template_email_id, $language_id
  * @return string $template_email_name['template_name'],  name.of the template email
  * @access public
- * osc_get_template_email_name
  */
     public static function getTemplateEmailName($template_email_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -54,7 +53,6 @@
  * @param string  $template_email_id, $language_id
  * @return string $template_email['template_short_description'],  the short description of the template email
  * @access public
- * osc_get_template_email_short_description
  */
     public static function getTemplateEmailShortDescription($template_email_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -81,7 +79,6 @@
  * @param string  $template_email_id, $language_id
  * @return string $template_email['template_email_description'],  the description of the template email who is sent
  * @access public
- * osc_get_template_email_description
  */
     public static function getTemplateEmailDescription($template_email_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -109,7 +106,6 @@
  * @param string  $template_email_footer
  * @return string $template_email_footer,  the footer of the email template who is sent
  * @access public
- * osc_get_template_email_text_footer
  */
 
     public static function getTemplateEmailTextFooter() {
@@ -154,7 +150,6 @@
  * @param string  $template_email_newsletter_footer
  * @return string $template_email_newsletter_ footer,  the footer of the newsletter email template who is sent
  * @access public
- * osc_get_template_email_newsletter_text_footer
  */
     public static function getTemplateEmailNewsletterTextFooter() {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -198,7 +193,6 @@
  * @param string  $template_email_signature
  * @return string $template_email_signature,  the signature of the email template who is sent
  * @access public
- * osc_get_template_email_signature
  */
     public static function getTemplateEmailSignature() {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -244,7 +238,6 @@
  * @param string  $template_email_welcome_admin
  * @return string $template_email_welcome_admin,  the description of the template email welcome admin who is sent
  * @access public
- * osc_get_template_email_welcome_admin
  */
     public static function getTemplateEmailWelcomeAdmin() {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -288,7 +281,6 @@
  * @param string  $template_email_coupon_admin
  * @return string $template_email_coupon_admin,  the description of the template email coupon who is sent
  * @access public
- * osc_get_template_email_coupon_admin
  */
     public static function getTemplateEmailCouponAdmin() {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -331,7 +323,6 @@
  * @param string  $template_email_intro_command
  * @return string $template_email_intro_command,  the description of the template email order intro command who is sent
  * @access public
- * osc_get_template_email_intro_command
  */
 
     public static function getTemplateEmailIntroCommand() {

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -62,7 +62,7 @@
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_reset'), 'error', 'password_reset');
 
-          $CLICSHOPPING_Mail->oscMail($Qc->value('customers_firstname') . ' ' . $Qc->value('customers_lastname'), $email_address, CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]), CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+          $CLICSHOPPING_Mail->clicMail($Qc->value('customers_firstname') . ' ' . $Qc->value('customers_lastname'), $email_address, CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]), CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
           $CLICSHOPPING_Hooks->call('PasswordReset', 'Process');
 

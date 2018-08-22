@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -30,7 +30,6 @@
  * @param string  $supplier_id, $language_id
  * @return string $supplier['supplier_description'],  description of the supplier
  * @access public
- * osc_get_supplier_url
  */
     public function getSupplierUrl($supplier_id, $language_id) {
 

@@ -27,7 +27,6 @@
 * @param string languages_id, status
 * @return string status on or off
 * @access public
-* osc_set_language_status
 */
 
     Public static function getLanguageStatus($languages_id, $status) {

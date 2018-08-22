@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -121,7 +121,6 @@
  * @param string  $category_id, $language_id
  * @return string $category['categories_name'],  name of the categorie
  * @access public
- * osc_get_category_name
  */
     public function getCategoryName($category_id, $language_id) {
 
@@ -138,7 +137,6 @@
  * @param string  $category_id, $language_id
  * @return string $category['blog_categories_name'],  description of the blog categorie
  * @access public
- * osc_get_category_description
  */
     public function getCategoryDescription($category_id, $language_id) {
 
@@ -157,10 +155,11 @@
       return $Qcategory->value('categories_description');
     }
 
-////
-// Count how many subcategories exist in a category
-// TABLES: categories
-// osc_childs_in_category_count
+/**
+ * Count how many subcategories exist in a category
+ * @param $categories_id
+ * @return int|mixed
+ */
 // pb avec static function
 
     public function getChildsInCategoryCount($categories_id) {
@@ -177,10 +176,13 @@
       return $categories_count;
     }
 
-// Count how many products exist in a category
-// TABLES: products, products_to_categories, categories
-// osc_products_in_category_count
 
+/**
+ * Count how many products exist in a category
+ * @param $categories_id
+ * @param bool $include_deactivated
+ * @return mixed
+ */
     public function getCatalogInCategoryCount($categories_id, $include_deactivated = false) {
 
       if ($include_deactivated) {
@@ -224,11 +226,11 @@
       return $products_count;
     }
 
-/*
- *
- * osc_get_generated_category_path_ids
+/**
+ * @param $id
+ * @param string $from
+ * @return bool|string
  */
-
     public function getGeneratedCategoryPathIds($id, $from = 'category') {
       $calculated_category_path_string = '';
       $calculated_category_path = $this->getGenerateCategoryPath($id, $from);
@@ -252,7 +254,6 @@
  * @param string $category_id
  * @return string
  * @access public
- * osc_remove_category
  */
     public function removeCategory($category_id) {
       $QcategoriesImage = $this->db->prepare('select categories_image
@@ -370,7 +371,6 @@
  * @param string $current_category_id
  * @return string $cPath_new,
  * @access public
- * osc_get_path
  *
  */
     public function getCategoriesPath($current_category_id = '') {
@@ -415,7 +415,6 @@
  * @param string $parent_id, $spacing, $exclude, $category_tree_array , $include_itself
  * @return string $category_tree_array, the tree of category
  * @access public
- * osc_get_category_tree
  */
     public function getCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false) {
 
@@ -464,7 +463,6 @@
  * getPath category path
  * @int : id of category
  * @return $cPath_new, the new path
- * osc_get_path
 */
     public function getPath($current_category_id = '') {
       $cPath_array = $this->getPathArray();
@@ -502,11 +500,14 @@
       return 'cPath=' . $cPath_new;
     }
 
-/*
-* Move the categories and products another category
-*
-* osc_generate_category_path
-*/
+/**
+ * Move the categories and products another category
+ * @param $id
+ * @param string $from
+ * @param string $categories_array
+ * @param int $index
+ * @return array|mixed|string
+ */
     public function getGenerateCategoryPath($id, $from = 'category', $categories_array = '', $index = 0) {
       if (!is_array($categories_array)) {
         $categories_array = [];
@@ -578,11 +579,12 @@
       return $categories_array;
     }
 
-/*
-*
-*
-* osc_output_generated_category_path
-*/
+/**
+ * @access public
+ * @param $id
+ * @param string $from
+ * @return bool|string
+ */
     public function getOutputGeneratedCategoryPath($id, $from = 'category') {
       $calculated_category_path_string = '';
 

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -22,7 +22,6 @@
  * @param string  $template_email_id, $language_id
  * @return string $template_email_name['template_name'],  name.of the template email
  * @access public
- * osc_get_template_email_name
  */
     public static function getTemplateEmailName($template_email_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -48,7 +47,6 @@
  * @param string  $template_email_id, $language_id
  * @return string $template_email['template_short_description'],  the short description of the template email
  * @access public
- * osc_get_template_email_short_description
  */
     public static function getTemplateEmailShortDescription($template_email_id, $language_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -73,7 +71,6 @@
  * @param string  $template_email_id, $language_id
  * @return string $template_email['template_email_description'],  the description of the template email who is sent
  * @access public
- * osc_get_template_email_description
  */
     public static function getTemplateEmailDescription($template_email_id, $language_id) {
 
@@ -99,7 +96,6 @@
  * @param string  $template_email_footer
  * @return string $template_email_footer,  the footer of the email template who is sent
  * @access public
- * osc_get_template_email_text_footer
  */
     public static function getTemplateEmailTextFooter() {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -143,7 +139,6 @@
  * @param string  $template_email_signature
  * @return string $template_email_signature,  the signature of the email template who is sent
  * @access public
- * osc_get_template_email_signature
  */
      public static function getTemplateEmailSignature() {
        $CLICSHOPPING_Db = Registry::get('Db');
@@ -186,7 +181,6 @@
  * @param string  $template_email_welcome_admin
  * @return string $template_email_welcome_admin,  the description of the template email welcome admin who is sent
  * @access public
- * osc_get_template_email_welcome_catalog
  */
      public static function getTemplateEmailWelcomeCatalog() {
        $CLICSHOPPING_Db = Registry::get('Db');
@@ -229,20 +223,19 @@
  * @param string  $template_email_coupon_admin
  * @return string $template_email_coupon_admin,  the description of the template email coupon who is sent
  * @access public
- * osc_get_template_email_coupon_catalog
  */
     public static function getTemplateEmailCouponCatalog() {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtextTemplateEmailCouponCatalog = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                                        ted.template_email_description
-                                                                 from :table_template_email te,
-                                                                      :table_template_email_description  ted
-                                                                 where te.template_email_variable = :template_email_variable
-                                                                 and te.template_email_id = ted.template_email_id
-                                                                 and ted.language_id = :language_id
-                                                                ');
+                                                                          ted.template_email_description
+                                                                   from :table_template_email te,
+                                                                        :table_template_email_description  ted
+                                                                   where te.template_email_variable = :template_email_variable
+                                                                   and te.template_email_id = ted.template_email_id
+                                                                   and ted.language_id = :language_id
+                                                                  ');
 
       $QtextTemplateEmailCouponCatalog->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_TEXT_COUPON');
       $QtextTemplateEmailCouponCatalog->bindInt(':language_id',(int)$CLICSHOPPING_Language->getId());
@@ -271,20 +264,19 @@
  * @param string  $template_email_intro_command
  * @return string $template_email_intro_command,  the description of the template email order intro command who is sent
  * @access public
- * osc_get_template_email_intro_command
  */
     public static function getTemplateEmailIntroCommand() {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtextTemplateEmailIntroCommand = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                                    ted.template_email_description
-                                                             from :table_template_email te,
-                                                                  :table_template_email_description  ted
-                                                             where te.template_email_variable = :template_email_variable
-                                                             and te.template_email_id = ted.template_email_id
-                                                             and ted.language_id = :language_id
-                                                            ');
+                                                                          ted.template_email_description
+                                                                   from :table_template_email te,
+                                                                        :table_template_email_description  ted
+                                                                   where te.template_email_variable = :template_email_variable
+                                                                   and te.template_email_id = ted.template_email_id
+                                                                   and ted.language_id = :language_id
+                                                                  ');
 
       $QtextTemplateEmailIntroCommand->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_INTRO_COMMAND');
       $QtextTemplateEmailIntroCommand->bindInt(':language_id',(int)$CLICSHOPPING_Language->getId());

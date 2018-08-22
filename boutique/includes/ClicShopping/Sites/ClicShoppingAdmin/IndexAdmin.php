@@ -53,9 +53,8 @@
 
 /**
  * Calculate the size of a directory by iterating its contents
- *
+ * @Access public
  * @param       string   $directory    Path to directory
- * osc_dirsize
  */
     Public Static function getDirSize($path) {
       // Init

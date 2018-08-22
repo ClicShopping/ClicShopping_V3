@@ -62,8 +62,7 @@
  * public function
  * @param string $canonical_link
  * @return string url of the website
- * osc_getCanonicalUrl
-*/
+ */
     public static function getCanonicalUrl()  {
 
       $domain = HTTP::typeUrlDomain(); // gets the base URL minus the trailing slash

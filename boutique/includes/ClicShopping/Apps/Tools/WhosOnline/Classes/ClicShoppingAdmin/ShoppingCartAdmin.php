@@ -146,7 +146,6 @@
  * @param string $prid, $params
  * @return string $uprid,
  * @access public
- * osc_get_uprid
  */
     public function getUprid($prid, $params) {
       $uprid = $prid;
@@ -164,7 +163,6 @@
  * @param string $uprid
  * @return string $pieces,
  * @access public
- * osc_get_prid
  */
     public function getPrid($uprid) {
       $pieces = explode('{', $uprid);

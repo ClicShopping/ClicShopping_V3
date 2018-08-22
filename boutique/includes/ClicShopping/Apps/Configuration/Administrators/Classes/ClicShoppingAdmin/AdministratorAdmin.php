@@ -20,7 +20,6 @@
 /**
  * get the user administrator
  * @param string $user_administrator
- * osc_user_admin
  */
 
     public static function getUserAdmin() {

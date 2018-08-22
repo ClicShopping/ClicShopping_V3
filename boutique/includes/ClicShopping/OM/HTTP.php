@@ -220,7 +220,6 @@
  * Get the provider name of the client
  * $isp_provider_client the provider name
  * @access public
- * osc_get_provider_name_client
  */
     public static function getProviderNameCustomer() {
 

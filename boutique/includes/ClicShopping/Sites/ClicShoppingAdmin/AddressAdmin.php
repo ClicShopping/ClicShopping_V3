@@ -22,7 +22,6 @@
  * @param $country_id, if ogf the country
  * @return array $zones_array, zone of the country
  * @access public
- * osc_get_country_zones
  */
     public static function getCountryZones($country_id) {
       $zones_array = parent::getCountryZones($country_id);
@@ -37,7 +36,6 @@
  * @param
  * @return array $address_format_array, list of address_format_id's
  * @access public
- * osc_get_address_formats
  */
 
   public static function getAddressFormats() {
@@ -94,7 +92,6 @@
  * @param string $geo_zone_id, if of the geo zone
  * @return string $geo_zone_name the drop down of the zone name
  * @access public
- * osc_get_geo_zone_name
  */
     public static function getGeoZoneName($geo_zone_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -121,7 +118,6 @@
  * @param string $parameters, $selected
  * @return string $select_string, the drop down of the zone name
  * @access public
- * osc_geo_zones_pull_down
  *
  */
     public static function getGeoZonesPullDown($parameters, $selected = '') {
@@ -156,7 +152,6 @@
  * @param $id, id of the customer
  * @return array $QaddressesBook, list of address_format_id's
  * @access public
- * osc_get_address_formats
  */
     public static function getListingAdmin($id) {
       $CLICSHOPPING_Db = Registry::get('Db');

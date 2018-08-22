@@ -492,7 +492,6 @@
  *
  * @param array $exclude A list of parameters to exclude
  * @return string
- * osc_get_all_get_params
  */
     public static function getAllGET($exclude = null) {
       if ( !is_array($exclude) ) {
@@ -545,7 +544,6 @@
     }
 
 
-//osc_array_to_string
     public static function ArrayToString($array , $exclude = '', $equals = '=', $separator = '&') {
       if (!is_array($exclude)) $exclude = [];
 

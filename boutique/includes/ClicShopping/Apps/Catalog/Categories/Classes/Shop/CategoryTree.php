@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -274,13 +274,10 @@
     }
 
 /**
+ * @access public
  * Magic function; return a formated string representation of the category structure relationship data
- *
  * This is used when echoing the class object, eg:
  *
- * echo $osC_CategoryTree;
- *
- * @access public
  * @return string
  */
 

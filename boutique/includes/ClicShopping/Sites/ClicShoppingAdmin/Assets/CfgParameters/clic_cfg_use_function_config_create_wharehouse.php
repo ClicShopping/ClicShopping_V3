@@ -10,16 +10,14 @@
  */
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
-  /**
-   * Wharehouse and Inventory creation
-   *
-   * @param string
-   * @return string
-   * @access public
-   * osc_config_create_wharehouse
-   */
+/**
+ * Wharehouse and Inventory creation
+ *
+ * @param string
+ * @return string
+ * @access public
+ */
 
   function clic_cfg_use_function_config_create_wharehouse() {
 

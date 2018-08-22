@@ -22,8 +22,8 @@
  * public function
  * @param string $string, $str of the text
  * @return a text replaced
- * osc_strip_html_tags
  */
+
     static public function stripHtmlTags($str) {
 
       $search = ["'<script[^>]*?>.*?</script>'",  // Strip out javascript

@@ -501,7 +501,6 @@
  * @param string $image, $alt, $width, $height
  * @return string $image, the image value
  * @access public
- * osc_info_image
 */
 
   public function getInfoImage($image, $alt, $width = '', $height = '') {
@@ -555,7 +554,6 @@
  * @param string
  * @return $product_packaging, the packaging selected
  * @access public
- * osc_product_packaging
  */
     public function getproductPackaging($id) {
       if (!is_null($_SESSION['ProductAdminId'])) {
@@ -599,7 +597,6 @@
  * @param string  $products_quantity_unit_id, $language_id
  * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
  * @access public
- * osc_get_products_quantity_unit_title
  */
     public function getProductsQuantityUnitTitle($products_quantity_unit_id, $language_id = '') {
 
@@ -625,7 +622,6 @@
   * @param string  $product_id
   * @return string $product['products_model'], products model
   * @access public
- * osc_get_products_model
 */
     public function getProductsModel($id) {
 
@@ -647,7 +643,6 @@
  * @param string  $product_id, $language_id
  * @return string $product['products_shipping_delay'], url of the product
  * @access public
- * osc_get_products_shipping_delay
  */
     public function getProductsShippingDelay($id, $language_id) {
       $Qproduct = $this->db->prepare('select products_shipping_delay
@@ -670,7 +665,6 @@
  * @param string  $product_id, $language_id
  * @return string $product['products_description'], description name
  * @access public
- * osc_get_products_description_summary
  */
     public function getProductsDescriptionSummary($product_id, $language_id) {
 
@@ -695,7 +689,6 @@
  * @param string$product_id :id of the product
  * @return string  image of the product
  * @access public
- * osc_directory_css
  */
 
     public function getProductsImage($product_id) {
@@ -711,7 +704,6 @@
  * @param string $filename : name of the file
  * @return string $directory_array, the directories name in css directory
  * @access public
- * osc_directory_css
  */
 
     public function getDirectoryProducts() {
@@ -741,7 +733,6 @@
  * @param string  $product_id, $language_id
  * @return string $product['products_name'], name of the product
  * @access public
- * osc_get_products_name
  */
     public function getProductsName($product_id, $language_id = 0) {
 
@@ -759,7 +750,6 @@
  * @param string  $product_id, $language_id
  * @return string $product['products_description'], description name
  * @access public
- * osc_get_products_description
  */
     public function getProductsDescription($product_id, $language_id) {
 
@@ -808,7 +798,6 @@
  * @param string $product_id
  * @return
  * @access public
- * osc_remove_product
  */
     public function removeProduct($product_id) {
 
@@ -1008,7 +997,6 @@
  * @param string  $product_id, $language_id
  * @return string $Qproduct->value('products_url'), url of the product
  * @access public
- * osc_get_products_url
  */
     public function getProductsUrl($product_id, $language_id) {
 
@@ -1025,7 +1013,6 @@
   * @param string $manufacturer_id, $language_id
   * @return string $Qmanufacturer->value('manufacturers_url'), url of manufacturers
   * @access public
- * osc_get_manufacturer_url
 */
     public function getManufacturerUrl($manufacturer_id, $language_id) {
 
@@ -1302,7 +1289,7 @@
                                               ]
                           );
 
-          } // edn osc_db_num_rows
+          }
         } // end while
       } //End for
       return;

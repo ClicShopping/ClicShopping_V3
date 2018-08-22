@@ -38,7 +38,6 @@
     }
 
 // Add tax to a products price
-//osc_add_tax
     public static function addTax($price, $tax, $override = false)  {
       if (((DISPLAY_PRICE_WITH_TAX == 'true') || ($override === true)) && ($tax > 0)) {
         return $price + parent::calculate($price, $tax);
@@ -50,10 +49,9 @@
 /**
  * Drop down of the class title
  *
+ * @access public
  * @param string $parameters, $selected
  * @return string $select_string, the drop down f the title class
- * @access public
- * osc_tax_classes_pull_down
  *
  */
     public function getTaxClassesPullDown($parameters, $selected = '') {
@@ -85,10 +83,9 @@
 /**
  * return value of taxe
  *
+ * @access public
  * @param string $class_id, class id
  * @return string  value of the taxe
- * @access public
- * osc_get_taxe_rate_value
  *
  */
     public function getTaxRateValue($class_id) {

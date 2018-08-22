@@ -294,15 +294,14 @@
             } //while
 
             $new_prods_content .= '</div>' . "\n";
-  //          $new_prods_content .= '</div>' . "\n";
 
             $new_prods_content .= '<!-- New Products End -->' . "\n";
 
             $CLICSHOPPING_Template->addBlock($new_prods_content, $this->group);
 
-          } // osc_num
+          }
         } // max display
-      } // php self
+      }
     } // public function execute
 
     public function isEnabled() {

@@ -239,9 +239,10 @@
       return $directory;
     }
 
-//  Dynamic Template System
-//// Return an array of the catalog directory. mechanism for reading this.
-// osc_list_catalog_files
+/**
+ *  Dynamic Template System
+ * Return an array of the catalog directory. mechanism for reading this.
+ */
 
     public static function getListCatalogFilesNotIncluded() {
 

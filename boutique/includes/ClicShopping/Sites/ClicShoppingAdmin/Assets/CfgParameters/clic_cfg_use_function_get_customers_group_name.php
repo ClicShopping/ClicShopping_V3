@@ -9,14 +9,13 @@
  *
  */
 
-  /**
-   * the customer group name
-   *
-   * @param string  $orders_status_id, $language_id
-   * @return string $orders_status['orders_status_name'],  name of the status
-   * @access public
-   * osc_get_customers_group_name
-   */
+/**
+ * the customer group name
+ *
+ * @param string  $orders_status_id, $language_id
+ * @return string $orders_status['orders_status_name'],  name of the status
+ * @access public
+ */
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
