@@ -53,5 +53,4 @@
 
  Thank you for your support
  
- ![](https://sourcerer.io/fame/$USER/$OWNER/$REPO/images/0)](https://sourcerer.io/fame/$USER/$OWNER/$REPO/links/0)
  
