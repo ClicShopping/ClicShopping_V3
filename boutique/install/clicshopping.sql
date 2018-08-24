@@ -2145,9 +2145,9 @@ INSERT INTO administrator_menu VALUES(742, 'index.php?A&Tools%5CServiceAPP&Servi
 INSERT INTO administrator_menu VALUES(755, 'index.php?A&Shipping\\Item&Configure&module=IT', 449, 4, 1, 'modules_shipping.gif', 0, 'app_shipping_item', NULL);
 INSERT INTO administrator_menu VALUES(756, 'index.php?A&Configuration\\Weight&Weight', 20, 4, 1, 'weight.png', 0, 'app_configuration_weight', NULL);
 INSERT INTO administrator_menu VALUES(758, 'index.php?A&Catalog\\Categories&Categories', 3, 0, 0, 'categorie.gif', 0, 'app_catalog_categories', NULL);
-INSERT INTO administrator_menu VALUES(766, 'index.php?A&Configuration\\Modules&Modules&set=order_total&list=new', 451, 0, 1, 'modules_order_total.gif', 0, NULL);
-INSERT INTO administrator_menu VALUES(767, 'index.php?A&Configuration\\Modules&Modules&set=payment&list=new', 186, 0, 1, 'modules_payment.gif', 0, NULL);
-INSERT INTO administrator_menu VALUES(768, 'index.php?A&Configuration\\Modules&Modules&set=shipping&list=new', 449, 0, 1, 'modules_shipping.gif', 0, NULL);
+INSERT INTO administrator_menu VALUES(766, 'index.php?A&Configuration\\Modules&Modules&set=order_total&list=new', 451, 0, 1, 'modules_order_total.gif', 0, '', NULL);
+INSERT INTO administrator_menu VALUES(767, 'index.php?A&Configuration\\Modules&Modules&set=payment&list=new', 186, 0, 1, 'modules_payment.gif', 0, '', NULL);
+INSERT INTO administrator_menu VALUES(768, 'index.php?A&Configuration\\Modules&Modules&set=shipping&list=new', 449, 0, 1, 'modules_shipping.gif', 0, '', NULL);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
