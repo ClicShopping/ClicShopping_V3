@@ -295,7 +295,7 @@
         $currency_value = $CLICSHOPPING_Currencies->currencies[$currency_code]['value'];
       }
 
-      return number_format(round($total * $currency_value, $CLICSHOPPING_Currencies->currencies[$currency_code]['decimal_places']), $CLICSHOPPING_Currencies->currencies[$currency_code]['decimal_places'], '.', '');
+      return number_format(round($total * $currency_value, 4), $CLICSHOPPING_Currencies->currencies[$currency_code]['decimal_places'], '.', '');
     }
 
     public function getApiVersion()  {
