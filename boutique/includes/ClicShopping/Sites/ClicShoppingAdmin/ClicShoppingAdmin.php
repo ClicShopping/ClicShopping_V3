@@ -71,7 +71,6 @@
 
 // Template
       Registry::set('TemplateAdmin', new TemplateAdmin());
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
 // Take language session
       $CLICSHOPPING_Language->getLanguageToDisplay();

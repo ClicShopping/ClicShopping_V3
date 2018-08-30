@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -34,10 +34,6 @@
   if (isset($_SESSION['admin'])) {
 ?>
           <span class="col-md-4 navbar-text nav-item text-md-center"><?php echo $CLICSHOPPING_Language->getLanguageText(); ?></span>
-<?php
-  }
-  if (isset($_SESSION['admin'])) {
-?>
           <span class="col-md-4 navbar-text float-md-right text-md-center footerHelp">
 <?php
   echo CLICSHOPPING::getDef('text_legend');

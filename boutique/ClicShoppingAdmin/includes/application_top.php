@@ -13,8 +13,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\Template;
-
 // Start the clock for the page parse time log
   define('PAGE_PARSE_START_TIME', microtime());
 
