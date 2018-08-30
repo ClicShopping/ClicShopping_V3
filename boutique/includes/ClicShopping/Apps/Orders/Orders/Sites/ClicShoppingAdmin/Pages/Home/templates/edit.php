@@ -466,39 +466,19 @@
         echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>' . "\n";
       }
       echo '        </td>';
-
-      $QordersTracking = $CLICSHOPPING_Orders->db->prepare('select orders_status_tracking_id,
-                                                                    orders_status_tracking_link
-                                                             from :table_orders_status_tracking
-                                                             where orders_status_tracking_id = :orders_status_tracking_id
-                                                             and language_id = :language_id
-                                                            ');
-      $QordersTracking->bindInt(':orders_status_tracking_id', $QordersHistory->valueInt('orders_status_tracking_id'));
-      $QordersTracking->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $QordersTracking->execute();
-
-
-      if (empty($QordersTracking->value('orders_status_tracking_link'))) {
-        $tracking_url = ' (<a href="https://www.track-trace.com/" target="_blank" rel="noreferrer">http://www.track-trace.com/</a>)';
-      } else {
-        $tracking_url = ' (<a href="' . $QordersTracking->value('orders_status_tracking_link') .  $QordersHistory->value('orders_tracking_number') . '" target="_blank" rel="noreferrer">' . $QordersTracking->value('orders_status_tracking_link') .  $QordersHistory->value('orders_tracking_number') . '</a>)';;
-      }
-
       echo '        <td class="text-md-center">' . $orders_status_array[$QordersHistory->valueInt('orders_status_id')] . '</td>' . "\n" .
            '        <td>
 ' . $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />
 ' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />
-' . $CLICSHOPPING_Orders->getDef('entry_status_orders_tracking_name') . ' ' . $QordersHistory->value('orders_tracking_number') . '<br />' .  $tracking_url . '<br>
 ' . $CLICSHOPPING_Orders->getDef('entry_status_orders_support_name') . ' : ' . $orders_status_support_array[$QordersHistory->valueInt('orders_status_support_id')]   . '<hr>
 ' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />
 ' . nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
 
-      if(!is_null($QordersHistory->value('evidence'))) {
-        echo $CLICSHOPPING_Orders->getDef('entry_status_evidence') . '<br /><a href="' . CLICSHOPPING::link('../sources/Download/Evidence/' . $QordersHistory->value('evidence')) . '">' .  $QordersHistory->value('evidence') .'</a><br />';
-      }
 
       echo    '        </td>' . "\n" .
-        '      </tr>' . "\n";
+              '      </tr>' . "\n";
+
+      echo $CLICSHOPPING_Hooks->output('Orders', 'OrderContentHistory', null, 'display');
     }
   } else {
     echo '      <tr>' . "\n" .
