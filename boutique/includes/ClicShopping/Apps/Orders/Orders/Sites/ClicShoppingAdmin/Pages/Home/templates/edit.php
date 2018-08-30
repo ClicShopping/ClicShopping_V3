@@ -460,25 +460,31 @@
       echo '      <tr>' . "\n" .
         '        <td class="text-md-center">' . DateTime::toShort($QordersHistory->value('date_added')) . '</td>' . "\n" .
         '        <td class="text-md-center">';
+
       if ($QordersHistory->valueInt('customer_notified') === 1) {
         echo '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' . "\n";
       } else {
         echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>' . "\n";
       }
+
       echo '        </td>';
+
       echo '        <td class="text-md-center">' . $orders_status_array[$QordersHistory->valueInt('orders_status_id')] . '</td>' . "\n" .
            '        <td>
-' . $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />
-' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />
-' . $CLICSHOPPING_Orders->getDef('entry_status_orders_support_name') . ' : ' . $orders_status_support_array[$QordersHistory->valueInt('orders_status_support_id')]   . '<hr>
-' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />
-' . nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
+           ' . $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />
+           ' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />
+           ' . $CLICSHOPPING_Orders->getDef('entry_status_orders_support_name') . ' : ' . $orders_status_support_array[$QordersHistory->valueInt('orders_status_support_id')]   . '<hr>
+           ' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />
+           ' . nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
 
+      if(!is_null($QordersHistory->value('evidence'))) {
+        echo $CLICSHOPPING_Orders->getDef('entry_status_evidence') . '<br />' . HTML::link(CLICSHOPPING::link('../sources/Download/Evidence/' . $QordersHistory->value('evidence')),$QordersHistory->value('evidence')) . '<br />';
+      }
 
       echo    '        </td>' . "\n" .
               '      </tr>' . "\n";
 
-      echo $CLICSHOPPING_Hooks->output('Orders', 'OrderContentHistory', null, 'display');
+      echo $CLICSHOPPING_Hooks->output('Orders', 'OrderContentHistory');
     }
   } else {
     echo '      <tr>' . "\n" .
