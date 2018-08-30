@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -1463,8 +1463,8 @@ updateGross();
                                                       and pd.products_id = :products_id
                                                       order by pd.products_name
                                                     ');
-    $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-    $Qproducts->bindInt(':products_id', (int)$_GET['pID']);
+    $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $Qproducts->bindInt(':products_id', $_GET['pID']);
     $Qproducts->execute();
 
 
@@ -1476,8 +1476,8 @@ updateGross();
                                                         and cd.language_id = :language_id
                                                         and c.categories_id <> :categories_id
                                                        ');
-    $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-    $Qcategories->bindInt(':categories_id', (int)$_GET['cPath']);
+    $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+    $Qcategories->bindInt(':categories_id', $_GET['cPath']);
     $Qcategories->execute();
   }
 ?>
@@ -1518,7 +1518,7 @@ updateGross();
 // ---------------------------------
 // Product clone to categories
 // ---------------------------------
-  if (!empty($_GET['pID'])) {
+  if (!empty($_GET['pID']) && $Qcategories->rowCount() > 0) {
 ?>
       <div class="col-md-12 mainTitle">
         <span><?php echo $CLICSHOPPING_Products->getDef('text_products_categories_copy'); ?></span>

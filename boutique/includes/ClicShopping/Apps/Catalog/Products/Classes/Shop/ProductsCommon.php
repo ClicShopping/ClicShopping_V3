@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -2262,7 +2262,7 @@
                                      from :table_specials
                                      where products_id = :products_id
                                      and status = 1
-                                     and (customers_group_id = :customers_group_id or  or customers_group_id = 99)
+                                     and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                    ');
       $Qproduct->bindInt(':products_id', $id);
       $Qproduct->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
