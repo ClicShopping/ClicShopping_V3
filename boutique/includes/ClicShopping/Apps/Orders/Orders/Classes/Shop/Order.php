@@ -98,7 +98,6 @@
         }
       }
 
-
 // order status
       $Qstatus = $this->db->prepare('select orders_status_name
                                       from :table_orders_status
@@ -495,10 +494,9 @@
                        ];
       } else {
         $tax_address = ['entry_country_id' => $shipping_address['entry_country_id'],
-                              'entry_zone_id' => $shipping_address['entry_zone_id']
+                        'entry_zone_id' => $shipping_address['entry_zone_id']
                        ];
       }
-
 
       $this->info = ['order_status' => DEFAULT_ORDERS_STATUS_ID,
                     'order_status_invoice' => DEFAULT_ORDERS_STATUS_INVOICE_ID,
@@ -1368,7 +1366,7 @@
 
 // Alert by mail product exhausted if a product is 0 or < 0
     private function sendEmailAlertProductsExhausted($insert_id) {
-      $CLICSHOPPING_Prod = Registry::get('Db');
+      $CLICSHOPPING_Prod = Registry::get('Prod');
 
       if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
 
