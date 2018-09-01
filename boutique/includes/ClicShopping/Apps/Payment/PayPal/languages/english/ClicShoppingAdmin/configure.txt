@@ -14,6 +14,7 @@ button_configure = Configure / Install
 button_credential = Credential
 button_log = Log
 button_delete_menu = Delete menu
+button_sort_order = Payal sort order
 
 app_link_info = Info/Help
 app_link_privacy = Privacy

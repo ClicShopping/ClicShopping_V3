@@ -24,7 +24,7 @@ require(__DIR__ . '/template_top.php');
       <p class="card-text">
 <?php echo
   $CLICSHOPPING_PayPal->getDef('online_forum_body', [
-    'button_online_forum' => HTML::button($CLICSHOPPING_PayPal->getDef('button_online_forum'), null, 'https://clicshopping.org/', 'info', ['newwindow' => 'blank'])
+    'button_online_forum' => HTML::button($CLICSHOPPING_PayPal->getDef('button_online_forum'), null, 'https://www.clicshopping.org/', 'info', ['newwindow' => 'blank'])
   ]);
 ?>
         </p>

@@ -2,7 +2,7 @@
 	"title":	"PayPal App",
 	"app":		"PayPal",
 	"vendor":	"Payment",
-	"version":	"5.0.0",
+	"version":	"5.0.1",
 	"req_core_version":	"3.0",
 	"license":	"MIT",
 	"authors": [
