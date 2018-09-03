@@ -310,8 +310,70 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
     <br />
 
     <div class="row">
-      <div class="col-sm-6"><?php echo HTML::button(TEXT_END_ACCESS_CATALOG, 'fas fa-shopping-cart', $http_server . $http_catalog . 'index.php', 'succcess', array('newwindow' => 1), 'success'); ?></div>
-      <div class="col-sm-6 text-md-right"><?php echo HTML::button(TEXT_END_ACCESS_ADMIN, 'fas fa-lock', $http_server . $http_catalog . $admin_folder . '/index.php', 'info', array('newwindow' => 1), 'primary'); ?></div>
+
+
+
+
+      <div class="col-sm-6 text-md-left">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+          <?php echo TEXT_END_ACCESS_CATALOG; ?>
+        </button>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Info</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p class="text-md-left"><?php echo TEXT_END_ACCESS_INFO; ?></p>
+                <p class="text-md-right"><?php echo HTML::button(TEXT_END_ACCESS_CATALOG, 'fas fa-shopping-cart', $http_server . $http_catalog . 'index.php', 'succcess', array('newwindow' => 1)); ?></p>
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-6 text-md-right">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+          <?php echo TEXT_END_ACCESS_ADMIN; ?>
+        </button>
+        <!-- The Modal -->
+        <div class="modal" id="myModal1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Info</h4>
+                <button type="button" class="close" data-dismiss="modal1">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p class="text-md-left"><?php echo TEXT_END_ACCESS_INFO; ?></p>
+                <p class="text-md-right"><?php echo HTML::button(TEXT_END_ACCESS_ADMIN, 'fas fa-lock', $http_server . $http_catalog . $admin_folder . '/index.php', 'primary', array('newwindow' => 1)); ?></p>
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
   </div>
 </div>

@@ -196,4 +196,5 @@ define('TEXT_END_INSTALLATION_7','Increae the security ');
 define('TEXT_END_INSTALLATION_8','The administration should be protected by enabling htaccess / htpasswd  <br /> All systems do not accept this protection. <br /> You can also change the name of the administration directories');
 
   define('TEXT_END_ACCESS_CATALOG','Go to your catalog');
+  define('TEXT_END_ACCESS_INFO','Click the button and please wait, we will cache some files');
   define('TEXT_END_ACCESS_ADMIN','Go to your administration');

@@ -203,4 +203,5 @@ define('TEXT_END_INSTALLATION_7','Veuillez sécuriser votre administration');
 define('TEXT_END_INSTALLATION_8','L\'idéal est de changer le nom du répertoire et d\'y incorper un htacces ou password (tous les serveur n\'acceptent pas forcement cette approche)');
 
 define('TEXT_END_ACCESS_CATALOG','Accéder à votre catalogue');
+  define('TEXT_END_ACCESS_INFO','Cliquez sur le bouton et veuillez patienter, nous allons mettre en place en cache certains fichiers');
 define('TEXT_END_ACCESS_ADMIN','<p style="color:#f29400; text-align:center;">Accéder à l\'administration </p>');
