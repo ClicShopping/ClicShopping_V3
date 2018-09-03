@@ -310,10 +310,6 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
     <br />
 
     <div class="row">
-
-
-
-
       <div class="col-sm-6 text-md-left">
         <!-- Button to Open the Modal -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
@@ -341,9 +337,6 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
           </div>
         </div>
       </div>
-
-
-
       <div class="col-sm-6 text-md-right">
         <!-- Button to Open the Modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
@@ -371,9 +364,6 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
 </div>
