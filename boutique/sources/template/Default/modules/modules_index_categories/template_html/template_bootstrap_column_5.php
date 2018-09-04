@@ -55,12 +55,10 @@ use ClicShopping\OM\CLICSHOPPING;
           <div class="text-md-center">
             <div class="ModulesIndexCategoriesBoostrapColumn5TextPrice" itemprop="offers" itemscope itemtype="https://schema.org/Offer"><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
           </div>
-          <?php echo  $form; ?>
-          <div class="text-md-center">
-            <span class="ModulesIndexCategoriesBoostrapColumn5QuantityMinOrder"><?php echo $input_quantity; ?></span>
-          </div>
-          <div class="text-md-center">
-            <span class="ModulesIndexCategoriesBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?></span>
+          <?php echo $form; ?>
+          <div class="form-group text-md-center">
+            <span class="ModulesIndexCategoriesBoostrapColumn5QuantityMinOrder"><?php echo $input_quantity; ?>&nbsp; </span>
+            <span class="ModulesIndexCategoriesBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?>&nbsp; </span>
             <span class="ModulesIndexCategoriesBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></span>
           </div>
           <?php echo $endform; ?>

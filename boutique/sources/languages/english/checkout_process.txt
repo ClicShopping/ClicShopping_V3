@@ -1,5 +1,5 @@
 email_text_subject = Order Process {{store_name}}
-email_text_order_number = Hello,
+email_text_order_intro = Hello,
 Please find the elements concerning your order into {{store_name}}
 We thank you for your confidence and we make our possible as well as possible to treat the sending of your order.
 Order Number :

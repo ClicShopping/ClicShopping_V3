@@ -192,7 +192,7 @@
                   $submit_button = '';
 
                   if ($CLICSHOPPING_ProductsCommon->getHasProductAttributes($products_id) === false) {
-                    $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','', ['tokenize' => true]). "\n";
+                    $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
                     if (isset($_GET['Q'])) $form .= HTML::hiddenField('url', 'Search&Q');
                     $form .= HTML::hiddenField('url', 'Search&Q&keywords='. $CLICSHOPPING_Search->getKeywords());

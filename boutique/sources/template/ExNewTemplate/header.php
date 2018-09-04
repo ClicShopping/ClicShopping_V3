@@ -51,6 +51,7 @@
         </header>
         <div class="d-flex flex-wrap">
 <?php
+/*
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_left')) {
 ?>
           <div id="columnLeft" class="col-md-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?>  col-md-pull-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?>">
@@ -58,5 +59,8 @@
           </div>
 <?php
   }
+*/
 ?>
-          <div id="bodyContent" class="col-md-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> <?php echo ($CLICSHOPPING_Template->hasBlocks('boxes_column_left') ? 'col-md-push-' . $CLICSHOPPING_Template->getGridColumnWidth() : ''); ?>">
+
+<!--          <div id="bodyContent" class="col-md-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> <?php echo ($CLICSHOPPING_Template->hasBlocks('boxes_column_left') ? 'col-md-push-' . $CLICSHOPPING_Template->getGridColumnWidth() : ''); ?>">-->
+          <div id="bodyContent" class="col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> <?php echo ($CLICSHOPPING_Template->hasBlocks('boxes_column_left') ? 'col-md-push-' . $CLICSHOPPING_Template->getGridColumnWidth() : ''); ?> order-xs-1 order-lg-2">

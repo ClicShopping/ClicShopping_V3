@@ -1,6 +1,6 @@
 
 email_text_subject = Traitement de votre commande sur {{store_name}}
-email_text_order_number = Bonjour, <br /><br />Veuillez trouver ci joint les éléments concernant la commande passée chez  {{store_name}} .<br /><br />Nous vous remercions de votre confiance et nous faisons notre possible pour traiter au mieux l'envoi de vos produits commandés rapidement. <br /><br />Numero de votre commande :
+email_text_order_intro = Bonjour, <br /><br />Veuillez trouver ci joint les éléments concernant la commande passée chez  {{store_name}} .<br /><br />Nous vous remercions de votre confiance et nous faisons notre possible pour traiter au mieux l'envoi de vos produits commandés rapidement. <br /><br />Numero de votre commande :
 email_text_invoice_url = <br />Vous pouvez suivre l'évolution de votre commande via cette adresse :
 email_text_date_ordered = <br />Date de votre commande :
 email_text_products = Articles
