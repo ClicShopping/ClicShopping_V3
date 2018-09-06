@@ -39,6 +39,7 @@
                                                   directory,
                                                   status
                                            from :table_languages
+                                           where status = 1
                                            order by sort_order
                                           ');
         $Qlanguages->setCache('languages-system');
