@@ -187,7 +187,7 @@
               <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_rating'); ?></span>
               <span class="col-md-10">
 
-                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
 <script>
   $(function () {
     $("#rateYo").rateYo({
@@ -201,7 +201,7 @@
 </script>
                   <div id="rateYo"></div>
 <?php echo HTML::hiddenField('reviews_rating', 1, 'id="rateyoid"'); ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>
 <script src="jquery.rateyo.js"></script>
                   </span>
             </div>
