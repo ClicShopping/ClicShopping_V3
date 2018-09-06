@@ -55,20 +55,18 @@
       $this->delivery = [];
 
       if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
-        $this->query($_GET['order_id']);
+        $id = HTML::sanitize($_GET['order_id']);
+        $this->query($id);
       } else {
         $this->cart();
       }
     }
 
     public function query($order_id) {
-
-      $order_total = $shipping_title = '';
-
       $Qorder = $this->db->prepare('select *
-                                     from :table_orders
-                                     where orders_id = :orders_id
-                                    ');
+                                    from :table_orders
+                                    where orders_id = :orders_id
+                                   ');
       $Qorder->bindInt(':orders_id', $order_id);
       $Qorder->execute();
 
@@ -79,6 +77,7 @@
                                       where orders_id = :orders_id
                                       order by sort_order
                                     ');
+
       $Qtotals->bindInt(':orders_id', $order_id);
       $Qtotals->execute();
 
@@ -100,21 +99,23 @@
 
 // order status
       $Qstatus = $this->db->prepare('select orders_status_name
-                                      from :table_orders_status
-                                      where orders_status_id = :orders_status_id
-                                      and language_id = :language_id
+                                     from :table_orders_status
+                                     where orders_status_id = :orders_status_id
+                                     and language_id = :language_id
                                     ');
+
       $Qstatus->bindInt(':orders_status_id', (int)$Qorder->value['orders_status']);
       $Qstatus->bindInt(':language_id', $this->lang->getId());
       $Qstatus->execute();
 
 // status invoice
       $QorderStatusInvoice = $this->db->prepare('select orders_status_invoice_name
-                                                  from :table_orders_status_invoice
-                                                  where orders_status_invoice_id = :orders_status_invoice_id
-                                                  and language_id = :language_id
+                                                 from :table_orders_status_invoice
+                                                 where orders_status_invoice_id = :orders_status_invoice_id
+                                                 and language_id = :language_id
                                                 ');
-      $QorderStatusInvoice->bindInt(':orders_status_invoice_id', (int)$Qorder->value['orders_status_invoice']);
+
+      $QorderStatusInvoice->bindInt(':orders_status_invoice_id', $Qorder->value['orders_status_invoice']);
       $QorderStatusInvoice->bindInt(':language_id', $this->lang->getId());
       $QorderStatusInvoice->execute();
 
@@ -300,10 +301,11 @@
                                          from :table_customers c,
                                               :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id)
                                                                      left join :table_countries co on (ab.entry_country_id = co.countries_id)
-                                        where c.customers_id = :customers_id
-                                        and ab.customers_id = :customers_id
-                                        and c.customers_default_address_id = ab.address_book_id
-                                            ');
+                                         where c.customers_id = :customers_id
+                                         and ab.customers_id = :customers_id
+                                         and c.customers_default_address_id = ab.address_book_id
+                                       ');
+
           $Qcustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $Qcustomer->execute();
           $customer_address = $Qcustomer->toArray();
@@ -364,6 +366,7 @@
                                       ');
           $Qcustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $Qcustomer->execute();
+
           $customer_address = $Qcustomer->toArray();
         }
       }
@@ -485,7 +488,6 @@
         $Qaddress->execute();
 
         $billing_address = $Qaddress->toArray();
-
       }
 
       if ($this->content_type == 'virtual') {
@@ -851,9 +853,10 @@
 
 //gdpr
       $Qgdpr = $this->db->prepare('select no_ip_address
-                                  from :table_customers_gdpr
-                                  where customers_id = :customers_id
+                                   from :table_customers_gdpr
+                                   where customers_id = :customers_id
                                  ');
+
       $Qgdpr->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qgdpr->execute();
 
@@ -1223,7 +1226,7 @@
 
 /*
  * sendCustomerEmail : sent email to customer
- * @param $insert_id
+ * @param Int $insert_id
  * @return email
  * @access public
 */
@@ -1234,10 +1237,11 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
       $Qorder = $this->db->prepare('select *
-                                     from :table_orders
-                                     where orders_id = :orders_id
-                                     limit 1
-                                     ');
+                                    from :table_orders
+                                    where orders_id = :orders_id
+                                    limit 1
+                                  ');
+
       $Qorder->bindInt(':orders_id', $insert_id);
       $Qorder->execute();
 
@@ -1257,7 +1261,9 @@
         $Qproducts->bindInt(':orders_id', $insert_id);
         $Qproducts->execute();
 
-        $message_order = stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $insert_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
+        $message_order = HTMl::outputProtected(STORE_NAME) . "\n\n";
+        $message_order .= CLICSHOPPING::getDef('email_text_order_intro'). "\n\n";
+        $message_order .= stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $insert_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
 
         $email_order = $message_order . ' ' . CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . $insert_id) . "\n" .  CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
@@ -1275,7 +1281,7 @@
             $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
                                                                   from :table_products_groups
                                                                   where products_id = :products_id
-                                                                  and customers_group_id =  :customers_group_id
+                                                                  and customers_group_id = :customers_group_id
                                                                 ');
 
             $QproductsModuleCustomersGroup->bindInt(':products_id', $Qproducts->valueInt('products_id') );
@@ -1351,23 +1357,21 @@
 
 
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
-        if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
+        if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
           $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
           $email_text_subject = html_entity_decode($email_text_subject);
 
           $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-          foreach($text as $email){
-            $this->mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+          foreach($text as $key => $email){
+            $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
           }
         }
       }
     }
 
 // Alert by mail product exhausted if a product is 0 or < 0
-    private function sendEmailAlertProductsExhausted($insert_id) {
-      $CLICSHOPPING_Prod = Registry::get('Prod');
-
+    public function sendEmailAlertProductsExhausted($insert_id) {
       if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
 
         $Qproducts = $this->db->prepare('select orders_products_id,
@@ -1382,11 +1386,8 @@
         $Qproducts->bindInt(':orders_id', $insert_id);
         $Qproducts->execute();
 
-
         if ( $Qproducts->fetch() !== false ) {
-
           while ( $Qproducts->fetch() ) {
-
             $Qstock = $this->db->prepare('select products_quantity_alert,
                                                   products_stock
                                             from :table_products
@@ -1401,7 +1402,7 @@
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
               $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_subject_stock', ['store_name' => STORE_NAME]));
               $email_product_exhausted_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
-              $email_product_exhausted_stock .=  "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" .  CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) .  "\n";
+              $email_product_exhausted_stock .=  "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" .  CLICSHOPPING::getDef('email_text_id_product') . ' ' . $this->prod->getProductID($Qproducts->value('products_id')) .  "\n";
 
               $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_exhausted_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
@@ -1410,9 +1411,7 @@
       }
     }
 
-    private function sendEmailAlertStockWarning($insert_id) {
-      $CLICSHOPPING_Prod = Registry::get('Prod');
-
+    public function sendEmailAlertStockWarning($insert_id) {
       if (STOCK_ALERT_PRODUCT_REORDER_LEVEL == 'true') {
         if ((STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
 
@@ -1429,11 +1428,9 @@
           $Qproducts->execute();
 
           if ( $Qproducts->fetch() !== false ) {
-
             while ( $Qproducts->fetch() ) {
-
               $Qstock = $this->db->prepare('select products_quantity_alert,
-                                                    products_stock
+                                                   products_stock
                                             from :table_products
                                             where products_id = :products_id
                                           ');
