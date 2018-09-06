@@ -967,7 +967,7 @@
                   $email_text_subject_stock = html_entity_decode($email_text_subject_stock);
 
                   $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('module_payment_paypal_standard_text_reorder_level_text_alert_stock'));
-                  $reorder_stock_email = html_entity_decode($reorder_stock_email);
+                  $reorder_stock_email.= html_entity_decode($reorder_stock_email);
                   $reorder_stock_email .= "\n"  .  CLICSHOPPING::getDef('module_payment_paypal_standard_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" .    CLICSHOPPING::getDef('email_text_model') . ' ' . $CLICSHOPPING_Order->products[$i]['model']  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . $CLICSHOPPING_Order->products[$i]['name']  .  "\n" . CLICSHOPPING::getDef('email_text_products_id') . ' ' .  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id'])  .  "\n" . '<strong>' .  CLICSHOPPING::getDef('email_text_products_url') . '</strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $CLICSHOPPING_Order->products[$i]['id'] . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_products_alert_stock') . ' ' . $current_stock  .'</strong>';
 
                    $CLICSHOPPING_Mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
@@ -1084,72 +1084,71 @@
  // ---------------------------------------------
 
 // lets start with the email confirmation
-      $email_order = STORE_NAME . '<br /><br />' .
-      CLICSHOPPING::getDef('email_separator') . '<br />' .
-      CLICSHOPPING::getDef('email_text_order_number', ['store_name' => STORE_NAME]) . ' ' . $this->order_id . '<br />' .
-      CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . (int)$this->order_id, false) .'<br />' .
-      CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .'<br /><br />';
+      $email_order = STORE_NAME . "\n\n" .
+      CLICSHOPPING::getDef('email_separator') .  "\n" .
+      CLICSHOPPING::getDef('email_text_order_number', ['store_name' => STORE_NAME]) . ' ' . $this->order_id . "\n" .
+      CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . (int)$this->order_id, false) . "\n" .
+      CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
       if ($CLICSHOPPING_Order->info['comments']) {
-        $email_order .= HTML::output($CLICSHOPPING_Order->info['comments']) . '<br /><br />';
+        $email_order .= HTML::output($CLICSHOPPING_Order->info['comments']) . "\n\n";
       }
 
-      $email_order .= CLICSHOPPING::getDef('email_text_products') . '<br />' .
+      $email_order .= CLICSHOPPING::getDef('email_text_products') . "\n";
 
-      CLICSHOPPING::getDef('email_separator') .'<br />' .
+      CLICSHOPPING::getDef('email_separator') . "\n";
                     $products_ordered .
-      CLICSHOPPING::getDef('email_separator') . '<br />';
+      CLICSHOPPING::getDef('email_separator') . "\n";
 
       for ($i=0, $n=count($CLICSHOPPING_Order->totals); $i<$n; $i++) {
         $email_order .= strip_tags($CLICSHOPPING_Order->totals[$i]['title']) . ' ' . strip_tags($CLICSHOPPING_Order->totals[$i]['text']) . "\n";
       }
 
-    if ($CLICSHOPPING_Order->content_type != 'virtual') {
-      $email_order .= "\n" . CLICSHOPPING::getDef('email_text_delivery_address') . "\n" .
+      if ($CLICSHOPPING_Order->content_type != 'virtual') {
+        $email_order .= "\n" . CLICSHOPPING::getDef('email_text_delivery_address') . "\n" .
 
-      CLICSHOPPING::getDef('email_separator') . "\n" .
-      $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->delivery['format_id'], $CLICSHOPPING_Order->delivery, false, '', "\n") . "\n";
-    }
-
-    $email_order .= "\n" . CLICSHOPPING::getDef('email_text_billing_address') . "\n" .
-                          CLICSHOPPING::getDef('email_separator')  . "\n" .
-                          $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->billing['format_id'], $CLICSHOPPING_Order->billing, false, '', "\n") . "\n\n";
-
-    $email_order .= CLICSHOPPING::getDef('email_text_payment_method') . "\n" .
-    CLICSHOPPING::getDef('email_separator')  . "\n";
-
-    if (is_object($GLOBALS[$_SESSION['payment']])) {
-      $message_order = utf8_decode(stripslashes(CLICSHOPPING::getDef('email_text_payment_method')));
-      $email_order .= html_entity_decode($message_order) . "\n" .
-      CLICSHOPPING::getDef('email_separator') . "\n";
-      $payment_class = $GLOBALS[$_SESSION['payment']];
-
-      $email_order .= $payment_class->title . "\n\n";
-
-      if (property_exists(get_class($payment_class),'email_footer')) {
-        $email_order .= $payment_class->email_footer;
+        CLICSHOPPING::getDef('email_separator') . "\n" .
+        $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->delivery['format_id'], $CLICSHOPPING_Order->delivery, false, '', "\n") . "\n";
       }
-    }
 
-    $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
-    $email_order .= TemplateEmail::getTemplateEmailTextFooter();
+      $email_order .= "\n" . CLICSHOPPING::getDef('email_text_billing_address') . "\n" .
+                            CLICSHOPPING::getDef('email_separator')  . "\n" .
+                            $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->billing['format_id'], $CLICSHOPPING_Order->billing, false, '', "\n") . "\n\n";
 
-    $CLICSHOPPING_Mail->clicMail($CLICSHOPPING_Order->customer['name'], $CLICSHOPPING_Order->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+      $email_order .= CLICSHOPPING::getDef('email_text_payment_method') . "\n" .
+      CLICSHOPPING::getDef('email_separator')  . "\n";
 
-// send emails to other people
-// SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
-    if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
-      $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
-      $email_text_subject = html_entity_decode($email_text_subject);
-      $send_extra_emails_to[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
+      if (is_object($GLOBALS[$_SESSION['payment']])) {
+        $message_order = utf8_decode(stripslashes(CLICSHOPPING::getDef('email_text_payment_method')));
+        $email_order .= html_entity_decode($message_order) . "\n" .
+        CLICSHOPPING::getDef('email_separator') . "\n";
+        $payment_class = $GLOBALS[$_SESSION['payment']];
 
-        foreach($send_extra_emails_to as $email){
-          $CLICSHOPPING_Mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+        $email_order .= $payment_class->title . "\n\n";
+
+        if (property_exists(get_class($payment_class),'email_footer')) {
+          $email_order .= $payment_class->email_footer;
         }
       }
 
+      $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
+      $email_order .= TemplateEmail::getTemplateEmailTextFooter();
+
+      $CLICSHOPPING_Mail->clicMail($CLICSHOPPING_Order->customer['name'], $CLICSHOPPING_Order->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+
+// send emails to other people
+// SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
+      if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
+        $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
+        $email_text_subject = html_entity_decode($email_text_subject);
+        $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
+
+        foreach($text as $key => $email){
+          $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+        }
+      }
 // load the after_process public function from the payment modules
-     $this->after_process();
+      $this->after_process();
 
       $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
       $CLICSHOPPING_Hooks->call('CheckoutProcess','Odoo');
