@@ -144,11 +144,11 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qzone = $CLICSHOPPING_Db->prepare('select zone_code
-                                    from :table_zones
-                                    where zone_country_id = :zone_country_id
-                                    and zone_id = :zone_id
-                                    and zone_status = 0
-                                   ');
+                                          from :table_zones
+                                          where zone_country_id = :zone_country_id
+                                          and zone_id = :zone_id
+                                          and zone_status = 0
+                                         ');
 
       $Qzone->bindInt(':zone_country_id', (int)$country_id);
       $Qzone->bindInt(':zone_id', (int)$zone_id );
@@ -201,13 +201,13 @@
       if (!is_null($countries_id)) {
         if ($with_iso_codes === true) {
           $Qcountries = $CLICSHOPPING_Db->prepare('select countries_name,
-                                                  countries_iso_code_2,
-                                                  countries_iso_code_3
-                                           from :table_countries
-                                           where countries_id = :countries_id
-                                           and status = 1
-                                           order by countries_name
-                                          ');
+                                                          countries_iso_code_2,
+                                                          countries_iso_code_3
+                                                   from :table_countries
+                                                   where countries_id = :countries_id
+                                                   and status = 1
+                                                   order by countries_name
+                                                  ');
           $Qcountries->bindInt(':countries_id', (int)$countries_id);
           $Qcountries->execute();
 
@@ -215,10 +215,10 @@
         } else {
 
           $Qcountries = $CLICSHOPPING_Db->prepare('select countries_name
-                                           from :table_countries
-                                           where countries_id = :countries_id
-                                           and status = 1
-                                          ');
+                                                   from :table_countries
+                                                   where countries_id = :countries_id
+                                                   and status = 1
+                                                  ');
           $Qcountries->bindInt(':countries_id', (int)$countries_id);
           $Qcountries->execute();
 
@@ -226,12 +226,12 @@
         }
       } else {
         $countries_array = $CLICSHOPPING_Db->query('select countries_id,
-                                                  countries_name,
-                                                  countries_iso_code_2
-                                           from :table_countries
-                                           where status = 1
-                                            order by countries_name
-                                          ')->fetchAll();
+                                                          countries_name,
+                                                          countries_iso_code_2
+                                                   from :table_countries
+                                                   where status = 1
+                                                    order by countries_name
+                                                  ')->fetchAll();
       }
 
       return $countries_array;
