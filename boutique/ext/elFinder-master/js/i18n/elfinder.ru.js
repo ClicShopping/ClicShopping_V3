@@ -3,7 +3,7 @@
  * @author Dmitry "dio" Levashov <dio@std42.ru>
  * @author Andrew Berezovsky <andrew.berezovsky@gmail.com>
  * @author Alex Yashkin <alex@yashkin.by>
- * @version 2018-05-27
+ * @version 2018-08-08
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -133,7 +133,7 @@
 			'cmdinfo'      : 'Свойства',
 			'cmdmkdir'     : 'Новая папка',
 			'cmdmkdirin'   : 'В новую папку', // from v2.1.7 added 19.2.2016
-			'cmdmkfile'    : 'Новый текстовый файл',
+			'cmdmkfile'    : 'Новый файл',
 			'cmdopen'      : 'Открыть',
 			'cmdpaste'     : 'Вставить',
 			'cmdquicklook' : 'Быстрый просмотр',
@@ -164,6 +164,7 @@
 			'cmdselectnone': 'Отменить выбор', // from v2.1.28 added 15.08.2017
 			'cmdselectinvert': 'Инвертировать выбор', // from v2.1.28 added 15.08.2017
 			'cmdopennew'   : 'Открыть в новом окне', // from v2.1.38 added 3.4.2018
+			'cmdhide'      : 'Скрыть (персонально)', // from v2.1.41 added 24.7.2018
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Закрыть',
@@ -225,6 +226,7 @@
 			'ntfchkdir'   : 'Проверка папки назначения', // from v2.1.24 added 3.5.2017
 			'ntfundo'     : 'Отмена предыдущей операции', // from v2.1.27 added 31.07.2017
 			'ntfredo'     : 'Восстановление предыдущей операции', // from v2.1.27 added 31.07.2017
+			'ntfchkcontent' : 'Проверка содержимого', // from v2.1.41 added 3.8.2018
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'Корзина', //from v2.1.24 added 29.4.2017
@@ -288,6 +290,8 @@
 			'untitled file.txt' : 'НовыйФайл.txt', // added 10.11.2015
 			'untitled folder'   : 'НоваяПапка',   // added 10.11.2015
 			'Archive'           : 'НовыйАрхив',  // from v2.1 added 10.11.2015
+			'untitled file'     : 'НовыйФайл.$1',  // from v2.1.41 added 6.8.2018
+			'extentionfile'     : '$1 Файл',     // from v2.1.41 added 6.8.2018
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Необходимо подтверждение',
@@ -462,7 +466,19 @@
 			'workspace'       : 'Рабочая область', // from v2.1.38 added 4.4.2018
 			'dialog'          : 'Диалог', // from v2.1.38 added 4.4.2018
 			'all'             : 'Все', // from v2.1.38 added 4.4.2018
-			'iconSize'        : 'Размер иконок (В виде иконок)', // form v2.1.39 added 7.5.2018
+			'iconSize'        : 'Размер иконок (В виде иконок)', // from v2.1.39 added 7.5.2018
+			'editorMaximized' : 'Открывать редактор в развернутом виде', // from v2.1.40 added 30.6.2018
+			'editorConvNoApi' : 'Так как конвертация с помощью API недоступно, произведите конвертацию на веб-сайте.', //from v2.1.40 added 8.7.2018
+			'editorConvNeedUpload' : 'После конвертации вы должны загрузить скачанный файл, чтобы сохранить его.', //from v2.1.40 added 8.7.2018
+			'convertOn'       : 'Конвертировать на сайте $1', // from v2.1.40 added 10.7.2018
+			'integrations'    : 'Интеграции', // from v2.1.40 added 11.7.2018
+			'integrationWith' : 'Менеджер elFinder интегрирован со следующими внешними сервисами. Ознакомьтесь с правилами пользования, политиками безопасности и др. перед их использованием.', // from v2.1.40 added 11.7.2018
+			'showHidden'      : 'Показать скрытые элементы', // from v2.1.41 added 24.7.2018
+			'hideHidden'      : 'Скрыть скрытые элементы', // from v2.1.41 added 24.7.2018
+			'toggleHidden'    : 'Показать/скрыть скрытые элементы', // from v2.1.41 added 24.7.2018
+			'makefileTypes'   : 'Типы файлов в меню "Новый файл"', // from v2.1.41 added 7.8.2018
+			'typeOfTextfile'  : 'Тип текстового файла', // from v2.1.41 added 7.8.2018
+			'add'             : 'Добавить', // from v2.1.41 added 7.8.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Неизвестный',

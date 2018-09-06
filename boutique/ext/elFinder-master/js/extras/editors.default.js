@@ -21,30 +21,35 @@
 			return hasFlash;
 		})(),
 		ext2mime = {
-			jpg: 'image/jpeg',
-			jpeg: 'image/jpeg',
-			png: 'image/png',
-			gif: 'image/gif',
 			bmp: 'image/x-ms-bmp',
+			dng: 'image/x-adobe-dng',
+			gif: 'image/gif',
+			jpeg: 'image/jpeg',
+			jpg: 'image/jpeg',
+			pdf: 'application/pdf',
+			png: 'image/png',
+			ppm: 'image/x-portable-pixmap',
+			psd: 'image/vnd.adobe.photoshop',
+			pxd: 'image/x-pixlr-data',
 			svg: 'image/svg+xml',
-			pxd: 'image/x-pixlr-data'
+			tiff: 'image/tiff',
+			webp: 'image/webp',
+			xcf: 'image/x-xcf',
+			sketch: 'application/x-sketch'
 		},
-		getExt = function(file) {
-			var ext = fm.mimeTypes[file.mime];
+		mime2ext,
+		getExtention = function(mime, fm) {
+			if (!mime2ext) {
+				mime2ext = fm.arrayFlip(ext2mime);
+			}
+			var ext = mime2ext[mime] || fm.mimeTypes[mime];
 			if (ext === 'jpeg') {
 				ext = 'jpg';
 			}
 			return ext;
 		},
 		initImgTag = function(id, file, content, fm) {
-			var getExt = function() {
-					var ext = fm.mimeTypes[file.mime];
-					if (ext === 'jpeg') {
-						ext = 'jpg';
-					}
-					return ext;
-				},
-				node = $(this).children('img:first').data('ext', getExt(file)),
+			var node = $(this).children('img:first').data('ext', getExtention(file.mime, fm)),
 				spnr = $('<div/>')
 					.css({
 						position: 'absolute',
@@ -147,6 +152,7 @@
 					}),
 				dialog = $(base).closest('.ui-dialog'),
 				elfNode = fm.getUI(),
+				uiToast = fm.getUI('toast'),
 				container = $('<iframe class="ui-front" allowtransparency="true">'),
 				file = this.file,
 				timeout = 15,
@@ -156,18 +162,20 @@
 						node.data('loading')(true);
 						fm.error(error);
 					} else {
+						uiToast.appendTo(dialog.closest('.ui-dialog'));
 						fm.toast({
 							mode: 'info',
 							msg: 'Can not launch Pixlr yet. Waiting ' + timeout + ' seconds.',
-							extNode: $('<button class="ui-button ui-widget ui-state-default ui-corner-all elfinder-tabstop"/>')
-								.append($('<span class="ui-button-text"/>').text(fm.i18n('Abort')))
-								.on('mouseenter mouseleave', function(e) { 
-									$(this).toggleClass('ui-state-hover', e.type == 'mouseenter');
-								})
-								.on('click', function() {
+							button: {
+								text: 'Abort',
+								click: function() {
 									container.trigger('destroy').remove();
 									node.data('loading')(true);
-								})
+								}
+							},
+							onHidden: function() {
+								uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
+							}
 						});
 						errtm = setTimeout(error, timeout * 1000);
 					}
@@ -209,7 +217,7 @@
 						.attr('id', node.attr('id')+'iframe')
 						.attr('src', opts.src)
 						.css(opts.css)
-						.on('load', function() {
+						.one('load', function() {
 							errtm && clearTimeout(errtm);
 							setTimeout(function() {
 								if (container.is(':hidden')) {
@@ -229,6 +237,40 @@
 				errtm;
 			$(base).on('saveAsFail', launch);
 			launch();
+		},
+		iframeClose = function(ifm) {
+			var $ifm = $(ifm),
+				dfd = $.Deferred().always(function() {
+					$ifm.off('load', load);
+				}),
+				ab = 'about:blank',
+				chk = function() {
+					tm = setTimeout(function() {
+						var src;
+						try {
+							src = base.contentWindow.location.href;
+						} catch(e) {
+							src = null;
+						}
+						if (src === ab) {
+							dfd.resolve();
+						} else if (--cnt > 0){
+							chk();
+						} else {
+							dfd.reject();
+						}
+					}, 500);
+				},
+				load = function() {
+					tm && clearTimeout(tm);
+					dfd.resolve();
+				},
+				cnt = 20, // 500ms * 20 = 10sec wait
+				tm;
+			$ifm.one('load', load);
+			ifm.src = ab;
+			chk();
+			return dfd;
 		};
 	
 	// check callback from pixlr
@@ -260,14 +302,277 @@
 	// return editors Array
 	return [
 		{
+			// tui.image-editor - https://github.com/nhnent/tui.image-editor
+			info : {
+				id: 'tuiimgedit',
+				name: 'TUI Image Editor',
+				iconImg: 'img/editor-icons.png 0 -48',
+				dataScheme: true,
+				schemeContent: true,
+				openMaximized: true,
+				canMakeEmpty: false,
+				integrate: {
+					title: 'TOAST UI Image Editor',
+					link: 'http://ui.toast.com/tui-image-editor/'
+				}
+			},
+			// MIME types to accept
+			mimes : ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/x-ms-bmp'],
+			// HTML of this editor
+			html : '<div class="elfinder-edit-imageeditor"><canvas></canvas></div>',
+			// called on initialization of elFinder cmd edit (this: this editor's config object)
+			setup : function(opts, fm) {
+				if (fm.UA.ltIE8 || fm.UA.Mobile) {
+					this.disabled = true;
+				} else {
+					this.opts = Object.assign({}, opts.extraOptions.tuiImgEditOpts || {}, {
+						iconsPath : fm.baseUrl + 'img/tui-',
+						theme : {}
+					});
+					if (!fm.isSameOrigin(this.opts.iconsPath)) {
+						this.disabled = true;
+						fm.debug('warning', 'Setting `commandOptions.edit.extraOptions.tuiImgEditOpts.iconsPath` MUST follow the same origin policy.');
+					}
+				}
+			},
+			// Initialization of editing node (this: this editors HTML node)
+			init : function(id, file, content, fm) {
+				this.data('url', content);
+			},
+			load : function(base) {
+				var self = this,
+					fm   = this.fm,
+					dfrd = $.Deferred(),
+					cdns = fm.options.cdns,
+					ver  = 'latest',
+					init = function(editor) {
+						var $base = $(base),
+							opts = self.confObj.opts,
+							iconsPath = opts.iconsPath,
+							iEditor = new editor(base, {
+								includeUI: {
+									loadImage: {
+										path: $base.data('url'),
+										name: self.file.name
+									},
+									theme: Object.assign(opts.theme, {
+										// main icons
+										'menu.normalIcon.path': iconsPath + 'icon-b.svg',
+										'menu.normalIcon.name': 'icon-b',
+										'menu.activeIcon.path': iconsPath + 'icon-a.svg',
+										'menu.activeIcon.name': 'icon-a',
+										// submenu icons
+										'submenu.normalIcon.path': iconsPath + 'icon-a.svg',
+										'submenu.normalIcon.name': 'icon-a',
+										'submenu.activeIcon.path': iconsPath + 'icon-c.svg',
+										'submenu.activeIcon.name': 'icon-c',
+									}),
+									initMenu: 'filter',
+									menuBarPosition: 'bottom'
+								},
+								cssMaxWidth: 700,
+								cssMaxHeight: 500
+							}),
+							canvas = $base.find('canvas:first').get(0),
+							zoom = function(v) {
+								var c = $(canvas),
+									w = parseInt(c.attr('width')),
+									h = parseInt(c.attr('height')),
+									a = w / h,
+									mw, mh, css;
+								if (v === 0) {
+									mw = w;
+									mh = h;
+								} else {
+									mw = parseInt(c.css('max-width')) + Number(v);
+									mh = mw / a;
+								}
+								css = {
+									maxWidth: mw,
+									maxHeight: mh
+								};
+								per.text(Math.round(mw / w * 100) + '%');
+								if (typeof v !== 'undefined') {
+									// set editor config directly for change scale
+									iEditor._graphics.cssMaxWidth = mw;
+									iEditor._graphics.cssMaxHeight = mh;
+									// change scale
+									c.css(css).next().css(css);
+									c.parents('.tui-image-editor-canvas-container,tui-image-editor-canvas').css(css);
+									c.closest('.tui-image-editor').css({
+										width: mw,
+										height: mh
+									});
+									// continually change more
+									if (zoomMore) {
+										setTimeout(function() {
+											zoomMore && zoom(v);
+										}, 50);
+									}
+								}
+							},
+							zup = $('<span class="ui-icon ui-icon-plusthick"/>').data('val', 10),
+							zdown = $('<span class="ui-icon ui-icon-minusthick"/>').data('val', -10),
+							per = $('<button/>').css('width', '4em').text('%').attr('title', '100%').data('val', 0),
+							quty, qutyTm, zoomTm, zoomMore;
+
+						$base.removeData('url').data('mime', self.file.mime);
+						// jpeg quality controls
+						if (self.file.mime === 'image/jpeg') {
+							$base.data('quality', fm.storage('jpgQuality') || fm.option('jpgQuality'));
+							quty = $('<input type="number" class="ui-corner-all elfinder-resize-quality elfinder-tabstop"/>')
+								.attr('min', '1')
+								.attr('max', '100')
+								.attr('title', '1 - 100')
+								.on('change', function() {
+									var q = quty.val();
+									$base.data('quality', q);
+									qutyTm && cancelAnimationFrame(qutyTm);
+									qutyTm = requestAnimationFrame(function() {
+										canvas.toBlob(function(blob) {
+											blob && quty.next('span').text(' (' + fm.formatSize(blob.size) + ')');
+										}, 'image/jpeg', Math.max(Math.min(q, 100), 1) / 100);
+									});
+								})
+								.val($base.data('quality'));
+							$('<div class="ui-dialog-buttonset elfinder-edit-extras elfinder-edit-extras-quality"/>')
+								.append(
+									$('<span>').html(fm.i18n('quality') + ' : '), quty, $('<span/>')
+								)
+								.prependTo($base.parent().next());
+						} else if (self.file.mime === 'image/svg+xml') {
+							$base.closest('.ui-dialog').trigger('changeType', {
+								extention: 'png',
+								mime : 'image/png',
+								keepEditor: true
+							});
+						}
+						// zoom scale controls
+						$('<div class="ui-dialog-buttonset elfinder-edit-extras"/>')
+							.append(
+								zdown, per, zup
+							)
+							.attr('title', fm.i18n('scale'))
+							.on('click', 'span,button', function() {
+								zoom($(this).data('val'));
+							})
+							.on('mousedown mouseup mouseleave', 'span', function(e) {
+								zoomMore = false;
+								zoomTm && clearTimeout(zoomTm);
+								if (e.type === 'mousedown') {
+									zoomTm = setTimeout(function() {
+										zoomMore = true;
+										zoom($(e.target).data('val'));
+									}, 500);
+								}
+							})
+							.prependTo($base.parent().next());
+
+						// wait canvas ready
+						setTimeout(function() {
+							dfrd.resolve(iEditor);
+							if (quty) {
+								quty.trigger('change');
+								iEditor.on('redoStackChanged undoStackChanged', function() {
+									quty.trigger('change');
+								});
+							}
+							// show initial scale
+							zoom(null);
+						}, 100);
+					},
+					loader;
+
+				if (!self.confObj.editor) {
+					loader = $.Deferred();
+					fm.loadCss([
+						cdns.tui + '/tui-color-picker/latest/tui-color-picker.css',
+						cdns.tui + '/tui-image-editor/'+ver+'/tui-image-editor.css'
+					]);
+					if (fm.hasRequire) {
+						require.config({
+							paths : {
+								'fabric/dist/fabric.require' : cdns.fabric16 + '/fabric.require.min',
+								'tui-code-snippet' : cdns.tui + '/tui.code-snippet/latest/tui-code-snippet.min',
+								'tui-color-picker' : cdns.tui + '/tui.code-snippet/latest/tui-color-picker.min',
+								'tui-image-editor' : cdns.tui + '/tui-image-editor/'+ver+'/tui-image-editor.min'
+							}
+						});
+						require(['tui-image-editor'], function(ImageEditor) {
+							loader.resolve(ImageEditor);
+						});
+					} else {
+						fm.loadScript([
+							cdns.fabric16 + '/fabric.min.js',
+							cdns.tui + '/tui.code-snippet/latest/tui-code-snippet.min.js'
+						], function() {
+							fm.loadScript([
+								cdns.tui + '/tui-color-picker/latest/tui-color-picker.min.js'
+							], function() {
+								fm.loadScript([
+									cdns.tui + '/tui-image-editor/'+ver+'/tui-image-editor.min.js'
+								], function() {
+									loader.resolve(window.tui.ImageEditor);
+								}, {
+									loadType: 'tag'
+								});
+							}, {
+								loadType: 'tag'
+							});
+						}, {
+							loadType: 'tag'
+						});
+					}
+					loader.done(function(editor) {
+						self.confObj.editor = editor;
+						init(editor);
+					});
+				} else {
+					init(self.confObj.editor);
+				}
+				return dfrd;
+			},
+			getContent : function(base) {
+				var editor = this.editor,
+					fm = editor.fm,
+					$base = $(base),
+					quality = $base.data('quality');
+				if (editor.instance) {
+					if ($base.data('mime') === 'image/jpeg') {
+						quality = quality || fm.storage('jpgQuality') || fm.option('jpgQuality');
+						quality = Math.max(0.1, Math.min(1, quality / 100));
+					}
+					return editor.instance.toDataURL({
+						format: getExtention($base.data('mime'), fm),
+						quality: quality
+					});
+				}
+			},
+			save : function(base) {
+				var $base = $(base),
+					quality = $base.data('quality'),
+					hash = $base.data('hash'),
+					file;
+				this.instance.deactivateAll();
+				if (typeof quality !== 'undefined') {
+					this.fm.storage('jpgQuality', quality);
+				}
+				if (hash) {
+					file = this.fm.file(hash);
+					$base.data('mime', file.mime);
+				}
+			}
+		},
+		{
 			// Pixlr Editor
 			info : {
 				id : 'pixlreditor',
 				name : 'Pixlr Editor',
-				iconImg : 'img/edit_pixlreditor.png',
+				iconImg : 'img/editor-icons.png 0 -128',
 				urlAsContent: true,
 				schemeContent: true,
 				single: true,
+				canMakeEmpty: true,
 				integrate: {
 					title: 'PIXLR EDITOR',
 					link: 'https://pixlr.com/editor/'
@@ -276,14 +581,14 @@
 			// MIME types to accept
 			mimes : ['image/jpeg', 'image/png', 'image/gif', 'image/x-ms-bmp', 'image/x-pixlr-data'],
 			// HTML of this editor
-			html : '<div style="width:100%;height:300px;max-height:100%;text-align:center;"><img/></div>',
+			html : '<div class="elfinder-edit-imageeditor"><img/></div>',
 			// called on initialization of elFinder cmd edit (this: this editor's config object)
 			setup : function(opts, fm) {
 				pixlrSetup.call(this, opts, fm);
 			},
 			// Initialization of editing node (this: this editors HTML node)
 			init : function(id, file, url, fm) {
-				initImgTag.call(this, id, file, fm.convAbsUrl(url), fm);
+				initImgTag.call(this, id, file, file.size > 0? fm.convAbsUrl(url) : '', fm);
 			},
 			// Get data uri scheme (this: this editors HTML node)
 			getContent : function() {
@@ -300,10 +605,11 @@
 			info : {
 				id: 'pixlrexpress',
 				name : 'Pixlr Express',
-				iconImg : 'img/edit_pixlrexpress.png',
+				iconImg : 'img/editor-icons.png 0 -112',
 				urlAsContent: true,
 				schemeContent: true,
 				single: true,
+				canMakeEmpty: false,
 				integrate: {
 					title: 'PIXLR EXPRESS',
 					link: 'https://pixlr.com/express/'
@@ -312,14 +618,14 @@
 			// MIME types to accept
 			mimes : ['image/jpeg', 'image/png', 'image/gif'],
 			// HTML of this editor
-			html : '<div style="width:100%;height:300px;max-height:100%;text-align:center;"><img/></div>',
+			html : '<div class="elfinder-edit-imageeditor"><img/></div>',
 			// called on initialization of elFinder cmd edit (this: this editor's config object)
 			setup : function(opts, fm) {
 				pixlrSetup.call(this, opts, fm);
 			},
 			// Initialization of editing node (this: this editors HTML node)
 			init : function(id, file, url, fm) {
-				initImgTag.call(this, id, file, fm.convAbsUrl(url), fm);
+				initImgTag.call(this, id, file, file.size > 0? fm.convAbsUrl(url) : '', fm);
 			},
 			// Get data uri scheme (this: this editors HTML node)
 			getContent : function() {
@@ -332,14 +638,229 @@
 			close : function(base) {}
 		},
 		{
+			// Photopea advanced image editor
+			info : {
+				id : 'photopea',
+				name : 'Photopea',
+				iconImg : 'img/editor-icons.png 0 -160',
+				single: true,
+				urlAsContent: true,
+				arrayBufferContent: true,
+				openMaximized: true,
+				canMakeEmpty: true,
+				integrate: {
+					title: 'Photopea',
+					link: 'https://www.photopea.com/learn/'
+				}
+			},
+			mimes : ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/x-ms-bmp', 'image/tiff', 'image/x-adobe-dng', 'image/webp', 'image/x-xcf', 'image/vnd.adobe.photoshop', 'application/pdf', 'image/x-portable-pixmap', 'image/x-sketch'],
+			html : '<iframe style="width:100%;height:100%;border:none;"></iframe>',
+			// setup on elFinder bootup
+			setup : function(opts, fm) {
+				if (fm.UA.IE || fm.UA.Mobile) {
+					this.disabled = true;
+				}
+			},
+			// Initialization of editing node (this: this editors HTML node)
+			init : function(id, file, dum, fm) {
+				var orig = 'https://www.photopea.com',
+					ifm = $(this).hide()
+						//.css('box-sizing', 'border-box')
+						.on('load', function() {
+							//spnr.remove();
+							ifm.show();
+						})
+						.on('error', function() {
+							spnr.remove();
+							ifm.show();
+						}),
+					editor = this.editor,
+					confObj = editor.confObj,
+					spnr = $('<div/>')
+						.css({
+							position: 'absolute',
+							top: '50%',
+							textAlign: 'center',
+							width: '100%',
+							fontSize: '16pt'
+						})
+						.html(fm.i18n('nowLoading') + '<span class="elfinder-spinner"/>')
+						.appendTo(ifm.parent()),
+					getType = function(mime) {
+						var ext = getExtention(mime, fm),
+							extmime = ext2mime[ext];
+
+						if (!confObj.mimesFlip[extmime]) {
+							ext = '';
+						} else if (ext === 'jpeg') {
+							ext = 'jpg';
+						}
+						if (!ext || ext === 'xcf' || ext === 'dng' || ext === 'sketch') {
+							ext = 'psd';
+							extmime = ext2mime[ext];
+							ifm.closest('.ui-dialog').trigger('changeType', {
+								extention: ext,
+								mime : extmime,
+								keepEditor: true
+							});
+						}
+						return ext;
+					},
+					mime = file.mime,
+					liveMsg, type;
+				
+				if (!confObj.mimesFlip) {
+					confObj.mimesFlip = fm.arrayFlip(confObj.mimes, true);
+				}
+				if (!confObj.liveMsg) {
+					confObj.liveMsg = function(ifm, spnr, file) {
+						var url = fm.openUrl(file.hash);
+							if (!fm.isSameOrigin(url)) {
+								url = fm.openUrl(file.hash, true);
+							}
+						var wnd = ifm.get(0).contentWindow,
+							phase = 0,
+							data = null,
+							dfdIni = $.Deferred().done(function() {
+								spnr.remove();
+								phase = 1;
+								wnd.postMessage(data, '*');
+							}),
+							dfdGet;
+
+						this.load = function() {
+							return fm.request({
+								data    : {cmd : 'get'},
+								options : {
+									url: url,
+									type: 'get',
+									cache : true,
+									dataType : 'binary',
+									responseType :'arraybuffer',
+									processData: false
+								}
+							})
+							.done(function(d) {
+								data = d;
+							});
+						};
+
+						this.receive = function(e) {
+							var ev = e.originalEvent,
+								state;
+							if (ev.origin === orig && ev.source === wnd) {
+								if (ev.data === 'done') {
+									if (phase === 0) {
+										dfdIni.resolve();
+									} else if (phase === 1) {
+										phase = 2;
+										ifm.trigger('contentsloaded');
+									} else {
+										if (dfdGet && dfdGet.state() === 'pending') {
+											dfdGet.reject('errDataEmpty');
+										}
+									}
+								} else {
+									if (dfdGet && dfdGet.state() === 'pending') {
+										if (typeof ev.data === 'object') {
+											dfdGet.resolve('data:' + mime + ';base64,' + fm.arrayBufferToBase64(ev.data));
+										} else {
+											dfdGet.reject('errDataEmpty');
+										}
+									}
+								}
+							}
+						};
+
+						this.getContent = function() {
+							var type;
+							if (phase > 1) {
+								dfdGet && dfdGet.state() === 'pending' && dfdGet.reject();
+								dfdGet = null;
+								dfdGet = $.Deferred();
+								if (phase === 2) {
+									phase = 3;
+									dfdGet.resolve('data:' + mime + ';base64,' + fm.arrayBufferToBase64(data));
+									data = null;
+									return dfdGet;
+								}
+								if (ifm.data('mime')) {
+									mime = ifm.data('mime');
+									type = getType(mime);
+								}
+								wnd.postMessage('app.activeDocument.saveToOE("' + type + '")', orig);
+								return dfdGet;
+							}
+						};
+					};
+				}
+
+				ifm.parent().css('padding', 0);
+				type = getType(file.mime);
+				liveMsg = editor.liveMsg = new confObj.liveMsg(ifm, spnr, file);
+				$(window).on('message.' + fm.namespace, liveMsg.receive);
+				liveMsg.load().done(function() {
+					var d = JSON.stringify({
+						files : [],
+						environment : {
+							lang: fm.lang.replace(/_/g, '-')
+						}
+					});
+					ifm.attr('src', orig + '/#' + encodeURI(d));
+				}).fail(function(err) {
+					err && fm.error(err);
+					editor.initFail = true;
+				});
+			},
+			load : function(base) {
+				var dfd = $.Deferred(),
+					self = this,
+					fm = this.fm,
+					$base = $(base);
+				if (self.initFail) {
+					dfd.reject();
+				} else {
+					$base.on('contentsloaded', function() {
+						dfd.resolve(self.liveMsg);
+					});
+				}
+				return dfd;
+			},
+			getContent : function() {
+				return this.editor.liveMsg? this.editor.liveMsg.getContent() : void(0);
+			},
+			save : function(base, liveMsg) {
+				var $base = $(base),
+					quality = $base.data('quality'),
+					hash = $base.data('hash'),
+					file;
+				if (typeof quality !== 'undefined') {
+					this.fm.storage('jpgQuality', quality);
+				}
+				if (hash) {
+					file = this.fm.file(hash);
+					$base.data('mime', file.mime);
+				} else {
+					$base.removeData('mime');
+				}
+			},
+			// On dialog closed
+			close : function(base, liveMsg) {
+				$(base).attr('src', '');
+				liveMsg && $(window).off('message.' + this.fm.namespace, liveMsg.receive);
+			}
+		},
+		{
 			// Adobe Creative SDK Creative Tools Image Editor UI
 			// MIME types to accept
 			info : {
 				id : 'creativecloud',
 				name : 'Creative Cloud',
-				iconImg : 'img/edit_creativecloud.png',
+				iconImg : 'img/editor-icons.png 0 -192',
+				dataScheme: true,
 				schemeContent: true,
 				single: true,
+				canMakeEmpty: false,
 				integrate: {
 					title: 'Adobe Creative Cloud',
 					link: 'https://www.adobe.io/apis/creativecloud.html'
@@ -347,7 +868,7 @@
 			},
 			mimes : ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/x-ms-bmp'],
 			// HTML of this editor
-			html : '<div style="width:100%;height:300px;max-height:100%;text-align:center;"><img/></div>',
+			html : '<div class="elfinder-edit-imageeditor"><img/></div>',
 			// called on initialization of elFinder cmd edit (this: this editor's config object)
 			setup : function(opts, fm) {
 				if (fm.UA.ltIE8 || !opts.extraOptions || !opts.extraOptions.creativeCloudApiKey) {
@@ -491,7 +1012,7 @@
 			info : {
 				id : 'aceeditor',
 				name : 'ACE Editor',
-				iconImg : 'img/edit_aceeditor.png'
+				iconImg : 'img/editor-icons.png 0 -96'
 			},
 			load : function(textarea) {
 				var self = this,
@@ -656,7 +1177,7 @@
 							opts: {}
 						});
 						
-						dialog.trigger('resize');
+						//dialog.trigger('resize');
 						dfrd.resolve(editor);
 					};
 
@@ -696,7 +1217,7 @@
 			info : {
 				id : 'codemirror',
 				name : 'CodeMirror',
-				iconImg : 'img/edit_codemirror.png'
+				iconImg : 'img/editor-icons.png 0 -176'
 			},
 			load : function(textarea) {
 				var fm = this.fm,
@@ -787,8 +1308,6 @@
 							})
 						)
 						.prependTo(base.next());
-
-						base.parent().trigger('resize');
 					};
 				// load script then start
 				if (!self.confObj.loader) {
@@ -854,7 +1373,7 @@
 			info : {
 				id : 'simplemde',
 				name : 'SimpleMDE',
-				iconImg : 'img/edit_simplemde.png'
+				iconImg : 'img/editor-icons.png 0 -80'
 			},
 			exts  : ['md'],
 			load : function(textarea) {
@@ -950,7 +1469,7 @@
 			info : {
 				id : 'ckeditor',
 				name : 'CKEditor',
-				iconImg : 'img/edit_ckeditor.png'
+				iconImg : 'img/editor-icons.png 0 0'
 			},
 			exts  : ['htm', 'html', 'xhtml'],
 			setup : function(opts, fm) {
@@ -1066,7 +1585,7 @@
 			info : {
 				id : 'ckeditor5',
 				name : 'CKEditor5',
-				iconImg : 'img/edit_ckeditor5.png'
+				iconImg : 'img/editor-icons.png 0 -16'
 			},
 			exts : ['htm', 'html', 'xhtml'],
 			html : '<div class="edit-editor-ckeditor5"></div>',
@@ -1259,7 +1778,7 @@
 			info : {
 				id : 'tinymce',
 				name : 'TinyMCE',
-				iconImg : 'img/edit_tinymce.png'
+				iconImg : 'img/editor-icons.png 0 -64'
 			},
 			exts  : ['htm', 'html', 'xhtml'],
 			setup : function(opts, fm) {
@@ -1276,7 +1795,7 @@
 					fm   = this.fm,
 					dfrd = $.Deferred(),
 					init = function() {
-						var base = $(textarea).parent(),
+						var base = $(textarea).show().parent(),
 							dlg = base.closest('.elfinder-dialog'),
 							h = base.height(),
 							delta = base.outerHeight(true) - h,
@@ -1410,11 +1929,12 @@
 			info : {
 				id : 'zohoeditor',
 				name : 'Zoho Editor',
-				iconImg : 'img/edit_zohooffice.png',
+				iconImg : 'img/editor-icons.png 0 -32',
 				cmdCheck : 'ZohoOffice',
 				preventGet: true,
 				hideButtons: true,
 				syncInterval : 15000,
+				canMakeEmpty: true,
 				integrate: {
 					title: 'Zoho Office API',
 					link: 'https://www.zoho.com/officeapi/'
@@ -1516,25 +2036,7 @@
 			getContent : function() {},
 			save : function() {},
 			// Before dialog close
-			beforeclose : function(base) {
-				var dfd = $.Deferred(),
-					ab = 'about:blank';
-				base.src = ab;
-				setTimeout(function() {
-					var src;
-					try {
-						src = base.contentWindow.location.href;
-					} catch(e) {
-						src = null;
-					}
-					if (src === ab) {
-						dfd.resolve();
-					} else {
-						dfd.reject();
-					}
-				}, 10);
-				return dfd;
-			},
+			beforeclose : iframeClose,
 			// On dialog closed
 			close : function(ta) {
 				var fm = this.fm,
@@ -1549,6 +2051,7 @@
 			info : {
 				id : 'ziparchive',
 				name : 'btnMount',
+				iconImg : 'img/toolbar.png 0 -416',
 				cmdCheck : 'ZipArchive',
 				edit : function(file, editor) {
 					var fm = this,
@@ -1606,6 +2109,8 @@
 					instance: void(0),
 					opts: {}
 				});
+				textarea.setSelectionRange && textarea.setSelectionRange(0, 0);
+				$(textarea).trigger('focus').show();
 			},
 			save : function(){}
 		},
@@ -1614,12 +2119,13 @@
 			info : {
 				id : 'onlineconvert',
 				name : 'Online Convert',
-				iconImg : 'img/edit_onlineconvert.png',
+				iconImg : 'img/editor-icons.png 0 -144',
 				cmdCheck : 'OnlineConvert',
 				preventGet: true,
 				hideButtons: true,
 				single: true,
 				converter: true,
+				canMakeEmpty: false,
 				integrate: {
 					title: 'ONLINE-CONVERT.COM',
 					link: 'https://online-convert.com'
@@ -1649,7 +2155,7 @@
 					},
 					link : '<div class="elfinder-edit-onlineconvert-link"><a href="https://www.online-convert.com" target="_blank"><span class="elfinder-button-icon"></span>ONLINE-CONVERT.COM</a></div>',
 					toastWidth : 280,
-					useTabs : $.fn.tabs
+					useTabs : ($.fn.tabs && !fm.UA.iOS)? true : false // Can't work on iOS, I don't know why.
 				}, mOpts);
 			},
 			// Prepare on before show dialog
@@ -1663,6 +2169,7 @@
 				var ta = this,
 					confObj = ta.editor.confObj,
 					set = confObj.set,
+					uiToast = fm.getUI('toast'),
 					idxs = {},
 					allowZip = fm.uploadMimeCheck('application/zip', file.phash),
 					getExt = function(cat, con) {
@@ -1674,6 +2181,48 @@
 							return (c.ext || con).toLowerCase();
 						}
 						return con.toLowerCase();
+					},
+					setOptions = function(cat, done) {
+						var type, dfdInit, dfd;
+						if (typeof confObj.api === 'undefined') {
+							dfdInit = fm.request({
+								data: {
+									cmd: 'editor',
+									name: 'OnlineConvert',
+									method: 'init'
+								},
+								preventDefault : true
+							});
+						} else {
+							dfdInit = $.Deferred().resolve({api: confObj.api});
+						}
+						cat = cat.toLowerCase();
+						dfdInit.done(function(data) {
+							confObj.api = data.api;
+							if (confObj.api) {
+								if (cat) {
+									type = '?category=' + cat;
+								} else {
+									type = '';
+									cat = 'all';
+								}
+								if (!confObj.conversions) {
+									confObj.conversions = {};
+								}
+								if (!confObj.conversions[cat]) {
+									dfd = $.getJSON('https://api2.online-convert.com/conversions' + type);
+								} else {
+									dfd = $.Deferred().resolve(confObj.conversions[cat]);
+								}
+								dfd.done(function(d) {
+									confObj.conversions[cat] = d;
+									$.each(d, function(i, o) {
+										btns[set.useTabs? 'children' : 'find']('.onlineconvert-category-' + o.category).children('.onlineconvert-' + o.target).trigger('makeoption', o);
+									});
+									done && done();
+								});
+							}
+						});
 					},
 					btns = (function() {
 						var btns = $('<div/>').on('click', 'button', function() {
@@ -1733,7 +2282,7 @@
 								}
 								f.append($('<span/>').text(fm.i18n(n) + ' : '));
 								if (o.type === 'boolean') {
-									if (o.default || (nozip = (n === 'allow_multiple_outputs' && !allowZip))) {
+									if (o['default'] || (nozip = (n === 'allow_multiple_outputs' && !allowZip))) {
 										checked = ' checked';
 										if (nozip) {
 											disabled = ' disabled';
@@ -1744,9 +2293,9 @@
 										btn.data('opts', opts);
 									}
 									f.append($('<input type="checkbox" value="true"'+checked+disabled+'/>'));
-								} else if (o.enum){
+								} else if (o['enum']){
 									elm = $('<select/>').append($('<option value=""/>').text('Select...'));
-									$.each(o.enum, function(i, v) {
+									$.each(o['enum'], function(i, v) {
 										elm.append($('<option value="'+v+'"/>').text(v));
 									});
 									f.append(elm);
@@ -1767,47 +2316,6 @@
 									});
 								}
 								elm.append(b, f);
-							},
-							setOptions = function(cat) {
-								var type, dfdInit, dfd;
-								if (typeof confObj.api === 'undefined') {
-									dfdInit = fm.request({
-										data: {
-											cmd: 'editor',
-											name: 'OnlineConvert',
-											method: 'init'
-										},
-										preventDefault : true
-									});
-								} else {
-									dfdInit = $.Deferred().resolve({api: confObj.api});
-								}
-								cat = cat.toLowerCase();
-								dfdInit.done(function(data) {
-									confObj.api = data.api;
-									if (confObj.api) {
-										if (cat) {
-											type = '?category=' + cat;
-										} else {
-											type = '';
-											cat = 'all';
-										}
-										if (!confObj.conversions) {
-											confObj.conversions = {};
-										}
-										if (!confObj.conversions[cat]) {
-											dfd = $.getJSON('https://api2.online-convert.com/conversions' + type);
-										} else {
-											dfd = $.Deferred().resolve(confObj.conversions[cat]);
-										}
-										dfd.done(function(d) {
-											confObj.conversions[cat] = d;
-											$.each(d, function(i, o) {
-												btns[set.useTabs? 'children' : 'find']('.onlineconvert-category-' + o.category).children('.onlineconvert-' + o.target).trigger('makeoption', o);
-											});
-										});
-									}
-								});
 							},
 							ts = (+new Date()),
 							i = 0;
@@ -1853,8 +2361,8 @@
 							});
 						} else {
 							$.each(set.conv, function(t) {
-								btns.append($('<fieldset/>').append($('<legend/>').text(t)).append(btns.children('.onlineconvert-category-' + t.toLowerCase())));
-								setOptions(t);
+								var tl = t.toLowerCase();
+								btns.append($('<fieldset class="onlineconvert-fieldset-' + tl + '"/>').append($('<legend/>').text(t)).append(btns.children('.onlineconvert-category-' + tl)));
 							});
 						}
 						return btns;
@@ -1863,9 +2371,14 @@
 					select = $('<div/>')
 						.append(
 							btns,
-							$('<div class="elfinder-edit-onlineconvert-bottom-btn"/>').append($('<button/>').html(fm.i18n('convertOn', 'Online-Convert.com')).on('click', function() {
-								open();
-							})),
+							$('<div class="elfinder-edit-onlineconvert-bottom-btn"/>').append(
+								$('<button/>')
+									.addClass(fm.UA.iOS? 'elfinder-button-ios-multiline' : '')
+									.html(fm.i18n('convertOn', 'Online-Convert.com'))
+									.on('click', function() {
+										open();
+									})
+							),
 							(set.showLink? $(set.link) : null)
 						)
 						.appendTo(ifm.parent().css({overflow: 'auto'})),
@@ -1912,7 +2425,8 @@
 									'args[convert]'  : opts.convert.toLowerCase(),
 									'args[options]'  : JSON.stringify(opts.options),
 									'args[source]'   : fm.convAbsUrl(url),
-									'args[filename]' : fm.splitFileExtention(file.name)[0] + '.' + getExt(opts.category, opts.convert)
+									'args[filename]' : fm.splitFileExtention(file.name)[0] + '.' + getExt(opts.category, opts.convert),
+									'args[mime]'     : file.mime
 								},
 								preventDefault : true
 							}).done(function(data) {
@@ -1945,12 +2459,16 @@
 								}, 1000);
 							}
 						} else {
+							uiToast.appendTo(ta.closest('.ui-dialog'));
 							if (res.message) {
 								fm.toast({
 									msg: fm.i18n(res.message),
 									mode: 'error',
 									timeOut: 5000,
-									width: set.toastWidth
+									width: set.toastWidth,
+									onHidden: function() {
+										uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
+									}
 								});
 							}
 							fm.toast({
@@ -1959,6 +2477,7 @@
 								timeOut: 3000,
 								width: set.toastWidth,
 								onHidden: function() {
+									uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
 									open(cat, con);
 								}
 							});
@@ -2014,16 +2533,10 @@
 						}
 						spnr.hide();
 						select.hide();
-						ifm.parent().css({overflow: 'hidden'});
+						ifm.parent().css({overflow: fm.UA.iOS? 'auto' : 'hidden'});
 						$(ta).data('dfrd', url().done(function(url) {
 							var opts;
 							if (url) {
-								fm.toast({
-									msg: fm.i18n('editorConvNeedUpload'),
-									mode: 'info',
-									timeOut: 5000,
-									width: set.toastWidth
-								});
 								opts = {
 									css: {
 										height: '100%'
@@ -2036,14 +2549,23 @@
 									instance: ifm,
 									opts: opts
 								});
-
-								url = encodeURIComponent(fm.convAbsUrl(url));
-								// need `.replace(/%2520/g, '%252520')` for a bug of online-convert.com
-								if (set['fix%20']) {
-									url = url.replace(/%2520/g, '%252520');
-								}
-								url = link + url;
-								ifm.attr('src', url).show().css(opts.css);
+								url = link + encodeURIComponent(fm.convAbsUrl(url));
+								ifm.attr('src', url).show().css(opts.css)
+									.one('load', function() {
+										uiToast.appendTo(ta.closest('.ui-dialog'));
+										fm.toast({
+											msg: fm.i18n('editorConvNeedUpload'),
+											mode: 'info',
+											timeOut: 10000,
+											width: set.toastWidth,
+											onHidden: function() {
+												uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
+											},
+											button: {
+												text: 'btnYes'
+											}
+										});
+									});
 							} else {
 								data.error && fm.error(data.error);
 								ta.elfinderdialog('destroy');
@@ -2051,37 +2573,41 @@
 						}));
 					},
 					mode = 'document',
-					m;
+					cl, m;
+				ifm.parent().addClass('overflow-scrolling-touch');
 				if (m = file.mime.match(/^(audio|image|video)/)) {
 					mode = m[1];
 				}
-				if (set.useTabs && idxs[mode]) {
-					btns.tabs('option', 'active', idxs[mode]);
+				if (set.useTabs) {
+					if (idxs[mode]) {
+						btns.tabs('option', 'active', idxs[mode]);
+					}
+				} else {
+					cl = Object.keys(set.conv).length;
+					$.each(set.conv, function(t) {
+						if (t.toLowerCase() === mode) {
+							setOptions(t, function() {
+								$.each(set.conv, function(t0) {
+									t0.toLowerCase() !== mode && setOptions(t0);
+								});
+							});
+							return false;
+						}
+						cl--;
+					});
+					if (!cl) {
+						$.each(set.conv, function(t) {
+							setOptions(t);
+						});
+					}
+					ifm.parent().scrollTop(btns.children('.onlineconvert-fieldset-' + mode).offset().top);
 				}
 			},
 			load : function() {},
 			getContent : function() {},
 			save : function() {},
 			// Before dialog close
-			beforeclose : function(base) {
-				var dfd = $.Deferred(),
-					ab = 'about:blank';
-				base.src = ab;
-				setTimeout(function() {
-					var src;
-					try {
-						src = base.contentWindow.location.href;
-					} catch(e) {
-						src = null;
-					}
-					if (src === ab) {
-						dfd.resolve();
-					} else {
-						dfd.reject();
-					}
-				}, 100);
-				return dfd;
-			},
+			beforeclose : iframeClose,
 			// On dialog closed
 			close : function(ta) {
 				var fm = this.fm,

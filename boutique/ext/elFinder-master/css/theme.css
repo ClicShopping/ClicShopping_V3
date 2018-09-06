@@ -160,7 +160,7 @@
 }
 
 .elfinder-cwd-icon-x-shockwave-flash:before {
-    background-color: #D76C1B
+    background-color: #f43a36
 }
 
 .elfinder-cwd-icon-zip:before,
@@ -193,6 +193,62 @@
 .elfinder-cwd-icon-x-java-source:before,
 .elfinder-cwd-icon-x-php:before {
     background-color: #7c607c
+}
+
+.elfinder-cwd-icon-msword:before,
+.elfinder-cwd-icon-vnd-ms-office:before,
+.elfinder-cwd-icon-vnd-ms-word:before,
+.elfinder-cwd-icon-vnd-ms-word-document-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-word-template-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-wordprocessingml-document:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-wordprocessingml-template:before {
+    background-color: #2b569a
+}
+
+.elfinder-cwd-icon-ms-excel:before,
+.elfinder-cwd-icon-vnd-ms-excel:before,
+.elfinder-cwd-icon-vnd-ms-excel-addin-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-excel-sheet-binary-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-excel-sheet-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-excel-template-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-spreadsheetml-sheet:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-spreadsheetml-template:before {
+    background-color: #107b10
+}
+
+.elfinder-cwd-icon-vnd-ms-powerpoint:before,
+.elfinder-cwd-icon-vnd-ms-powerpoint-addin-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-powerpoint-presentation-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-powerpoint-slide-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-powerpoint-slideshow-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-ms-powerpoint-template-macroEnabled-12:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-presentation:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-slide:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-slideshow:before,
+.elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-template:before {
+    background-color: #d24625
+}
+
+.elfinder-cwd-icon-vnd-oasis-opendocument-chart:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-database:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-formula:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-graphics:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-graphics-template:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-image:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-presentation:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-presentation-template:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet-template:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-master:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-template:before,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-web:before,
+.elfinder-cwd-icon-vnd-openofficeorg-extension:before {
+    background-color: #00a500
+}
+
+.elfinder-cwd-icon-postscript:before {
+    background-color: #ff5722
 }
 
 /* list view*/
@@ -268,6 +324,12 @@
 }
 
 /* tooltip */
-.elfinder-ui-tooltip.ui-widget-shadow {
+.elfinder-ui-tooltip,
+.elfinder .elfinder-ui-tooltip {
+    background-color: #fff !important;
+}
+
+.elfinder-ui-tooltip.ui-widget-shadow,
+.elfinder .elfinder-ui-tooltip.ui-widget-shadow {
     box-shadow: 2px 6px 4px -4px #cecdcd;
 }

@@ -2,7 +2,7 @@
  * Japanese translation
  * @author Tomoaki Yoshida <info@yoshida-studio.jp>
  * @author Naoki Sawada <hypweb+elfinder@gmail.com>
- * @version 2018-07-11
+ * @version 2018-08-24
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -17,9 +17,9 @@
 		translator : 'Tomoaki Yoshida &lt;info@yoshida-studio.jp&gt;, Naoki Sawada &lt;hypweb+elfinder@gmail.com&gt;',
 		language   : 'Japanese',
 		direction  : 'ltr',
-		dateFormat : 'Y/m/d h:i A', // Mar 13, 2012 05:27 PM
-		fancyDateFormat : '$1 h:i A', // will produce smth like: Today 12:25 PM
-		nonameDateFormat : 'ymd-His', // to apply if upload file is noname: 120513172700
+		dateFormat : 'Y/m/d h:i A', // will show like: 2018/08/24 04:37 PM
+		fancyDateFormat : '$1 h:i A', // will show like: 今日 04:37 PM
+		nonameDateFormat : 'ymd-His', // noname upload will show like: 180824-163717
 		messages   : {
 
 			/********************************** errors **********************************/
@@ -115,7 +115,7 @@
 			'errEditorNotFound'    : 'このファイルタイプのエディターがありません。', // from v2.1.25 added 23.5.2017
 			'errServerError'       : 'サーバー側でエラーが発生しました。', // from v2.1.25 added 16.6.2017
 			'errEmpty'             : 'フォルダ"$1"を空にすることができません。', // from v2.1.25 added 22.6.2017
-			
+
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'アーカイブ作成',
 			'cmdback'      : '戻る',
@@ -132,7 +132,7 @@
 			'cmdinfo'      : '情報',
 			'cmdmkdir'     : '新規フォルダ',
 			'cmdmkdirin'   : '新規フォルダへ', // from v2.1.7 added 19.2.2016
-			'cmdmkfile'    : '新規テキストファイル',
+			'cmdmkfile'    : '新規ファイル',
 			'cmdopen'      : '開く',
 			'cmdpaste'     : 'ペースト',
 			'cmdquicklook' : 'プレビュー',
@@ -158,11 +158,12 @@
 			'cmdempty'     : 'フォルダを空に', // from v2.1.25 added 22.06.2017
 			'cmdundo'      : '元に戻す', // from v2.1.27 added 31.07.2017
 			'cmdredo'      : 'やり直し', // from v2.1.27 added 31.07.2017
-			'cmdpreference': '環境設定', // from v2.1.27 added 03.08.2017
+			'cmdpreference': '個人設定', // from v2.1.27 added 03.08.2017
 			'cmdselectall' : 'すべて選択', // from v2.1.28 added 15.08.2017
 			'cmdselectnone': '選択解除', // from v2.1.28 added 15.08.2017
 			'cmdselectinvert': '選択を反転', // from v2.1.28 added 15.08.2017
 			'cmdopennew'   : '新しいウィンドウで開く', // from v2.1.38 added 3.4.2018
+			'cmdhide'      : '非表示 (個人設定)', // from v2.1.41 added 24.7.2018
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : '閉じる',
@@ -220,10 +221,11 @@
 			'ntfparents'  : 'パス情報を取得しています', // from v2.1.17 added 2.11.2016
 			'ntfchunkmerge': 'アップロード済みファイルを処理中', // from v2.1.17 added 2.11.2016
 			'ntftrash'    : 'ごみ箱に入れています', // from v2.1.24 added 2.5.2017
-			'ntfrestore'  : 'ごみ箱から元に戻しています', // from v2.1.24 added 2.5.2017
+			'ntfrestore'  : 'ごみ箱から元に戻しています', // from v2.1.24 added 3.5.2017
 			'ntfchkdir'   : '宛先フォルダを確認しています', // from v2.1.24 added 3.5.2017
 			'ntfundo'     : '前の操作を取り消して元に戻しています', // from v2.1.27 added 31.07.2017
 			'ntfredo'     : '元に戻した操作をやり直しています', // from v2.1.27 added 31.07.2017
+			'ntfchkcontent' : 'コンテンツをチェックしています', // from v2.1.41 added 3.8.2018
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'ごみ箱', //from v2.1.24 added 29.4.2017
@@ -287,6 +289,8 @@
 			'untitled file.txt' : '新規ファイル.txt', // added 10.11.2015
 			'untitled folder'   : '新規フォルダ',   // added 10.11.2015
 			'Archive'           : '新規アーカイブ',  // from v2.1 added 10.11.2015
+			'untitled file'     : '新規ファイル.$1',  // from v2.1.41 added 6.8.2018
+			'extentionfile'     : '$1 ファイル',     // from v2.1.41 added 6.8.2018
 
 			/********************************** messages **********************************/
 			'confirmReq'      : '処理を実行しますか？',
@@ -431,7 +435,7 @@
 			'TextArea'        : 'テキストエリア', // from v2.1.25 added 14.6.2017
 			'folderToEmpty'   : 'フォルダ"$1"を空にします。', // from v2.1.25 added 22.6.2017
 			'filderIsEmpty'   : 'フォルダ"$1"にアイテムはありません。', // from v2.1.25 added 22.6.2017
-			'preference'      : '環境設定', // from v2.1.26 added 28.6.2017
+			'preference'      : '個人設定', // from v2.1.26 added 28.6.2017
 			'language'        : '言語', // from v2.1.26 added 28.6.2017
 			'clearBrowserData': 'ブラウザに保存された設定を初期化する', // from v2.1.26 added 28.6.2017
 			'toolbarPref'     : 'ツールバー設定', // from v2.1.27 added 2.8.2017
@@ -464,10 +468,16 @@
 			'iconSize'        : 'アイコンサイズ (アイコンビュー)', // from v2.1.39 added 7.5.2018
 			'editorMaximized' : 'エディターウィンドウを最大化して開く', // from v2.1.40 added 30.6.2018
 			'editorConvNoApi' : '現在 API による変換は利用できないので、Web サイトで変換を行ってください。', //from v2.1.40 added 8.7.2018
-			'editorConvNeedUpload' : '変換後に変換されたファイルを保存するには、アイテムの URL またはダウンロードしたファイルをアップロードする必要があります。', // from v2.1.40 added 8.7.2018
+			'editorConvNeedUpload' : '変換後に変換されたファイルを保存するには、アイテムの URL またはダウンロードしたファイルをアップロードする必要があります。', //from v2.1.40 added 8.7.2018
 			'convertOn'       : '$1 のサイト上で変換する', // from v2.1.40 added 10.7.2018
 			'integrations'    : '統合', // from v2.1.40 added 11.7.2018
 			'integrationWith' : 'この elFinder は次の外部サービスが統合されています。それらの利用規約、プライバシーポリシーなどをご確認の上、ご利用ください。', // from v2.1.40 added 11.7.2018
+			'showHidden'      : '非表示アイテムを表示', // from v2.1.41 added 24.7.2018
+			'hideHidden'      : '非表示アイテムを隠す', // from v2.1.41 added 24.7.2018
+			'toggleHidden'    : '非表示アイテムの表示/非表示', // from v2.1.41 added 24.7.2018
+			'makefileTypes'   : '「新しいファイル」で有効にするファイルタイプ', // from v2.1.41 added 7.8.2018
+			'typeOfTextfile'  : 'テキストファイルのタイプ', // from v2.1.41 added 7.8.2018
+			'add'             : '追加', // from v2.1.41 added 7.8.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : '不明',

@@ -31,7 +31,7 @@ class elFinder {
 	 * 
 	 * @var integer
 	 */
-	protected static $ApiRevision = 40;
+	protected static $ApiRevision = 42;
 	
 	/**
 	 * Storages (root dirs)
@@ -106,20 +106,30 @@ class elFinder {
 	 * @var array
 	 */
 	public static $textMimes = array(
-		'application/x-empty',
+		'application/dash+xml',
+		'application/docbook+xml',
 		'application/javascript',
 		'application/json',
-		'application/xhtml+xml',
-		'audio/x-mp3-playlist',
-		'application/x-web-config',
-		'application/docbook+xml',
-		'application/x-php',
-		'application/x-perl',
+		'application/plt',
+		'application/sat',
+		'application/sql',
+		'application/step',
+		'application/vnd.hp-hpgl',
 		'application/x-awk',
 		'application/x-config',
 		'application/x-csh',
+		'application/x-empty',
+		'application/x-mpegurl',
+		'application/x-perl',
+		'application/x-php',
+		'application/x-web-config',
+		'application/xhtml+xml',
 		'application/xml',
-		'application/sql'
+		'audio/x-mp3-playlist',
+		'image/cgm',
+		'image/svg+xml',
+		'image/vnd.dxf',
+		'model/iges'
 	);
 	
 	/**
@@ -490,11 +500,17 @@ class elFinder {
 		! defined('ELFINDER_UNRAR_PATH')    && define('ELFINDER_UNRAR_PATH',    'unrar');
 		! defined('ELFINDER_7Z_PATH')       && define('ELFINDER_7Z_PATH', (substr(PHP_OS, 0, 3) === 'WIN')? '7z' : '7za');
 		! defined('ELFINDER_CONVERT_PATH')  && define('ELFINDER_CONVERT_PATH',  'convert');
+		! defined('ELFINDER_IDENTIFY_PATH') && define('ELFINDER_IDENTIFY_PATH', 'identify');
 		! defined('ELFINDER_EXIFTRAN_PATH') && define('ELFINDER_EXIFTRAN_PATH', 'exiftran');
 		! defined('ELFINDER_JPEGTRAN_PATH') && define('ELFINDER_JPEGTRAN_PATH', 'jpegtran');
 		! defined('ELFINDER_FFMPEG_PATH')   && define('ELFINDER_FFMPEG_PATH',   'ffmpeg');
 		
 		! defined('ELFINDER_DISABLE_ZIPEDITOR') && define('ELFINDER_DISABLE_ZIPEDITOR', false);
+
+		// enable(true)/disable(false) handling postscript on ImageMagick
+		// Should be `false` as long as there is a Ghostscript vulnerability
+		// see https://artifex.com/news/ghostscript-security-resolved/
+		! defined('ELFINDER_IMAGEMAGICK_PS') && define('ELFINDER_IMAGEMAGICK_PS', false);
 
 		// for backward compat
 		$this->version = (string)self::$ApiVersion;
@@ -585,21 +601,21 @@ class elFinder {
 		$this->uploadTempPath = (isset($opts['uploadTempPath']) ? $opts['uploadTempPath'] : '');
 		$this->callbackWindowURL = (isset($opts['callbackWindowURL']) ? $opts['callbackWindowURL'] : '');
 		$this->maxTargets = (isset($opts['maxTargets']) ? intval($opts['maxTargets']) : $this->maxTargets);
-		elFinder::$commonTempPath = (isset($opts['commonTempPath']) ? $opts['commonTempPath'] : './.tmp');
+		elFinder::$commonTempPath = (isset($opts['commonTempPath']) ? realpath($opts['commonTempPath']) : dirname(__FILE__) . '/.tmp');
 		if (!is_writable(elFinder::$commonTempPath)) {
 			elFinder::$commonTempPath = sys_get_temp_dir();
 			if (!is_writable(elFinder::$commonTempPath)) {
 				elFinder::$commonTempPath = '';
 			}
 		}
-		if (isset($opts['connectionFlagsPath']) && is_writable($opts['connectionFlagsPath'])) {
+		if (isset($opts['connectionFlagsPath']) && is_writable($opts['connectionFlagsPath'] = realpath($opts['connectionFlagsPath']))) {
 			elFinder::$connectionFlagsPath = $opts['connectionFlagsPath'];
 		} else {
 			elFinder::$connectionFlagsPath = elFinder::$commonTempPath;
 		}
 		
 		if (! empty($opts['tmpLinkPath'])) {
-			elFinder::$tmpLinkPath = $opts['tmpLinkPath'];
+			elFinder::$tmpLinkPath = realpath($opts['tmpLinkPath']);
 		}
 		if (! empty($opts['tmpLinkUrl'])) {
 			elFinder::$tmpLinkUrl = $opts['tmpLinkUrl'];
@@ -652,7 +668,7 @@ class elFinder {
 					if (! is_array($handlers)) {
 						$handlers = array($handlers);
 					} else {
-						if (count($handlers) === 2 && is_object($handlers[0])) {
+						if (count($handlers) === 2 && is_callable($handlers)) {
 							$handlers = array($handlers);
 						}
 					}
@@ -973,7 +989,7 @@ class elFinder {
 				if (is_array($_res)) {
 					if (! empty($_res['preventexec'])) {
 						$result = array('error' => true);
-						if ($cmd === 'upload' & ! empty($args['node'])) {
+						if ($cmd === 'upload' && ! empty($args['node'])) {
 							$result['callback'] = array(
 								'node' => $args['node'],
 								'bind' => $cmd
@@ -2509,12 +2525,16 @@ class elFinder {
 	 * 
 	 * @param  object $volume elFinderVolumeDriver instance
 	 * @param  string $path Local path
+	 * @param  string $name Filename to save
 	 * @return string file type extension with dot
 	 * @author Naoki Sawada
 	 */
-	protected function detectFileExtension($volume, $path) {
+	protected function detectFileExtension($volume, $path, $name) {
 		$mime = $this->detectMimeType($path);
-		$ext = $mime !== 'unknown'? $volume->getExtentionByMime($mime) : '';
+		if ($mime === 'unknown') {
+			$mime = 'application/octet-stream';
+		}
+		$ext = $volume->getExtentionByMime($volume->mimeTypeNormalize($mime, $name));
 		return $ext? ('.' . $ext) : '';
 	}
 	
@@ -2805,7 +2825,7 @@ class elFinder {
 						if ($url === 'chunkfail' && $args['mimes'] === 'chunkfail') {
 							$this->checkChunkedFile(null, $chunk, $cid, $tempDir);
 							if (preg_match('/^(.+)(\.\d+_(\d+))\.part$/s', $chunk, $m)) {
-								$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $m[1], self::ERROR_UPLOAD_TRANSFER);
+								$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $m[1], self::ERROR_UPLOAD_TEMP);
 							}
 							return $result;
 						} else {
@@ -2861,7 +2881,7 @@ class elFinder {
 										rename($tmpfname, $tmpfname . $_ext);
 										$tmpfname = $tmpfname . $_ext;
 									}
-									$_b = $this->detectFileExtension($volume, $tmpfname);
+									$_b = $this->detectFileExtension($volume, $tmpfname, $_name);
 									$_name = $_a.$_b;
 								} else {
 									$_b = '.'.$_b;
@@ -2891,7 +2911,7 @@ class elFinder {
 		$addedDirs = array();
 		foreach ($files['name'] as $i => $name) {
 			if (($error = $files['error'][$i]) > 0) {
-				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, $error == UPLOAD_ERR_INI_SIZE || $error == UPLOAD_ERR_FORM_SIZE ? self::ERROR_UPLOAD_FILE_SIZE : self::ERROR_UPLOAD_TRANSFER);
+				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, $error == UPLOAD_ERR_INI_SIZE || $error == UPLOAD_ERR_FORM_SIZE ? self::ERROR_UPLOAD_FILE_SIZE : self::ERROR_UPLOAD_TRANSFER, $error);
 				$this->uploadDebug = 'Upload error code: '.$error;
 				break;
 			}
@@ -2916,7 +2936,7 @@ class elFinder {
 							}
 						}
 					} else {
-						$result['error'] = $this->error(self::ERROR_UPLOAD_FILE, $chunk, self::ERROR_UPLOAD_TRANSFER);
+						$result['error'] = $this->error(self::ERROR_UPLOAD_FILE, $chunk, self::ERROR_UPLOAD_TEMP);
 						$this->uploadDebug = 'Upload error: unable open tmp file';
 					}
 					return $result;
@@ -2944,13 +2964,14 @@ class elFinder {
 				}
 			}
 			
-			if ($mtime) {
+			clearstatcache();
+			if ($mtime && is_file($tmpname)) {
 				// for keep timestamp option in the LocalFileSystem volume
 				touch($tmpname, $mtime);
 			}
 			
-			if (($fp = fopen($tmpname, 'rb')) == false) {
-				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, self::ERROR_UPLOAD_TRANSFER);
+			if (!is_file($tmpname) || ($fp = fopen($tmpname, 'rb')) === false) {
+				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, self::ERROR_UPLOAD_TEMP);
 				$this->uploadDebug = 'Upload error: unable open tmp file';
 				if (! is_uploaded_file($tmpname)) {
 					if (unlink($tmpname)) unset($GLOBALS['elFinderTempFiles'][$tmpfname]);
@@ -2998,7 +3019,7 @@ class elFinder {
 					}
 				}
 			}
-			if (! $_target || ($file = $volume->upload($fp, $_target, $name, $tmpname, $hashes)) === false) {
+			if (! $_target || ($file = $volume->upload($fp, $_target, $name, $tmpname, ($_target === $target)? $hashes : array())) === false) {
 				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, $volume->error());
 				fclose($fp);
 				if (! is_uploaded_file($tmpname)) {
@@ -3273,6 +3294,10 @@ class elFinder {
 				}
 				$fmeta = stream_get_meta_data($fp);
 				$mime = $this->detectMimeType($fmeta['uri']);
+				if ($mime === 'unknown') {
+					$mime = 'application/octet-stream';
+				}
+				$mime = $volume->mimeTypeNormalize($mime, $file['name']);
 				$args['content'] = 'data:'.$mime.';base64,'.base64_encode(file_get_contents($fmeta['uri']));
 			}
 			$encoding = '';
