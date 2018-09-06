@@ -367,4 +367,3 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
     </div>
   </div>
 </div>
-

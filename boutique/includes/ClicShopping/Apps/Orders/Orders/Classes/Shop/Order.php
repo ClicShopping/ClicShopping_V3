@@ -38,15 +38,20 @@
     protected $db;
     protected $lang;
     protected $mail;
+    protected $prod;
+    protected $productsCommon;
+    protected $currencies;
+    protected $cart;
 
     public function __construct($order_id = null) {
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
       $this->mail = Registry::get('Mail');
-
-      if (isset($_GET['order_id']) && is_numeric($_GET['order_id']) ) {
-        $this->_id = $_GET['order_id'];
-      }
+      $this->prod = Registry::get('Prod');
+      $this->productsCommon = Registry::get('ProductsCommon');
+      $this->customerClass = Registry::get('Customer');
+      $this->currencies = Registry::get('Currencies');
+      $this->cart = Registry::get('ShoppingCart');
 
       $this->info = [];
       $this->totals = [];
@@ -235,21 +240,17 @@
     }
 
     public function cart() {
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Currencies = Registry::get('Currencies');
-      $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
-      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
-      $this->content_type = $CLICSHOPPING_ShoppingCart->get_content_type();
+      $this->content_type = $this->cart->get_content_type();
 
       if (($this->content_type != 'virtual') && (!isset($_SESSION['sendto']))) {
-        $_SESSION['sendto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
+        $_SESSION['sendto'] = $this->customerClass->getDefaultAddressID();
       }
 
 // recuperation des informations clients B2B pour enregistrement commandes
 
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+      if ($this->customerClass->getCustomersGroupID() != 0) {
 
         $customer_address = ['customers_firstname' => null,
                             'customers_lastname' => null,
@@ -274,7 +275,7 @@
                             'entry_state' => null
                             ];
 
-        if ($CLICSHOPPING_Customer->getID()) {
+        if ($this->customerClass->getID()) {
           $Qcustomer = $this->db->prepare('select c.customers_firstname,
                                                    c.customers_lastname,
                                                    c.customers_group_id,
@@ -305,8 +306,7 @@
                                          and ab.customers_id = :customers_id
                                          and c.customers_default_address_id = ab.address_book_id
                                        ');
-
-          $Qcustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+          $Qcustomer->bindInt(':customers_id', $this->customerClass->getID());
           $Qcustomer->execute();
           $customer_address = $Qcustomer->toArray();
         }
@@ -336,7 +336,7 @@
                           ];
 
 
-        if ($CLICSHOPPING_Customer->getID()) {
+        if ($this->customerClass->getID()) {
           $Qcustomer = $this->db->prepare('select c.customers_firstname,
                                                    c.customers_lastname,
                                                    c.customers_group_id,
@@ -364,7 +364,7 @@
                                            and ab.customers_id = :customers_id
                                            and c.customers_default_address_id = ab.address_book_id
                                       ');
-          $Qcustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+          $Qcustomer->bindInt(':customers_id', $this->customerClass->getID());
           $Qcustomer->execute();
 
           $customer_address = $Qcustomer->toArray();
@@ -414,7 +414,7 @@
                                        where ab.customers_id = :customers_id
                                        and ab.address_book_id = :address_book_id
                                     ');
-        $Qaddress->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qaddress->bindInt(':customers_id', $this->customerClass->getID());
         $Qaddress->bindInt(':address_book_id', (int)$_SESSION['sendto']);
         $Qaddress->execute();
 
@@ -483,7 +483,7 @@
                                          where ab.customers_id = :customers_id
                                          and ab.address_book_id = :address_book_id
                                         ');
-        $Qaddress->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qaddress->bindInt(':customers_id', $this->customerClass->getID());
         $Qaddress->bindInt(':address_book_id', $_SESSION['billto']);
         $Qaddress->execute();
 
@@ -503,7 +503,7 @@
       $this->info = ['order_status' => DEFAULT_ORDERS_STATUS_ID,
                     'order_status_invoice' => DEFAULT_ORDERS_STATUS_INVOICE_ID,
                     'currency' => $_SESSION['currency'],
-                    'currency_value' => $CLICSHOPPING_Currencies->currencies[$_SESSION['currency']]['value'],
+                    'currency_value' => $this->currencies->currencies[$_SESSION['currency']]['value'],
                     'payment_method' => isset($_SESSION['payment']) ? $_SESSION['payment'] : '',
                     'cc_type' => '',
                     'cc_owner' => '',
@@ -571,7 +571,7 @@
                          ];
 
 // recuperation des informations societes pour les clients B2B qui est transmit au fichier checkout_process.php
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+      if ($this->customerClass->getCustomersGroupID() != 0) {
         $this->customer['siret'] = $customer_address['customers_siret'];
         $this->customer['ape'] = $customer_address['customers_ape'];
         $this->customer['tva_intracom'] = $customer_address['customers_tva_intracom'];
@@ -613,8 +613,7 @@
       $this->getCodeCoupon();
       $valid_products_count = 0;
 
-      $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
-      $products = $CLICSHOPPING_ShoppingCart->get_products();
+      $products = $this->cart->get_products();
 
       for ($i = 0, $n = count($products); $i < $n; $i++) {
 
@@ -626,7 +625,7 @@
                                                        ');
 
         $QproductsQuantityUnitId->bindInt(':products_id', $products[$i]['id']);
-        $QproductsQuantityUnitId->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
+        $QproductsQuantityUnitId->bindInt(':customers_group_id', $this->customerClass->getCustomersGroupID());
 
         $QproductsQuantityUnitId->execute();
 
@@ -644,20 +643,20 @@
                                     'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                     'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                     'price' => $products[$i]['price'],
-                                    'final_price' => $products[$i]['price'] + $CLICSHOPPING_ShoppingCart->attributes_price($products[$i]['id']),
+                                    'final_price' => $products[$i]['price'] + $this->cart->attributes_price($products[$i]['id']),
                                     'weight' => $products[$i]['weight'],
                                     'id' => $products[$i]['id']
                                    ];
 
 // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+        if ($this->customerClass->getCustomersGroupID() != 0) {
 //Group tax
           $QgroupTax = $this->db->prepare('select group_order_taxe,
                                                    group_tax
                                            from :table_customers_groups
                                            where customers_group_id = :customers_group_id
                                           ');
-          $QgroupTax->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+          $QgroupTax->bindInt(':customers_group_id', $this->customerClass->getCustomersGroupID());
           $QgroupTax->execute();
 
           $group_tax = $QgroupTax->fetch();
@@ -668,7 +667,7 @@
                                                         where customers_group_id = :customers_group_id
                                                         and products_id = :products_id
                                                         ');
-          $QordersCustomersPrice->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+          $QordersCustomersPrice->bindInt(':customers_group_id', $this->customerClass->getCustomersGroupID());
           $QordersCustomersPrice->bindInt(':products_id', (int)$products[$i]['id']);
           $QordersCustomersPrice->execute();
 
@@ -679,10 +678,10 @@
             $products_price = $QordersCustomersPrice->valueDecimal('customers_group_price');
             $quantity = $products[$i]['quantity'];
 
-            $new_price_with_discount_quantity = $CLICSHOPPING_ProductsCommon->getProductsNewPriceByDiscountByQuantity($products[$i]['id'], $quantity, $products_price);
+            $new_price_with_discount_quantity = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($products[$i]['id'], $quantity, $products_price);
 
             if ($new_price_with_discount_quantity > 0) {
-              $products_price = $CLICSHOPPING_ProductsCommon->getProductsNewPriceByDiscountByQuantity($_SESSION['ProductsID'], $quantity, $products_price);
+              $products_price = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($_SESSION['ProductsID'], $quantity, $products_price);
               unset($_SESSION['ProductsID']);
             }
 
@@ -692,7 +691,7 @@
                                        'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                        'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                        'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
-                                       'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ShoppingCart->attributes_price($products[$i]['id']),
+                                       'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $this->cart->attributes_price($products[$i]['id']),
                                        'weight' => $products[$i]['weight'],
                                        'id' => $products[$i]['id']
                                       ];
@@ -744,7 +743,7 @@
         }
 
 // Mise en commentaire dela mise a jour derniere version MS2 RC2a
-//$shown_price = $CLICSHOPPING_Currencies->calculate_price($this->products[$index]['final_price'], $this->products[$index]['tax'], $this->products[$index]['qty']);
+//$shown_price = $this->currencies->calculate_price($this->products[$index]['final_price'], $this->products[$index]['tax'], $this->products[$index]['qty']);
 // discount coupons
 
         if (is_object($this->coupon)) {
@@ -770,7 +769,7 @@
         $products_tax_description = $this->products[$index]['tax_description'];
 
 // Controle pour calculer la taxe selon configuration du groupe B2B
-        if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] == 'true'))) {
+        if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($this->customerClass->getCustomersGroupID() == 0)) || (($this->customerClass->getCustomersGroupID() != 0) && ($group_tax['group_tax'] == 'true'))) {
 
           $this->info['tax'] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
 
@@ -798,7 +797,7 @@
 // Calcul de la TVA sur le montant total de la facture.
 // Client B2C : Prix TOTAL toujours affiche en TTC meme si la boutique est en mode affichage prix en HT (Prix TTC selon la class TVA mise sur les produits)
 // Clients B2B : Prix TOTAL afffiche en HT ou en TTC selon si l'assujetti de la TVA est active dans les groupes
-      if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != '0') && ($group_tax['group_tax'] == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_order_taxe'] == 1))) {
+      if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($this->customerClass->getCustomersGroupID() == 0)) || (($this->customerClass->getCustomersGroupID() != '0') && ($group_tax['group_tax'] == 'true')) || (($this->customerClass->getCustomersGroupID() != 0) && ($group_tax['group_order_taxe'] == 1))) {
         $this->info['total'] = $this->info['subtotal'] + $this->info['shipping_cost'];
       } else {
         $this->info['total'] = $this->info['subtotal'] + $this->info['tax'] + $this->info['shipping_cost'];
@@ -812,12 +811,7 @@
 * Insert
 ***********************************************************/
     public function Insert()  {
-      global $order_totals;
-
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Prod = Registry::get('Prod');
-
-      if (isset($_SESSION['payment'])) {
+        if (isset($_SESSION['payment'])) {
         if (strpos($_SESSION['payment'], '\\') !== false) {
           $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
@@ -857,7 +851,7 @@
                                    where customers_id = :customers_id
                                  ');
 
-      $Qgdpr->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $Qgdpr->bindInt(':customers_id', $this->customerClass->getID());
       $Qgdpr->execute();
 
       if ($Qgdpr->valueInt('no_ip_address') == 1) {
@@ -868,7 +862,7 @@
        $provider_name = HTTP::getProviderNameCustomer();
       }
 
-      $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+      $sql_data_array = ['customers_id' => (int)$this->customerClass->getID(),
                         'customers_group_id' => (int)$this->customer['group_id'],
                         'customers_name' => $this->customer['firstname'] . ' ' . $this->customer['lastname'],
                         'customers_company' => $this->customer['company'],
@@ -915,7 +909,7 @@
                       ];
 
 // recuperation des informations societes pour les clients B2B (voir fichier la classe OrderAdmin)
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+      if ($this->customerClass->getCustomersGroupID() != 0) {
         $sql_data_array['customers_siret'] = $this->customer['siret'];
         $sql_data_array['customers_ape'] = $this->customer['ape'];
         $sql_data_array['customers_tva_intracom'] = $this->customer['tva_intracom'];
@@ -926,61 +920,82 @@
       $this->insertID = $this->db->lastInsertId();
 
 // orders total
-      for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
-        $sql_data_array = ['orders_id' => (int)$this->insertID,
-                            'title' => $order_totals[$i]['title'],
-                            'text' => $order_totals[$i]['text'],
-                            'value' => (float)$order_totals[$i]['value'],
-                            'class' => $order_totals[$i]['code'],
-                            'sort_order' => (int)$order_totals[$i]['sort_order']
-                           ];
-        $this->db->save('orders_total', $sql_data_array);
-      }
+      $this->saveOrderTotal($this->insertID);
+//save order prdducts
+      $this->saveOrderProducts($this->insertID);
+//save Attributres
+      $this->saveAttributes($this->insertID);
 
-// initialized for the email confirmation
-      for ($i = 0, $n = count($this->products); $i < $n; $i++) {
+      return $this->insertID;
+    }
 
+
+
+
+/**
+ * @param $insert_id
+ * @return int last order products
+ */
+
+  public function saveOrderProducts($insert_id) {
+
+    for ($i = 0, $n = count($this->products); $i < $n; $i++) {
 // search the good model
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-          $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
+      if ($this->customerClass->getCustomersGroupID() != 0) {
+        $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
                                                               from :table_products_groups
                                                               where products_id = :products_id
                                                               and customers_group_id =  :customers_group_id
                                                             ');
-          $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID ($this->products[$i]['id']));
-          $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
-          $QproductsModuleCustomersGroup->execute();
+        $QproductsModuleCustomersGroup->bindInt(':products_id', $this->prod->getProductID($this->products[$i]['id']));
+        $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $this->customerClass->getCustomersGroupID());
+        $QproductsModuleCustomersGroup->execute();
 
-          $products_model = $QproductsModuleCustomersGroup->value('products_model_group');
+        $products_model = $QproductsModuleCustomersGroup->value('products_model_group');
 
-          if (empty($products_model)) $products_model = $this->products[$i]['model'];
+        if (empty($products_model)) $products_model = $this->products[$i]['model'];
 
-        } else {
-          $products_model = $this->products[$i]['model'];
-        }
+      } else {
+        $products_model = $this->products[$i]['model'];
+      }
 
 // save data
-        $sql_data_array = ['orders_id' => (int)$this->insertID,
-                          'products_id' => (int)$CLICSHOPPING_Prod::getProductID($this->products[$i]['id']),
-                          'products_model' => $products_model,
-                          'products_name' => $this->products[$i]['name'],
-                          'products_price' => (float)$this->products[$i]['price'],
-                          'final_price' => (float)$this->products[$i]['final_price'],
-                          'products_tax' => $this->products[$i]['tax'],
-                          'products_quantity' =>(int)$this->products[$i]['qty']
-                          ];
-        $this->db->save('orders_products', $sql_data_array);
+      $sql_data_array = ['orders_id' => (int)$insert_id,
+                         'products_id' => (int)$this->prod->getProductID($this->products[$i]['id']),
+                         'products_model' => $products_model,
+                         'products_name' => $this->products[$i]['name'],
+                         'products_price' => (float)$this->products[$i]['price'],
+                         'final_price' => (float)$this->products[$i]['final_price'],
+                         'products_tax' => $this->products[$i]['tax'],
+                         'products_quantity' =>(int)$this->products[$i]['qty']
+                        ];
 
-        $order_products_id = $this->db->lastInsertId();
+      $this->db->save('orders_products', $sql_data_array);
 
+      $this->orderProductsID = $this->db->lastInsertId();
+
+      return $this->orderProductsID;
+    }
+  }
+
+
+
+
+  public function saveAttributes($insert_id, $order_products_id = null) {
+
+    if (is_null($order_products_id)) {
+      $order_products_id = $this->orderProductsID;
+    }
+
+    for ($i = 0, $n = count($this->products); $i < $n; $i++) {
 //------insert customer choosen option to order--------
-        $attributes_exist = '0';
+      $attributes_exist = '0';
 
-        if (isset($this->products[$i]['attributes'])) {
-          $attributes_exist = '1';
-          for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
-            if (DOWNLOAD_ENABLED == 'true') {
-              $Qattributes = $this->db->prepare('select popt.products_options_name,
+      if (isset($this->products[$i]['attributes'])) {
+        $attributes_exist = '1';
+        for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
+          if (DOWNLOAD_ENABLED == 'true') {
+            $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                         poval.products_options_values_name,
                                                         pa.options_values_price,
                                                         pa.price_prefix,
@@ -1002,16 +1017,16 @@
                                                 and popt.language_id = poval.language_id
                                              ');
 
-              $Qattributes->bindInt(':products_id', $this->products[$i]['id']);
-              $Qattributes->bindInt(':options_id', $this->products[$i]['attributes'][$j]['option_id']);
-              $Qattributes->bindInt(':options_values_id', $this->products[$i]['attributes'][$j]['value_id']);
-              $Qattributes->bindInt(':language_id', $this->lang->getId());
+            $Qattributes->bindInt(':products_id', $this->products[$i]['id']);
+            $Qattributes->bindInt(':options_id', $this->products[$i]['attributes'][$j]['option_id']);
+            $Qattributes->bindInt(':options_values_id', $this->products[$i]['attributes'][$j]['value_id']);
+            $Qattributes->bindInt(':language_id', $this->lang->getId());
 
-              $Qattributes->execute();
+            $Qattributes->execute();
 
-            } else {
+          } else {
 
-                $Qattributes = $this->db->prepare('select popt.products_options_name,
+            $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                            poval.products_options_values_name,
                                                            pa.options_values_price,
                                                            pa.price_prefix,
@@ -1028,44 +1043,67 @@
                                                     and popt.language_id = poval.language_id
                                                   ');
 
-              $Qattributes->bindInt(':products_id', $this->products[$i]['id']);
-              $Qattributes->bindInt(':options_id', $this->products[$i]['attributes'][$j]['option_id']);
-              $Qattributes->bindInt(':options_values_id', $this->products[$i]['attributes'][$j]['value_id']);
-              $Qattributes->bindInt(':language_id', $this->lang->getId());
+            $Qattributes->bindInt(':products_id', $this->products[$i]['id']);
+            $Qattributes->bindInt(':options_id', $this->products[$i]['attributes'][$j]['option_id']);
+            $Qattributes->bindInt(':options_values_id', $this->products[$i]['attributes'][$j]['value_id']);
+            $Qattributes->bindInt(':language_id', $this->lang->getId());
 
-              $Qattributes->execute();
-            }
+            $Qattributes->execute();
+          }
+
+          $sql_data_array = ['orders_id' => (int)$insert_id,
+                             'orders_products_id' => (int)$order_products_id,
+                             'products_options' => $Qattributes->value('products_options_name'),
+                             'products_options_values' => $Qattributes->value('products_options_values_name'),
+                             'options_values_price' => (float)$Qattributes->value('options_values_price'),
+                             'price_prefix' => $Qattributes->value('price_prefix'),
+                             'products_attributes_reference' => $Qattributes->value('products_attributes_reference')
+                            ];
+
+          $this->db->save('orders_products_attributes', $sql_data_array);
+
+          if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
 
             $sql_data_array = ['orders_id' => (int)$this->insertID,
-                                'orders_products_id' => (int)$order_products_id,
-                                'products_options' => $Qattributes->value('products_options_name'),
-                                'products_options_values' => $Qattributes->value('products_options_values_name'),
-                                'options_values_price' => (float)$Qattributes->value('options_values_price'),
-                                'price_prefix' => $Qattributes->value('price_prefix'),
-                                'products_attributes_reference' => $Qattributes->value('products_attributes_reference')
+                               'orders_products_id' => (int)$order_products_id,
+                               'orders_products_filename' => $Qattributes->value('products_attributes_filename'),
+                               'download_maxdays' => (int)$Qattributes->value('products_attributes_maxdays'),
+                               'download_count' => (int)$Qattributes->value('products_attributes_maxcount')
                               ];
 
-            $this->db->save('orders_products_attributes', $sql_data_array);
-
-            if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
-
-              $sql_data_array = ['orders_id' => (int)$this->insertID,
-                                'orders_products_id' => (int)$order_products_id,
-                                'orders_products_filename' => $Qattributes->value('products_attributes_filename'),
-                                'download_maxdays' => (int)$Qattributes->value('products_attributes_maxdays'),
-                                'download_count' => (int)$Qattributes->value('products_attributes_maxcount')
-                                ];
-
-              $this->db->save('orders_products_download', $sql_data_array);
-            }
+            $this->db->save('orders_products_download', $sql_data_array);
           }
         }
-      } // end for
+      }
+    }
+  }
 
 
-      return $this->insertID;
+/**
+ * Save all order amount
+ * @param $id
+ */
+    public function saveOrderTotal($id) {
+      global $order_totals;
+
+      for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
+        $sql_data_array = ['orders_id' => (int)$id,
+                           'title' => $order_totals[$i]['title'],
+                           'text' => $order_totals[$i]['text'],
+                           'value' => (float)$order_totals[$i]['value'],
+                           'class' => $order_totals[$i]['code'],
+                           'sort_order' => (int)$order_totals[$i]['sort_order']
+                          ];
+
+        $this->db->save('orders_total', $sql_data_array);
+      }
     }
 
+
+/**
+ * Get last order Id
+ * @return Int
+ */
     public function getLastOrderId() {
       return $this->insertID;
     }
@@ -1074,19 +1112,20 @@
 /***********************************************************
 * Process
 ***********************************************************/
-
+/**
+ * @param null $order_id
+ * @param null $status_id
+ */
     public function process($order_id = null, $status_id = null) {
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       $CLICSHOPPING_Hooks->call('Orders', 'PreActionProcess');
 
       $Qproducts = $this->db->prepare('select products_id,
-                                               products_quantity
-                                        from :table_orders_products
-                                        where orders_id = :orders_id
-                                       ');
+                                              products_quantity
+                                       from :table_orders_products
+                                       where orders_id = :orders_id
+                                      ');
       $Qproducts->bindInt(':orders_id', $order_id);
       $Qproducts->execute();
 
@@ -1094,7 +1133,6 @@
 // Stock Update
         if (STOCK_LIMITED == 'true') {
           if (DOWNLOAD_ENABLED == 'true') {
-
             $stock_query_sql = 'select p.products_quantity,
                                       pad.products_attributes_filename
                                 from :table_products p
@@ -1113,7 +1151,7 @@
 
             $Qstock = $this->db->prepare($stock_query_sql);
 
-            $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
+            $Qstock->bindInt(':products_id', $this->prod->getProductID($Qproducts->valueInt('products_id')));
 
             if (is_array($products_attributes)) {
               $Qstock->bindInt(':options_id', $products_attributes['option_id']);
@@ -1128,7 +1166,7 @@
                                           where products_id = :products_id
                                           ');
 
-            $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
+            $Qstock->bindInt(':products_id', $this->prod->getProductID($Qproducts->valueInt('products_id')));
             $Qstock->execute();
           }
 
@@ -1137,15 +1175,15 @@
 // do not decrement quantities if products_attributes_filename exists
             if ((DOWNLOAD_ENABLED != 'true') || !is_null($Qstock->value('products_attributes_filename'))) {
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
-              if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+              if ($this->customerClass->getCustomersGroupID() != 0) {
 
                 $QproductsQuantityCustomersGroup = $this->db->prepare('select products_quantity_fixed_group
                                                                         from :table_products_groups
                                                                         where products_id = :products_id
                                                                         and customers_group_id =  :customers_group_id
                                                                        ');
-                $QproductsQuantityCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
-                $QproductsQuantityCustomersGroup->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+                $QproductsQuantityCustomersGroup->bindInt(':products_id', $this->prod->getProductID($Qproducts->valueInt('products_id')));
+                $QproductsQuantityCustomersGroup->bindInt(':customers_group_id', (int)$this->customerClass->getCustomersGroupID());
                 $QproductsQuantityCustomersGroup->execute();
 
                 $products_quantity_customers_group = $QproductsQuantityCustomersGroup->fetch();
@@ -1164,15 +1202,13 @@
 
             if ($stock_left != $Qstock->valueInt('products_quantity')) {
               $this->db->save('products', ['products_quantity' => (int)$stock_left],
-                                          ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
-                                          ]
+                                          ['products_id' => $this->prod->getProductID((int)$Qproducts->valueInt('products_id'))]
                               );
             }
 
             if ( ($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') ) {
               $this->db->save('products', ['products_status' => 0],
-                                          ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
-                                          ]
+                                          ['products_id' => $this->prod->getProductID((int)$Qproducts->valueInt('products_id'))]
                               );
             }
 
@@ -1188,28 +1224,27 @@
 // Update products_ordered (for bestsellers list)
         $Qupdate = $this->db->prepare('update :table_products
                                        set products_ordered = products_ordered + :products_ordered
-                                       where products_id = :products_id');
+                                       where products_id = :products_id
+                                       ');
+
         $Qupdate->bindInt(':products_ordered', $Qproducts->valueInt('products_quantity'));
         $Qupdate->bindInt(':products_id', $Qproducts->valueInt('products_id'));
         $Qupdate->execute();
       } // end while
 
-      $this->adminOrdersStatusHistory($order_id);
+      $this->OrdersStatusHistory($order_id);
       $this->sendCustomerEmail($order_id);
 
       $CLICSHOPPING_Hooks->call('Orders','Process');
     }
 
 /*
- * adminOrdersStatusHistory : Status History order
+ * OrdersStatusHistory : Status History order
  * @param $insert_id, order_id, $comment : customer order
  * @return array and save history
  * @access public
 */
-    private function adminOrdersStatusHistory($insert_id = null, $comment = null) {
-
-      $this->db = Registry::get('Db');
-
+    private function OrdersStatusHistory($insert_id = null, $comment = null) {
       $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
 
       $sql_data_array = ['orders_id' => (int)$insert_id,
@@ -1232,9 +1267,6 @@
 */
     private function sendCustomerEmail($insert_id) {
       global $CLICSHOPPING_PM;
-
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
       $Qorder = $this->db->prepare('select *
                                     from :table_orders
@@ -1261,6 +1293,7 @@
         $Qproducts->bindInt(':orders_id', $insert_id);
         $Qproducts->execute();
 
+
         $message_order = HTMl::outputProtected(STORE_NAME) . "\n\n";
         $message_order .= CLICSHOPPING::getDef('email_text_order_intro'). "\n\n";
         $message_order .= stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $insert_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
@@ -1277,7 +1310,7 @@
 
         while ( $Qproducts->fetch() ) {
 
-          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+          if ($this->customerClass->getCustomersGroupID() != 0) {
             $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
                                                                   from :table_products_groups
                                                                   where products_id = :products_id
@@ -1285,7 +1318,7 @@
                                                                 ');
 
             $QproductsModuleCustomersGroup->bindInt(':products_id', $Qproducts->valueInt('products_id') );
-            $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
+            $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $this->customerClass->getCustomersGroupID());
             $QproductsModuleCustomersGroup->execute();
 
             $products_model = $QproductsModuleCustomersGroup->value('products_model_group');
@@ -1296,7 +1329,7 @@
             $products_model = $Qproducts->value('products_model');
           }
 
-          $email_order .= $Qproducts->valueInt('products_quantity') . ' x ' . $Qproducts->value('products_name') . ' (' . $products_model . ') = ' . html_entity_decode($CLICSHOPPING_Currencies->display_price($Qproducts->value('products_price'), $Qproducts->value('products_tax'), $Qproducts->valueInt('products_quantity') )) . "\n";
+          $email_order .= html_entity_decode($Qproducts->valueInt('products_quantity') . ' x ' . $Qproducts->value('products_name') . ' (' . $products_model . ') = ' . html_entity_decode($this->currencies->display_price($Qproducts->value('products_price'), $Qproducts->value('products_tax'), $Qproducts->valueInt('products_quantity') ))) . "\n";
         }
 
         $email_order .= CLICSHOPPING::getDef('email_separator') . "\n";
@@ -1312,17 +1345,17 @@
         $Qtotals->execute();
 
         while ( $Qtotals->fetch() ) {
-          $email_order .= strip_tags($Qtotals->value('title') . ' ' . $Qtotals->value('text')) . "\n";
+          $email_order .= html_entity_decode(strip_tags($Qtotals->value('title') . ' ' . $Qtotals->value('text'))) . "\n";
         }
 
 
         if ($this->content_type != 'virtual') {
           $message_order = stripslashes(CLICSHOPPING::getDef('email_text_delivery_address'));
-          $email_order .= "\n" . $message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n" .  AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['sendto'], 0, '', "\n") . "\n";
+          $email_order .= "\n" . $message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n" .  AddressBook::addressLabel($this->customerClass->getID(), $_SESSION['sendto'], 0, '', "\n") . "\n";
         }
 
         $message_order = stripslashes(CLICSHOPPING::getDef('email_text_billing_address'));
-        $email_order .= "\n" .$message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n" .  AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['billto'], 0, '', "\n") . "\n\n";
+        $email_order .= "\n" .$message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n" .  AddressBook::addressLabel($this->customerClass->getID(), $_SESSION['billto'], 0, '', "\n") . "\n\n";
 
         if (isset($CLICSHOPPING_PM) ) {
           $message_order = stripslashes(CLICSHOPPING::getDef('email_text_payment_method'));
@@ -1355,7 +1388,6 @@
 
         $this->mail->clicMail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
-
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
         if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
           $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
@@ -1370,7 +1402,10 @@
       }
     }
 
-// Alert by mail product exhausted if a product is 0 or < 0
+/**
+ *  Alert by mail product exhausted if a product is 0 or < 0
+ * @param int $insert_id
+ */
     public function sendEmailAlertProductsExhausted($insert_id) {
       if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
 
@@ -1435,7 +1470,7 @@
                                             where products_id = :products_id
                                           ');
 
-              $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')) );
+              $Qstock->bindInt(':products_id', $this->prod->getProductID($Qproducts->valueInt('products_id')) );
               $Qstock->execute();
 
               $stock_products_quantity_alert = $Qstock->valueInt('products_quantity_alert');
@@ -1448,7 +1483,7 @@
                 $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_suject_stock', ['store_name' => STORE_NAME]));
 
                 $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('email_reorder_level_text_alert_stock'));
-                $reorder_stock_email .= "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model')  . ' ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' '  .  $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) .  "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' .$Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert  .'</strong>';
+                $reorder_stock_email .= "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model')  . ' ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' '  .  $this->prod->getProductID($Qproducts->value('products_id')) .  "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' .$Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert  .'</strong>';
 
                 $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
@@ -1457,7 +1492,7 @@
                 $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_suject_stock', ['store_name' => STORE_NAME]));
 
                 $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('email_reorder_level_text_stock'));
-                $reorder_stock_email .= "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model')  . ' ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' '  .  $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) .  "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' .$Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert  .'</strong>';
+                $reorder_stock_email .= "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model')  . ' ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' '  .  $this->prod->getProductID($Qproducts->value('products_id')) .  "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' .$Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert  .'</strong>';
 
                 $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
@@ -1474,8 +1509,7 @@
  * @access private
 */
     private function getCodeCoupon() {
-      $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
-      $products = $CLICSHOPPING_ShoppingCart->get_products();
+      $products = $this->cart->get_products();
 
       $coupon = HTML::sanitize($_POST['coupon']);
 

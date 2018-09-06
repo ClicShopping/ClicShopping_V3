@@ -116,8 +116,7 @@
 
       $CLICSHOPPING_Hooks->call('CheckoutProcess','Process');
       $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
-
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','Odoo');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','ERP');
 
       $CLICSHOPPING_ShoppingCart->reset(true);
 

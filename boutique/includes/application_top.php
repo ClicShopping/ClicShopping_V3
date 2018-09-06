@@ -60,7 +60,6 @@
 
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Language = Registry::get('Language');
-
   $CLICSHOPPING_CategoryCommon = Registry::get('CategoryCommon');
   $CLICSHOPPING_Category = Registry::get('Category');
   $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -100,8 +99,8 @@
     for ($i=0, $n=count($cPath_array); $i<$n; $i++) {
 
       $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
-                                                                                  'language_id' => $CLICSHOPPING_Language->getId()
-                                                                                 ]
+                                                                                        'language_id' => $CLICSHOPPING_Language->getId()
+                                                                                       ]
                                     );
 
       if ($Qcategories->fetch() !== false) {

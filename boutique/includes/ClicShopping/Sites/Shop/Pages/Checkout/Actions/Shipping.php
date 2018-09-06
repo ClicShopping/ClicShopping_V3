@@ -70,10 +70,10 @@
         if ( (is_array($_SESSION['sendto']) && empty($_SESSION['sendto'])) || is_numeric($_SESSION['sendto']) ) {
 
           $QcheckAddress = $CLICSHOPPING_Db->prepare('select address_book_id
-                                                from :table_address_book
-                                                where customers_id = :customers_id
-                                                and address_book_id =  :address_book_id
-                                               ');
+                                                      from :table_address_book
+                                                      where customers_id = :customers_id
+                                                      and address_book_id =  :address_book_id
+                                                     ');
           $QcheckAddress->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $QcheckAddress->bindInt(':address_book_id', $_SESSION['sendto'] );
           $QcheckAddress->execute();

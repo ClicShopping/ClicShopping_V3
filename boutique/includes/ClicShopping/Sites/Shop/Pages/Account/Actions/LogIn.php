@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -54,10 +54,10 @@
 
 // Check if email exists
         $Qcheck = $CLICSHOPPING_Db->get('customers', ['customers_id',
-                                               'customers_password'],
-                                              ['customers_email_address' => $email_address],
-                                               null, 1
-                                );
+                                                      'customers_password'],
+                                                     ['customers_email_address' => $email_address],
+                                                      null, 1
+                                       );
 
 // login content module must return $login_customer_id as an integer after successful customer authentication
         $login_customer_id = false;

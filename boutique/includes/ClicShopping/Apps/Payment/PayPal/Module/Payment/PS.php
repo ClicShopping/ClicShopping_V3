@@ -967,7 +967,7 @@
                   $email_text_subject_stock = html_entity_decode($email_text_subject_stock);
 
                   $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('module_payment_paypal_standard_text_reorder_level_text_alert_stock'));
-                  $reorder_stock_email.= html_entity_decode($reorder_stock_email);
+                  $reorder_stock_email = html_entity_decode($reorder_stock_email);
                   $reorder_stock_email .= "\n"  .  CLICSHOPPING::getDef('module_payment_paypal_standard_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" .    CLICSHOPPING::getDef('email_text_model') . ' ' . $CLICSHOPPING_Order->products[$i]['model']  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . $CLICSHOPPING_Order->products[$i]['name']  .  "\n" . CLICSHOPPING::getDef('email_text_products_id') . ' ' .  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id'])  .  "\n" . '<strong>' .  CLICSHOPPING::getDef('email_text_products_url') . '</strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $CLICSHOPPING_Order->products[$i]['id'] . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_products_alert_stock') . ' ' . $current_stock  .'</strong>';
 
                    $CLICSHOPPING_Mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
@@ -1151,7 +1151,7 @@
       $this->after_process();
 
       $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','Odoo');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','ERP');
     }
 
     public function after_process() {
@@ -1162,7 +1162,7 @@
       $CLICSHOPPING_ShoppingCart->reset(true);
 
       $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','Odoo');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','ERP');
 
 // unregister session variables used during checkout
       unset($_SESSION['sendto']);
