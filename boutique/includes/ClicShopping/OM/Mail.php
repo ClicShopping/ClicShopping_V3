@@ -126,9 +126,15 @@
     }
 
 /**
- * Sends the mail.
+ * @param string $to_name
+ * @param string $to_addr
+ * @param string $from_name
+ * @param string $from_addr
+ * @param string $subject
+ * @param bool $reply_to
+ * @return bool
+ * @throws \PHPMailer\PHPMailer\Exception
  */
-
     Public function send($to_name, $to_addr, $from_name, $from_addr, $subject = '', $reply_to = false) {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
@@ -221,7 +227,6 @@
  * @access public
  */
     Public function clicMail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address) {
-
       if (SEND_EMAILS != 'true') return false;
 
 // Build the text version
