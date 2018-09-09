@@ -26,7 +26,7 @@ button_reset = Ré-initialiser
 button_update = Mettre à jour
 button_archive = Archive
 button_archive_consult = Consulter
-button_history = Historque
+button_history = Historique
 button_invoice = Facture
 button_packingslip = Bon expédition
 

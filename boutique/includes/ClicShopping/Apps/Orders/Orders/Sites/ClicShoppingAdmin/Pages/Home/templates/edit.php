@@ -28,6 +28,8 @@
     echo $CLICSHOPPING_MessageStack->get('Orders');
   }
 
+  $order_id = HTML::sanitize($_GET['oID']);
+
   $orders_statuses = [];
   $orders_status_array = [];
 
@@ -46,9 +48,9 @@
     $orders_status_array[$QordersStatus->valueInt('orders_status_id')] = $QordersStatus->value('orders_status_name');
   }
 
-  if (isset($_GET['oID']) && is_numeric($_GET['oID']) && ($_GET['oID'] > 0)) {
+  if (isset($order_id) && is_numeric($order_id) && ($order_id > 0)) {
 
-    $oID = HTML::sanitize($_GET['oID']);
+    $oID = HTML::sanitize($order_id);
 
     $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['orders_id' => (int)$oID]);
 
@@ -69,7 +71,7 @@
                                                      from :table_orders_status_invoice
                                                      where language_id = :language_id
                                                     ');
-  $QordersStatusInvoice->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId());
+  $QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QordersStatusInvoice->execute();
 
   while ($QordersStatusInvoice->fetch() !== false) {
@@ -110,7 +112,7 @@
                                                   and o.orders_id = :orders_id
                                                   limit 1
                                                   ');
-  $Qcustomers->bindInt(':orders_id', $_GET['oID']);
+  $Qcustomers->bindInt(':orders_id', $order_id);
   $Qcustomers->execute();
 ?>
 
@@ -121,7 +123,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/orders.gif', $CLICSHOPPING_Orders->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' .  (int)$_GET['oID']; ?></span>
+          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' .  (int)$order_id; ?></span>
           <span class="col-md-9 text-md-right">
 <?php
   if ($Qcustomers->valueInt('customers_id') != 0) {
@@ -129,9 +131,9 @@
     echo '&nbsp;';
   }
 
-  echo HTML::button($CLICSHOPPING_Orders->getDef('button_invoice'), null, $CLICSHOPPING_Orders->link('Invoice&oID=' . (int)$_GET['oID']), 'success', ['newwindow' => true]);
+  echo HTML::button($CLICSHOPPING_Orders->getDef('button_invoice'), null, $CLICSHOPPING_Orders->link('Invoice&oID=' . (int)$order_id), 'success', ['newwindow' => true]);
   echo '&nbsp;';
-  echo HTML::button($CLICSHOPPING_Orders->getDef('button_packingslip'), null, $CLICSHOPPING_Orders->link('PackingSlip&oID=' . (int)$_GET['oID']), 'info', ['newwindow' => true]);
+  echo HTML::button($CLICSHOPPING_Orders->getDef('button_packingslip'), null, $CLICSHOPPING_Orders->link('PackingSlip&oID=' . (int)$order_id), 'info', ['newwindow' => true]);
   echo '&nbsp;';
   echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null,  $CLICSHOPPING_Orders->link('Orders'), 'primary');
 ?>
@@ -221,7 +223,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?></label>
                   <div class="col-md-5">
-                    <a href="<?php echo $CLICSHOPPING_Orders->link('PageManagerOrderHistoryContract&order_id=' . (int)$_GET['oID'] . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit')); ?></a>
+                    <a href="<?php echo $CLICSHOPPING_Orders->link('PageManagerOrderHistoryContract&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit')); ?></a>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
