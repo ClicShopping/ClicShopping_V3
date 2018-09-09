@@ -849,22 +849,6 @@
         $cc_owner = $this->info['cc_owner'];
       }
 
-//gdpr
-      $Qgdpr = $this->db->prepare('select no_ip_address
-                                  from :table_customers_gdpr
-                                  where customers_id = :customers_id
-                                 ');
-      $Qgdpr->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qgdpr->execute();
-
-      if ($Qgdpr->valueInt('no_ip_address') == 1) {
-        $ip_address = '';
-        $provider_name = '';
-      } else {
-       $ip_address =  HTTP::getIPAddress();
-       $provider_name = HTTP::getProviderNameCustomer();
-      }
-
       $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
                         'customers_group_id' => (int)$this->customer['group_id'],
                         'customers_name' => $this->customer['firstname'] . ' ' . $this->customer['lastname'],
@@ -906,8 +890,6 @@
                         'orders_status_invoice' => $this->info['order_status_invoice'],
                         'currency' => $this->info['currency'],
                         'currency_value' => $this->info['currency_value'],
-                        'client_computer_ip' => $ip_address,
-                        'provider_name_client' => $provider_name,
                         'customers_cellular_phone' => $this->customer['cellular_phone']
                       ];
 
@@ -963,7 +945,7 @@
                           'products_name' => $this->products[$i]['name'],
                           'products_price' => (float)$this->products[$i]['price'],
                           'final_price' => (float)$this->products[$i]['final_price'],
-                          'products_tax' => $this->products[$i]['tax'],
+                          'products_tax' => (float)$this->products[$i]['tax'],
                           'products_quantity' =>(int)$this->products[$i]['qty']
                           ];
         $this->db->save('orders_products', $sql_data_array);
@@ -1059,14 +1041,48 @@
         }
       } // end for
 
+      $this->saveGdpr($this->insertID, $CLICSHOPPING_Customer->getID());
 
       return $this->insertID;
     }
 
+/** Last order id
+ * @return int last order id
+ */
     public function getLastOrderId() {
       return $this->insertID;
     }
 
+/**
+ * GDPR Regulation
+ * @param int $last_order_id
+ * @param int $customer_id
+ */
+    public function saveGdpr($last_order_id, $customer_id) {
+      $Qgdpr = $this->db->prepare('select no_ip_address
+                                   from :table_customers_gdpr
+                                   where customers_id = :customers_id
+                                 ');
+
+      $Qgdpr->bindInt(':customers_id', $customer_id);
+      $Qgdpr->execute();
+
+      if ($Qgdpr->valueInt('no_ip_address') == 1) {
+        $ip_address = '';
+        $provider_name = '';
+      } else {
+        $ip_address =  HTTP::getIPAddress();
+        $provider_name = HTTP::getProviderNameCustomer();
+      }
+
+      $update_array = ['orders_id' => $last_order_id];
+
+      $array = ['client_computer_ip' => $ip_address,
+                'provider_name_client' => $provider_name,
+               ];
+
+      $this->db->save('orders', $array, $update_array);
+    }
 
 /***********************************************************
 * Process
@@ -1241,8 +1257,7 @@
       $Qorder->bindInt(':orders_id', $insert_id);
       $Qorder->execute();
 
-      if ( $Qorder->fetch() !== false ) {
-
+      if ($Qorder->fetch() !== false) {
         $Qproducts = $this->db->prepare('select orders_products_id,
                                                  products_id,
                                                  products_model,
@@ -1357,8 +1372,8 @@
 
           $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-          foreach($text as $email){
-            $this->mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+          foreach($text as $key => $email){
+            $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
           }
         }
       }
