@@ -45,7 +45,7 @@
       $this->mail = Registry::get('Mail');
 
       if (isset($_GET['order_id']) && is_numeric($_GET['order_id']) ) {
-        $this->_id = $_GET['order_id'];
+        $this->_id = HTML::sanitize($_GET['order_id']);
       }
 
       $this->info = [];

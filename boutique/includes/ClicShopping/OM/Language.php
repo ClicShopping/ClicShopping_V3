@@ -437,7 +437,7 @@
 
 
 /**
- * Get the language to display (french english)
+ * Get the code language to display (french english)
  *
  * @param return code of the language
  * @access public

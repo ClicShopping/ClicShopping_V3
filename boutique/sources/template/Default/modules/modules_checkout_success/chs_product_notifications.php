@@ -92,11 +92,11 @@
           $products_displayed = [];
 
           $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
-                                                   products_name
-                                            from :table_orders_products
-                                            where orders_id = :orders_id
-                                            order by products_name
-                                          ');
+                                                         products_name
+                                                  from :table_orders_products
+                                                  where orders_id = :orders_id
+                                                  order by products_name
+                                                ');
           $Qproducts->bindInt(':orders_id', $order_id);
 
           $Qproducts->execute();

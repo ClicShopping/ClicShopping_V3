@@ -157,7 +157,7 @@
 
 
 <!-- //###########################################//-->
-<!--          Customer information tab          //-->
+<!--          Customer information tab  1        //-->
 <!-- //###########################################//-->
   <div id="orderTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
@@ -302,7 +302,7 @@
           <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab1', null, 'display'); ?>
         </div>
 <!-- //###########################################//-->
-<!--          Order informations                                                     //-->
+<!--          Order informations  Tab2                                                   //-->
 <!-- //###########################################//-->
 
         <div class="tab-pane" id="tab2">
@@ -320,18 +320,19 @@
             </tr>
 <?php
   for ($i=0, $n=count($order->products); $i<$n; $i++) {
+    $products_id = $order->products[$i]['products_id'];
 
     $QproductsImage = $CLICSHOPPING_Orders->db->prepare('select products_image,
                                                                 products_id
                                                         from :table_products
                                                         where products_id = :products_id
                                                        ');
-    $QproductsImage->bindInt(':products_id', (int)$order->products[$i]['products_id']);
+    $QproductsImage->bindInt(':products_id', $products_id);
     $QproductsImage->execute();
 
     echo '    <tr class="dataTableRow">' . "\n" .
-      '      <td class="dataTableContent" valign="top"><a href="' . CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $QproductsImage->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('text_preview')) .'</a></td>' . "\n" .
-      '      <td class="dataTableContent" valign="top"><a href="' . CLICSHOPPING::link('index.php', 'A&Catalog\Products&Products&pID=' . $QproductsImage->valueInt('products_id') .'&action=new_product') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('image_edit')) .'</a></td>' . "\n" .
+      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $products_id), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('text_preview'))) . '</td>' . "\n" .
+      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Products&Products&Edit&pID=' . $products_id),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
       '      <td class="dataTableContent" valign="top"><img src=" ' . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $QproductsImage->value('products_image') . '" width=" '. (int)SMALL_IMAGE_WIDTH_ADMIN .'" height="'. (int)SMALL_IMAGE_HEIGHT_ADMIN .'"></td>' . "\n" .
       '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
       '      <td class="dataTableContent" valign="top">' . $order->products[$i]['name'];
@@ -380,7 +381,7 @@
 
 
 <!-- //###########################################//-->
-<!--          ONGLET statut commande                                        //-->
+<!--          ONGLET statut commande tab3                                        //-->
 <!-- //###########################################//-->
         <div class="tab-pane" id="tab3">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_comments'); ?></div>
@@ -498,7 +499,7 @@
             </table>
           </div>
 
-          <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab3', null, 'display'); ?>
+          <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab', null, 'display'); ?>
         </div>
 <!-- //################################################################################################################ -->
 <!-- //                                              Other Tab                                                -->

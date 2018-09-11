@@ -37,27 +37,26 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $Qorder = $CLICSHOPPING_Db->get([
-                                'orders o',
-                                'orders_status s'
-                                ], [
-                                'o.*',
-                                's.orders_status_name'
-                                ], [
-                                  'o.orders_id' => (int)$order_id,
-                                  'o.orders_status' => [ 'rel' => 's.orders_status_id'],
-                                  's.language_id' => $CLICSHOPPING_Language->getId()
-                                ]
-                              );
+      $Qorder = $CLICSHOPPING_Db->get(['orders o',
+                                      'orders_status s'
+                                      ], [
+                                      'o.*',
+                                      's.orders_status_name'
+                                      ], [
+                                        'o.orders_id' => (int)$order_id,
+                                        'o.orders_status' => [ 'rel' => 's.orders_status_id'],
+                                        's.language_id' => $CLICSHOPPING_Language->getId()
+                                      ]
+                                    );
 
       $Qtotals = $CLICSHOPPING_Db->get('orders_total', ['title',
-                                                 'text',
-                                                 'class'
-                                                ], [
-                                                 'orders_id' => (int)$order_id
-                                                ],
-                                                 'sort_order'
-                               );
+                                                       'text',
+                                                       'class'
+                                                      ], [
+                                                       'orders_id' => (int)$order_id
+                                                      ],
+                                                       'sort_order'
+                                     );
 
 
       while ($Qtotals->fetch() ) {
@@ -82,7 +81,7 @@
                      'orders_status_invoice' => $Qorder->valueInt('orders_status_invoice'),
                      'last_modified' => $Qorder->value('last_modified'),
                      'odoo_invoice' => $Qorder->valueInt('odoo_invoice')
-      ];
+                    ];
 
       foreach ( $this->totals as $t ) {
         if ($t['class'] == 'ot_total' || $t['class'] == 'TO') {
@@ -134,18 +133,18 @@
 
       $index = 0;
 
-      $Qproducts = $CLICSHOPPING_Db->get('orders_products', [
-                                                      'orders_products_id',
-                                                      'products_name',
-                                                      'products_model',
-                                                      'products_price',
-                                                      'products_tax',
-                                                      'products_quantity',
-                                                      'final_price'
-                                                      ], [
-                                                        'orders_id' => (int)$order_id
-                                                      ]
-                                  );
+      $Qproducts = $CLICSHOPPING_Db->get('orders_products', ['orders_products_id',
+                                                            'products_id',
+                                                            'products_name',
+                                                            'products_model',
+                                                            'products_price',
+                                                            'products_tax',
+                                                            'products_quantity',
+                                                            'final_price'
+                                                            ], [
+                                                              'orders_id' => (int)$order_id
+                                                            ]
+                                        );
 
 
 
@@ -161,17 +160,16 @@
 
         $subindex = 0;
 
-        $Qattributes = $CLICSHOPPING_Db->get('orders_products_attributes', [
-                                                                      'products_options',
-                                                                      'products_options_values',
-                                                                      'options_values_price',
-                                                                      'price_prefix',
-                                                                      'products_attributes_reference'
-                                                                    ], [
-                                                                      'orders_id' => (int)$order_id,
-                                                                      'orders_products_id' => $Qproducts->valueInt('orders_products_id')
-                                                                    ]
-                                      );
+        $Qattributes = $CLICSHOPPING_Db->get('orders_products_attributes', ['products_options',
+                                                                            'products_options_values',
+                                                                            'options_values_price',
+                                                                            'price_prefix',
+                                                                            'products_attributes_reference'
+                                                                           ], [
+                                                                            'orders_id' => (int)$order_id,
+                                                                            'orders_products_id' => $Qproducts->valueInt('orders_products_id')
+                                                                           ]
+                                            );
         $Qattributes->execute();
 
         if ($Qattributes->fetch() !== false) {
@@ -189,7 +187,6 @@
       }
 
       $CLICSHOPPING_Hooks->call('OrderAdmin','Query');
-
     }
 
 
@@ -206,18 +203,18 @@
 
       if ($restock == 'on') {
         $Qproducts = $CLICSHOPPING_Db->get('orders_products', ['products_id',
-                                                        'products_quantity'
-                                                        ], [
-                                                          'orders_id' => (int)$order_id
-                                                        ]
-                                    );
+                                                               'products_quantity'
+                                                              ], [
+                                                                'orders_id' => (int)$order_id
+                                                              ]
+                                          );
 
         while ($Qproducts->fetch()) {
           $Qupdate = $CLICSHOPPING_Db->prepare('update :table_products
-                                        set products_quantity = products_quantity + ' . $Qproducts->valueInt('products_quantity') . ',
-                                        products_ordered = products_ordered - ' . $Qproducts->valueInt('products_quantity') . '
-                                        where products_id = :products_id
-                                       ');
+                                                set products_quantity = products_quantity + ' . $Qproducts->valueInt('products_quantity') . ',
+                                                products_ordered = products_ordered - ' . $Qproducts->valueInt('products_quantity') . '
+                                                where products_id = :products_id
+                                               ');
           $Qupdate->bindInt(':products_id', $Qproducts->valueInt('products_id'));
           $Qupdate->execute();
         }
@@ -252,18 +249,16 @@
 
       $orders_status_array = [];
 
-      $Qstatus = $CLICSHOPPING_Db->get('orders_status', [
-                                                    'orders_status_id',
-                                                    'orders_status_name'
-                                                  ], [
-                                                    'language_id' => (int)$CLICSHOPPING_Language->getId()
-                                                  ],
-                                                    'orders_status_id'
-                                 );
+      $Qstatus = $CLICSHOPPING_Db->get('orders_status', ['orders_status_id',
+                                                         'orders_status_name'
+                                                        ], [
+                                                         'language_id' => (int)$CLICSHOPPING_Language->getId()
+                                                        ],
+                                                         'orders_status_id'
+                                      );
 
       while ($Qstatus->fetch()) {
-        $orders_status_array[] = [
-                                  'id' => $Qstatus->valueInt('orders_status_id'),
+        $orders_status_array[] = ['id' => $Qstatus->valueInt('orders_status_id'),
                                   'text' => $Qstatus->value('orders_status_name')
                                  ];
       }

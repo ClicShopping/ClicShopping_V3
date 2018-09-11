@@ -40,7 +40,6 @@
      }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');

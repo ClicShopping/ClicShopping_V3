@@ -23,7 +23,7 @@
 		"Hooks": {
 			"ClicShoppingAdmin/Orders": {
 				"Action":	"Module\\Hooks\\ClicShoppingAdmin\\Orders\\Action",
-				"Page":		"Module\\Hooks\\ClicShoppingAdmin\\Orders\\PageTab"
+				"PageContentTab":		"Module\\Hooks\\ClicShoppingAdmin\\Orders\\PageContentTab"
 			},
 			"Shop/Account": {
 				"Logout":	"Module\\Hooks\\Shop\\Account\\Logout"
