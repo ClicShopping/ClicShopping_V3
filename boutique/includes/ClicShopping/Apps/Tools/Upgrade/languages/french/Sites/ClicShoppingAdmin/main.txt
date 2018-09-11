@@ -39,7 +39,7 @@ title_help = Aide
 button_manual = Installation manuelle
 text_local_version = Version locale :
 text_server_version = Version Serveur :
-text_up_to_date = - La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le base de page, footer ...<br />
+text_up_to_date = - La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le bas de page, footer ...<br />
 - <strong>Votre version est à jour. La version actuelle installée est : </strong>';
 
 text_step_upgrade = <p><strong>Procédure de mise à jour :</strong></p>
@@ -52,7 +52,7 @@ text_step_upgrade = <p><strong>Procédure de mise à jour :</strong></p>
 
 text_warning_upgrade = <p><strong>Le process va commencer, veuillez attendre un moment. Cette page sera mise à jour</strong></p>
 
-text_upgrade_version = <p>- La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le base de page, footer ...</p>
+text_upgrade_version = <p>- La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le bas de page, footer ...</p>
 <p>- <strong>Votre version de ClicShopping n'est pas à jour</strong>. votre version actuelle :
 text_upgrade_site = Toutes les applications sont disponibles en consultant ces addresses (veuillez prendre note que cette espace est expérimentale et il peut y avoir des erreurs :
 
