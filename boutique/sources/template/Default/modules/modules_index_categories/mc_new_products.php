@@ -36,7 +36,7 @@
     }
 
     public function execute() {
-     global $products_id, $buy_button;
+     global $buy_button;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -68,7 +68,7 @@
                                                       and g.products_group_view = 1
                                                       and p.products_status = 1
                                                       and p.products_archive = 0
-                                                      or (s.customers_group_id = 0 or s.customers_group_id = 99)
+                                                      or (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                       group by p.products_id
                                                       order by rand(),
                                                                p.products_date_added DESC
@@ -96,7 +96,7 @@
                                                       and p.products_status = 1
                                                       and p.products_archive = 0
                                                       and c.virtual_categories = 0
-                                                      or (s.customers_group_id = 1 or s.customers_group_id = 99)
+                                                      or (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                       group by p.products_id
                                                       order by rand(),
                                                                p.products_date_added DESC
@@ -113,28 +113,27 @@
           } else {
 
             if (($CLICSHOPPING_Category->getParent() == 0) ) {
+              $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
+                                                           p.products_quantity as in_stock
+                                                      from :table_products p left join :table_specials s on p.products_id = s.products_id,
+                                                           :table_products_to_categories p2c,
+                                                           :table_categories c
+                                                      where p.products_id = p2c.products_id
+                                                      and p2c.categories_id = c.categories_id
+                                                      and c.parent_id = :parent_id
+                                                      and p.products_status = 1
+                                                      and p.products_view = 1
+                                                      and p.products_archive = 0
+                                                      and (s.customers_group_id = 0 or s.customers_group_id = 99)
+                                                      group by p.products_id
+                                                      order by rand(),
+                                                             p.products_date_added DESC
+                                                     limit :products_limit
+                                                    ');
 
-                $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                             p.products_quantity as in_stock
-                                                        from :table_products p left join :table_specials s on p.products_id = s.products_id,
-                                                             :table_products_to_categories p2c,
-                                                             :table_categories c
-                                                        where p.products_id = p2c.products_id
-                                                        and p2c.categories_id = c.categories_id
-                                                        and c.parent_id = :parent_id
-                                                        and p.products_status = 1
-                                                        and p.products_view = 1
-                                                        and p.products_archive = 0
-                                                        and (s.customers_group_id = 1 or s.customers_group_id = 5)
-                                                        group by p.products_id
-                                                        order by rand(),
-                                                               p.products_date_added DESC
-                                                       limit :products_limit
-                                                      ');
-
-                $Qproduct->bindInt(':products_limit', (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY);
-                $Qproduct->bindInt(':parent_id', $CLICSHOPPING_Category->getID());
-                $Qproduct->execute();
+              $Qproduct->bindInt(':products_limit', (int)MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY);
+              $Qproduct->bindInt(':parent_id', $CLICSHOPPING_Category->getID());
+              $Qproduct->execute();
             } else {
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                              p.products_quantity as in_stock
@@ -148,6 +147,7 @@
                                                      and p.products_status = 1
                                                      and p.products_view = 1
                                                      and p.products_archive = 0
+                                                     and (s.customers_group_id = 0 or s.customers_group_id = 99)
                                                      group by p.products_id
                                                      order by  rand(),
                                                                p.products_date_added desc
