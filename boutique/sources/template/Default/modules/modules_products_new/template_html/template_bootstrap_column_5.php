@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?>">
   <div style="padding-top:1rem;"></div>
@@ -64,8 +64,3 @@ use ClicShopping\OM\CLICSHOPPING;
      </div>
   </div>
 </div>
-
-
-
-
-

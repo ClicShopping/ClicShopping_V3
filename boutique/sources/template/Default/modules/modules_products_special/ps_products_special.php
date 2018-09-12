@@ -38,7 +38,7 @@
     }
 
     public function execute() {
-      global $buy_button, $products_id;
+      global $buy_button;
 
       $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -47,9 +47,6 @@
       if (isset($_GET['Products']) && isset($_GET['Specials']) ) {
 
         if (MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY != 0 ) {
-
-          $products_template = MODULE_PRODUCTS_SPECIAL_TEMPLATE;
-
           $Qlisting = SpecialsClass::getListing();
 
           $Qlisting->setPageSet((int)MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY);

@@ -68,7 +68,6 @@
                                                       and g.products_group_view = 1
                                                       and p.products_status = 1
                                                       and p.products_archive = 0
-                                                      or (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                       group by p.products_id
                                                       order by rand(),
                                                                p.products_date_added DESC
@@ -96,7 +95,6 @@
                                                       and p.products_status = 1
                                                       and p.products_archive = 0
                                                       and c.virtual_categories = 0
-                                                      or (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                       group by p.products_id
                                                       order by rand(),
                                                                p.products_date_added DESC
@@ -124,7 +122,6 @@
                                                       and p.products_status = 1
                                                       and p.products_view = 1
                                                       and p.products_archive = 0
-                                                      and (s.customers_group_id = 0 or s.customers_group_id = 99)
                                                       group by p.products_id
                                                       order by rand(),
                                                              p.products_date_added DESC
@@ -147,7 +144,6 @@
                                                      and p.products_status = 1
                                                      and p.products_view = 1
                                                      and p.products_archive = 0
-                                                     and (s.customers_group_id = 0 or s.customers_group_id = 99)
                                                      group by p.products_id
                                                      order by  rand(),
                                                                p.products_date_added desc
