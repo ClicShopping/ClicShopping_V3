@@ -36,7 +36,7 @@
     }
 
     public function execute() {
-     global $buy_button;
+     global $buy_button, $products_id;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');

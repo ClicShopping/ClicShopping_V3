@@ -1447,8 +1447,6 @@
       $products_flash_discount = '';
 
       if (DateTime::getNow($date_format) >= $QflashDiscount->value('scheduled_date') && DateTime::getNow($date_format) <= $QflashDiscount->value('expires_date')) {
-        $interval = DateTime::getIntervalDate($QflashDiscount->value('scheduled_date'), $QflashDiscount->value('expires_date'), '%d');
-
         $month =   DateTime::getIntervalDate(DateTime::getNow($date_format), $QflashDiscount->value('expires_date'), '%M');
         $days =   DateTime::getIntervalDate(DateTime::getNow($date_format), $QflashDiscount->value('expires_date'), '%D');
         $hours = DateTime::getIntervalDate(DateTime::getNow($date_format), $QflashDiscount->value('expires_date'), '%H');
@@ -1806,14 +1804,19 @@
       }
 
 /**
- * Return a products button exhausted (ui or a gif button)
+ * Return a products button exhausted
  * @param string $product_button_exhausted
- * @return $product_button_exhausted,the ui or gif button
+ * @return $product_button_exhausted,the bootstrap item
  * @access public
  */
-    private function getProductButtonExhausted($class='btn-warning btn-sm') {
+    private function getProductButtonExhausted($button_type = null) {
+
+      if (is_null($button_type)) {
+        $button_type = 'btn-warning btn-sm';
+      }
+
       if (PRE_ORDER_AUTORISATION == 'false') {
-        $product_button_exhausted = '<button type="button" class="btn ' . $class . '">' . CLICSHOPPING::getDef('button_exhausted') . '</button>';
+        $product_button_exhausted = '<button type="button" class="btn ' . $button_type . '">' . CLICSHOPPING::getDef('button_exhausted') . '</button>';
       }
       return $product_button_exhausted;
     }
@@ -1823,10 +1826,11 @@
  * Check if the required stock is available for display a button Product exhausted
  * If insufficent stock is available return a products exhausted image
  * @param string $product_exhausted, the button
+ * @param $button_type, bootstrap button bootstrap item
  * @access public
  */
 
-    public function setProductsExhausted($id) {
+    private function setProductsExhausted($id, $button_type = null) {
 
       if (is_null($id)) {
         $id = $this->getID();
@@ -1843,13 +1847,13 @@
 
       if ($QproductExhausted->fetch()) {
         if (STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false' && PRICES_LOGGED_IN == 'false') {
-          $product_exhausted = $this->getProductButtonExhausted($id);
+          $product_exhausted = $this->getProductButtonExhausted($button_type);
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() == 0 && !$this->customer->isLoggedOn() && STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false') {
           $product_exhausted = ' ';
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() !=0 &&  STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false')  {
-          $product_exhausted =  $this->getProductButtonExhausted($id);
+          $product_exhausted =  $this->getProductButtonExhausted($button_type);
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() == 0 && $this->customer->isLoggedOn() && STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false' ) {
-          $product_exhausted = $this->getProductButtonExhausted($id);
+          $product_exhausted = $this->getProductButtonExhausted($button_type);
         }
       } else {
         $product_exhausted = '';
@@ -1864,10 +1868,11 @@
  * Display Products exhausted
  *
  * @param string $product_exhausted, the button
+ * @param string $button_type : bootstrap button bootstrap item
  * @access public
  */
-    public function getProductsExhausted($id = null)  {
-      return $this->setProductsExhausted($id);
+    public function getProductsExhausted($id = null, $button_type = null)  {
+      return $this->setProductsExhausted($id, $button_type);
     }
 
 
