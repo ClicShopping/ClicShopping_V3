@@ -2177,9 +2177,8 @@
  * @return the $display_stock_values, the image value of stock
  * @access public
  */
-    public function getDisplayProductsStock() {
-
-      $display_products_stock  = $this->getProductsStock();
+    public function getDisplayProductsStock($id) {
+      $display_products_stock  = $this->getProductsStock($id);
 
       if ($display_products_stock > STOCK_REORDER_LEVEL) {
         $display_stock_values = HTML::tickerImage(CLICSHOPPING::getDef('text_in_stock'), 'ModulesTickerBootstrapTickerStockGood', true);
