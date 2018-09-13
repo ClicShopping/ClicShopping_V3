@@ -71,17 +71,17 @@
         $products_image = '<!-- Start gallery -->' . "\n";
 
         if ($CLICSHOPPING_ProductsCommon->getProductsTickerSpecials() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
-          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_specials'), 'ModulesProductsInfoBootstrapTickerSpecialImageColorBox', $CLICSHOPPING_ProductsCommon->getProductsTickerSpecials());
+          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_specials'), 'ModulesProductsInfoBootstrapTickerSpecialImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerSpecials());
         } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerFavorites() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
-          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_favorite'), 'ModulesProductsInfoBootstrapTickerFavoriteImageColorBox', $CLICSHOPPING_ProductsCommon->getProductsTickerFavorites());
+          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_favorite'), 'ModulesProductsInfoBootstrapTickerFavoriteImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerFavorites());
         } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerFeatured() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
-          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_featured'), 'ModulesProductsInfoBootstrapTickerFeaturedImageColorBox', $CLICSHOPPING_ProductsCommon->getProductsTickerFeatured());
+          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_featured'), 'ModulesProductsInfoBootstrapTickerFeaturedImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerFeatured());
         } elseif ($CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
-          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_products_new'), 'ModulesProductsInfoBootstrapTickerNewImageColorBox', $CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew());
+          $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_products_new'), 'ModulesProductsInfoBootstrapTickerNewImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerProductsNew());
         }
 
         if (MODULE_PRODUCTS_INFO_GALLERY_POURCENTAGE == 'True' && !is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage())) {
-          $ticker_pourcentage_discount = HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage(), 'ModulesProductsInfoBootstrapTickerPourcentageImageColorBox', true);
+          $ticker_pourcentage_discount = HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage(), 'ModulesProductsInfoBootstrapTickerPourcentageImageGallery', true);
         } else {
           $ticker_pourcentage_discount = '';
         }
