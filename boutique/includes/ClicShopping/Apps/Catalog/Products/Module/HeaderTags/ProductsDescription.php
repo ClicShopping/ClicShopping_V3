@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -136,10 +136,6 @@
           } else {
             $tags_array['keywords']=  $QproductInfo->value('products_head_keywords_tag') . ', ' . $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($Qsubmit->value('products_head_keywords_tag'));
           }
-
-          $tags_array['title'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
-          $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
-          $tags_array['keywords'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
 
           $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
           $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());

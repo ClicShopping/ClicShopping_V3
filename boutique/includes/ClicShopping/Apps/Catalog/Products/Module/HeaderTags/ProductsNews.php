@@ -90,10 +90,6 @@
           $tags_array['keywords']= HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords'));;
         }
 
-        $tags_array['title']= HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
-        $tags_array['desc']= HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
-        $tags_array['keywords']= HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
-
         $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
         $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
         $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());

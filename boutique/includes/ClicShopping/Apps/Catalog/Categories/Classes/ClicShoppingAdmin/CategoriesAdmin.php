@@ -30,8 +30,12 @@
       $this->template = Registry::get('TemplateAdmin');
     }
 
+/**
+ * @param null $keywords
+ * @return mixed
+ */
     public function getSearch($keywords = null) {
-      global $current_category_id;
+      $current_category_id = HTML::sanitize($_POST['cPath']);
 
       if (isset($keywords) && !empty($keywords)) {
         $search = HTML::sanitize($keywords);
@@ -97,9 +101,9 @@
 // calculate category path
       if ((isset($_POST['cPath']) && !empty($_POST['cPath'])) || (isset($_GET['cPath']) && !empty($_GET['cPath']))) {
         if (isset($_POST['cPath'])) {
-          $cPath = $_POST['cPath'];
+          $cPath = HTML::sanitize($_POST['cPath']);
         } else {
-          $cPath = $_GET['cPath'];
+          $cPath = HTML::sanitize($_GET['cPath']);
         }
 
         $cPath_array = $CLICSHOPPING_CategoryCommon->getParseCategoryPath($cPath);

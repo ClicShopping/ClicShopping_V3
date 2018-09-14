@@ -176,5 +176,3 @@ description: The field description, the product name (leather jacket), the produ
 keywords: the fields keywords, the product name (leather jacket), the product name cut (jacket, leather), the category name<br />
 </blockquote></li>
 <li><strong>please do not put too keywords (maximum 10)</strong> and establish consistency between each field to find the words the most important first</li>
-
-

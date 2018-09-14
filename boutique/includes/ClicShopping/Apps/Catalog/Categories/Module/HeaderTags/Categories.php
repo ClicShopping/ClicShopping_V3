@@ -48,10 +48,11 @@
     }
 
     public function getOutput() {
-      global $current_category_id;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Category = Registry::get('Category');
+
+      $current_category_id = $CLICSHOPPING_Category->getPath();
 
       if (CLICSHOPPING::getBaseNameIndex()) {
 
@@ -119,10 +120,6 @@
             } else {
               $tags_array['keywords'] = $Qcategories->value('categories_head_keywords_tag') . ', ' . $categories_name_clean;
             }
-
-            $tags_array['title'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
-            $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
-            $tags_array['keywords'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
 
             $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
             $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
