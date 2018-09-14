@@ -1165,49 +1165,50 @@ updateGross();
       <div class="separator"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_gallery_image'); ?></div>
       <div class="adminformTitle">
-        <div class="col-md-12" id="tab5ContentRow6">
-          <div class="row">
-            <ul id="piList"></ul>
-            <a class="linkHandle" data-action="addNewPiForm"><i class="fas fa-plus"></i>&nbsp;<?php echo $CLICSHOPPING_Products->getDef('text_products_add_large_image'); ?></a>
-          </div>
-        </div>
-        <div class="separator"></div>
-
-        <script id="templateLargeImage" type="x-tmpl-mustache">
-          <li id="piId{{counter}}">
-            <div class="piActions float-md-right">
-              <a class="linkHandle" data-piid="{{counter}}" data-action="showPiDelConfirm" data-state="active"><i class="fas fa-trash-alt" title="<?php echo $CLICSHOPPING_Products->getDef('image_delete'); ?>"></i></a>
-              <a class="sortHandle" data-state="active"><i class="fas fa-arrows-alt-v" title="<?php echo $CLICSHOPPING_Products->getDef('image_move'); ?>"></i></a>
-              <a class="linkHandle" data-piid="{{counter}}" data-action="undoDelete" data-state="inactive"><i class="fas fa-undo" title="<?php echo $CLICSHOPPING_Products->getDef('image_undo'); ?>"></i></a>
-            </div>
-            <strong><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image'); ?></strong><br />
-            <?php echo HTML::fileField('{{input_file_name}}'); ?><br />
-            {{#image}}<a href="<?php echo $CLICSHOPPING_Template->getDirectoryShopTemplateImages(); ?>{{image}}" target="_blank">{{image}}</a><br /><br />{{/image}}
-            <?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_html_content'); ?><br />
-            <?php echo HTML::textareaField('{{input_html_content_name}}', '{{html_content}}', '200', '3', null, false); ?>
-          </li>
-        </script>
-
-        <div class="modal" tabindex="-1" role="dialog" id="piDelConfirm">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-                <h4 class="modal-title"><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_delete_title'); ?></h4>
-              </div>
-
-              <div class="modal-body">
-                <p><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_confirm_delete'); ?></p>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="piDelConfirmButtonDelete"><?= $CLICSHOPPING_Products->getDef('button_delete'); ?></button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal"><?= $CLICSHOPPING_Products->getDef('button_cancel'); ?></button>
-              </div>
+        <div id="tab5ContentRow2">
+          <div class="col-md-12">
+            <div class="row">
+              <ul id="piList"></ul>
+              <a class="linkHandle" data-action="addNewPiForm"><i class="fas fa-plus"></i>&nbsp;<?php echo $CLICSHOPPING_Products->getDef('text_products_add_large_image'); ?></a>
             </div>
           </div>
-        </div>
+          <div class="separator"></div>
+
+          <script id="templateLargeImage" type="x-tmpl-mustache">
+            <li id="piId{{counter}}">
+              <div class="piActions float-md-right">
+                <a class="linkHandle" data-piid="{{counter}}" data-action="showPiDelConfirm" data-state="active"><i class="fas fa-trash-alt" title="<?php echo $CLICSHOPPING_Products->getDef('image_delete'); ?>"></i></a>
+                <a class="sortHandle" data-state="active"><i class="fas fa-arrows-alt-v" title="<?php echo $CLICSHOPPING_Products->getDef('image_move'); ?>"></i></a>
+                <a class="linkHandle" data-piid="{{counter}}" data-action="undoDelete" data-state="inactive"><i class="fas fa-undo" title="<?php echo $CLICSHOPPING_Products->getDef('image_undo'); ?>"></i></a>
+              </div>
+              <strong><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image'); ?></strong><br />
+              <?php echo HTML::fileField('{{input_file_name}}'); ?><br />
+              {{#image}}<a href="<?php echo $CLICSHOPPING_Template->getDirectoryShopTemplateImages(); ?>{{image}}" target="_blank">{{image}}</a><br /><br />{{/image}}
+              <?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_html_content'); ?><br />
+              <?php echo HTML::textareaField('{{input_html_content_name}}', '{{html_content}}', '200', '3', null, false); ?>
+            </li>
+          </script>
+
+          <div class="modal" tabindex="-1" role="dialog" id="piDelConfirm">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                  <h4 class="modal-title"><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_delete_title'); ?></h4>
+                </div>
+
+                <div class="modal-body">
+                  <p><?php echo $CLICSHOPPING_Products->getDef('text_products_large_image_confirm_delete'); ?></p>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" id="piDelConfirmButtonDelete"><?= $CLICSHOPPING_Products->getDef('button_delete'); ?></button>
+                  <button type="button" class="btn btn-warning" data-dismiss="modal"><?= $CLICSHOPPING_Products->getDef('button_cancel'); ?></button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 <style type="text/css">
   #piList { list-style-type: none; margin: 0; padding: 0; }
@@ -1289,37 +1290,38 @@ updateGross();
 // -----------------------------------
   if (MANUAL_IMAGE_PRODUCTS_DESCRIPTION == 'true') {
 ?>
-            <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_customize'); ?></div>
-            <div class="adminformTitle">
-              <div class="row" id="tab5ContentRow7">
-                <div class="col-md-6 float-md-left">
-                  <div class="col-md-12">
-                    <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
-                    <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
-                  </div>
-                  <div class="separator"></div>
-                  <div class="col-md-12 adminformAide">
-                    <div class="col-md-12 text-md-center">
-                      <span class="col-sm-12 text-md-center"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
-                    </div>
+              <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_customize'); ?></div>
+              <div class="adminformTitle">
+                <div class="row" id="tab5ContentRow7">
+                  <div class="col-md-6 float-md-left">
                     <div class="col-md-12">
-                      <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
-                      <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
+                      <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                      <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
                     </div>
-                    <div class="col-md-12">
-                      <span class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
-                      <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
+                    <div class="separator"></div>
+                    <div class="col-md-12 adminformAide">
+                      <div class="col-md-12 text-md-center">
+                        <span class="col-sm-12 text-md-center"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
+                      </div>
+                      <div class="col-md-12">
+                        <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
+                        <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
+                      </div>
+                      <div class="col-md-12">
+                        <span class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
+                        <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-6 float-md-left">
-                  <div class="col-md-12">
-                    <span class="col-sm-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette')); ?></span>
-                    <div class="col-md-12 text-md-center">
-                      <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_no_image_visuel_zoom'); ?></span>
-                    </div>
-                    <div class="col-md-12 text-md-right">
-                      <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?></span>
+                  <div class="col-md-6 float-md-left">
+                    <div class="col-md-12">
+                      <span class="col-sm-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette')); ?></span>
+                      <div class="col-md-12 text-md-center">
+                        <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_no_image_visuel_zoom'); ?></span>
+                      </div>
+                      <div class="col-md-12 text-md-right">
+                        <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?></span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1328,6 +1330,10 @@ updateGross();
 <?php
   } // en manual_image_products_description
 ?>
+      </div>
+      <div class="separator"></div>
+      <div>
+        <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab5', null, 'display'); ?>
       </div>
       <div class="separator"></div>
       <div class="alert alert-info">

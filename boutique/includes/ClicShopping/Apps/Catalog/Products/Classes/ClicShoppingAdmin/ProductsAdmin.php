@@ -220,10 +220,9 @@
 
 /**
  * Normal,medium or big image
- * @param : $id, id (int) of the product
  *
  */
-    private function getImage($id = null) {
+    private function getImage() {
 
         Registry::set('ImageResample', new ImageResample());
         $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
@@ -249,12 +248,11 @@
 // depend server configuration
           mkdir($root_images_dir . $new_dir_products_image, 0755, true);
           chmod($root_images_dir . $new_dir_products_image, 0755);
-          $separator = '/';
         }
 
 
 // load originale image
-        $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, array('gif', 'jpg', 'png', 'jpeg'));
+        $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg']);
 // When the image is updated
 
         if ($image->check() && $image->save()) {
