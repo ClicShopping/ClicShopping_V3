@@ -21,14 +21,12 @@
     protected $insert_language_id;
 
     public function __construct() {
-      global $insert_id;
-
       if (!Registry::exists('TemplateEmail')) {
         Registry::set('TemplateEmail', new TemplateEmail());
       }
 
       $this->app = Registry::get('TemplateEmail');
-      $this->insert_language_id = HTML::sanitize($insert_id);
+      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang =  Registry::get('Language');
     }
 

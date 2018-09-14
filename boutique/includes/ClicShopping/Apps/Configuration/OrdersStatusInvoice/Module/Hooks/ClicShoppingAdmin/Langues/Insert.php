@@ -21,14 +21,12 @@
     protected $insert_language_id;
 
     public function __construct() {
-      global $insert_id;
-
       if (!Registry::exists('OrdersStatusInvoice')) {
         Registry::set('OrdersStatusInvoice', new OrdersStatusInvoiceApp());
       }
 
       $this->app = Registry::get('OrdersStatusInvoice');
-      $this->insert_language_id = HTML::sanitize($insert_id);
+      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang =  Registry::get('Language');
     }
 

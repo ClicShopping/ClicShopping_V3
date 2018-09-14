@@ -21,14 +21,12 @@
     protected $insert_language_id;
 
     public function __construct() {
-      global $insert_id;
-
       if (!Registry::exists('AdministratorMenu')) {
         Registry::set('AdministratorMenu', new AdministratorMenuApp());
       }
 
       $this->app = Registry::get('AdministratorMenu');
-      $this->insert_language_id = HTML::sanitize($insert_id);
+      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang =  Registry::get('Language');
     }
 
@@ -36,10 +34,10 @@
       if (isset($this->insert_language_id)) {
 // administrator_description records
         $QadministratorMenu = $this->app->db->prepare('select a.id as orig_id,
-                                                            amd.*
-                                                     from :table_administrator_menu a left join :table_administrator_menu_description amd on a.id = amd.id
-                                                     where amd.language_id = :language_id
-                                                    ');
+                                                              amd.*
+                                                       from :table_administrator_menu a left join :table_administrator_menu_description amd on a.id = amd.id
+                                                       where amd.language_id = :language_id
+                                                      ');
 
         $QadministratorMenu->bindInt(':language_id', (int)$this->lang->getId());
         $QadministratorMenu->execute();

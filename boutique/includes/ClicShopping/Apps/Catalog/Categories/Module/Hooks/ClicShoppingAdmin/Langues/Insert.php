@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -22,15 +22,13 @@
     protected $insert_language_id;
 
     public function __construct()   {
-      global $insert_id;
-
       if (!Registry::exists('Categories')) {
         Registry::set('Categories', new CategoriesApp());
       }
 
       $this->app = Registry::get('Categories');
       $this->lang = Registry::get('Language');
-      $this->insert_language_id = HTML::sanitize($insert_id);
+      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
     }
 
     private function insert() {

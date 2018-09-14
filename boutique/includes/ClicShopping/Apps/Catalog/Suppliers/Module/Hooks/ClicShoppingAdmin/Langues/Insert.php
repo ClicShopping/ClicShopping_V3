@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -21,14 +21,12 @@
     protected $insert_language_id;
 
     public function __construct()   {
-      global $insert_id;
-
       if (!Registry::exists('Suppliers')) {
         Registry::set('Suppliers', new SuppliersApp());
       }
 
       $this->app = Registry::get('Suppliers');
-      $this->insert_language_id = HTML::sanitize($insert_id);
+      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang =  Registry::get('Language');
     }
 
@@ -60,7 +58,7 @@
       if (!defined('CLICSHOPPING_APP_SUPPLIERS_CS_STATUS') || CLICSHOPPING_APP_SUPPLIERS_CS_STATUS == 'False') {
         return false;
       }
-      
+
       if (isset($_GET['Insert'])) {
         $this->insert();
       }

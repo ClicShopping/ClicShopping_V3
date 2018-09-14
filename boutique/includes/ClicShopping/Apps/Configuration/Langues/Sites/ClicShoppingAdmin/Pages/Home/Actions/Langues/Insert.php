@@ -29,7 +29,6 @@
     }
 
     public function execute() {
-      global $insert_id;
 
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -146,7 +145,7 @@
                           );
 
       $insert_id = $this->app->db->lastInsertId();
-
+      $_POST['insert_id'] = $insert_id;
 
 // create additional default configuration
       if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
