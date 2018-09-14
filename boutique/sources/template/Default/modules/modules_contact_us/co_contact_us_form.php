@@ -36,8 +36,6 @@
     }
 
     public function execute() {
-      global $send_to_array;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -217,7 +215,7 @@
                 <div class="form-group row">
                   <label for="CompanyDepartment" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('send_department_company') . '</label>
                   <div class="col-sm-6 col-md-4">
-                    ' . HTML::selectMenu('send_to', $send_to_array, null, null, false, 'inputContacUsPullDownMenu') . '
+                    ' . HTML::selectMenu('send_to', $_POST['send_to_array'], null, null, false, 'inputContacUsPullDownMenu') . '
                   </div>
                 </div>
               </div>

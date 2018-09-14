@@ -1302,7 +1302,7 @@
  */
 
     public function getSearch($keywords = null) {
-      global $current_category_id;
+      $current_category_id = HTML::sanitize($_POST['cPath']);
 
       if (isset($keywords) && !empty($keywords)) {
 
@@ -1349,6 +1349,8 @@
 
         if (isset($_POST['cPath'])) {
           $current_category_id = HTML::sanitize($_POST['cPath']);
+        } else {
+          $current_category_id = HTML::sanitize($_GET['cPath']);
         }
 
         $Qproducts = $this->db->prepare('select  SQL_CALC_FOUND_ROWS   p.products_id,

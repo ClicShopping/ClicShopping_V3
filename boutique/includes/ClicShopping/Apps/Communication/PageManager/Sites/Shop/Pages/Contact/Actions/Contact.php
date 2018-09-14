@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -17,8 +17,6 @@
   class Contact extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $send_to_array;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
@@ -30,6 +28,8 @@
                               'text' => preg_replace('/\<[^*]*/', '', $v)
                              ];
         }
+
+        $_POST['send_to_array'] = $send_to_array;
       }
 
 // templates
