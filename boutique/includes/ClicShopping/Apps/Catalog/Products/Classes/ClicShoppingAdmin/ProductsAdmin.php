@@ -505,7 +505,7 @@
     if (!empty($image) && (file_exists($this->template->getDirectoryPathTemplateShopImages() . $image)) ) {
       $image = HTML::image($this->template->getDirectoryShopTemplateImages() . $image, $alt, $width, $height);
     } else {
-      $image = HTML::image('../' . $this->template->getImageDirectory() . '/nophoto.png', CLICSHOPPING::getDef('text_image_nonexistent'));
+      $image = HTML::image('../' . $this->template->getImageDirectory() . '/images/nophoto.png', CLICSHOPPING::getDef('text_image_nonexistent'));
     }
 
     return $image;
