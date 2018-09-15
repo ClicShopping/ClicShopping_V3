@@ -117,6 +117,23 @@ span.ModulesProductsInfoBootstrapTickerFavoriteImageGallery {
   transform: rotate(-45deg);
 }
 
+span.ModulesProductsInfoBootstrapTickerFeaturedImageGallery {
+  font: 700 10px/8px Arial,Helvetica,sans-serif;
+  color: #FFF;
+  background: #025AA5 none repeat scroll 0% 0%;
+  text-transform: uppercase;
+  padding: 6px 0px 7px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
+  width: 80px;
+  text-align: center;
+  display: block;
+  position: relative;
+  left: 0.63rem;
+  top: 2.75rem;
+  transform: rotate(-45deg);
+}
+
+
 #piGal {
   float: right;
   width: 300px;
