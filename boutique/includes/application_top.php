@@ -58,11 +58,14 @@
     HTTP::redirect($url_req, 301);
   }
 
+//waiting to remove application top
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_CategoryCommon = Registry::get('CategoryCommon');
   $CLICSHOPPING_Category = Registry::get('Category');
   $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
+  $CLICSHOPPING_Manufacturer = Registry::get('Manufacturers');
+  $CLICSHOPPING_Prod = Registry::get('Prod');
 
   Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function($parameters) {
     WhosOnlineShop::getWhosOnlineUpdateSession_id($parameters['old_id'], session_id());
@@ -77,16 +80,16 @@
     }
   }
 
-// calculate category path
-  if (!is_null($CLICSHOPPING_Category->getPath())) {
+  // calculate category path
+  if ($CLICSHOPPING_Category->getPath()) {
     $cPath = $CLICSHOPPING_Category->getPath();
-  } elseif (isset($_GET['products_id']) && !isset($_GET['manufacturers_id'])) {
-    $cPath = $CLICSHOPPING_Category->getProductPath($_GET['products_id']);
+  } elseif ($CLICSHOPPING_Prod->getID() && !$CLICSHOPPING_Manufacturer->getID()) {
+    $cPath = $CLICSHOPPING_Category->getProductPath($CLICSHOPPING_Prod->getID());
   } else {
     $cPath = '';
   }
 
-  if (!empty($CLICSHOPPING_Category->getPath())) {
+  if ( !empty($cPath) ) {
     $cPath_array = $CLICSHOPPING_CategoryCommon->getParseCategoryPath($cPath);
     $cPath = implode('_', $cPath_array);
     $current_category_id = $cPath_array[(count($cPath_array)-1)];
@@ -97,6 +100,7 @@
 // add category names or the manufacturer name to the breadcrumb trail
   if (isset($cPath_array)) {
     for ($i=0, $n=count($cPath_array); $i<$n; $i++) {
+
       $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
                                                                                          'language_id' => $CLICSHOPPING_Language->getId()
                                                                                         ]
@@ -108,10 +112,10 @@
         break;
       }
     }
-  } elseif (isset($_GET['manufacturers_id'])) {
-    $Qmanufacturer = $CLICSHOPPING_Db->get('manufacturers', 'manufacturers_name', ['manufacturers_id' => (int)$_GET['manufacturers_id']]);
+  } elseif ($CLICSHOPPING_Prod->getID()) {
+    $Qmanufacturer = $CLICSHOPPING_Db->get('manufacturers', 'manufacturers_name', ['manufacturers_id' => (int)$CLICSHOPPING_Manufacturer->getID()]);
 
     if ( $Qmanufacturer->fetch() !== false ) {
-      $CLICSHOPPING_Breadcrumb->add($Qmanufacturer->value('manufacturers_name'), CLICSHOPPING::link('index.php', 'manufacturers_id=' . (int)$_GET['manufacturers_id']));
+      $CLICSHOPPING_Breadcrumb->add($Qmanufacturer->value('manufacturers_name'), CLICSHOPPING::link('index.php', 'manufacturers_id=' . (int)$CLICSHOPPING_Manufacturer->getID()));
     }
   }
