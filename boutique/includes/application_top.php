@@ -78,15 +78,15 @@
   }
 
 // calculate category path
-  if (isset($_GET['cPath'])) {
-    $cPath = $_GET['cPath'];
+  if (!is_null($CLICSHOPPING_Category->getPath())) {
+    $cPath = $CLICSHOPPING_Category->getPath();
   } elseif (isset($_GET['products_id']) && !isset($_GET['manufacturers_id'])) {
     $cPath = $CLICSHOPPING_Category->getProductPath($_GET['products_id']);
   } else {
     $cPath = '';
   }
 
-  if ( !empty($cPath) ) {
+  if (!empty($CLICSHOPPING_Category->getPath())) {
     $cPath_array = $CLICSHOPPING_CategoryCommon->getParseCategoryPath($cPath);
     $cPath = implode('_', $cPath_array);
     $current_category_id = $cPath_array[(count($cPath_array)-1)];
@@ -97,11 +97,10 @@
 // add category names or the manufacturer name to the breadcrumb trail
   if (isset($cPath_array)) {
     for ($i=0, $n=count($cPath_array); $i<$n; $i++) {
-
       $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
-                                                                                        'language_id' => $CLICSHOPPING_Language->getId()
-                                                                                       ]
-                                    );
+                                                                                         'language_id' => $CLICSHOPPING_Language->getId()
+                                                                                        ]
+                                          );
 
       if ($Qcategories->fetch() !== false) {
         $CLICSHOPPING_Breadcrumb->add($Qcategories->value('categories_name'), CLICSHOPPING::link('index.php', 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
@@ -110,7 +109,6 @@
       }
     }
   } elseif (isset($_GET['manufacturers_id'])) {
-
     $Qmanufacturer = $CLICSHOPPING_Db->get('manufacturers', 'manufacturers_name', ['manufacturers_id' => (int)$_GET['manufacturers_id']]);
 
     if ( $Qmanufacturer->fetch() !== false ) {
