@@ -73,7 +73,7 @@
       Registry::set('TemplateAdmin', new TemplateAdmin());
 
 // Take language session
-      $CLICSHOPPING_Language->getLanguageToDisplay();
+      $CLICSHOPPING_Language->getLanguageCode();
 
 // redirect to login page if administrator is not yet logged in
       if (!isset($_SESSION['admin'])) {

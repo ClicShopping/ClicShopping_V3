@@ -443,7 +443,7 @@
  * @access public
  *
  */
-    public function getLanguageToDisplay() {
+    public function getLanguageCode() {
 
       if (!is_null($this->getUrlValueLanguage())) {
         $_GET['language'] = $this->getUrlValueLanguage();

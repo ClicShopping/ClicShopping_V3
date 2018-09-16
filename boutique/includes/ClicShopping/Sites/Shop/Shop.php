@@ -74,7 +74,7 @@
 
 // language
 // voir ligne 84
-      $CLICSHOPPING_Language->getLanguageToDisplay();
+      $CLICSHOPPING_Language->getLanguageCode();
 
 // include the language translations
       $CLICSHOPPING_Language->loadDefinitions('main');
