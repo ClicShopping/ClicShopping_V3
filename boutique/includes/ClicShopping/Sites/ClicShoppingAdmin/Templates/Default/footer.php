@@ -51,6 +51,7 @@
       </span>
     </div>
   </div>
+  <div class="footerCadre separator"></div>
 </footer>
 
 <!-- if the page request contains a link to a tab, open that tab on page load -->
