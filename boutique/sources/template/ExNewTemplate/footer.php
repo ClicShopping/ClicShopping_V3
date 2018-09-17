@@ -15,7 +15,7 @@
 <?php
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_left')) {
 ?>
-      <div id="columnLeft" class="col-sm-6 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> col-md-pull-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> order-xs-2 order-lg-1">
+      <div id="columnLeft" class="col-sm-6 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-2 order-lg-1">
       <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_left'); ?>
     </div>
 <?php
@@ -26,7 +26,7 @@
 <?php
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_right')) {
 ?>
-        <div id="columnRight" class="col-sm-6 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> col-md-pull-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-3 order-lg-3">
+        <div id="columnRight" class="col-sm-6 col-lg-<?php echo $CLICSHOPPING_Template->getGridColumnWidth(); ?> order-xs-3 order-lg-3">
           <?php echo $CLICSHOPPING_Template->getBlocks('boxes_column_right'); ?>
         </div>
 <?php

@@ -240,7 +240,7 @@
         if (empty($_POST['directory_products_image']) || is_null($_POST['directory_products_image'])) {
           $dir_products_image = 'products/';
         } else {
-          $dir_products_image = 'products/' . $_POST['directory_products_image'];
+          $dir_products_image = 'products/' . $_POST['directory_products_image'] . '/';
         }
 
 // create directory for image resample

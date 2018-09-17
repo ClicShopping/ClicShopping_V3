@@ -43,10 +43,11 @@
   echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', CLICSHOPPING::getDef('image_preview')) .' ' . CLICSHOPPING::getDef('image_preview') . ' - ' ;
 ?>
             <span class="col-md-1 navbar-text float-md-right text-md-right go-top"><a href="#"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/footer/top.gif', 'Retour en haut de la page', '16', '16'); ?></a></span>
+         </span>
 <?php
   }
 ?>
-          </span>
+
         </div>
       </span>
     </div>

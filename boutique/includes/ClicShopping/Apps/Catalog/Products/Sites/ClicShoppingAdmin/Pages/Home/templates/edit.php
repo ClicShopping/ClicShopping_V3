@@ -1119,7 +1119,6 @@ updateGross();
       <div class="adminformTitle">
         <div class="row" id="tab5ContentRow1">
           <div class="col-md-6 float-md-left">
-
             <div class="col-md-12">
               <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
               <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
@@ -1133,7 +1132,6 @@ updateGross();
               <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_new_folder'); ?></span>
               <span class="col-sm-6"><?php echo HTML::inputField('new_directory_products_image','','class="form-control-sm"'); ?><span>
             </div>
-
             <div class="col-md-12">
               <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_main_image'); ?></span>
               <span class="col-sm-6"><?php echo HTML::fileField('products_image_resize', 'id="file"'); ?></span>
@@ -1290,46 +1288,46 @@ updateGross();
 // -----------------------------------
   if (MANUAL_IMAGE_PRODUCTS_DESCRIPTION == 'true') {
 ?>
-              <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_customize'); ?></div>
-              <div class="adminformTitle">
-                <div class="row" id="tab5ContentRow7">
-                  <div class="col-md-6 float-md-left">
-                    <div class="col-md-12">
-                      <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
-                      <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
-                    </div>
-                    <div class="separator"></div>
-                    <div class="col-md-12 adminformAide">
-                      <div class="col-md-12 text-md-center">
-                        <span class="col-sm-12 text-md-center"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
-                      </div>
-                      <div class="col-md-12">
-                        <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
-                        <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
-                      </div>
-                      <div class="col-md-12">
-                        <span class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
-                        <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
-                      </div>
-                    </div>
+          <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_customize'); ?></div>
+          <div class="adminformTitle">
+            <div class="row" id="tab5ContentRow7">
+              <div class="col-md-6 float-md-left">
+                <div class="col-md-12">
+                  <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                  <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
+                </div>
+                <div class="separator"></div>
+                <div class="col-md-12 adminformAide">
+                  <div class="col-md-12 text-md-center">
+                    <span class="col-sm-12 text-md-center"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('products_image', null, '100', '100'); ?></span>
                   </div>
-                  <div class="col-md-6 float-md-left">
-                    <div class="col-md-12">
-                      <span class="col-sm-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette')); ?></span>
-                      <div class="col-md-12 text-md-center">
-                        <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_no_image_visuel_zoom'); ?></span>
-                      </div>
-                      <div class="col-md-12 text-md-right">
-                        <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?></span>
-                      </div>
-                    </div>
+                  <div class="col-md-12">
+                    <span class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
+                    <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
+                  </div>
+                  <div class="col-md-12">
+                    <span class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
+                    <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 float-md-left">
+                <div class="col-md-12">
+                  <span class="col-sm-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette')); ?></span>
+                  <div class="col-md-12 text-md-center">
+                    <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_no_image_visuel_zoom'); ?></span>
+                  </div>
+                  <div class="col-md-12 text-md-right">
+                    <span class="col-sm-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_delete_image') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?></span>
                   </div>
                 </div>
               </div>
             </div>
-<?php
-  } // en manual_image_products_description
+          </div>
+ <?php
+  }
 ?>
+        </div>
       </div>
       <div class="separator"></div>
       <div>

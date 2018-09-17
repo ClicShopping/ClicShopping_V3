@@ -50,4 +50,4 @@
 ?>
         </header>
         <div class="d-flex flex-wrap">
-          <div id="bodyContent" class="col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> <?php echo ($CLICSHOPPING_Template->hasBlocks('boxes_column_left') ? 'col-md-push-' . $CLICSHOPPING_Template->getGridColumnWidth() : ''); ?> order-xs-1 order-lg-2">
+          <div id="bodyContent" class="col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> order-xs-1 order-lg-2">
