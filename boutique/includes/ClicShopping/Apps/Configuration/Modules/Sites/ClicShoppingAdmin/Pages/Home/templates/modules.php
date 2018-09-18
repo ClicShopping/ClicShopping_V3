@@ -72,20 +72,20 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_unit.png', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?></span>
+          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_unit.png', $CLICSHOPPING_Modules->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
   if ($_GET['action'] == 'edit') {
     echo '<span class="cols-xs-3 float-right">';
-    echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') .'&nbsp;';
+    echo HTML::button($CLICSHOPPING_Modules->getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') .'&nbsp;';
     echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&set=' . $set . '&module=' . $_GET['module'] . '&action=save'));
-    echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'success');
+    echo HTML::button($CLICSHOPPING_Modules->getDef('button_update'), null, null, 'success');
     echo '</span>';
   } elseif (isset($_GET['list'])) {
-    echo '            <span>' . HTML::button(CLICSHOPPING::getDef('button_back'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'primary') .'</span>';
+    echo '            <span>' . HTML::button($CLICSHOPPING_Modules->getDef('button_back'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'primary') .'</span>';
   } else {
-    echo '            <span>' . HTML::button(CLICSHOPPING::getDef('button_module_install'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set . '&list=new'), 'success') . '</span>';
+    echo '            <span>' . HTML::button($CLICSHOPPING_Modules->getDef('button_module_install'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set . '&list=new'), 'success') . '</span>';
   }
 ?>
         </div>
@@ -147,10 +147,10 @@
       <table class="table table-sm table-hover table-striped">
         <thead>
           <tr class="dataTableHeadingRow">
-            <th><?php echo CLICSHOPPING::getDef('table_heading_modules'); ?></th>
-            <th class="text-md-center"><?php echo CLICSHOPPING::getDef('table_heading_sort_order'); ?></th>
-            <th class="text-md-center"><?php echo CLICSHOPPING::getDef('table_heading_status'); ?></th>
-            <th class="text-md-right"><?php echo CLICSHOPPING::getDef('table_heading_action'); ?>&nbsp;</th>
+            <td><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></td>
+            <td class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></td>
+            <td class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></td>
+            <td class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?></td>
           </tr>
         </thead>
         <tbody>
@@ -253,10 +253,10 @@
                 <td class="text-md-right">
 <?php
       if ($module->check() > 0)  {
-        echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', CLICSHOPPING::getDef('icon_edit'))) . '&nbsp;';
-        echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', CLICSHOPPING::getDef('icon_remove')));
+        echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Modules->getDef('icon_edit'))) . '&nbsp;';
+        echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', $CLICSHOPPING_Modules->getDef('icon_remove')));
       } else {
-        echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/install.gif', CLICSHOPPING::getDef('icon_install')));
+        echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/install.gif', $CLICSHOPPING_Modules->getDef('icon_install')));
       }
         echo '&nbsp;';
 ?>
@@ -328,6 +328,6 @@
       </table>
     </td>
   </table>
-  <div class="col-md-12"><?php echo CLICSHOPPING::getDef('text_module_directory') . ' ' . $module_directory; ?></div>
+  <div class="col-md-12"><?php echo $CLICSHOPPING_Modules->getDef('text_module_directory') . ' ' . $module_directory; ?></div>
 <!-- body_eof //-->
 </div>

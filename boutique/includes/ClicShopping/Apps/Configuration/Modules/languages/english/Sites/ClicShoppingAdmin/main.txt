@@ -23,7 +23,7 @@ button_new = New
 button_insert = Insert
 button_reset = Reset
 button_update = Update
-
+button_module_install = Install
 
 dialog_uninstall_title = Uninstall
 dialog_uninstall_body = Do you want install this App ?

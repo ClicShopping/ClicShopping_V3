@@ -52,6 +52,10 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Category = Registry::get('Category');
 
+      if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
+        return false;
+      }
+
       $current_category_id = $CLICSHOPPING_Category->getPath();
 
       if (CLICSHOPPING::getBaseNameIndex()) {

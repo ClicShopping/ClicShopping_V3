@@ -45,7 +45,6 @@
     protected $_content = [];
     protected $_grid_container_width = GRID_CONTAINER_WITH;
     protected $_grid_content_width = GRID_CONTENT_WITH;
-    protected $_grid_column_width = 0; // deprecated
     protected $_data = [];
 
     protected $width;
@@ -118,10 +117,6 @@
 
     public function getGridContentWidth() {
       return $this->_grid_content_width;
-    }
-
-    public function setGridColumnWidth($width) {
-      $this->_grid_column_width = $width;
     }
 
     public function getGridColumnWidth() {
