@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -19,22 +19,22 @@
   class Currencies {
 
     public $currencies = [];
+    protected $db;
 
     Public function __construct() {
-      $CLICSHOPPING_Db = Registry::get('Db');
-
+      $this->db = Registry::get('Db');
       $this->currencies = [];
 
-      $Qcurrencies = $CLICSHOPPING_Db->query('select code,
-                                                      title,
-                                                      symbol_left,
-                                                      symbol_right,
-                                                      decimal_point,
-                                                      thousands_point,
-                                                      decimal_places,
-                                                      value
-                                                from :table_currencies
-                                               ');
+      $Qcurrencies = $this->db->query('select code,
+                                              title,
+                                              symbol_left,
+                                              symbol_right,
+                                              decimal_point,
+                                              thousands_point,
+                                              decimal_places,
+                                              value
+                                       from :table_currencies
+                                      ');
 
       $Qcurrencies->execute();
 

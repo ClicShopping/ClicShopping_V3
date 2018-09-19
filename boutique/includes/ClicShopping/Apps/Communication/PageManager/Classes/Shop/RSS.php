@@ -314,7 +314,7 @@
       $xml .= '<image>' . "\n";
       $xml .= '<title>' .  $this->setTitle()  . '</title>' . "\n";
       $xml .= '<link>' . HTTP::typeUrlDomain() . '</link>' . "\n";
-      $xml .= '<url>' . HTTP::getShopUrlDomain() . 'sources/imagesicons/icon_feed.gif' . '</url>' . "\n";
+      $xml .= '<url>' . HTTP::getShopUrlDomain() . 'sources/images/icons/icon_feed.gif' . '</url>' . "\n";
       $xml .= '</image>' . "\n";
 
       $xml .= '<docs>https://blogs.law.harvard.edu/tech/rss</docs>' . "\n";
