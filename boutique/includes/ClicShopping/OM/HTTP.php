@@ -25,6 +25,11 @@
       return static::$request_type;
     }
 
+/**
+ * @param $url
+ * @param null $http_response_code - 301 - 302 - 303 - 307
+ */
+
     public static function redirect($url, $http_response_code = null) {
 
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
