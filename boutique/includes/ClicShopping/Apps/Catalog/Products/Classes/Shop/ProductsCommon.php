@@ -2060,9 +2060,7 @@
  */
 
     private function setCalculPrice($id = null) {
-      global $normal_price;
-
-      if (is_null($id)) {
+       if (is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2092,7 +2090,7 @@
       if ($this->customer->getCustomersGroupID() != 0) {
         if ($new_price = $this->setSpecialPriceGroup($id) ) {
           if ($price_group_view == 1) {
-            $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->display_price($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId() )) . '</span>';
+            $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->display_price($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
           } else {
             $products_price = '<span itemprop="price">' . $this->setDisplayPriceGroup($id) . '</span>';
           }
