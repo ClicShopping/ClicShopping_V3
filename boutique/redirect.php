@@ -20,11 +20,11 @@
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Service = Registry::get('Service');
   $CLICSHOPPING_Banner = Registry::get('Banner');
+  $CLICSHOPPING_Manufacturer = Registry::get('Manufacturer');
 
   switch ($_GET['action']) {
-
     case 'banner':
-      $Qbanner = $CLICSHOPPING_Db->get('banners', 'banners_url', ['banners_id' => $_GET['goto'] ]);
+      $Qbanner = $CLICSHOPPING_Db->get('banners', 'banners_url', ['banners_id' => HTML::sanitize($_GET['goto'])]);
 
        if ($Qbanner->fetch() !== false) {
         if (!empty($Qbanner->value('banners_url'))) {
@@ -37,13 +37,12 @@
     break;
 
     case 'url':
-
       if (isset($_GET['goto']) && !is_null($_GET['goto'])) {
 
         $Qcheck = $CLICSHOPPING_Db->get('products_description', 'products_url', ['products_url' => HTML::sanitize($_GET['goto'])],
-                                                            null,
-                                                            1
-                                        );
+                                                                                null,
+                                                                                1
+                                       );
 
         if ($Qcheck->fetch() !== false) {
           HTTP::redirect('https:://' . $Qcheck->value('products_url'));
@@ -53,13 +52,12 @@
     break;
 
     case 'manufacturer':
-
-      if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
+      if ($CLICSHOPPING_Manufacturer->getID() && is_numeric($CLICSHOPPING_Manufacturer->getID())) {
 
        $Qmanufacturer = $CLICSHOPPING_Db->get('manufacturers_info',
-                                              'manufacturers_url', ['manufacturers_id' => $_GET['manufacturers_id'],
+                                              'manufacturers_url', ['manufacturers_id' => $CLICSHOPPING_Manufacturer->getID(),
                                                                    'languages_id' => $CLICSHOPPING_Language->getId()
-                                                                  ]
+                                                                   ]
                                              );
 
         if ($Qmanufacturer->fetch() !== false) {
@@ -72,7 +70,8 @@
                                                   where manufacturers_id = :manufacturers_id
                                                   and languages_id = :languages_id
                                                 ');
-            $Qupdate->bindInt(':manufacturers_id', $_GET['manufacturers_id']);
+
+            $Qupdate->bindInt(':manufacturers_id', $CLICSHOPPING_Manufacturer->getID());
             $Qupdate->bindInt(':languages_id', $CLICSHOPPING_Language->getId());
             $Qupdate->execute();
 
@@ -90,7 +89,8 @@
                                                       and mi.languages_id = l.languages_id
                                                       and l.code = :default_language
                                                     ');
-          $Qmanufacturer->bindInt(':manufacturers_id', (int)$_GET['manufacturers_id']);
+
+          $Qmanufacturer->bindInt(':manufacturers_id', $CLICSHOPPING_Manufacturer->getID());
           $Qmanufacturer->bindValue(':default_language', DEFAULT_LANGUAGE);
           $Qmanufacturer->execute();
 
@@ -104,7 +104,8 @@
                                                     where manufacturers_id = :manufacturers_id
                                                     and languages_id = :languages_id
                                                   ');
-              $Qupdate->bindInt(':manufacturers_id', (int)$_GET['manufacturers_id']);
+
+              $Qupdate->bindInt(':manufacturers_id', $CLICSHOPPING_Manufacturer->getID());
               $Qupdate->bindInt(':languages_id', $Qmanufacturer->valueInt('languages_id'));
               $Qupdate->execute();
 
