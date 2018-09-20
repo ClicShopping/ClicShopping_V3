@@ -180,7 +180,7 @@ email_separator = ------------------------------------------------------
 
 email_text_subject = Order Update on {{store_name}}
 
-email_intro_command = Hello,<br /><br />An actualization of your order was carried out. Please find the whole of information below. <br /><br /> {{store_name}} <br /> {{stone_name_address}}.'
+email_intro_command = Hello,<br /><br />An actualization of your order was carried out. Please find the whole of information below. <br /><br /> {{store_name}} <br /> {{store_name_address}}.'
 
 email_text_order_number = Order Number:
 email_text_invoice_url = Detailed Invoice:

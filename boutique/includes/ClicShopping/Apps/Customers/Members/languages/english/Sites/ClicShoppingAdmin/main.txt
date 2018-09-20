@@ -55,10 +55,10 @@ email_warning =  <br /><br /><strong>Note:</strong> This email address was used 
 email_separator = ----------------------------------------------
 email_password_reminder_subject = {{store_name}} - Recall of access on your account -
 
-email_password_reminder_body = Hello ! <br />br />You asked us to open an office account on {{store_name}} and we thank you for your confidence.<br />Your request is validated and  your access on {{stone_name}} are below. <br /><br />Your username is :  {{username}}  <br /><br />Your password is : {{password}} <br /><br /><strong>Your useful links :</strong><br /><br />
+email_password_reminder_body = Hello ! <br />br />You asked us to open an office account on {{store_name}} and we thank you for your confidence.<br />Your request is validated and  your access on {{store_name}} are below. <br /><br />Your username is :  {{username}}  <br /><br />Your password is : {{password}} <br /><br /><strong>Your useful links :</strong><br /><br />
 1) To reach on your clients' account, to modify your informations, your addresses of delivery and/or invoicing, <a href="{{url}}index.php?Account">Account</a><br />
 2) To reach directly the follow-up of your orders, <a href="{{url}}index.php?Account&History">History<br />
-3) To find its password forgotten : <a href="{{url}}index.php?Account&PasswordForgotten">Password</a><br /><br /><br />Regards,<br /><strong>{{store_name}} Team</strong><br /><br />{{stone_name_address}}<br /><br /><U>
+3) To find its password forgotten : <a href="{{url}}index.php?Account&PasswordForgotten">Password</a><br /><br /><br />Regards,<br /><strong>{{store_name}} Team</strong><br /><br />{{store_name_address}}<br /><br /><U>
 
 email_text_coupon =  {{store_name}} are pleased to offer you a discount coupon that you can use at any time on the shop.<br /><br /> The coupon number is : <strong>
 

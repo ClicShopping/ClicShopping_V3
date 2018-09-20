@@ -184,7 +184,7 @@ email_separator = ------------------------------------------------------
 email_text_subject = Actualisation de votre commande sur {{store_name}}
 email_intro_command = Bonjour, Une actualisation de votre commande a été effectuée.
 Veuillez trouver ci-dessous l'ensemble des informations.{{store_name}}
-{{stone_name_address}}
+{{store_name_address}}
 
 email_text_order_number = No de commande :
 email_text_invoice_url = Votre bon de commande ou facture sont disponibles dans votre espace d'administration de la '.STORE_NAME.' :

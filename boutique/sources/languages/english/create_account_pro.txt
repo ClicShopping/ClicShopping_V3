@@ -11,8 +11,8 @@ email_greet_ms = Dear Ms. {{lastname}},
 
 email_welcome = We thank you for confidence that you us testified by recording you like new customer on site {{store_name}}.
 we have well took into account your request of inscription for the opening of an office account near our network.<br />
-you will receive an email notifying the creation of your account, after validation of your request by our service customers, with the whole of information allowing you to connect and carry out your purchases on {{stone_name}}<br /><br />
-you will be able under privileged customer to then profit from exceptional prices on the whole of our articles by connecting you on your space customer of {{stone_name}}. <br />
+you will receive an email notifying the creation of your account, after validation of your request by our service customers, with the whole of information allowing you to connect and carry out your purchases on {{store_name}}<br /><br />
+you will be able under privileged customer to then profit from exceptional prices on the whole of our articles by connecting you on your space customer of {{store_name}}. <br />
 for any help on our services, do not hesitate with to contact our support: {{store_owner_email_address}}
 
 
