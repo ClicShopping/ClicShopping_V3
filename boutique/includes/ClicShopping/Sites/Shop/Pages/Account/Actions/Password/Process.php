@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -27,7 +27,6 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-
         $password_current = HTML::sanitize($_POST['password_current']);
         $password_new = HTML::sanitize($_POST['password_new']);
         $password_confirmation = HTML::sanitize($_POST['password_confirmation']);
@@ -47,9 +46,9 @@
 
         if ($error === false) {
           $QcheckCustomer = $CLICSHOPPING_Db->prepare('select customers_password
-                                                         from :table_customers
-                                                         where customers_id = :customers_id
-                                                        ');
+                                                       from :table_customers
+                                                       where customers_id = :customers_id
+                                                      ');
           $QcheckCustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $QcheckCustomer->execute();
 
@@ -58,8 +57,8 @@
             $CLICSHOPPING_Db->save('customers', ['customers_password' => Hash::encrypt($password_new)], ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]);
 
             $Qupdate = $CLICSHOPPING_Db->prepare('update :table_customers_info
-                                                 set customers_info_date_account_last_modified = now()
-                                                 where customers_info_id = :customers_info_id
+                                                  set customers_info_date_account_last_modified = now()
+                                                  where customers_info_id = :customers_info_id
                                                ');
             $Qupdate->bindInt(':customers_info_id', (int)$CLICSHOPPING_Customer->getID());
             $Qupdate->execute();

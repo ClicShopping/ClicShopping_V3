@@ -29,9 +29,19 @@
       $this->app = Registry::get('Groups');
     }
 
-    public function display() {
-      global $customers_group_id;
+    private function getCustomerGroupId() {
+      $Qpages = $this->app->db->prepare('select customers_group_id
+                                         from :table_pages_manager
+                                         where pages_id = :pages_id
+                                        ');
+      $Qpages->bindInt('pages_id', $_GET['bID']);
+      $Qpages->execute();
 
+      return $Qpages->valueInt('customers_group_id');
+    }
+
+
+    public function display() {
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
         return false;
       }
@@ -48,7 +58,7 @@
           $content .= '<div class="form-group row">';
           $content .= '<label for="'  . $this->app->getDef('text_customer_group') .'" class="col-5 col-form-label">' . $this->app->getDef('text_customer_group') . '</label>';
           $content .= '<div class="col-md-5">';
-          $content .=  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id);
+          $content .=  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $this->getCustomerGroupId());
           $content .= '</div>';
           $content .= '</div>';
           $content .= '</div>';

@@ -51,7 +51,7 @@
       $Qcustomers->bindInt(':customers_id', $_GET['cID']);
       $Qcustomers->execute();
 
-     $cInfo = new ObjectInfo($Qcustomers->toArray());
+      $cInfo = new ObjectInfo($Qcustomers->toArray());
 
 // Lecture sur la base de données des informations facturations et livraison du groupe client
       if ($cInfo->customers_group_id != 0 ) {

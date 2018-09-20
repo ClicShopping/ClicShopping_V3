@@ -36,20 +36,20 @@
         $email_address = HTML::sanitize($_POST['email_address']);
 
 // Recaptcha
-        if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN == 'True') {
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN == 'True') {
           $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
         }
 
         if (!empty($email_address) && $error === false) {
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id,
-                                               customers_firstname,
-                                               customers_lastname,
-                                               member_level
-                                        from :table_customers
-                                        where customers_email_address = :customers_email_address
-                                        limit 1
-                                        ');
+                                                      customers_firstname,
+                                                      customers_lastname,
+                                                      member_level
+                                                from :table_customers
+                                                where customers_email_address = :customers_email_address
+                                                limit 1
+                                                ');
           $Qcheck->bindValue(':customers_email_address', $email_address);
           $Qcheck->execute();
 
@@ -75,13 +75,13 @@
                   $reset_key_url = str_replace('&amp;', '&', $reset_key_url);
                 }
 
-                $message = utf8_decode(CLICSHOPPING::getDef('email_password_reset_body', ['store_name' => STORE_NAME,
-                                                                                   'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
-                                                                                   'reset_url' => $reset_key_url
-                                                                                  ]
-                                                     )
-                                       );
-                $email_password_reminder_body = html_entity_decode($message);
+                $message = CLICSHOPPING::getDef('email_password_reset_body', ['store_name' => STORE_NAME,
+                                                                               'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
+                                                                               'reset_url' => $reset_key_url
+                                                                              ]
+                                                );
+
+                $email_password_reminder_body = $message;
                 $email_password_reminder_body .= ' <br />' . TemplateEmail::getTemplateEmailSignature();
                 $email_subject = CLICSHOPPING::getDef('email_password_reset_subject', ['store_name' => STORE_NAME]);
 

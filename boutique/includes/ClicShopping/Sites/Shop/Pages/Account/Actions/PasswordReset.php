@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -15,17 +15,15 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Is;
 
-  use ClicShopping\Sites\Shop\Pages\Account\Classes\PasswordReset as Reset;
-
   class PasswordReset extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $error, $email_address, $password_key;
 
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Language->loadDefinitions('password_reset');
 
@@ -50,12 +48,23 @@
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'password_forgotten');
-
         } else {
-          $Qc = Reset::getPasswordResetCheckEmailAddress();
+          $Qcheck = $CLICSHOPPING_Db->prepare('select c.customers_id,
+                                                      c.customers_email_address,
+                                                      ci.password_reset_key,
+                                                      ci.password_reset_date
+                                               from :table_customers c,
+                                                    :table_customers_info ci
+                                               where c.customers_email_address = :customers_email_address
+                                               and c.customers_id = ci.customers_info_id
+                                               limit 1
+                                             ');
 
-          if ($Qc !== false) {
-            if ((strlen($Qc->value('password_reset_key')) != 40) || ($Qc->value('password_reset_key') != $password_key) || (strtotime($Qc->value('password_reset_date') . ' +1 day') <= time()) ) {
+          $Qcheck->bindValue(':customers_email_address', $email_address);
+          $Qcheck->execute();
+
+          if ($Qcheck !== false) {
+            if ((strlen($Qcheck->value('password_reset_key')) != 40) || ($Qcheck->value('password_reset_key') != $password_key) || (strtotime($Qcheck->value('password_reset_date') . ' +1 day') <= time()) ) {
               $error = true;
 
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'password_forgotten');
