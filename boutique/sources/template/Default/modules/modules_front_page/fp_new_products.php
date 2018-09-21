@@ -36,7 +36,7 @@
     }
 
     public function execute() {
-     global $buy_button, $products_id;
+     global $products_id;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -182,6 +182,7 @@
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
 // button buy
               $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
+              $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 // Display an input allowing for the customer to insert a quantity
               $input_quantity = $CLICSHOPPING_ProductsFunctionTemplate->getDisplayInputQuantity(MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON, $products_id);
 // display the differents prices before button

@@ -1757,6 +1757,16 @@
       }
 
 /**
+ * @param $button
+ * @return mixed
+ */
+      public function getBuyButton($button) {
+        $this->button = $button;
+
+        return $button;
+      }
+
+/**
  * Button buy now
  *
  * @param string $submit_button , the button
@@ -1764,7 +1774,7 @@
  */
 
     private function setProductsBuyButton() {
-      global $buy_button;
+      $buy_button = $this->button;
 
       if ((PRICES_LOGGED_IN == 'true' && !$this->customer->isLoggedOn())) {
         $buy_button = '';
