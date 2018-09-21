@@ -35,8 +35,6 @@
     }
 
     public function execute() {
-      global $buy_button;
-
       if (isset($_GET['products_id']) && isset($_GET['Products']) ) {
 
         $content_width = (int)MODULE_PRODUCTS_INFO_PRICE_CONTENT_WIDTH;
@@ -77,6 +75,7 @@
            }
 // display buy button
           $buy_button =  HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
+          $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
 // display the differents buttons before minorder qty
            if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
