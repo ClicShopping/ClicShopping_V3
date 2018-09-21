@@ -54,7 +54,6 @@
           $Qcheck->execute();
 
           if ( $Qcheck->fetch() !== false ) {
-
             if ($Qcheck->valueInt('member_level') == 1) {
 
               Registry::set('ActionRecorder', new ActionRecorder('ar_reset_password', $Qcheck->valueInt('customers_id'), $email_address));
@@ -66,8 +65,8 @@
                 $reset_key = Hash::getRandomString(40);
 
                 $CLICSHOPPING_Db->save('customers_info',['password_reset_key' => $reset_key, 'password_reset_date' => 'now()'],
-                                                 ['customers_info_id' => $Qcheck->valueInt('customers_id')]
-                                );
+                                                         ['customers_info_id' => $Qcheck->valueInt('customers_id')]
+                                      );
 
                 $reset_key_url = CLICSHOPPING::link('index.php', 'Account&PasswordReset&account=' . urlencode($email_address) . '&key=' . $reset_key);
 

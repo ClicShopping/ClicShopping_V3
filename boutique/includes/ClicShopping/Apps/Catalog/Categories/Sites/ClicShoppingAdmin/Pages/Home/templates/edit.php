@@ -29,47 +29,7 @@
 
   $CLICSHOPPING_Hooks->call('Categories', 'PreAction');
 
-  // ------------------------------------------------------------
-  // gallery and upload small, medium and big image
-  // ------------------------------------------------------------
-
-  $exclude_folders = []; // folders to exclude from adding new images
-  $root_images_dir = $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() .'products/' ;
-
-/**
- * Return a  the dir path
- *
- * @param string $path, the path
- * @param string  $result
- * Conflict with another file and doesn't work with general.php
- */
-  function getOpenDir($path) {
-    $path = rtrim($path, '/') . '/';
-
-    $exclude_array = ['.', '..', '.DS_Store', '.directory', '.htaccess', 'Thumbs.db','.php', '_note'];
-    $result = [];
-
-    if ($handle = opendir($path)) {
-      while (false !== ($filename = readdir($handle))) {
-        if (!in_array($filename, $exclude_array)) {
-          $file = array('name' => $path . $filename,
-                        'is_dir' => is_dir($path . $filename),
-                        'writable' => FileSystem::isWritable($path . $filename)
-          );
-          $result[] = $file;
-          if ($file['is_dir'] === true) {
-            $result = array_merge($result, getOpenDir($path . $filename));
-          }
-        }
-      }
-      closedir($handle);
-    }
-
-    return $result;
-  }
-
-
-  // check if the catalog image directory exists
+// check if the catalog image directory exists
   if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
     if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('error_catalog_image_directory_not_writeable'), 'error');
   } else {
@@ -77,24 +37,24 @@
   }
 
   $Qcategories = $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
-                                                       c.categories_image,
-                                                       c.parent_id,
-                                                       c.sort_order,
-                                                       c.date_added,
-                                                       c.last_modified,
-                                                       cd.categories_name,
-                                                       cd.categories_description,
-                                                       cd.categories_head_title_tag,
-                                                       cd.categories_head_desc_tag,
-                                                       cd.categories_head_keywords_tag
-                                               from :table_categories c,
-                                                    :table_categories_description cd
-                                               where c.categories_id = :categories_id
-                                               and c.categories_id = cd.categories_id
-                                               and cd.language_id = :language_id
-                                               order by c.sort_order,
-                                                        cd.categories_name
-                                              ');
+                                                               c.categories_image,
+                                                               c.parent_id,
+                                                               c.sort_order,
+                                                               c.date_added,
+                                                               c.last_modified,
+                                                               cd.categories_name,
+                                                               cd.categories_description,
+                                                               cd.categories_head_title_tag,
+                                                               cd.categories_head_desc_tag,
+                                                               cd.categories_head_keywords_tag
+                                                       from :table_categories c,
+                                                            :table_categories_description cd
+                                                       where c.categories_id = :categories_id
+                                                       and c.categories_id = cd.categories_id
+                                                       and cd.language_id = :language_id
+                                                       order by c.sort_order,
+                                                                cd.categories_name
+                                                      ');
   $Qcategories->bindInt(':categories_id', (int)$_GET['cID'] );
   $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
   $Qcategories->execute();

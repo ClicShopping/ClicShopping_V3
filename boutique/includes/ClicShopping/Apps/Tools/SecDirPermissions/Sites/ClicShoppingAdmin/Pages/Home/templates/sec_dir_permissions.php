@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -19,37 +19,36 @@
 
   $CLICSHOPPING_Language->loadDefinitions('sec_dir_permissions');
 
+    function getOpenDir($path) {
+      $path = rtrim($path, '/') . '/';
 
-  function getOpenDir($path) {
-    $path = rtrim($path, '/') . '/';
+      $exclude_array = ['.', '..', '.DS_Store', 'Thumbs.db', '.haccess', '_htaccess'];
 
-    $exclude_array = array('.', '..', '.DS_Store', 'Thumbs.db', '.haccess', '_htaccess');
+      $result = [];
 
-    $result = [];
+      if ($handle = opendir($path)) {
 
-    if ($handle = opendir($path)) {
+        while (false !== ($filename = readdir($handle))) {
 
-      while (false !== ($filename = readdir($handle))) {
+          if (!in_array($filename, $exclude_array)) {
+            $file = ['name' => $path . $filename,
+                     'is_dir' => is_dir($path . $filename),
+                     'writable' => FileSystem::isWritable($path . $filename)
+                    ];
 
-        if (!in_array($filename, $exclude_array)) {
-          $file = ['name' => $path . $filename,
-                  'is_dir' => is_dir($path . $filename),
-                  'writable' => FileSystem::isWritable($path . $filename)
-                  ];
+            $result[] = $file;
 
-          $result[] = $file;
-
-          if ($file['is_dir'] === true) {
-            $result = array_merge($result, getOpenDir($path . $filename));
+            if ($file['is_dir'] === true) {
+              $result = array_merge($result, getOpenDir($path . $filename));
+            }
           }
         }
+
+        closedir($handle);
       }
 
-      closedir($handle);
+      return $result;
     }
-
-    return $result;
-  }
 
   $whitelist_array = [];
 
@@ -88,9 +87,9 @@
         <table class="table table-sm table-hover table-striped">
           <thead>
           <tr class="dataTableHeadingRow">
-            <th><?php echo$CLICSHOPPING_SecDirPermissions->getDef('table_heading_directories'); ?></th>
-            <th class="text-md-center"><?php echo$CLICSHOPPING_SecDirPermissions->getDef('table_heading_writable'); ?></th>
-            <th class="text-md-center"><?php echo$CLICSHOPPING_SecDirPermissions->getDef('table_heading_recommended'); ?></th>
+            <th><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_directories'); ?></th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_writable'); ?></th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_recommended'); ?></th>
           </tr>
           <thead>
           <tbody>
@@ -108,7 +107,7 @@
   }
 ?>
             <tr>
-              <td colspan="3"><?php echo$CLICSHOPPING_SecDirPermissions->getDef('text_directory') . ' ' . CLICSHOPPING::getConfig('dir_root', 'Shop'); ?></td>
+              <td colspan="3"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('text_directory') . ' ' . CLICSHOPPING::getConfig('dir_root', 'Shop'); ?></td>
             </tr>
           </tbody>
         </table></td>

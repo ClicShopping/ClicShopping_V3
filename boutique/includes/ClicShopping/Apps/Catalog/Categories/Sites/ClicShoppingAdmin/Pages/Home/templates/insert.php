@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -28,46 +28,6 @@
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
   $CLICSHOPPING_Hooks->call('Categories', 'PreAction');
-
-  // ------------------------------------------------------------
-  // gallery and upload small, medium and big image
-  // ------------------------------------------------------------
-
-  $exclude_folders = []; // folders to exclude from adding new images
-  $root_images_dir = $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() .'products/' ;
-
-/**
- * Return a  the dir path
- *
- * @param string $path, the path
- * @param string  $result
- * Conflict with another file and doesn't work with general.php
- */
-  function getOpenDir($path) {
-    $path = rtrim($path, '/') . '/';
-
-    $exclude_array = ['.', '..', '.DS_Store', '.directory', '.htaccess', 'Thumbs.db','.php', '_note'];
-    $result = [];
-
-    if ($handle = opendir($path)) {
-      while (false !== ($filename = readdir($handle))) {
-        if (!in_array($filename, $exclude_array)) {
-          $file = ['name' => $path . $filename,
-                  'is_dir' => is_dir($path . $filename),
-                  'writable' => FileSystem::isWritable($path . $filename)
-                  ];
-
-          $result[] = $file;
-          if ($file['is_dir'] === true) {
-            $result = array_merge($result, getOpenDir($path . $filename));
-          }
-        }
-      }
-      closedir($handle);
-    }
-
-    return $result;
-  }
 
 // check if the catalog image directory exists
   if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {

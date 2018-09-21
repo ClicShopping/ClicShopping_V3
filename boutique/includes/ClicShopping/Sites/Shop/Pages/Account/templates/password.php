@@ -16,10 +16,9 @@
 
   require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
-  if ( $CLICSHOPPING_MessageStack->exists('account_password') ) {
-    echo $CLICSHOPPING_MessageStack->get('account_password');
+  if ( $CLICSHOPPING_MessageStack->exists('header') ) {
+    echo $CLICSHOPPING_MessageStack->get('header');
   }
-
 
   require($CLICSHOPPING_Page->data['content']);
 
