@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -35,14 +35,15 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-
         $error = false;
         $process = true;
         $zone_id = false;
 
+        $CLICSHOPPING_Hooks->call('CreatePro','PreAction');
+
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
-        $email_address =  HTML::sanitize($_POST['email_address']);
+        $email_address = HTML::sanitize($_POST['email_address']);
         $email_address_confirmation = HTML::sanitize($_POST['email_address_confirmation']);
         $postcode = HTML::sanitize($_POST['postcode']);
         $city = HTML::sanitize($_POST['city']);
@@ -177,9 +178,9 @@
         } else {
 
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
-                                              from :table_customers
-                                              where customers_email_address = :customers_email_address
-                                             ');
+                                                    from :table_customers
+                                                    where customers_email_address = :customers_email_address
+                                                   ');
           $Qcheckemail->bindValue(':customers_email_address', $email_address);
 
           $Qcheckemail->execute();
@@ -195,9 +196,9 @@
           $email_address1 =  HTML::sanitize($email_address);
 
           $QcheckEmailNoAccount = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                                       from :table_newsletters_no_account
-                                                       where customers_email_address = :customers_email_address
-                                                      ');
+                                                             from :table_newsletters_no_account
+                                                             where customers_email_address = :customers_email_address
+                                                            ');
           $QcheckEmailNoAccount->bindValue(':customers_email_address', $email_address1);
           $QcheckEmailNoAccount->execute();
 
@@ -205,9 +206,9 @@
 
           if ($check_email_no_account['total'] > 0) {
             $Qdelete = $CLICSHOPPING_Db->prepare('delete
-                                            from :table_newsletters_no_account
-                                            where customers_email_address = :email_address
-                                          ');
+                                                  from :table_newsletters_no_account
+                                                  where customers_email_address = :email_address
+                                                ');
             $Qdelete->bindValue(':email_address', $email_address);
             $Qdelete->execute();
           }
@@ -258,24 +259,23 @@
           $zone_id = 0;
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                        from :table_zones
-                                        where zone_country_id = :zone_country_id
-                                       ');
+                                              from :table_zones
+                                              where zone_country_id = :zone_country_id
+                                             ');
           $Qcheck->bindInt(':zone_country_id', (int)$country);
           $Qcheck->execute();
 
           $entry_state_has_zones = ($Qcheck->valueInt('total') > 0);
 
-
           if ($entry_state_has_zones === true) {
 
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                               from :table_zones
-                                               where zone_country_id = :zone_country_id
-                                               and (zone_name = :zone_name or zone_code = :zone_code)
-                                               and zone_status = 0
-                                             ');
+                                                   from :table_zones
+                                                   where zone_country_id = :zone_country_id
+                                                   and (zone_name = :zone_name or zone_code = :zone_code)
+                                                   and zone_status = 0
+                                                 ');
 
               $Qzone->bindInt(':zone_country_id', $country);
               $Qzone->bindValue(':zone_name', $state);
@@ -284,11 +284,11 @@
 
             } else {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                              from :table_zones
-                                              where zone_country_id = :zone_country_id
-                                              and zone_id = :zone_id
-                                              and zone_status = 0
-                                            ');
+                                                  from :table_zones
+                                                  where zone_country_id = :zone_country_id
+                                                  and zone_id = :zone_id
+                                                  and zone_status = 0
+                                                ');
               $Qzone->bindInt(':zone_country_id', $country);
               $Qzone->bindValue(':zone_id',  $state);
 
@@ -431,7 +431,7 @@
                               'entry_postcode' => $postcode,
                               'entry_city' => $city,
                               'entry_country_id' => (int)$country
-                             ];
+                            ];
 
           if (ACCOUNT_GENDER_PRO == 'true') $sql_data_array['entry_gender'] = $gender;
           if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['entry_company'] = $company;
@@ -451,14 +451,16 @@
           $address_id = $CLICSHOPPING_Db->lastInsertId();
 
           $CLICSHOPPING_Db->save('customers', array('customers_default_address_id' => (int)$address_id),
-                                        array('customers_id' => (int)$customer_id)
-                          );
+                                              array('customers_id' => (int)$customer_id)
+                                );
 
-          $CLICSHOPPING_Db->save('customers_info', array('customers_info_id' => (int)$customer_id,
-                                                  'customers_info_number_of_logons' => 0,
-                                                  'customers_info_date_account_created' => 'now()'
-                                                  )
-                          );
+          $sql_array = ['customers_info_id' => (int)$customer_id,
+                        'customers_info_number_of_logons' => 0,
+                        'customers_info_date_account_created' => 'now()'
+                        ];
+
+          $CLICSHOPPING_Db->save('customers_info', $sql_array);
+
 
 // Ouverture de la session si l'approbation n'est pas obligatoire
           if (MEMBER == 'false') {
@@ -494,7 +496,7 @@
             $template_email_welcome_catalog = CLICSHOPPING::getDef('email_welcome');
           }
 
-          if (COUPON_CUSTOMER != '') {
+          if (!empty(COUPON_CUSTOMER)) {
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
             $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
           }
@@ -518,12 +520,14 @@
           if (EMAIL_INFORMA_ACCOUNT_ADMIN == 'true') {
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
-            $admin_email_text_admin = CLICSHOPPING::getDef('admin_email_text', ['customer_name' => $_POST['lastname'],
-                                                                         'customer_firstame' => $_POST['firstname'],
-                                                                         'customer_company' => $_POST['company'],
-                                                                         'customer_mail' => $_POST['email_address']
-                                                                        ]
-                                                    );
+
+            $data_array = ['customer_name' => $_POST['lastname'],
+                           'customer_firstame' => $_POST['firstname'],
+                           'customer_company' => $_POST['company'],
+                           'customer_mail' => $_POST['email_address']
+                          ];
+
+            $admin_email_text_admin = CLICSHOPPING::getDef('admin_email_text', $data_array);
 
             $email_address = STORE_OWNER_EMAIL_ADDRESS;
             $from = STORE_OWNER_EMAIL_ADDRESS;
@@ -537,6 +541,6 @@
 
           CLICSHOPPING::redirect('index.php', 'Account&CreatePro&Success');
 
-      }// error false
+      }
     }
   }
