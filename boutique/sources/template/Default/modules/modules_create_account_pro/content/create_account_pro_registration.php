@@ -471,7 +471,6 @@ use ClicShopping\OM\HTML;
 ?>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountProRegistrationCategoryOptionsPageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></h3></span>
       </div>
       <div class="card-block">
