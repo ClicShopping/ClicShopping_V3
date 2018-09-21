@@ -131,7 +131,7 @@
   </div>
   <div class="separator"></div>
 
-  <div class="mainTitle"><?php echo$CLICSHOPPING_PageManager->getDef('title_pages_choose'); ?></div>
+  <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_pages_choose'); ?></div>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">

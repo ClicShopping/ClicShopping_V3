@@ -108,7 +108,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="<?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_edit_link'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link'); ?></label>
                   <div class="col-md-5">
                     <?php echo HTML::inputField('link', $cInfo->link, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link') . '"'); ?>
                   </div>
@@ -119,7 +119,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="<?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_edit_access_administrator'); ?>" class="col-5 col-form-label"><?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_edit_access_administrator'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_access_administrator'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_access_administrator'); ?></label>
                   <div class="col-md-5">
                     <?php echo HTML::selectMenu('access_administrator', AdministratorAdmin::getAdministratorMenuRight($CLICSHOPPING_AdministratorMenu->getDef('text_selected')), $cInfo->access); ?>
                   </div>
@@ -130,7 +130,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="<?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_image'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_image'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_image'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_image'); ?></label>
                   <div class="col-md-5">
                     <?php echo HTML::inputField('image', $cInfo->image, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_image') . '"'); ?>
                   </div>
@@ -141,7 +141,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="<?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_edit_b2b_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_b2b_menu'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_b2b_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_b2b_menu'); ?></label>
                   <div class="col-md-5">
                     <?php echo HTML::checkboxField('b2b_menu', $cInfo->b2b_menu, $cInfo->b2b_menu); ?>
                   </div>
@@ -152,7 +152,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <label for="<?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order'); ?></label>
                   <div class="col-md-5">
                     <?php echo HTML::inputField('sort_order', $cInfo->sort_order, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order') . '" size="2"'); ?>
                   </div>
@@ -166,7 +166,7 @@
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
-                      <label for="<?php echo$CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?></label>
+                      <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?></label>
                       <div class="col-md-5">
                         <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $current_category_id) . HTML::hiddenField('current_category_id', $current_category_id); ?>
                       </div>
