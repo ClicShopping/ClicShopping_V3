@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
   use ClicShopping\Sites\Shop\AddressBook;
 
   class AddressBookProcess extends \ClicShopping\OM\PagesActionsAbstract {
@@ -40,7 +41,9 @@
 // error checking when updating or adding an entry
       $process = false;
 
-      if ($_GET['newcustomer'] == 1) {
+      $new_customer = HTML::sanitize($_GET['newcustomer']);
+
+      if ($new_customer == 1) {
         if (!empty($CLICSHOPPING_Customer->getDefaultAddressID()))  {
           $_GET['edit'] = $CLICSHOPPING_Customer->getDefaultAddressID();
         }
