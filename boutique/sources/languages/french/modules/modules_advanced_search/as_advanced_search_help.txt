@@ -7,7 +7,7 @@ module_advanced_search_help_text = <br />
     <strong>comment procéder ? </strong>
     <br />
     <br />
-    il vous suffit de taper votre mot que vous recherchez dans la barre de recherche et de cliquer sur OK.
+    il vous suffit de taper votre mot que vous recherchez dans la barre de recherche et de cliquez sur OK.
     <br />
     vous bénéficier de plusieurs filtres (catégorie de produit, prix, marques) vous permettent de préciser votre recherche. En fonctions des catégories choisies, des filtres complémentaires apparaissent et vous permettent un affinage encore plus précis.
     <br /> <br />

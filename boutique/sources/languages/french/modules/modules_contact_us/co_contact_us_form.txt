@@ -13,7 +13,7 @@ entry_customer = Question Client :
 
 entry_note_registered = Veuillez nous préciser la référence du/des produits et toutes informations concernant le problème identifié sur la commande<br /><br />
 
-entry_note_no_registered = Si vous appliquez pour une commande déjà effectuée veuillez cliquer sur : <a href="index.php?Account&Main">Mon Account</a> et veuillez choisir votre numéro de commande<br /><br />
+entry_note_no_registered = Si vous appliquez pour une commande déjà effectuée veuillez cliquez sur : <a href="index.php?Account&Main">Mon Account</a> et veuillez choisir votre numéro de commande<br /><br />
 
 entry_name = Nom, prénom
 entry_email = Adresse email
