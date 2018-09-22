@@ -10,9 +10,9 @@ En application de la loi du 6 janvier 1978 relative à l’informatique, aux fic
 
 
 text_open_account = S'enregister et ouvrir un compte
-text_b2b = Ourvir un compte professionnel
+text_b2b = Ourvrir un compte professionnel
 text_b2c = Ouvrir un compte client
-text_intro_b2b = Vous êtes une entreprise et vous souhaitez achtez nors produits pour les revendre, veuillez cliquer sur le boutton et suivre la procédure
+text_intro_b2b = Vous êtes une entreprise et vous souhaitez achetez nos produits pour les revendre, veuillez cliquer sur le boutton et suivre la procédure
 text_intro_b2c = Vous êtes un client et vous souhaitez acheter nos produits, veuillez cliquer sur le boutton et suivre la procédure
 
 button_retailers =  Professionels / Revendeurs
