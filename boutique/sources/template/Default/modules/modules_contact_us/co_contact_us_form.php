@@ -31,7 +31,7 @@
 
       if (defined('MODULES_CONTACT_US_FORM_STATUS')) {
         $this->sort_order = (int)MODULES_CONTACT_US_FORM_SORT_ORDER;
-        $this->enabled = (MODULES_CONTACT_US_FORM_STATUS == 'True');
+        $this->enabled = MODULES_CONTACT_US_FORM_STATUS;
       }
     }
 

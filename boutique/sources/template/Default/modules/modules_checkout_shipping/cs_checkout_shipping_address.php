@@ -32,7 +32,7 @@
 
       if (defined('MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_SHIPPING_ADDRESS_SORT_ORDER;
-        $this->enabled = (MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS == 'True');
+        $this->enabled = MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS;
       }
      }
 

@@ -32,7 +32,7 @@
 
       if ( defined('MODULE_BOXES_SEARCH_STATUS') ) {
         $this->sort_order = MODULE_BOXES_SEARCH_SORT_ORDER;
-        $this->enabled = (MODULE_BOXES_SEARCH_STATUS == 'True');
+        $this->enabled = MODULE_BOXES_SEARCH_STATUS;
         $this->pages = MODULE_BOXES_SEARCH_DISPLAY_PAGES;
         $this->group = ((MODULE_BOXES_SEARCH_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
       }

@@ -29,7 +29,7 @@
 
       if (defined('MODULE_SHOPPING_CART_SHOW_TOTAL_STATUS')) {
         $this->sort_order = MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER;
-        $this->enabled = (MODULE_SHOPPING_CART_SHOW_TOTAL_STATUS == 'True');
+        $this->enabled = MODULE_SHOPPING_CART_SHOW_TOTAL_STATUS;
       }
      }
 

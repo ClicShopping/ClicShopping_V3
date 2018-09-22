@@ -30,7 +30,7 @@
 
       if ( defined('MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_STATUS') ) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_SORT_ORDER;
-        $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_STATUS == 'True');
+        $this->enabled = MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_STATUS;
       }
     }
 

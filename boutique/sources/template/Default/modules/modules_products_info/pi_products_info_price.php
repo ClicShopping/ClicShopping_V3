@@ -30,13 +30,12 @@
 
       if (defined('MODULE_PRODUCTS_INFO_PRICE_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER;
-        $this->enabled = (MODULE_PRODUCTS_INFO_PRICE_STATUS == 'True');
+        $this->enabled = MODULE_PRODUCTS_INFO_PRICE_STATUS;
       }
     }
 
     public function execute() {
-      if (isset($_GET['products_id']) && isset($_GET['Products']) ) {
-
+      if (isset($_GET['products_id']) && isset($_GET['Products'])) {
         $content_width = (int)MODULE_PRODUCTS_INFO_PRICE_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_INFO_PRICE_POSITION;
 

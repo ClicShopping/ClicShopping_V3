@@ -32,7 +32,7 @@
 
       if ( defined('MODULE_FOOTER_MULTI_TEMPLATE_STATUS') ) {
         $this->sort_order = MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER;
-        $this->enabled = (MODULE_FOOTER_MULTI_TEMPLATE_STATUS == 'True');
+        $this->enabled = MODULE_FOOTER_MULTI_TEMPLATE_STATUS;
         $this->pages = MODULE_FOOTER_MULTI_TEMPLATE_DISPLAY_PAGES;
       }
     }

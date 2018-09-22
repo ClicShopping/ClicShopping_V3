@@ -30,7 +30,7 @@
 
       if (defined('MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS')) {
         $this->sort_order = MODULE_LOGIN_PASSWORD_FORGOTTEN_SORT_ORDER;
-        $this->enabled = (MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS == 'True');
+        $this->enabled = MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS;
       }
      }
 

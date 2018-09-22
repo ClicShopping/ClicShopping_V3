@@ -30,7 +30,7 @@
 
       if ( defined('MODULES_TELL_A_FRIEND_STATUS') ) {
         $this->sort_order = MODULES_TELL_A_FRIEND_SORT_ORDER;
-        $this->enabled = (MODULES_TELL_A_FRIEND_STATUS == 'True');
+        $this->enabled = MODULES_TELL_A_FRIEND_STATUS;
       }
     }
 

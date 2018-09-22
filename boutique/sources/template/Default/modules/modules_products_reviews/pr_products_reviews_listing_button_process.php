@@ -30,7 +30,7 @@ class pr_products_reviews_listing_button_process {
 
     if ( defined('MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS') ) {
       $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_SORT_ORDER;
-      $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS == 'True');
+      $this->enabled = MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_STATUS;
     }
   }
 

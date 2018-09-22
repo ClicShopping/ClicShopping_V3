@@ -30,7 +30,7 @@
 
       if (defined('MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_SORT_ORDER;
-        $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS == 'True');
+        $this->enabled = MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_STATUS;
       }
      }
 
@@ -41,7 +41,7 @@
       $CLICSHOPPING_Order =  Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Address = Registry::get('Address');
-      
+
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_CONTENT_WIDTH;

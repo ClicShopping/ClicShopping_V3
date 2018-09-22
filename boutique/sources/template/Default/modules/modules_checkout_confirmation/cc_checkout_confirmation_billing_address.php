@@ -32,7 +32,7 @@
 
       if (defined('MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_SORT_ORDER;
-        $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS == 'True');
+        $this->enabled = MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_STATUS;
       }
      }
 
@@ -42,9 +42,9 @@
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Address = Registry::get('Address');
-      
+
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
-        
+
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_CONTENT_WIDTH;
 
         $modify_address = AddressBook::countCustomersModifyAddressDefault();
@@ -52,7 +52,7 @@
         $billing_address = $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->billing['format_id'], $CLICSHOPPING_Order->billing, 1, ' ', '<br />');
         $payment_method  = HTML::link(CLICSHOPPING::link('index.php', 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_edit') . ')</span>');
         $type_payment = $_SESSION['payment'];
-        
+
         $confirmation = '  <!-- cc_checkout_confirmation_billing_address start -->'. "\n";
 
         ob_start();

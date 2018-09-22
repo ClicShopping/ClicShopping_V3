@@ -29,7 +29,7 @@
 
       if (defined('MODULE_LOGIN_MODE_B2B_B2C_STATUS')) {
         $this->sort_order = MODULE_LOGIN_MODE_B2B_B2C_SORT_ORDER;
-        $this->enabled = (MODULE_LOGIN_MODE_B2B_B2C_STATUS == 'True');
+        $this->enabled = MODULE_LOGIN_MODE_B2B_B2C_STATUS;
       }
      }
 
@@ -95,6 +95,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Where do you want display the module ?',
+          'configuration_key' => 'MODULE_LOGIN_MODE_B2B_B2C_POSITION',
+          'configuration_value' => 'float-none',
+          'configuration_description' => 'Select where you want display the module',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-right\', \'float-left\', \'float-none\'),',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_LOGIN_MODE_B2B_B2C_SORT_ORDER',
           'configuration_value' => '10',
@@ -107,8 +119,8 @@
       );
 
       return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-      );
+                                                      ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
+                                    );
     }
 
     public function remove() {
@@ -119,6 +131,7 @@
       return array (
         'MODULE_LOGIN_MODE_B2B_B2C_STATUS',
         'MODULE_LOGIN_MODE_B2B_B2C_CONTENT_WIDTH',
+        'MODULE_LOGIN_MODE_B2B_B2C_POSITION',
         'MODULE_LOGIN_MODE_B2B_B2C_SORT_ORDER'
       );
     }

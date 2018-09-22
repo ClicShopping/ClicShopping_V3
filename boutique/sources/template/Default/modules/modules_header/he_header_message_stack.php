@@ -31,7 +31,7 @@
 
       if ( defined('MODULE_HEADER_MESSAGE_STACK_STATUS') ) {
         $this->sort_order = MODULE_HEADER_MESSAGE_STACK_SORT_ORDER;
-        $this->enabled = (MODULE_HEADER_MESSAGE_STACK_STATUS == 'True');
+        $this->enabled = MODULE_HEADER_MESSAGE_STACK_STATUS;
       }
     }
 

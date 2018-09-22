@@ -30,7 +30,7 @@
 
       if (defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS')) {
         $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER : 0;
-        $this->enabled = (MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS == 'True');
+        $this->enabled = MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS;
       }
     }
 
@@ -49,24 +49,24 @@
           $last_order = $Qorders->valueInt('orders_id');
 
 // Now get all downloadable products in that order
-          $Qdownloads = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day, 
-                                                    opd.download_maxdays, 
-                                                    op.products_name, 
-                                                    opd.orders_products_download_id, 
-                                                    opd.orders_products_filename, 
-                                                    opd.download_count, 
-                                                    opd.download_maxdays 
-                                            from :table_orders o, 
-                                                 :table_orders_products op, 
-                                                 :table_orders_products_download opd, 
-                                                 :table_orders_status os 
-                                            where o.orders_id = :orders_id 
-                                            and o.customers_id = :customers_id 
-                                            and o.orders_id = op.orders_id 
-                                            and op.orders_products_id = opd.orders_products_id 
-                                            and opd.orders_products_filename <> "" 
-                                            and o.orders_status = os.orders_status_id 
-                                            and os.downloads_flag = 1 
+          $Qdownloads = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
+                                                    opd.download_maxdays,
+                                                    op.products_name,
+                                                    opd.orders_products_download_id,
+                                                    opd.orders_products_filename,
+                                                    opd.download_count,
+                                                    opd.download_maxdays
+                                            from :table_orders o,
+                                                 :table_orders_products op,
+                                                 :table_orders_products_download opd,
+                                                 :table_orders_status os
+                                            where o.orders_id = :orders_id
+                                            and o.customers_id = :customers_id
+                                            and o.orders_id = op.orders_id
+                                            and op.orders_products_id = opd.orders_products_id
+                                            and opd.orders_products_filename <> ""
+                                            and o.orders_status = os.orders_status_id
+                                            and os.downloads_flag = 1
                                             and os.language_id = :language_id
                                           ');
           $Qdownloads->bindInt(':orders_id', $last_order);

@@ -30,7 +30,7 @@
 
       if (defined('MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_STATUS')) {
         $this->sort_order = MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_SORT_ORDER;
-        $this->enabled = (MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_STATUS == 'True');
+        $this->enabled = MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_STATUS;
       }
      }
 

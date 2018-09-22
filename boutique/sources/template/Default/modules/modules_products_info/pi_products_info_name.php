@@ -30,7 +30,7 @@
 
       if (defined('MODULE_PRODUCTS_INFO_NAME_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_NAME_SORT_ORDER;
-        $this->enabled = (MODULE_PRODUCTS_INFO_NAME_STATUS == 'True');
+        $this->enabled = MODULE_PRODUCTS_INFO_NAME_STATUS;
       }
     }
 

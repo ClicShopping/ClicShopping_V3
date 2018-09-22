@@ -29,7 +29,7 @@
 
       if (defined('MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_STATUS')) {
         $this->sort_order = MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_SORT_ORDER;
-        $this->enabled = (MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_STATUS == 'True');
+        $this->enabled = MODULE_BOXES_SPECIALS_STATUS;
       }
      }
 

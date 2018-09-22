@@ -12,7 +12,7 @@
 use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $content_width; ?>" style="float:<?php echo MODULE_LOGIN_CONNEXION_POSITION; ?>;">
+<div class="col-md-<?php echo $content_width . ' ' .  MODULE_LOGIN_CONNEXION_POSITION; ?>">
   <div class="card">
     <div class="card-header">
       <h2><?php echo CLICSHOPPING::getDef('module_login_connexion_heading_returning_customer'); ?></h2>

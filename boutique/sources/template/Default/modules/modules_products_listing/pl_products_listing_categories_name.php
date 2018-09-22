@@ -31,7 +31,7 @@
 
       if (defined('MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_STATUS')) {
         $this->sort_order = (int)MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_SORT_ORDER;
-        $this->enabled = (MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_STATUS == 'True');
+        $this->enabled = MODULE_PRODUCTS_LISTING_CATEGORIES_NAME_STATUS;
       }
     }
 

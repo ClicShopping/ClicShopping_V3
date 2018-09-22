@@ -13,13 +13,10 @@ use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
 
-<div class="col-md-<?php echo $content_width; ?>">
+<div class="col-md-<?php echo $content_width . ' ' . MODULE_LOGIN_MODE_B2B_B2C_POSITION; ?>">
   <div class="separator"></div>
-
-  <div class="mainloginB2BB2C"><h2><?php echo CLICSHOPPING::getDef('text_open_account'); ?></h2></div>
-  <div><?php echo CLICSHOPPING::getDef('text_customer_privacy', ['store_name' => STORE_NAME]); ?></div>
+  <div class="text-md-left mainloginB2BB2C"><h2><?php echo CLICSHOPPING::getDef('text_open_account'); ?></h2></div>
   <div class="separator"></div>
-
   <div class="d-flex flex-wrap">
     <span class="col-md-6">
       <div class="card">
@@ -42,7 +39,6 @@ use ClicShopping\OM\HTML;
       </div>
       <div class="separator"></div>
     </span>
-
     <span class="col-md-6">
       <div class="card">
         <div class="card-header">

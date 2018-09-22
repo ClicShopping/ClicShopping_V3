@@ -12,7 +12,7 @@
 use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $content_width; ?>" style="float: <?php echo MODULE_LOGIN_MODE_B2B_POSITION; ?>;">
+<div class="col-md-<?php echo $content_width . ' ' . MODULE_LOGIN_MODE_B2B_POSITION; ?>">
   <div class="card">
     <div class="card-header">
       <span><h2><?php echo CLICSHOPPING::getDef('heading_title_b2b'); ?></h2></span>
@@ -20,7 +20,6 @@ use ClicShopping\OM\HTML;
     <div class="card-block">
       <div class="card-text">
         <div class="mainLogin"><?php echo CLICSHOPPING::getDef('text_intro_b2b'); ?></div>
-        <div class="mainLoginB2B"><?php echo CLICSHOPPING::getDef('text_customer_privacy', ['store_name' => STORE_NAME]); ?></div>
         <div class="text-rmd-ight">
           <div class="control-group">
             <div class="separator"></div>

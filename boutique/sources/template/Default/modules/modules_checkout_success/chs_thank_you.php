@@ -29,7 +29,7 @@
 
       if ( defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS') ) {
         $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER : 0;
-        $this->enabled = (MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS == 'True');
+        $this->enabled = MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS;
       }
     }
 

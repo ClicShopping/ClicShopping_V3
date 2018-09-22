@@ -29,7 +29,7 @@
 
       if (defined('MODULE_PRODUCTS_INFO_MODEL_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_MODEL_SORT_ORDER;
-        $this->enabled = (MODULE_PRODUCTS_INFO_MODEL_STATUS == 'True');
+        $this->enabled = MODULE_PRODUCTS_INFO_MODEL_STATUS;
       }
     }
 

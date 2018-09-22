@@ -31,7 +31,7 @@
 
       if (defined('MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS')) {
         $this->sort_order = MODULE_FRONT_PAGE_PAGE_MANAGER_SORT_ORDER;
-        $this->enabled = (MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS == 'True');
+        $this->enabled = MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS;
       }
     }
 

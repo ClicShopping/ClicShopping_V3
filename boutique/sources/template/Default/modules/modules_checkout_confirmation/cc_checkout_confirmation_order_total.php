@@ -30,7 +30,7 @@
 
       if (defined('MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_SORT_ORDER;
-        $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS == 'True');
+        $this->enabled = MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS;
       }
      }
 

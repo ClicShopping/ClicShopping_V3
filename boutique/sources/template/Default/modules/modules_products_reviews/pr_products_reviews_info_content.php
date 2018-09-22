@@ -31,12 +31,12 @@
 
       if ( defined('MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS') ) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SORT_ORDER;
-        $this->enabled = (MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS == 'True');
+        $this->enabled = MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS;
       }
     }
 
     public function execute() {
-      
+
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
       $CLICSHOPPING_Customer = Registry::get('Customer');

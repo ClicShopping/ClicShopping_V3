@@ -29,7 +29,7 @@
 
       if ( defined('MODULES_CONTACT_US_PAGE_MANAGER_STATUS') ) {
         $this->sort_order = (int)MODULES_CONTACT_US_PAGE_MANAGER_SORT_ORDER;
-        $this->enabled = (MODULES_CONTACT_US_PAGE_MANAGER_STATUS == 'True');
+        $this->enabled = MODULES_CONTACT_US_PAGE_MANAGER_STATUS;
       }
     }
 

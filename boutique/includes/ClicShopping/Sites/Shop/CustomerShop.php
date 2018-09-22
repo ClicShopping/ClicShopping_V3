@@ -45,7 +45,6 @@
       $this->_is_logged_on = $state;
     }
 
-
     public function isLoggedOn() {
       return $this->_is_logged_on;
     }
@@ -57,7 +56,6 @@
 
       return $this->_data;
     }
-
 
     public function getID() {
       return $this->get('id');
@@ -138,15 +136,15 @@
                                                  customers_telephone,
                                                  customers_default_address_id
                                           from :table_customers
-                                          where customers_id = :customers_id'
-                                        );
+                                          where customers_id = :customers_id
+                                        ');
         $Qcustomer->bindInt(':customers_id', $id);
         $Qcustomer->execute();
 
 // B2B
         $QcustomerGroup = $this->db->prepare('select customers_group_id
                                                from :table_customers
-                                               where  customers_id = :customers_id
+                                               where customers_id = :customers_id
                                               ');
         $QcustomerGroup->bindInt(':customers_id',  $id );
         $Qcustomer->bindInt(':customers_id', $id);

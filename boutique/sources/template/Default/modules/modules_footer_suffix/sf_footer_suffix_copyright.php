@@ -29,7 +29,7 @@
 
       if ( defined('MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS') ) {
         $this->sort_order = MODULES_FOOTER_SUFFIX_COPYRIGHT_SORT_ORDER;
-        $this->enabled = (MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS == 'True');
+        $this->enabled = MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS;
       }
     }
 

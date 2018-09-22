@@ -33,7 +33,7 @@
 
       if (defined('MODULE_PRODUCTS_INFO_GALLERY_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER;
-        $this->enabled = (MODULE_PRODUCTS_INFO_GALLERY_STATUS == 'True');
+        $this->enabled = MODULE_PRODUCTS_INFO_GALLERY_STATUS;
       }
     }
 

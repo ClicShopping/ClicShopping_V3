@@ -30,7 +30,7 @@
 
       if ( defined('MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS') ) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_WRITE_RATING_SORT_ORDER;
-        $this->enabled = (MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS == 'True');
+        $this->enabled = MODULES_PRODUCTS_REVIEWS_WRITE_RATING_STATUS;
       }
     }
 

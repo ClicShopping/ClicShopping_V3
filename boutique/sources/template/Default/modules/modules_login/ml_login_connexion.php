@@ -30,7 +30,7 @@
 
       if (defined('MODULE_LOGIN_CONNEXION_STATUS')) {
         $this->sort_order = MODULE_LOGIN_CONNEXION_SORT_ORDER;
-        $this->enabled = (MODULE_LOGIN_CONNEXION_STATUS == 'True');
+        $this->enabled = MODULE_LOGIN_CONNEXION_STATUS;
       }
      }
 

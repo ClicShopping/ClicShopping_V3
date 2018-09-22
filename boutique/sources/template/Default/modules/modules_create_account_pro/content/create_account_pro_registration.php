@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
@@ -530,9 +530,9 @@ use ClicShopping\OM\HTML;
     <div class="separator"></div>
 <?php
   }
-  // ----------------------
-  // Verification Code
-  // ----------------------
+// ----------------------
+// Verification Code
+// ----------------------
 ?>
     <div class="card">
       <div class="card-header">

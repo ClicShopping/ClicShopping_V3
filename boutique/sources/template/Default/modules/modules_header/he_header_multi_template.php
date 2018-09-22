@@ -33,7 +33,7 @@
 
       if (defined('MODULES_HEADER_MULTI_TEMPLATE_STATUS')) {
         $this->sort_order = MODULES_HEADER_MULTI_TEMPLATE_SORT_ORDER;
-        $this->enabled = (MODULES_HEADER_MULTI_TEMPLATE_STATUS == 'True');
+        $this->enabled = MODULES_HEADER_MULTI_TEMPLATE_STATUS;
         $this->pages = MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_DISPLAY_PAGES;
       }
     }
