@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -25,7 +25,7 @@
   }
 
   if (isset($_GET['search'])) {
-    $_POST['search'] = $_GET['search'];
+    $_POST['search'] = HTML::sanitize($_GET['search']);
   }
 
 ?>
@@ -187,7 +187,7 @@
                                                          from :table_customers_groups
                                                          where customers_group_id = :customers_group_id
                                                         ');
-      $QcustColl->bindInt(':customers_group_id', $Qcustomers->valueInt('customers_group_id') );
+      $QcustColl->bindInt(':customers_group_id', $Qcustomers->valueInt('customers_group_id'));
       $QcustColl->execute();
 
       $cust_ret = $QcustColl->fetch();

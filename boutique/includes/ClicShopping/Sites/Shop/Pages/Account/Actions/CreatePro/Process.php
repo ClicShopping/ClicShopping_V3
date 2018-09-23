@@ -191,27 +191,6 @@
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_error_exists_pro'), 'danger', 'create_account_pro');
           }
-
-// check if mail on newsletter_no_account
-          $email_address1 =  HTML::sanitize($email_address);
-
-          $QcheckEmailNoAccount = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                                             from :table_newsletters_no_account
-                                                             where customers_email_address = :customers_email_address
-                                                            ');
-          $QcheckEmailNoAccount->bindValue(':customers_email_address', $email_address1);
-          $QcheckEmailNoAccount->execute();
-
-          $check_email_no_account = $QcheckEmailNoAccount->fetch();
-
-          if ($check_email_no_account['total'] > 0) {
-            $Qdelete = $CLICSHOPPING_Db->prepare('delete
-                                                  from :table_newsletters_no_account
-                                                  where customers_email_address = :email_address
-                                                ');
-            $Qdelete->bindValue(':email_address', $email_address);
-            $Qdelete->execute();
-          }
         }
 
 // Clients B2C : Controle entree adresse

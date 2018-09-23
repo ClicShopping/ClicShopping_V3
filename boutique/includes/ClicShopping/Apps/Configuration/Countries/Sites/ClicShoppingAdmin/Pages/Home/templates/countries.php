@@ -98,10 +98,8 @@ use ClicShopping\OM\HTML;
 <?php
       if ($Qcountries->valueInt('status') == 1) {
         echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=0&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $_GET['page']),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
-//        echo '<a href="' . $CLICSHOPPING_Countries->link('Countries&SetFlag&cID=' . $Qcountries->valueInt('countries_id') . '&flag=0&page=' . $_GET['page']) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
       } else {
         echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=1&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $_GET['page']),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
-//         echo '<a href="' . $CLICSHOPPING_Countries->link('Countries&SetFlag&cID=' . $Qcountries->valueInt('countries_id') . '&flag=1&page=' . $_GET['page']) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
       }
 ?>
             </td>
