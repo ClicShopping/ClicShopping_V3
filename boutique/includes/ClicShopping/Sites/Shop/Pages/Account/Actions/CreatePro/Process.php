@@ -171,10 +171,8 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_pro'), 'danger', 'create_account_pro');
 
         } elseif ($email_address != $email_address_confirmation) {
-
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirmation_check_error_pro'), 'danger', 'create_account_pro');
-
         } else {
 
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
@@ -185,7 +183,6 @@
 
           $Qcheckemail->execute();
 
-
           if ($Qcheckemail->fetch() !== false) {
             $error = true;
 
@@ -193,34 +190,30 @@
           }
         }
 
-// Clients B2C : Controle entree adresse
         if (strlen($street_address) < ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
         }
 
-// Clients B2C : Controle entree code postal
         if (strlen($postcode) < ENTRY_POSTCODE_PRO_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
         }
 
-// Clients B2C : Controle entree de la ville
         if (strlen($city) < ENTRY_CITY_PRO_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
         }
 
-// Clients B2B : Controle de la selection du pays qui ce fait maintenant depuis le code ISO e cause du javascript d'affichage ISO TVA Intracom
         if (is_numeric($country) === false) {
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select countries_id
-                                         from :table_countries
-                                         where countries_iso_code_2 = :countries_iso_code_2
-                                        ');
+                                               from :table_countries
+                                               where countries_iso_code_2 = :countries_iso_code_2
+                                              ');
           $Qcheck->bindValue(':countries_iso_code_2', $country);
           $Qcheck->execute();
 
@@ -232,22 +225,20 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_county_error_pro'), 'danger', 'create_account_pro');
         }
 
-// Clients B2C : Controle entree du departement
         if (ACCOUNT_STATE_PRO == 'true') {
 
           $zone_id = 0;
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                              from :table_zones
-                                              where zone_country_id = :zone_country_id
-                                             ');
+                                               from :table_zones
+                                               where zone_country_id = :zone_country_id
+                                              ');
           $Qcheck->bindInt(':zone_country_id', (int)$country);
           $Qcheck->execute();
 
           $entry_state_has_zones = ($Qcheck->valueInt('total') > 0);
 
           if ($entry_state_has_zones === true) {
-
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                    from :table_zones
@@ -290,7 +281,6 @@
           }
         }
 
-// Clients B2C : Controle entree numero de telephone
         if (strlen($telephone) < ENTRY_TELEPHONE_PRO_MIN_LENGTH) {
           $error = true;
 
@@ -372,7 +362,7 @@
                               'customers_telephone' => $telephone,
                               'customers_newsletter' => $newsletter,
                               'customers_password' => Hash::encrypt($password),
-                              'languages_id' => $CLICSHOPPING_Language->getId(),
+                              'languages_id' => (int)$CLICSHOPPING_Language->getId(),
                               'member_level' => $member_level_approbation,
                               'customers_modify_company' => $customers_modify_company,
                               'customers_modify_address_default' => $customers_modify_address_default,
@@ -395,8 +385,6 @@
           if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $ape;
           if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom'] = $tva_intracom;
 
-
-//      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $ISO;
           if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $iso;
 
           $CLICSHOPPING_Db->save('customers', $sql_data_array);

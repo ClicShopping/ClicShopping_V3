@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -35,6 +35,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+        $error = false;
         $process = true;
 
         $CLICSHOPPING_Hooks->call('Create','PreAction');
@@ -52,8 +53,6 @@
         $password = HTML::sanitize($_POST['password']);
         $confirmation = HTML::sanitize($_POST['confirmation']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
-
-        $error = false;
 
         if (!Is::ValidateNumberEmail((int)$number_email_confirmation)) {
           $error = true;
@@ -102,20 +101,18 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error', ['min_length' => ENTRY_EMAIL_ADDRESS_MIN_LENGTH]), 'error', 'create_account');
 
         } elseif ($email_address != $email_address_confirm) {
-
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirm_not_matching'), 'danger', 'create_account');
 
         } else {
 
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
-                                              from :table_customers
-                                              where customers_email_address = :customers_email_address
-                                             ');
+                                                    from :table_customers
+                                                    where customers_email_address = :customers_email_address
+                                                   ');
           $Qcheckemail->bindValue(':customers_email_address', $email_address);
 
           $Qcheckemail->execute();
-
 
           if ($Qcheckemail->fetch() !== false) {
             $error = true;
