@@ -28,7 +28,7 @@ module_checkout_success_text_contact_store_owner =
 </p>
   <div class="hr"></div>
 <p class="blockquote">
-  <h3>how to contact us</h3>
+  <h3>How to contact us</h3>
   <br /><br />
   <li>if you are make a command: Please edit your order and click on Support. {{account_history}}</li>
   <li>if it's an application or specific information , please fill this form : {{contact}}</li>

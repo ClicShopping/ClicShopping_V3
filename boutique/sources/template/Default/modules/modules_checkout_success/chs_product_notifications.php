@@ -172,7 +172,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER',
-          'configuration_value' => '2',
+          'configuration_value' => '50',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '3',

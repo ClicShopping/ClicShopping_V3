@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
@@ -24,9 +24,9 @@ use ClicShopping\OM\CLICSHOPPING;
       <span>
 
 <?php echo sprintf(CLICSHOPPING::getDef('module_checkout_success_text_see_orders', ['store_name' => STORE_NAME, 'store_name_address' => STORE_NAME_ADDRESS,
-                                                                             'account_history' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&History') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_order_history') . '</a>',
-                                                                             'my_account' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&Main') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_account') . '</a>',
-                                                                            ]
+                                                                                   'account_history' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&History') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_order_history') . '</a>',
+                                                                                   'my_account' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&Main') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_account') . '</a>',
+                                                                                  ]
                                 ), CLICSHOPPING::link('index.php', 'Account&HistoryInfo')
                   );
 ?>
@@ -34,9 +34,9 @@ use ClicShopping\OM\CLICSHOPPING;
       <div class="hr"></div>
 <?php
   echo sprintf(CLICSHOPPING::getDef('module_checkout_success_text_contact_store_owner', ['store_name' => STORE_NAME,
-                                                                                  'account_history' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&History') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_order_history') . '</a>',
-                                                                                  'contact' => '<a href="index.php?Info&Contact">' . CLICSHOPPING::getDef('module_checkout_success_text_contact') . '</a>'
-                                                                                 ]
+                                                                                        'account_history' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&History') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_order_history') . '</a>',
+                                                                                        'contact' => '<a href="index.php?Info&Contact">' . CLICSHOPPING::getDef('module_checkout_success_text_contact') . '</a>'
+                                                                                       ]
                             ), CLICSHOPPING::link('index.php','info&Contact')
               );
 ?>
@@ -44,5 +44,4 @@ use ClicShopping\OM\CLICSHOPPING;
     </div>
   </div>
       <div class="separator"></div>
-
 </div>

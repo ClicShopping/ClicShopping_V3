@@ -243,7 +243,7 @@
 
 
 /**
- * Function to select HTTP or HTTPS
+ *
  * public function
  * @param string  type of HTTP of domain
  * @return $domain, type of HTTP of domain
@@ -260,7 +260,7 @@
     }
 
 /**
- * Function to select HTTP or HTTPS
+ *
  * public function
  * @param string  type of HTTP of domain
  * @return $domain, type of HTTP of domain

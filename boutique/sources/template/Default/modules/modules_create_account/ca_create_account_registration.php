@@ -41,7 +41,6 @@
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
     if (isset($_GET['Account'] ) && isset($_GET['Create']) ) {
-
       $content_width = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH;
 
       $header_tag ='<link rel="stylesheet" type="text/css" href="ext/javascript/datepicker/less/datepicker.less">';

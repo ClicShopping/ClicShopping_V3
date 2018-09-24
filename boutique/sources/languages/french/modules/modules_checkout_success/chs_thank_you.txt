@@ -15,12 +15,6 @@ module_checkout_success_text_see_orders =
 
 <strong>{{my_account}}</strong>.</li>
   <li>vous pouvez accéder à votre historique de commande via la page <strong> : {{account_history}}
-
-
-
-
-
-
   </strong>.<br />Vous pourrez y imprimer votre bon de commande ou votre facture en consultant les détails de votre commande.</li>
   <li><strong>si vous avez payé par chèque</strong>, nous vous demandons de bien vouloir nous faire parvenir soit une copie de votre bon de commande ou du mail de confirmation que vous avez reçu. Dès réception, nous allons traiter votre demande.
   <br /><br />Adresse de {{store_name}}. : {{store_name_address}}</li><br /><br />

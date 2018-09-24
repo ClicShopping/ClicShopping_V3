@@ -1,5 +1,5 @@
-module_customer_privacy = Souhaitez-vous afficher une information confidentielles ?
-module_customer_privacy_description = Affiche une information une information confidenitelles pour les clients
+module_login_customer_privacy = Souhaitez-vous afficher une information confidentielles ?
+module_login_customer_privacy_description = Affiche une information une information confidenitelles pour les clients
 
 text_customer_privacy = <strong>Sécurisation des données</strong><br /><br />{{store_name}} s'engage à sécuriser l'ensemble de vos données personnelles et à les garder strictement confidentiels. Nous ne vendons pas les adresses emails à des des sociétés de e-marketing.
 Les informations que vous communiquez, à l’exception de votre mot de passe qui est crypté et ne peut pas être lu, sont destinées au personnel habilité de {{store_name}} qui est le responsable de traitement.

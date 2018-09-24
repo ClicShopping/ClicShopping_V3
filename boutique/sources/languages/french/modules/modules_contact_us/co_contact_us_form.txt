@@ -36,4 +36,4 @@ entry_email_dgrp = Nous avons besoin de votre courriel pour vous répondre
 button_continue = Continuer
 
 text_privacy_conditions_description = Notre politique de confidentialité est consultable à tout moment sur {{store_name}}  en cliquant <a target="_blank" href="{{privacy_url}}"><u>ici</u></a>.
-text_privacy_conditions_agree = Veuillez cocher cette case afin de donner votre consentement concernant notre politique de confidentiali
+text_privacy_conditions_agree = Veuillez cocher cette case afin de donner votre consentement concernant notre politique de confidentialité

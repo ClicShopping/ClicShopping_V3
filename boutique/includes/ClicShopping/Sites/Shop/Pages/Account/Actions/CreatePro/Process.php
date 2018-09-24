@@ -265,7 +265,7 @@
               $Qzone->execute();
             }
 
-            if (count($Qzone->fetchAll()) === 1) {
+            if (count($Qzone->fetchAll()) == 1) {
               $zone_id = (int)$Qzone->result[0]['zone_id'];
             } else {
               $error = true;

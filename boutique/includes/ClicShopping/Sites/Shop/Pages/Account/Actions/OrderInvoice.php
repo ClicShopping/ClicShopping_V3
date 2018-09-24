@@ -28,8 +28,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Address = Registry::get('Address');
-
       $CLICSHOPPING_Order = Registry::get('Order');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      $CLICSHOPPING_Hooks->call('OrderInvoice', 'PreAction');
 
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
