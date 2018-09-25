@@ -216,9 +216,14 @@
       return CLICSHOPPING::linkPublic('Templates/' . $template . '/' . $file);
     }
 
+/**
+ * scan directory to create a dropdown
+ * @param string $template_selected
+ * @return string
+ */
     public function getDropDownSelectedTemplateByCustomer($template_selected = 'Default') {
       $template_directory = CLICSHOPPING::getConfig('dir_root') .  $this->_directoryTemplateSources . '/' . $this->_directoryTemplate;
-      $weeds = array('.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README');
+      $weeds = ['.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README'];
       $directories = array_diff(scandir($template_directory), $weeds);
       $filename_array = [];
 
@@ -370,8 +375,30 @@
       return false;
     }
 
+/**
+ * Scan all the directories inside the default template
+ * @param string $source_folder
+ * @return array
+ */
+
+    public function getReadModulesDefaultDirectories($source_folder = 'modules_') {
+      $dir = $this->_directoryTemplateSources . '/' . $this->_template . '/' . $this->_codeSail . '/' . $this->_directoryModules;
+
+      $exclude = [];
+
+      $module_directories = array_diff(glob($dir . $source_folder . '*', GLOB_ONLYDIR), $exclude);
+
+      $result = [];
+
+      foreach ($module_directories as $value) {
+        $result[] = str_replace($dir, '', $value);
+      }
+
+      return $result;
+    }
+
     public function buildBlocks() {
-       $CLICSHOPPING_Customer = Registry::get('Customer');
+      $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Category = Registry::get('Category');
 
@@ -390,6 +417,7 @@
               $class = basename($module, '.php');
 
 // module language
+              // module language
               if ( !class_exists($class) ) {
                 If (CLICSHOPPING::getSite('ClicShoppingAdmin')) {
                   $CLICSHOPPING_Language->loadDefinitions('modules/' . $group . '/' . pathinfo($module, PATHINFO_FILENAME));
@@ -397,80 +425,72 @@
                   $CLICSHOPPING_Language->loadDefinitions('sources/template/Default/modules/' . $group . '/' . pathinfo($module, PATHINFO_FILENAME));
                 }
 //mode privee ou ouvert - affichage des boxes gauche ou droite
-               if ( MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn() ) {
+                if ( MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn() ) {
                   $modules_boxes = 'modules_boxes';
-               } elseif (MODE_VENTE_PRIVEE == 'true' && !$CLICSHOPPING_Customer->isLoggedOn ) {
+                } elseif (MODE_VENTE_PRIVEE == 'true' && !$CLICSHOPPING_Customer->isLoggedOn ) {
                   $modules_boxes = '';
-               } else {
+                } else {
                   $modules_boxes = 'modules_boxes';
-               }
+                }
 
-               if ($group == $modules_boxes ||
-                   $group == 'modules_account_customers' ||
-                   $group == 'modules_account_history_info' ||
-                   $group == 'modules_advanced_search' ||
-                   $group == 'modules_blog' ||
-                   $group == 'modules_blog_content' ||
-                   $group == 'modules_create_account' ||
-                   $group == 'modules_create_account_pro' ||
-                   $group == 'modules_contact_us' ||
-                   $group == 'modules_checkout_shipping' ||
-                   $group == 'modules_checkout_payment' ||
-                   $group == 'modules_checkout_confirmation' ||
-                   $group == 'modules_checkout_success' ||
-                   $group == 'modules_front_page' ||
-                   $group == 'modules_footer' ||
-                   $group == 'modules_footer_suffix' ||
-                   $group == 'modules_header' ||
-                   $group == 'modules_index_categories' ||
-                   $group == 'modules_login'||
-                   $group == 'modules_products_info' ||
-                   $group == 'modules_products_listing' ||
-                   $group == 'modules_products_new' ||
-                   $group == 'modules_products_favorites' ||
-                   $group == 'modules_products_special' ||
-                   $group == 'modules_products_search' ||
-                   $group == 'modules_products_featured' ||
-                   $group == 'modules_products_reviews' ||
-                   $group == 'modules_shopping_cart' ||
-                   $group == 'modules_sitemap' ||
-                   $group == 'modules_tell_a_friend'
-               ) {
-// verifie si le module existe dans le template sinon il prend le module par defaut
-                 if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
-                   include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
-                 } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
-                   include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
-                 } else {
-                   if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
-                     include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
-                   }
-                 }
-               } else {
-// module par defaut
+                if ($group == $modules_boxes) {
+//check the module exist inside the template or take default template
+                  if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
+                    include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
+                  } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
+                    include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                  } else {
+                    if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
+                      include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                    }
+                  }
+                } else {
+//default module
                   if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
                     include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                   }
-               }
-             }
+                }
+
+// exclude $modules_boxe and search if the modules exist
+                if(is_numeric(array_search($group, $this->getReadModulesDefaultDirectories())) && $group != $modules_boxes) {
+                  $result = array_search($group, $this->getReadModulesDefaultDirectories());
+
+                  if (!is_null($result)) {
+                    if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
+                      include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
+                    } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
+                      include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                    } else {
+                      if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
+                        include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                      }
+                    }
+                  } else {
+                    if ($group != $modules_boxes) {
+                      if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
+                        include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                      }
+                    }
+                  }
+                }
+              }
 
               if ( class_exists($class) ) {
                 $mb = new $class();
 
-// Dynamic template
+// Dynamic boxe
                 if(!isset($mb->pages) && ($mb->isEnabled())){
                   $this->pages = 'all';
                   $mb->execute();
                 } else {
 
 // hide or display the box left / right
-                  $page = (explode(';' , $mb->pages));
+                  $page = explode(';' , $mb->pages);
 
                   if( ($mb->isEnabled() && $mb->pages == 'all') ) {
                     $mb->execute();
                   } else {
-                    if( ($mb->isEnabled() && $mb->pages === true) ) {
-
+                    if ($mb->isEnabled() && isset($mb->pages)) {
                       $string = $_SERVER['QUERY_STRING'];
 
 // categories
@@ -550,7 +570,6 @@
   * @access public
 */
     public function getTemplateFiles($name) {
-
       if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateFiles . '/' . $name . '.php')) {
         $themaFiles = static::getPathDirectoryTemplateThema()  .  '/' . $this->_directoryTemplateFiles . '/' . $name . '.php';
       } else {
@@ -616,12 +635,11 @@
       return $languagefiles;
     }
 
-
 /**
- * Select the javascript in this javascript default directory inside Sources Directory
- *
- * @param string $javascript, directory of javascript
- * @access public
+ * public
+ * Select the javascript for all template
+ * @param $name $name of the js
+ * @return string $javascript, directory of javascript in the template directory
  */
     public function getTemplateDefaultJavaScript($name) {
       $javascript = $this->_directoryTemplateSources . '/javascript/' . $name;
@@ -630,12 +648,12 @@
     }
 
 /**
- * Select the javascript in this directory javascript in the template directory
- *
- * @param string $javascript, directory of javascript in the template directory
- * @access public
+ * public
+ * Select the javascript inside a specific theme directory
+ * @param $name $name of the js
+ * @return string $javascript, directory of javascript in the template directory
  */
-    public function getTemplateJavaScript($name) {
+    public function getTemplateThemaJavaScript($name) {
 
       if (is_file(static::getPathDirectoryTemplateThema() . '/javascript/' . $name)) {
         $javascript = static::getPathDirectoryTemplateThema()  .  '/javascript/' . $name;
