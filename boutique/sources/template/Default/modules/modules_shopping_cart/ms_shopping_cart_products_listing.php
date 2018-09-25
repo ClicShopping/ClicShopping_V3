@@ -30,7 +30,7 @@
 
       if (defined('MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS')) {
         $this->sort_order = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER;
-        $this->enabled = MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS;
+        $this->enabled = (MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS == 'True');
       }
     }
 

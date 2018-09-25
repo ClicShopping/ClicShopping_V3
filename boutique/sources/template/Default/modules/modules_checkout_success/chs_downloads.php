@@ -30,7 +30,7 @@
 
       if (defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS')) {
         $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_DOWNLOADS_SORT_ORDER : 0;
-        $this->enabled = MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS;
+        $this->enabled = (MODULE_CHECKOUT_SUCCESS_DOWNLOADS_STATUS == 'True');
       }
     }
 

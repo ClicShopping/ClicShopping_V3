@@ -31,7 +31,7 @@
 
       if (defined('MODULE_CHECKOUT_PAYMENT_ADDRESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_PAYMENT_ADDRESS_SORT_ORDER;
-        $this->enabled = MODULE_CHECKOUT_PAYMENT_ADDRESS_STATUS;
+        $this->enabled = (MODULE_CHECKOUT_PAYMENT_ADDRESS_STATUS == 'True');
       }
      }
 

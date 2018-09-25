@@ -32,7 +32,7 @@
 
       if ( defined('MODULES_TELL_A_FRIEND_MESSAGE_STATUS') ) {
         $this->sort_order = MODULES_TELL_A_FRIEND_MESSAGE_SORT_ORDER;
-        $this->enabled = MODULES_TELL_A_FRIEND_MESSAGE_STATUS;
+        $this->enabled = (MODULES_TELL_A_FRIEND_MESSAGE_STATUS == 'True');
       }
     }
 

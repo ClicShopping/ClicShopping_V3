@@ -29,7 +29,7 @@
 
       if ( defined('MODULES_CONTACT_US_PAGE_MANAGER_STATUS') ) {
         $this->sort_order = (int)MODULES_CONTACT_US_PAGE_MANAGER_SORT_ORDER;
-        $this->enabled = MODULES_CONTACT_US_PAGE_MANAGER_STATUS;
+        $this->enabled = (MODULES_CONTACT_US_PAGE_MANAGER_STATUS == 'True');
       }
     }
 
@@ -111,7 +111,7 @@
           'date_added' => 'now()'
         ]
       );
- 
+
       return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
                                                ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );

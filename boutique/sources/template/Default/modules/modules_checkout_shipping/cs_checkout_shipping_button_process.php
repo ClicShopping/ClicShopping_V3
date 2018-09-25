@@ -31,7 +31,7 @@
 
       if (defined('MODULE_CHECKOUT_SHIPPING_BUTTON_PROCESS_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_SHIPPING_BUTTON_PROCESS_SORT_ORDER;
-        $this->enabled = MODULE_CHECKOUT_SHIPPING_BUTTON_PROCESS_STATUS;
+        $this->enabled = (MODULE_CHECKOUT_SHIPPING_BUTTON_PROCESS_STATUS == 'True');
       }
      }
 

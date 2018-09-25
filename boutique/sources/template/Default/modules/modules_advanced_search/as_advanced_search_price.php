@@ -30,7 +30,7 @@
 
       if (defined('MODULE_ADVANCED_SEARCH_PRICE_STATUS')) {
         $this->sort_order = MODULE_ADVANCED_SEARCH_PRICE_SORT_ORDER;
-        $this->enabled = MODULE_ADVANCED_SEARCH_PRICE_STATUS;
+        $this->enabled = (MODULE_ADVANCED_SEARCH_PRICE_STATUS == 'True');
       }
     }
 

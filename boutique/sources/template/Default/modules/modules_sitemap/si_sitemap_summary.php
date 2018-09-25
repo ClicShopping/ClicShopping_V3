@@ -29,7 +29,7 @@
 
       if ( defined('MODULES_SITEMAP_SUMMARY_STATUS') ) {
         $this->sort_order = MODULES_SITEMAP_SUMMARY_SORT_ORDER;
-        $this->enabled = MODULES_SITEMAP_SUMMARY_STATUS;
+        $this->enabled = (MODULES_SITEMAP_SUMMARY_STATUS == 'True');
       }
     }
 

@@ -31,7 +31,7 @@
 
       if (defined('MODULE_PRODUCTS_LISTING_FILTER_STATUS')) {
         $this->sort_order = (int)MODULE_PRODUCTS_LISTING_FILTER_SORT_ORDER;
-        $this->enabled = MODULE_PRODUCTS_LISTING_FILTER_STATUS;
+        $this->enabled = (MODULE_PRODUCTS_LISTING_FILTER_STATUS == 'True');
       }
     }
 

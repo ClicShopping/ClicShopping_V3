@@ -31,7 +31,7 @@
 
       if (defined('MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER;
-        $this->enabled = MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS;
+        $this->enabled = (MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS == 'True');
       }
     }
 

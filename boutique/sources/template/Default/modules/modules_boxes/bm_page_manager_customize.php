@@ -30,7 +30,7 @@
 
       if ( defined('MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS') ) {
         $this->sort_order = MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_SORT_ORDER;
-        $this->enabled = MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS;
+        $this->enabled = (MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS == 'True');
         $this->pages = MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_PAGES;
         $this->group = ((MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
       }
@@ -45,7 +45,7 @@
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
 
-      $QpagesSecondary = $CLICSHOPPING_Db->prepare('select count(*) as count 
+      $QpagesSecondary = $CLICSHOPPING_Db->prepare('select count(*) as count
                                               from :table_pages_manager
                                               where status = 1
                                               and page_box = 1
@@ -162,8 +162,8 @@
     }
 
     public function  keys() {
-      return array('MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS', 
-                   'MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_CONTENT_PLACEMENT', 
+      return array('MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_STATUS',
+                   'MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_CONTENT_PLACEMENT',
                    'MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_BANNER_GROUP',
                    'MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_SORT_ORDER',
                    'MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_PAGES');

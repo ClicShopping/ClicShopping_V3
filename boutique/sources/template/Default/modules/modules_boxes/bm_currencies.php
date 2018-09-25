@@ -30,7 +30,7 @@
 
       if ( defined('MODULE_BOXES_CURRENCIES_STATUS') ) {
         $this->sort_order = MODULE_BOXES_CURRENCIES_SORT_ORDER;
-        $this->enabled = MODULE_BOXES_CURRENCIES_STATUS;
+        $this->enabled = (MODULE_BOXES_CURRENCIES_STATUS == 'True');
         $this->pages = MODULE_BOXES_CURRENCIES_DISPLAY_PAGES;
         $this->group = ((MODULE_BOXES_CURRENCIES_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
       }

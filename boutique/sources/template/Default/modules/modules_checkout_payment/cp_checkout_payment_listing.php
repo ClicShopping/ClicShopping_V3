@@ -30,7 +30,7 @@
 
       if (defined('MODULE_CHECKOUT_PAYMENT_LISTING_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_PAYMENT_LISTING_SORT_ORDER;
-        $this->enabled = MODULE_CHECKOUT_PAYMENT_LISTING_STATUS;
+        $this->enabled = (MODULE_CHECKOUT_PAYMENT_LISTING_STATUS == 'True');
       }
      }
 

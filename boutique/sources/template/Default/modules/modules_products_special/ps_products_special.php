@@ -33,7 +33,7 @@
 
       if (defined('MODULE_PRODUCTS_SPECIAL_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_SPECIAL_SORT_ORDER;
-        $this->enabled = MODULE_PRODUCTS_SPECIAL_STATUS;
+        $this->enabled = (MODULE_PRODUCTS_SPECIAL_STATUS == 'True');
       }
     }
 

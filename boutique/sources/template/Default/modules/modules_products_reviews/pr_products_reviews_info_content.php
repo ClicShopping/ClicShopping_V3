@@ -31,7 +31,7 @@
 
       if ( defined('MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS') ) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SORT_ORDER;
-        $this->enabled = MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS;
+        $this->enabled = (MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS == 'True');
       }
     }
 

@@ -31,7 +31,7 @@
 
       if (defined('MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS')) {
         $this->sort_order = MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_SORT_ORDER;
-        $this->enabled = MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS;
+        $this->enabled = (MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS == 'True');
       }
      }
 

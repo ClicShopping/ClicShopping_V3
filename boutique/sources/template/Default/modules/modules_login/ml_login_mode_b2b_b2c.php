@@ -29,7 +29,7 @@
 
       if (defined('MODULE_LOGIN_MODE_B2B_B2C_STATUS')) {
         $this->sort_order = MODULE_LOGIN_MODE_B2B_B2C_SORT_ORDER;
-        $this->enabled = MODULE_LOGIN_MODE_B2B_B2C_STATUS;
+        $this->enabled = (MODULE_LOGIN_MODE_B2B_B2C_STATUS == 'True');
       }
      }
 

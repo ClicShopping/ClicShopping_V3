@@ -32,7 +32,7 @@
 
       if ( defined('MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_STATUS') ) {
         $this->sort_order = MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_SORT_ORDER;
-        $this->enabled = MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_STATUS;
+        $this->enabled = (MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_STATUS == 'True');
         $this->pages = MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_DISPLAY_PAGES;
       }
     }

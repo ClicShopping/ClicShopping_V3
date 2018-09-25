@@ -31,7 +31,7 @@
 
       if (defined('MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS')) {
         $this->sort_order = MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_SORT_ORDER;
-        $this->enabled = MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS;
+        $this->enabled = (MODULE_ACCOUNT_CUSTOMERS_GDPR_TITLE_STATUS == 'True');
       }
     }
 

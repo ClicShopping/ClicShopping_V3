@@ -30,7 +30,7 @@
 
       if ( defined('MODULE_BOXES_MANUFACTURER_INFO_STATUS') ) {
         $this->sort_order = MODULE_BOXES_MANUFACTURER_INFO_SORT_ORDER;
-        $this->enabled = MODULE_BOXES_MANUFACTURER_INFO_STATUS;
+        $this->enabled = (MODULE_BOXES_MANUFACTURER_INFO_STATUS == 'True');
         $this->group = ((MODULE_BOXES_MANUFACTURER_INFO_CONTENT_PLACEMENT == 'Left Column') ? 'boxes_column_left' : 'boxes_column_right');
       }
     }
@@ -46,13 +46,13 @@
 
       if ($CLICSHOPPING_ProductsCommon->getId()) {
         $Qmanufacturers = $CLICSHOPPING_Db->prepare('select m.manufacturers_id,
-                                                           m.manufacturers_name, 
-                                                           m.manufacturers_image, 
+                                                           m.manufacturers_name,
+                                                           m.manufacturers_image,
                                                            mi.manufacturers_url,
                                                            m.manufacturers_status
-                                                     from :table_manufacturers m left join :table_manufacturers_info mi on (m.manufacturers_id = mi.manufacturers_id and mi.languages_id = :languages_id), 
-                                                          :table_products p 
-                                                     where p.products_id = :products_id 
+                                                     from :table_manufacturers m left join :table_manufacturers_info mi on (m.manufacturers_id = mi.manufacturers_id and mi.languages_id = :languages_id),
+                                                          :table_products p
+                                                     where p.products_id = :products_id
                                                      and p.manufacturers_id = m.manufacturers_id
                                                      and m.manufacturers_status = 0
                                                      ');

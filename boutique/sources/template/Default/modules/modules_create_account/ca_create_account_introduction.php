@@ -30,7 +30,7 @@
 
       if (defined('MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS')) {
         $this->sort_order = MODULE_CREATE_ACCOUNT_INTRODUCTION_SORT_ORDER;
-        $this->enabled = MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS;
+        $this->enabled = (MODULE_CREATE_ACCOUNT_INTRODUCTION_STATUS == 'True');
       }
     }
 
