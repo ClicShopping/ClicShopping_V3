@@ -31,7 +31,7 @@
 
       if (defined('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS')) {
         $this->sort_order = (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_SORT_ORDER;
-        $this->enabled = MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS == 'True');
+        $this->enabled = (MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS == 'True');
       }
     }
 
