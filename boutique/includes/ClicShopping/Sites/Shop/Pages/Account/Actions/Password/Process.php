@@ -48,6 +48,7 @@
           $QcheckCustomer = $CLICSHOPPING_Db->prepare('select customers_password
                                                        from :table_customers
                                                        where customers_id = :customers_id
+                                                       and customer_guest_account = 0
                                                       ');
           $QcheckCustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $QcheckCustomer->execute();

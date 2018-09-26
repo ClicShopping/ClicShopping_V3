@@ -27,6 +27,7 @@ customer_discount decimal(4,2) default(0.00) not_null
 client_computer_ip varchar(15) null
 provider_name_client varchar(64)  null
 customer_website_company varchar(64) null
+customer_guest_account tinyint(1) default(0) not_null
 --
 primary customers_id
 idx_customers_email_address customers_email_address

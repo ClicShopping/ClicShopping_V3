@@ -39,6 +39,7 @@
                                                   :table_customers_info ci
                                              where c.customers_email_address = :customers_email_address
                                              and c.customers_id = ci.customers_info_id
+                                             and c.customer_guest_account = 0
                                              limit 1
                                            ');
 
@@ -76,7 +77,8 @@
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_reset'), 'success', 'password_reset');
 
-          $email_text_body = ' <br />' . TemplateEmail::getTemplateEmailSignature();
+          $email_text_body = ' <br />' . TemplateEmail::getTemplateEmailTextFooter();
+          $email_text_body .= ' <br />' . TemplateEmail::getTemplateEmailSignature();
 
           $CLICSHOPPING_Mail->clicMail($Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), $email_address, CLICSHOPPING::getDef('text_email_subject', ['store_name' => STORE_NAME]), CLICSHOPPING::getDef('text_email_body', ['store_name' => STORE_NAME]) . $email_text_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 

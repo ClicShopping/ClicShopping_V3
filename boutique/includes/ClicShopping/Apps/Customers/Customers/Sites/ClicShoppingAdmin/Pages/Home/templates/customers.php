@@ -136,6 +136,7 @@
                                                         from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
                                                         where ' . $search .'
                                                         and c.customers_default_address_id = a.address_book_id
+                                                        and c.customer_guest_account = 0
                                                         order by c.customers_id DESC
                                                         limit :page_set_offset, :page_set_max_results
                                                         ');
@@ -156,6 +157,7 @@
                                                                                   c.customers_email_validation
                                                         from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
                                                         where c.customers_default_address_id = a.address_book_id
+                                                        and c.customer_guest_account = 0
                                                         order by c.customers_id desc
                                                         limit :page_set_offset, :page_set_max_results
                                                         ');
@@ -321,7 +323,8 @@
                 echo '&nbsp;';
                 echo HTML::link(CLICSHOPPING::link('index.php','A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Customers->getDef('icon_email')));
                 echo '&nbsp;';
-                echo HTML::link(CLICSHOPPING::link('index.php', 'A&Orders\Orders&Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $CLICSHOPPING_Customers->getDef('icon_edit_orders')));
+
+                echo HTML::link(CLICSHOPPING::link('index.php', 'A&Orders\Orders&Orders'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $CLICSHOPPING_Customers->getDef('icon_edit_orders')));
                 echo '&nbsp;';
                 echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/new_password.gif', $CLICSHOPPING_Customers->getDef('icon_edit_new_password')));
                 echo '&nbsp;';

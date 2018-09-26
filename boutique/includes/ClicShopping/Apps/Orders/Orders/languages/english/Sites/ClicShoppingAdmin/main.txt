@@ -70,8 +70,9 @@ table_heading_total_excluding_tax = Total (ex)
 table_heading_total_including_tax = Total (inc)
 table_heading_color_group = B2B
 table_heading_orders = Orders No
-table_heading_odoo = ERP
+table_heading_erp = ERP
 table_heading_support = Support
+table_heading_guest = Guest
 
 table_heading_customer_notified = Customer Notified
 table_heading_date_added = Date Added

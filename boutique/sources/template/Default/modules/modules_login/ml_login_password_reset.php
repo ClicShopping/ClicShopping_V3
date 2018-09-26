@@ -45,6 +45,9 @@
 
         $ml_password = '<!-- ml_login_password_reset start-->' . "\n";
 
+        $email_address= HTML::sanitize(($_GET['account']));
+        $password_key = HTML::sanitize($_GET['key']);
+
         $form = HTML::form('password_reset', CLICSHOPPING::link('index.php', 'Account&PasswordReset&Process&account=' . $email_address . '&key=' . $password_key . '&action=process'), 'post', '', ['tokenize' => true]);
         $endform = '</form>';
 

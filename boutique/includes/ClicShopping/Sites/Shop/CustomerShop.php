@@ -240,6 +240,17 @@
       $this->_data['telephone'] = $telephone;
     }
 
+    public function getCustomerGuestAccount($id) {
+      $Qcustomer = $this->db->prepare('select customer_guest_account
+                                        from :table_customers
+                                        where customers_id = :customers_id
+                                      ');
+      $Qcustomer->bindInt(':customers_id', $id);
+      $Qcustomer->execute();
+
+      return $Qcustomer->valueInt('customer_guest_account');
+    }
+
     public function setCountryID($id) {
       $this->_data['country_id'] = $id;
     }

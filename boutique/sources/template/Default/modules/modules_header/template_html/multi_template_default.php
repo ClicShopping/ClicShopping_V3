@@ -58,14 +58,19 @@ use ClicShopping\OM\HTML;
 <?php
   } else {
 ?>
-          <span><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&LogOff'), CLICSHOPPING::getDef('modules_header_multi_template_account_logoff'));?> | <?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Main'), CLICSHOPPING::getDef('modules_header_multi_template_my_account')); ?> | </span>
+          <span>
+            <?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&LogOff'), CLICSHOPPING::getDef('modules_header_multi_template_account_logoff'));?> |
+<?php
+      if ($CLICSHOPPING_Customer->getCustomerGuestAccount($CLICSHOPPING_Customer->getID()) == 0) {
+        echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Main'), CLICSHOPPING::getDef('modules_header_multi_template_my_account')) .  ' | ';
+      }
+?>
+</span>
 <?php
   }
-?>
-<?php
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
 ?>
-          <span><?php echo HTML::link( CLICSHOPPING::link('index.php', 'Account&Login'), CLICSHOPPING::getDef('modules_header_multi_template_create_account')); ?>  | </span>
+          <span><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Login'), CLICSHOPPING::getDef('modules_header_multi_template_create_account')); ?> | </span>
  <?php
   }
 ?>

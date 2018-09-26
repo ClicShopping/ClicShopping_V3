@@ -67,6 +67,7 @@
                                              and s.public_flag = :public_flag
                                              order by orders_id desc limit 5
                                             ');
+
           $Qorders->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
           $Qorders->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
           $Qorders->bindValue(':public_flag', '1');

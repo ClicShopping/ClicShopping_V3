@@ -1357,8 +1357,6 @@
           }
         } // end $GLOBALS[$_SESSION['payment']]
 
-        $message_order = stripslashes(CLICSHOPPING::getDef('email_text_footer', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS, 'store_name_address' => STORE_NAME_ADDRESS]));
-        $email_order .= html_entity_decode($message_order) . "\n\n";
         $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
         $email_order .= TemplateEmail::getTemplateEmailTextFooter();
 

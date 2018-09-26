@@ -56,6 +56,7 @@
                                                     :table_customers_info ci
                                                where c.customers_email_address = :customers_email_address
                                                and c.customers_id = ci.customers_info_id
+                                               and c.customer_guest_account = 0
                                                limit 1
                                              ');
 

@@ -33,3 +33,13 @@ module_checkout_success_text_contact_store_owner =
   <li>if you are make a command: Please edit your order and click on Support. {{account_history}}</li>
   <li>if it's an application or specific information , please fill this form : {{contact}}</li>
 </p>
+
+module_checkout_success_create_account_success =
+<p class="blockquote">
+<h3>Your order </h3>
+<br /><br />
+You have choosen to pay by creating a guest account, you can not access at your account history. <br />Only the e-mail will allow you to inform the situation of your order.<br /><br />
+<li><strong> if you paid by check </strong>, we ask you to send us either a copy of your purchase order or the confirmation email that you have received. Upon receipt, we will process your request.
+<br /><br /> Address of {{store_name}}. : {{store_name_address}} </li><br /><br />
+</p>
+

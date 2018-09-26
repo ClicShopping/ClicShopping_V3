@@ -48,8 +48,10 @@
                                                       member_level
                                                 from :table_customers
                                                 where customers_email_address = :customers_email_address
+                                                and customer_guest_account = 0
                                                 limit 1
-                                                ');
+                                              ');
+
           $Qcheck->bindValue(':customers_email_address', $email_address);
           $Qcheck->execute();
 
@@ -81,7 +83,9 @@
                                                 );
 
                 $email_password_reminder_body = $message;
+                $email_password_reminder_body .= ' <br />' . TemplateEmail::getTemplateEmailTextFooter();
                 $email_password_reminder_body .= ' <br />' . TemplateEmail::getTemplateEmailSignature();
+
                 $email_subject = CLICSHOPPING::getDef('email_password_reset_subject', ['store_name' => STORE_NAME]);
 
                 $CLICSHOPPING_Mail->clicMail($Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), $email_address, $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);

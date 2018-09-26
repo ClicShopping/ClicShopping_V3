@@ -36,8 +36,31 @@
     public function execute() {
 
       $CLICSHOPPING_Template = Registry::get('Template');
+      $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Checkout']) && isset($_GET['Success'])) {
+        if ($CLICSHOPPING_Customer->getCustomerGuestAccount($CLICSHOPPING_Customer->getID()) == 1) {
+          $guest_account = 1;
+          $text_info =  CLICSHOPPING::getDef('module_checkout_success_create_account_success', ['store_name' => STORE_NAME,
+                                                                                                 'store_name_address' => STORE_NAME_ADDRESS,
+                                                                                                ]
+                                              );
+        } else {
+          $guest_account = 0;
+          $text_info =  sprintf(CLICSHOPPING::getDef('module_checkout_success_text_see_orders', ['store_name' => STORE_NAME, 'store_name_address' => STORE_NAME_ADDRESS,
+                                                                                                  'account_history' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&History') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_order_history') . '</a>',
+                                                                                                  'my_account' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&Main') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_account') . '</a>',
+                                                                                                ]
+                                                    ), CLICSHOPPING::link('index.php', 'Account&HistoryInfo')
+                               );
+
+          $contact = sprintf(CLICSHOPPING::getDef('module_checkout_success_text_contact_store_owner', ['store_name' => STORE_NAME,
+                                                                                                       'account_history' => '<a href="' . CLICSHOPPING::link('index.php', 'Account&History') . '">' . CLICSHOPPING::getDef('module_checkout_success_text_order_history') . '</a>',
+                                                                                                       'contact' => '<a href="index.php?Info&Contact">' . CLICSHOPPING::getDef('module_checkout_success_text_contact') . '</a>'
+                                                                                                      ]
+                                                    ), CLICSHOPPING::link('index.php', 'info&Contact')
+                            );
+        }
 
         $content_width = (int)MODULE_CHECKOUT_SUCCESS_THANK_YOU_CONTENT_WIDTH;
 

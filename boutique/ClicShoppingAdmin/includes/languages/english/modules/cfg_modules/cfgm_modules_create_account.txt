@@ -1,2 +1,2 @@
-module_cfg_module_create_account_modules_title = Customer create account professionnal B2C
+module_cfg_module_create_account_modules_title = Customer create account B2C
 

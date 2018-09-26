@@ -73,7 +73,8 @@ table_heading_total_excluding_tax = Total (ht)
 table_heading_total_including_tax = Total (ttc)
 table_heading_color_group = B2B
 table_heading_orders = No Commande
-table_heading_odoo = ERP
+table_heading_erp = ERP
+table_heading_guest = Guest
 
 table_heading_support = Support
 
