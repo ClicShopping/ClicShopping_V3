@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved

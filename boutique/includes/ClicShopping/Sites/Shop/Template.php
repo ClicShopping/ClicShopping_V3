@@ -417,7 +417,6 @@
               $class = basename($module, '.php');
 
 // module language
-              // module language
               if ( !class_exists($class) ) {
                 If (CLICSHOPPING::getSite('ClicShoppingAdmin')) {
                   $CLICSHOPPING_Language->loadDefinitions('modules/' . $group . '/' . pathinfo($module, PATHINFO_FILENAME));

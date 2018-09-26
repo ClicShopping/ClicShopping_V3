@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -172,7 +172,7 @@
         <td class="text-md-right"><?php echo DateTime::toShort($Qinfo->value('date_account_created')); ?></td>
         <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Members->link('Members&AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/activate.gif', $CLICSHOPPING_Members->getDef('icon_activte')));
+      echo HTML::link($CLICSHOPPING_Members->link('Members&AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/activate.gif', $CLICSHOPPING_Members->getDef('icon_activate')));
       echo '&nbsp;';
       echo HTML::link(CLICSHOPPING::link('index.php','A&Customers&Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Members->getDef('icon_edit_customer')));
       echo '&nbsp;';

@@ -44,7 +44,7 @@
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
         $email_address = HTML::sanitize($_POST['email_address']);
-        $email_address_confirmation = HTML::sanitize($_POST['email_address_confirmation']);
+        $email_address_confirmation = HTML::sanitize($_POST['email_address_confirm']);
         $postcode = HTML::sanitize($_POST['postcode']);
         $city = HTML::sanitize($_POST['city']);
         $customer_website_company = HTML::sanitize($_POST['customer_website_company']);
@@ -208,8 +208,7 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
         }
 
-        if (is_numeric($country) === false) {
-
+        if (!is_numeric($country)) {
           $Qcheck = $CLICSHOPPING_Db->prepare('select countries_id
                                                from :table_countries
                                                where countries_iso_code_2 = :countries_iso_code_2
@@ -218,7 +217,6 @@
           $Qcheck->execute();
 
           $country = $Qcheck->valueInt('countries_id');
-
         } else {
           $error = true;
 
@@ -253,16 +251,29 @@
               $Qzone->execute();
 
             } else {
-              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
+              if (!is_numeric($state)) {
+                $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
+                                                    from :table_zones
+                                                    where zone_country_id = :zone_country_id
+                                                    and zone_name = :zone_name
+                                                    and zone_status = 0
+                                                  ');
+                $Qzone->bindInt(':zone_country_id', $country); // 73
+                $Qzone->bindValue(':zone_name',  $state);
+
+                $Qzone->execute();
+              } else {
+                $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                   from :table_zones
                                                   where zone_country_id = :zone_country_id
                                                   and zone_id = :zone_id
                                                   and zone_status = 0
                                                 ');
-              $Qzone->bindInt(':zone_country_id', $country);
-              $Qzone->bindValue(':zone_id',  $state);
+                $Qzone->bindInt(':zone_country_id', $country); // 73
+                $Qzone->bindValue(':zone_id',  $state);
 
-              $Qzone->execute();
+                $Qzone->execute();
+              }
             }
 
             if (count($Qzone->fetchAll()) == 1) {

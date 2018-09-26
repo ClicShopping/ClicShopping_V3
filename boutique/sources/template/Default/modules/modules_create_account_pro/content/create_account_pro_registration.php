@@ -187,7 +187,7 @@
                 <div class="form-group row">
                   <label for="InputSuburb" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_suburb'); ?></label>
                   <div class="col-md-8">
-                    <?php echo HTML::inputField('street_address', null, 'id="InputSuburb" aria-describedby="' . CLICSHOPPING::getDef('entry_suburb') . '" placeholder="' . CLICSHOPPING::getDef('entry_suburb') . '"'); ?>
+                    <?php echo HTML::inputField('suburb', null, 'id="InputSuburb" aria-describedby="' . CLICSHOPPING::getDef('entry_suburb') . '" placeholder="' . CLICSHOPPING::getDef('entry_suburb') . '"'); ?>
                   </div>
                 </div>
               </div>
@@ -392,7 +392,7 @@
               <div class="form-group row">
                 <label for="gender" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_gender'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::radioField('gender', 'm') . '&nbsp;&nbsp;' .  HTML::radioField('gender', 'f') . ' ' . CLICSHOPPING::getDef('female'). '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
+                  <?php echo CLICSHOPPING::getDef('male'). '&nbsp;' . HTML::radioField('gender', 'm') . '&nbsp;&nbsp;' .  HTML::radioField('gender', 'f') . ' ' . CLICSHOPPING::getDef('female'). '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
                 </div>
               </div>
             </div>

@@ -62,8 +62,11 @@ email_password_reminder_body = Hello ! <br />br />You asked us to open an office
 
 email_text_coupon =  {{store_name}} are pleased to offer you a discount coupon that you can use at any time on the shop.<br /><br /> The coupon number is : <strong>
 
-image_activate = Activate account
+icon_activate = Activate account
 icon_edit_customer = Edit customer
+icon_edit_customer = Editer la fiche client
+icon_delete = Delete
+icon_email = E-mail
 
 text_delete_reviews =  Delete Review  : {{delete_number}}
 

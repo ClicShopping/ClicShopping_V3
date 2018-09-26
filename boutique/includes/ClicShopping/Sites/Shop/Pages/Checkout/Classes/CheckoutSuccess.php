@@ -21,11 +21,11 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $Qorders = $CLICSHOPPING_Db->prepare('select orders_id
-                                      from :table_orders
-                                      where customers_id = :customers_id
-                                      order by date_purchased desc
-                                      limit 1
-                                    ');
+                                            from :table_orders
+                                            where customers_id = :customers_id
+                                            order by date_purchased desc
+                                            limit 1
+                                          ');
       $Qorders->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qorders->execute();
 
