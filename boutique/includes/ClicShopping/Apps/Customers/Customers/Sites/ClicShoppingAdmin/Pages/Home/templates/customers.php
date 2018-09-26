@@ -323,7 +323,7 @@
                 echo '&nbsp;';
                 echo HTML::link(CLICSHOPPING::link('index.php', 'A&Orders\Orders&Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $CLICSHOPPING_Customers->getDef('icon_edit_orders')));
                 echo '&nbsp;';
-                echo HTML::link($CLICSHOPPING_Customers->link('Customers\PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/new_password.gif', $CLICSHOPPING_Customers->getDef('icon_edit_new_password')));
+                echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/new_password.gif', $CLICSHOPPING_Customers->getDef('icon_edit_new_password')));
                 echo '&nbsp;';
 ?>
               </td>

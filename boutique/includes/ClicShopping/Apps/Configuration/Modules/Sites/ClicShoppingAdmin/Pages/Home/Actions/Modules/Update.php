@@ -13,8 +13,8 @@
   namespace ClicShopping\Apps\Configuration\Modules\Sites\ClicShoppingAdmin\Pages\Home\Actions\Modules;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
+  use ClicShopping\OM\HTML;
 
   class Update extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;

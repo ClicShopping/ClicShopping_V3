@@ -216,15 +216,15 @@
         for ($j=0, $k=count($module_keys); $j<$k; $j++) {
 
           $Qkeys = $CLICSHOPPING_Db->get('configuration', [
-                                                    'configuration_title',
-                                                    'configuration_value',
-                                                    'configuration_description',
-                                                    'use_function',
-                                                    'set_function'
-                                                    ], [
-                                                    'configuration_key' => $module_keys[$j]
-                                                    ]
-                                  );
+                                                          'configuration_title',
+                                                          'configuration_value',
+                                                          'configuration_description',
+                                                          'use_function',
+                                                          'set_function'
+                                                          ], [
+                                                          'configuration_key' => $module_keys[$j]
+                                                          ]
+                                        );
 
           $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
           $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
@@ -243,7 +243,7 @@
                 <td class="text-md-center"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
                 <td class="text-md-center">
 <?php
-      if ($module->enabled == 1) {
+      if ($module->enabled == 'True') {
         echo 'True';
       } else {
         echo '<span class="text-info">False</span>';

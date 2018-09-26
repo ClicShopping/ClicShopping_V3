@@ -15,7 +15,7 @@
 
     public $default = '30';
     public $sort_order = 300;
-    public $app_configured = true;
+    public $app_configured = false;
 
     protected function init() {
         $this->title = $this->app->getDef('cfg_groups_sort_order_title');

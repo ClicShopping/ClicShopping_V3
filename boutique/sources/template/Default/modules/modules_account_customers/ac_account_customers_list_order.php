@@ -49,24 +49,24 @@
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_LIST_ORDER_CONTENT_WIDTH;
 
         $Qorders = $CLICSHOPPING_Db->prepare('select o.orders_id,
-                                                 o.date_purchased,
-                                                 o.delivery_name,
-                                                 o.delivery_country,
-                                                 o.billing_name,
-                                                 o.billing_country,
-                                                 ot.text as order_total,
-                                                 s.orders_status_name
-                                         from :table_orders o,
-                                              :table_orders_total ot,
-                                              :table_orders_status s
-                                         where o.customers_id = :customers_id
-                                         and o.orders_id = ot.orders_id
-                                         and (ot.class = :class or ot.class = :class1)
-                                         and o.orders_status = s.orders_status_id
-                                         and s.language_id = :language_id
-                                         and s.public_flag = :public_flag
-                                         order by orders_id desc limit 5
-                                        ');
+                                                     o.date_purchased,
+                                                     o.delivery_name,
+                                                     o.delivery_country,
+                                                     o.billing_name,
+                                                     o.billing_country,
+                                                     ot.text as order_total,
+                                                     s.orders_status_name
+                                             from :table_orders o,
+                                                  :table_orders_total ot,
+                                                  :table_orders_status s
+                                             where o.customers_id = :customers_id
+                                             and o.orders_id = ot.orders_id
+                                             and (ot.class = :class or ot.class = :class1)
+                                             and o.orders_status = s.orders_status_id
+                                             and s.language_id = :language_id
+                                             and s.public_flag = :public_flag
+                                             order by orders_id desc limit 5
+                                            ');
           $Qorders->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
           $Qorders->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
           $Qorders->bindValue(':public_flag', '1');
