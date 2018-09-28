@@ -209,7 +209,7 @@
  * @return string
  */
     public function getModulesDirectory() {
-      $directory = $this->_directoryAdminIncludes . '/'  . $this->_directoryAdminmodules; //'includes/modules/'
+      $directory= CLICSHOPPING::getConfig('dir_root','Shop') . $this->_directoryAdminIncludes;
 
       return $directory;
     }

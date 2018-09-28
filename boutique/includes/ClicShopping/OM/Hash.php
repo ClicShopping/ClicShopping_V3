@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -14,6 +14,12 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class Hash {
+/**
+ * @param $plain
+ * @param null $algo
+ * @return bool|string
+ * @throws \Exception
+ */
     public static function encrypt($plain, $algo = null)
     {
         if (!isset($algo) || ($algo == 'default') || ($algo == 'bcrypt')) {
@@ -55,6 +61,11 @@
         return false;
     }
 
+/**
+ * @param $plain
+ * @param $hash
+ * @return bool
+ */
     public static function verify($plain, $hash)
     {
         $result = false;
@@ -94,6 +105,11 @@
         return $result;
     }
 
+/**
+ * @param $hash
+ * @param null $algo
+ * @return bool
+ */
     public static function needsRehash($hash, $algo = null)
     {
         if (!isset($algo) || ($algo == 'default')) {
@@ -109,6 +125,10 @@
         return password_needs_rehash($hash, $algo);
     }
 
+/**
+ * @param $hash
+ * @return string
+ */
     public static function getType($hash)
     {
         $info = password_get_info($hash);
@@ -130,6 +150,13 @@
         return '';
     }
 
+/**
+ * @param null $min
+ * @param null $max
+ * @param bool $secure
+ * @return int
+ * @throws \Exception
+ */
     public static function getRandomInt($min = null, $max = null, $secure = true)
     {
         if (!isset($min)) {
@@ -153,6 +180,12 @@
         return $result;
     }
 
+/**
+ * @param $length
+ * @param string $type
+ * @return bool|string
+ * @throws \Exception
+ */
     public static function getRandomString($length, $type = 'mixed')
     {
         if (!in_array($type, [
@@ -199,6 +232,12 @@
         return $rand_value;
     }
 
+/**
+ * @param $length
+ * @param bool $secure
+ * @return bool|string|void
+ * @throws \Exception
+ */
     public static function getRandomBytes($length, $secure = true)
     {
         try {
@@ -209,6 +248,7 @@
             }
 
             $result = '';
+            $random_state = 0;
 
             for ($i=0; $i<$length; $i+=16) {
                 $random_state = md5(microtime() . $random_state);

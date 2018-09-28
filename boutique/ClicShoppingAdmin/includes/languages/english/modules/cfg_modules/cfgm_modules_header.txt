@@ -1,2 +1,0 @@
-module_cfg_module_header_title = Header Catalog
-

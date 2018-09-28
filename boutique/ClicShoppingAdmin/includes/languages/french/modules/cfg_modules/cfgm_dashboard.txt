@@ -1,2 +1,0 @@
-module_cfg_module_dashboard_title = Tableau de bord
-

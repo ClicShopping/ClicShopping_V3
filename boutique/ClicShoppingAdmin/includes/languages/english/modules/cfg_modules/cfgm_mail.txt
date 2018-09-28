@@ -1,1 +1,0 @@
-module_cfg_module_mail_title = Customer Communication

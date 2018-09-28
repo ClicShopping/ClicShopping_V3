@@ -1,2 +1,0 @@
-module_cfg_module_tell_a_friend_title = Send friends
-

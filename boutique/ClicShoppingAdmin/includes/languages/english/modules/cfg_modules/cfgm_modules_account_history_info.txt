@@ -1,2 +1,0 @@
-module_cfg_module_account_history_info_modules_title = Order history
-

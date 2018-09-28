@@ -1,1 +1,0 @@
-module_cfg_module_boxes_title = Boxes

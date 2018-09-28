@@ -485,7 +485,7 @@
               <td class="text-md-right"><?php echo $Qhistory->value('admin_user_name'); ?></td>
               <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Orders->link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
+      echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
       echo '&nbsp;';
       echo HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit_order')));
       echo '&nbsp;';

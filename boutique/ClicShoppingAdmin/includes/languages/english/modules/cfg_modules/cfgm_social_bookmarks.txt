@@ -1,1 +1,0 @@
-module_cfg_module_social_bookmarks_title = Social Bookmarks

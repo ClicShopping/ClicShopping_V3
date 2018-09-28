@@ -1,2 +1,0 @@
-module_cfg_module_sitemap_title = Cartographie du Site
-

@@ -21,10 +21,9 @@
 
     public function __construct() {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-      $CLICSHOPPING_Language = Registry::get('Language');
 
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
-      $directory = $CLICSHOPPING_Template->getModulesDirectory() . '/cfg_modules';
+      $directory = $CLICSHOPPING_Template->getModulesDirectory()  . '/Module/CfgModules/';
 
       if ($dir = @dir($directory)) {
         while ($file = $dir->read()) {
@@ -32,8 +31,7 @@
             if (substr($file, strrpos($file, '.')) == $file_extension) {
               $class = substr($file, 0, strrpos($file, '.'));
 
-              $CLICSHOPPING_Language->loadDefinitions('modules/cfg_modules/' . pathinfo($file, PATHINFO_FILENAME));
-              include($CLICSHOPPING_Template->getModulesDirectory() . '/cfg_modules/' . $class . '.php');
+              include($CLICSHOPPING_Template->getModulesDirectory()   . '/Module/CfgModules/' . $class . '.php');
 
               $m = new $class();
 

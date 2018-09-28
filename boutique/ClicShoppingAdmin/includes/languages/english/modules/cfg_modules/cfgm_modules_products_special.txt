@@ -1,1 +1,0 @@
-module_cfg_module_products_special_modules_title = Specials Listing
