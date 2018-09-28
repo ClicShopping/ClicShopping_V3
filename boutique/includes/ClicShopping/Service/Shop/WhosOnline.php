@@ -62,30 +62,30 @@
 
   // remove entries that have expired
         $Qwhosonline = $CLICSHOPPING_Db->prepare('delete
-                                          from :table_whos_online
-                                          where time_last_click < :time_last_click
-                                         ');
+                                                  from :table_whos_online
+                                                  where time_last_click < :time_last_click
+                                                 ');
         $Qwhosonline->bindInt(':time_last_click', $xx_mins_ago);
         $Qwhosonline->execute();
 
         $Qsession = $CLICSHOPPING_Db->prepare('select session_id
-                                       from :table_whos_online
-                                       where session_id = :session_id
-                                       limit 1
-                                      ');
+                                               from :table_whos_online
+                                               where session_id = :session_id
+                                               limit 1
+                                              ');
         $Qsession->bindValue(':session_id', $wo_session_id);
         $Qsession->execute();
 
         if ($Qsession->fetch() !== false) {
 
           $CLICSHOPPING_Db->save('whos_online', ['customer_id' =>(int)$wo_customer_id,
-                                          'full_name' => $wo_full_name,
-                                          'ip_address' => $wo_ip_address,
-                                          'time_last_click' => $current_time,
-                                          'last_page_url' => $wo_last_page_url
-                                          ],
-                                          ['session_id' => $wo_session_id]
-                          );
+                                                'full_name' => $wo_full_name,
+                                                'ip_address' => $wo_ip_address,
+                                                'time_last_click' => $current_time,
+                                                'last_page_url' => $wo_last_page_url
+                                                ],
+                                                ['session_id' => $wo_session_id]
+                              );
 
         } else {
 
@@ -96,16 +96,16 @@
           }
 
           $CLICSHOPPING_Db->save('whos_online', ['customer_id' => (int)$wo_customer_id,
-                                          'full_name' => $wo_full_name,
-                                          'session_id' => $wo_session_id,
-                                          'ip_address' => $wo_ip_address,
-                                          'time_entry' => $current_time,
-                                          'time_last_click' => $current_time,
-                                          'last_page_url' => $wo_last_page_url,
-                                          'http_referer' => $http_referer,
-                                          'user_agent' => $user_agent
-                                         ]
-          );
+                                                'full_name' => $wo_full_name,
+                                                'session_id' => $wo_session_id,
+                                                'ip_address' => $wo_ip_address,
+                                                'time_entry' => $current_time,
+                                                'time_last_click' => $current_time,
+                                                'last_page_url' => $wo_last_page_url,
+                                                'http_referer' => $http_referer,
+                                                'user_agent' => $user_agent
+                                               ]
+                                );
         }
 
       } else {
@@ -121,7 +121,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('whos_online', ['session_id' => $new_id],
-                                     ['session_id' => $old_id]
-                      );
+                                             ['session_id' => $old_id]
+                            );
     }
-   }
+  }

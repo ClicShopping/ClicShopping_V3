@@ -41,6 +41,7 @@
       $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
+      $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
      if (isset($_GET['Products']) && isset($_GET['ProductsNew']) ) {
         if (MODULE_PRODUCTS_NEW_MAX_DISPLAY != 0 ) {
@@ -195,7 +196,7 @@
                 if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity($products_id) != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity($products_id) != 0) {
                   $submit_button = '';
 
-                  if ($CLICSHOPPING_ProductsCommon->getHasProductAttributes($products_id) === false) {
+                  if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                     $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
                     if (isset($_GET['ProductsNew'])) $form .= HTML::hiddenField('url', 'Products&ProductsNew');

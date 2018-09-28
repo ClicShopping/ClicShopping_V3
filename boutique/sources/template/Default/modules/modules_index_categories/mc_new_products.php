@@ -10,7 +10,6 @@
  */
 
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\DateTime;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -44,6 +43,8 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
       $CLICSHOPPING_Category = Registry::get('Category');
+      $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
+
 
 // needed for the new products module shown below
       $new_products_category_id =  $CLICSHOPPING_Category->getID();
@@ -215,7 +216,7 @@
                 if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
                   $submit_button = '';
 
-                  if ($CLICSHOPPING_ProductsCommon->getHasProductAttributes($products_id) === false) {
+                  if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                     $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
                     $endform = '</form>';

@@ -20,15 +20,15 @@
   $gID = (isset($_GET['gID'])) ? $_GET['gID'] : 1;
 
   $Qconfiguration = $CLICSHOPPING_Settings->db->get('configuration', [
-                                                                'configuration_id',
-                                                                'configuration_title',
-                                                                'configuration_value',
-                                                                'use_function'
-                                                                ], [
-                                                                'configuration_group_id' => (int)$gID
-                                                                ],
-                                                                'sort_order'
-                                            );
+                                                                      'configuration_id',
+                                                                      'configuration_title',
+                                                                      'configuration_value',
+                                                                      'use_function'
+                                                                      ], [
+                                                                      'configuration_group_id' => (int)$gID
+                                                                      ],
+                                                                      'sort_order'
+                                                  );
 
   while ($Qconfiguration->fetch() ) {
 
@@ -55,16 +55,16 @@
     if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qconfiguration->valueInt('configuration_id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
 
       $Qextra = $CLICSHOPPING_Settings->db->get('configuration', [
-                                                            'configuration_key',
-                                                            'configuration_description',
-                                                            'date_added',
-                                                            'last_modified',
-                                                            'use_function',
-                                                            'set_function'
-                                                            ], [
-                                                              'configuration_id' => $Qconfiguration->valueInt('configuration_id')
-                                                            ]
-                                        );
+                                                                  'configuration_key',
+                                                                  'configuration_description',
+                                                                  'date_added',
+                                                                  'last_modified',
+                                                                  'use_function',
+                                                                  'set_function'
+                                                                  ], [
+                                                                    'configuration_id' => $Qconfiguration->valueInt('configuration_id')
+                                                                  ]
+                                              );
 
       $cInfo_array = array_merge($Qconfiguration->toArray(), $Qextra->toArray());
       $cInfo = new ObjectInfo($cInfo_array);

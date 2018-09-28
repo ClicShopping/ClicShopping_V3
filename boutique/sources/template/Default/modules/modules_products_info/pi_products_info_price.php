@@ -44,7 +44,7 @@
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_Category = Registry::get('Category');
         $CLICSHOPPING_Weight = Registry::get('Weight');
-        $CLICSHOPPING_Language = Registry::get('Language');
+        $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
 //possible bug avec shopping cart pour les produits qui ne sont pas dans les catégories _123 au lieu 0_123
         $cPath = $CLICSHOPPING_Category->getProductPath($CLICSHOPPING_ProductsCommon->getId());
@@ -57,8 +57,8 @@
              $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol ;
            }
 // Products attributes
-           if ($CLICSHOPPING_ProductsCommon->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1 ) {
-             $clic_has_product_attributes = $CLICSHOPPING_ProductsCommon->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
+           if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1 ) {
+             $clic_has_product_attributes = $CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
            }
 // Minimum quantity to take an order
            if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
@@ -108,7 +108,7 @@
 
               $products_price_content = '<!-- Start product price -->' . "\n";
 // Strong relations with pi_products_info_options.php = Don't delete
-              if (($CLICSHOPPING_ProductsCommon->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
+              if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
                 $products_price_content .=  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
                 if (isset($_GET['Description'])) $products_price_content .= HTML::hiddenField('url', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
               }
@@ -124,7 +124,7 @@
 
 // Strong relations with pi_products_options.php Don't delete
 
-                if ($CLICSHOPPING_ProductsCommon->getCountProductsAttributes() == 0 || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER >= MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
+                if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() == 0 || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER >= MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
                   $products_price_content .='</form>' . "\n";
                 }
               } // end products_group_view

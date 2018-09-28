@@ -612,6 +612,8 @@
       $valid_products_count = 0;
 
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
+      $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
+
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
       for ($i = 0, $n = count($products); $i < $n; $i++) {
@@ -642,7 +644,7 @@
                                     'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                     'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                     'price' => $products[$i]['price'],
-                                    'final_price' => $products[$i]['price'] + $CLICSHOPPING_ShoppingCart->attributes_price($products[$i]['id']),
+                                    'final_price' => $products[$i]['price'] + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
                                     'weight' => $products[$i]['weight'],
                                     'id' => $products[$i]['id']
                                    ];
@@ -690,7 +692,7 @@
                                        'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                        'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
                                        'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
-                                       'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ShoppingCart->attributes_price($products[$i]['id']),
+                                       'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
                                        'weight' => $products[$i]['weight'],
                                        'id' => $products[$i]['id']
                                       ];
@@ -703,28 +705,7 @@
 
           foreach ($products[$i]['attributes'] as $option => $value) {
 
-            $Qattributes = $this->db->prepare('select popt.products_options_name,
-                                                       poval.products_options_values_name,
-                                                       pa.options_values_price,
-                                                       pa.price_prefix,
-                                                       pa.products_attributes_reference
-                                                from :table_products_options popt,
-                                                     :table_products_options_values poval,
-                                                     :table_products_attributes pa
-                                                where pa.products_id = :products_id
-                                                and pa.options_id = :options_id
-                                                and pa.options_id = popt.products_options_id
-                                                and pa.options_values_id = :options_values_id
-                                                and pa.options_values_id = poval.products_options_values_id
-                                                and popt.language_id = :language_id
-                                                and poval.language_id = :language_id
-                                               ');
-            $Qattributes->bindInt(':products_id', (int)$products[$i]['id']);
-            $Qattributes->bindInt(':options_id', (int)$option);
-            $Qattributes->bindInt(':options_values_id', (int)$value);
-            $Qattributes->bindInt(':language_id', $this->lang->getId());
-
-            $Qattributes->execute();
+            $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
 
             $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options_name'),
                                                                 'value' => $Qattributes->value('products_options_values_name'),
@@ -733,8 +714,6 @@
                                                                 'prefix' => $Qattributes->value('price_prefix'),
                                                                 'price' => $Qattributes->value('options_values_price'),
                                                                 'reference' => $Qattributes->value('products_attributes_reference'),
-                                                                'image' => $Qattributes->value('image'),
-                                                                'quantity' =>  $Qattributes->value('quantity')
                                                                ];
 
             $subindex++;
@@ -814,6 +793,7 @@
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
+      $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
       if (isset($_SESSION['payment'])) {
         if (strpos($_SESSION['payment'], '\\') !== false) {
@@ -957,63 +937,9 @@
 
         if (isset($this->products[$i]['attributes'])) {
           $attributes_exist = '1';
+
           for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
-            if (DOWNLOAD_ENABLED == 'true') {
-              $Qattributes = $this->db->prepare('select popt.products_options_name,
-                                                        poval.products_options_values_name,
-                                                        pa.options_values_price,
-                                                        pa.price_prefix,
-                                                        pa.products_attributes_reference,
-                                                        pad.products_attributes_maxdays,
-                                                        pad.products_attributes_maxcount,
-                                                        pad.products_attributes_filename,
-                                                        pa.products_attributes_reference
-                                               from :table_products_options popt,
-                                                    :table_products_options_values poval,
-                                                    :table_products_attributes pa
-                                                      left join :table_products_attributes_download pad on pa.products_attributes_id = pad.products_attributes_id
-                                               where pa.products_id = :products_id
-                                                and pa.options_id = :options_id
-                                                and pa.options_id = popt.products_options_id
-                                                and pa.options_values_id = :options_values_id
-                                                and pa.options_values_id = poval.products_options_values_id
-                                                and popt.language_id = :language_id
-                                                and popt.language_id = poval.language_id
-                                             ');
-
-              $Qattributes->bindInt(':products_id', $this->products[$i]['id']);
-              $Qattributes->bindInt(':options_id', $this->products[$i]['attributes'][$j]['option_id']);
-              $Qattributes->bindInt(':options_values_id', $this->products[$i]['attributes'][$j]['value_id']);
-              $Qattributes->bindInt(':language_id', $this->lang->getId());
-
-              $Qattributes->execute();
-
-            } else {
-
-                $Qattributes = $this->db->prepare('select popt.products_options_name,
-                                                           poval.products_options_values_name,
-                                                           pa.options_values_price,
-                                                           pa.price_prefix,
-                                                           pa.products_attributes_reference
-                                                    from :table_products_options popt,
-                                                         :table_products_options_values poval,
-                                                         :table_products_attributes pa
-                                                    where pa.products_id = :products_id
-                                                    and pa.options_id = :options_id
-                                                    and pa.options_id = popt.products_options_id
-                                                    and pa.options_values_id = :options_values_id
-                                                    and pa.options_values_id = poval.products_options_values_id
-                                                    and popt.language_id = :language_id
-                                                    and popt.language_id = poval.language_id
-                                                  ');
-
-              $Qattributes->bindInt(':products_id', $this->products[$i]['id']);
-              $Qattributes->bindInt(':options_id', $this->products[$i]['attributes'][$j]['option_id']);
-              $Qattributes->bindInt(':options_values_id', $this->products[$i]['attributes'][$j]['value_id']);
-              $Qattributes->bindInt(':language_id', $this->lang->getId());
-
-              $Qattributes->execute();
-            }
+            $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($this->products[$i]['id'], $this->products[$i]['attributes'][$j]['option_id'], $this->products[$i]['attributes'][$j]['value_id'], $this->lang->getId());
 
             $sql_data_array = ['orders_id' => (int)$this->insertID,
                                 'orders_products_id' => (int)$order_products_id,
@@ -1118,7 +1044,6 @@
             $products_attributes = (isset($this->products['attributes'])) ? $this->products['attributes'] : '';
 
             if (is_array($products_attributes)) {
-
               $stock_query_sql .= ' and pa.options_id = :options_id
                                    and pa.options_values_id = :options_values_id
                                 ';

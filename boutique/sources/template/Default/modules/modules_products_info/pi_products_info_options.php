@@ -51,19 +51,20 @@
         $CLICSHOPPING_Currencies = Registry::get('Currencies');
         $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
         $CLICSHOPPING_Language = Registry::get('Language');
+        $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
-          if ($CLICSHOPPING_ProductsCommon->getCountProductsAttributes() > 0) {
+          if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() > 0) {
 
             $QproductsOptionsName = $CLICSHOPPING_Db->prepare('select distinct popt.products_options_id,
-                                                                        popt.products_options_name
-                                                        from :table_products_options popt,
-                                                             :table_products_attributes patrib
-                                                        where patrib.products_id= :products_id
-                                                        and patrib.options_id = popt.products_options_id
-                                                        and popt.language_id = :language_id
-                                                        order by popt.products_options_sort_order,
-                                                                 popt.products_options_name
-                                                       ');
+                                                                                popt.products_options_name
+                                                                from :table_products_options popt,
+                                                                     :table_products_attributes patrib
+                                                                where patrib.products_id= :products_id
+                                                                and patrib.options_id = popt.products_options_id
+                                                                and popt.language_id = :language_id
+                                                                order by popt.products_options_sort_order,
+                                                                         popt.products_options_name
+                                                               ');
             $QproductsOptionsName->bindInt(':products_id', (int)$CLICSHOPPING_ProductsCommon->getID() );
             $QproductsOptionsName->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
 
@@ -73,10 +74,6 @@
 //*****************************
 // Strong relations with pi_products_info price.php Don't delete
 //*****************************
-
-
-
-
             if (defined('MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER')) {
                 if (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER > MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER) {
                  $products_options_content_display .=  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add&cPath=' . $CLICSHOPPING_Category->getPath(), ' SSL'), 'post', '', ['tokenize' => true]);
@@ -93,35 +90,18 @@
 
               $products_options_array = [];
 
-              $QproductsOptions = $CLICSHOPPING_Db->prepare('select distinct pov.products_options_values_id,
-                                                                      pov.products_options_values_name,
-                                                                      pa.options_values_price,
-                                                                      pa.price_prefix,
-                                                                      pa.products_attributes_reference
-                                                       from :table_products_attributes pa,
-                                                            :table_products_options_values pov
-                                                       where pa.products_id = :products_id
-                                                       and pa.options_id = :options_id
-                                                       and pa.options_values_id = pov.products_options_values_id
-                                                       and pov.language_id = :language_id
-                                                       order by pa.products_options_sort_order
-                                                    ');
-              $QproductsOptions->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID() );
-              $QproductsOptions->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-              $QproductsOptions->bindInt(':options_id', $QproductsOptionsName->valueInt('products_options_id'));
-              $QproductsOptions->execute();
+              $QproductsOptions = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($CLICSHOPPING_ProductsCommon->getID(), $QproductsOptionsName->valueInt('products_options_id'), null, $CLICSHOPPING_Language->getId());
 
-              while ($products_options = $QproductsOptions->fetch() ) {
+              while ($QproductsOptions->fetch() !== false) {
 
-                $products_options_array[] = [
-                                              'id' => $products_options['products_options_values_id'],
-                                              'text' => $products_options['products_options_values_name']
+                $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
+                                              'text' => $QproductsOptions->value('products_options_values_name')
                                             ];
-                $products_options_array_id[] = $products_options['products_options_values_id'];
-                $products_options_array_name[] = $products_options['products_options_values_name'];
+                $products_options_array_id[] = $QproductsOptions->valueInt('products_options_values_id');
+                $products_options_array_name[] = $QproductsOptions->value('products_options_values_name');
 
-                if ($products_options['options_values_price'] != '0') {
-                  $option_price_display = ' (' . $products_options['price_prefix'] . $CLICSHOPPING_Currencies->display_price($products_options['options_values_price'], $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
+                if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
+                  $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->display_price($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
 
                   if (PRICES_LOGGED_IN == 'False') {
                     $option_price_display_d = $option_price_display;

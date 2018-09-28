@@ -164,7 +164,7 @@
                                                         from :table_products
                                                         where products_id = :products_id
                                                        ');
-                $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id'])  );
+                $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
                 $Qstock->execute();
 
                 $stock_left = $Qstock->valueInt('products_quantity') - $CLICSHOPPING_Order->products[$i]['qty'];

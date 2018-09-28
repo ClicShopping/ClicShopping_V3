@@ -36,7 +36,6 @@
 
     public function execute() {
       global $products_id, $any_out_of_stock, $products;
-//      global $products;
 
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -48,6 +47,7 @@
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Tax = Registry::get('Tax');
+      $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->count_contents() > 0) {
 
@@ -88,27 +88,7 @@
             foreach($products[$i]['attributes'] as $option => $value) {
               $shopping_cart .= HTML::hiddenField('id[' . $products[$i]['id'] . '][' . $option . ']', $value);
 
-              $Qattributes = $CLICSHOPPING_Db->prepare('select popt.products_options_name,
-                                                               poval.products_options_values_name,
-                                                               pa.options_values_price,
-                                                               pa.price_prefix,
-                                                              pa.products_attributes_reference
-                                                        from :table_products_options popt,
-                                                             :table_products_options_values  poval,
-                                                             :table_products_attributes  pa
-                                                        where pa.products_id = :products_id
-                                                        and pa.options_id = :options_id
-                                                        and pa.options_id = popt.products_options_id
-                                                        and pa.options_values_id = :options_values_id
-                                                        and pa.options_values_id = poval.products_options_values_id
-                                                        and popt.language_id = :language_id
-                                                        and popt.language_id = :language_id
-                                                     ');
-              $Qattributes->bindInt(':products_id', $products[$i]['id'] );
-              $Qattributes->bindInt(':options_id', $option );
-              $Qattributes->bindint(':options_values_id', $value );
-              $Qattributes->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
-              $Qattributes->execute();
+              $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $CLICSHOPPING_Language->getId());
 
               $products[$i][$option]['products_attributes_values_name'] = $Qattributes->value('products_options_name');
               $products[$i][$option]['attributes_values_id'] = $value;

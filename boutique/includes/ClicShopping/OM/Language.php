@@ -81,6 +81,10 @@
       $this->set($code);
     }
 
+/**
+ * Set Code
+ * @param $code
+ */
     public function set($code) {
       $this->code = $code;
 
@@ -91,6 +95,10 @@
       }
     }
 
+/**
+ * Check browser
+ * @return bool|int|string
+ */
     public function getBrowserSetting()  {
       if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         $browser_languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -166,7 +174,12 @@
       return false;
     }
 
-
+/**
+ * Get language
+ * @param null $data
+ * @param null $language_code
+ * @return mixed
+ */
     public function get($data = null, $language_code = null) {
       if (!isset($data)) {
         $data = 'code';
@@ -180,10 +193,9 @@
     }
 
 /**
- * Display the language id
- *
- * @param return id of the language
- * @access public
+ * get the  language id
+ * @param null $language_code
+ * @return int
  */
     public function getId($language_code = null) {
        return (int)$this->get('id', $language_code);
@@ -191,10 +203,8 @@
 
 /**
  * get all language in array
- *
- * @param return aall language
- * @access public
-*/
+ * @return array
+ */
     public function getAll() {
       return $this->languages;
     }
@@ -211,11 +221,11 @@
 
 /**
  * get image svg 4:3
- *
- * @param return image
- * @access public
- *
-*/
+ * @param $language_code
+ * @param null $width
+ * @param null $height
+ * @return string
+ */
     public function getImage($language_code, $width = null, $height = null) {
 
       if (!isset($width) || !is_int($width)) {
@@ -243,6 +253,12 @@
       return $key;
     }
 
+/**
+ * Parse the definition
+ * @param $string
+ * @param $values
+ * @return null|string|string[]
+ */
     public static function parseDefinition($string, $values)
     {
         if (is_array($values) && !empty($values)) {
@@ -254,6 +270,12 @@
         return $string;
     }
 
+/**
+ * check if defintion exist
+ * @param $group
+ * @param null $language_code
+ * @return bool|mixed
+ */
     public function definitionsExist($group, $language_code = null) {
       $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
@@ -288,9 +310,15 @@
         return false;
     }
 
-
-    public function loadDefinitions($group, $language_code = null, $scope = null) {
-
+/**
+ * Load the language
+ * @param $group
+ * @param null $language_code
+ * @param null $scope
+ * @param null $force_directory_language
+ * @return bool
+ */
+    public function loadDefinitions($group, $language_code = null, $scope = null, $force_directory_language = null) {
         $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
         if (!isset($scope)) {
@@ -304,17 +332,13 @@
           $group = $matches[2];
         }
 
+        if (!is_null($force_directory_language)) $site = $force_directory_language;
+
         If ($site == 'ClicShoppingAdmin') {
           $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
         } else {
           $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . '/' . $group;
         }
-
-// legacy
-      if (is_file($pathname . '.php')) {
-        include($pathname . '.php');
-        return true;
-      }
 
       $pathname .= '.txt';
 
@@ -327,6 +351,13 @@
       $this->injectDefinitions($defs, $scope);
     }
 
+/**
+ * Get definition
+ * @param $group
+ * @param $language_code
+ * @param $pathname
+ * @return array|mixed
+ */
     public function getDefinitions($group, $language_code, $pathname) {
 
       $defs = [];
@@ -375,6 +406,11 @@
       return $defs;
     }
 
+/**
+ * Get definition from file
+ * @param $filename
+ * @return array
+ */
     public function getDefinitionsFromFile($filename) {
         $defs = [];
 
@@ -400,6 +436,11 @@
         return $defs;
     }
 
+/**
+ * Inject definition
+ * @param $defs
+ * @param $scope
+ */
     public function injectDefinitions($defs, $scope) {
         if (isset($this->definitions[$scope])) {
             $this->definitions[$scope] = array_merge($this->definitions[$scope], $defs);
@@ -408,11 +449,18 @@
         }
     }
 
+/**
+ * Set cache is used
+ * @param $flag
+ */
     public function setUseCache($flag) {
         $this->use_cache = ($flag === true);
     }
 
-
+/**Detect encoding
+ * @param $filename
+ * @return bool
+ */
     public function detectFileEncoding($filename)
     {
       $response_encoding = 'UTF-8';
