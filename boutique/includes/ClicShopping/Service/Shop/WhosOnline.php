@@ -47,7 +47,7 @@
             $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
             if (!empty($user_agent)) {
-              foreach (file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/assets/spiders.txt') as $spider) {
+              foreach (file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt') as $spider) {
                 if (!empty($spider)) {
                   if (strpos($user_agent, $spider) !== false) {
                     $wo_full_name = $spider;
