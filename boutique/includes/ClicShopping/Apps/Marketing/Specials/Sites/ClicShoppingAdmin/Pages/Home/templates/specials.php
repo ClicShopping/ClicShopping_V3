@@ -223,7 +223,7 @@ use ClicShopping\OM\HTML;
       }
 ?>
               </td>
-              <th scope="row"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qspecials->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Specials->getDef('icon_preview'))); ?></th>
+              <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qspecials->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Specials->getDef('icon_preview'))); ?></td>
               <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qspecials->value('products_image'), $Qspecials->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
               <td><?php echo $Qspecials->value('products_model'); ?></td>
               <td><?php echo $Qspecials->value('products_name'); ?></td>

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -86,10 +86,10 @@
       }
 ?>
               <tr>
-                <th scope="row" width="50"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '&origin=' . 'stats_products_viewed.php' . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsPurchased->getDef('text_prview'))); ?></th>
+                <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsPurchased->getDef('text_preview'))); ?></td>
                 <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                 <td><?php echo $rows; ?>.</td>
-                <td><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '&origin=' . 'stats_products_purchased.php' . '?page=' . $_GET['page']), $Qproducts->value('products_name')); ?></td>
+                <td><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), $Qproducts->value('products_name')); ?></td>
                 <td class="text-md-center"><?php echo $Qproducts->valueInt('products_ordered'); ?>&nbsp;</td>
                 <?php echo HTML::form('stats_products_purchased_products', $CLICSHOPPING_StatsProductsPurchased->link('StatsProductsPurchased&Update&resetPurchased=1')); ?>
                 <td class="text-md-right"><?php echo '<a href="' . $CLICSHOPPING_StatsProductsPurchased->link('StatsProductsPurchased&Update&resetPurchased=1&products_id=' . $Qproducts->valueInt('products_id') . '&page=' . $page) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_StatsProductsPurchased->getDef('image_delete')) . '</a>'; ?>&nbsp;</td>

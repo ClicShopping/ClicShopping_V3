@@ -330,8 +330,8 @@
     $QproductsImage->bindInt(':products_id', $products_id);
     $QproductsImage->execute();
 
-    echo '    <tr class="dataTableRow">' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $products_id), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('text_preview'))) . '</td>' . "\n" .
+            echo '    <tr class="dataTableRow">' . "\n" .
+      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $products_id . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
       '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Products&Products&Edit&pID=' . $products_id),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
       '      <td class="dataTableContent" valign="top"><img src=" ' . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $QproductsImage->value('products_image') . '" width=" '. (int)SMALL_IMAGE_WIDTH_ADMIN .'" height="'. (int)SMALL_IMAGE_HEIGHT_ADMIN .'"></td>' . "\n" .
       '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
