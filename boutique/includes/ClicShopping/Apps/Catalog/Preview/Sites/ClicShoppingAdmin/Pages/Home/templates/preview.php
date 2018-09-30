@@ -74,7 +74,7 @@
 
 
     <div class="contentBody">
-      <div class="row" id="PreviewRow1">
+      <div class="row" id="tab1ContentRow1">
         <div class="col-md-12">
           <div class="card card-block headerCard">
             <div class="row">
@@ -88,7 +88,7 @@
       </div>
       <div class="separator"></div>
 
-      <div class="row" id="PreviewRow1">
+      <div class="row" id="tab1ContentRow2">
         <div class="col-md-12">
           <span class="col-md-5 pageHeading float-md-left"><?php echo $CLICSHOPPING_Preview->getDef('text_products_name')  . $products['products_name']; ?></span>
           <span class="col-md-7 pageHeading float-md-right text-md-right"><strong><?php echo $CLICSHOPPING_Preview->getDef('text_products_model') . ' ' . $products['products_model']; ?></strong></span>
@@ -115,7 +115,7 @@
       <div class="separator"></div>
       <div class="mainTitle"><?php echo  $CLICSHOPPING_Preview->getDef('text_products_presentation'); ?></div>
       <div class="adminformTitle">
-        <div class="row" id="PreviewRow3">
+        <div class="row" id="tab1ContentRow3">
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_model') . ' ' . $products['products_model']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_ean') . ' ' . $products['products_ean']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_weight') . ' ' . $products['products_model']; ?></div>
@@ -136,7 +136,6 @@
   if ($products['products_packaging'] == 2) $products_packaging = $CLICSHOPPING_Preview->getDef('text_products_packaging_repackaged');
   if ($products['products_packaging'] == 3) $products_packaging = $CLICSHOPPING_Preview->getDef('text_products_used');
 ?>
-          <div class="col-md-3"><?php echo $CLICSHOPPING_Preview->getDef('text_products_wharehouse_packaging') . ' ' . $products_packaging; ?></div>
         </div>
       </div>
 <?php
@@ -147,7 +146,7 @@
       <div class="separator"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Preview->getDef('text_products_stock'); ?></div>
       <div class="adminformTitle">
-        <div class="row" id="PreviewRow4">
+        <div class="row" id="tab1ContentRow4">
 <?php
   if ($products['products_status'] == '1') {
     $products_status = $CLICSHOPPING_Preview->getDef('text_products_available');
@@ -161,10 +160,6 @@
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_min_order_quantity') . ' ' . $product_qty_unit['products_min_qty_order']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_date_available') . ' ' . $products['products_date_available']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_shipping_delay') . ' ' . $product_qty_unit['products_shipping_delay']; ?></div>
-            <div class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_wharehouse') . ' ' .$products['products_wharehouse']; ?></div>
-            <div class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_time_replenishment') . ' ' .$product_qty_unit['products_wharehouse_time_replenishment']; ?></div>
-            <div class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_wharehouse_row') . ' ' . $products['products_wharehouse_row']; ?></div>
-            <div class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_wharehouse_level_location') . ' ' . $products['products_wharehouse_level_location']; ?></div>
 
         </div>
       </div>
@@ -176,7 +171,7 @@
       <div class="separator"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Preview->getDef('text_products_price_public'); ?></div>
       <div class="adminformTitle">
-        <div class="row" id="PreviewRow5">
+        <div class="row" id="tab1ContentRow5">
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_price') . ' ' .$products['products_price'] . ' <strong>' . $CLICSHOPPING_Preview->getDef('text_products_price_net') . '</strong>'; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_cost') . ' ' .$products['products_cost'] . ' <strong>' . $CLICSHOPPING_Preview->getDef('text_products_price_net') . '</strong>'; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_handling') . ' ' . $products['products_handling'] . ' <strong>' . $CLICSHOPPING_Preview->getDef('text_products_price_net') . '</strong>'; ?></div>
@@ -284,20 +279,20 @@
       <div class="separator"></div>
       <div class="mainTitle"><?php echo $CLICSHOPPING_Preview->getDef('text_products_page_seo'); ?></div>
       <div class="adminformTitle">
-        <div class="row" id="PreviewRow6">
+        <div class="row" id="tab1ContentRow6">
           <div class="col-md-12">
             <span class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_page_title'); ?></span>
             <span class="col-md-10"><?php echo $products['products_head_title_tag']; ?></span>
           </div>
-          <div class="col-md-12" id="PreviewRow7">
+          <div class="col-md-12">
             <span class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_header_description'); ?></span>
             <span class="col-md-10"><?php echo $products['products_head_desc_tag']; ?></span>
           </div>
-          <div class="col-md-12" id="PreviewRow8">
+          <div class="col-md-12">
             <span class="col-md-2"><?php echo $CLICSHOPPING_Preview->getDef('text_products_keywords'); ?></span>
             <span class="col-md-10"><?php echo $products['products_head_keywords_tag']; ?></span>
           </div>
-          <div class="col-md-12" id="PreviewRow9">
+          <div class="col-md-12">
             <span class="col-md-2"><?php echo  $CLICSHOPPING_Preview->getDef('text_products_tag'); ?></span>
             <span class="col-md-10"><?php echo $products['products_head_tag']; ?></span>
           </div>

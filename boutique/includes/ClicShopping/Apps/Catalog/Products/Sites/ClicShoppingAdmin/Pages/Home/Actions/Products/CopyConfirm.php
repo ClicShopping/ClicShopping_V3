@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -37,9 +37,7 @@
 
 
     private function Link() {
-
       if ($this->categoriesId != $this->currentCategoryId) {
-
         $Qcheck = $this->app->db->prepare('select count(*) as total
                                            from :table_products_to_categories
                                            where products_id = :products_id
@@ -49,7 +47,6 @@
         $Qcheck->bindInt(':categories_id', $this->categoriesId);
         $Qcheck->execute();
 
-
         if ($Qcheck->valueInt('total') < 1) {
 
           $this->app->db->save('products_to_categories', [
@@ -57,13 +54,11 @@
                                                           'categories_id' => $this->categoriesId
                                                           ]
                               );
-
         }
       }
     }
 
     private function Duplicate() {
-
       $Qproduct = $this->app->db->prepare('select *
                                            from :table_products
                                            where products_id = :products_id
@@ -72,7 +67,6 @@
       $Qproduct->execute();
 
       $product = $Qproduct->fetch();
-
 
       $this->app->db->save('products', [
                                         'products_quantity' => (int)$product['products_quantity'],
@@ -88,10 +82,8 @@
                                         'products_price_kilo' => (float)$product['products_price_kilo'],
                                         'products_status' => 0,
                                         'products_tax_class_id' => (int)$product['products_tax_class_id'],
-                                        'manufacturers_id' => (int)$product['manufacturers_id'],
                                         'products_view' => (int)$product['products_view'],
                                         'orders_view' =>  (int)$product['orders_view'],
-                                        'suppliers_id' => (int)$product['suppliers_id'],
                                         'products_min_qty_order' => (int)$product['products_min_qty_order'],
                                         'products_price_comparison' => (int)$product['products_price_comparison'],
                                         'products_dimension_width' => $product['products_dimension_width'],
@@ -100,23 +92,17 @@
                                         'products_dimension_type' => $product['products_dimension_type'],
                                         'admin_user_name' => AdministratorAdmin::getUserAdmin(),
                                         'products_volume' => $product['products_volume'],
-                                        'products_quantity_unit_id' => (int)$product['products_quantity_unit_id'],
                                         'products_only_online' => (int)$product['products_only_online'],
                                         'products_image_medium' => $product['products_image_medium'],
                                         'products_cost' => (float)$product['products_cost'],
                                         'products_handling' => $product['products_handling'],
-                                        'products_wharehouse_time_replenishment' => $product['products_wharehouse_time_replenishment'],
-                                        'products_wharehouse' => $product['products_wharehouse'],
-                                        'products_wharehouse_row' => $product['products_wharehouse_row'],
-                                        'products_wharehouse_level_location' => $product['products_wharehouse_level_location'],
                                         'products_packaging' => $product['products_packaging'],
                                         'products_sort_order' => (int)$product['products_sort_order'],
                                         'products_quantity_alert' => (int)$product['products_quantity_alert'],
                                         'products_only_shop' => (int)$product['products_only_shop'],
                                         'products_download_filename' => $product['products_download_filename'] ,
                                         'products_download_public' => $product['products_download_public'],
-                                        'products_type' => $product['products_type'],
-                                        'products_weight_class_id' => $product['products_weight_class_id']
+                                        'products_type' => $product['products_type']
                                       ]
                           );
 

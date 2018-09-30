@@ -17,7 +17,7 @@
  */
   class Security {
 
-// Array of files to be excluded from cleansing, these can also be added in application_top.php if preferred using Fwr_Media_Security_Pro::addExclusion()
+// Array of files to be excluded from cleansing, these can also be added in application_top.php if preferred using _Security_Pro::addExclusion()
     public $_excluded_from_cleansing = [];
     public $_enabled = true; // Turn on or off - bool true / false
     public $_basename;
@@ -41,7 +41,7 @@
  * @param string $file_to_exclude - file to exclude from cleansing
  *
  * @access public
- * @return object Fwr_Media_Security_Pro - allows chaining
+ * @return object _Security_Pro - allows chaining
  */
     public function addExclusion( $file_to_exclude = '' ) {
       if ( !in_array ( $file_to_exclude, $this->_excluded_from_cleansing ) ) {
@@ -71,7 +71,7 @@
  * @uses in_array()
  * @uses function_exists()
  * @uses ini_get()
- * @see Fwr_Media_Security_Pro::cleanGlobals()
+ * @see _Security_Pro::cleanGlobals()
  * @param array $_GET - long array
  *
  * @access public
@@ -97,7 +97,7 @@
     } // end method
 
 /**
- * Recursively cleanse _GET values and optionally keys as well if Fwr_Media_Security_Pro::cleanse_keys === true
+ * Recursively cleanse _GET values and optionally keys as well if _Security_Pro::cleanse_keys === true
  *
  * @uses is_array()
  * @param array $get

@@ -513,40 +513,6 @@
 
 
 /**
- * Display a weight class
- *
- * @param int $id the products id
- * @param string $manufacturers['manufacturer_description'], The description of manufacturer
- * @access private
- */
-    private function setWeightType($id = null) {
-      Registry::set('Weight', new Weight());
-
-      $CLICSHOPPING_Weight = Registry::get('WeightAdmin');
-
-      if (is_null($id)) {
-        $id = $this->getID();
-      }
-
-      $Qproducts = $this->db->get('products', ['products_weight',
-                                               'products_weight_class_id'
-                                              ],
-                                              ['products_status' => 1,
-                                               'products_id' => (int)$id
-                                              ]
-                                  );
-
-      $weight = $CLICSHOPPING_Weight->display(null, $Qproducts->valueInt('products_weight_class_id'));
-
-      return $weight;
-    }
-
-
-    public function getWeightType($id = null) {
-      return $this->setWeightType($id);
-    }
-
-/**
  * Select the product packaging
  *
  * @param string
@@ -1038,9 +1004,9 @@
 
       $Qproducts->execute();
 
-      for ($i=0; $i<count($multi_clone_categories_id_to); $i++) {
+      for ($i=0; $i < count($multi_clone_categories_id_to); $i++) {
 
-        // clonage dans la categorie
+// clonage dans la categorie
         $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
         // copy du produit
@@ -1058,10 +1024,8 @@
                                     'products_price_kilo' => (float)$Qproducts->value('products_price_kilo'),
                                     'products_status' => 0,
                                     'products_tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
-                                    'manufacturers_id' => (int)$Qproducts->valueInt('manufacturers_id'),
                                     'products_view' => (int)$Qproducts->valueInt('products_view'),
                                     'orders_view' => (int)$Qproducts->valueInt('orders_view'),
-                                    'suppliers_id' => (int)$Qproducts->valueInt('suppliers_id'),
                                     'products_min_qty_order' => (int)$Qproducts->valueInt('products_min_qty_order'),
                                     'products_price_comparison' => (int)$Qproducts->value('products_price_comparison'),
                                     'products_dimension_width' => (float)$Qproducts->value('products_dimension_width'),
@@ -1070,22 +1034,16 @@
                                     'products_dimension_type' => $Qproducts->value('products_dimension_type'),
                                     'admin_user_name' =>  AdministratorAdmin::getUserAdmin(),
                                     'products_volume' => $Qproducts->value('products_volume'),
-                                    'products_quantity_unit_id' => (int)$Qproducts->valueInt('products_quantity_unit_id'),
                                     'products_only_online' => (int)$Qproducts->valueInt('products_only_online'),
                                     'products_image_medium' => $Qproducts->value('products_image_medium'),
                                     'products_cost' => (float)$Qproducts->value('products_cost'),
                                     'products_handling' => (int)$Qproducts->value('products_handling'),
-                                    'products_wharehouse_time_replenishment' => $Qproducts->value('products_wharehouse_time_replenishment'),
-                                    'products_wharehouse' => $Qproducts->value('products_wharehouse'),
-                                    'products_wharehouse_row' => $Qproducts->value('products_wharehouse_row'),
-                                    'products_wharehouse_level_location' => $Qproducts->value('products_wharehouse_level_location'),
                                     'products_packaging' => (int)$Qproducts->valueInt('products_packaging'),
                                     'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
                                     'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
                                     'products_only_shop' => (int)$Qproducts->valueInt('products_only_shop'),
                                     'products_type' => HTML::sanitize($_POST['products_type']),
-                                    'products_barcode' => HTML::sanitize($_POST['products_barcode']),
-                                    'products_weight_class_id' => (int)HTML::sanitize($_POST['products_weight_class_id'])
+                                    'products_barcode' => HTML::sanitize($_POST['products_barcode'])
                                   ]
                       );
         $dup_products_id = $this->db->lastInsertId();
@@ -1161,7 +1119,7 @@
                        );
 
         $clone_products_id = $dup_products_id;
-
+        $_POST['clone_products_id'] = $clone_products_id; // for hooks
   // ---------------------
   // groupe client clonage
   // ----------------------
@@ -1289,8 +1247,9 @@
 
           }
         } // end while
+
+        $this->hooks->call('Products', 'CloneProducts');
       } //End for
-      return;
     }
 
 
@@ -1476,13 +1435,6 @@
         $products_status = 0;
       }
 
-// conflict with quantity discount
-      If (empty($_POST['supplier_id'])) {
-        $suppliers_id = '';
-      } else {
-        $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
-      }
-
       $sql_data_array = ['products_quantity' => (int)HTML::sanitize($_POST['products_quantity']),
                         'products_ean' => HTML::sanitize($products_ean),
                         'products_model' => HTML::sanitize($products_model),
@@ -1496,8 +1448,7 @@
                         'products_view' => (int)$products_view,
                         'orders_view' => (int)$orders_view,
                         'products_tax_class_id' => (int)HTML::sanitize($_POST['products_tax_class_id']),
-                        'manufacturers_id' => (int)HTML::sanitize($_POST['manufacturers_id']),
-                        'suppliers_id' => (int)$suppliers_id,
+
                         'products_min_qty_order' => (int)$_POST['products_min_qty_order'],
                         'products_price_comparison' => (int)$_POST['products_price_comparison'],
                         'products_dimension_width'  => (float)HTML::sanitize($_POST['products_dimension_width']),
@@ -1509,17 +1460,13 @@
                         'products_only_online'  => (int)HTML::sanitize($products_only_online),
                         'products_cost' => (float)HTML::sanitize($_POST['products_cost']),
                         'products_handling' => (float)HTML::sanitize($_POST['products_handling']),
-                        'products_wharehouse_time_replenishment' => HTML::sanitize($_POST['products_wharehouse_time_replenishment']),
-                        'products_wharehouse' => HTML::sanitize($_POST['products_wharehouse']),
-                        'products_wharehouse_row' => HTML::sanitize($_POST['products_wharehouse_row']),
-                        'products_wharehouse_level_location' => HTML::sanitize($_POST['products_wharehouse_level_location']),
+
                         'products_packaging' => (int)HTML::sanitize($_POST['products_packaging']),
                         'products_sort_order' => (int)HTML::sanitize($_POST['products_sort_order']),
                         'products_quantity_alert' => (int)HTML::sanitize($_POST['products_quantity_alert']),
                         'products_only_shop'  => (int)HTML::sanitize($products_only_shop),
                         'products_download_public'  => (int)HTML::sanitize($products_download_public),
                         'products_type' => HTML::sanitize($_POST['products_type']),
-                        'products_weight_class_id' => (int)HTML::sanitize($_POST['products_weight_class_id']),
                         'products_barcode' => HTML::sanitize($_POST['products_barcode']),
                        ];
 
@@ -1552,7 +1499,7 @@
         $update_sql_data = ['products_last_modified' => 'now()'];
         $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
-        $this->db->save('products', $sql_data_array, ['products_id' => (int)$id] );
+        $this->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
 
         $Qupdate = $this->db->prepare('update :table_products_to_categories
                                         set categories_id = :categories_id
@@ -1564,7 +1511,6 @@
 
         if (isset($_POST['clone_categories_id_to'])) {
           $this->cloneProductsInOtherCategory($id);
-          $this->hooks->call('Products', 'CloneProducts');
         }
 
       } else {

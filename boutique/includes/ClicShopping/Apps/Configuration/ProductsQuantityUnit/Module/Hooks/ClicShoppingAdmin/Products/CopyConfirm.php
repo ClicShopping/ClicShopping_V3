@@ -30,8 +30,7 @@
     public function execute() {
       $current_products_id = HTML::sanitize($_POST['products_id']);
 
-
-      if (isset($current_products_id)) {
+      if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
         $QproductQty = $this->app->db->prepare('select products_quantity_unit_id
                                                  from :table_products
                                                  where products_id = :products_id

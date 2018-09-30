@@ -35,9 +35,20 @@
       $this->app = Registry::get('ProductsQuantityUnit');
     }
 
-    public function display()  {
-      global $pInfo;
+    private function getQtyUnit() {
+      $QtyUnit = $this->app->db->prepare('select products_quantity_unit_id
+                                           from :table_products
+                                           where  products_id = :products_id
+                                         ');
+      $QtyUnit->bindInt(':products_id', HTML::sanitize($_GET['pID']));
 
+      $QtyUnit->execute();
+
+      return $QtyUnit->valueInt('products_quantity_unit_id');
+    }
+
+
+    public function display()  {
       if (!defined('CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS') || CLICSHOPPING_APP_PRODUCTS_QUANTITY_UNIT_PQ_STATUS == 'False') {
         return false;
       }
@@ -52,7 +63,7 @@
       $content .= '<div class="form-group row">';
       $content .= '<label for="' . $this->app->getDef('text_products_quantity_unit') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_quantity_unit') . '</label>';
       $content .= '<div class="col-md-5">';
-      $content .=  HTML::selectMenu('products_quantity_unit_id', $products_quantity_unit_drop_down, $pInfo->products_quantity_unit_id);
+      $content .=  HTML::selectMenu('products_quantity_unit_id', $products_quantity_unit_drop_down, $this->getQtyUnit());
       $content .= '</div>';
       $content .= '</div>';
       $content .= '</div>';

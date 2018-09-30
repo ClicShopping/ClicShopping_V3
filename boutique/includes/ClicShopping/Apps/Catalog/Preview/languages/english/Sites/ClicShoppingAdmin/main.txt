@@ -65,11 +65,6 @@ text_product_not_available = Out of stock
 text_products_manufacturer = Product brand:
 
 text_products_time_replenishment = Resupplying:
-text_products_wharehouse = Wharehouse name
-text_products_wharehouse_row = Wharehouse row:
-text_products_wharehouse_level_location = Location level:
-text_products_wharehouse_packaging = Packaging type:
-text_wharehouse = Storage
 text_products_packaging_new = New product
 text_products_packaging_repackaged = Product repackaged
 text_products_packaging_used = Product Used

@@ -67,8 +67,6 @@
                   'products_view' => '',
                   'orders_view' => '',
                   'products_tax_class_id' => '',
-                  'manufacturers_id' => '',
-                  'suppliers_id' => '',
                   'products_min_qty_order' => '',
                   'products_price_comparison' => '',
                   'products_dimension_width' => '',
@@ -76,15 +74,11 @@
                   'products_dimension_depth' => '',
                   'products_dimension_type' => '',
                   'products_volume' => '',
-                  'products_quantity_unit_id' => '',
                   'products_only_online' => '',
                   'products_image_medium' => '',
                   'products_cost' => '',
                   'products_handling' => '',
-                  'products_wharehouse_time_replenishment' => '',
-                  'products_wharehouse' => '',
-                  'products_wharehouse_row' => '',
-                  'products_wharehouse_level_location' => '',
+
                   'products_packaging' => '',
                   'products_sort_order' => '',
                   'products_shipping_delay' => '',
@@ -94,7 +88,6 @@
                   'products_download_public' => '',
                   'products_description_summary' => '',
                   'products_type' => '',
-                  'products_weight_class_id' => ''
                 ];
 
 
@@ -170,26 +163,8 @@
       <div class="tabsClicShopping">
         <div class="tab-content">
 <?php
-  $Qmanufacturers = $CLICSHOPPING_Products->db->prepare('select manufacturers_id,
-                                                         manufacturers_name
-                                                   from :table_manufacturers
-                                                   where manufacturers_id = :manufacturers_id
-                                                ');
-  $Qmanufacturers->bindInt(':manufacturers_id', $pInfo->manufacturers_id);
-  $Qmanufacturers->execute();
 
-// ******************************************
-// Suppliers
-//*******************************************
-  $Qsuppliers = $CLICSHOPPING_Products->db->prepare('select suppliers_id,
-                                                            suppliers_name
-                                                     from :table_suppliers
-                                                     where suppliers_id = :suppliers_id
-                                                   ');
-  $Qsuppliers->bindInt(':suppliers_id', $pInfo->suppliers_id);
-  $Qsuppliers->execute();
-
-  // packaging
+// packaging
   $products_packaging_array = array(array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
                                     array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),
                                     array('id' => '2', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_repackaged')),
@@ -288,44 +263,7 @@
       <div class="separator"></div>
       <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_other_information'); ?></div>
       <div class="adminformTitle">
-        <div class="row" id="tab1ContentRow2">
-
-          <!-- Link trigger modal -->
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer'); ?></label>
-              <div class="col-md-5">
-                <?php echo  HTML::inputField('manufacturers_id', $Qmanufacturers->value('manufacturers_id') . ' ' . $Qmanufacturers->value('manufacturers_name'), 'id="manufacturer" class="token-input form-control"', null, null, null); ?>
-                <a href="<?php echo $CLICSHOPPING_Products->link('ManufacturersPopUp'); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body"><div class="te"></div></div>
-                    </div> <!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Link trigger modal -->
-           <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers'); ?></label>
-              <div class="col-md-5">
-                <?php echo  HTML::inputField('supplier_id', $Qsuppliers->value('suppliers_id') . ' ' . $Qsuppliers->value('suppliers_name'), 'id="supplier" class="token-input form-control"', null, null, null); ?>
-                <a href="<?php echo $CLICSHOPPING_Products->link('SuppliersPopUp'); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body"><div class="te"></div></div>
-                    </div> <!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="row" id="tab1ContentRow2"></div>
 
         <div class="row" id="tab1ContentRow3">
           <div class="col-md-5">
@@ -389,32 +327,16 @@
             </div>
           </div>
         </div>
-<?php
-  if (is_null($pInfo->products_weight_class_id)) {
-    $weight_class_id = SHIPPING_WEIGHT_UNIT;
-  } else {
-    $weight_class_id = $pInfo->products_weight_class_id;
-  }
-?>
         <div class="row" id="tab1ContentRow5">
           <div class="col-md-5">
             <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_weight_type'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_weight_type'); ?></label>
-              <div class="col-md-5">.
-                <?php echo HTML::selectField('products_weight_class_id', WeightAdmin::getClassesPullDown(), $weight_class_id); ?><br />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_weight'); ?></label>
-              <div class="col-md-5">.
+              <div class="col-md-5">
                 <?php echo HTML::inputField('products_weight', $pInfo->products_weight, 'id="products_weight" onKeyUp="return calc_poids(\'products_weight\',value)" size="12"'); ?>
               </div>
             </div>
           </div>
         </div>
-
         <div class="row" id="tab1ContentRow7">
           <div class="col-md-5">
             <div class="form-group row">
@@ -448,7 +370,7 @@
         <div class="row" id="tab1ContentRow9">
           <div class="col-md-5">
             <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse_packaging'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse_packaging'); ?></label>
+              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_warehouse_packaging'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_warehouse_packaging'); ?></label>
               <div class="col-md-5">
                 <?php echo  HTML::selectMenu('products_packaging', $products_packaging_array,  $pInfo->products_packaging); ?>
               </div>
@@ -549,80 +471,6 @@
       </div>
       <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab1', null, 'display'); ?>
     </div>
-
-<!-- ******************************************
-// Manufacturers
-******************************************* -->
-<?php
-  $smanufacturers_ajax = CLICSHOPPING::link('ajax/manufacturers.php');
-?>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#manufacturer").tokenInput("<?php echo $smanufacturers_ajax; ?>" ,
-        {
-          tokenLimit: 1,
-          resultsLimit: 5,
-          onResult: function (results) {
-            $.each(results, function (index, value) {
-              value.name = value.id + " " + value.name;
-            });
-            return results;
-          }
-        });
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#manufacturer").tokenInput("<?php echo $smanufacturers_ajax; ?>", {
-      prePopulate: [
-        {
-          id: <?php echo $Qmanufacturers->valueInt('manufacturers_id'); ?>,
-          name: "<?php echo $Qmanufacturers->valueInt('manufacturers_id') . ' ' . $Qmanufacturers->value('manufacturers_name'); ?> "
-        }
-      ],
-      tokenLimit: 1
-    });
-  });
-</script>
-<!-- ******************************************
-// Suppliers
-******************************************* -->
-<?php
-  $suppliers_ajax = CLICSHOPPING::link('ajax/suppliers.php');
-?>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#supplier").tokenInput("<?php echo $suppliers_ajax; ?>" ,
-        {
-          tokenLimit: 1,
-          resultsLimit: 5,
-          onResult: function (results) {
-            $.each(results, function (index, value) {
-              value.name = value.id + " " + value.name;
-            });
-            return results;
-          }
-
-        });
-  });
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#supplier").tokenInput("<?php echo $suppliers_ajax; ?>", {
-      prePopulate: [
-        {
-          id: <?php echo $Qsuppliers->valueInt('suppliers_id'); ?>,
-          name: "<?php echo $Qsuppliers->valueInt('suppliers_id') . ' ' . $Qsuppliers->value('suppliers_name'); ?> "
-        }
-      ],
-      tokenLimit: 1
-    });
-  });
-</script>
 
 <?php
 // ******************************************
@@ -738,49 +586,8 @@
         </div>
       </div>
       <div class="separator"></div>
+      <div id="tab2ContentRow7"></div>
 
-       <div id="tab2ContentRow7">
-        <div class="mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_wharehouse'); ?> </div>
-        <div class="adminformTitle">
-          <div class="row">
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_time_replenishment'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_time_replenishment'); ?></label>
-                <div class="col-md-5">
-                  <?php echo HTML::inputField('products_wharehouse_time_replenishment', $pInfo->products_wharehouse_time_replenishment,'id="products_wharehouse_time_replenishment" size="15"'); ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse'); ?></label>
-                <div class="col-md-5">
-                  <?php echo HTML::inputField('products_wharehouse', $pInfo->products_wharehouse,'id="products_wharehouse" size="15"'); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse_row'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse_row'); ?></label>
-                <div class="col-md-5">
-                  <?php echo HTML::inputField('products_wharehouse_row', $pInfo->products_wharehouse_row,'id="products_wharehouse_row" size="15"'); ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse_level_location'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_wharehouse_level_location'); ?></label>
-                <div class="col-md-5">
-                  <?php echo HTML::inputField('text_products_wharehouse_level_location', $pInfo->products_wharehouse_level_location,'id="text_products_wharehouse_level_location" size="15"'); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="separator"></div>
       <div class="alert alert-info">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>

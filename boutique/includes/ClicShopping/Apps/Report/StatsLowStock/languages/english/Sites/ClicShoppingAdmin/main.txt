@@ -41,9 +41,9 @@ table_heading_model = Model
 table_heading_qty_left = Quantity left
 table_heading_action = Action
 table_heading_wahrehouse_time_replenishment = time replenishment
-table_heading_wharehouse = Wharehouse name
-table_heading_wharehouse_row = Warehouse row
-table_heading_wharehouse_level = Warehouse level
+table_heading_warehouse = Warehouse name
+table_heading_warehouse_row = Warehouse row
+table_heading_warehouse_level = Warehouse level
 
 icon_preview = Preview
 icon_edit = Edit

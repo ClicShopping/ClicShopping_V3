@@ -124,12 +124,6 @@ text_product_option = Champs optionnels
 text_products_sort_order = Ordre de tri
 
 text_products_other_information = Autres informations
-text_products_time_replenishment = Délais de réapprovisionnement en jour :
-text_products_wharehouse = Nom de l'entrepot / Rayon
-text_products_wharehouse_row = Rangée :
-text_products_wharehouse_level_location = Niveau de localisation / case:
-text_products_wharehouse_packaging = Type de packaging :
-text_wharehouse = Entreprosage
 
 text_products_packaging_new = Produit neuf
 text_products_packaging_repackaged = Produit reconditionné
@@ -195,7 +189,7 @@ text_product_available = En stock
 text_products_dimension = Dimensions (LxHxP)
 text_products_dimension_type = Type de dimension
 text_product_not_available = Hors stock
-text_products_manufacturer = Marque du produit
+
 text_products_name = Nom du produit
 text_products_description = Description du produit
 
@@ -208,7 +202,6 @@ text_products_ean = EAN
 text_products_sku = SKU
 text_products_barcode = Code barre
 text_products_price_comparison = Exclure des comparateurs de prix ?
-text_products_suppliers = Fournisseur du produit
 
 icon_edit_customers_group = Appartient à un groupe client
 icon_edit_status_display_catalog_on = Affichage du champs dans le catalogue

@@ -41,9 +41,9 @@ table_heading_model = Référence
 table_heading_qty_left = Quantiés restantes
 table_heading_action = Action
 table_heading_wahrehouse_time_replenishment = Délais de réaprovisionnement
-table_heading_wharehouse = Nom de l'entrepot
-table_heading_wharehouse_row = Rangée de l'entreprot
-table_heading_wharehouse_level = Niveau de localisation
+table_heading_warehouse = Nom de l'entrepot
+table_heading_warehouse_row = Rangée de l'entrepot
+table_heading_warehouse_level = Niveau de localisation
 
 icon_preview = Prévisualiser
 icon_edit = Editer

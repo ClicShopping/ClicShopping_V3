@@ -125,13 +125,6 @@ text_products_option = Optional fields
 text_products_sort_order = Sort order
 
 text_products_other_information = Others informations
-text_products_time_replenishment = Resupplying in days:
-text_products_wharehouse = Wharehouse name / Case
-text_products_wharehouse_row = Wharehouse row:
-text_products_wharehouse_level_location = Location level / Rack
-text_products_wharehouse_packaging = Packaging type:
-text_wharehouse = Storage
-
 
 text_products_packaging_new = New product
 text_products_packaging_repackaged = Product repackaged
@@ -197,7 +190,7 @@ text_products_available = In Stock
 text_products_dimension = Dimensions (LxHxW)
 text_products_dimension_type = Dimension type
 text_products_not_available = Out of stock
-text_products_manufacturer = Product brand:
+
 text_products_name = Products Name
 text_products_description = Products Description
 
@@ -211,9 +204,7 @@ text_products_model = Model
 text_products_ean = EAN
 text_products_sku = SKU
 text_products_barcode = Barcode
-
 text_products_price_comparison = Excluding price comparison ?
-text_products_suppliers = Product supplier:
 
 icon_edit_customers_group = Is included in a customers group
 icon_edit_status_display_catalog_on = Field displayed in catalog

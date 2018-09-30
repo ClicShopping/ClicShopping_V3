@@ -2040,7 +2040,7 @@ INSERT INTO administrator_menu VALUES(70, 'index.php?A&Configuration\\Settings&S
 INSERT INTO administrator_menu VALUES(71, 'index.php?A&Configuration\\Settings&Settings&gID=15', 21, 3, 0, 'configuration_15.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(98, '', 7, 0, 0, 'stats_products.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(103, '', 7, 1, 0, 'stats_financial.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(107, '', 7, 2, 0, 'wharehouse.png', 0, NULL, 1);
+
 INSERT INTO administrator_menu VALUES(116, '', 8, 0, 0, 'configuration_43.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(117, '', 8, 1, 0, 'configuration_session.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(118, '', 8, 2, 0, 'page_manager.gif', 0, NULL, 1);

@@ -31,9 +31,13 @@
       if (isset($_GET['Update'])) {
         $id = HTML::sanitize($_GET['pID']);
 
-        $sql_data_array = ['products_quantity_unit_id'  => (int)HTML::sanitize($_POST['products_quantity_unit_id'])];
-
-        $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
+        $Qupdate = $this->app->db->prepare('update :table_products
+                                            set products_quantity_unit_id = :products_quantity_unit_id
+                                            where products_id = :products_id
+                                          ');
+        $Qupdate->bindInt(':products_quantity_unit_id', $_POST['products_quantity_unit_id'] );
+        $Qupdate->bindInt(':products_id', $id);
+        $Qupdate->execute();
       }
     }
   }

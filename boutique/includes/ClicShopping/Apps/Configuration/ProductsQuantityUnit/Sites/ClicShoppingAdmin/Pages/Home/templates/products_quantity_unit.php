@@ -49,12 +49,12 @@ use ClicShopping\OM\HTML;
         <tbody>
 <?php
       $QproductsQuantityUnit = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select  SQL_CALC_FOUND_ROWS  *
-                                                                          from :table_products_quantity_unit
-                                                                          where language_id = :language_id
-                                                                          order by products_quantity_unit_id
-                                                                          limit :page_set_offset,
-                                                                                :page_set_max_results
-                                                                          ');
+                                                                                from :table_products_quantity_unit
+                                                                                where language_id = :language_id
+                                                                                order by products_quantity_unit_id
+                                                                                limit :page_set_offset,
+                                                                                      :page_set_max_results
+                                                                                ');
 
       $QproductsQuantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $QproductsQuantityUnit->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);

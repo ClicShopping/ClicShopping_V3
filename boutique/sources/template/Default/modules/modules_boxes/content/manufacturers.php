@@ -22,4 +22,5 @@ use ClicShopping\OM\CLICSHOPPING;
     </div>
     <div class="card-footer boxeBottomManufacturer"></div>
   </div>
+  <div class="separator"></div>
 </section>

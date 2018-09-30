@@ -34,10 +34,6 @@ products_image_medium varchar(255) null,
 products_weight_class_id tinyint(2) default(2) not_null
 products_cost decimal(15,2) default (0.00) not_null
 products_handling decimal(15,2) default(0.00) not_null
-products_wharehouse_time_replenishment varchar(255)  null
-products_wharehouse varchar(255) null
-products_wharehouse_row varchar(255) null
-products_wharehouse_level_location varchar(255) null
 products_packaging tinyint(1) default(0) not_null
 products_sort_order int default(0) not_null
 products_quantity_alert int(4) default(0) not_null

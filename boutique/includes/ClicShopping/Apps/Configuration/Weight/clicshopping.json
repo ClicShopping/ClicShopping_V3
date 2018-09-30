@@ -13,6 +13,17 @@
    "website":	"https://www.clicshopping.org"
   }
  ],
+ "modules": {
+  "Hooks": {
+   "ClicShoppingAdmin/Products": {
+    "ProductsContentTab1":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\ProductsContentTab1",
+    "Update":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Update",
+    "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert",
+    "CopyConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CopyConfirm",
+    "CloneProducts":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CloneProducts"
+   }
+  }
+ },
  "routes": {
   "ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home"
  }

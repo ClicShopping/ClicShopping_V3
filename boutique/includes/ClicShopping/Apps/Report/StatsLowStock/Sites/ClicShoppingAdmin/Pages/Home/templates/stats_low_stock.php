@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -44,36 +44,57 @@
             <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_products'); ?></th>
             <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_model'); ?></th>
             <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_wahrehouse_time_replenishment'); ?></th>
-            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_wharehouse'); ?></th>
-            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_wharehouse_row'); ?></th>
-            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_wharehouse_level'); ?></th>
-            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_qty_left'); ?>&nbsp;</th>
-            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_action'); ?>&nbsp;</th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_warehouse'); ?></th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_warehouse_row'); ?></th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_warehouse_level'); ?></th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_qty_left'); ?></th>
+            <th class="text-md-center"><?php echo $CLICSHOPPING_StatsLowStock->getDef('table_heading_action'); ?></th>
           </tr>
           </thead>
           <tbody>
 <?php
+  $Qcheck = $CLICSHOPPING_Db->query("show columns from :table_products like 'products_warehouse_time_replenishment'");
+  $check = $Qcheck->fetch();
 
-  $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
-                                                                               p.products_quantity,
-                                                                                p.products_model,
-                                                                                pd.products_name,
-                                                                                p.products_image,
-                                                                                p.products_wharehouse_time_replenishment,
-                                                                                p.products_wharehouse,
-                                                                                p.products_wharehouse_row,
-                                                                                p.products_wharehouse_level_location,
-                                                                                p.products_packaging
-                                                 from :table_products p,
-                                                      :table_products_description pd
-                                                 where p.products_id = pd.products_id
-                                                 and pd.language_id = :language_id
-                                                 and p.products_quantity < :products_quantity
-                                                 group by pd.products_id
-                                                 order by pd.products_name ASC
-                                                 limit :page_set_offset,
-                                                      :page_set_max_results
-                                                ');
+  if ($check === false) {
+    $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
+                                                                                 p.products_quantity,
+                                                                                  p.products_model,
+                                                                                  pd.products_name,
+                                                                                  p.products_image,
+                                                                                  p.products_packaging
+                                                           from :table_products p,
+                                                                :table_products_description pd
+                                                           where p.products_id = pd.products_id
+                                                           and pd.language_id = :language_id
+                                                           and p.products_quantity < :products_quantity
+                                                           group by pd.products_id
+                                                           order by pd.products_name ASC
+                                                           limit :page_set_offset,
+                                                                :page_set_max_results
+                                                          ');
+  } else {
+    $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
+                                                                                 p.products_quantity,
+                                                                                  p.products_model,
+                                                                                  pd.products_name,
+                                                                                  p.products_image,
+                                                                                  p.products_warehouse_time_replenishment,
+                                                                                  p.products_warehouse,
+                                                                                  p.products_warehouse_row,
+                                                                                  p.products_warehouse_level_location,
+                                                                                  p.products_packaging
+                                                   from :table_products p,
+                                                        :table_products_description pd
+                                                   where p.products_id = pd.products_id
+                                                   and pd.language_id = :language_id
+                                                   and p.products_quantity < :products_quantity
+                                                   group by pd.products_id
+                                                   order by pd.products_name ASC
+                                                   limit :page_set_offset,
+                                                        :page_set_max_results
+                                                  ');
+  }
 
   $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qproducts->bindInt(':products_quantity', STOCK_REORDER_LEVEL);
@@ -94,12 +115,25 @@
                 <tr>
                   <td><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '&origin=stats_products_low_stock.php&page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsLowStock->getDef('icon_preview'))); ?></td>
                   <td><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
-                  <th>&nbsp;<?php echo  $Qproducts->value('products_name'); ?>&nbsp;</th>
-                  <td>&nbsp;<?php echo  $Qproducts->value('products_model'); ?>&nbsp;</td>
-                  <td>&nbsp;<?php echo  $Qproducts->value('products_wharehouse_time_replenishment'); ?>&nbsp;</td>
-                  <td>&nbsp;<?php echo  $Qproducts->value('products_wharehouse'); ?>&nbsp;</td>
-                  <td>&nbsp;<?php echo  $Qproducts->value('products_wharehouse_row'); ?>&nbsp;</td>
-                  <td>&nbsp;<?php echo  $Qproducts->value('products_wharehouse_level_location'); ?>&nbsp;</td>
+                  <th>&nbsp;<?php echo $Qproducts->value('products_name'); ?></th>
+                  <td><?php echo $Qproducts->value('products_model'); ?></td>
+<?php
+      if ($check === false) {
+?>
+
+                  <td></td>
+                  <td></td>
+                  <td></td>
+<?php
+      } else {
+?>
+                  <td><?php echo $Qproducts->value('products_warehouse_time_replenishment'); ?></td>
+                  <td><?php echo $Qproducts->value('products_warehouse'); ?></td>
+                  <td><?php echo $Qproducts->value('products_warehouse_row'); ?></td>
+<?php
+      }
+?>
+                  <td><?php echo $Qproducts->value('products_warehouse_level_location'); ?></td>
                   <td class="text-md-center"><strong><?php echo  $Qproducts->value('products_quantity'); ?></strong></td>
                   <td class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link('index.php' ,'A&Catalog\Products&Products&action=new_product&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsLowStock->getDef('icon_edit'))); ?></td>
                 </tr>

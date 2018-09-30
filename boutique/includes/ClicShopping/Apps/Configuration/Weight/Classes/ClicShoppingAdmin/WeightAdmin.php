@@ -62,6 +62,40 @@
 
       return $classes;
     }
+
+/**
+ * Display a weight class
+ *
+ * @param int $id the products id
+ * @param string $manufacturers['manufacturer_description'], The description of manufacturer
+ * @access private
+ */
+    private function setWeightType($id = null) {
+      Registry::set('Weight', new Weight());
+
+      $CLICSHOPPING_Weight = Registry::get('WeightAdmin');
+
+      if (is_null($id)) {
+        $id = $this->getID();
+      }
+
+      $Qproducts = $this->db->get('products', ['products_weight',
+                                               'products_weight_class_id'
+      ],
+        ['products_status' => 1,
+         'products_id' => (int)$id
+        ]
+      );
+
+      $weight = $CLICSHOPPING_Weight->display(null, $Qproducts->valueInt('products_weight_class_id'));
+
+      return $weight;
+    }
+
+
+    public function getWeightType($id = null) {
+      return $this->setWeightType($id);
+    }
   }
 
 

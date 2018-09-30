@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -23,7 +23,7 @@
         }
 
         if (!empty($user_agent)) {
-          foreach (file(CLICSHOPPING::getConfig('dir_root') . 'ClicShopping/Sites' . CLICSHOPPING::getSite() . '/assets/spiders.txt') as $spider) {
+          foreach (file(CLICSHOPPING::getConfig('dir_root') . 'ClicShopping/Sites' . CLICSHOPPING::getSite() . '/Assets/spiders.txt') as $spider) {
             if ((substr($spider, strlen($spider)-1, 1) == ' ') || (substr($spider, strlen($spider)-1, 1) == "\n")) {
               $spider = substr($spider, 0, strlen($spider)-1);
             }
