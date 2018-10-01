@@ -202,9 +202,7 @@
 <?php
   }
 ?>
-        </div>
       </div>
-
       <div class="separator"></div>
       <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_other_information'); ?></div>
       <div class="adminformTitle">
