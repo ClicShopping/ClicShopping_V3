@@ -22,7 +22,7 @@
   use ClicShopping\Apps\Catalog\Products\Classes\Shop\Prod as ProdClass;
   use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsCommon as ProductsCommonClass;
   use ClicShopping\Apps\Catalog\Products\Classes\Shop\ProductsFunctionTemplate as ProductsFunctionTemplateClass;
-
+  use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop\ProductsAttributesShop;
 
   class Core implements \ClicShopping\OM\ServiceInterface {
 
@@ -34,6 +34,7 @@
       Registry::set('ProductsCommon', new ProductsCommonClass());
       Registry::set('ProductsFunctionTemplate', new ProductsFunctionTemplateClass());
       Registry::set('OrderTotal', new OrderTotalClass());
+      Registry::set('ProductsAttributes', new ProductsAttributesShop());
 
       if (!isset($_SESSION['cart']) || !is_object($_SESSION['cart']) || (get_class($_SESSION['cart']) != 'shoppingCart')) {
         Registry::set('ShoppingCart', new ShoppingCartClass());

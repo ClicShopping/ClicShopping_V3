@@ -319,26 +319,26 @@
  * @return bool
  */
     public function loadDefinitions($group, $language_code = null, $scope = null, $force_directory_language = null) {
-        $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
+      $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
-        if (!isset($scope)) {
-          $scope = 'global';
-        }
+      if (!isset($scope)) {
+        $scope = 'global';
+      }
 
-        $site = CLICSHOPPING::getSite();
+      $site = CLICSHOPPING::getSite();
 
-        if ((strpos($group, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
-          $site = $matches[1];
-          $group = $matches[2];
-        }
+      if ((strpos($group, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
+        $site = $matches[1];
+        $group = $matches[2];
+      }
 
-        if (!is_null($force_directory_language)) $site = $force_directory_language;
+      if (!is_null($force_directory_language)) $site = $force_directory_language;
 
-        If ($site == 'ClicShoppingAdmin') {
-          $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
-        } else {
-          $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . '/' . $group;
-        }
+      If ($site == 'ClicShoppingAdmin') {
+        $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'includes/languages/' . $this->get('directory', $language_code) . '/' . $group;
+      } else {
+        $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . '/' . $group;
+      }
 
       $pathname .= '.txt';
 

@@ -81,14 +81,8 @@ table_heading_qty = Stock
 table_heading_last_modified = last modification
 table_heading_created = Created / modified
 
-text_top = --- Top ---
-text_categories = Categories
-text_categories_name = Categorie
 text_new_product = New Product in {{new_products}}
 text_divers_title = Others
-text_description_categories = Categories Description
-text_categories_preview_title = Categorie preview
-text_categories_image_delete = Delete image
 
 text_products_page_seo = Product Meta Data
 text_products_page_title = Title

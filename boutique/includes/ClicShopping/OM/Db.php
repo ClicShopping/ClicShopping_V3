@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -89,6 +89,10 @@
         return $object;
     }
 
+/**
+ * @param string $statement
+ * @return int
+ */
     public function exec($statement)
     {
         $statement = $this->autoPrefixTables($statement);
@@ -96,6 +100,11 @@
         return parent::exec($statement);
     }
 
+/**
+ * @param string $statement
+ * @param null $driver_options
+ * @return bool|\PDOStatement
+ */
     public function prepare($statement, $driver_options = null)
     {
         $statement = $this->autoPrefixTables($statement);
@@ -107,6 +116,10 @@
         return $DbStatement;
     }
 
+/**
+ * @param string $statement
+ * @return bool|mixed|\PDOStatement
+ */
     public function query($statement)
     {
         $statement = $this->autoPrefixTables($statement);
@@ -127,6 +140,16 @@
         return $DbStatement;
     }
 
+/**
+ * @param $table
+ * @param $fields
+ * @param array|null $where
+ * @param null $order
+ * @param null $limit
+ * @param null $cache
+ * @param array|null $options
+ * @return bool|\PDOStatement
+ */
     public function get($table, $fields, array $where = null, $order = null, $limit = null, $cache = null, array $options = null) {
         if (!is_array($table)) {
           $table = [ $table ];
@@ -250,6 +273,13 @@
         return $Q;
     }
 
+/**
+ * @param $table
+ * @param array $data
+ * @param array|null $where_condition
+ * @param array|null $options
+ * @return bool|int
+ */
     public function save($table, array $data, array $where_condition = null, array $options = null)
     {
         if (empty($data)) {
@@ -344,6 +374,12 @@
         return false;
     }
 
+/**
+ * @param $table
+ * @param array $where_condition
+ * @param array|null $options
+ * @return int
+ */
     public function delete($table, array $where_condition = [], array $options = null)
     {
         if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
@@ -377,6 +413,11 @@
         return $Q->rowCount();
     }
 
+/**
+ * @param $sql_file
+ * @param null $table_prefix
+ * @return bool
+ */
     public function importSQL($sql_file, $table_prefix = null)
     {
         if (is_file($sql_file)) {
@@ -389,7 +430,7 @@
 
         set_time_limit(0);
 
-        $sql_queries = array();
+        $sql_queries = [];
         $sql_length = strlen($import_queries);
         $pos = strpos($import_queries, ';');
 
@@ -482,6 +523,10 @@
         return !$error;
     }
 
+/**
+ * @param $file
+ * @return array
+ */
     public static function getSchemaFromFile($file)
     {
         $table = substr(basename($file), 0, strrpos(basename($file), '.'));
@@ -618,6 +663,11 @@
         return $schema;
     }
 
+/***
+ * @param $schema
+ * @param null $prefix
+ * @return string
+ */
     public static function getSqlFromSchema($schema, $prefix = null)
     {
         $sql = 'CREATE TABLE ' . (isset($prefix) ? $prefix : '') . $schema['name'] . ' (' . "\n";
@@ -705,6 +755,10 @@
         return $sql;
     }
 
+/**
+ * @param $string
+ * @return array|string
+ */
     public static function prepareInput($string)
     {
         if (is_string($string)) {
@@ -720,16 +774,27 @@
         }
     }
 
+/**
+ * @param $string
+ * @return string
+ */
     public static function prepareIdentifier($string)
     {
         return '`' . str_replace('`', '``', $string) . '`';
     }
 
+/**
+ * @param $prefix
+ */
     public function setTablePrefix($prefix)
     {
         $this->table_prefix = $prefix;
     }
 
+/**
+ * @param $statement
+ * @return mixed
+ */
     protected function autoPrefixTables($statement)
     {
         $prefix = '';
@@ -746,9 +811,9 @@
     }
 
 /**
+/**
  * Calculate the size of databse
- * @param       string   $size_bd
- * @return      $size_db
+ * @return  $size_db
  * @access public
  */
 

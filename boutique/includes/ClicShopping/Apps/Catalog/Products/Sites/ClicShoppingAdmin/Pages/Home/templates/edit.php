@@ -202,61 +202,6 @@
 <?php
   }
 ?>
-        <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_categories_name'); ?>" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_categories_name'); ?></label>
-<?php
-  if ($current_category_id == 0 || empty($_GET['cPath'])) {
-    $categories_ajax = CLICSHOPPING::link('ajax/products_categories.php');
-?>
-          <div class="col-md-5">
-         <!-- Link trigger modal -->
-            <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_categories'); ?>" class="col-5 col-form-label"></label>
-            <div id="myAjax"><select name="move_to_category_id" id="category_id"><option value="0"><?php echo $CLICSHOPPING_Products->getDef('text_select_categorie'); ?></option></div>
-<script type="text/javascript">
-  jQuery(document).ready(function() {
-    $("#myAjax").on('click', function () {
-      var selectedOptionVal = $('#category_id').val();
-      $.ajax({
-        url: '<?php echo $categories_ajax; ?>',
-        dataType: 'json',
-        success: function (data) {
-          //data returned from php
-          var options_html = '';
-          for (var index in data) {
-            var category_id = data[index]['id'];
-            var category_name = data[index]['text'];
-            var selectedString = category_id == selectedOptionVal ? ' selected="selected"' : '';
-            options_html += '<option value="' + category_id + '"' + selectedString + '>' + category_name + '</option>';
-          }
-          $('#category_id').html(options_html);
-        }
-      });
-    });
-  })
-</script>
-              <?php echo HTML::hiddenField('current_category_id', $current_category_id); ?>
-              <a href="<?php echo $CLICSHOPPING_Products->link('CategoriesPopUp'); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-body"><div class="te"></div></div>
-                  </div> <!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->
-            </div>
-          </div>
-<?php
-  } else {
-?>
-           <div class="col-md-5">
-<?php
- echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id);
- echo HTML::hiddenField('current_category_id', $current_category_id);
-?>
-           </div>
-<?php
-  }
-?>
         </div>
       </div>
 

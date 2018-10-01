@@ -82,14 +82,8 @@ table_heading_qty = Stock
 table_heading_last_modified = Dernière modification
 table_heading_created = Créé / modifié
 
-text_top = --- Haut ---
-text_categories = Catégories
-text_categories_name = Catégorie
 text_new_product = Nouveau produit dans {{new_products}}
 text_divers_title = Divers
-text_description_categories = Description de la Catégorie
-text_categories_preview_title = Prévisualisation de la catégorie
-text_categories_image_delete = Supprimer l'image
 
 text_products_page_seo = Métadonnées pour le produit
 text_products_page_title = Titre
@@ -135,7 +129,6 @@ text_products_only_shop = Exclusivité Boutique <br />(Uniquement disponible dan
 text_yes = oui
 text_no = non
 text_choose = Sélectionner
-text_select_categorie = -- Sélectionner votre catégorie --
 
 text_products_update_main_image = Mettre à jour l'image
 text_products_gallery_image = Galerie d'images
