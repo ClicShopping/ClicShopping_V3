@@ -169,8 +169,8 @@
           $address_id = $CLICSHOPPING_Db->lastInsertId();
 
           $CLICSHOPPING_Db->save('customers', array('customers_default_address_id' => (int)$address_id),
-                                        array('customers_id' => (int)$customer_id)
-                          );
+                                              array('customers_id' => (int)$customer_id)
+                                );
 
           $sql_array = ['customers_info_id' => (int)$customer_id,
                         'customers_info_number_of_logons' => 0,

@@ -53,7 +53,6 @@
         ], $args);
     }
 
-
     final public function redirect() {
       $args = func_get_args();
 

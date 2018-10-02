@@ -32,8 +32,10 @@
       $this->description = CLICSHOPPING::getDef('module_action_recorder_admin_login_description');
 
       if ($this->check()) {
-        $this->minutes = (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES;
-        $this->attempts = (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS;
+        if (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES')) {
+          $this->minutes = (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES;
+          $this->attempts = (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS;
+        }
       }
     }
 
@@ -99,56 +101,29 @@
     }
 
     public function install() {
-
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
 
-      if ($CLICSHOPPING_Language->getId() == 1) {
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Veuiller indiquer le temps d\'attente pour une erreur de connexion dans la partie administration',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES',
-                                          'configuration_value' => '5',
-                                          'configuration_description' => 'Veuillez indiquer le nombre de minutes d\'attente concernant une nouvelle connexion dans l\'administration.',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                      );
+      $CLICSHOPPING_Db->save('configuration', [
+                                        'configuration_title' => 'Allowed Minutes',
+                                        'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES',
+                                        'configuration_value' => '5',
+                                        'configuration_description' => 'Number of minutes to allow login attempts to occur.',
+                                        'configuration_group_id' => '6',
+                                        'sort_order' => '0',
+                                        'date_added' => 'now()'
+                                      ]
+                    );
 
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Veuiller indiquer le nombre de login permis pour se connecter dans la partie administration',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS',
-                                          'configuration_value' => '3',
-                                          'configuration_description' => 'Veuillez indiquer le nombre de login permis concernant une connexion dans l\'administration.',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                       );
-      } else {
-
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Allowed Minutes',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES',
-                                          'configuration_value' => '5',
-                                          'configuration_description' => 'Number of minutes to allow login attempts to occur.',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                      );
-
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Allowed Attempts',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS',
-                                          'configuration_value' => '3',
-                                          'configuration_description' => 'Number of login attempts to allow within the specified period.',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                       );
-      }
+      $CLICSHOPPING_Db->save('configuration', [
+                                        'configuration_title' => 'Allowed Attempts',
+                                        'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS',
+                                        'configuration_value' => '3',
+                                        'configuration_description' => 'Number of login attempts to allow within the specified period.',
+                                        'configuration_group_id' => '6',
+                                        'sort_order' => '0',
+                                        'date_added' => 'now()'
+                                      ]
+                     );
     }
 
     public function remove() {

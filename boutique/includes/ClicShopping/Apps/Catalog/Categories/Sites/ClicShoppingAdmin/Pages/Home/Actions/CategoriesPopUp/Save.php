@@ -9,7 +9,7 @@
  *
  */
 
-  namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions\CategoriesPopUp;
+  namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\CategoriesPopUp;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
@@ -18,7 +18,7 @@
     protected $app;
 
     public function __construct() {
-      $this->app = Registry::get('Products');
+      $this->app = Registry::get('Categories');
     }
 
     public function execute() {

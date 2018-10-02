@@ -29,15 +29,17 @@
     protected $productsCommon;
     protected $prod;
     protected $tax;
+    protected $productsAttributes;
 
     public function __construct() {
 
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
       $this->customer = Registry::get('Customer');
-      $this->productsCommon = Registry::get('ProductsCommon');
       $this->prod = Registry::get('Prod');
+      $this->productsCommon = Registry::get('ProductsCommon');
       $this->tax = Registry::get('Tax');
+      $this->productsAttributes = Registry::get('ProductsAttributes');
 
        if ( !isset($_SESSION['ClicShoppingCart']) ) {
          $_SESSION['ClicShoppingCart'] = ['contents' => [],
@@ -143,6 +145,7 @@
                                        from :table_customers_basket
                                        where customers_id = :customers_id
                                       ');
+
       $Qproducts->bindInt(':customers_id', $this->customer->getID());
 
       $Qproducts->execute();
@@ -157,6 +160,7 @@
                                             where customers_id = :customers_id
                                             and products_id = :products_id
                                             ');
+
         $Qattributes->bindInt(':customers_id', $this->customer->getID());
         $Qattributes->bindValue(':products_id', $Qproducts->value('products_id'));
         $Qattributes->execute();
@@ -202,22 +206,9 @@
             $attributes_pass_check = false;
             break;
           } else {
+            $check = GetCheckProductsAttributes($products_id, $option, $value);
 
-            $Qcheck = $this->db->prepare('select products_attributes_id
-                                          from :table_products_attributes
-                                          where products_id = :products_id
-                                          and options_id = :options_id
-                                          and options_values_id = :options_values_id
-                                          limit 1
-                                         ');
-
-            $Qcheck->bindInt(':products_id', $products_id);
-            $Qcheck->bindInt(':options_id', $option);
-            $Qcheck->bindInt(':options_values_id', $value);
-
-            $Qcheck->execute();
-
-            if ($Qcheck->fetch() === false) {
+            if ($check === false) {
               $attributes_pass_check = false;
               break;
             }
@@ -235,6 +226,7 @@
                                       and products_status = 1
                                       and products_archive = 0
                                     ');
+
         $Qcheck->bindInt(':products_id', $products_id);
         $Qcheck->execute();
 
@@ -301,21 +293,9 @@
             $attributes_pass_check = false;
             break;
           } else {
+            $check = GetCheckProductsAttributes($products_id, $option, $value);
 
-            $Qcheck = $this->db->prepare('select products_attributes_id
-                                          from :table_products_attributes
-                                          where products_id = :products_id
-                                          and options_id = :options_id
-                                          and options_values_id = :options_values_id
-                                          limit 1
-                                         ');
-
-            $Qcheck->bindInt(':options_values_id', $value);
-            $Qcheck->bindInt(':products_id', $products_id);
-            $Qcheck->bindInt(':options_id', $option);
-            $Qcheck->execute();
-
-            if ($Qcheck->fetch() === false) {
+            if ($check === false) {
               $attributes_pass_check = false;
               break;
             }
@@ -332,6 +312,7 @@
                                       and products_status = 1
                                       and products_archive = 0
                                       ');
+
         $Qcheck->bindInt(':products_id', $products_id);
         $Qcheck->execute();
 
@@ -408,20 +389,9 @@
             break;
 
           } else {
+            $check = GetCheckProductsAttributes($products_id, $option, $value);
 
-            $Qcheck = $this->db->prepare('select products_attributes_id
-                                           from :table_products_attributes
-                                           where products_id = :products_id
-                                           and options_id = :option
-                                           and options_values_id = :value
-                                           limit 1
-                                        ');
-            $Qcheck->bindInt(':products_id', $products_id);
-            $Qcheck->bindInt(':option', $option);
-            $Qcheck->bindInt(':value', $value);
-            $Qcheck->execute();
-
-            if ($Qcheck->fetch() !== false) {
+            if ($check !== false) {
               $attributes_pass_check = true;
               break;
             }
@@ -581,6 +551,7 @@
                                           and g.customers_group_id = :customers_group_id
                                           and g.products_group_view = 1
                                          ');
+
           $Qproduct->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
           $Qproduct->bindInt(':products_id', $products_id );
           $Qproduct->execute();
@@ -597,6 +568,7 @@
                                           from :table_products
                                           where products_id = :products_id
                                          ');
+
           $Qproduct->bindInt(':products_id', $products_id);
           $Qproduct->execute();
         }
@@ -620,6 +592,7 @@
                                             and status = 1
                                             and customers_group_id = :customers_group_id
                                             ');
+
             $Qspecial->bindInt(':products_id', $prid );
             $Qspecial->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
@@ -630,6 +603,7 @@
                                             where products_id = :products_id
                                             and status = 1
                                            ');
+
             $Qspecial->bindInt(':products_id', $prid );
           }
 
@@ -666,7 +640,8 @@
                                                 where products_id = :products_id
                                                 and options_id = :options_id
                                                 and options_values_id = :options_values_id'
-            );
+                                              );
+
             $Qattributes->bindInt(':products_id', $prid);
             $Qattributes->bindInt(':options_id', $option);
             $Qattributes->bindInt(':options_values_id', $value);
@@ -686,44 +661,6 @@
           }
         }
       }
-    }
-
-/**
- * get the attributes price
- * @param in $products_id, the id of the products
- * @return $attributes_price the price of the attributes
- * @access public
-*/
-    public function attributes_price($products_id) {
-      $attributes_price = 0;
-
-      if (isset($this->contents[$products_id]['attributes'])) {
-        foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
-
-          $Qattributes = $this->db->prepare('select options_values_price,
-                                                    price_prefix
-                                              from :table_products_attributes
-                                              where products_id = :products_id
-                                              and options_id = :options_id
-                                              and options_values_id = :options_values_id
-                                             ');
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $option);
-          $Qattributes->bindInt(':options_values_id', $value);
-
-          $Qattributes->execute();
-
-          if ($Qattributes->fetch() !== false) {
-            if ($Qattributes->value('price_prefix') == '+') {
-              $attributes_price += $Qattributes->valueDecimal('options_values_price');
-            } else {
-              $attributes_price -= $Qattributes->valueDecimal('options_values_price');
-            }
-          }
-        }
-      }
-
-      return $attributes_price;
     }
 
 
@@ -848,7 +785,7 @@
                               'products_dimension_width' => $Qproducts->valueDecimal('products_dimension_width'),
                               'products_dimension_height' => $Qproducts->valueDecimal('products_dimension_height'),
                               'products_dimension_depth' => $Qproducts->valueDecimal('products_dimension_depth'),
-                              'final_price' =>($products_price + $this->attributes_price($products_id)),
+                              'final_price' =>($products_price + $this->productsAttributes->getAttributesPrice($products_id)),
                               'tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
                               'attributes' => (isset($this->contents[$products_id]['attributes']) ? $this->contents[$products_id]['attributes'] : '')
                               ];
@@ -882,21 +819,9 @@
         foreach (array_keys($this->contents) as $products_id ) {
           if (isset($this->contents[$products_id]['attributes'])) {
             foreach ($this->contents[$products_id]['attributes'] as $value) {
+              $check = $this->productsAttributes->getCheckProductsDownload($products_id, $value);
 
-              $Qcheck = $this->db->prepare('select pa.products_attributes_id
-                                            from :table_products_attributes pa,
-                                                 :table_products_attributes_download pad
-                                            where pa.products_id = :products_id
-                                            and pa.options_values_id = :options_values_id
-                                            and pa.products_attributes_id = pad.products_attributes_id
-                                            limit 1
-                                           ');
-              $Qcheck->bindInt(':products_id', $products_id);
-              $Qcheck->bindInt(':options_values_id', $value);
-
-              $Qcheck->execute();
-
-              if ($Qcheck->fetch() !== false) {
+               if ($check !== false) {
                 switch ($this->content_type) {
                   case 'physical':
                     $this->content_type = 'mixed';

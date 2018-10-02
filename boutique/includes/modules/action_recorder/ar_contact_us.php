@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -14,7 +14,6 @@
   use ClicShopping\OM\HTTP;
 
   class ar_contact_us {
-
     public $code;
     public $title;
     public $description;
@@ -30,10 +29,11 @@
       $this->title = CLICSHOPPING::getDef('module_action_recorder_contact_us_title');
       $this->description = CLICSHOPPING::getDef('module_action_recorder_contact_us_description');
 
-
       if ($this->check()) {
-        $this->minutes = (int)MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES;
-        $this->attempts = 3; // nbr de possiblite d'envoi d'email
+        if (defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES')) {
+          $this->minutes = (int)MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES;
+          $this->attempts = 3; // nbr de possiblite d'envoi d'email
+        }
       }
     }
 
@@ -98,35 +98,18 @@
     }
 
     public function install() {
-
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
 
-      if ($CLICSHOPPING_Language->getId() == 1) {
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Quel d&eacute;lais minimum souhaitez-vous concernant la gestion des emails par le module contactez-nous',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES',
-                                          'configuration_value' => '15',
-                                          'configuration_description' => 'Veuillez indiquer un nombre minimum pour permettre la gestion des envois des emails<br /><font color=red><br /><strong>Note :</strong></font>15 pour la gestion des envois des emails tous les 15 minutes (cas de spam)',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                        );
-
-      } else {
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Minimum Minutes Per E-Mail',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES',
-                                          'configuration_value' => '15',
-                                          'configuration_description' => 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                        );
-      }
-
+      $CLICSHOPPING_Db->save('configuration', [
+                                        'configuration_title' => 'Minimum Minutes Per E-Mail',
+                                        'configuration_key' => 'MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES',
+                                        'configuration_value' => '15',
+                                        'configuration_description' => 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)',
+                                        'configuration_group_id' => '6',
+                                        'sort_order' => '0',
+                                        'date_added' => 'now()'
+                                      ]
+                      );
     }
 
     public function remove() {

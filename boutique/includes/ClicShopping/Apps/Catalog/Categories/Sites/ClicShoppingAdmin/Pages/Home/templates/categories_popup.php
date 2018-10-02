@@ -16,25 +16,26 @@
 
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
+  $CLICSHOPPING_Categories = Registry::get('Categories');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Products = Registry::get('Products');
-  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+
   $supplier_inputs_string = '';
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  echo HTML::form('ajaxform', $CLICSHOPPING_Products->link('CategoriesPopUp&Save'), 'post','id="ajaxform"');
+  echo HTML::form('ajaxform', $CLICSHOPPING_Categories->link('CategoriesPopUp&Save'), 'post','id="ajaxform"');
 ?>
+
 
 <div class="row">
   <div class="col-md-12">
     <div class="card card-block headerCard">
       <div class="row">
-        <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/categorie.gif', $CLICSHOPPING_Products->getDef('heading_title_categories'), '40', '40'); ?></span>
-        <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
+        <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/categorie.gif', $CLICSHOPPING_Categories->getDef('heading_title_categories'), '40', '40'); ?></span>
+        <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Categories->getDef('heading_title'); ?></span>
         <span class="col-md-4 text-md-right">
-          <div><?php  echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
+          <div><?php  echo HTML::button($CLICSHOPPING_Categories->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
           <div id="simple-msg"></div>
          </span>
       </div>
@@ -44,7 +45,7 @@
 <div class="separator"></div>
 <div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist"id="myTab">
-    <li class="nav-item"><?php echo '<a href="#categoriesPopUp" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Products->getDef('tab_general') . '</a>'; ?></li>
+    <li class="nav-item"><?php echo '<a href="#categoriesPopUp" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Categories->getDef('tab_general') . '</a>'; ?></li>
   </ul>
   <div class="tabsClicShopping">
     <div class="tab-content">
@@ -55,8 +56,8 @@
 ?>
       <div class="tab-pane active" id="tab20">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Products->getDef('text_categories_name'); ?></div>
-          <div class="float-md-right"><?php echo $CLICSHOPPING_Products->getDef('text_user_name') . ' ' . AdministratorAdmin::getUserAdmin(); ?></div>
+          <div class="float-md-left"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?></div>
+          <div class="float-md-right"><?php echo $CLICSHOPPING_Categories->getDef('text_user_name') . ' ' . AdministratorAdmin::getUserAdmin(); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="col-md-12">
@@ -69,7 +70,7 @@
                   <div class="form-group row">
                     <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                     <div class="col-md-9">
-                      <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" required="" id="categories_name" placeholder="' . $CLICSHOPPING_Products->getDef('text_edit_categories_name') . '"',  true) . '&nbsp;'; ?>
+                      <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" required="" id="categories_name" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"',  true) . '&nbsp;'; ?>
                     </div>
                   </div>
                 </div>
@@ -82,7 +83,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Products->getDef('text_categories_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_categories_name'); ?></label>
+                <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?></label>
                 <div class="col-md-9">
                   <?php echo HTML::selectMenu('select_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id) . HTML::hiddenField('current_category_id', $current_category_id); ?>
                 </div>

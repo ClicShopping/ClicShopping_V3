@@ -22,7 +22,7 @@
   }
 
   if (MODE_VENTE_PRIVEE == 'true') {
-    if ( (!$CLICSHOPPING_Customer->isLoggedOn())  && (!strstr($_SERVER['QUERY_STRING'], 'Account&Login')) ) {
+    if (!$CLICSHOPPING_Customer->isLoggedOn()  && (!strstr($_SERVER['QUERY_STRING'], 'Account&Login'))) {
       if (
         (!strstr($_SERVER['QUERY_STRING'],'Account&Create')) &&
         (!strstr($_SERVER['QUERY_STRING'],'Account&PasswordForgotten')) &&

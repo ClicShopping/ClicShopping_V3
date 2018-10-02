@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -31,8 +31,10 @@
 
 
       if ($this->check()) {
-        $this->minutes = (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES;
-        $this->attempts = (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS;
+        if (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS')) {
+          $this->minutes = (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES;
+          $this->attempts = (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS;
+        }
       }
     }
 
@@ -84,34 +86,7 @@
     }
 
     public function install() {
-
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
-
-      if ($CLICSHOPPING_Language->getId() == 1) {
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Nombre de minutes permise pour un reset du mot de passe',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES',
-                                          'configuration_value' => '5',
-                                          'configuration_description' => 'Veuillez indiquer le nombre de minutes permise pour accepter un reset de mot de passe.',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                       );
-
-        $CLICSHOPPING_Db->save('configuration', [
-                                          'configuration_title' => 'Nombre de fois accept&eacute;',
-                                          'configuration_key' => 'MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS',
-                                          'configuration_value' => '1',
-                                          'configuration_description' => 'Veuillez indiquer le nombre de reset que le client peut r&eacute;liser perndant une p&eacute;riode sp&eacute;cifique.',
-                                          'configuration_group_id' => '6',
-                                          'sort_order' => '0',
-                                          'date_added' => 'now()'
-                                        ]
-                      );
-
-      } else {
 
       $CLICSHOPPING_Db->save('configuration', [
                                         'configuration_title' => 'Allowed Minutes',
@@ -134,7 +109,6 @@
                                         'date_added' => 'now()'
                                       ]
                     );
-      }
     }
 
     public function remove() {

@@ -47,6 +47,7 @@
 // Security Pro
   require_once('includes/modules/security_pro/Security.php');
   $security_pro = new Security();
+
 // If you need to exclude a file from cleansing then you can add it like below
 //$security_pro->addExclusion( 'some_file.php' );
   $security_pro->cleanse(CLICSHOPPING::getBaseNameIndex());

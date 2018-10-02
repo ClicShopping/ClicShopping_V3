@@ -111,7 +111,7 @@
  * @return string
  */
     public function getDirectoryPathModuleShop() {
-      $modules_catalog_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->getModulesDirectory(); // CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules'
+      $modules_catalog_directory =  $this->getModulesDirectory() . '/modules';
 
       return $modules_catalog_directory;
     }
@@ -333,48 +333,6 @@
     }
 
 /*
- * $config_module_array = module_insalled -- array of MODULE_ADMIN_DASHBOARD_INSTALLED
- * $config_module -- MODULE_ADMIN_DASHBOARD_INSTALLED - define in db
- * $module_class = class of the module - AdminDashboard
- * $module_directory = directory name of the module
- */
-    public function getModuleAdmin($config_module_array, $config_module = null, $module_class = null, $module_directory = null) {
-      $CLICSHOPPING_Language = Registry::get('Language');
-
-      if ( defined($config_module) && !is_null($config_module) ) {
-
-        $adm_array = explode(';', $config_module_array[0]);
-
-        foreach ($adm_array as $adm) {
-
-          if (strpos($adm, '\\') !== false) {
-            $class = APPS::getModuleClass($adm, $module_class);
-
-          } else {
-
-            $class = substr($adm, 0, strrpos($adm, '.'));
-
-            if ( !class_exists($class) ) {
-              include($this->getLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/modules/' . $module_directory . '/' . $adm);
-              include($this->getModulesDirectory() . '/' . $module_directory . '/' . $class . '.php');
-            }
-          }
-
-          $ad = new $class();
-
-          if ( $ad->isEnabled() ) {
-            echo $ad->getOutput();
-          }
-        }
-      } else {
-        $result = '<div class="col-md-12 text-md-center"><a href="' . CLICSHOPPING::link('modules.php', 'set=' . $module_directory) . '">Please install the modules</a></div>';
-
-        return $result;
-      }
-    }
-
-
-/*
  * get all files inside a multi template directory
  * @params : $filename ! filename of the template
  * @params : module, module about the template
@@ -415,9 +373,9 @@
       }
 
       $QfileName = $CLICSHOPPING_Db->prepare('select configuration_value
-                                       from :table_configuration
-                                       where configuration_key = :configuration_key
-                                     ');
+                                               from :table_configuration
+                                               where configuration_key = :configuration_key
+                                             ');
       $QfileName->bindValue(':configuration_key', $key);
 
       $QfileName->execute();

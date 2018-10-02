@@ -1,0 +1,9 @@
+text_categories_name =
+text_select_categorie = -- Sélectionner votre catégorie --
+text_top = --- Haut ---
+text_categories = Catégories
+
+text_description_categories = Description de la Catégorie
+text_categories_preview_title = Prévisualisation de la catégorie
+text_categories_image_delete = Supprimer l'image
+text_create = Créer

@@ -9,20 +9,19 @@
  *
  */
 
-  namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+  namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
   use ClicShopping\OM\Registry;
 
   class CategoriesPopUp extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      $CLICSHOPPING_Products = Registry::get('Products');
-      $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+      $CLICSHOPPING_Categories = Registry::get('Categories');
 
       $this->page->setUseSiteTemplate(false); //don't display Header / Footer
       $this->page->setFile('categories_popup.php');
       $this->page->data['action'] = 'CategoriesPopUp';
 
-      $CLICSHOPPING_Products->loadDefinitions('Sites/ClicShoppingAdmin/categories_popup');
+      $CLICSHOPPING_Categories->loadDefinitions('Sites/ClicShoppingAdmin/categories_popup');
     }
   }
