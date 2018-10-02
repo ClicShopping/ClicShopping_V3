@@ -811,7 +811,6 @@
     }
 
 /**
-/**
  * Calculate the size of databse
  * @return  $size_db
  * @access public

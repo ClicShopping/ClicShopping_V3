@@ -36,10 +36,6 @@
   for ($i=0, $n=count($directory_array); $i<$n; $i++) {
     $file = $directory_array[$i];
 
-     if ($CLICSHOPPING_Language->definitionsExist($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/action_recorder'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.txt')) {
-        $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/action_recorder'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.txt');
-     }
-
     $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/action_recorder'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
 
     include($CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/action_recorder/' . $file);
