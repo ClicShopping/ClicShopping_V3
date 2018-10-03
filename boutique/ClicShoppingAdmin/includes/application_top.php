@@ -30,16 +30,7 @@
     include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/random_compat/random.php');
   }
 
-// configuration generale du systeme
-  require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/config_clicshopping.php');
-
   CLICSHOPPING::loadSite('ClicShoppingAdmin');
-
-  if ((HTTP::getRequestType() === 'NONSSL') && ($_SERVER['REQUEST_METHOD'] === 'GET') && (parse_url(CLICSHOPPING::getConfig('http_server'), PHP_URL_SCHEME) == 'https')) {
-    $url_req = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-    HTTP::redirect($url_req, 301);
-  }
 
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 

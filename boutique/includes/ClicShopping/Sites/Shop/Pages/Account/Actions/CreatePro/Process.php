@@ -24,7 +24,7 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $entry_state_has_zones, $country;
+      global $process, $entry_state_has_zones, $country;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');

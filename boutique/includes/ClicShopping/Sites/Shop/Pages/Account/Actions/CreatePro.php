@@ -16,9 +16,13 @@
   class CreatePro extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
+      global $process;
+
       $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
+
+      $process = false;
 
 // templates
       $this->page->setFile('create_account_pro.php');

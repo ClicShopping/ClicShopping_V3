@@ -35,8 +35,23 @@
       $this->app = Registry::get('Groups');
     }
 
+
+    protected function getProducts() {
+      $Qproducts =  $this->app->db->prepare('select products_id,
+                                                    products_percentage
+                                            from :table_products
+                                            where products_id =  :products_id
+                                            ');
+      $Qproducts->bindInt(':products_id', $_GET['pID']);
+      $Qproducts->execute();
+
+      return $Qproducts->fetchAll();
+    }
+
     public function display() {
-      global $pInfo;
+      $products_array = $this->getProducts();
+      $products_id = $products_array[0]['products_id'];
+      $products_percentage = $products_array[0]['products_percentage'];
 
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -51,11 +66,11 @@
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True' &&  !empty(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS)) {
         if (MODE_B2B_B2C == 'true') {
 
-          if (!isset($pInfo->products_percentage)) $pInfo->products_percentage = '1';
+          if (!isset($products_percentage)) $products_percentage = '1';
 
           $products_quantity_unit_drop_down = $this->qteUnit->productsQuantityUnitDropDown();
 
-          switch ($pInfo->products_percentage) {
+          switch ($products_percentage) {
             case '0':
               $in_percent = false;
               $out_percent = true;
@@ -135,7 +150,7 @@
                                                         and g.customers_group_id = :customers_group_id
                                                         order by g.customers_group_id
                                                        ');
-              $Qattributes->bindInt(':products_id', $pInfo->products_id );
+              $Qattributes->bindInt(':products_id', $products_id);
               $Qattributes->bindInt(':customers_group_id', $QcustomersGroup->valueInt('customers_group_id'));
               $Qattributes->execute();
 

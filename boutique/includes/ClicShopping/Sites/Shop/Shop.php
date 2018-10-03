@@ -20,7 +20,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Session;
   use ClicShopping\OM\Service;
-  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Tools\WhosOnline\Classes\Shop\WhosOnlineShop;
 
@@ -64,6 +64,22 @@
 
       $this->ignored_actions[] = session_name();
 
+//request
+      if ((HTTP::getRequestType() === 'NONSSL') && ($_SERVER['REQUEST_METHOD'] === 'GET') && (parse_url(CLICSHOPPING::getConfig('http_server'), PHP_URL_SCHEME) == 'https')) {
+        $url_req = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+        HTTP::redirect($url_req, 301);
+      }
+
+
+// Security
+      require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/modules/security_pro/Security.php');
+      $security_pro = new \Security();
+
+// If you need to exclude a file from cleansing then you can add it like below
+//$security_pro->addExclusion( 'some_file.php' );
+      $security_pro->cleanse(CLICSHOPPING::getBaseNameIndex());
+
 //template
       Registry::set('Template', new Template());
 
@@ -85,6 +101,12 @@
       setlocale(LC_NUMERIC, $system_locale_numeric);
 
       WhosOnlineShop::getUpdateWhosOnline();
+
+      Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function($parameters) {
+        WhosOnlineShop::getWhosOnlineUpdateSession_id($parameters['old_id'], session_id());
+      });
+
+      require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/config_clicshopping.php');
 
       Registry::set('Service', new Service());
       Registry::get('Service')->start();

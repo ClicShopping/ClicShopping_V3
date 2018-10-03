@@ -43,7 +43,7 @@
           $wo_customer_id = null;
           $wo_full_name = 'Guest';
 
-          if (( $spider_flag ) || (strpos ($user_agent, "Googlebot") > 0 )) {
+          if ($spider_flag || (strpos ($user_agent, "Googlebot") > 0 )) {
             $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
             if (!empty($user_agent)) {
@@ -52,6 +52,7 @@
                   if (strpos($user_agent, $spider) !== false) {
                     $wo_full_name = $spider;
                     $spider_flag = true;
+
                     break;
                   }
                 }

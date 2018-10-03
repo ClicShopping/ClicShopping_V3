@@ -20,6 +20,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Session;
   use ClicShopping\OM\Service;
+  use ClicShopping\OM\HTTP;
 
   class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract {
 
@@ -127,6 +128,15 @@
       if ($CLICSHOPPING_Language->definitionsExist(pathinfo($current_page, PATHINFO_FILENAME))) {
         $CLICSHOPPING_Language->loadDefinitions(pathinfo($current_page, PATHINFO_FILENAME));
       }
+
+      if ((HTTP::getRequestType() === 'NONSSL') && ($_SERVER['REQUEST_METHOD'] === 'GET') && (parse_url(CLICSHOPPING::getConfig('http_server'), PHP_URL_SCHEME) == 'https')) {
+        $url_req = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+        HTTP::redirect($url_req, 301);
+      }
+
+// configuration generale du systeme
+      require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/config_clicshopping.php');
 
       Registry::set('Service', new Service());
       Registry::get('Service')->start();

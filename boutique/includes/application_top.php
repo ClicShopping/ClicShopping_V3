@@ -11,9 +11,6 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTTP;
-
-  use ClicShopping\Apps\Tools\WhosOnline\Classes\Shop\WhosOnlineShop;
 
 // start the timer for the page parse time log
   define('PAGE_PARSE_START_TIME', microtime());
@@ -35,29 +32,12 @@
     }
   }
 
-// configuration generale du systeme
-  require_once('includes/config_clicshopping.php');
 
   if (PHP_VERSION_ID < 70000) {
     include('includes/third_party/random_compat/random.php');
   }
 
   CLICSHOPPING::loadSite('Shop');
-
-// Security Pro
-  require_once('includes/modules/security_pro/Security.php');
-  $security_pro = new Security();
-
-// If you need to exclude a file from cleansing then you can add it like below
-//$security_pro->addExclusion( 'some_file.php' );
-  $security_pro->cleanse(CLICSHOPPING::getBaseNameIndex());
-
-
-  if ((HTTP::getRequestType() === 'NONSSL') && ($_SERVER['REQUEST_METHOD'] === 'GET') && (parse_url(CLICSHOPPING::getConfig('http_server'), PHP_URL_SCHEME) == 'https')) {
-    $url_req = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-    HTTP::redirect($url_req, 301);
-  }
 
 //waiting to remove application top
   $CLICSHOPPING_Db = Registry::get('Db');
@@ -68,10 +48,6 @@
   $CLICSHOPPING_Manufacturer = Registry::get('Manufacturers');
   $CLICSHOPPING_Prod = Registry::get('Prod');
 
-  Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function($parameters) {
-    WhosOnlineShop::getWhosOnlineUpdateSession_id($parameters['old_id'], session_id());
-  });
-
 
 // Shopping cart actions
   if ( isset($_GET['action']) ) {
@@ -81,7 +57,7 @@
     }
   }
 
-  // calculate category path
+// calculate category path
   if ($CLICSHOPPING_Category->getPath()) {
     $cPath = $CLICSHOPPING_Category->getPath();
   } elseif ($CLICSHOPPING_Prod->getID() && !$CLICSHOPPING_Manufacturer->getID()) {
