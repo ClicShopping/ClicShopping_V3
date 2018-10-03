@@ -2149,8 +2149,8 @@ INSERT INTO administrator_menu VALUES(766, 'index.php?A&Configuration\\Modules&M
 INSERT INTO administrator_menu VALUES(767, 'index.php?A&Configuration\\Modules&Modules&set=payment&list=new', 186, 0, 1, 'modules_payment.gif', 0, '', NULL);
 INSERT INTO administrator_menu VALUES(768, 'index.php?A&Configuration\\Modules&Modules&set=shipping&list=new', 449, 0, 1, 'modules_shipping.gif', 0, '', NULL);
 INSERT INTO administrator_menu VALUES(769, '', 2, 4, 1, 'cadenas.gif', 0, '', 1);
-INSERT INTO administrator_menu VALUES(770, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&list=new', 799, 1, 1, 'cadenas.gif', 0, '', 1);
-INSERT INTO administrator_menu VALUES(771, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&module=ar_admin_login', 799, 2, 1, 'cadenas.gif', 0, '', 1);
+INSERT INTO administrator_menu VALUES(770, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&list=new', 769, 1, 1, 'cadenas.gif', 0, '', 1);
+INSERT INTO administrator_menu VALUES(771, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&module=ar_admin_login', 769, 2, 1, 'cadenas.gif', 0, '', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
