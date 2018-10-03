@@ -24,7 +24,7 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $process, $entry_state_has_zones, $country;
+      global $entry_state_has_zones, $country;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -518,7 +518,6 @@
           $CLICSHOPPING_Hooks->call('Create','Process');
 
           CLICSHOPPING::redirect('index.php', 'Account&CreatePro&Success');
-
       }
     }
   }

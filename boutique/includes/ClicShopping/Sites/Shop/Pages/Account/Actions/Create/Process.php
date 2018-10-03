@@ -24,8 +24,6 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $process;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -135,13 +133,13 @@
 
 // Recaptcha
         if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT')) {
+
           if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') {
             $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
           }
         }
 
         if ( $error === false ) {
-
           $sql_data_array = ['customers_firstname' => $firstname,
                              'customers_lastname' => $lastname,
                              'customers_email_address' => $email_address,

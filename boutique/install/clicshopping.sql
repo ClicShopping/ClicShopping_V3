@@ -877,6 +877,7 @@ INSERT INTO configuration VALUES(1376, 'Veuillez sélectionner les pages ou sera
 INSERT INTO configuration VALUES(1377, 'cfg_products_modules_status_title', 'CLICSHOPPING_APP_MODULES_MO_STATUS', 'True', 'cfg_products_modules_status_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
 INSERT INTO configuration VALUES(1378, 'cfg_products_modules_sort_order_title', 'CLICSHOPPING_APP_MODULES_MO_SORT_ORDER', '30', 'cfg_products_modules_sort_order_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
 INSERT INTO configuration VALUES(1379, 'Parameter [Modules App]', 'MODULE_MODULES_MODULES_INSTALLED', 'Configuration\\Modules\\MO', 'Parameter [Modules App]', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
+INSERT INTO configuration VALUES(1380, 'Ou souhaitez-vous afficher le module ?', 'MODULE_LOGIN_MODE_B2B_B2C_POSITION', 'float-none', 'Select where you want display the module', 6, 2, NULL, '2018-10-02 22:28:26', NULL, 'clic_cfg_set_boolean_value(array(\'float-right\', \'float-left\', \'float-none\'),');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
