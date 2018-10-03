@@ -52,7 +52,7 @@
       $this->githubRepoClicShoppingCore = 'ClicShopping_V3';
 
       if (isset($_POST['official'])) {
-        if ($_POST['official'] == 'true') {
+        if ($_POST['official'] == 'official') {
           $this->githubRepoName = 'ClicShoppingOfficialModulesV3';
         } else {
           $this->githubRepoName = 'ClicShoppingV3Community';
@@ -242,6 +242,7 @@
                       array('id' => 'service', 'text' => 'Modules Apps Web service'),
                       array('id' => 'other', 'text' => 'Modules Apps Others'),
                       array('id' => 'bookmarks', 'text' => 'Modules Social Bookmarks'),
+                      array('id' => 'template', 'text' => 'Template Design'),
                      );
 
       return $module;

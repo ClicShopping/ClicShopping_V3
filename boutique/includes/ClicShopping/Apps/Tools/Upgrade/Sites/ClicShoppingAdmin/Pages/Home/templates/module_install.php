@@ -56,8 +56,8 @@
             <div class="row">
               <div class="col-md-12 text-md-center">
 <?php
-                  echo HTML::radioField('official', 'true', true, 'id="official1" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_official') . ' ';
-                  echo HTML::radioField('official', 'false', false, 'id="official2" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_community');
+                  echo HTML::radioField('official', 'official', true, 'id="official1" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_official') . ' ';
+                  echo HTML::radioField('official', 'community', false, 'id="official2" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_community');
 ?>
               </div>
             </div>
