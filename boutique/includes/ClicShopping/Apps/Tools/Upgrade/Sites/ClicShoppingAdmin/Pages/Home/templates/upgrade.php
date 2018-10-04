@@ -31,50 +31,33 @@
       <div class="col-md-12">
         <div class="card card-block headerCard">
           <div class="row">
-            <div class="col-md-1 logiHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></div>
-            <div class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></div>
-            <div class="col-md-2">
-              <div class="form-group row">
-                <div class="col-md-8">
 <?php
-  echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall&install_module_directory'), 'post', null, ['session_id' => true]);
-  echo HTML::selectMenu('install_module_directory',$CLICSHOPPING_Github->getModuleDirectory(),  $_GET['template_directory'], 'onchange="this.form.submit();"');
+  echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]);
 ?>
-                  </form>
-                </div>
+            <div class="col-md-12 form-group row">
+              <div class="col-md-3">
+                <div class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></div>
+                <div class="col-md-11 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></div>
+              </div>
+
+              <div class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory(), $_POST['template_directory'], 'onchange="this.form.submit();"'); ?></div>
+              <div class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $_POST['template_directory'], 'onchange="this.form.submit();"'); ?></div>
+              <div class="col-md-2"><?php echo HTML::inputField('module_search', '', 'required id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
+              <div class="col-md-3 text-md-right">
+<?php
+  echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
+  echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_temp'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCacheTemp'), 'warning', null, 'sm') . '&nbsp;';
+?>
               </div>
             </div>
-            <div class="col-md-2">
-              <div class="form-group row">
-                <div class="col-md-8">
-<?php
-  echo HTML::form('upgrade1', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]);
-  echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $_GET['template_directory'], 'onchange="this.form.submit();"');
-?>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group row">
-                <div class="col-md-8">
-<?php
-  echo HTML::form('upgrade2', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]);
-  echo HTML::inputField('module_search','', 'required id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"');
-?>
-                  </form>
-                </div>
-              </div>
+
+            <div class="col-md-12 form-group row">
+              <div class="col-md-3"></div>
+              <div class="col-md-9 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 text-md-center">
-<?php
-  echo HTML::radioField('official', 'true', true, 'id="official1" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_official') . ' ';
-  echo HTML::radioField('official', 'false', false, 'id="official2" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_community');
-?>
-            </div>
-          </div>
+
+          </form>
         </div>
       </div>
     </div>

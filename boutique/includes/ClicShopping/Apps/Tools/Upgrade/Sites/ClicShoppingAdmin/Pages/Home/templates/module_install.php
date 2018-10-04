@@ -53,13 +53,9 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-12 text-md-center">
-<?php
-                  echo HTML::radioField('official', 'official', true, 'id="official1" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_official') . ' ';
-                  echo HTML::radioField('official', 'community', false, 'id="official2" autocomplete="off"') . $CLICSHOPPING_Upgrade->getDef('text_community');
-?>
-              </div>
+            <div class="col-md-12 form-group row">
+              <div class="col-md-3"></div>
+              <div class="col-md-9 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></div>
             </div>
           </div>
 

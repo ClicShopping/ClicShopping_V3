@@ -51,10 +51,10 @@
       $this->coreName = 'ClicShopping';
       $this->githubRepoClicShoppingCore = 'ClicShopping_V3';
 
-      if (isset($_POST['official'])) {
-        if ($_POST['official'] == 'official') {
+      if (isset($_POST['addons_apps'])) {
+        if ($_POST['addons_apps'] == 'official') {
           $this->githubRepoName = 'ClicShoppingOfficialModulesV3';
-        } else {
+        } else { // community
           $this->githubRepoName = 'ClicShoppingV3Community';
         }
       }
@@ -426,7 +426,6 @@
 */
 
     public function getSearchInsideRepo($name = null) {
-
       if (is_null($name)) {
         $search = $this->githubApi . '/search/repositories?q=org%3A' . $this->githubRepoName . '+' . $this->getSearchModule();
         $search_url = @file_get_contents($search, true, $this->setContext()); //content of readme.
@@ -624,5 +623,13 @@
       }
 
       $this->app->redirect('ModuleInstall');
+    }
+
+    public function getDropDownMenuSearchOption() {
+      $array = array(array('id' =>'official', 'text' => $this->app->getDef('text_official')),
+                     array('id' =>'community','text' => $this->app->getDef('text_community'))
+                    );
+
+      return HTML::selectMenu('addons_apps', $array);
     }
   }
