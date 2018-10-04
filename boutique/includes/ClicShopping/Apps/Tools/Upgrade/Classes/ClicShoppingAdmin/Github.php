@@ -249,35 +249,6 @@
     }
 
 //*************************************************************
-// Limit
-//*************************************************************
-
-/*
- * display a message if the limited is not accepted by github
- * @param
- * @return  string $message, if the limited is not accepted by github
- * @access public
- */
-/*
-    public function getSearchLimit() {
-      $searchLimit = $this->github->api('rate_limit')->getSearchLimit();
-
-      return $searchLimit;
-    }
-
-    public function getRateLimits() {
-      $rateLimits = $this->github->api('rate_limit')->getRateLimits();
-
-      return $rateLimits;
-    }
-
-    public function getCoreLimit() {
-      $CoreLimit = $this->github->api('rate_limit')->getCoreLimit();
-
-      return $CoreLimit;
-    }
-*/
-//*************************************************************
 // Cache
 //*************************************************************
 
