@@ -2,13 +2,13 @@ Options -Indexes
 Options +FollowSymlinks
 
 #### Your config to change ###############
+#Uncomment and adapt
 <IfModule mod_rewrite.c>
 Options -MultiViews
 RewriteEngine On
 
 ## URL Canonicalization
 #to change in function your website
-
 #    RewriteCond %{HTTP_HOST} !^www.mysite.org$ [NC]
 #    RewriteRule ^(.*)$ https://www.mysite.org/$1 [L,R=301]
 

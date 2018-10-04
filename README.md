@@ -49,6 +49,6 @@
 
  More informations are available on the community website.
 
- ClicShopping(tm) is a trademark deposed
+ ClicShopping(tm) has a trademark deposed
 
  Thank you for your support

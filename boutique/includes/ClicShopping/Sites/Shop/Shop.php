@@ -29,8 +29,20 @@
     protected static $_application;
 
     protected function init()  {
+
+      defined( 'E_DEPRECATED' ) ? error_reporting( E_ALL & ~E_NOTICE & ~E_DEPRECATED ) : error_reporting( E_ALL & ~E_NOTICE );
+//  error_reporting(E_ALL | E_STRICT); //@todo error in this mode
+
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
+
+//check configuration
+      if (!CLICSHOPPING::configExists('db_server') || (strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
+        if (is_dir('install')) {
+          header('Location: boutique/install/index.php');
+          exit;
+        }
+      }
 
       try {
         $CLICSHOPPING_Db = Db::initialize();
@@ -95,6 +107,14 @@
 // include the language translations
       $CLICSHOPPING_Language->loadDefinitions('main');
 
+// Shopping cart actions
+      if ( isset($_GET['action']) ) {
+// redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
+        if ( Registry::get('Session')->hasStarted() === false ) {
+          CLICSHOPPING::redirect('index.php', 'Info&Cookies');
+        }
+      }
+
       WhosOnlineShop::getUpdateWhosOnline();
 
       Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function($parameters) {
@@ -105,6 +125,10 @@
 
       Registry::set('Service', new Service());
       Registry::get('Service')->start();
+
+//must start after manufacturer service
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
+      $CLICSHOPPING_Breadcrumb->getCategoriesManufacturer();
     }
 
     public function setPage()  {

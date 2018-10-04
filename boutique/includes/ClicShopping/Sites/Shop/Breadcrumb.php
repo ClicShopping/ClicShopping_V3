@@ -12,6 +12,8 @@
   namespace ClicShopping\Sites\Shop;
 
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   /**
    * The Breadcrumb class handles the breadcrumb navigation path
@@ -161,5 +163,53 @@
 
     public function valid() {
       return ( current($this->_path) !== false );
+    }
+
+    public function getCategoriesManufacturer() {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_CategoryCommon = Registry::get('CategoryCommon');
+      $CLICSHOPPING_Category = Registry::get('Category');
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
+      $CLICSHOPPING_Manufacturer = Registry::get('Manufacturers');
+      $CLICSHOPPING_Prod = Registry::get('Prod');
+
+      // calculate category path
+      if ($CLICSHOPPING_Category->getPath()) {
+        $cPath = $CLICSHOPPING_Category->getPath();
+      } elseif ($CLICSHOPPING_Prod->getID() && !$CLICSHOPPING_Manufacturer->getID()) {
+        $cPath = $CLICSHOPPING_Category->getProductPath($CLICSHOPPING_Prod->getID());
+      } else {
+        $cPath = '';
+      }
+
+      if ( !empty($cPath) ) {
+        $cPath_array = $CLICSHOPPING_CategoryCommon->getParseCategoryPath($cPath);
+      }
+
+// add category names or the manufacturer name to the breadcrumb trail
+      if (isset($cPath_array)) {
+        for ($i=0, $n=count($cPath_array); $i<$n; $i++) {
+
+          $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
+                                                                                             'language_id' => $CLICSHOPPING_Language->getId()
+                                                                                            ]
+                                              );
+
+          if ($Qcategories->fetch() !== false) {
+            $result =  $CLICSHOPPING_Breadcrumb->add($Qcategories->value('categories_name'), CLICSHOPPING::link('index.php', 'cPath=' . implode('_', array_slice($cPath_array, 0, ($i+1)))));
+          } else {
+            break;
+          }
+        }
+      } elseif ($CLICSHOPPING_Prod->getID()) {
+        $Qmanufacturer = $CLICSHOPPING_Db->get('manufacturers', 'manufacturers_name', ['manufacturers_id' => (int)$CLICSHOPPING_Manufacturer->getID()]);
+
+        if ( $Qmanufacturer->fetch() !== false ) {
+          $result = $CLICSHOPPING_Breadcrumb->add($Qmanufacturer->value('manufacturers_name'), CLICSHOPPING::link('index.php', 'manufacturers_id=' . (int)$CLICSHOPPING_Manufacturer->getID()));
+        }
+      }
+
+      return $result;
     }
   }

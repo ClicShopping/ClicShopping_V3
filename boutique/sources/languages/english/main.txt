@@ -1,4 +1,3 @@
-system_locale = en_US.UTF-8;en_US.UTF8;enu_usa
 date_format_short = %m/%d/%Y
 date_format_long = %A %d %B, %Y
 date_format = m/d/Y

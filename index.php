@@ -9,23 +9,30 @@
  *
  */
 
+  use ClicShopping\OM\HTTP;
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
+
 // Chemin absolue du répertoire absolue
   $cwd = getcwd();
 
 // Chemin relatif à la boutique
   chdir($cwd . '/boutique/');
 
-// Appel aux fonctions de OPC
-  include('includes/application_top.php');
+  define('CLICSHOPPING_BASE_DIR', __DIR__ . '/boutique/includes/ClicShopping/');
 
-  use ClicShopping\OM\HTTP;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
+  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+
+  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+
+  CLICSHOPPING::initialize();
+
+  CLICSHOPPING::loadSite('Shop');
 
   $CLICSHOPPING_Template = Registry::get('Template');
   $CLICSHOPPING_Db = Registry::get('Db');
-
+  $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
   $Qsubmit = $CLICSHOPPING_Db->prepare('select submit_id,
