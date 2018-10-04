@@ -33,10 +33,10 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-
       $name = HTML::sanitize($_POST['name']);
       $code = HTML::sanitize(substr($_POST['code'], 0, 2));
       $image = HTML::sanitize($_POST['image']);
+      $locale = HTML::sanitize($_POST['locale']);
 
       if (empty($_POST['directory_create'])) {
         $directory = HTML::sanitize($_POST['directory']);
@@ -134,13 +134,13 @@
 // -- insert datas
 // ---------------------------------------------------------
 
-      $this->app->db->save('languages', [
-                                          'name' =>  $name,
+      $this->app->db->save('languages', [ 'name' =>  $name,
                                           'code' => $code,
                                           'image' =>  $image,
                                           'directory' => $directory,
                                           'sort_order' => (int)$sort_order,
-                                          'status' => 0
+                                          'status' => 0,
+                                          'locale' => $locale
                                           ]
                           );
 
@@ -149,12 +149,9 @@
 
 // create additional default configuration
       if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
-        $this->app->db->save('configuration', [
-                                                'configuration_value' => $code
-                                                ], [
-                                                  'configuration_key' => 'DEFAULT_LANGUAGE'
-                                                ]
-        );
+        $this->app->db->save('configuration', ['configuration_value' => $code],
+                                              ['configuration_key' => 'DEFAULT_LANGUAGE']
+                            );
       }
 
 // create additional products_options records

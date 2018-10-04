@@ -56,12 +56,14 @@ text_info_heading_delete_language = Delete Language
 text_info_create_language = Do  you want create the directories  ?
 text_create_language = Directories creation confirmation
 text_create_directory = or create a language directory
+text_info_language_locale = Locale
+text_locale = locale
 text_default = Default
 text_set_default = Default
 
 text_info_create_language = Do you wat create the directory ?
-text_create_language = Confirm the directory creation
-text_create_directory = or a create a new language directory
+
+
 
 title_help = Help
 

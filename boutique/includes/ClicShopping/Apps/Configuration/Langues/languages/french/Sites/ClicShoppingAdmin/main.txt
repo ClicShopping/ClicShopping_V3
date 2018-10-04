@@ -53,12 +53,14 @@ text_info_delete_intro = Etes vous sur de vouloir supprimer cette langue ?<br />
 text_info_heading_new_language = Nouvelle langue
 text_info_heading_edit_language = Editer langue
 text_info_heading_delete_language = Supprimer langue
+text_create_language = Confirmation de la création des répertoires
+text_create_directory = où créer un nouveau répertoire de langue
+text_info_language_locale = Locale
+text_locale = locale
 text_default = Défaut
 text_set_default = Défaut
 
 text_info_create_language = Souhaitez-vous créer les répertoires ?
-text_create_language = Confirmation de la création des répertoires
-text_create_directory = où créer un nouveau répertoire de langue
 
 title_help = Aide
 

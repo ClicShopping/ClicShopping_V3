@@ -18,7 +18,14 @@
 
   $id = HTML::sanitize($_GET['lID']);
 
-  $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select  *
+  $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select languages_id,
+                                                           name,
+                                                           code,
+                                                           image,
+                                                           directory,
+                                                           sort_order,
+                                                           status,
+                                                           locale
                                                     from :table_languages
                                                     where languages_id = :languages_id
                                                     ');
@@ -97,9 +104,9 @@
           <div class="col-md-5">
 <?php
   if ($id == 1) {
-    echo HTML::inputField('name', $lInfo->name, 'readonly');
+    echo HTML::inputField('name', $lInfo->name, 'readonly required aria-required="true"');
   } else {
-    echo HTML::inputField('name', $lInfo->name);
+    echo HTML::inputField('name', $lInfo->name, 'required aria-required="true"');
   }
 ?>
           </div>
@@ -114,9 +121,9 @@
           <div class="col-md-5">
 <?php
   if ($id == 1) {
-    echo HTML::inputField('code', $lInfo->code, 'readonly');
+    echo HTML::inputField('code', $lInfo->code, 'readonly required aria-required="true"');
   } else {
-    echo HTML::inputField('code', $lInfo->code);
+    echo HTML::inputField('code', $lInfo->code, 'required aria-required="true"');
   }
 ?>
           </div>
@@ -142,9 +149,26 @@
           <div class="col-md-5">
 <?php
   if ($id == 1) {
-    echo HTML::inputField('directory', $lInfo->directory, 'readonly');
+    echo HTML::inputField('directory', $lInfo->directory, 'readonly required aria-required="true"');
   } else {
     echo HTML::selectField('directory', $directories, $lInfo->directory);
+  }
+?>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group row">
+          <label for="<?php echo $CLICSHOPPING_Langues->getDef('text_info_language_locale'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_locale'); ?></label>
+          <div class="col-md-5">
+<?php
+  if ($id == 1) {
+    echo HTML::inputField('directory', $lInfo->locale, 'readonly required aria-required="true"');
+  } else {
+    echo HTML::inputField('directory', $lInfo->locale, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"');
   }
 ?>
           </div>

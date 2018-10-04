@@ -53,7 +53,8 @@
                                                                                    image,
                                                                                    directory,
                                                                                    sort_order,
-                                                                                   status
+                                                                                   status,
+                                                                                   locale
                                                       from :table_languages
                                                       order by sort_order
                                                       limit :page_set_offset, :page_set_max_results

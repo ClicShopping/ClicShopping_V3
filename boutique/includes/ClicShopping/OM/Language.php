@@ -31,13 +31,14 @@
 
       $this->db = Registry::get('Db');
 
-      if (CLICSHOPPING::getSite('Shop') == 'Shop') {
+      if (CLICSHOPPING::getSite() == 'Shop') {
         $Qlanguages = $this->db->prepare('select languages_id,
                                                   name,
                                                   code,
                                                   image,
                                                   directory,
-                                                  status
+                                                  status,
+                                                  locale
                                            from :table_languages
                                            where status = 1
                                            order by sort_order
@@ -50,7 +51,8 @@
                                                  code,
                                                  image,
                                                  directory,
-                                                 status
+                                                 status,
+                                                 locale
                                            from :table_languages
                                            order by sort_order
                                           ');
@@ -65,7 +67,8 @@
                                                           'name' => $Qlanguages->value('name'),
                                                           'image' => $Qlanguages->value('image'),
                                                           'directory' => $Qlanguages->value('directory'),
-                                                          'status' => $Qlanguages->value('status')
+                                                          'status' => $Qlanguages->value('status'),
+                                                          'locale' => $Qlanguages->value('locale'),
                                                         ];
         }
 
@@ -79,13 +82,23 @@
       }
 
       $this->set($code);
+
+// Prevent LC_ALL from setting LC_NUMERIC to a locale with 1,0 float/decimal values instead of 1.0 (see bug #634)
+      $system_locale_numeric = setlocale(LC_NUMERIC, 0);
+      setlocale(LC_ALL, explode(',', $this->getLocale()));
+      setlocale(LC_NUMERIC, $system_locale_numeric);
+    }
+
+    public function getLocale() {
+      $code = $this->getCode();
+      return $this->get('locale', $code);
     }
 
 /**
  * Set Code
  * @param $code
  */
-    public function set($code) {
+    protected function set($code) {
       $this->code = $code;
 
       if ($this->exists($this->code)) {
@@ -93,6 +106,10 @@
       } else {
         trigger_error('ClicShopping\OM\Language::set() - The language does not exist: ' . $this->code);
       }
+    }
+
+    public function getCode() {
+      return $this->language;
     }
 
 /**

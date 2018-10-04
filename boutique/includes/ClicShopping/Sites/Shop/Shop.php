@@ -95,11 +95,6 @@
 // include the language translations
       $CLICSHOPPING_Language->loadDefinitions('main');
 
-// Prevent LC_ALL from setting LC_NUMERIC to a locale with 1,0 float/decimal values instead of 1.0 (see bug #634)
-      $system_locale_numeric = setlocale(LC_NUMERIC, 0);
-      setlocale(LC_ALL, explode(';', CLICSHOPPING::getDef('system_locale')));
-      setlocale(LC_NUMERIC, $system_locale_numeric);
-
       WhosOnlineShop::getUpdateWhosOnline();
 
       Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function($parameters) {

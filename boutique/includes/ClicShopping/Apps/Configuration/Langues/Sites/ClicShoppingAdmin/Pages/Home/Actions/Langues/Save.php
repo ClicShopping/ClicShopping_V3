@@ -30,28 +30,23 @@
       $image = HTML::sanitize($_POST['image']);
       $directory = HTML::sanitize($_POST['directory']);
       $sort_order = (int)HTML::sanitize($_POST['sort_order']);
+      $locale = HTML::sanitize($_POST['locale']);
 
-      $this->app->db->save('languages', [
-                                          'name' => $name,
+      $this->app->db->save('languages', ['name' => $name,
                                           'code' => $code,
                                           'image' => $image,
                                           'directory' => $directory,
                                           'sort_order' => (int)$sort_order,
-                                          'status' => 1
+                                          'status' => 1,
+                                          'locale' => $locale
                                           ],
-                                          [
-                                            'languages_id' => (int)$lID
-                                          ]
+                                          ['languages_id' => (int)$lID]
                             );
 
 
       if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
-        $this->app->db->save('configuration', [
-                                                'configuration_value' => $code
-                                                ],
-                                                [
-                                                  'configuration_key' => 'DEFAULT_LANGUAGE'
-                                                ]
+        $this->app->db->save('configuration', [ 'configuration_value' => $code],
+                                              ['configuration_key' => 'DEFAULT_LANGUAGE']
                             );
       }
 

@@ -95,7 +95,7 @@
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('code', null, 'required aria-required="true"placeholder="' . $CLICSHOPPING_Langues->getDef('text_info_language_code') . '"'); ?>
+            <?php echo HTML::inputField('code', null, 'required aria-required="true" placeholder="' . $CLICSHOPPING_Langues->getDef('text_info_language_code') . '"'); ?>
           </div>
         </div>
       </div>
@@ -124,6 +124,17 @@
       </div>
       <div class="col-md-5">
         <?php echo HTML::inputField('directory_create', null, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_create_directory') . '"'); ?>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group row">
+          <label for="<?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?></label>
+          <div class="col-md-5">
+            <?php echo HTML::inputField('locale', null, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"'); ?>
+          </div>
+        </div>
       </div>
     </div>
 
