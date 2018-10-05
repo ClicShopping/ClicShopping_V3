@@ -87,7 +87,7 @@
         }
 
 // Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') CONFIG_ANTISPAM == 'recaptcha')
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') && CONFIG_ANTISPAM == 'recaptcha')
           if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True') {
             $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
           }

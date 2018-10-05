@@ -48,8 +48,8 @@
         $form = HTML::form('password_forgotten', CLICSHOPPING::link('index.php', 'Account&PasswordForgotten&Process&action=process'), 'post', 'id="password_forgotten"', ['tokenize' => true]);
         $endform = '</form>';
 
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && CONFIG_ANTISPAM == 'recaptcha') {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN') && CONFIG_ANTISPAM == 'recaptcha') {
+          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
             $captcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
           }
         }

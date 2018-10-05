@@ -320,7 +320,7 @@
 // ----------------------
 // Confirmation Recaptcha
 // ----------------------
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && CONFIG_ANTISPAM == 'recaptcha') {
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT') && CONFIG_ANTISPAM == 'recaptcha') {
           if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT == 'True') {
             $contact_us_form .= '<div class="separator"></div>';
             $contact_us_form .= '
