@@ -562,7 +562,7 @@
 // ----------------------
 // Confirmation Recaptcha
 // ----------------------
-  if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True' && CONFIG_ANTISPAM == 'recaptcha') {
+  if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True' && CONFIG_ANTISPAM == 'recaptcha') {
 ?>
   <div class="separator"></div>
   <div class="row">

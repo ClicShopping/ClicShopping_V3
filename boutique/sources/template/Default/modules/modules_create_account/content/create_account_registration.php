@@ -190,7 +190,7 @@
 // ----------------------
 // Confirmation Recaptcha
 // ----------------------
-  if ((MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') && CONFIG_ANTISPAM == 'recaptcha') {
+  if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') && CONFIG_ANTISPAM == 'recaptcha') {
 ?>
    <div class="row">
      <div class="col-md-12">
