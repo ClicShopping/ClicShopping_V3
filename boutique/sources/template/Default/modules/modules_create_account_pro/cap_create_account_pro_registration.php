@@ -61,15 +61,17 @@
 
 
  // number for the antispam
-      $antispam = Mail::getConfirmationAntiSpam();
+      if (CONFIG_ANTISPAM == 'simple') {
+        $antispam = Mail::getConfirmationAntiSpam();
+      }
 
-      $create_account = '<!-- Start create_account_introduction start -->' . "\n";
-
-      if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO')) {
-        if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True') {
+      if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') && CONFIG_ANTISPAM == 'recaptcha') {
+        if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
           $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
         }
       }
+
+      $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
       $form = HTML::form('create_account_pro', CLICSHOPPING::link('index.php', 'Account&CreatePro&Process'), 'post', 'id="create_account_pro"',  ['tokenize' => true, 'action' => 'process']);
       $endform ='</form>';

@@ -41,21 +41,11 @@
 
         $error = false;
 
-// Recaptcha
-         if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT == 'True') {
-           $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
-
-           if (empty($error)) {
-             $error = true;
-           }
-         }
-
         $CLICSHOPPING_Hooks->call('Contact', 'PreAction');
 
         $name = HTML::sanitize($_POST['name']);
         $email_address = HTML::sanitize($_POST['email']);
         $enquiry = HTML::sanitize($_POST['enquiry']);
-        $antispam = HTML::sanitize($_POST['antispam']);
         $email_subject =  HTML::sanitize($_POST['email_subject']);
         $order_id = HTML::sanitize($_POST['order_id']);
         $send_to = HTML::sanitize($_POST['send_to']);
@@ -63,9 +53,22 @@
         $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
         $evidence_document = HTML::sanitize($_FILES['evidence_document']['name']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
+        $antispam = HTML::sanitize($_POST['antispam']);
 
+// simple Recaptcha
+        if (!Is::ValidateAntiSpam((int)$antispam) && CONFIG_ANTISPAM == 'simple') {
+          $error = true;
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error_number'), 'warning', 'contact');
+        }
 
-        if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
+// Recaptcha
+         if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT') && CONFIG_ANTISPAM == 'recaptcha') {
+           if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
+             $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
+           }
+         }
+
+         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
              $error = true;
              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error', 'contact');
@@ -91,10 +94,6 @@
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error'), 'warning', 'contact');
         }
 
-        if (!Is::ValidateAntiSpam((int)$antispam)) {
-          $error = true;
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error_number'), 'warning', 'contact');
-        }
 
         Registry::set('ActionRecorder', new ActionRecorder('ar_contact_us', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $name));
         $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorder');

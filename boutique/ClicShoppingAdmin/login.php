@@ -164,11 +164,13 @@
         break;
 
       case 'send_password':
-
         $error = false;
+
 // Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD == 'True') {
-          $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD') && CONFIG_ANTISPAM == 'recaptcha') {
+          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD == 'True'  && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
+            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
+          }
         }
 
         if ($error === false) {
@@ -309,10 +311,12 @@
             </div>
           </div>
           <div class="modal-footer">
-            <div>
+            <div class="col-md-6">
 <?php
-    if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD == 'True') {
-      echo $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
+    if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD') && CONFIG_ANTISPAM == 'recaptcha') {
+      if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_ADMIN_PASSWORD == 'True'  && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
+        echo $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
+      }
     }
 ?>
             </div>

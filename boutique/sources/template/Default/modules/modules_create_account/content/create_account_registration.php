@@ -160,8 +160,9 @@
     <div class="separator"></div>
 <?php
 // ----------------------
-// Verification Code
+// Simple recaptcha
 // ----------------------
+  if (CONFIG_ANTISPAM == 'simple') {
 ?>
   <div class="card">
     <div class="card-header">
@@ -185,9 +186,11 @@
   </div>
   <div class="separator"></div>
 <?php
-    // ----------------------
-    // Confirmation Recaptcha
-    // ----------------------
+  }
+// ----------------------
+// Confirmation Recaptcha
+// ----------------------
+  if ((MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') && CONFIG_ANTISPAM == 'recaptcha')) {
 ?>
    <div class="row">
      <div class="col-md-12">
@@ -197,9 +200,10 @@
      </div>
    </div>
 <?php
-  // ----------------------
-  // Privacy condition
-  // ----------------------
+  }
+// ----------------------
+// Privacy condition
+// ----------------------
 ?>
 <?php
   if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
@@ -220,7 +224,7 @@
     <div class="control-group">
       <div class="separator"></div>
       <div class="controls">
-        <div class="buttonSet float-md-right"><?php echo  HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></div>
+        <div class="buttonSet float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></div>
       </div>
     </div>
   </div>

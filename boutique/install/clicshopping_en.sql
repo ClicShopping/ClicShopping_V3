@@ -876,7 +876,8 @@ INSERT INTO configuration VALUES(1376, 'Please, select the page where the module
 INSERT INTO configuration VALUES(1377, 'cfg_products_modules_status_title', 'CLICSHOPPING_APP_MODULES_MO_STATUS', 'True', 'cfg_products_modules_status_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
 INSERT INTO configuration VALUES(1378, 'cfg_products_modules_sort_order_title', 'CLICSHOPPING_APP_MODULES_MO_SORT_ORDER', '30', 'cfg_products_modules_sort_order_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
 INSERT INTO configuration VALUES(1379, 'Parameter [Modules App]', 'MODULE_MODULES_MODULES_INSTALLED', 'Configuration\\Modules\\MO', 'Parameter [Modules App]', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
-INSERT INTO configuration VALUES(1380, 'Where do you want display the module ?', 'MODULE_LOGIN_MODE_B2B_B2C_POSITION', 'float-none', 'Select where you want display the module', 6, 2, NULL, '2018-10-02 22:28:26', NULL, 'clic_cfg_set_boolean_value(array(\'float-right\', \'float-left\', \'float-none\'),');
+INSERT INTO configuration VALUES(1380, 'Where do you want display the module ?', 'MODULE_LOGIN_MODE_B2B_B2C_POSITION', 'float-none', 'Select where you want display the module', 6, 2, NULL, '2018-10-02 22:28:26', NULL, 'clic_cfg_set_boolean_value(array(\'float-right\', \'float-left\', \'float-none\'))');
+INSERT INTO configuration VALUES(1381, 'Do you want activate the antispam for the forms', 'CONFIG_ANTISPAM', 'simple', 'Install an antispam allow you to have a protection for your form.<br /><br />Note<br />To use the recaptcha option, you must install the google recaptcha module', 1, 25, NULL, '2006-04-09 16:13:47', NULL, 'clic_cfg_set_boolean_value(array(\'none\', \'simple\', \'recaptcha\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

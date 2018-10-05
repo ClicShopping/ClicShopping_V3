@@ -46,17 +46,7 @@
 
       if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
 
-// number for the antispam
-        $antispam = Mail::getConfirmationAntiSpam();
-
         $message = HTML::textAreaField('message', null, 80, 8, 'class="form-control" required aria-required="true" id="inputMessage" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_message_title_friend_message') . '"');
-        $confirmation = HTML::inputField('antispam', '', 'required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_message_entry_antispam') . '"', 'confirmation');
-
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_TELL_FRIEND')) {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_TELL_FRIEND == 'True') {
-            $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
-          }
-        }
 
         $data = '<!-- ta_tell_a_friend_message start -->' . "\n";
 

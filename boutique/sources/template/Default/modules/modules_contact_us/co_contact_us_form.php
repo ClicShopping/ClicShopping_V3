@@ -51,7 +51,9 @@
           $order_id = HTML::sanitize($_GET['order_id']);
         }
 
-        $antispam = Mail::getConfirmationAntiSpam();
+        if (CONFIG_ANTISPAM == 'simple') {
+          $antispam = Mail::getConfirmationAntiSpam();
+        }
 
         $contact_us_form = '<!--  contact_us_form start -->' . "\n";
         $contact_us_form .= '<div class="col-md-' . $content_width . '">';
@@ -285,6 +287,7 @@
 // ----------------------
 // Confirmation number
 // ----------------------
+      if (CONFIG_ANTISPAM == 'simple') {
         $contact_us_form .= '<div class="separator"></div>';
         $contact_us_form .= '
            <div class="row">
@@ -297,9 +300,10 @@
                 </div>
               </div>
             </div>
-       ';
+        ';
+      }
 
-  if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
+      if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
         $contact_us_form .= '
               <div class="separator"></div>
               <div class="col-md-12">
@@ -310,14 +314,14 @@
                 </div>
               </div>
         ';
-  }
+      }
 
 
 // ----------------------
 // Confirmation Recaptcha
 // ----------------------
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT')) {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') {
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && CONFIG_ANTISPAM == 'recaptcha') {
+          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT == 'True') {
             $contact_us_form .= '<div class="separator"></div>';
             $contact_us_form .= '
               <div class="row">

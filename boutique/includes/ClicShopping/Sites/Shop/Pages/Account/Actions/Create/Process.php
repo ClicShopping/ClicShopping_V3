@@ -42,7 +42,8 @@
 
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
-        $antispam = HTML::sanitize($_POST['antispam']);
+
+         $antispam = HTML::sanitize($_POST['antispam']);
 
         if (ACCOUNT_DOB == 'true') $dob = HTML::sanitize($_POST['dob']);
 
@@ -54,16 +55,22 @@
         $confirmation = HTML::sanitize($_POST['confirmation']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
-        if (!Is::ValidateAntiSpam((int)$antispam)) {
+// simple Recaptcha
+        if (!Is::ValidateAntiSpam((int)$antispam)&& CONFIG_ANTISPAM == 'simple') {
           $error = true;
-
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'create_account');
+        }
+
+// Recaptcha
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && CONFIG_ANTISPAM == 'recaptcha') {
+          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') {
+            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
+          }
         }
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
             $error = true;
-
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error', 'create_account');
           }
         }
@@ -71,7 +78,6 @@
 // Clients B2C : Controle entree du prenom
         if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
           $error = true;
-
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error', 'create_account');
         }
 
@@ -131,13 +137,6 @@
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_not_matching'), 'error', 'create_account');
-        }
-
-// Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT')) {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') {
-            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
-          }
         }
 
         if ( $error === false ) {

@@ -36,7 +36,7 @@
         $email_address = HTML::sanitize($_POST['email_address']);
 
 // Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN == 'True') {
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN') && MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN == 'True'  && CONFIG_ANTISPAM == 'recaptcha' ) {
           $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
         }
 

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -27,8 +27,8 @@
 
         $error = false;
 
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_COMMENT')) {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_COMMENT == 'true') {
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_COMMENT') && CONFIG_ANTISPAM == 'recaptcha') {
+          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_COMMENT == 'true' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
             $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
           }
         }

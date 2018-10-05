@@ -76,13 +76,21 @@
         $newsletter = HTML::sanitize($_POST['newsletter']);
         $password = HTML::sanitize($_POST['password']);
         $confirmation = HTML::sanitize($_POST['confirmation']);
-        $antispam = HTML::sanitize($_POST['antispam']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
+          $antispam = HTML::sanitize($_POST['antispam']);
 
-        if (!Is::ValidateAntiSpam((int)$antispam)) {
+// simple Recaptcha
+        if (!Is::ValidateAntiSpam((int)$antispam) && CONFIG_ANTISPAM == 'simple') {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'create_account_pro');
+        }
+
+// Recaptcha
+        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') CONFIG_ANTISPAM == 'recaptcha')
+          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True') {
+            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
+          }
         }
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
@@ -354,13 +362,6 @@
           $customers_add_address = 0;
         } else {
           $customers_add_address = 1;
-        }
-
-// Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO'))
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True') {
-            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
-          }
         }
 
         if ( $error === false ) {

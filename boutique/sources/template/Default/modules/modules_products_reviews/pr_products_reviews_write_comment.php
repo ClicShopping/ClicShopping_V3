@@ -48,12 +48,6 @@
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
         $min_caracters_to_write = (int)REVIEW_TEXT_MIN_LENGTH;
 
-        if (defined('MODULES_PRODUCTS_REVIEWS_WRITE_GOOGLE_RECAPTCHA_STATUS')) {
-          if (MODULES_PRODUCTS_REVIEWS_WRITE_GOOGLE_RECAPTCHA_STATUS == 'True') {
-            $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
-          }
-        }
-
         $data = '<!-- pr_products_reviews_write_comment start -->' . "\n";
 
         ob_start();

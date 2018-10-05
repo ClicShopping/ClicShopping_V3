@@ -29,6 +29,9 @@ use ClicShopping\OM\HTML;
           </div>
         </div>
       </div>
+<?php
+  if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PASSWORD_FORGOTTEN == 'True'  && CONFIG_ANTISPAM == 'recaptcha') {
+?>
     <div class="separator"></div>
     <div class="row">
       <div class="col-md-7">
@@ -37,6 +40,9 @@ use ClicShopping\OM\HTML;
         </div>
       </div>
     </div>
+<?php
+ }
+?>
     <div class="separator"></div>
     <div class="col-md-12">
       <div class="control-group">

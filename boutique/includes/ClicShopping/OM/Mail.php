@@ -284,7 +284,7 @@
 /**
  * Function to antispam
  * public function
- * @return number_confirmation
+ * @return string $antispam sentence
  */
     public static function getConfirmationAntiSpam() {
       $random_number = rand(1,10);
@@ -292,7 +292,7 @@
       $number = $random_number + 3;
       $antispam = ' (' . $random_number .' + '. CLICSHOPPING::getDef('text_antispam') . ') x 1';
 
-      $_SESSION['createResponse'] = $number;
+      $_SESSION['createResponseAntiSpam'] = $number;
 
       return $antispam;
     }

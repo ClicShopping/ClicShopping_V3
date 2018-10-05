@@ -531,8 +531,9 @@
 <?php
   }
 // ----------------------
-// Verification Code
+// Simple recaptcha
 // ----------------------
+  if (CONFIG_ANTISPAM == 'simple') {
 ?>
     <div class="card">
       <div class="card-header">
@@ -541,7 +542,6 @@
       </div>
       <div class="card-block">
         <div class="card-text">
-
           <div class="row">
             <div class="col-md-9">
               <div class="form-group row">
@@ -558,9 +558,11 @@
     </div>
     <div class="separator"></div>
 <?php
+  }
 // ----------------------
 // Confirmation Recaptcha
 // ----------------------
+  if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True' && CONFIG_ANTISPAM == 'recaptcha') {
 ?>
   <div class="separator"></div>
   <div class="row">
@@ -571,6 +573,7 @@
     </div>
   </div>
 <?php
+    }
 // ----------------------
 // Privacy condition
 // ----------------------

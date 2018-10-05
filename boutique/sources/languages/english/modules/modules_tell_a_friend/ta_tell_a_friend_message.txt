@@ -6,5 +6,3 @@
  modules_tell_a_friend_message_entry_antispam = How many
  modules_tell_a_friend_message_title_friend_message = Insert your message
  modules_tell_a_friend_message_entry_spam_text = *
-
-c
