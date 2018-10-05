@@ -55,7 +55,7 @@
         $name = HTML::sanitize($_POST['name']);
         $email_address = HTML::sanitize($_POST['email']);
         $enquiry = HTML::sanitize($_POST['enquiry']);
-        $number_email_confirmation = HTML::sanitize($_POST['number_email_confirmation']);
+        $antispam = HTML::sanitize($_POST['antispam']);
         $email_subject =  HTML::sanitize($_POST['email_subject']);
         $order_id = HTML::sanitize($_POST['order_id']);
         $send_to = HTML::sanitize($_POST['send_to']);
@@ -91,7 +91,7 @@
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error'), 'warning', 'contact');
         }
 
-        if (!Is::ValidateNumberEmail((int)$number_email_confirmation)) {
+        if (!Is::ValidateAntiSpam((int)$antispam)) {
           $error = true;
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error_number'), 'warning', 'contact');
         }

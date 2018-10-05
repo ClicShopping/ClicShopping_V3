@@ -24,6 +24,6 @@
  error_from_address = Error: Your e-mail address must be a valid e-mail address.
  error_to_spam = Error : The AntiSpam Code must not be empty
  error_invalid_product = This products not available. Try again.
- entry_number_email_confirmation = What is :
+ entry_antispam = How many :
 
  error_action_recorder = Error: A password reset link has already been sent. Please try again in {{module_action_recorder_tell_a_friend_email_minutes}} minutes.

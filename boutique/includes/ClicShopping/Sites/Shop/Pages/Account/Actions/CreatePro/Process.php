@@ -76,10 +76,10 @@
         $newsletter = HTML::sanitize($_POST['newsletter']);
         $password = HTML::sanitize($_POST['password']);
         $confirmation = HTML::sanitize($_POST['confirmation']);
-        $number_email_confirmation = HTML::sanitize($_POST['number_email_confirmation']);
+        $antispam = HTML::sanitize($_POST['antispam']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
-        if (!Is::ValidateNumberEmail((int)$number_email_confirmation)) {
+        if (!Is::ValidateAntiSpam((int)$antispam)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'create_account_pro');

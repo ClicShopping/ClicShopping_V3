@@ -286,9 +286,14 @@
  * public function
  * @return number_confirmation
  */
-    public static function getConfirmationNumberAntiSpam() {
-      $number_confirmation = '(2 + '. CLICSHOPPING::getDef('email_confirmation_number') . ') x 1';
+    public static function getConfirmationAntiSpam() {
+      $random_number = rand(1,10);
 
-      return $number_confirmation;
+      $number = $random_number + 3;
+      $antispam = ' (' . $random_number .' + '. CLICSHOPPING::getDef('text_antispam') . ') x 1';
+
+      $_SESSION['createResponse'] = $number;
+
+      return $antispam;
     }
   }

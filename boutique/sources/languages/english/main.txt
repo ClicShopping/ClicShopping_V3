@@ -33,8 +33,8 @@ error_payment_obscur = A error has been detect in the process verification, plea
 
 entry_text_select = Select
 entry_spam_text = *
-entry_number_email_confirmation = How many :
-email_confirmation_number = three
+entry_antispam = How many :
+text_antispam = three
 
 entry_customers_phone_number_text = *
 entry_post_code = Postal Code
@@ -217,7 +217,7 @@ no_orders_group = No product avalaible
 no_orders_public =
 text_out_of_stock = Out of stock
 
-email_confirmation_number = three
+text_antispam = three
 
 entry_discount_coupon_error = The coupon code you have inserted is not valid.
 entry_discount_coupon_available_error = The coupon code you have entered is no longer valid.

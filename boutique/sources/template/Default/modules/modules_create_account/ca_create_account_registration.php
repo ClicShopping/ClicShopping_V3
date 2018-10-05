@@ -58,7 +58,7 @@
         }
       }
 // number for the antispam
-      $number_confirmation = Mail::getConfirmationNumberAntiSpam();
+      $antispam = Mail::getConfirmationAntiSpam();
 
       $form =  HTML::form('create_account', CLICSHOPPING::link('index.php', 'Account&Create&Process'), 'post', 'id="create_account"',  ['tokenize' => true, 'action' => 'process']);
       $endform = '</form>';

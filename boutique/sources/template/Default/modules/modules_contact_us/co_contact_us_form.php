@@ -51,7 +51,7 @@
           $order_id = HTML::sanitize($_GET['order_id']);
         }
 
-        $number_confirmation = Mail::getConfirmationNumberAntiSpam();
+        $antispam = Mail::getConfirmationAntiSpam();
 
         $contact_us_form = '<!--  contact_us_form start -->' . "\n";
         $contact_us_form .= '<div class="col-md-' . $content_width . '">';
@@ -290,9 +290,9 @@
            <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="inputVerificationCode" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_number_email_confirmation') . '<span class="text-warning">' . HTML::outputProtected($number_confirmation) . '</span></label>
+                  <label for="inputVerificationCode" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_antispam') . '<span class="text-warning">' . HTML::outputProtected($antispam) . '</span></label>
                   <div class="col-sm-6 col-md-4">
-                    ' .  HTML::inputField('number_email_confirmation', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_number_email_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_number_email_confirmation') . '"') . '
+                    ' .  HTML::inputField('antispam', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_antispam') . '" placeholder="' . CLICSHOPPING::getDef('entry_antispam') . '"') . '
                   </div>
                 </div>
               </div>

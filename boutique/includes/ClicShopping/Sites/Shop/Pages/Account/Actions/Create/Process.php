@@ -42,7 +42,7 @@
 
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
-        $number_email_confirmation = HTML::sanitize($_POST['number_email_confirmation']);
+        $antispam = HTML::sanitize($_POST['antispam']);
 
         if (ACCOUNT_DOB == 'true') $dob = HTML::sanitize($_POST['dob']);
 
@@ -54,7 +54,7 @@
         $confirmation = HTML::sanitize($_POST['confirmation']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
-        if (!Is::ValidateNumberEmail((int)$number_email_confirmation)) {
+        if (!Is::ValidateAntiSpam((int)$antispam)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'create_account');

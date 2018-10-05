@@ -23,7 +23,7 @@ entry_enquiry_customer_information = Message client
 entry_email_object_customer = Copie de la requete
 entry_customers_subject = Sujet de votre requête
 
-entry_number_email_confirmation = combien font :
+entry_antispam = combien font :
 send_department_company = Contacter un département
 
 

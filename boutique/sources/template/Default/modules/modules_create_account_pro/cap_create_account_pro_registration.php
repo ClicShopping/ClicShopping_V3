@@ -61,7 +61,7 @@
 
 
  // number for the antispam
-      $number_confirmation = Mail::getConfirmationNumberAntiSpam();
+      $antispam = Mail::getConfirmationAntiSpam();
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 

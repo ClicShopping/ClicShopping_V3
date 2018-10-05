@@ -21,7 +21,7 @@ use ClicShopping\OM\CLICSHOPPING;
   <div class="separator"></div>
   <div class="col-md-12">
     <div class="form-group row">
-      <label for="inputConfirmation" class="col-6 col-form-label"><?php echo CLICSHOPPING::getDef('modules_tell_a_friend_message_entry_number_email_confirmation'); ?><span class="text-warning"><?php echo ' ' . $number_confirmation; ?></span></label>
+      <label for="inputConfirmation" class="col-6 col-form-label"><?php echo CLICSHOPPING::getDef('modules_tell_a_friend_message_entry_antispam'); ?><span class="text-warning"><?php echo ' ' . $antispam; ?></span></label>
       <div class="col-md-5">
         <?php echo $confirmation; ?>
       </div>

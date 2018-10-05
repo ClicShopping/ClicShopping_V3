@@ -22,7 +22,7 @@ entry_enquiry_customer_information = Customer message :
 entry_email_object_customer = Request copy
 entry_customers_subject = Subject of your request :
 
-entry_number_email_confirmation = How many :
+entry_antispam = How many :
 send_department_company = Contact to Department :
 
 text_becarefull_download = <strong>Becarefull !</strong> For all claims, damages, please provide proof to mp4 video format jpg where pdf file with a size of less than :

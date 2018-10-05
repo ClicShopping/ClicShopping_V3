@@ -11,15 +11,15 @@
 
   namespace ClicShopping\OM\Is;
 
-  class ValidateNumberEmail  {
+  class ValidateAntiSpam  {
 
-    public static function execute($number_email_confirmation) {
-      if ($number_email_confirmation != 5) {
-        $valid_number_email_confirmation = false;
+    public static function execute($antispam) {
+      if ($antispam != 5) {
+        $valid_antispam = false;
       } else {
-        $valid_number_email_confirmation = true;
+        $valid_antispam = true;
       }
 
-      return $valid_number_email_confirmation;
+      return $valid_antispam;
     }
   }

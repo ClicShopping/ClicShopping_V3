@@ -22,7 +22,7 @@ error_from_name = Erreur : Votre nom ne doit pas être vide.
 error_from_address = Erreur : Votre adresse électronique doit être une adresse électronique valide.
 error_to_spam = Erreur : Vos codes concernant l'antispam sont erronées
 error_invalid_product = Ce produit produit n'est pas disponible. Essayer encore une fois.
-entry_number_email_confirmation = How many
+entry_antispam = Combien font :
 
 error_action_recorder = Erreur: un mot de de passe a déjà été envoyé. Veuillez attendre {{module_action_recorder_tell_a_friend_email_minutes}} minutes.
 

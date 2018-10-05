@@ -12,8 +12,6 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 
-  $CLICSHOPPING_Language->loadDefinitions('login');
-
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="login" id="login">

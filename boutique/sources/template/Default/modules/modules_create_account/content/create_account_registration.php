@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   echo $form
 ?>
@@ -166,23 +166,20 @@ use ClicShopping\OM\HTML;
   <div class="card">
     <div class="card-header">
       <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
-      <span class="modulesCreateAccountRegistrationVerificationCodePageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_number_email_confirmation'); ?></h3></span>
+      <span class="modulesCreateAccountRegistrationVerificationCodePageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_antispam'); ?></h3></span>
     </div>
     <div class="card-block">
       <div class="card-text">
-
-
         <div class="row">
           <div class="col-md-12">
             <div class="form-group row">
-              <label for="inputVerificationCode" class="col-5 col-form-label"><?php echo CLICSHOPPING::getDef('entry_number_email_confirmation'); ?><span class="text-warning"><?php echo  HTML::outputProtected($number_confirmation); ?></span></label>
+              <label for="inputVerificationCode" class="col-5 col-form-label"><?php echo CLICSHOPPING::getDef('entry_antispam'); ?> <span class="text-warning"><?php echo  HTML::outputProtected($antispam); ?></span></label>
               <div class="col-md-4">
-                <?php echo HTML::inputField('number_email_confirmation', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_number_email_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_number_email_confirmation') . '"'); ?>
+                <?php echo HTML::inputField('antispam', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_antispam') . '" placeholder="' . CLICSHOPPING::getDef('entry_antispam') . '"'); ?>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
