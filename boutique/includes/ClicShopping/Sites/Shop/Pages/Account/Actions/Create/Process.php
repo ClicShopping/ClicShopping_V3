@@ -19,13 +19,13 @@
   use ClicShopping\OM\Is;
   use ClicShopping\OM\Hash;
 
+  use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
+
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $process;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -36,14 +36,11 @@
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $error = false;
-        $process = true;
 
         $CLICSHOPPING_Hooks->call('Create','PreAction');
 
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
-
-         $antispam = HTML::sanitize($_POST['antispam']);
 
         if (ACCOUNT_DOB == 'true') $dob = HTML::sanitize($_POST['dob']);
 
@@ -54,19 +51,6 @@
         $password = HTML::sanitize($_POST['password']);
         $confirmation = HTML::sanitize($_POST['confirmation']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
-
-// simple Recaptcha
-        if (!Is::ValidateAntiSpam((int)$antispam)&& CONFIG_ANTISPAM == 'simple') {
-          $error = true;
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'create_account');
-        }
-
-// Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && CONFIG_ANTISPAM == 'recaptcha') {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') {
-            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
-          }
-        }
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
@@ -139,8 +123,17 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_not_matching'), 'error', 'create_account');
         }
 
-        if ( $error === false ) {
+        Registry::set('ActionRecorder', new ActionRecorder('ar_create_account', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $lastname));
+        $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorder');
 
+        if (!$CLICSHOPPING_ActionRecorder->canPerform()) {
+          $error = true;
+          $CLICSHOPPING_ActionRecorder->record(false);
+
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'danger', 'create_account');
+        }
+
+        if ( $error === false ) {
           $sql_data_array = ['customers_firstname' => $firstname,
                              'customers_lastname' => $lastname,
                              'customers_email_address' => $email_address,
@@ -232,6 +225,7 @@
             $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, '', $from, $email_subject_admin);
           }
 
+          $CLICSHOPPING_ActionRecorder->record();
 
           $CLICSHOPPING_Hooks->call('Create','Process');
 

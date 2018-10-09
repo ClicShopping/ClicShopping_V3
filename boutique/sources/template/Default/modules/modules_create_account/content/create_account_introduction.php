@@ -12,7 +12,7 @@
 use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $content_width; ?>">
+<div class="col-md-<?php echo $content_width; ?>" id="RowContentintroduction1">
   <div class="separator"></div>
   <div class="modulesCreateAccountIntroductionTextLogin"><?php echo sprintf(CLICSHOPPING::getDef('module_create_account_introduction_text_origin_login', ['store_name' => STORE_NAME]), CLICSHOPPING::link('index.php', 'Account&LogIn&' . CLICSHOPPING::getAllGET(['Account', 'LogIn']))); ?></div>
 <?php

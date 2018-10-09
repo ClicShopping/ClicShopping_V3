@@ -13,7 +13,7 @@
 
   class sort_order extends \ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Config\ConfigParamAbstract {
 
-    public $default = '30';
+    public $default = '200';
     public $sort_order = 300;
     public $app_configured = true;
 

@@ -11,6 +11,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
+
   echo $form
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
@@ -29,7 +30,7 @@
       </div>
       <div class="card-block">
         <div class="card-text">
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration1">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="InputFirstName" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
@@ -40,7 +41,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration2">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="InputLastanme" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
@@ -56,7 +57,7 @@
 ?>
           <div class="separator"></div>
 
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration3">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="dob" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_date_of_birth'); ?></label>
@@ -69,7 +70,7 @@
 <?php
   }
 ?>
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration4">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="InputEmail" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address'); ?></label>
@@ -80,7 +81,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration5">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="InputEmailConfirm" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address_confirmation'); ?></label>
@@ -106,7 +107,7 @@
       </div>
       <div class="card-block">
         <div class="card-text">
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration6">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="Inputnewsletter" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></label>
@@ -133,7 +134,7 @@
       <div class="card-block">
         <div class="card-text">
 
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration7">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password'); ?></label>
@@ -144,7 +145,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id="RowContentAccountRegistration8">
             <div class="col-md-12">
               <div class="form-group row">
                 <label for="inputPasswordconfirmation" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_password_confirmation'); ?></label>
@@ -158,75 +159,6 @@
       </div>
     </div>
     <div class="separator"></div>
-<?php
-// ----------------------
-// Simple recaptcha
-// ----------------------
-  if (CONFIG_ANTISPAM == 'simple') {
-?>
-  <div class="card">
-    <div class="card-header">
-      <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
-      <span class="modulesCreateAccountRegistrationVerificationCodePageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_antispam'); ?></h3></span>
-    </div>
-    <div class="card-block">
-      <div class="card-text">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group row">
-              <label for="inputVerificationCode" class="col-5 col-form-label"><?php echo CLICSHOPPING::getDef('entry_antispam'); ?> <span class="text-warning"><?php echo  HTML::outputProtected($antispam); ?></span></label>
-              <div class="col-md-4">
-                <?php echo HTML::inputField('antispam', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_antispam') . '" placeholder="' . CLICSHOPPING::getDef('entry_antispam') . '"'); ?>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  <div class="separator"></div>
-<?php
-  }
-// ----------------------
-// Confirmation Recaptcha
-// ----------------------
-  if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True') && CONFIG_ANTISPAM == 'recaptcha') {
-?>
-   <div class="row">
-     <div class="col-md-12">
-       <div class="form-group row">
-          <div class="col-md-12"><?php echo $google_recaptcha; ?></div>
-       </div>
-     </div>
-   </div>
-<?php
-  }
-// ----------------------
-// Privacy condition
-// ----------------------
-?>
-<?php
-  if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
-?>
-    <div class="separator"></div>
-      <div class="col-md-12">
-        <div class="separator"></div>
-        <div class="modulesCreateAccountRegistrationTextPrivacy">
-<?php
-  echo HTML::checkboxField('customer_agree_privacy', null, 'required aria-required="true"') . ' ' . CLICSHOPPING::getDef('text_privacy_conditions_agree') . '<br />';
-  echo CLICSHOPPING::getDef('text_privacy_conditions_description', ['store_name' => STORE_NAME, 'privacy_url' => CLICSHOPPING::link(SHOP_CODE_URL_CONFIDENTIALITY)]);
-?>
-        </div>
-      </div>
-<?php
-  }
-?>
-    <div class="control-group">
-      <div class="separator"></div>
-      <div class="controls">
-        <div class="buttonSet float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></div>
-      </div>
-    </div>
-  </div>
-<?php
-  echo $endform;
+
+

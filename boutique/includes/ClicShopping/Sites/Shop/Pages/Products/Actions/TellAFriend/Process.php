@@ -33,6 +33,8 @@
       if (isset($_POST['action']) && ($_POST['action'] == 'process')  && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $error = false;
 
+        $CLICSHOPPING_Hooks->call('PreAction', 'TellAFriend');
+
         $to_email_address = HTML::sanitize($_POST['to_email_address']);
         $to_name = HTML::sanitize($_POST['to_name']);
         $from_email_address = HTML::sanitize($_POST['from_email_address']);

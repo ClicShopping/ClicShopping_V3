@@ -21,21 +21,21 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $Qcategories = $CLICSHOPPING_ActionsRecorder->db->prepare('select a.id,
-                                                            a.link,
-                                                            a.parent_id,
-                                                            a.access,
-                                                            a.sort_order,
-                                                            a.b2b_menu,
-                                                            a.app_code,
-                                                            amd.label
-                                                      from :table_actions_recorder a,
-                                                            :table_actions_recorder_description amd
-                                                      where a.id = amd.id
-                                                      and amd.language_id = :language_id
-                                                      and a.id = :id
-                                                      order by a.parent_id,
-                                                               a.sort_order
-                                                      ');
+                                                                    a.link,
+                                                                    a.parent_id,
+                                                                    a.access,
+                                                                    a.sort_order,
+                                                                    a.b2b_menu,
+                                                                    a.app_code,
+                                                                    amd.label
+                                                              from :table_actions_recorder a,
+                                                                    :table_actions_recorder_description amd
+                                                              where a.id = amd.id
+                                                              and amd.language_id = :language_id
+                                                              and a.id = :id
+                                                              order by a.parent_id,
+                                                                       a.sort_order
+                                                              ');
   $Qcategories->bindInt(':id', $_GET['cID'] );
   $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qcategories->execute();

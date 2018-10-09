@@ -35,11 +35,9 @@
     }
 
   public function execute() {
-
     $CLICSHOPPING_Template = Registry::get('Template');
 
-    if (isset($_GET['Account'] ) && isset($_GET['Create']) ) {
-
+    if (isset($_GET['Account']) && isset($_GET['Create']) && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_INTRODUCTION_CONTENT_WIDTH;
 
       $create_account = '<!-- create_account_registration start -->' . "\n";
@@ -94,7 +92,7 @@
     $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_CREATE_ACCOUNT_INTRODUCTION_SORT_ORDER',
-          'configuration_value' => '100',
+          'configuration_value' => '50',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '4',

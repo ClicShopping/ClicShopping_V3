@@ -1,12 +1,7 @@
 module_create_account_registration_title = Souhaitez-vous afficher le formulaire d'enregistrement de création de compte  ?
 module_create_account_registration_description = Affiche le formulaire d'enregistrement de creacute;ation de compte
 
-text_privacy_conditions_description = Notre politique de confidentialité est consultable à tout moment sur {{store_name}}  en cliquant <a target="_blank" href="{{privacy_url}}"><u>ici</u></a>.
-text_privacy_conditions_agree = Veuillez cocher cette case afin de donner votre consentement concernant notre politique de confidentialité
-
 entry_password_error_not_matching = Le mot de passe de confirmation doit être identique à votre mot de passe.
-
-button_continue = Continuer
 
 form_required = * Informations requises
 

@@ -12,6 +12,7 @@
 use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
+<div class="col-md-<?php echo $content_width; ?>" id="RowContentAccountSuccess1">
   <div class="page-header modulesCreateAccountSuccess"><h3><?php echo CLICSHOPPING::getDef('module_create_account_success_text_account_created'); ?></h3></div>
   <div class="separator"></div>
   <div class="controls">
@@ -23,3 +24,4 @@ use ClicShopping\OM\HTML;
       </div>
     </div>
   </div>
+</div>

@@ -1,15 +1,7 @@
-
 module_create_account_registration_title = Do you want to display the registration form for the account creation ?
 module_create_account_registration_description = Display the registration form for the account creation
 
-text_privacy_conditions_description = The privacy statement are available always on {{store_name}} and can be read <a href="{{privacy_url}}" target="_blank"><u>here</u></a>.
-text_privacy_conditions_agree = Please check this box to give your consent regarding our privacy policy
-
-
-
 entry_password_error_not_matching = The password confirmation must be the same at your password.
-
-button_continue = Continue
 
 form_required = Required
 

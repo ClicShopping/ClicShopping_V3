@@ -101,7 +101,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-                                        'configuration_title' => 'Minimum Minutes Per E-Mail',
+                                        'configuration_title' => 'Minimum Minutes Per E-Mail for tell a friend',
                                         'configuration_key' => 'MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES',
                                         'configuration_value' => '15',
                                         'configuration_description' => 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)',

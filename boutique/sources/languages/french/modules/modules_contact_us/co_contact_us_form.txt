@@ -26,14 +26,5 @@ entry_customers_subject = Sujet de votre requête
 entry_antispam = combien font :
 send_department_company = Contacter un département
 
-
-text_becarefull_download = <strong>Attention!</strong> Pour toutes réclamations, dégradations, veuillez fournir une preuve au format video mp4, jpg où pdf avec un fichier de taille inférieur à :
-text_becarefull_download_1 = Mb. Veuillez noter que les vidéo youtube ne sont pas acceptées comme preuve. <br />Pour de plus amples informations, veuillez consulter nos conditions générales.
-
 entry_customers_phone_dgrp = Nous avons besoin de votre numéro de téléphone pour vous contacter éventuellement
 entry_email_dgrp = Nous avons besoin de votre courriel pour vous répondre
-
-button_continue = Continuer
-
-text_privacy_conditions_description = Notre politique de confidentialité est consultable à tout moment sur {{store_name}}  en cliquant <a target="_blank" href="{{privacy_url}}"><u>ici</u></a>.
-text_privacy_conditions_agree = Veuillez cocher cette case afin de donner votre consentement concernant notre politique de confidentialité

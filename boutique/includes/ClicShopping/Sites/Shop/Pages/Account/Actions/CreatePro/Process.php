@@ -21,6 +21,8 @@
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
+  use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
+
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
@@ -77,21 +79,6 @@
         $password = HTML::sanitize($_POST['password']);
         $confirmation = HTML::sanitize($_POST['confirmation']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
-          $antispam = HTML::sanitize($_POST['antispam']);
-
-// simple Recaptcha
-        if (!Is::ValidateAntiSpam((int)$antispam) && CONFIG_ANTISPAM == 'simple') {
-          $error = true;
-
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'create_account_pro');
-        }
-
-// Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') && CONFIG_ANTISPAM == 'recaptcha')
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True') {
-            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
-          }
-        }
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
@@ -364,6 +351,16 @@
           $customers_add_address = 1;
         }
 
+        Registry::set('ActionRecorder', new ActionRecorder('ar_create_account_pro', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $lastname));
+        $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorder');
+
+        if (!$CLICSHOPPING_ActionRecorder->canPerform()) {
+          $error = true;
+          $CLICSHOPPING_ActionRecorder->record(false);
+
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'danger', 'create_account_pro');
+        }
+
         if ( $error === false ) {
 
 // Enregistrement des informations du client dans la base de donnees
@@ -515,6 +512,8 @@
             $CLICSHOPPING_Mail->build_message();
             $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, '', $from, $email_subject_admin);
           }
+
+          $CLICSHOPPING_ActionRecorder->record();
 
           $CLICSHOPPING_Hooks->call('Create','Process');
 

@@ -22,18 +22,7 @@ entry_enquiry_customer_information = Customer message :
 entry_email_object_customer = Request copy
 entry_customers_subject = Subject of your request :
 
-entry_antispam = How many :
 send_department_company = Contact to Department :
-
-text_becarefull_download = <strong>Becarefull !</strong> For all claims, damages, please provide proof to mp4 video format jpg where pdf file with a size of less than :
-text_becarefull_download_1 = Mb. Please note that youtube video is not accepted as evidence. <br /> For more information see our terms and conditions.
 
 entry_customers_phone_dgrp = We need your phone number to eventually contact you
 entry_email_dgrp = We need your email to answer you
-
-button_continue = Continue
-
-text_privacy_conditions_description = The privacy statement are available always on {{store_name}} and can be read <a href="{{privacy_url}}" target="_blank"><u>here</u></a>.
-text_privacy_conditions_agree = Please check this box to give your consent regarding our privacy policy
-
-

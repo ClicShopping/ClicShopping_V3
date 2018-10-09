@@ -101,7 +101,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-                                        'configuration_title' => 'Minimum Minutes Per E-Mail',
+                                        'configuration_title' => 'Minimum Minutes Per E-Mail for contact us',
                                         'configuration_key' => 'MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES',
                                         'configuration_value' => '15',
                                         'configuration_description' => 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)',

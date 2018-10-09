@@ -2,10 +2,6 @@
 module_create_account_pro_registration_title = Do you want to display the registration form for the professional account creation ?
 module_create_account_pro_registration_description = Display the registration form for the professional account creation
 
-text_privacy_conditions_description = The privacy statement are available always on {{store_name}} and can be read <a href="{{privacy_url}}" target="_blank" rel="noreferrer"><u>here</u></a>.
-text_here = here
-text_privacy_conditions_agree = Please check this box to give your consent regarding our privacy policy
-
 form_required = * Required information
 
 category_address_pro =  Address
@@ -73,5 +69,3 @@ entry_password_confirmation_text = * Confirm your password
 
 text_create_account_pro_dgrp = We must use your email to create your account and allow you to access it. At any time you can change this information.
 text_create_account_pro_dob_dgrp = Your birth date helps us identify your age and allow you to place an order. We do not display your date of birth without your explicit consent
-
-button_continue = Continue

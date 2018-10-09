@@ -12,7 +12,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Mail;
 
   class co_contact_us_form {
     public $code;
@@ -45,14 +44,9 @@
         $content_width = (int)MODULE_CONTACT_US_FORM_CONTENT_WIDTH;
 
         $form = HTML::form('contact', CLICSHOPPING::link('index.php', 'Info&Contact&Process&action=process'), 'post', 'enctype="multipart/form-data"',  ['tokenize' => true]);
-        $endform ='</form>';
 
         if ( isset($_GET['order_id']) && is_numeric($_GET['order_id']) ) {
           $order_id = HTML::sanitize($_GET['order_id']);
-        }
-
-        if (CONFIG_ANTISPAM == 'simple') {
-          $antispam = Mail::getConfirmationAntiSpam();
         }
 
         $contact_us_form = '<!--  contact_us_form start -->' . "\n";
@@ -67,7 +61,7 @@
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent1">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
@@ -81,7 +75,7 @@
 
         } else {
           $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent2">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
@@ -97,7 +91,7 @@
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent3">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
@@ -110,7 +104,7 @@
           ';
         } else {
           $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent4">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
@@ -128,7 +122,7 @@
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
 
           $contact_us_form .= '
-              <div class="row">
+              <div class="row" id="RowContent5">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
@@ -143,7 +137,7 @@
         } else {
 
           $contact_us_form .= '
-              <div class="row">
+              <div class="row" id="RowContent6">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
@@ -163,7 +157,7 @@
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
-              <div class="row">
+              <div class="row" id="RowContent7">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="entry_customers_id" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_id') . '</label>
@@ -183,7 +177,7 @@
           } else {
 // customer registered with no order number
             $contact_us_form .= '
-              <div class="row">
+              <div class="row" id="RowContent8">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="gender" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_order') . '</label>
@@ -196,7 +190,7 @@
             ';
 
             $contact_us_form .= '
-              <div class="row">
+              <div class="row" id="RowContent9">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <div class="col-md-12 alert alert-warning">
@@ -212,7 +206,7 @@
 
         if (!empty(CONTACT_DEPARTMENT_LIST)) {
           $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent10">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="CompanyDepartment" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('send_department_company') . '</label>
@@ -230,7 +224,7 @@
 // Subject
 // -------
         $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent11">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="Email" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_customers_subject') . '</label>
@@ -245,10 +239,9 @@
 // ----------------------
 // Enquiry
 // ----------------------
-
         $contact_us_form .= '<div class="separator"></div>';
         $contact_us_form .= '
-            <div class="row">
+            <div class="row" id="RowContent12">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="inputMessage" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_enquiry') . '</label>
@@ -259,97 +252,10 @@
               </div>
              </div>
             ';
-
 // ----------------------
-// Evidence files
+// Hooks
 // ----------------------
-        if ($order_id > 0 && $CLICSHOPPING_Customer->isLoggedOn() && MODULE_CONTACT_US_FORM_EVIDENCE == 'True' ) {
-          $contact_us_form .= '<div class="separator"></div>';
-          $contact_us_form .= '
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="evidenceDocument" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_enquiry') . '</label>
-                  <div class="col-md-8">
-                    ' . HTML::fileField('evidence_document', 'id="file"') . '
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <span class="alert alert-warning" role="alert">' . CLICSHOPPING::getDef('text_becarefull_download') . '  '. (int)(ini_get('upload_max_filesize')) . CLICSHOPPING::getDef('text_becarefull_download_1') . '</span>
-              </div>
-            </div>
-          ';
-        }
-
-// ----------------------
-// Confirmation number
-// ----------------------
-      if (CONFIG_ANTISPAM == 'simple') {
-        $contact_us_form .= '<div class="separator"></div>';
-        $contact_us_form .= '
-           <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="inputVerificationCode" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_antispam') . '<span class="text-warning">' . HTML::outputProtected($antispam) . '</span></label>
-                  <div class="col-sm-6 col-md-4">
-                    ' .  HTML::inputField('antispam', null, 'required aria-required="true" id="inputVerificationCode" aria-describedby="' . CLICSHOPPING::getDef('entry_antispam') . '" placeholder="' . CLICSHOPPING::getDef('entry_antispam') . '"') . '
-                  </div>
-                </div>
-              </div>
-            </div>
-        ';
-      }
-
-      if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
-        $contact_us_form .= '
-              <div class="separator"></div>
-              <div class="col-md-12">
-                <div class="separator"></div>
-                <div class="modulesContactUsTextPrivacy">
-                  ' . HTML::checkboxField('customer_agree_privacy', null, 'required aria-required="true"') . ' ' . CLICSHOPPING::getDef('text_privacy_conditions_agree') . '<br />
-                  ' . CLICSHOPPING::getDef('text_privacy_conditions_description', ['store_name' => STORE_NAME, 'privacy_url' => CLICSHOPPING::link(SHOP_CODE_URL_CONFIDENTIALITY)]) . '
-                </div>
-              </div>
-        ';
-      }
-
-
-// ----------------------
-// Confirmation Recaptcha
-// ----------------------
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT') && CONFIG_ANTISPAM == 'recaptcha') {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CONTACT == 'True') {
-            $contact_us_form .= '<div class="separator"></div>';
-            $contact_us_form .= '
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="form-group row">
-            ';
-            $contact_us_form .= $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
-            $contact_us_form .= '
-                </div>
-              </div>
-            </div>
-            ';
-          }
-        }
-
-// ----------------------
-// Confirmation Button
-// ----------------------
-        $contact_us_form .= '<div class="separator"></div>';
-        $contact_us_form .= '<div class="control-group">';
-        $contact_us_form .= '<div class="buttonSet">';
-        $contact_us_form .= '<div class="text-md-right" style="padding-right:10px;">';
-        $contact_us_form .= HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'primary', null, null, null, '"submit"');
-        $contact_us_form .= '</div>';
-        $contact_us_form .= '</div>';
-        $contact_us_form .= '</div>';
-
-        $contact_us_form .= $endform;
+        $contact_us_form .= $CLICSHOPPING_Hooks->output('Contact', 'DisplayRowContent', null, 'display');
 
         $contact_us_form .= '</div>' . "\n";
 

@@ -25,3 +25,5 @@ email_facebook = http://www.facebook.com/
 
 entry_website_text_pro = *
 entry_company_website = Site internet :
+
+error_action_recorder = Erreur: Une demande a été déjà réalisée. Veuillez recommencer dans {{module_action_recorder_create_account_pro_email_minutes}} minutes.

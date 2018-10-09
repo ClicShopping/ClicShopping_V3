@@ -38,6 +38,10 @@
     "SuppliersBatch":	"Module\\Hooks\\ClicShoppingAdmin\\Invoice\\SuppliersBatch",
     "InvoiceLabelBatch":	"Module\\Hooks\\ClicShoppingAdmin\\Invoice\\InvoiceLabelBatch",
     "ArchiveBatch":	"Module\\Hooks\\ClicShoppingAdmin\\Invoice\\ArchiveBatch"
+   },
+   "Shop/Contact": {
+    "DisplayRowContent":	"Module\\Hooks\\Shop\\Info\\Contact\\Evidence",
+    "PreAction":	"Module\\Hooks\\Shop\\Info\\Contact\\PreActionEvidence"
    }
   }
  },

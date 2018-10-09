@@ -46,14 +46,14 @@
      $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select id
-                                      from :table_action_recorder
-                                      where module = :module
-                                      and user_name = :user_name
-                                      and date_added >= date_sub(now(),
-                                      interval :limit_minutes minute)
-                                      and success = 1
-                                      limit :limit_attempts
-                                   ');
+                                            from :table_action_recorder
+                                            where module = :module
+                                            and user_name = :user_name
+                                            and date_added >= date_sub(now(),
+                                            interval :limit_minutes minute)
+                                            and success = 1
+                                            limit :limit_attempts
+                                         ');
       $Qcheck->bindValue(':module', $this->code);
       $Qcheck->bindValue(':user_name', $user_name);
       $Qcheck->bindInt(':limit_minutes', $this->minutes);

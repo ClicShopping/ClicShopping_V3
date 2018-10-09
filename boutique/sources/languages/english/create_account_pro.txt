@@ -31,3 +31,5 @@ email_facebook = http://www.facebook.com/
 
 entry_website_text_pro = *
 entry_company_website = Web site :
+
+ error_action_recorder = Error: An enquiry has already been sent. Please try again in {{module_action_recorder_create_account_pro_email_minutes}} minutes.

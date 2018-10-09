@@ -59,18 +59,6 @@
       $default_country_pro = CreatePro::getCountryPro();
       if (!isset($default_country_pro)) $default_country_pro = $_POST['country'];
 
-
- // number for the antispam
-      if (CONFIG_ANTISPAM == 'simple') {
-        $antispam = Mail::getConfirmationAntiSpam();
-      }
-
-      if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO') && CONFIG_ANTISPAM == 'recaptcha') {
-        if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT_PRO == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
-          $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
-        }
-      }
-
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
       $form = HTML::form('create_account_pro', CLICSHOPPING::link('index.php', 'Account&CreatePro&Process'), 'post', 'id="create_account_pro"',  ['tokenize' => true, 'action' => 'process']);
@@ -125,7 +113,7 @@
     $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER',
-          'configuration_value' => '100',
+          'configuration_value' => '150',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '4',

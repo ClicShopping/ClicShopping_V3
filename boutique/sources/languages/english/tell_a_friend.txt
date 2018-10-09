@@ -26,4 +26,4 @@
  error_invalid_product = This products not available. Try again.
  entry_antispam = How many :
 
- error_action_recorder = Error: A password reset link has already been sent. Please try again in {{module_action_recorder_tell_a_friend_email_minutes}} minutes.
+ error_action_recorder = Error: An enquiry has already been sent. Please try again in {{module_action_recorder_tell_a_friend_email_minutes}} minutes.

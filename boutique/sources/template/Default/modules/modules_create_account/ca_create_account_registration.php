@@ -12,7 +12,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Mail;
 
   class ca_create_account_registration {
     public $code;
@@ -40,7 +39,7 @@
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-    if (isset($_GET['Account'] ) && isset($_GET['Create']) ) {
+    if (isset($_GET['Account'] ) && isset($_GET['Create']) && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH;
 
       $header_tag ='<link rel="stylesheet" type="text/css" href="ext/javascript/datepicker/less/datepicker.less">';
@@ -56,10 +55,6 @@
         if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
           $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
         }
-      }
-// number for the antispam
-      if (CONFIG_ANTISPAM == 'simple') {
-        $antispam = Mail::getConfirmationAntiSpam();
       }
 
       $form =  HTML::form('create_account', CLICSHOPPING::link('index.php', 'Account&Create&Process'), 'post', 'id="create_account"',  ['tokenize' => true, 'action' => 'process']);
@@ -115,7 +110,7 @@
     $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER',
-          'configuration_value' => '100',
+          'configuration_value' => '150',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '4',
