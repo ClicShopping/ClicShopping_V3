@@ -518,6 +518,7 @@
           $CLICSHOPPING_Hooks->call('Create','Process');
 
           CLICSHOPPING::redirect('index.php', 'Account&CreatePro&Success');
+        }
       }
     }
   }
