@@ -299,19 +299,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display evidence system ?',
-          'configuration_key' => 'MODULE_CONTACT_US_FORM_EVIDENCE',
-          'configuration_value' => 'False',
-          'configuration_description' => 'Display a field allowing to upload evidence mp4, jpg, pdf',
-          'configuration_group_id' => '6',
-          'sort_order' => '1',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
-          'date_added' => 'now()'
-        ]
-      );
-
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_CONTACT_US_FORM_SORT_ORDER',
@@ -335,8 +322,7 @@
 
     public function keys() {
       return array('MODULES_CONTACT_US_FORM_STATUS',
-                   'MODULE_CONTACT_US_FORM_CONTENT_WIDTH',
-                   'MODULE_CONTACT_US_FORM_EVIDENCE',
+                   'MODULE_CONTACT_US_FORM_CONTENT_WIDTH'
                    'MODULES_CONTACT_US_FORM_SORT_ORDER'
                   );
     }

@@ -152,9 +152,31 @@
       return false;
     }
 
+//Remove specific double request with ?
+    public static function getRouteValue($route) {
+      $query = $route; //$_GET
+// replace parameter(s)
+      $query['?'] = '&';
+
+// rebuild url
+      $query_result = http_build_query($query);
+      $query_result = str_replace('%3F', '&', $query_result);
+
+      $split_parameters = explode('&', $query_result);
+
+      for($i = 0; $i < count($split_parameters); $i++) {
+        $final_split = explode('=', $split_parameters[$i]);
+        $split_complete[$final_split[0]] = $final_split[1];
+      }
+
+      $result = $split_complete;
+
+      return $result;
+    }
     public static function getRouteDestination($route = null, $filter_vendor_app = null) {
       if (empty($route)) {
-        $route = array_keys($_GET);
+
+        $route = array_keys(static::getRouteValue($_GET));
       }
 
       $result = $routes = [];

@@ -96,11 +96,6 @@
         if (!Is::email($to_email_address)) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_to_address'), 'error', 'friend');
-
-        } elseif (!Is::ValidateAntiSpam( (int)$antispam) ) {
-          $error = true;
-
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_number'), 'error', 'friend');
         }
 
         if ($error === false) {
