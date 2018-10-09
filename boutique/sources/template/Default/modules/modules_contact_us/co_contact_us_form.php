@@ -322,7 +322,7 @@
 
     public function keys() {
       return array('MODULES_CONTACT_US_FORM_STATUS',
-                   'MODULE_CONTACT_US_FORM_CONTENT_WIDTH'
+                   'MODULE_CONTACT_US_FORM_CONTENT_WIDTH',
                    'MODULES_CONTACT_US_FORM_SORT_ORDER'
                   );
     }
