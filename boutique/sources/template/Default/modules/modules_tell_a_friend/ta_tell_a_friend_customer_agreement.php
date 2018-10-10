@@ -99,7 +99,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_SORT_ORDER',
-          'configuration_value' => '50',
+          'configuration_value' => '750',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '4',

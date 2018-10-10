@@ -11,9 +11,8 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
 
-  class ta_tell_a_friend_button_process {
+  class co_contact_us_form_button_process {
     public $code;
     public $group;
     public $title;
@@ -25,54 +24,49 @@
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
-      $this->title = CLICSHOPPING::getDef('modules_tell_a_friend_button_process_title');
-      $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_button_process_description');
+      $this->title = CLICSHOPPING::getDef('modules_contact_us_form_button_process_title');
+      $this->description = CLICSHOPPING::getDef('modules_contact_us_form_button_process_description');
 
-      if ( defined('MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS') ) {
-        $this->sort_order = MODULES_TELL_A_FRIEND_BUTTON_PROCESS_SORT_ORDER;
-        $this->enabled = (MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS == 'True');
+      if ( defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS') ) {
+        $this->sort_order = (int)MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER;
+        $this->enabled = (MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS == 'True');
       }
     }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
+      if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
+        $content_width = (int)MODULES_CONTACT_US_FORM_BUTTON_PROCESS_CONTENT_WIDTH;
 
-        $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
-        $content_width = (int)MODULES_TELL_A_FRIEND_BUTTON_PROCESS_CONTENT_WIDTH;
-
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
-        $button_process =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
-
-        $data = '<!-- ta_tell_a_friend_button_process start -->' . "\n";
-
+        $contact_us_form_button_process = '<!--  contact_us_form_button_process start -->' . "\n";
+        $endform ='</form>';
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_button_process'));
+        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_form_button_process'));
 
-        $data .= ob_get_clean();
+        $contact_us_form_button_process .= ob_get_clean();
 
-        $data .= '<!-- ta_tell_a_friend_button_process end -->' . "\n";
+        $contact_us_form_button_process .= '<!-- contact_us_form_button_process end -->' . "\n";
 
-        $CLICSHOPPING_Template->addBlock($data, $this->group);
+        $CLICSHOPPING_Template->addBlock($contact_us_form_button_process, $this->group);
       }
-    } // public function execute
+    }
 
     public function isEnabled() {
       return $this->enabled;
     }
 
     public function check() {
-      return defined('MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS');
+      return defined('MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS');
     }
 
     public function install() {
       $CLICSHOPPING_Db = Registry::get('Db');
 
+
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Do you want activate this module ?',
-          'configuration_key' => 'MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS',
+          'configuration_key' => 'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS',
           'configuration_value' => 'True',
           'configuration_description' => 'Do you want activate this module in your shop ?',
           'configuration_group_id' => '6',
@@ -84,7 +78,7 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the width of the module',
-          'configuration_key' => 'MODULES_TELL_A_FRIEND_BUTTON_PROCESS_CONTENT_WIDTH',
+          'configuration_key' => 'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_CONTENT_WIDTH',
           'configuration_value' => '12',
           'configuration_description' => 'Select a number between 1 and 12',
           'configuration_group_id' => '6',
@@ -94,20 +88,17 @@
         ]
       );
 
+
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
-          'configuration_key' => 'MODULES_TELL_A_FRIEND_BUTTON_PROCESS_SORT_ORDER',
-          'configuration_value' => '800',
+          'configuration_key' => 'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER',
+          'configuration_value' => '700',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
-          'sort_order' => '4',
+          'sort_order' => '10',
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 
@@ -116,9 +107,9 @@
     }
 
     public function keys() {
-      return array('MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS',
-                   'MODULES_TELL_A_FRIEND_BUTTON_PROCESS_CONTENT_WIDTH',
-                   'MODULES_TELL_A_FRIEND_BUTTON_PROCESS_SORT_ORDER'
-                  );
+      return ['MODULES_CONTACT_US_FORM_BUTTON_PROCESS_STATUS',
+              'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_CONTENT_WIDTH',
+              'MODULES_CONTACT_US_FORM_BUTTON_PROCESS_SORT_ORDER'
+             ];
     }
   }

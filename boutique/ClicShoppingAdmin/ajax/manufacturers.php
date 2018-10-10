@@ -19,11 +19,11 @@
     $terms = strtolower($_GET["q"]);
 
     $Qcheck = $CLICSHOPPING_Db->prepare('select distinct manufacturers_id as id,
-                                                          manufacturers_name as name
-                                          from :table_manufacturers
-                                          where manufacturers_name LIKE :terms
-                                          limit 10
-                                        ');
+                                                         manufacturers_name as name
+                                        from :table_manufacturers
+                                        where manufacturers_name LIKE :terms
+                                        limit 10
+                                      ');
     $Qcheck->bindValue(':terms', '%' . $terms . '%');
     $Qcheck->execute();
 
@@ -43,4 +43,3 @@
       echo $json_response;
     }
   }
-

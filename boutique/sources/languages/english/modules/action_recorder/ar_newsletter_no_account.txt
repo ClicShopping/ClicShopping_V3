@@ -1,3 +1,0 @@
-
- module_action_recorder_newsletter_no_account_title = Newsletter Anonymes
- module_action_recorder_newsletter_no_account_description = Enregistrement des utilisations du module Newsletter Anonymes.

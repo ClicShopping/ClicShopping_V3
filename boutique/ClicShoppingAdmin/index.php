@@ -12,23 +12,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-// Start the clock for the page parse time log
-  define('PAGE_PARSE_START_TIME', microtime());
-  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../includes/ClicShopping/') . '/');
-
-// Set the level of error reporting
-  defined( 'E_DEPRECATED' ) ? error_reporting( E_ALL & ~E_NOTICE & ~E_DEPRECATED ) : error_reporting( E_ALL & ~E_NOTICE );
-
-  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
-  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
-
-  CLICSHOPPING::initialize();
-
-  if (PHP_VERSION_ID < 70000) {
-    include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/random_compat/random.php');
-  }
-
-  CLICSHOPPING::loadSite('ClicShoppingAdmin');
+  require('includes/application_top.php');
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 

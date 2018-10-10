@@ -16,32 +16,30 @@
   $CLICSHOPPING_Db = Registry::get('Db');
 
   if (isset($_REQUEST['q'])) {
-
     $terms = strtolower($_GET["q"]);
 
     $Qcheck = $CLICSHOPPING_Db->prepare('select distinct suppliers_id as id,
-                                                    suppliers_name as name
-                                   from :table_suppliers
-                                   where suppliers_name LIKE :terms
-                                   limit 10;
-                                  ');
-    $Qcheck->bindValue(':terms', '%'.$terms.'%');
+                                                         suppliers_name as name
+                                       from :table_suppliers
+                                       where suppliers_name LIKE :terms
+                                       limit 10;
+                                      ');
+    $Qcheck->bindValue(':terms', '%' . $terms . '%');
     $Qcheck->execute();
-
 
     $list = $Qcheck->rowCount() ;
 
     if ($list > 0) {
       $array = [];
 
-      while ($value =  $Qcheck->fetch() ) {
+      while ($value = $Qcheck->fetch() ) {
         $array[] = $value;
       }
 
-    # JSON-encode the response
+# JSON-encode the response
       $json_response = json_encode($array); //Return the JSON Array
 
-    # Return the response
+# Return the response
       echo $json_response;
     }
   }
