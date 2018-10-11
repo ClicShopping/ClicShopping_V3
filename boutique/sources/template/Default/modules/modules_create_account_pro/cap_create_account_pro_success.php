@@ -35,7 +35,6 @@
     }
 
   public function execute() {
-
     $CLICSHOPPING_Template = Registry::get('Template');
 
     if (isset($_GET['Account'] ) && isset($_GET['CreatePro']) && isset($_GET['Success']) ) {
