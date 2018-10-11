@@ -25,7 +25,7 @@
     }
 
     public function execute() {
-      global $process, $exists, $entry;
+      global $exists, $entry;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
@@ -40,9 +40,6 @@
         $CLICSHOPPING_NavigationHistory->setSnapshot();
         CLICSHOPPING::redirect('index.php', 'Account&LogIn');
       }
-
-// error checking when updating or adding an entry
-      $process = false;
 
       $new_customer = HTML::sanitize($_GET['newcustomer']);
 

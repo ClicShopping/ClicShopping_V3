@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -18,11 +18,12 @@
   class Create extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      $process = false;
 
       if (isset($_POST['action']) && $_POST['action'] == 'process' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken']) ) {
         $process = true;
@@ -169,6 +170,7 @@
 
           $entry_state_has_zones = ($Qcheck->fetch() !== false);
 
+
           if ($entry_state_has_zones === true) {
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
@@ -184,16 +186,15 @@
               $Qzone->execute();
             } else {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                                  from :table_zones
-                                                  where zone_country_id = :zone_country_id
-                                                  and zone_id = :zone_id
-                                                  and zone_status = 0
-                                                ');
-
+                                                   from :table_zones
+                                                   where zone_country_id = :zone_country_id
+                                                   and (zone_name = :zone_name or zone_code = :zone_code)
+                                                   and zone_status = 0
+                                                 ');
 
               $Qzone->bindInt(':zone_country_id', $country);
-              $Qzone->bindValue(':zone_id',  $state);
-
+              $Qzone->bindValue(':zone_name', $state);
+              $Qzone->bindValue(':zone_code', $state);
               $Qzone->execute();
             }
 

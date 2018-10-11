@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -20,12 +20,15 @@
   class Edit extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $exists, $process, $entry_state_has_zones, $country;
+      global $exists;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+// error checking when updating or adding an entry
+      $process = false;
 
       if ( $exists === false ) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'addressbook');
@@ -173,11 +176,11 @@
           $zone_id = 0;
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select zone_country_id
-                                         from :table_zones
-                                         where zone_country_id = :zone_country_id
-                                         and zone_status = 0
-                                         limit 1
-                                         ');
+                                               from :table_zones
+                                               where zone_country_id = :zone_country_id
+                                               and zone_status = 0
+                                               limit 1
+                                               ');
           $Qcheck->bindInt(':zone_country_id', (int)$country);
           $Qcheck->execute();
 
@@ -186,11 +189,11 @@
           if ($entry_state_has_zones === true) {
 
             $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                          from :table_zones
-                                          where zone_country_id = :zone_country_id
-                                          and (zone_name = :zone_name or zone_code = :zone_code)
-                                          and zone_status = 0
-                                         ');
+                                                from :table_zones
+                                                where zone_country_id = :zone_country_id
+                                                and (zone_name = :zone_name or zone_code = :zone_code)
+                                                and zone_status = 0
+                                               ');
             $Qzone->bindInt(':zone_country_id', $country);
             $Qzone->bindValue(':zone_name', $state);
             $Qzone->bindValue(':zone_code', $state);

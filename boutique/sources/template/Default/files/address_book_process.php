@@ -47,7 +47,6 @@
   if (isset($_GET['delete'])) {
 ?>
       <div class="separator"></div>
-      <h3><?php echo CLICSHOPPING::getDef('delete address_title'); ?></h3>
       <span class="col-md-9"> <strong><?php echo CLICSHOPPING::getDef('delete_address_description'); ?></strong></span>
       <span class="col-md-3">
         <div>
