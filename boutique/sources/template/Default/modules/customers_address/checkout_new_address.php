@@ -15,6 +15,7 @@
 
   $CLICSHOPPING_Address = Registry::get('Address');
   $CLICSHOPPING_Customer = Registry::get('Customer');
+  $CLICSHOPPING_Db = Registry::get('Db');
 
   if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ACCOUNT_COMPANY_PRO == 'true' ) ) {
 

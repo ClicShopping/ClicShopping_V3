@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -154,14 +154,12 @@
       return array('CLICSHOPPING_APP_ITEM_IT_SORT_ORDER');
     }
 
-
     public function getNumberOfItems() {
-      global $total_count;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Order = Registry::get('Order');
+      $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
-      $number_of_items = $total_count;
+      $number_of_items = $CLICSHOPPING_ShoppingCart->count_contents();
 
       if ($CLICSHOPPING_Order->content_type == 'mixed') {
         $number_of_items = 0;

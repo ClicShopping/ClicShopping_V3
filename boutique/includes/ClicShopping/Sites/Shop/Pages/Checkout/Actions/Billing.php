@@ -20,7 +20,7 @@
   class Billing extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $total_count, $CLICSHOPPING_Payment;
+      global $CLICSHOPPING_Payment;
 
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');

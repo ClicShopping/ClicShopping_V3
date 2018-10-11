@@ -19,7 +19,7 @@
   class Shipping extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $quotes, $total_count, $free_shipping, $CLICSHOPPING_Shipping, $shipping;
+      global $quotes, $free_shipping, $CLICSHOPPING_Shipping, $shipping;
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');

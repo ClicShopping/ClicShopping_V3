@@ -17,6 +17,7 @@
 
   $CLICSHOPPING_Address = Registry::get('Address');
   $CLICSHOPPING_Customer = Registry::get('Customer');
+  $CLICSHOPPING_Db = Registry::get('Db');
 
   if (!isset($process)) $process = false;
 ?>
