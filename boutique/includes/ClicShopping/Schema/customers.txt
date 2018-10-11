@@ -1,7 +1,7 @@
 customers_id int not_null auto_increment
 customers_company varchar(255)
 customers_siret varchar(14)
-customers_ape varchar(4)
+customers_ape varchar(255)
 customers_tva_intracom varchar(14)
 customers_tva_intracom_code_iso char(2)
 customers_gender char(1)

@@ -36,6 +36,8 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $process = false;
+
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $error = false;
         $process = true;
@@ -309,11 +311,11 @@
 
 // Groupe par defaut e utiliser pour les nouveaux clients
         $QcustomersGroup = $CLICSHOPPING_Db->prepare('select group_order_taxe,
-                                                       group_payment_unallowed,
-                                                       group_shipping_unallowed
-                                                 from :table_customers_groups
-                                                 where customers_group_id = :customers_group_id
-                                                 ');
+                                                             group_payment_unallowed,
+                                                             group_shipping_unallowed
+                                                       from :table_customers_groups
+                                                       where customers_group_id = :customers_group_id
+                                                       ');
         $QcustomersGroup->bindInt(':customers_group_id', (int)ACCOUNT_GROUP_DEFAULT_PRO);
         $QcustomersGroup->execute();
 
