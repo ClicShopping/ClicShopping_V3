@@ -18,7 +18,9 @@
   class PaymentAddress extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $error, $process;
+      global $process;
+
+      $process = false;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -45,9 +47,6 @@
 
         CLICSHOPPING::redirect('index.php','Checkout&Billing');
       }
-
-      $error = false;
-      $process = false;
 
 // if no billing destination address was selected, use their own address as default
       if (!isset($_SESSION['billto'])) {

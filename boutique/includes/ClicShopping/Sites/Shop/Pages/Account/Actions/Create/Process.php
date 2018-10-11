@@ -26,7 +26,7 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      $CLICSHOPPING_Db = Registry::get('Db');
+       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -35,6 +35,8 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+
+// error checking when updating or adding an entry
         $error = false;
 
         $CLICSHOPPING_Hooks->call('Create','PreAction');

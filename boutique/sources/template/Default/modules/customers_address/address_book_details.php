@@ -310,11 +310,11 @@
         $zones_array = [];
 
         $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name
-                                      from :table_zones
-                                     where zone_country_id = :zone_country_id
-                                     and zone_status = 0
-                                     order by zone_name
-                                ');
+                                             from :table_zones
+                                             where zone_country_id = :zone_country_id
+                                             and zone_status = 0
+                                             order by zone_name
+                                            ');
         $Qcheck->bindInt(':zone_country_id', (int)$country );
         $Qcheck->execute();
 

@@ -18,8 +18,6 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $process;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -29,9 +27,9 @@
       $process = false;
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-
 // process a new billing address
         if ( !$CLICSHOPPING_Customer->hasDefaultAddress() || (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['street_address']) && !empty($_POST['street_address'])) ) {
+
           $process = true;
 
           if (ACCOUNT_GENDER == 'true') $gender = HTML::sanitize($_POST['gender']);
@@ -44,6 +42,7 @@
           $city = HTML::sanitize($_POST['city']);
           $country = HTML::sanitize($_POST['country']);
           $entry_telephone = HTML::sanitize($_POST['entry_telephone']);
+
 
           if ( ACCOUNT_STATE == 'true' ) {
             if (isset($_POST['zone_id'])) {
@@ -123,11 +122,11 @@
             $zone_id = 0;
 
             $Qcheck = $CLICSHOPPING_Db->prepare('select zone_id
-                                         from :table_zones
-                                         where zone_country_id = :zone_country_id
-                                         and zone_status = 0
-                                         limit 1
-                                         ');
+                                                 from :table_zones
+                                                 where zone_country_id = :zone_country_id
+                                                 and zone_status = 0
+                                                 limit 1
+                                                 ');
             $Qcheck->bindInt(':zone_country_id', $country);
             $Qcheck->execute();
 
@@ -136,11 +135,11 @@
             if ( $entry_state_has_zones === true ) {
               if (ACCOUNT_STATE_DROPDOWN == 'true') {
                 $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                               from :table_zones
-                                               where zone_country_id = :zone_country_id
-                                               and (zone_name = :zone_name or zone_code = :zone_code)
-                                               and zone_status = 0
-                                             ');
+                                                     from :table_zones
+                                                     where zone_country_id = :zone_country_id
+                                                     and (zone_name = :zone_name or zone_code = :zone_code)
+                                                     and zone_status = 0
+                                                   ');
 
                 $Qzone->bindInt(':zone_country_id', $country);
                 $Qzone->bindValue(':zone_name', $state);
@@ -148,16 +147,15 @@
                 $Qzone->execute();
               } else {
                 $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                              from :table_zones
-                                              where zone_country_id = :zone_country_id
-                                              and zone_id = :zone_id
-                                              and zone_status = 0
-                                            ');
-
+                                                     from :table_zones
+                                                     where zone_country_id = :zone_country_id
+                                                     and (zone_name = :zone_name or zone_code = :zone_code)
+                                                     and zone_status = 0
+                                                   ');
 
                 $Qzone->bindInt(':zone_country_id', $country);
-                $Qzone->bindValue(':zone_id',  $state);
-
+                $Qzone->bindValue(':zone_name', $state);
+                $Qzone->bindValue(':zone_code', $state);
                 $Qzone->execute();
               }
 
@@ -241,6 +239,7 @@
           }
 // process the selected shipping destination
         } elseif ( isset($_POST['address']) ) {
+
           $reset_payment = false;
 
           if ( isset($_SESSION['billto']) ) {

@@ -20,9 +20,9 @@
   if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ACCOUNT_COMPANY_PRO == 'true' ) ) {
 
     $QaccountGroup = $CLICSHOPPING_Db->prepare('select customers_company
-                                         from :table_customers
-                                         where customers_id = :customers_id
-                                        ');
+                                               from :table_customers
+                                               where customers_id = :customers_id
+                                              ');
     $QaccountGroup->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
     $QaccountGroup->execute();
 ?>
@@ -132,7 +132,6 @@
       </div>
     </div>
 
-
 <?php
   if (ACCOUNT_SUBURB == 'true') {
 ?>
@@ -141,7 +140,7 @@
         <div class="form-group row">
           <label for="InputSuburb" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_suburb'); ?></label>
           <div class="col-sm-6 col-md-4">
-            <?php echo HTML::inputField('street_address', null, 'id="InputSuburb" aria-describedby="' . CLICSHOPPING::getDef('entry_suburb') . '" placeholder="' . CLICSHOPPING::getDef('entry_suburb') . '"'); ?>
+            <?php echo HTML::inputField('suburb', null, 'id="InputSuburb" aria-describedby="' . CLICSHOPPING::getDef('entry_suburb') . '" placeholder="' . CLICSHOPPING::getDef('entry_suburb') . '"'); ?>
           </div>
         </div>
       </div>

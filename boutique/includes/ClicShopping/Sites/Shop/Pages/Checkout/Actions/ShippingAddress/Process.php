@@ -19,7 +19,6 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -124,11 +123,11 @@
             $zone_id = 0;
 
             $Qcheck = $CLICSHOPPING_Db->prepare('select zone_id
-                                           from :table_zones
-                                           where zone_country_id = :zone_country_id
-                                           and zone_status = 0
-                                           limit 1
-                                          ');
+                                                 from :table_zones
+                                                 where zone_country_id = :zone_country_id
+                                                 and zone_status = 0
+                                                 limit 1
+                                                ');
             $Qcheck->bindInt(':zone_country_id', $country);
             $Qcheck->execute();
 
@@ -137,11 +136,11 @@
             if ( $entry_state_has_zones === true ) {
               if (ACCOUNT_STATE_DROPDOWN == 'true') {
                 $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                               from :table_zones
-                                               where zone_country_id = :zone_country_id
-                                               and (zone_name = :zone_name or zone_code = :zone_code)
-                                               and zone_status = 0
-                                             ');
+                                                     from :table_zones
+                                                     where zone_country_id = :zone_country_id
+                                                     and (zone_name = :zone_name or zone_code = :zone_code)
+                                                     and zone_status = 0
+                                                   ');
 
                 $Qzone->bindInt(':zone_country_id', $country);
                 $Qzone->bindValue(':zone_name', $state);
@@ -149,16 +148,15 @@
                 $Qzone->execute();
               } else {
                 $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                              from :table_zones
-                                              where zone_country_id = :zone_country_id
-                                              and zone_id = :zone_id
-                                              and zone_status = 0
-                                            ');
-
+                                                     from :table_zones
+                                                     where zone_country_id = :zone_country_id
+                                                     and (zone_name = :zone_name or zone_code = :zone_code)
+                                                     and zone_status = 0
+                                                  ');
 
                 $Qzone->bindInt(':zone_country_id', $country);
-                $Qzone->bindValue(':zone_id',  $state);
-
+                $Qzone->bindValue(':zone_name', $state);
+                $Qzone->bindValue(':zone_code', $state);
                 $Qzone->execute();
               }
 

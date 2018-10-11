@@ -36,7 +36,6 @@
      }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
