@@ -70,7 +70,7 @@
 
 <!--smartmenu -->
     <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/smartmenus_config.js'); ?>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.smartmenus/1.0.1/jquery.smartmenus.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.smartmenus/1.1.0/jquery.smartmenus.min.js"></script>
 
 <!-- autocompletion -->
     <script  src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/tokeninput/jquery.tokeninput.min.js'); ?>"></script>
@@ -84,8 +84,8 @@
     <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/tab/bootstrap_tab.js'); ?>"></script>
 
 <!-- date picker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.<?php echo CLICSHOPPING::getDef('jquery_datepicker_language'); ?>.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.<?php echo CLICSHOPPING::getDef('jquery_datepicker_language'); ?>.min.js"></script>
 
 <?php include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/datepicker.php'); ?>
 
