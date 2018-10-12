@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -19,6 +19,7 @@
   class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
     protected $newParentId;
+    protected $currentCategoryId;
 
     public function __construct(){
       $this->app = Registry::get('Products');
@@ -53,10 +54,10 @@
                                                     and categories_id not in ( :categories_id )
                                                   ');
         $QduplicateCheck->bindInt(':products_id', $this->ID);
-        $QduplicateCheck->bindInt(':categories_id',$this->newParentId );
+        $QduplicateCheck->bindInt(':categories_id',$this->newParentId);
         $QduplicateCheck->execute();
 
-        if ($QduplicateCheck->rowCount() < 1.01) {
+        if ($QduplicateCheck->rowCount() > 0) {
           $Qupdate = $this->app->db->prepare('update :table_products_to_categories
                                               set categories_id = :categories_id
                                               where products_id = :products_id
