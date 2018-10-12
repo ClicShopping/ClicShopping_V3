@@ -23,9 +23,9 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if ($CLICSHOPPING_NavigationHistory->hasSnapshot()) {
-        $origin_href = $CLICSHOPPING_NavigationHistory->getSnapshotURL();
+        $CLICSHOPPING_NavigationHistory->getSnapshotURL();
         $CLICSHOPPING_NavigationHistory->resetSnapshot();
-        CLICSHOPPING::redirect($origin_href);
+        CLICSHOPPING::redirect('index.php', 'Account&CreatePro&Success');
       }
 // templates
         $this->page->setFile('create_account_pro_success.php');

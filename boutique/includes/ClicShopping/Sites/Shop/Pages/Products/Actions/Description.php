@@ -13,16 +13,17 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\Service\Shop\WhosOnline;
 
   class Description extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $spider_flag, $id;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+
+      $spider_flag = WhosOnline::getResultSpiderFlag();
 
       if (!isset($_GET['products_id'])) {
         CLICSHOPPING::redirect('index.php');
@@ -32,7 +33,7 @@
 
       if ( $CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
 
-        if ($spider_flag === false ) {
+        if ($spider_flag === false) {
           $CLICSHOPPING_ProductsCommon->countUpdateProductsView();
         }
       }// end product group view

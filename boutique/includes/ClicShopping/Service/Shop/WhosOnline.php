@@ -18,9 +18,9 @@
 
   class WhosOnline implements \ClicShopping\OM\ServiceInterface {
 
-    public static function start() {
-      global $spider_flag;
+    private static $spider_flag;
 
+    public static function start() {
       if (!Registry::exists('WhosOnline')) {
         $CLICSHOPPING_Customer = Registry::get('Customer');
         $CLICSHOPPING_Db = Registry::get('Db');
@@ -34,16 +34,15 @@
         $xx_mins_ago = ($current_time - 900);
 
         if ( $CLICSHOPPING_Customer->isLoggedOn() ) {
-
           $wo_customer_id = $CLICSHOPPING_Customer->getID();
           $wo_full_name = $CLICSHOPPING_Customer->getName();
-
         } else {
 
           $wo_customer_id = null;
           $wo_full_name = 'Guest';
+          self::$spider_flag = false;
 
-          if ($spider_flag || (strpos ($user_agent, "Googlebot") > 0 )) {
+          if (!empty($user_agent) || strpos ($user_agent, "Googlebot") > 0) {
             $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
             if (!empty($user_agent)) {
@@ -51,7 +50,7 @@
                 if (!empty($spider)) {
                   if (strpos($user_agent, $spider) !== false) {
                     $wo_full_name = $spider;
-                    $spider_flag = true;
+                    self::$spider_flag = true;
 
                     break;
                   }
@@ -78,7 +77,6 @@
         $Qsession->execute();
 
         if ($Qsession->fetch() !== false) {
-
           $CLICSHOPPING_Db->save('whos_online', ['customer_id' =>(int)$wo_customer_id,
                                                 'full_name' => $wo_full_name,
                                                 'ip_address' => $wo_ip_address,
@@ -89,7 +87,6 @@
                               );
 
         } else {
-
           if ($_SERVER['HTTP_REFERER'] === null) {
             $http_referer = '';
           } else {
@@ -112,6 +109,10 @@
       } else {
         return false;
       }
+    }
+
+    public static function getResultSpiderFlag() {
+      return self::$spider_flag;
     }
 
     public static function stop() {
