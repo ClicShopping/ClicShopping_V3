@@ -20,7 +20,7 @@
 //                      file not found                             //
 // ----------------------------------------------------------------//
 
-  if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (is_null($id)) || $CLICSHOPPING_ProductsCommon->getID() === false ) {
+  if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (is_null($CLICSHOPPING_ProductsCommon->getID())) || $CLICSHOPPING_ProductsCommon->getID() === false ) {
 //    header('HTTP/1.0 404 Not Found');
 ?>
  <section class="product" id="product">
