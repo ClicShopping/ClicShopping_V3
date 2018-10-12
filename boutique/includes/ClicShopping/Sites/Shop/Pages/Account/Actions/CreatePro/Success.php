@@ -17,16 +17,20 @@
   class Success extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
+      global $origin_href;
+
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if ($CLICSHOPPING_NavigationHistory->hasSnapshot()) {
-        $CLICSHOPPING_NavigationHistory->getSnapshotURL();
+      if ( $CLICSHOPPING_NavigationHistory->hasSnapshot() ) {
+        $origin_href = $CLICSHOPPING_NavigationHistory->getSnapshotURL();
         $CLICSHOPPING_NavigationHistory->resetSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&CreatePro&Success');
+      } else {
+        $origin_href = CLICSHOPPING::redirect('index.php');
       }
+
 // templates
         $this->page->setFile('create_account_pro_success.php');
 //Content
