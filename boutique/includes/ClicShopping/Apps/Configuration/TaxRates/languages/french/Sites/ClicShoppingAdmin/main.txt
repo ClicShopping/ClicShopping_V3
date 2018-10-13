@@ -44,7 +44,7 @@ table_heading_zone = Zone
 table_heading_tax_rate = Taux fiscaux
 table_heading_action = Action
 table_heading_tax_description = Description
-table_heading_code_tax_odoo = Code taxe Odoo
+table_heading_code_tax_erp = Code taxe ERP
 
 text_info_edit_intro = Merci de faire les changements nécessaires
 text_info_date_added = Date d'ajout :
@@ -60,6 +60,6 @@ text_info_delete_intro = Etes vous sur de vouloir supprimer ce taux fiscal ?
 text_info_heading_new_tax_rate = Nouveau taux fiscal
 text_info_heading_edit_tax_rate = Editer taux fiscal
 text_info_heading_delete_tax_rate = Supprimer taux fiscal
-text_info_tax_odoo = Code de Taxe Odoo<br /><strong>Note :</strong>Veuillez consulter Odoo dans <br />la section Comptabilité/taxes/taxes<br />
+text_info_tax_erp = Code de Taxe ERP<br /><strong>Note :</strong>Veuillez consulter ERP dans <br />la section Comptabilité/taxes/taxes<br />
 
 text_info_delete_info =  Supprimer ce taux de taxe

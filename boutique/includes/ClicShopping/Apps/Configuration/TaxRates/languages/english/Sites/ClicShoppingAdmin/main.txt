@@ -47,7 +47,7 @@ table_heading_zone = Zone
 table_heading_tax_rate = Tax Rate
 table_heading_action = Action
 table_heading_tax_description = Description
-table_heading_code_tax_odoo = Tax code Odoo
+table_heading_code_tax_erp = Tax code ERP
 
 text_info_edit_intro = Please make any necessary changes
 text_info_date_added = Date Added:
@@ -63,6 +63,6 @@ text_info_delete_intro = Are you sure you want to delete this tax rate?
 text_info_heading_new_tax_rate = New Tax Rate
 text_info_heading_edit_tax_rate = Edit Tax Rate
 text_info_heading_delete_tax_rate = Delete Tax Rate
-text_info_tax_odoo = Tax code Odoo<br /><strong>Note :</strong> Please, consult Odoo in <br />section Accounting/Taxes/Taxes<br />
+text_info_tax_erp = Tax code ERP<br /><strong>Note :</strong> Please, consult ERP in <br />section Accounting/Taxes/Taxes<br />
 
 text_info_delete_info =  Delete his tax rate

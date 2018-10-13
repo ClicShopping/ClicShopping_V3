@@ -164,7 +164,7 @@
                                                                             o.currency_value,
                                                                             s.orders_status_name,
                                                                             ot.text as order_total,
-                                                                            o.odoo_invoice
+                                                                            o.erp_invoice
                                                    from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
                                                         :table_orders_status s
                                                    where o.customers_id = :customers_id
@@ -199,7 +199,7 @@
                                                                             o.currency_value,
                                                                             s.orders_status_name,
                                                                             ot.text as order_total,
-                                                                            o.odoo_invoice
+                                                                            o.erp_invoice
                                                  from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
                                                       :table_orders_status s
                                                  where o.orders_status = s.orders_status_id
@@ -235,7 +235,7 @@
                                                                               o.currency_value,
                                                                               s.orders_status_name,
                                                                               ot.text as order_total,
-                                                                              o.odoo_invoice
+                                                                              o.erp_invoice
                                                    from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
                                                         :table_orders_status s
                                                    where o.orders_status = s.orders_status_id
@@ -265,7 +265,7 @@
                                                                                 o.currency_value,
                                                                                 s.orders_status_name,
                                                                                 ot.text as order_total,
-                                                                                o.odoo_invoice
+                                                                                o.erp_invoice
                                                        from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
                                                             :table_orders_status s
                                                        where o.orders_status = s.orders_status_id
@@ -299,7 +299,7 @@
                                                                               o.currency_value,
                                                                               s.orders_status_name,
                                                                               ot.text as order_total,
-                                                                              o.odoo_invoice
+                                                                              o.erp_invoice
                                                    from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
                                                         :table_orders_status s
                                                    where o.orders_status = s.orders_status_id
@@ -332,7 +332,7 @@
                                                                               o.currency_value,
                                                                               s.orders_status_name,
                                                                               ot.text as order_total,
-                                                                              o.odoo_invoice
+                                                                              o.erp_invoice
                                                    from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
                                                         :table_orders_status s
                                                    where o.orders_status = s.orders_status_id
@@ -460,21 +460,21 @@
 ?>
               <td class="text-md-right"><?php echo $Qorders->value('orders_status_name'); ?></td>
 <?php
-      if ($Qorders->valueInt('odoo_invoice') == 1 ) {
+      if ($Qorders->valueInt('erp_invoice') == 1 ) {
 ?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_odoo')); ?></td>
+              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_erp')); ?></td>
 <?php
-      } elseif ($Qorders->valueInt('odoo_invoice') == 2) {
+      } elseif ($Qorders->valueInt('erp_invoice') == 2) {
 ?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_odoo')); ?></td>
+              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/erp_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
 <?php
-      } elseif ($Qorders->valueInt('odoo_invoice') == 3) {
+      } elseif ($Qorders->valueInt('erp_invoice') == 3) {
 ?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_odoo')); ?></td>
+              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_erp')); ?></td>
 <?php
-      } elseif ($Qorders->valueInt('odoo_invoice') == 4)  {
+      } elseif ($Qorders->valueInt('erp_invoice') == 4)  {
 ?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice_cancelled.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_cancel_odoo')); ?></td>
+              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice_cancelled.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_cancel_erp')); ?></td>
 <?php
       } else {
 ?>

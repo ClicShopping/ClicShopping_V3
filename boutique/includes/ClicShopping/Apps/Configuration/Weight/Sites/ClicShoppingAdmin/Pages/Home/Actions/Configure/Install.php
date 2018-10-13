@@ -102,7 +102,7 @@ CREATE TABLE :table_weight (
   tax_description varchar(255) not_null,
   last_modified datetime,
   date_added datetime not_null,
-  code_tax_odoo varchar(15) null
+  code_tax_erp varchar(15) null
   PRIMARY KEY weight_id
 ) CHARSET=utf8 COLLATE=utf8_unicode_ci;
 EOD;

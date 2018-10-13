@@ -107,9 +107,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_odoo'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_odoo'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_erp'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_erp'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('code_tax_odoo', $trInfo->code_tax_odoo); ?>
+            <?php echo HTML::inputField('code_tax_erp', $trInfo->code_tax_erp); ?>
           </div>
         </div>
       </div>

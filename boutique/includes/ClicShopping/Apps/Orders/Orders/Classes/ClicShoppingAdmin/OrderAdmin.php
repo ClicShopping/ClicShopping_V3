@@ -80,7 +80,7 @@
                      'orders_status' => $Qorder->valueInt('orders_status'),
                      'orders_status_invoice' => $Qorder->valueInt('orders_status_invoice'),
                      'last_modified' => $Qorder->value('last_modified'),
-                     'odoo_invoice' => $Qorder->valueInt('odoo_invoice')
+                     'erp_invoice' => $Qorder->valueInt('erp_invoice')
                     ];
 
       foreach ( $this->totals as $t ) {

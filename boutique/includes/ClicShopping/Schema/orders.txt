@@ -51,7 +51,7 @@ client_computer_ip varchar(255)
 provider_name_client varchar(255)
 customers_cellular_phone varchar(255)
 orders_archive int(1) default(0) not_null
-odoo_invoice int(1) default(0) not_null
+erp_invoice int(1) default(0) not_null
 --
 primary orders_id
 idx_orders_customers_id customers_id

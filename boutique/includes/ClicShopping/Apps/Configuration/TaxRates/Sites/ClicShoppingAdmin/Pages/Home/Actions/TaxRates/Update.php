@@ -29,7 +29,7 @@
       $tax_rate = HTML::sanitize($_POST['tax_rate']);
       $tax_description = HTML::sanitize($_POST['tax_description']);
       $tax_priority = HTML::sanitize($_POST['tax_priority']);
-      $code_tax_odoo = HTML::sanitize($_POST['code_tax_odoo']);
+      $code_tax_erp = HTML::sanitize($_POST['code_tax_erp']);
 
       if(!is_numeric($tax_rate)) {
         $this->app->redirect('TaxRates&page=' . $_GET['page'] . '&tID=' . $tax_rates_id);
@@ -42,7 +42,7 @@
                     'tax_description' => $tax_description,
                     'tax_priority' => (int)$tax_priority,
                     'last_modified' => 'now()',
-                    'code_tax_odoo' => $code_tax_odoo
+                    'code_tax_erp' => $code_tax_erp
                   ];
 
       $this->app->db->save('tax_rates', $sql_array, ['tax_rates_id' => (int)$tax_rates_id]);

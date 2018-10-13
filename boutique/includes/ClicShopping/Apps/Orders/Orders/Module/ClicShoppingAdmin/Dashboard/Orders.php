@@ -54,7 +54,7 @@
                                                  ifnull(o.last_modified, 0)) as date_last_modified,
                                                  s.orders_status_name,
                                                  s.language_id,
-                                                 o.odoo_invoice,
+                                                 o.erp_invoice,
                                                  ot.text as order_total
                                           from :table_orders o,
                                                :table_orders_total ot,
@@ -84,7 +84,7 @@
       $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_title') . '</th>';
       $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_language') . '</th>';
       $output .=' <th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_total') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_odoo_status') . '</th>';
+      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_erp_status') . '</th>';
       $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_status') . '</th>';
       $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_action') . '</th>';
       $output .= '</tr>';
@@ -98,10 +98,10 @@
                    '    <td>' . $this->lang->getLanguagesName($Qorder->valueInt('language_id')) . '</td>' .
                    '    <td>' . strip_tags($orders['order_total']) . '</td>';
 
-        if ($orders['odoo_invoice'] == 1) {
-          $output .=          ' <td class="text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $this->app->getDef('image_orders_odoo')) . '</td>';
-        } elseif ($orders['odoo_invoice'] == 2) {
-          $output .=          ' <td class="text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $this->app->getDef('image_orders_invoice_manual_odoo')) . '</td>';
+        if ($orders['erp_invoice'] == 1) {
+          $output .=          ' <td class="text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $this->app->getDef('image_orders_erp')) . '</td>';
+        } elseif ($orders['erp_invoice'] == 2) {
+          $output .=          ' <td class="text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $this->app->getDef('image_orders_invoice_manual_erp')) . '</td>';
         } else {
           $output .=          ' <td class="text-md-center"></td>';
         }

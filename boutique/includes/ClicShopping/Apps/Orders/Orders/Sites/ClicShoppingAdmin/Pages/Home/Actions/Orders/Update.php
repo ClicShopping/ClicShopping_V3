@@ -56,7 +56,7 @@
                      'orders_status',
                      'date_purchased',
                      'orders_status_invoice',
-                     'odoo_invoice'
+                     'erp_invoice'
                     ];
 
       $QcheckStatus = $this->app->db->get('orders', $data_array, ['orders_id' => (int)$this->oID]);

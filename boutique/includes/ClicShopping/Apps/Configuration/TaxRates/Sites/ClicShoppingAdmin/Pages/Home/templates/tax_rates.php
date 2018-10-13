@@ -49,7 +49,7 @@ use ClicShopping\OM\HTML;
           <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_zone'); ?></th>
           <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_rate'); ?></th>
           <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_description'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_code_tax_odoo'); ?></th>
+          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_code_tax_erp'); ?></th>
           <th class="text-md-right"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_action'); ?>&nbsp;</th>
         </tr>
         </thead>
@@ -66,7 +66,7 @@ use ClicShopping\OM\HTML;
                                                                      r.tax_description,
                                                                      r.date_added,
                                                                      r.last_modified,
-                                                                     r.code_tax_odoo
+                                                                     r.code_tax_erp
                                           from :table_tax_class tc,
                                                :table_tax_rates r left join :table_geo_zones z on r.tax_zone_id = z.geo_zone_id
                                           where r.tax_class_id = tc.tax_class_id
@@ -91,7 +91,7 @@ use ClicShopping\OM\HTML;
               <td><?php echo $Qrates->value('geo_zone_name'); ?></td>
               <td><?php echo Tax::displayTaxRateValue($Qrates->valueDecimal('tax_rate')); ?></td>
               <td><?php echo  $Qrates->value('tax_description'); ?></td>
-              <td><?php echo  $Qrates->value('code_tax_odoo'); ?></td>
+              <td><?php echo  $Qrates->value('code_tax_erp'); ?></td>
               <td class="text-md-right">
 <?php
       echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $_GET['page'] . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
