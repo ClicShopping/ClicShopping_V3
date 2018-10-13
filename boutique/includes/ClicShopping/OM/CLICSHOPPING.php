@@ -203,7 +203,7 @@
       }
 
       if ($search_engine_safe === true && defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
-        $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
+        $link = str_replace(['?', '&', '='], ['/', '/', ','], $link);
       }
 
       return $link;
