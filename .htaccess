@@ -1,6 +1,7 @@
 Options -Indexes
 Options +FollowSymlinks
 
+#AcceptPathInfo on
 #### Your config to change ###############
 #Uncomment and adapt
 <IfModule mod_rewrite.c>
