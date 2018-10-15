@@ -35,24 +35,31 @@
     }
 
     public function execute() {
-      global $order_id;
-
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (isset($_GET['Checkout']) && isset($_GET['Success'])) {
+        if ((int)MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES > 0 ) {
+          $QLastorder = $CLICSHOPPING_Db->prepare('select orders_id
+                                                from :table_orders
+                                                order by orders_id DESC
+                                                limit 1
+                                               ');
+          $QLastorder->execute();
 
-        if ( (int)MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES > 0 ) {
+          $order_id = $QLastorder->valueInt('orders_id');
 
-          $Qcheck = $CLICSHOPPING_Db->prepare('select 1 from orders
-                                               where orders_id = :orders_id
-                                               and date_purchased < date_sub(now() ),
-                                               interval :interval minute
-                                            ');
-          $Qcheck->bindInt(':orders_id',(int)$order_id);
-          $Qcheck->bindInt(':interval',(int)MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES  );
+          if (!is_null($order_id)) {
+            $Qcheck = $CLICSHOPPING_Db->prepare('select 1 from orders
+                                                 where orders_id = :orders_id
+                                                 and date_purchased < date_sub(now() ),
+                                                 interval :interval minute
+                                              ');
+            $Qcheck->bindInt(':orders_id',(int)$order_id);
+            $Qcheck->bindInt(':interval',(int)MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES  );
 
-          if ( $Qcheck->fetch() !== false ) {
-            CLICSHOPPING::redirect('index.php', 'Account&Main');
+            if ( $Qcheck->fetch() !== false ) {
+              CLICSHOPPING::redirect('index.php', 'Account&Main');
+            }
           }
         }
       }
