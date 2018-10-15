@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -20,6 +20,7 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Address = Registry::get('Address');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   if ($CLICSHOPPING_MessageStack->exists('header')) {
     echo $CLICSHOPPING_MessageStack->get('header');
@@ -82,7 +83,7 @@
           </div>
           <div class="adminformTitle">
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow1">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?></label>
@@ -93,7 +94,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow2">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_first_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_first_name'); ?></label>
@@ -104,7 +105,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow3">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_last_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_last_name'); ?></label>
@@ -115,7 +116,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow4">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
@@ -137,7 +138,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow5">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_email_address'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_email_address'); ?></label>
@@ -148,7 +149,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow6">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_telephone_number'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_telephone_number'); ?></label>
@@ -159,7 +160,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow7">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number'); ?></label>
@@ -170,7 +171,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow8">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?></label>
@@ -188,7 +189,7 @@
             <div class="text-md-left"><?php echo  $CLICSHOPPING_Customers->getDef('category_address_default'); ?></div>
           </div>
           <div class="adminformTitle">
-            <div class="row">
+            <div class="row" id="tab1ContentRow9">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?></label>
@@ -199,7 +200,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow10">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_suburb'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_suburb'); ?></label>
@@ -210,7 +211,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="tab1ContentRow11">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_country'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_country'); ?>
@@ -225,7 +226,7 @@
 <?php
   if (ACCOUNT_STATE == 'true') {
 ?>
-            <div class="row">
+            <div class="row" id="tab1ContentRow12">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('text_info_country_zone'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('text_info_country_zone'); ?>
@@ -240,7 +241,7 @@
     include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
   }
 ?>
-          <div class="row">
+          <div class="row" id="tab1ContentRow13">
             <div class="col-md-5">
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_post_code'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_post_code'); ?></label>
@@ -251,7 +252,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id="tab1ContentRow14">
             <div class="col-md-5">
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_city'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_city'); ?></label>
@@ -267,7 +268,7 @@
 <!--          ONGLET Infos Societe          //-->
 <!-- -------------------------------------- //-->
         <div class="tab-pane" id="tab2">
-          <div class="col-md-12 mainTitle" style="height:27px;">
+          <div class="col-md-12 mainTitle" style="height:27px;" id="tab2ContentRow1">
             <div class="text-md-left"><?php echo  $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
             <div class="text-md-right">
 <?php
@@ -281,7 +282,7 @@
             </div>
           </div>
           <div class="adminformTitle">
-            <div class="row">
+            <div class="row" id="tab2ContentRow2">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_company'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_company'); ?></label>
@@ -294,7 +295,7 @@
 <?php
   if (MODE_B2B_B2C == 'true') {
 ?>
-                <div class="row">
+                <div class="row" id="tab2ContentRow3">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?></label>
@@ -305,7 +306,7 @@
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row" id="tab2ContentRow4">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?></label>
@@ -318,7 +319,7 @@
 <?php
     if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
 ?>
-                  <div class="row">
+                  <div class="row" id="tab2ContentRow5">
                     <div class="col-md-5">
                       <div class="form-group row">
                         <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?></label>
@@ -345,7 +346,7 @@
   if (MODE_B2B_B2C == 'true') {
 ?>
             <div class="separator"></div>
-            <div class="alert alert-info">
+            <div class="alert alert-info" id="tab2ContentRow6">
               <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Customers->getDef('title_help_customers_tva')) . ' ' . $CLICSHOPPING_Customers->getDef('title_help_customers_tva') ?></div>
               <div class="separator"></div>
               <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
@@ -362,11 +363,11 @@
 <!--          ONGLET Facturation          //-->
 <!-- ------------------------------------ //-->
             <div class="tab-pane" id="tab3">
-              <div class="col-md-12 mainTitle" style="height:27px;">
+              <div class="col-md-12 mainTitle" style="height:27px;" id="tab3ContentRow1">
                 <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
               </div>
               <div class="adminformTitle">
-                <div class="row">
+                <div class="row" id="tab3ContentRow2">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_group_name'); ?></label>
@@ -389,7 +390,7 @@
                 <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
               </div>
               <div class="adminformTitle">
-                <div class="row">
+                <div class="row" id="tab4ContentRow1">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default'); ?></label>
@@ -400,7 +401,7 @@
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row" id="tab4ContentRow2">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_add_address'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_add_address'); ?></label>
@@ -410,24 +411,7 @@
                     </div>
                   </div>
                 </div>
-<?php
-// Activation du module B2B
-  if (MODE_B2B_B2C == 'true') {
-?>
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_coupons'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_coupons'); ?></label>
-                      <div class="col-md-5">
-                        <?php echo HTML::checkboxField('customers_coupons', '1', false); ?>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<?php
-  }
-?>
-                <div class="row">
+                <div class="row" id="tab4ContentRow3">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_customers_email'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_email'); ?></label>
@@ -439,7 +423,7 @@
                 </div>
 
 
-                <div class="row">
+                <div class="row" id="tab4ContentRow4">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?></label>
@@ -463,6 +447,7 @@
         </div>
       </div>
 
+<?php echo $CLICSHOPPING_Hooks->output('DiscountCoupon', 'CreateAccount', null, 'display'); ?>
 
 
 <script type="text/javascript"><!--

@@ -24,9 +24,7 @@
   class Create extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-
       $CLICSHOPPING_Customers = Registry::get('Customers');
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -80,9 +78,7 @@
         $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
         $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
 
-// Coupon - Email:
-        $customers_coupons = HTML::sanitize($_POST['customers_coupons']);
-        $customers_email = $_POST['customers_email'];
+        $customers_email = HTML::sanitize($_POST['customers_email']);
 
 // Information sur la zone geographique
         $customers_zone_id = false;
@@ -354,7 +350,6 @@
                                           );
 
         $template_email_welcome_admin = TemplateEmailAdmin::getTemplateEmailWelcomeAdmin();
-        $template_email_coupon_admin = TemplateEmailAdmin::getTemplateEmailCouponAdmin();
         $template_email_signature = TemplateEmailAdmin::getTemplateEmailSignature();
         $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
 
@@ -372,12 +367,7 @@
           $email_gender = CLICSHOPPING::getDef('email_greet_none', ['greet_none'  => $_POST['customers_firstname'] . ' ' . $_POST['customers_lastname']]);
         }
 
-// coupon
-        if (!empty(COUPON_CUSTOMER) && $customers_coupons == 1) {
-          $email_coupon = $template_email_coupon_admin . COUPON_CUSTOMER .'</ strong>';
-        }
-
-        $email_text = $email_gender .'<br /><br />'. $template_email_welcome_admin .'<br /><br />'. $email_coupon .'<br /><br />' .   $template_email_signature . '<br /><br />' . $template_email_footer;
+        $email_text = $email_gender .'<br /><br />'. $template_email_welcome_admin .'<br /><br />' .   $template_email_signature . '<br /><br />' . $template_email_footer;
 
 // Envoi du mail avec gestion des images pour Fckeditor et Imanager.
         if ($customers_email == '1') {

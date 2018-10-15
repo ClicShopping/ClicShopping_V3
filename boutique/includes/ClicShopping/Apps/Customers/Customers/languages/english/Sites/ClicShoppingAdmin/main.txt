@@ -105,7 +105,6 @@ entry_tva_iso_error = &nbsp;<span class="errorText">The code country of two lett
 entry_customers_group_name = Customer Group:
 entry_groups_name = Name:
 
-entry_customers_coupons = Do  you want offer a coupon at your customer ?
 entry_customers_email =  Do  you want send at your customer an email for this account creation ?
 
 entry_customers_modify_company = To authorize the customer to modify this information

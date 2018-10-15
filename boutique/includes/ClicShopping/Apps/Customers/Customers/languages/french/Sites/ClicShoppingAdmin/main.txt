@@ -105,8 +105,7 @@ entry_tva_iso_error = &nbsp;<span class="errorText">Le code pays de deux lettres
 entry_customers_group_name = Groupe client :
 entry_groups_name = Nom :
 
-entry_customers_coupons = Souhaitez vous offir un coupon à votre client ?
-entry_customers_email =  Souhiatez vous envoyer un email pour la création du compte à votre client ?
+entry_customers_email = Souhaitez-vous envoyer un email pour la création du compte à votre client ?
 
 entry_customers_modify_company = Autoriser le client à modifier cette information
 entry_customers_modify_address_default = Autoriser le client à modifier l'adresse par défaut
