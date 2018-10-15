@@ -531,19 +531,7 @@
 */
     public function getUrlValueLanguage() {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
-        if ( isset($_SERVER['PATH_INFO']) && (strlen($_SERVER['PATH_INFO']) > 1) ) {
-          $parameters = explode('/', substr($_SERVER['PATH_INFO'], 1));
-
-          foreach ( $parameters as $parameter ) {
-            $param_array = explode(',', $parameter, 2);
-
-            if ($param_array[0] == 'language') {
-              $value_language = $param_array[1];
-            } else {
-              $value_language = null;
-            }
-          }
-        }
+        $value_language = SEFU::getUrlValue();
       } else {
         $value_language = null;
       }
