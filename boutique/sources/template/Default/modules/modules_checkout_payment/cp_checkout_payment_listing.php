@@ -13,7 +13,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Sites\Shop\Payment as NewPayment;
+  use ClicShopping\Sites\Shop\Payment;
 
   class cp_checkout_payment_listing {
     public $code;

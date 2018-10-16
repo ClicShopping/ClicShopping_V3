@@ -9,9 +9,11 @@
  *
  */
 
-  use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner;
+
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+
+  use ClicShopping\Sites\Shop\Payment;
 
   class cc_checkout_confirmation_payment_information {
     public $code;
@@ -35,12 +37,17 @@
      }
 
     public function execute() {
-      global $confirmation, $CLICSHOPPING_Payment;
+      global $confirmation;
 
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
+        if (!Registry::exists('Payment')) {
+          Registry::set('Payment', new Payment());
+        }
+
+        $CLICSHOPPING_Payment = Registry::get('Payment');
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_CONTENT_WIDTH;
 
