@@ -68,7 +68,7 @@
                 $quote[0]['methods'][0]['title'] = CLICSHOPPING::getDef('free_shipping_title');
                 $quote[0]['methods'][0]['cost'] = '0';
               } else {
-                $quote = $CLICSHOPPING_Shipping->quote($method, $module);
+                $quote = $CLICSHOPPING_Shipping->getQuote($method, $module);
               }
 
               if (isset($quote['error'])) {

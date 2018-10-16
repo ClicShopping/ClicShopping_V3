@@ -38,11 +38,10 @@
      }
 
     public function execute() {
-      global $quotes, $free_shipping, $shipping;
+      global $free_shipping;
 
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
       if (!Registry::exists('Shipping')) {
         Registry::set('Shipping', new Delivery());
@@ -50,16 +49,17 @@
 
       $CLICSHOPPING_Shipping = Registry::get('Shipping');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
+      $quotes = $CLICSHOPPING_Shipping->getQuote();
 
+      if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
         $content_width = (int)MODULE_CHECKOUT_SHIPPING_LISTING_CONTENT_WIDTH;
 
         $shipping_listing = '<!-- start checkout_shipping_listing -->'. "\n";
 
         if ($CLICSHOPPING_Shipping->geCountShippingModules() > 0) {
-
           $data = '<div class="separator"></div>';
           $data .= '<span class="page-header moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
+
 
           if (count($quotes) > 1 && count($quotes[0]) > 1) {
             $data .= '<div>';
@@ -106,8 +106,6 @@
                   }
 
                   $data .= '</td>';
-
-
 
                   if ( ($n >= 1) || ($n2 >= 1) ) {
                     $data .= '<td class="text-md-right">';

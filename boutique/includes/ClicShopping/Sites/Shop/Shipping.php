@@ -23,8 +23,6 @@
 
 // class constructor
     public function __construct($module = null) {
-      global $method;
-
       $this->lang = Registry::get('Language');
 
       if (defined('MODULE_SHIPPING_INSTALLED') && !is_null(MODULE_SHIPPING_INSTALLED)) {
@@ -48,32 +46,28 @@
           if (strpos($code, '\\') !== false) {
             $class = Apps::getModuleClass($code, 'Shipping');
 
-            $include_modules[] = [
-                                  'class' => $code,
-                                  'file' => $class
-                                  ];
+            $include_modules[] = ['class' => $code,
+                               'file' => $class
+                               ];
           } else {
-            $include_modules[] = [
-                                  'class' => $code,
-                                  'file' => $code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.')+1))
-                                ];
+            $include_modules[] = ['class' => $code,
+                               'file' => $code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.')+1))
+                               ];
           }
         } else {
           foreach ($this->modules as $value) {
             if (strpos($value, '\\') !== false) {
               $class = Apps::getModuleClass($value, 'Shipping');
 
-              $include_modules[] = [
-                                    'class' => $value,
-                                    'file' => $class
-                                  ];
+              $include_modules[] = ['class' => $value,
+                                 'file' => $class
+                                 ];
             } else {
               $class = substr($value, 0, strrpos($value, '.'));
 
-              $include_modules[] = [
-                                    'class' => $class,
-                                    'file' => $value
-                                  ];
+              $include_modules[] = ['class' => $class,
+                                 'file' => $value
+                                 ];
             }
           }
         }
@@ -92,12 +86,16 @@
       }
     }
 
+/**
+ * get the weight
+ * @param int $shipping_num_boxes
+ * @return float
+ */
     public function getShippingWeight($shipping_num_boxes = 1) {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
       if (is_array($this->modules)) {
         $shipping_weight = $CLICSHOPPING_ShoppingCart->show_weight();
-
 
         if (SHIPPING_BOX_WEIGHT >= ($shipping_weight * (SHIPPING_BOX_PADDING / 100))) {
           $shipping_weight = $shipping_weight + SHIPPING_BOX_WEIGHT;
@@ -113,15 +111,17 @@
       return $shipping_weight;
     }
 
-    public function quote($method = null, $module = null) {
-      global $shipping_quoted;
-
+/**
+ * get shipping module elements id, title ...
+ * @param null $method
+ * @param null $module
+ * @return array
+ */
+    public function getQuote($method = null, $module = null) {
       $quotes_array = [];
 
       if (is_array($this->modules)) {
         $shipping_quoted = '';
-
-        $shipping_weight = $this->getShippingWeight();
 
         $include_quotes = [];
 
@@ -169,7 +169,7 @@
 
 // function not include in shipping.php
 // can put pb with module like post canada online 94
-    public function get_first() {
+    public function getFirst() {
       foreach ( $this->modules as $value ) {
         if (strpos($value, '\\') !== false) {
           $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
@@ -193,7 +193,11 @@
       }
     }
 
-    public function cheapest() {
+/**
+ * get the cheapest shipping
+ * @return bool|mixed
+ */
+    public function getCheapest() {
       if (is_array($this->modules)) {
         $rates = [];
 
@@ -209,13 +213,12 @@
           if ($obj->enabled) {
             $quotes = $obj->quotes;
 
-            for ($i=0, $n= count( $quotes['methods'] ? : []); $i<$n; $i++) {
+            for ($i=0, $n=count( $quotes['methods'] ? : []); $i<$n; $i++) {
               if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
-                $rates[] = [
-                            'id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
-                            'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
-                            'cost' => $quotes['methods'][$i]['cost']
-                          ];
+                $rates[] = ['id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
+                          'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
+                          'cost' => $quotes['methods'][$i]['cost']
+                         ];
               }
             }
           }
@@ -237,6 +240,10 @@
       }
     }
 
+/**
+ * Count shipping modules
+ * @return int
+ */
     function geCountShippingModules() {
       $count = 0;
 
