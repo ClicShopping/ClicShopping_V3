@@ -35,8 +35,6 @@
     }
 
     public function execute() {
-     global $products_id;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -183,8 +181,9 @@
               $new_prods_content .= '<div class="d-flex flex-wrap ModuleIndexCategoriesboxContainerNewProducts">';
 
             while ($Qproduct->fetch() ) {
-
               $products_id = $Qproduct->valueInt('products_id');
+              $_POST['products_id'] = $products_id;
+
               $in_stock = $Qproduct->valueInt('in_stock');
 
 //product name

@@ -21,27 +21,25 @@
     Public function __construct()  {
     }
 
+/**
+ * get this if of the products
+ * @return null|int products_id
+ */
     public function getID() {
 // products info
-      if (isset($_GET['products_id']) && is_numeric($_GET['products_id']) && !empty(HTML::sanitize($_GET['products_id']))) {
-        $this->Id = HTML::sanitize($_GET['products_id']);
-      } else {
-        $this->Id = null;
-      }
+      $this->Id  = is_null($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
 
 //products_listing
       if (is_null($this->Id) ) {
-        if (isset($_GET['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+        if (isset($_GET['products_id']) && is_numeric($_POST['products_id']) && !is_null(HTML::sanitize($_POST['products_id']))) {
           $this->Id = HTML::sanitize($_POST['products_id']);
         } else {
-          global $products_id;
-          $this->Id = HTML::sanitize($products_id);
+          $this->Id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
         }
       }
 
       return $this->Id;
     }
-
 
 /**
  * Generate a product ID string value containing its product attributes combinations

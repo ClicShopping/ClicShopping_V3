@@ -36,11 +36,9 @@
     }
 
     public function execute() {
-     global $products_id;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
       $CLICSHOPPING_Category = Registry::get('Category');
@@ -49,9 +47,7 @@
       $new_products_category_id =  $CLICSHOPPING_Category->getID();
 
       if (CLICSHOPPING::getBaseNameIndex() && !$CLICSHOPPING_Category->getPath()) {
-
         if (MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY != 0) {
-
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
             if ( (!isset($new_products_category_id)) || ($new_products_category_id == 0) ) {
 // Requetes SQL pour afficher les nouveaux produits groupe B2B lors que l'on ne ce trouve pas dans une categorie
@@ -70,7 +66,6 @@
                                                       ');
               $Qproduct->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
               $Qproduct->bindInt(':products_limit', (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY);
-
             } else {
 // Requetes SQL pour afficher les nouveaux produits groupe B2B lorsque l'on se trouve dans une categorie
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
@@ -167,6 +162,8 @@
 
             while ($Qproduct->fetch() ) {
               $products_id = $Qproduct->valueInt('products_id');
+              $_POST['products_id'] = $products_id;
+
               $in_stock = $Qproduct->valueInt('in_stock');
 
 //product name
@@ -197,6 +194,7 @@
               if (MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON == 'False') {
                 if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity($products_id) != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity($products_id) != 0) {
                   $submit_button = '';
+
                   if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                     $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
@@ -276,6 +274,7 @@
             $products_volume = $CLICSHOPPING_ProductsFunctionTemplate->getProductsVolume($products_id);
 // display products weight
             $products_weight = $CLICSHOPPING_ProductsFunctionTemplate->getProductsWeight($products_id);
+
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css
 //******************************************************************************************************************

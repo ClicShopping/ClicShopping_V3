@@ -12,10 +12,8 @@
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\Sites\Shop\OrderTotal;
   use ClicShopping\Sites\Shop\Payment;
   use ClicShopping\Sites\Shop\Shipping;
 

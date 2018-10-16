@@ -37,8 +37,6 @@
     }
 
     public function execute() {
-      global $products_id;
-
       $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
@@ -162,8 +160,9 @@
             $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_PRODUCTS_SPECIAL_TEMPLATE);
 
             while($Qlisting->fetch()) {
-
               $products_id = $Qlisting->valueInt('products_id');
+              $_POST['products_id'] = $products_id;
+
               $in_stock = $Qlisting->valueInt('in_stock');
 
 //product name

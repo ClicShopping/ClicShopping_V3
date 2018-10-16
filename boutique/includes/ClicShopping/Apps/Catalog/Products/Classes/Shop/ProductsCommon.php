@@ -18,7 +18,7 @@
 
   class ProductsCommon extends Prod  {
 
-    protected $products_id;
+    protected $id;
     protected $products_name;
     protected $products_short_description;
     protected $products_stock;
@@ -1762,7 +1762,6 @@
  */
       public function getBuyButton($button) {
         $this->button = $button;
-
         return $button;
       }
 
@@ -1773,7 +1772,7 @@
  * @access private
  */
 
-    private function setProductsBuyButton() {
+    public function setProductsBuyButton() {
       $buy_button = $this->button;
 
       if ((PRICES_LOGGED_IN == 'true' && !$this->customer->isLoggedOn())) {
@@ -1796,7 +1795,7 @@
         }
       }
 
-      if ($this->getPriceGroupView() == 0 && $this->customer->getCustomersGroupID() !=0) {
+      if ($this->getPriceGroupView() == 0 && $this->customer->getCustomersGroupID() != 0) {
         $buy_button ='';
       }
 
@@ -1809,7 +1808,7 @@
  * @param string $submit_button , the button
  * @access public
  */
-      public function getProductsBuyButton()  {
+      public function getProductsBuyButton() {
         return $this->setProductsBuyButton();
       }
 
@@ -2138,7 +2137,7 @@
 
 /**
  * Return a product's stock
- * @param string $products_id
+ * @param string $id, id product
  * @return the $stock_values['products_quantity']
  * @access public
  */
@@ -2161,7 +2160,7 @@
  * Return a out of stock on the products
  * Check if the required stock is available
  * If insufficent stock is available return an out of stock message
- * @param string $products_id
+ * @param string $id, id product
  * @param string $products_quantity
  * @return $out_of_stock
  * @access public
@@ -2181,7 +2180,7 @@
 
 /**
  * Return an image concerning the stock
- * @param string $products_id
+ * @param string $id, id product
  * @return the $display_stock_values, the image value of stock
  * @access public
  */
@@ -2236,7 +2235,7 @@
 
 /**
   * Check if product has attributes
-  * @param string $products_id
+  * @param string $id, id product
   * @return the checking of the products attributbes
 */
     public function getHasProductAttributes($id = null) {
@@ -2780,16 +2779,16 @@
 /*
 * Return the class_id of the product
 *
-* @param Int $products_id, id of the product
+* @param Int $id, id product
 * @return Int products_weight_class_id, Id of the weight class
 * @access public
 */
-    private function setWeightClassIdByProducts($products_id) {
+    private function setWeightClassIdByProducts($id) {
       $QweightClass = $this->db->prepare('select products_weight_class_id
                                            from :table_products
                                            where products_id = :products_id
                                          ');
-      $QweightClass->bindInt(':products_id', $products_id);
+      $QweightClass->bindInt(':products_id', $id);
       $QweightClass->execute();
 
       return $QweightClass->value('products_weight_class_id');
@@ -2798,13 +2797,13 @@
 /*
 * Display the class_id of the product
 *
-* @param Int $products_id, id of the product
+* @param Int $id, id product
 * @return Int products_weight_class_id, Id of the weight class
 * @access public
 */
-    public function getWeightClassIdByProducts($products_id) {
-      $products_id = HTML::sanitize($products_id);
-      return $this->setWeightClassIdByProducts($products_id);
+    public function getWeightClassIdByProducts($id) {
+      $id = HTML::sanitize($id);
+      return $this->setWeightClassIdByProducts($id);
     }
 
 
