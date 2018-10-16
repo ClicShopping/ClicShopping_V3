@@ -37,8 +37,6 @@
      }
 
     public function execute() {
-      global $confirmation;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -48,13 +46,12 @@
         }
 
         $CLICSHOPPING_Payment = Registry::get('Payment');
+        $confirmation = $CLICSHOPPING_Payment->confirmation();
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_CONTENT_WIDTH;
 
         if (is_array($CLICSHOPPING_Payment->modules)) {
-
           if ($confirmation) {
-
             $display = '  <!-- checkout_confirmation_payment_information -->' . "\n";
 
             if (isset($confirmation['content'])) {
@@ -71,14 +68,12 @@
               }
 
               if (isset($confirmation['fields'])) {
-
                 $fields = '';
 
                 $fields .= '<div class="col-sm-6">';
                 $fields .=  '<div class="alert alert-info">';
 
                 for ($i=0, $n=count($confirmation['fields']); $i<$n; $i++) {
-
                   $fields .= $confirmation['fields'][$i]['title'] . ' ';
                   $data .= $confirmation['fields'][$i]['field'];
 

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -22,7 +22,7 @@
   class Confirmation extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $form_action_url, $payment, $CLICSHOPPING_Shipping, $CLICSHOPPING_Payment, $button_payment_module, $CLICSHOPPING_PM, $confirmation, $output_total_modules;
+      global $form_action_url, $payment, $CLICSHOPPING_Shipping, $button_payment_module, $CLICSHOPPING_PM, $output_total_modules;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -141,6 +141,7 @@
 
 // Stock Check
       $any_out_of_stock = false;
+
       if (STOCK_CHECK == 'true') {
         for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty'])) {
