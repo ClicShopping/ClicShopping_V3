@@ -35,8 +35,6 @@
     }
 
     public function execute() {
-      global $products_id, $products;
-
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Db = Registry::get('Db');
