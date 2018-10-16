@@ -44,8 +44,6 @@
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
         $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
-        $products_id = $CLICSHOPPING_ProductsCommon->getID();
-
          if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
 
            $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id,
