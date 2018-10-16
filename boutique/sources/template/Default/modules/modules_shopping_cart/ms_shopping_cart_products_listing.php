@@ -35,7 +35,7 @@
     }
 
     public function execute() {
-      global $products_id, $any_out_of_stock, $products;
+      global $products_id, $products;
 
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -50,8 +50,6 @@
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->count_contents() > 0) {
-
-        $any_out_of_stock = 0;
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
         $content_width = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH;
@@ -131,7 +129,6 @@
             $stock_check = $CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'] * $products_quantity_customers_group[$i]);
 
             if (!empty($stock_check)) {
-              $any_out_of_stock = 1;
               $products_name .= '<p>' . $stock_check .'</p>';
             }
           }
