@@ -110,7 +110,7 @@
           $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50, null, null)) . '&nbsp;&nbsp;&nbsp;</th>';
           $products_name .= '<th valign="top" width="500">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), $products[$i]['name']);
 
-          if (STOCK_CHECK == 'True') {
+          if (STOCK_CHECK == 'true') {
 // select the good qty in B2B to decrease the stock (see checkout_process to update stock)
             if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
               $QproductsQuantityCustomersGroupQuery = $CLICSHOPPING_Db->prepare('select products_quantity_fixed_group

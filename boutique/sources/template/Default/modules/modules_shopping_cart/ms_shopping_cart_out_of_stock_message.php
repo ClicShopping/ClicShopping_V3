@@ -45,7 +45,7 @@
 
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-        if (STOCK_CHECK == 'True') {
+        if (STOCK_CHECK == 'true') {
 
           for ($i = 0, $n = count($products); $i < $n; $i++) {
 
@@ -54,11 +54,11 @@
             if (!is_null($stock_check)) {
 
               if (STOCK_ALLOW_CHECKOUT == 'True') {
-                $out_of_stock = CLICSHOPPING::getDef('module_shopping_cart_out_of_stock_can_checkout', ['stock' => STOCK_MARK_PRODUCT_OUT_OF_STOCK]);
+                $out_of_stock = CLICSHOPPING::getDef('module_shopping_cart_out_of_stock_can_checkout', ['out_of_stock' => STOCK_MARK_PRODUCT_OUT_OF_STOCK]);
               } else {
-                $out_of_stock = CLICSHOPPING::getDef('module_shopping_cart_out_of_stock_cant_checkout', ['stock' => STOCK_MARK_PRODUCT_OUT_OF_STOCK]);
+                $out_of_stock = CLICSHOPPING::getDef('module_shopping_cart_out_of_stock_cant_checkout', ['out_of_stock' => STOCK_MARK_PRODUCT_OUT_OF_STOCK]);
               }
- 
+
               $stock = '<!-- start ms_shopping_cart_out_of_message -->' . "\n";
 
               ob_start();
@@ -131,7 +131,7 @@
     public function remove() {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
-    
+
     public function keys() {
       return array (
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_STATUS',
