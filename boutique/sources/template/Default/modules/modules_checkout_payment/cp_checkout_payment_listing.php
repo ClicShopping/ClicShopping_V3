@@ -13,6 +13,8 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
+  use ClicShopping\Sites\Shop\Payment as NewPayment;
+
   class cp_checkout_payment_listing {
     public $code;
     public $group;
@@ -35,11 +37,18 @@
      }
 
     public function execute() {
-      global $free_shipping, $selection, $CLICSHOPPING_Payment;
+      global $free_shipping;
 
-       $CLICSHOPPING_Template = Registry::get('Template');
+      $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Checkout']) && isset($_GET['Billing'])) {
+        if (!Registry::exists('Payment')) {
+          Registry::set('Payment', new Payment());
+        }
+
+        $CLICSHOPPING_Payment = Registry::get('Payment');
+
+        $selection = $CLICSHOPPING_Payment->selection();
 
         $content_width = (int)MODULE_CHECKOUT_PAYMENT_LISTING_CONTENT_WIDTH;
 
@@ -48,8 +57,6 @@
         $data = '<div class="separator"></div>';
         $data .= '<span class="page-header moduleCheckoutPaymentListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_payment_listing_table_heading_payment_method') . '</h3></span>';
         $data .= '<div class="separator"></div>';
-
-        $selection = $CLICSHOPPING_Payment->selection();
 
         if (count($selection) > 1) {
           $data .= '<div>';
