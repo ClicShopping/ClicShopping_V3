@@ -17,7 +17,7 @@
   class Q extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $column_list, $define_list, $listingTotalRow, $Qlisting;
+      global $listingTotalRow, $Qlisting;
 
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -43,16 +43,6 @@
 
        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
       } else {
-
-// create column list / sor order
-        $define_list = $CLICSHOPPING_Search->sortListSearch();
-        asort($define_list);
-        $column_list = [];
-
-        foreach($define_list as $key => $value) {
-          if ($value > 0) $column_list[] = $key;
-        }
-
         $search = $CLICSHOPPING_Search->getResult();
         $listingTotalRow = $search['total'];
 
