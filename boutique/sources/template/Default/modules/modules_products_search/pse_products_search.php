@@ -35,7 +35,7 @@
     }
 
     public function execute() {
-      global $Qlisting, $column_list;
+      global $column_list, $products_id;
 
       $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -46,6 +46,8 @@
       $listingTotalRow = $CLICSHOPPING_Search->getResult();
 
        if (isset($_GET['Q'])) {
+
+        $Qlisting = $CLICSHOPPING_Search->getListing();
 
         if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
           $max_display = (int)MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
@@ -157,8 +159,8 @@
             $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group .'/template_html/' . MODULE_PRODUCTS_SEARCH_TEMPLATE);
 
             while($Qlisting->fetch()) {
-
               $products_id = $Qlisting->valueInt('products_id');
+
               $in_stock = $Qlisting->valueInt('in_stock');
 
 //products name

@@ -16,7 +16,7 @@
   class Prod {
 
     protected $products_id;
-    protected $Id;
+    protected $id;
 
     Public function __construct()  {
     }
@@ -26,19 +26,20 @@
  * @return null|int products_id
  */
     public function getID() {
-// products info
-      $this->Id  = is_null($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
+// products description
+      $id = empty($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
 
-//products_listing
-      if (is_null($this->Id) ) {
-        if (isset($_GET['products_id']) && is_numeric($_POST['products_id']) && !is_null(HTML::sanitize($_POST['products_id']))) {
-          $this->Id = HTML::sanitize($_POST['products_id']);
-        } else {
-          $this->Id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
+// products lisiting
+      if (empty($id) && !isset($_GET['Search']) && !isset($_GET['Q'])) {
+        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+          $id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
         }
+      } elseif (isset($_GET['Search']) && isset($_GET['Q'])) {
+        global $products_id;
+        $id = HTML::sanitize($products_id);
       }
 
-      return $this->Id;
+      return $id;
     }
 
 /**

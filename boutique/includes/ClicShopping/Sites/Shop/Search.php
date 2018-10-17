@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -415,7 +415,6 @@
         }
       }
 
-
       $listing_sql = 'select SQL_CALC_FOUND_ROWS ';
 
       $listing_sql .= ' p.*,
@@ -685,7 +684,13 @@
       $result['entries'] = $Qlisting->fetchAll();
       $result['total'] = $Qlisting->getPageSetTotalRows();
 
+      $this->listing = $Qlisting;
+
       $this->_result = $result;
+    }
+
+    public function getListing() {
+      return $this->listing;
     }
 
     public function getResult() {
