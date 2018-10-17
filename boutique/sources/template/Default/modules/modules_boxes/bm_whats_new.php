@@ -103,7 +103,7 @@
               $num ++;
 
               $products_id = $Qproducts->valueInt('products_id');
-
+              $_POST['products_id'] = $products_id;
 // **************************
 //    product name
 // **************************
