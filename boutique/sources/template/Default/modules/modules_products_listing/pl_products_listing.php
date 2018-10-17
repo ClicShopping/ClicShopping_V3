@@ -37,8 +37,6 @@
     }
 
     public function execute() {
-      global $column_list;
-
       $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
@@ -57,19 +55,21 @@
 
         $listingTotalRow = $ProductsListing->getTotalRow();
 
-          $new_prods_content = '<!-- products listing start -->' . "\n";
-          $new_prods_content .= '<div class="clearfix"></div>';
-          $new_prods_content .= '<div class="separator"></div>';
-          $new_prods_content .= '<div class="contentText">';
+        $new_prods_content = '<!-- products listing start -->' . "\n";
+        $new_prods_content .= '<div class="clearfix"></div>';
+        $new_prods_content .= '<div class="separator"></div>';
+        $new_prods_content .= '<div class="contentText">';
 
-            $new_prods_content .= '<div class="col-md-5 float-md-right">';
-            $new_prods_content .= '<div style="padding-right:2em; padding-top:0.5rem;">';
-            $new_prods_content .= '<div class="dropdown">';
-            $new_prods_content .= '<div class="btn-group btn-group-sm float-md-right">';
-            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
-            $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
-            $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
+        $new_prods_content .= '<div class="col-md-5 float-md-right">';
+        $new_prods_content .= '<div style="padding-right:2em; padding-top:0.5rem;">';
+        $new_prods_content .= '<div class="dropdown">';
+        $new_prods_content .= '<div class="btn-group btn-group-sm float-md-right">';
+        $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
+        $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
+        $new_prods_content .= '</button>';
+        $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
+
+        $column_list = $ProductsListing->getColumnList();
 
 // number of sort criterias
             for ($col = 0, $n = count($column_list); $col < $n; $col++) {

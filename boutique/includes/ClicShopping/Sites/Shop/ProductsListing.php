@@ -22,24 +22,20 @@
       $this->db = Registry::get('Db');
     }
 
-    public function getData() {
-      global $column_list;
-
-      $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Category = Registry::get('Category');
-      $CLICSHOPPING_Language = Registry::get('Language');
-      $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
-
-// create column list
+/**
+ * Get column listing
+ * @return array
+ */
+    public function getColumnList() {
       $define_list = ['PRODUCT_LIST_MODEL' => CLICSHOPPING::getDef('product_list_model'),
-                       'PRODUCT_LIST_NAME' => CLICSHOPPING::getDef('product_list_name'),
-                       'PRODUCT_LIST_MANUFACTURER' => CLICSHOPPING::getDef('product_list_manufacturer'),
-                       'PRODUCT_LIST_PRICE' => CLICSHOPPING::getDef('product_list_price'),
-                       'PRODUCT_LIST_QUANTITY' => CLICSHOPPING::getDef('product_list_quantity'),
-                       'PRODUCT_LIST_WEIGHT' => CLICSHOPPING::getDef('product_list_weight'),
-                       'PRODUCT_LIST_IMAGE' => CLICSHOPPING::getDef('product_list_image'),
-                       'PRODUCT_LIST_DATE' => CLICSHOPPING::getDef('product_list_date'),
-                     ];
+                      'PRODUCT_LIST_NAME' => CLICSHOPPING::getDef('product_list_name'),
+                      'PRODUCT_LIST_MANUFACTURER' => CLICSHOPPING::getDef('product_list_manufacturer'),
+                      'PRODUCT_LIST_PRICE' => CLICSHOPPING::getDef('product_list_price'),
+                      'PRODUCT_LIST_QUANTITY' => CLICSHOPPING::getDef('product_list_quantity'),
+                      'PRODUCT_LIST_WEIGHT' => CLICSHOPPING::getDef('product_list_weight'),
+                      'PRODUCT_LIST_IMAGE' => CLICSHOPPING::getDef('product_list_image'),
+                      'PRODUCT_LIST_DATE' => CLICSHOPPING::getDef('product_list_date'),
+                      ];
 
       asort($define_list);
 
@@ -48,6 +44,22 @@
       foreach($define_list as $key => $value) {
         if (!empty($value)) $column_list[] = $key;
       }
+
+      return $column_list;
+    }
+
+/**
+ * get listing data
+ * @return mixed
+ */
+    public function getData() {
+      $CLICSHOPPING_Customer = Registry::get('Customer');
+      $CLICSHOPPING_Category = Registry::get('Category');
+      $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
+
+
+      $column_list = $this->getColumnList();
 
       $search_query = 'select SQL_CALC_FOUND_ROWS ';
 
