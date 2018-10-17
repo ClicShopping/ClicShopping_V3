@@ -52,7 +52,7 @@
  */
 
     public static function getProductIDString($id, $params) {
-      $string = (int)$id;
+      $string = $id;
 
       if ( is_array($params) && !empty($params) ) {
         $attributes_check = true;
