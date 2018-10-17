@@ -15,7 +15,6 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Sites\Shop\Payment;
-  use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner;
 
   class cc_checkout_confirmation_process_order {
     public $code;
@@ -39,7 +38,7 @@
      }
 
     public function execute() {
-      global $button_payment_module, $CLICSHOPPING_Payment;
+      global $button_payment_module;
 
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -47,6 +46,12 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
+
+        if (!Registry::exists('Payment')) {
+          Registry::set('Payment', new Payment());
+        }
+
+        $CLICSHOPPING_Payment = Registry::get('Payment');
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_CONTENT_WIDTH;
 
