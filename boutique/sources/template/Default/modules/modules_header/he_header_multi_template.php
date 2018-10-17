@@ -93,8 +93,8 @@
         }
       }
 
-      if ($CLICSHOPPING_ShoppingCart->count_contents() > 0) {
-        $shopping_cart = $CLICSHOPPING_ShoppingCart->count_contents() . '&nbsp;' . CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart') . '&nbsp;';
+      if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
+        $shopping_cart = $CLICSHOPPING_ShoppingCart->getCountContents() . '&nbsp;' . CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart') . '&nbsp;';
       } else {
         $shopping_cart = CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_no_products');
       }

@@ -27,7 +27,7 @@
         <div class="col-md-12">
 
 <?php
-  if ($CLICSHOPPING_ShoppingCart->count_contents() > 0) {
+  if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
     echo $CLICSHOPPING_Template->getBlocks('modules_shopping_cart');
   } else {
 ?>

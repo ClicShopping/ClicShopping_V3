@@ -159,7 +159,7 @@
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
-      $number_of_items = $CLICSHOPPING_ShoppingCart->count_contents();
+      $number_of_items = $CLICSHOPPING_ShoppingCart->getCountContents();
 
       if ($CLICSHOPPING_Order->content_type == 'mixed') {
         $number_of_items = 0;

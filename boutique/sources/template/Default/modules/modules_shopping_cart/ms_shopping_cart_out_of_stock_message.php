@@ -39,7 +39,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->count_contents() > 0) {
+      if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $content_width = (int)MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_CONTENT_WIDTH;
 

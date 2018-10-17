@@ -448,7 +448,7 @@
           Registry::get('Session')->recreate();
 
 // restore cart contents
-          $CLICSHOPPING_ShoppingCart->restore_contents();
+          $CLICSHOPPING_ShoppingCart->getRestoreContents();
 
 // build the message content
           $name = $firstname . ' ' . $lastname;

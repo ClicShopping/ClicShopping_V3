@@ -55,7 +55,7 @@
 
         $CLICSHOPPING_Hooks->call('Login', 'Process');
 // restore cart contents
-         $CLICSHOPPING_ShoppingCart->restore_contents();
+         $CLICSHOPPING_ShoppingCart->getRestoreContents();
 
          $CLICSHOPPING_NavigationHistory->removeCurrentPage();
 

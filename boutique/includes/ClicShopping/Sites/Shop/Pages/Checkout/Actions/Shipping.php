@@ -38,7 +38,7 @@
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
-      if ($CLICSHOPPING_ShoppingCart->count_contents() < 1) {
+      if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
         CLICSHOPPING::redirect('index.php', 'Cart');
       }
 
@@ -102,7 +102,7 @@
       }
 
       $total_weight = $CLICSHOPPING_ShoppingCart->show_weight();
-      $total_count = $CLICSHOPPING_ShoppingCart->count_contents();
+      $total_count = $CLICSHOPPING_ShoppingCart->getCountContents();
 
       Registry::set('Shipping', new Delivery());
       $CLICSHOPPING_Shipping = Registry::get('Shipping');

@@ -70,7 +70,7 @@
  *  string $qty
 */
 
-    private function restore_qty() {
+    private function getRestoreQty() {
       global $qty, $products_id;
 
      $qty = $this->getCheckGoodQty($products_id, $qty);
@@ -82,7 +82,7 @@
  *  Restore the the cart content
  *
 */
-    public function restore_contents() {
+    public function getRestoreContents() {
       if (!$this->customer->isLoggedOn()) return false;
 
 // insert current cart contents in database
@@ -92,9 +92,9 @@
 
 // B2B / B2C Choose the good qty
           $qty = $this->contents[$products_id]['qty'];
-          $qty1 = $this->restore_qty();
+          $qty1 = $this->getRestoreQty();
 
-          if ($qty < $qty1) $qty = $this->restore_qty();
+          if ($qty < $qty1) $qty = $this->getRestoreQty();
           if ($qty > $qty1) $qty = $this->contents[$products_id]['qty'];
 
           $Qcheck = $this->db->prepare('select products_id
@@ -453,12 +453,12 @@
  * get total number of items in cart
  * @return : int sum of item number
  */
-    public function count_contents() {
+    public function getCountContents() {
       $total_items = 0;
 
       if (is_array($this->contents)) {
         foreach (array_keys($this->contents) as $products_id ) {
-          $total_items += $this->get_quantity($products_id);
+          $total_items += $this->getQuantity($products_id);
         }
       }
 
@@ -470,7 +470,7 @@
  * @param : int $products_id, id of the product
  * @return : int qty
  */
-    public function get_quantity($products_id) {
+    public function getQuantity($products_id) {
       if (isset($this->contents[$products_id])) {
         return $this->contents[$products_id]['qty'];
       } else {
@@ -815,7 +815,7 @@
 
       $this->content_type = false;
 
-      if ( (DOWNLOAD_ENABLED == 'true') && ($this->count_contents() > 0) ) {
+      if ( (DOWNLOAD_ENABLED == 'true') && ($this->getCountContents() > 0) ) {
         foreach (array_keys($this->contents) as $products_id ) {
           if (isset($this->contents[$products_id]['attributes'])) {
             foreach ($this->contents[$products_id]['attributes'] as $value) {

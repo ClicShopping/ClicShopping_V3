@@ -38,7 +38,7 @@
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
-      if ($CLICSHOPPING_ShoppingCart->count_contents() < 1) {
+      if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
         CLICSHOPPING::redirect('index.php', 'Cart');
       }
 
@@ -97,7 +97,7 @@
       if (isset($_SESSION['coupon'])) unset($_SESSION['coupon']);
 
       $total_weight = $CLICSHOPPING_ShoppingCart->show_weight();
-      $total_count = $CLICSHOPPING_ShoppingCart->count_contents();
+      $total_count = $CLICSHOPPING_ShoppingCart->getCountContents();
 
 // load all enabled payment modules
       Registry::set('Payment', new Payment());

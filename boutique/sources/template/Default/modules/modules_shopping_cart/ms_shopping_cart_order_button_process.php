@@ -40,7 +40,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
 
-      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->count_contents() > 0) {
+      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $back = count($CLICSHOPPING_NavigationHistory->path)-2;
 

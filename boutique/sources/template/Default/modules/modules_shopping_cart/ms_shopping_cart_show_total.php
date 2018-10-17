@@ -40,7 +40,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->count_contents() > 0) {
+      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $content_width = (int)MODULE_SHOPPING_CART_SHOW_TOTAL_CONTENT_WIDTH;
         $sub_total = $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total());

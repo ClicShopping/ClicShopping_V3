@@ -32,7 +32,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
-      if ($CLICSHOPPING_ShoppingCart->count_contents() < 1) {
+      if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
         CLICSHOPPING::redirect('index.php', 'Cart');
       }
 

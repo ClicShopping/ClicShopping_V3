@@ -27,7 +27,7 @@
         if ( isset($_POST['products_id']) && is_numeric($_POST['products_id']) ) {
           $attributes = isset($_POST['id']) ? $_POST['id'] : '';
 
-          $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->get_quantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes))+($_POST['cart_quantity']), $attributes);
+          $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->getQuantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes))+($_POST['cart_quantity']), $attributes);
         }
 
         if (DISPLAY_CART == 'true' ) {
