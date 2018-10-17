@@ -35,10 +35,9 @@
      }
 
     public function execute() {
-      global $output_total_modules, $order_total;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
+      $CLICSHOPPING_OrderTotal = Registry::get('OrderTotal');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
 
@@ -46,7 +45,9 @@
 
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_CONTENT_WIDTH;
 
-          $order_total = $output_total_modules;
+          $CLICSHOPPING_OrderTotal->process();
+
+          $order_total = $CLICSHOPPING_OrderTotal->output();
 
           $confirmation = '  <!-- cc_checkout_confirmation_order_total start -->' . "\n";
 
