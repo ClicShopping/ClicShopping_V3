@@ -35,8 +35,9 @@
           $id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
         }
       } elseif (isset($_GET['Search']) && isset($_GET['Q'])) {
-        global $products_id;
-        $id = HTML::sanitize($products_id);
+        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+          $id = HTML::sanitize($_POST['products_id']);
+        }
       }
 
       return $id;

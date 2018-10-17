@@ -35,7 +35,7 @@
     }
 
     public function execute() {
-      global $column_list, $products_id;
+      global $column_list;
 
       $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -160,6 +160,7 @@
 
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
+              $_POST['products_id'] = $products_id;
 
               $in_stock = $Qlisting->valueInt('in_stock');
 
