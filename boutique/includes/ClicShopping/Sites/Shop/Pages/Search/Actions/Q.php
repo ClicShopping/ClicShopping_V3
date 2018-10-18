@@ -44,6 +44,7 @@
        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
       } else {
         $search = $CLICSHOPPING_Search->getResult();
+
         $listingTotalRow = $search['total'];
 
         $Qlisting->setPageSet(MODULE_PRODUCTS_SEARCH_MAX_DISPLAY);

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -33,32 +33,63 @@
     protected $cache_empty_results = false;
     protected $query_call;
 
+/**
+ * @param mixed $parameter
+ * @param mixed $value
+ * @param int $data_type
+ * @return bool
+ */
     public function bindValue($parameter, $value, $data_type = \PDO::PARAM_STR)
     {
         return parent::bindValue($parameter, $value, $data_type);
     }
 
+/**
+ * @param $parameter
+ * @param $value
+ * @return bool
+ */
     public function bindInt($parameter, $value)
     {
 // force type to int (see http://bugs.php.net/bug.php?id=44639)
         return $this->bindValue($parameter, (int)$value, \PDO::PARAM_INT);
     }
 
+/**
+ * @param $parameter
+ * @param $value
+ * @return bool
+ */
     public function bindBool($parameter, $value)
     {
 // force type to bool (see http://bugs.php.net/bug.php?id=44639)
         return $this->bindValue($parameter, (bool)$value, \PDO::PARAM_BOOL);
     }
 
+/**
+ * @param $parameter
+ * @param $value
+ * @return bool
+ */
     public function bindDecimal($parameter, $value) {
         return $this->bindValue($parameter, (float)$value); // there is no \PDO::PARAM_FLOAT
     }
 
+/**
+ * @param $parameter
+ * @return bool
+ */
     public function bindNull($parameter)
     {
         return $this->bindValue($parameter, null, \PDO::PARAM_NULL);
     }
 
+/**
+ * @param $max_results
+ * @param null $page_set_keyword
+ * @param string $placeholder_offset
+ * @param string $placeholder_max_results
+ */
     public function setPageSet($max_results, $page_set_keyword = null, $placeholder_offset = 'page_set_offset', $placeholder_max_results = 'page_set_max_results')
     {
         if (!empty($page_set_keyword)) {
@@ -74,6 +105,10 @@
         $this->bindInt(':' . $placeholder_max_results, $max_results);
     }
 
+/**
+ * @param null $input_parameters
+ * @return bool|void
+ */
     public function execute($input_parameters = null) {
       if (isset($this->cache)) {
         if (isset($this->page_set)) {
@@ -111,6 +146,12 @@
       }
     }
 
+/**
+ * @param int|null $fetch_style
+ * @param int $cursor_orientation
+ * @param int $cursor_offset
+ * @return mixed
+ */
     public function fetch(
         $fetch_style = \PDO::FETCH_ASSOC,
         $cursor_orientation = \PDO::FETCH_ORI_NEXT,
@@ -133,6 +174,12 @@
         return $this->result;
     }
 
+/**
+ * @param int|null $fetch_style
+ * @param null $fetch_argument
+ * @param array $ctor_args
+ * @return array
+ */
     public function fetchAll($fetch_style = \PDO::FETCH_ASSOC, $fetch_argument = null, $ctor_args = [])
     {
         if ($this->cache_read === true) {
@@ -154,6 +201,9 @@
         return $this->result;
     }
 
+/**
+ * @return bool
+ */
     public function check() {
       if (!isset($this->result)) {
           $this->fetch();
@@ -161,6 +211,9 @@
       return $this->result !== false;
     }
 
+/**
+ * @return array
+ */
     public function toArray()
     {
         if (!isset($this->result)) {
@@ -170,6 +223,11 @@
         return $this->result;
     }
 
+/**
+ * @param $key
+ * @param null $expire
+ * @param bool $cache_empty_results
+ */
     public function setCache($key, $expire = null, $cache_empty_results = false)
     {
         if (!is_numeric($expire)) {
@@ -189,6 +247,11 @@
         }
     }
 
+/**
+ * @param $column
+ * @param string $type
+ * @return float|int|string
+ */
     protected function valueMixed($column, $type = 'string')
     {
         if (!isset($this->result)) {
@@ -214,26 +277,46 @@
         }
     }
 
+/**
+ * @param $column
+ * @return float|int|string
+ */
     public function value($column)
     {
         return $this->valueMixed($column, 'string');
     }
 
+/**
+ * @param $column
+ * @return float|int|string
+ */
     public function valueProtected($column)
     {
         return $this->valueMixed($column, 'protected');
     }
 
+/**
+ * @param $column
+ * @return float|int|string
+ */
     public function valueInt($column)
     {
         return $this->valueMixed($column, 'int');
     }
 
+/**
+ * @param $column
+ * @return float|int|string
+ */
     public function valueDecimal($column)
     {
         return $this->valueMixed($column, 'decimal');
     }
 
+/**
+ * @param $column
+ * @return bool
+ */
     public function hasValue($column) {
         if (!isset($this->result)) {
             $this->fetch();
@@ -242,16 +325,25 @@
         return isset($this->result[$column]);
     }
 
+/**
+ * @return bool
+ */
     public function isError()
     {
         return $this->is_error;
     }
 
+/**
+ * @return string
+ */
     public function getQuery()
     {
         return $this->queryString;
     }
 
+/**
+ * @param $type
+ */
     public function setQueryCall($type)
     {
         $this->query_call = $type;
@@ -262,25 +354,41 @@
         return $this->query_call;
     }
 
+/**
+ * @return mixed
+ */
     public function getCurrentPageSet() {
         return $this->page_set;
     }
 
+/**
+ * @return mixed
+ */
     public function getPageSetResultsPerPage()
     {
         return $this->page_set_results_per_page;
     }
 
+/**
+ * @return mixed
+ */
     public function getPageSetTotalRows()
     {
         return $this->page_set_total_rows;
     }
 
+/**
+ * @param \PDO $instance
+ */
     public function setPDO(\PDO $instance)
     {
         $this->pdo = $instance;
     }
 
+/**
+ * @param $text
+ * @return string
+ */
     public function getPageSetLabel($text) {
         if ($this->page_set_total_rows < 1) {
             $from = 0;
@@ -302,6 +410,11 @@
         ]) . '</span>';
     }
 
+/**
+ * @param null $parameters
+ * @param null $site
+ * @return string
+ */
     public function getPageSetLinks($parameters = null, $site = null)  {
       $number_of_pages = ceil($this->page_set_total_rows / $this->page_set_results_per_page);
 
@@ -352,9 +465,8 @@
             $output .= '<li class="page-item disabled"><a class="text-m-center page-link"><span class="fas fa-fw fa-chevron-right"></span></a></li>';
           }
         } else {
-
           if ($number_of_pages > 1) {
-            $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-md-left; width: 80px;" data-pageseturl="' . HTML::output(CLICSHOPPING::link('index.php', $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';
+            $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-md-left; height: 32px; width: 80px;" data-pageseturl="' . HTML::output(CLICSHOPPING::link('index.php', $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';
           } else {
             $output .= '<li class="page-item disabled"><a class="text-md-center page-link sr-only">1</a></li>';
           }
@@ -392,19 +504,19 @@ EOD;
     }
 
     public function __destruct() {
-        if (($this->cache_read === false) && isset($this->cache) && is_array($this->cache_data)) {
-            if ($this->cache_empty_results || (isset($this->cache_data[0]) && ($this->cache_data[0] !== false))) {
-                $cache_data = $this->cache_data;
+      if (($this->cache_read === false) && isset($this->cache) && is_array($this->cache_data)) {
+        if ($this->cache_empty_results || (isset($this->cache_data[0]) && ($this->cache_data[0] !== false))) {
+          $cache_data = $this->cache_data;
 
-                if (isset($this->page_set_total_rows)) {
-                    $cache_data = [
-                        'data' => $cache_data,
-                        'total' => $this->page_set_total_rows
-                    ];
-                }
+          if (isset($this->page_set_total_rows)) {
+              $cache_data = [
+                  'data' => $cache_data,
+                  'total' => $this->page_set_total_rows
+              ];
+          }
 
-                $this->cache->save($cache_data);
-            }
+          $this->cache->save($cache_data);
         }
+      }
     }
   }

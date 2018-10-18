@@ -51,7 +51,7 @@
           $max_display = (int)MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
         }
 
-        if ($max_display != 0 && (isset($_POST['keywords']) || isset($_GET['keywords']))) {
+        if ($max_display != 0 && (isset($_GET['Search']) || isset($_GET['Q']))) {
 
           $products_template = MODULE_PRODUCTS_SEARCH_TEMPLATE;
 
@@ -194,8 +194,7 @@
                   if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                     $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
-                    if (isset($_GET['Q'])) $form .= HTML::hiddenField('url', 'Search&Q');
-                    $form .= HTML::hiddenField('url', 'Search&Q&keywords='. $CLICSHOPPING_Search->getKeywords());
+                    if (isset($_GET['Q'])) $form .= HTML::hiddenField('url', 'Search&Q&keywords='. urldecode($CLICSHOPPING_Search->getKeywords()));
                     $endform = '</form>';
                     $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton($products_id);
                   }
