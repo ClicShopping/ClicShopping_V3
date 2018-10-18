@@ -15,12 +15,11 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\Sites\Shop\Payment;
-  use ClicShopping\Sites\Shop\Shipping;
 
   class Confirmation extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $form_action_url, $payment, $CLICSHOPPING_Shipping, $button_payment_module, $CLICSHOPPING_PM, $output_total_modules;
+      global $form_action_url, $CLICSHOPPING_PM;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -129,13 +128,7 @@
         }
       }
 
-// load the selected shipping module
-      Registry::set('Shipping', new Shipping($_SESSION['shipping']));
-      $CLICSHOPPING_Shipping = Registry::get('Shipping');
-
       $CLICSHOPPING_OrderTotal->process();
-
-      $output_total_modules = $CLICSHOPPING_OrderTotal->output();
 
 // Stock Check
       $any_out_of_stock = false;
@@ -165,16 +158,6 @@
       if (is_array($CLICSHOPPING_Payment->modules)) {
         $confirmation = $CLICSHOPPING_Payment->confirmation();
       }
-
-// Detection si atos est installe verifier si le code a la ligne 341 est Ok : Atos module
-  if ( substr($payment, 0, 4) == 'atos' ) {
-    if (isset($GLOBALS[$payment]->form_submit)) {
-      $button_payment_module = $GLOBALS[$payment]->form_submit;
-    } else {
-      $button_payment_module =  HTML::button(CLICSHOPPING::getDef('button_confirm'), null, null, 'primary');
-    }
-     $button_payment_module . '</form>' . "\n";
-  }
 
 // templates
       $this->page->setFile('checkout_confirmation.php');
