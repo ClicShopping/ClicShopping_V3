@@ -46,6 +46,19 @@
 
  Donation can help to continue the work and to finance the infrastructure.
 
+Project quality under : https://insight.symfony.com
+[![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/big.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
+
+Nb Line : 133 347
+
+52 Major : 0.03%
+
+101 Minor : 0.07%
+
+417 Info : 0.31%
+
+
+
 
  More informations are available on the community website.
 
