@@ -109,7 +109,7 @@
         }
 
         if (!isset($parameters['cafile'])) {
-          $parameters['cafile'] = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/cacert.pem';
+          $parameters['cafile'] = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/ClicShopping/External/cacert.pem';
         }
 
         if (is_file($parameters['cafile'])) {

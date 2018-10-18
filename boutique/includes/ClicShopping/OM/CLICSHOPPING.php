@@ -382,7 +382,7 @@
       $prefix = 'ClicShopping\\';
 
       if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
-          return false;
+        return false;
       }
 
       if (strncmp($prefix . 'OM\Module\\', $class, strlen($prefix . 'OM\Module\\')) === 0) { // TODO remove and fix namespace

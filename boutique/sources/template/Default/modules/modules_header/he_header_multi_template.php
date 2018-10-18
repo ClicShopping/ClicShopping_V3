@@ -13,7 +13,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree;
-  use ClicShopping\Sites\ClicShoppingAdmin\Template;
 
   class he_header_multi_template {
     public $code;
