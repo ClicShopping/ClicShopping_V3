@@ -38,8 +38,6 @@
      }
 
     public function execute() {
-      global $button_payment_module;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Order = Registry::get('Order');

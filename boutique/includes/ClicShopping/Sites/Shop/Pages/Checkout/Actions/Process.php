@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -20,7 +20,7 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $billing_postcode, $delivery_postcode, $order_totals, $CLICSHOPPING_PM;
+      global $order_totals, $CLICSHOPPING_PM;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
