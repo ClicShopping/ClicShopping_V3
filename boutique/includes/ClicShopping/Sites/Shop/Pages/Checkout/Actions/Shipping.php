@@ -19,7 +19,7 @@
   class Shipping extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $quotes, $free_shipping, $CLICSHOPPING_Shipping, $shipping;
+      global $free_shipping;
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -138,15 +138,12 @@
         $free_shipping = false;
       }
 
-// get all available shipping quotes
-      $quotes = $CLICSHOPPING_Shipping->getQuote();
-
 // if no shipping method has been selected, automatically select the first method.
 // if the modules status was changed when none were available, to save on implementing
 // a javascript force-selection method, also automatically select the first shipping
 // method if more than one module is now enabled
       if ( !isset($_SESSION['shipping']) || ( isset($_SESSION['shipping']) && ($_SESSION['shipping'] === false) && ($CLICSHOPPING_Shipping->geCountShippingModules() > 1) ) ) $_SESSION['shipping']  = $CLICSHOPPING_Shipping->getCheapest();
-        if ( defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False') && !$CLICSHOPPING_Customer->isLoggedOn() && ($shipping === false) ) {
+        if ( defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False') && !$CLICSHOPPING_Customer->isLoggedOn() && ($_SESSION['shipping'] === false) ) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_shipping_available_to_shipping_address'), 'danger', 'checkout_address');
 
           CLICSHOPPING::redirect('index.php', 'Checkout&ShippingAddress');
