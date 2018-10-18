@@ -35,7 +35,7 @@
           if (is_file(CLICSHOPPING_BASE_DIR . 'Sites/ClicShoppingAdmin/Assets/CfgParameters/' . $function_name . '.php')) {
             include(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/Assets/CfgParameters/' . $function_name . '.php');
           } else {
-            include(CLICSHOPPING::BASE_DIR . 'Custom/Assets/CfgParameters/' . $function_name . '.php');
+            include(CLICSHOPPING::BASE_DIR . 'Custom/SitesClicShoppingAdmin/Assets/CfgParameters/' . $function_name . '.php');
           }
         }
 

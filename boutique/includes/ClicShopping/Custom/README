@@ -3,11 +3,11 @@ directory structure of the original file.
 
 For example, to make custom changes to
 
-ClicShopping/OM/Core/Session/File.php
+ClicShopping/OM/Session/File.php
 
 copy the complete file to
 
-ClicShopping/OM/Custom/Session/File.php
+ClicShopping/Custom/Session/File.php
 
 and perform your changes to this new file.
 

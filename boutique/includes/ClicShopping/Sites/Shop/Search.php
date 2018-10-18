@@ -163,7 +163,7 @@
     }
 
 /*
-  * Number of procduct result
+  * Number of products result
   * @param
   * @return $this->_result['total'], total of products
   * @access public
