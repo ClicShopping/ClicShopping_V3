@@ -14,11 +14,12 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\Sites\Shop\Shipping;
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $free_shipping, $quote, $module, $method, $shipping, $CLICSHOPPING_Shipping;
+      global $free_shipping;
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -36,6 +37,14 @@
         if (!is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
+
+
+// load the selected shipping module
+        if (!Registry::exists('Shipping')) {
+          Registry::set('Shipping', new Shipping());
+        }
+
+        $CLICSHOPPING_Shipping = Registry::get('Shipping');
 
         if (($CLICSHOPPING_Shipping->geCountShippingModules() > 0) || ($free_shipping === true)) {
           if ((isset($_POST['shipping'])) && (strpos($_POST['shipping'], '_'))) {
@@ -94,7 +103,6 @@
           if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False')) {
             unset($_SESSION['shipping']);
           } else {
-            $shipping = false;
             $_SESSION['shipping'] = false;
 
             $CLICSHOPPING_Hooks->call('Shipping', 'Process');
