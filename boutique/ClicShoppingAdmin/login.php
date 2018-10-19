@@ -305,6 +305,7 @@
               <div class="separator"></div>
             </div>
           </div>
+          <div class="row col-md-12">
             <div class="col-md-6">
               <a href="<?php echo CLICSHOPPING::link('login.php'); ?>"><button class="btn btn-secondary text-md-left" type="button"><?php echo CLICSHOPPING::getDef('header_title_administration'); ?></button></a>
             </div>
@@ -312,10 +313,11 @@
               <?php echo HTML::button(CLICSHOPPING::getDef('button_submit'), null, null, 'primary'); ?>
             </div>
           </div>
-          </form>
         </div>
+        </form>
       </div>
     </div>
+
 <?php
   }
 ?>
