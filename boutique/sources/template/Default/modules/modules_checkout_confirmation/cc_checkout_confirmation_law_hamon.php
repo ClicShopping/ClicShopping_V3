@@ -45,7 +45,7 @@
         if (CONFIGURATION_LAW_HAMON == 'true') {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_CONTENT_WIDTH;
 
-          $agree_checkbox = HTML::checkboxField('agree', '1', false, 'id="agree"');
+          $agree_checkbox = HTML::checkboxField('agree', '1', false, 'required aria-required="true" id="agree"');
           $confirmation = '  <!-- checkout confirmation law Hamon start -->' . "\n";
 
           ob_start();
