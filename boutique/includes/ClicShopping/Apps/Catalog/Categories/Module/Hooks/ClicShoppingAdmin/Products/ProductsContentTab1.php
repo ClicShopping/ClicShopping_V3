@@ -40,7 +40,7 @@
 
       $output = '';
 
-      if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
+      if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
       $content = '<!-- Categories -->';
       $content .= '<div class="form-group row">';
