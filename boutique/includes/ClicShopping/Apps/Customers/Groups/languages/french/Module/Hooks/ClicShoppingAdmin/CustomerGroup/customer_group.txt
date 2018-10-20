@@ -26,5 +26,5 @@ title_help_price = Notes sur l'utilisation des options d'affichage sur les produ
 help_price_group_view = <strong>Activé :</strong> Affiche le prix du groupe - <strong>Non Activé :</strong> Affiche le prix public
 help_products_view = <strong>Activé :</strong> Autorise l'affichage du produit aux clients.
 help_orders_view = <strong>Activé :</strong> Autorise aux clients de commander le produit.
-help_others_group = Attention Nbr de qté fixe / Type d'achat n'est pas relié à la quantité de commande. ex : pour 1 qté on 3 produits par lot
+help_others_group = Attention Nbr de qté fixe / Type d'achat n'est pas relié à la quantité de commande. ex : pour 1 qté on a 3 produits par lot
 help_price_group_view_note = Inclus les tarifs promotionnels.
