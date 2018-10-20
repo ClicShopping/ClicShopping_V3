@@ -15,6 +15,7 @@ button_dialog_uninstall =  Uninstall
 button_uninstall =  Uninstall
 button_cancel = Cancel
 button_delete = Delete
+button_back = Back
 
 dialog_uninstall_title = Uninstall
 dialog_uninstall_body = Do you want install this App ?

@@ -38,7 +38,6 @@
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
 
-
 // load the selected shipping module
         if (!Registry::exists('Shipping')) {
           Registry::set('Shipping', new Shipping());

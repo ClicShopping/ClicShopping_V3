@@ -19,10 +19,6 @@
 
 // class constructor
     public function __construct() {
-
-      $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_Language = Registry::get('Language');
-
       if (defined('MODULE_ORDER_TOTAL_INSTALLED') && !is_null(MODULE_ORDER_TOTAL_INSTALLED)) {
         $this->modules = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
 
@@ -44,12 +40,7 @@
 
           if (strpos($value, '\\') !== false) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));
-          } else {
-            $class = substr($value, 0, strrpos($value, '.'));
-
-            $CLICSHOPPING_OTM = $GLOBALS[$class];
           }
-
           if ($CLICSHOPPING_OTM->enabled) {
             $CLICSHOPPING_OTM->output = [];
             $CLICSHOPPING_OTM->process();
@@ -78,10 +69,6 @@
         foreach($this->modules as $value) {
           if (strpos($value, '\\') !== false) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));
-          } else {
-            $class = substr($value, 0, strrpos($value, '.'));
-
-            $CLICSHOPPING_OTM = $GLOBALS[$class];
           }
 
           if ($CLICSHOPPING_OTM->enabled) {

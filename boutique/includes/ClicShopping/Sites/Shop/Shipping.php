@@ -37,8 +37,6 @@
             list($vendor, $app, $module) = explode('\\', $module['id']);
 
             $code = $vendor . '\\' . $app . '\\' . $module;
-          } elseif (strpos($module['id'], '_') !== false) {
-            $code = substr($module['id'], 0, strpos($module['id'], '_'));
           }
         }
 
@@ -49,10 +47,6 @@
             $include_modules[] = ['class' => $code,
                                'file' => $class
                                ];
-          } else {
-            $include_modules[] = ['class' => $code,
-                               'file' => $code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.')+1))
-                               ];
           }
         } else {
           foreach ($this->modules as $value) {
@@ -62,12 +56,6 @@
               $include_modules[] = ['class' => $value,
                                  'file' => $class
                                  ];
-            } else {
-              $class = substr($value, 0, strrpos($value, '.'));
-
-              $include_modules[] = ['class' => $class,
-                                 'file' => $value
-                                 ];
             }
           }
         }
@@ -75,12 +63,6 @@
         for ($i=0, $n=count($include_modules); $i<$n; $i++) {
           if (strpos($include_modules[$i]['class'], '\\') !== false) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
-          } else {
-            $this->lang->loadDefinitions('modules/shipping/' . pathinfo($include_modules[$i]['file'], PATHINFO_FILENAME));
-            if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/shipping/' . $include_modules[$i]['file'])) {
-              include('includes/modules/shipping/' . $include_modules[$i]['file']);
-              $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
-            }
           }
         }
       }
@@ -136,16 +118,6 @@
             } elseif ($obj->enabled) {
               $include_quotes[] = $value;
             }
-          } else {
-            $class = substr($value, 0, strrpos($value, '.'));
-
-            if (!is_null($module)) {
-              if ( ($module == $class) && ($GLOBALS[$class]->enabled) ) {
-                $include_quotes[] = $class;
-              }
-            } elseif ($GLOBALS[$class]->enabled) {
-              $include_quotes[] = $class;
-            }
           }
         }
 
@@ -154,8 +126,6 @@
         for ($i=0; $i<$size; $i++) {
           if (strpos($include_quotes[$i], '\\') !== false) {
             $quotes = Registry::get('Shipping_' . str_replace('\\', '_', $include_quotes[$i]))->quote($method);
-          } else {
-            $quotes = $GLOBALS[$include_quotes[$i]]->quote($method);
           }
 
           if (is_array($quotes)) {
@@ -173,12 +143,7 @@
       foreach ( $this->modules as $value ) {
         if (strpos($value, '\\') !== false) {
           $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
-        } else {
-          $class = substr($value, 0, strrpos($value, '.'));
-
-          $obj = $GLOBALS[$class];
         }
-
         if ( $obj->enabled ) {
           foreach ( $obj->quotes['methods'] as $method ) {
             if ( isset($method['cost']) && !is_null($method['cost']) ) {
@@ -204,10 +169,6 @@
         foreach($this->modules as $value) {
           if (strpos($value, '\\') !== false) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
-          } else {
-            $class = substr($value, 0, strrpos($value, '.'));
-
-            $obj = $GLOBALS[$class];
           }
 
           if ($obj->enabled) {
@@ -263,12 +224,6 @@
 
           if (Registry::exists($code)) {
             $CLICSHOPPING_SM = Registry::get($code);
-          }
-        } else {
-          $module = substr($m, 0, strrpos($m, '.'));
-
-          if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
-            $CLICSHOPPING_SM = $GLOBALS[$module];
           }
         }
 

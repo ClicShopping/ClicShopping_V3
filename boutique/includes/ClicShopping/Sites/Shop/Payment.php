@@ -40,10 +40,6 @@
             $include_modules[] = ['class' => $module,
                                   'file' => $class
                                  ];
-          } else {
-            $include_modules[] = ['class' => $module,
-                                  'file' => $module . '.php'
-                                 ];
           }
         } else {
           foreach($this->modules as $value) {
@@ -53,27 +49,13 @@
               $include_modules[] = ['class' => $value,
                                     'file' => $class
                                    ];
-            } else {
-              $class = basename($value, '.php');
-              $include_modules[] = ['class' => $class,
-                                    'file' => $value
-                                   ];
             }
           }
         }
 
         for ($i=0, $n=count($include_modules); $i<$n; $i++) {
-
           if (strpos($include_modules[$i]['class'], '\\') !== false) {
             Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
-          } else {
-
-            $this->lang->loadDefinitions('modules/payment/' . pathinfo($include_modules[$i]['file'], PATHINFO_FILENAME));
-
-            if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/payment/' . $include_modules[$i]['file'])) {
-              include($this->template->getModuleDirectory() . '/payment/' . $include_modules[$i]['file']);
-              $GLOBALS[$include_modules[$i]['class']] = new $include_modules[$i]['class'];
-            }
           }
         }
 
@@ -92,8 +74,6 @@
             if (isset($CLICSHOPPING_PM->form_action_url)) {
               $this->form_action_url = $CLICSHOPPING_PM->form_action_url;
             }
-          } elseif (isset($GLOBALS[$module]->form_action_url)) {
-            $this->form_action_url = $GLOBALS[$module]->form_action_url;
           }
         }
       }
@@ -119,12 +99,6 @@
 
           if (method_exists($CLICSHOPPING_PM, 'update_status')) {
             $CLICSHOPPING_PM->update_status();
-          }
-        }
-      } else {
-        if (is_object($GLOBALS[$this->selected_module])) {
-          if (method_exists($GLOBALS[$this->selected_module], 'update_status')) {
-            $GLOBALS[$this->selected_module]->update_status();
           }
         }
       }
@@ -158,11 +132,6 @@
             if ($CLICSHOPPING_PM->enabled) {
               $js .= $CLICSHOPPING_PM->javascript_validation();
             }
-          } else {
-            $class = basename($value, '.php');
-            if ($GLOBALS[$class]->enabled) {
-              $js .= $GLOBALS[$class]->javascript_validation();
-            }
           }
         }
 
@@ -194,11 +163,6 @@
             if ($CLICSHOPPING_PM->enabled && method_exists($CLICSHOPPING_PM, 'checkout_initialization_method')) {
               $initialize_array[] = $CLICSHOPPING_PM->checkout_initialization_method();
             }
-          } else {
-            $class = basename($value, '.php');
-            if ($GLOBALS[$class]->enabled && method_exists($GLOBALS[$class], 'checkout_initialization_method')) {
-              $initialize_array[] = $GLOBALS[$class]->checkout_initialization_method();
-            }
           }
         }
       }
@@ -218,12 +182,6 @@
               $selection = $CLICSHOPPING_PM->selection();
               if (is_array($selection)) $selection_array[] = $selection;
             }
-          } else {
-            $class = basename($value, '.php');
-            if ($GLOBALS[$class]->enabled) {
-              $selection = $GLOBALS[$class]->selection();
-              if (is_array($selection)) $selection_array[] = $selection;
-            }
           }
         }
       }
@@ -239,10 +197,6 @@
           if ($CLICSHOPPING_PM->enabled) {
             $CLICSHOPPING_PM->pre_confirmation_check();
           }
-        } else {
-          if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-            $GLOBALS[$this->selected_module]->pre_confirmation_check();
-          }
         }
       }
     }
@@ -254,10 +208,6 @@
 
           if ($CLICSHOPPING_PM->enabled) {
             return $CLICSHOPPING_PM->confirmation();
-          }
-        } else {
-          if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-            return $GLOBALS[$this->selected_module]->confirmation();
           }
         }
       }
@@ -271,10 +221,6 @@
           if ($CLICSHOPPING_PM->enabled) {
             return $CLICSHOPPING_PM->process_button();
           }
-        } else {
-          if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-            return $GLOBALS[$this->selected_module]->process_button();
-          }
         }
       }
     }
@@ -286,10 +232,6 @@
 
           if ($CLICSHOPPING_PM->enabled) {
             return $CLICSHOPPING_PM->before_process();
-          }
-        } else {
-          if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-            return $GLOBALS[$this->selected_module]->before_process();
           }
         }
       }
@@ -303,10 +245,6 @@
           if ($CLICSHOPPING_PM->enabled) {
             return $CLICSHOPPING_PM->after_process();
           }
-        } else {
-          if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-            return $GLOBALS[$this->selected_module]->after_process();
-          }
         }
       }
     }
@@ -318,10 +256,6 @@
 
           if ($CLICSHOPPING_PM->enabled) {
             return $CLICSHOPPING_PM->get_error();
-          }
-        } else {
-          if (is_object($GLOBALS[$this->selected_module]) && ($GLOBALS[$this->selected_module]->enabled) ) {
-            return $GLOBALS[$this->selected_module]->get_error();
           }
         }
       }
@@ -346,12 +280,6 @@
 
           if (Registry::exists($code)) {
             $CLICSHOPPING_PM = Registry::get($code);
-          }
-        } else {
-          $module = substr($m, 0, strrpos($m, '.'));
-
-          if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
-            $CLICSHOPPING_PM = $GLOBALS[$module];
           }
         }
 
