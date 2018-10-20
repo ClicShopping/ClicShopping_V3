@@ -313,7 +313,7 @@
       static::loadConfigFile(static::BASE_DIR . 'Conf/global.php', 'global');
 
       if (is_file(static::BASE_DIR . 'Custom/Conf/global.php')) {
-          static::loadConfigFile(static::BASE_DIR . 'Custom/Conf/global.php', 'global');
+         static::loadConfigFile(static::BASE_DIR . 'Custom/Conf/global.php', 'global');
       }
 
       foreach (glob(static::BASE_DIR . 'Sites/*', GLOB_ONLYDIR) as $s) {

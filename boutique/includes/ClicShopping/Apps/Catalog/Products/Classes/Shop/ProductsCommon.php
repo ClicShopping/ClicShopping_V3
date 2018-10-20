@@ -2550,11 +2550,11 @@
  * @return  $ticker (true or false)
  * @access public
  */
-    private function setProductsTickerSpecialsPourcentage($id = null, $tag = ' %') {
+    private function setProductsTickerSpecialsPourcentage($id, $tag = ' %') {
 
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
-        $pourcentage_price =  (round((($this->setSpecialPriceGroup($id) / $this->setPrice($id) )) , 2));
-        $pourcentage_price =  ((1 - $pourcentage_price) * (-100)) . $tag;
+        $pourcentage_price = (round((($this->setSpecialPriceGroup($id) / $this->setPrice($id))) , 2));
+        $pourcentage_price = ((1 - $pourcentage_price) * (-100)) . $tag;
       }
 
       return $pourcentage_price;
@@ -2567,7 +2567,7 @@
  * @return string $ticker, specials price ticker
  * @access public
  */
-    public function getProductsTickerSpecialsPourcentage($id = null) {
+    public function getProductsTickerSpecialsPourcentage($id) {
       return $this->setProductsTickerSpecialsPourcentage($id);
     }
 
@@ -2585,8 +2585,8 @@
       }
 
       $Qproducts = $this->db->prepare('select distinct products_favorites_date_added
-                                      from  :table_products_favorites
-                                      where status = 1
+                                       from :table_products_favorites
+                                       where status = 1
                                       and products_id = :products_id
                                      ');
 
@@ -2616,8 +2616,6 @@
     public function getProductsTickerFavorites($id = null) {
       return $this->setProductsTickerFavorites($id);
     }
-
-
 
 /**
  * Display a a ticker on product featured
@@ -2674,9 +2672,10 @@
 * @return string $save_money, the difference between real price and  specials
 * @access private
 */
-    private function setProductsSaveMoneyCustomer() {
-      if ($this->setSpecialPriceGroup() != 0 && $this->setPrice() != 0) {
-        $savemoney = (round((($this->setPrice() - $this->setSpecialPriceGroup() )) , 2)) ;
+    private function setProductsSaveMoneyCustomer($id) {
+
+      if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
+        $savemoney = (round((($this->setPrice($id) - $this->setSpecialPriceGroup($id) )) , 2)) ;
       }
 
       return $savemoney;
@@ -2689,8 +2688,8 @@
 * @return string $save_money, the difference between real price and  specials
 * @access public
 */
-    public function getProductsSaveMoneyCustomer() {
-      return $this->setProductsSaveMoneyCustomer();
+    public function getProductsSaveMoneyCustomer($id) {
+      return $this->setProductsSaveMoneyCustomer($id);
     }
 
 /*
@@ -2775,7 +2774,6 @@
       return $sort_prefix . $heading . $sort_suffix;
     }
 
-
 /*
 * Return the class_id of the product
 *
@@ -2806,12 +2804,16 @@
       return $this->setWeightClassIdByProducts($id);
     }
 
-
+/**
+ *
+ * @param int $weight_class_id
+ * @return mixed
+ */
     private function setSymbolbyProducts($weight_class_id) {
       $QweightSymbol = $this->db->prepare('select weight_class_key
-                                          from :table_weight_classes
-                                          where weight_class_id = :products_weight_class_id
-                                          and language_id = :language_id
+                                           from :table_weight_classes
+                                           where weight_class_id = :products_weight_class_id
+                                           and language_id = :language_id
                                          ');
       $QweightSymbol->bindInt(':products_weight_class_id', $weight_class_id);
       $QweightSymbol->bindInt(':language_id', $this->language->getId());
@@ -2820,11 +2822,13 @@
       return $QweightSymbol->value('weight_class_key');
     }
 
+/**
+ * @param int $weight_class_id
+ * @return mixed
+ */
     public function getSymbolbyProducts($weight_class_id) {
       $weight_class_id = HTML::sanitize($weight_class_id);
 
       return $this->setSymbolbyProducts($weight_class_id);
     }
-
-
   } // end class

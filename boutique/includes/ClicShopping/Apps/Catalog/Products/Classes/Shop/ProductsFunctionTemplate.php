@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -159,8 +159,8 @@
     public function getTickerPourcentage($constant, $products_id, $cssPourcentage) {
       $ticker = '';
 
-      if ($constant == 'True' && !is_null($this->productsCommon->getProductsTickerSpecialsPourcentage())) {
-        $ticker = HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage(), $cssPourcentage, true));
+      if ($constant == 'True' && !is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
+        $ticker = HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id), $cssPourcentage, true));
       } else {
         $ticker = '';
       }

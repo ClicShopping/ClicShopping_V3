@@ -148,8 +148,11 @@
 // ticker
           $products_id = $CLICSHOPPING_Prod::getProductID($products[$i]['id']);
 
-          $ticker =  HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' .  $products_id), HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage(), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
-          if (is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage())) $ticker = '';
+          $ticker =  HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' .  $products_id), HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
+
+          if (is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
+            $ticker = '' ;
+           }
 
           $cart = '<tr>';
           $cart .= '<td valign="top" width="60%">' . $ticker . ' ' .  $products_name . '</td>';
@@ -164,6 +167,7 @@
           $cart .= '</tr>';
 
 // display SaveMoney Hook
+          $_POST['products_id'] = $products_id;
           $cart .= Registry::get('Hooks')->output('Cart', 'AdditionalCheckoutSaveMoney');
 
           ob_start();
