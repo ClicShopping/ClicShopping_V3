@@ -81,7 +81,7 @@
       $output .= '<thead>';
       $output .= '<tr class="dataTableHeadingRow">';
       $output .= '<th>' . $this->app->getDef('module_admin_dashboard_orders_app_date') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_title') . '</th>';
+      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order') . '</th>';
       $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_language') . '</th>';
       $output .=' <th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_total') . '</th>';
       $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_erp_status') . '</th>';

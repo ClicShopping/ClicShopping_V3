@@ -51,12 +51,6 @@
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
-      if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT') && CONFIG_ANTISPAM == 'recaptcha') {
-        if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_CREATE_ACCOUNT == 'True' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
-          $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaDisplay');
-        }
-      }
-
       $form =  HTML::form('create_account', CLICSHOPPING::link('index.php', 'Account&Create&Process'), 'post', 'id="create_account"',  ['tokenize' => true, 'action' => 'process']);
       $endform = '</form>';
 

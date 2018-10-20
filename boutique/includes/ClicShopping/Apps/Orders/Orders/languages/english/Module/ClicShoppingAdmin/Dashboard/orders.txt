@@ -1,5 +1,6 @@
 module_admin_dashboard_orders_app_title = Do you want to install Orders
 module_admin_dashboard_orders_app_description = Show the latest orders
+module_admin_dashboard_orders_app_order = Orders
 module_admin_dashboard_orders_app_total = Total
 module_admin_dashboard_orders_app_date = Date
 module_admin_dashboard_orders_app_order_status = Status

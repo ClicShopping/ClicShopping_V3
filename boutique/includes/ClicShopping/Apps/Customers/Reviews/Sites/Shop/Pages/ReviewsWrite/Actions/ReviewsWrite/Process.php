@@ -27,12 +27,6 @@
 
         $error = false;
 
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_COMMENT') && CONFIG_ANTISPAM == 'recaptcha') {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_COMMENT == 'true' && !empty(MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_PUBLIC_KEY)) {
-            $error = $CLICSHOPPING_Hooks->call('AllShop', 'GoogleRecaptchaProcess');
-          }
-        }
-
         $rating =  HTML::sanitize((int)$_POST['rating']);
         $review =  HTML::sanitize($_POST['review']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
