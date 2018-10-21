@@ -2704,8 +2704,6 @@
 * @access public
 */
     public function getProductsNewPriceByDiscountByQuantity($id = null, $qty= null, $products_price= null) {
-      global $info_price_discount_by_quantity, $save_money;
-
       $QprodutsQuantityDiscount= $this->db->prepare('select discount_quantity,
                                                             discount_customer
                                                       from :table_products_discount_quantity
