@@ -17,7 +17,17 @@
   class Notify extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $product_exists;
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
+
+      $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id from :table_products p
+                                             and p.products_status = 1
+                                             and pd.language_id = :language_id');
+      $Qproduct->bindInt(':products_id', (int)$_GET['products_id']);
+      $Qproduct->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qproduct->execute();
+
+      $product_exists = ($Qproduct->fetch() !== false);
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
