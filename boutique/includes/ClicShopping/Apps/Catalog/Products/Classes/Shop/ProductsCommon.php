@@ -49,6 +49,8 @@
     protected $submit_button_view;
     protected $manufacturers_id;
     protected $products_weight_class_id;
+    protected $infoPriceDiscountByQuantity;
+    protected $saveMoney;
 
     protected $app;
     protected $db;
@@ -2730,17 +2732,33 @@
           $new_discount_price  = ($products_price - ($products_price * ($discount_customer[$i] / 100)));
 
           $_SESSION['ProductsID'] = $id;
-          $info_price_discount_by_quantity = 1;
+          $this->infoPriceDiscountByQuantity = 1;
 
           $discount = ($products_price - $new_discount_price) * $qty;
 
-          $save_money[] = $discount;
+          $this->saveMoney = $discount;
 
           break;
         }
       }
 
       return $new_discount_price;
+    }
+
+/**
+ * get info proce discount by quantity
+ * @return int
+ */
+    public function getInfoPriceDiscountbyQuantity() {
+      return $this->infoPriceDiscountByQuantity;
+    }
+
+/**
+ * get save money by the customer
+ * @return Decimal
+ */
+    public function getSaveMoney() {
+      return $this->saveMoney;
     }
 
 /*
