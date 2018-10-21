@@ -1,1 +1,1 @@
-title_menu = Github Module / Upgrade
+title_menu = Extansions

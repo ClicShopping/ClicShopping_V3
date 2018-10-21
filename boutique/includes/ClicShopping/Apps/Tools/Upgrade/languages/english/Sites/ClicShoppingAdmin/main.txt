@@ -1,11 +1,11 @@
-heading_title = Github Module
-module_up_title = Github Module
-module_up_short_title = Github Module
+heading_title = Extensions
+module_up_title = Extensions
+module_up_short_title = Extensions
 
-text_upgrade = Github Module / Upgrade
+text_upgrade = Extensions
 text_configure =  configure App Module
 
-text_intro = This app allow you to include an Github Module / Upgrade form. <br /><br />
+text_intro = This app allow you to include an Extensions form. <br /><br />
 - Click on Configure to access / install or uninstall the app.<br />
 - The App is located in Tools<br />
 
@@ -19,7 +19,7 @@ button_dialog_uninstall =  Uninstall
 button_uninstall =  Uninstall
 button_delete = Delete
 button_cancel = Cancel
-button_upgrade = Github Module / Upgrade
+button_upgrade = Extensions
 button_reset = Reset cache
 button_reset_temp = Reset Tmp
 button_analyse = Analyse

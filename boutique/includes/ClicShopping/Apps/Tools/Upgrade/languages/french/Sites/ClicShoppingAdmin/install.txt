@@ -1,1 +1,1 @@
-title_menu = Github Module / Mise à jour
+title_menu = Extensions
