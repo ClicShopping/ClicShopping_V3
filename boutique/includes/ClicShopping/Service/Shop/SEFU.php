@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -23,8 +23,6 @@
         $_GET = [];
         $GET_array = [];
 
-        $i = 0;
-
         foreach ( $parameters as $parameter ) {
           $param_array = explode(',', $parameter, 2);
 
@@ -37,8 +35,6 @@
           } else {
             $_GET[$param_array[0]] = $param_array[1];
           }
-
-          $i++;
         }
 
         if ( count($GET_array) > 0 ) {
