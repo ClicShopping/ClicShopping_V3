@@ -516,7 +516,7 @@
                   <div class="form-group row">
                     <label for="Lang" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']) . ' ' . $CLICSHOPPING_PageManager->getDef('text_pages_external_link'); ?></label>
                     <div class="col-md-5">
-                      <?php echo HTML::inputField('externallink_'.$languages[$i]['id'], $externallink[$languages[$i]['id']], '', false); ?>
+                      <?php echo HTML::inputField('externallink_'.$languages[$i]['id'], $externallink[$languages[$i]['id']], 'placeholder="https://www."'); ?>
                     </div>
                   </div>
                 </div>

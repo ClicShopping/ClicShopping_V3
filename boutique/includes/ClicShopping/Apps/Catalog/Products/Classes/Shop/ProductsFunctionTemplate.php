@@ -31,8 +31,7 @@
     }
 
     public function getProductsName($products_id, $in_stock) {
-      $param = ['params' => 'data-has-attributes="' . (($this->productsCommon->getHasProductAttributes((int)$products_id) === true) ? '1' : '0') . '" data-in-stock="' . (int)$in_stock . '" data-product-id=' . (int)$products_id];
-      $products_name = HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . (int)$products_id, null, null, $param), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) .'</span>', 'itemprop="url"');
+      $products_name = HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . (int)$products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) .'</span>', 'itemprop="url"');
 
       return $products_name;
     }
