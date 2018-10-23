@@ -788,7 +788,7 @@
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Address = Registry::get('Address');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
-      $CLICSHOPPING_ProdctsAttributes = Registry::get('ProdctsAttributes');
+      $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
       $new_order_status = DEFAULT_ORDERS_STATUS_ID;
 
@@ -974,7 +974,7 @@
 
           for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
 
-            $Qattributes = $CLICSHOPPING_ProdctsAttributes->getAttributesDownloaded($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option_id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value_id'], $this->app->lang->getId());
+            $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option_id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value_id'], $this->app->lang->getId());
 
             $products_ordered_attributes .= "\n\t" . $Qattributes->value('products_options_name') . ' ' . $Qattributes->value('products_options_values_name');
           }
@@ -1048,8 +1048,8 @@
         $email_text_subject = html_entity_decode($email_text_subject);
         $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-        foreach($text as $key => $email){
-          $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+        foreach($text as $key => $email) {
+          $CLICSHOPPING_Mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
         }
       }
 // load the after_process public function from the payment modules
