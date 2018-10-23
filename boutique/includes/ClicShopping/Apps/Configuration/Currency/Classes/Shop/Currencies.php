@@ -107,7 +107,7 @@
     private function priceTag() {
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
-      $tag = $CLICSHOPPING_Tax->gettag();
+      $tag = $CLICSHOPPING_Tax->getTag();
 
       if (isset($tag)) {
         $pricetag = $tag;
