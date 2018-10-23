@@ -197,15 +197,15 @@
           }
 
           if ($error === false) {
-            $sql_data_array = array('customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                    'entry_firstname' => $firstname,
-                                    'entry_lastname' => $lastname,
-                                    'entry_street_address' => $street_address,
-                                    'entry_postcode' => $postcode,
-                                    'entry_city' => $city,
-                                    'entry_country_id' => (int)$country,
-                                    'entry_telephone' => $entry_telephone
-                                  );
+            $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+                                'entry_firstname' => $firstname,
+                                'entry_lastname' => $lastname,
+                                'entry_street_address' => $street_address,
+                                'entry_postcode' => $postcode,
+                                'entry_city' => $city,
+                                'entry_country_id' => (int)$country,
+                                'entry_telephone' => $entry_telephone
+                               ];
 
             if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender'] = $gender;
             if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $company;
@@ -253,16 +253,15 @@
           $_SESSION['sendto'] = $_POST['address'];
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select address_book_id
-                                         from :table_address_book
-                                         where address_book_id = :address_book_id
-                                         and customers_id = :customers_id
-                                        ');
+                                               from :table_address_book
+                                               where address_book_id = :address_book_id
+                                               and customers_id = :customers_id
+                                              ');
           $Qcheck->bindInt(':address_book_id', (int)$_SESSION['sendto']);
           $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $Qcheck->execute();
 
           if ( $Qcheck->fetch() !== false ) {
-
             $CLICSHOPPING_Hooks->call('ShippingAddress','Process');
 
             if ( $reset_shipping === true ) {
@@ -274,7 +273,6 @@
             unset($_SESSION['sendto']);
           }
         } else {
-
 // no addresses to select from - customer decided to keep the current assigned address
           $_SESSION['sendto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
 
