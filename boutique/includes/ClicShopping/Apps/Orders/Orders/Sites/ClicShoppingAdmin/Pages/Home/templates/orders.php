@@ -466,7 +466,7 @@
 <?php
       } elseif ($Qorders->valueInt('erp_invoice') == 2) {
 ?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/erp_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
+              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
 <?php
       } elseif ($Qorders->valueInt('erp_invoice') == 3) {
 ?>

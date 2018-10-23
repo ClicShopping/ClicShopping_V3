@@ -17,6 +17,7 @@
   class Tax {
 
     protected $tax_rates = [];
+    public static $tag;
 
     public function getTaxRate($class_id, $country_id = -1, $zone_id = -1) {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -72,8 +73,6 @@
 
 // Return the tax description for a zone / class
     public function getTaxRateDescription($class_id, $country_id, $zone_id) {
-      global $tag;
-
       $CLICSHOPPING_Db = Registry::get('Db');
 
        if ( !isset($this->tax_rates[$class_id][$country_id][$zone_id]['description']) ) {
@@ -173,8 +172,6 @@
  * @return float
  */
     public static function addTax($price, $tax) {
-      global $tag;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -204,15 +201,15 @@
 
       switch ($group_taxed) {
         case 'true':
-          $tag = CLICSHOPPING::getDef('tax_included');
+          static::$tag = CLICSHOPPING::getDef('tax_included');
           return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']) + static::calculate($price, $tax);
           break;
         case 'false':
-          $tag = CLICSHOPPING::getDef('tax_excluded');
+          static::$tag = CLICSHOPPING::getDef('tax_excluded');
           return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
           break;
         default:
-          $tag = CLICSHOPPING::getDef('tax_excluded');
+          static::$tag = CLICSHOPPING::getDef('tax_excluded');
           return round($price, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
           break;
       }
@@ -248,6 +245,11 @@
       }
 
       return $tax_class_array;
+    }
+
+    public function getTag() {
+      $tag = static::$tag;
+      return $tag;
     }
   }
 

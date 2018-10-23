@@ -17,7 +17,6 @@
 
   use ClicShopping\Sites\Shop\Tax;
 
-
   class cc_checkout_confirmation_products_listing {
     public $code;
     public $group;
