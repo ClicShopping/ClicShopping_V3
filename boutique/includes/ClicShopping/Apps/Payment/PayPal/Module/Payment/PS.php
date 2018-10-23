@@ -1023,16 +1023,26 @@
       $email_order .= CLICSHOPPING::getDef('email_text_payment_method') . "\n" .
       CLICSHOPPING::getDef('email_separator')  . "\n";
 
-      if (is_object($GLOBALS[$_SESSION['payment']])) {
-        $message_order = utf8_decode(stripslashes(CLICSHOPPING::getDef('email_text_payment_method')));
-        $email_order .= html_entity_decode($message_order) . "\n" .
-        CLICSHOPPING::getDef('email_separator') . "\n";
-        $payment_class = $GLOBALS[$_SESSION['payment']];
+      if (isset($_SESSION['payment'])) {
+        if (strpos($_SESSION['payment'], '\\') !== false) {
+          $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
-        $email_order .= $payment_class->title . "\n\n";
+          if (Registry::exists($code)) {
+            $CLICSHOPPING_PM = Registry::get($code);
+          }
+        }
 
-        if (property_exists(get_class($payment_class),'email_footer')) {
-          $email_order .= $payment_class->email_footer;
+        if (isset($CLICSHOPPING_PM)) {
+          $message_order = utf8_decode(stripslashes(CLICSHOPPING::getDef('email_text_payment_method')));
+          $email_order .= html_entity_decode($message_order) . "\n" .
+          CLICSHOPPING::getDef('email_separator') . "\n";
+          $payment_class = $CLICSHOPPING_PM;
+
+          $email_order .= $payment_class->title . "\n\n";
+
+          if (property_exists(get_class($payment_class),'email_footer')) {
+            $email_order .= $payment_class->email_footer;
+          }
         }
       }
 

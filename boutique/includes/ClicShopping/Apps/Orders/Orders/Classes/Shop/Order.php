@@ -523,9 +523,6 @@
           if (Registry::exists($code)) {
             $CLICSHOPPING_PM = Registry::get($code);
           }
-
-        } elseif (isset($GLOBALS[$_SESSION['payment']]) && is_object($GLOBALS[$_SESSION['payment']])) {
-          $CLICSHOPPING_PM = $GLOBALS[$_SESSION['payment']];
         }
 
         if (isset($CLICSHOPPING_PM)) {
@@ -802,9 +799,6 @@
           if (Registry::exists($code)) {
             $CLICSHOPPING_PM = Registry::get($code);
           }
-
-        } elseif (is_object($GLOBALS[$_SESSION['payment']])) {
-          $CLICSHOPPING_PM = $GLOBALS[$_SESSION['payment']];
         }
 
         if (isset($CLICSHOPPING_PM)) {
@@ -1270,15 +1264,25 @@
         }
 
 //temporaire - CMCIC / Monéris / Desjardins
-        if (is_object($GLOBALS[$_SESSION['payment']])) {
-          $message_order = stripslashes(CLICSHOPPING::getDef('email_text_payment_method'));
-          $email_order .= $message_order . "\n" . CLICSHOPPING::getDef('email_separator') . "\n";
+        if (isset($_SESSION['payment'])) {
+          if (strpos($_SESSION['payment'], '\\') !== false) {
+            $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
-          $payment_class = $GLOBALS[$_SESSION['payment']];
-          $email_order .= $this->info['payment_method'] . "\n\n";
+            if (Registry::exists($code)) {
+              $CLICSHOPPING_PM = Registry::get($code);
+            }
+          }
 
-          if (isset($payment_class->email_footer)) {
-            $email_order .= $payment_class->email_footer;
+          if (isset($CLICSHOPPING_PM)) {
+            $message_order = stripslashes(CLICSHOPPING::getDef('email_text_payment_method'));
+            $email_order .= $message_order . "\n" . CLICSHOPPING::getDef('email_separator') . "\n";
+
+            $payment_class = $CLICSHOPPING_PM;
+            $email_order .= $this->info['payment_method'] . "\n\n";
+
+            if (isset($payment_class->email_footer)) {
+              $email_order .= $payment_class->email_footer;
+            }
           }
         } // end $GLOBALS[$_SESSION['payment']]
 
