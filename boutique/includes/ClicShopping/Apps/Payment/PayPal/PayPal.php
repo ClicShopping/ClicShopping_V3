@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -278,7 +278,7 @@
           ];
 
       if ((substr($server['host'], -10) == 'paypal.com')) {
-          $p['cafile'] = CLICSHOPPING::BASE_DIR . 'Apps/Payment/PayPal/paypal.com.crt';
+          $p['cafile'] = CLICSHOPPING::BASE_DIR . 'Apps/Payment/PayPal/work/paypal.com.crt';
       }
 
       return HTTP::getResponse($p);
