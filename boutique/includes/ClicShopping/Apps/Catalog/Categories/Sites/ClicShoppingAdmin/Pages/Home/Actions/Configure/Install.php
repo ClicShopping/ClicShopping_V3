@@ -94,7 +94,7 @@
 CREATE TABLE :table_categories (
   categories_id int not_null auto_increment,
   categories_image varchar(255),
-  parent_id int default(0) not_null,
+  parent_id int UNSIGNED default(0) not_null,
   sort_order int(3),
   date_added datetime,
   last_modified datetime,

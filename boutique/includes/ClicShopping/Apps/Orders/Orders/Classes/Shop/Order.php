@@ -1263,7 +1263,6 @@
           }
         }
 
-//temporaire - CMCIC / Monéris / Desjardins
         if (isset($_SESSION['payment'])) {
           if (strpos($_SESSION['payment'], '\\') !== false) {
             $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);

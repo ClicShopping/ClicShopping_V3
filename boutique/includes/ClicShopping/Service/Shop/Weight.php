@@ -16,7 +16,6 @@
 
   use ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight as WeightShop;
 
-
   class Weight implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {

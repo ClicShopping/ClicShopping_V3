@@ -8,12 +8,17 @@
  *
  *
  */
+
   namespace ClicShopping\OM;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   class Apps {
+
+/**
+ * @return array
+ */
     public static function getAll() {
         $result = [];
 
@@ -38,6 +43,12 @@
         return $result;
     }
 
+/**
+ * @param $type
+ * @param null $filter_vendor_app
+ * @param null $filter
+ * @return array
+ */
     public static function getModules($type, $filter_vendor_app = null, $filter = null) {
 
       $result = [];
@@ -96,8 +107,11 @@
       return $result;
     }
 
+/**
+ * @param $app
+ * @return bool
+ */
     public static function exists($app) {
-
       if (strpos($app, '\\') !== false) {
         list($vendor, $app) = explode('\\', $app, 2);
 
@@ -116,6 +130,11 @@
 
     }
 
+/**
+ * @param $module
+ * @param $type
+ * @return bool
+ */
     public static function getModuleClass($module, $type) {
       if (!Registry::exists('ModuleType' . $type)) {
         $class = 'ClicShopping\OM\Modules\\' . $type;
@@ -134,6 +153,10 @@
       return $CLICSHOPPING_Type->getClass($module);
     }
 
+/**
+ * @param $app
+ * @return bool|mixed
+ */
     public static function getInfo($app) {
       if (strpos($app, '\\') !== false) {
         list($vendor, $app) = explode('\\', $app, 2);
@@ -152,9 +175,14 @@
       return false;
     }
 
-//Remove specific double request with ?
+/**
+ * Remove specific double request with ? inside url
+ * @param $route
+ * @return mixed
+ */
     public static function getRouteValue($route) {
       $query = $route; //$_GET
+
 // replace parameter(s)
       $query['?'] = '&';
 
@@ -173,6 +201,12 @@
 
       return $result;
     }
+
+/**
+ * @param null $route
+ * @param null $filter_vendor_app
+ * @return array|mixed
+ */
     public static function getRouteDestination($route = null, $filter_vendor_app = null) {
       if (empty($route)) {
 

@@ -90,9 +90,6 @@
         if (Registry::exists($code)) {
           $CLICSHOPPING_PM = Registry::get($code);
         }
-
-      } elseif (isset($GLOBALS[$_SESSION['payment']]) && is_object($GLOBALS[$_SESSION['payment']])) {
-        $CLICSHOPPING_PM = $GLOBALS[$_SESSION['payment']];
       }
 
       if ( !isset($CLICSHOPPING_PM) || ($CLICSHOPPING_Payment->selected_module != $_SESSION['payment']) || ($CLICSHOPPING_PM->enabled === false) ) {
