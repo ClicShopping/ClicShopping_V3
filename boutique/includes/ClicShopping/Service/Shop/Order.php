@@ -12,13 +12,14 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Orders\Orders\Classes\Shop\Order as OrderClass;
 
   class Order implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Orders/Orders/Classes/Shop/Order.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Orders/Orders/Classes/Shop/Order.php')) {
         Registry::set('Order', new OrderClass());
         return true;
       } else {

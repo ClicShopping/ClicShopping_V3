@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Sites\Shop\Search as SearchClass;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Sites/Shop/Search.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Search.php')) {
         Registry::set('Search', new SearchClass());
 
         return true;

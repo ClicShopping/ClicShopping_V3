@@ -9,7 +9,6 @@
  *
  */
 
-  use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
   class CfgmService {
@@ -21,6 +20,6 @@
 
     public function __construct() {
 
-      $this->directory = CLICSHOPPING_BASE_DIR . 'Service/Shop/';
+      $this->directory = CLICSHOPPING::BASE_DIR . 'Service/Shop/';
     }
   }

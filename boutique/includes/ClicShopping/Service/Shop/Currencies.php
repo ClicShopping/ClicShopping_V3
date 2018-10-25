@@ -19,7 +19,7 @@
   class Currencies implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
-      if (is_file(CLICSHOPPING_BASE_DIR . '/Apps/Configuration/Currency/Classes/Shop/Currencies.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Currency/Classes/Shop/Currencies.php')) {
         Registry::set('Currencies', new CurrenciesClass());
         $CLICSHOPPING_Currencies = Registry::get('Currencies');
 

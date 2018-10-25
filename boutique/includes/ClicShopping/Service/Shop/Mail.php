@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\OM\Mail as MailClass;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'OM/Mail.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'OM/Mail.php')) {
         Registry::set('Mail', new MailClass());
 
         return true;

@@ -11,13 +11,14 @@
   namespace ClicShopping\Service\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Sites\Shop\CustomerShop as CustomerShopClass;
 
   class CustomersShop implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Sites/Shop/CustomerShop.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/CustomerShop.php')) {
         Registry::set('Customer', new CustomerShopClass());
         return true;
       } else {

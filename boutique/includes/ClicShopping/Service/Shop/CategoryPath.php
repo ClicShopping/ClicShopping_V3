@@ -12,13 +12,15 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
+
   use ClicShopping\Apps\Catalog\Categories\Classes\Shop\Category as CategoryClass;
   use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree as CategoryTreeClass;
 
   class CategoryPath implements\ClicShopping\OM\ServiceInterface {
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Catalog/Categories/Classes/Shop/Category.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/Shop/Category.php')) {
         Registry::set('CategoryTree', new CategoryTreeClass());
         Registry::set('Category', new CategoryClass());
 

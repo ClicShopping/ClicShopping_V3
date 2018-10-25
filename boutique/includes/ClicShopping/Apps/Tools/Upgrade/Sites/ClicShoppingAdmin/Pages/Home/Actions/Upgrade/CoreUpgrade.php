@@ -14,6 +14,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\FileSystem;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Github;
 
@@ -31,7 +32,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Github = new Github();
 
-      if (FileSystem::isWritable(CLICSHOPPING_BASE_DIR . 'Sites/Work/OnlineUpdates')) {
+      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Sites/Work/OnlineUpdates')) {
         $CLICSHOPPING_Github->UpgradeClicShoppingCore();
         $CLICSHOPPING_MessageStack->add($this->app->getDef('success_core_installed'), 'success');
       } else {

@@ -12,13 +12,14 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Marketing\Featured\Classes\Shop\FeaturedClass;
 
   class Featured implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Marketing/Featured/Classes/Shop/Featured.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Featured/Classes/Shop/Featured.php')) {
         Registry::set('FeaturedClass', new FeaturedClass());
 
         $CLICSHOPPING_Featured = Registry::get('FeaturedClass');

@@ -11,11 +11,12 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_ServiceAPP = Registry::get('ServiceAPP');
 
-  $directory = CLICSHOPPING_BASE_DIR . 'Service/ClicShoppingAdmin/';
+  $directory = CLICSHOPPING::BASE_DIR . 'Service/ClicShoppingAdmin/';
   $exclude = ['.', '..', '_htaccess', '.htaccess'];
   $files = array_diff(scandir($directory), $exclude);
 

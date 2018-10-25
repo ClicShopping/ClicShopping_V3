@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner as BannerClass;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Marketing/BannerManager/Classes/Shop/Banner.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/BannerManager/Classes/Shop/Banner.php')) {
         Registry::set('Banner', new BannerClass());
 
         $CLICSHOPPING_Banner = Registry::get('Banner');

@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Marketing\Favorites\Classes\Shop\FavoritesClass;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Marketing/Favorites/Classes/Shop/FavoritesClass.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Favorites/Classes/Shop/FavoritesClass.php')) {
         Registry::set('FavoritesClass', new FavoritesClass());
 
         $CLICSHOPPING_Favorites = Registry::get('FavoritesClass');

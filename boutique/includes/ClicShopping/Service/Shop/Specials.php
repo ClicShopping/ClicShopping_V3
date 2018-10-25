@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Marketing\Specials\Classes\Shop\SpecialsClass;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Marketing/Specials/Classes/Shop/SpecialsClass.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Specials/Classes/Shop/SpecialsClass.php')) {
         Registry::set('SpecialsClass', new SpecialsClass());
 
         $CLICSHOPPING_Specials = Registry::get('SpecialsClass');

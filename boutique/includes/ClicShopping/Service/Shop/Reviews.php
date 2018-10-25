@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Customers\Reviews\Classes\Shop\ReviewsClass as NewReviews;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Customers/Reviews/Classes/Shop/ReviewsClass.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Customers/Reviews/Classes/Shop/ReviewsClass.php')) {
         Registry::set('Reviews', new NewReviews());
 
         return true;

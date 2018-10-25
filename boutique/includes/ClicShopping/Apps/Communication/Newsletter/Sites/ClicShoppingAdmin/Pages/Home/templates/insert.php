@@ -68,9 +68,9 @@
     $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
     $directory_array = [];
 
-    if ($dir = dir(CLICSHOPPING_BASE_DIR . '/Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/')) {
+    if ($dir = dir(CLICSHOPPING::BASE_DIR . 'Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/')) {
       while ($file = $dir->read()) {
-        if (!is_dir(CLICSHOPPING_BASE_DIR . '/Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/' . $file)) {
+        if (!is_dir(CLICSHOPPING::BASE_DIR . 'Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/' . $file)) {
           if (substr($file, strrpos($file, '.')) == $file_extension) {
             $directory_array[] = $file;
           }

@@ -19,7 +19,7 @@
   class Breadcrumb implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Sites/Shop/Breadcrumb.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Breadcrumb.php')) {
         Registry::set('Breadcrumb', new BreadcrumbClass());
         $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
 

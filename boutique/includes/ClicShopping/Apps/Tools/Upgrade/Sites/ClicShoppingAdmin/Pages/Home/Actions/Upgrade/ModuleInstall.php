@@ -15,6 +15,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Tools\Upgrade\Classes\ClicShoppingAdmin\Github;
 
@@ -34,7 +35,7 @@
       $type_module = HTML::sanitize($_POST['type_module']);
       $module_directory = HTML::sanitize($_POST['module_directory']);
 
-      if (FileSystem::isWritable(CLICSHOPPING_BASE_DIR . 'Work/Temp/')) {
+      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Temp/')) {
         if ($type_module == 'template') {
           $CLICSHOPPING_Github->getModuleMasterArchive($module_real_name);
           $CLICSHOPPING_Github->getInstallModuleTemplate($module_real_name);

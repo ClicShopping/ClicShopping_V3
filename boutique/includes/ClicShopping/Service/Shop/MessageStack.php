@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\OM\MessageStack as MessageStackClass;
 
@@ -19,7 +20,7 @@
 
     public static function start() {
 // initialize the message stack for output messages
-      if (is_file(CLICSHOPPING_BASE_DIR . 'OM/MessageStack.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'OM/MessageStack.php')) {
         Registry::set('MessageStack', new MessageStackClass());
 
         return true;

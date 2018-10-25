@@ -11,6 +11,8 @@
 
   namespace ClicShopping\OM;
 
+  use ClicShopping\OM\CLICSHOPPING;
+
   class Service {
     protected $_services = [];
     protected $_started_services = [];
@@ -18,8 +20,8 @@
     protected $_call_after_page_content = [];
 
     public function __construct() {
-      $this->directory = CLICSHOPPING_BASE_DIR . 'Service/Shop/';
-      $this->directoryAdmin = CLICSHOPPING_BASE_DIR . 'Service/ClicShoppingAdmin/';
+      $this->directory = CLICSHOPPING::BASE_DIR . 'Service/Shop/';
+      $this->directoryAdmin = CLICSHOPPING::BASE_DIR . 'Service/ClicShoppingAdmin/';
     }
 
     public function start() {

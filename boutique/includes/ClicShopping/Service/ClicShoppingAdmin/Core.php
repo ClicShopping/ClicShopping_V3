@@ -11,6 +11,7 @@
   namespace ClicShopping\Service\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\OM\MessageStack as MessageStackClassAdmin;
 
@@ -18,7 +19,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'OM/MessageStack.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'OM/MessageStack.php')) {
         Registry::set('MessageStack', new MessageStackClassAdmin());
 
         return true;

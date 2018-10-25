@@ -14,6 +14,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\FileSystem;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class ResetCacheTemp extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
@@ -23,8 +24,8 @@
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      if (FileSystem::isWritable(CLICSHOPPING_BASE_DIR . 'Work/Cache/Github/Temp')) {
-        $cache_file = glob(CLICSHOPPING_BASE_DIR . 'Work/Cache/Github/Temp/*.json');
+      if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/Temp')) {
+        $cache_file = glob(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/Temp/*.json');
 
         foreach ($cache_file as $value) {
           unlink($value);

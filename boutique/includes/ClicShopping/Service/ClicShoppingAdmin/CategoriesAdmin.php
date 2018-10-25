@@ -11,6 +11,7 @@
   namespace ClicShopping\Service\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\CategoriesAdmin as CategoriesAdminClass;
 
@@ -18,7 +19,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Catalog/Categories/Classes/ClicShoppingAdmin/CategoriesAdmin.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/ClicShoppingAdmin/CategoriesAdmin.php')) {
         Registry::set('CategoriesAdmin', new CategoriesAdminClass());
 
         return true;

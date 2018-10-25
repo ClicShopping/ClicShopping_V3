@@ -12,6 +12,7 @@
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight as WeightShop;
 
@@ -20,7 +21,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Apps/Configuration/Weight/Classes/Shop/Weight.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Weight/Classes/Shop/Weight.php')) {
         Registry::set('Weight', new WeightShop());
 
         return true;

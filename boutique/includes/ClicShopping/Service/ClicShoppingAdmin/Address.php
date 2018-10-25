@@ -11,6 +11,7 @@
   namespace ClicShopping\Service\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Sites\Shop\Address as AddressClass;
 
@@ -18,7 +19,7 @@
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING_BASE_DIR . 'Sites/Shop/Address.php')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Address.php')) {
         if (!Registry::exists('Address')) {
          Registry::set('Address', new AddressClass());
         }
