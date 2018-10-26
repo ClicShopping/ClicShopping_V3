@@ -47,7 +47,6 @@
 <?php
       if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
          echo CLICSHOPPING::getDef('text_conditions_description') . '<br />';
-         echo HTML::checkboxField('conditions', '1', false, 'id="conditions"') . '<label for="conditions">&nbsp;' . CLICSHOPPING::getDef('text_conditions_confirm') . '</label>';
       }
 ?>
         </div>

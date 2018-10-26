@@ -46,7 +46,10 @@
         }
 
         $CLICSHOPPING_Payment = Registry::get('Payment');
-        $confirmation = $CLICSHOPPING_Payment->confirmation();
+
+        if (is_array($CLICSHOPPING_Payment->modules)) {
+          $confirmation = $CLICSHOPPING_Payment->confirmation();
+        }
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_CONTENT_WIDTH;
 
@@ -61,29 +64,36 @@
             } else {
               if (isset($confirmation['title'])) {
                 $data  = '<div class="col-sm-12">';
-                $data .=  '  <div class="alert alert-danger">';
+                $data .=  '  <div class="">';
                 $data .=  $confirmation['title'];
                 $data .=  '  </div>';
                 $data .=  '</div>';
               }
 
               if (isset($confirmation['fields'])) {
-                $fields = '';
-
-                $fields .= '<div class="col-sm-6">';
-                $fields .=  '<div class="alert alert-info">';
+                $display = '';
+                $display .=  '<div class="col-md-' . $content_width . '">';
+                $display .=  '<div class="col-md-12">';
+                $display .=  '<div class="separator"></div>';
+                $display .=  '<div class="card moduleCheckoutConfirmationPaymentInformationCard">';
+                $display .=  '<div class="card-header moduleCheckoutConfirmationPaymentInformationCardHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_heading_payment_information') . '</strong></div>';
+                $display .=  '<div class="card-block moduleCheckoutConfirmationPaymentInformationCardBlock">';
 
                 for ($i=0, $n=count($confirmation['fields']); $i<$n; $i++) {
-                  $fields .= $confirmation['fields'][$i]['title'] . ' ';
-                  $data .= $confirmation['fields'][$i]['field'];
 
-                  ob_start();
-                  require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_payment_information'));
+                  $field = '<span class="col-md-3">' . $confirmation['fields'][$i]['title'] . '</span>';
+                  $field .= '<span class="col-md-3">' . $confirmation['fields'][$i]['field'] . '</span>';
 
-                  $display .= ob_get_clean();
-                  $fields .= '</div>';
-                  $fields .= '</div>';
+                  $display .= '<div class="col-md-12">';
+                  $display .= $data;
+                  $display .= $field;
+                  $display .= '</div>';
                 }
+
+                $display .= '</div>';
+                $display .= '</div>';
+                $display .= '</div>';
+                $display .= '</div>';
               } else {
                 ob_start();
                 require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_payment_information'));

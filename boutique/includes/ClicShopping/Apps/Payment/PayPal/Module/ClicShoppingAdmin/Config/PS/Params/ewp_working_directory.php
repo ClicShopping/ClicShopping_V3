@@ -13,6 +13,8 @@ namespace ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Config\PS\Pa
 
 class ewp_working_directory extends \ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
+
+    public $default = CLICSHOPPING::BASE_DIR . 'Apps/Payment/PayPal/work/';
     public $sort_order = 1200;
 
     protected function init()

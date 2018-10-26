@@ -16,12 +16,6 @@
     echo $CLICSHOPPING_MessageStack->get('checkout_confirmation');
   }
 
-  if (isset($CLICSHOPPING_PM->form_action_url)) {
-    $form_action_url = $CLICSHOPPING_PM->form_action_url;
-  } else {
-    $form_action_url = CLICSHOPPING::link('index.php', 'Checkout&Process');
-  }
-
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
   echo HTML::form('checkout_confirmation', $form_action_url, 'post', 'class="form-inline" role="form" onsubmit="return checkCheckBox(this)"');
 ?>
