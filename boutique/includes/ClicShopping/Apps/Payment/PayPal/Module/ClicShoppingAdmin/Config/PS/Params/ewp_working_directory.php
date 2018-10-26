@@ -11,6 +11,8 @@
 
 namespace ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Config\PS\Params;
 
+use ClicShopping\OM\CLICSHOPPING;
+
 class ewp_working_directory extends \ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Config\ConfigParamAbstract
 {
 
