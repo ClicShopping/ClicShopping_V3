@@ -18,7 +18,10 @@
 			"PayPal":	"Module\\ClicShoppingAdmin\\Dashboard\\PayPal"
 		},
 		"Payment": {
-			"PS":	"Module\\Payment\\PS"
+     "DP":	"Module\\Payment\\DP",
+     "EC":	"Module\\Payment\\EC",
+     "HS":	"Module\\Payment\\HS",
+     "PS":	"Module\\Payment\\PS"
 		},
 		"Hooks": {
 			"ClicShoppingAdmin/Orders": {
@@ -33,7 +36,10 @@
 	"routes": {
 		"ClicShoppingAdmin":	"Sites\\ClicShoppingAdmin\\Pages\\Home",
 		"Shop": {
-			"order&ipn&paypal&ps":		"Sites\\Shop\\Pages\\PS"
+     "order&callback&paypal&ec":	"Sites\\Shop\\Pages\\EC",
+     "order&paypal&checkout&hs":	"Sites\\Shop\\Pages\\HS",
+     "order&ipn&paypal&ps":		"Sites\\Shop\\Pages\\PS",
+     "order&ipn&paypal&hs":		"Sites\\Shop\\Pages\\HS"
 		}
 	}
 }

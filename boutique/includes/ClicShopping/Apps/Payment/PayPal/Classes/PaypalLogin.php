@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -46,5 +46,20 @@
                    'zip_code');
     }
 
+    public function hasAttribute($attribute) {
+      return in_array($attribute, explode(';', CLICSHOPPING_APP_PAYPAL_LOGIN_ATTRIBUTES));
+    }
 
+
+    public function getDefaultAttributes() {
+      $data = [];
+
+      foreach ( cm_paypal_login_get_attributes() as $group => $attributes ) {
+        foreach ( $attributes as $attribute => $scope ) {
+          $data[] = $attribute;
+        }
+      }
+
+      return $data;
+    }
   }

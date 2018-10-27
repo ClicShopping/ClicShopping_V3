@@ -73,8 +73,8 @@ text_api_credentials =
         <ul>
           <li> Log in to your PayPal Business account.<br />
           for example for sandbox :<br />
-           - https://www.sandbox.paypal.com/myaccount/hometo manage your account and know your merchants id<br />
-           - https://developer.paypal.com/developer/accounts/ to create and maange you api<br />
+           - https://www.sandbox.paypal.com/myaccount/home to manage your account and know your merchants id<br />
+           - https://developer.paypal.com/developer/accounts/ to create and manage you api<br />
           </li>
           <li> Click the My Account tab.</li>
           <li>Click the Profile tab. ...</li>
