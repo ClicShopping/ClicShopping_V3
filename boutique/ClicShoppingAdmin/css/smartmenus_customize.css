@@ -143,12 +143,6 @@
   border-left: 40px solid transparent;
 }
 
-
-
-
-
-
-
 .main-nav:after {
   clear: both;
   content: "\00a0";

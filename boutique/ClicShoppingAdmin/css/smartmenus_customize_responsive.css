@@ -128,6 +128,7 @@
     -o-border-radius: 0;
     border-radius: 0;
   }
+
   .sm-mint a:hover span.sub-arrow, .sm-mint a:focus span.sub-arrow, .sm-mint a:active span.sub-arrow {
     border-color: white transparent transparent transparent;
   }

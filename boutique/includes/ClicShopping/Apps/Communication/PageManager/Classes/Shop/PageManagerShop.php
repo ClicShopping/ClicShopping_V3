@@ -258,7 +258,7 @@
              if ($search === false) {
               $page_liste_box .= $start_class . $separ . HTML::link($link, $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '" rel="noreferrer"') . $end_class;
             } else {
-              $page_liste_box .= $start_class . $separ . HTML::link(CLICSHOPPING::link($link), $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '"') . $end_class . '<br />';
+              $page_liste_box .= $start_class . $separ . HTML::link($link, $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '"') . $end_class . '<br />';
             }
           }
         }
@@ -339,9 +339,9 @@
               $search = strpos($QPageSecondary->value('externallink'), 'index.php');
 
               if ($search === false) {
-                $page_liste_box_secondary .= $start_class . $separ .  HTML::link($link_secondary, $QPageSecondary->value('pages_title'), 'target="' . $QPageSecondary->value('links_target') . '" rel="noreferrer"') . $end_class;
+                $page_liste_box_secondary .= $start_class . $separ . HTML::link($link_secondary, $QPageSecondary->value('pages_title'), 'target="' . $QPageSecondary->value('links_target') . '" rel="noreferrer"') . $end_class;
               } else {
-                $page_liste_box_secondary .= $start_class . $separ . HTML::link(CLICSHOPPING::link($link_secondary), $QPageSecondary->value('pages_title'), 'target="' . $QPageSecondary->value('links_target') . '"') . $end_class . '<br />';
+                $page_liste_box_secondary .= $start_class . $separ . HTML::link($link_secondary, $QPageSecondary->value('pages_title'), 'target="' . $QPageSecondary->value('links_target') . '"') . $end_class . '<br />';
               }
             }
           }

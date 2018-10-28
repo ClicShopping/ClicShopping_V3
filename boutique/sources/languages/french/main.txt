@@ -132,7 +132,7 @@ entry_password_new_error_not_matching = Le mot de passe de confirmation doit êt
 entry_password_new_error_pro = Votre nouveau mot de passe doit contenir un minimum de {{min_length}} caracteres.
 entry_password_new_error_not_matching_pro = Le mot de passe de confirmation doit être identique à votre nouveau mot de passe.
 
-entry_text_order_number = Comnande N°
+entry_text_order_number = Commande N°
 entry_error_contact = Une erreur a été détecté, veuillez recommencer.
 
 text_result_page =
