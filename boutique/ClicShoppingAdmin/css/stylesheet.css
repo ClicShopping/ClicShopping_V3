@@ -121,12 +121,7 @@ table.messageStackSuccess {
 FORM { display: inline; }
 
 /* account */
-.formArea { background-color: #f1f9fe; border-color: #7b9ebd; border-style: solid; border-width: 0.0625rem; }
 .formAreaTitle { font-size: 0.75rem; font-weight: bold; }
-
-/* attributes */
-.attributes-odd {}
-.attributes-even {}
 
 /* miscellaneous */
 .specialPrice { color: #ff0000; }
@@ -290,18 +285,26 @@ table.adminTitle {
 * Jscookmenu
 ************************************************************************/
 
+span.headerLogo {
+  padding-left: 0.5rem;
+}
+span.infoHeader {
+  padding-top: 0.5rem;
+  float: right;
+}
+
 .menuJSCookTexte {
   font-size: 0.8125rem;
   color: White;
 }
 
 .headerFond {
-  background-color: #222;
+  background: #222;
 }
 
 .headerLine {
-  background-color: #FF0000;
-  height:0.05rem;
+  background-color: #8a8a8a; /*FF0000*/
+  height:0.02rem;
 }
 
 /*************************************
@@ -422,8 +425,21 @@ a.btn {
 }
 
 div.backgroundMenu {
+/*
   background-image: url(../../images/ClicShoppingAdmin/menu_superfish.gif);
   height:1.90rem;
+*/
+  bottom: 4px;
+  height: 1.90rem;
+  z-index: 3;
+  background: #222222;
+
+  background: -moz-linear-gradient(top, #222222 0%, #2C2C2C 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #222222), color-stop(100%, #2C2C2C));
+  background: -webkit-linear-gradient(top, #222222 0%, #2C2C2C 100%);
+  background: -o-linear-gradient(top, #222222 0%, #2C2C2C 100%);
+  background: -ms-linear-gradient(top, #222222 0%, #2C2C2C 100%);
+  background: linear-gradient(to bottom, #222222 0%, #2C2C2C 100%);
 }
 
 .imageheaderMenu {

@@ -71,8 +71,8 @@ text_subscription_twitter = Inscrivez vous sur <a href="https://www.twitter.com"
 
 linkedin_certificate_clicshopping = Obtenez votre Certification ClicShopping !
 
-text_install_dashboard = Veuillez installer votre tableau de bord (permier apprentissage) <br />
-text_install_upgrade = Pour installer une nouvelle application, veuillez allez dans Outils/ Modules - Mise à jour <br />
+text_install_dashboard = Cliquez ici pourinstaller votre tableau de bord (permier apprentissage) <br />
+text_install_upgrade = Cliquez ici pour installer une nouvelle extension<br />
 text_good_luck = Nous vous souhaitons de réaliser de bonnes affaires avec ClicShopping. L'équipe
 text_follow_us = Suivez nous sur :
 text_donate = Cliquez ici pour nous aider à continuer en faisant une donation !
