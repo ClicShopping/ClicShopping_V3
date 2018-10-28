@@ -171,7 +171,7 @@
                           '{', // product attributes
                           '}' // product attributes
                           ], [
-                            '%5C',
+                           "\\",
                             '%7B',
                             '%7D'
                           ], $p);
