@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -83,7 +83,7 @@
         }
       }
     } else {
-      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link('modules.php?set=dashboard'), ClicShopping::getDef('text_install_dashboard')) . '</div>';
+      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Configuration\CModules&Modules&set=dashboard&list=new'), ClicShopping::getDef('text_install_dashboard')) . '</div>';
       echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\Upgrade&Upgrade'), ClicShopping::getDef('text_install_upgrade')) . '</div>';
       echo '<div class="col-md-12 text-md-center alert-warning">' . ClicShopping::getDef('text_good_luck') . '</div>';
     }
