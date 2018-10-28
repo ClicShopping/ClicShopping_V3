@@ -76,9 +76,15 @@
           <span class="menuJSCookTexte"><?php echo (isset($_SESSION['admin']) ? '&nbsp;' . AdministratorAdmin::getUserAdmin()  .  '&nbsp; - &nbsp;<a href="' . CLICSHOPPING::link('login.php', 'action=logoff') . '" class="headerLink"><i class="fas fa-power-off" aria-hidden="true"></i></a>' : ''); ?> &nbsp;&nbsp;</span>
           <span class="InfosHeaderWhoOnline"><?php echo (isset($_SESSION['admin']) ?  HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\WhosOnline&WhosOnline'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/clients.gif', CLICSHOPPING::getDef('text_header_online_customers'), '16', '16') . '</a>') : ''); ?></span>
           <span class="menuJSCookTexte InfosHeaderWhoOnline"><?php  echo (isset($_SESSION['admin']) ? '&nbsp;' . CLICSHOPPING::getDef('text_header_number_of_customers', ['online_customer' => WhosOnlineAdmin::getCountWhosOnline()]) . '&nbsp;&nbsp;' : ''); ?></span>
+<?php
+  }
+?>
         </span>
       </div>
       <div class="headerLine"></div>
+<?php
+  if (isset($_SESSION['admin'])) {
+?>
       <div><?php include_once('header_menu.php'); ?></div>
 <?php
   }
