@@ -41,8 +41,8 @@ text_info_number_of_orders = orders:
 
 text_customer_info = Customer Information
 text_newsletter = Newsletter
-text_customer_ip = Address IP Customer Subscription
-text_customer_provider = Provider Customer Subscription
+text_customer_ip = Customer address IP
+text_customer_provider = Customer Provider
 
 table_entry_validate = Approved
 approved_client = Customer B2B not approved

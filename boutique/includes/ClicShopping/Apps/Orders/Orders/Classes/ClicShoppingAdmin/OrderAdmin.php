@@ -265,4 +265,20 @@
 
       return $orders_status_array;
     }
+
+/*
+ * pdf logo
+ * return string or bool
+ */
+    public static function getOrderPdfInvoiceLogo() {
+      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+
+      if (is_file($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . 'logos/invoice/' . INVOICE_LOGO)) {
+        $logo = $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/' . INVOICE_LOGO;
+      } else {
+        $logo = false;
+      }
+
+      return $logo;
+    }
   }

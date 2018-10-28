@@ -9,7 +9,6 @@
  *
  */
 
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\Registry;
@@ -41,25 +40,25 @@
   }
 
   $QordersInfo = $CLICSHOPPING_Db->prepare('select orders_id,
-                                               customers_id
-                                        from :table_orders
-                                        where orders_id = :orders_id
-                                       ');
+                                                   customers_id
+                                            from :table_orders
+                                            where orders_id = :orders_id
+                                           ');
   $QordersInfo->bindInt(':orders_id', (int)$oID);
   $QordersInfo->execute();
 
 // Recuperations de la date de la facture (Voir aussi french.php & invoice.php)
 
   $QordersHistory = $CLICSHOPPING_Db->prepare('select orders_status_id,
-                                                   date_added,
-                                                   customer_notified,
-                                                   orders_status_invoice_id,
-                                                   comments
-                                           from :table_orders_status_history
-                                           where orders_id = :orders_id
-                                           order by date_added desc
-                                           limit 1
-                                          ');
+                                                       date_added,
+                                                       customer_notified,
+                                                       orders_status_invoice_id,
+                                                       comments
+                                               from :table_orders_status_history
+                                               where orders_id = :orders_id
+                                               order by date_added desc
+                                               limit 1
+                                              ');
   $QordersHistory->bindInt(':orders_id', (int)$oID );
   $QordersHistory->execute();
 
@@ -67,12 +66,12 @@
 
 
   $QordersStatusInvoice = $CLICSHOPPING_Db->prepare('select orders_status_invoice_id,
-                                                        orders_status_invoice_name,
-                                                        language_id
-                                                 from :table_orders_status_invoice
-                                                 where orders_status_invoice_id = :orders_status_invoice_id
-                                                 and language_id = :language_id
-                                               ');
+                                                            orders_status_invoice_name,
+                                                            language_id
+                                                     from :table_orders_status_invoice
+                                                     where orders_status_invoice_id = :orders_status_invoice_id
+                                                     and language_id = :language_id
+                                                   ');
   $QordersStatusInvoice->bindInt(':orders_status_invoice_id',  (int)$orders_history_display );
   $QordersStatusInvoice->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
   $QordersStatusInvoice->execute();
@@ -81,9 +80,9 @@
 
 
   $QstatusOrder = $CLICSHOPPING_Db->prepare('select orders_status
-                                         from :table_orders
-                                         where orders_id = :orders_id
-                                       ');
+                                             from :table_orders
+                                             where orders_id = :orders_id
+                                           ');
   $QstatusOrder->bindInt(':orders_id',  (int)$oID);
   $QstatusOrder->execute();
 
@@ -107,10 +106,9 @@
 
 
   if (DISPLAY_INVOICE_HEADER == 'false') {
-
 // Logo
-    if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/'. INVOICE_LOGO)) {
-      $pdf->Image(CLICSHOPPING::getConfig('http_server', 'Shop')  . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/'. INVOICE_LOGO, 5, 10, 50);
+    if (OrderAdmin::getOrderPdfInvoiceLogo() !== false) {
+      $pdf->Image(OrderAdmin::getOrderPdfInvoiceLogo(), 5, 10, 50);
     }
 
     // Nom de la compagnie

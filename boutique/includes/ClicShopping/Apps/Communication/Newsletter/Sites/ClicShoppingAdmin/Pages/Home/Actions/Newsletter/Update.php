@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -43,7 +43,7 @@
         $CLICSHOPPING_Newsletter->redirect('Newsletter&Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']);
       }
 
-      $allowed = array_map(function($v) {return basename($v, '.php');}, glob(CLICSHOPPING::BASE_DIR . '/Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/*.php'));
+      $allowed = array_map(function($v) {return basename($v, '.php');}, glob(CLICSHOPPING::BASE_DIR . 'Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/*.php'));
 
       if (!in_array($newsletter_module, $allowed)) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_newsletter_module_not_exists'), 'danger');
@@ -67,7 +67,7 @@
         $newsletter_error = true;
       }
 
-      if ((empty($newsletter_module)) || !is_file(CLICSHOPPING::BASE_DIR . '/Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/' . $newsletter_module . '.php')) {
+      if ((empty($newsletter_module)) || !is_file(CLICSHOPPING::BASE_DIR . 'Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/' . $newsletter_module . '.php')) {
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Newsletter->getDef('error_newsletter_module'), 'error');
         $newsletter_error = true;
       }
