@@ -60,16 +60,16 @@
 
     if ($Qcheck->fetch() !== false) {
       $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD']))],
-                                        ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME']]
-                     );
+                                                ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME']]
+                             );
     } else {
       $CLICSHOPPING_Db->save('administrators', ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME'],
-                                         'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
-                                         'name' => $_POST['CFG_ADMINISTRATOR_NAME'],
-                                         'first_name' => $_POST['CFG_ADMINISTRATOR_FIRSTNAME'],
-                                         'access' => '1'
-                                        ]
-                     );
+                                               'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
+                                               'name' => $_POST['CFG_ADMINISTRATOR_NAME'],
+                                               'first_name' => $_POST['CFG_ADMINISTRATOR_FIRSTNAME'],
+                                               'access' => '1'
+                                              ]
+                           );
     }
   }
 
@@ -198,7 +198,7 @@ ENDCFG;
   file_put_contents(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', $file_contents);
 
   @chmod(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', 0444);
-
+/*
 $modules = [
     [
         'dir' => $dir_fs_document_root . 'includes/modules/action_recorder/',
@@ -215,6 +215,12 @@ $modules = [
             ],
             [
                 'file' => 'ar_tell_a_friend.php'
+            ],
+                        [
+                'file' => 'ar_create_account.php'
+            ],
+                        [
+                'file' => 'ar_create_account_pro.php'
             ]
         ]
     ],
@@ -235,7 +241,7 @@ $modules = [
 // Admin
 //*********************************************
 ];
-
+*/
 if (!isset($_POST['DB_SKIP_IMPORT'])) {
     foreach ($modules as $m) {
         $m_installed = [];
