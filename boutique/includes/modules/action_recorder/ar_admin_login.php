@@ -15,7 +15,6 @@
   use ClicShopping\OM\HTTP;
 
   class ar_admin_login {
-
     public $code;
     public $title;
     public $description;

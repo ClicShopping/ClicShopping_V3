@@ -1,13 +1,14 @@
 <?php
-  /**
+/**
  *
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
+
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
@@ -32,8 +33,8 @@
       if ($this->check()) {
         if (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES')) {
           $this->minutes = (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES;
+          $this->attempts = 6; // nbr de possiblite d'envoi d'email
         }
-        $this->attempts = 6; // nbr de possiblite d'envoi d'email
       }
     }
 
