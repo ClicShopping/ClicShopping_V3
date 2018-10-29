@@ -822,14 +822,58 @@
       $Qresult = $CLICSHOPPING_Db->query('show table status from ' . CLICSHOPPING::getConfig('db_database'));
 
       $size = 0;
-      $out = '';
 
       while($Qresult->fetch()) {
         $size += $Qresult->value('Data_length');
-        $out .= $Qresult->value('Name') . ': ' . round(($Qresult->valueDecimal('Data_length')/1024)/1024, 4) . '<br />\n';
       }
 
       $size_db = round(($size/1024)/1024, 1);
       return $size_db;
     }
-}
+
+/**
+ * Calculate the size of all databse
+ * @return  $size_db
+ * @access public
+ */
+    public static function DisplayDbSize() {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $Qresult = $CLICSHOPPING_Db->query('show table status from ' . CLICSHOPPING::getConfig('db_database'));
+
+      $size = 0;
+
+      while($Qresult->fetch()) {
+        $size .= $Qresult->value('Name') . ': ' . round(($Qresult->valueDecimal('Data_length')/1024)/1024, 4) . '<br />\n';
+      }
+
+      $size_db = round(($size/1024)/1024, 1);
+      return $size_db;
+    }
+
+/**
+ * Update db with new table
+ * @param $filename
+ */
+    public function InstallNewDb($filename) {
+      $prefix = CLICSHOPPING::getConfig('db_table_prefix');
+
+      $this->exec('SET FOREIGN_KEY_CHECKS = 0');
+
+      $directory = CLICSHOPPING::BASE_DIR .'Custom/OM/Schema/';
+      $path_file = $directory . $filename .'txt';
+      $file = $directory . $filename;
+
+      if (is_file($path_file)) {
+        $schema = $this->getSchemaFromFile($path_file);
+        $sql = $this->getSqlFromSchema($schema, $prefix);
+
+        $this->exec('DROP TABLE IF EXISTS ' . $prefix . basename($file, '.txt'));
+
+        $this->exec($sql);
+        $this->importSQL($directory . $filename, $prefix);
+
+        $this->exec('SET FOREIGN_KEY_CHECKS = 1');
+      }
+    }
+  }
