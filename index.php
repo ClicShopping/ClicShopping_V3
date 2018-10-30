@@ -18,9 +18,9 @@
   $cwd = getcwd();
 
 // Chemin relatif à la boutique
-  chdir($cwd . '/boutique/');
+  chdir($cwd . '/shop/');
 
-  define('CLICSHOPPING_BASE_DIR', __DIR__ . '/boutique/includes/ClicShopping/');
+  define('CLICSHOPPING_BASE_DIR', __DIR__ . '/shop/includes/ClicShopping/');
 
   require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
 

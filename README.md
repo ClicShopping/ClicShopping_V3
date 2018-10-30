@@ -17,7 +17,7 @@
 
  Step1 : Download clicshopping
 
- Step2 : Install CliCshopping : https://www.mysite.com/boutique/install
+ Step2 : Install CliCshopping : https://www.mysite.com/shop/install
 
 
  All informations about the CliCshopping

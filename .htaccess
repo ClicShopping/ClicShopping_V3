@@ -5,7 +5,6 @@ Options +FollowSymlinks
 #### Your config to change ###############
 #Uncomment and adapt
 <IfModule mod_rewrite.c>
-Options -MultiViews
 RewriteEngine On
 
 ## URL Canonicalization
@@ -14,11 +13,11 @@ RewriteEngine On
 #    RewriteRule ^(.*)$ https://www.mysite.org/$1 [L,R=301]
 
 #to change in function your website
-#RewriteBase /boutique/
+#RewriteBase /shop/
 
 #    RewriteCond %{REQUEST_FILENAME} !-f
 #    RewriteCond %{REQUEST_FILENAME} !-d
 
 #to change in function your website
-#RewriteRule . /boutique/index.php [L]
+#RewriteRule . /shop/index.php [L]
 </IfModule>
