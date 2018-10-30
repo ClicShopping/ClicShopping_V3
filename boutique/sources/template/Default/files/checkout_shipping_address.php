@@ -26,7 +26,7 @@
 
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('checkout_shipping_address', CLICSHOPPING::link('index.php', 'Checkout&ShippingAddress&Process'), 'post', 'role="form" id="checkout_shipping_address"', ['tokenize' => true, 'action' => 'process']);
+  echo HTML::form('checkout_shipping_address', CLICSHOPPING::link('index.php', 'Checkout&ShippingAddress&Process'), 'post', 'role="form" id="usrForm"', ['tokenize' => true, 'action' => 'process']);
 
 // ------------------------------
 // --- Shipping address   -----

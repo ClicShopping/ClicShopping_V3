@@ -33,9 +33,9 @@
           <div class="row" id="RowContentAccountRegistration1">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputFirstName" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
+                <label for="frmNameB" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('firstname', null, 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_MIN_LENGTH .'"'); ?>
+                  <?php echo HTML::inputField('firstname', null, 'required aria-required="true" id="frmNameB" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_MIN_LENGTH .'"'); ?>
                 </div>
               </div>
             </div>
@@ -44,9 +44,9 @@
           <div class="row" id="RowContentAccountRegistration2">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputLastanme" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
+                <label for="frmNameA" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('lastname', null, 'required aria-required="true" id="InputLastanme" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_last_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '" minlength="'. ENTRY_LAST_NAME_MIN_LENGTH .'"'); ?>
+                  <?php echo HTML::inputField('lastname', null, 'required aria-required="true" id="frmNameA" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_last_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '" minlength="'. ENTRY_LAST_NAME_MIN_LENGTH .'"'); ?>
                 </div>
               </div>
             </div>
@@ -73,9 +73,9 @@
           <div class="row" id="RowContentAccountRegistration4">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputEmail" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address'); ?></label>
+                <label for="frmEmailA" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('email_address', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_address') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email'); ?>
+                  <?php echo HTML::inputField('email_address', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_address') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="frmEmailA" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email'); ?>
                 </div>
               </div>
             </div>
@@ -84,9 +84,9 @@
           <div class="row" id="RowContentAccountRegistration5">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="InputEmailConfirm" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address_confirmation'); ?></label>
+                <label for="frmEmailC" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address_confirmation'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('email_address_confirm', null, 'required aria-required="true" id="InputEmailConfirm" autocomplete="email" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address_confirmation') . '"', 'email'); ?>
+                  <?php echo HTML::inputField('email_address_confirm', null, 'required aria-required="true" id="frmEmailC" autocomplete="email" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address_confirmation') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address_confirmation') . '"', 'email'); ?>
                 </div>
               </div>
             </div>
