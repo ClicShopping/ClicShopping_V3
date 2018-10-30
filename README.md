@@ -55,9 +55,9 @@ Project quality under : https://insight.symfony.com
  ClicShopping(tm) has a trademark deposed
 
  Thank you for your support
- 
+
  ![image1](https://www.clicshopping.org/images/backoffice.png)
- 
+
  ![image2](https://www.clicshopping.org/images/catalog_smartphone.png)
- 
+
  ![image3](https://www.clicshopping.org/images/order.png)
