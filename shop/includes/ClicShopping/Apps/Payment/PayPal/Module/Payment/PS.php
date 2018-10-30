@@ -432,7 +432,7 @@
 
 
 /***********************************************************
-* Process
+* process_button
 ***********************************************************/
     public function process_button() {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -779,6 +779,10 @@
       }
     }
 
+***********************************************************
+* before_process
+***********************************************************/
+
     public function before_process() {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -872,10 +876,10 @@
               if ($CLICSHOPPING_Customer->getCustomersGroupID() != '0') {
 
                 $QproductsQuantityCustomersGroup = $CLICSHOPPING_Db->prepare('select products_quantity_fixed_group
-                                                                        from :table_products_groups
-                                                                        where products_id = :products_id
-                                                                        and customers_group_id =  :customers_group_id
-                                                                       ');
+                                                                              from :table_products_groups
+                                                                              where products_id = :products_id
+                                                                              and customers_group_id =  :customers_group_id
+                                                                             ');
                 $QproductsQuantityCustomersGroup->bindInt(':products_id',  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']) );
                 $QproductsQuantityCustomersGroup->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
                 $QproductsQuantityCustomersGroup->execute();
@@ -1056,12 +1060,14 @@
       if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
         $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
         $email_text_subject = html_entity_decode($email_text_subject);
-        $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-        foreach($text as $key => $email) {
-          $CLICSHOPPING_Mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+        $send_extra_email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
+
+        foreach($send_extra_email as $email){
+          $CLICSHOPPING_Mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
         }
       }
+
 // load the after_process public function from the payment modules
       $this->after_process();
 
