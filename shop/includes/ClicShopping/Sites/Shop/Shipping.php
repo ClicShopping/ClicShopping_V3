@@ -205,7 +205,7 @@
  * Count shipping modules
  * @return int
  */
-    function geCountShippingModules() {
+    public function geCountShippingModules() {
       $count = 0;
 
       $modules_array = explode(';', MODULE_SHIPPING_INSTALLED);
