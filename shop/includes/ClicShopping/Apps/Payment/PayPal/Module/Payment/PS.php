@@ -1063,11 +1063,10 @@
       if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
         $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
         $email_text_subject = html_entity_decode($email_text_subject);
+        $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-        $send_extra_email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
-
-        foreach($send_extra_email as $email){
-          $CLICSHOPPING_Mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+        foreach($text as $key => $email) {
+          $CLICSHOPPING_Mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
         }
       }
 

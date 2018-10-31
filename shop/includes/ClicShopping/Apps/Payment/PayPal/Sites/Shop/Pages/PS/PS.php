@@ -246,13 +246,12 @@
               }
 
 //------insert customer choosen option eof ----
-              $products_ordered .= $CLICSHOPPING_Order->products[$i]['qty'] . ' x ' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Order->products[$i]['model'] . ') = ' . $CLICSHOPPING_Currencies->display_price($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']) . $products_ordered_attributes . "\n";
-              $products_ordered = html_entity_decode(products_ordered);
-            }
+        $products_ordered .= $CLICSHOPPING_Order->products[$i]['qty'] . ' x ' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Order->products[$i]['model'] . ') = ' . $CLICSHOPPING_Currencies->display_price($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']) . $products_ordered_attributes . "\n";
+      }
 
-//*******************************
-// email
-//
+ // ---------------------------------------------
+ // ------          EMAIL SENT  --------------
+ // ---------------------------------------------
 
 // lets start with the email confirmation
       $email_order = STORE_NAME . "\n\n" .
@@ -304,14 +303,13 @@
 // send emails to other people
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
           if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
-            $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
-            $email_text_subject = html_entity_decode($email_text_subject);
+        $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
+        $email_text_subject = html_entity_decode($email_text_subject);
+        $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-            $send_extra_email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
-
-            foreach($send_extra_email as $email){
-              $CLICSHOPPING_Mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
-            }
+        foreach($text as $key => $email) {
+          $CLICSHOPPING_Mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+        }
           }
 
           $this->pm->app->db->delete('customers_basket', ['customers_id' => (int)$customer_id]);
