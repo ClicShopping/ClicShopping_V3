@@ -142,7 +142,7 @@
             'configuration_title' => 'Combien de commande souhaitez-vous afficher ?',
             'configuration_key' => 'MODULE_ADMIN_DASHBOARD_ORDERS_APP_LIMIT',
             'configuration_value' => '10',
-            'configuration_description' => 'Veuillez indiquer le nombre de commande &agrave; afficher',
+            'configuration_description' => 'Veuillez indiquer le nombre de commande à afficher',
             'configuration_group_id' => '6',
             'sort_order' => '1',
             'set_function' => '',

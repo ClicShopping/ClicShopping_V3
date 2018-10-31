@@ -157,10 +157,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez indiquer le nombre de commandes effectu&eacute;e par le client &agrave; afficher',
+          'configuration_title' => 'Veuillez indiquer le nombre de commandes effectuée par le client à afficher',
           'configuration_key' => 'MODULE_BOXES_ORDER_HISTORY_MAX_DISPLAY_PRODUCTS',
           'configuration_value' => '5',
-          'configuration_description' => 'Veuillez indiquer le nombre de commandes effectu&eacute;e par le client &agrave; afficher',
+          'configuration_description' => 'Veuillez indiquer le nombre de commandes effectuée par le client à afficher',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',

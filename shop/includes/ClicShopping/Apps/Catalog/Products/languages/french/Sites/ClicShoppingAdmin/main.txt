@@ -287,7 +287,7 @@ help_options = <li>Les champs supplémentaires ne sont pas pris en compte dans l
 si le champs est vide, celui n'apparaitra pas dans la partie catalogue.</li>
 
 title_help_general = Notes Informatives
-help_general = <li>Un certain nombre de champs sont paramétrables &agrave; partir du menu de configuration.</li>
+help_general = <li>Un certain nombre de champs sont paramétrables à partir du menu de configuration.</li>
 
 
 help_stock = <li>Concernant la gestion des commandes via une <strong>quantité minimale d'achat</strong>, veuillez suivre ces instructions pour une utilisation optimale.</li>

@@ -18,7 +18,7 @@
       if (WEBSITE_MODULE_INSTALLED == 0) {
         echo TEXT_INSTALL;
         echo '   <div class="text-md-center;"><br /><a href="https://www.clicshopping.org/marketplace" target="_blank"><img src="images/logo_clicshopping.png" border="0" height="100" width="100" alt="Market Place"><br />Go to Market Place</a></div>';
-        echo '   <div class="text-md-center" style="font-size: 10px;padding-top:10px;">ClicShopping(TM) est une marque (trademark) d&eacute;pos&eacute;e par Loïc Richard.</div>';
+        echo '   <div class="text-md-center" style="font-size: 10px;padding-top:10px;">ClicShopping(TM) est une marque (trademark) déposée par Loïc Richard.</div>';
         exit;
       }
     }

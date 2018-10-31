@@ -291,9 +291,9 @@ email_text_date_alert = Date Alerte
 
 text_install =
    <div style="text-align:center; padding-top: 50px;"><a href="https://www.clicshopping.org" target="_blank"><img src="images/logo_clicshopping_1.png" border="0" height="105" width="284" alt="Market Place"></a><br />
-   <div style="padding-top: 120px;">F&eacute;licitation, vous avez compl&egrave;t&egrave; le processus d'installation, veuillez lire les informations ci-dessous</div>
-   <div style="padding-top: 20px;">Veuillez vous connecter &agrave; la Market Place pour commencer &agrave; s&eacute;lectionner les modules en cliquant sur le logo ClicShopping</div>
+   <div style="padding-top: 120px;">Félicitation, vous avez compl&egrave;t&egrave; le processus d'installation, veuillez lire les informations ci-dessous</div>
+   <div style="padding-top: 20px;">Veuillez vous connecter à la Market Place pour commencer à sélectionner les modules en cliquant sur le logo ClicShopping</div>
    <div>clicshopping est construit sur une architecture modulaire (brique), pour l'utiliser vous devez installer les modules qui sont disponibles sur la marketplace.</div>
-   <div><br /> - Pour en savoir plus sur l'installation des modules , veuillez vous rendre sur la Market Place &agrave; section du guide : <a href ="https://www.clicshopping.org/marketplace/mes-premiers-pas-bl-9.html" target="_blank">Mes premiers pas</a></div>
-   <div> - Pour t&eacute;l&eacute;charger le pack Starter : veuillez cliquez sur : <a href="https://www.clicshopping.org/marketplace/sources/public/clicshopping/" target="_blank">Pack Starter</a> et l'installer via le syst&egrave;me d'installation de modules de ClicShopping et activer les modules</div>
+   <div><br /> - Pour en savoir plus sur l'installation des modules , veuillez vous rendre sur la Market Place à section du guide : <a href ="https://www.clicshopping.org/marketplace/mes-premiers-pas-bl-9.html" target="_blank">Mes premiers pas</a></div>
+   <div> - Pour télécharger le pack Starter : veuillez cliquez sur : <a href="https://www.clicshopping.org/marketplace/sources/public/clicshopping/" target="_blank">Pack Starter</a> et l'installer via le syst&egrave;me d'installation de modules de ClicShopping et activer les modules</div>
    <div> - Pour de plus amples informations, veuillez consulter notre : <a href="https://www.clicshopping.org/marketplace/index.php?Blog&Categories" target="_blank">blog</a></div>

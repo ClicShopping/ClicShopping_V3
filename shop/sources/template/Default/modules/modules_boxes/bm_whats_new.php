@@ -234,7 +234,7 @@
           'configuration_title' => 'How many products do you want display',
           'configuration_key' => 'MODULE_BOXES_WHATS_NEW_MAX_DISPLAY_LIMIT',
           'configuration_value' => '1',
-          'configuration_description' => 'Affiche un nombre d&eacute;termin&eacute; de produits dans la boxe de fa&ccedil;on al&eacute;atoire.',
+          'configuration_description' => 'Display a limited random product.',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',
