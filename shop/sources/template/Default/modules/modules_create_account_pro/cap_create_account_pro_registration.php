@@ -12,7 +12,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Mail;
 
   use ClicShopping\Sites\Shop\Pages\Account\Classes\CreatePro;
 

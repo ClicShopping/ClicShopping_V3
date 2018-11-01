@@ -35,8 +35,6 @@
      }
 
     public function execute() {
-      global $delivery_address_link;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Order =  Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
