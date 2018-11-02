@@ -55,7 +55,9 @@
       $this->delivery = [];
 
       if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
-        $this->query($_GET['order_id']);
+        $this->query(HTML::sanitize($_GET['order_id']));
+      } elseif (!is_null($order_id)) {
+        $this->query(HTML::sanitize($order_id));
       } else {
         $this->cart();
       }
@@ -722,9 +724,6 @@
 // discount coupons
 
         if (is_object($this->coupon)) {
-
-          $applied_discount = 0;
-
           $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
 
           if ($discount['applied_discount'] > 0) $valid_products_count++;
@@ -926,12 +925,7 @@
 
         $order_products_id = $this->db->lastInsertId();
 
-//------insert customer choosen option to order--------
-        $attributes_exist = '0';
-
         if (isset($this->products[$i]['attributes'])) {
-          $attributes_exist = '1';
-
           for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
             $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($this->products[$i]['id'], $this->products[$i]['attributes'][$j]['option_id'], $this->products[$i]['attributes'][$j]['value_id'], $this->lang->getId());
 
@@ -1008,7 +1002,7 @@
 * Process
 ***********************************************************/
 
-    public function process($order_id = null, $status_id = null) {
+    public function process($order_id = null) {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');

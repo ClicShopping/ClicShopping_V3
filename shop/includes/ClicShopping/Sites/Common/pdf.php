@@ -55,8 +55,6 @@
     }
 
     public function Header() {
-      global $oID;
-
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $date = strftime('%A, %d %B %Y');

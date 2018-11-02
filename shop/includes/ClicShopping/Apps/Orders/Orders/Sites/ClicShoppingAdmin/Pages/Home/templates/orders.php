@@ -491,7 +491,7 @@
       echo '&nbsp;';
       echo HTML::link($CLICSHOPPING_Orders->link('Invoice&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/invoice.gif', $CLICSHOPPING_Orders->getDef('icon_invoice')), 'target="_blank" rel="noreferrer"');
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Orders->link('Packingslip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
+      echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
       echo '&nbsp;';
       echo HTML::link($CLICSHOPPING_Orders->link('Delete&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Orders->getDef('icon_delete')));
       echo '&nbsp;';

@@ -388,12 +388,7 @@
 
             $order_products_id = $this->app->db->lastInsertId();
 
-//------insert customer choosen option to order--------
-            $attributes_exist = '0';
-
             if (isset($CLICSHOPPING_Order->products[$i]['attributes'])) {
-              $attributes_exist = '1';
-
               for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
 
                 $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option_id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value_id'], $this->app->lang->getId());
@@ -968,14 +963,9 @@
         $Qupdate->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
         $Qupdate->execute();
 
-
-//------insert customer choosen option to order--------
-        $attributes_exist = '0';
         $products_ordered_attributes = '';
 
         if (isset($CLICSHOPPING_Order->products[$i]['attributes'])) {
-          $attributes_exist = '1';
-
           for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
 
             $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option_id'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value_id'], $this->app->lang->getId());

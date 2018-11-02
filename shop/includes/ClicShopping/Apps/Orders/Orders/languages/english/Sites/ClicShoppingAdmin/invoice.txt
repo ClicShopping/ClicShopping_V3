@@ -4,7 +4,7 @@ entry_sold_to = SOLD TO:
 entry_ship_to = SHIP TO:
 
 entry_payment_method = Payment Method:
-
+payment_method = Payment Method:
 entry_numero_invoice = Invoice number :
 entry_numero_order = Order number :
 entry_date_invoice = Invoice date :

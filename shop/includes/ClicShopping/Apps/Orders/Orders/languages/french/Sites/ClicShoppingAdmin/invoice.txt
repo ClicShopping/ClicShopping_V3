@@ -3,7 +3,7 @@ entry_sold_to = VENDU A :
 entry_ship_to = LIVRE A :
 
 entry_payment_method = Mode de paiement :
-
+payment_method = Mode de paiement :
 entry_numero_invoice = Numéro de facture :
 entry_numero_order = Numéro de commande :
 entry_date_invoice = Date facture :

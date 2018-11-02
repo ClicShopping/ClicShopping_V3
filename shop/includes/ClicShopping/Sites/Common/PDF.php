@@ -59,8 +59,6 @@
     public function Header() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      $date = strftime('%A, %d %B %Y');
-
 // Logo
       if (file_exists(CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/invoice/'. INVOICE_LOGO)) {
         $this->Image(CLICSHOPPING::getConfig('http_server', 'Shop')  . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'logos/invoice/'. INVOICE_LOGO, 5, 10, 50);

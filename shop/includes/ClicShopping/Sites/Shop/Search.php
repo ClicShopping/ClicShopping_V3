@@ -14,10 +14,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
 
   class Search {
-
     protected $_period_min_year;
     protected $_period_max_year;
     protected $_keywords;
