@@ -20,8 +20,6 @@
   class Billing extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $CLICSHOPPING_Payment;
-
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -95,13 +93,6 @@
 
 // reset coupon session if an error is make
       if (isset($_SESSION['coupon'])) unset($_SESSION['coupon']);
-
-      $total_weight = $CLICSHOPPING_ShoppingCart->show_weight();
-      $total_count = $CLICSHOPPING_ShoppingCart->getCountContents();
-
-// load all enabled payment modules
-      Registry::set('Payment', new Payment());
-      $CLICSHOPPING_Payment = Registry::get('Payment');
 
 // templates
       $this->page->setFile('checkout_payment.php');

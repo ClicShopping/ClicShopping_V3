@@ -77,8 +77,6 @@
 
 //this needs to be set before the order object is created, but we must process it after
       if (isset($_SESSION['coupon'])) {
-        $coupon = null;
-
         if (!is_null($_SESSION['coupon'])) {
           $_SESSION['coupon'] = HTML::sanitize($_SESSION['coupon']);
         }

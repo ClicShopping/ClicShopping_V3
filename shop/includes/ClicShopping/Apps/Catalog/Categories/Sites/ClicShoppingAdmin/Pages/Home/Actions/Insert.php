@@ -16,7 +16,6 @@
   class Insert extends \ClicShopping\OM\PagesActionsAbstract {
     public function execute() {
       $CLICSHOPPING_Categories = Registry::get('Categories');
-      $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
       $this->page->setFile('insert.php');
       $this->page->data['action'] = 'Insert';
