@@ -29,7 +29,7 @@
 
 
       if (!isset($_GET['order_id']) || (isset($_GET['order_id']) && !is_numeric($_GET['order_id']))) {
-        CLICSHOPPING::redirect('account_history.php', '');
+        CLICSHOPPING::redirect('account_history.php');
       }
 
       $this->page->setFile('order_conditions.php');

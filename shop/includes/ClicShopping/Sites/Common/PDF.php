@@ -17,6 +17,14 @@
 
   class PDF extends FPDF {
 
+    private $pdf;
+
+    private static function getGlobalPdf() {
+      global $pdf;
+
+      return $pdf;
+    }
+
     public function roundedRect($x, $y, $w, $h,$r, $style = '') {
       $k = $this->k;
       $hp = $this->h;
@@ -154,7 +162,7 @@
      * output_table_heading
      */
     public function outputTableHeadingPdf($Y_Fields_Name_position){
-      global $pdf;
+      $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);
       $pdf->SetFont('Arial','B',8);
@@ -185,7 +193,7 @@
 // Création entête du tableau des produits pour les bons de livraison
 //  output_table_heading_packingslip
     public function outputTableHeadingPackingslip($Y_Fields_Name_position){
-      global $pdf;
+      $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);
       $pdf->SetFont('Arial','B',8);
@@ -201,7 +209,7 @@
 
 // output_table_suppliers
     public function outputTableSuppliers($Y_Fields_Name_position){
-      global $pdf;
+      $pdf = $this->pdf;
 
       $pdf->SetFillColor(245);
       $pdf->SetFont('Arial','B',8);
@@ -223,7 +231,7 @@
 //output_table_customers_suppliers
 //
     public function outputTableCustomersSuppliers($Y_Fields_Name_position){
-      global $pdf;
+      $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);
       $pdf->SetFont('Arial','B',8);
