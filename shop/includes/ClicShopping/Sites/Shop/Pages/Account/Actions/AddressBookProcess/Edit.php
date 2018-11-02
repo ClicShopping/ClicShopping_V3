@@ -9,7 +9,6 @@
  *
  */
 
-
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\AddressBookProcess;
 
   use ClicShopping\OM\CLICSHOPPING;
@@ -28,8 +27,6 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
 // error checking when updating or adding an entry
-      $process = false;
-
       if ( $exists === false ) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'addressbook');
 
@@ -37,8 +34,7 @@
      }
 
       if (isset($_POST['action']) && $_POST['action'] == 'update' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-        $process = true;
-        $error = false;
+         $error = false;
 
         if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $gender = HTML::sanitize($_POST['gender']);

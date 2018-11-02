@@ -20,8 +20,6 @@
   class HistoryInfo extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $QdonwloadProductsFiles;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -45,10 +43,6 @@
       if ($check_history_info === false || ($check_history_info['customers_id'] != $CLICSHOPPING_Customer->getID())) {
         CLICSHOPPING::redirect('index', 'Account&History');
       }
-
-// download product
-// Display the pdf type in function the status
-      $QdonwloadProductsFiles = Info::getHistoryInfoDownloadFiles();
 
 // templates
       $this->page->setFile('history_info.php');

@@ -28,7 +28,7 @@ use ClicShopping\OM\HTML;
 ?>
     <div class="row">
       <div class="col-md-12">
-        <p class="text-warning" style="float: right;"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
+        <p class="text-warning text-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
         <h3><?php echo CLICSHOPPING::getDef('category_personal_pro'); ?></h3>
       </div>
     </div>
@@ -37,7 +37,7 @@ use ClicShopping\OM\HTML;
 ?>
     <div class="row">
       <div class="col-md-12">
-        <p class="text-warning" style="float: right;"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
+        <p class="text-warning text-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
         <div class="page-header AccountCustomersEdit"><h1><?php echo CLICSHOPPING::getDef('module_account_customers_edit_title_account'); ?></h1></div>
       </div>
     </div>
@@ -102,13 +102,12 @@ use ClicShopping\OM\HTML;
 <?php
   if ((ACCOUNT_DOB == 'true' && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (ACCOUNT_DOB_PRO == 'true'  && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) ) {
 ?>
-
     <div class="row">
       <div class="col-md-7">
         <div class="form-group row">
           <label for="dob" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_date_of_birth'); ?></label>
           <div class="col-md-8">
-            <?php echo HTML::inputField('dob', DateTime::toShort($customers_dob), 'data-provide="datepicker"  id="dob"') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_date_of_birth_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_date_of_birth_text') . '</span>': ''); ?>
+            <?php echo HTML::inputField('dob', DateTime::toShort($customers_dob), 'data-provide="datepicker" id="dob required aria-required="true" aria-describedby="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" placeholder="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" minlength="'. ENTRY_DOB_MIN_LENGTH .'"'); ?>
           </div>
         </div>
       </div>

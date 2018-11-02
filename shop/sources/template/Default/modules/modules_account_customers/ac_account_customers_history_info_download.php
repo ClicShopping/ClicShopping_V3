@@ -12,7 +12,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
-//  use ClicShopping\Sites\Shop\Download;
+
+  use ClicShopping\Sites\Shop\Pages\Account\Classes\HistoryInfo;
 
   class ac_account_customers_history_info_download {
 
@@ -43,12 +44,6 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
-/*
-        Registry::set('Download', new Download() );
-        $CLICSHOPPING_Download = Registry::get('Download');
-
-        echo $CLICSHOPPING_Download->Download();
-*/
 // Get last order id for checkout_success
         $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['customers_id' => $CLICSHOPPING_Customer->getID()], 'orders_id desc', 1);
 
@@ -58,34 +53,9 @@
       }
 
 // Now get all downloadable products in that order
-      $Qdownloads = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
-                                                      opd.download_maxdays,
-                                                      op.products_name,
-                                                      opd.orders_products_download_id,
-                                                      opd.orders_products_filename,
-                                                      opd.download_count,
-                                                      opd.download_maxdays
-                                                  from :table_orders o,
-                                                        :table_orders_products op,
-                                                        :table_orders_products_download opd,
-                                                        :table_orders_status os
-                                                  where o.orders_id = :orders_id
-                                                  and o.customers_id = :customers_id
-                                                  and o.orders_id = op.orders_id
-                                                  and op.orders_products_id = opd.orders_products_id
-                                                  and opd.orders_products_filename <> ""
-                                                  and o.orders_status = os.orders_status_id
-                                                  and os.downloads_flag = 1
-                                                  and os.language_id = :language_id
-                                               ');
-
-      $Qdownloads->bindInt(':orders_id', $last_order);
-      $Qdownloads->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qdownloads->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qdownloads->execute();
+      $Qdownloads = HistoryInfo::getDownloadFilesPurchased();
 
       if ($Qdownloads->fetch() !== false) {
-
         $account = '<!-- Start account_customers_download --> ' . "\n";
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_DOWNLOAD_CONTENT_WIDTH;

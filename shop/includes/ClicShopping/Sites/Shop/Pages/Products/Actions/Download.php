@@ -15,19 +15,20 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Hash;
 
-  class Download extends \ClicShopping\OM\PagesActionsAbstract {
+  use ClicShopping\Sites\Shop\Pages\Account\Actions\HistoryInfo;
 
+  class Download extends \ClicShopping\OM\PagesActionsAbstract {
 
 // Unlinks all subdirectories and files in $dir
 // Works only on one subdir level, will not recurse
     protected function unlinkTempDir($dir) {
       $h1 = opendir($dir);
       while ($subdir = readdir($h1)) {
-        // Ignore non directories
+// Ignore non directories
         if (!is_dir($dir . $subdir)) continue;
-        // Ignore . and .. and CVS
+// Ignore . and .. and CVS
         if ($subdir == '.' || $subdir == '..' || $subdir == 'CVS') continue;
-        // Loop and unlink files in subdirectory
+// Loop and unlink files in subdirectory
         $h2 = opendir($dir . $subdir);
         while ($file = readdir($h2)) {
           if ($file == '.' || $file == '..') continue;
@@ -42,7 +43,6 @@
     public function execute() {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if ( !$CLICSHOPPING_Customer->isLoggedOn() ) {
@@ -55,31 +55,7 @@
       }
 
 // Check that order_id, customer_id and filename match
-
-      $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
-                                               opd.download_maxdays,
-                                               opd.download_count,
-                                               opd.download_maxdays,
-                                               opd.orders_products_filename
-                                        from :table_orders o,
-                                             :table_orders_products op,
-                                             :table_orders_products_download opd,
-                                             :table_orders_status os
-                                        where o.orders_id = :orders_id
-                                        and o.customers_id = :customers_id
-                                        and o.orders_id = op.orders_id
-                                        and op.orders_products_id = opd.orders_products_id
-                                        and opd.orders_products_download_id = :orders_products_download_id
-                                        and opd.orders_products_filename != ""
-                                        and o.orders_status = os.orders_status_id
-                                        and os.downloads_flag = "1"
-                                        and os.language_id = :language_id
-                                      ');
-      $Qdownload->bindInt(':orders_id', $_GET['order']);
-      $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qdownload->bindInt(':orders_products_download_id', $_GET['id']);
-      $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qdownload->execute();
+      $Qdownload = HistoryInfo::getDownloadFilesPurchased();
 
       if ( $Qdownload->fetch() === false ) {
         CLICSHOPPING::redirect('index.php', null);
@@ -100,8 +76,10 @@
 
 // Now decrement counter
       $Qupdate = $CLICSHOPPING_Db->prepare('update :table_orders_products_download
-                                      set download_count = download_count-1
-                                      where orders_products_download_id = :orders_products_download_id');
+                                            set download_count = download_count-1
+                                            where orders_products_download_id = :orders_products_download_id
+                                            ');
+
       $Qupdate->bindInt(':orders_products_download_id', (int)$_GET['id']);
       $Qupdate->execute();
 
