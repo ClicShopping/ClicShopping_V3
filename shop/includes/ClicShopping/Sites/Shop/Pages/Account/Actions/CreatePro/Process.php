@@ -364,7 +364,6 @@
         }
 
         if ( $error === false ) {
-
 // Enregistrement des informations du client dans la base de donnees
 // member_level sur 1 permet d'eviter d'avoir e faire une approbation pour des clients normaux
           $sql_data_array = ['customers_firstname' => $firstname,
