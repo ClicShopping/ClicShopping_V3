@@ -13,7 +13,7 @@
 
   use ClicShopping\OM\Registry;
 
-  class CreatePro {
+  class CreateAccount {
 
     public static function getCountryPro() {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -30,5 +30,16 @@
       return $default_country_pro;
     }
 
+    public static function getOriginHref() {
+      $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
 
+      if ($CLICSHOPPING_NavigationHistory->hasSnapshot()) {
+        $origin_href = $CLICSHOPPING_NavigationHistory->getSnapshotURL();
+        $CLICSHOPPING_NavigationHistory->resetSnapshot();
+        } else {
+          $origin_href = CLICSHOPPING::redirect('index.php');
+        }
+
+        return $origin_href;
+      }
   }

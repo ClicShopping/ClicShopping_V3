@@ -13,7 +13,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Sites\Shop\Pages\Account\Classes\CreatePro;
+  use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
 
   class cap_create_account_pro_registration {
     public $code;
@@ -45,6 +45,7 @@
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
     if (isset($_GET['Account'] ) && isset($_GET['CreatePro'])  && !isset($_GET['Success'])) {
+      $origin_href = CreateAccount::getOriginHref();
 
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH;
 

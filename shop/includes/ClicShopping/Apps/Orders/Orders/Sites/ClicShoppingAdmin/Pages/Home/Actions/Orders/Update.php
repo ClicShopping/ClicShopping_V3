@@ -41,7 +41,7 @@
       $this->oID = HTML::sanitize($_GET['oID']);
       $this->status = HTML::sanitize($_POST['status']);
       $this->statusInvoice = HTML::sanitize($_POST['status_invoice']);
-      $this->comments = $_POST['comments'];
+      $this->comments = HTML::sanitize($_POST['comments']);
       $this->ordersTrackingId = HTML::sanitize($_POST['orders_tracking_id']);
       $this->ordersTrackingNumber = HTML::sanitize($_POST['orders_tracking_number']);
       $this->ordersStatusSupportId = HTML::sanitize($_POST['orders_status_support_id']);

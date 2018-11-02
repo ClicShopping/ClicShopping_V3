@@ -19,9 +19,9 @@
   class AddressBookProcess extends \ClicShopping\OM\PagesActionsAbstract {
 
     private function CustomerAddress() {
-      $Qentry = AddressBook::getEntry((int)$_GET['edit']);
+      $entry = AddressBook::getEntry((int)$_GET['edit']);
 
-      return $Qentry;
+      return $entry;
     }
 
     public function execute() {

@@ -12,6 +12,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
+  use ClicShopping\Sites\Shop\Pages\Account\Classes\CreateAccount;
+
   class ca_create_account_success {
     public $code;
     public $group;
@@ -38,6 +40,8 @@
     $CLICSHOPPING_Template = Registry::get('Template');
 
     if (isset($_GET['Account'] ) && isset($_GET['Create']) && isset($_GET['Success']) ) {
+
+      $origin_href = CreateAccount::getOriginHref();
 
       $content_width = (int)MODULE_CREATE_ACCOUNT_SUCCESS_CONTENT_WIDTH;
 
