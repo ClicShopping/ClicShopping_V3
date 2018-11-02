@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -55,7 +55,6 @@
           </span>
           <span class="col-md-2 text-md-right">
             <span class="col-md-6">
-              <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_configure'), null, $CLICSHOPPING_Groups->link('Groups'), 'primary'); ?>
               <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_insert'), null, $CLICSHOPPING_Groups->link('Insert'), 'success'); ?>
             </span>
 <?php

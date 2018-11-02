@@ -30,7 +30,7 @@
       $group_order_taxe = HTML::sanitize($_POST['group_order_taxe']);
 
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
-      if (strlen($customers_groups_name) == "") {
+      if (strlen($customers_groups_name) == '') {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_error'));
         $CLICSHOPPING_Groups->redirect('Groups&Insert&error=name');

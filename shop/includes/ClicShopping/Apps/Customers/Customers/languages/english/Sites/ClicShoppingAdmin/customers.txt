@@ -32,6 +32,8 @@ text_average_newsletter = Newsletter
 text_b2b = B2B
 text_b2c = B2C
 
+category_shipping_customer = Shipping allowed
+
 type_below = Type below
 text_selected = Select One
 

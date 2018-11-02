@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -32,8 +32,6 @@
     }
 
     public function display()  {
-      global $error;
-
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Customers = Registry::get('Customers');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -45,7 +43,7 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Customers/page_content4');
 
       $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select customers_group_id
-                                                          from :table_customers 
+                                                          from :table_customers
                                                           where customers_id = :customers_id
                                                         ');
       $Qcustomers->bindInt(':customers_id', $_GET['cID']);
@@ -96,14 +94,7 @@
           $content .= '<div class="form-group row">';
           $content .= '<label for="' . $this->app->getDef('entry_customers_group_name') .'" class="col-5 col-form-label">' . $this->app->getDef('entry_customers_group_name') . '</label>';
           $content .= '<div class="col-md-5">';
-
-          if ($error === true) {
-            $content .= $cInfo_group->customers_group_name;
-            $content .= HTML::hiddenField('customers_group_id');
-          } else {
-            $content .= HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($this->app->getDef('visitor_name')), $cInfo->customers_group_id);
-          }
-
+          $content .= HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($this->app->getDef('visitor_name')), $cInfo->customers_group_id);
           $content .= '</div>';
           $content .= '</div>';
           $content .= '</div>';
@@ -114,7 +105,6 @@
           $content .= '</div>';
 
           if ($cInfo->customers_group_id != 0) {
-
             $content .= '<div class="separator"></div>';
             $content .= '<div class="mainTitle">' . $this->app->getDef('category_order_taxe_group') . '&nbsp;' . $cInfo_group->customers_group_name. '</div>';
             $content .= '<div class="adminformTitle">';

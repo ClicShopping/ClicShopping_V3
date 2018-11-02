@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -985,7 +985,6 @@
 <?php
 // Search Shipping Module
       $shipping_unallowed = explode (",", $cInfo_group->group_shipping_unallowed);
-      $module_directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/shipping/';
       $module_key = 'MODULE_SHIPPING_INSTALLED';
 
       $Qconfiguration_shipping = $CLICSHOPPING_Customers->db->prepare('select configuration_value
@@ -1007,11 +1006,6 @@
 
           $include_modules[] = ['class' => $value,
                                 'file' => $class
-                                ];
-        } else {
-          $class = basename($value, '.php');
-          $include_modules[] = ['class' => $class,
-                                'file' => $value
                                 ];
         }
       }
@@ -1051,8 +1045,6 @@
           if (in_array ($include_modules[$i]['file'], $modules_shipping)) {
 
             $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
-
-            include($module_directory . $file);
 
             $class = substr($file, 0, strrpos($file, '.'));
 

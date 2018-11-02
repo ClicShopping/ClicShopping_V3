@@ -19,7 +19,7 @@ text_info_date_last_logon = Dernière connexion :
 text_info_number_of_logons = Nombre de connexions :
 text_info_country = Pays :
 text_info_number_of_reviews = Nombre d'avis du client :
-text_delete_intro = Etes vous s&ucirc;r de vouloir supprimer ce client ?
+text_delete_intro = Etes vous sur de vouloir supprimer ce client ?
 text_delete_reviews = Supprimer %s le commentaire
 text_info_heading_delete_customer = Supprimer le client
 text_help_wysiwyg = wysiwyg
@@ -29,6 +29,10 @@ text_male = Hommes
 text_female = Femmes
 text_average_age = Moyenne Age
 text_average_newsletter = Newsletter
+text_b2b = B2B
+text_b2c = B2C
+
+category_shipping_customer = Shipping allowed
 
 type_below = Type ci-dessous
 text_selected = Choisissez en un
