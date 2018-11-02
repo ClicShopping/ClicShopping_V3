@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -47,9 +47,8 @@
         $title_field_name = $_POST['pages_title_' . $languages[$i]['id']];
 
         if (empty($title_field_name)) {
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('error_paget_tile_required'), 'error');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('error_page_title_required'), 'error');
           $page_error = true;
-          $languages_title_error = $languages[$i]['id'];
         }
       }
 
