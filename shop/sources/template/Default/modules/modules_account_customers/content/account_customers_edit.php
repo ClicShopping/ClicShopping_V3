@@ -71,10 +71,10 @@ use ClicShopping\OM\HTML;
   <div class="row">
     <div class="col-md-7">
       <div class="form-group row">
-        <label for="frmNameB" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
+        <label for="InputFirstName" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
         <div class="col-md-5">
 <?php
-  echo HTML::inputField('firstname', $customers_firstname, 'id="frmNameB" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '"');
+  echo HTML::inputField('firstname', $customers_firstname, 'id="InputFirstName" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '"');
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_FIRST_NAME_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_FIRST_NAME_PRO_MIN_LENGTH > 0))) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_first_name_text')) ? '<span class="text">' . CLICSHOPPING::getDef('entry_first_name_text') . '</span>': '');
   }
@@ -87,10 +87,10 @@ use ClicShopping\OM\HTML;
   <div class="row">
     <div class="col-md-7">
       <div class="form-group row">
-        <label for="frmNameA" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
+        <label for="InputLastName" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_last_name'); ?></label>
         <div class="col-md-5">
 <?php
-  echo HTML::inputField('lastname', $customers_lastname, 'id="frmNameA" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '"');
+  echo HTML::inputField('lastname', $customers_lastname, 'id="InputLastName" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '"');
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_LAST_NAME_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_LAST_NAME_MIN_LENGTH > 0))) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_last_name_text')) ? '<span class="text">' . CLICSHOPPING::getDef('entry_last_name_text') . '</span>': '');
   }
