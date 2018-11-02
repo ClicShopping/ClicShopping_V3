@@ -287,10 +287,6 @@
     public function displayFeed() {
       $xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
       $xml .= '<?xml-stylesheet href="https://www.w3.org/2000/08/w3c-synd/style.css" type="text/css"?>' . "\n";
-//      $xml .= '<!-- RSS for ' . $this->site_name . ', generated on ' . gmdate("D, d M Y G:i:s", strtotime(now())) . ' GMT  -->' . "\n";
-
-
-
 
       $xml .= '<rss version="2.0" ' . "\n";
       $xml .= $this->xmlns();
@@ -301,8 +297,6 @@
       $xml .= '<link>' . HTTP::typeUrlDomain()  . '</link>' . "\n";
       $xml .= '<description>'. $this->setDescription() .'</description>' . "\n";
       $xml .= '<copyright>' . $this->setTitle() . '</copyright>' . "\n";
-//    $xml .= '<lastBuildDate>' . gmdate("D, d M Y G:i:s", strtotime(now())) . ' GMT </lastBuildDate>' . "\n";
-//      $xml .= '<pubDate>' . gmdate("D, d M Y G:i:s", strtotime(now())) . ' GMT </pubDate>' . "\n";
 
 
 
@@ -326,7 +320,7 @@
 
         $products_id = $rss_item[$i]['products_id'];
         $date_added = date('Y-m-d',strtotime($rss_item[$i]['products_date_added']));
-        $products_image = $rss_item[$i]['products_image'];
+
         $name = strip_tags($rss_item[$i]['products_name']);
         $description = strip_tags($rss_item[$i]['products_description']);
 
@@ -339,21 +333,11 @@
         $url =  CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products_id);
         $link = str_replace('&','&amp;', $url);
 
-/* pb does'nt work well
-        if (!CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/' .  $products_image) {
-          $product_image = CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'sources/images' . $products_image;
-          $data_image = '<image>' . "\n";
-          $data_image .= '<title>' . $name . '</title>' . "\n";
-          $data_image .= '<link>' . CLICSHOPPING::getConfig('http_server', 'Shop') . '</link>' . "\n";
-          $data_image .= '<url>' . $product_image . '</url>' . "\n";
-          $data_image .= '</image>' . "\n";
-        }
-*/
         $xml .= '<item>' . "\n";
         $xml .= '<title>' . $name . '</title>' . "\n";
         $xml .= '<link>' . $link . '</link>' . "\n";
         $xml .= '<description>' . $description . '</description>' . "\n";
-        $xml .=  $data_image . "\n";
+
         $xml .= '<pubDate>' . gmdate("D, d M Y H:i:s", strtotime($date_added)). ' GMT' . '</pubDate>' . "\n";
         $xml .= '<guid>' . $link . '</guid>' . "\n";
         $xml .= '</item>' . "\n";
