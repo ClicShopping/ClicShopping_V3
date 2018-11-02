@@ -229,7 +229,6 @@
 
         $rand_image = $this->getGenerateRandomString();
 
-        $exclude_folders = []; // folders to exclude from adding new images
         $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
         $error = true;
 
@@ -385,8 +384,8 @@
 
 
     public function saveGalleryImage($id) {
-      $exclude_folders = []; // folders to exclude from adding new images
       $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
+
       $error = true;
 
 // gallery

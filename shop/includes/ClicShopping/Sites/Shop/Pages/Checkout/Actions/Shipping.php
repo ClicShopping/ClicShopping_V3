@@ -101,9 +101,6 @@
         CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
       }
 
-      $total_weight = $CLICSHOPPING_ShoppingCart->show_weight();
-      $total_count = $CLICSHOPPING_ShoppingCart->getCountContents();
-
       Registry::set('Shipping', new Delivery());
       $CLICSHOPPING_Shipping = Registry::get('Shipping');
 

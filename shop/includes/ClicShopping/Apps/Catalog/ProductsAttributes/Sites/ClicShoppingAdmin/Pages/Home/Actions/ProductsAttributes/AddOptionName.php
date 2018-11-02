@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -27,7 +27,6 @@
       $option_name_array = $_POST['option_name'];
       $option_sort_order = $_POST['option_sort_order'];
       $option_id = HTML::sanitize($_POST['option_id']);
-      $value_id = HTML::sanitize($_POST['value_id']);
 
       $option_page = (isset($_GET['option_page']) && is_numeric($_GET['option_page'])) ? $_GET['option_page'] : 1;
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;
@@ -47,8 +46,8 @@
                                           ');
         $Qupdate->bindValue(':products_options_name', $option_name);
         $Qupdate->bindInt(':products_options_sort_order', $option_sort_order);
-        $Qupdate->bindInt(':products_options_id', (int)$option_id );
-        $Qupdate->bindInt(':language_id', (int)$languages[$i]['id']);
+        $Qupdate->bindInt(':products_options_id', $option_id );
+        $Qupdate->bindInt(':language_id', $languages[$i]['id']);
         $Qupdate->execute();
       }
 

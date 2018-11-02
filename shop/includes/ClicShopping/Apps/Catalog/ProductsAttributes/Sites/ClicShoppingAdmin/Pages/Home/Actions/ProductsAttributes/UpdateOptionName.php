@@ -35,7 +35,6 @@
       $option_name_array = HTML::sanitize($_POST['option_name']);
       $option_sort_order = HTML::sanitize($_POST['option_sort_order']);
       $option_id = HTML::sanitize($_POST['option_id']);
-      $value_id = HTML::sanitize($_POST['value_id']);
 
       for ($i=0, $n=count($languages); $i<$n; $i ++) {
         $option_name = HTML::sanitize($option_name_array[$languages[$i]['id']]);

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -26,7 +26,7 @@
       $m->uninstall();
 
       static::removeMenu();
- //     static::removeDb();
+      static::removeDb();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('alert_module_uninstall_success'), 'success', 'Products');
 
@@ -41,9 +41,9 @@
       if ($Qcheck->fetch()) {
 
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
-                                        from :table_administrator_menu
-                                        where app_code = :app_code
-                                      ');
+                                              from :table_administrator_menu
+                                              where app_code = :app_code
+                                            ');
 
         $QMenuId->bindValue(':app_code',  'app_catalog_products');
         $QMenuId->execute();
@@ -77,7 +77,4 @@
         $Qdelete->execute();
       }
     }
-
-
-
   }

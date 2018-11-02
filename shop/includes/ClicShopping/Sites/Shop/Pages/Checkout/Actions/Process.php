@@ -63,10 +63,6 @@
       Registry::set('Payment', new Payment($_SESSION['payment']));
       $CLICSHOPPING_Payment = Registry::get('Payment');
 
-// load the selected shipping module
-      Registry::set('Shipping', new Shipping($_SESSION['shipping']));
-      $CLICSHOPPING_Shipping = Registry::get('Shipping');
-
 // Stock Check
       $any_out_of_stock = false;
 
