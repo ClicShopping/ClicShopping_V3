@@ -4,20 +4,21 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
 
-use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;
-  use ClicShopping\OM\DateTime;
-  use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\CLICSHOPPING;
+    use ClicShopping\OM\HTML;
+    use ClicShopping\OM\Registry;
+    use ClicShopping\OM\DateTime;
+    use ClicShopping\OM\ObjectInfo;
+    use ClicShopping\OM\CLICSHOPPING;
 
-  $CLICSHOPPING_Archive = Registry::get('Archive');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+  $CLICSHOPPING_Archive = Registry::get('Archive');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');

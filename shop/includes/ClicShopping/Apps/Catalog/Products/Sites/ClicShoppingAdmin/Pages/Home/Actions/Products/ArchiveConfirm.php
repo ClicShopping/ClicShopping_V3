@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -33,46 +33,25 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       $Qupdate = $this->app->db->prepare('update :table_products
-                                      set products_archive = 1,
-                                          products_ordered = 0
-                                      where products_id = :products_id
-                                    ');
+                                          set products_archive = 1,
+                                              products_ordered = 0
+                                          where products_id = :products_id
+                                        ');
       $Qupdate->bindInt(':products_id', $this->ID);
       $Qupdate->execute();
 
 // Mise a zero des stats
 
       $Qupdate = $this->app->db->prepare('update :table_products_description
-                                      set products_viewed = 0
-                                      where products_id = :products_id
-                                    ');
+                                          set products_viewed = 0
+                                          where products_id = :products_id
+                                        ');
       $Qupdate->bindInt(':products_id', $this->ID);
       $Qupdate->execute();
 
 
-// update the products cross sell and related master
-      $Qupdate = $this->app->db->prepare('update :table_products_related
-                                      set products_cross_sell = 0,
-                                          products_related = 0
-                                      where products_related_id_master = :products_related_id_master
-                                    ');
-      $Qupdate->bindInt(':products_related_id_master',$this->ID);
-      $Qupdate->execute();
-
-// update the products cross sell and related salve
-
-      $Qupdate = $this->app->db->prepare('update :table_products_related
-                                      set products_cross_sell = 0,
-                                          products_related = 0
-                                      where products_related_id_slave = :products_related_id_slave
-                                    ');
-      $Qupdate->bindInt(':products_related_id_slave', $this->ID);
-      $Qupdate->execute();
-
       Cache::clear('categories');
       Cache::clear('products-also_purchased');
-      Cache::clear('products_related');
-      Cache::clear('products_cross_sell');
       Cache::clear('upcoming');
 
       $CLICSHOPPING_Hooks->call('Products','Archive');
