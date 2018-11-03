@@ -44,7 +44,7 @@
         $content_width = (int)MODULES_TELL_A_FRIEND_CUSTOMER_AGREEMENT_CONTENT_WIDTH;
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
-          $customer_agree_privacy =  HTML::checkboxField('customer_agree_privacy', null, 'required aria-required="true"') . ' ' . CLICSHOPPING::getDef('text_privacy_conditions_agree');
+          $customer_agree_privacy =  HTML::checkboxField('customer_agree_privacy', null, null, 'required aria-required="true"') . ' ' . CLICSHOPPING::getDef('text_privacy_conditions_agree');
           $text_privacy_conditions_description = CLICSHOPPING::getDef('text_privacy_conditions_description', ['store_name' => STORE_NAME, 'privacy_url' => CLICSHOPPING::link(SHOP_CODE_URL_CONFIDENTIALITY)]);
         }
 

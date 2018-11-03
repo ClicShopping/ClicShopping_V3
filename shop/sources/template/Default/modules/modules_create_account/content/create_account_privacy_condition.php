@@ -18,7 +18,7 @@
     <div class="separator"></div>
     <div class="modulesCreateAccountRegistrationTextPrivacy">
 <?php
-  echo HTML::checkboxField('customer_agree_privacy', null, 'required aria-required="true"') . ' ' . CLICSHOPPING::getDef('text_privacy_conditions_agree') . '<br />';
+  echo HTML::checkboxField('customer_agree_privacy', null, null, 'required aria-required="true"') . ' ' . CLICSHOPPING::getDef('text_privacy_conditions_agree') . '<br />';
   echo CLICSHOPPING::getDef('text_privacy_conditions_description', ['store_name' => STORE_NAME, 'privacy_url' => CLICSHOPPING::link(SHOP_CODE_URL_CONFIDENTIALITY)]);
 ?>
     </div>
