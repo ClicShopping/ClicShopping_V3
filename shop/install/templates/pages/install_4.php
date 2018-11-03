@@ -198,75 +198,35 @@ ENDCFG;
   file_put_contents(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', $file_contents);
 
   @chmod(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', 0444);
-/*
-$modules = [
-    [
-        'dir' => $dir_fs_document_root . 'includes/modules/action_recorder/',
-        'key' => 'MODULE_ACTION_RECORDER_INSTALLED',
-        'modules' => [
-            [
-                'file' => 'ar_admin_login.php'
-            ],
-            [
-                'file' => 'ar_contact_us.php'
-            ],
-            [
-                'file' => 'ar_reset_password.php'
-            ],
-            [
-                'file' => 'ar_tell_a_friend.php'
-            ],
-                        [
-                'file' => 'ar_create_account.php'
-            ],
-                        [
-                'file' => 'ar_create_account_pro.php'
-            ]
-        ]
-    ],
+  $modules = ''; // must be under array
 
-   [
-      'dir' => $dir_fs_document_root . 'sources/template/Default/modules/modules_footer_suffix/',
-      'key' => 'MODULE_MODULES_FOOTER_SUFFIX_INSTALLED',
-      'modules' => [
-        [
-          'file' => 'sf_footer_suffix_copyright.php',
-          'params' => [
-            'MODULES_FOOTER_SUFFIX_COPYRIGHT_SORT_ORDER' => 100
-          ]
-        ]
-      ]
-    ],
-//**********************************************
-// Admin
-//*********************************************
-];
-*/
 if (!isset($_POST['DB_SKIP_IMPORT'])) {
+  if (is_array($modules)) {
     foreach ($modules as $m) {
-        $m_installed = [];
+      $m_installed = [];
 
-        foreach ($m['modules'] as $module) {
-            $file = $module['file'];
-            $class = isset($module['class']) ? $module['class'] : basename($file, '.php');
-            $code = isset($module['code']) ? $module['code'] : $file;
+      foreach ($m['modules'] as $module) {
+          $file = $module['file'];
+          $class = isset($module['class']) ? $module['class'] : basename($file, '.php');
+          $code = isset($module['code']) ? $module['code'] : $file;
 
-            include($m['dir'] . $file);
+          include($m['dir'] . $file);
 
-            $mo = new $class();
-            $mo->install();
+          $mo = new $class();
+          $mo->install();
 
-            $m_installed[] = $code;
+          $m_installed[] = $code;
 
-            if (isset($module['params'])) {
-                foreach ($module['params'] as $key => $value) {
-                    $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $value], ['configuration_key' => $key]);
-                }
-            }
-        }
+          if (isset($module['params'])) {
+              foreach ($module['params'] as $key => $value) {
+                  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $value], ['configuration_key' => $key]);
+              }
+          }
+      }
 
-        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => implode(';', $m_installed)], ['configuration_key' => $m['key']]);
+      $CLICSHOPPING_Db->save('configuration', ['configuration_value' => implode(';', $m_installed)], ['configuration_key' => $m['key']]);
     }
+  }
 }
 ?>
 
