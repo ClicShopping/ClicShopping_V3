@@ -785,11 +785,10 @@
 * Insert
 ***********************************************************/
     public function Insert()  {
-      global $order_totals;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
+      $CLICSHOPPING_OrderTotal = Registry::get('OrderTotal');
 
       if (isset($_SESSION['payment'])) {
         if (strpos($_SESSION['payment'], '\\') !== false) {
@@ -878,6 +877,8 @@
       $this->insertID = $this->db->lastInsertId();
 
 // orders total
+      $order_totals = $CLICSHOPPING_OrderTotal->process();
+
       for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
         $sql_data_array = ['orders_id' => (int)$this->insertID,
                             'title' => $order_totals[$i]['title'],

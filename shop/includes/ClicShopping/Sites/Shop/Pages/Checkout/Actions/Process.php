@@ -20,7 +20,7 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $order_totals, $CLICSHOPPING_PM;
+      global $CLICSHOPPING_PM;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
@@ -95,7 +95,7 @@
       }
 
 // order total
-      $order_totals = $CLICSHOPPING_OrderTotal->process();
+      $CLICSHOPPING_OrderTotal->process();
 
 // load the before_process function from the payment modules
       $CLICSHOPPING_Payment->before_process();
