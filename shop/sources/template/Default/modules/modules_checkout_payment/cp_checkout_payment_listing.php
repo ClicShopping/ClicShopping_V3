@@ -37,8 +37,6 @@
      }
 
     public function execute() {
-      global $free_shipping;
-
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Checkout']) && isset($_GET['Billing'])) {
@@ -64,7 +62,7 @@
           $data .= '<span class="col-md-4 text-md-right float-md-right moduleCheckoutPaymentListingSelect">' .CLICSHOPPING::getDef('module_checkout_payment_listing_title_please_select') . '</span>';
           $data .= '</div>';
 
-        } elseif ($free_shipping === false) {
+        } elseif ($_SESSION['free_shipping'] === false) {
           $data .= '<div class="moduleCheckoutPaymentListingInformation">' . CLICSHOPPING::getDef('module_checkout_payment_listing_text_enter_payment_information') . '</div>';
         }
 

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -44,8 +44,8 @@
         unset($_SESSION['comments']);
       }
 
-      if ( isset($_SESSION['coupon']) ) {
-        unset($_SESSION['coupon']);
+      if ( isset($_SESSION['free_shipping']) ) {
+        unset($_SESSION['free_shipping']);
       }
 
       $CLICSHOPPING_ShoppingCart->reset();

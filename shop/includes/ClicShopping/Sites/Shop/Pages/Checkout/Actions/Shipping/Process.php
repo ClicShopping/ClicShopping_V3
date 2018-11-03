@@ -19,8 +19,6 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $free_shipping;
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
@@ -45,7 +43,7 @@
 
         $CLICSHOPPING_Shipping = Registry::get('Shipping');
 
-        if (($CLICSHOPPING_Shipping->geCountShippingModules() > 0) || ($free_shipping === true)) {
+        if (($CLICSHOPPING_Shipping->geCountShippingModules() > 0) || ($_SESSION['free_shipping'] === true)) {
           if ((isset($_POST['shipping'])) && (strpos($_POST['shipping'], '_'))) {
             $_SESSION['shipping'] = $_POST['shipping'];
 
@@ -84,7 +82,7 @@
               } else {
                 if ((isset($quote[0]['methods'][0]['title'])) && (isset($quote[0]['methods'][0]['cost']))) {
                   $_SESSION['shipping'] = ['id' => $_SESSION['shipping'],
-                                           'title' => (($free_shipping === true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][0]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' (' . $quote[0]['methods'][0]['title'] . ')' : '')),
+                                           'title' => (($_SESSION['free_shipping'] === true) ?  $quote[0]['methods'][0]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][0]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' (' . $quote[0]['methods'][0]['title'] . ')' : '')),
                                            'cost' => $quote[0]['methods'][0]['cost']
                                           ];
 

@@ -38,8 +38,6 @@
      }
 
     public function execute() {
-      global $free_shipping;
-
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -68,7 +66,7 @@
             $data .= '</div>';
             $data .= '<div class="separator"></div>';
 
-          } elseif ($free_shipping === false) {
+          } elseif ($_SESSION['free_shipping'] === false) {
             $data .= '<div class="separator"></div>';
             $data .= '<div class="moduleCheckoutShippingListingInformation">' . CLICSHOPPING::getDef('module_checkout_shipping_text_enter_shipping_information') . '</div>';
           }
@@ -77,7 +75,7 @@
           $data .= '<table class="table table-striped table-sm table-hover">';
           $data .= '<tbody>';
 
-          if ($free_shipping === true) {
+          if ($_SESSION['free_shipping'] === true) {
 
             $data .= '<div class="moduleCheckoutShippingListingFreeTitle">' . CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_title') . '&nbsp;' . $quotes[$i]['icon'] . '</div>';
             $data .= '<div style="padding-left: 15px;">';

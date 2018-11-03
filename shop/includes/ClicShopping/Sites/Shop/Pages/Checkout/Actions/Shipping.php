@@ -19,8 +19,6 @@
   class Shipping extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $free_shipping;
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
@@ -123,16 +121,16 @@
             break;
         }
 
-        $free_shipping = false;
+        $_SESSION['free_shipping'] = false;
 
         if ( ($pass === true) && ($CLICSHOPPING_Order->info['total'] >= MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER) ) {
-          $free_shipping = true;
+          $_SESSION['free_shipping'] = true;
 
           $CLICSHOPPING_Language->loadDefinitions('Shop/modules/order_total/ot_shipping');
         }
       } else {
 
-        $free_shipping = false;
+        $_SESSION['free_shipping'] = false;
       }
 
 // if no shipping method has been selected, automatically select the first method.
