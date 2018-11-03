@@ -39,7 +39,7 @@
 //check configuration
       if (!CLICSHOPPING::configExists('db_server') || (strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
         if (is_dir('install')) {
-          header('Location: boutique/install/index.php');
+          header('Location: shop/install/index.php');
           exit;
         }
       }
