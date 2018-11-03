@@ -17,8 +17,6 @@
   class ShippingAddress extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $process;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -46,8 +44,6 @@
         $_SESSION['sendto'] = false;
         CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
       }
-
-      $process = false;
 
       if (isset($_GET['newcustomer'])) {
         $QaddresseDefault = $CLICSHOPPING_Db->prepare('select customers_default_address_id

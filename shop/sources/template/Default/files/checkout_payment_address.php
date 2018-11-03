@@ -37,7 +37,6 @@
     <div class="contentText">
 <?php
   if ( $CLICSHOPPING_Customer->hasDefaultAddress() ) {
-    if ($process === false) {
 ?>
      <div class="separator"></div>
      <h3><?php echo CLICSHOPPING::getDef('table_heading_payment_address'); ?></h3>
@@ -90,8 +89,9 @@
       </div>
 <?php
       } // $addresses_count
-    } // $process
-  } // has_default
+    } else {
+      $process = true;
+    } // has_default
 
 // ------------------------------
 // --- new address -------------

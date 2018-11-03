@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>" id="RowContentPricacyCondition1">

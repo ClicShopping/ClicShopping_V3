@@ -14,6 +14,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+
   use ClicShopping\Sites\Shop\AddressBook;
 
   class Edit extends \ClicShopping\OM\PagesActionsAbstract  {

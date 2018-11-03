@@ -27,11 +27,8 @@
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
 
         $error = false;
-        $process = false;
-
 // process a new shipping address
         if ( !$CLICSHOPPING_Customer->hasDefaultAddress() || (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['street_address']) && !empty($_POST['street_address'])) ) {
-          $process = true;
 
           if (ACCOUNT_GENDER == 'true') $gender = HTML::sanitize($_POST['gender']);
           if (ACCOUNT_COMPANY == 'true') $company = HTML::sanitize($_POST['company']);

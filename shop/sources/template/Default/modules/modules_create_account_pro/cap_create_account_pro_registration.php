@@ -45,8 +45,6 @@
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
     if (isset($_GET['Account'] ) && isset($_GET['CreatePro'])  && !isset($_GET['Success'])) {
-      $origin_href = CreateAccount::getOriginHref();
-
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH;
 
       $header_tag ='<link rel="stylesheet" type="text/css" href="ext/javascript/datepicker/less/datepicker.less">';
@@ -56,7 +54,7 @@
       $footer_tag .='<script src="' . $CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/Shop/datepicker.js') . '"></script>';
       $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
-      $default_country_pro = CreatePro::getCountryPro();
+      $default_country_pro = CreateAccount::getCountryPro();
       if (!isset($default_country_pro)) $default_country_pro = $_POST['country'];
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -36,10 +36,10 @@
       if ($CLICSHOPPING_NavigationHistory->hasSnapshot()) {
         $origin_href = $CLICSHOPPING_NavigationHistory->getSnapshotURL();
         $CLICSHOPPING_NavigationHistory->resetSnapshot();
-        } else {
-          $origin_href = CLICSHOPPING::redirect('index.php');
-        }
-
-        return $origin_href;
+      } else {
+        $origin_href = CLICSHOPPING::redirect('index.php');
       }
+
+      return $origin_href;
+    }
   }

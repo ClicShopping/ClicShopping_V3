@@ -67,7 +67,7 @@
     }
 
     private function getMail() {
-      global $tracking;
+      global $tracking_id;
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Mail  = Registry::get('Mail');
@@ -105,7 +105,7 @@
 
       $email_subject =  $this->app->getDef('email_text_subject', ['store_name' => STORE_NAME]);
 
-      $email_text = $template_email_intro_command . '<br />'. $status_order . '<br />'.   $this->app->getDef('email_separator') . '<br /><br />'. $this->app->getDef('email_text_order_number') . ' '. $this->oID . '<br /><br />'. $this->app->getDef('email_text_invoice_url') . '<br />'. CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking . '<br />' . '<br />' . $customer_support . '<br />' . $notify_comments .'<br /><br />' .  $template_email_signature . '<br /><br />' . $template_email_footer;
+      $email_text = $template_email_intro_command . '<br />'. $status_order . '<br />'.   $this->app->getDef('email_separator') . '<br /><br />'. $this->app->getDef('email_text_order_number') . ' '. $this->oID . '<br /><br />'. $this->app->getDef('email_text_invoice_url') . '<br />'. CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking_id . '<br />' . '<br />' . $customer_support . '<br />' . $notify_comments .'<br /><br />' .  $template_email_signature . '<br /><br />' . $template_email_footer;
 
 
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
@@ -118,7 +118,6 @@
     }
 
     public function execute() {
-
       $CLICSHOPPING_MessageStack =  Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 

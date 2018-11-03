@@ -13,15 +13,12 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+
   use ClicShopping\Sites\Shop\AddressBook;
 
   class PaymentAddress extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $process;
-
-      $process = false;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
