@@ -1315,7 +1315,7 @@ updateGross();
       <div class="separator"></div>
 <?php
   //***********************************
-  // extansion
+  // extension
   //***********************************
   echo $CLICSHOPPING_Hooks->output('Products', 'PageTab', null, 'display');
 ?>

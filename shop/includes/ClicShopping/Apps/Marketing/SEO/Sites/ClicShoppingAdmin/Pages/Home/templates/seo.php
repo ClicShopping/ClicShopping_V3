@@ -558,7 +558,7 @@
       <div class="separator"></div>
 <?php
   //***********************************
-  // extansion
+  // extension
   //***********************************
   echo $CLICSHOPPING_Hooks->output('Seo', 'PageTab', null, 'display');
 ?>

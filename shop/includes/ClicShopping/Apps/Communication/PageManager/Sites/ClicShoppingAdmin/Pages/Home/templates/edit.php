@@ -696,7 +696,7 @@
         <div class="separator"></div>
 <?php
 //***********************************
-// extansion
+// extension
 //***********************************
     echo $CLICSHOPPING_Hooks->output('PageManager', 'Page', null, 'display');
 ?>

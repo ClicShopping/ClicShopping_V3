@@ -335,7 +335,7 @@
           </div>
 <?php
 //***********************************
-// extansion
+// extension
 //***********************************
   echo $CLICSHOPPING_Hooks->output('Categories', 'Page', null, 'display');
 ?>

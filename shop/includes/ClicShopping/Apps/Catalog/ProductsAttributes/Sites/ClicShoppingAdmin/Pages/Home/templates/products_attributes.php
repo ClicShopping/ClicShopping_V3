@@ -1042,7 +1042,7 @@
               </div>
 <?php
 //***********************************
-// extansion
+// extension
 //***********************************
             echo $CLICSHOPPING_Hooks->output('ProductsAttributes', 'PageTab', null, 'display');
 ?>

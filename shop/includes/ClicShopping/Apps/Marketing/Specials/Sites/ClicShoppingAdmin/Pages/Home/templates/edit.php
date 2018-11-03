@@ -183,7 +183,7 @@ use ClicShopping\OM\HTML;
         </div>
 <?php
 //***********************************
-// extansion
+// extension
 //***********************************
       if (!isset($_GET['Udapte'])) {
         echo $CLICSHOPPING_Hooks->output('Specials', 'PageTwitter', null, 'display');
@@ -228,7 +228,7 @@ use ClicShopping\OM\HTML;
       </div>
 <?php
 //***********************************
-// extansion
+// extension
 //***********************************
   echo $CLICSHOPPING_Hooks->output('Special', 'PageTab', null, 'display');
 ?>

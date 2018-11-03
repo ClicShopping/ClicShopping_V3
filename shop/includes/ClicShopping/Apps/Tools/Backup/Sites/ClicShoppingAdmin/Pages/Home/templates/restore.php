@@ -27,7 +27,7 @@
   switch (substr(file, -3)) {
     case 'zip': $info['compression'] = 'ZIP'; break;
     case '.gz': $info['compression'] = 'GZIP'; break;
-    default: $info['compression'] = $CLICSHOPPING_Backup->getDef('text_no_extansion'); break;
+    default: $info['compression'] = $CLICSHOPPING_Backup->getDef('text_no_extension'); break;
   }
 
   $buInfo = new ObjectInfo($info);

@@ -131,7 +131,7 @@ $opts = array(
       'accessControl' => 'access',             // disable and hide dot starting files (OPTIONAL)
 //                      'uploadMaxSize' => '3MB',
 
-//hide some extansions
+//hide some extensions
 
       'attributes' => array(
                             array( // hide readmes

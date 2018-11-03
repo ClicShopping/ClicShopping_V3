@@ -668,7 +668,7 @@
  *
  * @param string $source_folder, directory
  * @param string $filename, name of the file
- *@param string $ext, file extansion
+ *@param string $ext, file extension
  * @param return array, files name
  * @access public
  */
