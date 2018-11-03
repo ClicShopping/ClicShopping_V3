@@ -21,7 +21,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <div class="checkbox">
         <label>
           <?php echo $newsletter_checkbox; ?>
-          <strong><?php echo CLICSHOPPING::getDef('module_account_customers_newsletters_general'); ?></strong><br /><?php echo CLICSHOPPING::getDef('module_account_customers_newsletters_description'); ?>
+          <strong><?php echo CLICSHOPPING::getDef('module_account_customers_newsletter'); ?></strong><br /><?php echo CLICSHOPPING::getDef('module_account_customers_newsletters_description'); ?>
         </label>
       </div>
     </div>

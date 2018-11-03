@@ -3,8 +3,7 @@ module_account_customers_newsletter_title = Do you want allow customer to subscr
 module_account_customers_newsletter_description = Display a form allowing customer to subscribe or unsubsribe newsletter
 
 my_newsletter_title = My Newsletter
-module_account_customers_newsletters_general = General Newsletter
-module_account_customers_newsletters_general_description =
-module_account_customers_newsletters_description = Including store news, new products, special offers, and other promotional announcements.
+module_account_customers_newsletter = General Newsletter
+module_account_customers_newsletters_dscription = Including store news, new products, special offers, and other promotional announcements.
 
 button_continue = Continuer
