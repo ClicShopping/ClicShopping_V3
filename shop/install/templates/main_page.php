@@ -45,7 +45,7 @@
   <div class="container-fluid">
     <div class="row" style="margin-top: 10px; margin-bottom: 20px;">
       <div class="col-sm-6">
-        <a href="index.php"><img src="images/logo_clicshopping.png" border="0" width="200" height="90" title="CliCshopping" style="margin: 10px 10px 0px 10px;" /></a>
+        <a href="index.php"><img src="../images/logo_clicshopping_1.png" border="0" width="200" height="90" title="ClicShopping" style="margin: 10px 10px 0px 10px;" /></a>
       </div>
 
       <div id="headerShortcuts" class="col-sm-6 text-md-right">

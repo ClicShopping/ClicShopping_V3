@@ -37,7 +37,8 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $logo = '<img width="24" height="24" alt="www.clicshopping.org" src="images/clicshopping.gif">';
-      $date_copyright =  date('Y') .' '. STORE_NAME;
+      $clicshopping_copyright = date('Y');
+      $shop_owner_copyright = date('Y') . ' - ' . STORE_NAME;
 
       $footer_copyright = '<!-- footer copyright start -->' . "\n";
 
