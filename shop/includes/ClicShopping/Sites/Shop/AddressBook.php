@@ -433,9 +433,9 @@
  * @return integer
  */
 
-    public static function numberOfEntries() {
+    public static function numberOfEntries($total_entries) {
       $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Db =Registry::get('Db');
+      $CLICSHOPPING_Db = Registry::get('Db');
 
       if ( !isset($total_entries) ) {
         $total_entries = 0;

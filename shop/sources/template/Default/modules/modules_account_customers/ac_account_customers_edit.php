@@ -42,9 +42,9 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $account = Edit::getAccountEdit();
-
       if (isset($_GET['Account']) && isset($_GET['Edit']) ) {
+
+        $account = Edit::getAccountEdit();
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_EDIT_CONTENT_WIDTH;
 
@@ -62,20 +62,6 @@
           $customers_ape = $account['customers_ape'];
           $customers_tva_intracom_code_iso = $account['customers_tva_intracom_code_iso'];
           $customers_tva_intracom = $account['customers_tva_intracom'];
-        } else {
-          $customers_gender = $entry['customers_gender'];
-          $customers_firstname = $entry['customers_firstname'];
-          $customers_lastname = $entry['customers_lastname'];
-          $customers_dob = $entry['customers_dob'];
-          $customers_email_address = $entry['customers_email_address'];
-          $customers_telephone = $entry['customers_telephone'];
-          $customers_cellular_phone = $entry['customers_cellular_phone'];
-          $customers_fax = $entry['customers_fax'];
-          $customers_company = $entry['customers_company'];
-          $customers_siret = $entry['customers_siret'];
-          $customers_ape = $entry['customers_ape'];
-          $customers_tva_intracom_code_iso = $entry['customers_tva_intracom_code_iso'];
-          $customers_tva_intracom = $entry['customers_tva_intracom'];
         }
 
         $account_edit = '<!-- Start account_customers_edit --> ' . "\n";

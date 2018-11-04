@@ -18,14 +18,8 @@
 
   class AddressBookProcess extends \ClicShopping\OM\PagesActionsAbstract {
 
-    private function CustomerAddress() {
-      $get_entry = AddressBook::getEntry((int)$_GET['edit']);
-
-      return $get_entry;
-    }
-
     public function execute() {
-      global $exists, $entry;
+      global $exists;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
@@ -51,12 +45,11 @@
 
       $exists = false;
 
-      $entry = $this->CustomerAddress();
+      $entry = AddressBook::getEntry((int)$_GET['edit']);
 
-      if ( $entry !== false ) {
+      if ($entry !== false) {
         $exists = true;
       }
-
 
 // templates
       $this->page->setFile('address_book_process.php');

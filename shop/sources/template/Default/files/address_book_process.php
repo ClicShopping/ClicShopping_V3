@@ -30,9 +30,11 @@
      $newcustomer = '&newcustomer=' . 1;
     }
 
+    $entry = AddressBook::getEntry((int)$_GET['edit']);
+
     echo HTML::form('addressbook', CLICSHOPPING::link('index.php', 'Account&AddressBookProcess' . (isset($_GET['edit']) ? '&Edit&edit=' . $_GET['edit'] : '') . $newcustomer), 'post', 'id="addressbook"',  ['tokenize' => true]);
   } else if (!isset($_GET['delete']) && !isset($_POST['edit'])) {
-    echo HTML::form('addressbook', CLICSHOPPING::link('index.php', 'Account&AddressBookProcess&Create&ation=process'), 'post', 'id="addressbook"',  ['tokenize' => true]);
+    echo HTML::form('addressbook', CLICSHOPPING::link('index.php', 'Account&AddressBookProcess&Create&action=process'), 'post', 'id="addressbook"',  ['tokenize' => true]);
   }
 ?>
 <section class="address_book_process" id="address_book_process">
