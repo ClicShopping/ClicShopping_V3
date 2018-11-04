@@ -26,8 +26,6 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $process, $entry_state_has_zones, $country;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -36,11 +34,11 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $process = false;
+      $_SESSION['process'] = false;
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $error = false;
-        $process = true;
+        $_SESSION['process'] = true;
         $zone_id = false;
 
         $CLICSHOPPING_Hooks->call('CreatePro','PreAction');
@@ -72,6 +70,7 @@
         }
 
         $country = HTML::sanitize($_POST['country']);
+
         $telephone = HTML::sanitize($_POST['telephone']);
 
         if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
@@ -214,13 +213,14 @@
           $Qcheck->execute();
 
           $country = $Qcheck->valueInt('countries_id');
+          $_SESSION['country'] = $country;
         } else {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_county_error_pro'), 'danger', 'create_account_pro');
         }
 
-        if (ACCOUNT_STATE_PRO == 'true') {
+        if (ACCOUNT_STATE_PRO == 'true' && is_numeric($country)) {
 
           $zone_id = 0;
 
@@ -231,9 +231,9 @@
           $Qcheck->bindInt(':zone_country_id', (int)$country);
           $Qcheck->execute();
 
-          $entry_state_has_zones = ($Qcheck->valueInt('total') > 0);
+          $_SESSION['entry_state_has_zones'] = ($Qcheck->valueInt('total') > 0);
 
-          if ($entry_state_has_zones === true) {
+          if (isset($_SESSION['entry_state_has_zones']) === true) {
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                    from :table_zones
@@ -498,11 +498,11 @@
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
 
-            $data_array = ['customer_name' => $_POST['lastname'],
-                           'customer_firstame' => $_POST['firstname'],
-                           'customer_company' => $_POST['company'],
-                           'customer_mail' => $_POST['email_address']
-                          ];
+            $data_array = ['customer_name' => HTML::sanitize($_POST['lastname']),
+                         'customer_firstame' => HTML::sanitize($_POST['firstname']),
+                         'customer_company' => HTML::sanitize($_POST['company']),
+                         'customer_mail' => $_POST['email_address']
+                        ];
 
             $admin_email_text_admin = CLICSHOPPING::getDef('admin_email_text', $data_array);
 

@@ -19,9 +19,9 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QcountryPro = $CLICSHOPPING_Db->prepare('select countries_iso_code_2
-                                         from :table_countries
-                                         where countries_id = :countries_id
-                                        ');
+                                                 from :table_countries
+                                                 where countries_id = :countries_id
+                                                ');
       $QcountryPro->bindInt(':countries_id', (int)ACCOUNT_COUNTRY_PRO);
       $QcountryPro->execute();
 

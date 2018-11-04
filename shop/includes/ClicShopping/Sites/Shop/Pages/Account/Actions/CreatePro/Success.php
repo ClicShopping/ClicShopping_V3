@@ -21,6 +21,9 @@
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Language = Registry::get('Language');
 
+      unset($_SESSION['process']);
+      unset($_SESSION['entry_state_has_zones']);
+      unset($_SESSION['country']);
 // templates
         $this->page->setFile('create_account_pro_success.php');
 //Content

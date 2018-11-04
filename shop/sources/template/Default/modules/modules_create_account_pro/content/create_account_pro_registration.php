@@ -274,7 +274,7 @@
           <div class="col-md-8">
 <?php
     if ($process === true) {
-      if ($entry_state_has_zones === true) {
+      if ($entry_state_has_zones === true && is_numeric($country)) {
         $zones_array = [];
 
         $Qzones = $CLICSHOPPING_Db->prepare('select zone_name

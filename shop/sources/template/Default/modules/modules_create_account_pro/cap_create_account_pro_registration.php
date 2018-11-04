@@ -37,8 +37,6 @@
     }
 
   public function execute() {
-    global $process, $entry_state_has_zones, $country;
-
     $CLICSHOPPING_Template = Registry::get('Template');
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -46,6 +44,10 @@
 
     if (isset($_GET['Account'] ) && isset($_GET['CreatePro'])  && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH;
+
+      $process = isset($_SESSION['process']);
+      $entry_state_has_zones = $_SESSION['entry_state_has_zones'];
+      $country = (int)$_SESSION['country'];
 
       $default_country_pro = CreateAccount::getCountryPro();
       if (!isset($default_country_pro)) $default_country_pro = $_POST['country'];
