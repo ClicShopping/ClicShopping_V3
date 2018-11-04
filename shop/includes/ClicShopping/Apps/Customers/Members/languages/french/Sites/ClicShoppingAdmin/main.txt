@@ -20,8 +20,8 @@ button_cancel = Annuler
 button_insert =  Insérer
 button_back = Retour
 button_reset = Réinitialiser
-button_update = mettre à jour
-
+button_update = Mettre à jour
+button_activate = Activer
 button_members =  Membres B2B
 button_send =  Envoyer
 
@@ -66,4 +66,14 @@ icon_edit_customer = Editer la fiche client
 icon_delete = Supprimer
 icon_email = E-mail
 
+text_email_text_coupon = Code coupon offert :
+
 text_delete_reviews =  Supprimer les commentaires  : {{delete_number}}
+text_info_delete_customer = Suppression de client
+text_delete_intro = Souhaitez-vous supprimer ce client ?
+
+text_accept_intro = Souhaitez-vous accepter ce client ?<br  />Veuillez un groupe client
+visitor_name = Client normal
+
+text_result_page = Page {{listing_from}} à {{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

@@ -64,9 +64,9 @@
       $crypted_password = Hash::encrypt($newpass);
 
       $Qupdate = $CLICSHOPPING_Members->db->prepare('update :table_customers
-                                               set customers_password = :customers_password
-                                               where customers_id = :customers_id
-                                             ');
+                                                     set customers_password = :customers_password
+                                                     where customers_id = :customers_id
+                                                   ');
 
       $Qupdate->bindValue(':customers_password', $crypted_password );
       $Qupdate->bindInt(':customers_id', (int)$QcheckCustomer->valueInt('customers_id'));
@@ -74,26 +74,25 @@
       $Qupdate->execute();
 
       if (COUPON_CUSTOMER_B2B != '') {
-        $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
+        $email_coupon = $CLICSHOPPING_Members->getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
+        $email_coupon = html_entity_decode($email_coupon);
       }
 
-      $email_coupon = html_entity_decode($email_coupon);
-
       $text_password_body = html_entity_decode($CLICSHOPPING_Members->getDef('email_password_reminder_body', ['store_name' => STORE_NAME,
-                                                                                                      'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
-                                                                                                      'url' => HTTP::getShopUrlDomain(),
-                                                                                                      'password' => $newpass,
-                                                                                                      'username' => $QcheckCustomer->value('customers_email_address')
-                                                                                                      ]
-                                                                      )
+                                                                                                            'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
+                                                                                                            'url' => HTTP::getShopUrlDomain(),
+                                                                                                            'password' => $newpass,
+                                                                                                            'username' => $QcheckCustomer->value('customers_email_address')
+                                                                                                            ]
+                                                                            )
                                                 );
 
       $email_text_subject = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_subject', ['store_name' => STORE_NAME]));
       $email_text_confirm = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_confirm', ['store_name' => STORE_NAME,
-                                                                                              'store_name_address' => STORE_NAME_ADDRESS,
-                                                                                              'store_ownler_email_address' => STORE_OWNER_EMAIL_ADDRESS
-                                                                                            ]
-                                                                      )
+                                                                                                    'store_name_address' => STORE_NAME_ADDRESS,
+                                                                                                    'store_ownler_email_address' => STORE_OWNER_EMAIL_ADDRESS
+                                                                                                  ]
+                                                                            )
                                                 );
 
       $email_signature = TemplateEmailAdmin::getTemplateEmailSignature();

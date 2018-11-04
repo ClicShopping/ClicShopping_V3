@@ -172,13 +172,13 @@
         <td class="text-md-right"><?php echo DateTime::toShort($Qinfo->value('date_account_created')); ?></td>
         <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Members->link('Members&AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/activate.gif', $CLICSHOPPING_Members->getDef('icon_activate')));
+      echo HTML::link($CLICSHOPPING_Members->link('AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/activate.gif', $CLICSHOPPING_Members->getDef('icon_activate')));
       echo '&nbsp;';
       echo HTML::link(CLICSHOPPING::link('index.php','A&Customers&Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Members->getDef('icon_edit_customer')));
       echo '&nbsp;';
       echo HTML::link(CLICSHOPPING::link('index.php','A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Members->getDef('icon_email')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Members->link('Members&Delete&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Members->getDef('image_delete')));
+      echo HTML::link($CLICSHOPPING_Members->link('Delete&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Members->getDef('button_delete')));
       echo '&nbsp;';
 ?>
         </td>

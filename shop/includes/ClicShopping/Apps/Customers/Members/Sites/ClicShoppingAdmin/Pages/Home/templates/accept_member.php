@@ -13,6 +13,9 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
+  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
+
+
   $CLICSHOPPING_Members = Registry::get('Members');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -24,19 +27,19 @@
   if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect('index.php');
 
   $Qcustomers = $CLICSHOPPING_Members->db->prepare('select customers_id,
-                                                    customers_lastname,
-                                                    customers_firstname
-                                              from :table_customers
-                                              where customers_id = :customers_id
-                                             ');
+                                                          customers_lastname,
+                                                          customers_firstname
+                                                    from :table_customers
+                                                    where customers_id = :customers_id
+                                                   ');
 
   $Qcustomers->bindInt(':customers_id', $_GET['cID']);
   $Qcustomers->execute();
 
   $Qreviews = $CLICSHOPPING_Members->db->prepare('select count(*) as number_of_reviews
-                                           from :table_reviews
-                                           where customers_id = :customers_id
-                                          ');
+                                                   from :table_reviews
+                                                   where customers_id = :customers_id
+                                                  ');
   $Qreviews->bindInt(':customers_id', $_GET['cID']);
   $Qreviews->execute();
 
@@ -61,9 +64,9 @@
     <div class="adminformTitle">
       <div class="row">
         <div class="separator"></div>
-        <div class="col-md-12"><?php echo $CLICSHOPPING_Members->getDef('text_delete_intro'); ?><br/><br/></div>
+        <div class="col-md-12"><?php echo $CLICSHOPPING_Members->getDef('text_accept_intro'); ?><br/><br/></div>
         <div class="separator"></div>
-        <div class="col-md-12"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Members->getDef('visitor_name')), $cInfo->customers_group_id); ?><br/><br/></div>
+        <div class="col-md-5"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Members->getDef('visitor_name')), $cInfo->customers_group_id); ?><br/><br/></div>
         <div class="separator"></div>
         <div class="col-md-12"><?php echo HTML::checkboxField('delete_reviews', 'on', true) . ' ' . $CLICSHOPPING_Members->getDef('text_delete_reviews', ['delete_number' => $cInfo->number_of_reviews]); ?><br/><br/></div>
         <div class="separator"></div>

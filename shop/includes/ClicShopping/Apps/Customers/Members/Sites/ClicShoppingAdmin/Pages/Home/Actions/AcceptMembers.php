@@ -17,8 +17,8 @@
     public function execute() {
       $CLICSHOPPING_Members = Registry::get('Members');
 
-      $this->page->setFile('accept_members.php');
+      $this->page->setFile('accept_member.php');
 
-      $CLICSHOPPING_Members->loadDefinitions('Sites/ClicShoppingAdmin/members');
+      $CLICSHOPPING_Members->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

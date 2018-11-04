@@ -19,6 +19,6 @@
 
       $this->page->setFile('delete.php');
 
-      $CLICSHOPPING_Members->loadDefinitions('Sites/ClicShoppingAdmin/members');
+      $CLICSHOPPING_Members->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

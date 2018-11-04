@@ -22,8 +22,8 @@ button_insert = Insert
 button_back = Retour
 button_reset = Réinitialiser
 button_update = Update
-
-button_members = Members B2B
+button_activate = Activate
+button_members = Member B2B
 button_send =  Send
 
 dialog_uninstall_title = Uninstall
@@ -68,5 +68,15 @@ icon_edit_customer = Editer la fiche client
 icon_delete = Delete
 icon_email = E-mail
 
+text_email_text_coupon = Coupon code to use :
+
 text_delete_reviews =  Delete Review  : {{delete_number}}
+text_info_delete_customer = Remove a customer
+text_delete_intro = Souhaitez-vous supprimer ce clientDo you want to remove this customer ?
+
+text_accept_intro = Do yout to accept this customer ?<br  />Please, select  customer group
+visitor_name = Normal customer
+
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)
 
