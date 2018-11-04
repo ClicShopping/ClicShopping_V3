@@ -34,9 +34,10 @@
 
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
+      $CLICSHOPPING_Language = Registry::get('Language');
 
       if (!is_null(MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES)) {
-        $pages_array = array();
+        $pages_array = [];
 
         foreach (explode(';', MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES) as $page) {
           $page = trim($page);
@@ -46,8 +47,14 @@
           }
         }
 
-        if (in_array($_SERVER['QUERY_STRING'], $pages_array)) {
+        $url_string = $CLICSHOPPING_Template->getUrlwithoutSEFU();
+
+        $language_code = $CLICSHOPPING_Language->getCode();
+
+        if (in_array($url_string, $pages_array)) {
           $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>' . "\n", $this->group);
+          $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.' . $language_code . '.min.js"></script>' . "\n", $this->group);
+
           $CLICSHOPPING_Template->addBlock('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">' . "\n", 'header_tags');
           $CLICSHOPPING_Template->addBlock('<script>$(\'input[data-provide="datepicker"]\').datepicker({format: \'' . CLICSHOPPING::getDef('js_date_format') . '\',viewMode: 2});</script>', $this->group);
 // advanced search

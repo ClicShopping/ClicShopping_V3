@@ -490,8 +490,8 @@
                     $mb->execute();
                   } else {
                     if ($mb->isEnabled() && isset($mb->pages)) {
-                      $string = $_SERVER['QUERY_STRING'];
 
+                      $string = $this->getUrlwithoutSEFU();
 // categories
 // identify a categorie like index page
                       if ($CLICSHOPPING_Category->getPath()) {
@@ -521,6 +521,25 @@
       }
     }
 
+/**
+ * Allow to display or remove information on the catalog
+ * @param string $string
+ * @return mixed
+ */
+    public function getUrlwithoutSEFU($string = '/') {
+      if (empty($_SERVER['QUERY_STRING'])) {
+        $url = $_SERVER['REQUEST_URI'];
+        $replace = str_replace('index.php', '', $url);
+        $replace = str_replace(CLICSHOPPING::getConfig('http_path'), '', $replace);
+        $replace = substr($replace, 1);
+        $replace = str_replace($string, '&', $replace);
+        $url_string = $replace;
+      } else {
+        $url_string = $_SERVER['QUERY_STRING'];
+      }
+
+      return $url_string;
+    }
 
 /**
    * Select the header or footer of the template

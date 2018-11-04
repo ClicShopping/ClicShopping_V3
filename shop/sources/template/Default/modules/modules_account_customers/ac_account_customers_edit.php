@@ -46,13 +46,6 @@
 
       if (isset($_GET['Account']) && isset($_GET['Edit']) ) {
 
-        $header_tag ='<link rel="stylesheet" type="text/css" href="ext/javascript/datepicker/less/datepicker.less">';
-        $CLICSHOPPING_Template->addBlock($header_tag, $this->group);
-
-        $footer_tag ='<script type="text/javascript" src="ext/javascript/datepicker/js/bootstrap-datepicker.js"></script>';
-        $footer_tag .='<script src="' . $CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/Shop/datepicker.js') . '"></script>';
-        $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
-
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_EDIT_CONTENT_WIDTH;
 
         if (!isset($_GET['AddressBookProcess'])) {

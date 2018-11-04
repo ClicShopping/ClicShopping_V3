@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\DateTime;
 
