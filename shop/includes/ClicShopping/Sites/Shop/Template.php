@@ -491,7 +491,7 @@
                   } else {
                     if ($mb->isEnabled() && isset($mb->pages)) {
 
-                      $string = $this->getUrlwithoutSEFU();
+                      $string = $this->getUrlWithoutSEFU();
 // categories
 // identify a categorie like index page
                       if ($CLICSHOPPING_Category->getPath()) {
@@ -526,7 +526,7 @@
  * @param string $string
  * @return mixed
  */
-    public function getUrlwithoutSEFU($string = '/') {
+    public function getUrlWithoutSEFU($string = '/') {
       if (empty($_SERVER['QUERY_STRING'])) {
         $url = $_SERVER['REQUEST_URI'];
         $replace = str_replace('index.php', '', $url);

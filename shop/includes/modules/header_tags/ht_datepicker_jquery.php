@@ -47,7 +47,7 @@
           }
         }
 
-        $url_string = $CLICSHOPPING_Template->getUrlwithoutSEFU();
+        $url_string = $CLICSHOPPING_Template->getUrlWithoutSEFU();
 
         $language_code = $CLICSHOPPING_Language->getCode();
 
