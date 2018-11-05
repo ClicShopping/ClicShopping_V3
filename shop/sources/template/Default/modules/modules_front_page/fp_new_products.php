@@ -98,7 +98,7 @@
                                                             p.products_price,
                                                             p.products_quantity as in_stock
                                                       from :table_products p left join :table_specials s on p.products_id = s.products_id
-                                                      where products_status = 1
+                                                      where p.products_status = 1
                                                       and products_view = 1
                                                       and p.products_archive = 0
                                                       or (s.customers_group_id = 0 or s.customers_group_id = 99)
