@@ -20,7 +20,7 @@ use ClicShopping\OM\HTML;
   <div class="row">
     <div class="col-md-7">
       <div class="form-group row">
-        <label for="dob" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_manufacturers_entry_manufacturers'); ?></label>
+        <label for="entryManufacturers" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_manufacturers_entry_manufacturers'); ?></label>
         <div class="col-md-8">
           <?php echo HTML::selectMenu('manufacturers_id', $CLICSHOPPING_ProductsCommon->getManufacturersDropDown(array(array('id' => '', 'text' => CLICSHOPPING::getDef('modules_advanced_search_manufacturers_text_all_manufacturers')))), NULL, 'id="entryManufacturers"'); ?>
         </div>

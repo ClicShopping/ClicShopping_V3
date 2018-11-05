@@ -533,9 +533,11 @@
         $replace = str_replace(CLICSHOPPING::getConfig('http_path'), '', $replace);
         $replace = substr($replace, 1);
         $replace = str_replace($string, '&', $replace);
+        $replace = substr($replace, 0, strpos($replace, '&language,en'));
         $url_string = $replace;
       } else {
         $url_string = $_SERVER['QUERY_STRING'];
+        $url_string = substr($url_string, 0, strpos($url_string, '&language='));
       }
 
       return $url_string;

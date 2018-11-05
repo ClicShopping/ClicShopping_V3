@@ -12,16 +12,17 @@ $(function(){
 // account
   $('#dob').datepicker({
     format: 'dd-mm-yyyy',
-    /*        dateFormat: '<?php echo JQUERY_DATEPICKER_FORMAT; ?>',*/
-    changeMonth: true,
-    changeYear: true,
+    todayBtn: "linked",
+    todayHighlight: true,
+    autoclose: true,
     yearRange: '-100:+0'
   });
 
   // search date
   $('#dfrom').datepicker({
     format: 'dd-mm-yyyy',
-    /*        dateFormat: '<?php echo JQUERY_DATEPICKER_FORMAT; ?>',*/
+    todayBtn: "linked",
+    todayHighlight: true,
     changeMonth: true,
     changeYear: true,
     yearRange: '-100:+0'
@@ -30,7 +31,8 @@ $(function(){
 // search date
   $('#dto').datepicker({
     format: 'dd/mm-yyyy',
-    /*        dateFormat: '<?php echo JQUERY_DATEPICKER_FORMAT; ?>',*/
+    todayBtn: "linked",
+    todayHighlight: true,
     changeMonth: true,
     changeYear: true,
     yearRange: '-100:+0'

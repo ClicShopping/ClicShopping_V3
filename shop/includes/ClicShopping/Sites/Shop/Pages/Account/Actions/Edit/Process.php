@@ -238,32 +238,35 @@
             if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $iso;
           }
 
-          $CLICSHOPPING_Db->save('customers', $sql_data_array, array('customers_id' => (int)$CLICSHOPPING_Customer->getID()));
-          $CLICSHOPPING_Db->save('customers_info', array('customers_info_date_account_last_modified' => 'now()'),
-                                            array('customers_info_id' => (int)$CLICSHOPPING_Customer->getID())
-                          );
+          $insert_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID()];
+          $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);
+
+          $CLICSHOPPING_Db->save('customers_info', ['customers_info_date_account_last_modified' => 'now()'],
+                                                   ['customers_info_id' => (int)$CLICSHOPPING_Customer->getID()]
+                                 );
 
           $sql_data_array = ['customers_firstname' => $firstname,
                              'customers_lastname' => $lastname
                             ];
 
-          $CLICSHOPPING_Db->save('customers', $sql_data_array, array('customers_id' => (int)$CLICSHOPPING_Customer->getID()),
-                                                         array('address_book_id' => (int)$CLICSHOPPING_Customer->getDefaultAddressID() )
-                          );
+
+          $CLICSHOPPING_Db->save('customers', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()],
+                                                               ['address_book_id' => (int)$CLICSHOPPING_Customer->getDefaultAddressID()]
+                                );
 
 // Clients en mode B2B : Modifier le nom de la societe sur toutes les adresses ce trouvant dans le carnet d'adresse
           if (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true')) {
-            $sql_data_array = array('entry_company' => $company);
+            $sql_data_array = ['entry_company' => $company];
+            $insert_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID()];
 
-            $CLICSHOPPING_Db->save('customers', $sql_data_array, array('customers_id' => (int)$CLICSHOPPING_Customer->getID()) );
+            $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);
           }
 
           $CLICSHOPPING_Hooks->call('Edit','Process');
 
           $_SESSION['customer_first_name'] = $firstname;
 
-          $CLICSHOPPING_MessageStack->add(SUCCESS_ACCOUNT_UPDATED, 'success', 'account_edit');
-
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_account_updated'), 'success', 'account_edit');
           CLICSHOPPING::redirect('index.php', 'Account&Main');
         }
       }

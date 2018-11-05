@@ -14,6 +14,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\DateTime;
 
   use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
@@ -313,15 +314,6 @@
         <div class="row" id="tab1ContentRow9">
           <div class="col-md-5">
             <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_warehouse_packaging'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_warehouse_packaging'); ?></label>
-              <div class="col-md-5">
-                <?php echo  HTML::selectMenu('products_packaging', $products_packaging_array,  $pInfo->products_packaging); ?>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_price_comparison'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_price_comparison'); ?></label>
               <div class="col-md-5">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
@@ -517,11 +509,18 @@
               </div>
             </div>
           </div>
+<?php
+  if ($pInfo->products_date_available != '') {
+    $products_date_available = DateTime::toShort($pInfo->products_date_available);
+  } else {
+    $products_date_available = $pInfo->products_date_available;
+  }
+?>
           <div class="col-md-5">
             <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_date_available'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_date_available'); ?></label>
               <div class="col-md-5">
-                <?php echo HTML::inputField('products_date_available', $pInfo->products_date_available, 'id="products_date_available" data-provide="datepicker" id="DateAvailable" aria-describedby="' . $CLICSHOPPING_Products->getDef('text_products_date_available') . '" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_date_available') . '"'); ?>
+                <?php echo HTML::inputField('products_date_available', $products_date_available, 'id="products_date_available"'); ?>
               </div>
               <div class="input-group-addon"><span class="fas fa-calendar"></span></div>
             </div>

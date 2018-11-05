@@ -120,7 +120,7 @@
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
-                  <div class="col-md-5 input-group date" id="customers_dob">
+                  <div class="col-md-5 input-group">
 <?php
   if ($error === true) {
     if ($entry_date_of_birth_error === true) {

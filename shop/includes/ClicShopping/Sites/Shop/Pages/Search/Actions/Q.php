@@ -31,15 +31,11 @@
         $max_display = 1;
       }
 
-      $error = false;
-
       if ( $CLICSHOPPING_Search->hasKeywords() && empty($CLICSHOPPING_Search->hasKeywords()) &&
          ( $CLICSHOPPING_Search->getDateFrom() && (empty($CLICSHOPPING_Search->getDateFrom()) || ($CLICSHOPPING_Search->getDateFrom() == CLICSHOPPING::getDef('dob_format_string')))) &&
          ( $CLICSHOPPING_Search->getDateTo() && (empty($CLICSHOPPING_Search->getDateTo()) || ($CLICSHOPPING_Search->getDateTo() == CLICSHOPPING::getDef('dob_format_string')))) &&
          ( $CLICSHOPPING_Search->getPriceFrom() && !is_numeric($CLICSHOPPING_Search->getPriceFrom())) &&
          ( $CLICSHOPPING_Search->getPriceTo() && !is_numeric($CLICSHOPPING_Search->getPriceTo())) ) {
-
-       $error = true;
 
        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
       } else {
@@ -47,7 +43,7 @@
 
         $listingTotalRow = $search['total'];
 
-        $Qlisting->setPageSet(MODULE_PRODUCTS_SEARCH_MAX_DISPLAY);
+        $Qlisting->setPageSet($max_display);
 
         $Qlisting->execute();
       }

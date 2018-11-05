@@ -283,29 +283,44 @@
               </div>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
-                  <div class="col-md-5 input-group date" id="customers_dob">
+                  <div class="col-md-5 input-group">
 <?php
-//      $date_dob = DateTime::toShort($cInfo->customers_dob);
-      $date_dob = $cInfo->customers_dob; // @todo;
+      if ($cInfo->customers_dob != '') {
+        $date_dob = DateTime::toShort($cInfo->customers_dob);
+      } else {
+        $date_dob = $cInfo->customers_dob;
+      }
 
       if ($error === true) {
         if ($entry_date_of_birth_error === true) {
           if (!empty($date_dob)) {
-           echo HTML::inputField('customers_dob', $date_dob, 'maxlength="10" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
+           echo HTML::inputField('customers_dob', $date_dob, 'id="customers_dob" maxlength="10" style="border: 2px solid #FF0000" required aria-required="true"', 'date') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
           }
         } else {
           echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
         }
       } else {
         if (!empty($date_dob)) {
-          echo HTML::inputField('customers_dob', $date_dob, 'id="customers_dob" data-provide="datepicker"');
+          echo HTML::inputField('customers_dob', $date_dob, 'id="customers_dob" required aria-required="true"');
         }
       }
 ?>
+
                     <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                   </div>
                 </div>

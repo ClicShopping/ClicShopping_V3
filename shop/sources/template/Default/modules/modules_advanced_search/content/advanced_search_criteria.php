@@ -17,7 +17,7 @@ use ClicShopping\OM\HTML;
   <div class="row">
     <div class="col-md-11">
       <div class="form-group row">
-        <label for="dob" class="col-2 col-form-label"><?php echo CLICSHOPPING::getDef('module_advanced_search_criteria_text'); ?></label>
+        <label for="inputSearch" class="col-2 col-form-label"><?php echo CLICSHOPPING::getDef('module_advanced_search_criteria_text'); ?></label>
         <div class="col-md-9">
           <?php echo HTML::inputField('keywords', null, 'required aria-required="true" id="inputSearch" aria-describedby="' . CLICSHOPPING::getDef('module_advanced_search_criteria_text') . '" placeholder="' . CLICSHOPPING::getDef('module_advanced_search_criteria_text') . '"'); ?>
         </div>

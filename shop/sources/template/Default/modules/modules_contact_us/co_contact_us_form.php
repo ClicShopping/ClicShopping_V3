@@ -64,7 +64,7 @@
             <div class="row" id="RowContent1">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
+                  <label for="AllName" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
                   <div class="col-sm-6 col-md-4">
                       ' . $CLICSHOPPING_Customer->getLastName() . '  ' . $CLICSHOPPING_Customer->getFirstName() . HTML::hiddenField('name', $CLICSHOPPING_Customer->getLastName() . ' ' . $CLICSHOPPING_Customer->getFirstName()) . '
                   </div>
@@ -78,7 +78,7 @@
             <div class="row" id="RowContent2">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
+                  <label for="InputName" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_name') . '</label>
                   <div class="col-sm-6 col-md-4">
                       ' . HTML::inputField('name', null, 'required aria-required="true" id="InputName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_name') . '"') . '
                   </div>
@@ -107,7 +107,7 @@
             <div class="row" id="RowContent4">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="dob" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
+                  <label for="email" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_email') . '</label>
                   <div class="col-sm-6 col-md-4">
                       ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
                   </div>
@@ -227,7 +227,7 @@
             <div class="row" id="RowContent11">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="Email" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_customers_subject') . '</label>
+                  <label for="Inputsubject" class="col-sm-6 col-md-4 col-form-label">'. CLICSHOPPING::getDef('entry_customers_subject') . '</label>
                   <div class="col-sm-6 col-md-4">
                       ' . HTML::inputField('email_subject', null, 'required aria-required="true" id="Inputsubject" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_subject') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_subject') . '"') . '
                   </div>

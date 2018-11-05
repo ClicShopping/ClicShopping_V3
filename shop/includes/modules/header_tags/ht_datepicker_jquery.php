@@ -52,14 +52,19 @@
         $language_code = $CLICSHOPPING_Language->getCode();
 
         if (in_array($url_string, $pages_array)) {
+
+          $CLICSHOPPING_Template->addBlock('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">' . "\n", 'header_tags');
+
           $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>' . "\n", $this->group);
           $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.' . $language_code . '.min.js"></script>' . "\n", $this->group);
 
-          $CLICSHOPPING_Template->addBlock('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">' . "\n", 'header_tags');
-          $CLICSHOPPING_Template->addBlock('<script>$(\'input[data-provide="datepicker"]\').datepicker({format: \'' . CLICSHOPPING::getDef('js_date_format') . '\',viewMode: 2});</script>', $this->group);
-// advanced search
-          $CLICSHOPPING_Template->addBlock('<script>var nowTemp = new Date(); var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0); $(\'#dfrom\').datepicker({format: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}}); </script>', $this->group);
-          $CLICSHOPPING_Template->addBlock('<script>$(\'#dto\').datepicker({format: \'' . CLICSHOPPING::getDef('js_date_format') . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}});</script>', $this->group);
+
+          // create_account
+          // account edit
+          $CLICSHOPPING_Template->addBlock('<script>$(\'#dob\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',viewMode: 2});</script>', $this->group);
+          // advanced search
+          $CLICSHOPPING_Template->addBlock('<script>var nowTemp = new Date(); var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0); $(\'#dfrom\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}}); </script>', $this->group);
+          $CLICSHOPPING_Template->addBlock('<script>$(\'#dto\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}});</script>', $this->group);
         }
       }
     }

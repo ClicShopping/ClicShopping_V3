@@ -101,13 +101,20 @@
   </div>
 <?php
   if ((ACCOUNT_DOB == 'true' && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (ACCOUNT_DOB_PRO == 'true'  && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) ) {
+
+  if ($customers_dob != '') {
+    $customers_dob = DateTime::toShort($customers_dob);
+  } else {
+    $customers_dob = $customers_dob;
+  }
+
 ?>
     <div class="row">
       <div class="col-md-7">
         <div class="form-group row">
           <label for="dob" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_date_of_birth'); ?></label>
-          <div class="col-md-8">
-            <?php echo HTML::inputField('dob', DateTime::toShort($customers_dob), 'data-provide="datepicker" id="dob required aria-required="true" aria-describedby="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" placeholder="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" minlength="'. ENTRY_DOB_MIN_LENGTH .'"'); ?>
+          <div class="col-md-8 date">
+            <?php echo HTML::inputField('dob', $customers_dob, 'id="dob" required aria-required="true" minlength="'. ENTRY_DOB_MIN_LENGTH .'"'); ?>
           </div>
         </div>
       </div>
