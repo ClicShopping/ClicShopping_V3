@@ -2297,7 +2297,7 @@ INSERT INTO administrator_menu_description VALUES(107, 'Gestion produits', 2);
 INSERT INTO administrator_menu_description VALUES(596, 'Gestionnaire de bannières', 2);
 INSERT INTO administrator_menu_description VALUES(595, 'Gestionnaire de page', 2);
 INSERT INTO administrator_menu_description VALUES(644, 'Extensions / Update', 2);
-INSERT INTO administrator_menu_description VALUES(644, 'Extansions' / Mise à jour, 1);
+INSERT INTO administrator_menu_description VALUES(644, 'Extansions / Mise à jour', 1);
 INSERT INTO administrator_menu_description VALUES(589, 'Groupes Client', 2);
 INSERT INTO administrator_menu_description VALUES(69, 'Gzip compression', 1);
 INSERT INTO administrator_menu_description VALUES(1, 'Home', 1);

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -33,6 +33,9 @@
         $CLICSHOPPING_Customers = Registry::get('Customers');
 
         $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+
+        if (empty($customers_group_id)) $customers_group_id = 0;
+
         $customers_id = HTML::sanitize($_POST['customers_id']);
         $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
 
