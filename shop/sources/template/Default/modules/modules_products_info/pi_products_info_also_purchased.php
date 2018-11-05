@@ -409,7 +409,7 @@
       );
 
        $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Q\'uelle est la largeur des images concernant les produits complémentaires achetés ?',
+          'configuration_title' => 'Qu\'elle est la largeur des images concernant les produits complémentaires achetés ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_ALSO_PURCHASED_IMAGE_WIDTH',
           'configuration_value' => '',
           'configuration_description' => 'Veuillez indiquer la largeur des images qui seront affichées<br /><br /><strong>Note :</strong><br>Si le champs est vide, la taille de l\'image aura sa taille réelle. A défaut, elle sera recalculée en fonction de la nouvelle taille insérée',
