@@ -48,6 +48,10 @@
         unset($_SESSION['free_shipping']);
       }
 
+      if ( isset($_SESSION['login_customer_id']) ) {
+        unset($_SESSION['login_customer_id']);
+      }
+
       $CLICSHOPPING_ShoppingCart->reset();
 
       Registry::get('Hooks')->call('Account', 'Logout');

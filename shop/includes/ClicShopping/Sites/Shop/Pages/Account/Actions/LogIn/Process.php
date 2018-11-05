@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -18,8 +18,6 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $login_customer_id;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -37,6 +35,7 @@
         CLICSHOPPING::redirect('index.php', 'Info&Cookies');
       }
 
+      $login_customer_id = $_SESSION['login_customer_id'];
 
       if (is_numeric($login_customer_id ) && ($login_customer_id > 0)) {
         if ($login_customer_id > 0) {

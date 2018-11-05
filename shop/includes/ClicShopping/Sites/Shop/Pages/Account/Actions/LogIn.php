@@ -20,8 +20,6 @@
   class LogIn extends \ClicShopping\OM\PagesActionsAbstract {
 
     public function execute() {
-      global $login_customer_id;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -60,7 +58,7 @@
                                        );
 
 // login content module must return $login_customer_id as an integer after successful customer authentication
-        $login_customer_id = false;
+        $_SESSION['login_customer_id'] = false;
 
         if ( $Qcheck->fetch() === false ) {
           $error = true;
@@ -68,7 +66,7 @@
           if ( !Hash::verify($password, $Qcheck->value('customers_password')) ){
             $error = true;
           } else {
-            $login_customer_id = $Qcheck->valueInt('customers_id');
+            $_SESSION['login_customer_id'] = $Qcheck->valueInt('customers_id');
           }
         }
 
