@@ -389,7 +389,7 @@
               $this->products_image_medium = $products_image_medium_name;
             }
           } else {
-            $this->products_image_medium = $product_update_medium;
+            $this->products_image_medium = $product_update_image_medium;
           }
         }
     }
