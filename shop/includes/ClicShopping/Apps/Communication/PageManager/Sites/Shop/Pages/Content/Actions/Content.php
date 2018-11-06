@@ -41,7 +41,7 @@
         if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayInformation($id) ))  {
           $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($id);
 
-          $CLICSHOPPING_Breadcrumb->add($page_title, CLICSHOPPING::link('index.php', 'Info&Content&pages_id=' . $id));
+          $CLICSHOPPING_Breadcrumb->add($page_title, CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $id));
 // templates
           $this->page->setFile('content.php');
 //Content
@@ -53,7 +53,7 @@
           header('Location: ' . $url);
         }
       } else {
-        $CLICSHOPPING_PageManager->redirect('index.php');
+        $CLICSHOPPING_PageManager->redirect();
       }
     }
   }

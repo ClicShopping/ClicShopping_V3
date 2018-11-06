@@ -22,7 +22,7 @@
 
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('checkout_shipping', CLICSHOPPING::link('index.php', 'Checkout&Shipping&Process'), 'post', 'class="form-inline" role="form" id="checkout_shipping"', ['tokenize' => true, 'action' => 'process']);
+  echo HTML::form('checkout_shipping', CLICSHOPPING::link(null, 'Checkout&Shipping&Process'), 'post', 'class="form-inline" role="form" id="checkout_shipping"', ['tokenize' => true, 'action' => 'process']);
 ?>
 <section class="checkout_shipping" id="checkout_shipping">
   <div class="contentContainer">

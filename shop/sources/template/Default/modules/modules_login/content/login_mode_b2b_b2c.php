@@ -30,7 +30,7 @@ use ClicShopping\OM\HTML;
               <div class="control-group">
                 <div class="separator"></div>
                 <div class="controls">
-                  <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('text_b2b'), null, CLICSHOPPING::link('index.php', 'Account&CreatePro'), 'success'); ?></div>
+                  <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('text_b2b'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'success'); ?></div>
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@ use ClicShopping\OM\HTML;
               <div class="control-group">
                 <div class="separator"></div>
                 <div class="controls">
-                  <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('text_b2c'), null, CLICSHOPPING::link('index.php', 'Account&Create'), 'primary'); ?></div>
+                  <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('text_b2c'), null, CLICSHOPPING::link(null, 'Account&Create'), 'primary'); ?></div>
                 </div>
               </div>
             </div>

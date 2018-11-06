@@ -43,7 +43,7 @@
         $QpageManager->execute();
 
         while ($QpageManager->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link('index.php', 'Info&Content&pages_id=' . $QpageManager->valueInt('pages_id'))));
+          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QpageManager->valueInt('pages_id'))));
 
           $page_manager_array[$QpageManager->valueInt('pages_id')]['loc'] = $location;
           $page_manager_array[$QpageManager->valueInt('pages_id')]['lastmod'] = $QpageManager->value('last_modified');

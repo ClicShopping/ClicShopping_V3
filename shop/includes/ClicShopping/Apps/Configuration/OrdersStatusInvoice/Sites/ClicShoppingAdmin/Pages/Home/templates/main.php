@@ -50,7 +50,7 @@
             <div class="form-group">
               <div class="col-md-12 text-md-center">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Configuration\OrdersStatusInvoice&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\OrdersStatusInvoice&Configure'));
   echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

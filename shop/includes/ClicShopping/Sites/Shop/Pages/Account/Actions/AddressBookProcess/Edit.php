@@ -31,7 +31,7 @@
       if ( $exists === false ) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'addressbook');
 
-        CLICSHOPPING::redirect('index.php','Account&AddressBook');
+        CLICSHOPPING::redirect(null,'Account&AddressBook');
      }
 
       if (isset($_POST['action']) && $_POST['action'] == 'update' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
@@ -304,9 +304,9 @@
           } // end $Qcheck->fetch
 
           if ($_POST['shopping'] == 1) {
-            CLICSHOPPING::redirect('index.php', 'Cart');
+            CLICSHOPPING::redirect(null, 'Cart');
           } else {
-            CLICSHOPPING::redirect('index.php','Account&AddressBook');
+            CLICSHOPPING::redirect(null,'Account&AddressBook');
           }
         }
       }

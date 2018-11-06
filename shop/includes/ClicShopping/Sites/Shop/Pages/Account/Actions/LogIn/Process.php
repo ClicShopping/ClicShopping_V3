@@ -29,10 +29,10 @@
         if ( !isset($_GET['cookie_test']) ) {
           $all_get = CLICSHOPPING::getAllGET();
 
-          CLICSHOPPING::redirect('index.php','Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
+          CLICSHOPPING::redirect(null,'Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
         }
 
-        CLICSHOPPING::redirect('index.php', 'Info&Cookies');
+        CLICSHOPPING::redirect(null, 'Info&Cookies');
       }
 
       $login_customer_id = $_SESSION['login_customer_id'];
@@ -61,7 +61,7 @@
         if ($CLICSHOPPING_NavigationHistory->hasSnapshot() ) {
           $CLICSHOPPING_NavigationHistory->redirectToSnapshot();
         } else {
-          CLICSHOPPING::redirect('index.php');
+          CLICSHOPPING::redirect();
         }
       }
     }

@@ -21,16 +21,16 @@ use ClicShopping\OM\HTML;
 <?php
   if ($CLICSHOPPING_Customer->isLoggedOn()) {
 ?>
-        <li><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Main'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_account')); ?></li>
-        <li><?php echo HTML::link(CLICSHOPPING::link('index.php','Account&AddressBook'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
-        <li><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&History'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
+        <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Main'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_account')); ?></li>
+        <li><?php echo HTML::link(CLICSHOPPING::link(null,'Account&AddressBook'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
+        <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&History'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
 <br />
-          <a class="btn btn-danger btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link('index.php', 'Account&Logoff') ?>"><i class="fas fa-sign-out-alt"></i><?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_logoff') ?></a>
+          <a class="btn btn-danger btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&Logoff') ?>"><i class="fas fa-sign-out-alt"></i><?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_logoff') ?></a>
 <?php
   } else {
 ?>
-        <li><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Create'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_create_account')); ?></li>
-        <li class="col-md-12"><br /><a class="btn btn-success btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link('index.php', 'Account&LogIn'); ?>"><i class="fas fa-sign-in-alt"></i> <?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_login') ?></a></li>
+        <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Create'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_create_account')); ?></li>
+        <li class="col-md-12"><br /><a class="btn btn-success btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&LogIn'); ?>"><i class="fas fa-sign-in-alt"></i> <?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_login') ?></a></li>
 <?php
   }
 ?>

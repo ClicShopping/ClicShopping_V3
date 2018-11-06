@@ -24,7 +24,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
       if (isset($_GET['ReviewsWrite']) && isset($_GET['Success'])) {

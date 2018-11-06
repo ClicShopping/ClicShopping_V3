@@ -42,6 +42,6 @@
     }
 
     public function getMessage() {
-      return HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\DataBaseTables&DataBaseTables'), CLICSHOPPING::getDef('module_security_check_extended_mysql_utf8_error'));
+      return HTML::link(CLICSHOPPING::link(null, 'A&Tools\DataBaseTables&DataBaseTables'), CLICSHOPPING::getDef('module_security_check_extended_mysql_utf8_error'));
     }
   }

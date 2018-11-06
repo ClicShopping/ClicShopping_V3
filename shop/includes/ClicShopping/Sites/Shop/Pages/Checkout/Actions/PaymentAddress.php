@@ -30,19 +30,19 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 // Controle autorisation au client de modifier son adresse par defaut
       if ((AddressBook::countCustomersModifyAddressDefault() == 0)) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_modify_default'), 'danger', 'header');
 
-        CLICSHOPPING::redirect('index.php','Checkout&Billing');
+        CLICSHOPPING::redirect(null,'Checkout&Billing');
       }
 
 // if no billing destination address was selected, use their own address as default
@@ -57,7 +57,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_payment_address');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php','Checkout&Billing'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link('index.php','Checkout&PaymentAddress'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null,'Checkout&Billing'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null,'Checkout&PaymentAddress'));
     }
   }

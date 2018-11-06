@@ -258,7 +258,7 @@
       $email_order = STORE_NAME . "\n\n" .
       CLICSHOPPING::getDef('email_separator') .  "\n" .
       CLICSHOPPING::getDef('email_text_order_number', ['store_name' => STORE_NAME]) . ' ' . $this->order_id . "\n" .
-      CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . (int)$this->order_id) . "\n" .
+      CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$this->order_id) . "\n" .
       CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
       if ($CLICSHOPPING_Order->info['comments']) {

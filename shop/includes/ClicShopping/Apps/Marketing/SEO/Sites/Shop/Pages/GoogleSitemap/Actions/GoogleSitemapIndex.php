@@ -27,14 +27,14 @@
 
         $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8'?>\n".'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
-        $location = CLICSHOPPING::link('index.php', 'Sitemap&GoogleSitemapCategories');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapCategories');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link('index.php', 'Sitemap&GoogleSitemapProducts');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapProducts');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
@@ -42,49 +42,49 @@
         $url->addChild('priority', '0.5');
 
 
-        $location =  CLICSHOPPING::link('index.php', 'index.php?Sitemap&GoogleSitemapSpecials');
+        $location =  CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapSpecials');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location =  CLICSHOPPING::link('index.php', 'index.php?Sitemap&GoogleSitemapFavorites');
+        $location =  CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapFavorites');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location =  CLICSHOPPING::link('index.php', 'index.php?Sitemap&GoogleSitemapManufacturers');
+        $location =  CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapManufacturers');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location =  CLICSHOPPING::link('index.php', 'Sitemap&GoogleSitemapBlogCategories');
+        $location =  CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapBlogCategories');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location =  CLICSHOPPING::link('index.php', 'index.php?Sitemap&GoogleSitemapBlogContent');
+        $location =  CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapBlogContent');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link('index.php', 'index.php?Sitemap&GoogleSitemapPageManager.php');
+        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapPageManager.php');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location =  CLICSHOPPING::link('index.php', 'index.php?Sitemap&GoogleSitemapFeaturedProducts');
+        $location =  CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapFeaturedProducts');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date ("Y-m-d", strtotime("now")));

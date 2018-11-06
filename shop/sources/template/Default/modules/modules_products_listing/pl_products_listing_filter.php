@@ -154,9 +154,7 @@
               if ($Qfilter->rowCount() > 0) {
                 $products_listing_filter = '<!-- product_listing_manufacturers start -->' . "\n";
 
-            //    $products_listing_filter .= HTML::form('filter', CLICSHOPPING::link('index.php'), 'get');
-
-                $products_listing_filter .=  HTML::form('filter', CLICSHOPPING::link('index.php', '', false), 'get', null, ['session_id' => true]);
+                $products_listing_filter .=  HTML::form('filter', CLICSHOPPING::link(null, '', false), 'get', null, ['session_id' => true]);
                 $products_listing_filter .= '<div class="col-md-'. $bootstrap_column . '">';
 
                 if ($CLICSHOPPING_Manufacturers->getID() && !empty($CLICSHOPPING_Manufacturers->getID())) {

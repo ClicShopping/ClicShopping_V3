@@ -289,20 +289,20 @@
     public function customerGreeting() {
       if ($this->isLoggedOn()) {
         $greeting_string = CLICSHOPPING::getDef('text_greeting_personal',['first_name' => HTML::outputProtected($this->getFirstName()),
-                                                                            'url_products_new' => CLICSHOPPING::link('index.php','Products&ProductsNew'),
-                                                                            'url_logoff' => CLICSHOPPING::link('index.php','Account&LogOff')
+                                                                            'url_products_new' => CLICSHOPPING::link(null,'Products&ProductsNew'),
+                                                                            'url_logoff' => CLICSHOPPING::link(null,'Account&LogOff')
                                                                           ]
                                                 );
       } else {
         if (MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B' || MODE_MANAGEMENT_B2C_B2B =='B2B') {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest',['url_login' => CLICSHOPPING::redirect('index.php', 'Account&LogIn'),
-                                                                          'url_create_account' => CLICSHOPPING::link('index.php', 'Account&Create'),
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest',['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+                                                                          'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
                                                                           'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
                                                                          ]
                                                   );
         } else {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest',['url_login' => CLICSHOPPING::redirect('index.php', 'Account&LogIn'),
-                                                                          'url_products_new' => CLICSHOPPING::link('index.php','Products&ProductsNew')
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest',['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+                                                                          'url_products_new' => CLICSHOPPING::link(null,'Products&ProductsNew')
                                                                           ]
                                                  );
         }

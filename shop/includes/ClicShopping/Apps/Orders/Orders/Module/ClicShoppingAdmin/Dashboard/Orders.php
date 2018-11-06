@@ -94,7 +94,7 @@
       while ($orders = $Qorder->fetch() ) {
         $output .= '  <tr class="dataTableRow">' .
                    '    <th scope="row">' . DateTime::toShort($orders['date_last_modified']) . '</th>' .
-                   '    <td>' . HTML::link(CLICSHOPPING::link('index.php','A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::outputProtected($orders['customers_name'])) . '</a></td>' .
+                   '    <td>' . HTML::link(CLICSHOPPING::link(null,'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::outputProtected($orders['customers_name'])) . '</a></td>' .
                    '    <td>' . $this->lang->getLanguagesName($Qorder->valueInt('language_id')) . '</td>' .
                    '    <td>' . strip_tags($orders['order_total']) . '</td>';
 
@@ -107,9 +107,9 @@
         }
         $output .=
          '    <td>' . HTML::outputProtected($orders['orders_status_name']) . '</td>' .
-         '    <td>' . HTML::link(CLICSHOPPING::link('index.php', 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order')));
-                      HTML::link(CLICSHOPPING::link('index.php', 'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_customer')));
-                      HTML::link(CLICSHOPPING::link('index.php', 'A&Orders\Orders&Orders&cID=' . $orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_view_customers_all_orders')));
+         '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order')));
+                      HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_customer')));
+                      HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&cID=' . $orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_view_customers_all_orders')));
 
         $output .= '</td>';
         $output .= '</tr>';

@@ -33,7 +33,7 @@
         } elseif (isset($_POST['notify'])) {
           $notify = $_POST['notify'];
         } else {
-          CLICSHOPPING::redirect('index.php', 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
+          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
         }
 
         if (!is_array($notify)) $notify = array($notify);
@@ -58,11 +58,11 @@
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'products');
 
-        CLICSHOPPING::redirect('index.php', 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
+        CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
 
       } else {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
     }
   }

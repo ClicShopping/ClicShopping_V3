@@ -26,12 +26,12 @@
 <h2 align="center">Newsletters</h2>
 <blockquote><a href="<?php echo 'http://' . $_SERVER['HTTP_HOST']; ?>">Index</a></blockquote>
 <?php
-  $template_directory = getcwd();   
+  $template_directory = getcwd();
   if ($handle = opendir($template_directory)) {
     $i=1;
 
     while (false !== ($file = readdir($handle))) {
-        if ($file != '.' && $file != '..' && $file != "index.php" && $file != ".htaccess") {
+        if ($file != '.' && $file != '..' && $file != 'index.php' && $file != '.htaccess') {
             echo '<blockquote>' . $i . ' - <a href=' . $file . '>' . $file . '</a></blockquote>';
         $i++;
         }

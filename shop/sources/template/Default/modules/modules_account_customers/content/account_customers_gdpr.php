@@ -34,7 +34,7 @@ use ClicShopping\OM\HTML;
 ?>
       </div>
       <div>
-        <?php echo CLICSHOPPING::getDef('module_account_customers_more_info') . ' ' . HTML::link(CLICSHOPPING::link('index.php', 'Info&Contact'), CLICSHOPPING::getDef('module_account_customers_contact_us')); ?>
+        <?php echo CLICSHOPPING::getDef('module_account_customers_more_info') . ' ' . HTML::link(CLICSHOPPING::link(null, 'Info&Contact'), CLICSHOPPING::getDef('module_account_customers_contact_us')); ?>
       </div>
     </blockquote>
   </div>
@@ -43,7 +43,7 @@ use ClicShopping\OM\HTML;
     <div class="control-group">
       <div class="controls">
         <div class="buttonSet">
-          <span class="col-md-2"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Account&Main'), 'primary');  ?></span>
+          <span class="col-md-2"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary');  ?></span>
           <span class="col-md-2 float-md-right text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
         </div>
       </div>

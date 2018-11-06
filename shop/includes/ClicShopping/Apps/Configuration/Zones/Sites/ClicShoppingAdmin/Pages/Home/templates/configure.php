@@ -35,7 +35,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_zones'), null, $CLICSHOPPING_Zones->link('Zones'), 'success'); ?>
-            <?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_back'), null, $CLICSHOPPING_Zones->link('index.php', 'A&Configuration\Zones'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_back'), null, $CLICSHOPPING_Zones->link(null, 'A&Configuration\Zones'), 'primary'); ?>
         </div>
       </div>
     </div>

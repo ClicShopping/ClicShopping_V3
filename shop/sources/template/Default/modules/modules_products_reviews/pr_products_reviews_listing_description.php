@@ -43,7 +43,7 @@
 
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-        $products_name = '<a href="' . CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</a>';
+        $products_name = '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</a>';
         $products_description = $CLICSHOPPING_ProductsCommon->getProductsDescription();
 
         $data = '<!-- pr_products_reviews_listing_description start -->' . "\n";

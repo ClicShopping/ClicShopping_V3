@@ -24,7 +24,7 @@
         $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
 
         $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('header_title_top'), CLICSHOPPING::getConfig('http_server', 'Shop'));
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('header_title_catalog', ['store_name' => STORE_NAME]), CLICSHOPPING::link('index.php'));
+        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('header_title_catalog', ['store_name' => STORE_NAME]), CLICSHOPPING::link());
 
         return true;
       } else {

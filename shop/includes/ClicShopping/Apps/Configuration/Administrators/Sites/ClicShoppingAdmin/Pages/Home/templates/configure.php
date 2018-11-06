@@ -35,7 +35,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Administrators->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_administrators'), null, $CLICSHOPPING_Administrators->link('Administrators'), 'success'); ?>
-            <?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_back'), null, $CLICSHOPPING_Administrators->link('index.php', 'A&Configuration\Administrators'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_back'), null, $CLICSHOPPING_Administrators->link(null, 'A&Configuration\Administrators'), 'primary'); ?>
         </div>
       </div>
     </div>

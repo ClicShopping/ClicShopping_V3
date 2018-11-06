@@ -33,14 +33,14 @@
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
 
       if ( $product_exists === false ) {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
 
 // if the customer is not logged on, redirect them to the login page
       if ( !$CLICSHOPPING_Customer->isLoggedOn() ) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
 
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
     }
   }

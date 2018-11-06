@@ -24,7 +24,7 @@
   }
 
   // Permettre l'utilisation de l'approbation des comptes en mode B2B
-  if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect('index.php');
+  if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect();
 
   $Qcustomers = $CLICSHOPPING_Members->db->prepare('select customers_id,
                                                           customers_lastname,

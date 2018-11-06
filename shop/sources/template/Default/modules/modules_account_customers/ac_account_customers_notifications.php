@@ -46,7 +46,7 @@
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_CONTENT_WIDTH;
         $global_notification = Notifications::getGlobalNotificationCustomer();
         $checkbox_notifications = HTML::checkboxField('product_global', '1', (($global_notification == '1') ? true : false));
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Account&Main'), 'primary', null, null);
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary', null, null);
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success', null, null);
 
         if ($global_notification != 1) {
@@ -59,7 +59,7 @@
           }
         }
 
-        $form = HTML::form('account_notifications', CLICSHOPPING::link('index.php', 'Account&Notifications&Process&action=process'), 'post', 'id="account_notifications"', ['tokenize' => true, 'action' => 'process']);
+        $form = HTML::form('account_notifications', CLICSHOPPING::link(null, 'Account&Notifications&Process&action=process'), 'post', 'id="account_notifications"', ['tokenize' => true, 'action' => 'process']);
         $endform ='</form>';
 
         $account = '<!-- Start account_customers_my_account Notification --> ' . "\n";

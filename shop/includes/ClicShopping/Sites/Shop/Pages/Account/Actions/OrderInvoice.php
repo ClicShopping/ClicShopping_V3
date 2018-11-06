@@ -35,7 +35,7 @@
 
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
       define('FPDF_FONTPATH', 'ext/fpdf/font/');
@@ -50,7 +50,7 @@
       if (isset($_GET['order_id'])) {
         $oID = HTML::sanitize($_GET['order_id']);
       } else {
-        CLICSHOPPING::redirect('index.php', 'Account&Main');
+        CLICSHOPPING::redirect(null, 'Account&Main');
       }
 
 // Recuperations du numero de client

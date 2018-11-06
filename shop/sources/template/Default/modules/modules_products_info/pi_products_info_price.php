@@ -109,7 +109,7 @@
               $products_price_content = '<!-- Start product price -->' . "\n";
 // Strong relations with pi_products_info_options.php = Don't delete
               if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
-                $products_price_content .=  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
+                $products_price_content .=  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
                 if (isset($_GET['Description'])) $products_price_content .= HTML::hiddenField('url', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
               }
 
@@ -136,7 +136,7 @@
             $products_price_content =  '<!-- Start products_archives -->' . "\n";
             $products_price_content .= '<div class="separator"></div>';
             $products_price_content .= '<h3 class="text-md-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
-            $products_price_content .= '<div class="buttonSet"><span class="buttonAction">'. HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link('index.php'), 'primary') .'</span></div>' . "\n";
+            $products_price_content .= '<div class="buttonSet"><span class="buttonAction">'. HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link(), 'primary') .'</span></div>' . "\n";
             $products_price_content .= '<!-- products_archives end -->' . "\n";
           }
 

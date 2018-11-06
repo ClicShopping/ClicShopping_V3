@@ -32,12 +32,12 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 // Verify if a street address exist concernant the customer
@@ -52,12 +52,12 @@
 
 //check if we need to continue the address creation
       if (empty($QaddressCustomer->value('entry_street_address'))) {
-        CLICSHOPPING::redirect('index.php','Checkout&ShippingAddress&newcustomer=1');
+        CLICSHOPPING::redirect(null,'Checkout&ShippingAddress&newcustomer=1');
       }
 
 //check if address id exist else go shipping_address for new default address
       if (!$CLICSHOPPING_Customer->getDefaultAddressID()) {
-        CLICSHOPPING::redirect('index.php','Checkout&ShippingAddress&newcustomer=1');
+        CLICSHOPPING::redirect(null,'Checkout&ShippingAddress&newcustomer=1');
       }
 
 // if no shipping destination address was selected, use the customers own address as default
@@ -96,7 +96,7 @@
       if ($CLICSHOPPING_Order->content_type == 'virtual') {
         $_SESSION['shipping'] = false;
         $_SESSION['sendto'] = false;
-        CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+        CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
       Registry::set('Shipping', new Delivery());
@@ -141,7 +141,7 @@
         if ( defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False') && !$CLICSHOPPING_Customer->isLoggedOn() && ($_SESSION['shipping'] === false) ) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_shipping_available_to_shipping_address'), 'danger', 'checkout_address');
 
-          CLICSHOPPING::redirect('index.php', 'Checkout&ShippingAddress');
+          CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress');
         }
 
 // templates
@@ -151,7 +151,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_shipping');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php', 'Cart'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link('index.php', 'Checkout&Shipping'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Cart'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null, 'Checkout&Shipping'));
     }
   }

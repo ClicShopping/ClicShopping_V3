@@ -86,7 +86,7 @@
           $Qproducts->execute();
 
           while ($Qproducts->fetch()) {
-            $customer_orders_string .= '<li class="boxeContentsHistory">'. HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name')) . '</li>';
+            $customer_orders_string .= '<li class="boxeContentsHistory">'. HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name')) . '</li>';
           }
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {

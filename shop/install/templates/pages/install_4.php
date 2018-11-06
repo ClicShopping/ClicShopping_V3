@@ -130,6 +130,7 @@
 $file_contents = <<<ENDCFG
 <?php
 \$ini = <<<EOD
+bootstrap_file = "index.php"
 db_server = "{$dbServer}"
 db_server_username = "{$dbUsername}"
 db_server_password = "{$dbPassword}"

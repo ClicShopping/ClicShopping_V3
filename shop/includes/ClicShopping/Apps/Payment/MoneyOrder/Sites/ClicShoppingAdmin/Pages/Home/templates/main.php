@@ -49,7 +49,7 @@ use ClicShopping\OM\HTML;
           <div class="form-group">
             <div class="col-md-12">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Payment\MoneyOrder&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Payment\MoneyOrder&Configure'));
   echo HTML::button($CLICSHOPPING_MoneyOrder->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

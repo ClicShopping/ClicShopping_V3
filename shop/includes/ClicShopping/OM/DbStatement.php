@@ -446,40 +446,40 @@
 
         if (is_null($site)) {
           if ($number_of_pages > 1) {
-              $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-md-left;" data-pageseturl="' . HTML::output(CLICSHOPPING::link('index.php',  'A&' . $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';
+              $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-md-left;" data-pageseturl="' . HTML::output(CLICSHOPPING::link(null,  'A&' . $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';
           } else {
               $output .= '<li class="page-item disabled"><a class="text-md-center page-link sr-only">1</a></li>';
           }
 
 // previous button
           if ($this->page_set > 1) {
-            $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link('index.php', 'A&' . $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-md-center page-link"><span class="fas fa-fw fa-chevron-left"></span>') . '</li>';
+            $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link(null, 'A&' . $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-md-center page-link"><span class="fas fa-fw fa-chevron-left"></span>') . '</li>';
           } else {
             $output .= '<li class="page-item disabled"><a class="text-md-center page-link"><span class="fas fa-fw fa-chevron-left"></span></a></li>';
           }
 
 // next button
           if (($this->page_set < $number_of_pages) && ($number_of_pages != 1)) {
-            $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link('index.php', 'A&' . $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-md-center page-link"><span class="fas fa-fw fa-chevron-right"></span>') . '</li>';
+            $output .= '<li class="page-item active">' . HTML::link(CLICSHOPPING::link(null, 'A&' . $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)), null, 'title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-md-center page-link"><span class="fas fa-fw fa-chevron-right"></span>') . '</li>';
           } else {
             $output .= '<li class="page-item disabled"><a class="text-m-center page-link"><span class="fas fa-fw fa-chevron-right"></span></a></li>';
           }
         } else {
           if ($number_of_pages > 1) {
-            $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-md-left; height: 32px; width: 80px;" data-pageseturl="' . HTML::output(CLICSHOPPING::link('index.php', $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';
+            $output .= '<li class="page-item">' . HTML::selectField('pageset' . $this->page_set_keyword, $pages, $this->page_set, 'style="vertical-align: top; display: inline-block; float-md-left; height: 32px; width: 80px;" data-pageseturl="' . HTML::output(CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=PAGESETGOTO')) . '"') . '</li>';
           } else {
             $output .= '<li class="page-item disabled"><a class="text-md-center page-link sr-only">1</a></li>';
           }
 
 // previous button
           if ($this->page_set > 1) {
-            $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link('index.php', $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-md-center  page-link"><span class="fas fa-fw fa-chevron-left"></span></a></li>';
+            $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set - 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_previous_page') . '" class="text-md-center  page-link"><span class="fas fa-fw fa-chevron-left"></span></a></li>';
           } else {
             $output .= '<li class="page-item disabled"><a class="text-md-center  page-link"><span class="fas fa-fw fa-chevron-left"></span></a></li>';
           }
 // next button
           if (($this->page_set < $number_of_pages) && ($number_of_pages != 1)) {
-            $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link('index.php', $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-md-center page-link"><span class="fas fa-fw fa-chevron-right"></span></a></li>';
+            $output .= '<li class="page-item active"><a href="' . CLICSHOPPING::link(null, $parameters . $this->page_set_keyword . '=' . ($this->page_set + 1)) . '" title="' . CLICSHOPPING::getDef('prevnext_title_next_page') . '" class="text-md-center page-link"><span class="fas fa-fw fa-chevron-right"></span></a></li>';
           } else {
             $output .= '<li class="page-item disabled"><a class="text-md-center  page-link"><span class="fas fa-fw fa-chevron-right"></span></a></li>';
           }

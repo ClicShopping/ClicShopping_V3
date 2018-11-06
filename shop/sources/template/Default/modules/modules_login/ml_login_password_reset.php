@@ -48,7 +48,7 @@
         $email_address= HTML::sanitize(($_GET['account']));
         $password_key = HTML::sanitize($_GET['key']);
 
-        $form = HTML::form('password_reset', CLICSHOPPING::link('index.php', 'Account&PasswordReset&Process&account=' . $email_address . '&key=' . $password_key . '&action=process'), 'post', '', ['tokenize' => true]);
+        $form = HTML::form('password_reset', CLICSHOPPING::link(null, 'Account&PasswordReset&Process&account=' . $email_address . '&key=' . $password_key . '&action=process'), 'post', '', ['tokenize' => true]);
         $endform = '</form>';
 
         ob_start();

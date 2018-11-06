@@ -50,7 +50,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_CONTENT_WIDTH;
 
-        $form = HTML::form('order', CLICSHOPPING::link('index.php', 'Checkout&Success&action=update'), 'post');
+        $form = HTML::form('order', CLICSHOPPING::link(null, 'Checkout&Success&action=update'), 'post');
         $endform = '</form>';
 
 /*

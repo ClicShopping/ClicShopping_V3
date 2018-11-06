@@ -81,7 +81,7 @@ namespace ClicShopping\Apps\Payment\PayPal\Module\Hooks\ClicShoppingAdmin\Orders
                 $Qorder->execute();
                 $pp_server = (strpos(strtolower($Qorder->value('payment_method')), 'sandbox') !== false) ? 'sandbox' : 'live';
 
-                $info_button = HTML::button($this->app->getDef('button_details'), 'fas fa-info-circle', CLICSHOPPING::link('index.php', 'A&Orders\Orders&Edit&oID=' . $oID . '&page=' . $_GET['page'] . '&tabaction=#getTransactionDetails'), 'primary');
+                $info_button = HTML::button($this->app->getDef('button_details'), 'fas fa-info-circle', CLICSHOPPING::link(null, 'A&Orders\Orders&Edit&oID=' . $oID . '&page=' . $_GET['page'] . '&tabaction=#getTransactionDetails'), 'primary');
                 $capture_button = $this->getCaptureButton($status, $Qorder->toArray());
                 $void_button = $this->getVoidButton($status, $Qorder->toArray());
                 $refund_button = $this->getRefundButton($status, $Qorder->toArray());
@@ -149,7 +149,7 @@ EOD;
                     $field_last_capture_title = $this->app->getDef('dialog_capture_last_capture_field_title', [
                         'currency' => $order['currency']
                     ]);
-                    $capture_link = CLICSHOPPING::link('index.php', 'A&Orders\Orders&Edit&oID=' . $order['orders_id'] . '&page=' . $_GET['page'] . '&tabaction=doCapture');
+                    $capture_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Edit&oID=' . $order['orders_id'] . '&page=' . $_GET['page'] . '&tabaction=doCapture');
                     $capture_currency = $order['currency'];
                     $dialog_button_capture = $this->app->getDef('dialog_capture_button_capture');
                     $dialog_button_cancel = $this->app->getDef('dialog_capture_button_cancel');
@@ -274,7 +274,7 @@ EOD;
 
                 $dialog_title = HTML::outputProtected($this->app->getDef('dialog_void_title'));
                 $dialog_body = $this->app->getDef('dialog_void_body');
-                $void_link = CLICSHOPPING::link('index.php', 'A&Orders\Orders&Edit&oID=' . $order['orders_id'] .'&page=' . $_GET['page'] . '&tabaction=doVoid');
+                $void_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Edit&oID=' . $order['orders_id'] .'&page=' . $_GET['page'] . '&tabaction=doVoid');
                 $dialog_button_void = $this->app->getDef('dialog_void_button_void');
                 $dialog_button_cancel = $this->app->getDef('dialog_void_button_cancel');
 
@@ -367,7 +367,7 @@ EOD;
 
             $dialog_title = HTML::outputProtected($this->app->getDef('dialog_refund_title'));
             $dialog_body = $this->app->getDef('dialog_refund_body');
-            $refund_link = CLICSHOPPING::link('index.php', 'A&Orders\Orders&Edit&oID=' . $_GET['oID'] . '&page=' . $_GET['page'] . '&tabaction=refundTransaction');
+            $refund_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Edit&oID=' . $_GET['oID'] . '&page=' . $_GET['page'] . '&tabaction=refundTransaction');
             $dialog_button_refund = $this->app->getDef('dialog_refund_button_refund');
             $dialog_button_cancel = $this->app->getDef('dialog_refund_button_cancel');
 

@@ -54,6 +54,6 @@
 
       $CLICSHOPPING_Hooks->call('Newsletters','Process');
 
-      CLICSHOPPING::redirect('index.php', 'Account&Newsletters');
+      CLICSHOPPING::redirect(null, 'Account&Newsletters');
     }
   }

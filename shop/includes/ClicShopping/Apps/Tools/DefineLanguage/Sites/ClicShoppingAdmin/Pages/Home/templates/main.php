@@ -50,7 +50,7 @@
             <div class="form-group">
               <div class="col-md-12 text-md-center">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Tools\DefineLanguage&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Tools\DefineLanguage&Configure'));
   echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

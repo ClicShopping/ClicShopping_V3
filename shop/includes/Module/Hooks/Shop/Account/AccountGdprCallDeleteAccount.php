@@ -131,11 +131,11 @@
           $CLICSHOPPING_Customer->reset();
           $CLICSHOPPING_ShoppingCart->reset();
 
-          CLICSHOPPING::redirect('index.php');
+          CLICSHOPPING::redirect();
 
         } else {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('module_account_customers_gdpr_text_error_delete'), 'danger', 'header');
-          CLICSHOPPING::redirect('index.php', 'Account&Delete');
+          CLICSHOPPING::redirect(null, 'Account&Delete');
         }
       }
     }

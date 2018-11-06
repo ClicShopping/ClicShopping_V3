@@ -43,7 +43,7 @@
         $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
         $content_width = (int)MODULES_TELL_A_FRIEND_BUTTON_PROCESS_CONTENT_WIDTH;
 
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
         $button_process =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 
         $data = '<!-- ta_tell_a_friend_button_process start -->' . "\n";

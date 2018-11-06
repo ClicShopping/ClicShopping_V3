@@ -99,7 +99,7 @@
             $account_customers_title_content .= '</div>';
             $account_customers_title_content .= '<div class="separator"></div>';
             $account_customers_title_content .= '<div class="col-md-8">';
-            $account_customers_title_content .= HTML::link(CLICSHOPPING::link('index.php', 'Account&History'), '<u>' . CLICSHOPPING::getDef('overview_show_all_orders') . '</u>');
+            $account_customers_title_content .= HTML::link(CLICSHOPPING::link(null, 'Account&History'), '<u>' . CLICSHOPPING::getDef('overview_show_all_orders') . '</u>');
             $account_customers_title_content .= '</div>';
             $account_customers_title_content .=  '<div class="separator"></div>';
             $account_customers_title_content .= '<div class="col-md-10">';
@@ -124,7 +124,7 @@
                $account_customers_title_content .= '<span class="col-md-3">' . HTML::outputProtected($order_name) . ', ' .  HTML::outputProtected($order_country) . '</span>';
                $account_customers_title_content .= '<span class="col-md-2">' . $Qorders->value('orders_status_name') . '</span>';
                $account_customers_title_content .= '<span class="col-md-1 float-md-right">';
-               $account_customers_title_content .= '<p class="float-md-right">'. HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . (int)$Qorders->valueInt('orders_id')),'info', null, 'sm').'</p>';
+               $account_customers_title_content .= '<p class="float-md-right">'. HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$Qorders->valueInt('orders_id')),'info', null, 'sm').'</p>';
                $account_customers_title_content .= '</span>';
                $account_customers_title_content .= '<span class="col-md-2 float-md-right">' . $Qorders->value('order_total'). '</span>';
                $account_customers_title_content .= '</div>';

@@ -33,7 +33,7 @@
       <div class="control-group">
         <div class="controls">
           <div class="buttonSet">
-            <span class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link('index.php'),'success'); ?></span>
+            <span class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(),'success'); ?></span>
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ use ClicShopping\OM\HTML;
           <div class="form-group">
             <div class="col-md-12">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Shipping\Item&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Shipping\Item&Configure'));
   echo HTML::button($CLICSHOPPING_Item->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

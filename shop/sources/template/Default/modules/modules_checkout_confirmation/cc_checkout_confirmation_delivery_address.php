@@ -44,10 +44,10 @@
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_DELIVERY_ADDRESS_CONTENT_WIDTH;
 
-        $delivery_address_link = HTML::link(CLICSHOPPING::link('index.php', 'Checkout&ShippingAddress'), '<span class="orderEdit"> (' . CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_edit') . ')</span>');
+        $delivery_address_link = HTML::link(CLICSHOPPING::link(null, 'Checkout&ShippingAddress'), '<span class="orderEdit"> (' . CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_edit') . ')</span>');
         $delivery_address = $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->delivery['format_id'], $CLICSHOPPING_Order->delivery, 1, ' ', '<br />');
 
-        $shipping_link = HTML::link(CLICSHOPPING::link('index.php', 'Checkout&Shipping'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_edit') . ')</span>');
+        $shipping_link = HTML::link(CLICSHOPPING::link(null, 'Checkout&Shipping'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_edit') . ')</span>');
         $shipping_method = $CLICSHOPPING_Order->info['shipping_method'];
 
         $confirmation = '  <!-- processing_checkout_confirmation_delivery -->'. "\n";

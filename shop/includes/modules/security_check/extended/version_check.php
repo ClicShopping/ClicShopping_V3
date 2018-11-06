@@ -33,6 +33,6 @@
     }
 
     public function getMessage() {
-      return HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\Upgrade&Upgrade'), CLICSHOPPING::getDef('module_security_check_extended_version_check_error'));
+      return HTML::link(CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), CLICSHOPPING::getDef('module_security_check_extended_version_check_error'));
     }
   }

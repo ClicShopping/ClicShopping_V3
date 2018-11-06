@@ -69,7 +69,7 @@
 
           $currency ='<!-- Boxe currencies start -->' . "\n";
 
-          $output = HTML::form('currencies', CLICSHOPPING::link('index.php', null, false), 'get', null, ['session_id' => true]);
+          $output = HTML::form('currencies', CLICSHOPPING::link(null, null, false), 'get', null, ['session_id' => true]);
 
           $output .= HTML::selectMenu('currency', $currencies_array, $_SESSION['currency'], 'class="boxePullDownsideCurrencies" onchange="this.form.submit();"') . $hidden_get_variables;
           $output .= '</form>';

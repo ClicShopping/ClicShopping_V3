@@ -33,7 +33,7 @@ header('Retry-After: 300');
             <div class="jumbotron" style="margin-top: 40px;">
               <h1>We'll be back soon!</h1>
               <p>We're currently working on and improving our website. We'll be back in a few moments..</p>
-              <p style="margin-top: 40px;"><?php echo HTML::button('Return to website', null,  CLICSHOPPING::link('index.php'), 'primary', null,'sm'); ?></p>
+              <p style="margin-top: 40px;"><?php echo HTML::button('Return to website', null,  CLICSHOPPING::link(), 'primary', null,'sm'); ?></p>
             </div>
           </div>
         </div>

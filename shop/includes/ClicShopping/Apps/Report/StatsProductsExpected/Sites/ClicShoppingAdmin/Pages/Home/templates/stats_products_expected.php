@@ -85,11 +85,11 @@
       }
 ?>
                 <tr>
-                  <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsExpected->getDef('icon_preview'))); ?></td>
+                  <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsExpected->getDef('icon_preview'))); ?></td>
                   <td class="dataTableContent"><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                   <td class="dataTableContent"><?php echo $Qproducts->value('products_name'); ?></td>
                   <td class="dataTableContent text-md-center"><?php echo DateTime::toShort($products['products_date_available']); ?></td>
-                  <td class="dataTableContent text-md-right"><?php echo HTML::link(CLICSHOPPING::link('index.php' ,'A&Catalog\Products&Products&pID='. $pInfo->products_id . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsExpected->getDef('image_edit'))); ?></td>
+                  <td class="dataTableContent text-md-right"><?php echo HTML::link(CLICSHOPPING::link(null ,'A&Catalog\Products&Products&pID='. $pInfo->products_id . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsExpected->getDef('image_edit'))); ?></td>
                 </tr>
 <?php
     } // end $listingTotalRow

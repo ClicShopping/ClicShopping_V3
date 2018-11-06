@@ -26,7 +26,7 @@
       $spider_flag = WhosOnline::getResultSpiderFlag();
 
       if (!isset($_GET['products_id'])) {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
 
       $id = (int)$CLICSHOPPING_ProductsCommon->getID();
@@ -46,8 +46,8 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('product_info');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $id));
-      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_ProductsCommon->getProductsName(), CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $id));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Description&products_id=' . $id));
+      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_ProductsCommon->getProductsName(), CLICSHOPPING::link(null, 'Products&Description&products_id=' . $id));
 
     }
   }

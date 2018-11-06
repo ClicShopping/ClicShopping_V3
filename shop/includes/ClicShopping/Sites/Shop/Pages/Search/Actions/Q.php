@@ -55,7 +55,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('advanced_search');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php', 'Search&AdvancedSearch'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link('index.php',  CLICSHOPPING::getAllGET(), true));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Search&AdvancedSearch'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null,  CLICSHOPPING::getAllGET(), true));
     }
   }

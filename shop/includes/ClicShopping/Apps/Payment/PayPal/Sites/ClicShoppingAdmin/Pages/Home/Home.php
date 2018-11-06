@@ -52,7 +52,7 @@
                               );
         }
 
-        CLICSHOPPING::redirect('index.php', CLICSHOPPING::getAllGET());
+        CLICSHOPPING::redirect(null, CLICSHOPPING::getAllGET());
       }
 
       if (!$this->isActionRequest()) {

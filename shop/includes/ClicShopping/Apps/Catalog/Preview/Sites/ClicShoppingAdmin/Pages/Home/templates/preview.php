@@ -80,7 +80,7 @@
             <div class="row">
               <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/produit.gif', $CLICSHOPPING_Preview->getDef('heading_title'), '40', '40'); ?></span>
               <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Preview->getDef('heading_title'); ?></span>
-              <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_new_product'), null, CLICSHOPPING::link('index.php', 'A&Catalog\Products&page=' . $_GET['pID'] . '&cPath=&action=new_product'), 'success'); ?>
+              <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_new_product'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&page=' . $_GET['pID'] . '&cPath=&action=new_product'), 'success'); ?>
           </span>
             </div>
           </div>

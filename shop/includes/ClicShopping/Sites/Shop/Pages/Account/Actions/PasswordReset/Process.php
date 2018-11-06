@@ -83,7 +83,7 @@
 
           $CLICSHOPPING_Hooks->call('PasswordReset', 'Process');
 
-          CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+          CLICSHOPPING::redirect(null, 'Account&LogIn');
         }
       }
     }

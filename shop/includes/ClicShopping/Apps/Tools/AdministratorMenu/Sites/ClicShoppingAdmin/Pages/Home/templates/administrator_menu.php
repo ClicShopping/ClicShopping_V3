@@ -38,7 +38,7 @@
 
   if (is_null($Qaccess->valueInt('access'))) {
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_AdministratorMenu->getDef('error_no_access'), 'error');
-    CLICSHOPPING::redirect('index.php');
+    CLICSHOPPING::redirect();
   }
 
 ?>

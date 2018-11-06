@@ -50,7 +50,7 @@
             <div class="form-group">
               <div class="col-md-12 text-md-center">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Marketing\SEO&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Marketing\SEO&Configure'));
   echo HTML::button($CLICSHOPPING_SEO->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

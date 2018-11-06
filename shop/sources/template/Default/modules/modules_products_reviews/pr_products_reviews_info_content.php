@@ -52,12 +52,12 @@
 
         $reviews_text = $reviews['reviews_text'];
         $reviews_rating  = $reviews['reviews_rating'];
-        $products_name = '<a href="' . CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</a>';
+        $products_name = '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</a>';
         $delete_reviews = '';
 
         if ($reviews !== false) {
           if ($reviews['customers_id'] == $CLICSHOPPING_Customer->getID()) {
-            $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link('index.php', 'Products&ReviewsInfo&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $reviews_id), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
+            $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&ReviewsInfo&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $reviews_id), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
             $delete_reviews .= HTML::button(null, 'fas fa-trash', null, 'danger', null, 'md');
             $delete_reviews .= '</form>';
           }

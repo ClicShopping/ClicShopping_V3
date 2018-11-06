@@ -59,7 +59,7 @@
 
       $output .= '
       <InputEncoding>UTF-8</InputEncoding>
-      <Url type="text/html" method="get" template="'. CLICSHOPPING::link('index.php', 'Search&amp;Q&amp;keywords={searchTerms}', false, false) .'" />
+      <Url type="text/html" method="get" template="'. CLICSHOPPING::link(null, 'Search&amp;Q&amp;keywords={searchTerms}', false, false) .'" />
       </OpenSearchDescription>
      ';
 

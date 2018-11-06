@@ -106,7 +106,7 @@
             $email_body .= $message . "\n\n";
           }
 
-          $email_body .= CLICSHOPPING::getDef('text_email_link', ['url_product' => CLICSHOPPING::link('index.php', 'products&Product&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID())]) . "\n\n";
+          $email_body .= CLICSHOPPING::getDef('text_email_link', ['url_product' => CLICSHOPPING::link(null, 'products&Product&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID())]) . "\n\n";
           $email_body .=  CLICSHOPPING::getDef('text_email_signature', ['store_name' => STORE_NAME . "\n" . HTTP::getShopUrlDomain() . "\n", 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
 
           $email_body .= TemplateEmail::getTemplateEmailSignature();
@@ -119,7 +119,7 @@
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_email_successful_sent', ['products_name' => $CLICSHOPPING_ProductsCommon->getProductsName(), 'to_name' => HTML::outputProtected($to_name)]), 'success', 'header');
 
-          CLICSHOPPING::redirect('index.php', 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID() );
+          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID() );
         }
 
         // revoir cette partie

@@ -37,7 +37,7 @@
         $origin_href = $CLICSHOPPING_NavigationHistory->getSnapshotURL();
         $CLICSHOPPING_NavigationHistory->resetSnapshot();
       } else {
-        $origin_href = CLICSHOPPING::redirect('index.php');
+        $origin_href = CLICSHOPPING::redirect();
       }
 
       return $origin_href;

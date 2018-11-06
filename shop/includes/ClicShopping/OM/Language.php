@@ -565,7 +565,7 @@
         }
 
         foreach ($this->getAll() as $value) {
-          $languages_string .= ' ' . HTML::link(CLICSHOPPING::link('index.php', $get_params . 'language=' . $value['code']), $value['name']) . $tag;
+          $languages_string .= ' ' . HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $value['name']) . $tag;
         }
       } // end language
 
@@ -614,7 +614,7 @@
         }
 
         foreach ($languages as $value) {
-          $content .= ' ' . HTML::link(CLICSHOPPING::link('index.php', $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . ' ';
+          $content .= ' ' . HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . ' ';
         }
       }
 

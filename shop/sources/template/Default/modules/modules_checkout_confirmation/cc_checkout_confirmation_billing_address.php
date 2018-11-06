@@ -48,9 +48,9 @@
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_BILLING_ADDRESS_CONTENT_WIDTH;
 
         $modify_address = AddressBook::countCustomersModifyAddressDefault();
-        $edit_payment_address = HTML::link(CLICSHOPPING::link('index.php', 'Checkout&PaymentAddress'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_edit') . ')</span>');
+        $edit_payment_address = HTML::link(CLICSHOPPING::link(null, 'Checkout&PaymentAddress'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_edit') . ')</span>');
         $billing_address = $CLICSHOPPING_Address->addressFormat($CLICSHOPPING_Order->billing['format_id'], $CLICSHOPPING_Order->billing, 1, ' ', '<br />');
-        $payment_method  = HTML::link(CLICSHOPPING::link('index.php', 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_edit') . ')</span>');
+        $payment_method  = HTML::link(CLICSHOPPING::link(null, 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_edit') . ')</span>');
         $type_payment = $_SESSION['payment'];
 
         $confirmation = '  <!-- cc_checkout_confirmation_billing_address start -->'. "\n";

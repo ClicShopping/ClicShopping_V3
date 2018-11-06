@@ -44,7 +44,7 @@
 
 
         while ($Qproducts->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $Qproducts->valueInt('products_id'))));
+          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $Qproducts->valueInt('products_id'))));
 
           $special_array[$Qproducts->valueInt('products_id')]['loc'] = $location;
           $special_array[$Qproducts->valueInt('products_id')]['lastmod'] = $Qproducts->value('last_modified');

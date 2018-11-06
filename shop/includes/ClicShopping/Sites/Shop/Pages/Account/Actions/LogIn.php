@@ -36,10 +36,10 @@
                                               'LogIn',
                                               'Process'
                                             ]);
-          CLICSHOPPING::redirect('index.php', 'Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
+          CLICSHOPPING::redirect(null, 'Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
         }
 
-        CLICSHOPPING::redirect('index.php','Info&CookieUsage');
+        CLICSHOPPING::redirect(null,'Info&CookieUsage');
       }
 
       $CLICSHOPPING_Language->loadDefinitions('login');
@@ -77,6 +77,6 @@
 
       $this->page->data['content'] = $CLICSHOPPING_Template->getTemplateFiles('login');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Account&LogIn'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Account&LogIn'));
     }
   }

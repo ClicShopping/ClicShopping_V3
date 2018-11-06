@@ -86,7 +86,7 @@ var CLICSHOPPING = {
              <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_delete_menu'), null, $CLICSHOPPING_PayPal->link('Configure&DeleteMenu'), 'danger'); ?>
           </span>
           <span class="col-md-2">
-            <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_sort_order'), null, CLICSHOPPING::link('index.php', 'A&Configuration\Modules&Modules&set=payment'),  'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_sort_order'), null, CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=payment'),  'primary'); ?>
           </span>
         </div>
       </div>

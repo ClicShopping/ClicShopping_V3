@@ -31,7 +31,7 @@ use ClicShopping\OM\HTML;
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/modules_modules_checkout_payment.gif', $CLICSHOPPING_SubTotal->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_SubTotal->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_SubTotal->getDef('button_back'), null, $CLICSHOPPING_SubTotal->link('index.php', 'A&Payment\SubTotal'),  'primary'); ?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_SubTotal->getDef('button_back'), null, $CLICSHOPPING_SubTotal->link(null, 'A&Payment\SubTotal'),  'primary'); ?>
         </div>
       </div>
     </div>

@@ -170,7 +170,7 @@
                 $submit_button = '';
 
                 if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
-                  $form =  HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
+                  $form =  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add' ),'post','class="form-inline justify-content-center"', ['tokenize' => true]). "\n";
                   $form .= HTML::hiddenField('products_id', $products_id);
                   if (isset($_GET['Description'])) $form .= HTML::hiddenField('url', 'Products&Description');
                   $endform = '</form>';
@@ -185,7 +185,7 @@
 // Button Free - Must be above getProductsExhausted
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
-                $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products_id), 'danger');
+                $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products_id), 'danger');
                 $min_quantity = 0;
                 $form = '';
                 $endform = '';
@@ -204,9 +204,9 @@
               }
 
 // See the button more view details
-                $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), null, CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products_id), 'info', null, 'sm');
+                $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), null, CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products_id), 'info', null, 'sm');
 // 10 - Display the image
-                $products_image = HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . (int)$products_id), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qproducts->value('products_image'), HTML::outputProtected($Qproducts->value('products_name')), MODULE_PRODUCTS_INFO_CROSS_SELL_IMAGE_WIDTH, MODULE_PRODUCTS_INFO_CROSS_SELL_IMAGE_HEIGHT, null, true));
+                $products_image = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$products_id), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qproducts->value('products_image'), HTML::outputProtected($Qproducts->value('products_name')), MODULE_PRODUCTS_INFO_CROSS_SELL_IMAGE_WIDTH, MODULE_PRODUCTS_INFO_CROSS_SELL_IMAGE_HEIGHT, null, true));
 //Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_INFO_ALSO_PURCHASED_TICKER, $products_id, 'ModulesProductsInfoBootstrapTickerSpecial', 'ModulesProductsInfoBootstrapTickerFavorite', 'ModulesProductsInfoBootstrapTickerFeatured', 'ModulesProductsInfoBootstrapTickerNew');
 
@@ -238,7 +238,7 @@
                 $products_tag = '';
                 if (!is_null($tag)) {
                   foreach ($tag as $value) {
-                    $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link('index.php', 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
+                    $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
                   }
                 }
 // display products volume

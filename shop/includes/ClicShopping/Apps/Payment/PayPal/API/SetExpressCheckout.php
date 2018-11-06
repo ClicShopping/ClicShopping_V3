@@ -20,8 +20,8 @@ class SetExpressCheckout extends \ClicShopping\Apps\Payment\PayPal\APIAbstract
         $params = [
             'METHOD' => 'SetExpressCheckout',
             'PAYMENTREQUEST_0_PAYMENTACTION' => ((CLICSHOPPING_APP_PAYPAL_EC_TRANSACTION_METHOD == '1') || !$this->app->hasCredentials('EC') ? 'Sale' : 'Authorization'),
-            'RETURNURL' => CLICSHOPPING::link('index.php', 'order&callback&paypal&ec&action=retrieve', false, false),
-            'CANCELURL' => CLICSHOPPING::link('index.php', 'order&callback&paypal&ec&action=cancel', false, false),
+            'RETURNURL' => CLICSHOPPING::link(null, 'order&callback&paypal&ec&action=retrieve', false, false),
+            'CANCELURL' => CLICSHOPPING::link(null, 'order&callback&paypal&ec&action=cancel', false, false),
             'BRANDNAME' => STORE_NAME,
             'SOLUTIONTYPE' => (CLICSHOPPING_APP_PAYPAL_EC_ACCOUNT_OPTIONAL == '1') ? 'Sole' : 'Mark'
         ];

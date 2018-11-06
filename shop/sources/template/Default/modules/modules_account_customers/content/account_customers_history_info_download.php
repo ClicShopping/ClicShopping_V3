@@ -37,7 +37,7 @@ use ClicShopping\OM\CLICSHOPPING;
 // - No expiry date is enforced (maxdays == 0), OR
 // - The expiry date is not reached
     if ( ($Qdownloads->valueInt('download_count') > 0) && (is_file($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $Qdownloads->value('orders_products_filename'))) && ( ($Qdownloads->valueInt('download_maxdays') == 0) || ($download_timestamp > time())) ) {
-        echo '        <td>'. HTML::link(CLICSHOPPING::link('index.php','Products&Download&order=' . $last_order . '&id=' . $Qdownloads->valueInt('orders_products_download_id')), '<strong>' . $Qdownloads->value('products_name') . '</strong>') . '</td>' . "\n";
+        echo '        <td>'. HTML::link(CLICSHOPPING::link(null,'Products&Download&order=' . $last_order . '&id=' . $Qdownloads->valueInt('orders_products_download_id')), '<strong>' . $Qdownloads->value('products_name') . '</strong>') . '</td>' . "\n";
     } else {
       echo '        <td>' . $Qdownloads->value('products_name') . '</td>' . "\n";
     }
@@ -53,7 +53,7 @@ use ClicShopping\OM\CLICSHOPPING;
   if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
 ?>
    <div class="separator"></div>
-   <p><?php CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_footer_download', ['url' => HTML::link(CLICSHOPPING::link('index.php', 'Account&Main'), CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_title_my_account'))]); ?></p>
+   <p><?php CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_footer_download', ['url' => HTML::link(CLICSHOPPING::link(null, 'Account&Main'), CLICSHOPPING::getDef('module_account_customers_history_info_download_text_download_header_title_my_account'))]); ?></p>
 <?php
   }
 ?>

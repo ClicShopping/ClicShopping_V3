@@ -31,7 +31,7 @@
       ) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
 
-        CLICSHOPPING::redirect('index.php','Account&LogIn');
+        CLICSHOPPING::redirect(null,'Account&LogIn');
       }
     }
   }

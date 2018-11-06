@@ -19,7 +19,7 @@
     public function __construct() {
 
       if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
     }
 
@@ -49,7 +49,7 @@
              <div class="row">
                 <div class="col-md-11 mainTable">
                   <div class="form-group row">
-                    <label for="' . CLICSHOPPING::getDef($QordersStatus->value('orders_status_name')) . '" class="col-9 col-form-label"><a href="' . CLICSHOPPING::link('index.php', 'A&Orders\Orders&Orders', $QordersStatus->valueInt('orders_status_id')) . '">' . CLICSHOPPING::getDef($QordersStatus->value('orders_status_name')) . '</a></label>
+                    <label for="' . CLICSHOPPING::getDef($QordersStatus->value('orders_status_name')) . '" class="col-9 col-form-label"><a href="' . CLICSHOPPING::link(null, 'A&Orders\Orders&Orders', $QordersStatus->valueInt('orders_status_id')) . '">' . CLICSHOPPING::getDef($QordersStatus->value('orders_status_name')) . '</a></label>
                     <div class="col-md-3">
                       ' . $QordersPending->valueInt('count') . '
                     </div>

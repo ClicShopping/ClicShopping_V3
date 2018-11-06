@@ -22,7 +22,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <div class="card-text text-md-center boxeContentsSearch">
 <?php
   echo $output;
-  echo '<div class="boxeContentLinkAdvancedSearch">' . HTML::link(CLICSHOPPING::link('index.php', 'Search&AdvancedSearch'), CLICSHOPPING::getDef('module_boxes_search_box_advanced_search')) . '</div>';
+  echo '<div class="boxeContentLinkAdvancedSearch">' . HTML::link(CLICSHOPPING::link(null, 'Search&AdvancedSearch'), CLICSHOPPING::getDef('module_boxes_search_box_advanced_search')) . '</div>';
 ?>
       </div>
     </div>

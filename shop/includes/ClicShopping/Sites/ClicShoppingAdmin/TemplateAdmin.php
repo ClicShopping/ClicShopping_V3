@@ -244,53 +244,55 @@
  * Return an array of the catalog directory. mechanism for reading this.
  */
 
-    public static function getListCatalogFilesNotIncluded() {
+    public static function getListCatalogFilesNotIncluded($boostrap_file = null) {
 
-      $file = ['index.php?Account&AddressBook',
-              'index.php?Account&Create',
-              'index.php?Account&CreatePro',
-              'index.php?Account&CreateProSuccess',
-              'index.php?Account&Delete',
-              'index.php?Account&Edit',
-              'index.php?Account&History',
-              'index.php?Account&HistoryInfo',
-              'index.php?Account&Login',
-              'index.php?Account&MyFeedBack',
-              'index.php?Account&Newsletter',
-              'index.php?Account&NewsletterNoAccount',
-              'index.php?Account&NewsletterNoAccountSuccess',
-              'index.php?Account&Notification',
-              'index.php?Account&Password',
-              'index.php?Blog&Categories',
-              'index.php?Blog&Content',
-              'index.php?Categories',
-              'index.php?Cart',
-              'index.php?Checkout&Shipping',
-              'index.php?Checkout&ShippingAddress',
-              'index.php?Checkout&Billing',
-              'index.php?Checkout&PaymentAddress',
-              'index.php?Checkout&Confirmation',
-              'index.php?Checkout&Success',
-              'index.php?Info&Contact',
-              'index.php?Info&Cookies',
-              'index.php?Info&Content',
-              'index.php?Info&SiteMap',
-              'index.php?Info&SSLcheck',
-              'index.php?Products&ProductsNew',
-              'index.php?Products&Favorites',
-              'index.php?Products&Featured',
-              'index.php?Products&Product',
-              'index.php?Products&Specials',
-              'index.php?search&AdvancedSearch',
-              'index.php?search&Q',
+      if (is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
+
+      $file = ['Account&AddressBook',
+              'Account&Create',
+              'Account&CreatePro',
+              'Account&CreateProSuccess',
+              'Account&Delete',
+              'Account&Edit',
+              'Account&History',
+              'Account&HistoryInfo',
+              'Account&Login',
+              'Account&MyFeedBack',
+              'Account&Newsletter',
+              'Account&NewsletterNoAccount',
+              'Account&NewsletterNoAccountSuccess',
+              'Account&Notification',
+              'Account&Password',
+              'Blog&Categories',
+              'Blog&Content',
+              'Categories',
+              'Cart',
+              'Checkout&Shipping',
+              'Checkout&ShippingAddress',
+              'Checkout&Billing',
+              'Checkout&PaymentAddress',
+              'Checkout&Confirmation',
+              'Checkout&Success',
+              'Info&Contact',
+              'Info&Cookies',
+              'Info&Content',
+              'Info&SiteMap',
+              'Info&SSLcheck',
+              'Products&ProductsNew',
+              'Products&Favorites',
+              'Products&Featured',
+              'Products&Product',
+              'Products&Specials',
+              'search&AdvancedSearch',
+              'search&Q',
               ];
+
 
       $result = [];
 
-      $result[] = 'index.php';
+      $result[] = $boostrap_file;
 
       foreach ($file as &$value) {
-        $value = substr($value , 10);
         $result[] .= $value;
       }
 

@@ -2019,7 +2019,7 @@ INSERT INTO administrator_menu VALUES(7, '', 0, 6, 0, NULL, 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(8, '', 0, 7, 0, NULL, 0, NULL, 1);
 
 INSERT INTO administrator_menu VALUES(11, 'index.php', 1, 0, 0, 'configuration_admin.gif', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(12, '../index.php', 1, 0, 0, 'configuration.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(12, '../', 1, 0, 0, 'configuration.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(13, '', 2, 0, 0, 'configuration.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(14, '', 2, 1, 0, 'configuration_admin.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(15, '', 2, 2, 0, 'configuration_b2c.gif', 0, NULL, 1);

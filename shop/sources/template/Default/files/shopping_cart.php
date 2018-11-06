@@ -35,7 +35,7 @@
           <div class="separator"></div>
           <div class="col-md-12">
             <div class="alert alert-warning" style="text-md-center"><h3><?php echo CLICSHOPPING::getDef('text_cart_empty'); ?></h3></div>
-            <div class="buttonSet float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), '', CLICSHOPPING::link('index.php'), 'success'); ?></div>
+            <div class="buttonSet float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), '', CLICSHOPPING::link(), 'success'); ?></div>
           </div>
 <?php
   }

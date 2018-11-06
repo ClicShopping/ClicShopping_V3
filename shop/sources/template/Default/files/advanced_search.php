@@ -17,7 +17,7 @@
   }
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('advanced_search', CLICSHOPPING::link('index.php', 'Search&Q'), 'post', 'id="advanced_search" role="form"', ['session_id' => true]);
+  echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="advanced_search" role="form"', ['session_id' => true]);
 ?>
 
   <script src="<?php echo $CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/general.js'); ?>"></script>

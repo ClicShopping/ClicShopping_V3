@@ -40,6 +40,6 @@
 //language
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Contact/contact');
 
-      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_PageManager->getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Info&Contact'));
+      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_PageManager->getDef('navbar_title'), CLICSHOPPING::link(null, 'Info&Contact'));
     }
   }

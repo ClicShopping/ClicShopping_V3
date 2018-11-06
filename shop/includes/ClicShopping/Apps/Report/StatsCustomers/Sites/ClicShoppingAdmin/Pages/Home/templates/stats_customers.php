@@ -85,16 +85,16 @@
 ?>
                 <tr>
                   <td><?php echo $rows; ?>.</td>
-                  <td><?php echo HTML::link(CLICSHOPPING::link('index.php', '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?>'</td>
+                  <td><?php echo HTML::link(CLICSHOPPING::link(null, '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?>'</td>
                   <td class="text-md-right"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;</td>
 <?php
       if ($Qcustomers->valueInt('customers_group_id') > 0 ) {
 ?>
-                      <td class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link('index.php',  '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsCustomers->getDef('icon_edit_customer'))); ?></td>
+                      <td class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link(null,  '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsCustomers->getDef('icon_edit_customer'))); ?></td>
 <?php
       } else {
 ?>
-                      <td class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link('index.php',  '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_StatsCustomers->getDef('icon_edit_customer'))); ?></td>
+                      <td class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link(null,  '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_StatsCustomers->getDef('icon_edit_customer'))); ?></td>
 <?php
       }
 ?>

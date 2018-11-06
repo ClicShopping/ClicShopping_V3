@@ -262,7 +262,7 @@
           }
 
           if (strtolower($item->type) == 'apps') {
-            $module = CLICSHOPPING::link('index.php', 'A&' . $item->module_directory . '\\' . $item->apps_name);
+            $module = CLICSHOPPING::link(null, 'A&' . $item->module_directory . '\\' . $item->apps_name);
           } else {
             $module = 'modules.php?set=' . $item->module_directory . '&list=new';
           }
@@ -377,7 +377,7 @@
             }
 
             if (strtolower($result_content_module->type) == 'apps') {
-              $module = CLICSHOPPING::link('index.php', 'A&' . $result_content_module->module_directory . '\\' . $result_content_module->apps_name);
+              $module = CLICSHOPPING::link(null, 'A&' . $result_content_module->module_directory . '\\' . $result_content_module->apps_name);
             } else {
               $module = 'modules.php?set=' . $result_content_module->module_directory . '&list=new';
             }

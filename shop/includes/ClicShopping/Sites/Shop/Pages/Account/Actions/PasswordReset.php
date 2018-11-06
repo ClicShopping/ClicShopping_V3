@@ -78,7 +78,7 @@
       }
 
       if ($error === true) {
-        CLICSHOPPING::redirect('index.php&PasswordForgotten');
+        CLICSHOPPING::redirect(CLICSHOPPING::getConfig('bootstrap_file') . '&PasswordForgotten');
       }
 
 // templates
@@ -88,7 +88,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('password_reset');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php', 'Account&Login'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Account&Login'));
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'));
     }
   }

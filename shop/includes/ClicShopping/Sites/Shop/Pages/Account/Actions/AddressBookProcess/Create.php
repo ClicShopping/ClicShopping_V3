@@ -296,9 +296,9 @@
         } // end else
 
         if (HTML::sanitize($_POST['shopping']) == 1) {
-          CLICSHOPPING::redirect('index.php', 'Cart');
+          CLICSHOPPING::redirect(null, 'Cart');
         } else {
-          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+          CLICSHOPPING::redirect(null,'Account&AddressBook');
         }
       } // end $error
     } // end isset($_POST['action']

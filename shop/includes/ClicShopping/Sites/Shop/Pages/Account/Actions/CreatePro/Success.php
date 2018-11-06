@@ -32,7 +32,7 @@
 //        require($CLICSHOPPING_Template->GetPathDirectoryTemplatetLanguageFiles('create_account_pro_success'));;
         $CLICSHOPPING_Language->loadDefinitions('create_account_pro_success');
 
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('nav_bar_title_1'),  CLICSHOPPING::link('index.php', 'Account&CreatePro'));
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('nav_bar_title_2'), CLICSHOPPING::link('index.php', 'Account&CreatePro&Success'));
+        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('nav_bar_title_1'),  CLICSHOPPING::link(null, 'Account&CreatePro'));
+        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('nav_bar_title_2'), CLICSHOPPING::link(null, 'Account&CreatePro&Success'));
     }
   }

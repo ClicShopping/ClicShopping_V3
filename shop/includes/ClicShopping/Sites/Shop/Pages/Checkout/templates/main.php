@@ -15,5 +15,5 @@
   $CLICSHOPPING_Customer = Registry::get('Customer');
 
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
-    CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+    CLICSHOPPING::redirect(null, 'Account&LogIn');
   }

@@ -84,14 +84,14 @@
 ?>
                 <tr>
                   <td width="30" nowrap class="dataTableContent"><?php echo $rows; ?>.</td>
-                  <td class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
-                  <td class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link('index.php','A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), $Qcustomers->value('customers_email_address'))?></td>
+                  <td class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
+                  <td class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null,'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), $Qcustomers->value('customers_email_address'))?></td>
                   <td class="dataTableContent"><?php echo DateTime::getLong($Qcustomers->value('date_added')); ?>&nbsp;</td>
                   <td class="dataTableContent text-md-right">
 <?php
-  echo HTML::link(CLICSHOPPING::link('index.php', 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
+  echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
   echo '&nbsp;';
-  echo HTML::link(CLICSHOPPING::link('index.php','A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_email')));
+  echo HTML::link(CLICSHOPPING::link(null,'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_email')));
 ?>
                   </td>
                 </tr>
@@ -184,17 +184,17 @@
       }
 ?>
                   <tr>
-                    <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
+                    <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
                     <td><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                     <td><?php echo $rows; ?>.</td>
                     <td><?php echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $products['products_id'] . '&page=' . $page), $Qproducts->value('products_name')); ?></td>
-                    <td class="text-md-center"><?php echo HTML::link(CLICSHOPPING::link('index.php' ,'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), $Qproducts->value('products_model')); ?></td>
+                    <td class="text-md-center"><?php echo HTML::link(CLICSHOPPING::link(null ,'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), $Qproducts->value('products_model')); ?></td>
                     <td class="text-md-center"><?php echo $Qproducts->valueInt('count_notifications'); ?>&nbsp;</td>
                     <td class=text-md-right">
 <?php
   echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
   echo '&nbsp;';
-  echo HTML::link(CLICSHOPPING::link('index.php' ,'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
+  echo HTML::link(CLICSHOPPING::link(null ,'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
 ?>
                   </tr>
 <?php

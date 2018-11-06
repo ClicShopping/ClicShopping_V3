@@ -32,25 +32,25 @@
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot(array('mode' => null, 'page' => 'Checkout&Billing'));
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // avoid hack attempts during the checkout procedure by checking the internal cartID
       if (isset($CLICSHOPPING_ShoppingCart->cartID) && isset($_SESSION['cartID'])) {
         if ($CLICSHOPPING_ShoppingCart->cartID != $_SESSION['cartID']) {
-          CLICSHOPPING::redirect('index.php', 'Checkout&Shipping');
+          CLICSHOPPING::redirect(null, 'Checkout&Shipping');
         }
       }
 
 // if no shipping method has been selected, redirect the customer to the shipping method selection page
       if (!isset($_SESSION['shipping'])) {
-        CLICSHOPPING::redirect('index.php', 'Checkout&Shipping');
+        CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
       if (isset($_POST['payment'])) $_SESSION['payment'] = $_POST['payment'];
@@ -67,7 +67,7 @@
         if (!isset($_POST['conditions']) || ($_POST['conditions'] != 1)) {
           $message = CLICSHOPPING::getDef('error_conditions_not_accepted');
 
-          CLICSHOPPING::redirect('index.php', 'Checkout&Billing&error_message=' . urlencode($message));
+          CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode($message));
         }
       }
 
@@ -101,7 +101,7 @@
       }
 
       if ( !isset($CLICSHOPPING_PM) || ($CLICSHOPPING_Payment->selected_module != $_SESSION['payment']) || ($CLICSHOPPING_PM->enabled === false) ) {
-        CLICSHOPPING::redirect('index.php', 'Checkout&Billing&error_message=' . urlencode(CLICSHOPPING::getDef('error_no_payment_module_selected')));
+        CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode(CLICSHOPPING::getDef('error_no_payment_module_selected')));
       }
 
       if (is_array($CLICSHOPPING_Payment->modules)) {
@@ -118,7 +118,7 @@
             if( isset($_SESSION['coupon']) ) unset($_SESSION['coupon']);
             $message = implode( ' ', $CLICSHOPPING_Order->coupon->getDisplayMessages());
 
-            CLICSHOPPING::redirect('index.php', 'Checkout&Billing&error_message=' . urlencode($message));
+            CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode($message));
           }
         }
       }
@@ -136,7 +136,7 @@
         }
         // Out of Stock
         if ( (STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true) ) {
-          CLICSHOPPING::redirect('index.php', 'Cart');
+          CLICSHOPPING::redirect(null, 'Cart');
         }
       }
 
@@ -146,7 +146,7 @@
       if (isset($CLICSHOPPING_PM->form_action_url)) {
         $form_action_url = $CLICSHOPPING_PM->form_action_url;
       } else {
-        $form_action_url = CLICSHOPPING::link('index.php', 'Checkout&Process');
+        $form_action_url = CLICSHOPPING::link(null, 'Checkout&Process');
       }
 
 // Modification suite atos
@@ -161,7 +161,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_confirmation');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php', 'Checkout&Shipping'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Checkout&Shipping'));
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'));
 
     }

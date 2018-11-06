@@ -84,7 +84,7 @@
             <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
           </div>
           <div class="card-footer text-md-center">
-            <?php echo HTML::button(CLICSHOPPING::getDef('button_edit'), null, CLICSHOPPING::link('index.php', 'Account&AddressBookProcess&Edit&edit=' . $Qaddresses->valueInt('address_book_id')),'success', null, 'sm') .  ' ' . HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link('index.php', 'Account&AddressBookProcess&Delete&delete=' . $Qaddresses->valueInt('address_book_id')),  'danger', null, 'sm'); ?>
+            <?php echo HTML::button(CLICSHOPPING::getDef('button_edit'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Edit&edit=' . $Qaddresses->valueInt('address_book_id')),'success', null, 'sm') .  ' ' . HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . $Qaddresses->valueInt('address_book_id')),  'danger', null, 'sm'); ?>
           </div>
 <?php
   }
@@ -114,13 +114,13 @@
         <div class="control-group">
         <div class="controls">
           <span class="buttonSet">
-            <span class="col-md-6"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Account&Main'), 'primary'); ?></span>
+            <span class="col-md-6"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary'); ?></span>
 <?php
   // Controle autorisation du client a ajouter des adresse dans son carnet selon la quantite ou sa fiche client
   if (AddressBook::countCustomerAddressBookEntries() < (int)MAX_ADDRESS_BOOK_ENTRIES && AddressBook::countCustomersAddAddress() == 1) {
 ?>
             <span class="col-md-6 text-md-right"><span class="buttonAction">
-              <?php  echo HTML::button(CLICSHOPPING::getDef('button_add_address'), null, CLICSHOPPING::link('index.php', 'Account&AddressBookProcess&Create'), 'success'); ?>
+              <?php  echo HTML::button(CLICSHOPPING::getDef('button_add_address'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Create'), 'success'); ?>
             </span>
 <?php
   }

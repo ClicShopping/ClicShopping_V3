@@ -495,14 +495,14 @@
 // categories
 // identify a categorie like index page
                       if ($CLICSHOPPING_Category->getPath()) {
-                        $string = 'index.php?Categories';
+                        $string = CLICSHOPPING::getConfig('bootstrap_file') . '?Categories';
                       }
 
 //index page
 // Boxe does'nt work when the page is refreshed with a query_string
                       if (empty($string)) {
                         if (CLICSHOPPING::getBaseNameIndex()) {
-                          $string = 'index.php';
+                          $string = CLICSHOPPING::getConfig('bootstrap_file');
                         }
                       }
 
@@ -529,12 +529,19 @@
     public function getUrlWithoutSEFU($string = '/') {
       if (empty($_SERVER['QUERY_STRING'])) {
         $url = $_SERVER['REQUEST_URI'];
-        $replace = str_replace('index.php', '', $url);
+        $replace = str_replace(CLICSHOPPING::getConfig('bootstrap_file'), '', $url);
         $replace = str_replace(CLICSHOPPING::getConfig('http_path'), '', $replace);
         $replace = substr($replace, 1);
         $replace = str_replace($string, '&', $replace);
-        $replace = substr($replace, 0, strpos($replace, '&language,en'));
+
+        $search = $replace;
+
+        if (strpos($search, '&language') !== false) {
+          $replace = substr($replace, 0, strpos($replace, '&language'));
+        }
+
         $url_string = $replace;
+
       } else {
         $url_string = $_SERVER['QUERY_STRING'];
       }

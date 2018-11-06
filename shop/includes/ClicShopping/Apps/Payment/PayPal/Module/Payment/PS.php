@@ -454,10 +454,10 @@
                     'invoice' => substr($_SESSION['cart_PayPal_Standard_ID'], strpos($_SESSION['cart_PayPal_Standard_ID'], '-')+1),
                     'custom' => $CLICSHOPPING_Customer->getID(),
                     'no_note' => '1',
-                    'notify_url' => CLICSHOPPING::link('index.php', 'order&ipn&paypal&ps&language=' . $this->lang->get('code'), false, false),
+                    'notify_url' => CLICSHOPPING::link(null, 'order&ipn&paypal&ps&language=' . $this->lang->get('code'), false, false),
                     'rm' => '2',
-                    'return' => CLICSHOPPING::link('index.php', 'Checkout&Process'),
-                    'cancel_return' => CLICSHOPPING::link('index.php', 'Checkout&Billing'),
+                    'return' => CLICSHOPPING::link(null, 'Checkout&Process'),
+                    'cancel_return' => CLICSHOPPING::link(null, 'Checkout&Billing'),
                     'bn' => $this->app->getIdentifier(),
                     'paymentaction' => (CLICSHOPPING_APP_PAYPAL_PS_TRANSACTION_METHOD == '1') ? 'sale' : 'authorization'
                     ];
@@ -738,7 +738,7 @@
       if ( $result != 'VERIFIED' ) {
         $CLICSHOPPING_MessageStack->add('header', $this->app->getDef('module_ps_error_invalid_transaction'));
 
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
       $this->verifyTransaction($pptx_params);
@@ -751,7 +751,7 @@
                                );
 
       if (($Qorder->fetch() === false) || ($this->order_id != $pptx_params['invoice']) || ($CLICSHOPPING_Customer->getID() != $pptx_params['custom'])) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 
@@ -986,7 +986,7 @@
       $email_order = STORE_NAME . "\n\n" .
       CLICSHOPPING::getDef('email_separator') .  "\n" .
       CLICSHOPPING::getDef('email_text_order_number', ['store_name' => STORE_NAME]) . ' ' . $this->order_id . "\n" .
-      CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . (int)$this->order_id) . "\n" .
+      CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$this->order_id) . "\n" .
       CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
       if ($CLICSHOPPING_Order->info['comments']) {
@@ -1087,7 +1087,7 @@
 
       unset($_SESSION['cart_PayPal_Standard_ID']);
 
-      CLICSHOPPING::redirect('index.php', 'Checkout&Success');
+      CLICSHOPPING::redirect(null, 'Checkout&Success');
     }
 
     public function get_error() {

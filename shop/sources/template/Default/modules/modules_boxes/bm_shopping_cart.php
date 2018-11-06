@@ -62,7 +62,7 @@
             $cart_contents_string .= '</span>';
           }
 
-          $cart_contents_string .= '<span><a href="' . CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products[$i]['id']) . '">';
+          $cart_contents_string .= '<span><a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products[$i]['id']) . '">';
 
           if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
             $cart_contents_string .= '<span class="boxeNewItemShoppingCart">';
@@ -84,7 +84,7 @@
 
         $cart_contents_string .= '<div class="hr"></div>' .
                                  '<div class="boxeShowTotalShoppingCart">' . $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total()) . '</div>' .
-                                 '<div class="boxeShowTextShoppingCart">' . HTML::link(CLICSHOPPING::link('index.php', 'Cart'), CLICSHOPPING::getDef('header_title_cart_contents')) . '</div>' .
+                                 '<div class="boxeShowTextShoppingCart">' . HTML::link(CLICSHOPPING::link(null, 'Cart'), CLICSHOPPING::getDef('header_title_cart_contents')) . '</div>' .
                                  '';
 /*
       } else {

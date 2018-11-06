@@ -54,7 +54,7 @@
                  $manufacturers_name = '<strong>' . $manufacturers_name .'</strong>';
                 }
 
-                $manufacturers_list .= '<li>' . HTML::link(CLICSHOPPING::link('index.php', 'manufacturers_id=' . (int)$m['id']), $manufacturers_name) . '</li>';
+                $manufacturers_list .= '<li>' . HTML::link(CLICSHOPPING::link(null, 'manufacturers_id=' . (int)$m['id']), $manufacturers_name) . '</li>';
               }
 
               $manufacturers_list .= '</ul>';
@@ -79,7 +79,7 @@
                                      ];
           }
 
-          $data = HTML::form('manufacturers', CLICSHOPPING::link('index.php', null, false), 'get', null, ['session_id' => true]);
+          $data = HTML::form('manufacturers', CLICSHOPPING::link(null, null, false), 'get', null, ['session_id' => true]);
           $data .=  HTML::selectField('manufacturers_id', $manufacturers_array, (isset($_GET['manufacturers_id']) ? $_GET['manufacturers_id'] : ''), 'onchange="this.form.submit();" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
           $data .=  '</form>';
         }

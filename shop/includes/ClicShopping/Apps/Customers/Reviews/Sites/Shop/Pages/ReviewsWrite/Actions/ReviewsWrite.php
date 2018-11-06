@@ -29,11 +29,11 @@
 
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
       if (!isset($_GET['products_id'])) {
-        CLICSHOPPING::redirect('index.php', CLICSHOPPING::getAllGET(array('action')));
+        CLICSHOPPING::redirect(null, CLICSHOPPING::getAllGET(array('action')));
       }
 
         $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
@@ -49,7 +49,7 @@
         $Qproducts->execute();
 
       if ($Qproducts->fetch() === false) {
-        CLICSHOPPING::redirect('index.php', CLICSHOPPING::getAllGET(array('action')));
+        CLICSHOPPING::redirect(null, CLICSHOPPING::getAllGET(array('action')));
       }
 
 // templates
@@ -60,7 +60,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('product_reviews_write');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()));
 
     }
   }

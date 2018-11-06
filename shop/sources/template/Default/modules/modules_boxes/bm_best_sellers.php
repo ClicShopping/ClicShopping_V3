@@ -158,7 +158,7 @@
           $bestsellers_list = '<ol class="olBestSellers">';
 
           foreach ($best_sellers as $b) {
-            $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $b['products_id']), $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</li>';
+            $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $b['products_id']), $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</li>';
 
             $position++;
           }

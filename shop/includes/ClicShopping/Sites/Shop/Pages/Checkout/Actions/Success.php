@@ -27,7 +27,7 @@
 
 // if the customer is not logged on, redirect them to the shopping cart page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 //verify the order is make
@@ -77,7 +77,7 @@
           }
         }
 
-        CLICSHOPPING::redirect('index.php', 'Checkout&Success');
+        CLICSHOPPING::redirect(null, 'Checkout&Success');
       }
 
 // templates

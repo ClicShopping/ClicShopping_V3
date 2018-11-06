@@ -175,7 +175,7 @@
           }
 
           $result .= str_repeat($this->spacer_string, $this->spacer_multiplier * $level);
-          $result .= HTML::link(CLICSHOPPING::link('index.php', 'cPath=' . $category_link), $link_title);
+          $result .= HTML::link(CLICSHOPPING::link(null, 'cPath=' . $category_link), $link_title);
 
           if ( $this->_show_total_products === true ) {
             $result .= $this->category_product_count_start_string . $category['count'] . $this->category_product_count_end_string;

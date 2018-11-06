@@ -267,7 +267,7 @@
           $_SESSION['customer_first_name'] = $firstname;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_account_updated'), 'success', 'account_edit');
-          CLICSHOPPING::redirect('index.php', 'Account&Main');
+          CLICSHOPPING::redirect(null, 'Account&Main');
         }
       }
     }

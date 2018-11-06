@@ -56,7 +56,7 @@
 
       Registry::get('Hooks')->call('Account', 'Logout');
 
-      CLICSHOPPING::redirect('index.php');
+      CLICSHOPPING::redirect();
     }
   }
 

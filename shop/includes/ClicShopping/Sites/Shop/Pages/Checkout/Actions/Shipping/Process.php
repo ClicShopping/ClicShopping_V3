@@ -27,7 +27,7 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // process the selected shipping method
@@ -88,7 +88,7 @@
 
                   $CLICSHOPPING_Hooks->call('Shipping', 'Process');
 
-                  CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+                  CLICSHOPPING::redirect(null, 'Checkout&Billing');
                 }
               }
             } else {
@@ -104,13 +104,13 @@
 
             $CLICSHOPPING_Hooks->call('Shipping', 'Process');
 
-            CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+            CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
         }
       } else {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_during_process'), 'danger', 'checkout_shipping');
 
-        CLICSHOPPING::redirect('index.php', 'Checkout&Shipping');
+        CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
     }
   }

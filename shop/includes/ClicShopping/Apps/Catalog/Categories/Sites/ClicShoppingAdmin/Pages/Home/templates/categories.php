@@ -76,7 +76,7 @@
 
   if (!isset($_GET['search'])) {
     echo HTML::button($CLICSHOPPING_Categories->getDef('button_new_category'), null, $CLICSHOPPING_Categories->link('Insert&cPath=' . $cPath), 'info') . '&nbsp;';
-    echo HTML::button($CLICSHOPPING_Categories->getDef('button_products'), null, CLICSHOPPING::link('index.php', 'A&Catalog\Products&Edit&cPath=' . $cPath), 'success');
+    echo HTML::button($CLICSHOPPING_Categories->getDef('button_products'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&cPath=' . $cPath), 'success');
   }
 ?>
               </span>

@@ -88,7 +88,7 @@
              },
    "sku": "' . $ean . '",
    "description": "' . $CLICSHOPPING_ProductsCommon->getProductsDescription() . '",
-   "url": "' .  CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
+   "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
    "name": "' . $CLICSHOPPING_ProductsCommon->getProductsName() . '",
    "image": "' . $CLICSHOPPING_ProductsCommon->getProductsImage() . '",
    "itemCondition": "http://schema.org/' . $products_packaging .'",
@@ -98,7 +98,7 @@
                  "price": "' . $CLICSHOPPING_ProductsCommon->setDisplayPriceGroup() . '",
                  "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
                  "itemCondition": "' . $products_packaging . '",
-                 "url": "' .  CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
+                 "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
                  "sku": "' . $ean . '",
                  "availability": "' . $stock . '"
                 }

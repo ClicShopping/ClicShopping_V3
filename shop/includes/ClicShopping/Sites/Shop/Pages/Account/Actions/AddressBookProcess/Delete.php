@@ -28,17 +28,17 @@
         if ($_GET['delete'] == $CLICSHOPPING_Customer->getDefaultAddressID()) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('warning_primary_address_deletion'), 'danger', 'addressbook');
 
-          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+          CLICSHOPPING::redirect(null,'Account&AddressBook');
         }
 
         if (AddressBook::countCustomerAddressBookEntries() >= (int)MAX_ADDRESS_BOOK_ENTRIES) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_full'), 'error', 'addressbook');
 
-          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+          CLICSHOPPING::redirect(null,'Account&AddressBook');
         } else if (AddressBook::countCustomersAddAddress() == 0) {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_add'), 'error', 'addressbook');
 
-          CLICSHOPPING::redirect('index.php','Account&AddressBook');
+          CLICSHOPPING::redirect(null,'Account&AddressBook');
         }
       }
 
@@ -52,7 +52,7 @@
 
         $CLICSHOPPING_Hooks->call('AddressBookProcess', 'DeleteConfirm');
 
-        CLICSHOPPING::redirect('index.php', 'Account&AddressBook');
+        CLICSHOPPING::redirect(null, 'Account&AddressBook');
       }
     }
   }

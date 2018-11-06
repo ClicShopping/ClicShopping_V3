@@ -232,7 +232,7 @@
               unset($_SESSION['payment']);
             }
 
-            CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+            CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
 // process the selected shipping destination
         } elseif ( isset($_POST['address']) ) {
@@ -266,7 +266,7 @@
               unset($_SESSION['payment']);
             }
 
-            CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+            CLICSHOPPING::redirect(null, 'Checkout&Billing');
           } else {
             unset($_SESSION['billto']);
           }
@@ -275,7 +275,7 @@
 // no addresses to select from - customer decided to keep the current assigned address
           $_SESSION['billto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
 
-          CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+          CLICSHOPPING::redirect(null, 'Checkout&Billing');
         }
       }
     }

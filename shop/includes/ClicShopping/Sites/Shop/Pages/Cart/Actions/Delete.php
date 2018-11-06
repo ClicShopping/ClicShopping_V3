@@ -27,6 +27,6 @@
 
       $CLICSHOPPING_Hooks->call('Cart', 'Delete');
 
-      CLICSHOPPING::redirect('index.php', 'Cart');
+      CLICSHOPPING::redirect(null, 'Cart');
     }
   }

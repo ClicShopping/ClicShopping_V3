@@ -28,7 +28,7 @@
 // if the customer is not logged on, redirect them to the login page
         if (!$CLICSHOPPING_Customer->isLoggedOn()) {
           $CLICSHOPPING_NavigationHistory->setSnapshot();
-          CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+          CLICSHOPPING::redirect(null, 'Account&LogIn');
         }
 
         if (isset($_POST['coupon']) && !is_null($_POST['coupon'])) {
@@ -44,18 +44,18 @@
           if (!isset($_POST['conditions']) || ($_POST['conditions'] != 1)) {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_conditions_not_accepted'), 'danger', 'header');
 
-            CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+            CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
         }
 
         $CLICSHOPPING_Hooks->call('Billing', 'Process');
 
-        CLICSHOPPING::redirect('index.php', 'Checkout&Confirmation');
+        CLICSHOPPING::redirect(null, 'Checkout&Confirmation');
 
       } else {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_during_process'), 'danger', 'checkout_payment');
 
-        CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+        CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
     }
   }

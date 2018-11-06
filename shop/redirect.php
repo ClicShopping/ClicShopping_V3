@@ -118,5 +118,5 @@
       break;
   }
 
-  CLICSHOPPING::redirect('index.php');
+  CLICSHOPPING::redirect();
 

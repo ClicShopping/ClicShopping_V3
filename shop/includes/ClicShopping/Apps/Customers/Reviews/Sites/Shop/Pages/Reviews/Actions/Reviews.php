@@ -29,7 +29,7 @@
 //language
         $CLICSHOPPING_Language->loadDefinitions('reviews');
 
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Products&Reviews&products_id=' .(int)$_GET['products_id']));
+        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Reviews&products_id=' .(int)$_GET['products_id']));
       }
     }
   }

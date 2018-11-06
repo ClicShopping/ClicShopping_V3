@@ -28,6 +28,6 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('products_new');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Products&ProductsNew'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&ProductsNew'));
     }
   }

@@ -24,7 +24,7 @@
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if (!isset($_GET['products_id']) && !is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process')  && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
@@ -46,7 +46,7 @@
           $CLICSHOPPING_Reviews->deleteReviews($review_id);
         }
 
-        CLICSHOPPING::redirect('index.php', 'Products&Reviews&products_id='. $products_id);
+        CLICSHOPPING::redirect(null, 'Products&Reviews&products_id='. $products_id);
       }
     }
   }

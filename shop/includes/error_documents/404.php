@@ -35,7 +35,7 @@
                 Sorry, an error has occured, Requested page not found!
                 <h1>This Page is Missing</h1>
                   <p>It looks like this page is missing. Please continue back to our website and try again.</p>
-                  <p style="margin-top: 40px;"><php echo HTML::button('Return to website', null, CLICSHOPPING::link('index.php'), null, 'primary'); ?></p>
+                  <p style="margin-top: 40px;"><php echo HTML::button('Return to website', null, CLICSHOPPING::link(), null, 'primary'); ?></p>
 
               </div>
               <div class="error-actions">

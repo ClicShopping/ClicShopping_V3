@@ -47,7 +47,7 @@ use ClicShopping\OM\HTML;
                   </div>
                   <div class="separator"></div>
                   <div>
-                    <span class="headerMultiTemplateDefaultPassword col-md-6"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&PasswordForgotten'), CLICSHOPPING::getDef('modules_header_multi_template_password_forgotten')); ?>
+                    <span class="headerMultiTemplateDefaultPassword col-md-6"><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&PasswordForgotten'), CLICSHOPPING::getDef('modules_header_multi_template_password_forgotten')); ?>
                     <span class="text-md-right col-md-6"><?php echo $login; ?></span>
                   </div>
                   <?php echo $endform; ?>
@@ -59,10 +59,10 @@ use ClicShopping\OM\HTML;
   } else {
 ?>
           <span>
-            <?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&LogOff'), CLICSHOPPING::getDef('modules_header_multi_template_account_logoff'));?> |
+            <?php echo HTML::link(CLICSHOPPING::link(null, 'Account&LogOff'), CLICSHOPPING::getDef('modules_header_multi_template_account_logoff'));?> |
 <?php
       if ($CLICSHOPPING_Customer->getCustomerGuestAccount($CLICSHOPPING_Customer->getID()) == 0) {
-        echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Main'), CLICSHOPPING::getDef('modules_header_multi_template_my_account')) .  ' | ';
+        echo HTML::link(CLICSHOPPING::link(null, 'Account&Main'), CLICSHOPPING::getDef('modules_header_multi_template_my_account')) .  ' | ';
       }
 ?>
 </span>
@@ -70,11 +70,11 @@ use ClicShopping\OM\HTML;
   }
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
 ?>
-          <span><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Login'), CLICSHOPPING::getDef('modules_header_multi_template_create_account')); ?> | </span>
+          <span><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Login'), CLICSHOPPING::getDef('modules_header_multi_template_create_account')); ?> | </span>
  <?php
   }
 ?>
-          <span><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Info&Contact'), CLICSHOPPING::getDef('modules_header_multi_template_title_contact_us')); ?></span>
+          <span><?php echo HTML::link(CLICSHOPPING::link(null, 'Info&Contact'), CLICSHOPPING::getDef('modules_header_multi_template_title_contact_us')); ?></span>
         </span>
 
         <span class="float-md-right headerMultiTemplateDefaultLanguage"><li class="headerMultiTemplateDefaultLanguage"><?php echo $languages_string; ?></li></span>
@@ -95,7 +95,7 @@ use ClicShopping\OM\HTML;
     <div class="row">
       <div class="col-md-12 text-md-right">
         <span class="headerMultiTemplateDefaultShoppingCart"><i class="fas fa-shopping-cart fa-2x" aria-hidden="true"></i></span>
-        <span class="headerMultiTemplateDefaultCartLink"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Cart'), $shopping_cart); ?></span>
+        <span class="headerMultiTemplateDefaultCartLink"><?php echo HTML::link(CLICSHOPPING::link(null, 'Cart'), $shopping_cart); ?></span>
       </div>
     </div>
   </div>

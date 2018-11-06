@@ -42,7 +42,7 @@
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_BUTTON_BACK_CONTENT_WIDTH;
 
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Account&Main'), 'primary');
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary');
         
         $account_history = '<!-- Start ac_account_customers_history_info_button_back --> ' . "\n";
 

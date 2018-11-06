@@ -76,9 +76,9 @@
       while ($Qlogins->fetch()) {
         $output .= '  <tr>' .
                    '    <td class="text-md-center"><i class="fas fa-' . (($Qlogins->valueInt('success') === 1) ? 'check fa-lg' : 'times fa-lg') . '"></i>&nbsp;' .
-                   '    <td><a href="' . CLICSHOPPING::link('index.php', 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
+                   '    <td><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
                    '    <td class="text-md-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .
-                   '    <td class="text-md-right"><a href="' . CLICSHOPPING::link('index.php', 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
+                   '    <td class="text-md-right"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
                    '  </tr>';
       }
 

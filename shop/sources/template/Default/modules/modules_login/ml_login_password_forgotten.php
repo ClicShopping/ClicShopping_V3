@@ -42,7 +42,7 @@
 
         $ml_login_connexion = '<!-- ml_login_password_forgotten start-->' . "\n";
 
-        $form = HTML::form('password_forgotten', CLICSHOPPING::link('index.php', 'Account&PasswordForgotten&Process&action=process'), 'post', 'id="password_forgotten"', ['tokenize' => true]);
+        $form = HTML::form('password_forgotten', CLICSHOPPING::link(null, 'Account&PasswordForgotten&Process&action=process'), 'post', 'id="password_forgotten"', ['tokenize' => true]);
         $endform = '</form>';
 
         ob_start();

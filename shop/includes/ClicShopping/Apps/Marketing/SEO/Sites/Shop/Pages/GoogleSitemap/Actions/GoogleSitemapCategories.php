@@ -41,7 +41,7 @@
       $Qcategorie->execute();
 
       while ($Qcategorie->fetch() ) {
-        $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link('index.php', 'cPath=' . $Qcategorie->valueInt('categories_id'))));
+        $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'cPath=' . $Qcategorie->valueInt('categories_id'))));
 
         $category_array[$Qcategorie->valueInt('categories_id')]['loc'] = $location;
         $category_array[$Qcategorie->valueInt('categories_id')]['lastmod'] = $Qcategorie->value('last_modified');

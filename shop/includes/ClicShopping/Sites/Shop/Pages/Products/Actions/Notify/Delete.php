@@ -40,12 +40,12 @@
 
         $CLICSHOPPING_Hooks->call('Products', 'Delete');
 
-        CLICSHOPPING::redirect('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID() );
+        CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID() );
 //        CLICSHOPPING::redirect($PHP_SELF, getAllGET(array('action')));
 
       } else {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
     }

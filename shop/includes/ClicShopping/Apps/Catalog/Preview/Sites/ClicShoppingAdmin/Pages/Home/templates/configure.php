@@ -35,7 +35,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Preview->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_preview'), null, $CLICSHOPPING_Preview->link('Preview'), 'success'); ?>
-            <?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_back'), null, CLICSHOPPING::link('index.php', 'A&Catalog\Preview'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_back'), null, CLICSHOPPING::link(null, 'A&Catalog\Preview'), 'primary'); ?>
         </div>
       </div>
     </div>

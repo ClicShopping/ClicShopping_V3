@@ -35,27 +35,27 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot(array('mode' => null, 'page' => 'Checkout&Billing'));
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 // if no shipping method has been selected, redirect the customer to the shipping method selection page
       if (!isset($_SESSION['shipping']) || !isset($_SESSION['sendto'])) {
-        CLICSHOPPING::redirect('index.php', 'Checkout&Shipping');
+        CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
       if ( (!is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment'])) ) {
-        CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+        CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
 // avoid hack attempts during the checkout procedure by checking the internal cartID
       if (isset($CLICSHOPPING_ShoppingCart->cartID) && isset($_SESSION['cartID'])) {
         if ($CLICSHOPPING_ShoppingCart->cartID != $_SESSION['cartID']) {
-          CLICSHOPPING::redirect('index.php', 'Checkout&Shipping');
+          CLICSHOPPING::redirect(null, 'Checkout&Shipping');
         }
       }
 
@@ -74,7 +74,7 @@
         }
         // Out of Stock
         if ( (STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true) ) {
-          CLICSHOPPING::redirect('index.php', 'Cart');
+          CLICSHOPPING::redirect(null, 'Cart');
         }
       }
 
@@ -91,7 +91,7 @@
       if ( !isset($CLICSHOPPING_PM) || ($CLICSHOPPING_Payment->selected_module != $_SESSION['payment']) || ($CLICSHOPPING_PM->enabled === false) ) {
         $CLICSHOPPING_MessageStack->add(ERROR_NO_PAYMENT_MODULE_SELECTED, 'danger', 'header');
 
-        CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+        CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
 // order total
@@ -123,6 +123,6 @@
 
       $CLICSHOPPING_Language->loadDefinitions('checkout_process');
 
-      CLICSHOPPING::redirect('index.php', 'Checkout&Success');
+      CLICSHOPPING::redirect(null, 'Checkout&Success');
     }
   }

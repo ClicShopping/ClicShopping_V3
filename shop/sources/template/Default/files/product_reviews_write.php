@@ -19,7 +19,7 @@
   $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
-    CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+    CLICSHOPPING::redirect(null, 'Account&LogIn');
   }
 // Do not touch the script below
 ?>
@@ -32,7 +32,7 @@
 
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('product_reviews_write', CLICSHOPPING::link('index.php', 'Products&ReviewsWrite&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="productReviewsWrite" onsubmit="return checkForm();"', ['tokenize' => true, 'action' => 'process']);
+  echo HTML::form('product_reviews_write', CLICSHOPPING::link(null, 'Products&ReviewsWrite&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="productReviewsWrite" onsubmit="return checkForm();"', ['tokenize' => true, 'action' => 'process']);
 ?>
 <section class="product_reviews_write" id="product_reviews_write">
   <div class="contentContainer">

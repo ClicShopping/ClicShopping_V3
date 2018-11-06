@@ -46,7 +46,7 @@
          if (!is_null($CLICSHOPPING_Order->info['comments'])) {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_CONTENT_WIDTH;
 
-          $edit_comment = HTML::link(CLICSHOPPING::link('index.php', 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_text_edit') . ')</span>');
+          $edit_comment = HTML::link(CLICSHOPPING::link(null, 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_text_edit') . ')</span>');
           $comment =  nl2br(HTML::outputProtected($CLICSHOPPING_Order->info['comments'])) .  HTML::hiddenField('comments', $CLICSHOPPING_Order->info['comments']);
 
           $confirmation = '  <!-- cc_checkout_confirmation_customers_comment start -->' . "\n";

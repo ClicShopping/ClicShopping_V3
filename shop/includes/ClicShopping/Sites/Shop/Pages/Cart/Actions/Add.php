@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -31,10 +31,10 @@
         }
 
         if (DISPLAY_CART == 'true' ) {
-          $goto =  'index.php';
+          $goto =  CLICSHOPPING::getConfig('bootstrap_file');
           $parameters = 'Cart';
         } else {
-          $goto = 'index.php';
+          $goto = CLICSHOPPING::getConfig('bootstrap_file');
 
           if (isset($_POST['url'])) {
             $parameters = $_POST['url'];

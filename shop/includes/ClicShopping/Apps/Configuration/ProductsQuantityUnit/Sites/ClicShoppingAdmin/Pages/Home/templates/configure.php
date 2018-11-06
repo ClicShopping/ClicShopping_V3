@@ -35,7 +35,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_products_quantity_unit'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit'), 'success'); ?>
-            <?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_back'), null, $CLICSHOPPING_ProductsQuantityUnit->link('index.php', 'A&Configuration\ProductsQuantityUnit'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_back'), null, $CLICSHOPPING_ProductsQuantityUnit->link(null, 'A&Configuration\ProductsQuantityUnit'), 'primary'); ?>
         </div>
       </div>
     </div>

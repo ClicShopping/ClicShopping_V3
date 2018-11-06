@@ -52,8 +52,8 @@
 
         $content_width = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH;
 
-        $form = HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"', ['tokenize' => true]);
-//        $form = HTML::form('cart_quantity', CLICSHOPPING::link('index.php', 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"');
+        $form = HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"', ['tokenize' => true]);
+//        $form = HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"');
 
         $endform = '</form>';
 
@@ -102,9 +102,9 @@
           $products_name = '<table border="0" cellspacing="2" cellpadding="2" class="ModulesShoppingCartProductsListingTableContent">';
           $products_name .= '<tr>';
           $products_name .= HTML::hiddenField('products_id[]', $products[$i]['id']);
-          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link('index.php', 'Cart&Delete&products_id=' . $products[$i]['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/delete.gif', CLICSHOPPING::getDef('button_remove'))) . '&nbsp;&nbsp;&nbsp;</th>';
-          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50, null, null)) . '&nbsp;&nbsp;&nbsp;</th>';
-          $products_name .= '<th valign="top" width="500">' . HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), $products[$i]['name']);
+          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/delete.gif', CLICSHOPPING::getDef('button_remove'))) . '&nbsp;&nbsp;&nbsp;</th>';
+          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50, null, null)) . '&nbsp;&nbsp;&nbsp;</th>';
+          $products_name .= '<th valign="top" width="500">' . HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_Prod::getProductID($products[$i]['id'])), $products[$i]['name']);
 
           if (STOCK_CHECK == 'true') {
 // select the good qty in B2B to decrease the stock (see checkout_process to update stock)
@@ -148,7 +148,7 @@
 // ticker
           $products_id = $CLICSHOPPING_Prod::getProductID($products[$i]['id']);
 
-          $ticker =  HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' .  $products_id), HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
+          $ticker =  HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' .  $products_id), HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
 
           if (is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
             $ticker = '' ;

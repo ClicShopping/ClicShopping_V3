@@ -48,6 +48,6 @@
         }
       }
 
-      CLICSHOPPING::redirect('index.php', 'Cart');
+      CLICSHOPPING::redirect(null, 'Cart');
     }
   }

@@ -18,7 +18,7 @@
     public function __construct() {
 
       if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
     }
 

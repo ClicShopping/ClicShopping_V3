@@ -89,7 +89,7 @@
 
                 CLICSHOPPING::redirect($page, $get_string);
               } else {
-                CLICSHOPPING::redirect('index.php');
+                CLICSHOPPING::redirect();
               }
             }
           }
@@ -135,7 +135,7 @@
 
         $CLICSHOPPING_Hooks->call('Account', 'LogoutAfter');
 
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       break;
       case 'create':
         $Qcheck = $CLICSHOPPING_Db->get('administrators', 'id', null, null, 1);

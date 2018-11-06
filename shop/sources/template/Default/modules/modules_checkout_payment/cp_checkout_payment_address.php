@@ -50,11 +50,11 @@
 // Autorise l'ajout dans le carnet d'adresse des clients B2B ou clients normaux
         if (defined('CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_CHECKOUT_ADDRESS_CATALOG')) {
           if (AddressBook::countCustomersModifyAddressDefault() == 1 && (CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_CHECKOUT_ADDRESS_CATALOG == 'true' || CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_WEB_SERVICE == 'false') ) {
-            $address_button =  HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link('index.php', 'Checkout&PaymentAddress'), 'primary');
+            $address_button =  HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link(null, 'Checkout&PaymentAddress'), 'primary');
           }
         } else {
           if (AddressBook::countCustomersModifyAddressDefault() == 1) {
-            $address_button =  HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link('index.php', 'Checkout&PaymentAddress'), 'primary');
+            $address_button =  HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link(null, 'Checkout&PaymentAddress'), 'primary');
           }
         }
 

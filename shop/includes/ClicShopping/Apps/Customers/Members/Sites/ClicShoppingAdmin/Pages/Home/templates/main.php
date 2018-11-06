@@ -48,7 +48,7 @@
             <div class="form-group">
               <div class="col-md-12 text-md-center">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Customers\Members&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Customers\Members&Configure'));
   echo HTML::button($CLICSHOPPING_Members->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

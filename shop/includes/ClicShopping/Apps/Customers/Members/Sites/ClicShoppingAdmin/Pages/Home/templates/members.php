@@ -23,7 +23,7 @@
 
 // Permettre l'utilisation de l'approbation des comptes en mode B2B
   if (defined('B2C') && B2C == 'true') {
-    CLICSHOPPING::redirect('index.php');
+    CLICSHOPPING::redirect();
   }
 ?>
 <div class="contentBody">
@@ -174,9 +174,9 @@
 <?php
       echo HTML::link($CLICSHOPPING_Members->link('AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/activate.gif', $CLICSHOPPING_Members->getDef('icon_activate')));
       echo '&nbsp;';
-      echo HTML::link(CLICSHOPPING::link('index.php','A&Customers&Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Members->getDef('icon_edit_customer')));
+      echo HTML::link(CLICSHOPPING::link(null,'A&Customers&Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Members->getDef('icon_edit_customer')));
       echo '&nbsp;';
-      echo HTML::link(CLICSHOPPING::link('index.php','A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Members->getDef('icon_email')));
+      echo HTML::link(CLICSHOPPING::link(null,'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Members->getDef('icon_email')));
       echo '&nbsp;';
       echo HTML::link($CLICSHOPPING_Members->link('Delete&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Members->getDef('button_delete')));
       echo '&nbsp;';

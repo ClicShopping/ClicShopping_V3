@@ -58,7 +58,7 @@
             $Qcheck->bindInt(':interval',(int)MODULE_CHECKOUT_SUCCESS_REDIRECT_OLD_ORDER_MINUTES  );
 
             if ( $Qcheck->fetch() !== false ) {
-              CLICSHOPPING::redirect('index.php', 'Account&Main');
+              CLICSHOPPING::redirect(null, 'Account&Main');
             }
           }
         }

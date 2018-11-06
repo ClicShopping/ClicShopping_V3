@@ -36,7 +36,7 @@
       if ($_SESSION['SESSION_SSL_ID'] != $_SERVER['SSL_SESSION_ID']) {
         $CLICSHOPPING_Session->kill();
 
-        CLICSHOPPING::redirect('index.php', 'Info&SSLcheck');
+        CLICSHOPPING::redirect(null, 'Info&SSLcheck');
       }
     }
 
@@ -49,7 +49,7 @@
         if ($_SESSION['SESSION_USER_AGENT'] != $_SERVER['HTTP_USER_AGENT']) {
           $CLICSHOPPING_Session->kill();
 
-          CLICSHOPPING::redirect('index.php', 'Account&Login');
+          CLICSHOPPING::redirect(null, 'Account&Login');
         }
     }
 
@@ -62,7 +62,7 @@
         if ($_SESSION['SESSION_IP_ADDRESS'] != HTTP::GetIpAddress()) {
           $CLICSHOPPING_Session->kill();
 
-          CLICSHOPPING::redirect('index.php', 'Account&Login');
+          CLICSHOPPING::redirect(null, 'Account&Login');
         }
       }
     }

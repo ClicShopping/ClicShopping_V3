@@ -28,7 +28,7 @@
 //language
         $CLICSHOPPING_Language->loadDefinitions('ssl_check');
 
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Info&SSLcheck'));
+        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Info&SSLcheck'));
 
       }
     }

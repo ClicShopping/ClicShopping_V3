@@ -57,7 +57,7 @@
     }
 
     public function getMessage() {
-      return HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\SecurityCheck&SecurityCheck'), CLICSHOPPING::getDef('module_security_check_extended_last_run_old'));
+      return HTML::link(CLICSHOPPING::link(null, 'A&Tools\SecurityCheck&SecurityCheck'), CLICSHOPPING::getDef('module_security_check_extended_last_run_old'));
     }
   }
 

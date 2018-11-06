@@ -42,7 +42,7 @@
         $Qmanufacturers->execute();
 
         while ($Qmanufacturers->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link('index.php', 'manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id'))));
+          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id'))));
 
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['loc'] = $location;
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['lastmod'] = $Qmanufacturers->value('last_modified');

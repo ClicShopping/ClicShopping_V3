@@ -43,12 +43,12 @@
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_PASSWORD_CONTENT_WIDTH;
 
-        $back_button =  HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Account&Main'), 'primary');
+        $back_button =  HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary');
         $process_button = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 
         $account_password = '<!-- Start account_customers_my_account --> ' . "\n";
 
-        $form = HTML::form('account_password', CLICSHOPPING::link('index.php', 'Account&Password&Process'), 'post', '',  ['tokenize' => true, 'action' => 'process']);
+        $form = HTML::form('account_password', CLICSHOPPING::link(null, 'Account&Password&Process'), 'post', '',  ['tokenize' => true, 'action' => 'process']);
         $endform ='</form>';
 
         ob_start();

@@ -35,7 +35,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Cache->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_Cache->getDef('button_cache'), null, $CLICSHOPPING_Cache->link('Cache'), 'success'); ?>
-            <?php echo HTML::button($CLICSHOPPING_Cache->getDef('button_back'), null, $CLICSHOPPING_Cache->link('index.php', 'A&Configuration\Cache'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_Cache->getDef('button_back'), null, $CLICSHOPPING_Cache->link(null, 'A&Configuration\Cache'), 'primary'); ?>
         </div>
       </div>
     </div>

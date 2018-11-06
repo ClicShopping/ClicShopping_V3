@@ -138,7 +138,12 @@
  * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
  * @return string The URL address.
  */
-    public static function link($page, $parameters = null, $add_session_id = true, $search_engine_safe = true)  {
+    public static function link($page = null, $parameters = null, $add_session_id = true, $search_engine_safe = true)  {
+
+      if (is_null($page)) {
+        $page = CLICSHOPPING::getConfig('bootstrap_file');
+      }
+
       $page = HTML::sanitize($page);
 
       $site = $req_site = static::$site;
@@ -285,7 +290,7 @@
       $url = forward_static_call_array('static::link', $args);
 
       if ((strstr($url, "\n") !== false) || (strstr($url, "\r") !== false)) {
-        $url = static::link('index.php', '', false);
+        $url = static::link(null, '', false);
       }
 
       HTTP::redirect($url);

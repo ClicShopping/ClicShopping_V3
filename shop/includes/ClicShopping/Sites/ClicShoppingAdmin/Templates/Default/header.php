@@ -68,13 +68,13 @@
   if (isset($_SESSION['admin'])) {
     if ($access_level == 0 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt')) > 0) {
 ?>
-    <span><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\EditLogError&LogError', null, null, ['params' => 'data-dismiss="modal"']), '<i class="fas fa-exclamation-circle text-warning"></i>'); ?></span>
+    <span><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogError', null, null, ['params' => 'data-dismiss="modal"']), '<i class="fas fa-exclamation-circle text-warning"></i>'); ?></span>
  <?php
   }
 ?>
           <span><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/administrateur.gif', CLICSHOPPING::getDef('text_header_user_administrator'), '16', '16'); ?></span>
           <span class="menuJSCookTexte"><?php echo (isset($_SESSION['admin']) ? '&nbsp;' . AdministratorAdmin::getUserAdmin()  .  '&nbsp; - &nbsp;<a href="' . CLICSHOPPING::link('login.php', 'action=logoff') . '" class="headerLink"><i class="fas fa-power-off" aria-hidden="true"></i></a>' : ''); ?> &nbsp;&nbsp;</span>
-          <span class="InfosHeaderWhoOnline"><?php echo (isset($_SESSION['admin']) ?  HTML::link(CLICSHOPPING::link('index.php', 'A&Tools\WhosOnline&WhosOnline'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/clients.gif', CLICSHOPPING::getDef('text_header_online_customers'), '16', '16') . '</a>') : ''); ?></span>
+          <span class="InfosHeaderWhoOnline"><?php echo (isset($_SESSION['admin']) ?  HTML::link(CLICSHOPPING::link(null, 'A&Tools\WhosOnline&WhosOnline'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/clients.gif', CLICSHOPPING::getDef('text_header_online_customers'), '16', '16') . '</a>') : ''); ?></span>
           <span class="menuJSCookTexte InfosHeaderWhoOnline"><?php  echo (isset($_SESSION['admin']) ? '&nbsp;' . CLICSHOPPING::getDef('text_header_number_of_customers', ['online_customer' => WhosOnlineAdmin::getCountWhosOnline()]) . '&nbsp;&nbsp;' : ''); ?></span>
 <?php
   }

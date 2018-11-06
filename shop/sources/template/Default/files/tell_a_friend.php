@@ -23,7 +23,7 @@
 
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('email_friend', CLICSHOPPING::link('index.php', 'Products&TellAFriend&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="tell_a_friend"', ['tokenize' => true, 'action' => 'process']);
+  echo HTML::form('email_friend', CLICSHOPPING::link(null, 'Products&TellAFriend&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="tell_a_friend"', ['tokenize' => true, 'action' => 'process']);
 ?>
 <section class="tell_a_friend" id="tell_a_friend">
   <div class="contentContainer">

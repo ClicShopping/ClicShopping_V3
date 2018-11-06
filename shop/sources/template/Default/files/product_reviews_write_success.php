@@ -18,7 +18,7 @@
   $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
-    CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+    CLICSHOPPING::redirect(null, 'Account&LogIn');
   }
 // Do not touch the script below
 ?>

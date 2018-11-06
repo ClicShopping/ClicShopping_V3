@@ -91,10 +91,10 @@
       }
 ?>
       <tr onMouseOver="rowOverEffect(this)" onMouseOut="rowOutEffect(this)">
-        <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsViewed->getDef('icon_preview'))); ?></td>
+        <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsViewed->getDef('icon_preview'))); ?></td>
         <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
         <td><?php echo $rows; ?>.</td>
-        <td><?php echo HTML::link(CLICSHOPPING::link('index.php', 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), $Qproducts->value('products_name')); ?></td>
+        <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), $Qproducts->value('products_name')); ?></td>
         <td class="text-md-center"><?php echo $Qproducts->valueInt('products_viewed'); ?>&nbsp;</td>
 
         <?php echo HTML::form('stats_products_viewed_products', $CLICSHOPPING_StatsProductsViewed->link('stats_products_viewed&Update&resetViewed=1')); ?>

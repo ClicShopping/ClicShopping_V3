@@ -33,7 +33,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/modules_modules_checkout_payment.gif', $CLICSHOPPING_COD->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_COD->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_COD->getDef('button_sort_order'), null, CLICSHOPPING::link('index.php', 'A&Configuration\Modules&Modules&set=payment'),  'primary'); ?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_COD->getDef('button_sort_order'), null, CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=payment'),  'primary'); ?>
         </div>
       </div>
     </div>

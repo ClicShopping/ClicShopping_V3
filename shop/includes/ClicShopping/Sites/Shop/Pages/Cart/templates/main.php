@@ -20,7 +20,7 @@
   $CLICSHOPPING_Language->loadDefinitions('shopping_cart');
 
 // templates
-  $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Cart'));
+  $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Cart'));
 
   require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 

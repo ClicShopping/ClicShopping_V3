@@ -106,7 +106,7 @@
 
       $back = count($this->path) - $back;
 
-      return CLICSHOPPING::link('index.php', $this->path[$back]['application'] . '&' . $this->path[$back]['action'] . '&' . $this->parseParameters($this->path[$back]['get']));
+      return CLICSHOPPING::link(null, $this->path[$back]['application'] . '&' . $this->path[$back]['action'] . '&' . $this->parseParameters($this->path[$back]['get']));
     }
 
 
@@ -141,9 +141,9 @@
 
     public function getSnapshotURL() {
       if ( $this->hasSnapshot() ) {
-        $target = CLICSHOPPING::redirect('index.php', $this->snapshot['application'] . '&' . $this->snapshot['action'] . '&' . $this->parseParameters($this->snapshot['get']));
+        $target = CLICSHOPPING::redirect(null, $this->snapshot['application'] . '&' . $this->snapshot['action'] . '&' . $this->parseParameters($this->snapshot['get']));
       } else {
-        $target = CLICSHOPPING::redirect('index.php');
+        $target = CLICSHOPPING::redirect();
       }
 
       return $target;

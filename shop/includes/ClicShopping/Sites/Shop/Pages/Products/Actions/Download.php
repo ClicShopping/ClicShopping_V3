@@ -51,14 +51,14 @@
 
 // Check download.php was called with proper GET parameters
       if ( (isset($_GET['order']) && !is_numeric($_GET['order'])) || (isset($_GET['id']) && !is_numeric($_GET['id'])) ) {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
 
 // Check that order_id, customer_id and filename match
       $Qdownload = HistoryInfo::getDownloadFilesPurchased();
 
       if ( $Qdownload->fetch() === false ) {
-        CLICSHOPPING::redirect('index.php', null);
+        CLICSHOPPING::redirect(null, null);
       }
 
 // MySQL 3.22 does not have INTERVAL

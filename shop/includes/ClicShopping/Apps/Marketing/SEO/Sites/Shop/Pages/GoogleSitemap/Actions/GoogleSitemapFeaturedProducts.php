@@ -41,7 +41,7 @@
         $QproductsFeatured->execute();
 
         while ($QproductsFeatured->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $QproductsFeatured->valueInt('products_id'))));
+          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $QproductsFeatured->valueInt('products_id'))));
 
           $products_array[$QproductsFeatured->valueInt('products_id')]['loc'] = $location;
           $products_array[$QproductsFeatured->valueInt('products_id')]['lastmod'] = $QproductsFeatured->valueInt('last_modified');

@@ -111,7 +111,7 @@
       if ( isset($_GET['action']) ) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
         if ( Registry::get('Session')->hasStarted() === false ) {
-          CLICSHOPPING::redirect('index.php', 'Info&Cookies');
+          CLICSHOPPING::redirect(null, 'Info&Cookies');
         }
       }
 

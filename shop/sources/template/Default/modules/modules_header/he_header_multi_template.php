@@ -56,8 +56,8 @@
       $content_width = (int)MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_CONTENT_WIDTH;
       $login = HTML::button(CLICSHOPPING::getDef('modules_header_multi_template_account_login'), null, null, 'primary', null, 'sm');
 
-      $form_advanced_result = HTML::form('quick_find', CLICSHOPPING::link('index.php', 'Search&Q'), 'post', 'id="quick_find"', ['session_id' => true]);
-      $form = HTML::form('loginForm',  CLICSHOPPING::link('index.php', 'Account&LogIn&Process'), 'post', 'id="loginForm"', ['tokenize' => true]);
+      $form_advanced_result = HTML::form('quick_find', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="quick_find"', ['session_id' => true]);
+      $form = HTML::form('loginForm',  CLICSHOPPING::link(null, 'Account&LogIn&Process'), 'post', 'id="loginForm"', ['tokenize' => true]);
       $endform = '</form>';
 
       if (substr(CLICSHOPPING::getBaseNameIndex(), 0, 8) != 'checkout') {
@@ -76,7 +76,7 @@
             }
           }
 
-          $currency_header = HTML::form('currencies', CLICSHOPPING::link('index.php', 'get', null, ['session_id' => true]));
+          $currency_header = HTML::form('currencies', CLICSHOPPING::link(null, 'get', null, ['session_id' => true]));
           $currency_header .= HTML::selectMenu('currency', $currencies_array, $_SESSION['currency'], 'onchange="this.form.submit();" style="width: 100%"') . $hidden_get_variables;
           $currency_header .= '</form>';
         }
@@ -267,7 +267,7 @@
             $link_title = $category['name'];
 
             if ($level < 1) {
-              $link_image = HTML::link(CLICSHOPPING::link('index.php', 'cPath=' . $category['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $category['image'], HTML::outputProtected($category['name']), 150, 150, null, true));
+              $link_image = HTML::link(CLICSHOPPING::link(null, 'cPath=' . $category['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $category['image'], HTML::outputProtected($category['name']), 150, 150, null, true));
             }
           }
 
@@ -281,7 +281,7 @@
 
           } else {
             $result .= $this->child_start_string;
-            $result .= '<a href="' . CLICSHOPPING::link('index.php', 'cPath=' . $category_link) . '">';
+            $result .= '<a href="' . CLICSHOPPING::link(null, 'cPath=' . $category_link) . '">';
             $caret = false;
           }
 
@@ -310,7 +310,7 @@
 
 
             $result .= $this->parent_start_string;
-            $result .= '<li>' . HTML::link(CLICSHOPPING::link('index.php', 'cPath=' . $category_link), $root_link_title) . '</li>';
+            $result .= '<li>' . HTML::link(CLICSHOPPING::link(null, 'cPath=' . $category_link), $root_link_title) . '</li>';
             $result .= $this->_buildCategorytree($category_id, $level + 1);
 
 //            $result .= '<div class="col-md-6" style="padding-top:10px;">'.$this->_buildCategorytree($category_id, $level + 1).'</div>';

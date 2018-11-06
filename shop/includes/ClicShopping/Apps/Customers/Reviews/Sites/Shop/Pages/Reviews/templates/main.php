@@ -11,4 +11,4 @@
 
   use ClicShopping\OM\CLICSHOPPING;
 
-  CLICSHOPPING::redirect('index.php');
+  CLICSHOPPING::redirect();

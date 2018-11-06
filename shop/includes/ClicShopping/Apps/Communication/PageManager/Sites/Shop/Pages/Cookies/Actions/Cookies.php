@@ -29,7 +29,7 @@
       $CLICSHOPPING_Language->loadDefinitions('cookie_usage');
 
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Info&Cookies'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Info&Cookies'));
 
     }
   }

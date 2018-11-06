@@ -42,7 +42,7 @@
 
         $content_width = (int)MODULES_CONTACT_US_SUCCESS_CONTENT_WIDTH;
 
-        $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link('index.php'), 'success', null, null);
+        $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(), 'success', null, null);
 
         $contact_us_page_manager = '<!--  co_contact_us_success start -->' . "\n";
 

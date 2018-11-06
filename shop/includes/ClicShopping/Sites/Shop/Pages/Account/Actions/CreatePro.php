@@ -27,6 +27,6 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('create_account_pro');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Account&CreatePro'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Account&CreatePro'));
     }
   }

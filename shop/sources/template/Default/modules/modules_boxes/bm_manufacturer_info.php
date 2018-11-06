@@ -71,7 +71,7 @@
             $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link(CLICSHOPPING::link('redirect.php', 'action=manufacturer&manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id')), sprintf( CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_homepage'), $Qmanufacturers->value('manufacturers_name')), '" target="_blank"') . '</div>';
           }
 
-          $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link(CLICSHOPPING::link('index.php', 'manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id')), CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_other_products')) . '</div>';
+          $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link(CLICSHOPPING::link(null, 'manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id')), CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_other_products')) . '</div>';
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_MANUFACTURER_INFO_BANNER_GROUP)) {

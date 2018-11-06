@@ -21,13 +21,13 @@
 
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
     $CLICSHOPPING_NavigationHistory->setSnapshot();
-    CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+    CLICSHOPPING::redirect(null, 'Account&LogIn');
   }
 
 // templates
   $CLICSHOPPING_Language->loadDefinitions('account');
 
-  $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Account&Main'));
+  $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Account&Main'));
 
   require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 

@@ -66,7 +66,7 @@
 
         $account_edit = '<!-- Start account_customers_edit --> ' . "\n";
 
-        $form = HTML::form('account_edit', CLICSHOPPING::link('index.php', 'Account&Edit&Process'), 'post', null,  ['tokenize' => true, 'action' => 'process']);
+        $form = HTML::form('account_edit', CLICSHOPPING::link(null, 'Account&Edit&Process'), 'post', null,  ['tokenize' => true, 'action' => 'process']);
         $endform ='</form>';
 
         ob_start();

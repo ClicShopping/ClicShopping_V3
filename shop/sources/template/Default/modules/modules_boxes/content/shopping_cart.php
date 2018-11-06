@@ -16,7 +16,7 @@ use ClicShopping\OM\CLICSHOPPING;
   <div class="card boxeContainerShoppingCart">
     <div class="card-img-top ClicShoppingboxContentShoppingCartBanner"><?php echo $shopping_cart_banner; ?></div>
     <div class="card-header ClicShoppingboxHeadingShoppingCart">
-      <span class="card-title boxeTitleShoppingCart"><?php echo HTML::link(CLICSHOPPING::link('index.php','Cart'), CLICSHOPPING::getDef('module_boxes_shopping_cart_box_title')); ?></span>
+      <span class="card-title boxeTitleShoppingCart"><?php echo HTML::link(CLICSHOPPING::link(null,'Cart'), CLICSHOPPING::getDef('module_boxes_shopping_cart_box_title')); ?></span>
     </div>
     <div class="card-block boxeContentArroundShoppingCart">
         <?php echo $cart_contents_string; ?>

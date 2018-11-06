@@ -300,7 +300,7 @@
 
 
 
-      $link_atom = CLICSHOPPING::link('index.php', 'Info&Rss');
+      $link_atom = CLICSHOPPING::link(null, 'Info&Rss');
       $link_atom = str_replace('&','&amp;', $link_atom);
 
       $xml .= '<atom:link href="' . $link_atom . '" type="application/rss+xml"/>' . "\n";
@@ -330,7 +330,7 @@
 
 // http://www.w3.org/TR/REC-xml/#dt-chardata
 // The ampersand character (&) and the left angle bracket (<) MUST NOT appear in their literal form
-        $url =  CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $products_id);
+        $url =  CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products_id);
         $link = str_replace('&','&amp;', $url);
 
         $xml .= '<item>' . "\n";

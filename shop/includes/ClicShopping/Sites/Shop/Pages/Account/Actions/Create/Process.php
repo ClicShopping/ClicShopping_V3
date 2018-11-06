@@ -231,7 +231,7 @@
 
           $CLICSHOPPING_Hooks->call('Create','Process');
 
-          CLICSHOPPING::redirect('index.php', 'Account&Main');
+          CLICSHOPPING::redirect(null, 'Account&Main');
         }
       }
     }

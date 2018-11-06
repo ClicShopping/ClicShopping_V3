@@ -44,7 +44,7 @@
 
         $ml_login_connexion = '<!-- ml_login_connexion start-->' . "\n";
 
-        $form = HTML::form('login', CLICSHOPPING::link('index.php', 'Account&LogIn&Process'), 'post', 'id="login"', ['tokenize' => true]);
+        $form = HTML::form('login', CLICSHOPPING::link(null, 'Account&LogIn&Process'), 'post', 'id="login"', ['tokenize' => true]);
         $endform = '</form>';
 
         ob_start();

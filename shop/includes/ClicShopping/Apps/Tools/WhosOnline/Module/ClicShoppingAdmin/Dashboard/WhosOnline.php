@@ -88,7 +88,7 @@
           if( $QwhosOnline->valueInt('customer_id') == 0){
             $output .= '<td class="dataTableContent text-md-left">' . $QwhosOnline->value('full_name') . '</td>';
           } else {
-            $output .= '<td class="dataTableContent"><a href="' . CLICSHOPPING::link('index.php', 'A&Customers\Customers&Customers&Edit&cID=' .  $QwhosOnline->valueInt('customer_id')) . '" title="View Customer">' .  $QwhosOnline->value('full_name') . '</a></td>';
+            $output .= '<td class="dataTableContent"><a href="' . CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' .  $QwhosOnline->valueInt('customer_id')) . '" title="View Customer">' .  $QwhosOnline->value('full_name') . '</a></td>';
           }
 
           $output .= '<td class="dataTableContent text-md-center"><a href="https://ip-lookup.net/index.php?ip='. urlencode( $QwhosOnline->valueInt('ip_address')). '" title="Lookup" target="_blank" rel="noreferrer">'.  $QwhosOnline->value('ip_address') .'</a></td>';

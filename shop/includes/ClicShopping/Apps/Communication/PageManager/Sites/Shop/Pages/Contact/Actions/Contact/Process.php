@@ -130,16 +130,16 @@
 
           $CLICSHOPPING_ActionRecorder->record();
 
-          CLICSHOPPING::redirect('index.php', 'Info&Contact&Success');
+          CLICSHOPPING::redirect(null, 'Info&Contact&Success');
         } else {
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_error_contact'), 'warning', 'contact');
 
-          CLICSHOPPING::redirect('index.php', 'Info&Contact');
+          CLICSHOPPING::redirect(null, 'Info&Contact');
         }
       } else {
          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_error_contact'), 'warning', 'contact');
 
-         CLICSHOPPING::redirect('index.php', 'Info&Contact');
+         CLICSHOPPING::redirect(null, 'Info&Contact');
       }
     }
   }

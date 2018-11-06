@@ -35,7 +35,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_orders_status_invoice'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'success'); ?>
-            <?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_back'), null, $CLICSHOPPING_OrdersStatusInvoice->link('index.php', 'A&Configuration\OrdersStatusInvoice'), 'primary'); ?>
+            <?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_back'), null, $CLICSHOPPING_OrdersStatusInvoice->link(null, 'A&Configuration\OrdersStatusInvoice'), 'primary'); ?>
         </div>
       </div>
     </div>

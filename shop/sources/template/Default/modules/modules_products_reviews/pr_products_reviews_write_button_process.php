@@ -44,7 +44,7 @@
 
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
           
         $data = '<!-- pr_modules_products_reviews_write_rating start -->' . "\n";

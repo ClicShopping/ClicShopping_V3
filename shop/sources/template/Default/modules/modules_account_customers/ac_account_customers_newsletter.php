@@ -48,10 +48,10 @@
         $newsletter_checkbox = Newsletters::getCustomerNewsletter();
 
         $newsletter_checkbox = HTML::checkboxField('newsletter_general', '1', (($newsletter_checkbox == '1') ? true : false));
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link('index.php', 'Account&Main'), 'primary', null, null);
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary', null, null);
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success', null, null);
         
-        $form = HTML::form('account_newsletter', CLICSHOPPING::link('index.php', 'Account&Newsletters&Process'), 'post', 'id="account_newsletter"',  ['tokenize' => true, 'action' => 'process']);
+        $form = HTML::form('account_newsletter', CLICSHOPPING::link(null, 'Account&Newsletters&Process'), 'post', 'id="account_newsletter"',  ['tokenize' => true, 'action' => 'process']);
         $endform ='</form>';
 
         ob_start();

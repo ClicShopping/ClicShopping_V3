@@ -124,7 +124,7 @@
 
         $CLICSHOPPING_Hooks->call('Notifications', 'Process');
 
-        CLICSHOPPING::redirect('index.php', 'Account&Notifications');
+        CLICSHOPPING::redirect(null, 'Account&Notifications');
       }
     }
   }

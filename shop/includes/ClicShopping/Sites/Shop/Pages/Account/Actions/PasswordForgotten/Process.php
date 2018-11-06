@@ -65,7 +65,7 @@
                                                          ['customers_info_id' => $Qcheck->valueInt('customers_id')]
                                       );
 
-                $reset_key_url = CLICSHOPPING::link('index.php', 'Account&PasswordReset&account=' . urlencode($email_address) . '&key=' . $reset_key);
+                $reset_key_url = CLICSHOPPING::link(null, 'Account&PasswordReset&account=' . urlencode($email_address) . '&key=' . $reset_key);
 
                 if ( strpos($reset_key_url, '&amp;') !== false ) {
                   $reset_key_url = str_replace('&amp;', '&', $reset_key_url);
@@ -96,7 +96,7 @@
 
               $CLICSHOPPING_Hooks->call('PasswordForgotten', 'Process');
 
-              CLICSHOPPING::redirect('index.php', 'Account&PasswordForgotten&Success');
+              CLICSHOPPING::redirect(null, 'Account&PasswordForgotten&Success');
 
             } else {
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error', 'password_forgotten');

@@ -26,7 +26,7 @@
 
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('checkout_shipping_address', CLICSHOPPING::link('index.php', 'Checkout&ShippingAddress&Process'), 'post', 'role="form" id="usrForm"', ['tokenize' => true, 'action' => 'process']);
+  echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&ShippingAddress&Process'), 'post', 'role="form" id="usrForm"', ['tokenize' => true, 'action' => 'process']);
 
 // ------------------------------
 // --- Shipping address   -----
@@ -136,7 +136,7 @@
     <div class="control-group">
       <div class="controls">
         <div class="buttonSet">
-          <span class="float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), '', CLICSHOPPING::link('index.php', 'Checkout&ShippingAddress'),'info'); ?></span>
+          <span class="float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), '', CLICSHOPPING::link(null, 'Checkout&ShippingAddress'),'info'); ?></span>
         </div>
       </div>
     </div>

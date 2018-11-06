@@ -315,16 +315,16 @@
             <td class="text-md-right">
 <?php
                 if ($QcustColl->valueInt('customers_group_id') > 0) {
-                  echo HTML::link(CLICSHOPPING::link('index.php','A&Customers\Groups&Edit&cID=' . $QcustColl->valueInt('customers_group_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/group_client.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customers_group'), 16,16));
+                  echo HTML::link(CLICSHOPPING::link(null,'A&Customers\Groups&Edit&cID=' . $QcustColl->valueInt('customers_group_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/group_client.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customers_group'), 16,16));
                   echo '&nbsp;';
                 }
 
                 echo HTML::link($CLICSHOPPING_Customers->link('Edit&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer')));
                 echo '&nbsp;';
-                echo HTML::link(CLICSHOPPING::link('index.php','A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Customers->getDef('icon_email')));
+                echo HTML::link(CLICSHOPPING::link(null,'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_Customers->getDef('icon_email')));
                 echo '&nbsp;';
 
-                echo HTML::link(CLICSHOPPING::link('index.php', 'A&Orders\Orders&Orders'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $CLICSHOPPING_Customers->getDef('icon_edit_orders')));
+                echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $CLICSHOPPING_Customers->getDef('icon_edit_orders')));
                 echo '&nbsp;';
                 echo HTML::link($CLICSHOPPING_Customers->link('Customers&Customers&PasswordForgotten&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/new_password.gif', $CLICSHOPPING_Customers->getDef('icon_edit_new_password')));
                 echo '&nbsp;';

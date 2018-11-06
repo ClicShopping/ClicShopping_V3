@@ -36,7 +36,7 @@
       $Qorders = static::getCheckoutSuccessOrder();
   // redirect to shopping cart page if no orders exist
       if ($Qorders->fetch() === false) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
     }
 

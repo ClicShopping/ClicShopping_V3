@@ -48,7 +48,7 @@ class pr_products_reviews_info_button_process {
 
       if (isset($CLICSHOPPING_NavigationHistory->path[$back])) {
         $button_back =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['page'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'primary');
-        $button_process = HTML::button(CLICSHOPPING::getDef('button_write'), null, CLICSHOPPING::link('index.php', 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
+        $button_process = HTML::button(CLICSHOPPING::getDef('button_write'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
       }
 
       $data = '<!-- pr_products_reviews_info_button_process start -->' . "\n";

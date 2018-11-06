@@ -33,6 +33,6 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('create_account');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Account&Create'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Account&Create'));
     }
   }

@@ -247,9 +247,9 @@
           }
         } else {
           if ($QPage->valueInt('pages_id') != 3){
-            $link = CLICSHOPPING::link('index.php', 'Info&Content&pages_id=' . $QPage->valueInt('pages_id'));
+            $link = CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QPage->valueInt('pages_id'));
           } else {
-            $link = CLICSHOPPING::link('index.php', 'Info&Contact');
+            $link = CLICSHOPPING::link(null, 'Info&Contact');
           }
 
           if (!empty($QPage->value('pages_title'))) {
@@ -330,9 +330,9 @@
             }
           } else {
             if ($QPageSecondary->valueInt('pages_id') != 3) {
-              $link_secondary =  CLICSHOPPING::link('index.php', 'Info&Content&pages_id=' . $QPageSecondary->valueInt('pages_id'));
+              $link_secondary =  CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QPageSecondary->valueInt('pages_id'));
             } else {
-              $link_secondary = CLICSHOPPING::link('index.php', 'Info&Contact');
+              $link_secondary = CLICSHOPPING::link(null, 'Info&Contact');
             }
 
             if (!empty($QPageSecondary->value('pages_title'))) {
@@ -538,9 +538,9 @@
           }
         } else {
           if ($QPage->valueInt('pages_id') != 3){
-            $link = CLICSHOPPING::link('index.php', 'Info&Content&pages_id=' . $QPage->valueInt('pages_id'));
+            $link = CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QPage->valueInt('pages_id'));
           } else {
-            $link = CLICSHOPPING::link('index.php', 'Info&Contact');
+            $link = CLICSHOPPING::link(null, 'Info&Contact');
           }
 
           if (!empty($QPage->value('pages_html_text'))) {

@@ -68,7 +68,7 @@
 
             $CLICSHOPPING_Hooks->call('Password', 'Process');
 
-            CLICSHOPPING::redirect('index.php', 'Account&Password');
+            CLICSHOPPING::redirect(null, 'Account&Password');
           } else {
             $error = true;
 

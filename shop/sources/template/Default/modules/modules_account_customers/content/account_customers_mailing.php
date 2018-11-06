@@ -29,8 +29,8 @@ use ClicShopping\OM\CLICSHOPPING;
       <div class="card-text">
         <div class="moduleAccountCustomersNotificationsList">
           <div class="col-md-12">
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersNotificationsIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Newsletters'), CLICSHOPPING::getDef('module_account_customers_email_mailing_newsletters')); ?></div>
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersNotificationsIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&Notifications'), CLICSHOPPING::getDef('module_account_customers_email_mailing_products')); ?></div>
+            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersNotificationsIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Newsletters'), CLICSHOPPING::getDef('module_account_customers_email_mailing_newsletters')); ?></div>
+            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersNotificationsIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Notifications'), CLICSHOPPING::getDef('module_account_customers_email_mailing_products')); ?></div>
           </div>
         </div>
       </div>

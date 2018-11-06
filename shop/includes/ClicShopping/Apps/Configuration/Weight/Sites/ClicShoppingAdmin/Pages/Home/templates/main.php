@@ -49,7 +49,7 @@
             <div class="form-group">
               <div class="col-md-12 text-md-center">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Configuration\Weight&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\Weight&Configure'));
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

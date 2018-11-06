@@ -1188,7 +1188,7 @@
 
         $message_order = stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $insert_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
 
-        $email_order = $message_order . ' ' . CLICSHOPPING::link('index.php', 'Account&HistoryInfo&order_id=' . $insert_id) . "\n" .  CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
+        $email_order = $message_order . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . $insert_id) . "\n" .  CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
         if ($this->info['comments']) {
           $email_order .= HTML::outputProtected($this->info['comments']) . "\n\n";

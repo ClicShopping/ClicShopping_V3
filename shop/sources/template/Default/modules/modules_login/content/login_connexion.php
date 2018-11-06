@@ -44,7 +44,7 @@ use ClicShopping\OM\HTML;
           </div>
         </div>
         <div class="col-md-4 passwordForgotten"><?php echo CLICSHOPPING::getDef('module_login_connexion_entry_password_text'); ?></div>
-        <div class="col-md-4 passwordForgotten"><?php echo HTML::link(CLICSHOPPING::link('index.php', 'Account&PasswordForgotten'), CLICSHOPPING::getDef('module_login_connexion_text_password_forgotten')); ?></div>
+        <div class="col-md-4 passwordForgotten"><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&PasswordForgotten'), CLICSHOPPING::getDef('module_login_connexion_text_password_forgotten')); ?></div>
 
         <div class="control-group">
           <div class="separator"></div>

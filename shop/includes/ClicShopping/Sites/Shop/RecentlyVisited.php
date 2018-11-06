@@ -132,7 +132,7 @@
             }
           }
 
-          $products_image = '<a href="' . CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $id) . '">' . HTML::image($this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImage($id), HTML::outputProtected($this->productsCommon->getProductsName($id)), 50, 50)  . '</a>';
+          $products_image = '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $id) . '">' . HTML::image($this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImage($id), HTML::outputProtected($this->productsCommon->getProductsName($id)), 50, 50)  . '</a>';
 
           $history[] = ['name' => $this->productsCommon->getProductsName($id),
                         'id' => $id,

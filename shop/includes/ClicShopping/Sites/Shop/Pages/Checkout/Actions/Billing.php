@@ -32,23 +32,23 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 // if no shipping method has been selected, redirect the customer to the shipping method selection page
       if ($_SESSION['shipping'] === false) {
-        CLICSHOPPING::redirect('index.php', 'Checkout&Shipping');
+        CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
 // avoid hack attempts during the checkout procedure by checking the internal cartID
       if (isset($CLICSHOPPING_ShoppingCart->cartID) && isset($_SESSION['cartID'])) {
         if ($CLICSHOPPING_ShoppingCart->cartID != $_SESSION['cartID']) {
-          CLICSHOPPING::redirect('index.php', 'Shipping');
+          CLICSHOPPING::redirect(null, 'Shipping');
         }
       }
 
@@ -58,7 +58,7 @@
 
         for ($i=0, $n=count($products); $i<$n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'])) {
-            CLICSHOPPING::redirect('index.php', 'Cart');
+            CLICSHOPPING::redirect(null, 'Cart');
             break;
           }
         }
@@ -101,7 +101,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_payment');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php', 'Checkout&Shipping'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link('index.php', 'Checkout&Billing'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Checkout&Shipping'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null, 'Checkout&Billing'));
     }
   }

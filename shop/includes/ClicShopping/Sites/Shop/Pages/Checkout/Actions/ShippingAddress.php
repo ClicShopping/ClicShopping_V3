@@ -29,12 +29,12 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
-        CLICSHOPPING::redirect('index.php', 'Cart');
+        CLICSHOPPING::redirect(null, 'Cart');
       }
 
 // if the order contains only virtual products, forward the customer to the billing page as
@@ -42,7 +42,7 @@
       if ($CLICSHOPPING_Order->content_type == 'virtual') {
         $_SESSION['shipping'] = false;
         $_SESSION['sendto'] = false;
-        CLICSHOPPING::redirect('index.php', 'Checkout&Billing');
+        CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
       if (isset($_GET['newcustomer'])) {
@@ -54,7 +54,7 @@
         $QaddresseDefault->execute();
 
         if ($QaddresseDefault->rowCount() == 1) {
-          CLICSHOPPING::redirect('index.php','Account&AddressBookProcess&newcustomer=1&shopping=1&edit=' . $QaddresseDefault->valueInt('customers_default_address_id'));
+          CLICSHOPPING::redirect(null,'Account&AddressBookProcess&newcustomer=1&shopping=1&edit=' . $QaddresseDefault->valueInt('customers_default_address_id'));
         }
       }
 
@@ -70,7 +70,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_shipping_address');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link('index.php','Checkout&Shipping'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link('index.php','Checkout&ShippingAddress'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null,'Checkout&Shipping'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null,'Checkout&ShippingAddress'));
     }
   }

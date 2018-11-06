@@ -51,7 +51,7 @@
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
-      $form =  HTML::form('create_account', CLICSHOPPING::link('index.php', 'Account&Create&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
+      $form =  HTML::form('create_account', CLICSHOPPING::link(null, 'Account&Create&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
       $endform = '</form>';
 
       ob_start();

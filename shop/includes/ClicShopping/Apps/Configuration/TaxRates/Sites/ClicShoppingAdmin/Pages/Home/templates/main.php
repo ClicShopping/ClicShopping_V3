@@ -50,7 +50,7 @@
             <div class="form-group">
               <div class="col-md-12 text-md-center">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Configuration\TaxRates&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\TaxRates&Configure'));
   echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

@@ -76,7 +76,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
 <div class="alert alert-warning">
   <h2>Beta Release</h2>
 
-  <p>This release is currently a beta release recommended only for development and testing purposes. Please visit the <a href="https://www.clicshopping.org" target="_blank" class="alert-link">ClicShopping</a> website to stay up to date on production-ready releases.</p>
+  <p>This release is currently a beta final release. Please visit the <a href="https://www.clicshopping.org" target="_blank" class="alert-link">ClicShopping</a> website to stay up to date.</p>
 </div>
 
 <div class="row">

@@ -47,7 +47,7 @@
         $footer_content = '';
 
         foreach ($footer1 as $value) {
-          $footer_content .= '#<a href="' . CLICSHOPPING::link('index.php', 'Search&Q&keywords=' . $value . '&search_in_description=1', 'rel="nofollow"') . '">' . $value . '</a> ';
+          $footer_content .= '#<a href="' . CLICSHOPPING::link(null, 'Search&Q&keywords=' . $value . '&search_in_description=1', 'rel="nofollow"') . '">' . $value . '</a> ';
         }
 
         return $footer_content;

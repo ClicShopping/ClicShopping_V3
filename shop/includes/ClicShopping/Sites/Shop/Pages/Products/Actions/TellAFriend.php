@@ -26,12 +26,12 @@
 
       if (!$CLICSHOPPING_Customer->isLoggedOn() && (ALLOW_GUEST_TO_TELL_A_FRIEND == 'false')) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('index.php', 'Account&LogIn');
+        CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
       if ( isset($_GET['products_id']) && !empty($_GET['products_id']) ) {
         if ( empty($CLICSHOPPING_ProductsCommon->getProductsName() )) {
-          CLICSHOPPING::redirect('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
+          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
         }
       }
 
@@ -42,6 +42,6 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('tell_a_friend');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', 'Products&Description&TellAFriend&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getId()));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Description&TellAFriend&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getId()));
     }
   }

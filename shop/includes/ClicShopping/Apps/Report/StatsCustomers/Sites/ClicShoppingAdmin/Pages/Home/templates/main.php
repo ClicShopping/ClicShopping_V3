@@ -49,7 +49,7 @@
             <div class="form-group">
               <div class="col-md-12">
 <?php
-  echo HTML::form('configure', CLICSHOPPING::link('index.php', 'A&Report\StatsCustomers&Configure'));
+  echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Report\StatsCustomers&Configure'));
   echo HTML::button($CLICSHOPPING_StatsCustomers->getDef('button_configure'), null, null, 'primary');
   echo '</form>';
 ?>

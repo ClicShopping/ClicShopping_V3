@@ -56,13 +56,13 @@
 
           $products_id = HTML::sanitize($_GET['products_id']);
 
-          CLICSHOPPING::redirect('index.php', 'Products&ReviewsWrite&Success&products_id='. $products_id);
+          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&Success&products_id='. $products_id);
         }
 
         if ($error === true) {
           $products_id = HTML::sanitize($_GET['products_id']);
 
-          CLICSHOPPING::redirect('index.php', 'Products&ReviewsWrite&products_id=' . $products_id);
+          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&products_id=' . $products_id);
         }
       }
     }

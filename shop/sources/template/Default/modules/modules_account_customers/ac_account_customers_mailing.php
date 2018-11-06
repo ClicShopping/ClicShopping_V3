@@ -45,7 +45,7 @@
 
         $account = '<!-- Start account_customers_Notifications  --> ' . "\n";
 
-        $form = HTML::form('account_mailing', CLICSHOPPING::link('index.php', 'Account&Notifications&Process'), 'post', 'id="account_mailing"',  ['tokenize' => true, 'action' => 'process']);
+        $form = HTML::form('account_mailing', CLICSHOPPING::link(null, 'Account&Notifications&Process'), 'post', 'id="account_mailing"',  ['tokenize' => true, 'action' => 'process']);
         $endform ='</form>';
 
         ob_start();

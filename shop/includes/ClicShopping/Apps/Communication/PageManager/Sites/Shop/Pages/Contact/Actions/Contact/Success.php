@@ -30,6 +30,6 @@
 //language
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/ContactSuccess/contact_success');
 
-      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_PageManager->getDef('navbar_title_1'), CLICSHOPPING::link('index.php', 'Info&Contact&Success'));
+      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_PageManager->getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Info&Contact&Success'));
     }
   }

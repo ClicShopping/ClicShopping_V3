@@ -16,7 +16,7 @@
 <?php
   if (MEMBER == 'false') {
 ?>
-    <div class="modulesCreateProSuccessPageHeader"><?php echo CLICSHOPPING::getDef('module_create_account_pro_success_text_account_created', ['url_support' => CLICSHOPPING::link('index.php','Info&Contact')]); ?></div>
+    <div class="modulesCreateProSuccessPageHeader"><?php echo CLICSHOPPING::getDef('module_create_account_pro_success_text_account_created', ['url_support' => CLICSHOPPING::link(null,'Info&Contact')]); ?></div>
 <?php
   } else {
 ?>

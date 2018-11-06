@@ -49,7 +49,7 @@
 
         $account_gdpr = '<!-- Start account_customers_gdpr --> ' . "\n";
 
-        $form = HTML::form('gdpr_account', CLICSHOPPING::link('index.php', 'Account&Gdpr&Process'), 'post', 'id="gdpr_account"',  ['tokenize' => true, 'action' => 'process']);
+        $form = HTML::form('gdpr_account', CLICSHOPPING::link(null, 'Account&Gdpr&Process'), 'post', 'id="gdpr_account"',  ['tokenize' => true, 'action' => 'process']);
         $endform ='</form>';
 
         ob_start();

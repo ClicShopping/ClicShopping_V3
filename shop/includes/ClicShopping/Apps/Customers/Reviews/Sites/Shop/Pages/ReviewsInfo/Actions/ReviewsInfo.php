@@ -26,7 +26,7 @@
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if (!isset($_GET['products_id']) && !is_numeric($CLICSHOPPING_ProductsCommon->getId())  ) {
-        CLICSHOPPING::redirect('index.php');
+        CLICSHOPPING::redirect();
       }
 
       $review = $CLICSHOPPING_Reviews->getDataReviews($_GET['reviews_id']);
@@ -35,7 +35,7 @@
       $customers_name = HTML::outputProtected(substr($review['customers_name'], 0, -4)) . ' ...';
       $reviews_rating = $review['reviews_rating'];
       $reviews_text = $review['reviews_text'];
-      $products_name = HTML::link(CLICSHOPPING::link('index.php', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '" itemprop="url" class="productTitle"', '<span itemprop="name">' . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()) . '</span>');
+      $products_name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '" itemprop="url" class="productTitle"', '<span itemprop="name">' . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()) . '</span>');
 
 // *************************
 // display the differents prices before button
@@ -44,7 +44,7 @@
 // *************************
 // See the button more view details
 // *************************
-      $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link('index.php', 'Products&Description&products_id='. $CLICSHOPPING_ProductsCommon->getID()), 'info', null,'sm');
+      $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id='. $CLICSHOPPING_ProductsCommon->getID()), 'info', null,'sm');
 // *************************
 // Gestion de l'affichage des images et des zooms
 // *************************
@@ -74,6 +74,6 @@
                                           'Reviews'
                                         ]);
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link('index.php', $all_get));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, $all_get));
     }
   }
