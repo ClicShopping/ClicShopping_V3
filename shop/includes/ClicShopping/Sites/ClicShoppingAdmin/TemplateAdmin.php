@@ -285,49 +285,14 @@
               'index.php?search&Q',
               ];
 
-
       $result = [];
-/*
-      $exclude = array('ajax_search.php',
-                      'autocomplete_search.php',
-                      'checkout_process.php',
-                      'download.php',
-                      'export_price_comparison.php',
-                      'google_sitemap_categories.php',
-                      'google_sitemap_index.php',
-                      'google_sitemap_products.php',
-                      'google_sitemap_blog_categories.php',
-                      'google_sitemap_featured_products.php',
-                      'google_sitemap_blog_content.php',
-                      'google_sitemap_manufacturers.php',
-                      'google_sitemap_page_manager.php',
-                      'google_sitemap_products_favorites.php',
-                      'google_sitemap_specials.php',
-                      'google_sitemap_fetured_products.php',
-                      'opensearch.php',
-                      'orders_invoice.php',
-                      'popup_search_help.php',
-                      'popup_image.php',
-                      'popup_page_manager_account_history.php',
-                      'redirect.php',
-                      'rss.php',
-                      'thema_template.php',
-                    );
 
-      while (false !== ($file = $dir->read())) {
-        if($file != '.' && $file != '..' && $file != '.html' && !is_dir($file) && (substr($file, -3, 3) == 'php') && !in_array($file, $exclude)) {
-          $result[] =  $file;
-        }
-      }
-*/
       $result[] = 'index.php';
 
       foreach ($file as &$value) {
         $value = substr($value , 10);
         $result[] .= $value;
       }
-
- //     $dir->close();
 
       return $result;
     }

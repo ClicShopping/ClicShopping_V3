@@ -537,7 +537,6 @@
         $url_string = $replace;
       } else {
         $url_string = $_SERVER['QUERY_STRING'];
-        $url_string = substr($url_string, 0, strpos($url_string, '&language='));
       }
 
       return $url_string;
