@@ -223,11 +223,25 @@
  *
  */
     private function getImage() {
-
         Registry::set('ImageResample', new ImageResample());
         $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
 
-        $rand_image = $this->getGenerateRandomString();
+        if (isset($_GET['pID'])) {
+          $Qimages = $this->db->prepare('select products_image,
+                                                products_image_zoom,
+                                                products_image_medium
+                                         from :table_products
+                                         where products_id = :products_id
+                                        ');
+          $Qimages->bindInt(':products_id', $_GET['pID']);
+          $Qimages->execute();
+
+          $product_update_image = $Qimages->value('products_image');
+          $product_update_image_zoom = $Qimages->value('products_image_zoom');
+          $product_update_image_medium = $Qimages->value('products_image_medium');
+        }
+
+      $rand_image = $this->getGenerateRandomString();
 
         $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
         $error = true;
@@ -322,7 +336,7 @@
           $this->products_image_medium = $sql_data_array['products_image_medium'] = null;
         } else {
 
-          if ((isset($_POST['products_image']) && !is_null($_POST['products_image']) && !empty($_POST['products_image'])) || $small_image_resized != '') {
+          if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || $small_image_resized != '') {
 
 // Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
             $products_image_name = HTML::sanitize($_POST['products_image']);
@@ -339,12 +353,11 @@
               $this->products_image = $products_image_name;
             }
           } else {
-            $products_image_name = (isset($_POST['products_previous_image']) ? $_POST['products_previous_image'] : '');
+            $this->products_image = $product_update_image;
           }
 
 // big image
-          if ((isset($_POST['products_image_zoom']) && !is_null($_POST['products_image_zoom']) && !empty($_POST['products_image_zoom'])) || $big_image_resized != '') {
-
+          if ((isset($_POST['products_image_zoom'])) || $big_image_resized != '') {
             $products_image_zoom_name = HTML::sanitize($_POST['products_image_zoom']);
             $products_image_zoom_name = htmlspecialchars($products_image_zoom_name);
             $products_image_zoom_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_zoom_name);
@@ -358,12 +371,11 @@
               $this->products_image_zoom = $products_image_zoom_name;
             }
           } else {
-            $products_image_zoom_name = (isset($_POST['products_previous_image_2']) ? $_POST['products_previous_image_2'] : '');
+            $this->products_image_zoom = $product_update_image_zoom;
           }
 
 // medium image
-          if ((isset($_POST['products_image_medium']) && !is_null($_POST['products_image_medium']) && !empty($_POST['products_image_medium'])) || $medium_image_resized != '') {
-
+          if ((isset($_POST['products_image_medium']) && !is_null($_POST['products_image_medium'])) || $medium_image_resized != '') {
             $products_image_medium_name = HTML::sanitize($_POST['products_image_medium']);
             $products_image_medium_name = htmlspecialchars($products_image_medium_name);
             $products_image_medium_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_medium_name);
@@ -377,7 +389,7 @@
               $this->products_image_medium = $products_image_medium_name;
             }
           } else {
-            $products_image_medium_name = (isset($_POST['products_image_medium_name']) ? $_POST['products_image_medium_name'] : '');
+            $this->products_image_medium = $product_update_medium;
           }
         }
     }
@@ -510,7 +522,6 @@
     return $image;
   }
 
-
 /**
  * Select the product packaging
  *
@@ -552,7 +563,6 @@
 
       return $product_packaging;
     }
-
 
 /**
  * the products quantity unit title
@@ -621,7 +631,6 @@
       return $Qproduct->value('products_shipping_delay');
     }
 
-
 /**
  * Description summary
  *
@@ -658,8 +667,6 @@
       $Qproduct = Registry::get('Db')->get('products', 'products_image', ['products_id' => (int)$product_id]);
       return $Qproduct->value('products_image');
     }
-
-
 
 /**
  * Directory of image
@@ -1260,10 +1267,7 @@
  */
 
     public function getSearch($keywords = null) {
-      $current_category_id = HTML::sanitize($_POST['cPath']);
-
       if (isset($keywords) && !empty($keywords)) {
-
         $keywords = HTML::sanitize($keywords);
 
         $Qproducts = $this->db->prepare('select SQL_CALC_FOUND_ROWS  p.products_id,
@@ -1304,40 +1308,40 @@
         $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qproducts->execute();
       } else {
-
         if (isset($_POST['cPath'])) {
           $current_category_id = HTML::sanitize($_POST['cPath']);
         } else {
           $current_category_id = HTML::sanitize($_GET['cPath']);
         }
 
-        $Qproducts = $this->db->prepare('select  SQL_CALC_FOUND_ROWS   p.products_id,
-                                                                       pd.products_name,
-                                                                       p.products_model,
-                                                                       p.products_ean,
-                                                                       p.products_sku,
-                                                                       p.products_quantity,
-                                                                       p.products_image,
-                                                                       p.products_price,
-                                                                       p.products_date_added,
-                                                                       p.products_last_modified,
-                                                                       p.products_date_available,
-                                                                       p.products_status,
-                                                                       p.admin_user_name,
-                                                                       p.products_sort_order,
-                                                                       p.products_download_filename,
-                                                                       p2c.categories_id
-                                             from :table_products p,
-                                                  :table_products_description pd,
-                                                  :table_products_to_categories p2c
-                                             where p.products_id = pd.products_id
-                                             and pd.language_id = :language_id
-                                             and p.products_id = p2c.products_id
-                                             and p2c.categories_id = :categories_id
-                                             and p.products_archive = 0
-                                             order by pd.products_name
-                                             limit :page_set_offset, :page_set_max_results
-                                          ');
+        $Qproducts = $this->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
+                                                                     pd.products_name,
+                                                                     p.products_model,
+                                                                     p.products_ean,
+                                                                     p.products_sku,
+                                                                     p.products_quantity,
+                                                                     p.products_image,
+                                                                     p.products_price,
+                                                                     p.products_date_added,
+                                                                     p.products_last_modified,
+                                                                     p.products_date_available,
+                                                                     p.products_status,
+                                                                     p.admin_user_name,
+                                                                     p.products_sort_order,
+                                                                     p.products_download_filename,
+                                                                     p2c.categories_id
+                                           from :table_products p,
+                                                :table_products_description pd,
+                                                :table_products_to_categories p2c
+                                           where p.products_id = pd.products_id
+                                           and pd.language_id = :language_id
+                                           and p.products_id = p2c.products_id
+                                           and p2c.categories_id = :categories_id
+                                           and p.products_archive = 0
+                                           order by pd.products_name
+                                           limit :page_set_offset, :page_set_max_results
+                                        ');
+
         $Qproducts->bindInt(':categories_id', (int)$current_category_id );
         $Qproducts->bindInt(':language_id', $this->lang->getId() );
         $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
@@ -1474,21 +1478,9 @@
 // image
       $this->getImage($id);
 
-      if (!empty($this->products_image_medium)) {
-        $sql_data_array['products_image_medium'] = $this->products_image_medium;
-      } else {
-        $sql_data_array['products_image_medium'] = null;
-      }
-      if (!empty($this->products_image_zoom)) {
-        $sql_data_array['products_image_zoom'] = $this->products_image_zoom;
-      } else {
-        $sql_data_array['products_image_zoom'] = null;
-      }
-      if (!empty($this->products_image)) {
-        $sql_data_array['products_image'] = $this->products_image;
-      } else {
-        $sql_data_array['products_image'] = null;
-      }
+      $sql_data_array['products_image_medium'] = $this->products_image_medium;
+      $sql_data_array['products_image_zoom'] = $this->products_image_zoom;
+      $sql_data_array['products_image'] = $this->products_image;
 
 //---------------------------------------------------------------------------------------------
 //  Save Data
