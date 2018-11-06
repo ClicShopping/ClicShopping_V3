@@ -139,7 +139,6 @@
  * @return string The URL address.
  */
     public static function link($page, $parameters = null, $add_session_id = true, $search_engine_safe = true)  {
-
       $page = HTML::sanitize($page);
 
       $site = $req_site = static::$site;
@@ -203,7 +202,7 @@
       }
 
       if ($search_engine_safe === true && defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
-        $link = str_replace(['?', '&', '='], ['/', '/', ','], $link);
+        $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
       }
 
       return $link;
