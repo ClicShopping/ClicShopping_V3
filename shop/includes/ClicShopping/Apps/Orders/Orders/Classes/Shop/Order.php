@@ -1133,10 +1133,7 @@
  * @return array and save history
  * @access public
 */
-    private function adminOrdersStatusHistory($insert_id = null, $comment = null) {
-
-      $this->db = Registry::get('Db');
-
+    public function adminOrdersStatusHistory($insert_id = null, $comment = null) {
       $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
 
       $sql_data_array = ['orders_id' => (int)$insert_id,
@@ -1157,7 +1154,7 @@
  * @return email
  * @access public
 */
-    private function sendCustomerEmail($insert_id) {
+    public function sendCustomerEmail($insert_id) {
       global $CLICSHOPPING_PM;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -1301,7 +1298,7 @@
     }
 
 // Alert by mail product exhausted if a product is 0 or < 0
-    private function sendEmailAlertProductsExhausted($insert_id) {
+    public function sendEmailAlertProductsExhausted($insert_id) {
       $CLICSHOPPING_Prod = Registry::get('Db');
 
       if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
@@ -1346,7 +1343,7 @@
       }
     }
 
-    private function sendEmailAlertStockWarning($insert_id) {
+    public function sendEmailAlertStockWarning($insert_id) {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
       if (STOCK_ALERT_PRODUCT_REORDER_LEVEL == 'true') {
