@@ -1,6 +1,6 @@
 
 navbar_title = Créer un compte
-heading_title_create = Créer un compte
+heading_title_create_account = Créer un compte
 
 email_subject = Demander une ouverture de compte sur  {{store_name}}
 email_greet_mr = Dear Mr. {{lastname}},

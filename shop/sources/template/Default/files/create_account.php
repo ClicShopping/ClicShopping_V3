@@ -15,7 +15,7 @@
 <section class="create_account" id="create_account">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_create'); ?></h1></div>
+      <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_create_account'); ?></h1></div>
       <div class="separator"></div>
       <div><?php echo $CLICSHOPPING_Template->getBlocks('modules_create_account'); ?></div>
     </div>

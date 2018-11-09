@@ -1,6 +1,6 @@
 
  navbar_title = Login
- heading_title = Open an account
+ heading_title_login = Open an account
 
  heading_new_customer = New Customer
 

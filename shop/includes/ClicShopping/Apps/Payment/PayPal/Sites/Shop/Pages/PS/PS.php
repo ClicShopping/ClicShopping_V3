@@ -25,7 +25,7 @@
     protected $pm;
     protected $lang;
 
-    protected function init()  {
+    protected function init() {
 
       $this->lang = Registry::get('Language');
 
@@ -89,7 +89,7 @@
 
         if ($Qorder->fetch() !== false) {
           if ($Qorder->valueInt('orders_status') == CLICSHOPPING_APP_PAYPAL_PS_PREPARE_ORDER_STATUS_ID) {
-              $new_order_status = DEFAULT_ORDERS_STATUS_ID;
+            $new_order_status = DEFAULT_ORDERS_STATUS_ID;
 
             if (CLICSHOPPING_APP_PAYPAL_PS_ORDER_STATUS_ID > 0) {
                 $new_order_status = CLICSHOPPING_APP_PAYPAL_PS_ORDER_STATUS_ID;
@@ -116,41 +116,41 @@
             $CLICSHOPPING_Order = Registry::get('Order');
 
             if (DOWNLOAD_ENABLED == 'true') {
-                for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
-                    $Qdownloads = $this->pm->app->db->prepare('select opd.orders_products_filename
-                                                               from :table_orders o,
-                                                                    :table_orders_products op,
-                                                                    :table_orders_products_download opd
-                                                              where o.orders_id = :order_id
-                                                              and o.customers_id = :customers_id
-                                                              and o.orders_id = op.orders_id
-                                                              and op.orders_products_id = opd.orders_products_id
-                                                              and opd.orders_products_filename <> :orders_products_filename
-                                                             ');
-                    $Qdownloads->bindInt(':orders_id', $order_id );
-                    $Qdownloads->bindInt(':customers_id', $customer_id);
-                    $Qdownloads->bindValue(':orders_products_filename', '');
+              for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
+                $Qdownloads = $this->pm->app->db->prepare('select opd.orders_products_filename
+                                                           from :table_orders o,
+                                                                :table_orders_products op,
+                                                                :table_orders_products_download opd
+                                                          where o.orders_id = :order_id
+                                                          and o.customers_id = :customers_id
+                                                          and o.orders_id = op.orders_id
+                                                          and op.orders_products_id = opd.orders_products_id
+                                                          and opd.orders_products_filename <> :orders_products_filename
+                                                         ');
+                $Qdownloads->bindInt(':orders_id', $order_id );
+                $Qdownloads->bindInt(':customers_id', $customer_id);
+                $Qdownloads->bindValue(':orders_products_filename', '');
 
-                    $Qdownloads->execute();
+                $Qdownloads->execute();
 
-                    if ($Qdownloads->fetch() !== false) {
-                      if ($CLICSHOPPING_Order->content_type == 'physical' ) {
-                        $CLICSHOPPING_Order->content_type = 'mixed';
+                if ($Qdownloads->fetch() !== false) {
+                  if ($CLICSHOPPING_Order->content_type == 'physical' ) {
+                    $CLICSHOPPING_Order->content_type = 'mixed';
 
-                          break;
-                        } else {
-                         $CLICSHOPPING_Order->content_type = 'virtual';
-                        }
+                      break;
                     } else {
-                      if ( $CLICSHOPPING_Order->content_type == 'virtual' ) {
-                        $CLICSHOPPING_Order->content_type = 'mixed';
-
-                        break;
-                      } else {
-                        $CLICSHOPPING_Order->content_type = 'physical';
-                      }
+                     $CLICSHOPPING_Order->content_type = 'virtual';
                     }
+                } else {
+                  if ( $CLICSHOPPING_Order->content_type == 'virtual' ) {
+                    $CLICSHOPPING_Order->content_type = 'mixed';
+
+                    break;
+                  } else {
+                    $CLICSHOPPING_Order->content_type = 'physical';
+                  }
                 }
+              }
             } else {
               $CLICSHOPPING_Order->content_type = 'physical';
             }
@@ -212,7 +212,7 @@
                   if ($stock_left != $Qstock->valueInt('products_quantity')) {
                     $this->pm->app->db->save('products', ['products_quantity' => $stock_left
                                                          ], [
-                                                              'products_id' =>  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id'])
+                                                           'products_id' =>  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id'])
                                                          ]
                                             );
                   }
@@ -256,7 +256,7 @@
 
 // lets start with the email confirmation
       $email_order = STORE_NAME . "\n\n" .
-      CLICSHOPPING::getDef('email_separator') .  "\n" .
+      CLICSHOPPING::getDef('email_separator') . "\n" .
       CLICSHOPPING::getDef('email_text_order_number', ['store_name' => STORE_NAME]) . ' ' . $this->order_id . "\n" .
       CLICSHOPPING::getDef('email_text_invoice_url') . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$this->order_id) . "\n" .
       CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";

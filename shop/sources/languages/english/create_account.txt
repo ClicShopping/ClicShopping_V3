@@ -1,7 +1,7 @@
 
 navbar_title = Create an Account
 
-heading_title_create = Create an account
+heading_title_create_account = Create an account
 
 email_subject = Welcome to {{store_name}}
 email_greet_mr = Dear Mr. {{lastname}},

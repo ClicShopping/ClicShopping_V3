@@ -780,7 +780,6 @@
 
     public function before_process() {
       $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Prod = Registry::get('Prod');
@@ -795,11 +794,11 @@
         $new_order_status = CLICSHOPPING_APP_PAYPAL_PS_ORDER_STATUS_ID;
       }
 
-      $CLICSHOPPING_Db->save('orders', ['orders_status' => (int)$new_order_status,
-                                         'last_modified' => 'now()',
-                                        ],
-                                        ['orders_id' => (int)$this->order_id]
-                            );
+      $this->app->db->save('orders', ['orders_status' => (int)$new_order_status,
+                                       'last_modified' => 'now()',
+                                      ],
+                                      ['orders_id' => (int)$this->order_id]
+                          );
 
       $sql_data_array = ['orders_id' => (int)$this->order_id,
                         'orders_status_id' => (int)$new_order_status,
@@ -818,7 +817,7 @@
         $sql_data_array = ['coupons_id' => $CLICSHOPPING_Order->info['coupon'],
                            'orders_id' => (int)$this->order_id
                           ];
-        $CLICSHOPPING_Db->save('discount_coupons_to_orders', $sql_data_array);
+        $this->app->db->save('discount_coupons_to_orders', $sql_data_array);
       }
 
 // initialized for the email confirmation
@@ -854,11 +853,11 @@
 
             $Qstock->execute();
           } else {
-            $Qstock = $CLICSHOPPING_Db->prepare('select products_quantity,
-                                                        products_quantity_alert
-                                                  from :table_products
-                                                  where products_id = :products_id
-                                                ');
+            $Qstock = $this->app->db->prepare('select products_quantity,
+                                                      products_quantity_alert
+                                                from :table_products
+                                                where products_id = :products_id
+                                              ');
 
             $Qstock->bindInt(':products_id',  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
             $Qstock->execute();
@@ -870,11 +869,11 @@
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
               if ($CLICSHOPPING_Customer->getCustomersGroupID() != '0') {
 
-                $QproductsQuantityCustomersGroup = $CLICSHOPPING_Db->prepare('select products_quantity_fixed_group
-                                                                              from :table_products_groups
-                                                                              where products_id = :products_id
-                                                                              and customers_group_id =  :customers_group_id
-                                                                             ');
+                $QproductsQuantityCustomersGroup = $this->app->db->prepare('select products_quantity_fixed_group
+                                                                            from :table_products_groups
+                                                                            where products_id = :products_id
+                                                                            and customers_group_id =  :customers_group_id
+                                                                           ');
                 $QproductsQuantityCustomersGroup->bindInt(':products_id',  $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']) );
                 $QproductsQuantityCustomersGroup->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
                 $QproductsQuantityCustomersGroup->execute();
@@ -955,10 +954,11 @@
         }
 
 // Update products_ordered (for bestsellers list)
-        $Qupdate = $CLICSHOPPING_Db->prepare('update :table_products
-                                              set products_ordered = products_ordered + :products_ordered
-                                              where products_id = :products_id
-                                            ');
+        $Qupdate = $this->app->db->prepare('update :table_products
+                                            set products_ordered = products_ordered + :products_ordered
+                                            where products_id = :products_id
+                                          ');
+
         $Qupdate->bindInt(':products_ordered', $CLICSHOPPING_Order->products[$i]['qty']);
         $Qupdate->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
         $Qupdate->execute();
@@ -1084,6 +1084,10 @@
       unset($_SESSION['payment']);
       unset($_SESSION['comments']);
       unset($_SESSION['coupon']);
+      unset($_SESSION['order']);
+      unset($_SESSION['order_total']);
+      unset($_SESSION['ClicShoppingCart']);
+      unset($_SESSION['free_shipping']);
 
       unset($_SESSION['cart_PayPal_Standard_ID']);
 

@@ -1,6 +1,6 @@
 
 navbar_title = Connexion
-heading_title = Ouvrir un compte
+heading_title_login = Ouvrir un compte
 heading_new_customer = Vous êtes un nouveau Client
 
 text_new_customer_introduction = <strong>Veuillez choisir l'une des options qui vous sont présentées ci-dessous .</strong><br />
