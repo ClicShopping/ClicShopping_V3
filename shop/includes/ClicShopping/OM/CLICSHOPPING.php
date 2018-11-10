@@ -38,6 +38,7 @@
       ErrorHandler::initialize();
 
       HTTP::setRequestType();
+      HTTP::getHSTS();
 
       static::setSiteApplication();
     }

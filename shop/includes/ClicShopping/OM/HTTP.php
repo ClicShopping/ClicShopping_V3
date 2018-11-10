@@ -9,7 +9,6 @@
  *
  */
 
-
   namespace ClicShopping\OM;
 
   use ClicShopping\OM\Is;
@@ -23,6 +22,21 @@
 
     public static function getRequestType() {
       return static::$request_type;
+    }
+
+/*
+ * Use HTTP Strict Transport Security to force client to use secure connections only
+ */
+    public static function getHSTS($use_sts = true) {
+      if (static::$request_type == 'SSL' && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+        if ($use_sts === true) {
+          header('Strict-Transport-Security: max-age=500; includeSubDomains; preload');
+        } else {
+          header('Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], true, 301);
+// we are in cleartext at the moment, prevent further execution and output
+          die();
+        }
+      }
     }
 
 /**
