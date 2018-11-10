@@ -14,13 +14,24 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  require('includes/application_top.php');
+// start the timer for the page parse time log
+  define('PAGE_PARSE_START_TIME', microtime());
+  define('CLICSHOPPING_BASE_DIR', __DIR__ . '/includes/ClicShopping/');
 
-  $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Db = Registry::get('Db');
+  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+
+  CLICSHOPPING::initialize();
+
+  CLICSHOPPING::loadSite('Shop');
+
   $CLICSHOPPING_Service = Registry::get('Service');
+
+  $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Banner = Registry::get('Banner');
   $CLICSHOPPING_Manufacturer = Registry::get('Manufacturer');
+
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   switch ($_GET['action']) {
     case 'banner':

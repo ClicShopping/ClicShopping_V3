@@ -250,7 +250,7 @@
         if (!empty($banner['banners_html_text'])) {
           $output = $banner['banners_html_text'];
         } else {
-          $output = HTML::link(CLICSHOPPING::link('redirect.php',  'action=banner&goto=' . $banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title']) , null, null, null, true));
+          $output = HTML::link(CLICSHOPPING::link('redirect.php',  'action=banner&goto=' . $banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
         }
 
         static::updateBannerDisplayCount($banner['banners_id']);
@@ -459,20 +459,6 @@
 
     public static function updateBannerClickCount($banner_id) {
       $CLICSHOPPING_Db = Registry::get('Db');
-
-/*
-      $Qupdate = $CLICSHOPPING_Db->prepare('update :table_banners_history
-                                      set banners_clicked = banners_clicked + 1
-                                      where banners_id = :banners_id
-                                      and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
-                                     ');
-      $Qupdate->bindInt(':banners_id', $banner_id);
-      $Qupdate->execute();
-
-      return $Qupdate->rowCount();
-*/
-
-
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select count(*) as count
                                     from :table_banners_history where banners_id = :banners_id
