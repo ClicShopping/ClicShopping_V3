@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -71,8 +71,7 @@
         $js_array = substr($js_array, 0, -1);
       }
 
-      $chart_label = HTML::output($this->app->getDef('module_admin_dashboard_total_customers_app_chart_link'));
-      $chart_label_link = CLICSHOPPING::link('customers.php');
+      $chart_label_link = CLICSHOPPING::link(null, 'Customers\Customers&Customers');
       $chart_tiltle = $this->app->getDef('module_admin_dashboard_total_customers_app_chart_link');
 
       $content_width = 'col-lg-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH;

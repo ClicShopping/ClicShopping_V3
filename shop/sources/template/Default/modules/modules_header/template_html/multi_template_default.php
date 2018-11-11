@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
@@ -91,9 +91,11 @@ use ClicShopping\OM\HTML;
         <span class="col-md-5 float-md-right headerMultiTemplateDefaultShoppingCartImage"><?php echo $banner_header; ?></span>
       </span>
     </div>
-    <div class="clearfix"></div>
     <div class="row">
-      <div class="col-md-12 text-md-right">
+      <div class="col-md-1">
+        <?php echo $currency_header; ?>
+      </div>
+      <div class="col-md-11 text-md-right">
         <span class="headerMultiTemplateDefaultShoppingCart"><i class="fas fa-shopping-cart fa-2x" aria-hidden="true"></i></span>
         <span class="headerMultiTemplateDefaultCartLink"><?php echo HTML::link(CLICSHOPPING::link(null, 'Cart'), $shopping_cart); ?></span>
       </div>

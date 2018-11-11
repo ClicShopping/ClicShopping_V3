@@ -43,45 +43,24 @@
       $CLICSHOPPING_Banner = Registry::get('Banner');
 
       if (substr(CLICSHOPPING::getBaseNameIndex(), 0, 8) != 'Checkout') {
-        if (isset($CLICSHOPPING_Currencies) && is_object($CLICSHOPPING_Currencies) && (count($CLICSHOPPING_Currencies->currencies) > 1)) {
-          reset($CLICSHOPPING_Currencies->currencies);
-          $currencies_array = array();
 
-          foreach($CLICSHOPPING_Currencies->currencies as $key => $value) {
-            $currencies_array[] = ['id' => $key,
-                                   'text' => $value['title']
-                                  ];
+        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+          if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CURRENCIES_BANNER_GROUP)) {
+            $currencies_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }
-
-          $hidden_get_variables = '';
-
-          foreach ( $_GET as $key => $value ) {
-            if ( is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y') ) {
-              $hidden_get_variables .= HTML::hiddenField($key, $value);
-            }
-          }
-
-          if ($CLICSHOPPING_Service->isStarted('Banner') ) {
-            if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CURRENCIES_BANNER_GROUP)) {
-              $currencies_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-            }
-          }
-
-          $currency ='<!-- Boxe currencies start -->' . "\n";
-
-          $output = HTML::form('currencies', CLICSHOPPING::link(null, null, false), 'get', null, ['session_id' => true]);
-
-          $output .= HTML::selectMenu('currency', $currencies_array, $_SESSION['currency'], 'class="boxePullDownsideCurrencies" onchange="this.form.submit();"') . $hidden_get_variables;
-          $output .= '</form>';
-
-          ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/currencies'));
-          $currency .= ob_get_clean();
-
-          $currency .='<!-- Boxe currencies end -->' . "\n";
-
-          $CLICSHOPPING_Template->addBlock($currency, $this->group);
         }
+
+        $output = $CLICSHOPPING_Currencies->getCurrenciesDropDown('boxePullDownsideCurrencies');
+
+        $currency ='<!-- Boxe currencies start -->' . "\n";
+
+        ob_start();
+        require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/currencies'));
+        $currency .= ob_get_clean();
+
+        $currency .='<!-- Boxe currencies end -->' . "\n";
+
+        $CLICSHOPPING_Template->addBlock($currency, $this->group);
       }
     }
 
