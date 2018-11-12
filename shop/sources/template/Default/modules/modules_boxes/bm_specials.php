@@ -45,6 +45,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 
@@ -103,9 +104,7 @@
 
         }
 
-        $row = 0;
         $col = 0;
-        $num = 0;
 
         if ($Qproducts->rowCount() > 0) {
 
@@ -123,15 +122,13 @@
           $data .= '<div class="card-block text-sm-center boxeContentArroundSpecials">';
 
           while ($Qproducts->fetch() ) {
-            $num ++;
-
             $products_id = $Qproducts->valueInt('products_id');
             $_POST['products_id'] = $products_id;
   // **************************
   //    product name
   // **************************
             $products_name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products_id), $CLICSHOPPING_ProductsCommon->getProductsName($products_id));
-            $products_name_image =  $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
+            $products_name_image = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id, $in_stock);
   // *************************
   //       Flash discount
   // **************************
@@ -179,7 +176,6 @@
             $col ++;
             if ($col > 0) {
               $col = 0;
-              $row ++;
             }
           } //end while
 

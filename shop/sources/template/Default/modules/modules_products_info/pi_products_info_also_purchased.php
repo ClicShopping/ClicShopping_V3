@@ -138,7 +138,7 @@
               $in_stock = $Qproducts->valueInt('in_stock');
 
 //product name
-              $products_name = $CLICSHOPPING_ProductsFunctionTemplate->getProductsName($products_id, $in_stock);
+              $products_name = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id, $in_stock);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
