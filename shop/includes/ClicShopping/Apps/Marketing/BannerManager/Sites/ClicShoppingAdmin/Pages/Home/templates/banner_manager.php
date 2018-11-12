@@ -234,14 +234,14 @@ use ClicShopping\OM\HTML;
                 <td><?php echo $banner_language['name']; ?></td>
                 <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $_GET['page'] . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_BannerManager->getDef('image_edit')) . '</a>';
+      echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $_GET['page'] . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_BannerManager->getDef('icon_edit')) . '</a>';
       echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $_GET['page'] . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_BannerManager->getDef('image_copy_to')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $_GET['page'] . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_BannerManager->getDef('icon_copy_to')) . '</a>' ;
       echo '&nbsp;';
       echo '<a data-banner-id="' . $Qbanner->valueInt('banners_id') . '" data-toggle="modal" data-target="#statsModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/statistics.gif', $CLICSHOPPING_BannerManager->getDef('icon_statistics')) . '</a>';
       echo '&nbsp;';
       echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $_GET['page'] . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_BannerManager->getDef('image_delete')) . '</a>';
+      echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $_GET['page'] . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_BannerManager->getDef('icon_delete')) . '</a>';
       echo '&nbsp;';
 ?>
                 </td>

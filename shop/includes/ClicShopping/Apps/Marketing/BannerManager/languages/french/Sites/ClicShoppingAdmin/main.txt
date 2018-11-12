@@ -120,6 +120,10 @@ title_help_banners_date = Note sur l'utilisation des dates d'une bannière
 title_help_banners_html_text = Note sur le code HTML d'une bannière
 
 icon_view_banner = Voir la bannière
+icon_edit = Editer
+icon_delete = Supprimer
+icon_copy_to = Copier vers
+icon_statistics = Statistiques
 
 set_inactive = Inactif
 set_active = Actif

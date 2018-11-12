@@ -85,6 +85,7 @@
             <?php echo HTML::inputField('keywords', null, 'required aria-required="true" id="inputKeywordsSearchLogin" aria-describedby="' . CLICSHOPPING::getDef('modules_header_multi_template_header_search') . '" placeholder="' . CLICSHOPPING::getDef('modules_header_multi_template_header_search') . '"', 'search'); ?>
             <span id="buttonKeywordsSearch"><?php echo HTML::button(null, 'fas fa-search', null, 'primary', null, 'md'); ?></span>
           </div>
+           <div class="text-md-center advancedSearchAdvancedSearch"><?php echo HTML::link(CLICSHOPPING::link(null, 'Search&AdvancedSearch'), CLICSHOPPING::getDef('modules_header_multi_template_title_advanced_search')); ?></div>
           <?php echo HTML::hiddenField('search_in_description', '1'); ?>
           <?php echo $endform; ?>
         </span>
@@ -92,12 +93,14 @@
       </span>
     </div>
     <div class="row">
-      <div class="col-md-1">
-        <?php echo $currency_header; ?>
-      </div>
-      <div class="col-md-11 text-md-right">
-        <span class="headerMultiTemplateDefaultShoppingCart"><i class="fas fa-shopping-cart fa-2x" aria-hidden="true"></i></span>
-        <span class="headerMultiTemplateDefaultCartLink"><?php echo HTML::link(CLICSHOPPING::link(null, 'Cart'), $shopping_cart); ?></span>
+      <div class="col-md-12">
+        <span class="col-md-6 float-md-left">
+          <?php echo $currency_header; ?>
+        </span>
+        <span class="col-md-6 float-md-right text-md-right">
+          <span class="headerMultiTemplateDefaultShoppingCart"><i class="fas fa-shopping-cart fa-2x" aria-hidden="true"></i></span>
+          <span class="headerMultiTemplateDefaultCartLink"><?php echo HTML::link(CLICSHOPPING::link(null, 'Cart'), $shopping_cart); ?></span>
+        </span>
       </div>
     </div>
   </div>

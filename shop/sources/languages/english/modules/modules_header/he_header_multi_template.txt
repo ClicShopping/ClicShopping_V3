@@ -18,7 +18,7 @@ modules_header_multi_template_account_history = My order history
 modules_header_multi_template_account_address_book = My book address
 
 modules_header_multi_template_account_password = Password
-
+modules_header_multi_template_title_advanced_search = Advanced search
 
 modules_header_multi_template_header_search = Search
 modules_header_multi_template_title_contact_us = Contact us

@@ -189,18 +189,13 @@
           'configuration_title' => 'Indicate the page where the module is displayed',
           'configuration_key' => 'MODULE_BOXES_SHOPPING_CART_DISPLAY_PAGES',
           'configuration_value' => 'all',
-          'configuration_description' => 'Sélectionnez les pages où la boxe doit être présente.',
+          'configuration_description' => 'Select the page where the modules must be displayed',
           'configuration_group_id' => '6',
           'sort_order' => '5',
           'set_function' => 'clic_cfg_set_select_pages_list',
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                              );
-
     }
 
     public function  remove() {

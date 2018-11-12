@@ -18,7 +18,7 @@ modules_header_multi_template_account_history = Mon historique de commande
 modules_header_multi_template_account_address_book = Mon carnet d'adresses
 
 modules_header_multi_template_account_password = Mot de passe
-
+modules_header_multi_template_title_advanced_search = Recherche Avançée
 
 modules_header_multi_template_header_search = Rechercher
 modules_header_multi_template_title_contact_us = Nous contacter

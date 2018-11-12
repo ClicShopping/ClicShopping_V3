@@ -118,6 +118,11 @@ title_help_banners_date = Note on the use of the dates of a banner
 title_help_banners_html_text = Note on code HTML of a banner
 
 icon_view_banner = View banner
+icon_edit = Edit
+icon_delete = Delete
+icon_copy_to = Copy to
+icon_statistics = Statistics
+
 set_inactive = Inactive
 set_active = Active
 
