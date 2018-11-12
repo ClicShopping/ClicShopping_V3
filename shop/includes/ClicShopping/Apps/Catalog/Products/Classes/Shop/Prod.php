@@ -29,7 +29,7 @@
 // products description
       $id = empty($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
 
-// products lisiting
+// products listing
       if (empty($id) && !isset($_GET['Search']) && !isset($_GET['Q'])) {
         if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
           $id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);

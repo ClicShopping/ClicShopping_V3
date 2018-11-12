@@ -30,7 +30,7 @@
       $this->category = Registry::get('Category');
     }
 
-    public function getProductsName($products_id, $in_stock) {
+    public function getProductsNameUrl($products_id, $in_stock) {
       $products_name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) .'</span>', 'itemprop="url"');
 
       return $products_name;
