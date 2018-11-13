@@ -24,8 +24,13 @@ modules_header_multi_template_header_search = Rechercher
 modules_header_multi_template_title_contact_us = Nous contacter
 modules_header_multi_template_header_email_address = Email
 modules_header_multi_template_password_forgotten = Mot de passe perdu
-modules_header_multi_template_shopping_cart = produit(s)
-modules_header_multi_template_shopping_cart_no_products = Aucun produit
+
+modules_header_multi_template_shopping_cart_no_content = Aucun produit
+modules_header_multi_template_shopping_cart_product = produit(s)
+modules_header_multi_template_shopping_cart_view_cart = Panier
+modules_header_multi_template_shopping_cart_checkout = Commander
+modules_header_multi_template_shopping_cart_total_content = Total
+
 
 template_does_not_exist = Aucun template
 

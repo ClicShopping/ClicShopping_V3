@@ -46,6 +46,7 @@
       $CLICSHOPPING_Banner = Registry::get('Banner');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
+      $CLICSHOPPING_Tax = Registry::get('Tax');
 
       $CLICSHOPPING_CategoryTree->reset();
       $CLICSHOPPING_CategoryTree->setMaximumLevel(1);
@@ -71,7 +72,7 @@
       }
 
       if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
-        $shopping_cart = $CLICSHOPPING_ShoppingCart->getCountContents() . '&nbsp;' . CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart') . '&nbsp;';
+        $shopping_cart = $CLICSHOPPING_ShoppingCart->getCountContents() . '&nbsp;' . CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_product') . '&nbsp;';
       } else {
         $shopping_cart = CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_no_products');
       }

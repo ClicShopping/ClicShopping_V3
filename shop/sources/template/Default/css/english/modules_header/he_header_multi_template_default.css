@@ -29,7 +29,7 @@ span.headerMultiTemplateDefaultShoppingCartImage {
   padding-top:2rem;
 }
 
-span.headerMultiTemplateDefaultShoppingCart {
+i.headerMultiTemplateDefaultShoppingCart {
   color: #edac27;
   font-weight: bold;
   padding-right: 0.5rem;
@@ -37,7 +37,29 @@ span.headerMultiTemplateDefaultShoppingCart {
 }
 
 a.headerMultiTemplateDefaultShoppingCart {
-  color: #edac27!important;
+  text-decoration:none;
+}
+
+li.headerMultiTemplateDefaultShoppingCart {
+  list-style-type: none;
+}
+
+span .headerMultiTemplateDefaultShoppingSmallCart {
+  color: #edac27;
+  font-weight: bold;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+}
+
+span.headerMultiTemplateDefaultCheckout {
+  color: #28a745;
+  font-weight: bold;
+  padding-right: 0.5rem;
+  padding-top: 0rem;
+}
+
+a.headerMultiTemplateDefaultCheckout {
+  color: #28a745;
 }
 
 span.headerMultiTemplateDefaultHeaderSearch {

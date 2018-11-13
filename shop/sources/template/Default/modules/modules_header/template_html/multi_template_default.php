@@ -97,11 +97,46 @@
         <span class="col-md-6 float-md-left">
           <?php echo $currency_header; ?>
         </span>
-        <span class="col-md-6 float-md-right text-md-right">
-          <span class="headerMultiTemplateDefaultShoppingCart"><i class="fas fa-shopping-cart fa-2x" aria-hidden="true"></i></span>
-          <span class="headerMultiTemplateDefaultCartLink"><?php echo HTML::link(CLICSHOPPING::link(null, 'Cart'), $shopping_cart); ?></span>
+
+        <span class="col-md-6 float-md-right text-md-right headerMultiTemplateDefaultCartLink">
+
+<?php
+  if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
+?>
+          <li class="dropdown headerMultiTemplateDefaultShoppingCart">
+            <a class="dropdown-toggle headerMultiTemplateDefaultShoppingCart" data-toggle="dropdown" href="#"><?php echo '<i class="fas fa-shopping-cart fa-2x headerMultiTemplateDefaultShoppingCart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;' . $shopping_cart ?></a>
+            <ul class="dropdown-menu">
+              <li role="separator"></li>
+<?php
+  $products = $CLICSHOPPING_ShoppingCart->get_products();
+
+  foreach ($products as $k => $v) {
+    echo '<li class="headerMultiTemplateDefaultLi">&nbsp;&nbsp;
+            <span class="float-md-left">' . $v['quantity'] . ' - ' . $v['name'] . '</span>
+            <span class="float-md-right">' .  $CLICSHOPPING_Currencies->display_price($v['final_price'], $CLICSHOPPING_Tax->getTaxRate($v['tax_class_id']), $v['quantity']) . '</span>
+         </li>
+         ';
+  }
+?>
+              <li role="separator" class="h-divider"></li>
+              <li class="headerMultiTemplateDefaultLi">&nbsp;&nbsp;
+                <span class="float-md-left"><?php echo CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_total_content'); ?></span>
+                <span class="float-md-right"><?php echo $CLICSHOPPING_Currencies->display_price($CLICSHOPPING_ShoppingCart->show_total(), $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'])); ?></span>
+              </li>
+              <li role="separator" class="h-divider"></li>
+              <li class="headerMultiTemplateDefaultLi">
+                <span class="float-md-left headerMultiTemplateDefaultShoppingSmallCart"><i class="fas fa-shopping-cart">&nbsp;&nbsp;</i><?php echo HTML::link(ClicShopping::link(null, 'Cart'), CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_view_cart')); ?></span>
+                <span class="float-md-right headerMultiTemplateDefaultCheckout"><i class="fas fa-angle-right"></i>&nbsp;&nbsp;<?php echo HTML::link(ClicShopping::link(null, 'Checkout&Shipping'), CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_checkout')); ?></span>
+              </li>
+            </ul>
+          </li>
+ <?php
+}
+else {
+  echo '<li class="headerMultiTemplateDefaultShoppingCart"><p class="navbar-text"><i class="fas fa-shopping-cart fa-2x headerMultiTemplateDefaultShoppingCart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;' . CLICSHOPPING::getDef('modules_header_multi_template_shopping_cart_no_content') . '</p></li>';
+}
+?>
         </span>
       </div>
     </div>
   </div>
-  <div class="separator"></div>
