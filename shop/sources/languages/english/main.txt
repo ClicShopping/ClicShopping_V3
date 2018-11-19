@@ -289,10 +289,10 @@ email_text_product_stock = New product stock
 email_text_date_alert = Alert date
 
 text_install =
-<div style="text-align:center; padding-top: 50px;"><a href="https://www.clicshopping.org" target="_blank"><img src="images/logo_clicshopping_1.png" border="0" height="105" width="284" alt="Market Place"></a><br />
+<div style="text-align:center; padding-top: 50px;"><a href="https://www.clicshopping.org" target="_blank" rel="noreferrer"><img src="images/logo_clicshopping_1.png" border="0" height="105" width="284" alt="Market Place"></a><br />
 <div style="padding-top: 120px;">Congratulation, you have make with success the install process, please  read the informations below</div>
 <div style="padding-top: 20px;">Please, click on ClicShopping logo to connect you to the Market Place to begin and select your module that you want install</div>
 <div>ClicShopping is built on modular architecture, to use, you must install the modules. For more information, please, go to MarketPlace</div>
-<div><br /> - More about install module, please click on this link : <a href ="https://www.clicshopping.org/marketplace/mes-premiers-pas-bl-9.html" target="_blank">My first step</a></div>
-<div> - To download the Starter Pack : please click on : <a href="https://www.clicshopping.org/marketplace/sources/public/clicshopping/" target="_blank">Pack Starter</a> and install via the installation system of ClicShopping and activate the modules</div>
-<div> - Form more informations, please go to see our : <a href="https://www.clicshopping.org/marketplace/index.php?Blog&Categories" target="_blank">blog</a></div>
+<div><br /> - More about install module, please click on this link : <a href ="https://www.clicshopping.org/marketplace/mes-premiers-pas-bl-9.html" target="_blank" rel="noreferrer">My first step</a></div>
+<div> - To download the Starter Pack : please click on : <a href="https://www.clicshopping.org/marketplace/sources/public/clicshopping/" target="_blank" rel="noreferrer">Pack Starter</a> and install via the installation system of ClicShopping and activate the modules</div>
+<div> - Form more informations, please go to see our : <a href="https://www.clicshopping.org/marketplace/index.php?Blog&Categories" target="_blank" rel="noreferrer">blog</a></div>

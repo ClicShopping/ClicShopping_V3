@@ -35,6 +35,8 @@
     protected $_data = [];
     protected $db;
     protected $lang;
+    protected $categoryTree;
+    protected $rewriteUrl;
 /**
  * Constructor
  *
@@ -43,10 +45,9 @@
  */
 
     public function __construct($id = null) {
-      $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
-
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
+      $this->categoryTree = Registry::get('CategoryTree');
 
       if ( !isset($id) && isset($_GET['cPath']) ) {
         $cPath_array = array_unique(array_filter(explode('_', $_GET['cPath']), 'is_numeric'));
@@ -56,8 +57,8 @@
         }
       }
 
-      if ( isset($id) && $CLICSHOPPING_CategoryTree->exists($id) ) {
-        $this->_data = $CLICSHOPPING_CategoryTree->getData($id);
+      if ( isset($id) && $this->categoryTree->exists($id) ) {
+        $this->_data = $this->categoryTree->getData($id);
 
         $this->_id = $this->_data['id'];
         $this->_title = $this->_data['name'];
@@ -66,6 +67,12 @@
         $this->_parent_id = $this->_data['parent_id'];
         $this->_category_depth = $this->_data['category_depth'];
       }
+
+      if (!Registry::exists('RewriteUrl')) {
+        Registry::set('RewriteUrl', new RewriteUrl());
+      }
+
+      $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
 /**
@@ -154,9 +161,7 @@
  */
 
     public function getPath() {
-      $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
-
-      return $CLICSHOPPING_CategoryTree->buildBreadcrumb($this->_id);
+      return $this->categoryTree->buildBreadcrumb($this->_id);
     }
 
 /**
@@ -284,12 +289,12 @@
 
     public function getCountCategoriesNested() {
       $Qcategories = $this->db->prepare('select count(*) as total
-                                              from :table_categories c,
-                                                   :table_products_to_categories cd
-                                              where c.parent_id = 0
-                                        and c.categories_id = cd.categories_id
-                                        and cd.categories_id = :categories_id
-                                      ');
+                                    from :table_categories c,
+                                         :table_products_to_categories cd
+                                    where c.parent_id = 0
+                                    and c.categories_id = cd.categories_id
+                                    and cd.categories_id = :categories_id
+                                  ');
       $Qcategories->bindInt(':categories_id', $this->_id);
       $Qcategories->execute();
 
@@ -326,9 +331,9 @@
  */
     public function getSubcategories(&$subcategories_array, $parent_id = 0) {
       $Qsub = $this->db->prepare('select categories_id
-                                from :table_categories
-                                where parent_id = :parent_id
-                                ');
+                              from :table_categories
+                              where parent_id = :parent_id
+                              ');
       $Qsub->bindInt(':parent_id', $parent_id);
       $Qsub->execute();
 
@@ -353,24 +358,24 @@
       if (!is_array($categories_array)) $categories_array = array();
 
       $Qcategories = $this->db->prepare('select c.categories_id,
+                                         cd.categories_name
+                                    from :table_categories c,
+                                         :table_categories_description cd
+                                    where parent_id = :parent_id
+                                    and c.categories_id = cd.categories_id
+                                    and cd.language_id = :language_id
+                                    and virtual_categories = 0
+                                    order by sort_order,
                                              cd.categories_name
-                                        from :table_categories c,
-                                             :table_categories_description cd
-                                        where parent_id = :parent_id
-                                        and c.categories_id = cd.categories_id
-                                        and cd.language_id = :language_id
-                                        and virtual_categories = 0
-                                        order by sort_order,
-                                                 cd.categories_name
-                                       ');
+                                   ');
       $Qcategories->bindInt(':parent_id', (int)$parent_id);
       $Qcategories->bindInt(':language_id',  $this->lang->getId());
       $Qcategories->execute();
 
       while ($Qcategories->fetch()) {
-        $categories_array[] =  ['id' => $Qcategories->valueInt('categories_id'),
-                                'text' => $indent . $Qcategories->value('categories_name')
-                               ];
+        $categories_array =  ['id' => $Qcategories->valueInt('categories_id'),
+                              'text' => $indent . $Qcategories->value('categories_name')
+                             ];
 
         if ($Qcategories->valueInt('categories_id') != $parent_id) {
           $categories_array = $this->getCategories($categories_array, $Qcategories->valueInt('categories_id'), $indent . '&nbsp;&nbsp;');
@@ -392,7 +397,7 @@
       $Qparent = $this->db->prepare('select parent_id
                                     from :table_categories
                                     where categories_id = :categories_id
-                                  ');
+                                    ');
 
       $Qparent->bindInt(':categories_id', $categories_id);
       $Qparent->execute();
@@ -424,7 +429,7 @@
                                       and p.products_id = p2c.products_id
                                       and p.products_archive = 0
                                       limit 1
-                                    ');
+                                      ');
       $Qcategory->bindInt(':products_id', $products_id);
 
       $Qcategory->execute();
@@ -446,5 +451,25 @@
       }
 
       return $cPath;
+    }
+
+/**
+ * Rewrite link of Image
+ * @param $categories_link
+ * @return mixed
+ */
+    public function getCategoryImageUrl($categories_id) {
+      $category = $this->getPathCategories($categories_id);
+
+      $categories_url = $this->rewriteUrl->getCategoryImageUrl($category);
+
+      return $categories_url;
+    }
+
+
+    public function getCategoryTitle($categories_name) {
+      $category_name = $this->rewriteUrl->getCategoryTreeTitle($categories_name);
+
+      return $category_name;
     }
   }

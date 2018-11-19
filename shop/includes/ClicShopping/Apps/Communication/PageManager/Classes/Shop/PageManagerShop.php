@@ -31,11 +31,13 @@
     protected $db;
     protected $customer;
     protected $lang;
+    protected $rewriteUrl;
 
     public function __construct() {
       $this->db = Registry::get('Db');
       $this->customer = Registry::get('Customer');
       $this->lang = Registry::get('Language');
+      $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
 /**
@@ -247,7 +249,7 @@
           }
         } else {
           if ($QPage->valueInt('pages_id') != 3){
-            $link = CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QPage->valueInt('pages_id'));
+            $link = $this->rewriteUrl->getPageManagerContentUrl($QPage->valueInt('pages_id'));
           } else {
             $link = CLICSHOPPING::link(null, 'Info&Contact');
           }
@@ -330,7 +332,7 @@
             }
           } else {
             if ($QPageSecondary->valueInt('pages_id') != 3) {
-              $link_secondary =  CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QPageSecondary->valueInt('pages_id'));
+              $link = $this->rewriteUrl->getPageManagerContentUrl($QPageSecondary->valueInt('pages_id'));
             } else {
               $link_secondary = CLICSHOPPING::link(null, 'Info&Contact');
             }
@@ -537,8 +539,8 @@
             $page_liste_footer .= $separation. HTML::link(CLICSHOPPING::link($QPage->value('externallink')), $QPage->value('pages_title'), 'class="footerPageManager" target="' . $QPage->value('links_target') . '"');
           }
         } else {
-          if ($QPage->valueInt('pages_id') != 3){
-            $link = CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $QPage->valueInt('pages_id'));
+          if ($QPage->valueInt('pages_id') != 3) {
+            $link = $this->rewriteUrl->getPageManagerContentUrl($QPage->valueInt('pages_id'));
           } else {
             $link = CLICSHOPPING::link(null, 'Info&Contact');
           }

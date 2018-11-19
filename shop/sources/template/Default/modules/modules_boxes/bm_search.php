@@ -53,8 +53,11 @@
       $data ='<!-- Boxe Search start -->' . "\n";
 
       $output = HTML::form('quick_find', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="quick_find"', ['session_id' => true]);
-      $output .= '<div class="input-group">' . HTML::inputField('keywords', '', 'aria-required="true" placeholder="' . CLICSHOPPING::getDef('module_boxes_search_box_title') . '"', 'search');
-      $output .='<span class="input-group-btn"><button type="submit" class="btn btn-search btn-sm"><i class="fas fa-search"></i></button></span></div>';
+      $output .= '<div class="input-group">';
+      $output .= '<label for="inpuBoxeSearch" class="sr-only">' . CLICSHOPPING::getDef('module_boxes_search_box_title') . '</label>';
+      $output .=  HTML::inputField('keywords', '', 'aria-required="true" placeholder="' . CLICSHOPPING::getDef('module_boxes_search_box_title') . '"', 'search');
+      $output .= '<span class="input-group-btn"><button type="submit" class="btn btn-search btn-sm"><i class="fas fa-search"></i></button></span>';
+      $output .= '</div>';
       $output .= HTML::hiddenField('search_in_description', '1');
       $output .= '</form>';
 

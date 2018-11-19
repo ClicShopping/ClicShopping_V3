@@ -38,6 +38,7 @@
 
     public function  getData() {
       $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
+
       $data = '';
 
       $manufacturers = $CLICSHOPPING_Manufacturers->getAll();
@@ -49,12 +50,14 @@
               $manufacturers_list = '<ul style="list-style: none; margin: 0; padding: 0;">';
 
               foreach ($manufacturers as $m) {
+                $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl((int)$m['id']);
+
                 $manufacturers_name = ((strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
                 if (isset($_GET['manufacturers_id']) && ($_GET['manufacturers_id'] == $m['id'])) {
                  $manufacturers_name = '<strong>' . $manufacturers_name .'</strong>';
                 }
 
-                $manufacturers_list .= '<li>' . HTML::link(CLICSHOPPING::link(null, 'manufacturers_id=' . (int)$m['id']), $manufacturers_name) . '</li>';
+                $manufacturers_list .= '<li>' . HTML::link($manufacturer_url, $manufacturers_name) . '</li>';
               }
 
               $manufacturers_list .= '</ul>';
@@ -79,8 +82,9 @@
                                      ];
           }
 
-          $data = HTML::form('manufacturers', CLICSHOPPING::link(null, null, false), 'get', null, ['session_id' => true]);
-          $data .=  HTML::selectField('manufacturers_id', $manufacturers_array, (isset($_GET['manufacturers_id']) ? $_GET['manufacturers_id'] : ''), 'onchange="this.form.submit();" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
+          $data = HTML::form('manufacturers', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
+          $data .= '<label for="manufacturerDropDown" class="sr-only">Manufacturer</label>';
+          $data .=  HTML::selectField('manufacturers_id', $manufacturers_array, (isset($_GET['manufacturers_id']) ? $_GET['manufacturers_id'] : ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
           $data .=  '</form>';
         }
       }

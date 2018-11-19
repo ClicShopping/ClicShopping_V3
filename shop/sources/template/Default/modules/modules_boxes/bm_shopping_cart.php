@@ -38,49 +38,51 @@
     }
 
     public function  execute() {
-
       $CLICSHOPPING_Template= Registry::get('Template');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
       $cart_contents_string = '';
 
-        $products = $CLICSHOPPING_ShoppingCart->get_products();
+      $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-        for ($i=0, $n=count($products); $i<$n; $i++) {
-          $cart_contents_string .= '<div>';
+      $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products[$i]['id']);
 
-          if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
-            $cart_contents_string .= '<span class="boxeNewItemShoppingCart">';
-          }
+      for ($i=0, $n=count($products); $i<$n; $i++) {
+        $cart_contents_string .= '<div>';
 
-          $cart_contents_string .= $products[$i]['quantity'] . '&nbsp;x&nbsp;';
-
-          if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
-            $cart_contents_string .= '</span>';
-          }
-
-          $cart_contents_string .= '<span><a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products[$i]['id']) . '">';
-
-          if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
-            $cart_contents_string .= '<span class="boxeNewItemShoppingCart">';
-          }
-
-          $cart_contents_string .= $products[$i]['name'];
-
-          if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
-            $cart_contents_string .= '</span>';
-          }
-
-          $cart_contents_string .= '</a></span>';
-
-          if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
-            unset($_SESSION['new_products_id_inCart']);
-          }
-          $cart_contents_string .= '</div>';
+        if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
+          $cart_contents_string .= '<span class="boxeNewItemShoppingCart">';
         }
+
+        $cart_contents_string .= $products[$i]['quantity'] . '&nbsp;x&nbsp;';
+
+        if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
+          $cart_contents_string .= '</span>';
+        }
+
+        $cart_contents_string .= '<span><a href="' . $products_name_url . '">';
+
+        if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
+          $cart_contents_string .= '<span class="boxeNewItemShoppingCart">';
+        }
+
+        $cart_contents_string .= $products[$i]['name'];
+
+        if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
+          $cart_contents_string .= '</span>';
+        }
+
+        $cart_contents_string .= '</a></span>';
+
+        if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {
+          unset($_SESSION['new_products_id_inCart']);
+        }
+        $cart_contents_string .= '</div>';
+      }
 
         $cart_contents_string .= '<div class="hr"></div>' .
                                  '<div class="boxeShowTotalShoppingCart">' . $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total()) . '</div>' .

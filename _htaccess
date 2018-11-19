@@ -1,5 +1,6 @@
 Options -Indexes
 Options +FollowSymlinks
+Options -MultiViews
 
 #AcceptPathInfo on
 #### Your config to change ###############

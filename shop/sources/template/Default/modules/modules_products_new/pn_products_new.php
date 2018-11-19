@@ -169,7 +169,7 @@
               $in_stock = $Qlisting->valueInt('in_stock');
 
 //product name
-              $products_name = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id, $in_stock);
+              $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id, $in_stock);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
@@ -217,7 +217,9 @@
 // Button Free - Must be above getProductsExhausted
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
-                $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products_id), 'danger');
+                $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
+
+                $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
                 $min_quantity = 0;
                 $form = '';
                 $endform = '';

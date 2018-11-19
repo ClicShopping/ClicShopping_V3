@@ -26,6 +26,7 @@
     protected $db;
     protected $lang;
     protected $navigationHistory;
+    protected $rewriteUrl;
 
 /**
  * Constructor
@@ -38,6 +39,7 @@
         $this->db = Registry::get('Db');
         $this->lang = Registry::get('Language');
         $this->navigationHistory = Registry::get('NavigationHistory');
+        $this->rewriteUrl = Registry::get('RewriteUrl');
       }
 
 /**
@@ -117,8 +119,6 @@
                 xmlns:xrds="xri://$xrds"
                 ';
 
-
-
      $xmlns = $xmlns ? ' ' . $xmlns : '';
      return $xmlns;
     }
@@ -182,7 +182,7 @@
 * @return string $number_of_item, Number max of item to display
 */
     public function getMaxListing($number_of_item = 20) {
-     return  $number_of_item;
+     return $number_of_item;
     }
 
 
@@ -330,7 +330,8 @@
 
 // http://www.w3.org/TR/REC-xml/#dt-chardata
 // The ampersand character (&) and the left angle bracket (<) MUST NOT appear in their literal form
-        $url =  CLICSHOPPING::link(null, 'Products&Description&products_id=' . $products_id);
+        $url =  $this->rewriteUrl->getProductNameUrl($products_id);
+
         $link = str_replace('&','&amp;', $url);
 
         $xml .= '<item>' . "\n";

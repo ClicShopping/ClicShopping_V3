@@ -11,16 +11,16 @@
 
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   class GoogleSitemapSpecials extends \ClicShopping\OM\PagesActionsAbstract {
 
     protected $use_site_template = false;
+    protected $rewriteUrl;
 
     public function execute() {
       $CLICSHOPPING_Db = Registry::get('Db');
+      $this->rewriteUrl = Registry::get('RewriteUrl');
 
       if (MODE_VENTE_PRIVEE == 'false') {
 
@@ -29,22 +29,20 @@
         $special_array = [];
 
         $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
-                                         coalesce(NULLIF(specials_last_modified, :specials_last_modified),
-                                                         specials_date_added) as last_modified
-                                          from :table_specials
-                                          where status = :status
-                                          and customers_group_id = :customers_group_id
-                                          order by last_modified DESC
-                                          ');
+                                                coalesce(NULLIF(specials_last_modified, :specials_last_modified),
+                                                               specials_date_added) as last_modified
+                                                from :table_specials
+                                                where status = 1
+                                                and customers_group_id = 0
+                                                order by last_modified DESC
+                                                ');
 
         $Qproducts->bindValue(':specials_last_modified', '');
-        $Qproducts->bindValue(':status', '1');
-        $Qproducts->bindValue(':customers_group_id', '0');
         $Qproducts->execute();
 
 
         while ($Qproducts->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $Qproducts->valueInt('products_id'))));
+          $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($Qproducts->valueInt('products_id'))));
 
           $special_array[$Qproducts->valueInt('products_id')]['loc'] = $location;
           $special_array[$Qproducts->valueInt('products_id')]['lastmod'] = $Qproducts->value('last_modified');

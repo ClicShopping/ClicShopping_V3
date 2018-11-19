@@ -43,9 +43,12 @@ class pr_products_reviews_listing_button_process {
     if (isset($_GET['Products']) && isset($_GET['Review'])) {
 
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
-      $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
-      $button_process = HTML::button(CLICSHOPPING::getDef('button_write'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
+      $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
+
+      $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, $products_name_url,'primary');
+      $button_process = HTML::button(CLICSHOPPING::getDef('button_write'), null, $products_name_url, 'success');
 
       $data = '<!-- pr_products_reviews_listing_button_process start -->' . "\n";
 

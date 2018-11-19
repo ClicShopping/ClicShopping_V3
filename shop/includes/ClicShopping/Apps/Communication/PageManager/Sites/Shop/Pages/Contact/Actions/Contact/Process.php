@@ -99,8 +99,6 @@
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
 
           } else {
-
-            $contact_department =  $CLICSHOPPING_PageManager->getDef('text_administrator_department');
             $message_to_admin = $email_subject . ' ' . STORE_NAME  .  "\n\n"  . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today .  "\n"  .  $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id .  "\n\n"  .  $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone   . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address  . "\n"  . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' .  $enquiry  .  "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') .  "\n\n";
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $message_to_admin, $name, $email_address);
 

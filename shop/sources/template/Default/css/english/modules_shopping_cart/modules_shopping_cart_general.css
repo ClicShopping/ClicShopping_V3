@@ -28,8 +28,7 @@ div.shoppingCartInformationSave {
   text-align:center;
 }
 
-p.shoppingCartSubTotal {
-  text-align: right;
+div.shoppingCartSubTotal {
   font-weight: bold;
 }
 

@@ -46,13 +46,18 @@
       if (isset($_GET['Products']) && isset($_GET['ReviewsInfo']) && isset($_GET['reviews_id'])) {
 
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+        $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
         $reviews_id = (int)$_GET['reviews_id'];
         $reviews = $CLICSHOPPING_Reviews->getDataReviews($reviews_id);
 
         $reviews_text = $reviews['reviews_text'];
         $reviews_rating  = $reviews['reviews_rating'];
-        $products_name = '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</a>';
+
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
+
+        $products_name = HTML::link($products_name_url, $CLICSHOPPING_ProductsCommon->getProductsName());
+
         $delete_reviews = '';
 
         if ($reviews !== false) {

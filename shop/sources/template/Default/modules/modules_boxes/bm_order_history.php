@@ -43,6 +43,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
       if ($CLICSHOPPING_Customer->isLoggedOn()) {
 // retreive the last x products purchased
@@ -76,17 +77,19 @@
           $customer_orders_string = null;
 
           $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
-                                                  products_name
-                                            from :table_products_description
-                                            where products_id in (' . implode(', ', $product_ids) . ')
-                                            and language_id = :language_id
-                                            order by products_name
-                                           ');
+                                                     products_name
+                                                from :table_products_description
+                                                where products_id in (' . implode(', ', $product_ids) . ')
+                                                and language_id = :language_id
+                                                order by products_name
+                                               ');
           $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $Qproducts->execute();
 
           while ($Qproducts->fetch()) {
-            $customer_orders_string .= '<li class="boxeContentsHistory">'. HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name')) . '</li>';
+            $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($Qproducts->valueInt('products_id'));
+
+            $customer_orders_string .= '<li class="boxeContentsHistory">'. HTML::link($products_name_url, $Qproducts->value('products_name')) . '</li>';
           }
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {

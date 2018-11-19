@@ -15,7 +15,7 @@
 
 body {
   margin: 0rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 #bodyWrapper {
@@ -250,4 +250,8 @@ span.ModulesTickerBootstrapTickerStockDanger {
 /*********************************/
 .hiddenRecaptcha{
   display: none;
+}
+
+.fa-search {
+  height: 1.3rem;
 }

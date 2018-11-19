@@ -15,6 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 
+  use ClicShopping\Sites\Shop\RewriteUrl;
+
   class CategoryTree {
 
 /**
@@ -56,6 +58,8 @@
     protected $cpath_end_string = '';
     protected $category_product_count_start_string = '&nbsp;(';
     protected $category_product_count_end_string = ')';
+    protected $rewriteUrl;
+    protected $db;
 
 /**
  * Constructor; load the category structure relationship data from the database
@@ -66,28 +70,29 @@
     public function __construct() {
       static $_category_tree_data;
 
-      $CLICSHOPPING_Db = Registry::get('Db');
+      $this->Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if ( isset($_category_tree_data) ) {
         $this->_data = $_category_tree_data;
       } else {
 
-        $Qcategories = $CLICSHOPPING_Db->prepare('select c.categories_id,
-                                                         c.parent_id,
-                                                         c.categories_image,
-                                                         cd.categories_name,
-                                                         cd.categories_description
-                                                  from :table_categories c,
-                                                       :table_categories_description cd
-                                                  where c.categories_id = cd.categories_id
-                                                  and cd.language_id = :language_id
-                                                  order by c.parent_id,
-                                                           c.sort_order,
-                                                           cd.categories_name
-                                                  ');
+        $Qcategories = $this->db->prepare('select c.categories_id,
+                                           c.parent_id,
+                                           c.categories_image,
+                                           cd.categories_name,
+                                           cd.categories_description
+                                    from :table_categories c,
+                                         :table_categories_description cd
+                                    where c.categories_id = cd.categories_id
+                                    and cd.language_id = :language_id
+                                    order by c.parent_id,
+                                             c.sort_order,
+                                             cd.categories_name
+                                    ');
+
         $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-        $Qcategories->setCache('categories-lang' . (int)$CLICSHOPPING_Language->getId());
+        $Qcategories->setCache('categories-lang' . $CLICSHOPPING_Language->getId());
 
         $Qcategories->execute();
 
@@ -101,14 +106,23 @@
 
         $_category_tree_data = $this->_data;
       }
+
+      if (!Registry::exists('RewriteUrl')) {
+        Registry::set('RewriteUrl', new RewriteUrl());
+      }
+
+      $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
+/**
+ * Count the categories
+ * @return int
+ */
     public function getCountCategories() {
-      $CLICSHOPPING_Db = Registry::get('Db');
+      $Qcategories = $this->db->prepare('select count(categories_id) as count
+                                         from :table_categories
+                                        ');
 
-      $Qcategories = $CLICSHOPPING_Db->prepare('select count(categories_id) as count
-                                                 from :table_categories
-                                                ');
       $Qcategories->execute();
 
       return($Qcategories->valueInt('count'));
@@ -168,15 +182,18 @@
             $result .= $this->root_start_string;
           }
 
+          $category_name = $this->getCategoryTreeTitle($category['name']);
+          $categories_url = $this->getCategoryTreeUrl($category_link);
+
           if ( ($this->follow_cpath === true) && in_array($category_id, $this->cpath_array) ) {
-            $link_title = $this->cpath_start_string . $category['name'] . $this->cpath_end_string;
+            $link_title = $this->cpath_start_string . $category_name . $this->cpath_end_string;
           } else {
-            $link_title = $category['name'];
+            $link_title = $category_name;
           }
 
           $result .= str_repeat($this->spacer_string, $this->spacer_multiplier * $level);
-          $result .= HTML::link(CLICSHOPPING::link(null, 'cPath=' . $category_link), $link_title);
 
+          $result .= HTML::link($categories_url, $link_title);
           if ( $this->_show_total_products === true ) {
             $result .= $this->category_product_count_start_string . $category['count'] . $this->category_product_count_end_string;
           }
@@ -221,9 +238,9 @@
             $category_link = $category_id;
           }
 
-          $result[] = ['id' => $category_link,
-                       'title' => str_repeat($this->spacer_string, $this->spacer_multiplier * $level) . $category['name']
-                      ];
+          $result = ['id' => $category_link,
+                   'title' => str_repeat($this->spacer_string, $this->spacer_multiplier * $level) . $category['name']
+                  ];
 
           if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level+1))) {
             if ($this->follow_cpath === true) {
@@ -362,8 +379,6 @@
  */
 
     protected function _calculateProductTotals($filter_active = true) {
-      $CLICSHOPPING_Db = Registry::get('Db');
-
       $totals = [];
 
       $sql_query = 'select p2c.categories_id, count(*) as total
@@ -378,10 +393,10 @@
       $sql_query .= ' group by p2c.categories_id';
 
       if ( $filter_active === true ) {
-        $Qtotals = $CLICSHOPPING_Db->prepare($sql_query);
+        $Qtotals = $this->db->prepare($sql_query);
         $Qtotals->bindInt(':products_status', 1);
       } else {
-        $Qtotals = $CLICSHOPPING_Db->query($sql_query);
+        $Qtotals = $this->db->query($sql_query);
       }
 
       $Qtotals->execute();
@@ -504,5 +519,51 @@
     public function setCategoryProductCountString($category_product_count_start_string, $category_product_count_end_string) {
       $this->category_product_count_start_string = $category_product_count_start_string;
       $this->category_product_count_end_string = $category_product_count_end_string;
+    }
+
+/**
+ * Rewrite categories Name
+ * @param $categories_name
+ * @return string
+ */
+    public function getCategoryTreeTitle($categories_name) {
+      $category_name = $this->rewriteUrl->getCategoryTreeTitle($categories_name);
+
+      return $category_name;
+    }
+
+/**
+ * Rewrite link of category
+ * @param $categories_link
+ * @return mixed
+ */
+    public function getCategoryTreeUrl($categories_id) {
+      $categories_url = $this->rewriteUrl->getCategoryTreeUrl($categories_id);
+
+      return $categories_url;
+    }
+
+/**
+ * Rewrite link of Image
+ * @param $categories_link
+ * @return mixed
+ */
+    public function getCategoryTreeImageUrl($categories_id) {
+      $categories_url = $this->rewriteUrl->getCategoryImageUrl($categories_id);
+
+      return $categories_url;
+    }
+
+/**
+ * Rewrite link of Image
+ * @param $categories_link
+ * @return mixed
+ */
+    public function getCategoryImageUrl($categories_id) {
+      $category = $this->getPathCategories($categories_id);
+
+      $categories_url = $this->rewriteUrl->getCategoryImageUrl($category);
+
+      return $categories_url;
     }
   }

@@ -63,7 +63,7 @@ a.headerMultiTemplateDefaultCheckout {
 }
 
 span.headerMultiTemplateDefaultHeaderSearch {
-  padding-top:10px;
+  padding-top:3rem;
   text-align: center;
   padding-bottom: 0.625rem;
 }
@@ -82,7 +82,6 @@ span.headerMultiTemplateDefaultLoginText {
 }
 
 span.headerMultiTemplateDefaultLanguage {
-  width: 3.75rem;
   padding-left: 0.3125rem;
 }
 

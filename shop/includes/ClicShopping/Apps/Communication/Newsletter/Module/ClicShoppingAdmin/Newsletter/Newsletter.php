@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -136,7 +136,7 @@
 
         $newsletters_id = $Qmail->valueInt('newsletters_id');
         $file_newsletter =   CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter/newsletter_'. $this->fileId .'.html';
-        $directory =  '<a href="'.  CLICSHOPPING::getConfig('http_server', 'Shop') . '/sources/public/newsletter/newsletter_'. $this->fileId .'.html" target="_blank">'. CLICSHOPPING::getConfig('http_server', 'Shop') . '/souces/public/newsletter/newsletter_'. $this->fileId .'.html</a>';
+        $directory =  '<a href="'.  CLICSHOPPING::getConfig('http_server', 'Shop') . '/sources/public/newsletter/newsletter_'. $this->fileId .'.html" target="_blank" rel="noreferrer">'. CLICSHOPPING::getConfig('http_server', 'Shop') . '/souces/public/newsletter/newsletter_'. $this->fileId .'.html</a>';
 // ----------------------
 // creating document
 // ----------------------

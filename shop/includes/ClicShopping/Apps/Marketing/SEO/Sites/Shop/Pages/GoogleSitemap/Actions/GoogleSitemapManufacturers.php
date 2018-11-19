@@ -4,24 +4,22 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
 
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   class GoogleSitemapManufacturers extends \ClicShopping\OM\PagesActionsAbstract {
 
     protected $use_site_template = false;
+    protected $rewriteUrl;
 
     public function execute() {
-
-
+      $this->rewriteUrl = Registry::get('RewriteUrl');
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (MODE_VENTE_PRIVEE == 'false') {
@@ -31,18 +29,18 @@
         $manufacturer_array = [];
 
         $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturers_id,
-                                               coalesce(NULLIF(last_modified, :last_modified),
-                                                               date_added) as last_modified
-                                                from :table_manufacturers
-                                                where manufacturers_status = 0
-                                                order by last_modified DESC
-                                                ');
+                                                     coalesce(NULLIF(last_modified, :last_modified),
+                                                                     date_added) as last_modified
+                                                      from :table_manufacturers
+                                                      where manufacturers_status = 0
+                                                      order by last_modified DESC
+                                                      ');
 
         $Qmanufacturers->bindValue(':last_modified', '');
         $Qmanufacturers->execute();
 
         while ($Qmanufacturers->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id'))));
+          $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))));
 
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['loc'] = $location;
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['lastmod'] = $Qmanufacturers->value('last_modified');

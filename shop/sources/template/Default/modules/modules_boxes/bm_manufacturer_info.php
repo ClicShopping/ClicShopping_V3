@@ -43,6 +43,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
+      $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 
       if ($CLICSHOPPING_ProductsCommon->getId()) {
         $Qmanufacturers = $CLICSHOPPING_Db->prepare('select m.manufacturers_id,
@@ -63,15 +64,17 @@
 
         if ($Qmanufacturers->fetch()) {
           $manufacturer_info_string = '';
+          $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'));
+
           if (!empty($Qmanufacturers->value('manufacturers_image'))) {
             $manufacturer_info_string .= '<span class="col-md-12 text-md-center">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qmanufacturers->value('manufacturers_image'), HTML::outputProtected($Qmanufacturers->value('manufacturers_name'))) . '</span>';
           }
 
           if (!empty($Qmanufacturers->value('manufacturers_url'))) {
-            $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link(CLICSHOPPING::link('redirect.php', 'action=manufacturer&manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id')), sprintf( CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_homepage'), $Qmanufacturers->value('manufacturers_name')), '" target="_blank"') . '</div>';
+            $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link(CLICSHOPPING::link('redirect.php', 'action=manufacturer&manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id')), sprintf( CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_homepage'), $Qmanufacturers->value('manufacturers_name')), '" target="_blank" rel="noreferrer"') . '</div>';
           }
 
-          $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link(CLICSHOPPING::link(null, 'manufacturers_id=' . $Qmanufacturers->valueInt('manufacturers_id')), CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_other_products')) . '</div>';
+          $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link($manufacturer_url, CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_other_products')) . '</div>';
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_MANUFACTURER_INFO_BANNER_GROUP)) {

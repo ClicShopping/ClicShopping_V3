@@ -43,11 +43,14 @@
       if (isset($_GET['Products']) && isset($_GET['Review'])) {
 
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+        $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
-        $reviews_image =  '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage()) . '</a>';
-        $products_name = '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '">' . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()) . '</a>';
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
+
+        $reviews_image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage()));
+        $products_name = HTML::link($products_name_url, HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()));
         $products_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
-        
+
         $data = '<!-- pr_products_reviews_listing_image start -->' . "\n";
 
         ob_start();

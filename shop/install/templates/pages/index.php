@@ -73,12 +73,6 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
   <p><?php echo TEXT_INTRO_WELCOME; ?></p>
 </div>
 
-<div class="alert alert-warning">
-  <h2>Beta Release</h2>
-
-  <p>This release is currently a beta final release. Please visit the <a href="https://www.clicshopping.org" target="_blank" class="alert-link">ClicShopping</a> website to stay up to date.</p>
-</div>
-
 <div class="row">
   <div class="col-xs-12 col-sm-push-3 col-sm-9">
     <h1><?php echo TEXT_NEW_INSTALLATION; ?></h1>

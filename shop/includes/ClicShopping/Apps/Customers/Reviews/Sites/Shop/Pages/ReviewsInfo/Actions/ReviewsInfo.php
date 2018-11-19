@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -48,8 +48,8 @@
 // *************************
 // Gestion de l'affichage des images et des zooms
 // *************************
-      if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage())) {
-        $products_image =  '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage(), $CLICSHOPPING_ProductsCommon->getProductsName(), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"').'</h1>';
+      if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
+        $products_image =  '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"').'</h1>';
       }
 
 // *************************

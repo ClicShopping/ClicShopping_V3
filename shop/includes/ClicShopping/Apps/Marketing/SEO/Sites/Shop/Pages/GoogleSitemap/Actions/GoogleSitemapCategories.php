@@ -4,15 +4,13 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
 
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   class GoogleSitemapCategories extends \ClicShopping\OM\PagesActionsAbstract {
@@ -20,28 +18,35 @@
     protected $use_site_template = false;
 
     public function execute() {
-
+      $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
+      $this->rewriteUrl = Registry::get('RewriteUrl');
 
       $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n".'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
       $category_array = [];
 
-      $Qcategorie = $CLICSHOPPING_Db->prepare('select categories_id,
-                                         coalesce(NULLIF(last_modified, :last_modified),
-                                                         date_added) as last_modified
-                                          from :table_categories
-                                          where virtual_categories = :virtual_categories
-                                          group by categories_id
-                                          order by last_modified DESC
-                                          ');
+      $Qcategorie = $CLICSHOPPING_Db->prepare('select c.categories_id,
+                                                      cd.categories_name,
+                                              coalesce(NULLIF(last_modified, :last_modified),
+                                                             date_added) as last_modified
+                                              from :table_categories c,
+                                              :table_categories_description cd
+                                              where virtual_categories = 0
+                                              and c.categories_id = cd.categories_id
+                                              and cd.language_id = :language_id
+                                              group by categories_id
+                                              order by last_modified DESC
+                                              ');
 
       $Qcategorie->bindValue(':last_modified', '');
-      $Qcategorie->bindValue(':virtual_categories', '0');
+      $Qcategorie->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $Qcategorie->execute();
 
       while ($Qcategorie->fetch() ) {
-        $location =  htmlspecialchars(utf8_encode(CLICSHOPPING::link(null, 'cPath=' . $Qcategorie->valueInt('categories_id'))));
+
+        $this->rewriteUrl->getCategoryTreeTitle($Qcategorie->value('categories_name'));
+        $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getCategoryTreeUrl($Qcategorie->valueInt('categories_id'))));
 
         $category_array[$Qcategorie->valueInt('categories_id')]['loc'] = $location;
         $category_array[$Qcategorie->valueInt('categories_id')]['lastmod'] = $Qcategorie->value('last_modified');

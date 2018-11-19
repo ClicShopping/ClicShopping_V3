@@ -45,6 +45,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
       if (!isset($_GET['products_id'])) {
         if ($CLICSHOPPING_Category->getID() && ($CLICSHOPPING_Category->getID() > 0)) {
@@ -53,22 +54,22 @@
 
             $QBestSellers = $CLICSHOPPING_Db->prepare('select distinct p.products_id,
                                                                 pd.products_name
-                                                from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
-                                                     :table_products_description pd,
-                                                     :table_products_to_categories p2c,
-                                                     :table_categories c
-                                                where p.products_status = 1
-                                                and g.customers_group_id = :customers_group_id
-                                                and g.products_group_view = 1
-                                                and p.products_ordered > 0
-                                                and p.products_id = pd.products_id
-                                                and pd.language_id = :language_id
-                                                and p2c.categories_id = c.categories_id
-                                                and :categories_id in (c.categories_id, c.parent_id)
-                                                order by p.products_ordered desc,
-                                                         pd.products_name
-                                                limit :limit
-                                           ');
+                                                    from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                                         :table_products_description pd,
+                                                         :table_products_to_categories p2c,
+                                                         :table_categories c
+                                                    where p.products_status = 1
+                                                    and g.customers_group_id = :customers_group_id
+                                                    and g.products_group_view = 1
+                                                    and p.products_ordered > 0
+                                                    and p.products_id = pd.products_id
+                                                    and pd.language_id = :language_id
+                                                    and p2c.categories_id = c.categories_id
+                                                    and :categories_id in (c.categories_id, c.parent_id)
+                                                    order by p.products_ordered desc,
+                                                             pd.products_name
+                                                    limit :limit
+                                                   ');
             $QBestSellers->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
             $QBestSellers->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
             $QBestSellers->bindInt(':categories_id', $CLICSHOPPING_Category->getID());
@@ -81,21 +82,21 @@
 
             $QBestSellers = $CLICSHOPPING_Db->prepare('select distinct p.products_id,
                                                                 pd.products_name
-                                                from :table_products p,
-                                                     :table_products_description pd,
-                                                     :table_products_to_categories p2c,
-                                                     :table_categories c
-                                                where p.products_status = 1
-                                                and p.products_view = 1
-                                                and p.products_ordered > 0
-                                                and p.products_id = pd.products_id
-                                                and pd.language_id = :language_id
-                                                and p2c.categories_id = c.categories_id
-                                                and :categories_id in (c.categories_id, c.parent_id)
-                                                order by p.products_ordered desc,
-                                                         pd.products_name
-                                                limit :limit
-                                           ');
+                                                    from :table_products p,
+                                                         :table_products_description pd,
+                                                         :table_products_to_categories p2c,
+                                                         :table_categories c
+                                                    where p.products_status = 1
+                                                    and p.products_view = 1
+                                                    and p.products_ordered > 0
+                                                    and p.products_id = pd.products_id
+                                                    and pd.language_id = :language_id
+                                                    and p2c.categories_id = c.categories_id
+                                                    and :categories_id in (c.categories_id, c.parent_id)
+                                                    order by p.products_ordered desc,
+                                                             pd.products_name
+                                                    limit :limit
+                                                 ');
             $QBestSellers->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
             $QBestSellers->bindInt(':categories_id', $CLICSHOPPING_Category->getID());
             $QBestSellers->bindInt(':limit', (int)MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY);
@@ -109,18 +110,18 @@
 
             $QBestSellers = $CLICSHOPPING_Db->prepare('select distinct p.products_id,
                                                                 pd.products_name
-                                                from :table_products p  left join :table_products_groups g on p.products_id = g.products_id,
-                                                     :table_products_description pd
-                                                where p.products_status = 1
-                                                and g.products_group_view = 1
-                                                and g.customers_group_id = :customers_group_id
-                                                and p.products_ordered > 0
-                                                and p.products_id = pd.products_id
-                                                and pd.language_id = :language_id
-                                                order by p.products_ordered desc,
-                                                         pd.products_name
-                                                limit :limit
-                                           ');
+                                                    from :table_products p  left join :table_products_groups g on p.products_id = g.products_id,
+                                                         :table_products_description pd
+                                                    where p.products_status = 1
+                                                    and g.products_group_view = 1
+                                                    and g.customers_group_id = :customers_group_id
+                                                    and p.products_ordered > 0
+                                                    and p.products_id = pd.products_id
+                                                    and pd.language_id = :language_id
+                                                    order by p.products_ordered desc,
+                                                             pd.products_name
+                                                    limit :limit
+                                                 ');
             $QBestSellers->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
             $QBestSellers->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $QBestSellers->bindInt(':limit', (int)MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY);
@@ -131,17 +132,17 @@
 
             $QBestSellers = $CLICSHOPPING_Db->prepare('select distinct p.products_id,
                                                                 pd.products_name
-                                                from :table_products p,
-                                                     :table_products_description pd
-                                                where p.products_status = 1
-                                                and p.products_view = 1
-                                                and p.products_ordered > 0
-                                                and p.products_id = pd.products_id
-                                                and pd.language_id = :language_id
-                                                order by p.products_ordered desc,
-                                                         pd.products_name
-                                                limit :limit
-                                           ');
+                                                    from :table_products p,
+                                                         :table_products_description pd
+                                                    where p.products_status = 1
+                                                    and p.products_view = 1
+                                                    and p.products_ordered > 0
+                                                    and p.products_id = pd.products_id
+                                                    and pd.language_id = :language_id
+                                                    order by p.products_ordered desc,
+                                                             pd.products_name
+                                                    limit :limit
+                                               ');
             $QBestSellers->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
             $QBestSellers->bindInt(':limit', (int)MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY);
 
@@ -158,7 +159,8 @@
           $bestsellers_list = '<ol class="olBestSellers">';
 
           foreach ($best_sellers as $b) {
-            $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $b['products_id']), $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</li>';
+            $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($b['products_id']);
+            $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</li>';
 
             $position++;
           }

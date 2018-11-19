@@ -40,10 +40,14 @@
 
       if (isset($_GET['Products']) && isset($_GET['TellAFriend'])) {
 
-        $CLICSHOPPING_ProductsCommon  = Registry::get('ProductsCommon');
+        $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+        $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
+
         $content_width = (int)MODULES_TELL_A_FRIEND_BUTTON_PROCESS_CONTENT_WIDTH;
 
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
+
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, $products_name_url, 'primary');
         $button_process =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 
         $data = '<!-- ta_tell_a_friend_button_process start -->' . "\n";

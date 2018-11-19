@@ -22,10 +22,11 @@
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
       $spider_flag = WhosOnline::getResultSpiderFlag();
 
-      if (!isset($_GET['products_id'])) {
+      if (!isset($_GET['products_id']) && !is_numeric($_GET['products_id'])) {
         CLICSHOPPING::redirect();
       }
 
@@ -46,8 +47,10 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('product_info');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Description&products_id=' . $id));
-      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_ProductsCommon->getProductsName(), CLICSHOPPING::link(null, 'Products&Description&products_id=' . $id));
+      $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($id);
+
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), $products_name_url);
+      $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_ProductsCommon->getProductsName(), $products_name_url);
 
     }
   }

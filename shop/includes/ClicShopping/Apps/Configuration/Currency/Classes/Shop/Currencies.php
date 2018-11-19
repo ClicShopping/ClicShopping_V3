@@ -199,8 +199,8 @@
 				}
 
 				$currency_header = HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
-				$currency_header .= HTML::selectMenu('currency', $currencies_array, $_SESSION['currency'], 'class="heade"' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
-				$currency_header .= '</form>';
+				$currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
+        $currency_header .= '</form>';
 			}
 
 			return $currency_header;

@@ -43,10 +43,13 @@
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
 
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+        $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
-        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()),'primary');
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
+
+        $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, $products_name_url,'primary');
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
-          
+
         $data = '<!-- pr_modules_products_reviews_write_rating start -->' . "\n";
 
         ob_start();

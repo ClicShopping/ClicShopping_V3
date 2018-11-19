@@ -42,11 +42,14 @@
 
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+        $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
-        $products_name = $CLICSHOPPING_ProductsCommon->getProductsName();
         $id = $CLICSHOPPING_ProductsCommon->getID();
+        $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($id);
 
-        $products_name = '<a href="' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$id) . '" itemprop="url" class="productTitle"><span itemprop="name">' . HTML::outputProtected($products_name) . '</span></a>';
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($id);
+
+        $products_name = '<a href="' . $products_name_url . '" itemprop="url" class="productTitle"><span itemprop="name">' . HTML::outputProtected($products_name) . '</span></a>';
 
         $products_name_content = '<!-- Start products_name -->' . "\n";
 

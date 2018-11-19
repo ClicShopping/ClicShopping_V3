@@ -216,3 +216,118 @@
                   );
     }
   }
+
+
+
+  class explodeCategoryTree extends categoryTree {
+    public $parent_group_start_string = null;
+    public $parent_group_end_string = null;
+    public $parent_group_apply_to_root = false;
+    public $root_start_string = '<li class="dropdown">';
+    public $root_end_string = '</li>';
+    public $parent_start_string = '<ul class="dropdown-menu multi-column columns-2">';
+    public $parent_end_string = '</ul>';
+    public $child_start_string = '<li>';
+    public $child_end_string = '</li>';
+
+    private function _buildCategorytree($parent_id, $level = 0) {
+      $CLICSHOPPING_Template = Registry::get('Template');
+
+      if (isset($this->_data[$parent_id])) {
+        $result = '';
+
+        foreach ($this->_data[$parent_id] as $category_id => $category) {
+          if ($this->breadcrumb_usage === true) {
+            $category_link = $this->buildBreadcrumb($category_id);
+          } else {
+            $category_link = $category_id;
+          }
+          if (($this->follow_cpath === true) && in_array($category_id, $this->cpath_array)) {
+            $link_title = $this->cpath_start_string . $category['name'] . $this->cpath_end_string;
+//            $link_image =  $this->cpath_start_string . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $category['image'], HTML::outputProtected($category['name']), 150, 150, null, true) . $this->cpath_end_string;
+          } else {
+            $link_title = $category['name'];
+
+            if ($level < 1) {
+              $link_image = HTML::link(CLICSHOPPING::link(null, 'cPath=' . $category['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $category['image'], HTML::outputProtected($category['name']), 150, 150, null, true));
+            }
+          }
+
+          if (isset($this->_data[$category_id]) && ($level != 0)) {
+            $result .= '<li class="dropdown dropdown-submenu multi-column-dropdown"><a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">';
+            $caret = false;
+          } elseif (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
+            $result .= $this->root_start_string;
+            $result .= '<a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">';
+            $caret = '<span class="caret"></span>';
+
+          } else {
+            $result .= $this->child_start_string;
+            $result .= '<a href="' . CLICSHOPPING::link(null, 'cPath=' . $category_link) . '">';
+            $caret = false;
+          }
+
+          $result .= str_repeat($this->spacer_string, $this->spacer_multiplier * $level);
+          $result .= $link_title . (($caret !== false) ? $caret : null) . '</a>';
+
+          if (isset($this->_data[$category_id]) && (($this->max_level == '0') || ($this->max_level > $level + 1))) {
+// uncomment below to show parent category link //
+
+
+            $root_link_title = '<span class="hidden-xs">';
+            if ($level < 1) {
+              $root_link_title .= '<div class="row col-md-12">';
+              $root_link_title .= '<div class="col-md-6 headerCategoriesImages" style="padding-bottom:10px;">' . $link_image . '</div>';
+              $root_link_title .= '<div class="col-md-6 fas fa-th-list">&nbsp;' . $link_title . '</div>';
+              $root_link_title .= '</div>';
+            } else {
+              $root_link_title .= '<div class="col-md-12 fas fa-th-list" style="padding-bottom:10px;">&nbsp;' . $link_title . '</div>';
+            }
+
+            $root_link_title .= '<li class="visible-xs dropdown-divider"></li>';
+            $root_link_title .= '</span>';
+
+            // divider added for clarity - comment out if you no like //
+//            $root_link_title .= '<li class="dropdown-divider"></li>';
+
+
+            $result .= $this->parent_start_string;
+            $result .= '<li>' . HTML::link(CLICSHOPPING::link(null, 'cPath=' . $category_link), $root_link_title) . '</li>';
+            $result .= $this->_buildCategorytree($category_id, $level + 1);
+
+//            $result .= '<div class="col-md-6" style="padding-top:10px;">'.$this->_buildCategorytree($category_id, $level + 1).'</div>';
+            $result .= $this->parent_end_string;
+            $result .= $this->child_end_string;
+          } else {
+            $result .= $this->root_end_string;
+          }
+        }
+      }
+      return $result;
+    }
+
+
+      public function getExTree() {
+        return $this->_buildCategorytree($this->root_category_id);
+      }
+
+      public function buildCategorytree($class='') {
+        $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
+        $CLICSHOPPING_Category = Registry::get('Category');
+
+        $cPath = $CLICSHOPPING_Category->getPath();
+
+        if (empty($class)) $class = 'nav navbar-nav';
+
+        $data = '<ul class="' . $class . '">' . $CLICSHOPPING_CategoryTree->getExTree() . '</ul>';
+
+        return $data;
+      }
+    }
+
+  /* end explode_category_tree */
+
+
+
+
+

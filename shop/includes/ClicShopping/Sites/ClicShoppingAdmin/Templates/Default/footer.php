@@ -95,6 +95,10 @@
 <!--fixe footer -->
     <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/footer.js'); ?>"></script>
 
+<!--Goggle font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>';
+    <script>WebFont.load({google: {families: [\'Roboto:300,300i,400,400i,700,700i\']}});</script>';
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"></script>
 
