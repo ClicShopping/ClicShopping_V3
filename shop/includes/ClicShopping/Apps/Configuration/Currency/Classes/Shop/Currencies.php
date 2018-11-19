@@ -177,32 +177,33 @@
 	* Dispaly a Currencies DropDown
 	* @return string
 */
-		public function getCurrenciesDropDown($class = '') {
-			$CLICSHOPPING_Currencies = Registry::get('Currencies');
+    public function getCurrenciesDropDown($class = '') {
+    $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-			if (isset($CLICSHOPPING_Currencies) && is_object($CLICSHOPPING_Currencies) && (count($CLICSHOPPING_Currencies->currencies) > 1)) {
-				reset($CLICSHOPPING_Currencies->currencies);
-				$currencies_array = [];
+      if (isset($CLICSHOPPING_Currencies) && is_object($CLICSHOPPING_Currencies) && (count($CLICSHOPPING_Currencies->currencies) > 1)) {
+        reset($CLICSHOPPING_Currencies->currencies);
+        $currencies_array = [];
 
-				foreach($CLICSHOPPING_Currencies->currencies as $key => $value) {
-						$currencies_array[] = ['id' => $key,
-																													'text' => $value['title']
-																											 ];
-				}
+        foreach($CLICSHOPPING_Currencies->currencies as $key => $value) {
+          $currencies_array[] = ['id' => $key,
+                                 'text' => $value['title']
+                                ];
+        }
 
-				$hidden_get_variables = '';
+        $hidden_get_variables = '';
 
-				foreach ( $_GET as $key => $value ) {
-						if ( is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y') ) {
-								$hidden_get_variables .= HTML::hiddenField($key, $value);
-						}
-				}
+        foreach ( $_GET as $key => $value ) {
+          if ( is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y') ) {
+            $hidden_get_variables .= HTML::hiddenField($key, $value);
+          }
+        }
 
-				$currency_header = HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
-				$currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
+        $currency_header = HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
+        $currency_header .= '<label for="CurrencyDropDown" class="sr-only">Currency</label>';
+        $currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
         $currency_header .= '</form>';
-			}
+      }
 
-			return $currency_header;
-		}
+      return $currency_header;
+    }
   }

@@ -70,7 +70,7 @@
     public function __construct() {
       static $_category_tree_data;
 
-      $this->Db = Registry::get('Db');
+      $this->db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if ( isset($_category_tree_data) ) {

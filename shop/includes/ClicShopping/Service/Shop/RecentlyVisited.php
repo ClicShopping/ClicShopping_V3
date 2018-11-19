@@ -8,6 +8,7 @@
  *
  *
  */
+
   namespace ClicShopping\Service\Shop;
 
   use ClicShopping\OM\Registry;
@@ -17,11 +18,10 @@
   class RecentlyVisited implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
-//      $CLICSHOPPING_Service = Registry::get('Service');
-
+      $CLICSHOPPING_Service = Registry::get('Service');
       Registry::set('RecentlyVisited', new RecentlyVisitedClass());
 
-//      $CLICSHOPPING_Service->addCallBeforePageContent('RecentlyVisited', 'initialize');
+      $CLICSHOPPING_Service->addCallBeforePageContent('RecentlyVisited', 'initialize');
 
       return true;
     }

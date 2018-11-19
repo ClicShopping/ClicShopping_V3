@@ -65,27 +65,27 @@
 // Recuperations de la date de la facture (Voir aussi french.php & invoice.php)
 
       $QordersHistory = $CLICSHOPPING_Db->prepare('select orders_status_id,
-                                                   date_added,
-                                                   customer_notified,
-                                                   orders_status_invoice_id,
-                                                   comments
-                                             from :table_orders_status_history
-                                             where orders_id = :orders_id
-                                             order by date_added desc
-                                             limit 1
-                                           ');
+                                                         date_added,
+                                                         customer_notified,
+                                                         orders_status_invoice_id,
+                                                         comments
+                                                   from :table_orders_status_history
+                                                   where orders_id = :orders_id
+                                                   order by date_added desc
+                                                   limit 1
+                                                 ');
       $QordersHistory->bindInt(':orders_id',  (int)$oID );
       $QordersHistory->execute();
 
       $orders_history_display = $QordersHistory->valueInt('orders_status_invoice_id');
 
       $QOrdersStatusInvoice = $CLICSHOPPING_Db->prepare('select orders_status_invoice_id,
-                                                          orders_status_invoice_name,
-                                                          language_id
-                                                   from :table_orders_status_invoice
-                                                   where orders_status_invoice_id = :orders_status_invoice_id
-                                                   and language_id = :language_id
-                                                  ');
+                                                                orders_status_invoice_name,
+                                                                language_id
+                                                         from :table_orders_status_invoice
+                                                         where orders_status_invoice_id = :orders_status_invoice_id
+                                                         and language_id = :language_id
+                                                        ');
       $QOrdersStatusInvoice->bindInt(':orders_status_invoice_id',  (int)$orders_history_display );
       $QOrdersStatusInvoice->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId()  );
       $QOrdersStatusInvoice->execute();

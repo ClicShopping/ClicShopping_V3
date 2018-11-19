@@ -238,7 +238,7 @@
               if ($error === true) {
                 echo  '<span class="text-md-right"> ' . $message . '</span>';
               } else {
-                echo  '<span class="text-md-right"><a href="' .$marketplace_link . '" target="_blank" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
+                echo  '<span class="text-md-right"><a href="' .$marketplace_link . '" target="_blank" rel="noreferrer" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
               }
             } else {
                echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
@@ -358,7 +358,7 @@
                             <div class="col-md-6 text-md-right float-md-right">
 <?php
             if (strtolower($result_content_module->is_free) != 'yes') {
-              echo  '<span class="text-md-right"><a href="' . $result_content_module->website_link_to_sell . '" target="_blank" class="btn btn-success btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
+              echo  '<span class="text-md-right"><a href="' . $result_content_module->website_link_to_sell . '" target="_blank" rel="noreferrer" class="btn btn-success btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
             } else {
               echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
               echo  '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';

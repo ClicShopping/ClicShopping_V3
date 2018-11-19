@@ -150,7 +150,6 @@
           $page_namespace = explode('\\', $page);
           $page_code = $page_namespace[count($page_namespace)-1];
 
-
           if (class_exists('ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code)) {
             $class = 'ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code;
           }
