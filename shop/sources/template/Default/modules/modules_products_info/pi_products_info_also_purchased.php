@@ -139,7 +139,7 @@
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
-              $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id, $in_stock);
+              $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
