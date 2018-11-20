@@ -97,13 +97,13 @@
           $CLICSHOPPING_Db->exec('SET FOREIGN_KEY_CHECKS = 0');
 
           foreach (glob(CLICSHOPPING::BASE_DIR . 'Schema/*.txt') as $f) {
-              $schema = $CLICSHOPPING_Db->getSchemaFromFile($f);
+            $schema = $CLICSHOPPING_Db->getSchemaFromFile($f);
 
-              $sql = $CLICSHOPPING_Db->getSqlFromSchema($schema, $_POST['prefix']);
+            $sql = $CLICSHOPPING_Db->getSqlFromSchema($schema, $_POST['prefix']);
 
-              $CLICSHOPPING_Db->exec('DROP TABLE IF EXISTS ' . $_POST['prefix'] . basename($f, '.txt'));
+            $CLICSHOPPING_Db->exec('DROP TABLE IF EXISTS ' . $_POST['prefix'] . basename($f, '.txt'));
 
-              $CLICSHOPPING_Db->exec($sql);
+            $CLICSHOPPING_Db->exec($sql);
           }
 
           if ($language == 'french') {

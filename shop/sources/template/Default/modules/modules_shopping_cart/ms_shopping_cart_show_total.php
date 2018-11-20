@@ -34,8 +34,6 @@
      }
 
     public function execute() {
-
-
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -43,6 +41,8 @@
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $content_width = (int)MODULE_SHOPPING_CART_SHOW_TOTAL_CONTENT_WIDTH;
+        $position = MODULE_SHOPPING_CART_SHIPPING_ESTIMATOR_POSITION;
+
         $sub_total = $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total());
 
         $shopping_cart = '  <!-- ms_shopping_cart_show_total -->'. "\n";
@@ -94,6 +94,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'A quel endroit souhaitez-vous afficher le module ?',
+          'configuration_key' => 'MODULE_SHOPPING_CART_SHOW_TOTAL_POSITION',
+          'configuration_value' => 'float-md-none',
+          'configuration_description' => 'Affiche le module à gauche ou à droite',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER',
           'configuration_value' => '20',
@@ -113,11 +125,12 @@
     public function remove() {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
-    
+
     public function keys() {
       return array (
         'MODULE_SHOPPING_CART_SHOW_TOTAL_STATUS',
         'MODULE_SHOPPING_CART_SHOW_TOTAL_CONTENT_WIDTH',
+        'MODULE_SHOPPING_CART_SHOW_TOTAL_POSITION',
         'MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER'
       );
     }

@@ -43,6 +43,7 @@
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $back = count($CLICSHOPPING_NavigationHistory->path)-2;
+        $position = MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION;
 
         if (isset($CLICSHOPPING_NavigationHistory->path[$back])) {
           $button_navigation_history =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['page'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'info');
@@ -100,6 +101,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'A quel endroit souhaitez-vous afficher le module ?',
+          'configuration_key' => 'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION',
+          'configuration_value' => 'float-md-none',
+          'configuration_description' => 'Affiche le module à gauche ou à droite',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_SORT_ORDER',
           'configuration_value' => '350',
@@ -124,6 +137,7 @@
       return array (
         'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_STATUS',
         'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_CONTENT_WIDTH',
+        'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION',
         'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_SORT_ORDER'
       );
     }

@@ -42,6 +42,7 @@
       if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $content_width = (int)MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_CONTENT_WIDTH;
+        $position = MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_POSITION;
 
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
@@ -109,6 +110,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'A quel endroit souhaitez-vous afficher le module ?',
+          'configuration_key' => 'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_POSITION',
+          'configuration_value' => 'float-md-none',
+          'configuration_description' => 'Affiche le module à gauche ou à droite',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_SORT_ORDER',
           'configuration_value' => '90',
@@ -133,6 +146,7 @@
       return array (
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_STATUS',
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_CONTENT_WIDTH',
+        'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_POSITION',
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_SORT_ORDER'
       );
     }

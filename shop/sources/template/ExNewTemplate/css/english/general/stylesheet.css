@@ -235,6 +235,7 @@ span.ModulesTickerBootstrapTickerStockDanger {
   text-align: center;
   position: relative;
   text-transform: uppercase;
+  font-size: 0.695rem;
 }
 
 .btn-circle {
