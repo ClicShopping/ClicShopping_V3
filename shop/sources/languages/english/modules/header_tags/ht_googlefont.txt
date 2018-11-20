@@ -1,0 +1,2 @@
+module_header_tags_google_font_title = Install Google Font Roboto
+module_header_tags_google_font_description = Google Font Roboto
