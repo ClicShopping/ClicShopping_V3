@@ -91,7 +91,7 @@ text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <stro
 title_specials_general = Information on the product
 title_specials_group = Price and customer group
 title_specials_date = Display date
-title_help_specials_price = Specials notes
+title_help_products_specials_price = Specials notes
 
 text_help_specials_price = <ul><li>You can insert a percentage in the Specials Price field, for example: <strong>20%</strong></li>
 <li>if you enter a new price, the decimal separator must be a '.' (decimal-point), example: <strong>49.99</strong></li>
