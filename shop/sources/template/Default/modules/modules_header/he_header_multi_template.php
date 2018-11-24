@@ -63,11 +63,11 @@
 
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_LOGO_BANNER_GROUP)) {
-          $logo_header = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
+          $logo_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
         }
 
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_BANNER_2_GROUP)) {
-          $banner_header = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
+          $banner_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
         }
       }
 

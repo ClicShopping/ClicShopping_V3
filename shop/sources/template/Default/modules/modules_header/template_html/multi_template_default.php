@@ -15,7 +15,7 @@
   <div class="col-md-<?php echo $content_width; ?>">
     <div class="row">
       <div class="separator"></div>
-      <span class="col-md-4 headerMultiTemplateDefaultLogo"><?php echo $logo_header; ?></span>
+      <span class="col-md-4 headerMultiTemplateDefaultLogo"><?php echo $logo_header; ?><br /><br /></span>
       <span class="col-md-8">
         <span class="text-md-right headerMultiTemplateDefaultTitle">
 <?php
@@ -76,12 +76,15 @@
 ?>
           <span><?php echo HTML::link(CLICSHOPPING::link(null, 'Info&Contact'), CLICSHOPPING::getDef('modules_header_multi_template_title_contact_us')); ?></span>
         </span>
-
+        <span class="float-md-right text-md-right">
+          &nbsp;&nbsp;&nbsp;<?php echo $currency_header; ?>
+        </span>
         <span class="float-md-right headerMultiTemplateDefaultLanguage">
           <ul>
             <li class="headerMultiTemplateDefaultLanguage"><?php echo $languages_string; ?></li>
           </ul>
         </span>
+
         <span class="col-md-6 float-md-left headerMultiTemplateDefaultHeaderSearch">
           <?php echo $form_advanced_result; ?>
           <div class="input-group col-md-12 advancedSearchCriteria">
@@ -97,11 +100,8 @@
       </span>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <span class="col-md-6 float-md-left">
-          <?php echo $currency_header; ?>
-        </span>
-        <span class="col-md-6 float-md-right text-md-right headerMultiTemplateDefaultCartLink">
+      <div class="col-md-12 group">
+        <span class="col-md-10 float-md-right text-md-right headerMultiTemplateDefaultCartLink">
 <?php
   if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 ?>

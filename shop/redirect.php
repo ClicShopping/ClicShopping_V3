@@ -29,7 +29,7 @@
 
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Banner = Registry::get('Banner');
-  $CLICSHOPPING_Manufacturer = Registry::get('Manufacturer');
+  $CLICSHOPPING_Manufacturer = Registry::get('Manufacturers');
 
   $CLICSHOPPING_Language = Registry::get('Language');
 
