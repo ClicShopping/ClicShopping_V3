@@ -453,8 +453,6 @@
  */
 
     public static function selectMenu($name, array $values, $default = null, $parameters = '', $required = false, $class = 'form-control') {
-
-
       $group = false;
 
       $field = '<select name="' . static::output($name) . '"';

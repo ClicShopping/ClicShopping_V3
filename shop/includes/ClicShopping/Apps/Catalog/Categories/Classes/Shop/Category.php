@@ -355,7 +355,7 @@
  */
 
     public function getCategories($categories_array = '', $parent_id = '0', $indent = '') {
-      if (!is_array($categories_array)) $categories_array = array();
+      if (!is_array($categories_array)) $categories_array = [];
 
       $Qcategories = $this->db->prepare('select c.categories_id,
                                          cd.categories_name
@@ -373,9 +373,9 @@
       $Qcategories->execute();
 
       while ($Qcategories->fetch()) {
-        $categories_array =  ['id' => $Qcategories->valueInt('categories_id'),
-                              'text' => $indent . $Qcategories->value('categories_name')
-                             ];
+        $categories_array[] = ['id' => $Qcategories->valueInt('categories_id'),
+                               'text' => $indent . $Qcategories->value('categories_name')
+                              ];
 
         if ($Qcategories->valueInt('categories_id') != $parent_id) {
           $categories_array = $this->getCategories($categories_array, $Qcategories->valueInt('categories_id'), $indent . '&nbsp;&nbsp;');
