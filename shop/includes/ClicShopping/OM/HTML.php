@@ -459,9 +459,9 @@
 
       $field = '<select name="' . static::output($name) . '"';
 
-       if ($required === true) {
-            $field .= ' required aria-required="true"';
-        }
+      if ($required === true) {
+        $field .= ' required aria-required="true"';
+      }
 
       if ( strpos($parameters, 'id=') === false ) {
         $field .= ' id="' . static::output($name) . '"';
@@ -471,22 +471,23 @@
         $field .= ' ' . $parameters;
       }
 
-        if (!empty($class)) {
-            $field .= ' class="' . $class . '"';
-        }
+      if (!empty($class)) {
+          $field .= ' class="' . $class . '"';
+      }
 
       $field .= '>';
-        if ($required === true) {
-            $field .= '<option value="">' . PULL_DOWN_DEFAULT . '</option>';
-        }
 
-        if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
-          if (isset($_GET[$name]) && is_string($_GET[$name])) {
-            $default = static::output($_GET[$name]);
-          } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
-            $default = static::output($_GET[$name]);
-          }
+      if ($required === true) {
+        $field .= '<option value="">' . CLICSHOPPING::getDef('text_select') . '</option>';
+      }
+
+      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
+        if (isset($_GET[$name]) && is_string($_GET[$name])) {
+          $default = static::output($_GET[$name]);
+        } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+          $default = static::output($_GET[$name]);
         }
+      }
 
         $ci = new \CachingIterator(new \ArrayIterator($values), \CachingIterator::TOSTRING_USE_CURRENT); // used for hasNext() below
 

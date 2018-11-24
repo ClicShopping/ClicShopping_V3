@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -64,13 +64,12 @@
 
     private static function removeProductsBannerManagerDb() {
       $CLICSHOPPING_Db = Registry::get('Db');
-/*
+
       $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_banner_manager"');
 
       if ($Qcheck->fetch() !== false) {
         $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_banner_manager');
         $Qdelete->execute();
       }
-*/
     }
   }

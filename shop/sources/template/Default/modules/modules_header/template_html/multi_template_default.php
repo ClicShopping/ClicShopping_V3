@@ -93,7 +93,7 @@
           <?php echo HTML::hiddenField('search_in_description', '1'); ?>
           <?php echo $endform; ?>
         </span>
-        <span class="col-md-5 float-md-right headerMultiTemplateDefaultShoppingCartImage"><?php echo $banner_header; ?></span>
+        <span class="col-md-6 float-md-right headerMultiTemplateDefaultShoppingCartImage"><?php echo $banner_header; ?></span>
       </span>
     </div>
     <div class="row">
