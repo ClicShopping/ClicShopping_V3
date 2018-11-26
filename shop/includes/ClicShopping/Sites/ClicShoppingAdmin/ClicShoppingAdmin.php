@@ -49,6 +49,8 @@
                                               ]
                              );//, null, null, null, 'configuration'); // TODO add cache when supported by admin
 
+      $Qcfg->execute();
+
       while ($Qcfg->fetch()) {
         define($Qcfg->value('k'), $Qcfg->value('v'));
       }
@@ -67,6 +69,7 @@
 
 // language
       $CLICSHOPPING_Language = new Language();
+      $CLICSHOPPING_Language->setUseCache(true);
       Registry::set('Language', $CLICSHOPPING_Language);
 
 // Template
