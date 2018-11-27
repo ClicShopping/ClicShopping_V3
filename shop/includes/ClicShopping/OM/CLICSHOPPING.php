@@ -142,14 +142,14 @@
     public static function link($page = null, $parameters = null, $add_session_id = true, $search_engine_safe = true)  {
 
       if (is_null($page)) {
-        $page = CLICSHOPPING::getConfig('bootstrap_file');
+        $page = static::getConfig('bootstrap_file');
       }
 
       $page = HTML::sanitize($page);
 
       $site = $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && CLICSHOPPING::siteExists($matches[1], false)) {
+      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
           $req_site = $matches[1];
           $page = $matches[2];
       }
@@ -176,7 +176,7 @@
                           '{', // product attributes
                           '}' // product attributes
                           ], [
-                           "\\",
+                            "\\", //%5C - backoffice
                             '%7B',
                             '%7D'
                           ], $p);
@@ -190,7 +190,6 @@
       while((substr($link, -1) == '&') || (substr($link, -1) == '?')) {
         $link = substr($link, 0, -1);
       }
-
 
 // Add the session ID when moving from different HTTP and HTTPS servers, or when SID is defined
       if (($add_session_id === true) && Registry::exists('Session')) {
@@ -230,7 +229,7 @@
         $page = $args[0];
         $req_site = static::$site;
 
-        if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && CLICSHOPPING::siteExists($matches[1], false)) {
+        if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
           $req_site = $matches[1];
           $page = $matches[2];
         }
@@ -266,7 +265,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && CLICSHOPPING::siteExists($matches[1], false)) {
+      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -509,7 +508,7 @@
 
       $params = '';
 
-      $array = [CLICSHOPPING::getSite(),
+      $array = [static::getSite(),
                 Registry::get('Session')->getName(),
                 'error',
                 'x',
@@ -536,7 +535,7 @@
 */
     public static function getIndex() {
       $req = parse_url($_SERVER['SCRIPT_NAME']);
-      $result = substr($req['path'], strlen(CLICSHOPPING::getConfig('http_path', 'Shop')));
+      $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
 
       return $result;
     }

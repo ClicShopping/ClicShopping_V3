@@ -93,7 +93,11 @@
                   $data .= '<tr>';
                   $data .= '<td>';
 
-                  $data .= '<strong>'. $quote['module'] . '</strong>';
+                  $data .= '<strong>'. $quote['module'] . '&nbsp;</strong>';
+
+                  if(!empty($quote['methods'][$j]['title'])) {
+                    $data .= $quote['methods'][$j]['title'] . '&nbsp;</strong>';
+                  }
 
                   if (isset($quote['icon']) && !empty($quote['icon'])) {
                     $data .=  '&nbsp;' . $quote['icon'];
