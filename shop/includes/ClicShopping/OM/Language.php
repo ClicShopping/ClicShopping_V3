@@ -56,7 +56,7 @@
                                            from :table_languages
                                            order by sort_order
                                           ');
-        $Qlanguages->setCache('languages-system-admin');
+
         $Qlanguages->execute();
       }
 
