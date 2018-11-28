@@ -46,7 +46,7 @@
       $CLICSHOPPING_Template->addBlock($header_tag, $this->group);
 
       $footer_tag ='<script src="ext/javascript/datepicker/js/bootstrap-datepicker.js"></script>';
-      $footer_tag .='<script src="' . $CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/Shop/datepicker.js') . '"></script>';
+      $footer_tag .='<script src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/Shop/datepicker.js')) . '"></script>';
       $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
