@@ -47,12 +47,14 @@
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_Db = Registry::get('Db');
 
-        $Qproducts = $CLICSHOPPING_Db->get('products', ['products_id', 'products_image', 'products_image_zoom', 'products_image_medium'], ['products_id' => $CLICSHOPPING_ProductsCommon->getID(), 'products_status' => 1]);
+        $Qproducts = $CLICSHOPPING_Db->get('products', ['products_id',  'products_image', 'products_image_zoom', 'products_image_medium'], ['products_id' => $CLICSHOPPING_ProductsCommon->getID(), 'products_status' => 1]);
 
         $products_small_image = $Qproducts->value('products_image');
         $products_image_zoom = $Qproducts->value('products_image_zoom');
         $products_image_medium = $Qproducts->value('products_image_medium');
-        $products_name = $Qproducts->value('products_name');
+
+        $id = $CLICSHOPPING_ProductsCommon->getID();
+        $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($id);
 
         $head = '<!--magnificPopup start  -->' . "\n";
         $head .= '<link rel="stylesheet" type="text/css" media="all" href="' . $CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/magnific-popup.css') . '">' . "\n";

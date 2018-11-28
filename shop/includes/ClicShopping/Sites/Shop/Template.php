@@ -536,9 +536,13 @@
 
         $search = $replace;
 
-        if (strpos($search, '&language') !== false) {
-          $replace = substr($replace, 0, strpos($replace, '&language'));
+        if (strpos($search, 'language') !== false) {
+          $replace = substr($replace, 0, strpos($replace, 'language'));
         }
+
+				if (strpos($search, 'currency') !== false) {
+						$replace = substr($replace, 0, strpos($replace, 'currency'));
+				}
 
         $url_string = $replace;
 
@@ -668,7 +672,7 @@
  * @return string $javascript, directory of javascript in the template directory
  */
     public function getTemplateDefaultJavaScript($name) {
-      $javascript = $this->_directoryTemplateSources . '/javascript/' . $name;
+      $javascript = CLICSHOPPING::getSite('Shop') . '/' . $this->_directoryTemplateSources . '/javascript/' . $name;
 
       return $javascript;
     }

@@ -56,7 +56,7 @@
           $CLICSHOPPING_Template->addBlock('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">' . "\n", 'header_tags');
 
           $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>' . "\n", $this->group);
-          $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.' . $language_code . '.min.js"></script>' . "\n", $this->group);
+
 
 
           // create_account
