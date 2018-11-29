@@ -66,7 +66,6 @@
         $shopping_cart .= '<table class="ModulesShoppingCartProductsListingTableHeading table table-striped table-sm">';
         $shopping_cart .= '<thead>';
         $shopping_cart .= '<tr class="ModulesShoppingCartProductsListingContent">';
-        $shopping_cart .= '<td class="ModulesShoppingCartProductsListingContent" width="80"></td>';
         $shopping_cart .= '<td class="text-md-center ModulesShoppingCartProductsListingContent" width="500">' . CLICSHOPPING::getDef('table_heading_products') . '</td>';
         $shopping_cart .= '<td class="text-md-center ModulesShoppingCartProductsListingContent" width="170">' . CLICSHOPPING::getDef('table_heading_quantity') . '</td>';
         $shopping_cart .= '<td class="text-md-right ModulesShoppingCartProductsListingContent" width="150">' . CLICSHOPPING::getDef('table_heading_total') . '</td>';
@@ -104,9 +103,9 @@
           $products_name = '<table border="0" cellspacing="2" cellpadding="2" class="ModulesShoppingCartProductsListingTableContent">';
           $products_name .= '<tr>';
           $products_name .= HTML::hiddenField('products_id[]', $products[$i]['id']);
-          $products_name .= '<th class="text-md-center">' . HTML::link(CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/delete.gif', CLICSHOPPING::getDef('button_remove'))) . '&nbsp;&nbsp;&nbsp;</th>';
-          $products_name .= '<th class="text-md-center">' . HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50)) . '&nbsp;&nbsp;&nbsp;</th>';
-          $products_name .= '<th valign="top" width="500">' . HTML::link($products_name_url, $products[$i]['name']);
+          $products_name .= '<td class="text-md-center">' . HTML::link(CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/delete.gif', CLICSHOPPING::getDef('button_remove'))) . '&nbsp;&nbsp;&nbsp;</td>';
+          $products_name .= '<td class="text-md-center">' . HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50)) . '&nbsp;&nbsp;&nbsp;</td>';
+          $products_name .= '<td valign="top" width="500">' . HTML::link($products_name_url, $products[$i]['name']);
 
           if (STOCK_CHECK == 'true') {
 // select the good qty in B2B to decrease the stock (see checkout_process to update stock)
@@ -139,12 +138,11 @@
             }
           }
 
-          $products_name .= '</th>';
+          $products_name .= '</td>';
           $products_name .= '</tr>';
-          $products_name .= '</tbody>';
           $products_name .= '</table>';
 
-          $button_update = HTML::button(null, 'fas fa-sync btn-ShoppingCartRefresh', null, null, null, 'sm');
+          $button_update = HTML::button(null, 'fas fa-sync btn-ShoppingCartRefresh', null, null, null, 'lg');
 
 // pourcentage
 // ticker
@@ -161,13 +159,12 @@
           $cart .= '<td valign="top" width="60%">' . $ticker . ' ' .  $products_name . '</td>';
           $cart .= '<td class="text-md-right">';
           $cart .= HTML::hiddenField('products_id[' . $i . ']', $products_id, 'id="products_id' . $products_id . '"');
-          $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity') .'&nbsp;&nbsp;';
+          $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity');
+          $cart .= $button_update ;
           $cart .= '</td>';
-
-          $cart .= '<td>' . $button_update . '</td>';
-
           $cart .= '<td class="text-md-right" valign="middle">' . $CLICSHOPPING_Currencies->display_price($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
           $cart .= '</tr>';
+
 
 // display SaveMoney Hook
           $_POST['products_id'] = $products_id;
@@ -238,10 +235,6 @@
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 

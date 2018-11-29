@@ -906,6 +906,9 @@ INSERT INTO configuration VALUES(1431, 'Do you want activate this module ?', 'MO
 INSERT INTO configuration VALUES(1432, 'Please select the width of the module', 'MODULE_SHOPPING_CART_SHOW_TOTAL_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2018-11-20 12:00:20', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1433, 'Where do you to display this module ?', 'MODULE_SHOPPING_CART_SHOW_TOTAL_POSITION', 'float-md-none', 'Display the module at right or left (depends of your template configuration)', 6, 2, NULL, '2018-11-20 12:00:20', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO configuration VALUES(1434, 'Sort order', 'MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER', '20', 'Sort order of display. Lowest is displayed first', 6, 4, NULL, '2018-11-20 12:00:20', NULL, '');
+INSERT INTO configuration VALUES(1435, 'Do you want activate this module ?', 'MODULE_HEADER_NOSCRIPT_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 1, NULL, '2018-11-29 10:39:18', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1436, 'Where do you to display this module ?', 'MODULE_HEADER_NOSCRIPT_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 2, NULL, '2018-11-29 10:39:18', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1437, 'Sort order', 'MODULE_HEADER_NOSCRIPT_SORT_ORDER', '1', 'Sort order of display. Lowest is displayed first', 6, 0, NULL, '2018-11-29 10:39:18', NULL, '');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

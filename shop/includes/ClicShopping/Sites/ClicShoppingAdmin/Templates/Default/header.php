@@ -57,7 +57,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body onload="SetFocus();">
+
 <div class="container-fluid">
+  <div>
+    <noscript>
+      <div class="alert alert-warning no-script">
+        <div class="no-script-inner"><?php echo CLICSHOPPING::getDef('no_script_text'); ?></div>
+      </div>
+    </noscript>
+  </div>
+<div>
   <div class="wrapper" id="wrapper"></div>
     <div id="content">
       <div class="headerFond">
@@ -94,10 +103,4 @@
 <?php
   }
 ?>
-      <div>
-        <noscript>
-          <div class="no-script">
-            <div class="no-script-inner"><?php echo CLICSHOPPING::getDef('no_script_text'); ?></div>
-          </div>
-        </noscript>
-      </div>
+
