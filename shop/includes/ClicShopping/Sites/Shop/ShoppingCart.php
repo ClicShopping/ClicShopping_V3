@@ -14,6 +14,8 @@
   use ClicShopping\OM\Hash;
   use ClicShopping\OM\Registry;
 
+  use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop\ProductsAttributesShop;
+
   class ShoppingCart {
 
     public $contents = [];
@@ -39,7 +41,12 @@
       $this->prod = Registry::get('Prod');
       $this->productsCommon = Registry::get('ProductsCommon');
       $this->tax = Registry::get('Tax');
-      $this->productsAttributes = Registry::get('ProductsAttributes');
+
+      if (!Registry::exists('ProductsAttributesShop')) {
+        Registry::set('ProductsAttributesShop', new ProductsAttributesShop());
+      }
+
+      $this->productsAttributes = Registry::get('ProductsAttributesShop');
 
        if ( !isset($_SESSION['ClicShoppingCart']) ) {
          $_SESSION['ClicShoppingCart'] = ['contents' => [],
@@ -206,7 +213,7 @@
             $attributes_pass_check = false;
             break;
           } else {
-            $check = GetCheckProductsAttributes($products_id, $option, $value);
+            $check = $this->productsAttributes->GetCheckProductsAttributes($products_id, $option, $value);
 
             if ($check === false) {
               $attributes_pass_check = false;
@@ -293,7 +300,7 @@
             $attributes_pass_check = false;
             break;
           } else {
-            $check = GetCheckProductsAttributes($products_id, $option, $value);
+            $check = $this->productsAttributes->GetCheckProductsAttributes($products_id, $option, $value);
 
             if ($check === false) {
               $attributes_pass_check = false;
@@ -389,7 +396,7 @@
             break;
 
           } else {
-            $check = GetCheckProductsAttributes($products_id, $option, $value);
+            $check = $this->productsAttributes->GetCheckProductsAttributes($products_id, $option, $value);
 
             if ($check !== false) {
               $attributes_pass_check = true;
