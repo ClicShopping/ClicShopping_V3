@@ -853,7 +853,7 @@ INSERT INTO configuration VALUES(1352, 'Ordre de tri d\'affichage', 'MODULES_CON
 INSERT INTO configuration VALUES(1356, 'Status', 'CLICSHOPPING_APP_PRODUCTS_ATTRIBUTES_PA_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-08-01 08:51:01', NULL, NULL);
 INSERT INTO configuration VALUES(1357, 'Sort Order', 'CLICSHOPPING_APP_PRODUCTS_ATTRIBUTES_PA_SORT_ORDER', '300', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2018-08-01 08:51:01', NULL, NULL);
 INSERT INTO configuration VALUES(1358, 'Parameter [ProductsAttributes App]', 'MODULE_MODULES_PRODUCTS_ATTRIBUTES_INSTALLED', 'Catalog\\ProductsAttributes\\PA', 'Parameter [ProductsAttributes App]', 6, 0, NULL, '2018-08-01 08:51:01', NULL, NULL);
-IINSERT INTO configuration VALUES(1374, 'Souhaitez vous activer ce module ?', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS', 'True', 'Souhaitez vous activer ce module ?', 6, 1, NULL, '2018-08-08 18:14:30', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1374, 'Souhaitez vous activer ce module ?', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS', 'True', 'Souhaitez vous activer ce module ?', 6, 1, NULL, '2018-08-08 18:14:30', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1375, 'Ordre de tri d\'affichage', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_SORT_ORDER', '65', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 45, NULL, '2018-08-08 18:14:30', NULL, '');
 INSERT INTO configuration VALUES(1376, 'Veuillez sélectionner les pages ou sera affiché le module', 'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES', 'Search&AdvancedSearch;Account&Edit;Account&Create;Account&CreatePro', 'Pages ou le module sera affiché', 6, 1, NULL, '2018-08-08 18:14:30', 'ht_datepicker_jquery_show_pages', 'ht_datepicker_jquery_edit_pages');
 INSERT INTO configuration VALUES(1377, 'cfg_products_modules_status_title', 'CLICSHOPPING_APP_MODULES_MO_STATUS', 'True', 'cfg_products_modules_status_description', 6, 0, NULL, '2018-08-20 23:26:41', NULL, NULL);
@@ -2070,9 +2070,9 @@ INSERT INTO administrator_menu VALUES(59, 'index.php?A&Configuration\\Modules&Mo
 INSERT INTO administrator_menu VALUES(69, 'index.php?A&Configuration\\Settings&Settings&gID=14', 21, 1, 0, 'configuration_14.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(70, 'index.php?A&Configuration\\Settings&Settings&gID=10', 21, 2, 0, 'configuration_10.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(71, 'index.php?A&Configuration\\Settings&Settings&gID=15', 21, 3, 0, 'configuration_15.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(75, 'index.php?A&Catalog\\ProductsAttributes&ProductsAttributes', 3, 7, 0, 'products_option.gif', 0, 'app_catalog_products_attributes', 1);
 INSERT INTO administrator_menu VALUES(98, '', 7, 0, 0, 'stats_products.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(103, '', 7, 1, 0, 'stats_financial.png', 0, NULL, 1);
-
 INSERT INTO administrator_menu VALUES(116, '', 8, 0, 0, 'configuration_43.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(117, '', 8, 1, 0, 'configuration_session.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(118, '', 8, 2, 0, 'page_manager.gif', 0, NULL, 1);

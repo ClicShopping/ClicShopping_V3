@@ -2070,9 +2070,9 @@ INSERT INTO administrator_menu VALUES(59, 'index.php?A&Configuration\\Modules&Mo
 INSERT INTO administrator_menu VALUES(69, 'index.php?A&Configuration\\Settings&Settings&gID=14', 21, 1, 0, 'configuration_14.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(70, 'index.php?A&Configuration\\Settings&Settings&gID=10', 21, 2, 0, 'configuration_10.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(71, 'index.php?A&Configuration\\Settings&Settings&gID=15', 21, 3, 0, 'configuration_15.gif', 0, NULL, 1);
+INSERT INTO administrator_menu VALUES(75, 'index.php?A&Catalog\\ProductsAttributes&ProductsAttributes', 3, 7, 0, 'products_option.gif', 0, 'app_catalog_products_attributes', 1);
 INSERT INTO administrator_menu VALUES(98, '', 7, 0, 0, 'stats_products.png', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(103, '', 7, 1, 0, 'stats_financial.png', 0, NULL, 1);
-
 INSERT INTO administrator_menu VALUES(116, '', 8, 0, 0, 'configuration_43.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(117, '', 8, 1, 0, 'configuration_session.gif', 0, NULL, 1);
 INSERT INTO administrator_menu VALUES(118, '', 8, 2, 0, 'page_manager.gif', 0, NULL, 1);
