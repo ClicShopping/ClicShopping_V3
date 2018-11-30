@@ -61,6 +61,8 @@
                                        ');
       $Qcfg->setCache('configuration');
 
+      $Qcfg->execute();
+
       while ($Qcfg->fetch()) {
         define($Qcfg->value('k'), $Qcfg->value('v'));
       }
