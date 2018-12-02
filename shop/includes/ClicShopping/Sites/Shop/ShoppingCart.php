@@ -63,7 +63,7 @@
 
       $this->contents =& $_SESSION['ClicShoppingCart']['contents'];
 
-      $this->_sub_total =& $_SESSION['ClicShoppingCart']['sub_total_cost'];
+      $this->sub_total =& $_SESSION['ClicShoppingCart']['sub_total_cost'];
       $this->weight =& $_SESSION['ClicShoppingCart']['total_weight'];
     }
 
@@ -183,22 +183,37 @@
       $this->cartID = $this->generate_cart_id();
     }
 
+/**
+ * remove all items
+ * @param bool $reset_database
+ */
     public function reset($reset_database = false) {
-      $this->contents = [];
-      $this->total = 0;
-      $this->weight = 0;
-      $this->content_type = false;
-
       if ($this->customer->isLoggedOn() && ($reset_database === true)) {
         $this->db->delete('customers_basket', ['customers_id' => (int)$this->customer->getID()]);
 
         $this->db->delete('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID()]);
       }
 
+      $this->contents = [];
+      $this->sub_total = 0;
+      $this->total = 0;
+      $this->weight = 0;
+      $this->content_type = false;
+
       unset($this->cartID);
-      if (isset($_SESSION['cartID'])) unset($_SESSION['cartID']);
+
+      if (isset($_SESSION['cartID'])) {
+        unset($_SESSION['cartID']);
+      }
     }
 
+/**
+ * add products
+ * @param $products_id
+ * @param string $qty
+ * @param string $attributes
+ * @param bool $notify
+ */
     public function add($products_id, $qty = '1', $attributes = '', $notify = true) {
       $products_id_string = $this->prod->getProductIDString($products_id, $attributes);
       $products_id = $this->prod->getProductID($products_id_string);
@@ -394,14 +409,6 @@
           if (!is_numeric($option) || !is_numeric($value)) {
             $attributes_pass_check = false;
             break;
-
-          } else {
-            $check = $this->productsAttributes->GetCheckProductsAttributes($products_id, $option, $value);
-
-            if ($check !== false) {
-              $attributes_pass_check = true;
-              break;
-            }
           }
         }
       }
