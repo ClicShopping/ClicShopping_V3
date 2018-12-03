@@ -443,6 +443,9 @@
       }
     }
 
+/**
+ * items cleanup
+ */
     public function cleanup() {
       foreach (array_keys($this->contents) as $key ) {
         if ($this->contents[$key]['qty'] < 1) {
@@ -500,6 +503,10 @@
       }
     }
 
+/**
+ * Remove item
+ * @param $products_id
+ */
     public function remove($products_id) {
       unset($this->contents[$products_id]);
 
@@ -517,11 +524,15 @@
                           );
       }
 
+      $this->calculate();
+
 // assign a temporary unique ID to the order contents to prevent hack attempts during the checkout procedure
       $this->cartID = $this->generate_cart_id();
     }
 
-
+/**
+ * Remove All Items
+ */
     public function remove_all() {
       $this->reset();
     }
@@ -834,7 +845,7 @@
             foreach ($this->contents[$products_id]['attributes'] as $value) {
               $check = $this->productsAttributes->getCheckProductsDownload($products_id, $value);
 
-               if ($check !== false) {
+              if ($check > 0) {
                 switch ($this->content_type) {
                   case 'physical':
                     $this->content_type = 'mixed';

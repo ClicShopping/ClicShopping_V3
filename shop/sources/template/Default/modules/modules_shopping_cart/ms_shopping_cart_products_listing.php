@@ -142,8 +142,6 @@
 
           $button_update = HTML::button(null, 'fas fa-sync btn-ShoppingCartRefresh', null, null, null, 'lg');
 
-// pourcentage
-// ticker
           $products_id = $CLICSHOPPING_Prod::getProductID($products[$i]['id']);
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 
@@ -156,8 +154,8 @@
           $cart = '<tr>';
           $cart .= '<td valign="top" width="60%">' . $ticker . ' ' .  $products_name . '</td>';
           $cart .= '<td class="text-md-right">';
-          $cart .= HTML::hiddenField('products_id[]', $products[$i]['id'], 'id="products_id' . $products[$i]['id'] . '"');
-          $cart .= HTML::inputField('cart_quantity[]', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity');
+          $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity');
+          $cart .= HTML::hiddenField('products_id[' . $i . ']', $products[$i]['id'], 'id="products_id' . $products[$i]['id'] . '"');
           $cart .= $button_update ;
           $cart .= '</td>';
           $cart .= '<td class="text-md-right" valign="middle">' . $CLICSHOPPING_Currencies->display_price($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';

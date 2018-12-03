@@ -137,15 +137,13 @@
               <td class="text-md-left"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
               <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_Groups->link('Edit&page=' . $_GET['page'] . '&cID=' . $QustomersGroup->valueInt('customers_group_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')) . '</a>' ;
+      echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $_GET['page'] . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
       echo '&nbsp;';
-      if ( (is_object($cInfo)) && ($customers_group['customers_group_id'] == $cInfo->customers_group_id) ) {
-        echo '<a href="' . $CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $_GET['page'] . '&cID=' . $QustomersGroup->valueInt('customers_group_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')) . '</a>';
-      }
+        echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $_GET['page'] . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')));
       echo '&nbsp;';
 
       if ($QustomersGroup->valueInt('customers_group_id') > 1) {
-        echo '<a href="' . $CLICSHOPPING_Groups->link('Groups&Delete&cID=' . $QustomersGroup->valueInt('customers_group_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Groups->getDef('image_delete')) . '</a>';
+        echo  HTML::link($CLICSHOPPING_Groups->link('Groups&Delete&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Groups->getDef('image_delete')));
         echo '&nbsp;';
       }
 ?>

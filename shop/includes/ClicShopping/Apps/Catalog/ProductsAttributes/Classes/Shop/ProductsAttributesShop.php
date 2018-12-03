@@ -247,10 +247,11 @@
                                    ');
       $Qcheck->bindInt(':products_id', $products_id);
       $Qcheck->bindInt(':options_values_id', $options_values_id);
-
       $Qcheck->execute();
 
-      return $Qcheck->fetch();
+      $check = $Qcheck->rowCount();
+
+      return $check;
     }
 
 /**
