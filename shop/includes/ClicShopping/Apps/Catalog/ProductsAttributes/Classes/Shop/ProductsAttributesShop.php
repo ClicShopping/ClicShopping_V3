@@ -188,29 +188,6 @@
     }
 
 /**
- * Check products download
- * @param int $products_id
- * @param int $options_values_id
- * @return bool
- */
-    public function getCheckProductsDownload($products_id, $options_values_id) {
-      $Qcheck = $this->db->prepare('select pa.products_attributes_id
-                                    from :table_products_attributes pa,
-                                         :table_products_attributes_download pad
-                                    where pa.products_id = :products_id
-                                    and pa.options_values_id = :options_values_id
-                                    and pa.products_attributes_id = pad.products_attributes_id
-                                    limit 1
-                                   ');
-      $Qcheck->bindInt(':products_id', $products_id);
-      $Qcheck->bindInt(':options_values_id', $options_values_id);
-
-      $Qcheck->execute();
-
-      return $Qcheck->fetch();
-    }
-
-/**
  * get the attributes price
  * @param in $products_id, the id of the products
  * @return $attributes_price the price of the attributes
@@ -248,6 +225,33 @@
       return $attributes_price;
     }
 
+
+//******************************************************
+// Download
+///******************************************************
+
+/**
+ * Check products download
+ * @param int $products_id
+ * @param int $options_values_id
+ * @return bool
+ */
+    public function getCheckProductsDownload($products_id, $options_values_id) {
+      $Qcheck = $this->db->prepare('select pa.products_attributes_id
+                                    from :table_products_attributes pa,
+                                         :table_products_attributes_download pad
+                                    where pa.products_id = :products_id
+                                    and pa.options_values_id = :options_values_id
+                                    and pa.products_attributes_id = pad.products_attributes_id
+                                    limit 1
+                                   ');
+      $Qcheck->bindInt(':products_id', $products_id);
+      $Qcheck->bindInt(':options_values_id', $options_values_id);
+
+      $Qcheck->execute();
+
+      return $Qcheck->fetch();
+    }
 
 /**
  * get the attributes download - used payment

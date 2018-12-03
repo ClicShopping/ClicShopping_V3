@@ -53,8 +53,6 @@
         $content_width = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH;
 
         $form = HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"', ['tokenize' => true]);
-//        $form = HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Update'), 'post', 'class="form-inline" role="form" id="cart_quantity"');
-
         $endform = '</form>';
 
         $shopping_cart = '<!-- ms_shopping_cart_products_listing -->'. "\n";
@@ -158,8 +156,8 @@
           $cart = '<tr>';
           $cart .= '<td valign="top" width="60%">' . $ticker . ' ' .  $products_name . '</td>';
           $cart .= '<td class="text-md-right">';
-          $cart .= HTML::hiddenField('products_id[' . $i . ']', $products_id, 'id="products_id' . $products_id . '"');
-          $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity');
+          $cart .= HTML::hiddenField('products_id[]', $products[$i]['id'], 'id="products_id' . $products[$i]['id'] . '"');
+          $cart .= HTML::inputField('cart_quantity[]', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity');
           $cart .= $button_update ;
           $cart .= '</td>';
           $cart .= '<td class="text-md-right" valign="middle">' . $CLICSHOPPING_Currencies->display_price($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
@@ -167,7 +165,7 @@
 
 
 // display SaveMoney Hook
-          $_POST['products_id'] = $products_id;
+          $_POST['products_id'] = $products[$i]['id'];
           $cart .= Registry::get('Hooks')->output('Cart', 'AdditionalCheckoutSaveMoney');
 
           ob_start();
@@ -243,10 +241,10 @@
     }
 
     public function keys() {
-      return array (
+      return [
         'MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS',
 	      'MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH',
         'MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER'
-      );
+      ];
     }
   }

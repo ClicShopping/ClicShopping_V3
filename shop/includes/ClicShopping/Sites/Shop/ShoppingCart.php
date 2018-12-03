@@ -215,8 +215,8 @@
  * @param bool $notify
  */
     public function add($products_id, $qty = '1', $attributes = '', $notify = true) {
-      $products_id_string = $this->prod->getProductIDString($products_id, $attributes);
-      $products_id = $this->prod->getProductID($products_id_string);
+      $products_id_string = $this->getUprid($products_id, $attributes);
+      $products_id = $this->getPrid($products_id_string);
 
       $qty = $this->getCheckGoodQty($products_id, $qty);
 
@@ -253,7 +253,7 @@
         $Qcheck->execute();
 
         if ($Qcheck->fetch() !== false) {
-          if ($notify === true) {
+          if ($notify == true) {
             $_SESSION['new_products_id_inCart'] = $products_id;
           }
 
@@ -301,9 +301,8 @@
 
 
     public function addCart($products_id, $qty = '1', $attributes = '', $notify = true) {
-      $products_id_string = $this->prod->getProductIDString($products_id, $attributes);
-      $products_id = $this->prod->getProductID($products_id_string);
-
+      $products_id_string = $this->getUprid($products_id, $attributes);
+      $products_id = $this->getPrid($products_id_string);
 // B2B / B2C Choose the good qty
       $qty = $this->getCheckGoodQty($products_id, $qty);
 
@@ -339,7 +338,7 @@
         $Qcheck->execute();
 
         if ($Qcheck->fetch() !== false) {
-          if ($notify === true) {
+          if ($notify == true) {
             $_SESSION['new_products_id_inCart'] = $products_id;
           }
 
@@ -387,8 +386,8 @@
 //************************************************
 
     public function updateQuantity($products_id, $quantity = '', $attributes = '') {
-      $products_id_string = $this->prod->getProductIDString($products_id, $attributes);
-      $products_id = $this->prod->getProductID($products_id_string);
+      $products_id_string = $this->getUprid($products_id, $attributes);
+      $products_id = $this->getPrid($products_id_string);
 
 // Maximum to take an order
       if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$quantity > MAX_QTY_IN_CART)) {
@@ -413,7 +412,7 @@
         }
       }
 
-      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check === true)) {
+      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check == true)) {
         $this->contents[$products_id_string] = ['qty' => (int)$quantity];
 // update database
         if ($this->customer->isLoggedOn()) {
