@@ -234,7 +234,7 @@
  * @return string
  */
     public function getDirectoryShopSources() {
-      $directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getTemplateSource(); //' CLICSHOPPING::getConfig('dir_root') . 'sources/'
+      $directory = parent::getTemplateSource(); //' CLICSHOPPING::getConfig('dir_root') . 'sources/'
 
       return $directory;
     }
