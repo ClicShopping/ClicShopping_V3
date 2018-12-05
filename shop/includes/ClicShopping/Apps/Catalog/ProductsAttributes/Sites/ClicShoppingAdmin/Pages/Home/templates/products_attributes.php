@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -45,6 +45,14 @@
   }
 //--></script>
   <div class="contentBody">
+<?php
+// check if the catalog image directory exists
+  if (DOWNLOAD_ENABLED == 'true') {
+    if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
+      if (!FileSystem::isWritable($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private'))) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('error_catalog_download_directory_not_writeable'), 'warning');
+    }
+  }
+?>
     <div class="row">
       <div class="col-md-12">
         <div class="card card-block headerCard">
@@ -911,16 +919,6 @@
                   <td></td>
                   <td class="text-md-right"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
                 </tr>
-
-
-
-
-
-
-
-
-
-
 <?php
     if (DOWNLOAD_ENABLED == 'true') {
       $products_attributes_maxdays  = (int)DOWNLOAD_MAX_DAYS;
@@ -931,17 +929,7 @@
                     <tr>
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_download'); ?></td>
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_filename'); ?></td>
-
-
-
                       <td valign="bottom"><?php echo HTML::fileField('new_products_attributes_filename'); ?></td>
-
-
-
-
-
-
-
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_days') ?></td>
                       <td><?php echo HTML::inputField('products_attributes_maxdays', $products_attributes_maxdays); ?></td>
                       <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_count'); ?></td>
@@ -986,15 +974,15 @@
                         <select name="clone_products_id_from">
 <?php
   $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                             pd.products_name,
-                                                             p.products_model
-                                                        from :table_products p,
-                                                             :table_products_description pd
-                                                        where pd.products_id = p.products_id
-                                                        and pd.language_id = :language_id
-                                                        and p.products_archive = 0
-                                                        order by pd.products_name
-                                                     ');
+                                                                     pd.products_name,
+                                                                     p.products_model
+                                                                from :table_products p,
+                                                                     :table_products_description pd
+                                                                where pd.products_id = p.products_id
+                                                                and pd.language_id = :language_id
+                                                                and p.products_archive = 0
+                                                                order by pd.products_name
+                                                             ');
   $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qproducts->execute();
 
@@ -1009,15 +997,15 @@
                         <select name="clone_products_id_to[]" multiple size="10">
 <?php
   $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                               pd.products_name,
-                                                               p.products_model
-                                                        from :table_products p,
-                                                             :table_products_description pd
-                                                        where pd.products_id = p.products_id
-                                                        and pd.language_id = :language_id
-                                                        and p.products_archive = 0
-                                                        order by pd.products_name
-                                                       ');
+                                                                     pd.products_name,
+                                                                     p.products_model
+                                                              from :table_products p,
+                                                                   :table_products_description pd
+                                                              where pd.products_id = p.products_id
+                                                              and pd.language_id = :language_id
+                                                              and p.products_archive = 0
+                                                              order by pd.products_name
+                                                             ');
   $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
   $Qproducts->execute();
 

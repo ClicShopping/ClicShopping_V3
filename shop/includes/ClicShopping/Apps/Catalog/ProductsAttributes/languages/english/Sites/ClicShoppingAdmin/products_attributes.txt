@@ -27,7 +27,7 @@ clone_products_to = to
 
 title_help_attributs = Note on the Attributs
 
-text_help_attributs = <ul><strong><u>Attributs Prefix </u></strong> :<br /><br /><li> - The syntax "+" allow to multiply the attribut by the quantity and add to the price</li> <li> - The syntax "-" allow to multiply  the attribut by the quantity and add the price</li><br /><li> - Don't forget to configure the order status concerning the upload files.</li><li> - The upload file can't exceed  : ' . $upload_max_filesize .'</li>
+text_help_attributs = <ul><strong><u>Attributs Prefix </u></strong> :<br /><br /><li> - The syntax "+" allow to multiply the attribut by the quantity and add to the price</li> <li> - The syntax "-" allow to multiply  the attribut by the quantity and add the price</li><br /><li> - Don't forget to configure the order status concerning the upload files.</li><li> - The upload file can't exceed  : {{upload_max_filesize}}</li>
 text_filename = Nom du fichier
 
 title_help_clone = Note on the Clone
@@ -45,3 +45,5 @@ tab_step4 = Options
 
 button_edit = Edit
 button_copy = Copy
+
+error_catalog_download_directory_not_writeable = Download directory not writeable : Download/Private

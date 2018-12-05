@@ -23,7 +23,8 @@ clone_products_to = vers
 
 title_help_attributs = Note sur les attributs
 
-text_help_attributs = <ul><strong><u>les préfixes d'attribut</u></strong> : <br /><br /><li> - La synthaxe "+" permet de multiplier l'attribut par la quantité et de l'additionner au prix</li><li>- La synthaxe "-" permet de mullitplier l'attribut par la quantité et de le soustraire au prix</li><br /><li> - N'oubliez pas aussi de paramétrer le statut de commande concernant l'autorisation de téléchargement.</li><li> - Le téléchargement de fichiers ne peut excéder : ' . $upload_max_filesize .'</li>'title_help_clone = Note sur les attributs
+text_help_attributs = <ul><strong><u>les préfixes d'attribut</u></strong> : <br /><br /><li> - La synthaxe "+" permet de multiplier l'attribut par la quantité et de l'additionner au prix</li><li>- La synthaxe "-" permet de mullitplier l'attribut par la quantité et de le soustraire au prix</li><br /><li> - N'oubliez pas aussi de paramétrer le statut de commande concernant l'autorisation de téléchargement.</li><li> - Le téléchargement de fichiers ne peut excéder : {{$upload_max_filesize}} </li>
+title_help_clone = Note sur les attributs
 text_filename = Nom du fichier
 
 title_help_clone = Note sur le clonage
@@ -42,3 +43,5 @@ tab_step4 = Options
 
 button_edit = Editer
 button_copy = Copier
+
+error_catalog_download_directory_not_writeable = Le répertoire de téléchargement n'est pas en mode écriture : Download/Private
