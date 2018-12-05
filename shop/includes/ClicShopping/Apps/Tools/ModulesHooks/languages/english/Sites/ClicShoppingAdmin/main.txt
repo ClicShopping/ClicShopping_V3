@@ -33,4 +33,4 @@ alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
 
-text_hooks_directory = Directory
+text_modules_hooks_directory = Directory

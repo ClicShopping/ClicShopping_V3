@@ -69,7 +69,6 @@
                   'orders_view' => '',
                   'products_tax_class_id' => '',
                   'products_min_qty_order' => '',
-                  'products_price_comparison' => '',
                   'products_dimension_width' => '',
                   'products_dimension_height' => '',
                   'products_dimension_depth' => '',
@@ -172,13 +171,6 @@
                                     array('id' => '3', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_used'))
                                    );
 
-  if (!isset($pInfo->products_price_comparison)) $pInfo->products_price_comparison = '1';
-
-  switch ($pInfo->products_price_comparison) {
-    case '0': $in_comparison = false; $out_comparison = true; break;
-    case '1':
-    default: $in_comparison = true; $out_comparison = false;
-  }
 
 // ******************************************
 // Tab 1 General
@@ -311,19 +303,7 @@
           </div>
         </div>
 
-        <div class="row" id="tab1ContentRow9">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_price_comparison'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_price_comparison'); ?></label>
-              <div class="col-md-5">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <span class="col-md-1"><?php echo  HTML::radioField('products_price_comparison', '1', $in_comparison) . '&nbsp;' . $CLICSHOPPING_Products->getDef('text_yes'); ?></span>
-                  <span class="col-md-1"><?php echo HTML::radioField('products_price_comparison', '0', $out_comparison) . '&nbsp;' . $CLICSHOPPING_Products->getDef('text_no'); ?></span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         <div class="row" id="tab1ContentRow10">
           <div class="col-md-5">

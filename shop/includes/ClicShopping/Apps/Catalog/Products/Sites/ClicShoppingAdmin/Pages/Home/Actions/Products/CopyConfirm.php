@@ -85,7 +85,6 @@
                                         'products_view' => (int)$product['products_view'],
                                         'orders_view' =>  (int)$product['orders_view'],
                                         'products_min_qty_order' => (int)$product['products_min_qty_order'],
-                                        'products_price_comparison' => (int)$product['products_price_comparison'],
                                         'products_dimension_width' => $product['products_dimension_width'],
                                         'products_dimension_height' => $product['products_dimension_height'],
                                         'products_dimension_depth' => $product['products_dimension_depth'],

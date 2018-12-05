@@ -36,4 +36,4 @@ table_heading_modules_hooks = Installed Modules Hooks
 table_heading_vendor = Vendor
 table_heading_version = Version
 
-text_hooks_directory = Répertoire
+text_modules_hooks_directory = Répertoire

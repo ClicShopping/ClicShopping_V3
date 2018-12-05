@@ -1033,7 +1033,6 @@
                                     'products_view' => (int)$Qproducts->valueInt('products_view'),
                                     'orders_view' => (int)$Qproducts->valueInt('orders_view'),
                                     'products_min_qty_order' => (int)$Qproducts->valueInt('products_min_qty_order'),
-                                    'products_price_comparison' => (int)$Qproducts->value('products_price_comparison'),
                                     'products_dimension_width' => (float)$Qproducts->value('products_dimension_width'),
                                     'products_dimension_height' => (float)$Qproducts->value('products_dimension_height'),
                                     'products_dimension_depth' => (float)$Qproducts->value('products_dimension_depth'),
@@ -1451,9 +1450,7 @@
                         'products_view' => (int)$products_view,
                         'orders_view' => (int)$orders_view,
                         'products_tax_class_id' => (int)HTML::sanitize($_POST['products_tax_class_id']),
-
                         'products_min_qty_order' => (int)$_POST['products_min_qty_order'],
-                        'products_price_comparison' => (int)$_POST['products_price_comparison'],
                         'products_dimension_width'  => (float)HTML::sanitize($_POST['products_dimension_width']),
                         'products_dimension_height'  => (float)HTML::sanitize($_POST['products_dimension_height']),
                         'products_dimension_depth' => (float)HTML::sanitize($_POST['products_dimension_depth']),
@@ -1463,7 +1460,6 @@
                         'products_only_online'  => (int)HTML::sanitize($products_only_online),
                         'products_cost' => (float)HTML::sanitize($_POST['products_cost']),
                         'products_handling' => (float)HTML::sanitize($_POST['products_handling']),
-
                         'products_packaging' => (int)HTML::sanitize($_POST['products_packaging']),
                         'products_sort_order' => (int)HTML::sanitize($_POST['products_sort_order']),
                         'products_quantity_alert' => (int)HTML::sanitize($_POST['products_quantity_alert']),

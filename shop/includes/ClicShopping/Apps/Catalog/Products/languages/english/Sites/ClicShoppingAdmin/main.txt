@@ -198,7 +198,6 @@ text_products_model = Model
 text_products_ean = EAN
 text_products_sku = SKU
 text_products_barcode = Barcode
-text_products_price_comparison = Excluding price comparison ?
 
 icon_edit_customers_group = Is included in a customers group
 icon_edit_status_display_catalog_on = Field displayed in catalog
