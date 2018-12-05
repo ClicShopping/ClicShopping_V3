@@ -202,7 +202,7 @@
         <div class="row" id="tab1ContentRow2"></div>
 
         <div class="row" id="tab1ContentRow3">
-          <div class="col-md-5">
+          <div class="col-md-5" id="tab1ContentRow3Model">
             <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_model'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_model'); ?></label>
               <div class="col-md-5">
@@ -218,7 +218,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-5" id="tab1ContentRow3Sku">
             <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_sku'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_sku'); ?></label>
               <div class="col-md-5">
@@ -226,7 +226,6 @@
               </div>
             </div>
           </div>
-          <div id="populateByIceCat"></div>
         </div>
 
         <div class="row" id="tab1ContentRow4">
