@@ -34,20 +34,23 @@
 
       $option_name_array = HTML::sanitize($_POST['option_name']);
       $option_sort_order = HTML::sanitize($_POST['option_sort_order']);
+      $products_options_type = HTML::sanitize($_POST['products_options_type']);
       $option_id = HTML::sanitize($_POST['option_id']);
 
       for ($i=0, $n=count($languages); $i<$n; $i ++) {
         $option_name = HTML::sanitize($option_name_array[$languages[$i]['id']]);
 
         $Qupdate = $this->app->db->prepare('update :table_products_options
-                                            set products_options_name = :products_options_name,
-                                                products_options_sort_order = :products_options_sort_order
-                                            where products_options_id = :products_options_id
-                                            and language_id = :language_id
-                                          ');
+                                        set products_options_name = :products_options_name,
+                                            products_options_sort_order = :products_options_sort_order,
+                                            products_options_type = :products_options_type
+                                        where products_options_id = :products_options_id
+                                        and language_id = :language_id
+                                      ');
         $Qupdate->bindValue(':products_options_name', $option_name);
         $Qupdate->bindInt(':products_options_sort_order', $option_sort_order);
         $Qupdate->bindInt(':products_options_id', $option_id );
+        $Qupdate->bindValue(':products_options_type', $products_options_type );
         $Qupdate->bindInt(':language_id', $languages[$i]['id']);
         $Qupdate->execute();
 

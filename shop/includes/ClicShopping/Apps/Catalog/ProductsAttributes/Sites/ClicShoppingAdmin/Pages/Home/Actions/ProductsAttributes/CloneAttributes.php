@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -41,27 +41,27 @@
         $Qdelete->execute();
 
         $Qattributes = $this->app->db->prepare('select products_id,
-                                                   options_id,
-                                                   options_values_id,
-                                                   options_values_price,
-                                                   price_prefix,
-                                                   products_options_sort_order
-                                             from :table_products_attributes
-                                             where products_id = :products_id
-                                            ');
+                                               options_id,
+                                               options_values_id,
+                                               options_values_price,
+                                               price_prefix,
+                                               products_options_sort_order
+                                         from :table_products_attributes
+                                         where products_id = :products_id
+                                        ');
         $Qattributes->bindInt(':products_id', $clone_product_id_from);
         $Qattributes->execute();
 
         while($Qattributes->fetch()) {
           $this->app->db->save('products_attributes', [
-                                                      'products_id' =>  (int)$clone_product_id_to,
-                                                      'options_id' => (int)$Qattributes->valueInt('options_id'),
-                                                      'options_values_id' => (int)$Qattributes->valueInt('options_values_id'),
-                                                      'options_values_price' => (float)$Qattributes->valueDecimal('options_values_price'),
-                                                      'price_prefix' => $Qattributes->value('price_prefix'),
-                                                      'products_options_sort_order' => (int)$Qattributes->valueInt('products_options_sort_order'),
-                                                      'products_attributes_reference' => ''
-                                                      ]
+                                              'products_id' =>  (int)$clone_product_id_to,
+                                              'options_id' => (int)$Qattributes->valueInt('options_id'),
+                                              'options_values_id' => (int)$Qattributes->valueInt('options_values_id'),
+                                              'options_values_price' => (float)$Qattributes->valueDecimal('options_values_price'),
+                                              'price_prefix' => $Qattributes->value('price_prefix'),
+                                              'products_options_sort_order' => (int)$Qattributes->valueInt('products_options_sort_order'),
+                                              'products_attributes_reference' => ''
+                                              ]
                               );
         }
       }

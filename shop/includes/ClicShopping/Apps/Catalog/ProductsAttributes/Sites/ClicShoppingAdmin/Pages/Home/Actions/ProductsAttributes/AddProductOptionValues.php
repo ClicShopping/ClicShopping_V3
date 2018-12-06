@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -51,11 +51,10 @@
 
       }
 
-      $this->app->db->save('products_options_values_to_products_options', [
-                                                                        'products_options_id' =>  (int)$option_id,
-                                                                        'products_options_values_id' => (int)$value_id
-                                                                      ]
-                                                                    );
+      $this->app->db->save('products_options_values_to_products_options', ['products_options_id' =>  (int)$option_id,
+                                                               'products_options_values_id' => (int)$value_id
+                                                              ]
+                        );
 
       $CLICSHOPPING_Hooks->call('AddProductOptionValue','AddProductOptionValue');
 

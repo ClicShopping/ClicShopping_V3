@@ -56,15 +56,16 @@
           if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() > 0) {
 
             $QproductsOptionsName = $CLICSHOPPING_Db->prepare('select distinct popt.products_options_id,
-                                                                                popt.products_options_name
-                                                                from :table_products_options popt,
-                                                                     :table_products_attributes patrib
-                                                                where patrib.products_id= :products_id
-                                                                and patrib.options_id = popt.products_options_id
-                                                                and popt.language_id = :language_id
-                                                                order by popt.products_options_sort_order,
-                                                                         popt.products_options_name
-                                                               ');
+                                                                        popt.products_options_name,
+                                                                        popt.products_options_type
+                                                            from :table_products_options popt,
+                                                                 :table_products_attributes patrib
+                                                            where patrib.products_id= :products_id
+                                                            and patrib.options_id = popt.products_options_id
+                                                            and popt.language_id = :language_id
+                                                            order by popt.products_options_sort_order,
+                                                                     popt.products_options_name
+                                                           ');
             $QproductsOptionsName->bindInt(':products_id', (int)$CLICSHOPPING_ProductsCommon->getID() );
             $QproductsOptionsName->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
 
@@ -81,10 +82,10 @@
                }
             }
 
-  //         $products_options_content_display .= '<div class="clearfix"></div>';
             $products_options_content_display .= '<div class="contentText ' . MODULE_PRODUCTS_INFO_OPTIONS_POSITION .';">';
+            $products_options_content_display .='<div class="separator"></div>';
             $products_options_content_display .= '<div class="ModuleProductsInfoPositionOption">';
-            $products_options_content_display .= '<div class="ModuleProductsInfoOptionsText">' . CLICSHOPPING::getDef('text_product_options') . '</div>';
+            $products_options_content_display .= '<span class="ModuleProductsInfoOptionsText"><h3>' . CLICSHOPPING::getDef('text_product_options') . '</h3></span>';
 
             while ($QproductsOptionsName->fetch() ) {
 
@@ -92,55 +93,95 @@
 
               $QproductsOptions = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($CLICSHOPPING_ProductsCommon->getID(), $QproductsOptionsName->valueInt('products_options_id'), null, $CLICSHOPPING_Language->getId());
 
-              while ($QproductsOptions->fetch() !== false) {
+              if ($QproductsOptionsName->value('products_options_type') == 'select') {
 
-                $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
-                                              'text' => $QproductsOptions->value('products_options_values_name')
-                                            ];
-                $products_options_array_id[] = $QproductsOptions->valueInt('products_options_values_id');
-                $products_options_array_name[] = $QproductsOptions->value('products_options_values_name');
+                while ($QproductsOptions->fetch() !== false) {
 
-                if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
-                  $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->display_price($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
+                  $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
+                                                'text' => $QproductsOptions->value('products_options_values_name')
+                                              ];
+                  $products_options_array_id[] = $QproductsOptions->valueInt('products_options_values_id');
+                  $products_options_array_name[] = $QproductsOptions->value('products_options_values_name');
 
-                  if (PRICES_LOGGED_IN == 'False') {
-                    $option_price_display_d = $option_price_display;
+                  if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
+                    $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->display_price($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
+
+                    if (PRICES_LOGGED_IN == 'False') {
+                      $option_price_display_d = $option_price_display;
+                    }
+
+                    if ((PRICES_LOGGED_IN == 'True') && (!$CLICSHOPPING_Customer->isLoggedOn())) {
+                      $option_price_display_d = '';
+                    } else {
+                      $option_price_display_d = $option_price_display;
+                    }
+
+                    $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
                   }
+                } // end while $products_options
 
-                  if ((PRICES_LOGGED_IN == 'True') && (!$CLICSHOPPING_Customer->isLoggedOn())) {
-                    $option_price_display_d = '';
-                  } else {
-                    $option_price_display_d = $option_price_display;
-                  }
-
-                  $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
+                if (is_string($_GET['products_id']) &&  isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]))  {
+                  $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
+                } else {
+                  $selected_attribute = false;
                 }
-              } // end while $products_options
 
-              if (is_string($_GET['products_id']) &&  isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]))  {
-                $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
+                $products_options_content_display .='<div>';
+                $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">'. $QproductsOptionsName->value('products_options_name') . ' : </label>';
+                $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::selectMenu('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $products_options_array, $selected_attribute, 'class="ModuleProductsInfoOptionsPullDownMenuOptionsInside"') . '</span>';
+                $products_options_content_display .='</div>';
+                $products_options_content_display .='<div class="separator"></div>';
               } else {
-                $selected_attribute = false;
+                while ($QproductsOptions->fetch() !== false) {
+                  $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
+                                               'text' => $QproductsOptions->value('products_options_values_name')
+                                              ];
+
+
+                  if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
+                    $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->display_price($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
+
+                    if (PRICES_LOGGED_IN == 'False') {
+                      $option_price_display_d = $option_price_display;
+                    }
+
+                    if ((PRICES_LOGGED_IN == 'True') && (!$CLICSHOPPING_Customer->isLoggedOn())) {
+                      $option_price_display_d = '';
+                    } else {
+                      $option_price_display_d = $option_price_display;
+                    }
+
+                    $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
+                  }
+                } // end while $products_options
+
+                if (is_string($_GET['products_id']) &&  isset($CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')]))  {
+                  $selected_attribute = $CLICSHOPPING_ShoppingCart->contents[(int)$CLICSHOPPING_ProductsCommon->getID()]['attributes'][$QproductsOptionsName->valueInt('products_options_id')];
+                } else {
+                  $selected_attribute = false;
+                }
+
+                $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">'. $QproductsOptionsName->value('products_options_name') . ': </label>';
+
+                foreach ($products_options_array as $value) {
+                  $products_options_content_display .='<div class="col-md-12">';
+                  $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'checked id="defaultCheck' . $value['id'] .'"') . ' ' . $value['text'] . ' ' .'</span>';
+                  $products_options_content_display .='</div>';
+                }
               }
 
-              $products_options_content_display .='<table class="table table-sm">';
-              $products_options_content_display .='<tr>';
-              $products_options_content_display .='<td class="ModuleProductsInfoOptionsName">'. $QproductsOptionsName->value('products_options_name') . ':</td>';
-              $products_options_content_display .='<td class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::selectMenu('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $products_options_array, $selected_attribute, 'class="ModuleProductsInfoOptionsPullDownMenuOptionsInside"') . '</td>';
-
-              $products_options_content_display .='</tr>';
-              $products_options_content_display .='</table>';
-            } // end while $products_options_name
+              $products_options_content_display .='<div class="separator"></div>';
+            }// end while
 
             $products_options_content_display .='</div>';
             $products_options_content_display .='</div>' . "\n";
 
 // Strong relations with pi_products_info_price.php Don't delete
-              if(MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER == '') {
-                 $module_produts_info_price_sort_order = -1;
-              } else {
-                $module_produts_info_price_sort_order = MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER;
-              }
+            if(MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER == '') {
+               $module_produts_info_price_sort_order = -1;
+            } else {
+              $module_produts_info_price_sort_order = MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER;
+            }
 
             if ( MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER > $module_produts_info_price_sort_order) {
               $products_options_content_display .='</form>' . "\n";
