@@ -54,22 +54,42 @@
         $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
           if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() > 0) {
+            if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+              $QproductsOptionsName = $CLICSHOPPING_Db->prepare('select distinct popt.products_options_id,
+                                                                                  popt.products_options_name,
+                                                                                  popt.products_options_type
+                                                                      from :table_products_options popt,
+                                                                           :table_products_attributes patrib
+                                                                      where patrib.products_id= :products_id
+                                                                      and patrib.options_id = popt.products_options_id
+                                                                      and popt.language_id = :language_id
+                                                                      and (patrib.customers_group_id = :customers_group_id or patrib.customers_group_id = 99)
+                                                                      order by popt.products_options_sort_order,
+                                                                               popt.products_options_name
+                                                                     ');
+              $QproductsOptionsName->bindInt(':products_id', (int)$CLICSHOPPING_ProductsCommon->getID());
+              $QproductsOptionsName->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+              $QproductsOptionsName->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
 
-            $QproductsOptionsName = $CLICSHOPPING_Db->prepare('select distinct popt.products_options_id,
-                                                                        popt.products_options_name,
-                                                                        popt.products_options_type
-                                                            from :table_products_options popt,
-                                                                 :table_products_attributes patrib
-                                                            where patrib.products_id= :products_id
-                                                            and patrib.options_id = popt.products_options_id
-                                                            and popt.language_id = :language_id
-                                                            order by popt.products_options_sort_order,
-                                                                     popt.products_options_name
-                                                           ');
-            $QproductsOptionsName->bindInt(':products_id', (int)$CLICSHOPPING_ProductsCommon->getID() );
-            $QproductsOptionsName->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+              $QproductsOptionsName->execute();
+            } else {
+              $QproductsOptionsName = $CLICSHOPPING_Db->prepare('select distinct popt.products_options_id,
+                                                                                  popt.products_options_name,
+                                                                                  popt.products_options_type
+                                                                      from :table_products_options popt,
+                                                                           :table_products_attributes patrib
+                                                                      where patrib.products_id= :products_id
+                                                                      and patrib.options_id = popt.products_options_id
+                                                                      and popt.language_id = :language_id
+                                                                      and (patrib.customers_group_id = 0 or patrib.customers_group_id = 99)
+                                                                      order by popt.products_options_sort_order,
+                                                                               popt.products_options_name
+                                                                     ');
+              $QproductsOptionsName->bindInt(':products_id', (int)$CLICSHOPPING_ProductsCommon->getID());
+              $QproductsOptionsName->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
 
-            $QproductsOptionsName->execute();
+              $QproductsOptionsName->execute();
+            }
 
             $products_options_content_display = '<!-- Start products_options -->' . "\n";
 //*****************************

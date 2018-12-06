@@ -14,6 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\FileSystem;
 
+  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
+
   use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
 
   $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
@@ -88,11 +90,11 @@
 
   if (isset($_GET['DeleteProductOption'])) { // delete product option
     $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_id,
-                                                                    products_options_name
-                                                             from :table_products_options
-                                                             where products_options_id = :products_options_id
-                                                             and language_id = :language_id
-                                                            ');
+                                                                            products_options_name
+                                                                     from :table_products_options
+                                                                     where products_options_id = :products_options_id
+                                                                     and language_id = :language_id
+                                                                    ');
     $QoptionValues->bindInt(':products_options_id', (int)$_GET['option_id'] );
     $QoptionValues->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
     $QoptionValues->execute();
@@ -101,22 +103,22 @@
                  <td><table class="table table-sm">
 <?php
     $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                               p.products_model,
-                                                               pd.products_name,
-                                                               pov.products_options_values_name,
-                                                               pa.products_attributes_reference
-                                                        from :table_products p,
-                                                             :table_products_options_values pov,
-                                                             :table_products_attributes pa,
-                                                             :table_products_description pd
-                                                        where pd.products_id = p.products_id
-                                                        and pov.language_id = :language_id
-                                                        and pd.language_id = :language_id
-                                                        and pa.products_id = p.products_id
-                                                        and pa.options_id = :options_id
-                                                        and pov.products_options_values_id = pa.options_values_id
-                                                        order by pd.products_name
-                                                      ');
+                                                                       p.products_model,
+                                                                       pd.products_name,
+                                                                       pov.products_options_values_name,
+                                                                       pa.products_attributes_reference
+                                                                from :table_products p,
+                                                                     :table_products_options_values pov,
+                                                                     :table_products_attributes pa,
+                                                                     :table_products_description pd
+                                                                where pd.products_id = p.products_id
+                                                                and pov.language_id = :language_id
+                                                                and pd.language_id = :language_id
+                                                                and pa.products_id = p.products_id
+                                                                and pa.options_id = :options_id
+                                                                and pov.products_options_values_id = pa.options_values_id
+                                                                order by pd.products_name
+                                                              ');
     $Qproducts->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId());
     $Qproducts->bindInt(':options_id',  (int)$_GET['option_id']);
 
@@ -178,12 +180,12 @@
  <?php
   } else {
     $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select SQL_CALC_FOUND_ROWS *
-                                                            from :table_products_options
-                                                            where language_id = :language_id
-                                                            order by products_options_id
-                                                            limit :page_set_offset,
-                                                                  :page_set_max_results
-                                                            ');
+                                                                    from :table_products_options
+                                                                    where language_id = :language_id
+                                                                    order by products_options_id
+                                                                    limit :page_set_offset,
+                                                                          :page_set_max_results
+                                                                    ');
     $QoptionValues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
     $QoptionValues->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
     $QoptionValues->execute();
@@ -232,10 +234,10 @@
           for ($i = 0, $n = count($languages); $i < $n; $i ++) {
 
             $QoptionsName = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_name
-                                                                     from :table_products_options
-                                                                     where products_options_id = :products_options_id
-                                                                     and language_id = :language_id
-                                                                    ');
+                                                                           from :table_products_options
+                                                                           where products_options_id = :products_options_id
+                                                                           and language_id = :language_id
+                                                                          ');
             $QoptionsName->bindInt(':products_options_id', $QoptionValues->valueInt('products_options_id'));
             $QoptionsName->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
             $QoptionsName->execute();
@@ -282,8 +284,8 @@
                   </tr>
 <?php
         $QmaxOptionsId = $CLICSHOPPING_Db->prepare('select max(products_options_id) + 1 as next_id
-                                                  from :table_products_options
-                                                 ');
+                                                    from :table_products_options
+                                                   ');
         $QmaxOptionsId->execute();
 
         $next_id = $QmaxOptionsId->valueInt('next_id');
@@ -334,11 +336,11 @@
 // delete product option value
   if (isset($_GET['DeleteOptionValue'])) {
     $Qvalues = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_values_id,
-                                                              products_options_values_name
-                                                       from :table_products_options_values
-                                                       where products_options_values_id = :products_options_values_id
-                                                       and language_id = :language_id
-                                                      ');
+                                                                    products_options_values_name
+                                                             from :table_products_options_values
+                                                             where products_options_values_id = :products_options_values_id
+                                                             and language_id = :language_id
+                                                            ');
 
     $Qvalues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
     $Qvalues->bindInt(':products_options_values_id', $_GET['value_id']);
@@ -349,20 +351,20 @@
                 <td width="100%"><table class="table table-sm">
 <?php
     $products = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                             pd.products_name,
-                                                             po.products_options_name
-                                                      from :table_products p,
-                                                           :table_products_attributes pa,
-                                                           :table_products_options po,
-                                                           :table_products_description pd
-                                                     where pd.products_id = p.products_id
-                                                     and pd.language_id = :language_id
-                                                     and po.language_id = :language_id
-                                                     and pa.products_id = p.products_id
-                                                     and pa.options_values_id = :options_values_id
-                                                     and po.products_options_id = pa.options_id
-                                                     order by pd.products_name
-                                                    ');
+                                                                       pd.products_name,
+                                                                       po.products_options_name
+                                                                from :table_products p,
+                                                                     :table_products_attributes pa,
+                                                                     :table_products_options po,
+                                                                     :table_products_description pd
+                                                               where pd.products_id = p.products_id
+                                                               and pd.language_id = :language_id
+                                                               and po.language_id = :language_id
+                                                               and pa.products_id = p.products_id
+                                                               and pa.options_values_id = :options_values_id
+                                                               and po.products_options_id = pa.options_id
+                                                               order by pd.products_name
+                                                              ');
     $products->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId());
     $products->bindInt(':options_values_id',  (int)$_GET['value_id']);
     $products->execute();
@@ -417,14 +419,14 @@
   } else {
 
     $Qvalues = $CLICSHOPPING_ProductsAttributes->db->prepare('select SQL_CALC_FOUND_ROWS pov.products_options_values_id,
-                                                                                    pov.products_options_values_name,
-                                                                                    pov2po.products_options_id
-                                                         from :table_products_options_values pov left join :table_products_options_values_to_products_options pov2po on pov.products_options_values_id = pov2po.products_options_values_id
-                                                         where pov.language_id = :language_id
-                                                         order by pov.products_options_values_id
-                                                         limit :page_set_offset,
-                                                              :page_set_max_results
-                                                        ');
+                                                                                          pov.products_options_values_name,
+                                                                                          pov2po.products_options_id
+                                                               from :table_products_options_values pov left join :table_products_options_values_to_products_options pov2po on pov.products_options_values_id = pov2po.products_options_values_id
+                                                               where pov.language_id = :language_id
+                                                               order by pov.products_options_values_id
+                                                               limit :page_set_offset,
+                                                                    :page_set_max_results
+                                                              ');
     $Qvalues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
     $Qvalues->setPageSet((int)MAX_ROW_LISTS_OPTIONS);
     $Qvalues->execute();
@@ -470,10 +472,10 @@
         for ($i = 0, $n = count($languages); $i < $n; $i ++) {
 
           $QvaluesName = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_values_name
-                                                                  from :table_products_options_values
-                                                                  where products_options_values_id = :products_options_values_id
-                                                                  and language_id = :language_id
-                                                                 ');
+                                                                        from :table_products_options_values
+                                                                        where products_options_values_id = :products_options_values_id
+                                                                        and language_id = :language_id
+                                                                       ');
 
           $QvaluesName->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $QvaluesName->bindInt(':products_options_values_id', $Qvalues->valueInt('products_options_values_id'));
@@ -492,11 +494,11 @@
                   <select name="option_id" class="form-group">
 <?php
         $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_id,
-                                                                       products_options_name
-                                                                 from :table_products_options
-                                                                 where language_id = :language_id
-                                                                 order by products_options_name
-                                                                ');
+                                                                               products_options_name
+                                                                         from :table_products_options
+                                                                         where language_id = :language_id
+                                                                         order by products_options_name
+                                                                        ');
 
         $QoptionValues->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId());
 
@@ -536,8 +538,8 @@
       }
 
         $QmaxValuesId = $CLICSHOPPING_Db->prepare('select max(products_options_values_id) + 1 as next_id
-                                                 from :table_products_options_values
-                                                 ');
+                                                   from :table_products_options_values
+                                                   ');
         $QmaxValuesId->execute();
 
         $next_id = $QmaxValuesId->valueInt('next_id');
@@ -562,11 +564,11 @@
                       <select name="option_id">
 <?php
       $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_id,
-                                                                     products_options_name
-                                                               from :table_products_options
-                                                               where language_id = :language_id
-                                                               order by products_options_name
-                                                             ');
+                                                                             products_options_name
+                                                                       from :table_products_options
+                                                                       where language_id = :language_id
+                                                                       order by products_options_name
+                                                                     ');
       $QoptionValues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $QoptionValues->execute();
 
@@ -606,13 +608,13 @@
     $form_action = 'AddProductAttributes';
   }
   $Qattributes = $CLICSHOPPING_ProductsAttributes->db->prepare('select SQL_CALC_FOUND_ROWS  pa.*
-                                                       from :table_products_attributes pa
-                                                       left join :table_products_description pd on pa.products_id = pd.products_id
-                                                       and pd.language_id = :language_id
-                                                       order by pd.products_name
-                                                       limit :page_set_offset,
-                                                            :page_set_max_results
-                                                      ');
+                                                               from :table_products_attributes pa
+                                                               left join :table_products_description pd on pa.products_id = pd.products_id
+                                                               and pd.language_id = :language_id
+                                                               order by pa.products_attributes_id
+                                                               limit :page_set_offset,
+                                                                    :page_set_max_results
+                                                              ');
   $Qattributes->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qattributes->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
   $Qattributes->execute();
@@ -636,6 +638,18 @@
   }
 ?>
                     <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_value'); ?></td>
+
+<?PHP
+           if (MODE_B2B_B2C == 'true') {
+?>
+                    <td class="text-md-right"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_b2b'); ?></td>
+<?php
+  } else {
+?>
+                    <td></td>
+<?php
+  }
+?>
                     <td class="text-md-right"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price'); ?></td>
                     <td class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price_prefix'); ?></td>
                     <td class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_order'); ?></td>
@@ -664,14 +678,14 @@
                     <select name="products_id">
 <?php
       $QproductsValue = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                                 pd.products_name,
-                                                                 p.products_model
-                                                           from :table_products p,
-                                                                :table_products_description pd
-                                                           where pd.products_id = p.products_id
-                                                           and pd.language_id = :language_id
-                                                           order by pd.products_name
-                                                          ');
+                                                                             pd.products_name,
+                                                                             p.products_model
+                                                                       from :table_products p,
+                                                                            :table_products_description pd
+                                                                       where pd.products_id = p.products_id
+                                                                       and pd.language_id = :language_id
+                                                                       order by pd.products_name
+                                                                      ');
       $QproductsValue->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $QproductsValue->execute();
 
@@ -689,10 +703,10 @@
                     <select name="options_id">
 <?php
       $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select *
-                                                               from :table_products_options
-                                                               where language_id = :language_id
-                                                               order by products_options_name
-                                                              ');
+                                                                     from :table_products_options
+                                                                     where language_id = :language_id
+                                                                     order by products_options_name
+                                                                    ');
       $QoptionValues->bindInt(':language_id',(int)$CLICSHOPPING_Language->getId() );
       $QoptionValues->execute();
 
@@ -717,10 +731,10 @@
                     <select name="values_id">
 <?php
       $Qvalues = $CLICSHOPPING_ProductsAttributes->db->prepare('select *
-                                                        from :table_products_options_values
-                                                        where language_id = :language_id
-                                                        order by products_options_values_name
-                                                       ');
+                                                                from :table_products_options_values
+                                                                where language_id = :language_id
+                                                                order by products_options_values_name
+                                                               ');
       $Qvalues->bindInt(':language_id',(int)$CLICSHOPPING_Language->getId() );
       $Qvalues->execute();
 
@@ -734,6 +748,13 @@
 ?>
                     </select>&nbsp;
                   </td>
+<?php
+  if (MODE_B2B_B2C == 'true') {
+    echo '<td>' .  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $Qvalues->value('customers_group_id')) . '</td>';
+  } else {
+    echo '<td></td>';
+  }
+?>
                   <td class="text-md-right"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price')); ?></td>
                   <td calss="text-md-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
                   <td class="text-md-center"><?php echo HTML::inputField('value_sort_order', $Qattributes->value('products_options_sort_order')); ?></td>
@@ -746,11 +767,11 @@
 <?php
       if (DOWNLOAD_ENABLED == 'true') {
         $Qdownload = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_attributes_filename,
-                                                                     products_attributes_maxdays,
-                                                                     products_attributes_maxcount
-                                                              from :table_products_attributes_download
-                                                              where products_attributes_id = :products_attributes_id
-                                                            ');
+                                                                           products_attributes_maxdays,
+                                                                           products_attributes_maxcount
+                                                                    from :table_products_attributes_download
+                                                                    where products_attributes_id = :products_attributes_id
+                                                                  ');
         $Qdownload->bindInt(':products_attributes_id', $Qattributes->valueInt('products_attributes_id'));
         $Qdownload->execute();
 
@@ -786,10 +807,10 @@
 <?php
       if (DOWNLOAD_ENABLED == 'true') {
         $Qfilename = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_attributes_filename
-                                                             from :table_products_attributes_download
-                                                             where products_attributes_id =  :products_attributes_id
-                                                             limit 1
-                                                             ');
+                                                                     from :table_products_attributes_download
+                                                                     where products_attributes_id =  :products_attributes_id
+                                                                     limit 1
+                                                                     ');
         $Qfilename->bindInt(':products_attributes_id', $Qattributes->valueInt('products_attributes_id'));
         $Qfilename->execute();
 ?>
@@ -798,6 +819,21 @@
       }
 ?>
                   <td><strong><?php echo $values_name; ?></strong></td>
+<?php
+      if (MODE_B2B_B2C == 'true') {
+        if ($Qattributes->valueInt('customers_group_id') != 0 && $Qattributes->valueInt('customers_group_id') != 99) {
+          $all_groups_name_special = GroupsB2BAdmin::getCustomersGroupName($Qattributes->valueInt('customers_group_id'));
+        } elseif ($Qattributes->valueInt('customers_group_id') == 99) {
+          $all_groups_name_special = $CLICSHOPPING_ProductsAttributes->getDef('text_all_groups');
+        } else {
+          $all_groups_name_special = $CLICSHOPPING_ProductsAttributes->getDef('visitor_name');
+        }
+
+        echo '<td>' . $all_groups_name_special . '</td>';
+      } else {
+        echo '<td></td>';
+      }
+?>
                   <td class="text-md-right"><strong><?php echo $Qattributes->valueDecimal('options_values_price'); ?></strong></td>
                   <td class="text-md-center"><strong><?php echo $Qattributes->value('price_prefix'); ?></strong></td>
                   <td class="text-md-center"><strong><?php echo $Qattributes->valueInt('products_options_sort_order'); ?></strong></td>
@@ -817,10 +853,10 @@
 <?php
         if (DOWNLOAD_ENABLED == 'true') {
           $Qfilename = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_attributes_filename
-                                                               from :table_products_attributes_download
-                                                               where products_attributes_id = :products_attributes_id
-                                                               limit 1
-                                                             ');
+                                                                     from :table_products_attributes_download
+                                                                     where products_attributes_id = :products_attributes_id
+                                                                     limit 1
+                                                                   ');
           $Qfilename->bindInt(':products_attributes_id', $Qattributes->valueInt('products_attributes_id'));
           $Qfilename->execute();
 ?>
@@ -829,6 +865,21 @@
         }
 ?>
                   <td><?php echo $values_name; ?></td>
+<?php
+        if (MODE_B2B_B2C == 'true') {
+          if ($Qattributes->valueInt('customers_group_id') != 0 && $Qattributes->valueInt('customers_group_id') != 99) {
+            $all_groups_name_special = GroupsB2BAdmin::getCustomersGroupName($Qattributes->valueInt('customers_group_id'));
+          } elseif ($Qattributes->valueInt('customers_group_id') == 99) {
+            $all_groups_name_special = $CLICSHOPPING_ProductsAttributes->getDef('text_all_groups');
+          } else {
+            $all_groups_name_special = $CLICSHOPPING_ProductsAttributes->getDef('visitor_name');
+          }
+
+          echo '<td>' . $all_groups_name_special . '</td>';
+        } else {
+          echo '<td></td>';
+        }
+?>
                   <td class="text-md-right"><?php echo $Qattributes->value('options_values_price'); ?></td>
                   <td class="text-md-center"><?php echo $Qattributes->value('price_prefix'); ?></td>
                   <td class="text-md-center"><?php echo $Qattributes->value('products_options_sort_order'); ?></td>
@@ -843,8 +894,8 @@
        }
 
       $QmaxAttributes = $CLICSHOPPING_Db->prepare('select max(products_attributes_id) + 1 as next_id
-                                             from :table_products_attributes
-                                           ');
+                                                   from :table_products_attributes
+                                                 ');
       $QmaxAttributes->execute();
 
       $max_attributes_id_values = $QmaxAttributes->fetch();
@@ -865,15 +916,15 @@
                     <select name="products_id">
 <?php
     $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                                 pd.products_name,
-                                                                 p.products_model
-                                                          from :table_products p,
-                                                               :table_products_description pd
-                                                          where pd.products_id = p.products_id
-                                                          and pd.language_id = :language_id
-                                                                and p.products_archive = 0
-                                                          order by pd.products_name
-                                                        ');
+                                                                       pd.products_name,
+                                                                       p.products_model
+                                                                from :table_products p,
+                                                                     :table_products_description pd
+                                                                where pd.products_id = p.products_id
+                                                                and pd.language_id = :language_id
+                                                                      and p.products_archive = 0
+                                                                order by pd.products_name
+                                                              ');
     $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
     $Qproducts->execute();
 
@@ -887,10 +938,10 @@
                     <select name="options_id">
 <?php
     $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select *
-                                                             from :table_products_options
-                                                             where language_id = :language_id
-                                                             order by products_options_name
-                                                           ');
+                                                                   from :table_products_options
+                                                                   where language_id = :language_id
+                                                                   order by products_options_name
+                                                                 ');
     $QoptionValues->bindInt(':language_id',(int)$CLICSHOPPING_Language->getId() );
     $QoptionValues->execute();
 
@@ -911,10 +962,10 @@
                     <select name="values_id">
 <?php
     $Qvalues = $CLICSHOPPING_ProductsAttributes->db->prepare('select *
-                                                      from :table_products_options_values
-                                                      where language_id = :language_id
-                                                      order by products_options_values_name
-                                                     ');
+                                                              from :table_products_options_values
+                                                              where language_id = :language_id
+                                                              order by products_options_values_name
+                                                             ');
     $Qvalues->bindInt(':language_id', $CLICSHOPPING_Language->getId());
     $Qvalues->execute();
 
@@ -923,6 +974,13 @@
     }
 ?>
                     </select>
+                  </td>
+                  <td>
+<?php
+  if (MODE_B2B_B2C == 'true') {
+    echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups());
+  }
+?>
                   </td>
                   <td class="text-md-right"><?php echo HTML::inputField('value_price'); ?></td>
                   <td class="text-md-right"><?php echo HTML::inputField('price_prefix'); ?></td>
@@ -977,7 +1035,7 @@
   //***********************************
 ?>
           <div class="tab-pane" id="tab4">
-            <?php echo HTML::form('option', CLICSHOPPING::link('ProductsAttributes&CloneAttributes')); ?>
+            <?php echo HTML::form('option', $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&CloneAttributes')); ?>
             <div class="mainTitle"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('heading_title_clone_products_attributes'); ?></div>
                 <table class="table table-sm table-hover table-striped">
                   <tr valign="middle">

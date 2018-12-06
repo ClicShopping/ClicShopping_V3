@@ -33,6 +33,7 @@
       $price_prefix = HTML::sanitize($_POST['price_prefix']);
       $value_sort_order = HTML::sanitize($_POST['value_sort_order']);
       $products_attributes_reference = HTML::sanitize($_POST['products_attributes_reference']);
+      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
       $option_page = (isset($_GET['option_page']) && is_numeric($_GET['option_page'])) ? $_GET['option_page'] : 1;
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;
@@ -46,7 +47,8 @@
                                                   'options_values_price' => (float)$value_price,
                                                   'price_prefix' => $price_prefix,
                                                   'products_options_sort_order' => (int)$value_sort_order,
-                                                  'products_attributes_reference' => $products_attributes_reference
+                                                  'products_attributes_reference' => $products_attributes_reference,
+                                                  'customers_group_id' => $customers_group_id
                                                   ]
                           );
 

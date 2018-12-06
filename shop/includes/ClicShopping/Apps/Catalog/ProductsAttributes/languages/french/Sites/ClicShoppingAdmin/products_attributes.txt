@@ -36,6 +36,9 @@ text_ok_to_delete = Cette option n'est utilisée par aucun produit - Il est poss
 text_option_id = Option ID
 text_option_name = Nom de l'option
 
+text_all_groups = All groups
+visitor_name = Normal customer
+
 tab_step1 = Step 1 Attribut de l'option produit
 tab_step2 = Step 2 Valeur des attributs
 tab_step3 = Step 3 Valeur des options

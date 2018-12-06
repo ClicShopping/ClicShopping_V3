@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -34,6 +34,7 @@
       $value_sort_order = HTML::sanitize($_POST['value_sort_order']);
       $attribute_id = HTML::sanitize($_POST['attribute_id']);
       $products_attributes_reference = HTML::sanitize($_POST['products_attributes_reference']);
+      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
       $option_page = (isset($_GET['option_page']) && is_numeric($_GET['option_page'])) ? $_GET['option_page'] : 1;
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;
@@ -48,7 +49,8 @@
                                               options_values_price = :options_values_price,
                                               price_prefix = :price_prefix,
                                               products_options_sort_order = :products_options_sort_order,
-                                              products_attributes_reference = :products_attributes_reference
+                                              products_attributes_reference = :products_attributes_reference,
+                                              customers_group_id = :customers_group_id
                                           where products_attributes_id =:products_attributes_id
                                         ');
 
@@ -60,10 +62,10 @@
       $Qupdate->bindInt(':products_options_sort_order', $value_sort_order);
       $Qupdate->bindValue(':products_attributes_reference', $products_attributes_reference);
       $Qupdate->bindInt(':products_attributes_id', (int)$attribute_id);
+      $Qupdate->bindInt(':customers_group_id', (int)$customers_group_id);
       $Qupdate->execute();
 
       if (DOWNLOAD_ENABLED == 'true') {
-
         $products_attributes_maxdays = HTML::sanitize($_POST['products_attributes_maxdays']);
         $products_attributes_maxcount = HTML::sanitize($_POST['products_attributes_maxcount']);
 

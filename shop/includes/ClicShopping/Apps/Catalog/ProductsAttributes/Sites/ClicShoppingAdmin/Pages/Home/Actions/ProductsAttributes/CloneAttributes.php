@@ -45,7 +45,8 @@
                                                options_values_id,
                                                options_values_price,
                                                price_prefix,
-                                               products_options_sort_order
+                                               products_options_sort_order,
+                                               customers_group_id
                                          from :table_products_attributes
                                          where products_id = :products_id
                                         ');
@@ -60,7 +61,8 @@
                                               'options_values_price' => (float)$Qattributes->valueDecimal('options_values_price'),
                                               'price_prefix' => $Qattributes->value('price_prefix'),
                                               'products_options_sort_order' => (int)$Qattributes->valueInt('products_options_sort_order'),
-                                              'products_attributes_reference' => ''
+                                              'products_attributes_reference' => '',
+                                              'customers_group_id' =>  (int)$Qattributes->valueInt('customers_group_id'),
                                               ]
                               );
         }

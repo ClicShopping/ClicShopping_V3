@@ -14,6 +14,7 @@ table_heading_opt_value = Option Value
 table_heading_opt_price = Value Price
 table_heading_opt_price_prefix = Prefix
 table_heading_opt_order = Catalog display order
+table_heading_opt_b2b = B2B / B2C
 
 table_heading_action = Action
 table_heading_download = Downloadable products:
@@ -37,6 +38,9 @@ text_warning_of_delete = This option has products and values linked to it - it i
 text_ok_to_delete = This option has no products and values linked to it - it is safe to delete it.
 text_option_id = Option ID
 text_option_name = Option Name
+
+text_all_groups = All groups
+visitor_name = Normal customer
 
 tab_step1 = Step 1 Products options name
 tab_step2 = Step 2 Value option values
