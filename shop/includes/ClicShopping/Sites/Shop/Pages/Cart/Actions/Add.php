@@ -27,6 +27,8 @@
         if ( isset($_POST['products_id']) && is_numeric($_POST['products_id']) ) {
           $attributes = isset($_POST['id']) ? $_POST['id'] : '';
 
+          if(!isset($_POST['cart_quantity'])) $_POST['cart_quantity'] = 1;
+
           $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->getQuantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes))+($_POST['cart_quantity']), $attributes);
         }
 
