@@ -136,6 +136,8 @@
 <?php
   echo HTML::hiddenField('products_date_added', (($pInfo->date_added) ? $pInfo->date_added : date('Y-m-d')));
   echo HTML::hiddenField('parent_id', $pInfo->parent_id);
+  echo HTML::hiddenField('cPath', HTML::sanitize($_GET['cPath']));
+
   if ($form_action== 'Update') {
     echo HTML::button($CLICSHOPPING_Products->getDef('button_update'), null, null, 'success') . ' ';
   } else {

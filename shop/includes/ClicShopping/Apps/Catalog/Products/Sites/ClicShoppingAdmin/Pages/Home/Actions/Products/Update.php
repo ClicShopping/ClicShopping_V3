@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -29,7 +29,7 @@
         $this->ID = HTML::sanitize($_POST['pID']); // update
       }
 
-      $this->currentCategoryId =  HTML::sanitize($_GET['cPath']); // boxe
+      $this->currentCategoryId =  HTML::sanitize($_POST['cPath']); // boxe
     }
 
     public function execute() {
@@ -41,6 +41,5 @@
       $CLICSHOPPING_Hooks->call('Products','Update');
 
       $this->app->redirect('Products&cPath=' . $this->currentCategoryId . '&pID=' . $this->ID);
-
     }
   }
