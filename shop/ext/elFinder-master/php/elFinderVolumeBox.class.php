@@ -1,7 +1,5 @@
 <?php
 
-elFinder::$netDrivers['box'] = 'Box';
-
 /**
  * Simple elFinder driver for BoxDrive
  * Box.com API v2.0.
@@ -957,6 +955,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
     protected function copy($src, $dst, $name)
     {
         if ($res = $this->_copy($src, $dst, $name)) {
+            $this->added[] = $this->stat($res);
             return $res;
         } else {
             return $this->setError(elFinder::ERROR_COPY, $this->_path($src));

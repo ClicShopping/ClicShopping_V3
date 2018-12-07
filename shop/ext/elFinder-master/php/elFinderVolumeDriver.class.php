@@ -225,7 +225,7 @@ abstract class elFinderVolumeDriver {
 		'treeDeep'        => 1,
 		// root url, not set to disable sending URL to client (replacement for old "fileURL" option)
 		'URL'             => '',
-		// directory link url to own manager url with folder hash (`true`, `false` or default `'auto'`: URL is empty then `true` else `false`)
+		// directory link url to own manager url with folder hash (`true`, `false`, `'hide'`(No show) or default `'auto'`: URL is empty then `true` else `false`)
 		'dirUrlOwn'       => 'auto',
 		// directory separator. required by client to show paths correctly
 		'separator'       => DIRECTORY_SEPARATOR,
@@ -317,10 +317,12 @@ abstract class elFinderVolumeDriver {
 		// An option to add MimeMap to the `mimeMap` option
 		// Array '[ext]:[detected mime type]' => '[normalized mime]'
 		'additionalMimeMap' => array(),
+		// MIME-Type of filetype detected as unknown
+		'mimeTypeUnknown' => 'application/octet-stream',
 		// MIME regex of send HTTP header "Content-Disposition: inline" or allow preview in quicklook
 		// '.' is allow inline of all of MIME types
 		// '$^' is not allow inline of all of MIME types
-		'dispInlineRegex' => '^(?:(?:image|video|audio)|application/(?:ogg|x-mpegURL|dash\+xml)|(?:text/plain|application/pdf)$)',
+		'dispInlineRegex' => '^(?:(?:video|audio)|image/(?!.+\+xml)|application/(?:ogg|x-mpegURL|dash\+xml)|(?:text/plain|application/pdf)$)',
 		// temporary content URL's base path
 		'tmpLinkPath'     => '',
 		// temporary content URL's base URL
@@ -901,6 +903,15 @@ abstract class elFinderVolumeDriver {
 	}
 	
 	/**
+	 * Get elFinder sesson wrapper object
+	 *
+	 * @return object  The session object
+	 */
+	public function getSession() {
+		return $this->session;
+	}
+
+	/**
 	 * Save session cache data
 	 * Calls this function before umount this volume on elFinder::exec()
 	 * 
@@ -1227,8 +1238,12 @@ abstract class elFinderVolumeDriver {
 		if ($this->URL && preg_match("|[^/?&=]$|", $this->URL)) {
 			$this->URL .= '/';
 		}
-		if (strtolower($this->options['dirUrlOwn']) === 'auto') {
+
+		$dirUrlOwn = strtolower($this->options['dirUrlOwn']);
+		if ($dirUrlOwn === 'auto') {
 			$this->options['dirUrlOwn'] = $this->URL? false : true;
+		} else if ($dirUrlOwn === 'hide') {
+			$this->options['dirUrlOwn'] = 'hide';
 		} else {
 			$this->options['dirUrlOwn'] = (bool)$this->options['dirUrlOwn'];
 		}
@@ -4149,11 +4164,12 @@ abstract class elFinderVolumeDriver {
 			$stat['size'] = 'unknown';
 		}	
 		
-		if ($isDir = (isset($stat['mime']) && $stat['mime'] === 'directory')) {
+		$mime = isset($stat['mime'])? $stat['mime'] : '';
+		if ($isDir = ($mime === 'directory')) {
 			$stat['volumeid'] = $this->id;
 		} else {		
-			if (empty($stat['mime']) || (!$isDir && $stat['size'] == 0)) {
-				$stat['mime'] = $this->mimetype($stat['name'], true, $stat['size']);
+			if (empty($stat['mime']) || $stat['size'] == 0) {
+				$stat['mime'] = $this->mimetype($stat['name'], true, $stat['size'], $mime);
 			} else {
 				$stat['mime'] = $this->mimeTypeNormalize($stat['mime'], $stat['name']);
 			}
@@ -4224,7 +4240,11 @@ abstract class elFinderVolumeDriver {
 					$stat['dirs'] = 1;
 				}
 				if ($this->options['dirUrlOwn'] === true) {
-					$stat['url'] = '#elf_' . $stat['hash'];
+					// Set `null` to use the client option `commandsOptions.info.nullUrlDirLinkSelf = true`
+					$stat['url'] = null;
+				} else if ($this->options['dirUrlOwn'] === 'hide') {
+					// to hide link in info dialog of the elFinder client
+					$stat['url'] = '';
 				}
 			} else {
 				// for files - check for thumbnails
@@ -4300,10 +4320,11 @@ abstract class elFinderVolumeDriver {
 	 * @param  string      $path file path
 	 * @param  string|bool $name
 	 * @param  integer     $size
+	 * @param  string      $mime was notified from the volume driver
 	 * @return string
 	 * @author Dmitry (dio) Levashov
 	 */
-	protected function mimetype($path, $name = '', $size = null) {
+	protected function mimetype($path, $name = '', $size = null, $mime = null) {
 		$type = '';
 		$nameCheck = false;
 		
@@ -4344,7 +4365,11 @@ abstract class elFinderVolumeDriver {
 			// detecting by filename
 			$type = elFinderVolumeDriver::mimetypeInternalDetect($name);
 			if ($type === 'unknown') {
-				$type = ($size == 0)? '' : 'text/plain';
+				if ($mime) {
+					$type = $mime;
+				} else {
+					$type = ($size == 0)? 'text/plain' : $this->options['mimeTypeUnknown'];
+				}
 			}
 		}
 		
@@ -4758,9 +4783,7 @@ abstract class elFinderVolumeDriver {
 		if ($res = $this->convEncOut($this->_copy($this->convEncIn($src), $this->convEncIn($dst), $this->convEncIn($name)))) {
 			$path = is_string($res)? $res : $this->joinPathCE($dst, $name);
 			$this->clearstatcache();
-			if ($this->ARGS['cmd'] !== 'duplicate') {
-				$this->added[] = $this->stat($path);
-			}
+			$this->added[] = $this->stat($path);
 			return $path;
 		}
 
@@ -6093,10 +6116,20 @@ abstract class elFinderVolumeDriver {
 	 * @return array
 	 */
 	protected function getArchivers($use_cache = true) {
-
-		$sessionKey = 'ARCHIVERS_CACHE';
-		if ($use_cache && isset($this->sessionCache[$sessionKey]) && is_array($this->sessionCache[$sessionKey])) {
-			return $this->sessionCache[$sessionKey];
+		$sessionKey = 'archivers';
+		if ($use_cache) {
+			if (isset($this->options['archivers']) && is_array($this->options['archivers']) && $this->options['archivers']) {
+				$cache = $this->options['archivers'];
+			} else {
+				$cache = elFinder::$archivers;
+			}
+			if ($cache) {
+				return $cache;
+			} else {
+				if ($cache = $this->session->get($sessionKey, array())) {
+					return elFinder::$archivers = $cache;
+				}
+			}
 		}
 		
 		$arcs = array(
@@ -6185,8 +6218,8 @@ abstract class elFinderVolumeDriver {
 			}
 		}
 		
-		$this->sessionCache[$sessionKey] = $arcs;
-		return $arcs;
+		$this->session->set($sessionKey, $arcs);
+		return elFinder::$archivers = $arcs;
 	}
 
 	/**

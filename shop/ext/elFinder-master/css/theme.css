@@ -29,6 +29,15 @@
     background-color: transparent;
 }
 
+.elfinder-quicklook-title {
+    color: #fff;
+}
+
+.elfinder-quicklook-titlebar-icon {
+    background-color: transparent;
+    background-image: none;
+}
+
 .elfinder-quicklook-titlebar-icon .ui-icon {
     background-color: #d4d4d4;
     border-color: #8a8a8a;
@@ -83,8 +92,9 @@
     color: #fff;
 }
 
+.elfinder-navbar .ui-droppable-hover,
 .elfinder-navbar .elfinder-droppable-active {
-    background: #A7C6E5 !important;
+    background: #A7C6E5;
 }
 
 /* disabled elfinder */
@@ -266,7 +276,7 @@
 }
 
 .elfinder-cwd .elfinder-droppable-active td {
-    background: #A7C6E5 !important;
+    background: #A7C6E5;
 }
 
 .elfinder-cwd.elfinder-table-header-sticky table {
@@ -323,10 +333,14 @@
     background-color: inherit;
 }
 
+/* edit dialog */
+.elfinder-dialog-edit select.elfinder-edit-changed {
+    border-bottom: 2px solid #13ae10;
+}
+
 /* tooltip */
-.elfinder-ui-tooltip,
-.elfinder .elfinder-ui-tooltip {
-    background-color: #fff !important;
+.ui-widget-content.elfinder-ui-tooltip {
+    background-color: #fff;
 }
 
 .elfinder-ui-tooltip.ui-widget-shadow,

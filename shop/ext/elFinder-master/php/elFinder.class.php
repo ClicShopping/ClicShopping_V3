@@ -31,7 +31,7 @@ class elFinder {
 	 * 
 	 * @var integer
 	 */
-	protected static $ApiRevision = 42;
+	protected static $ApiRevision = 43;
 	
 	/**
 	 * Storages (root dirs)
@@ -250,7 +250,7 @@ class elFinder {
 		'rename'    => array('target' => true, 'name' => true, 'mimes' => false, 'targets' => false, 'q' => false),
 		'duplicate' => array('targets' => true, 'suffix' => false),
 		'paste'     => array('dst' => true, 'targets' => true, 'cut' => false, 'mimes' => false, 'renames' => false, 'hashes' => false, 'suffix' => false),
-		'upload'    => array('target' => true, 'FILES' => true, 'mimes' => false, 'html' => false, 'upload' => false, 'name' => false, 'upload_path' => false, 'chunk' => false, 'cid' => false, 'node' => false, 'renames' => false, 'hashes' => false, 'suffix' => false, 'mtime' => false, 'overwrite' => false),
+		'upload'    => array('target' => true, 'FILES' => true, 'mimes' => false, 'html' => false, 'upload' => false, 'name' => false, 'upload_path' => false, 'chunk' => false, 'cid' => false, 'node' => false, 'renames' => false, 'hashes' => false, 'suffix' => false, 'mtime' => false, 'overwrite' => false, 'contentSaveId' => false),
 		'get'       => array('target' => true, 'conv' => false),
 		'put'       => array('target' => true, 'content' => '', 'mimes' => false, 'encoding' => false),
 		'archive'   => array('targets' => true, 'type' => true, 'mimes' => false, 'name' => false),
@@ -364,6 +364,14 @@ class elFinder {
 	 **/
 	public $mountErrors = array();
 	
+
+	/**
+	 * Archivers cache
+	 *
+	 * @var array
+	 */
+	public static $archivers = array();
+
 	/**
 	 * URL for callback output window for CORS
 	 * redirect to this URL when callback output
@@ -393,6 +401,20 @@ class elFinder {
 	 * @var array|null
 	 */
 	protected $customData = null;
+
+	/**
+	 * Ids to remove of session var "urlContentSaveIds" for contents uploading by URL
+	 *
+	 * @var array
+	 */
+	protected $removeContentSaveIds = array();
+
+	/**
+	 * Flag of throw Error on exec()
+	 *
+	 * @var boolean
+	 */
+	protected $throwErrorOnExec = false;
 
 	// Errors messages
 	const ERROR_UNKNOWN           = 'errUnknown';
@@ -653,6 +675,13 @@ class elFinder {
 
 		// set memoryLimitGD
 		elFinder::$memoryLimitGD = isset($opts['memoryLimitGD'])? $opts['memoryLimitGD'] : 0;
+
+		// set flag of throwErrorOnExec
+		// `true` need `try{}` block for `$connector->run();`
+		$this->throwErrorOnExec = !empty($opts['throwErrorOnExec']);
+
+		// set archivers
+		elFinder::$archivers = isset($opts['archivers']) && is_array($opts['archivers'])? $opts['archivers'] : array();
 
 		// bind events listeners
 		if (!empty($opts['bind']) && is_array($opts['bind'])) {
@@ -1026,6 +1055,9 @@ class elFinder {
 					'error' => htmlspecialchars($e->getMessage()),
 					'sync' => true
 				);
+				if ($this->throwErrorOnExec) {
+					throw $e;
+				}
 			}
 		}
 		
@@ -1114,6 +1146,21 @@ class elFinder {
 			}
 		}
 		
+		// remove sesstion var 'urlContentSaveIds'
+		if ($this->removeContentSaveIds) {
+			$urlContentSaveIds = $this->session->get('urlContentSaveIds', array());
+			foreach(array_keys($this->removeContentSaveIds) as $contentSaveId) {
+				if (isset($urlContentSaveIds[$contentSaveId])) {
+					unset($urlContentSaveIds[$contentSaveId]);
+				}
+			}
+			if ($urlContentSaveIds) {
+				$this->session->set('urlContentSaveIds', $urlContentSaveIds);
+			} else {
+				$this->session->remove('urlContentSaveIds');
+			}
+		}
+
 		foreach ($this->volumes as $volume) {
 			$volume->saveSessionCache();
 			$volume->umount();
@@ -1193,7 +1240,16 @@ class elFinder {
 			$netVolumes[$netKey][$optionKey] = $val;
 		}
 	}
-	
+
+	/**
+	 * remove of session var "urlContentSaveIds"
+	 *
+	 * @param string $id
+	 */
+	public function removeUrlContentSaveId($id) {
+		$this->removeContentSaveIds[$id] = true;
+	}
+
 	/**
 	 * Return network volumes config.
 	 *
@@ -1889,15 +1945,14 @@ class elFinder {
 				$tgt =& $reset;
 			}
 			$res = $this->ensureDirsRecursively($volume, $target, $mkdirs);
+			$ret = array(
+				'added' => $res['stats'],
+				'hashes' => $res['hashes']
+			);
 			if ($res['error']) {
-				$errors = $volume->error();
-				if ($res['makes']) {
-					$this->rm(array('targets' => $res['makes']));
-				}
-				return array('error' => $this->error(self::ERROR_MKDIR, $res['error'][0], $errors));
-			} else {
-				return array('added' => $res['stats'], 'hashes' => $res['hashes']);
+				$ret['warning'] = $this->error(self::ERROR_MKDIR, $res['error'][0], $volume->error());
 			}
+			return $ret;
 		} else {
 			return ($dir = $volume->mkdir($target, $name)) == false
 				? array('error' => $this->error(self::ERROR_MKDIR, $name, $volume->error()))
@@ -2075,7 +2130,7 @@ class elFinder {
 	 **/
 	protected function duplicate($args) {
 		$targets = is_array($args['targets']) ? $args['targets'] : array();
-		$result  = array('added' => array());
+		$result  = array();
 		$suffix  = empty($args['suffix']) ? 'copy' : $args['suffix'];
 		
 		$this->itemLock($targets);
@@ -2093,8 +2148,6 @@ class elFinder {
 				$result['warning'] = $this->error($volume->error());
 				break;
 			}
-			
-			$result['added'][] = $file;
 		}
 		
 		return $result;
@@ -2909,6 +2962,7 @@ class elFinder {
 		}
 
 		$addedDirs = array();
+		$errors = array();
 		foreach ($files['name'] as $i => $name) {
 			if (($error = $files['error'][$i]) > 0) {
 				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, $error == UPLOAD_ERR_INI_SIZE || $error == UPLOAD_ERR_FORM_SIZE ? self::ERROR_UPLOAD_FILE_SIZE : self::ERROR_UPLOAD_TRANSFER, $error);
@@ -3015,18 +3069,22 @@ class elFinder {
 					$rnres = $this->rename(array('target' => $hash, 'name' => $volume->uniqueName($dir, $name, $suffix, true, 0)));
 					if (!empty($rnres['error'])) {
 						$result['warning'] = $rnres['error'];
-						break;
+						if (!is_array($rnres['error'])) {
+							$errors = array_push($errors, $rnres['error']);
+						} else {
+							$errors = array_merge($errors, $rnres['error']);
+						}
+						continue;
 					}
 				}
 			}
 			if (! $_target || ($file = $volume->upload($fp, $_target, $name, $tmpname, ($_target === $target)? $hashes : array())) === false) {
-				$result['warning'] = $this->error(self::ERROR_UPLOAD_FILE, $name, $volume->error());
+				$errors = array_merge($errors, $this->error(self::ERROR_UPLOAD_FILE, $name, $volume->error()));
 				fclose($fp);
-				if (! is_uploaded_file($tmpname)) {
-					if (unlink($tmpname)) unset($GLOBALS['elFinderTempFiles'][$tmpname]);
-					continue;
+				if (! is_uploaded_file($tmpname) && unlink($tmpname)) {
+					unset($GLOBALS['elFinderTempFiles'][$tmpname]);
 				}
-				break;
+				continue;
 			}
 			
 			is_resource($fp) && fclose($fp);
@@ -3041,6 +3099,11 @@ class elFinder {
 				$result = array_merge_recursive($result, $rnres);
 			}
 		}
+
+		if ($errors) {
+			$result['warning'] = $errors;
+		}
+
 		if ($GLOBALS['elFinderTempFiles']) {
 			foreach(array_keys($GLOBALS['elFinderTempFiles']) as $_temp) {
 				 is_file($_temp) && unlink($_temp);
@@ -3910,9 +3973,6 @@ class elFinder {
 				$res['hashes'][$_path] = $dir['hash'];
 				if (count($sub)) {
 					$res = array_merge_recursive($res, $this->ensureDirsRecursively($volume, $dir['hash'], $sub, $_path));
-					if ($res['error']) {
-						break;
-					}
 				}
 			} else {
 				$res['error'][] = $name;
