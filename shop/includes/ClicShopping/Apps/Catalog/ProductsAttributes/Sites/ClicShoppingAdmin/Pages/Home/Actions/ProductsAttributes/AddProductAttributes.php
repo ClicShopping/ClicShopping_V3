@@ -15,6 +15,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Upload;
 
+  use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
+
   class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
 
@@ -25,6 +27,7 @@
     public function execute() {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+      $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
 
       $products_id = HTML::sanitize($_POST['products_id']);
       $options_id = HTML::sanitize($_POST['options_id']);
@@ -34,6 +37,8 @@
       $value_sort_order = HTML::sanitize($_POST['value_sort_order']);
       $products_attributes_reference = HTML::sanitize($_POST['products_attributes_reference']);
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+
+      $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->UploadImage();
 
       $option_page = (isset($_GET['option_page']) && is_numeric($_GET['option_page'])) ? $_GET['option_page'] : 1;
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;
@@ -48,12 +53,12 @@
                                                   'price_prefix' => $price_prefix,
                                                   'products_options_sort_order' => (int)$value_sort_order,
                                                   'products_attributes_reference' => $products_attributes_reference,
-                                                  'customers_group_id' => $customers_group_id
+                                                  'customers_group_id' => $customers_group_id,
+                                                  'products_attributes_image' => $products_attributes_image
                                                   ]
                           );
 
       if (DOWNLOAD_ENABLED == 'true') {
-
         $products_attributes_id = $this->app->db->lastInsertId();
 
         $products_attributes_maxdays = HTML::sanitize($_POST['products_attributes_maxdays']);

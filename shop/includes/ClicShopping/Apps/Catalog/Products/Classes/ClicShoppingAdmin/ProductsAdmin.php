@@ -241,7 +241,7 @@
           $product_update_image_medium = $Qimages->value('products_image_medium');
         }
 
-      $rand_image = $this->getGenerateRandomString();
+        $rand_image = $this->getGenerateRandomString();
 
         $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
         $error = true;
@@ -452,7 +452,7 @@
                              'htmlcontent' => $_POST['products_image_htmlcontent_new_' . $matches[1]]
                             ];
 
-          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages()  . $dir, null, array('gif', 'jpg', 'png'));
+          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages()  . $dir, null, ['gif', 'jpg', 'png']);
 
           if ( $image->check() && $image->save() ) {
             $error = false;
@@ -512,11 +512,11 @@
  * @access public
 */
 
-  public function getInfoImage($image, $alt, $width = '', $height = '') {
+  public function getInfoImage($image, $alt, $width = '130', $height = '130') {
     if (!empty($image) && (file_exists($this->template->getDirectoryPathTemplateShopImages() . $image)) ) {
       $image = HTML::image($this->template->getDirectoryShopTemplateImages() . $image, $alt, $width, $height);
     } else {
-      $image = HTML::image('../' . $this->template->getImageDirectory() . '/images/nophoto.png', CLICSHOPPING::getDef('text_image_nonexistent'));
+      $image = HTML::image('../' . $this->template->getImageDirectory() . '/images/nophoto.png', CLICSHOPPING::getDef('text_image_nonexistent'), $width, $height);
     }
 
     return $image;

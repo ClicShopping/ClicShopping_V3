@@ -12,6 +12,10 @@
   namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Upload;
+
+  use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
 
   class ProductsAttributesAdmin {
     protected $lang;
@@ -53,4 +57,65 @@
 
       return $Qvalues->value('products_options_values_name');
     }
-  }
+
+    public function UploadImage() {
+      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      Registry::set('ImageResample', new ImageResample());
+      $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
+
+      $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+
+      $dir_products_image = 'attributes_options/';
+
+
+      $error = true;
+
+// load originale image
+      $image = new Upload('products_image_resize', $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg']);
+
+// When the image is updated
+
+      if ($image->check() && $image->save()) {
+        $error = false;
+      }
+
+      if ($error === false) {
+        $sql_data_array['image'] = $dir_products_image . $image->getFilename();
+      } else {
+        $sql_data_array['image'] = '';
+      }
+
+      if ($image->check()) {
+        $image_name = $image->getFilename();
+        $CLICSHOPPING_ImageResample->load($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
+
+        $CLICSHOPPING_ImageResample->resizeToWidth(50);
+
+        $image_ext = 'opt';
+        $rand_image = $CLICSHOPPING_ProductsAdmin->getGenerateRandomString();
+
+        $image = $dir_products_image . $image_ext . '_' . $rand_image . '_' . $image_name;
+        $image = str_replace(' ', '', $image);
+
+        $CLICSHOPPING_ImageResample->save($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $image);
+
+// delete the orginal files
+        if (file_exists($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name)) {
+          @unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
+        }
+
+// Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
+        $attribute_image_name = HTML::sanitize($image);
+        $attribute_image_name = htmlspecialchars($attribute_image_name);
+        $attribute_image_name = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $attribute_image_name);
+        $attribute_image_name_end = strstr($attribute_image_name, '&quot;');
+        $attribute_image_name = str_replace($attribute_image_name_end, '', $attribute_image_name);
+        $products_image_name = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $attribute_image_name);
+
+      }
+
+      return $products_image_name;
+    }
+ }

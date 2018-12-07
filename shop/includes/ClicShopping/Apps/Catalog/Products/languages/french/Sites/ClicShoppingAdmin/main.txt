@@ -76,7 +76,7 @@ table_heading_action = Action
 table_heading_status = Statut
 table_heading_categories = Catégories
 table_heading_sort_order = Ordre de tri
-
+table_heading_image = Image
 table_heading_price = Prix
 table_heading_qty = Stock
 table_heading_last_modified = Dernière modification

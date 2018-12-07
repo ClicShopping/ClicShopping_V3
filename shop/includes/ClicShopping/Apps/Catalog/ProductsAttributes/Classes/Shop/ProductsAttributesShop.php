@@ -34,12 +34,12 @@
  * @access public
  */
     private function setCountProductsAttributes($id = null) {
-
       if (is_null($id)) {
         $id = $this->productsCommon->getID();
       }
 
       $language_id = $this->lang->getId();
+
       if ($this->customer->getCustomersGroupID() != 0) {
         $QproductsAttributes = $this->db->prepare('select count(*) as total
                                                    from :table_products_options popt,
@@ -105,7 +105,6 @@
       return $Qattributes->fetch() !== false;
     }
 
-
 /**
  * Get attributes Information
  * @param int $products_id
@@ -114,7 +113,6 @@
  * @param int $language_id
  * @return mixed
  */
-
     public function getProductsAttributesInfo($products_id, $option_id, $options_values_id = null, $language_id) {
       if (!is_null($options_values_id)) {
         if ($this->customer->getCustomersGroupID() != 0) {
@@ -122,7 +120,8 @@
                                                              poval.products_options_values_name,
                                                              pa.options_values_price,
                                                              pa.price_prefix,
-                                                             pa.products_attributes_reference
+                                                             pa.products_attributes_reference,
+                                                             pa.products_attributes_image
                                             from :table_products_options popt,
                                                  :table_products_options_values poval,
                                                  :table_products_attributes pa
@@ -143,12 +142,12 @@
 
           $Qattributes->execute();
         } else {
-
           $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
                                                              poval.products_options_values_name,
                                                              pa.options_values_price,
                                                              pa.price_prefix,
-                                                             pa.products_attributes_reference
+                                                             pa.products_attributes_reference,
+                                                             pa.products_attributes_image
                                             from :table_products_options popt,
                                                  :table_products_options_values poval,
                                                  :table_products_attributes pa
@@ -174,7 +173,8 @@
                                                               pov.products_options_values_name,
                                                               pa.options_values_price,
                                                               pa.price_prefix,
-                                                              pa.products_attributes_reference
+                                                              pa.products_attributes_reference,
+                                                              pa.products_attributes_image
                                              from :table_products_attributes pa,
                                                   :table_products_options_values pov
                                              where pa.products_id = :products_id
@@ -192,12 +192,12 @@
 
           $Qattributes->execute();
         } else {
-
           $Qattributes = $this->db->prepare('select distinct pov.products_options_values_id,
                                                               pov.products_options_values_name,
                                                               pa.options_values_price,
                                                               pa.price_prefix,
-                                                              pa.products_attributes_reference
+                                                              pa.products_attributes_reference,
+                                                              pa.products_attributes_image
                                              from :table_products_attributes pa,
                                                   :table_products_options_values pov
                                              where pa.products_id = :products_id
@@ -214,6 +214,7 @@
           $Qattributes->execute();
         }
       }
+
       return $Qattributes;
     }
 
@@ -377,8 +378,6 @@
     public function getAttributesDownloaded($products_id, $options_id, $options_values_id, $language_id) {
       if (DOWNLOAD_ENABLED == 'true') {
         if ($this->customer->getCustomersGroupID() != 0) {
-
-
           $Qattributes = $this->db->prepare('select popt.products_options_name,
                                                     poval.products_options_values_name,
                                                     pa.options_values_price,
@@ -446,7 +445,8 @@
                                                    poval.products_options_values_name,
                                                    pa.options_values_price,
                                                    pa.price_prefix,
-                                                     pa.products_attributes_reference
+                                                   pa.products_attributes_reference,
+                                                   pa.products_attributes_image
                                               from :table_products_options popt,
                                                    :table_products_options_values poval,
                                                    :table_products_attributes pa
@@ -472,7 +472,8 @@
                                                    poval.products_options_values_name,
                                                    pa.options_values_price,
                                                    pa.price_prefix,
-                                                     pa.products_attributes_reference
+                                                   pa.products_attributes_reference,
+                                                   pa.products_attributes_image
                                               from :table_products_options popt,
                                                    :table_products_options_values poval,
                                                    :table_products_attributes pa

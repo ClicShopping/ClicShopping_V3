@@ -15,6 +15,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Upload;
 
+  use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
+
   class UpdateProductAttribute extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
 
@@ -25,6 +27,8 @@
     public function execute() {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+      $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
+
 
       $products_id = HTML::sanitize($_POST['products_id']);
       $options_id = HTML::sanitize($_POST['options_id']);
@@ -40,6 +44,12 @@
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;
       $attribute_page = (isset($_GET['attribute_page']) && is_numeric($_GET['attribute_page'])) ? $_GET['attribute_page'] : 1;
 
+      $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->UploadImage();
+
+      if (is_null($products_attributes_image)) {
+        $products_attributes_image = HTML::sanitize($_POST['products_attributes_image']);
+      }
+
       $page_info = 'option_page=' . HTML::sanitize($option_page) . '&value_page=' . HTML::sanitize($value_page) . '&attribute_page=' . HTML::sanitize($attribute_page);
 
       $Qupdate = $this->app->db->prepare('update :table_products_attributes
@@ -50,7 +60,8 @@
                                               price_prefix = :price_prefix,
                                               products_options_sort_order = :products_options_sort_order,
                                               products_attributes_reference = :products_attributes_reference,
-                                              customers_group_id = :customers_group_id
+                                              customers_group_id = :customers_group_id,
+                                              products_attributes_image = :products_attributes_image
                                           where products_attributes_id =:products_attributes_id
                                         ');
 
@@ -63,6 +74,8 @@
       $Qupdate->bindValue(':products_attributes_reference', $products_attributes_reference);
       $Qupdate->bindInt(':products_attributes_id', (int)$attribute_id);
       $Qupdate->bindInt(':customers_group_id', (int)$customers_group_id);
+      $Qupdate->bindValue(':products_attributes_image', $products_attributes_image);
+
       $Qupdate->execute();
 
       if (DOWNLOAD_ENABLED == 'true') {

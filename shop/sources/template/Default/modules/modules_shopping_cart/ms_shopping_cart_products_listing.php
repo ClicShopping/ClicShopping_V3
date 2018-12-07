@@ -89,6 +89,7 @@
               $products[$i][$option]['attributes_values_price'] = $Qattributes->valueDecimal('options_values_price');
               $products[$i][$option]['price_prefix'] = $Qattributes->value('price_prefix');
               $products[$i][$option]['products_attributes_reference'] = $Qattributes->value('products_attributes_reference');
+              $products[$i][$option]['products_attributes_image'] = $Qattributes->value('products_attributes_image');
             }
           }
         }
@@ -132,7 +133,13 @@
 
           if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
             foreach($products[$i]['attributes'] as $option => $value) {
-              $products_name .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products[$i][$option]['products_attributes_name'] . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->display_price($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') .'</p>';
+              if (!is_null($products[$i][$option]['products_attributes_image'])) {
+                $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_name'] . '   ', 30, 30);
+              } else {
+                $products_attributes_image = '';
+              }
+
+              $products_name .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . '  '  . $products[$i][$option]['products_attributes_name'] . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->display_price($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') .'</p>';
             }
           }
 

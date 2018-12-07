@@ -154,9 +154,9 @@
               } else {
                 while ($QproductsOptions->fetch() !== false) {
                   $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
-                                               'text' => $QproductsOptions->value('products_options_values_name')
+                                               'text' => $QproductsOptions->value('products_options_values_name'),
+                                               'image' => $QproductsOptions->value('products_attributes_image')
                                               ];
-
 
                   if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
                     $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->display_price($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
@@ -184,8 +184,14 @@
                 $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">'. $QproductsOptionsName->value('products_options_name') . ': </label>';
 
                 foreach ($products_options_array as $value) {
+                  if (!is_null($value['image'])) {
+                    $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'], $value['text']) . '   ';
+                  } else {
+                    $products_attributes_image = '';
+                  }
+
                   $products_options_content_display .='<div class="col-md-12">';
-                  $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'checked id="defaultCheck' . $value['id'] .'"') . ' ' . $value['text'] . ' ' .'</span>';
+                  $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'checked id="defaultCheck' . $value['id'] .'"') . ' ' . $products_attributes_image . $value['text'] . ' ' .'</span>';
                   $products_options_content_display .='</div>';
                 }
               }

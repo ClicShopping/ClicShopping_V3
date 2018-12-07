@@ -14,6 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\FileSystem;
 
+  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
+
   use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
 
   use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
@@ -39,6 +41,8 @@
   if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
     $_GET['page'] = 1;
   }
+
+  echo HTMLOverrideAdmin::getCkeditor();
 ?>
 <script language="javascript"><!--
   function go_option() {
@@ -627,6 +631,7 @@
                 <thead>
                   <tr class="dataTableHeadingRow">
                     <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_id'); ?></td>
+                    <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_image'); ?></td>
                     <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_ref_attributes'); ?></td>
                     <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_product'); ?></td>
                     <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_name'); ?></td>
@@ -673,6 +678,13 @@
       if (isset($_GET['UpdateAttribute']) && ($_GET['attribute_id'] == $Qattributes->valueInt('products_attributes_id'))) {
 ?>
                   <td><?php echo $Qattributes->valueInt('products_attributes_id') . HTML::hiddenField('attribute_id', $Qattributes->valueInt('products_attributes_id')); ?></td>
+                  <td>
+<?php
+        echo $CLICSHOPPING_ProductsAdmin->getInfoImage($Qattributes->value('products_attributes_image'), $products_name_only, 50, 50);
+        echo HTML::hiddenField('products_attributes_image' , $Qattributes->value('products_attributes_image'));
+        echo HTML::fileField('products_image_resize', 'id="file"');
+?>
+                  </td>
                   <td class="text-md-center"><?php echo HTML::inputField('products_attributes_reference', $Qattributes->value('products_attributes_reference')); ?></td>
                   <td>
                     <select name="products_id">
@@ -801,6 +813,12 @@
 ?>
                  <tr>
                   <td><strong><?php echo $Qattributes->valueInt('products_attributes_id'); ?></strong></td>
+                  <td>
+<?php
+      echo $CLICSHOPPING_ProductsAdmin->getInfoImage($Qattributes->value('products_attributes_image'), $products_name_only, 50, 50);
+      echo HTML::hiddenField('products_attributes_image' , $Qattributes->value('products_attributes_image'));
+?>
+                  </td>
                   <td class="text-md-center"><?php echo $Qattributes->value('products_attributes_reference'); ?></td>
                   <td><strong><?php echo $products_name_only; ?></strong></td>
                   <td><strong><?php echo $options_name; ?></strong></td>
@@ -847,6 +865,14 @@
       } elseif (!isset($_GET['DeleteProductAttribute'])) {
 ?>
                   <td><?php echo $Qattributes->valueInt('products_attributes_id'); ?></td>
+                  <td>
+
+<?php
+                    echo $CLICSHOPPING_ProductsAdmin->getInfoImage($Qattributes->value('products_attributes_image'), $products_name_only, 50, 50);
+                    echo HTML::hiddenField('products_attributes_image' , $Qattributes->value('products_attributes_image'));
+?>
+                  </td>
+
                   <td><?php echo $Qattributes->value('products_attributes_reference'); ?></td>
                   <td><?php echo $products_name_only; ?></td>
                   <td><?php echo $options_name; ?></td>
@@ -911,6 +937,7 @@
 ?>
                 <tr>
                   <td><?php echo $next_id; ?></td>
+                 <td><?php echo HTML::fileField('products_image_resize', 'id="file"'); ?></td>
                   <td class="text-md-center"><?php echo HTML::inputField('products_attributes_reference', $Qattributes->value('products_attributes_reference')); ?></td>
                   <td>
                     <select name="products_id">

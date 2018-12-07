@@ -384,7 +384,12 @@
 //************************************************
 //Update
 //************************************************
-
+/**
+ * Update product quantity
+ * @param $products_id string
+ * @param string $quantity int
+ * @param string $attributes string
+ */
     public function updateQuantity($products_id, $quantity = '', $attributes = '') {
       $products_id_string = $this->getUprid($products_id, $attributes);
       $products_id = $this->getPrid($products_id_string);
