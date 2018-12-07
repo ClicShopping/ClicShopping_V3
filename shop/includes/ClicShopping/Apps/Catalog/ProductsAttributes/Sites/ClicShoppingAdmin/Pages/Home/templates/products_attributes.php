@@ -58,8 +58,14 @@
 // check if the catalog image directory exists
   if (DOWNLOAD_ENABLED == 'true') {
     if (is_dir($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
-      if (!FileSystem::isWritable($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private'))) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('error_catalog_download_directory_not_writeable'), 'warning');
+      if (!FileSystem::isWritable($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private'))) $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsAttributes->getDef('error_catalog_download_directory_not_writeable'), 'warning');
     }
+  }
+
+  if ($_GET['error'] = 'fileNotSupported') {
+?>
+  <div class="alert alert-warning"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('error_file_not_supported'); ?></div>
+<?php
   }
 ?>
     <div class="row">

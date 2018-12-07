@@ -321,6 +321,7 @@ error_catalog_image_directory_not_writeable = Erreur : Impossible d'écrire dans
 error_cannot_move_category_to_parent = Erreur: Vous ne pouvez pas bougez cette catégorie.
 error_catalog_image_directory_does_not_exist = Erreur : Le répertoire d'images n'existe pas
 error_cannot_move_category_to_parent = Erreur : La catégorie ne peut pas être déplacée dans la sous-catégorie.
+error_file_not_supported = Format fichier image supporté
 
 help_general_tab8 =  - Les fichiers acceptés sont : zip, pdf, doc, odf, xls, mp3, mp4, avi<br />
 help_general_tab8_1 =  - La taille des fichiers ne peux dépasser :

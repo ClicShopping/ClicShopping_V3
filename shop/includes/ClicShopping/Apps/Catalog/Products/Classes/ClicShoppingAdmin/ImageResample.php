@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -29,6 +29,8 @@
 */
 
   namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
+
+  use ClicShopping\OM\CLICSHOPPING;
 
   class ImageResample {
 
@@ -58,7 +60,13 @@
       } elseif( $this->image_type == IMAGETYPE_PNG ) {
         $this->image = imagecreatefrompng($filename);
       } else {
-        throw new Exception("The file you're trying to open is not supported");
+        if (isset($_GET['ProductsAttributes'])) {
+          CLICSHOPPING::redirect(null, 'A&Catalog\ProductsAttributes&ProductsAttributes&error=fileNotSupported');
+        }
+
+        if (isset($_GET['Porducts'])) {
+          CLICSHOPPING::redirect(null, 'A&Catalog\Products&Products&error=fileNotSupported');
+        }
       }
 
     }

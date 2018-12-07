@@ -80,7 +80,7 @@
     private function getRestoreQty() {
       global $qty, $products_id;
 
-     $qty = $this->getCheckGoodQty($products_id, $qty);
+      $qty = $this->getCheckGoodQty($products_id, $qty);
 
       return $qty;
     }
