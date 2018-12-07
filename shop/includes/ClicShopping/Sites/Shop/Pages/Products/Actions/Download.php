@@ -15,7 +15,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Hash;
 
-  use ClicShopping\Sites\Shop\Pages\Account\Actions\HistoryInfo;
+  use ClicShopping\Sites\Shop\Pages\Account\Classes\HistoryInfo;
 
   class Download extends \ClicShopping\OM\PagesActionsAbstract {
 

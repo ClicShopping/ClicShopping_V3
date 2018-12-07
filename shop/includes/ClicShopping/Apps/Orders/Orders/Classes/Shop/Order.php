@@ -223,7 +223,8 @@
                                                                 'value' => $Qattributes->value('products_options_values'),
                                                                 'prefix' => $Qattributes->value('price_prefix'),
                                                                 'price' => $Qattributes->valueDecimal('options_values_price'),
-                                                                'reference' => $Qattributes->value('products_attributes_reference')
+                                                                'reference' => $Qattributes->value('products_attributes_reference'),
+                                                                'products_attributes_image' => $Qattributes->value('products_attributes_image')
                                                                 ];
             $subindex++;
           } while ($Qattributes->fetch());
@@ -713,7 +714,8 @@
                                                                 'prefix' => $Qattributes->value('price_prefix'),
                                                                 'price' => $Qattributes->value('options_values_price'),
                                                                 'reference' => $Qattributes->value('products_attributes_reference'),
-                                                               ];
+                                                                'products_attributes_image' => $Qattributes->value('products_attributes_image')
+                                                                ];
 
             $subindex++;
           }
