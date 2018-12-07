@@ -185,7 +185,8 @@
                                                     products_model,
                                                     products_tax,
                                                     products_price,
-                                                    final_price
+                                                    final_price,
+                                                    orders_products_id
                                             from :table_orders_products
                                             where orders_id = :orders_id
                                           ');
@@ -223,8 +224,7 @@
                                                                 'value' => $Qattributes->value('products_options_values'),
                                                                 'prefix' => $Qattributes->value('price_prefix'),
                                                                 'price' => $Qattributes->valueDecimal('options_values_price'),
-                                                                'reference' => $Qattributes->value('products_attributes_reference'),
-                                                                'products_attributes_image' => $Qattributes->value('products_attributes_image')
+                                                                'reference' => $Qattributes->value('products_attributes_reference')
                                                                 ];
             $subindex++;
           } while ($Qattributes->fetch());

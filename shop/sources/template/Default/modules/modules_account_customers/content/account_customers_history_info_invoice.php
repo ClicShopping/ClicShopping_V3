@@ -41,20 +41,23 @@
        <tbody>
 <?php
   }
-
   for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
-    echo '          <tr>' . "\n" .
+    echo '       <tr>' . "\n" .
       '            <td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
       '            <td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
 
     if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0) ) {
       for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
 
-        if (!empty($CLICSHOPPING_Order->products[$j]['attributes'][$j]['reference'])) {
-          $reference =  $CLICSHOPPING_Order->products[$j]['attributes'][$j]['reference'] . ' / ';
+        if (!empty($CLICSHOPPING_Order->products[$j]['attributes'][$j]['products_attributes_reference'])) {
+          $reference =  $CLICSHOPPING_Order->products[$j]['attributes'][$j]['products_attributes_reference'] . ' / ';
         }
 
-        echo '<br /><nobr><small>&nbsp;<i> - <strong>' . $reference . '</strong>' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ' : ' . $order->products[$i]['attributes'][$j]['value'] . '</i></small></nobr>';
+        if (!empty($CLICSHOPPING_Order->products[$i]['attributes'][$j]['price'])) {
+          $price = '( ' .$CLICSHOPPING_Order->products[$i]['attributes'][$j]['prefix'] . ' ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['price'] . ' )';
+        }
+
+        echo '<br /><nobr><small>&nbsp;<i> - <strong>' . $reference . '</strong>' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ' : ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['value'] . $price .'</i></small></nobr>';
       }
     }
 
