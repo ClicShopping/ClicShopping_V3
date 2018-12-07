@@ -41,6 +41,8 @@ text_option_name = Option Name
 
 text_all_groups = All groups
 visitor_name = Normal customer
+text_select = Select
+text_radio = Radio
 
 tab_step1 = Step 1 Products options name
 tab_step2 = Step 2 Value option values

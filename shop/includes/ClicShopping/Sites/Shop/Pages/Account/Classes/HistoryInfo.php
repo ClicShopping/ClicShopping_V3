@@ -12,6 +12,7 @@
   namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   class HistoryInfo {
 
@@ -183,30 +184,67 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
-                                                     opd.download_maxdays,
-                                                     opd.download_count,
-                                                     opd.download_maxdays,
-                                                     opd.orders_products_filename
-                                              from :table_orders o,
-                                                   :table_orders_products op,
-                                                   :table_orders_products_download opd,
-                                                   :table_orders_status os
-                                              where o.orders_id = :orders_id
-                                              and o.customers_id = :customers_id
-                                              and o.orders_id = op.orders_id
-                                              and op.orders_products_id = opd.orders_products_id
-                                              and opd.orders_products_download_id = :orders_products_download_id
-                                              and opd.orders_products_filename != ""
-                                              and o.orders_status = os.orders_status_id
-                                              and os.downloads_flag = "1"
-                                              and os.language_id = :language_id
-                                            ');
-      $Qdownload->bindInt(':orders_id', $_GET['order']);
-      $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qdownload->bindInt(':orders_products_download_id', $_GET['id']);
-      $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qdownload->execute();
+      if (isset($_GET['order']))  {
+        $orders_id = HTML::sanitize($_GET['order']);
+      } else {
+        $orders_id = HTML::sanitize($_GET['order_id']);
+      }
+
+
+      if (isset($_GET['order'])) {
+        $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
+                                                       opd.download_maxdays,
+                                                       opd.download_count,
+                                                       opd.download_maxdays,
+                                                       opd.orders_products_filename,
+                                                       opd.orders_products_download_id,
+                                                       op.products_name
+                                                from :table_orders o,
+                                                     :table_orders_products op,
+                                                     :table_orders_products_download opd,
+                                                     :table_orders_status os
+                                                where o.orders_id = :orders_id
+                                                and o.customers_id = :customers_id
+                                                and o.orders_id = op.orders_id
+                                                and op.orders_products_id = opd.orders_products_id
+                                                and opd.orders_products_download_id = :orders_products_download_id
+                                                and opd.orders_products_filename != ""
+                                                and o.orders_status = os.orders_status_id
+                                                and os.downloads_flag = "1"
+                                                and os.language_id = :language_id
+                                              ');
+        $Qdownload->bindInt(':orders_id', $orders_id);
+        $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qdownload->bindInt(':orders_products_download_id', $_GET['id']);
+        $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+        $Qdownload->execute();
+      } else {
+        $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
+                                                       opd.download_maxdays,
+                                                       opd.download_count,
+                                                       opd.download_maxdays,
+                                                       opd.orders_products_filename,
+                                                       opd.orders_products_download_id,
+                                                       op.products_name
+                                                from :table_orders o,
+                                                     :table_orders_products op,
+                                                     :table_orders_products_download opd,
+                                                     :table_orders_status os
+                                                where o.orders_id = :orders_id
+                                                and o.customers_id = :customers_id
+                                                and o.orders_id = op.orders_id
+                                                and op.orders_products_id = opd.orders_products_id
+                                                and opd.orders_products_filename != ""
+                                                and o.orders_status = os.orders_status_id
+                                                and os.downloads_flag = 1
+                                                and os.language_id = :language_id
+                                              ');
+
+        $Qdownload->bindInt(':orders_id', $orders_id);
+        $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+        $Qdownload->execute();
+      }
 
       return $Qdownload;
     }

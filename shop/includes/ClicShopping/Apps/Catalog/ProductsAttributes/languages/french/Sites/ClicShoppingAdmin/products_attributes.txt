@@ -38,6 +38,8 @@ text_option_name = Nom de l'option
 
 text_all_groups = All groups
 visitor_name = Normal customer
+text_select = Select
+text_radio = Radio
 
 tab_step1 = Step 1 Attribut de l'option produit
 tab_step2 = Step 2 Valeur des attributs

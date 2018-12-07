@@ -38,6 +38,8 @@
   $attribute_page = (isset($_GET['attribute_page']) && is_numeric($_GET['attribute_page'])) ? $_GET['attribute_page'] : 1;
   $page_info = 'option_page=' . HTML::sanitize($option_page) . '&value_page=' . HTML::sanitize($value_page) . '&attribute_page=' . HTML::sanitize($attribute_page);
 
+  $upload_max_filesize = ini_get('upload_max_filesize');
+
   if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
     $_GET['page'] = 1;
   }

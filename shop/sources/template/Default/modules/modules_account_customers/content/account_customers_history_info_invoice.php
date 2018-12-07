@@ -81,9 +81,9 @@
 <?php
   for ($i=0, $n=count($CLICSHOPPING_Order->totals); $i<$n; $i++) {
     echo '              <tr>' . "\n" .
-      '                <td class="text-md-right"  width="80%">' . $CLICSHOPPING_Order->totals[$i]['title'] . '&nbsp;</td>' . "\n" .
-      '                <td class="text-md-right" width=20%">' . $CLICSHOPPING_Order->totals[$i]['text'] . '</td>' . "\n" .
-      '              </tr>' . "\n";
+      '                   <td class="text-md-right"  width="80%">' . $CLICSHOPPING_Order->totals[$i]['title'] . '&nbsp;</td>' . "\n" .
+      '                   <td class="text-md-right" width=20%">' . $CLICSHOPPING_Order->totals[$i]['text'] . '</td>' . "\n" .
+      '                 </tr>' . "\n";
   }
 ?>
       </table>

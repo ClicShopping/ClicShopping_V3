@@ -40,7 +40,6 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
@@ -51,6 +50,7 @@
       } else {
         $last_order = HTML::sanitize($_GET['order_id']);
       }
+
 
 // Now get all downloadable products in that order
       $Qdownloads = HistoryInfo::getDownloadFilesPurchased();
@@ -108,17 +108,13 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_DOWNLOAD_TITLE_SORT_ORDER',
-          'configuration_value' => '120',
+          'configuration_value' => '125',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '115',
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 
