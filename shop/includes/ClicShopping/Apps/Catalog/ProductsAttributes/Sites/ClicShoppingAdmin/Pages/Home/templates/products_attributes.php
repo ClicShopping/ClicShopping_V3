@@ -383,9 +383,6 @@
 
 
     if ($products->fetch() !== false) {
-?>
-                    <tbody>
-<?php
 
       while ($products->fetch()) {
       $rows++;
@@ -423,7 +420,6 @@
   <?php
     }
 ?>
-                    </tbody>
                   </table></td>
                 </tr>
 
@@ -743,7 +739,7 @@
 <?php
       if (DOWNLOAD_ENABLED == 'true') {
 ?>
-                  <td></td>
+                 <td></td>
 <?php
       }
 ?>
@@ -769,11 +765,11 @@
                     </select>&nbsp;
                   </td>
 <?php
-  if (MODE_B2B_B2C == 'true') {
-    echo '<td>' .  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $Qvalues->value('customers_group_id')) . '</td>';
-  } else {
-    echo '<td></td>';
-  }
+      if (MODE_B2B_B2C == 'true') {
+        echo '<td>' .  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $Qvalues->value('customers_group_id')) . '</td>';
+      } else {
+        echo '<td></td>';
+      }
 ?>
                   <td class="text-md-right"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price')); ?></td>
                   <td calss="text-md-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
@@ -801,20 +797,18 @@
           $products_attributes_maxcount = $Qdownload->value('products_attributes_maxcount');
         }
 ?>
-                  <tr>
-                    <table class="table table-sm table-hover">
-                      <tr>
-                        <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_download'); ?></td>
-                        <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_filename'); ?></td>
-                        <td valign="bottom"><?php echo HTML::fileField('new_products_attributes_filename'); ?></td>
-                        <td><strong><?php echo HTML::hiddenField('products_attributes_filename', $products_attributes_filename) . $products_attributes_filename; ?><strong></td>
-                        <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_days') ?></td>
-                        <td><?php echo HTML::inputField('products_attributes_maxdays', $products_attributes_maxdays); ?></td>
-                        <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_count'); ?></td>
-                        <td><?php echo HTML::inputField('products_attributes_maxcount', $products_attributes_maxcount); ?></td>
-                      </tr>
-                    </table>
-                  </tr>
+                    <tr>
+                      <td colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_download'); ?></td>
+                      <td align="left"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_filename'); ?></td>
+                      <td valign="bottom"><?php echo HTML::fileField('new_products_attributes_filename'); ?></td>
+                      <td><strong><?php echo HTML::hiddenField('products_attributes_filename', $products_attributes_filename) . $products_attributes_filename; ?><strong></td>
+                      <td colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_days') ?></td>
+                      <td><?php echo HTML::inputField('products_attributes_maxdays', $products_attributes_maxdays); ?></td>
+                      <td><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_text_max_count'); ?></td>
+                      <td><?php echo HTML::inputField('products_attributes_maxcount', $products_attributes_maxcount); ?></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
 <?php
       }
     } elseif (isset($_GET['DeleteProductAttribute']) && ($_GET['attribute_id'] == $Qattributes->valueInt('products_attributes_id'))) {
@@ -923,7 +917,6 @@
         echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteProductAttribute&attribute_id=' . $Qattributes->valueInt('products_attributes_id') . '&' . $page_info . '#tab3'), 'danger', null, 'sm');
 ?>
                 </td>
-              </tr>
 <?php
        }
 
@@ -1124,13 +1117,13 @@
   echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_copy'), null, null, 'primary', null, 'sm') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, null, 'danger', null, 'sm');
 ?>
-                  </td>
-                </table>
+                      </td>
+                    </table>
 
-              <div class="alert alert-info">
-                <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone')) . ' ' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone') ?></div>
-                <div class="separator"></div>
-                <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>
+                  <div class="alert alert-info">
+                    <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone')) . ' ' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone') ?></div>
+                    <div class="separator"></div>
+                    <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>
               </div>
 <?php
 //***********************************
