@@ -35,7 +35,7 @@
 
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
-      $google = '<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>';
+      $google = '<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>';
       $google .= '<script>WebFont.load({google: {families: [\'Roboto:300,300i,400,400i,700,700i\']}});</script>';
 
       $CLICSHOPPING_Template->addBlock($google . "\n", $this->group);
