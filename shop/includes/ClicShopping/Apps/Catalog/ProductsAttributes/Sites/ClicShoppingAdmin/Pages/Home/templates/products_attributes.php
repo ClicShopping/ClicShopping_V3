@@ -62,7 +62,7 @@
     }
   }
 
-  if ($_GET['error'] = 'fileNotSupported') {
+  if ($_GET['error'] == 'fileNotSupported') {
 ?>
   <div class="alert alert-warning"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('error_file_not_supported'); ?></div>
 <?php
