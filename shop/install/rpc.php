@@ -106,7 +106,9 @@
             $CLICSHOPPING_Db->exec($sql);
           }
 
-          if ($language == 'french') {
+          if ($_POST['demo'] == 'demo') {
+            $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/demo_clicshopping_en.sql', $_POST['prefix']);
+          } elseif ($language == 'french') {
             $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/clicshopping.sql', $_POST['prefix']);
           } else {
             $CLICSHOPPING_Db->importSQL($dir_fs_www_root . '/clicshopping_en.sql', $_POST['prefix']);
