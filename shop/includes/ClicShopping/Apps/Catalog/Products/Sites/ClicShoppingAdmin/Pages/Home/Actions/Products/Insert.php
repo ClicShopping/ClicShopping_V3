@@ -21,7 +21,7 @@
     public function __construct(){
       $this->app = Registry::get('Products');
 
-      $this->cPath = HTML::sanitize($_GET['cPath']);
+      $this->currentCategoryId =  HTML::sanitize($_POST['cPath']);
     }
 
     public function execute()  {

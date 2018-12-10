@@ -22,6 +22,7 @@
 
     public function __construct() {
       $this->lang = Registry::get('Language');
+      $this->db = Registry::get('Db');
     }
 
 
@@ -60,7 +61,6 @@
 
     public function UploadImage() {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-      $CLICSHOPPING_Db = Registry::get('Db');
 
       Registry::set('ImageResample', new ImageResample());
       $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
@@ -113,7 +113,6 @@
         $attribute_image_name_end = strstr($attribute_image_name, '&quot;');
         $attribute_image_name = str_replace($attribute_image_name_end, '', $attribute_image_name);
         $products_image_name = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $attribute_image_name);
-
       }
 
       return $products_image_name;

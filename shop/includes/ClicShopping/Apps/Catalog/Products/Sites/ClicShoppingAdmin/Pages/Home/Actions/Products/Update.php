@@ -29,7 +29,7 @@
         $this->ID = HTML::sanitize($_POST['pID']); // update
       }
 
-      $this->currentCategoryId =  HTML::sanitize($_POST['cPath']); // boxe
+      $this->currentCategoryId =  HTML::sanitize($_POST['cPath']);
     }
 
     public function execute() {

@@ -627,6 +627,11 @@ boostrap 4
   padding: 10px 5px 5px 10px;
 }
 
+
+.cardPrice {
+  padding: 0px 0px 0px 0px;
+}
+
 div.headerCard {
   background-color:#FDFDFD;
 }

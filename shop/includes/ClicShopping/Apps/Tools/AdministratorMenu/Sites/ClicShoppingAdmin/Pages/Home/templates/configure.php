@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -14,6 +14,7 @@
 
   $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -35,7 +36,7 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-    echo HTML::button($CLICSHOPPING_Backup->getDef('button_administrator_menu'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'success');
+    echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_administrator_menu'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'success');
 ?>
         </div>
       </div>

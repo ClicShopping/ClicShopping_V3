@@ -910,6 +910,22 @@ INSERT INTO configuration VALUES(1435, 'Do you want activate this module ?', 'MO
 INSERT INTO configuration VALUES(1436, 'Where do you to display this module ?', 'MODULE_HEADER_NOSCRIPT_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 2, NULL, '2018-11-29 10:39:18', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1437, 'Sort order', 'MODULE_HEADER_NOSCRIPT_SORT_ORDER', '1', 'Sort order of display. Lowest is displayed first', 6, 0, NULL, '2018-11-29 10:39:18', NULL, '');
 
+INSERT INTO configuration VALUES(1438, 'Status', 'CLICSHOPPING_APP_SPECIALS_SP_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 0, NULL, '2018-12-09 18:24:26', NULL, NULL);
+INSERT INTO configuration VALUES(1439, 'Sort order', 'CLICSHOPPING_APP_SPECIALS_SP_SORT_ORDER', '30', 'Sort order of display. Lowest is displayed first', 6, 0, NULL, '2018-12-09 18:24:26', NULL, NULL);
+INSERT INTO configuration VALUES(1440, 'Parameter [Specials Products App]', 'MODULE_MODULES_PRODUCTS_SPECIALS_INSTALLED', 'Marketing\\Specials\\SP', 'Parameter [Specials Products App]', 6, 0, NULL, '2018-12-09 18:24:26', NULL, NULL);
+INSERT INTO configuration VALUES(1441, 'Status', 'CLICSHOPPING_APP_STATS_PRODUCTS_PURCHASED_SP_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-09 18:36:31', NULL, NULL);
+INSERT INTO configuration VALUES(1442, 'Sort Order', 'CLICSHOPPING_APP_STATS_PRODUCTS_PURCHASED_SP_SORT_ORDER', '300', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2018-12-09 18:36:31', NULL, NULL);
+INSERT INTO configuration VALUES(1443, 'Parameter [Stats Products Purchased App]', 'MODULE_MODULES_STATS_PRODUCTS_PURCHASED_INSTALLED', 'Report\\StatsProductsPurchased\\SP', 'Parameter [Stats Products Purchased App]', 6, 0, NULL, '2018-12-09 18:36:31', NULL, NULL);
+INSERT INTO configuration VALUES(1444, 'Status', 'CLICSHOPPING_APP_STATS_PRODUCTS_VIEWED_PV_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-09 18:40:32', NULL, NULL);
+INSERT INTO configuration VALUES(1445, 'Sort Order', 'CLICSHOPPING_APP_STATS_PRODUCTS_VIEWED_PV_SORT_ORDER', '300', 'The sort order location of the module shown in the available methods listing (lowest is displayed first).', 6, 0, NULL, '2018-12-09 18:40:32', NULL, NULL);
+INSERT INTO configuration VALUES(1446, 'Parameter [Stats Products Viewed App]', 'MODULE_MODULES_STATS_PRODUCTS_VIEWED_INSTALLED', 'Report\\StatsProductsViewed\\PV', 'Parameter [Stats Products Viewed App]', 6, 0, NULL, '2018-12-09 18:40:32', NULL, NULL);
+INSERT INTO configuration VALUES(1447, 'Status', 'CLICSHOPPING_APP_BACKUP_BC_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-09 18:51:41', NULL, NULL);
+INSERT INTO configuration VALUES(1448, 'Sort Order', 'CLICSHOPPING_APP_BACKUP_BC_SORT_ORDER', '300', 'The sort order location of the module shown in the available methods listing (lowest is displayed first)', 6, 0, NULL, '2018-12-09 18:51:41', NULL, NULL);
+INSERT INTO configuration VALUES(1449, 'Parameter [Export Data App]', 'MODULE_MODULES_BACKUP_INSTALLED', 'Tools\\Backup\\BC', 'Parameter [Export Data App]', 6, 0, NULL, '2018-12-09 18:51:41', NULL, NULL);
+INSERT INTO configuration VALUES(1450, 'Status', 'CLICSHOPPING_APP_ACTIONS_RECORDER_AR_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-09 19:05:21', NULL, NULL);
+INSERT INTO configuration VALUES(1451, 'Sort Order', 'CLICSHOPPING_APP_ACTIONS_RECORDER_AR_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first)', 6, 0, NULL, '2018-12-09 19:05:21', NULL, NULL);
+INSERT INTO configuration VALUES(1452, 'Parameter [ActionsRecorder App]', 'MODULE_MODULES_ACTIONS_RECORDER_INSTALLED', 'Tools\\ActionsRecorder\\AR', 'Parameter [ActionsRecorder App]', 6, 0, NULL, '2018-12-09 19:05:21', NULL, NULL);
+
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Setup credit card', 'Minimum value: functions / data', 2, 1);

@@ -339,7 +339,7 @@ text_header_icon_number_of_customers = Afficher les clients en ligne
 text_help_wysiwyg = Information sur l'aide à l'utilisation du Wysiwyg en image
 text_close = Fermer
 
-text_image_nonexistent = Pas d\image
+text_image_nonexistent = Pas d'image
 error_destination_does_not_exist = Erreur : le chemin cible n'existe pas.
 error_destination_not_writeable = Erreur : Impossible d'écrire dans le répertoire cible.
 error_file_not_saved = Erreur : fichier transférer non sauvegardé.
@@ -411,7 +411,7 @@ select_datas = --- Séléctionner ---
 text_select =  --- Selectionner ---
 text_all_orders = Tous les statuts
 
-no_script_text = "<p><strong>JavaScript ne semble pas activé.</strong></p><p>Vous devez activer le javascript dans votre navigateur pour utiliser correctement ClicShopping. <a href= https://www.enable-javascript.com/' target= _blank' rel= nofollow'>Veuillez cliquez-ici pour une aide en ligne</a>.</p>";
+no_script_text = <strong>JavaScript ne semble pas activé ou a été désactivé par un bloquer de publicité.</strong><br />Vous devez activer le javascript dans votre navigateur pour utiliser correctement ClicShopping. <a href="https://www.enable-javascript.com/" target="_blank" rel="nofollow">Veuillez cliquez-ici pour une aide en ligne</a>.';
 
 title_help_general = Aide
 
