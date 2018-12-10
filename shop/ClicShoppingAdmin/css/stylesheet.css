@@ -15,19 +15,18 @@
 a {
   color: #000;
   text-decoration: none;
-  font-size: 0.80rem;
 }
 
-a:link {  font-size: 0.90rem; text-decoration: none; }
-a:visited {  font-size: 0.90rem; text-decoration: none; }
-a:active { font-size: 0.90rem;  text-decoration: none; }
-a:hover {  font-size: 0.90rem;  text-decoration: underline; }
+a:link { text-decoration: none; }
+a:visited {   text-decoration: none; }
+a:active {   text-decoration: none; }
+a:hover {    text-decoration: underline; }
 
 
-a.headerLink:link { font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
-a.headerLink:visited { font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
-a.headerLink:active {font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
-a.headerLink:hover { font-size: 0.6875rem; color: #ffffff; font-weight: bold; text-decoration: underline; padding-top:0.3125rem;}
+a.headerLink:link { color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
+a.headerLink:visited {color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
+a.headerLink:active {color: #ffffff; font-weight: bold; text-decoration: none; padding-top:0.3125rem;}
+a.headerLink:hover {color: #ffffff; font-weight: bold; text-decoration: underline; padding-top:0.3125rem;}
 
 
 
@@ -43,7 +42,6 @@ div.contentBody {
 }
 
 .contentContainer h2 {
-  font-size: 0.424rem;
   text-decoration: underline;
   font-weight: normal;
   margin-bottom: 0;
@@ -52,32 +50,29 @@ div.contentBody {
 
 .contentText {
   padding: 0rem 0rem 0rem 0rem;
-  font-size: 0.75rem;
   line-height: 1.5;
 }
 
 .fieldKey {
-  font-size: 0.6875rem;
   font-weight: bold;
   line-height: 1.5;
   width: 12.5rem;
 }
 
 .fieldValue {
-  font-size: 0.6875rem;
   line-height: 1.5;
 }
 
 /* page */
 body { background-color: #ffffff; margin: 0rem; padding: 0rem;}
 .headerBar { background-color: #B3BAC5; }
-.headerBarContent { font-size: 0.625rem; color: #ffffff; font-weight: bold; padding: 0.125rem; }
-.pageHeading { font-size: 1rem; color: #FF7F50; padding-top:0.3125rem; }
+.headerBarContent {  color: #ffffff; font-weight: bold; padding: 0.125rem; }
+.pageHeading {color: #FF7F50; padding-top:0.3125rem; }
 
 /* data table */
 .dataTableHeadingRow { background-color: #2969C3; color: #ffffff; }
 .dataTableRow { background-color: #F5F5F5; }
-.dataTableContent { font-size: 0.6875rem; color: #000000; }
+.dataTableContent {  color: #000000; }
 
 
 
@@ -85,13 +80,12 @@ body { background-color: #ffffff; margin: 0rem; padding: 0rem;}
 
 /* message box */
 
-.messageStackError, .messageStackWarning { font-size: 0.625rem; background-color: Red;  color: White;  }
-.messageStackSuccess { font-size: 0.625rem; background-color: Green;  color: White;  }
+.messageStackError, .messageStackWarning { background-color: Red;  color: White;  }
+.messageStackSuccess { background-color: Green;  color: White;  }
 
 table.messageStackError {
   background-color: #FDFDFD;
   color: Black;
-  font-size: 0.75rem;
   text-align: left;
   height: 20.3125rem;
   background-repeat: repeat;
@@ -101,7 +95,6 @@ table.messageStackError {
 table.messageStackSuccess {
   background-color: #FDFDFD;
   color: Black;
-  font-size: 0.75rem;
   text-align: left;
   height: 1.5625rem;
   background-repeat: repeat;
@@ -110,7 +103,6 @@ table.messageStackSuccess {
 
 
 .inputRequirement {
-  font-size: 0.625rem;
   color: #ff0000;
 }
 
@@ -121,16 +113,16 @@ table.messageStackSuccess {
 FORM { display: inline; }
 
 /* account */
-.formAreaTitle { font-size: 0.75rem; font-weight: bold; }
+.formAreaTitle { font-weight: bold; }
 
 /* miscellaneous */
 .specialPrice { color: #ff0000; }
 .oldPrice { text-decoration: line-through; }
-.fieldRequired { font-size: 0.625rem; color: #ff0000; }
+.fieldRequired {color: #ff0000; }
 
-.text { font-size: 0.6875rem; }
-.main { font-size: 0.75rem; }
-.errorText { font-size: 0.625rem; color: #ff0000; }
+.text {}
+.main {}
+.errorText {color: #ff0000; }
 
 .fa-power-off {
   color: #ff0000;
@@ -143,7 +135,6 @@ FORM { display: inline; }
 }
 
 #adminAppMenu h3 {
-  font-size: 0.6875rem;
 }
 
 #adminAppMenu ul {
@@ -193,7 +184,7 @@ FORM { display: inline; }
 
 /* style facture */
 .mainFacture {
-  font-size: 0.75rem;
+  
   background-color: #DCDCDC;
 }
 
@@ -203,33 +194,33 @@ r dhtml tabbed-pages */
 .mainTitle {
   padding-top:0.1875rem;
   height:1.4375rem;
-  font-size: 0.75rem;
+  
   color: White;
   font-weight: bold;
   background-color:#2969C3;
 }
 
 .mainTitleTexteSeul {
-  font-size: 0.75rem;
+  
   color: White;
   font-weight: bold;
 }
 
 a.mainTitleTexteSeul {
-  font-size: 0.6875rem;
+  
   color: White;
   font-style: italic;
 }
 
 a.mainTitleTexteSeul:Hover {
-  font-size: 0.6875rem;
+  
   color: White;
   text-decoration:underline;
   font-style: italic;
 }
 
 .mainTable {
-  font-size: 0.75rem;
+  
   border-bottom: 0.0625rem solid #CCCCCC;
 }
 
@@ -237,7 +228,7 @@ a.mainTitleTexteSeul:Hover {
 table.adminform {
   background-color: #f5f5f5;
   color: #333333;
-  font-size: 0.75rem;
+  
   border-bottom: dashed 0.0625rem #CCCCCC;
   border-top: dashed 0.0625rem #CCCCCC;
   border-left: dashed 0.0625rem #CCCCCC;
@@ -251,7 +242,7 @@ table.adminform {
 div.adminformAide {
   background-color: #FAFAD2;
   color: #333333;
-  font-size: 0.75rem;
+  
   border-bottom: dashed 0.0625rem #CCCCCC;
   border-top: dashed 0.0625rem #CCCCCC;
   border-left: dashed 0.0625rem #CCCCCC;
@@ -269,7 +260,7 @@ table.adminTitle {
 .adminTitle {
   background-color: #FDFDFD;
   color: Black;
-  font-size: 0.75rem;
+  
   text-align: left;
   height: 100%  ;
   background-repeat: repeat;
@@ -294,7 +285,7 @@ span.infoHeader {
 }
 
 .menuJSCookTexte {
-  font-size: 0.8125rem;
+  
   color: White;
 }
 
@@ -337,7 +328,6 @@ span.infoHeader {
 
 span.pageManager A {
   font-weight: bold;
-  font-size: 12px;
 }
 
 
@@ -399,7 +389,7 @@ td, th {
 
 
 .dataTableContent {
-  font-size: 0.6875rem;
+  
   color: #000000;
 }
 
@@ -449,7 +439,7 @@ div.backgroundMenu {
 
 
 blockquote {
-  font-size: 0.75rem;
+  
    border-left:none;
 }
 
@@ -496,7 +486,7 @@ ul.token-input-list {
   width: 9.375rem;
   border: 0.0625rem solid #999;
   cursor: text;
-  font-size: 0.75rem;
+  
   z-index: 100;
   margin: 0;
   padding: 0;
@@ -557,7 +547,7 @@ div.tabsClicShopping {
   border-right:0.0625rem #eee solid;
   border-bottom:0.0625rem #eee solid;
   padding:0.3125rem 0.3125rem 0.3125rem 0.3125rem;
-  font-size: 0.75rem;
+  
 }
 
 div.adminformAide {
@@ -586,7 +576,7 @@ span.adminformAideContent {
 .adminformAide {
   background-color: #FAFAD2;
   color: #333333;
-  font-size: 0.75rem;
+  
   border-bottom: dashed 0.0625rem #CCCCCC;
   border-top: dashed 0.0625rem #CCCCCC;
   border-left: dashed 0.0625rem #CCCCCC;
@@ -603,7 +593,7 @@ span.adminformAideContent {
   height:1.875rem;
   padding-top:0.625rem;
   display: table-cell;
-  font-size: 0.75rem;
+  
 }
 
 div.spaceRow {
@@ -657,13 +647,13 @@ div.headerCard {
 // Stats box
 ********************************/
 .StatsTitle {
-  font-size: 0.8rem;
+  
 }
 .StatsSubtitle {
-  font-size: 0.8rem;
+  
 }
 .StatsValue {
-  font-size: 0.8rem;
+  
 }
 
 
