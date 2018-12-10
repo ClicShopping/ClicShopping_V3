@@ -39,7 +39,7 @@
 
   $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
-  if ($_GET['error'] = 'fileNotSupported') {
+  if ($_GET['error'] == 'fileNotSupported') {
 ?>
     <div class="alert alert-warning"><?php echo $CLICSHOPPING_Products->getDef('error_file_not_supported'); ?></div>
 <?php
