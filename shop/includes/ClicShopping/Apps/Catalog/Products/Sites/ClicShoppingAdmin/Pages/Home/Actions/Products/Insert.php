@@ -29,12 +29,12 @@
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
       $id = null;
-      $_POST['cPath'] = $this->cPath;
+      $_POST['cPath'] = $this->currentCategoryId;
 
       $CLICSHOPPING_ProductsAdmin->save($id, 'Insert');
 
       $CLICSHOPPING_Hooks->call('Products','Insert');
 
-      $this->app->redirect('Products&cPath=' . $this->cPath);
+      $this->app->redirect('Products&cPath=' . $this->currentCategoryId);
     }
   }

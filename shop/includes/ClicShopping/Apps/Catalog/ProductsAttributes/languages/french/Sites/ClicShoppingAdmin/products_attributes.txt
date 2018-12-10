@@ -12,11 +12,15 @@ table_heading_opt_value = Caratéristique de l'option
 table_heading_opt_price = Prix
 table_heading_opt_price_prefix = Préfixe
 table_heading_opt_order = Ordre affichage catalogue
+table_heading_opt_b2b = B2B / B2C
+table_heading_image = Image
+
 table_heading_action = Action
 table_heading_download = Produits téléchargeable :
 table_text_filename = Nom du fichier :
 table_text_max_days = Expire le :
 table_text_max_count = Compte de téléchargement maximal :
+
 heading_title_clone_products_attributes = Etape 4 :Cloner / Copier des attributs
 clone_products_from = de
 clone_products_to = vers

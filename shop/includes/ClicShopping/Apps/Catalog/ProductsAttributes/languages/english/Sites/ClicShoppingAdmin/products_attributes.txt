@@ -15,6 +15,7 @@ table_heading_opt_price = Value Price
 table_heading_opt_price_prefix = Prefix
 table_heading_opt_order = Catalog display order
 table_heading_opt_b2b = B2B / B2C
+table_heading_image = Image
 
 table_heading_action = Action
 table_heading_download = Downloadable products:
