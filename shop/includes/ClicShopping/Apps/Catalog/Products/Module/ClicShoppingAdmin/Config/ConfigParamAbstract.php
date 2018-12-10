@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -23,7 +23,9 @@
     public function __construct($config_module) {
         $this->app = Registry::get('Products');
 
-        $this->key_prefix .= strtolower($config_module) . '_';
+        if ($config_module != 'PD') {
+          $this->key_prefix .= strtolower($config_module) . '_';
+        }
 
         $this->config_module = $config_module;
 

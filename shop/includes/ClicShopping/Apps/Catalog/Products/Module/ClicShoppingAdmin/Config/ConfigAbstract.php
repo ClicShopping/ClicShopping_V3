@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -75,7 +75,11 @@
             $class = 'ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\\' . $this->code . '\\Params\\' . $file->getBasename('.php');
 
             if (is_subclass_of($class, 'ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\ConfigParamAbstract')) {
-              $result[] = 'CLICSHOPPING_APP_CATALOG_PRODUCTS_' . $this->code . '_' . strtoupper($file->getBasename('.php'));
+              if ($this->code == 'PD') {
+                $result[] = 'CLICSHOPPING_APP_CATALOG_PRODUCTS_' . strtoupper($file->getBasename('.php'));
+              } else {
+                $result[] = 'CLICSHOPPING_APP_CATALOG_PRODUCTS_' . $this->code . '_' . strtoupper($file->getBasename('.php'));
+              }
             } else {
               trigger_error('ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\\ConfigAbstract::getParameters(): ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\\' . $this->code . '\\Params\\' . $file->getBasename('.php') . ' is not a subclass of ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Config\ConfigParamAbstract and cannot be loaded.');
             }
@@ -89,7 +93,11 @@
     public function getInputParameters() {
       $result = [];
 
+      if ($this->code == 'PD') {
+        $cut = 'CLICSHOPPING_APP_CATALOG_PRODUCTS_';
+      } else {
       $cut = 'CLICSHOPPING_APP_CATALOG_PRODUCTS_' . $this->code . '_';
+      }
 
       $cut_length = strlen($cut);
 
