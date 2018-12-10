@@ -4,13 +4,12 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
 
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
 ?>
 
 <div class="row">
@@ -76,11 +75,24 @@
         <?php echo HTML::inputField('DB_TABLE_PREFIX', 'clic_', 'id="dbTablePrefix"'); ?>
         <span class="help-block"><?php echo 'Prefix all table names in the database with this value'; ?></span>
       </div>
+
+      <label for="demo">Install Demo Database</label>
+<?php
+  $demo = array(array('id' => 'normal', 'text' => 'Normal'),
+                array('id' => 'demo', 'text' => 'Demo'),
+  );
+
+  echo HTML::selectMenu('demo', $demo, 'normal', 'id="demo"');
+?>
+      <br />
+
+      <span class="help-block"><?php echo '(Load the demo data, recommended fo test)'; ?></span>
+
       <p>
-        <?=
-          HTML::button(TEXT_CONTINUE, null, null, 'success', ['params' => 'id="buttonDoImport"']) . '&nbsp;' .
-          HTML::button(TEXT_SKIP_DATABASE, null, null, 'warning', ['params' => 'id="buttonSkipImport"']);
-        ?>
+<?=
+    HTML::button(TEXT_CONTINUE, null, null, 'success', ['params' => 'id="buttonDoImport"']) . '&nbsp;' .
+    HTML::button(TEXT_SKIP_DATABASE, null, null, 'warning', ['params' => 'id="buttonSkipImport"']);
+?>
       </p>
     </form>
   </div>
@@ -139,7 +151,8 @@ $(function() {
       username: $('#username').val(),
       password: $('#password').val(),
       name: $('#dbName').val(),
-      prefix: $('#dbTablePrefix').val()
+      prefix: $('#dbTablePrefix').val(),
+      demo: $('#demo').val()
     };
 
     var dbCheckUrl = 'rpc.php?action=dbCheck';
