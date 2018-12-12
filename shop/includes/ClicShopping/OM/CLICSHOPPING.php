@@ -171,12 +171,18 @@
       if (!empty($parameters)) {
         $p = HTML::sanitize($parameters);
 
+        if (static::$site == 'ClicShoppingAdmin') {
+          $replace_backslash = "%5C";
+        } else {
+          $replace_backslash = "\\";
+        }
+
         $p = str_replace([
                           "\\", // apps
                           '{', // product attributes
                           '}' // product attributes
                           ], [
-                            "\\", //%5C - backoffice
+                            $replace_backslash,
                             '%7B',
                             '%7D'
                           ], $p);

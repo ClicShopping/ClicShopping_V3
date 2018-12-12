@@ -229,33 +229,8 @@
             </div>
           </div>
         </div>
-
         <div class="row" id="tab1ContentRow4">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_barcode'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_barcode'); ?></label>
-              <div class="col-md-5">
-                <?php echo HTML::inputField('products_barcode', $pInfo->products_barcode, 'id="products_barcode"'); ?>
-                <a href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=BAR_CODE_TYPE'); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_edit')); ?></a>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body"><div class="te"></div></div>
-                    </div> <!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-              </div>
-              <div class="col-md-2">
-<?php
-  if (!empty($pInfo->products_barcode)) {
-    echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . 'barcode/' . $pInfo->products_barcode .'_barcode.png');
-  }
-?>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
+          <div class="col-md-5" id="tab1ContentRow4Ean">
             <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_ean'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_ean'); ?></label>
               <div class="col-md-5">

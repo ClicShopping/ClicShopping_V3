@@ -15,7 +15,7 @@
 
 body {
   margin: 0rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 #bodyWrapper {
@@ -87,7 +87,7 @@ span.specialPrice{
   font-weight:bold;
   padding-left: 0.5125rem;
   color:#ce060b;
-  font-size: 0.90rem;
+  font-size: 1rem;
 }
 
 
@@ -152,8 +152,6 @@ div.PageintroductionAccessCatalog A {
 .footerIntroduction, .push {
   height: 2.5rem; /* .push must be the same height as .footer */
 }
-
-
 
 /********************************
 // Ticker Stock
@@ -246,4 +244,15 @@ span.ModulesTickerBootstrapTickerStockDanger {
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+}
+
+/*********************************
+// Captcha
+/*********************************/
+.hiddenRecaptcha{
+  display: none;
+}
+
+.fa-search {
+  height: 1.3rem;
 }

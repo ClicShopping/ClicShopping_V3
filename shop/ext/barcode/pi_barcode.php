@@ -383,7 +383,7 @@ $last_version = "2.12" ;
 
             for ($index = ($long - 1); $index > 0; $index--)
             {
-              $checksum += int($this->CODE{$index-1}) * $factor ;
+              $checksum += (int)$this->CODE{$index-1} * $factor ;
               $factor = 4 - $factor ;
             }
             $cc = ( (1000 - $checksum) % 10 ) ;
@@ -400,7 +400,7 @@ $last_version = "2.12" ;
           {
 
             for ($index = $long; $index > 0; $index--) {
-              $checksum += int($this->CODE{$index-1}) * $factor ;
+              $checksum += (int)($this->CODE{$index-1}) * $factor ;
               $factor = 4 - $factor ;
             }
             $cc = ( ( 1000 - $checksum ) % 10 ) ;
@@ -428,7 +428,7 @@ $last_version = "2.12" ;
             $factor = 3;
             $long = strlen($this->CODE);
             for ($i = $long; $i > 0; $i--) {
-              $checksum += int($this->CODE{$i-1}) * $factor;
+              $checksum += (int)($this->CODE{$i-1}) * $factor;
               $factor = 4-$factor;
             }
             $checksum = 10 - ($checksum % 10);
@@ -473,7 +473,7 @@ $last_version = "2.12" ;
             $factor = 1;
             $tmp = strlen($this->CODE);
             for ($i = 0; $i < $tmp; $i++) {
-              $checksum += int($this->CODE{$i}) * $factor;
+              $checksum += (int)($this->CODE{$i}) * $factor;
               $factor++;
               if ($factor > 10) $factor = 1;
             }
@@ -497,7 +497,7 @@ $last_version = "2.12" ;
             for ($i = $tmp; $i > 0; $i--) {
               $tmp = $this->CODE{$i-1};
               if ($tmp == "-") $tmp = 10;
-              else $tmp = int($tmp);
+              else $tmp = (int)($tmp);
               $checksum += ($tmp * $factor);
               $factor++;
               if ($factor > 10) $factor=1;
@@ -520,7 +520,7 @@ $last_version = "2.12" ;
             $checksum = 0;
             $tmp = strlen($this->CODE);
             for ($i = $tmp; $i > 0; $i--) {
-              $checksum += int($this->CODE{$i-1});
+              $checksum += (int)($this->CODE{$i-1});
             }
             $checksum = 10 - ($checksum % 10);
             if($checksum == 10) $checksum = 0;
@@ -541,7 +541,7 @@ $last_version = "2.12" ;
             $checksum = 0;
             $tmp = strlen("$this->CODE");
             for($i=$tmp-1; $i>=0; $i--) {
-              $checksum += int(substr($this->CODE,$i,1));
+              $checksum += (int)(substr($this->CODE,$i,1));
             }
             $checksum = 10-($checksum%10);
             if($checksum==10) $checksum=0;
@@ -619,7 +619,7 @@ $last_version = "2.12" ;
           $j = 1 ;
           for ($i = 0; $i < $lencode; $i += 2)
           {
-            $tmp = int(substr($this->FULLCODE, $i, 2)) ;
+            $tmp = (int)(substr($this->FULLCODE, $i, 2)) ;
             $checksum += ( $j++ * $tmp ) ;
             $encodedString .= $this->C128[$tmp];
           }
@@ -645,11 +645,11 @@ $last_version = "2.12" ;
           $encodedString = $this->C25['D']."0"; //Start
           for ($i = 0; $i < $lencode; $i++)
           {
-            $num = int($a_tmp[$i]) ;
+            $num = (int)($a_tmp[$i]) ;
             $tmp = $this->C25[$num];
             for ($j = 0; $j < 5; $j++)
             {
-              $tmp2 = int(substr($tmp,$j,1)) ;
+              $tmp2 = (int)(substr($tmp,$j,1)) ;
               for ($k = 1; $k <= $tmp2; $k++) $encodedString .= "1";
               $encodedString .= "0";
             }
@@ -661,15 +661,15 @@ $last_version = "2.12" ;
           $checksum = 0;
           for ($i = 0; $i < $lencode; $i += 2)
           {
-            $num1 = int($a_tmp[$i]) ;
-            $num2 = int($a_tmp[$i+1]) ;
+            $num1 = (int)($a_tmp[$i]) ;
+            $num2 = (int)($a_tmp[$i+1]) ;
             $checksum += ($num1+$num2);
             $tmp1 = $this->C25[$num1];
             $tmp2 = $this->C25[$num2];
             for ($j = 0; $j < 5; $j++)
             {
-              $t1 = int(substr($tmp1, $j, 1)) ;
-              $t2 = int(substr($tmp2, $j, 1)) ;
+              $t1 = (int)(substr($tmp1, $j, 1)) ;
+              $t2 = (int)(substr($tmp2, $j, 1)) ;
               for ($k = 1; $k <= $t1; $k++) $encodedString .= "1";
               for ($k = 1; $k <= $t2; $k++) $encodedString .= "0";
             }
@@ -686,7 +686,7 @@ $last_version = "2.12" ;
           break;
         case "MSI" :
           $encodedString = $this->MSI['D']; //Start
-          for ($i = 0; $i < $lencode; $i++) $encodedString .= $this->MSI[int($a_tmp[$i])];
+          for ($i = 0; $i < $lencode; $i++) $encodedString .= $this->MSI[(int)($a_tmp[$i])];
           $encodedString .= $this->MSI['F']; //Stop
           break;
         case "C11" :
@@ -737,8 +737,8 @@ $last_version = "2.12" ;
       * Création de l'image du code
       */
 
-      //Initialisation de l'image
-      $txtPosX = $posX = int(($this->WIDTH - $this->CODEWIDTH)/2); // position X
+//Initialisation de l'image
+      $txtPosX = $posX = (int)(($this->WIDTH - $this->CODEWIDTH)/2); // position X
       $posY = 0; // position Y
       $intL = 1; // largeur de la barre
 
@@ -848,8 +848,8 @@ $last_version = "2.12" ;
         case "CMC7" :
         break;
         default :
-         if ($text != '') imagestring($this->IH, 3, int((($this->WIDTH)-($ifw * strlen($text)))/2)+1, $this->HEIGHT - $ifh, $text, $color[1]);
-//        if ($text != '') imagestring($this->IH, 3, int((($this->WIDTH)-($ifw * strlen($text)))/2)+1, $this->HEIGHT - $ifh, $this->CODE, $color[1]);
+         if ($text != '') imagestring($this->IH, 3, (int)((($this->WIDTH)-($ifw * strlen($text)))/2)+1, $this->HEIGHT - $ifh, $text, $color[1]);
+//        if ($text != '') imagestring($this->IH, 3, (int)((($this->WIDTH)-($ifw * strlen($text)))/2)+1, $this->HEIGHT - $ifh, $this->CODE, $color[1]);
       }
 
       $ifw = imagefontwidth(1) * 9;

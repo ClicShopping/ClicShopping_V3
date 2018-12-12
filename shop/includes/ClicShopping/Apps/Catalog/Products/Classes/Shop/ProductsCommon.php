@@ -1694,11 +1694,11 @@
 
       if ($this->customer->getCustomersGroupID() == 0 && $this->getProductsOrdersView() != 0) {
         if (PRICES_LOGGED_IN == 'false') {
-          $input_quantity = '<label for="inputQuantity' . $id . '" class="sr-only">Cart Quantity</label>';
-          $input_quantity .= HTML::inputField('cart_quantity',(int)$this->setProductsMinimumQuantityToTakeAnOrder($id), 'placeholder="Quantity" class="input-small" maxlength="4" size="4"') .'&nbsp;&nbsp;';
+          $input_quantity = '<label for="Quantity' . $id . '" class="sr-only">Cart Quantity</label>';
+          $input_quantity .= HTML::inputField('cart_quantity',(int)$this->setProductsMinimumQuantityToTakeAnOrder($id), 'id="Quantity' . $id . '" placeholder="Quantity' . $id . '" class="input-small" maxlength="4" size="4"') .'&nbsp;&nbsp;';
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->isLoggedOn() ) {
           $input_quantity = '<label for="inputQuantity' . $id . '" class="sr-only">Cart Quantity</label>';
-          $input_quantity .= HTML::inputField('cart_quantity',(int)$this->setProductsMinimumQuantityToTakeAnOrder($id), 'placeholder="Quantity" class="input-small" maxlength="4" size="4"') .'&nbsp;&nbsp;';
+          $input_quantity .= HTML::inputField('cart_quantity',(int)$this->setProductsMinimumQuantityToTakeAnOrder($id), 'id="Quantity' . $id . '" placeholder="Quantity" class="input-small" maxlength="4" size="4"') .'&nbsp;&nbsp;';
         } else {
           $input_quantity = '';
         }

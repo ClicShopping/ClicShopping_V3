@@ -190,9 +190,11 @@
                     $products_attributes_image = '';
                   }
 
-                  $products_options_content_display .='<div class="col-md-12">';
-                  $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'checked id="defaultCheck' . $value['id'] .'"') . ' ' . $products_attributes_image . $value['text'] . ' ' .'</span>';
-                  $products_options_content_display .='</div>';
+                  $products_options_content_display .= '<div class="col-md-12">';
+                  $products_options_content_display .= '<span class="ModuleProductsInfoOptionsPullDownMenu">';
+                  $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'id="' . $value['text'] .'"') . ' ' . $products_attributes_image . $value['text'] . ' ' .'</span>';
+                  $products_options_content_display .= '<label for="' . $value['text'] .'" class="sr-only">' . $value['text'] . '</label>';
+                  $products_options_content_display .= '</div>';
                 }
               }
 

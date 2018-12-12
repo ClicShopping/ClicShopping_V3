@@ -30,6 +30,7 @@ use ClicShopping\OM\CLICSHOPPING;
         </div>
         <div class="separator"></div>
         <div class="text-md-right ModulesProductsInfoQuantityMinOrderProductInfo">
+          <label for="Quantity Product" class="sr-only">Quantity Product</label>
           <span class="ModulesProductsInfoQuantityMinOrderProductInfo"><?php echo $input_quantity; ?></span>
         </div>
         <div class="separator"></div>

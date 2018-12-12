@@ -16,7 +16,7 @@
 
   use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
-  class RemoveProducts implements \ClicShopping\OM\Modules\HooksInterface {
+  class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface {
     protected $app;
 
     public function __construct()   {

@@ -27,11 +27,13 @@
       <div class="separator"></div>
       <div class="col-md-12 breadcrumb">
         <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li>
 <?php
       if ($CLICSHOPPING_Service->isStarted('Breadcrumb')) {
         echo $CLICSHOPPING_Breadcrumb->get(' &raquo; ');
       }
 ?>
+          </li>
         </ol>
       </div>
 <?php
@@ -48,11 +50,13 @@
       <div class="separator"></div>
       <div class="col-md-12 breadcrumb">
         <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li>
 <?php
     if ($CLICSHOPPING_Service->isStarted('Breadcrumb')) {
       echo $CLICSHOPPING_Breadcrumb->get(' &raquo; ');
     }
 ?>
+          </li>
         </ol>
       </div>
 <?php

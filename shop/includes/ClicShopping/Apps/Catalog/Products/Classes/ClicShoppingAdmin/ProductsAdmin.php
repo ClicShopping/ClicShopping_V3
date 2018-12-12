@@ -140,29 +140,6 @@
       return $products_ean;
     }
 
-    private function createBarCode() {
-      $dir = $this->template->getDirectoryPathTemplateShopImages() . 'barcode/';
-
-      if (!empty($_POST['products_barcode'])) {
-        require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/barcode/pi_barcode.php');
-
-        if (!empty($dir) && !is_dir($dir)) {
-          mkdir($dir, 0777, true);
-        }
-
-        $barcode = HTML::sanitize($_POST['products_barcode']);
-        $objCode = new \pi_barcode() ;
-        $objCode->setSize(BAR_CODE_SIZE);
-        $objCode->hideCodeType();
-        $objCode->setColors(BAR_CODE_COLOR);
-        $objCode->setType(BAR_CODE_TYPE) ;
-        $objCode->setCode(HTML::sanitize($_POST['products_barcode'])) ;
-        $objCode->setFiletype(BAR_CODE_EXTENSION) ;
-        $objCode->writeBarcodeFile($this->template->getDirectoryPathTemplateShopImages() . 'barcode/' . $barcode . '_barcode.' . BAR_CODE_EXTENSION);
-      }
-    }
-
-
     private function saveFileUpload() {
       if (!is_null($_POST['products_download_filename'])) {
         $upload_file = new Upload('products_download_filename', $this->template->getPathDownloadShopDirectory(), null, array('zip', 'doc', 'pdf', 'odf', 'xls',  'mp3', 'mp4', 'avi'));
@@ -894,12 +871,6 @@
         }
       }
 
-// delete barcode
-      $barcode = $Qimage->value('products_bar_code');
-      if (file_exists($this->template->getDirectoryPathTemplateShopImages() . 'barcode/' . $barcode . '_barcode.' . BAR_CODE_EXTENSION)) {
-        @unlink($this->template->getDirectoryPathTemplateShopImages() . 'barcode/' . $barcode . '_barcode.' . BAR_CODE_EXTENSION);
-      }
-
       $Qimages = $this->db->get('products_images', 'image', ['products_id' => (int)$product_id]);
 
 
@@ -953,7 +924,7 @@
 // for hooks
       $_POST['remove_id'] = $product_id;
 
-      $this->hooks->call('Products','RemoveProducts');
+      $this->hooks->call('Products','RemoveProduct');
 
       Cache::clear('categories');
       Cache::clear('products-also_purchased');
@@ -1047,8 +1018,7 @@
                                     'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
                                     'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
                                     'products_only_shop' => (int)$Qproducts->valueInt('products_only_shop'),
-                                    'products_type' => HTML::sanitize($_POST['products_type']),
-                                    'products_barcode' => HTML::sanitize($_POST['products_barcode'])
+                                    'products_type' => HTML::sanitize($_POST['products_type'])
                                   ]
                       );
         $dup_products_id = $this->db->lastInsertId();
@@ -1428,8 +1398,7 @@
 
       $products_sku = $this->getProductSKU();
       $products_ean = $this->getProductEAN();
-// Bar code
-      $this->createBarCode();
+
 
       if (is_numeric($_POST['products_status'])) {
         $products_status = HTML::sanitize($_POST['products_status']);
@@ -1465,8 +1434,7 @@
                         'products_quantity_alert' => (int)HTML::sanitize($_POST['products_quantity_alert']),
                         'products_only_shop'  => (int)HTML::sanitize($products_only_shop),
                         'products_download_public'  => (int)HTML::sanitize($products_download_public),
-                        'products_type' => HTML::sanitize($_POST['products_type']),
-                        'products_barcode' => HTML::sanitize($_POST['products_barcode']),
+                        'products_type' => HTML::sanitize($_POST['products_type'])
                        ];
 
 // Download file

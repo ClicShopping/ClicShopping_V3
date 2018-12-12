@@ -193,7 +193,6 @@ text_products_model = Référence
 
 text_products_ean = EAN
 text_products_sku = SKU
-text_products_barcode = Code barre
 
 icon_edit_customers_group = Appartient à un groupe client
 icon_edit_status_display_catalog_on = Affichage du champs dans le catalogue

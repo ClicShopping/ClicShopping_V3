@@ -50,7 +50,7 @@
     "CustomerGroupTab3":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CustomerGroupTab3",
     "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Save",
     "Delete":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Delete",
-    "RemoveProducts":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\RemoveProducts"
+    "RemoveProduct":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\RemoveProduct"
    },
    "ClicShoppingAdmin/PageManager": {
     "CustomerGroup":	"Module\\Hooks\\ClicShoppingAdmin\\PageManager\\CustomerGroup",
