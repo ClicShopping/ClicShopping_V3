@@ -41,8 +41,7 @@
    },
    "ClicShoppingAdmin/Products": {
     "ProductsContentTab1":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CB\\ProductsContentTab1",
-    "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CB\\Save",
-    "RemoveProduct":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CB\\RemoveProduct"
+    "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CB\\Save"
    }
   }
  },
