@@ -101,9 +101,7 @@
         $Qtax->bindInt(':tax_class_id', $class_id);
         $Qtax->execute();
 
-         $tax_rates = $Qtax->fetch();
-
-         if ( count($tax_rates) > 0 ) {
+         if ( $Qtax->rowCount() > 0 ) {
           $tax_description = '';
 
           do {
@@ -112,7 +110,7 @@
 
           $this->tax_rates[$class_id][$country_id][$zone_id]['description'] = $tag . substr($tax_description, 0, -3);
         } else {
-          $this->tax_rates[$class_id][$country_id][$zone_id]['description'] = $tag . TEXT_UNKNOWN_TAX_RATE;
+          $this->tax_rates[$class_id][$country_id][$zone_id]['description'] = $tag . CLICSHOPPING::getDef('text_unknown_tax_rate');
         }
       }
 
