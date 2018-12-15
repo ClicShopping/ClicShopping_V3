@@ -30,6 +30,8 @@
 
  Community add on : https://github.com/ClicShoppingV3Community
 
+ trademark License info : https://www.clicshopping.org/forum/trademark/ 
+ 
  Information / technical documents : See the community
 
  Required configuration:
