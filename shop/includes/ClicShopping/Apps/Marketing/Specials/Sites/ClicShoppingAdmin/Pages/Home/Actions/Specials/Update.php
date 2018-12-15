@@ -68,6 +68,6 @@
 
       $CLICSHOPPING_Hooks->call('Specials','Update');
 
-      $CLICSHOPPING_Specials->redirect('Specials', (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'sID=' . specials_id);
+      $CLICSHOPPING_Specials->redirect('Specials', (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'sID=' . $specials_id);
     }
   }

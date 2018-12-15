@@ -84,9 +84,29 @@
       $Qsession->execute();
 
       if ($Qsession->fetch() !== false) {
-        $CLICSHOPPING_Db->save('whos_online', ['customer_id' => $wo_customer_id, 'full_name' => $wo_full_name, 'ip_address' => $wo_ip_address, 'time_last_click' => $current_time, 'last_page_url' => $wo_last_page_url], ['session_id' => $wo_session_id]);
+        $sql_array = ['customer_id' => $wo_customer_id,
+                      'full_name' => $wo_full_name,
+                      'ip_address' => $wo_ip_address,
+                      'time_last_click' => $current_time,
+                      'last_page_url' => $wo_last_page_url,
+                      'http_referer' => $_SERVER['HTTP_REFERER'],
+                      'user_agent' => $_SERVER['HTTP_USER_AGENT']
+                     ];
+
+        $CLICSHOPPING_Db->save('whos_online', $sql_array, ['session_id' => $wo_session_id]);
       } else {
-        $CLICSHOPPING_Db->save('whos_online', ['customer_id' => $wo_customer_id, 'full_name' => $wo_full_name, 'session_id' => $wo_session_id, 'ip_address' => $wo_ip_address, 'time_entry' => $current_time, 'time_last_click' => $current_time, 'last_page_url' => $wo_last_page_url]);
+        $sql_array = ['customer_id' => $wo_customer_id,
+                      'full_name' => $wo_full_name,
+                      'session_id' => $wo_session_id,
+                      'ip_address' => $wo_ip_address,
+                      'time_entry' => $current_time,
+                      'time_last_click' => $current_time,
+                      'last_page_url' => $wo_last_page_url,
+                      'http_referer' => $_SERVER['HTTP_REFERER'],
+                      'user_agent' => $_SERVER['HTTP_USER_AGENT']
+                     ];
+
+        $CLICSHOPPING_Db->save('whos_online', $sql_array);
       }
     }
 

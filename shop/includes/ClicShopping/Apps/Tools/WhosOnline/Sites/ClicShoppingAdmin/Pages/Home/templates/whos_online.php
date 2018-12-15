@@ -61,9 +61,10 @@
             <th class="text-md-center"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_ip_address'); ?></th>
             <th><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_entry_time'); ?></th>
             <th class="text-md-center"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_last_click'); ?></th>
-            <th style="width:150px;"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_last_page_url'); ?></th>
             <th><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_user_agent'); ?>&nbsp;</th>
-          </tr>
+            <th><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_http_referer'); ?>&nbsp;</th>
+            <th style="width:150px;"><?php echo $CLICSHOPPING_WhosOnline->getDef('table_heading_last_page_url'); ?></th>
+            </tr>
           </thead>
           <tbody>
 <?php
@@ -99,7 +100,10 @@
               <td><?php echo '<a href="https://ip-lookup.net/index.php?ip='. urlencode($ip_address). '" title="Lookup" target="_blank" rel="noreferrer">'. $ip_address .'</a>'; ?></td>
               <td><?php echo date('H:i:s', $QwhosOnline->value('time_entry')); ?></td>
               <td class="text-md-center;"><?php echo date('H:i:s', $QwhosOnline->value('time_last_click')); ?></td>
-              <td style="width:150px;">
+              <td><?php echo  $QwhosOnline->value('user_agent'); ?></td>
+              <td><?php echo  $QwhosOnline->value('http_referer'); ?></td>
+
+    <td>
 <?php
     if (preg_match('/^(.*)Lorsid=[A-Z0-9,-]+[&]*(.*)/i', $QwhosOnline->value('last_page_url'), $array)) {
       echo $array[1] . $array[2];
@@ -108,10 +112,10 @@
     }
 ?>
               </td>
-              <td><?php echo  $QwhosOnline->value('user_agent'); ?></td>
-              </tr>
-              <tr>
-                <td>
+
+            </tr>
+            <tr>
+              <td>
 <?php
     if (isset($info)) {
       if ( $info->customer_id > 0 ) {
