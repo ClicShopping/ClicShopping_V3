@@ -72,8 +72,6 @@
   }
 ?>
 
-  <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/colorpicker/jscolor.js'); ?>"></script>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -578,3 +576,4 @@
     </div>
   </div>
 </div>
+<script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/colorpicker/jscolor.js'); ?>"></script>

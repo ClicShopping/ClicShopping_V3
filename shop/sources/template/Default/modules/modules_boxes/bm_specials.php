@@ -116,6 +116,7 @@
 
           $data = '<!-- Boxe specials start-->' . "\n";
           $data .= '<div class="clearfix"></div>';
+          $data .= '<section class="boxe_specials" id="boxe_specials">';
           $data .= '<div class="card boxeContainerSpecials">';
           $data .= '<div class="card-img-top boxeBannerContentsSpecials">' . $specials_banner .'</div>' ;
           $data .= '<div class="card-header boxeHeadingSpecials"><span class="card-title boxeTitleSpecials">' . HTML::link(CLICSHOPPING::link(null,'Products&Specials'), CLICSHOPPING::getDef('module_boxes_specials_box_title')) . '</span></div>';
@@ -184,6 +185,8 @@
           $data .= '</div>';
           $data .= '<div class="card-footer boxeBottomContentsSpecials"></div>';
           $data .= '</div>' . "\n";
+          $data .= '</section>' . "\n";
+
           $data .='<!-- Boxe Specials end -->' . "\n";
 
           $CLICSHOPPING_Template->addBlock($data, $this->group);

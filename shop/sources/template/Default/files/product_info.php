@@ -26,7 +26,7 @@
  <section class="product" id="product">
   <div class="contentContainer">
     <div class="contentText" style="padding-top:20px;">
-      <div class="alert alert-warning" style="text-align:center;">
+      <div class="alert alert-warning text-md-center">
          <h3><?php echo CLICSHOPPING::getDef('text_product_not_found'); ?></h3>
       </div>
       <div class="separator"></div>

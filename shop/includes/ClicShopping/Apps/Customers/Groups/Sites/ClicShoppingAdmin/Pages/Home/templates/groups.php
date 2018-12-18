@@ -32,8 +32,6 @@
   if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect();
 
 ?>
-<script src="<?php echo $CLICSHOPPING_Groups->link('Shop/ext/javascript/colorpicker/jscolor.js'); ?>"></script>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -98,11 +96,11 @@
     $keywords = HTML::sanitize($_POST['search']);
 
     $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
-                                                 from :table_customers_groups
-                                                 where customers_group_name like :search
-                                                 limit :page_set_offset,
-                                                      :page_set_max_results
-                                                ');
+                                                         from :table_customers_groups
+                                                         where customers_group_name like :search
+                                                         limit :page_set_offset,
+                                                              :page_set_max_results
+                                                        ');
     $QustomersGroup->bindvalue(':search', '%' . $keywords . '%');
     $QustomersGroup->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
     $QustomersGroup->execute();
@@ -110,10 +108,10 @@
   } else {
 
     $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
-                                                   from :table_customers_groups
-                                                   limit :page_set_offset,
-                                                        :page_set_max_results
-                                                  ');
+                                                         from :table_customers_groups
+                                                         limit :page_set_offset,
+                                                              :page_set_max_results
+                                                        ');
     $QustomersGroup->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
     $QustomersGroup->execute();
   }

@@ -65,11 +65,12 @@
     </div>
     <div class="separator"></div>
     <div>
-      <style>.CodeMirror {background: #f8f8f8;}</style>
-      <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('Shop/ext/codemirror/lib/codemirror.css'); ?>">
-      <script src="<?php echo CLICSHOPPING::link('Shop/ext/codemirror/lib/codemirror.js'); ?>"></script>
-      <script src="<?php echo CLICSHOPPING::link('Shop/ext/codemirror/addon/selection/active-line.js'); ?>"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/codemirror.min.css" />
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/mode/css/css.min.js" ></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/addon/selection/active-line.min.js" ></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.0/codemirror.min.js" ></script>
 
+      <style>.CodeMirror {background: #f8f8f8;}</style>
       <style type="text/css">
         .CodeMirror {
           border-top: 1px solid #eee;
