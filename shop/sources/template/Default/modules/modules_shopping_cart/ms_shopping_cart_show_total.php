@@ -41,7 +41,7 @@
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $content_width = (int)MODULE_SHOPPING_CART_SHOW_TOTAL_CONTENT_WIDTH;
-        $position = MODULE_SHOPPING_CART_SHIPPING_ESTIMATOR_POSITION;
+        $position = MODULE_SHOPPING_CART_SHOW_TOTAL_POSITION;
 
         $sub_total = $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total());
 
