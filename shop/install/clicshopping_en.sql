@@ -183,6 +183,10 @@ INSERT INTO administrator_menu VALUES(768, 'index.php?A&Configuration\\Modules&M
 INSERT INTO administrator_menu VALUES(769, '', 2, 4, 1, 'cadenas.gif', 0, '', 1);
 INSERT INTO administrator_menu VALUES(770, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&list=new', 769, 1, 1, 'cadenas.gif', 0, '', 1);
 INSERT INTO administrator_menu VALUES(771, 'index.php?A&Configuration%5CModules&Modules&set=action_recorder&module=ar_admin_login', 769, 2, 1, 'cadenas.gif', 0, '', 1);
+INSERT INTO administrator_menu VALUES(772, 'index.php?A&Marketing\\Favorites&Favorites', 5, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
+INSERT INTO administrator_menu VALUES(773, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_favorites', 117, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
+INSERT INTO administrator_menu VALUES(774, 'index.php?A&Marketing\\Featured&Featured', 5, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
+INSERT INTO administrator_menu VALUES(775, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -499,6 +503,15 @@ INSERT INTO administrator_menu_description VALUES(770, 'Action recorder install'
 INSERT INTO administrator_menu_description VALUES(770, 'Enregistrements actions installation', 2);
 INSERT INTO administrator_menu_description VALUES(771, 'Action recorder modules', 1);
 INSERT INTO administrator_menu_description VALUES(771, 'Modules enregistrements actions', 2);
+INSERT INTO administrator_menu_description VALUES(772, 'Favorites', 1);
+INSERT INTO administrator_menu_description VALUES(772, 'Coups de coeur', 2);
+INSERT INTO administrator_menu_description VALUES(773, 'Favorites', 1);
+INSERT INTO administrator_menu_description VALUES(773, 'Coups de coeur', 2);
+INSERT INTO administrator_menu_description VALUES(774, 'Featured', 1);
+INSERT INTO administrator_menu_description VALUES(774, 'Produits sélectionnés', 2);
+INSERT INTO administrator_menu_description VALUES(775, 'Featured', 1);
+INSERT INTO administrator_menu_description VALUES(775, 'Produits sélectionnés', 2);
+
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
 
@@ -1402,6 +1415,11 @@ INSERT INTO configuration VALUES(1449, 'Parameter [Export Data App]', 'MODULE_MO
 INSERT INTO configuration VALUES(1450, 'Status', 'CLICSHOPPING_APP_ACTIONS_RECORDER_AR_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-09 19:05:21', NULL, NULL);
 INSERT INTO configuration VALUES(1451, 'Sort Order', 'CLICSHOPPING_APP_ACTIONS_RECORDER_AR_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first)', 6, 0, NULL, '2018-12-09 19:05:21', NULL, NULL);
 INSERT INTO configuration VALUES(1452, 'Parameter [ActionsRecorder App]', 'MODULE_MODULES_ACTIONS_RECORDER_INSTALLED', 'Tools\\ActionsRecorder\\AR', 'Parameter [ActionsRecorder App]', 6, 0, NULL, '2018-12-09 19:05:21', NULL, NULL);
+INSERT INTO configuration VALUES(1453, 'Status', 'CLICSHOPPING_APP_FAVORITES_FA_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-19 10:33:41', NULL, NULL);
+INSERT INTO configuration VALUES(1454, 'Sort Order', 'CLICSHOPPING_APP_FAVORITES_FA_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first)', 6, 0, NULL, '2018-12-19 10:33:41', NULL, NULL);
+INSERT INTO configuration VALUES(1455, 'Status', 'CLICSHOPPING_APP_FEATURED_FE_STATUS', 'True', 'Set True to enable or not the module', 6, 0, NULL, '2018-12-19 10:34:15', NULL, NULL);
+INSERT INTO configuration VALUES(1456, 'Sort Order', 'CLICSHOPPING_APP_FEATURED_FE_SORT_ORDER', '30', 'The sort order location of the module shown in the available methods listing (lowest is displayed first)', 6, 0, NULL, '2018-12-19 10:34:15', NULL, NULL);
+INSERT INTO configuration VALUES(1457, 'Parameter [Featured Products App]', 'MODULE_MODULES_FEATURED_INSTALLED', 'Marketing\\Featured\\FE', 'Parameter [Featured Products App]', 6, 0, NULL, '2018-12-19 10:34:15', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
