@@ -173,7 +173,7 @@ INSERT INTO administrator_menu VALUES(736, 'index.php?A&Configuration\\Langues&L
 INSERT INTO administrator_menu VALUES(737, 'index.php?A&Tools\\ActionsRecorder&ActionsRecorder', 178, 1, 1, 'cadenas.gif', 0, 'app_tools_actions_recorder', 1);
 INSERT INTO administrator_menu VALUES(738, 'index.php?A&Configuration\\Cache&Cache', 21, 1, 1, 'cache.gif', 0, 'app_configuration_cache', 1);
 INSERT INTO administrator_menu VALUES(739, 'index.php?A&Tools\\DefineLanguage&DefineLanguage', 170, 1, 1, 'define_language.gif', 0, 'app_tools_define_language', 1);
-INSERT INTO administrator_menu VALUES(742, 'index.php?A&Tools%5CServiceAPP&ServiceAPP', 727, 2, 1, 'service.png', 0, 'app_tools_modules_service', 1);
+INSERT INTO administrator_menu VALUES(742, 'index.php?A&Tools\\ServiceAPP&ServiceAPP', 727, 2, 1, 'service.png', 0, 'app_tools_modules_service', 1);
 INSERT INTO administrator_menu VALUES(755, 'index.php?A&Shipping\\Item&Configure&module=IT', 449, 4, 1, 'modules_shipping.gif', 0, 'app_shipping_item', NULL);
 INSERT INTO administrator_menu VALUES(756, 'index.php?A&Configuration\\Weight&Weight', 20, 4, 1, 'weight.png', 0, 'app_configuration_weight', NULL);
 INSERT INTO administrator_menu VALUES(758, 'index.php?A&Catalog\\Categories&Categories', 3, 0, 0, 'categorie.gif', 0, 'app_catalog_categories', NULL);
