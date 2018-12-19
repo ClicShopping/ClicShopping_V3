@@ -49,6 +49,7 @@
     public function getOutput() {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
@@ -56,6 +57,8 @@
 
       if (isset($_GET['Products']) && isset($_GET['Description'])) {
         if (isset($_GET['products_id'])) {
+
+          $products_id = $CLICSHOPPING_ProductsCommon->getID();
 
           $Qsubmit = $this->app->db->prepare('select submit_id,
                                                     language_id,
@@ -69,11 +72,10 @@
                                               where submit_id = 1
                                               and language_id = :language_id
                                             ');
-          $Qsubmit->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
+          $Qsubmit->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
           $Qsubmit->execute();
 
-          $QproductInfo = $this->app->db->prepare('select pd.products_name,
-                                                           pd.products_head_title_tag,
+          $QproductInfo = $this->app->db->prepare('select pd.products_head_title_tag,
                                                            pd.products_head_keywords_tag,
                                                            pd.products_head_desc_tag
                                                     from :table_products p,
@@ -84,8 +86,8 @@
                                                     and pd.products_id = p.products_id
                                                     and pd.language_id = :language_id
                                                   ');
-          $QproductInfo->bindInt(':products_id', (int)$_GET['products_id'] );
-          $QproductInfo->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
+          $QproductInfo->bindInt(':products_id', $products_id);
+          $QproductInfo->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
           $QproductInfo->execute();
 
           $QcategoryInfo = $this->app->db->prepare('select cd.categories_name
@@ -97,50 +99,49 @@
                                                     limit 1
                                                   ');
 
-          $QcategoryInfo->bindInt(':products_id', (int)$_GET['products_id'] );
-          $QcategoryInfo->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
+          $QcategoryInfo->bindInt(':products_id', $products_id);
+          $QcategoryInfo->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
           $QcategoryInfo->execute();
 
-          $products_name_clean = HTML::sanitize($QproductInfo->value('products_name'));
-          $products_name_replace = HTML::sanitize($QproductInfo->value('products_name'));
+          $products_name_clean = HTML::sanitize($CLICSHOPPING_ProductsCommon->getProductsName($products_id));
+          $products_name_replace = HTML::sanitize($QproductInfo->value('products_head_title_tag'));
           $categories_name_clean = HTML::sanitize($QcategoryInfo->value('categories_name'));
 
-          $tags_array = [];
 
           if(empty($QproductInfo->value('products_head_title_tag'))) {
             if (empty($Qsubmit->value('submit_language_products_info_title'))) {
-              $tags_array['title'] = $products_name_clean .', ' . $categories_name_clean .', '. HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+              $title = $products_name_clean .', ' . $categories_name_clean .', '. HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
             } else {
-              $tags_array['title'] =  $products_name_clean .', ' . $categories_name_clean .',  '. HTML::sanitize($Qsubmit->value('submit_language_products_info_title'));
+              $title =  $products_name_clean .', ' . $categories_name_clean .',  '. HTML::sanitize($Qsubmit->value('submit_language_products_info_title'));
             }
           } else {
-            $tags_array['title'] = HTML::sanitize($QproductInfo->value('products_head_title_tag')) .', ' . $categories_name_clean;
+            $title = HTML::sanitize($QproductInfo->value('products_head_title_tag')) .', ' . $categories_name_clean;
           }
 
           if(empty($QproductInfo->value('products_head_desc_tag'))) {
             if (empty($Qsubmit->value('submit_language_products_info_description'))) {
-              $tags_array['desc']=  $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+              $description = $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
             } else {
-              $tags_array['desc']= $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' .  HTML::sanitize($Qsubmit->value('submit_language_products_info_description'));
+              $description = $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' .  HTML::sanitize($Qsubmit->value('submit_language_products_info_description'));
             }
           } else {
-            $tags_array['desc']=  $QproductInfo->value('products_head_desc_tag')  . ', ' .  $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($QproductInfo->value('products_head_desc_tag'));
+            $description = $QproductInfo->value('products_head_desc_tag')  . ', ' .  $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean;
           }
 
           if(empty($QproductInfo->value('products_head_keywords_tag'))) {
             if (empty($Qsubmit->value('submit_language_products_info_keywords'))) {
-              $tags_array['keywords']= $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' .  HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+              $keywords = $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' .  HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
             } else {
-              $tags_array['keywords']= $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($Qsubmit->value('submit_language_products_info_keywords'));
+              $keywords = $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($Qsubmit->value('submit_language_products_info_keywords'));
             }
           } else {
-            $tags_array['keywords']=  $QproductInfo->value('products_head_keywords_tag') . ', ' . $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean .', ' . HTML::sanitize($Qsubmit->value('products_head_keywords_tag'));
+            $keywords = $QproductInfo->value('products_head_keywords_tag') . ', ' . $products_name_clean .', ' . $products_name_replace . ', ' . $categories_name_clean;
           }
 
-          $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
-          $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
-          $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
-          $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
+          $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
+          $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
+          $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+          $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
 
           $output =
 <<<EOD

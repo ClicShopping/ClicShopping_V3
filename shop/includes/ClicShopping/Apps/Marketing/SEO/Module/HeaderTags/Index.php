@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -15,6 +15,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
@@ -53,7 +54,10 @@
     public function getOutput() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (CLICSHOPPING::getBaseNameIndex()) {
+      $index = HTTP::getShopUrlDomain() . 'index.php';
+      $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['PHP_SELF'];
+
+      if ($index === $url) {
         $Qsubmit = $this->app->db->prepare('select submit_id,
                                                   language_id,
                                                   submit_defaut_language_title,
@@ -68,32 +72,30 @@
         $Qsubmit->execute();
         $submit = $Qsubmit->fetch();
 
-        $tags_array = array();
-
         if (empty($submit['submit_defaut_language_title'])) {
-          $tags_array['title']= STORE_NAME;
+          $title = HTML::outputProtected(STORE_NAME);
         } else {
-          $tags_array['title']= HTML::sanitize($submit['submit_defaut_language_title']);
+          $title = HTML::sanitize($submit['submit_defaut_language_title']);
         }
 
         if (empty($submit['submit_defaut_language_description'])) {
-          $tags_array['desc']= STORE_NAME;
+          $description = HTML::outputProtected(STORE_NAME);
         } else {
-          $tags_array['desc']= HTML::sanitize($submit['submit_defaut_language_description']);
+          $description = HTML::sanitize($submit['submit_defaut_language_description']);
         }
 
         if (empty($submit['submit_defaut_language_keywords'])) {
-          $tags_array['keywords']= STORE_NAME;
+          $keywords = HTML::outputProtected(STORE_NAME);
         } else {
-          $tags_array['keywords']= HTML::sanitize($submit['submit_defaut_language_keywords']);
+          $keywords = HTML::sanitize($submit['submit_defaut_language_keywords']);
         }
 
-        $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
+        $description = $CLICSHOPPING_Template->setDescription($description  . ', ' . $CLICSHOPPING_Template->getDescription());
+        $keywords = $CLICSHOPPING_Template->setKeywords($keywords  . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords  . ', ' . $CLICSHOPPING_Template->getKeywords());
 
-            $output =
+        $output =
 <<<EOD
 {$title}
 {$description}
@@ -101,7 +103,7 @@
 {$new_keywords}
 EOD;
 
-          }
+      }
 
       return $output;
     }
