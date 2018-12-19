@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.43 (2018-11-24)
+ * Version 2.1.44 (2018-12-15)
  * http://elfinder.org
  * 
  * Copyright 2009-2018, Studio 42
@@ -964,9 +964,11 @@ var elFinder = function(elm, opts, bootCallback) {
 	
 	this.i18nBaseUrl = (this.options.i18nBaseUrl || this.baseUrl + 'js/i18n').replace(/\/$/, '') + '/';
 
+	self.options.maxErrorDialogs = Math.max(1, parseInt(self.options.maxErrorDialogs || 5));
+
 	// set dispInlineRegex
 	cwdOptionsDefault['dispInlineRegex'] = this.options.dispInlineRegex;
-	
+
 	// auto load required CSS
 	if (this.options.cssAutoLoad) {
 		(function() {
@@ -1309,7 +1311,7 @@ var elFinder = function(elm, opts, bootCallback) {
 	}
 
 	this.sortAlsoTreeview = this.storage('sortAlsoTreeview');
-	if (this.sortAlsoTreeview === null) {
+	if (this.sortAlsoTreeview === null || this.options.sortAlsoTreeview === null) {
 		this.sortAlsoTreeview = !!this.options.sortAlsoTreeview;
 	} else {
 		this.sortAlsoTreeview = !!this.sortAlsoTreeview;
@@ -2182,7 +2184,7 @@ var elFinder = function(elm, opts, bootCallback) {
 
 						if (!!data.init) {
 							self.uplMaxSize = self.returnBytes(response.uplMaxSize);
-							self.uplMaxFile = !!response.uplMaxFile? Math.max(parseInt(response.uplMaxFile), 50) : 20;
+							self.uplMaxFile = !!response.uplMaxFile? Math.min(parseInt(response.uplMaxFile), 50) : 20;
 						}
 					}
 
@@ -4203,19 +4205,33 @@ var elFinder = function(elm, opts, bootCallback) {
 		.error(function(e) { 
 			var opts  = {
 					cssClass  : 'elfinder-dialog-error',
-					title     : self.i18n(self.i18n('error')),
+					title     : self.i18n('error'),
 					resizable : false,
 					destroyOnClose : true,
 					buttons   : {}
-			};
+				},
+				node = self.getUI(),
+				cnt = node.children('.elfinder-dialog-error').length,
+				last, counter;
 			
-			opts.buttons[self.i18n(self.i18n('btnClose'))] = function() { $(this).elfinderdialog('close'); };
+			if (cnt < self.options.maxErrorDialogs) {
+				opts.buttons[self.i18n(self.i18n('btnClose'))] = function() { $(this).elfinderdialog('close'); };
 
-			if (e.data.opts && $.isPlainObject(e.data.opts)) {
-				Object.assign(opts, e.data.opts);
+				if (e.data.opts && $.isPlainObject(e.data.opts)) {
+					Object.assign(opts, e.data.opts);
+				}
+
+				self.dialog('<span class="elfinder-dialog-icon elfinder-dialog-icon-error"/>'+self.i18n(e.data.error), opts);
+			} else {
+				last = node.children('.elfinder-dialog-error:last').children('.ui-dialog-content:first');
+				counter = last.children('.elfinder-error-counter');
+				if (counter.length) {
+					counter.data('cnt', parseInt(counter.data('cnt')) + 1).html(self.i18n(['moreErrors', counter.data('cnt')]));
+				} else {
+					counter = $('<span class="elfinder-error-counter">'+ self.i18n(['moreErrors', 1]) +'</span>').data('cnt', 1);
+					last.append('<br/>', counter);
+				}
 			}
-
-			self.dialog('<span class="elfinder-dialog-icon elfinder-dialog-icon-error"/>'+self.i18n(e.data.error), opts);
 		})
 		.bind('tmb', function(e) {
 			$.each(e.data.images||[], function(hash, tmb) {
@@ -6181,6 +6197,9 @@ elFinder.prototype = {
 						if (files && (self.uploads.xhrUploading || userAbort)) {
 							// send request om fail
 							getFile(files).done(function(file) {
+								if (!userAbort) {
+									triggerError(error, file);
+								}
 								if (! file._cid) {
 									// send sync request
 									self.uploads.failSyncTm && clearTimeout(self.uploads.failSyncTm);
@@ -6211,18 +6230,19 @@ elFinder.prototype = {
 									}, 1000);
 								}
 							});
+						} else {
+							triggerError(error);
 						}
 						!userAbort && self.sync();
 						self.uploads.xhrUploading = false;
 						files = null;
-						error && self.error(error);
 					})
 					.done(function(data) {
 						self.uploads.xhrUploading = false;
 						files = null;
 						if (data) {
 							self.currentReqCmd = 'upload';
-							data.warning && self.error(data.warning);
+							data.warning && triggerError(data.warning);
 							self.updateCache(data);
 							data.removed && data.removed.length && self.remove(data);
 							data.added   && data.added.length   && self.add(data);
@@ -6327,6 +6347,36 @@ elFinder.prototype = {
 						}]);
 					}
 				},
+				triggerError = function(err, file, unite) {
+					err && self.trigger('xhruploadfail', { error: err, file: file });
+					if (unite) {
+						if (err) {
+							if (errCnt < self.options.maxErrorDialogs) {
+								if (Array.isArray(err)) {
+									errors = errors.concat(err);
+								} else {
+									errors.push(err);
+								}
+							}
+							errCnt++;
+						}
+					} else {
+						if (err) {
+							self.error(err);
+						} else {
+							if (errors.length) {
+								if (errCnt >= self.options.maxErrorDialogs) {
+									errors = errors.concat('moreErrors', errCnt - self.options.maxErrorDialogs);
+								}
+								self.error(errors);
+							}
+							errors = [];
+							errCnt = 0;
+						}
+					}
+				},
+				errors = [],
+				errCnt = 0,
 				renames = (data.renames || null),
 				hashes = (data.hashes || null),
 				chunkMerge = false,
@@ -6350,7 +6400,6 @@ elFinder.prototype = {
 						// ff bug while send zero sized file
 						// for safari - send directory
 						if (!isDataType && data.files && $.grep(data.files, function(f){return ! f.type && f.size === (self.UA.Safari? 1802 : 0)? true : false;}).length) {
-							errors.push('errFolderUpload');
 							dfrd.reject(['errAbort', 'errFolderUpload']);
 						} else if (data.input && $.grep(data.input.files, function(f){return ! f.type && f.size === (self.UA.Safari? 1802 : 0)? true : false;}).length) {
 							dfrd.reject(['errUploadNoFiles']);
@@ -6588,7 +6637,7 @@ elFinder.prototype = {
 						setTimeout(check, 100);
 					}
 				},
-				reqId;
+				reqId, err;
 
 				if (! dataChecked && (isDataType || data.type == 'files')) {
 					if (! (maxFileSize = fm.option('uploadMaxSize', target))) {
@@ -6618,7 +6667,7 @@ elFinder.prototype = {
 						
 						// file size check
 						if ((maxFileSize && blobSize > maxFileSize) || (!blobSlice && fm.uplMaxSize && blobSize > fm.uplMaxSize)) {
-							self.error(['errUploadFile', blob.name, 'errUploadFileSize']);
+							triggerError(['errUploadFile', blob.name, 'errUploadFileSize'], blob, true);
 							cnt--;
 							total--;
 							continue;
@@ -6626,7 +6675,7 @@ elFinder.prototype = {
 						
 						// file mime check
 						if (blob.type && ! self.uploadMimeCheck(blob.type, target)) {
-							self.error(['errUploadFile', blob.name, 'errUploadMime', '(' + blob.type + ')']);
+							triggerError(['errUploadFile', blob.name, 'errUploadMime', '(' + blob.type + ')'], blob, true);
 							cnt--;
 							total--;
 							continue;
@@ -6672,7 +6721,7 @@ elFinder.prototype = {
 								end = start + BYTES_PER_CHUNK;
 							}
 							if (chunk == null) {
-								self.error(['errUploadFile', blob.name, 'errUploadFileSize']);
+								triggerError(['errUploadFile', blob.name, 'errUploadFileSize'], blob, true);
 								cnt--;
 								total--;
 							} else {
@@ -6706,6 +6755,10 @@ elFinder.prototype = {
 						fcnt++;
 					}
 					
+					if (errors.length) {
+						triggerError();
+					}
+
 					if (sfiles.length == 0) {
 						// no data
 						data.checked = true;
@@ -7143,7 +7196,7 @@ elFinder.prototype = {
 							if (self.options.iframeTimeout > 0) {
 								abortto = setTimeout(function() {
 									onload();
-									dfrd.reject([errors.connect, errors.timeout]);
+									dfrd.reject(['errConnect', 'errTimeout']);
 								}, self.options.iframeTimeout);
 							}
 							
@@ -9948,7 +10001,7 @@ if (!window.cancelAnimationFrame) {
  *
  * @type String
  **/
-elFinder.prototype.version = '2.1.43';
+elFinder.prototype.version = '2.1.44';
 
 
 
@@ -9967,7 +10020,7 @@ if ($.ui) {
 					return true;
 				}
 				var rect = elem[0].getBoundingClientRect();
-				return document.elementFromPoint(rect.left, rect.top)? false : true;
+				return document.elementFromPoint(rect.left, rect.top) || document.elementFromPoint(rect.left + rect.width, rect.top + rect.height)? false : true;
 			};
 			
 			if (event.type === 'mousedown' || t.options.elfRefresh) {
@@ -10604,7 +10657,14 @@ elFinder.prototype._options = {
 	 * @type String|Null
 	 */
 	theme : null,
-	
+
+	/**
+	 * Maximum value of error dialog open at the same time
+	 * 
+	 * @type Number
+	 */
+	maxErrorDialogs : 5,
+
 	/**
 	 * Additional css class for filemanager node.
 	 *
@@ -11326,9 +11386,9 @@ elFinder.prototype._options = {
 	sortStickFolders : true,
 	
 	/**
-	 * Sort also applies to the treeview
+	 * Sort also applies to the treeview (null: disable this feature)
 	 *
-	 * @type {Boolean}
+	 * @type Boolean|null
 	 * @default false
 	 */
 	sortAlsoTreeview : false,
@@ -12720,7 +12780,7 @@ $.fn.dialogelfinder = function(opts) {
  * English translation
  * @author Troex Nevelin <troex@fury.scancode.ru>
  * @author Naoki Sawada <hypweb+elfinder@gmail.com>
- * @version 2018-10-19
+ * @version 2018-12-09
  */
 // elfinder.en.js is integrated into elfinder.(full|min).js by jake build
 if (typeof elFinder === 'function' && elFinder.prototype.i18) {
@@ -12826,6 +12886,7 @@ if (typeof elFinder === 'function' && elFinder.prototype.i18) {
 			'errEditorNotFound'    : 'Editor not found to this file type.', // from v2.1.25 added 23.5.2017
 			'errServerError'       : 'Error occurred on the server side.', // from v2.1.25 added 16.6.2017
 			'errEmpty'             : 'Unable to empty folder "$1".', // from v2.1.25 added 22.6.2017
+			'moreErrors'           : 'There are $1 more errors.', // from v2.1.44 added 9.12.2018
 
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Create archive',
@@ -13197,6 +13258,7 @@ if (typeof elFinder === 'function' && elFinder.prototype.i18) {
 			'author'          : 'Author', // from v2.1.43 added 19.10.2018
 			'email'           : 'Email', // from v2.1.43 added 19.10.2018
 			'license'         : 'License', // from v2.1.43 added 19.10.2018
+			'exportToSave'    : 'This item can\'t be saved. To avoid losing the edits you need to export to your PC.', // from v2.1.44 added 1.12.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Unknown',
@@ -14955,6 +15017,7 @@ $.fn.elfindercwd = function(fm, options) {
 								});
 							(list ? oldSchoolItem.children('td:first') : oldSchoolItem).children('.elfinder-cwd-select').remove();
 							(list ? cwd.find('tbody') : cwd).prepend(oldSchoolItem);
+							fm.draggingUiHelper && fm.draggingUiHelper.data('refreshPositions', 1);
 						}
 					};
 				if (pdir) {
@@ -15249,9 +15312,10 @@ $.fn.elfindercwd = function(fm, options) {
 					e.stopPropagation();
 					helper.data('dropover', helper.data('dropover') + 1);
 					dst.data('dropover', true);
+					helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
 					if (helper.data('namespace') !== fm.namespace || ! fm.insideWorkzone(e.pageX, e.pageY)) {
 						dst.removeClass(clDropActive);
-						helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
+						//helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
 						return;
 					}
 					if (dst.hasClass(fm.res(c, 'cwdfile'))) {
@@ -19509,22 +19573,22 @@ $.fn.elfindersortbutton = function(cmd) {
 				cmd.exec([], 'stick');
 			});
 
-		if ($.fn.elfindertree && $.inArray('tree', fm.options.ui) !== -1) {
-			$('<div class="'+item+' '+item+'-separated elfinder-sort-ext elfinder-sort-tree"><span class="ui-icon ui-icon-check"/>'+fm.i18n('sortAlsoTreeview')+'</div>')
+		fm.one('init', function() {
+			if (fm.ui.tree && fm.options.sortAlsoTreeview !== null) {
+				$('<div class="'+item+' '+item+'-separated elfinder-sort-ext elfinder-sort-tree"><span class="ui-icon ui-icon-check"/>'+fm.i18n('sortAlsoTreeview')+'</div>')
 				.appendTo(menu)
 				.on('click', function() {
 					cmd.exec([], 'tree');
 				});
-		}
-		
-		fm.bind('disable select', hide).getUI().on('click', hide);
-			
-		fm.bind('open', function() {
+			}
+		})
+		.bind('disable select', hide)
+		.bind('open', function() {
 			menu.children('[rel]').each(function() {
 				var $this = $(this);
 				$this.toggle(fm.sorters[$this.attr('rel')]);
 			});
-		}).bind('sortchange', update);
+		}).bind('sortchange', update).getUI().on('click', hide);
 		
 		if (menu.children().length > 1) {
 			cmd.change(function() {
@@ -20391,11 +20455,16 @@ $.fn.elfindertree = function(fm, opts) {
 					e.stopPropagation();
 					helper.data('dropover', helper.data('dropover') + 1);
 					dst.data('dropover', true);
-					if (ui.helper.data('namespace') !== fm.namespace || ! insideNavbar(e.clientX) || ! fm.insideWorkzone(e.pageX, e.pageY)) {
+					if (ui.helper.data('namespace') !== fm.namespace || ! fm.insideWorkzone(e.pageX, e.pageY)) {
 						dst.removeClass(cl);
 						helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
 						return;
 					}
+					if (! insideNavbar(e.clientX)) {
+						dst.removeClass(cl);
+						return;
+					}
+					helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
 					dst.addClass(hover);
 					if (dst.is('.'+collapsed+':not(.'+expanded+')')) {
 						dst.data('expandTimer', setTimeout(function() {
@@ -20404,7 +20473,7 @@ $.fn.elfindertree = function(fm, opts) {
 					}
 					if (dst.is('.elfinder-ro,.elfinder-na')) {
 						dst.removeClass(dropover);
-						helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
+						//helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
 						return;
 					}
 					hash = fm.navId2Hash(dst.attr('id'));
@@ -20430,7 +20499,10 @@ $.fn.elfindertree = function(fm, opts) {
 					var dst    = $(this),
 						helper = ui.helper;
 					e.stopPropagation();
-					helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus').data('dropover', Math.max(helper.data('dropover') - 1, 0));
+					if (insideNavbar(e.clientX)) {
+						helper.removeClass('elfinder-drag-helper-move elfinder-drag-helper-plus');
+					}
+					helper.data('dropover', Math.max(helper.data('dropover') - 1, 0));
 					dst.data('expandTimer') && clearTimeout(dst.data('expandTimer'));
 					dst.removeData('dropover')
 					   .removeClass(hover+' '+dropover);
@@ -33364,7 +33436,7 @@ elFinder.prototype.commands.sort = function() {
 				'stick',
 				(fm.sortStickFolders? '<span class="ui-icon ui-icon-check"/>' : '') + '&nbsp;' + fm.i18n('sortFoldersFirst')
 			]);
-			if (fm.ui.tree) {
+			if (fm.ui.tree && fm.options.sortAlsoTreeview !== null) {
 				self.variants.push('|');
 				self.variants.push([
 					'tree',

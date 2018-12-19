@@ -337,7 +337,7 @@
 					fm   = this.fm,
 					dfrd = $.Deferred(),
 					cdns = fm.options.cdns,
-					ver  = 'v3.2.2',
+					ver  = 'v3.3.0',
 					init = function(editor) {
 						var $base = $(base),
 							bParent = $base.parent(),
@@ -377,34 +377,25 @@
 							}),
 							canvas = $base.find('canvas:first').get(0),
 							zoom = function(v) {
-								var c = $(canvas),
-									w = parseInt(c.attr('width')),
-									h = parseInt(c.attr('height')),
-									a = w / h,
-									mw, mh, css;
-								if (v === 0) {
-									mw = w;
-									mh = h;
-								} else {
-									mw = parseInt(c.css('max-width')) + Number(v);
-									mh = mw / a;
-								}
-								css = {
-									maxWidth: mw,
-									maxHeight: mh
-								};
-								per.text(Math.round(mw / w * 100) + '%');
 								if (typeof v !== 'undefined') {
-									// set editor config directly for change scale
-									iEditor._graphics.cssMaxWidth = mw;
-									iEditor._graphics.cssMaxHeight = mh;
-									// change scale
-									c.css(css).next().css(css);
-									c.parents('.tui-image-editor-canvas-container,tui-image-editor-canvas').css(css);
-									c.closest('.tui-image-editor').css({
-										width: mw,
-										height: mh
-									});
+									var c = $(canvas),
+										w = parseInt(c.attr('width')),
+										h = parseInt(c.attr('height')),
+										a = w / h,
+										mw, mh;
+									if (v === 0) {
+										mw = w;
+										mh = h;
+									} else {
+										mw = parseInt(c.css('max-width')) + Number(v);
+										mh = mw / a;
+										if (mw > w && mh > h) {
+											mw = w;
+											mh = h;
+										}
+									}
+									per.text(Math.round(mw / w * 100) + '%');
+									iEditor.resizeCanvasDimension({width: mw, height: mh});
 									// continually change more
 									if (zoomMore) {
 										setTimeout(function() {
@@ -1995,6 +1986,7 @@
 			init : function(id, file, dum, fm) {
 				var ta = this,
 					ifm = $(this).hide(),
+					uiToast = fm.getUI('toast'),
 					spnr = $('<div class="elfinder-edit-spinner elfinder-edit-zohoeditor"/>')
 						.html('<span class="elfinder-spinner-text">' + fm.i18n('nowLoading') + '</span><span class="elfinder-spinner"/>')
 						.appendTo(ifm.parent()),
@@ -2033,6 +2025,20 @@
 						});
 
 						ifm.attr('src', data.zohourl).show().css(opts.css);
+						if (data.warning) {
+							uiToast.appendTo(ta.closest('.ui-dialog'));
+							fm.toast({
+								msg: fm.i18n(data.warning),
+								mode: 'warning',
+								timeOut: 0,
+								onHidden: function() {
+									uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
+								},
+								button: {
+									text: 'btnYes'
+								}
+							});
+						}
 					} else {
 						data.error && fm.error(data.error);
 						ta.elfinderdialog('destroy');
@@ -2166,7 +2172,6 @@
 						Hash: 'txt'
 					},
 					link : '<div class="elfinder-edit-onlineconvert-link"><a href="https://www.online-convert.com" target="_blank"><span class="elfinder-button-icon"></span>ONLINE-CONVERT.COM</a></div>',
-					toastWidth : 280,
 					useTabs : ($.fn.tabs && !fm.UA.iOS)? true : false // Can't work on iOS, I don't know why.
 				}, mOpts);
 			},
@@ -2470,7 +2475,6 @@
 									msg: fm.i18n(res.message),
 									mode: 'error',
 									timeOut: 5000,
-									width: set.toastWidth,
 									onHidden: function() {
 										uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
 									}
@@ -2480,7 +2484,6 @@
 								msg: fm.i18n('editorConvNoApi'),
 								mode: 'warning',
 								timeOut: 3000,
-								width: set.toastWidth,
 								onHidden: function() {
 									uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
 									open(cat, con);
@@ -2566,8 +2569,7 @@
 										fm.toast({
 											msg: fm.i18n('editorConvNeedUpload'),
 											mode: 'info',
-											timeOut: 10000,
-											width: set.toastWidth,
+											timeOut: 15000,
 											onHidden: function() {
 												uiToast.children().length === 1 && uiToast.appendTo(fm.getUI());
 											},

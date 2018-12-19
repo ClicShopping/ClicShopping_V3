@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.43 (2018-11-24)
+ * Version 2.1.44 (2018-12-15)
  * http://elfinder.org
  * 
  * Copyright 2009-2018, Studio 42
@@ -177,6 +177,16 @@
     left: 0;
     margin-top: -5px;
     margin-left: -5px;
+}
+
+.elfinder-dialog.elfinder-dialog-resize .ui-resizable-e {
+    width: 10px;
+    height: 100%;
+}
+
+.elfinder-dialog.elfinder-dialog-resize .ui-resizable-s {
+    width: 100%;
+    height: 10px;
 }
 
 .elfinder-resize-loading {
@@ -375,18 +385,18 @@
 }
 
 /* edit area */
-.ui-dialog .ui-dialog-content.elfinder-edit-editor {
+.elfinder-dialog-edit .ui-dialog-content.elfinder-edit-editor {
     background-color: #fff;
 }
 
-.ui-dialog .ui-dialog-content.elfinder-edit-editor .elfinder-edit-imageeditor {
+.elfinder-dialog-edit .ui-dialog-content.elfinder-edit-editor .elfinder-edit-imageeditor {
     width: 100%;
     height: 300px;
     max-height: 100%;
     text-align: center;
 }
 
-.ui-dialog .ui-dialog-content.elfinder-edit-editor .elfinder-edit-imageeditor * {
+.elfinder-dialog-edit .ui-dialog-content.elfinder-edit-editor .elfinder-edit-imageeditor * {
     -webkit-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -401,13 +411,25 @@
     display: none;
 }
 
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-crop .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-flip .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-rotate .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-draw .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-shape .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-icon .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-text .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-mask .tui-image-editor-wrap,
+.elfinder-edit-imageeditor .tui-image-editor-main.tui-image-editor-menu-filter .tui-image-editor-wrap {
+    height: calc(100% - 150px);
+}
+
 /* bottom margen for softkeyboard on fullscreen mode */
 .elfinder-touch.elfinder-fullscreen-native textarea.elfinder-file-edit {
     padding-bottom: 20em;
     margin-bottom: -20em;
 }
 
-.std42-dialog .ui-dialog-buttonpane .elfinder-dialog-confirm-encoding {
+.elfinder-dialog-edit .ui-dialog-buttonpane .elfinder-dialog-confirm-encoding {
     font-size: 12px;
 }
 
@@ -425,7 +447,7 @@
     margin-top: 8px;
 }
 
-.ui-dialog-buttonpane .ui-icon {
+.elfinder-dialog-edit .ui-dialog-buttonpane .ui-icon {
     cursor: pointer;
 }
 
@@ -437,11 +459,15 @@
     font-size: 16pt;
 }
 
-.elfinder-dialog .elfinder-edit-spinner .elfinder-spinner,
-.elfinder-dialog .elfinder-edit-spinner .elfinder-spinner-text {
+.elfinder-dialog-edit .elfinder-edit-spinner .elfinder-spinner,
+.elfinder-dialog-edit .elfinder-edit-spinner .elfinder-spinner-text {
     float: none;
 }
 
+.elfinder-dialog-edit .elfinder-toast > div {
+    width: 280px;
+}
+ 
 .elfinder-edit-onlineconvert-button {
     display: inline-block;
     width: 180px;
@@ -712,8 +738,9 @@ ul.elfinder-help-integrations a:hover {
 }
 
 /********************** COMMAND "PREFERENCE" ****************************/
-.elfinder-preference .ui-tabs-nav {
+.elfinder-dialog .elfinder-preference .ui-tabs-nav {
     margin-bottom: 1px;
+    height: auto;
 }
 
 /* fix tabs */
@@ -2089,15 +2116,18 @@ ul.elfinder-help-integrations a:hover {
 .elfinder-cwd-icon-vnd-ms-excel-template-macroEnabled-12,
 .elfinder-cwd-icon-vnd-ms-excel-template-macroEnabled-12:after,
 .elfinder-cwd-icon-vnd-ms-excel:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet,
-.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet-template,
-.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet-template:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet:after,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-spreadsheetml-sheet,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-spreadsheetml-sheet:after,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-spreadsheetml-template,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-spreadsheetml-template:after {
     background-position: 0 -1450px
+}
+
+.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet,
+.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet-template,
+.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet-template:after,
+.elfinder-cwd-icon-vnd-oasis-opendocument-spreadsheet:after {
+    background-position: 0 -1700px
 }
 
 .elfinder-cwd-icon-vnd-ms-powerpoint,
@@ -2112,10 +2142,6 @@ ul.elfinder-help-integrations a:hover {
 .elfinder-cwd-icon-vnd-ms-powerpoint-template-macroEnabled-12,
 .elfinder-cwd-icon-vnd-ms-powerpoint-template-macroEnabled-12:after,
 .elfinder-cwd-icon-vnd-ms-powerpoint:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-presentation,
-.elfinder-cwd-icon-vnd-oasis-opendocument-presentation-template,
-.elfinder-cwd-icon-vnd-oasis-opendocument-presentation-template:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-presentation:after,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-presentation,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-presentation:after,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-slide,
@@ -2125,6 +2151,13 @@ ul.elfinder-help-integrations a:hover {
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-template,
 .elfinder-cwd-icon-vnd-openxmlformats-officedocument-presentationml-template:after {
     background-position: 0 -1400px
+}
+
+.elfinder-cwd-icon-vnd-oasis-opendocument-presentation,
+.elfinder-cwd-icon-vnd-oasis-opendocument-presentation-template,
+.elfinder-cwd-icon-vnd-oasis-opendocument-presentation-template:after,
+.elfinder-cwd-icon-vnd-oasis-opendocument-presentation:after {
+    background-position: 0 -1650px
 }
 
 .elfinder-cwd-icon-msword,
@@ -2142,8 +2175,22 @@ ul.elfinder-help-integrations a:hover {
     background-position: 0 -1500px
 }
 
+.elfinder-cwd-icon-vnd-oasis-opendocument-text,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-master,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-master:after,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-template,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-template:after,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-web,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text-web:after,
+.elfinder-cwd-icon-vnd-oasis-opendocument-text:after {
+    background-position: 0 -1750px
+}
+
 .elfinder-cwd-icon-vnd-ms-office,
-.elfinder-cwd-icon-vnd-ms-office:after,
+.elfinder-cwd-icon-vnd-ms-office:after {
+    background-position: 0 -500px
+}
+
 .elfinder-cwd-icon-vnd-oasis-opendocument-chart,
 .elfinder-cwd-icon-vnd-oasis-opendocument-chart:after,
 .elfinder-cwd-icon-vnd-oasis-opendocument-database,
@@ -2156,17 +2203,9 @@ ul.elfinder-help-integrations a:hover {
 .elfinder-cwd-icon-vnd-oasis-opendocument-graphics:after,
 .elfinder-cwd-icon-vnd-oasis-opendocument-image,
 .elfinder-cwd-icon-vnd-oasis-opendocument-image:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text-master,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text-master:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text-template,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text-template:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text-web,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text-web:after,
-.elfinder-cwd-icon-vnd-oasis-opendocument-text:after,
 .elfinder-cwd-icon-vnd-openofficeorg-extension,
 .elfinder-cwd-icon-vnd-openofficeorg-extension:after {
-    background-position: 0 -500px
+    background-position: 0 -1600px
 }
 
 .elfinder-cwd-icon-html:after,
@@ -4533,6 +4572,16 @@ embed.elfinder-quicklook-preview-audio {
 .elfinder .elfinder-toast > .toast-info button.ui-button.ui-state-hover {
     background-color: #7DC6DB;
     color: #046580;
+}
+
+.elfinder .elfinder-toast > .toast-warning button.ui-button {
+    background-color: #dd8c1a;
+    color: #FFF;
+}
+
+.elfinder .elfinder-toast > .toast-warning button.ui-button.ui-state-hover {
+    background-color: #e7ae5e;
+    color: #422a07;
 }
 
 /* File: /css/toolbar.css */

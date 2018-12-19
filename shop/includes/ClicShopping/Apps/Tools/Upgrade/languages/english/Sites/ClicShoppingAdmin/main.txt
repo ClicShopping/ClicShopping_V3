@@ -101,6 +101,7 @@ text_search_limit = Seach github limit :
 text_core_limit = Core github limit :
 text_cache_file = Cache delay : 1 month
 text_count_search =  Number of module found :
+text_rate_limit = Rate limit
 
 text_official = Official modules
 text_community = Community modules

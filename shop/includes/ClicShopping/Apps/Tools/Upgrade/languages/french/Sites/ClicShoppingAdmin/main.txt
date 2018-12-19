@@ -99,6 +99,7 @@ text_search_limit = Limite recherche github :
 text_core_limit = Limite core github :
 text_cache_file = durée du cache : 1 mois
 text_count_search =  Nombre de module trouvé :
+text_rate_limit = Limite taux
 
 text_official = Official modules
 text_community = Community modules

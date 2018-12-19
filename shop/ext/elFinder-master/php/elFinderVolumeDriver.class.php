@@ -6232,8 +6232,9 @@ abstract class elFinderVolumeDriver {
 	protected function getFullPath($path, $base) {
 		$separator = $this->separator;
 		$systemroot = $this->systemRoot;
+		$base = (string)$base;
 
-		if ($base[0] === $separator && strpos($base, 0, strlen($systemroot)) !== $systemroot) {
+		if ($base[0] === $separator && substr($base, 0, strlen($systemroot)) !== $systemroot) {
 			$base = $systemroot . substr($base, 1);
 		}
 		if ($base !== $systemroot) {
@@ -6504,8 +6505,9 @@ abstract class elFinderVolumeDriver {
 			$o = '';
 			$r = 1;
 			if (substr(PHP_OS, 0, 3) === 'WIN') {
-				exec('rd /S /Q ' . escapeshellarg($dir), $o, $r);
-				if ($r === 0) {
+				if (!is_link($dir) && is_dir($dir)) {
+					exec('rd /S /Q ' . escapeshellarg($dir), $o, $r);
+				} else {
 					exec('del /F /Q ' . escapeshellarg($dir), $o, $r);
 				}
 			} else {

@@ -59,26 +59,26 @@ tab_page_description = Description
 tab_page_meta_tag = Méta Tag
 
 title_pages_choose = Type de page
-text_pages_choose = Veuillez sélectionner le type de page que vous souhaitez insérer :
+text_pages_choose = Veuillez sélectionner le type de page que vous souhaitez insérer
 
 title_name_page = Nom de la page
 
 title_pages_date = Date
-text_pages_date_start = Planifié le :
-text_pages_date_closed = Expire le :
-text_date_added = Date d'ajout :
-text_last_modified =  'Dernière modification :
-text_status_change = Changement du statut :
-text_page_manager_customers_group = Groupe de client pour affichage :
-text_start_date = Date début :
-text_close_date = Date d'expiration :
+text_pages_date_start = Planifié le
+text_pages_date_closed = Expire le
+text_date_added = Date d'ajout
+text_last_modified =  'Dernière modification
+text_status_change = Changement du statut
+text_page_manager_customers_group = Groupe de client pour affichage
+text_start_date = Date début
+text_close_date = Date d'expiration
 
 normal_customer = Clients Normaux
 text_all_groups = Tous les groupes
 
-title_pages_type = Type de la page' ;
-text_pages_box = Choix boxe d'affichage :
-text_pages_type = Type de page :
+title_pages_type = Type de la page
+text_pages_box = Choix boxe d'affichage
+text_pages_type = Type de page
 page_manager_introduction_page = Introduction
 page_manager_main_page = Accueil
 page_manager_contact_us = Nous contacter
@@ -95,18 +95,18 @@ page_manager_text_yes = Oui
 page_manager_text_no = Non
 
 title_divers = Divers
-text_pages_time = Temps d'affichage de la page d'introduction :
+text_pages_time = Temps d'affichage de la page d'introduction
 text_pages_time_seconde = <i>Secondes</i>
-text_pages_sort_order = Ordre de tri :
+text_pages_sort_order = Ordre de tri
 
 title_link = Type de lien sur la page
-text_pages_intext = Type de lien :
+text_pages_intext = Type de lien
 text_links_same_windows = Même fenêtre
 text_links_new_windows = Nouvelle fenêtre
 text_target_internal = Interne
 text_target_external = Externe
-text_pages_external_link = URL Externe de la page :
-text_target = Affichage cible de la page :
+text_pages_external_link = URL Externe de la page
+text_target = Affichage cible de la page
 text_target_samewindow = Meme onglet
 text_target_newwindow = Nouvel onglet
 
