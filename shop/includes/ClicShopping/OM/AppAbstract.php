@@ -152,10 +152,9 @@
     final public function loadDefinitions($group, $language_code = null) {
         $language_code = isset($language_code) && $this->lang->exists($language_code) ? $language_code : $this->lang->get('code');
 
-        if ($language_code != 'en') {
+        if (is_null($language_code) || empty($language_code)) {
           $this->loadDefinitions($group, 'en');
         }
-
         $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . '/' . $group . '.txt';
 
         $group = 'Apps/' . $this->vendor . '/' . $this->code . '/' . $group;
