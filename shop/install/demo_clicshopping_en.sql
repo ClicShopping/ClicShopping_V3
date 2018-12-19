@@ -1819,6 +1819,8 @@ INSERT INTO pages_manager VALUES(7, '_self', 5, 1, 4, 0, '0', NULL, NULL, '2008-
 INSERT INTO pages_manager VALUES(8, '_self', 6, 1, 4, 0, '0', NULL, NULL, '2008-09-16 14:48:16', '2018-07-27 20:39:29', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(10, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:40:45', NULL, NULL, 0, 0);
 INSERT INTO pages_manager VALUES(11, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(13, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
+INSERT INTO pages_manager VALUES(14, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
 
 INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
@@ -1838,6 +1840,10 @@ INSERT INTO pages_manager_description VALUES(10, 'Specials', '', 'index.php/Prod
 INSERT INTO pages_manager_description VALUES(10, 'Promotions', '', 'index.php/Products/Specials', 2, '', '', '');
 INSERT INTO pages_manager_description VALUES(11, 'News', '', 'index.php/Products/ProductsNew', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(11, 'Nouveautés', '', 'index.php/Products/ProductsNew', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'index.php?Products&Featured', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'index.php?Products&Featured', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'index.php?Products&Featured', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'index.php?Products&Featured', 2, '', '', '');
 
 INSERT INTO products VALUES(1, 200, 'REF-802868263', 'products/demo/130_61ajN-dgGxL._SL1000_.jpg', '', 'REF-782750996', 'products/demo/640_61ajN-dgGxL._SL1000_.jpg', '400.0000', '2018-07-26 08:54:52', '2018-07-29 00:21:20', NULL, '5.0000', '0', 1, 1, 1, 0, 0, '1', '1', 0, 0, 1, '1', '50.00', '20.00', '5.00', '', 'Loic Richard', '', 0, 0, 'products/demo/250_61ajN-dgGxL._SL1000_.jpg', 2, '0.00', '0.00', 1, 0, 0, 0, NULL, 0, 'product');
 INSERT INTO products VALUES(2, 100, 'REF-1716121764', 'products/demo/130_640_lc32hg70qqnxza_gallery1_0606.jpg', '', 'REF-876294104', 'products/demo/640_640_lc32hg70qqnxza_gallery1_0606.jpg', '200.0000', '2018-07-26 08:57:01', '2018-07-28 19:50:17', NULL, '4.5000', '0', 1, 1, 2, 0, 0, '1', '1', 0, 0, 1, '1', '30.00', '20.00', '3.00', '', 'Loic Richard', '', 0, 0, 'products/demo/250_640_lc32hg70qqnxza_gallery1_0606.jpg', 2, '0.00', '0.00', 2, 0, 0, 0, NULL, 0, 'product');

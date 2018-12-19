@@ -1765,6 +1765,8 @@ INSERT INTO pages_manager VALUES(5, '', 4, 1, 4, 0, '', NULL, NULL, '1000-01-01 
 INSERT INTO pages_manager VALUES(10, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
 INSERT INTO pages_manager VALUES(11, '_self', 0, 1, 6, 3, '0', NULL, NULL, '2018-08-01 08:33:57', '2018-08-01 08:39:27', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(12, '_self', 0, 1, 6, 3, '0', NULL, NULL, '2018-08-01 08:40:24', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(13, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
+INSERT INTO pages_manager VALUES(14, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
 
 INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
@@ -1782,6 +1784,10 @@ INSERT INTO pages_manager_description VALUES(11, 'RSS', '', 'index.php?Info&RSS'
 INSERT INTO pages_manager_description VALUES(11, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
 INSERT INTO pages_manager_description VALUES(12, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(12, 'Sitemap', '', 'index.php?Info&SiteMap', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'index.php?Products&Featured', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'index.php?Products&Featured', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'index.php?Products&Featured', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'index.php?Products&Featured', 2, '', '', '');
 
 
 INSERT INTO products_quantity_unit VALUES(4, 2, 'douzaine');
