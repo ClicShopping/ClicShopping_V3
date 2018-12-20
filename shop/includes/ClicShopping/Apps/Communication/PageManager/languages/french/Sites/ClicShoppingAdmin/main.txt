@@ -101,8 +101,8 @@ text_pages_sort_order = Ordre de tri
 
 title_link = Type de lien sur la page
 text_pages_intext = Type de lien
-text_links_same_windows = Même fenêtre
-text_links_new_windows = Nouvelle fenêtre
+text_link_same_windows = Même fenêtre
+text_link_new_windows = Nouvelle fenêtre
 text_target_internal = Interne
 text_target_external = Externe
 text_pages_external_link = URL Externe de la page
@@ -159,3 +159,6 @@ icon_edit = Editer la page
 
 text_result_page = Page {{listing_from}} à {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
+text_help_wysiwyg = Aide wysiwig
+help_options =

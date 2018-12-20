@@ -5,7 +5,8 @@ heading_title_val = Etape 2 : Caractéristique des options pour le produit
 heading_title_attributes = Etape 3 : Définition des attributs des produits
 
 table_heading_id = ID
-table_heading_ref_attributes = Ref. Attribut produits
+table_heading_type = Type
+table_heading_ref_attributes = Ref. Attribut
 table_heading_product = Nom du produit
 table_heading_opt_name = Nom de l'option
 table_heading_opt_value = Caratéristique de l'option

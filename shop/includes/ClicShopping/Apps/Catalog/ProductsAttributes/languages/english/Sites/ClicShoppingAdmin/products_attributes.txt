@@ -6,7 +6,8 @@ heading_title_val = Step 2 : Option values for the product
 heading_title_attributes = Step 3 : Define the products Attributes
 
 table_heading_id = ID
-table_heading_ref_attributes = Products attribut REF
+table_heading_type = Type
+table_heading_ref_attributes = Attribut Model
 
 table_heading_product = Product Name
 table_heading_opt_name = Option Name
