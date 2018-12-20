@@ -67,6 +67,8 @@
 
 // language
       $CLICSHOPPING_Language = new Language();
+      $CLICSHOPPING_Language->setUseCache(true);
+
       Registry::set('Language', $CLICSHOPPING_Language);
 
 // Template
