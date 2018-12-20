@@ -163,12 +163,9 @@
       return $sql_data_array['products_download_filename'];
     }
 
-
-
-
 /**
  * generate a radom string
- *@param int length of the randem
+ *@param int length of the random
  *@return $randomString
 */
     public function getGenerateRandomString($length = 10) {
@@ -207,16 +204,17 @@
         $rand_image = $this->getGenerateRandomString();
 
         $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
+
         $error = true;
 
 // image resample
         $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
         $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
 
-        if (empty($_POST['directory_products_image']) || is_null($_POST['directory_products_image'])) {
+        if(empty($new_dir_products_image)) {
           $dir_products_image = 'products/';
         } else {
-          $dir_products_image = 'products/' . $_POST['directory_products_image'] . '/';
+          $dir_products_image = 'products/' . $new_dir_products_image . '/';
         }
 
 // create directory for image resample
