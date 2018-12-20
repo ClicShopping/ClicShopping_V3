@@ -38,9 +38,11 @@ span.headerInfo {
 .menuHeaderPageManager {
   padding-left: 0.2rem;
   padding-right:0.2rem;
+  color: #fff;
 }
 
 a.menuHeaderPageManager {
+  color: #fff;
 }
 
 
