@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -166,9 +166,9 @@
           <div class="col-md-5">
 <?php
   if ($id == 1) {
-    echo HTML::inputField('directory', $lInfo->locale, 'readonly required aria-required="true"');
+    echo HTML::inputField('locale', $lInfo->locale, 'readonly required aria-required="true"');
   } else {
-    echo HTML::inputField('directory', $lInfo->locale, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"');
+    echo HTML::inputField('locale', $lInfo->locale, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"');
   }
 ?>
           </div>
