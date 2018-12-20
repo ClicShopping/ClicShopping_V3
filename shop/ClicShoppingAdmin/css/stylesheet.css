@@ -335,6 +335,10 @@ span.pageManager A {
 /*     Boostrap       */
 /**********************/
 
+.form-control {
+  height: auto;
+}
+
 .modal {
   z-index: 9999;
 }

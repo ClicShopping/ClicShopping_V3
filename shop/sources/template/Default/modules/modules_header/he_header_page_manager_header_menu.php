@@ -43,7 +43,7 @@
 
       if (MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_STATUS == 'True') {
         $content_width = (int)MODULE_HEADER_PAGE_MANAGER_HEADER_MENU_CONTENT_WIDTH;
-        $header_menu =  $CLICSHOPPING_PageManagerShop->pageManagerDisplayHeaderMenu();
+        $header_menu =  $CLICSHOPPING_PageManagerShop->pageManagerDisplayHeaderMenu('<div class="col-md-12 menuHeaderPageManager"', '</div>');
 
         $data ='<!-- Boxe page manager menu header  start -->' . "\n";
 
