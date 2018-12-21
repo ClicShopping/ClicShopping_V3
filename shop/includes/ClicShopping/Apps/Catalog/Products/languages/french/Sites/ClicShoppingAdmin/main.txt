@@ -174,14 +174,14 @@ text_delete_warning_products = <strong>ATTENTION :</strong> Il y a  {{delete_chi
 text_move_products_intro = Merci de sélectionner la catégorie ou vous voudriez que <strong>{{products_name}}</strong> soit placé
 text_move = Déplacer <strong>{{products_name}}</strong> vers :
 
-text_sort_order = Ordre de tri :
+text_sort_order = Ordre de tri
 
-text_products_status = Statut :
+text_products_status = Statut
 text_products_date_available = Date de disponibilité
-text_product_available = En stock
+text_products_available = En stock
 text_products_dimension = Dimensions (LxHxP)
 text_products_dimension_type = Type de dimension
-text_product_not_available = Hors stock
+text_products_not_available = Hors stock
 
 text_products_name = Nom du produit
 text_products_description = Description du produit
@@ -237,7 +237,7 @@ text_products_preview_price_kilo = Px /Kg
 text_products_page_option = Champs complémentaires
 text_products_others_options = Autres options
 
-text_product_type = Type produit
+text_products_type = Type produit
 text_stockable_product = Produit
 text_stockable_consumable = Consommable
 text_stockable_service = Service
