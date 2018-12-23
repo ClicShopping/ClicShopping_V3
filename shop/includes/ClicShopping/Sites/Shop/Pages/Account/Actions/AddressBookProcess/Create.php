@@ -232,7 +232,8 @@
                              'entry_street_address' => $street_address,
                              'entry_postcode' => $postcode,
                              'entry_city' => $city,
-                             'entry_country_id' => (int)$country
+                             'entry_country_id' => (int)$country,
+                             'entry_telephone' => $telephone
                             ];
 
           if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -272,11 +273,15 @@
             $CLICSHOPPING_Customer->setDefaultAddressID($_GET['id']);
 
 /// pb avec namespace
-            $default_address_id = $CLICSHOPPING_Customer->getDefautlAddressID();
+//            $default_address_id = $CLICSHOPPING_Customer->getDefautlAddressID();
+
             if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) $default_address_id  = $new_address_book_id;
 
             $sql_data_array = ['customers_firstname' => $firstname,
-                                'customers_lastname' => $lastname
+                               'customers_lastname' => $lastname,
+                               'customers_cellular_phone' => $cellular_phone,
+                               'customers_fax' => $fax,
+                               'customers_telephone' => $telephone
                               ];
 
             if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {

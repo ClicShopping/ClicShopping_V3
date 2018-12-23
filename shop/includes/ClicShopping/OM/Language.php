@@ -309,16 +309,11 @@
         $pathname = CLICSHOPPING::getConfig('dir_root', $site) . 'sources/languages/' . $this->get('directory', $language_code) . '/' . $group;
       }
 
-// legacy
-        if (is_file($pathname . '.php')) {
+      $pathname .= '.txt';
+
+      if (is_file($pathname)) {
           return true;
-        }
-
-        $pathname .= '.txt';
-
-        if (is_file($pathname)) {
-            return true;
-        }
+      }
 
       if ($language_code != DEFAULT_LANGUAGE) {
         return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);

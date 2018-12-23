@@ -89,6 +89,7 @@ text_more_infos = Plus Infos :
 text_close = Fermer
 text_search = Rechercher
 
+button_back = Retour
 button_not_free = Acheter
 button_install = Installer
 button_setting = Configurer
