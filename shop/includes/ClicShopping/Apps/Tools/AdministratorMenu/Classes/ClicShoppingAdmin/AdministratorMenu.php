@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -109,41 +109,39 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
-      
+
       if (!is_array($category_tree_array)) $category_tree_array = [];
       if ((count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_AdministratorMenu->getDef('text_top')];
 
       if ($include_itself) {
-        $Qcategory = $CLICSHOPPING_Db->get('administrator_menu_description', 'label', [
-                                                                                  'language_id' => (int)$CLICSHOPPING_Language->getId(),
-                                                                                  'id' => (int)$parent_id
-                                                                                ]
-                                   );
+        $Qcategory = $CLICSHOPPING_Db->get('administrator_menu_description', 'label', ['language_id' => (int)$CLICSHOPPING_Language->getId(),
+                                                                                       'id' => (int)$parent_id
+                                                                                      ]
+                                          );
 
-        $category_tree_array[] = [
-                                  'id' => $parent_id,
+        $category_tree_array[] = ['id' => $parent_id,
                                   'text' => $Qcategory->value('label')
-                                ];
+                                 ];
       }
 
-      $Qcategories = $CLICSHOPPING_Db->get([
-                                      'administrator_menu c',
-                                      'administrator_menu_description cd'
-                                    ], [
-                                      'c.id',
-                                      'cd.label',
-                                      'c.parent_id'
-                                    ], [
-                                      'c.id' => [
-                                        'rel' => 'cd.id'
-                                      ],
-                                      'cd.language_id' => (int)$CLICSHOPPING_Language->getId(),
-                                      'c.parent_id' => (int)$parent_id
-                                    ], [
-                                        'c.sort_order',
-                                        'cd.label'
-                                      ]
-                                    );
+
+      $Qcategories = $CLICSHOPPING_Db->get(['administrator_menu c',
+                                            'administrator_menu_description cd'
+                                          ], [
+                                            'c.id',
+                                            'cd.label',
+                                            'c.parent_id'
+                                          ], [
+                                            'c.id' => [
+                                              'rel' => 'cd.id'
+                                            ],
+                                            'cd.language_id' => (int)$CLICSHOPPING_Language->getId(),
+                                            'c.parent_id' => (int)$parent_id
+                                          ], [
+                                              'c.sort_order',
+                                              'cd.label'
+                                            ]
+                                          );
 
 
       while ($Qcategories->fetch()) {
@@ -164,7 +162,7 @@
 
     public static function getGeneratedAdministratorMenuPathIds($id)  {
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
-      
+
       $calculated_category_path_string = '';
       $calculated_category_path = static::getGenerateCategoryPath($id);
 
@@ -284,7 +282,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
-      
+
       if (!is_array($category_tree_array)) $category_tree_array = [];
       if ( (count($category_tree_array) < 1) && ($exclude != '0') ) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_AdministratorMenu->getDef('text_top')];
 

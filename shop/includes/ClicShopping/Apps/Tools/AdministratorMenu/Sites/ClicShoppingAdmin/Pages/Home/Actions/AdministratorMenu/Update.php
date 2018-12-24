@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -36,6 +36,7 @@
       $image = HTML::sanitize($_POST['image']);
       $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
       $access = $_POST['access_administrator'];
+      $move_to_category_id = $_POST['move_to_category_id'];
 
       if ($b2b_menu == 'on') {
         $b2b_menu = 1;
@@ -47,7 +48,8 @@
                          'link' => $link,
                          'image' => $image,
                          'b2b_menu' => (int)$b2b_menu,
-                         'access' => (int)$access
+                         'access' => (int)$access,
+                         'parent_id' => (int)$move_to_category_id
                         ];
 
       $this->app->db->save('administrator_menu', $sql_data_array, ['id' => (int)$id] );

@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *
  *
  */
@@ -20,25 +20,25 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  
+
   if (isset($_GET['cID'])) {
     $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
-                                                                  a.link,
-                                                                  a.parent_id,
-                                                                  a.access,
-                                                                  a.sort_order,
-                                                                  a.image,
-                                                                  a.b2b_menu,
-                                                                  a.app_code,
-                                                                  amd.label
-                                                            from :table_administrator_menu a,
-                                                                 :table_administrator_menu_description amd
-                                                            where a.id = amd.id
-                                                            and a.id = :id
-                                                            and amd.language_id = :language_id
-                                                            order by a.parent_id,
-                                                                     a.sort_order
-                                                            ');
+                                                                        a.link,
+                                                                        a.parent_id,
+                                                                        a.access,
+                                                                        a.sort_order,
+                                                                        a.image,
+                                                                        a.b2b_menu,
+                                                                        a.app_code,
+                                                                        amd.label
+                                                                  from :table_administrator_menu a,
+                                                                       :table_administrator_menu_description amd
+                                                                  where a.id = amd.id
+                                                                  and a.id = :id
+                                                                  and amd.language_id = :language_id
+                                                                  order by a.parent_id,
+                                                                           a.sort_order
+                                                                  ');
     $Qcategories->bindInt(':id', (int)$_GET['cID'] );
     $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
     $Qcategories->execute();
@@ -48,8 +48,10 @@
     $cInfo = new ObjectInfo(array());
   }
 
+  $current_category_id = HTML::sanitize($_GET['cID']);
   $languages = $CLICSHOPPING_Language->getLanguages();
   $form_action = (isset($_GET['cID'])) ? 'Update' : 'Insert';
+
   echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'post');
 
 ?>
@@ -80,9 +82,9 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
 <?php
-// ##################################################################
+// -------------------------------------------------------------------
 //          ONGLET General sur la description de la categorie
-// ##################################################################
+// -------------------------------------------------------------------
 ?>
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
