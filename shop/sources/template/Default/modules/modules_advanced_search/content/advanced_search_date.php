@@ -19,7 +19,7 @@
       <div class="form-group row">
         <label for="dfrom" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_from'); ?></label>
         <div class="col-md-8">
-          <?php echo HTML::inputField('dfrom', null, 'id="dfrom" aria-describedby="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_from') . '" placeholder="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_from') . '"', 'date'); ?>
+          <?php echo HTML::inputField('dfrom', null, 'id="dfrom" aria-describedby="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_from') . '" placeholder="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_from') . '"'); ?>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="form-group row">
         <label for="dto" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_to'); ?></label>
         <div class="col-md-8">
-          <?php echo HTML::inputField('dto', null, 'id="dto" aria-describedby="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_to') . '" placeholder="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_to') . '"', 'date'); ?>
+          <?php echo HTML::inputField('dto', null, 'id="dto" aria-describedby="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_to') . '" placeholder="' . CLICSHOPPING::getDef('modules_advanced_search_date_entry_date_to') . '"'); ?>
         </div>
       </div>
     </div>
