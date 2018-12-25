@@ -105,26 +105,26 @@
   if (isset($_POST['search']) && !is_null($_POST['search'])) {
     $keywords = HTML::sanitize($_POST['search']);
 
-    $Qproducts = $CLICSHOPPING_Archive->db->prepare('select  SQL_CALC_FOUND_ROWS   p.products_id,
-                                                                            p.products_model,
-                                                                            p.products_image,
-                                                                            p.products_price,
-                                                                            pd.products_name,
-                                                                            p.products_date_added,
-                                                                            p.products_last_modified,
-                                                                            p.products_status,
-                                                                            p.products_archive
-                                             from :table_products p,
-                                                  :table_products_description pd
-                                             where p.products_id = pd.products_id
-                                             and p.products_archive = 1
-                                             and pd.language_id = :language_id
-                                             and (p.products_model like :search
-                                                  or  pd.products_name like :search)
-                                             order by  p.products_last_modified DESC, pd.products_name
-                                             limit :page_set_offset,
-                                                  :page_set_max_results
-                                            ');
+    $Qproducts = $CLICSHOPPING_Archive->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
+                                                                                p.products_model,
+                                                                                p.products_image,
+                                                                                p.products_price,
+                                                                                pd.products_name,
+                                                                                p.products_date_added,
+                                                                                p.products_last_modified,
+                                                                                p.products_status,
+                                                                                p.products_archive
+                                                   from :table_products p,
+                                                        :table_products_description pd
+                                                   where p.products_id = pd.products_id
+                                                   and p.products_archive = 1
+                                                   and pd.language_id = :language_id
+                                                   and (p.products_model like :search
+                                                        or  pd.products_name like :search)
+                                                   order by  p.products_last_modified DESC, pd.products_name
+                                                   limit :page_set_offset,
+                                                        :page_set_max_results
+                                                  ');
 
     $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
     $Qproducts->bindValue(':search', '%' . $keywords . '%');
@@ -132,24 +132,24 @@
     $Qproducts->execute();
 
   } else {
-    $Qproducts = $CLICSHOPPING_Archive->db->prepare('select  SQL_CALC_FOUND_ROWS   p.products_id,
-                                                                            p.products_model,
-                                                                            p.products_image,
-                                                                            p.products_price,
-                                                                            pd.products_name,
-                                                                            p.products_date_added,
-                                                                            p.products_last_modified,
-                                                                            p.products_status,
-                                                                            p.products_archive
-                                               from :table_products p,
-                                                    :table_products_description pd
-                                               where p.products_id = pd.products_id
-                                               and p.products_archive = 1
-                                               and pd.language_id = :language_id
-                                               order by  p.products_last_modified DESC, pd.products_name
-                                               limit :page_set_offset,
-                                                    :page_set_max_results
-                                              ');
+    $Qproducts = $CLICSHOPPING_Archive->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
+                                                                                p.products_model,
+                                                                                p.products_image,
+                                                                                p.products_price,
+                                                                                pd.products_name,
+                                                                                p.products_date_added,
+                                                                                p.products_last_modified,
+                                                                                p.products_status,
+                                                                                p.products_archive
+                                                     from :table_products p,
+                                                          :table_products_description pd
+                                                     where p.products_id = pd.products_id
+                                                     and p.products_archive = 1
+                                                     and pd.language_id = :language_id
+                                                     order by  p.products_last_modified DESC, pd.products_name
+                                                     limit :page_set_offset,
+                                                          :page_set_max_results
+                                                    ');
 
     $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
     $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
