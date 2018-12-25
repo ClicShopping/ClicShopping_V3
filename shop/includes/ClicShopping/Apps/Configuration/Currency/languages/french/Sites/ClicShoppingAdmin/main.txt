@@ -45,7 +45,7 @@ text_set_default = Défaut
 text_default = Défaut
 
 table_heading_currency_name = Devise
-table_heading_currency_codes = Code
+table_heading_currency_code = Code
 table_heading_currency_value = Valeur
 table_heading_action = Action
 table_heading_currency_last_updated = Last updated
