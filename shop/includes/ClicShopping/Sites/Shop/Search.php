@@ -53,12 +53,10 @@
       return $this->_period_max_year;
     }
 
-
     public function getDateFrom() {
-
       if (isset($_POST['dfrom']) && !empty($_POST['dfrom'])) {
         $this->_date_from = HTML::sanitize($_POST['dfrom']);
-      } elseif (isset($_GET['dfrom']) && !empty($_GET['dto'])) {
+      } elseif (isset($_GET['dfrom']) && !empty($_GET['dfrom'])) {
         $this->_date_from = HTML::sanitize($_GET['dfrom']);
       } else {
         $this->_date_from = '';
@@ -69,7 +67,6 @@
 
 
     public function hasDateFrom() {
-
       $dfromDateTime = new DateTime($this->getDateFrom(), false);
 
       if ($dfromDateTime->isValid() === false) {
@@ -85,12 +82,12 @@
       if (isset($_POST['dto']) && !empty($_POST['dto'])) {
         $this->_date_to = HTML::sanitize($_POST['dto']);
       } elseif (isset($_GET['dto']) && !empty($_GET['dto'])) {
-        $this->date_to = HTML::sanitize($_GET['dto']);
+        $this->_date_to = HTML::sanitize($_GET['dto']);
       } else {
-        $this->date_to = '';
+        $this->_date_to = '';
       }
 
-      return $this->date_to;
+      return $this->_date_to;
     }
 
 

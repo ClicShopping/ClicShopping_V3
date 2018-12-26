@@ -80,7 +80,6 @@
     public function getShort($with_time = false)
     {
       $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
-
       return strftime($pattern, $this->getTimestamp());
     }
 
@@ -141,7 +140,7 @@
 
 /*
 * Date Timestamp
-* @param $date, $format
+* @param $date
 * @return
 * ex : 1430965442
 */

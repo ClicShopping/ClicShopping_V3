@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+
   use ClicShopping\Service\Shop\WhosOnline;
 
   class Description extends \ClicShopping\OM\PagesActionsAbstract {
