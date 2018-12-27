@@ -35,6 +35,7 @@
                                               decimal_places,
                                               value
                                        from :table_currencies
+                                       where status = 1
                                       ');
 
       $Qcurrencies->execute();

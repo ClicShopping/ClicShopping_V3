@@ -49,6 +49,7 @@ table_heading_currency_code = Code
 table_heading_currency_value = Valeur
 table_heading_action = Action
 table_heading_currency_last_updated = Last updated
+table_heading_currency_status = Statut
 
 text_info_common_currencies = Monnaies courantes
 text_info_edit_intro = Merci de faire les changements nécessaires

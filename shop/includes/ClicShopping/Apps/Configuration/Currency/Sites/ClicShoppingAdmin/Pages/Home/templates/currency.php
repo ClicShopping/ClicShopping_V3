@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
@@ -55,6 +55,7 @@ use ClicShopping\OM\HTML;
           <th><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_code'); ?></th>
           <th class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_value'); ?></th>
           <th class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_last_updated'); ?></th>
+          <th class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_status'); ?></th>
           <th class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_action'); ?>&nbsp;</th>
         </tr>
         </thead>
@@ -69,7 +70,8 @@ use ClicShopping\OM\HTML;
                                                                               thousands_point,
                                                                               decimal_places,
                                                                               last_updated,
-                                                                              value
+                                                                              value,
+                                                                              status
                                                 from :table_currencies
                                                 order by title
                                                 limit :page_set_offset, :page_set_max_results
@@ -96,11 +98,20 @@ use ClicShopping\OM\HTML;
             <td><?php echo $Qcurrency->value('code'); ?></td>
             <td class="text-md-right"><?php echo number_format($Qcurrency->value('value'), 8); ?></td>
             <td class="text-md-center"><?php echo DateTime::toShort($Qcurrency->value('last_updated')); ?></td>
+            <td class="text-md-center">
+<?php
+  if ($Qcurrency->valueInt('status') == 1) {
+    echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $_GET['page']),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+  } else {
+    echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=1&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $_GET['page']),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+  }
+?>
+            </td>
             <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_Currency->link('Edit&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')) . '</a>' ;
+      echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')));
       echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_Currency->link('Delete&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('image_delete')) . '</a>';
+      echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('image_delete')));
       echo '&nbsp;';
 ?>
             </td>

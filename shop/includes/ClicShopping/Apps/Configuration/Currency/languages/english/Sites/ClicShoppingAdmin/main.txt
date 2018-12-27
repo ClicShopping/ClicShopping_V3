@@ -48,6 +48,7 @@ table_heading_currency_code = Code
 table_heading_currency_value = Value
 table_heading_action = Action
 table_heading_currency_last_updated = Dernière mis à jour
+table_heading_currency_status = Status
 
 text_info_common_currencies = Common currencies
 text_info_edit_intro = Please make any necessary changes
