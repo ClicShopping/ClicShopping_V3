@@ -61,7 +61,7 @@
 <div class="container-fluid">
   <div>
     <noscript>
-      <div class="alert alert-warning no-script">
+      <div class="alert alert-warning no-script" role="alert">
         <div class="no-script-inner"><?php echo CLICSHOPPING::getDef('no_script_text'); ?></div>
       </div>
     </noscript>

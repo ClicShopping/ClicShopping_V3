@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
@@ -65,7 +65,7 @@ $(function() {
 <?php
 if ($CLICSHOPPING_PayPal_Config->is_installed === true) {
     foreach ($CLICSHOPPING_PayPal_Config->req_notes as $rn) {
-        echo '<div class="alert alert-warning"><p>' . $rn . '</p></div>';
+        echo '<div class="alert alert-warning" role="alert"><p>' . $rn . '</p></div>';
     }
 ?>
 <form name="paypalConfigure" action="<?php echo $CLICSHOPPING_PayPal->link('Configure&Process&module=' . $current_module); ?>" method="post">

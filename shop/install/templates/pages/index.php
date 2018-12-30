@@ -67,7 +67,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
 </div>
 <br /><br />
 
-<div class="alert alert-info">
+<div class="alert alert-info" role="alert">
   <h2><?php echo TEXT_TITLE_WELCOME; ?> <small>v<?php echo CLICSHOPPING::getVersion(); ?></small></h2>
 
   <p><?php echo TEXT_INTRO_WELCOME; ?></p>
@@ -81,7 +81,7 @@ if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
 if (!empty($warning_array)) {
 ?>
 
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" role="alert">
       <p><?php echo TEXT_NOTICE; ?></p>
 
       <ul style="margin-top: 20px; margin-bottom: 20px;">
@@ -103,7 +103,7 @@ if (!empty($warning_array)) {
 if (!empty($configfile_array)) {
 ?>
 
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" role="alert">
       <p><?php echo TEXT_NOT_SAVE_PARAMETERS; ?></p>
 
       <ul style="margin-top: 20px;">
@@ -129,7 +129,7 @@ if (!empty($configfile_array) || !empty($warning_array)) {
 } else {
 ?>
 
-    <div id="detectHttps" class="alert alert-info">
+    <div id="detectHttps" class="alert alert-info" role="alert">
       <p><i class="fas fa-spinner fa-spin fa-fw"></i> Please wait, detecting web server environment..</p>
     </div>
 
@@ -137,7 +137,7 @@ if (!empty($configfile_array) || !empty($warning_array)) {
       <p>The web server environment has been verified to proceed with a successful installation and configuration of your online store.</p>
 
       <div id="httpsNotice" style="display: none;">
-        <div class="alert alert-warning">
+        <div class="alert alert-warning" role="alert">
           <p><strong>HTTPS Server Detected</strong></p>
 
           <p>A HTTPS configured web server has been detected. It is recommended to install your online store in a secure environment. Please click the following <span class="label label-warning">Reload in HTTPS</span> button to reload this installation procedure in HTTPS. If you receive an error, please use your browsers back button to return to this page and continue the installation using the <span class="label label-success">Start the Installation Procedure</span> button below.</p>

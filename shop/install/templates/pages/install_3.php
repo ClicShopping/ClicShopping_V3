@@ -26,7 +26,7 @@ if ((substr($dir_fs_document_root, -1) != '\\') && (substr($dir_fs_document_root
 
 <div class="row">
   <div class="col-sm-9">
-    <div class="alert alert-info">
+    <div class="alert alert-info" role="alert">
       <h2><?php echo TEXT_END_CONFIGURATION; ?></h2>
 
       <p><?php echo TEXT_INFO_1; ?></p>

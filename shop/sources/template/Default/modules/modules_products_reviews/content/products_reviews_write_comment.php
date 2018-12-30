@@ -34,7 +34,7 @@ use ClicShopping\OM\CLICSHOPPING;
         </div>
       </div>
       <div class="col-md-12">
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-info" role="alert" role="alert">
 <?php
   echo CLICSHOPPING::getDef('modules_products_reviews_write_min_caracters') . ' ' . $min_caracters_to_write . '<br />';
   echo CLICSHOPPING::getDef('modules_products_reviews_write_comment_sub_title_from_sub_title_review_text_no_html');

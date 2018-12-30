@@ -60,7 +60,7 @@
   } else {
 ?>
     <div class="separator"></div>
-    <div class="alert alert-info">
+    <div class="alert alert-info" role="alert">
       <p><?php echo CLICSHOPPING::getDef('module_account_customers_history_no_purchases'); ?></p>
     </div>
 <?php

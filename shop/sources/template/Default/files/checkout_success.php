@@ -16,7 +16,7 @@
 
   if ( $CLICSHOPPING_MessageStack->exists('checkout_success') ) {
 ?>
-    <div class="alert-success"><?php echo $CLICSHOPPING_MessageStack->get('checkout_success'); ?></div>
+    <div class="alert-success" role="alert"><?php echo $CLICSHOPPING_MessageStack->get('checkout_success'); ?></div>
     <div class="separator"></div>
 <?php
   }

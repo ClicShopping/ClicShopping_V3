@@ -64,7 +64,7 @@
 
   if ($_GET['error'] == 'fileNotSupported') {
 ?>
-  <div class="alert alert-warning"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('error_file_not_supported'); ?></div>
+  <div class="alert alert-warning" role="alert"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('error_file_not_supported'); ?></div>
 <?php
   }
 ?>
@@ -1051,7 +1051,7 @@
 <?php
   }
 ?>
-            <div class="alert alert-info">
+            <div class="alert alert-info" role="alert">
               <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs')) . '&nbsp;' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_attributs', ['file_size' => @ini_get('upload_max_filesize')]); ?></div>
               <div class="separator"></div>
               <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_attributs', ['upload_max_filesize' => $upload_max_filesize]); ?></div>
@@ -1120,7 +1120,7 @@
                       </td>
                     </table>
 
-                  <div class="alert alert-info">
+                  <div class="alert alert-info" role="alert">
                     <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone')) . ' ' . $CLICSHOPPING_ProductsAttributes->getDef('title_help_clone') ?></div>
                     <div class="separator"></div>
                     <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>

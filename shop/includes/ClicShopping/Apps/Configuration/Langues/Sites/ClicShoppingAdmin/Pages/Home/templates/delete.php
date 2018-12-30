@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
@@ -45,7 +45,7 @@
   <div class="separator"></div>
 <?php
   if ($Qlanguages->value('code') == DEFAULT_LANGUAGE) {
-    echo '<div class="alert alert-warning">' . $CLICSHOPPING_Langues->getDef('error_remove_default_language') . '</div>';
+    echo '<div class="alert alert-warning" role="alert">' . $CLICSHOPPING_Langues->getDef('error_remove_default_language') . '</div>';
   }
 ?>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_delete_language'); ?></strong></div>

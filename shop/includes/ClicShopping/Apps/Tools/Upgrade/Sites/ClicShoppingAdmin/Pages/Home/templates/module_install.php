@@ -95,7 +95,7 @@
 
     if ($count_file == 0) {
 ?>
-      <div class="alert alert-warning">
+      <div class="alert alert-warning" role="alert">
 <?php
           echo $CLICSHOPPING_Upgrade->getDef('warning_no_module');
           exit;
@@ -104,7 +104,7 @@
 <?php
     } else {
 ?>
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" role="alert">
 <?php
         echo $CLICSHOPPING_Upgrade->getDef('text_count_search') . ' ' . $count_file;
 ?>
@@ -389,7 +389,7 @@
       } else {
 ?>
                 <div class="col-md-12">
-                  <div class="alert alert-warning">
+                  <div class="alert alert-warning" role="alert">
                     <?php echo $CLICSHOPPING_Upgrade->getDef('error_rate_exceed'); ?>
                   </div>
                 </div>
@@ -409,7 +409,7 @@
     </div>
     <div class="separator"></div>
     <div class="col-md-12">
-      <div class="alert alert-info">
+      <div class="alert alert-info" role="alert">
         <div class="row">
           <span class="col-md-12">
             <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')); ?>

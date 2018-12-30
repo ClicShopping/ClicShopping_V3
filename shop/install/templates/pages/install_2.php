@@ -34,7 +34,7 @@ $dir_fs_www_root = dirname(dirname(CLICSHOPPING::BASE_DIR)) . '/';
 
 <div class="row">
   <div class="col-sm-9">
-    <div class="alert alert-info">
+    <div class="alert alert-info" role="alert">
       <h2> <?php echo TEXT_NEW_INSTALLATION; ?></h2>
 
       <p><?php echo TEXT_STEP_INTRO_STEP4; ?>.</p>

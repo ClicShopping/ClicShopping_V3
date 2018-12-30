@@ -355,10 +355,10 @@ use ClicShopping\OM\HTML;
 
 //        chart.update();
         } else {
-          $('#statsModal .statsModalContent').html('<div class="alert alert-danger">Could not find banner statistics.</div>');
+          $('#statsModal .statsModalContent').html('<div class="alert alert-danger" role="alert">Could not find banner statistics.</div>');
         }
       }).fail(function() {
-        $('#statsModal .statsModalContent').html('<div class="alert alert-danger">Could not fetch banner statistics.</div>');
+        $('#statsModal .statsModalContent').html('<div class="alert alert-danger" role="alert">Could not fetch banner statistics.</div>');
       });
     });
   });

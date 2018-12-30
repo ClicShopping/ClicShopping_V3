@@ -355,7 +355,7 @@
       </div>
 
       <div class="separator"></div>
-      <div class="alert alert-info">
+      <div class="alert alert-info" role="alert">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
         <div class="separator"></div>
         <div><?php echo $CLICSHOPPING_Products->getDef('help_general'); ?></div>
@@ -487,7 +487,7 @@
       <div id="tab2ContentRow7"></div>
 
       <div class="separator"></div>
-      <div class="alert alert-info">
+      <div class="alert alert-info" role="alert">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
         <div class="separator"></div>
         <div><?php echo $CLICSHOPPING_Products->getDef('help_stock'); ?></div>
@@ -790,7 +790,7 @@ updateGross();
         </div>
       </div>
       <div class="separator"></div>
-      <div class="alert alert-info">
+      <div class="alert alert-info" role="alert">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_description') ?></div>
         <div class="separator"></div>
         <div class="row">
@@ -1039,7 +1039,7 @@ updateGross();
         <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab5', null, 'display'); ?>
       </div>
       <div class="separator"></div>
-      <div class="alert alert-info">
+      <div class="alert alert-info" role="alert">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_image')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_image') ?></div>
         <div class="separator"></div>
         <div><?php echo $CLICSHOPPING_Products->getDef('title_help_products'); ?></div>
@@ -1259,7 +1259,7 @@ updateGross();
   } // end empty
 ?>
           <div class="separator"></div>
-          <div class="alert alert-info">
+          <div class="alert alert-info" role="alert">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Products->getDef('help_general_tab8') . ' ' . $CLICSHOPPING_Products->getDef('help_general_tab8_1') . ' ' . (int)(ini_get('upload_max_filesize')) . ' Mb'; ?></div>

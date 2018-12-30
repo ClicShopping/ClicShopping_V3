@@ -223,7 +223,7 @@
               </div>
             </div>
             <div class="separator"></div>
-            <div class="alert alert-info">
+            <div class="alert alert-info" role="alert">
               <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Newsletter->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Newsletter->getDef('title_help_description') ?></div>
               <div class="separator"></div>
               <div class="row">

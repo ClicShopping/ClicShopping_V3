@@ -32,7 +32,7 @@
 //pb here better with new payment registry : Registry('payment', new Payment($_GET['$_GET['payment_error']']) create a registry error
       $error = $CLICSHOPPING_Payment->get_error();
 ?>
-      <div class="alert alert-danger">
+      <div class="alert alert-danger" role="alert">
         <div>
 <?php
       if (!is_null($error)) {

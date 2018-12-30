@@ -62,7 +62,7 @@ use ClicShopping\OM\HTML;
       }
     } else {
 ?>
-  <div class="alert alert-warning">
+  <div class="alert alert-warning" role="alert">
     <?php echo CLICSHOPPING::getDef('notifications_non_existing'); ?>
   </div>
 <?php

@@ -198,7 +198,7 @@ use ClicShopping\OM\HTML;
           </div>
         </div>
         <div class="separator"></div>
-        <div class="alert alert-info">
+        <div class="alert alert-info" role="alert">
           <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Featured->getDef('title_help_products_featured_price')) . ' ' . $CLICSHOPPING_Featured->getDef('title_help_products_featured_price') ?></div>
           <div class="separator"></div>
           <div><?php echo $CLICSHOPPING_Featured->getDef('text_help_products_featured_price'); ?></div>

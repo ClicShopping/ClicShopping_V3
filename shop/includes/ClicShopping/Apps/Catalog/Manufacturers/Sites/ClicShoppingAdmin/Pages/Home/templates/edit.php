@@ -4,7 +4,7 @@
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4 
+ *  @licence MIT - Portion of osCommerce 2.4
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
@@ -214,7 +214,7 @@
             </div>
             <div class="separator"></div>
 
-            <div class="alert alert-info">
+            <div class="alert alert-info" role="alert">
               <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_description') ?></div>
               <div class="separator"></div>
               <div><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_clone'); ?></div>
@@ -269,7 +269,7 @@
                 </div>
               </div>
             <div class="separator"></div>
-            <div class="alert alert-info">
+            <div class="alert alert-info" role="alert">
               <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_image')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') ?></div>
               <div class="separator"></div>
               <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_image_manufacturers'); ?></div>
@@ -375,7 +375,7 @@
 ?>
             </div>
             <div class="separator"></div>
-            <div class="alert alert-info">
+            <div class="alert alert-info" role="alert">
               <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_submit')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_submit') ?></div>
               <div class="separator"></div>
               <div><?php echo $CLICSHOPPING_Manufacturers->getDef('help_submit'); ?></div>

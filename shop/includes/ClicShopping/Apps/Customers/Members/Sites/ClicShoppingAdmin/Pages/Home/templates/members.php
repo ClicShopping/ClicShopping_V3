@@ -206,7 +206,7 @@
   } else {
 
 ?>
-  <div class="alert alert-warning">
+  <div class="alert alert-warning" role="alert">
     <?php echo $CLICSHOPPING_Members->getDef('member_desactivated'); ?>
   </div>
 <?php

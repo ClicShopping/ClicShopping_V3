@@ -24,6 +24,7 @@ button_analyse = Analyser
 button_update = Mettre à jour
 button_reset_cache_core = Reset cache core
 button_upgrade = Apps / Modules
+button_back = Retour
 
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?

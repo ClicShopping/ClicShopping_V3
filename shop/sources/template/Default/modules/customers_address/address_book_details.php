@@ -25,7 +25,7 @@
     <div class="hr"></div>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
+        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
         <span><h3><?php echo CLICSHOPPING::getDef('entry_company'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -73,7 +73,7 @@
     <div class="separator"></div>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span><h3><?php echo CLICSHOPPING::getDef('category_personnal'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -187,7 +187,7 @@
       <div class="separator"></div>
       <div class="card">
         <div class="card-header">
-          <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+          <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
           <span><h3><?php echo CLICSHOPPING::getDef('new_address_title'); ?></h3></span>
         </div>
         <div class="card-block">

@@ -24,7 +24,7 @@
   </head>
   <body>
     <div style="padding-top:100px;"></div>
-    <div class="alert alert-warnign">
+    <div class="alert alert-warning" role="alert">
       <div class="text-md-center">Le nom de ce template n'existe pas ou plus. Veuillez changer le nom du template.</div>
       <div class="text-md-center" style="padding-top:10px">This template name does'nt exist. Please change your template name.</div>
       <div class="text-md-center" style="padding-top:50px;"><a href="<?php echo $_SERVER['HTTP_HOST']; ?>"><img src="images/logo_clicshopping.png" alt="ClicShopping"></a></div>

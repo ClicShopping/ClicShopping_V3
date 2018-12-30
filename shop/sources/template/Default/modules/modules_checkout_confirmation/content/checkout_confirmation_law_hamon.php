@@ -26,7 +26,7 @@ use ClicShopping\OM\CLICSHOPPING;
 </script>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
+        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
         <span><h2><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_title'); ?></h2></span>
       </div>
       <div class="card-block">

@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="separator"></div>
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" role="alert">
       <?php echo $CLICSHOPPING_Featured->getDef('text_intro_fa'); ?>
       <?php echo $CLICSHOPPING_Featured->getDef('return_url', ['return_url_fe' => CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php?Products&Featured']);  ?>
     </div>

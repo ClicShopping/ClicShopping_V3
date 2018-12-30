@@ -88,7 +88,7 @@
 <?php
   if (!isset($_POST['cPath'])) {
 ?>
-      <div class="alert alert-info"><?php echo $CLICSHOPPING_Categories->getDef('text_alert_info_categories'); ?></div>
+      <div class="alert alert-info" role="alert"><?php echo $CLICSHOPPING_Categories->getDef('text_alert_info_categories'); ?></div>
 <?php
   }
 ?>

@@ -24,7 +24,7 @@
   if ($CLICSHOPPING_Reviews->getTotalReviews() == 0) {
 ?>
       <div class="separator"></div>
-      <div class="alert alert-info"><?php echo CLICSHOPPING::getDef('text_no_reviews'); ?></div>
+      <div class="alert alert-info" role="alert"><?php echo CLICSHOPPING::getDef('text_no_reviews'); ?></div>
 <?php
   } else {
     echo $CLICSHOPPING_Template->getBlocks('modules_products_reviews');

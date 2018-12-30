@@ -81,7 +81,7 @@
 
           $data .= '<!-- pr_products_reviews_info_content end -->' . "\n";
         } else {
-          $data = '<div class="alert alert-info">' .  CLICSHOPPING::getDef('modules_products_reviews_info_content_text_no_review') . '</div>';
+          $data = '<div class="alert alert-info" role="alert">' .  CLICSHOPPING::getDef('modules_products_reviews_info_content_text_no_review') . '</div>';
         }
 
         $CLICSHOPPING_Template->addBlock($data, $this->group);

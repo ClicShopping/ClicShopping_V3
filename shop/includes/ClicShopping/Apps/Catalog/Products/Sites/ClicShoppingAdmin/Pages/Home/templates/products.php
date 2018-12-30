@@ -41,7 +41,7 @@
 
   if ($_GET['error'] == 'fileNotSupported') {
 ?>
-    <div class="alert alert-warning"><?php echo $CLICSHOPPING_Products->getDef('error_file_not_supported'); ?></div>
+    <div class="alert alert-warning" role="alert"><?php echo $CLICSHOPPING_Products->getDef('error_file_not_supported'); ?></div>
 <?php
   }
 ?>
@@ -107,7 +107,7 @@
 <?php
   if (!isset($_POST['cPath'])) {
 ?>
-      <div class="alert alert-info"><?php echo $CLICSHOPPING_Products->getDef('text_alert_info_product'); ?></div>
+      <div class="alert alert-info" role="alert"><?php echo $CLICSHOPPING_Products->getDef('text_alert_info_product'); ?></div>
 <?php
   }
 ?>

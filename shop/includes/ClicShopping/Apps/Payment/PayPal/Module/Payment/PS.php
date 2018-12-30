@@ -101,14 +101,14 @@
       }
 
       if ( !function_exists('curl_init') ) {
-        $this->description .= '<div class="alert alert-warning">' . $this->app->getDef('module_ps_error_curl') . '</div>';
+        $this->description .= '<div class="alert alert-warning" role="alert">' . $this->app->getDef('module_ps_error_curl') . '</div>';
 
         $this->enabled = false;
       }
 
       if ( $this->enabled === true ) {
         if ( !$this->app->hasCredentials('PS', 'email') ) {
-          $this->description .= '<div class="alert alert-warning">' . $this->app->getDef('module_ps_error_credentials') . '</div>';
+          $this->description .= '<div class="alert alert-warning" role="alert">' . $this->app->getDef('module_ps_error_credentials') . '</div>';
 
           $this->enabled = false;
         }
