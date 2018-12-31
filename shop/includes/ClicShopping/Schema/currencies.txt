@@ -7,7 +7,7 @@ decimal_point char(1)
 thousands_point char(1)
 decimal_places char(1)
 value float(13,8)
-last_updated datetime,
+last_updated datetime
 status tinyint(1) default(1)
 --
 primary currencies_id
