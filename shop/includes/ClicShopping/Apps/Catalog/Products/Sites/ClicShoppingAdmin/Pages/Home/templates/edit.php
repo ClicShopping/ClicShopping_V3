@@ -848,7 +848,7 @@ updateGross();
               <span class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_visuel'); ?></span>
             </div>
             <div class="col-md-11 adminformAide">
-              <div class="col-sm-12 text-md-center"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '300') . HTML::hiddenField('products_image' ,$pInfo->products_image); ?></div>
+              <div class="col-sm-12 text-md-center"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($pInfo->products_image, $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '150', '150') . HTML::hiddenField('products_image' ,$pInfo->products_image); ?></div>
               <div class="col-sm-12 text-md-center"><?php echo 'URL : '. CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'sources/images/' . $pInfo->products_image; ?></div>
               <div class="separator"></div>
               <div class="col-sm-12 text-md-center">
