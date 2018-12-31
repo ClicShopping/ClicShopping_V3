@@ -1,15 +1,5 @@
 <?php
 /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *
- *
- */
-
-/**
  * Random_* Compatibility Library
  * for using the new PHP 7 random_* API in PHP 5 projects
  *
@@ -37,19 +27,19 @@
  */
 
 if (!is_callable('RandomCompat_intval')) {
-    
+
     /**
      * Cast to an integer if we can, safely.
-     * 
+     *
      * If you pass it a float in the range (~PHP_INT_MAX, PHP_INT_MAX)
      * (non-inclusive), it will sanely cast it to an int. If you it's equal to
-     * ~PHP_INT_MAX or PHP_INT_MAX, we let it fail as not an integer. Floats 
+     * ~PHP_INT_MAX or PHP_INT_MAX, we let it fail as not an integer. Floats
      * lose precision, so the <= and => operators might accidentally let a float
      * through.
-     * 
+     *
      * @param int|float $number    The number we want to convert to an int
      * @param bool      $fail_open Set to true to not throw an exception
-     * 
+     *
      * @return float|int
      * @psalm-suppress InvalidReturnType
      *
