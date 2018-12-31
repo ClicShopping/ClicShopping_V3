@@ -56,25 +56,21 @@
         return false;
       }
 
-      if ( $CLICSHOPPING_ProductsCommon->getProductsStock() > 0) {
-        $stock = 'InStock';
-      } else {
-        $stock = 'OutofSock';
-      }
+      if (isset($_GET['Products']) && isset($_GET['Description']) ) {
+        if ( $CLICSHOPPING_ProductsCommon->getProductsStock() > 0) {
+          $stock = 'InStock';
+        } else {
+          $stock = 'OutofSock';
+        }
 
-      $products_packaging = $CLICSHOPPING_ProductsCommon->getProductsPackaging();
-      if ($products_packaging == 0) $products_packaging = 'null';
-      if ($products_packaging == 1) $products_packaging = 'http://schema.org/NewCondition';
-      if ($products_packaging == 2) $products_packaging = 'http://schema.org/RefurbishedCondition';
-      if ($products_packaging == 3) $products_packaging = 'http://schema.org/UsedCondition';
+        $products_packaging = $CLICSHOPPING_ProductsCommon->getProductsPackaging();
+        if ($products_packaging == 0) $products_packaging = 'null';
+        if ($products_packaging == 1) $products_packaging = 'http://schema.org/NewCondition';
+        if ($products_packaging == 2) $products_packaging = 'http://schema.org/RefurbishedCondition';
+        if ($products_packaging == 3) $products_packaging = 'http://schema.org/UsedCondition';
 
-      if (empty($CLICSHOPPING_ProductsCommon->getProductsEAN())) {
-        $ean = 'null';
-      } else {
         $ean = $CLICSHOPPING_ProductsCommon->getProductsEAN();
-      }
-
-      if (isset($_GET['Products']) && isset($_GET['Description'])) {
+        $sku = $CLICSHOPPING_ProductsCommon->getProductsSKU();
 
         $result = '<!--  products json_ltd -->' . "\n";
         $result .= '
@@ -86,11 +82,11 @@
              "@type": "Brand",
              "name": "' . $CLICSHOPPING_ProductsCommon->getProductsName() . '"
              },
-   "sku": "' . $ean . '",
+   "sku": "' . $sku . '",
    "description": "' . $CLICSHOPPING_ProductsCommon->getProductsDescription() . '",
    "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
    "name": "' . $CLICSHOPPING_ProductsCommon->getProductsName() . '",
-   "image": "' . $CLICSHOPPING_ProductsCommon->getProductsImage() . '",
+   "image": "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '/' . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage() . '",
    "itemCondition": "http://schema.org/' . $products_packaging .'",
    "offers": [
                 {
@@ -99,11 +95,11 @@
                  "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
                  "itemCondition": "' . $products_packaging . '",
                  "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
-                 "sku": "' . $ean . '",
+                 "sku": "' . $sku . '",
                  "availability": "' . $stock . '"
                 }
               ]
-   }    
+   }
    ' . "\n";
 
         $result .= '</script>' . "\n";
@@ -111,7 +107,7 @@
         $result .= '<!--  products json_ltd -->' . "\n";
 
         $display_result = $CLICSHOPPING_Template->addBlock($result, $this->group);
-            
+
         $output =
 <<<EOD
 {$display_result}
@@ -122,7 +118,6 @@ EOD;
     }
 
     public function Install() {
-
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS',
@@ -147,7 +142,7 @@ EOD;
         ]
       );
     }
-    
+
     public function keys() {
       return ['MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS',
               'MODULE_HEADER_TAGS_PRODUCTS_STOCK_SORT_ORDER'

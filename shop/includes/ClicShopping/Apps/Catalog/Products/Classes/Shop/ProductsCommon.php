@@ -465,7 +465,7 @@
     }
 
 /**
- * display products ean / sku
+ * display products ean
  *
  * @param string
  * @return string $products_date_available,  product date available
@@ -473,9 +473,9 @@
  */
     private function setProductsEAN() {
       $Qproducts = $this->db->get('products', ['products_ean'],
-                                              [ 'products_status' => 1,
-                                                'products_id' => (int) $this->getID()
-                                              ]
+                                                              [ 'products_status' => 1,
+                                                                'products_id' => (int) $this->getID()
+                                                              ]
                                   );
 
       $products_ean = HTML::outputProtected($Qproducts->value('products_ean'));
@@ -483,8 +483,40 @@
       return $products_ean;
     }
 
+
 /**
- * display products ean / sku
+ * display products sku
+ *
+ * @param string
+ * @return string $products_name, name of the product
+ * @access public
+ */
+    public function getProductsSKU() {
+      return $this->setProductsSKU();
+    }
+
+/**
+ * display products sku
+ *
+ * @param string
+ * @return string $products_date_available,  product date available
+ * @access private
+ */
+    private function setProductsSKU() {
+      $Qproducts = $this->db->get('products', ['products_sku'],
+                                                                [ 'products_status' => 1,
+                                                                  'products_id' => (int) $this->getID()
+                                                                ]
+                                 );
+
+      $products_sku = HTML::outputProtected($Qproducts->value('products_sku'));
+
+      return $products_sku;
+    }
+
+
+/**
+ * display products bacode
  *
  * @param string
  * @return string bar code
