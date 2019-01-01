@@ -118,13 +118,18 @@
 // B2B
     public function getCustomersGroupID() {
       $customersgroupid = 0;
+
       if (isset($this->_data1['customers_group_id'])) {
         $customersgroupid = $this->_data1['customers_group_id'];
       }
+
       return $customersgroupid;
     }
 
-
+/**
+ * @param $id, customer id
+ * @return bool
+ */
     public function setData($id) {
       $this->_data = [];
 
@@ -309,5 +314,36 @@
       }
 
       return $greeting_string;
+    }
+
+    public function hasProductNotifications() {
+      $Qcheck = $this->db->prepare('select products_id
+                                    from :table_products_notifications
+                                    where customers_id = :customers_id
+                                    limit 1
+                                    ');
+      $Qcheck->bindInt(':customers_id', $this->_data['id']);
+      $Qcheck->execute();
+
+      return ( $Qcheck->fetch() !== false );
+    }
+
+    function getProductNotifications() {
+      $CLICSHOPPING_Language = Registry::get('Language');
+
+      $Qproducts = $this->db->prepare('select pd.products_id,
+                                             pd.products_name
+                                      from :table_products_description pd,
+                                           :table_products_notifications pn
+                                      where pn.customers_id = :customers_id
+                                        and pn.products_id = pd.products_id
+                                        and pd.language_id = :language_id
+                                      order by pd.products_name
+                                      ');
+      $Qproducts->bindInt(':customers_id', $this->_data['id']);
+      $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getID());
+      $Qproducts->execute();
+
+      return $Qproducts;
     }
   }
