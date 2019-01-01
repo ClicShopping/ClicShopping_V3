@@ -324,7 +324,7 @@
 
       $Qproducts->execute();
 
-      $products_name = HTML::outputProtected($Qproducts->value('products_name'));
+      $products_name = HTML::output($Qproducts->value('products_name'));
 
       return $products_name;
     }
