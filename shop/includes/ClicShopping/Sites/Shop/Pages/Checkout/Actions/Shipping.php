@@ -51,7 +51,7 @@
       $QaddressCustomer->execute();
 
 //check if we need to continue the address creation
-      if (empty($QaddressCustomer->value('entry_street_address') || is_null($QaddressCustomer->value('entry_street_address')))) {
+      if (is_null($QaddressCustomer->value('entry_street_address'))) {
         CLICSHOPPING::redirect(null,'Checkout&ShippingAddress&newcustomer=1');
       }
 
