@@ -11,7 +11,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
+<div class="col-md-<?php echo $content_width; ?> <?php echo $position; ?>">
   <div class="separator"></div>
   <div class="shoppingCartSubTotal text-md-right"><?php echo CLICSHOPPING::getDef('module_shopping_cart_show_total_sub_total') . ' ' . $sub_total; ?></div>
 </div>

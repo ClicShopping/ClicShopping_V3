@@ -11,7 +11,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
+<div class="col-md-<?php echo $content_width; ?> <?php echo $position; ?>">
   <div class="separator"></div>
   <div class="text-md-center shoppingCartInformationSaveText">
     <?php echo CLICSHOPPING::getDef('module_shopping_cart_delay_save_cart_message_information'); ?>
