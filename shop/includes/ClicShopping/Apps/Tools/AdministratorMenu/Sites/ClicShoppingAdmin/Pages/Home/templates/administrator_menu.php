@@ -27,11 +27,11 @@
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
   $Qaccess = $CLICSHOPPING_Db->prepare('select access,
-                                        id
-                                  from :table_administrators
-                                  where id = :id
-                                  and access = 1
-                                  ');
+                                              id
+                                        from :table_administrators
+                                        where id = :id
+                                        and access = 1
+                                        ');
   $Qaccess->bindInt(':id', $_SESSION['admin']['id'] );
   $Qaccess->execute();
 
@@ -66,7 +66,8 @@
            <div class="form-group">
              <div class="controls">
 <?php
-  if (isset($_POST['cPath'])) $current_category_id = $_POST['cPath'];
+  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
+  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
   echo HTML::form('goto', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', 'class="form-inline"', ['session_id' => true]);
   echo HTML::selectMenu('cPath', AdministratorMenu::getLabelTree(), $current_category_id, 'onchange="this.form.submit();"');
@@ -82,7 +83,7 @@
 
   $cPath_array = $CLICSHOPPING_CategoriesAdmin->getPathArray();
 
-  if (count($cPath_array) > 0) {
+  if (isset($cPath_array) && count($cPath_array) > 0) {
     for ($i=0, $n=count($cPath_array)-1; $i<$n; $i++) {
       if (empty($cPath_back)) {
         $cPath_back .= $cPath_array[$i];
@@ -94,13 +95,13 @@
 
   $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
-  if (isset($_POST['search']) || isset($_POST['cPath'])) {
+  if (isset($_GET['search']) || isset($_POST['cPath'])) {
     echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_reset'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $cPath_back . 'cID=' . $current_category_id), 'warning') . '&nbsp;';
   }
 
 
   if (!isset($_GET['search'])) {
-    echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_new_category'), null, $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath), 'primary') . '&nbsp;';
+    echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_new_category'), null, $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath), 'success') . '&nbsp;';
   }
 ?>
           </span>
@@ -155,22 +156,22 @@
   } else {
 
     $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
-                                                                 a.link,
-                                                                a.parent_id,
-                                                                a.access,
-                                                                a.sort_order,
-                                                                a.b2b_menu,
-                                                                a.app_code,
-                                                                amd.label
-                                                          from :table_administrator_menu a,
-                                                               :table_administrator_menu_description amd
-                                                          where a.id = amd.id
-                                                          and a.parent_id = :parent_id
-                                                          and amd.language_id = :language_id
-                                                          and a.status = 1
-                                                          order by a.parent_id,
-                                                                   a.sort_order
-                                                          ');
+                                                                         a.link,
+                                                                        a.parent_id,
+                                                                        a.access,
+                                                                        a.sort_order,
+                                                                        a.b2b_menu,
+                                                                        a.app_code,
+                                                                        amd.label
+                                                                  from :table_administrator_menu a,
+                                                                       :table_administrator_menu_description amd
+                                                                  where a.id = amd.id
+                                                                  and a.parent_id = :parent_id
+                                                                  and amd.language_id = :language_id
+                                                                  and a.status = 1
+                                                                  order by a.parent_id,
+                                                                           a.sort_order
+                                                                  ');
 
     $Qcategories->bindInt(':parent_id', (int)$current_category_id );
     $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
@@ -182,7 +183,7 @@
     $rows++;
 
 // Get parent_id for subcategories if search
-    if (isset($_GET['search'])) $cPath = $Qcategories->valueInt('parent_id');
+    $cPath = $Qcategories->valueInt('parent_id');
 
     if ((!isset($_GET['cID']) && !isset($_GET['pID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
       $category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];

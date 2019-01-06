@@ -34,13 +34,13 @@
       $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
       $access = HTML::sanitize($_POST['access_administrator']);
 
+      $current_category_id = HTML::sanitize($_POST['move_to_category_id']);
+
       if ($b2b_menu == 'on') {
         $b2b_menu = 1;
       } else {
         $b2b_menu = 0;
       }
-
-      $current_category_id = HTML::sanitize($_POST['move_to_category_id']);
 
       $sql_data_array = ['sort_order' => (int)$sort_order,
                          'link' => $link,
@@ -49,11 +49,6 @@
                          'access' => (int)$access,
                          'status' => 1
                         ];
-
-
-      if (isset($_POST['current_category_id'])) {
-        $current_category_id = $_POST['current_category_id'];
-      }
 
       $insert_sql_data = ['parent_id' => (int)$current_category_id,
                           'app_code' => Null
@@ -86,6 +81,6 @@
 
       Cache::clear('menu-administrator');
 
-      $this->app->redirect('AdministratorMenu&cPath=' . $_GET['cPath'] . '&cID=' . (int)$id);
+      $this->app->redirect('AdministratorMenu&cPath=' . $current_category_id . '&cID=' . (int)$id);
     }
   }

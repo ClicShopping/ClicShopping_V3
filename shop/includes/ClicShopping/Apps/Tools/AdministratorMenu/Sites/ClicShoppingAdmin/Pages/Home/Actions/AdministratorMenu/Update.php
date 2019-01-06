@@ -26,10 +26,7 @@
     public function execute() {
       $CLICSHOPPING_Language = Registry::get('Language');
       if (isset($_POST['id'])) $id = HTML::sanitize($_POST['id']);
-
-      if (empty($id)) {
-        $id = HTML::sanitize($_GET['cID']);
-      }
+      if (isset($_GET['id'])) $id = HTML::sanitize($_GET['id']);
 
       $sort_order = HTML::sanitize($_POST['sort_order']);
       $link = HTML::sanitize($_POST['link']);
@@ -37,6 +34,7 @@
       $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
       $access = $_POST['access_administrator'];
       $move_to_category_id = $_POST['move_to_category_id'];
+
 
       if ($b2b_menu == 'on') {
         $b2b_menu = 1;
@@ -72,6 +70,6 @@
 
       Cache::clear('menu-administrator');
 
-      $this->app->redirect('AdministratorMenu&cPath=' . $_GET['cPath'] . '&cID=' . $id);
+      $this->app->redirect('AdministratorMenu&cPath=' . (int)$_GET['cPath'] . '&cID=' . $id);
     }
   }

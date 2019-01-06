@@ -77,7 +77,7 @@
 
           if ($_SESSION['free_shipping'] === true) {
 
-            $data .= '<div class="moduleCheckoutShippingListingFreeTitle">' . CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_title') . '&nbsp;' . $quotes[$i]['icon'] . '</div>';
+            $data .= '<div class="moduleCheckoutShippingListingFreeTitle">' . CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_title') . '&nbsp;' . $quotes['icon'] . '</div>';
             $data .= '<div style="padding-left: 15px;">';
             $data .= CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_description', ['free_shipping_amount' => $CLICSHOPPING_Currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)]) .  HTML::hiddenField('shipping', 'free_free');
             $data .= '</div>';

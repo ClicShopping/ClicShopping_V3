@@ -40,7 +40,7 @@
         $from_email_address = HTML::sanitize($_POST['from_email_address']);
         $from_name = HTML::sanitize($_POST['from_name']);
         $message = HTML::sanitize($_POST['message']);
-        $antispam = HTML::sanitize($_POST['antispam']);
+
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
