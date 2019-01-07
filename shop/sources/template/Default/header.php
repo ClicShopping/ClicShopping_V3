@@ -36,8 +36,8 @@
     <?php echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n"; ?>
   </head>
   <body>
-  <div class="<?php echo BOOTSTRAP_CONTAINER;?>">
-    <div class="bodyWrapper" id="bodyWrapper">
+    <div class="<?php echo BOOTSTRAP_CONTAINER;?>">
+      <div class="bodyWrapper" id="bodyWrapper">
         <header>
 <?php
   if  ( MODE_VENTE_PRIVEE == 'false' || (MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn() )) {

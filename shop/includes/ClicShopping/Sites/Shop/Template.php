@@ -242,12 +242,12 @@
       }
 
       if (isset($_POST['TemplateCustomerSelected'])) {
-        $template_selected = HTML::sanitize($_POST['TemplateCustomerSelected']);
+        $_SESSION['TemplateCustomerSelected'] = HTML::sanitize($_POST['TemplateCustomerSelected']);
       }
 
       clearstatcache();
 
-      return HTML::selectMenu('TemplateCustomerSelected', $filename_array, $template_selected, 'onchange="this.form.submit();"');
+      return HTML::selectMenu('TemplateCustomerSelected', $filename_array, $_SESSION['TemplateCustomerSelected'], 'onchange="this.form.submit();"');
     }
 
 /**
