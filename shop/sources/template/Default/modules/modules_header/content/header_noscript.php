@@ -11,14 +11,13 @@
 
   use ClicShopping\OM\CLICSHOPPING;
 ?>
-<noscript>
-  <div class="col-md-<?php echo $content_width; ?> modulesHeaderNoscript">
-    <noscript>
-      <div class="alert alert-warning" role="alert">
-        <div class="modulesHeaderNoscriptInner text-md-center">
-          <?php echo CLICSHOPPING::getDef('module_header_noscript_text'); ?>
-        </div>
+
+<div class="col-md-<?php echo $content_width; ?> modulesHeaderNoscript">
+  <noscript>
+    <div class="alert alert-warning" role="alert">
+      <div class="modulesHeaderNoscriptInner text-md-center">
+        <?php echo CLICSHOPPING::getDef('module_header_noscript_text'); ?>
       </div>
-    </noscript>
-  </div>
-</noscript>
+    </div>
+  </noscript>
+</div>
