@@ -31,4 +31,3 @@
   }
 
   CLICSHOPPING::loadSite('ClicShoppingAdmin');
-

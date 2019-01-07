@@ -66,7 +66,7 @@ icon_view_customers_all_orders = Voir toutes les commandes du client
 icon_view_order = Voir la commande du client
 
 text_error_twitter = Erreur, veuillez insérer un message.<br />
-text_subscription_twitter = Inscrivez vous sur <a href="https://www.twitter.com" target="_blank">Twitter</a> pour bénéficier de toute la puissance des web sociaux dans votre strategie de développement marketing.<br />Puis configurer ClicShopping (Configuration / mon administration / Configuration du web social) pour pouvoir utiliser Twitter.
+text_subscription_twitter = Inscrivez vous sur <a href="https://www.twitter.com" target="_blank" rel="noreferrer">Twitter</a> pour bénéficier de toute la puissance des web sociaux dans votre strategie de développement marketing.<br />Puis configurer ClicShopping (Configuration / mon administration / Configuration du web social) pour pouvoir utiliser Twitter.
 
 
 linkedin_certificate_clicshopping = Obtenez votre Certification ClicShopping !

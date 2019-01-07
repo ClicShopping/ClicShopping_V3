@@ -11,7 +11,6 @@
 
   use ClicShopping\OM\CLICSHOPPING;
 ?>
-
 <div class="col-md-<?php echo $content_width; ?> modulesHeaderNoscript">
   <noscript>
     <div class="alert alert-warning" role="alert">
