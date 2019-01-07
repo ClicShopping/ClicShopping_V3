@@ -227,21 +227,25 @@
       $directories = array_diff(scandir($template_directory), $weeds);
       $filename_array = [];
 
-      if (empty($template_selected)) {
-        $template_selected = $this->_directoryTemplateDefault;
-      }
+      header('Expires: '.gmdate('D, d M Y H:i:s', time()+5).'GMT');
 
       $filename_array[] =['id' => 0,
                           'text' => '-- Select --'
                          ];
 
       foreach($directories as $template_selected) {
-        if(is_dir($template_directory.$template_selected)) {
+        if(is_dir($template_directory)) {
           $filename_array[] = ['id' => $template_selected,
                               'text' => $template_selected
                               ];
         }
       }
+
+      if (isset($_POST['TemplateCustomerSelected'])) {
+        $template_selected = HTML::sanitize($_POST['TemplateCustomerSelected']);
+      }
+
+      clearstatcache();
 
       return HTML::selectMenu('TemplateCustomerSelected', $filename_array, $template_selected, 'onchange="this.form.submit();"');
     }
@@ -351,7 +355,7 @@
       if (defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
         if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
           if ((isset($_POST['TemplateCustomerSelected'])) ) {
-            $thema =  $this->_directoryTemplateSources . '/' . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']);
+            $thema =  $this->_directoryTemplateSources . '/' . $this->_directoryTemplate . '/' . HTML::sanitize($_POST['TemplateCustomerSelected']);
           }
         }
       }
