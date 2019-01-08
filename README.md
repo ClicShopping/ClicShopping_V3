@@ -20,7 +20,7 @@
  Step2 : Install Clicshopping : https://www.mysite.com/shop/install
 
 
- All informations about the CliCshopping
+ All informations about the ClicShopping
 
  Community : https://www.clicshopping.org
 
