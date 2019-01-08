@@ -233,21 +233,17 @@
                           'text' => '-- Select --'
                          ];
 
-      foreach($directories as $template_selected) {
+      foreach($directories as $template) {
         if(is_dir($template_directory)) {
-          $filename_array[] = ['id' => $template_selected,
-                              'text' => $template_selected
+          $filename_array[] = ['id' => $template,
+                              'text' => $template
                               ];
         }
       }
 
-      if (isset($_POST['TemplateCustomerSelected'])) {
-        $_SESSION['TemplateCustomerSelected'] = HTML::sanitize($_POST['TemplateCustomerSelected']);
-      }
-
       clearstatcache();
 
-      return HTML::selectMenu('TemplateCustomerSelected', $filename_array, $_SESSION['TemplateCustomerSelected'], 'onchange="this.form.submit();"');
+      return HTML::selectMenu('TemplateCustomerSelected', $filename_array, null, 'onchange="this.form.submit();"');
     }
 
 /**
