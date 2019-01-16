@@ -195,6 +195,9 @@ INSERT INTO administrator_menu_description VALUES(138, 'Account subscriptions B2
 INSERT INTO administrator_menu_description VALUES(137, 'Account subscriptions B2C', 1);
 INSERT INTO administrator_menu_description VALUES(1, 'Accueil', 2);
 INSERT INTO administrator_menu_description VALUES(135, 'Accueil', 2);
+INSERT INTO administrator_menu_description VALUES(769, 'Action recorder', 1);
+INSERT INTO administrator_menu_description VALUES(770, 'Action recorder install', 1);
+INSERT INTO administrator_menu_description VALUES(771, 'Action recorder modules', 1);
 INSERT INTO administrator_menu_description VALUES(737, 'Actions recorder', 1);
 INSERT INTO administrator_menu_description VALUES(737, 'Actions sur les connexions', 2);
 INSERT INTO administrator_menu_description VALUES(11, 'Administration', 2);
@@ -209,6 +212,12 @@ INSERT INTO administrator_menu_description VALUES(658, 'Analyse BD', 2);
 INSERT INTO administrator_menu_description VALUES(44, 'API / SSL certificates', 1);
 INSERT INTO administrator_menu_description VALUES(725, 'Apps', 1);
 INSERT INTO administrator_menu_description VALUES(725, 'Apps', 2);
+INSERT INTO administrator_menu_description VALUES(768, 'Apps Expédition', 2);
+INSERT INTO administrator_menu_description VALUES(766, 'Apps Order total', 1);
+INSERT INTO administrator_menu_description VALUES(767, 'Apps Paiement', 2);
+INSERT INTO administrator_menu_description VALUES(767, 'Apps Payment', 1);
+INSERT INTO administrator_menu_description VALUES(768, 'Apps Shipping', 1);
+INSERT INTO administrator_menu_description VALUES(766, 'Apps Total commande', 2);
 INSERT INTO administrator_menu_description VALUES(590, 'Archive products', 1);
 INSERT INTO administrator_menu_description VALUES(590, 'Archive products', 2);
 INSERT INTO administrator_menu_description VALUES(75, 'Attributs produit', 2);
@@ -232,6 +241,8 @@ INSERT INTO administrator_menu_description VALUES(3, 'Catalog', 1);
 INSERT INTO administrator_menu_description VALUES(3, 'Catalogue', 2);
 INSERT INTO administrator_menu_description VALUES(136, 'Categories', 1);
 INSERT INTO administrator_menu_description VALUES(136, 'Catégories', 2);
+INSERT INTO administrator_menu_description VALUES(758, 'Categories', 1);
+INSERT INTO administrator_menu_description VALUES(758, 'Catégories', 2);
 INSERT INTO administrator_menu_description VALUES(44, 'Certificats SSL / API', 2);
 INSERT INTO administrator_menu_description VALUES(653, 'Classes de Taxes', 2);
 INSERT INTO administrator_menu_description VALUES(4, 'Clients', 2);
@@ -267,6 +278,8 @@ INSERT INTO administrator_menu_description VALUES(139, 'Connexion clients', 2);
 INSERT INTO administrator_menu_description VALUES(146, 'Contact us', 1);
 INSERT INTO administrator_menu_description VALUES(738, 'Contrôle du cache', 2);
 INSERT INTO administrator_menu_description VALUES(652, 'Countries', 1);
+INSERT INTO administrator_menu_description VALUES(772, 'Coups de coeur', 2);
+INSERT INTO administrator_menu_description VALUES(773, 'Coups de coeur', 2);
 INSERT INTO administrator_menu_description VALUES(138, 'Création compte B2B', 2);
 INSERT INTO administrator_menu_description VALUES(137, 'Création de compte B2C', 2);
 INSERT INTO administrator_menu_description VALUES(24, 'Credit Card', 1);
@@ -303,6 +316,8 @@ INSERT INTO administrator_menu_description VALUES(39, 'Edition commandes / factu
 INSERT INTO administrator_menu_description VALUES(170, 'Editors', 1);
 INSERT INTO administrator_menu_description VALUES(30, 'Emails', 1);
 INSERT INTO administrator_menu_description VALUES(30, 'Emails', 2);
+INSERT INTO administrator_menu_description VALUES(769, 'Enregistrements actions', 2);
+INSERT INTO administrator_menu_description VALUES(770, 'Enregistrements actions installation', 2);
 INSERT INTO administrator_menu_description VALUES(157, 'Entête du site', 2);
 INSERT INTO administrator_menu_description VALUES(150, 'Envoyer à  un ami', 2);
 INSERT INTO administrator_menu_description VALUES(142, 'Expéditions', 2);
@@ -310,6 +325,12 @@ INSERT INTO administrator_menu_description VALUES(27, 'Expéditions & Bons de co
 INSERT INTO administrator_menu_description VALUES(175, 'Exports / Imports', 1);
 INSERT INTO administrator_menu_description VALUES(175, 'Exports / Imports', 2);
 INSERT INTO administrator_menu_description VALUES(42, 'Exports Security', 1);
+INSERT INTO administrator_menu_description VALUES(644, 'Extensions / Mise à jour', 1);
+INSERT INTO administrator_menu_description VALUES(644, 'Extensions / Update', 2);
+INSERT INTO administrator_menu_description VALUES(772, 'Favorites', 1);
+INSERT INTO administrator_menu_description VALUES(773, 'Favorites', 1);
+INSERT INTO administrator_menu_description VALUES(774, 'Featured', 1);
+INSERT INTO administrator_menu_description VALUES(775, 'Featured', 1);
 INSERT INTO administrator_menu_description VALUES(103, 'Financial statistics', 1);
 INSERT INTO administrator_menu_description VALUES(626, 'Fournisseurs', 2);
 INSERT INTO administrator_menu_description VALUES(22, 'General configuration', 1);
@@ -317,8 +338,6 @@ INSERT INTO administrator_menu_description VALUES(126, 'Gestion des images', 2);
 INSERT INTO administrator_menu_description VALUES(107, 'Gestion produits', 2);
 INSERT INTO administrator_menu_description VALUES(596, 'Gestionnaire de bannières', 2);
 INSERT INTO administrator_menu_description VALUES(595, 'Gestionnaire de page', 2);
-INSERT INTO administrator_menu_description VALUES(644, 'Extensions / Update', 2);
-INSERT INTO administrator_menu_description VALUES(644, 'Extensions / Mise à jour', 1);
 INSERT INTO administrator_menu_description VALUES(589, 'Groupes Client', 2);
 INSERT INTO administrator_menu_description VALUES(69, 'Gzip compression', 1);
 INSERT INTO administrator_menu_description VALUES(1, 'Home', 1);
@@ -356,6 +375,7 @@ INSERT INTO administrator_menu_description VALUES(50, 'Minimum values', 1);
 INSERT INTO administrator_menu_description VALUES(123, 'Miscellaneous', 1);
 INSERT INTO administrator_menu_description VALUES(451, 'Modules Commandes Total', 2);
 INSERT INTO administrator_menu_description VALUES(152, 'Modules Commentaires', 2);
+INSERT INTO administrator_menu_description VALUES(771, 'Modules enregistrements actions', 2);
 INSERT INTO administrator_menu_description VALUES(449, 'Modules Expéditions', 2);
 INSERT INTO administrator_menu_description VALUES(59, 'Modules metas', 2);
 INSERT INTO administrator_menu_description VALUES(186, 'Modules Paiement', 2);
@@ -409,6 +429,8 @@ INSERT INTO administrator_menu_description VALUES(605, 'Products Stock Level', 1
 INSERT INTO administrator_menu_description VALUES(605, 'Products Stock Level', 2);
 INSERT INTO administrator_menu_description VALUES(609, 'Products viewed', 1);
 INSERT INTO administrator_menu_description VALUES(681, 'Produits', 2);
+INSERT INTO administrator_menu_description VALUES(774, 'Produits sélectionnés', 2);
+INSERT INTO administrator_menu_description VALUES(775, 'Produits sélectionnés', 2);
 INSERT INTO administrator_menu_description VALUES(609, 'Produits vus', 2);
 INSERT INTO administrator_menu_description VALUES(130, 'Promotions', 2);
 INSERT INTO administrator_menu_description VALUES(568, 'Promotions', 2);
@@ -489,28 +511,6 @@ INSERT INTO administrator_menu_description VALUES(504, 'Web Service', 1);
 INSERT INTO administrator_menu_description VALUES(504, 'Web Service', 2);
 INSERT INTO administrator_menu_description VALUES(654, 'Zones', 1);
 INSERT INTO administrator_menu_description VALUES(654, 'Zones', 2);
-INSERT INTO administrator_menu_description VALUES(758, 'Categories', 1);
-INSERT INTO administrator_menu_description VALUES(758, 'Catégories', 2);
-INSERT INTO administrator_menu_description VALUES(766, 'Apps Order total', 1);
-INSERT INTO administrator_menu_description VALUES(766, 'Apps Total commande', 2);
-INSERT INTO administrator_menu_description VALUES(767, 'Apps Payment', 1);
-INSERT INTO administrator_menu_description VALUES(767, 'Apps Paiement', 2);
-INSERT INTO administrator_menu_description VALUES(768, 'Apps Shipping', 1);
-INSERT INTO administrator_menu_description VALUES(768, 'Apps Expédition', 2);
-INSERT INTO administrator_menu_description VALUES(769, 'Action recorder', 1);
-INSERT INTO administrator_menu_description VALUES(769, 'Enregistrements actions', 2);
-INSERT INTO administrator_menu_description VALUES(770, 'Action recorder install', 1);
-INSERT INTO administrator_menu_description VALUES(770, 'Enregistrements actions installation', 2);
-INSERT INTO administrator_menu_description VALUES(771, 'Action recorder modules', 1);
-INSERT INTO administrator_menu_description VALUES(771, 'Modules enregistrements actions', 2);
-INSERT INTO administrator_menu_description VALUES(772, 'Favorites', 1);
-INSERT INTO administrator_menu_description VALUES(772, 'Coups de coeur', 2);
-INSERT INTO administrator_menu_description VALUES(773, 'Favorites', 1);
-INSERT INTO administrator_menu_description VALUES(773, 'Coups de coeur', 2);
-INSERT INTO administrator_menu_description VALUES(774, 'Featured', 1);
-INSERT INTO administrator_menu_description VALUES(774, 'Produits sélectionnés', 2);
-INSERT INTO administrator_menu_description VALUES(775, 'Featured', 1);
-INSERT INTO administrator_menu_description VALUES(775, 'Produits sélectionnés', 2);
 
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
@@ -707,11 +707,11 @@ INSERT INTO configuration VALUES(601, 'Souhaitez-vous afficher le prix si celui-
 INSERT INTO configuration VALUES(602, 'Veuillez indiquer le nombre maximal de commentaires clients que vous souhaitez afficher', 'MAX_DISPLAY_NEW_REVIEWS', '5', 'Veuillez indiquer une valeur numérique.', 3, 8, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
 
 INSERT INTO configuration VALUES(603, 'Installed Modules', 'MODULE_ADMIN_DASHBOARD_INSTALLED', '', 'This is automatically updated. No need to edit.', 6, 0, '2016-10-15 14:46:08', '2013-12-16 18:11:51', NULL, NULL);
-INSERT INTO configuration VALUES(623, 'Installed Modules', 'MODULE_MODULES_HEADER_INSTALLED', 'he_header_message_stack.php;he_header_multi_template.php;he_header_page_manager_header_menu.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 09:24:27', '2014-02-07 20:01:18', NULL, NULL);
+INSERT INTO configuration VALUES(623, 'Installed Modules', 'MODULE_MODULES_HEADER_INSTALLED', 'he_header_noscript.php;he_header_message_stack.php;he_header_multi_template.php;he_header_page_manager_header_menu.php', 'This is automatically updated. No need to edit.', 6, 0, '2019-01-16 19:07:19', '2014-02-07 20:01:18', NULL, NULL);
 INSERT INTO configuration VALUES(624, 'Installed Modules', 'MODULE_MODULES_FOOTER_INSTALLED', 'fo_footer_page_manager.php;fo_footer_multi_template.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 09:33:37', '2014-02-07 20:01:20', NULL, NULL);
 INSERT INTO configuration VALUES(625, 'Installed Modules', 'MODULE_MODULES_ADVANCED_SEARCH_INSTALLED', 'as_advanced_search_criteria.php;as_advanced_search_categories.php;as_advanced_search_manufacturers.php;as_advanced_search_price.php;as_advanced_search_date.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 08:52:02', '2014-02-07 20:01:23', NULL, NULL);
 INSERT INTO configuration VALUES(626, 'Installed Modules', 'MODULE_MODULES_SITEMAP_INSTALLED', 'si_sitemap_summary.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 09:06:08', '2014-02-07 20:01:25', NULL, NULL);
-INSERT INTO configuration VALUES(627, 'Installed Modules', 'MODULE_MODULES_CONTACT_US_INSTALLED', 'co_contact_us_page_manager.php;co_contact_us_form.php;co_contact_us_privacy_condition.php;co_contact_us_form_button_process.php;co_contact_us_success.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-10-10 16:02:06', '2014-02-07 20:01:28', NULL, NULL);
+INSERT INTO configuration VALUES(627, 'Installed Modules', 'MODULE_MODULES_CONTACT_US_INSTALLED', 'co_contact_us_page_manager.php;co_contact_us_form.php;co_contact_us_privacy_condition.php;co_contact_us_form_button_process.php;co_contact_us_success.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-10-10 15:13:57', '2014-02-07 20:01:28', NULL, NULL);
 INSERT INTO configuration VALUES(628, 'Installed Modules', 'MODULE_MODULES_BLOG_INSTALLED', '', 'This is automatically updated. No need to edit.', 6, 0, NULL, '2014-02-07 20:01:31', NULL, NULL);
 INSERT INTO configuration VALUES(629, 'Installed Modules', 'MODULE_MODULES_BLOG_CONTENT_INSTALLED', '', 'This is automatically updated. No need to edit.', 6, 0, NULL, '2014-02-07 20:01:34', NULL, NULL);
 INSERT INTO configuration VALUES(630, 'Installed Modules', 'MODULE_MODULES_PRODUCTS_INFO_INSTALLED', 'pi_products_info_name.php;pi_products_info_model.php;pi_products_info_gallery.php;pi_products_info_description.php;pi_products_info_options.php;pi_products_info_date_available.php;pi_products_info_price.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-31 11:52:34', '2014-02-07 20:01:42', NULL, NULL);
@@ -730,7 +730,7 @@ INSERT INTO configuration VALUES(642, 'Nombre minimum de caractères pour le Té
 INSERT INTO configuration VALUES(643, 'Nombre minimum de caractères pour le téléphone Mobile', 'ENTRY_CELLULAR_PHONE_PRO_MIN_LENGTH', '3', 'Indiquer le nombre de caractères minimum requis pour le téléphone mobile.', 19, 13, '2006-10-29 16:21:09', '2006-10-19 00:00:00', NULL, NULL);
 INSERT INTO configuration VALUES(644, 'Nombre minimum de caractères pour la taxe provinviale', 'ENTRY_CODE_TAXE_PROVINCIALE_MIN_LENGTH', '3', 'Indiquer le nombre de caractères minimum requis pour la taxe provinciale.', 19, 15, '2006-10-29 16:21:09', '2006-10-19 00:00:00', NULL, NULL);
 INSERT INTO configuration VALUES(645, 'Nombre minimum de caractères pour la taxe fédérale', 'ENTRY_CODE_TAXE_FEDERALE_MIN_LENGTH', '3', 'Indiquer le nombre de caractères minimum requis pour la taxe fédérale.', 19, 16, '2006-10-29 16:21:09', '2006-10-19 00:00:00', NULL, NULL);
-INSERT INTO configuration VALUES(646, 'Installed Modules', 'MODULE_HEADER_TAGS_INSTALLED', 'ht_googlefont.php;ht_datepicker_jquery.php', 'This is automatically updated. No need to edit.', 6, 0, '2018-07-29 18:12:44', '2014-02-07 20:07:32', NULL, NULL);
+INSERT INTO configuration VALUES(646, 'Installed Modules', 'MODULE_HEADER_TAGS_INSTALLED', 'ht_googlefont.php;ht_datepicker_jquery.php', 'This is automatically updated. No need to edit.', 6, 0, '2019-01-16 19:37:07', '2014-02-07 20:07:32', NULL, NULL);
 INSERT INTO configuration VALUES(647, 'Souhaitez-vous afficher l\'acceptation de la commande par le consommateur', 'CONFIGURATION_LAW_HAMON', 'true', 'La loi Hamon (loi francaise) oblige le consommateur à accepter sa prise de commande. Souhaitez-vous l\'activer ?<br /><br /><i>(Valeur True = Oui - Valeur False = Non)</i>', 25, 3, NULL, '2006-04-09 16:13:47', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(649, 'Host SMTP', 'EMAIL_SMTP_HOSTS', 'smtp.gmail.com', 'Indiquer le SMTP host', 12, 6, NULL, '2014-05-16 11:21:13', NULL, NULL);
 INSERT INTO configuration VALUES(650, 'Authentication SMTP', 'EMAIL_SMTP_AUTHENTICATION', 'true', 'Souhaitez-vous une authentication SMTP ?', 12, 7, NULL, '2014-05-16 11:21:13', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
@@ -1375,10 +1375,7 @@ INSERT INTO configuration VALUES(1410, 'Please select the width of the module', 
 INSERT INTO configuration VALUES(1411, 'Where do youw want display this module ?', 'MODULE_PRODUCTS_INFO_DATE_AVAILABLE_POSITION', 'float-md-none', 'Display the module in function your choice.', 6, 2, NULL, '2018-11-05 09:49:46', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO configuration VALUES(1412, 'Sort order', 'MODULE_PRODUCTS_INFO_DATE_AVAILABLE_SORT_ORDER', '100', 'Sort order of display. Lowest is displayed first', 6, 3, NULL, '2018-11-05 09:49:46', NULL, '');
 INSERT INTO configuration VALUES(1413, 'Utiliser le système de réécriture des URLs Pro', 'SEARCH_ENGINE_FRIENDLY_URLS_PRO', 'false', 'Utiliser le système de réécriture des URLS pour tous les liens du  site avec le titres des objets.<br />Note : Les réécritures URls natives doit etre sur true.', 34, 2, NULL, '2016-07-05 18:04:07', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
-INSERT INTO configuration VALUES(1414, 'Do you want activate this module ?', 'MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS', 'true', 'Do you want activate this module  ?', 6, 1, NULL, '2016-07-05 18:04:07', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
-INSERT INTO configuration VALUES(1415, 'Sort order', 'MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER', '50', 'Sort order of display. Lowest is displayed first', 6, 25, NULL, '2018-11-05 09:49:46', NULL, '');
-
-INSERT INTO configuration VALUES(1416, 'Souhaitez-vous activer ce module ?', 'MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique ?', 6, 1, NULL, '2018-11-20 11:56:39', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1416, 'Souhaitez-vous activer ce module ?', 'MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS', 'True', 'Souhaitez-vous activer ce module ?', 6, 1, NULL, '2018-11-20 11:56:39', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1417, 'Veuillez selectionner la largeur de l\'affichage?', 'MODULE_SHOPPING_CART_CHECKOUT_STEP_CONTENT_WIDTH', '12', 'Veuillez indiquer un nombre compris entre 1 et 12', 6, 1, NULL, '2018-11-20 11:56:39', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1418, 'Ordre de tri d\'affichage', 'MODULE_SHOPPING_CART_CHECKOUT_STEP_SORT_ORDER', '200', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 4, NULL, '2018-11-20 11:56:39', NULL, '');
 INSERT INTO configuration VALUES(1419, 'Souhaitez-vous activer ce module ?', 'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 1, NULL, '2018-11-20 11:56:51', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
@@ -1396,9 +1393,6 @@ INSERT INTO configuration VALUES(1431, 'Souhaitez-vous activer ce module ?', 'MO
 INSERT INTO configuration VALUES(1432, 'Veuillez selectionner la largeur de l\'affichage', 'MODULE_SHOPPING_CART_SHOW_TOTAL_CONTENT_WIDTH', '12', 'Veuillez un sélectioner un nombre entre 1 et 12', 6, 1, NULL, '2018-11-20 12:00:20', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1433, 'A quel endroit souhaitez-vous afficher le module ?', 'MODULE_SHOPPING_CART_SHOW_TOTAL_POSITION', 'float-md-none', 'Affiche le module à gauche ou à droite', 6, 2, NULL, '2018-11-20 12:00:20', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO configuration VALUES(1434, 'Ordre de tri', 'MODULE_SHOPPING_CART_SHOW_TOTAL_SORT_ORDER', '20', 'Affichage de l\'ordre de tri. le plus petit est affiché en premier', 6, 4, NULL, '2018-11-20 12:00:20', NULL, '');
-INSERT INTO configuration VALUES(1435, 'Souhaitez-vous activer ce module ?', 'MODULE_HEADER_NOSCRIPT_STATUS', 'True', 'Souhaitez-vous activer ce module ?', 6, 1, NULL, '2018-11-29 10:39:18', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO configuration VALUES(1436, 'A quel endroit souhaitez-vous afficher le module ?', 'MODULE_HEADER_NOSCRIPT_CONTENT_WIDTH', '12', 'Veuillez un sélectioner un nombre entre 1 et 12', 6, 2, NULL, '2018-11-29 10:39:18', NULL, 'clic_cfg_set_content_module_width_pull_down');
-INSERT INTO configuration VALUES(1437, 'Ordre de tri', 'MODULE_HEADER_NOSCRIPT_SORT_ORDER', '1', 'Affichage de l\'ordre de tri. le plus petit est affiché en premier', 6, 0, NULL, '2018-11-29 10:39:18', NULL, '');
 
 INSERT INTO configuration VALUES(1438, 'Statut', 'CLICSHOPPING_APP_SPECIALS_SP_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2018-12-09 18:24:26', NULL, NULL);
 INSERT INTO configuration VALUES(1439, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_SPECIALS_SP_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2018-12-09 18:24:26', NULL, NULL);
@@ -1420,6 +1414,19 @@ INSERT INTO configuration VALUES(1454, 'Ordre de tri d\'affichage', 'CLICSHOPPIN
 INSERT INTO configuration VALUES(1455, 'Statut', 'CLICSHOPPING_APP_FEATURED_FE_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2018-12-19 10:34:15', NULL, NULL);
 INSERT INTO configuration VALUES(1456, 'Ordre de tri d\'affichage', 'CLICSHOPPING_APP_FEATURED_FE_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2018-12-19 10:34:15', NULL, NULL);
 INSERT INTO configuration VALUES(1457, 'Parameter [Featured Products App]', 'MODULE_MODULES_FEATURED_INSTALLED', 'Marketing\\Featured\\FE', 'Parameter [Featured Products App]', 6, 0, NULL, '2018-12-19 10:34:15', NULL, NULL);
+INSERT INTO configuration VALUES(1458, 'Allowed Minutes', 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES', '5', 'Number of minutes to allow login attempts to occur.', 6, 0, NULL, '2019-01-16 19:05:53', NULL, NULL);
+INSERT INTO configuration VALUES(1459, 'Allowed Attempts', 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS', '3', 'Number of login attempts to allow within the specified period.', 6, 0, NULL, '2019-01-16 19:05:53', NULL, NULL);
+INSERT INTO configuration VALUES(1460, 'Minimum Minutes Per E-Mail for contact us', 'MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES', '15', 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)', 6, 0, NULL, '2019-01-16 19:05:56', NULL, NULL);
+INSERT INTO configuration VALUES(1461, 'What do you want for the minimum minutes per e-mail for one person for create account ?', 'MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES', '90', 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)', 6, 0, NULL, '2019-01-16 19:05:58', NULL, NULL);
+INSERT INTO configuration VALUES(1462, 'What do you want for the minimum minutes per e-mail for one person for create professional account?', 'MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES', '90', 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)', 6, 0, NULL, '2019-01-16 19:06:00', NULL, NULL);
+INSERT INTO configuration VALUES(1463, 'Allowed Minutes', 'MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES', '5', 'Number of minutes to allow password resets to occur.', 6, 0, NULL, '2019-01-16 19:06:03', NULL, NULL);
+INSERT INTO configuration VALUES(1464, 'Allowed Attempts', 'MODULE_ACTION_RECORDER_RESET_PASSWORD_ATTEMPTS', '1', 'Number of password reset attempts to allow within the specified period.', 6, 0, NULL, '2019-01-16 19:06:03', NULL, NULL);
+INSERT INTO configuration VALUES(1465, 'Minimum Minutes Per E-Mail for tell a friend', 'MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES', '15', 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)', 6, 0, NULL, '2019-01-16 19:06:05', NULL, NULL);
+INSERT INTO configuration VALUES(1466, 'Souhaitez vous activer ce module ?', 'MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS', 'True', 'Souhaitez vous activer ce module ?', 6, 1, NULL, '2019-01-16 19:06:58', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1467, 'Ordre de tri d\'affichage', 'MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER', '50', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 25, NULL, '2019-01-16 19:06:58', NULL, '');
+INSERT INTO configuration VALUES(1468, 'Souhaitez vous activer ce module ?', 'MODULE_HEADER_NOSCRIPT_STATUS', 'True', 'Souhaitez vous activer ce module ?', 6, 1, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1469, 'Veuillez indiquer la largeur du contenu', 'MODULE_HEADER_NOSCRIPT_CONTENT_WIDTH', '12', 'Veuillez indiquer une largeur d\'affichage', 6, 2, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO configuration VALUES(1470, 'Ordre de tri d\'affichage', 'MODULE_HEADER_NOSCRIPT_SORT_ORDER', '1', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2019-01-16 19:07:19', NULL, '');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
@@ -1703,9 +1710,9 @@ INSERT INTO countries VALUES(238, 'Zambia', 'ZM', 'ZMB', 1, 1);
 INSERT INTO countries VALUES(239, 'Zimbabwe', 'ZW', 'ZWE', 1, 1);
 
 
-INSERT INTO currencies VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', '1');
-INSERT INTO currencies VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', '1');
-INSERT INTO currencies VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', '1');
+INSERT INTO currencies VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1);
+INSERT INTO currencies VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1);
+INSERT INTO currencies VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', 1);
 
 
 INSERT INTO customers_groups VALUES(1, 'Tarifs 1', '5.00', 'FF0000', 0, 'CO', 'IT', 'true', 0);
@@ -1758,15 +1765,17 @@ INSERT INTO orders_status_support  VALUES(4, 1, 'Support realised');
 
 
 INSERT INTO pages_manager VALUES(1, '', 0, 1, 1, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-08 15:39:50', '2008-09-03 20:38:09', 0, 0);
-INSERT INTO pages_manager VALUES(2, '', 1, 1, 2, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-02 08:39:21', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(2, '', 1, 1, 2, 0, '0', NULL, NULL, '1000-01-01 00:00:00', '2018-11-23 18:13:03', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(3, '', 2, 1, 3, 0, '', NULL, NULL, '1000-01-01 00:00:00', NULL, NULL, 0, 0);
 INSERT INTO pages_manager VALUES(4, '_self', 3, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2014-02-07 20:14:00', NULL, 0, 1);
 INSERT INTO pages_manager VALUES(5, '', 4, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-16 14:55:26', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(10, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
-INSERT INTO pages_manager VALUES(11, '_self', 0, 1, 6, 3, '0', NULL, NULL, '2018-08-01 08:33:57', '2018-08-01 08:39:27', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(12, '_self', 0, 1, 6, 3, '0', NULL, NULL, '2018-08-01 08:40:24', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(7, '_self', 5, 1, 4, 0, '0', NULL, NULL, '2008-09-02 10:36:53', '2018-07-27 20:39:03', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(8, '_self', 6, 1, 4, 0, '0', NULL, NULL, '2008-09-16 14:48:16', '2018-07-27 20:39:29', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(10, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:40:45', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(11, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(13, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
 INSERT INTO pages_manager VALUES(14, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
+INSERT INTO pages_manager VALUES(15, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
 
 INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
@@ -1778,16 +1787,20 @@ INSERT INTO pages_manager_description VALUES(4, 'General Conditions', 'General C
 INSERT INTO pages_manager_description VALUES(4, 'Conditions Générales', 'Conditions générales', '', 2, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(5, 'Confidential politics', 'Confidential politics', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(5, 'Politiques de Confidentialité', 'Politiques de Confidentialité', '', 2, NULL, NULL, NULL);
-INSERT INTO pages_manager_description VALUES(10, 'Index', '', 'index.php', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(10, 'Index', '', 'index.php', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(11, 'RSS', '', 'index.php?Info&RSS', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(11, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(12, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(12, 'Sitemap', '', 'index.php?Info&SiteMap', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(7, 'RSS', '', 'index.php?Info&RSS', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(8, 'Sitemap', '', 'index.php?Info&SiteMap', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(8, 'Cartographie du site', '', 'index.php?Info&SiteMap', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(10, 'Specials', '', 'index.php/Products/Specials', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(10, 'Promotions', '', 'index.php/Products/Specials', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(11, 'News', '', 'index.php/Products/ProductsNew', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(11, 'Nouveautés', '', 'index.php/Products/ProductsNew', 2, '', '', '');
 INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'index.php?Products&Featured', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'index.php?Products&Featured', 2, '', '', '');
 INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'index.php?Products&Featured', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'index.php?Products&Featured', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, '', '', '');
 
 
 INSERT INTO products_quantity_unit VALUES(4, 2, 'douzaine');
