@@ -11,6 +11,7 @@ text_intro = Cette app vous permet d'installer un système de gestion de produit
 module_pd_introduction = Le processus d'installation installe le menu
 module_pd_short_title = Produits
 
+button_back = Retour
 button_install_title = Installer
 button_configure = Configurer
 button_save = Sauver

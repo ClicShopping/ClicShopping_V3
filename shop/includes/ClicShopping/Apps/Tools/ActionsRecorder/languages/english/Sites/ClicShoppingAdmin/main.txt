@@ -37,14 +37,14 @@ alert_cfg_saved_success = Tools parameters have been successfully saved.
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)
 
+text_filter_search = Search:
+text_all_modules = -- All modules --
 table_heading_module = Module
 table_heading_customer = Customers
-text_filter_search = Search:
-text_all_modules = -- All Modules --
 table_heading_date_added = Date added
 table_heading_action = Action
 table_heading_identifier = Information customer :
-text_info_date_added = Date added :
+text_info_date_added = Date added
 success_expired_entries = Success
 
 success_expired_entries = Success: {{expired_entries}} expired entries were removed.

@@ -9,8 +9,8 @@ text_intro = Cette app vous permet d'include un gestionaire de menus d'adminisra
 - Activer ce module qui est situé dans le menu Tools
 
 module_ar_introduction = Le processus d'installation installe la base de données et le menu
-module_ar_short_title = Actions sur les connexions
 
+button_back = Retour
 button_install_title = Installer
 button_configure = Configurer
 button_save = Sauver
@@ -38,15 +38,14 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 text_result_page = Page {{listing_from}} sur {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
 
-title_heading_module = Module
-title_heading_customer = Customers
+text_filter_search =  Rechercher:
+text_all_modules =  -- Tous les modules --
+table_heading_module = Modules
+table_heading_customer = Clients
+table_heading_date_added =  Date ajout
+table_heading_action = Action
+table_heading_identifier = Iormation client
+text_info_date_added = Date ajout
+success_expired_entries = Succès
 
-title_filter_search =  Search:
-title_all_modules =  -- All Modules --
-title_heading_date_added = Date added
-title_heading_action = Action
-title_info_identifier = Information customer :
-title_info_date_added = Date added :
-title_success_expired_entries = Success
-
-success_expired_entries = Succès : suppression des données exprirées
+success_expired_entries = Succès : {{expired_entries}} expirés ont été supprimés
