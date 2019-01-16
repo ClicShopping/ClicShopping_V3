@@ -2,7 +2,7 @@
  * Czech translation
  * @author RobiNN <kelcakrobo@gmail.com>
  * @author Jay Gridley <gridley.jay@hotmail.com>
- * @version 2018-09-18
+ * @version 2019-01-12
  */
 (function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -17,9 +17,9 @@
 		translator : 'RobiNN &lt;kelcakrobo@gmail.com&gt;, Jay Gridley &lt;gridley.jay@hotmail.com&gt;',
 		language   : 'Čeština',
 		direction  : 'ltr',
-		dateFormat : 'd. m. Y H:i', // will show like: 18. 09. 2018 20:24
-		fancyDateFormat : '$1 H:i', // will show like: Dnes 20:24
-		nonameDateFormat : 'ymd-His', // noname upload will show like: 180918-202435
+		dateFormat : 'd. m. Y H:i', // will show like: 12. 01. 2019 18:21
+		fancyDateFormat : '$1 H:i', // will show like: Dnes 18:21
+		nonameDateFormat : 'ymd-His', // noname upload will show like: 190112-182129
 		messages   : {
 
 			/********************************** errors **********************************/
@@ -115,6 +115,7 @@
 			'errEditorNotFound'    : 'Editor tohoto typu souboru nebyl nalezen.', // from v2.1.25 added 23.5.2017
 			'errServerError'       : 'Došlo k chybě na straně serveru.', // from v2.1.25 added 16.6.2017
 			'errEmpty'             : 'Nelze vyprázdnit složku "$1".', // from v2.1.25 added 22.6.2017
+			'moreErrors'           : 'Existují ještě další $1 chyby.', // from v2.1.44 added 9.12.2018
 
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Vytvořit archív',
@@ -290,7 +291,8 @@
 			'untitled folder'   : 'Nová složka',   // added 10.11.2015
 			'Archive'           : 'Nový archiv',  // from v2.1 added 10.11.2015
 			'untitled file'     : 'Nový soubor.$1',  // from v2.1.41 added 6.8.2018
-			'extentionfile'     : '$1 soubor',     // from v2.1.41 added 6.8.2018
+			'extentionfile'     : '$1 soubor',    // from v2.1.41 added 6.8.2018
+			'extentiontype'     : '$1: $2',      // from v2.1.43 added 17.10.2018
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Požadováno potvrzení',
@@ -416,7 +418,7 @@
 			'contextmenu'     : 'Kontextové menu', // from v2.1.15 added 9.9.2016
 			'pageTurning'     : 'Otáčení stránky', // from v2.1.15 added 10.9.2016
 			'volumeRoots'     : 'Kořeny média', // from v2.1.16 added 16.9.2016
-			'reset'           : 'Reset', // from v2.1.16 added 1.10.2016
+			'reset'           : 'Obnovit', // from v2.1.16 added 1.10.2016
 			'bgcolor'         : 'Barva pozadí', // from v2.1.16 added 1.10.2016
 			'colorPicker'     : 'Výběr barvy', // from v2.1.16 added 1.10.2016
 			'8pxgrid'         : '8px mřížka', // from v2.1.16 added 4.10.2016
@@ -478,6 +480,14 @@
 			'makefileTypes'   : 'Typy souborů, jež mají být povoleny pomocí "Nový soubor"', // from v2.1.41 added 7.8.2018
 			'typeOfTextfile'  : 'Typ textového souboru', // from v2.1.41 added 7.8.2018
 			'add'             : 'Přidat', // from v2.1.41 added 7.8.2018
+			'theme'           : 'Téma', // from v2.1.43 added 19.10.2018
+			'default'         : 'Výchozí', // from v2.1.43 added 19.10.2018
+			'description'     : 'Popis', // from v2.1.43 added 19.10.2018
+			'website'         : 'Stránka', // from v2.1.43 added 19.10.2018
+			'author'          : 'Autor', // from v2.1.43 added 19.10.2018
+			'email'           : 'E-mail', // from v2.1.43 added 19.10.2018
+			'license'         : 'Licence', // from v2.1.43 added 19.10.2018
+			'exportToSave'    : 'Tuto položku nelze uložit. Abyste se vyhnuli ztrátě úprav, musíte je exportovat do počítače.', // from v2.1.44 added 1.12.2018
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Neznámý',

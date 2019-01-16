@@ -1,9 +1,9 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.44 (2018-12-15)
+ * Version 2.1.46 (2019-01-14)
  * http://elfinder.org
  * 
- * Copyright 2009-2018, Studio 42
+ * Copyright 2009-2019, Studio 42
  * Licensed under a 3-clauses BSD license
  */
 
@@ -4248,7 +4248,7 @@ button.elfinder-info-button {
     height: 100%;
     background: #fff;
     color: #222;
-    font-size: 1.5ex;
+    font-size: 90%;
     overflow: auto;
     -webkit-overflow-scrolling: touch
 }

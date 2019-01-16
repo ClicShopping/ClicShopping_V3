@@ -1,7 +1,7 @@
 elFinder
 ========
 
-**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.38 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
+**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.45 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
 
 [![elFinder file manager for the Web](https://studio-42.github.io/elFinder/images/elFinderScr.png "elFinder file manager for the Web")](https://studio-42.github.io/elFinder/)
 
@@ -122,7 +122,7 @@ Installation
 Downloads
 ------------
 **Stable releases** ([Changelog](https://github.com/Studio-42/elFinder/blob/master/Changelog))
- + [elFinder 2.1.44](https://github.com/Studio-42/elFinder/archive/2.1.44.zip)
+ + [elFinder 2.1.46](https://github.com/Studio-42/elFinder/archive/2.1.46.zip)
  + [elFinder 2.0.9](https://github.com/Studio-42/elFinder/archive/2.0.9.zip) (deprecated)
 
 **Nightly builds**
@@ -198,6 +198,7 @@ Support
 Authors
 -------
 
+ * Current main developer: Naoki Sawada <hypweb+elfinder@gmail.com>
  * Chief developer: Dmitry "dio" Levashov <dio@std42.ru>
  * Maintainer: Troex Nevelin <troex@fury.scancode.ru>
  * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb+elfinder@gmail.com>
