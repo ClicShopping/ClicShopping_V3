@@ -89,7 +89,7 @@
       }
 
       if ( !isset($CLICSHOPPING_PM) || ($CLICSHOPPING_Payment->selected_module != $_SESSION['payment']) || ($CLICSHOPPING_PM->enabled === false) ) {
-        $CLICSHOPPING_MessageStack->add(ERROR_NO_PAYMENT_MODULE_SELECTED, 'danger', 'header');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_payment_module_selected'), 'danger', 'header');
 
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
