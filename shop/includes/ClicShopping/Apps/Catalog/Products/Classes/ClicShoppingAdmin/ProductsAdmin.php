@@ -16,6 +16,7 @@
   use ClicShopping\OM\Upload;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
   use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
@@ -480,7 +481,7 @@
     if (!empty($image) && (file_exists($this->template->getDirectoryPathTemplateShopImages() . $image)) ) {
       $image = HTML::image($this->template->getDirectoryShopTemplateImages() . $image, $alt, $width, $height);
     } else {
-      $image = HTML::image('../' . $this->template->getImageDirectory() . '/images/nophoto.png', CLICSHOPPING::getDef('text_image_nonexistent'), $width, $height);
+      $image = HTML::image(HTTP::getShopUrlDomain() . 'images/nophoto.png', CLICSHOPPING::getDef('text_image_nonexistent'), $width, $height);
     }
 
     return $image;
