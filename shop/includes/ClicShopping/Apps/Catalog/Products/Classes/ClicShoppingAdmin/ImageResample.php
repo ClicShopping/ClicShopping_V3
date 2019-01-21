@@ -71,7 +71,7 @@
 
     }
 
-    public function save($filename, $image_type=IMAGETYPE_PNG, $compression=100, $permissions=null) {
+    public function save($filename, $image_type = IMAGETYPE_PNG, $compression= 100, $permissions = null) {
       if( $image_type == IMAGETYPE_JPEG ) {
         imagejpeg($this->image,$filename,$compression);
       } elseif( $image_type == IMAGETYPE_GIF ) {
@@ -106,15 +106,15 @@
     }
 
     public function resizeToHeight($height) {
-      $ratio = $height / $this->getHeight();
-      $width = $this->getWidth() * $ratio;
-      $this->resize($width,$height);
-    }
+  		$ratio = $height / $this->getHeight();
+  		$width = round($this->getWidth() * $ratio);
+  		$this->resize($width,$height);
+  	}
 
-    public function resizeToWidth($width) {
-      $ratio = $width / $this->getWidth();
-      $height = $this->getHeight() * $ratio;
-      $this->resize($width,$height);
+  	public function resizeToWidth($width) {
+  		$ratio = $width / $this->getWidth();
+  		$height = round($this->getHeight() * $ratio);
+  		$this->resize($width,$height);
     }
 
     public function square($size){
@@ -179,6 +179,17 @@
       }
     }
 
+	public function minarea($width, $height = null)	{
+		$height = $height ? $height : $width;
+
+		if ($this->getWidth() < $width) {
+			$this->resizeToWidth($width);
+		}
+		if ($this->getHeight() < $height) {
+			$this->resizeToheight($height);
+		}
+	}
+
     public function cutFromCenter($width, $height){
 
       if($width < $this->getWidth() && $width > $height){
@@ -199,7 +210,16 @@
         $new_image = imagecreatetruecolor($width, $height);
         $color_fill = imagecolorallocate($new_image, $red, $green, $blue);
         imagefill($new_image, 0, 0, $color_fill);
-        imagecopyresampled($new_image, $this->image, floor(($width - $this->getWidth())/2), floor(($height-$this->getHeight())/2), 0, 0, $this->getWidth(), $this->getHeight(), $this->getWidth(), $this->getHeight());
+  	    imagecopyresampled(	$new_image,
+  	    					$this->image,
+  	    					floor(($width - $this->getWidth())/2),
+  	    					floor(($height-$this->getHeight())/2),
+  	    					0, 0,
+  	    					$this->getWidth(),
+  	    					$this->getHeight(),
+  	    					$this->getWidth(),
+  	    					$this->getHeight()
+  	    				);
         $this->image = $new_image;
     }
 
@@ -235,7 +255,11 @@
      $image->resizeToHeight(200);
      $image->save('picture3.jpg');
 
-  The output function lets you output the image straight to the browser without having to save the file. Its useful for on the fly thumbnail generation
+// Resize the canvas and fill the empty space with a color of your choice
+    $image->maxareafill(600,400, 32, 39, 240);
+    $image->save('lemon_filled.jpg');
+
+//  The output function lets you output the image straight to the browser without having to save the file. Its useful for on the fly thumbnail generation
 
 
   <?php
