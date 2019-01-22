@@ -2255,6 +2255,7 @@
                                                 where patrib.products_id = :products_id
                                                 and patrib.options_id = popt.products_options_id
                                                 and popt.language_id = :language_id
+                                                and patrib.status = 1
                                                ');
       $QproductsAttributes->bindInt(':products_id', $id);
       $QproductsAttributes->bindInt(':language_id', (int)$language_id );
@@ -2284,6 +2285,7 @@
       $Qattributes = $this->db->prepare('select products_id
                                         from :table_products_attributes
                                         where products_id = :products_id
+                                        and status = 1
                                         limit 1
                                         ');
       $Qattributes->bindInt(':products_id', $id);

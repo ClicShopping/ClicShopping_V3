@@ -64,6 +64,7 @@
                                                                       and patrib.options_id = popt.products_options_id
                                                                       and popt.language_id = :language_id
                                                                       and (patrib.customers_group_id = :customers_group_id or patrib.customers_group_id = 99)
+                                                                      and patrib.status = 1
                                                                       order by popt.products_options_sort_order,
                                                                                popt.products_options_name
                                                                      ');
@@ -82,6 +83,7 @@
                                                                       and patrib.options_id = popt.products_options_id
                                                                       and popt.language_id = :language_id
                                                                       and (patrib.customers_group_id = 0 or patrib.customers_group_id = 99)
+                                                                      and patrib.status = 1
                                                                       order by popt.products_options_sort_order,
                                                                                popt.products_options_name
                                                                      ');

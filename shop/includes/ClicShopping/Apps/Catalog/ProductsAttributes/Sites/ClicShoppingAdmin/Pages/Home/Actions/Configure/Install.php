@@ -30,6 +30,7 @@
       $m->install();
 
       static::installDbMenuAdministration();
+      static::updateSQL();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsAttributes->getDef('alert_module_install_success'), 'success', 'ProductsAttributes');
 
@@ -79,6 +80,19 @@
         }
 
         Cache::clear('menu-administrator');
+      }
+    }
+
+    private static function updateSQL() {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $QcheckField = $CLICSHOPPING_Db->query("show columns from :table_products_attributes like 'status'");
+
+      if ($QcheckField->fetch() === false) {
+        $sql = <<<EOD
+ALTER TABLE :table_products_attributes ADD status TINYINT(1) NOT NULL DEFAULT '1' AFTER `products_attributes_image`;
+EOD;
+        $CLICSHOPPING_Db->exec($sql);
       }
     }
   }

@@ -48,6 +48,7 @@
                                                    and patrib.options_id = popt.products_options_id
                                                    and popt.language_id = :language_id
                                                    and (patrib.customers_group_id = :customers_group_id or patrib.customers_group_id = 99)
+                                                   and patrib.status = 1
                                                  ');
 
         $QproductsAttributes->bindInt(':products_id', $id);
@@ -65,6 +66,7 @@
                                                    and patrib.options_id = popt.products_options_id
                                                    and popt.language_id = :language_id
                                                    and (patrib.customers_group_id = 0 or patrib.customers_group_id = 99)
+                                                   and patrib.status = 1
                                                   ');
 
         $QproductsAttributes->bindInt(':products_id', $id);
@@ -96,6 +98,7 @@
       $Qattributes = $this->db->prepare('select products_id
                                          from :table_products_attributes
                                          where products_id = :products_id
+                                         and status = 1
                                          limit 1
                                         ');
       $Qattributes->bindInt(':products_id', $id);
@@ -133,6 +136,7 @@
                                             and popt.language_id = :language_id
                                             and poval.language_id = :language_id
                                             and (pa.customers_group_id = :customers_group_id or pa.customers_group_id = 99)
+                                            and pa.status = 1
                                            ');
           $Qattributes->bindInt(':products_id', $products_id);
           $Qattributes->bindInt(':options_id', $option_id);
@@ -159,6 +163,7 @@
                                             and popt.language_id = :language_id
                                             and poval.language_id = :language_id
                                             and (pa.customers_group_id = 0 or pa.customers_group_id = 99)
+                                            and pa.status = 1
                                            ');
           $Qattributes->bindInt(':products_id', $products_id);
           $Qattributes->bindInt(':options_id', $option_id);
@@ -182,6 +187,7 @@
                                              and pa.options_values_id = pov.products_options_values_id
                                              and pov.language_id = :language_id
                                              and (pa.customers_group_id = :customers_group_id or pa.customers_group_id = 99)
+                                             and pa.status = 1
                                              order by pa.products_options_sort_order
                                             ');
 
@@ -205,6 +211,7 @@
                                              and pa.options_values_id = pov.products_options_values_id
                                              and pov.language_id = :language_id
                                              and (pa.customers_group_id = 0 or pa.customers_group_id = 99)
+                                             and pa.status = 1
                                              order by pa.products_options_sort_order
                                             ');
 
@@ -252,6 +259,7 @@
                                       and options_id = :options_id
                                       and options_values_id = :options_values_id
                                       and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                      and status = 1
                                       limit 1
                                      ');
 
@@ -268,6 +276,7 @@
                                       and options_id = :options_id
                                       and options_values_id = :options_values_id
                                       and (customers_group_id = 0 or customers_group_id = 99)
+                                      and status = 1
                                       limit 1
                                      ');
 
@@ -299,6 +308,7 @@
                                               where products_id = :products_id
                                               and options_id = :options_id
                                               and options_values_id = :options_values_id
+                                              and status = 1
                                              ');
           $Qattributes->bindInt(':products_id', $products_id);
           $Qattributes->bindInt(':options_id', $option);
@@ -339,6 +349,7 @@
                                       and pa.options_values_id = :options_values_id
                                       and pa.products_attributes_id = pad.products_attributes_id
                                       and (pa.customers_group_id = :customers_group_id or pa.customers_group_id = 99)
+                                      and pa.status = 1
                                       limit 1
                                      ');
         $Qcheck->bindInt(':products_id', $products_id);
@@ -355,6 +366,7 @@
                                       and pa.options_values_id = :options_values_id
                                       and pa.products_attributes_id = pad.products_attributes_id
                                       and (pa.customers_group_id = 0 or pa.customers_group_id = 99)
+                                      and pa.status = 1
                                       limit 1
                                      ');
         $Qcheck->bindInt(':products_id', $products_id);
@@ -399,6 +411,7 @@
                                             and popt.language_id = :language_id
                                             and popt.language_id = poval.language_id
                                             and (pa.customers_group_id = :customers_group_id or pa.customers_group_id = 99)
+                                            and pa.status = 1
                                          ');
 
           $Qattributes->bindInt(':products_id', $products_id);
@@ -430,6 +443,7 @@
                                             and popt.language_id = :language_id
                                             and popt.language_id = poval.language_id
                                             and (pa.customers_group_id = 0 or pa.customers_group_id = 99)
+                                            and pa.status = 1
                                          ');
 
           $Qattributes->bindInt(':products_id', $products_id);
@@ -458,7 +472,7 @@
                                               and popt.language_id = :language_id
                                               and popt.language_id = poval.language_id
                                               and (pa.customers_group_id = :customers_group_id or pa.customers_group_id = 99)
-
+                                              and pa.status = 1
                                             ');
 
           $Qattributes->bindInt(':products_id', $products_id);
@@ -485,7 +499,7 @@
                                               and popt.language_id = :language_id
                                               and popt.language_id = poval.language_id
                                               and (pa.customers_group_id = 0 or pa.customers_group_id = 99)
-
+                                              and pa.status = 1
                                             ');
 
           $Qattributes->bindInt(':products_id', $products_id);

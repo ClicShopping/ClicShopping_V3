@@ -3,7 +3,7 @@ manufacturers_name varchar(64) not_null
 manufacturers_image varchar(255)
 date_added datetime
 last_modified datetime
-manufacturers_status int(1) default(0) not_null
+manufacturers_status tinyint(1) default(0) not_null
 suppliers_id int not_null default(0)
 --
 primary manufacturers_id

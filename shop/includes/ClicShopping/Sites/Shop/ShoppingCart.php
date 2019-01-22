@@ -664,12 +664,13 @@
           foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
 
             $Qattributes = $this->db->prepare('select options_values_price,
-                                                        price_prefix
+                                                      price_prefix
                                                 from :table_products_attributes
                                                 where products_id = :products_id
                                                 and options_id = :options_id
-                                                and options_values_id = :options_values_id'
-                                              );
+                                                and options_values_id = :options_values_id
+                                                and status = 1
+                                              ');
 
             $Qattributes->bindInt(':products_id', $prid);
             $Qattributes->bindInt(':options_id', $option);

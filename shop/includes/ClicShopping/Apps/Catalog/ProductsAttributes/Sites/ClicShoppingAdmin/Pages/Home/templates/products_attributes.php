@@ -661,6 +661,7 @@
 ?>
                     <td class="text-md-right"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price'); ?></td>
                     <td class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_price_prefix'); ?></td>
+                    <td class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_status'); ?></td>
                     <td class="text-md-center"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_opt_order'); ?></td>
                     <td class="text-md-center" colspan="2"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('table_heading_action'); ?></td>
                   </tr>
@@ -772,7 +773,8 @@
       }
 ?>
                   <td class="text-md-right"><?php echo HTML::inputField('value_price', $Qattributes->value('options_values_price')); ?></td>
-                  <td calss="text-md-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
+                  <td class="text-md-center"><?php echo HTML::inputField('price_prefix', $Qattributes->value('price_prefix')); ?></td>
+                  <td></td>
                   <td class="text-md-center"><?php echo HTML::inputField('value_sort_order', $Qattributes->value('products_options_sort_order')); ?></td>
                   <td class="text-md-right">
 <?php
@@ -910,6 +912,16 @@
 ?>
                   <td class="text-md-right"><?php echo $Qattributes->value('options_values_price'); ?></td>
                   <td class="text-md-center"><?php echo $Qattributes->value('price_prefix'); ?></td>
+                  <td class="text-md-center">
+<?php
+//ProductsAttributes&ProductsAttributes&UpdateAttribute&attribute_id=1&option_page=1&value_page=1&attribute_page=1#tab3
+        if ($Qattributes->valueInt('status') == 1) {
+          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=0&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id') . '&cPath=' . $cPath),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+        } else {
+          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=1&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id') . '&cPath=' . $cPath),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+        }
+?>
+                  </td>
                   <td class="text-md-center"><?php echo $Qattributes->value('products_options_sort_order'); ?></td>
                   <td class="text-md-right" colspan="2">
 <?php
