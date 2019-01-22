@@ -17,7 +17,7 @@
   }
 
   require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
-  echo HTML::form('checkout_confirmation', $form_action_url, 'post', 'class="form-inline" role="form" onsubmit="return checkCheckBox(this)"');
+  echo HTML::form('checkout_confirmation', $form_action_url, 'post', 'id="checkout_confirmation" class="form-inline" role="form" onsubmit="return checkCheckBox(this)"');
 ?>
 <section class="checkout_confirmation" id="checkout_confirmation">
   <div class="contentContainer">
