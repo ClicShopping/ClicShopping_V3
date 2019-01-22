@@ -16,7 +16,6 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="separator"></div>
 <?php
   echo $process_button;
-  echo $atos;
 ?>
   </div>
 </div>

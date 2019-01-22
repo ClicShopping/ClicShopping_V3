@@ -61,14 +61,6 @@
           $process_button = $CLICSHOPPING_Payment->process_button();
         }
 
-// Atos - Don't change
-// Delete the button if atos module is installed
-        if ( substr($_SESSION['payment'], 0, 4) != 'atos' ) {
-          $atos = '<div class="float-md-right" style="padding-top:10px;">';
-          $atos .= HTML::button(sprintf(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay'), $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])), null, null, 'success', array('params' => 'data-button="payNow"'));
-          $atos .= '</div>';
-        }
-
         $confirmation = '  <!-- cc_checkout_confirmation_order_total start -->' . "\n";
 
         ob_start();
