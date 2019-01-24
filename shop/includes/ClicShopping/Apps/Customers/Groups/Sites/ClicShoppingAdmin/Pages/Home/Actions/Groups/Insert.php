@@ -49,7 +49,7 @@
           $group_tax = HTML::sanitize($_POST['group_tax']);
         }
 
-// Module de paiment autorise
+// Module de paiement autorise
         if ($_POST['payment_unallowed']) {
           $group_payment_unallowed =  '';
 

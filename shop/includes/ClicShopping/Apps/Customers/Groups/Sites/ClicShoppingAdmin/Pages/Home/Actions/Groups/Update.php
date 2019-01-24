@@ -42,7 +42,7 @@
         }
 
 
-// Module de paiment autorise
+// Module de paiement autorise
         if (isset($_POST['payment_unallowed'])) {
           $group_payment_unallowed =  '';
 
