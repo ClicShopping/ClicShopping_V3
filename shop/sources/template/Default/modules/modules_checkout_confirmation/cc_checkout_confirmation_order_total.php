@@ -40,7 +40,6 @@
       $CLICSHOPPING_OrderTotal = Registry::get('OrderTotal');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
-
         if (MODULE_ORDER_TOTAL_INSTALLED) {
 
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_CONTENT_WIDTH;

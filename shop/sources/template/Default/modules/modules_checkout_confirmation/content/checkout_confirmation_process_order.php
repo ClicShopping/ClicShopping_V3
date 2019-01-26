@@ -14,9 +14,11 @@ use ClicShopping\OM\CLICSHOPPING;
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="col-md-12">
     <div class="separator"></div>
+    <div class="text-md-right" id="process_button" class="procesButton">
 <?php
   echo $process_button;
 ?>
+    </div>
   </div>
 </div>
 

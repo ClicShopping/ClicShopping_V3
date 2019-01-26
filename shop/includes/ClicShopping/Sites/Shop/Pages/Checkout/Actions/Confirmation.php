@@ -149,7 +149,6 @@
         $form_action_url = CLICSHOPPING::link(null, 'Checkout&Process');
       }
 
-// Modification suite atos
       if (is_array($CLICSHOPPING_Payment->modules)) {
         $confirmation = $CLICSHOPPING_Payment->confirmation();
       }
