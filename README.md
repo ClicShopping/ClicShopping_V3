@@ -20,7 +20,9 @@
  Step2 : Install Clicshopping : https://www.mysite.com/shop/install
 
 
- All informations about the ClicShopping
+ All informations about the ClicShopping(tm)
+ 
+ Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
 
  Community : https://www.clicshopping.org
 
