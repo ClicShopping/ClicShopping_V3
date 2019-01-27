@@ -18,6 +18,7 @@ table_heading_image = Image
 table_heading_opt_tatus = Statut
 table_heading_action = Action
 table_heading_download = Produits téléchargeable :
+table_heading_opt_status = Statut
 
 table_text_filename = Nom du fichier :
 table_text_max_days = Expire le :

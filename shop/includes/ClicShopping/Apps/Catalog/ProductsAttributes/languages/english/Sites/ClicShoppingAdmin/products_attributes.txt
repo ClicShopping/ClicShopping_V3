@@ -20,6 +20,7 @@ table_heading_image = Image
 table_heading_opt_tatus = Status
 table_heading_action = Action
 table_heading_download = Downloadable products:
+table_heading_opt_status = Status
 
 table_text_filename = Filename:
 table_text_max_days = Expiry days:
