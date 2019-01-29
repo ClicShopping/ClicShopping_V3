@@ -40,9 +40,9 @@
 
  Apache 2.4
 
- MYSQL 7
+ MYSQL 7 / MariaDb
 
- PHP 6+
+ PHP 6+, 7.2, 7.3 and +
 
  License GPL2 - MIT
 
