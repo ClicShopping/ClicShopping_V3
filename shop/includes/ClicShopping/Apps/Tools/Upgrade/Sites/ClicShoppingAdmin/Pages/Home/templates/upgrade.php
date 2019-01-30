@@ -30,19 +30,19 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-block headerCard">
-          <div class="row">
+          <div class="row col-md-12">
 <?php
   echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]);
 ?>
             <div class="col-md-12 form-group row">
               <div class="col-md-3">
-                <div class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></div>
-                <div class="col-md-11 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></div>
+                <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></span>
+                <span class="col-md-11 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></span>
               </div>
 
-              <div class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory(), $_POST['template_directory'], 'onchange="this.form.submit();"'); ?></div>
-              <div class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $_POST['template_directory'], 'onchange="this.form.submit();"'); ?></div>
-              <div class="col-md-2"><?php echo HTML::inputField('module_search', '', 'required id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
+              <div class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory(), $_POST['template_directory']); ?></div>
+              <div class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $_POST['template_directory']); ?></div>
+              <div class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
               <div class="col-md-3 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
@@ -50,18 +50,18 @@
 ?>
               </div>
             </div>
-
-            <div class="col-md-12 form-group row">
-              <div class="col-md-3"></div>
-              <div class="col-md-9 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></div>
+            <div class="row col-md-12">
+              <div class="col-md-12 form-group row">
+                <span class="col-md-4"></span>
+                <span class="col-md-4 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
+                <span class="col-md-4"><?php echo HTML::button('text_search', null, null, 'primary');?></span>
+              </div>
             </div>
+            </form>
           </div>
-
-          </form>
         </div>
       </div>
     </div>
-
     <div class="separator"></div>
     <div class="alert alert-info" role="alert">
       <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')) . ' ' . $CLICSHOPPING_Upgrade->getDef('title_help') ?></div>

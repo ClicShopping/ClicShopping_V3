@@ -41,7 +41,11 @@ title_help = Help
 button_manual = Manual install
 text_local_version = Local version :
 text_server_version = Server version :
-text_up_to_date = <strong>You version is up to date. The current version installed is : </strong>
+text_up_to_date =
+<p>-The search is done only from part of the name of the module. For example to know all the header modules just write header, for the bottom of the page, footer... </p>
+<p>-Please select a search module or criteria before starting the search</p>
+<strong>- You version is up to date. The current version installed is : </strong>
+text_search = Search
 
 text_step_upgrade = <p><strong>Upgrade process :</strong></p>
     <p>step 1 : Store is offline</p>
@@ -52,7 +56,9 @@ text_step_upgrade = <p><strong>Upgrade process :</strong></p>
 
 text_warning_upgrade = <p><strong>The process has began, please wait a moment. This page will be updated</strong></p>
 
-text_upgrade_version = <p>Your ClicShopping version <strong>is not up to date</strong>. Your current version :
+text_upgrade_version =
+<p>Your ClicShopping version <strong>is not up to date</strong>. Your current version :
+
 text_upgrade_site = All applications are available at theses address (please note this space is experimental and it can have error) :
 
 text_upgrade_new_version = The new version is :

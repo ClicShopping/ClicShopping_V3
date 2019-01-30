@@ -29,7 +29,7 @@ button_back = Retour
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?
 dialog_uninstall_title = Désinstaller le module?
-dialog_uninstall_body = Etes vous sur de désinstaller ce module?
+dialog_uninstall_body = Etes vous sur de désinstaller ce module ?
 
 alert_module_install_success = Le module a été installée.
 alert_module_uninstall_success = Le module a été désinstallée.
@@ -41,7 +41,10 @@ button_manual = Installation manuelle
 text_local_version = Version locale :
 text_server_version = Version Serveur :
 text_up_to_date = - La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le bas de page, footer ...<br />
-- <strong>Votre version est à jour. La version actuelle installée est : </strong>';
+- Veuillez sélectionner un module ou un critère de recherche avant de lancer la recherche<br />
+- <strong>Votre version est à jour. La version actuelle installée est : </strong>
+
+text_search = Rechercher
 
 text_step_upgrade = <p><strong>Procédure de mise à jour :</strong></p>
   <p>Step 1 : Fermeture de la boutique</p>
@@ -53,8 +56,8 @@ text_step_upgrade = <p><strong>Procédure de mise à jour :</strong></p>
 
 text_warning_upgrade = <p><strong>Le process va commencer, veuillez attendre un moment. Cette page sera mise à jour</strong></p>
 
-text_upgrade_version = <p>- La recherche se fait uniquement à partir d'une partie du nom du module. Par exemple pour connaitre tous les modules d'entête il suffit d'écrire header, pour le bas de page, footer ...</p>
-<p>- <strong>Votre version de ClicShopping n'est pas à jour</strong>. votre version actuelle :
+text_upgrade_version = <p>- <strong>Votre version de ClicShopping n'est pas à jour</strong>. votre version actuelle :</p>
+
 text_upgrade_site = Toutes les applications sont disponibles en consultant ces addresses (veuillez prendre note que cette espace est expérimentale et il peut y avoir des erreurs :
 
 text_upgrade_new_version = La nouvelle version est :

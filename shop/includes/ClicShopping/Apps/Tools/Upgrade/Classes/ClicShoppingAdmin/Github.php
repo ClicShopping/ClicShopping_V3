@@ -601,6 +601,6 @@
                      array('id' =>'community','text' => $this->app->getDef('text_community'))
                     );
 
-      return HTML::selectMenu('addons_apps', $array);
+      return HTML::selectMenu('addons_apps', $array, HTML::sanitize($_POST['addons_apps']));
     }
   }
