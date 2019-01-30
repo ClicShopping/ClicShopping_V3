@@ -56,7 +56,7 @@
                                        );
 
         if ($Qcheck->fetch() !== false) {
-          HTTP::redirect('https:://' . $Qcheck->value('products_url'));
+          HTTP::redirect($Qcheck->value('products_url'));
         }
       }
 

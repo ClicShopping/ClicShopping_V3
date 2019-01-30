@@ -216,7 +216,7 @@ text_products_add_large_image_delete = Please confirm the removal of the large p
 text_products_insert_big_image_vignette = Please insert a big image
 
 text_products_url = Products URL:
-text_products_url_without_http = <small>(without http://)</small>
+text_products_url_without_http = <small>(with https://)</small>
 text_products_presentation = Presentation
 text_products_stock = Stock
 text_products_alert = Warning Stock

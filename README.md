@@ -2,7 +2,7 @@
 
  Community : https://www.clicshopping.org
 
- ClicShopping is an Ecommerce OpenSource Solution B2B / B2C / B2B-B2C. Several configurations can be used.
+ ClicShopping(tm) is an Ecommerce OpenSource Solution B2B / B2C / B2B-B2C. Several configurations can be used.
  The solution is built on modules and APP to have a very big flexibility.
  The approach is completely modular on the catalog / administration with simple code to understand, to customize and to update at need.
 
@@ -15,13 +15,13 @@
 
  How to install
 
- Step1 : Download Clicshopping
+ Step1 : Download ClicShopping
 
  Step2 : Install Clicshopping : https://www.mysite.com/shop/install
 
 
  All informations about the ClicShopping(tm)
- 
+
  Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
 
  Community : https://www.clicshopping.org

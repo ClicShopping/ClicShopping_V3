@@ -22,9 +22,9 @@
   </style>
 </head>
 <body>
-<p align="center"><a href="<?php echo 'http://' . $_SERVER['HTTP_HOST']; ?>"><img src="../../image/logos/invoice/invoice_logo.png"></a></p>
+<p align="center"><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>"><img src="../../image/logos/invoice/invoice_logo.png"></a></p>
 <h2 align="center">Newsletters</h2>
-<blockquote><a href="<?php echo 'http://' . $_SERVER['HTTP_HOST']; ?>">Index</a></blockquote>
+<blockquote><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>">Index</a></blockquote>
 <?php
   $template_directory = getcwd();
   if ($handle = opendir($template_directory)) {

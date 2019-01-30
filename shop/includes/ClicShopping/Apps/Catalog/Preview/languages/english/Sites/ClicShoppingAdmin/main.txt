@@ -84,7 +84,7 @@ text_products_volume = Product volume :
 text_products_only_online = Only on the web (no selling in shop)
 
 text_products_url = Catalog URL:
-text_products_url_without_http = <small>(without https://)</small>
+text_products_url_without_http = <small>(with https://)</small>
 text_products_presentation = Presentation
 text_products_stock = Stock
 text_products_price_public = Public price & TAXE
