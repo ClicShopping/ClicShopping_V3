@@ -780,7 +780,7 @@
     public static function button($title = null, $icon = null, $link = null, $style = null, $params = null,  $size = null) {
 
       $types = ['submit', 'button', 'reset'];
-      $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary'];
+      $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light'];
       $size_button = ['lg', 'md', 'sm'];
 
       if (!isset($params['type'])) {

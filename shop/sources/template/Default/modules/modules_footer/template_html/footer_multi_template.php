@@ -76,8 +76,8 @@ use ClicShopping\OM\HTML;
           </ul>
         </span>
     </div>
-    <div class="seaparator"></div>
-    <div class="seaparator"></div>
+    <div class="separator"></div>
+    <div class="separator"></div>
   </div>
 
 

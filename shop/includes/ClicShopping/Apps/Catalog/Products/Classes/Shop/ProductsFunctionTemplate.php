@@ -123,10 +123,15 @@
     }
 
 
-    public function getButtonViewDetails($constant, $products_id) {
+    public function getButtonViewDetails($constant, $products_id, $icon = null, $button_color = 'info', $params = null, $button_size = 'sm') {
       $button = '';
+
       if ($constant == 'False') {
-        $button = HTML::button(CLICSHOPPING::getDef('button_details'), '', $this->rewriteUrl->getProductNameUrl($products_id), 'info', null, 'sm');
+        if ($icon == null) {
+          $button = HTML::button(CLICSHOPPING::getDef('button_details'), '', $this->rewriteUrl->getProductNameUrl($products_id), $button_color, $params, $button_size);
+        } else {
+          $button = HTML::button(null, $icon, $this->rewriteUrl->getProductNameUrl($products_id), $button_color, $params, $button_size);
+        }
       }
 
       return $button;

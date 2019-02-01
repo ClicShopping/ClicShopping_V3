@@ -142,9 +142,9 @@
           return true;
         }
 
-        if ($language_code != 'en') {
-          return call_user_func([$this, __FUNCTION__], $group, 'en');
-        }
+      if ($language_code != DEFAULT_LANGUAGE) {
+        return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
+      }
 
         return false;
     }
@@ -152,10 +152,14 @@
     final public function loadDefinitions($group, $language_code = null) {
         $language_code = isset($language_code) && $this->lang->exists($language_code) ? $language_code : $this->lang->get('code');
 
+        if ($language_code != DEFAULT_LANGUAGE) {
+          $this->loadDefinitions($group, DEFAULT_LANGUAGE);
+        }
+
         $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . '/' . $group . '.txt';
 
         if (!is_file($pathname)) {
-          $language_code = 'en';
+          $language_code = DEFAULT_LANGUAGE;
           $pathname = CLICSHOPPING::BASE_DIR . 'Apps/' . $this->vendor . '/' . $this->code . '/languages/' . $this->lang->get('directory', $language_code) . '/' . $group . '.txt';
         }
 

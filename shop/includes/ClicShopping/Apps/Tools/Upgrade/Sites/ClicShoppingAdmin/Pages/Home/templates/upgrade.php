@@ -117,10 +117,13 @@
     }
 ?>
           <div class="separator"></div>
-          <div><?php echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site'); ?><br />
-            -  <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank" rel="noreferrer"> ClicShopping</a><br />
-            -  <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer"><?php echo $CLICSHOPPING_Upgrade->getDef('text_official'); ?><br />
-              - <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer"><?php echo $CLICSHOPPING_Upgrade->getDef('text_community'); ?><br />
+          <div>
+<?php
+      echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site');
+      echo '-  <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank" rel="noreferrer">ClicShopping</a><br />';
+      echo '-  <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '<br />';
+      echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '<br />';
+?>
           </div>
 <?php
   } else {
