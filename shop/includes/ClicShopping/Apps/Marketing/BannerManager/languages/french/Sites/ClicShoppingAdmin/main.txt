@@ -133,3 +133,6 @@ error_image_does_not_exist = L'image n'existe pas
 
 text_result_page = Page {{listing_from}} sur {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
+text_banners_expiracy_note = <strong>Notes calendrier:</strong><ul><li> Un seul des deux champs doit être soumis </li> <li> si la bannière ne doit pas expirer automatiquement, laissez ces champs vides</li></ul>
+text_banners_scheduled_note = <strong>Notes calendrier:</strong><ul><li> si une planification est définie, la bannière sera activée à cette date. </li> <li> toutes les bannières planifiées sont marquées comme déactives jusqu'à leur date d'arrivée, à laquelle elles seront ensuite marquées comme actives.</li></ul>

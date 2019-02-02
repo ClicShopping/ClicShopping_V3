@@ -132,3 +132,5 @@ error_image_does_not_exist = Image does not exist
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)
 
+text_banners_expiracy_note = <strong>Expiry Notes:</strong><ul><li>Only one of the two fields should be submitted</li><li>If the banner is not to expire automatically, then leave these fields blank</li></ul>
+text_banners_scheduled_note = <strong>Schedule Notes:</strong><ul><li>If a schedule is set, the banner will be activated on that date.</li><li>All scheduled banners are marked as deactive until their date has arrived, to which they will then be marked active.</li></ul>
