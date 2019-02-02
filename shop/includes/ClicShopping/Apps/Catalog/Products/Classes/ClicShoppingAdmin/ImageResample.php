@@ -59,6 +59,8 @@
         $this->image = imagecreatefromgif($filename);
       } elseif( $this->image_type == IMAGETYPE_PNG ) {
         $this->image = imagecreatefrompng($filename);
+      } elseif( $this->image_type == IMAGETYPE_WEBP ) {
+        $this->image = imagecreatefromwebp($filename);
       } else {
         if (isset($_GET['ProductsAttributes'])) {
           CLICSHOPPING::redirect(null, 'A&Catalog\ProductsAttributes&ProductsAttributes&error=fileNotSupported');
@@ -73,12 +75,15 @@
 
     public function save($filename, $image_type = IMAGETYPE_PNG, $compression= 100, $permissions = null) {
       if( $image_type == IMAGETYPE_JPEG ) {
-        imagejpeg($this->image,$filename,$compression);
+        imagejpeg($this->image, $filename, $compression);
       } elseif( $image_type == IMAGETYPE_GIF ) {
-        imagegif($this->image,$filename);
+        imagegif($this->image, $filename);
       } elseif( $image_type == IMAGETYPE_PNG ) {
-        imagepng($this->image,$filename);
+        imagepng($this->image, $filename);
+      }elseif( $image_type == IMAGETYPE_WEBP ) {
+        imagewebp($this->image, $filename);
       }
+
       if( !is_null($permissions)) {
         chmod($filename,$permissions);
       }
@@ -93,6 +98,9 @@
         imagegif($this->image);
       } elseif( $image_type == IMAGETYPE_PNG ) {
         header("Content-type: image/png");
+        imagepng($this->image);
+      } elseif( $image_type == IMAGETYPE_WEBP ) {
+        header("Content-type: image/webp");
         imagepng($this->image);
       }
     }

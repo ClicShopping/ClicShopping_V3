@@ -227,7 +227,7 @@
 
 
 // load originale image
-        $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg']);
+        $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
 // When the image is updated
 
         if ($image->check() && $image->save()) {
@@ -394,7 +394,7 @@
                              'sort_order' => (int)$pi_sort_order
                             ];
 
-          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages() . $dir, null, array('gif', 'jpg', 'png'));
+          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages() . $dir, null, ['gif', 'jpg', 'png', 'webp']);
 
           if ( $image->check() && $image->save() ) {
             $error = false;
@@ -417,7 +417,7 @@
                              'htmlcontent' => $_POST['products_image_htmlcontent_new_' . $matches[1]]
                             ];
 
-          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages()  . $dir, null, ['gif', 'jpg', 'png']);
+          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages()  . $dir, null, ['gif', 'jpg', 'png', 'webp']);
 
           if ( $image->check() && $image->save() ) {
             $error = false;
