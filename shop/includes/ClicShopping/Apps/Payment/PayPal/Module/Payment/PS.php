@@ -787,6 +787,7 @@
       $CLICSHOPPING_Address = Registry::get('Address');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
+      $CLICSHOPPING_Template = Registry::get('Template');
 
       $new_order_status = DEFAULT_ORDERS_STATUS_ID;
 
@@ -1063,19 +1064,33 @@
 // load the after_process public function from the payment modules
       $this->after_process();
 
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessRentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessERP');
+      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutProcess/';
+
+      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutProcess*');
+
+      foreach ($files_get as $value) {
+        if (!empty($value['name'])) {
+          $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);
+        }
+      }
     }
 
     public function after_process() {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
-//      $CLICSHOPPING_Order = Registry::get('Order');
+      $CLICSHOPPING_Template = Registry::get('Template');
 
       $CLICSHOPPING_ShoppingCart->reset(true);
 
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessRentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessERP');
+      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutProcess/';
+
+      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutProcess*');
+
+      foreach ($files_get as $value) {
+        if (!empty($value['name'])) {
+          $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);
+        }
+      }
 
 // unregister session variables used during checkout
       unset($_SESSION['sendto']);
