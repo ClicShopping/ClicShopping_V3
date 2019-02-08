@@ -119,7 +119,7 @@
 
             $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutShipping/';
 
-            $files_get_gdpr = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
+            $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
 
             foreach ($files_get as $value) {
               if (!empty($value['name'])) {
