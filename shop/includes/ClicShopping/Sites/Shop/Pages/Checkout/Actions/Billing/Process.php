@@ -22,6 +22,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
 
@@ -48,7 +49,15 @@
           }
         }
 
-        $CLICSHOPPING_Hooks->call('Billing', 'Process');
+        $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutPayment/';
+
+        $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutPayment*');
+
+        foreach ($files_get as $value) {
+          if (!empty($value['name'])) {
+            $CLICSHOPPING_Hooks->call('CheckoutPayment', $value['name']);
+          }
+        }
 
         CLICSHOPPING::redirect(null, 'Checkout&Confirmation');
 

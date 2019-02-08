@@ -22,7 +22,8 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
-      $CLICSHOPPING_Hooks  = Registry::get('Hooks');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Template = Registry::get('Template');
 
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
@@ -90,6 +91,16 @@
 
                       $CLICSHOPPING_Hooks->call('Shipping', 'Process');
 
+                      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutShipping/';
+
+                      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
+
+                      foreach ($files_get as $value) {
+                        if (!empty($value['name'])) {
+                          $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
+                        }
+                      }
+
                       CLICSHOPPING::redirect(null, 'Checkout&Billing');
 
                     }
@@ -106,7 +117,15 @@
           } else {
             $_SESSION['shipping'] = false;
 
-            $CLICSHOPPING_Hooks->call('Shipping', 'Process');
+            $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutShipping/';
+
+            $files_get_gdpr = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
+
+            foreach ($files_get as $value) {
+              if (!empty($value['name'])) {
+                $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
+              }
+            }
 
             CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }

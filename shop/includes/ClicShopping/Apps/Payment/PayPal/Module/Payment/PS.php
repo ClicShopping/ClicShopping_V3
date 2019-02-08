@@ -1063,8 +1063,8 @@
 // load the after_process public function from the payment modules
       $this->after_process();
 
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','ERP');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessRentCommission');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessERP');
     }
 
     public function after_process() {
@@ -1074,8 +1074,8 @@
 
       $CLICSHOPPING_ShoppingCart->reset(true);
 
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','ERP');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessRentCommission');
+      $CLICSHOPPING_Hooks->call('CheckoutProcess','CheckoutProcessERP');
 
 // unregister session variables used during checkout
       unset($_SESSION['sendto']);

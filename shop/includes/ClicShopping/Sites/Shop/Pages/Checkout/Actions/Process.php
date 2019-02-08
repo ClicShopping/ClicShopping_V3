@@ -31,6 +31,7 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Template = Registry::get('Template');
 
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
@@ -107,9 +108,15 @@
 // load the after_process function from the payment modules
       $CLICSHOPPING_Payment->after_process();
 
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','Process');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','RentCommission');
-      $CLICSHOPPING_Hooks->call('CheckoutProcess','ERP');
+      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutProcess/';
+
+      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutProcess*');
+
+      foreach ($files_get as $value) {
+        if (!empty($value['name'])) {
+          $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);
+        }
+      }
 
       $CLICSHOPPING_ShoppingCart->reset(true);
 
