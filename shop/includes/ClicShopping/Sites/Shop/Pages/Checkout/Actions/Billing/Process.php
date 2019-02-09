@@ -53,9 +53,11 @@
 
         $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutPayment*');
 
-        foreach ($files_get as $value) {
-          if (!empty($value['name'])) {
-            $CLICSHOPPING_Hooks->call('CheckoutPayment', $value['name']);
+        if (is_array($files_get)) {
+          foreach ($files_get as $value) {
+            if (!empty($value['name'])) {
+              $CLICSHOPPING_Hooks->call('CheckoutPayment', $value['name']);
+            }
           }
         }
 

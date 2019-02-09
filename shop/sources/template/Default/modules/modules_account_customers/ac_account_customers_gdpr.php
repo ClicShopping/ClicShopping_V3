@@ -43,7 +43,7 @@
 
         $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Account/';
 
-        $files_get_gdpr = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdpr*');
+        $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdpr*');
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_GDPR_CONTENT_WIDTH;
 

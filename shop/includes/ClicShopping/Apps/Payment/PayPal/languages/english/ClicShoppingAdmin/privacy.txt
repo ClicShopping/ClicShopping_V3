@@ -28,6 +28,6 @@ privacy_body =
   <li>E-Commerce solution identification.</li>
 </ul>
 
-<div class="alert alert-info">
+<div class="alert alert-info" role="alert">
   <p>The parameters of each transaction sent to and received from PayPal can be inspected on the PayPal App Log page.</p>
 </div>

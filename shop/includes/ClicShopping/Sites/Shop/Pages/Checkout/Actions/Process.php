@@ -112,9 +112,11 @@
 
       $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutProcess*');
 
-      foreach ($files_get as $value) {
-        if (!empty($value['name'])) {
-          $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);
+      if (is_array($files_get)) {
+        foreach ($files_get as $value) {
+          if (!empty($value['name'])) {
+            $CLICSHOPPING_Hooks->call('CheckoutProcess', $value['name']);
+          }
         }
       }
 

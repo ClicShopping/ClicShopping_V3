@@ -27,11 +27,13 @@
         if ($process === false) {
           $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Account/';
 
-          $files_get_gdpr = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdprCall*');
+          $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'AccountGdprCall*');
 
-          foreach ($files_get_gdpr as $value) {
-            if (!empty($value['name'])) {
-              $CLICSHOPPING_Hooks->call('Account', $value['name']);
+          if (is_array($files_get)) {
+            foreach ($files_get as $value) {
+              if (!empty($value['name'])) {
+                $CLICSHOPPING_Hooks->call('Account', $value['name']);
+              }
             }
           }
 

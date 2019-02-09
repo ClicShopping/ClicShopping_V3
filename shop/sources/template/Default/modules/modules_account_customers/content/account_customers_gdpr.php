@@ -26,9 +26,11 @@ use ClicShopping\OM\HTML;
       <div class="separator"></div>
       <div id="gdpr">
 <?php
-  foreach ($files_get_gdpr as $value) {
-    if (!empty($value['name'])) {
-     echo $CLICSHOPPING_Hooks->output('Account', $value['name'], null, 'display');
+  if (is_array($files_get)) {
+    foreach ($files_get as $value) {
+      if (!empty($value['name'])) {
+       echo $CLICSHOPPING_Hooks->output('Account', $value['name'], null, 'display');
+      }
     }
   }
 ?>

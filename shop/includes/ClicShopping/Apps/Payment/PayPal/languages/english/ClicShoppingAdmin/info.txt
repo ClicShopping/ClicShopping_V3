@@ -364,7 +364,7 @@ text_paypal_standard =
 <div>
   <h3>Payments Standard PayPal: Configure &rarr; Payments Standard</h3>
 
-<div class="alert-warning">It is recommended to enable Payment Data Transfer (PDT) in your PayPal account settings to ensure transactions can be verified after payments have been made.</div>
+<div class="alert-warning" role="alert">It is recommended to enable Payment Data Transfer (PDT) in your PayPal account settings to ensure transactions can be verified after payments have been made.</div>
 
 <h4>Features</h4>
 

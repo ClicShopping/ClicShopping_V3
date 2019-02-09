@@ -95,15 +95,17 @@
 
                       $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
 
-                      foreach ($files_get as $value) {
-                        if (!empty($value['name'])) {
-                          $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
+                      if (is_array($files_get)) {
+                        foreach ($files_get as $value) {
+                          if (!empty($value['name'])) {
+                            $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
+                          }
                         }
                       }
 
                       CLICSHOPPING::redirect(null, 'Checkout&Billing');
-
                     }
+                }
                 }
               }
             } else {
@@ -121,9 +123,11 @@
 
             $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
 
-            foreach ($files_get as $value) {
-              if (!empty($value['name'])) {
-                $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
+            if (is_array($files_get)) {
+              foreach ($files_get as $value) {
+                if (!empty($value['name'])) {
+                  $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
+                }
               }
             }
 
