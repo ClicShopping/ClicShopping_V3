@@ -4,7 +4,7 @@ navbar_title_2 = Gdpr
 module_account_customers_gdpr_title = Accès et rectifications de mes données
 module_account_customers_gdpr_account_intro = Soucieux de la vie privée de nos fidèles clients, nous essayons de vous aider à paramétrer au mieux la confidentialités de vos données.<br />
 Cette section peut évoluer en fonction de nouveaux paramètres que nous mettons en place sur le site et ayant un impact sur l'utilisation de vos données.<br />
-votre compte client vous permet d'activer et de désactiver un certains nombres de fonctionnalité. Afin de mieux vous servir, nous vous conseillons de bien réfléchir avant de réaliser une action.<br />< br />
+votre compte client vous permet d'activer et de désactiver un certains nombres de fonctionnalité. Afin de mieux vous servir, nous vous conseillons de bien réfléchir avant de réaliser une action.<br /><br />
 <strong>Certaines actions peuvent etre irréversible car elles effaceront toutes vos données.</strong>
 module_account_customers_gdpr_no_ip_address = Ne pas stocker mon adresse IP et le nom de mon provider
 module_account_customers_gdpr_delete_all_reviews = Supprimer tous mes commentaires
