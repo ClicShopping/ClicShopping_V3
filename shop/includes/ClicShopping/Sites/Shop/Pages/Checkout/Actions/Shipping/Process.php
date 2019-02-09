@@ -83,29 +83,28 @@
               } else {
 
                 for ($i=0, $n=count($quote[0]['methods']); $i<$n; $i++) {
-                    if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
-                      $_SESSION['shipping'] = ['id' => $_SESSION['shipping'],
-                                               'title' => (($_SESSION['free_shipping'] === true) ?  $quote[0]['methods'][$i]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][$i]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' (' . $quote[0]['methods'][$i]['title'] . ')' : '')),
-                                               'cost' => $quote[0]['methods'][$i]['cost']
-                                              ];
+                  if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
+                    $_SESSION['shipping'] = ['id' => $_SESSION['shipping'],
+                                             'title' => (($_SESSION['free_shipping'] === true) ?  $quote[0]['methods'][$i]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][$i]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' (' . $quote[0]['methods'][$i]['title'] . ')' : '')),
+                                             'cost' => $quote[0]['methods'][$i]['cost']
+                                            ];
 
-                      $CLICSHOPPING_Hooks->call('Shipping', 'Process');
+                    $CLICSHOPPING_Hooks->call('Shipping', 'Process');
 
-                      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutShipping/';
+                    $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/CheckoutShipping/';
 
-                      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
+                    $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutShipping*');
 
-                      if (is_array($files_get)) {
-                        foreach ($files_get as $value) {
-                          if (!empty($value['name'])) {
-                            $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
-                          }
+                    if (is_array($files_get)) {
+                      foreach ($files_get as $value) {
+                        if (!empty($value['name'])) {
+                          $CLICSHOPPING_Hooks->call('CheckoutShippingProcess', $value['name']);
                         }
                       }
-
-                      CLICSHOPPING::redirect(null, 'Checkout&Billing');
                     }
-                }
+
+                    CLICSHOPPING::redirect(null, 'Checkout&Billing');
+                  }
                 }
               }
             } else {
