@@ -66,11 +66,9 @@
           $footer_tag .='  "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '", ';
         }
         if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL )) {
-          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '", ';
+          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '" ';
         }
-        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_GOOGLEPLUS_URL )) {
-          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_GOOGLEPLUS_URL . '" ';
-        }
+
         $footer_tag .='
   ]
 }
@@ -107,13 +105,6 @@
           $pinterest_url = rawurldecode($pinterest);
         } else {
           $pinterest_url = '#';
-        }
-
-        $googleplus= MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_GOOGLEPLUS_URL;
-        if (!empty($googleplus)) {
-          $googleplus_url = rawurldecode($googleplus);
-        } else {
-          $googleplus_url = '#';
         }
 
         if (defined('MODULES_HEADER_TAGS_MAILCHIMP_LIST_ANONYMOUS')) {
@@ -232,20 +223,6 @@
         ]
       );
 
-
-      $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Please indicate the Google + URL ?',
-          'configuration_key' => 'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_GOOGLEPLUS_URL',
-          'configuration_value' => 'Indicate the account url',
-          'configuration_description' => 'Insert a title',
-          'configuration_group_id' => '6',
-          'sort_order' => '8',
-          'set_function' => '',
-          'date_added' => 'now()'
-        ]
-      );
-
-
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER',
@@ -288,7 +265,6 @@
                    'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL',
                    'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL',
                    'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL',
-                   'MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_GOOGLEPLUS_URL',
                    'MODULE_FOOTER_MULTI_TEMPLATE_SORT_ORDER',
                    'MODULE_FOOTER_MULTI_TEMPLATE_DISPLAY_PAGES'
                   );

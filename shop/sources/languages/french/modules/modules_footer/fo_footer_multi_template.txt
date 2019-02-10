@@ -11,7 +11,6 @@ module_footer_multi_template_contact_us_email_link = Nous contacter
 
 module_footer_multi_template_information_shipping = Facebook
 module_footer_multi_template_information_privacy = twitter
-module_footer_multi_template_information_conditions = GooglePlus
 module_footer_multi_template_information_contact = Pinterest
 
 module_footer_multi_template_account_box_account = Mon compte
