@@ -56,7 +56,7 @@
               <div class="col-md-12 form-group row">
                 <span class="col-md-4"></span>
                 <span class="col-md-4 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
-                <span class="col-md-4"><?php echo HTML::button('text_search', null, null, 'primary');?></span>
+                <span class="col-md-4"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('text_search'), null, null, 'primary');?></span>
               </div>
             </div>
             </form>

@@ -45,6 +45,7 @@ text_up_to_date =
 <p>-The search is done only from part of the name of the module. For example to know all the header modules just write header, for the bottom of the page, footer... </p>
 <p>-Please select a search module or criteria before starting the search</p>
 <strong>- You version is up to date. The current version installed is : </strong>
+
 text_search = Search
 
 text_step_upgrade = <p><strong>Upgrade process :</strong></p>
