@@ -2862,7 +2862,7 @@
  * @param int $weight_class_id
  * @return mixed
  */
-    private function setSymbolbyProducts($weight_class_id) {
+    private function setSymbolByProducts($weight_class_id) {
       $QweightSymbol = $this->db->prepare('select weight_class_key
                                            from :table_weight_classes
                                            where weight_class_id = :products_weight_class_id
@@ -2882,6 +2882,6 @@
     public function getSymbolbyProducts($weight_class_id) {
       $weight_class_id = HTML::sanitize($weight_class_id);
 
-      return $this->setSymbolbyProducts($weight_class_id);
+      return $this->setSymbolByProducts($weight_class_id);
     }
   } // end class
