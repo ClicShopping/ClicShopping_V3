@@ -41,8 +41,8 @@
       $this->api_version = $this->app->getApiVersion();
 
       $this->code = 'TO';
-      $this->title = $this->app->getDef('module_sh_title');
-      $this->public_title = $this->app->getDef('module_sh_public_title');
+      $this->title = $this->app->getDef('module_to_title');
+      $this->public_title = $this->app->getDef('module_to_public_title');
 
       $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS == 'True') ? true : false;
 

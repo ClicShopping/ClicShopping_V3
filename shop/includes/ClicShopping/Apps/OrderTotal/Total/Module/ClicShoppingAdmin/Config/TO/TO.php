@@ -19,9 +19,9 @@
     public $sort_order = 400;
 
     protected function init() {
-      $this->title = $this->app->getDef('module_sh_title');
-      $this->short_title = $this->app->getDef('module_sh_short_title');
-      $this->introduction = $this->app->getDef('module_sh_introduction');
+      $this->title = $this->app->getDef('module_to_title');
+      $this->short_title = $this->app->getDef('module_to_short_title');
+      $this->introduction = $this->app->getDef('module_to_introduction');
       $this->is_installed = defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
     }
 

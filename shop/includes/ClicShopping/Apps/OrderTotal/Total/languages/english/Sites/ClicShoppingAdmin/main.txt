@@ -1,11 +1,11 @@
 heading_title = Total
-module_sh_title = Configuration
+module_to_title = Configuration
 
 text_order_total =  Total
 text_configure =  Configure App Total
 
 text_intro =  This app allow you to include a Total in the order
-module_sh_introduction = This app allow you to include a Total in the order
+module_to_introduction = This app allow you to include a Total in the order
 
 button_sort_order = Sort order
 button_install_title = Install
