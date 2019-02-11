@@ -128,6 +128,8 @@
         $link_html =  $item->html_url;
       }
 
+      $directory = $item->owner->login;
+
       $local_version = '';
       $temp_version = '';
       $temp_check = false;
@@ -205,9 +207,15 @@
                             <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_download') . '<a href="' . $link_html .'/archive/master.zip">' . $module_real_name . '</a>';  ?></p>
 <?php
           if (!is_null($item->image) || !empty($item->image)) {
+            if ($directory == 'ClicShoppingOfficialModulesV3') {
 ?>
-                            <p><img src="https://raw.github.com/ClicShoppingOfficialModulesV3/<?php echo $module_real_name; ?>/master/<?php echo $item->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+                            <p><img src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $item->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
 <?php
+            } else {
+?>
+                            <p><img src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $item->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+<?php
+            }
           }
 ?>
                           </div>
@@ -342,12 +350,17 @@
                                       </p>
 <?php
           if (!is_null($result_content_module->image) || !empty($result_content_module->image)) {
+            if ($directory == 'ClicShoppingOfficialModulesV3') {
 ?>
-                                      <p><img src="https://raw.github.com/ClicShoppingOfficialModulesV3/<?php echo $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+                                      <p><img src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
 <?php
-          }
+            } else {
 ?>
-                                    </div>
+                                     <p><img src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>" alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+<?php
+            }
+          }
+?>                                    </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $CLICSHOPPING_Upgrade->getDef('text_close'); ?></button>
                                     </div>
