@@ -115,10 +115,10 @@
 
             </tr>
             <tr>
-              <td>
+              <td colspan="9">
 <?php
     if (isset($info)) {
-      if ( $info->customer_id > 0 ) {
+      if ( $info->customer_id > 0 && $QwhosOnline->value('customer_id') > 0) {
 
         echo '<strong>' . $CLICSHOPPING_WhosOnline->getDef('table_heading_shopping_cart') . '</strong><br />';
 
