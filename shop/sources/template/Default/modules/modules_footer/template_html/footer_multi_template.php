@@ -62,6 +62,7 @@ use ClicShopping\OM\HTML;
               <li><a itemprop="Twitter" aria-label="Twitter" href="<?php echo $twitter_url;?>" target="_blank" rel="noreferrer"><i class="fab fa-twitter"></i></a></li>
 <?php
   }
+
   if (!empty($pinterest_url)) {
 ?>
               <li><a itemprop="Pinterest" aria-label="Pinterest" href="<?php echo $pinterest_url;?>" target="_blank" rel="noreferrer"><i class="fab fa-pinterest"></i></a></li>

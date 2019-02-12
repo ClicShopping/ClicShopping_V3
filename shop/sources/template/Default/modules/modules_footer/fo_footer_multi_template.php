@@ -66,8 +66,9 @@
           $footer_tag .='  "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '", ';
         }
         if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL )) {
-          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '" ';
+          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '", ';
         }
+
         $footer_tag .='
   ]
 }

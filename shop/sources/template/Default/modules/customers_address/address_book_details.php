@@ -305,7 +305,7 @@
                   <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
                   <div class="col-sm-6 col-md-4">
 <?php
-    if ($process === true) {
+    if ($error === true) {
       if ($entry_state_has_zones === true) {
         $zones_array = [];
 
@@ -323,6 +323,7 @@
                             'text' => $Qcheck->value('zone_name')
                            ];
         }
+
         echo HTML::selectMenu('state', $zones_array);
       } else {
         echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"');

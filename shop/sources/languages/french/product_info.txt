@@ -6,5 +6,5 @@ text_also_purchased_products = Nos clients ont acheté cet article puis ont craq
 
 text_product_not_found = Produit non trouvé !
 
- success_notifications_updated = Votre de demande de notification a été inséré dans votre compte client
+success_notifications_updated = Votre de demande de notification a été inséré dans votre compte client
 

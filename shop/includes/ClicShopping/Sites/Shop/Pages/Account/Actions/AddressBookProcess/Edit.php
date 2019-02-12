@@ -20,7 +20,7 @@
   class Edit extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $exists;
+      global $exists, $entry_state_has_zones, $error, $country;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
