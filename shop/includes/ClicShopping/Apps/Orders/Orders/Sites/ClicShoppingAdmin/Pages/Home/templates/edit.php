@@ -499,7 +499,7 @@
             </table>
           </div>
 
-          <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab', null, 'display'); ?>
+          <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab3', null, 'display'); ?>
         </div>
 <!-- //################################################################################################################ -->
 <!-- //                                              Other Tab                                                -->

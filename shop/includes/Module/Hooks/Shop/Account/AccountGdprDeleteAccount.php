@@ -18,7 +18,7 @@
 
     public function display() {
         $output = '
-          <div class="alert alert-danger">
+          <div class="alert alert-danger" role="alert">
             <div class="form-group">
               <label><strong>' . CLICSHOPPING::getDef('module_account_customers_gdpr_title') . '</strong></label><br />
               <label><strong>' . CLICSHOPPING::getDef('module_account_customers_gdpr_account_intro_delete') . '</strong></label>

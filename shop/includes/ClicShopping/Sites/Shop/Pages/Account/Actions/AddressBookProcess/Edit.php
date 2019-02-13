@@ -20,7 +20,7 @@
   class Edit extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-      global $exists, $entry_state_has_zones, $error, $country;
+      global $exists, $entry_state_has_zones, $process, $country;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -222,6 +222,10 @@
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro', ['min_length' => entry_state_error_select_pro]), 'error', 'addressbook');
           }
         } // end else
+
+        if ($error == true) {
+          $process = true;
+        }
 
         if ($error === false) {
 

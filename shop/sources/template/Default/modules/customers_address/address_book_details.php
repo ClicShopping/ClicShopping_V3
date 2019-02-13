@@ -305,7 +305,7 @@
                   <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
                   <div class="col-sm-6 col-md-4">
 <?php
-    if ($error === true) {
+    if ($process === true) {
       if ($entry_state_has_zones === true) {
         $zones_array = [];
 

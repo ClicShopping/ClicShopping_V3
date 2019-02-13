@@ -38,7 +38,7 @@
     }
 
     public function execute() {
-      global $entry_state_has_zones, $error, $country;
+      global $entry_state_has_zones, $process, $country;
 
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
