@@ -73,7 +73,7 @@
  * @param int $shipping_num_boxes
  * @return float
  */
-    public function getShippingWeight($shipping_num_boxes = 1) {
+    public function getShippingWeight() {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
       if (is_array($this->modules)) {
@@ -90,6 +90,7 @@
           $shipping_weight = $shipping_weight / $shipping_num_boxes;
         }
       }
+
       return $shipping_weight;
     }
 
