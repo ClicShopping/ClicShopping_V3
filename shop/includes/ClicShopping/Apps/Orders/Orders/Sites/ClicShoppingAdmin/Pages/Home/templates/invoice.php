@@ -387,7 +387,8 @@
       $temp2 = substr($order->totals[$i]['text'], 3);
       $order->totals[$i]['text'] = substr($temp2, 0, strlen($temp2)-4);
     }
-    $pdf->MultiCell(94,6, utf8_decode(html_entity_decode($order->totals[$i]['title'])) . ' ' . utf8_decode(html_entity_decode($order->totals[$i]['text'])),0,'R');
+
+    $pdf->MultiCell(94,6, substr(utf8_decode(html_entity_decode($order->totals[$i]['title'])), 0, 30) . ' : ' . utf8_decode(html_entity_decode($order->totals[$i]['text'])),0,'R');
     $Y_Table_Position += 5;
   }
 
