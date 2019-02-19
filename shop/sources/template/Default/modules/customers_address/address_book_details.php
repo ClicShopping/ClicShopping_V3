@@ -348,7 +348,6 @@
   if ($_GET['newcustomer'] != 1) {
 //   Allow or not to customer change this address ou to change the default address if oddo is activated.
     if ((isset($_GET['edit']) && ($CLICSHOPPING_Customer->getDefaultAddressID() != $_GET['edit']) && (AddressBook::countCustomersModifyAddressDefault() == 1)) || (isset($_GET['edit']) === false) && (AddressBook::countCustomersModifyAddressDefault() == 1)) {
-      if ( defined('CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_CHECKOUT_ADDRESS_CATALOG') && (CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_CHECKOUT_ADDRESS_CATALOG == 'true' || CLICSHOPPING_APP_WEBSERVICE_ODOO_ACTIVATE_WEB_SERVICE == 'false')) {
 ?>
             <div class="row">
               <div class="col-md-12">
@@ -361,7 +360,6 @@
               </div>
             </div>
 <?php
-      }
     }
   } else {
     echo  HTML::hiddenField('primary', 'on', true, 'id="primary"');
