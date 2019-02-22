@@ -387,8 +387,8 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_comments'); ?></div>
           <?php echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders&Update&oID=' . $oID)); ?>
           <div class="adminformTitle" id="StatusOrder">
-            <div class="row" id="tab3ContentRow1">
-              <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12" id="tab3ContentRow1">
                 <div class="row">
                   <div class="col-md-8"><?php echo HTML::textAreaField('comments', null, '60', '5', 'placeholder="' . $CLICSHOPPING_Orders->getDef('entry_notify_comments') .'"'); ?></div>
                   <div class="col-md-4 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_update'), null, null, 'success'); ?></div>
@@ -396,7 +396,7 @@
               </div>
               <div class="separator"></div>
               <div class="col-md-12">
-                <div class="row">
+                <div class="row" id="tab3ContentRow2">
                   <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status'); ?></strong></span>
                   <span class="col-md-4"><?php echo HTML::selectMenu('status', $orders_statuses, $order->info['orders_status']); ?></span>
                   <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status_invoice'); ?></strong></span>
@@ -408,15 +408,15 @@
               <div class="col-md-12" id="contentTab3"></div>
 
               <div class="separator"></div>
-              <div class="col-md-12">
-                <div class="row">
+              <div class="col-md-12" id="StatusSupport">
+                <div class="row" id="tab3ContentRow3">
                   <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status_orders_support_name'); ?></strong></span>
                   <span class="col-md-4"><?php echo HTML::selectMenu('orders_status_support_id', $orders_support_statuses, $order->info['orders_status_support']); ?></span>
                 </div>
               </div>
               <div class="separator"></div>
-              <div class="col-md-12">
-                <div class="row">
+              <div class="col-md-12" id="StatusNotify">
+                <div class="row" id="tab3ContentRow4">
                   <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?></strong></span>
                   <span class="col-md-4"><?php echo HTML::checkboxField('notify', '', true); ?></span>
                   <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_comments'); ?></strong></span>
@@ -427,7 +427,8 @@
             <div class="separator"></div>
             <div id="ErpOrder"></div>
           </form>
-          <div class="separator"></div>
+        </div>
+        <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_history'); ?></div>
           <div class="adminformTitle">
             <table class="table table-sm table-hover">
@@ -505,7 +506,7 @@
 <!-- //                                              Other Tab                                                -->
 <!-- //################################################################################################################ -->
 <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageTab', null, 'display'); ?>
-      </div>
+
     </div>
   </div>
 </div>
