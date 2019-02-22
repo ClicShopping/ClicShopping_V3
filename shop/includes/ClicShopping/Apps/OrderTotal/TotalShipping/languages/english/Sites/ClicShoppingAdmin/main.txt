@@ -1,5 +1,5 @@
 heading_title = Shipping
-module_sh_title = Configuration
+module_sh_title = Shipping
 
 text_shipping =  Shipping
 text_configure =  Configure App Shipping
