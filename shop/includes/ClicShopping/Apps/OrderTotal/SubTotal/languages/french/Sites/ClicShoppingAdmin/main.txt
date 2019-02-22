@@ -1,11 +1,11 @@
 heading_title = Sous Total
-module_dc_title = Configuration
+module_st_title = Configuration
 
 text_subtotal =  Sous Total
 text_configure =  Configure App Sous total de la commande
 
 text_intro = Cette app vous permet d'nstaller le calcul du sous-total de la commande
-module_dc_introduction = Cette app vous permet d'nstaller le calcul du sous-total de la commande
+module_st_introduction = Cette app vous permet d'nstaller le calcul du sous-total de la commande
 
 button_sort_order = Ordre de tri
 button_install_title = Installer

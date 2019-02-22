@@ -1,11 +1,11 @@
 heading_title = Sub Total
-module_dc_title = Configuration
+module_st_title = Configuration
 
 text_subtotal =  Sub Total
 text_configure =  Configure App Sub Total
 
 text_intro =  This app allow you to include a SUBTOTAL on the order
-module_dc_introduction = This app allow you to include a SUBTOTAL on the order
+module_st_introduction = This app allow you to include a SUBTOTAL on the order
 
 button_sort_order = Sort order
 button_install_title = Install

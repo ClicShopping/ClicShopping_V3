@@ -43,8 +43,8 @@
       $this->api_version = $this->app->getApiVersion();
 
       $this->code = 'ST';
-      $this->title = $this->app->getDef('module_dc_title');
-      $this->public_title = $this->app->getDef('module_dc_public_title');
+      $this->title = $this->app->getDef('module_st_title');
+      $this->public_title = $this->app->getDef('module_st_public_title');
 
       $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_SUBTOTAL_ST_STATUS == 'True') ? true : false;
 

@@ -1,4 +1,4 @@
-module_dc_title = Tax
-module_dc_public_title = Tax
-module_dc_short_title = Tax
+modulemodule_tx_title = Tax
+modulemodule_tx_public_title = Tax
+modulemodule_tx_short_title = Tax
 

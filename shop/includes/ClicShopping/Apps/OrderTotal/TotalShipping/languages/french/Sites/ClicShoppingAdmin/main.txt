@@ -1,5 +1,5 @@
 heading_title = Frais expéditions
-module_sh_title = Frais expéditions
+module_sh_title = Configuration
 
 text_shipping =  Frais expéditions
 text_configure =  Configure App rais expéditions

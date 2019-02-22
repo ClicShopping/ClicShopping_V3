@@ -1,11 +1,11 @@
 heading_title = Taxes
-module_dc_title = Configuration
+modulemodule_tx_title = Configuration
 
 text_tax =  Taxes
 text_configure =  Configure App Taxes
 
 text_intro = Cette app vous permet d'nstaller les taxes de commande
-module_dc_introduction = Cette app vous permet d'nstaller les taxes de commande
+modulemodule_tx_introduction = Cette app vous permet d'nstaller les taxes de commande
 
 button_sort_order = Ordre de tri
 button_install_title = Installer
