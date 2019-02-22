@@ -58,6 +58,8 @@
 
       echo '<div class="separator"></div>';
     }
+
+    echo $CLICSHOPPING_Hooks->output('IndexDashboardTop', 'PageTabContent', null, 'display');
 ?>
       </div>
     </div>
