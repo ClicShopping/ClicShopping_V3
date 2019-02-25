@@ -86,7 +86,9 @@ Requirements
 ------------
 ### jQuery / jQuery UI
  * jQuery 1.8.0+
- * jQuery UI 1.9.0+ (require draggable, droppable, resizable, selectable and slider)
+ * jQuery UI 1.9.0+
+    * Required: draggable, droppable, resizable, selectable, button and slider
+    * Recommend: sorter (To make sortable the List column and the Places)
 
 **However, we recommend newest version.**
 
@@ -122,7 +124,7 @@ Installation
 Downloads
 ------------
 **Stable releases** ([Changelog](https://github.com/Studio-42/elFinder/blob/master/Changelog))
- + [elFinder 2.1.46](https://github.com/Studio-42/elFinder/archive/2.1.46.zip)
+ + [elFinder 2.1.47](https://github.com/Studio-42/elFinder/archive/2.1.47.zip)
  + [elFinder 2.0.9](https://github.com/Studio-42/elFinder/archive/2.0.9.zip) (deprecated)
 
 **Nightly builds**

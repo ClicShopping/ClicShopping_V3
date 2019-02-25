@@ -326,13 +326,6 @@
 				fm.destroy();
 				window.close();
 			};
-		} else if (getfile === 'tinymce') {
-			elFinder.prototype._options.getFileCallback = function(file, fm) {
-				// pass selected file data to TinyMCE
-				parent.tinymce.activeEditor.windowManager.getParams().oninsert(file, fm);
-				// close popup window
-				parent.tinymce.activeEditor.windowManager.close();
-			};
 		}
 	}
 	
@@ -362,7 +355,9 @@
 				if (fm.UA.ltIE8 || fm.UA.Mobile) {
 					this.disabled = true;
 				} else {
-					this.opts = Object.assign({}, opts.extraOptions.tuiImgEditOpts || {}, {
+					this.opts = Object.assign({
+						version: 'v3.5.1'
+					}, opts.extraOptions.tuiImgEditOpts || {}, {
 						iconsPath : fm.baseUrl + 'img/tui-',
 						theme : {}
 					});
@@ -381,7 +376,7 @@
 					fm   = this.fm,
 					dfrd = $.Deferred(),
 					cdns = fm.options.cdns,
-					ver  = 'v3.4.0',
+					ver  = self.confObj.opts.version,
 					init = function(editor) {
 						var $base = $(base),
 							bParent = $base.parent(),
@@ -1724,11 +1719,16 @@
 			},
 			exts  : ['htm', 'html', 'xhtml'],
 			setup : function(opts, fm) {
+				var confObj = this;
 				if (!fm.options.cdns.ckeditor) {
-					this.disabled = true;
+					confObj.disabled = true;
 				} else {
-					if (opts.extraOptions && opts.extraOptions.managerUrl) {
-						this.managerUrl = opts.extraOptions.managerUrl;
+					confObj.ckeOpts = {};
+					if (opts.extraOptions) {
+						confObj.ckeOpts = Object.assign({}, opts.extraOptions.ckeditor || {});
+						if (opts.extraOptions.managerUrl) {
+							confObj.managerUrl = opts.extraOptions.managerUrl;
+						}
 					}
 				}
 			},
@@ -1791,7 +1791,7 @@
 						});
 
 						// CKEditor configure
-						CKEDITOR.replace(textarea.id, opts);
+						CKEDITOR.replace(textarea.id, Object.assign(opts, self.confObj.ckeOpts));
 						CKEDITOR.on('dialogDefinition', function(e) {
 							var dlg = e.data.definition.dialog;
 							dlg.on('show', function(e) {
@@ -1844,10 +1844,22 @@
 				var confObj = this;
 				// check cdn and ES6 support
 				if (!fm.options.cdns.ckeditor5 || typeof window.Symbol !== 'function' || typeof Symbol() !== 'symbol') {
-					this.disabled = true;
+					confObj.disabled = true;
 				} else {
-					if (opts.extraOptions && opts.extraOptions.ckeditor5Mode) {
-						this.ckeditor5Mode = opts.extraOptions.ckeditor5Mode;
+					confObj.ckeOpts = {};
+					if (opts.extraOptions) {
+						// @deprecated option extraOptions.ckeditor5Mode
+						if (opts.extraOptions.ckeditor5Mode) {
+							confObj.ckeditor5Mode = opts.extraOptions.ckeditor5Mode;
+						}
+						confObj.ckeOpts = Object.assign({}, opts.extraOptions.ckeditor5 || {});
+						if (confObj.ckeOpts.mode) {
+							confObj.ckeditor5Mode = confObj.ckeOpts.mode;
+							delete confObj.ckeOpts.mode;
+						}
+						if (opts.extraOptions.managerUrl) {
+							confObj.managerUrl = opts.extraOptions.managerUrl;
+						}
 					}
 				}
 				fm.bind('destroy', function() {
@@ -1885,7 +1897,7 @@
 				var self = this,
 					fm   = this.fm,
 					dfrd = $.Deferred(),
-					mode = self.confObj.ckeditor5Mode || 'balloon',
+					mode = self.confObj.ckeditor5Mode || 'inline',
 					lang = (function() {
 						var l = fm.lang.toLowerCase().replace('_', '-');
 						if (l.substr(0, 2) === 'zh' && l !== 'zh-cn') {
@@ -1902,7 +1914,7 @@
 
 						// CKEditor5 configure options
 						opts = {
-							toolbar: ['heading', '|', 'bold', 'italic', 'link', 'imageUpload', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo' ],
+							toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'imageUpload', 'ckfinder', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo'],
 							language: lang
 						};
 
@@ -1915,9 +1927,80 @@
 						});
 
 						cEditor
-							.create(editnode, opts)
+							.create(editnode, Object.assign(opts, self.confObj.ckeOpts))
 							.then(function(editor) {
-								var fileRepo = editor.plugins.get('FileRepository');
+								var ckf = editor.commands.get('ckfinder'),
+									fileRepo = editor.plugins.get('FileRepository'),
+									prevVars = {}, isImage, insertImages;
+								// Set up this elFinder instead of CKFinder
+								if (ckf) {
+									isImage = function(f) {
+										return f && f.mime.match(/^image\//i);
+									};
+									insertImages = function(urls) {
+										var imgCmd = editor.commands.get('imageUpload');
+										if (!imgCmd.isEnabled) {
+											var ntf = editor.plugins.get('Notification'),
+												i18 = editor.locale.t;
+											ntf.showWarning(i18('Could not insert image at the current position.'), {
+												title: i18('Inserting image failed'),
+												namespace: 'ckfinder'
+											});
+											return;
+										}
+										editor.execute('imageInsert', { source: urls });
+									};
+									// Take over ckfinder execute()
+									ckf.execute = function() {
+										var dlg = base.closest('.elfinder-dialog'),
+											gf = fm.getCommand('getfile'),
+											rever = function() {
+												if (prevVars.hasVar) {
+													dlg.off('resize close', rever);
+													gf.callback = prevVars.callback;
+													gf.options.folders = prevVars.folders;
+													gf.options.multiple = prevVars.multi;
+													fm.commandMap.open = prevVars.open;
+													prevVars.hasVar = false;
+												}
+											};
+										dlg.trigger('togleminimize').one('resize close', rever);
+										prevVars.callback = gf.callback;
+										prevVars.folders = gf.options.folders;
+										prevVars.multi = gf.options.multiple;
+										prevVars.open = fm.commandMap.open;
+										prevVars.hasVar = true;
+										gf.callback = function(files) {
+											var imgs = [];
+											if (files.length === 1 && files[0].mime === 'directory') {
+												fm.one('open', function() {
+													fm.commandMap.open = 'getfile';
+												}).getCommand('open').exec(files[0].hash);
+												return;
+											}
+											fm.getUI('cwd').trigger('unselectall');
+											$.each(files, function(i, f) {
+												if (isImage(f)) {
+													imgs.push(fm.convAbsUrl(f.url));
+												} else {
+													editor.execute('link', fm.convAbsUrl(f.url));
+												}
+											});
+											if (imgs.length) {
+												insertImages(imgs);
+											}
+											dlg.trigger('togleminimize');
+										};
+										gf.options.folders = true;
+										gf.options.multiple = true;
+										fm.commandMap.open = 'getfile';
+										fm.toast({
+											mode: 'info',
+											msg: fm.i18n('dblclickToSelect')
+										});
+									};
+								}
+								// Set up image uploader
 								fileRepo.createUploadAdapter = function(loader) {
 									return new uploder(loader);
 								};
@@ -1929,7 +2012,8 @@
 								});
 								dfrd.resolve(editor);
 								/*fm.log({
-									plugins: cEditor.build.plugins.map(function(p) { return p.pluginName; }),
+									defaultConfig: cEditor.defaultConfig,
+									plugins: cEditor.builtinPlugins.map(function(p) { return p.pluginName; }),
 									toolbars: Array.from(editor.ui.componentFactory.names())
 								});*/
 							})
@@ -2034,11 +2118,16 @@
 			},
 			exts  : ['htm', 'html', 'xhtml'],
 			setup : function(opts, fm) {
+				var confObj = this;
 				if (!fm.options.cdns.tinymce) {
-					this.disabled = true;
+					confObj.disabled = true;
 				} else {
-					if (opts.extraOptions && opts.extraOptions.managerUrl) {
-						this.managerUrl = opts.extraOptions.managerUrl;
+					confObj.mceOpts = {};
+					if (opts.extraOptions) {
+						confObj.uploadOpts = Object.assign({}, opts.extraOptions.uploadOpts || {});
+						confObj.mceOpts = Object.assign({}, opts.extraOptions.tinymce || {});
+					} else {
+						confObj.uploadOpts = {};
 					}
 				}
 			},
@@ -2051,33 +2140,49 @@
 							dlg = base.closest('.elfinder-dialog'),
 							h = base.height(),
 							delta = base.outerHeight(true) - h,
-							opts;
+							// hide MCE dialog and modal block
+							hideMceDlg = function() {
+								var mceW;
+								if (tinymce.activeEditor.windowManager.windows) {
+									mceW = tinymce.activeEditor.windowManager.windows[0];
+									mceDlg = $(mceW? mceW.getEl() : void(0)).hide();
+									mceCv = $('#mce-modal-block').hide();
+								} else {
+									mceDlg = $('.tox-dialog-wrap').hide();
+								}
+							},
+							// Show MCE dialog and modal block
+							showMceDlg = function() {
+								mceCv && mceCv.show();
+								mceDlg && mceDlg.show();
+							},
+							tVer = tinymce.majorVersion,
+							opts, mceDlg, mceCv;
 
 						// set base height
 						base.height(h);
 						// fit height function
 						textarea._setHeight = function(height) {
-							var base = $(this).parent(),
-								h	= height || base.innerHeight(),
-								ctrH = 0,
-								areaH;
-							base.find('.mce-container-body:first').children('.mce-top-part,.mce-statusbar').each(function() {
-								ctrH += $(this).outerHeight(true);
-							});
-							areaH = h - ctrH - delta;
-							base.find('.mce-edit-area iframe:first').height(areaH);
-							return areaH;
+							if (tVer < 5) {
+								var base = $(this).parent(),
+									h = height || base.innerHeight(),
+									ctrH = 0,
+									areaH;
+								base.find('.mce-container-body:first').children('.mce-top-part,.mce-statusbar').each(function() {
+									ctrH += $(this).outerHeight(true);
+								});
+								areaH = h - ctrH - delta;
+								base.find('.mce-edit-area iframe:first').height(areaH);
+							}
 						};
 
 						// TinyMCE configure options
 						opts = {
 							selector: '#' + textarea.id,
 							resize: false,
-							plugins: [
-								'fullpage', // require for getting full HTML
-								'image', 'link', 'media',
-								'code', 'fullscreen'
-							],
+							plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help',
+							toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
+							image_advtab: true,
 							init_instance_callback : function(editor) {
 								// fit height on init
 								textarea._setHeight(h);
@@ -2093,52 +2198,122 @@
 								dfrd.resolve(editor);
 							},
 							file_picker_callback : function (callback, value, meta) {
-								var reg = /([&?]getfile=)[^&]+/,
-									loc = self.confObj.managerUrl || window.location.href.replace(/#.*$/, ''),
-									name = 'tinymce';
+								var gf = fm.getCommand('getfile'),
+									revar = function() {
+										if (prevVars.hasVar) {
+											gf.callback = prevVars.callback;
+											gf.options.folders = prevVars.folders;
+											gf.options.multiple = prevVars.multi;
+											fm.commandMap.open = prevVars.open;
+											prevVars.hasVar = false;
+										}
+										dlg.off('resize close', revar);
+										showMceDlg();
+									},
+									prevVars = {};
+								prevVars.callback = gf.callback;
+								prevVars.folders = gf.options.folders;
+								prevVars.multi = gf.options.multiple;
+								prevVars.open = fm.commandMap.open;
+								prevVars.hasVar = true;
+								gf.callback = function(file) {
+									var url, info;
+
+									if (file.mime === 'directory') {
+										fm.one('open', function() {
+											fm.commandMap.open = 'getfile';
+										}).getCommand('open').exec(file.hash);
+										return;
+									}
+
+									// URL normalization
+									url = fm.convAbsUrl(file.url);
+									
+									// Make file info
+									info = file.name + ' (' + fm.formatSize(file.size) + ')';
+
+									// Provide file and text for the link dialog
+									if (meta.filetype == 'file') {
+										callback(url, {text: info, title: info});
+									}
+
+									// Provide image and alt text for the image dialog
+									if (meta.filetype == 'image') {
+										callback(url, {alt: info});
+									}
+
+									// Provide alternative source and posted for the media dialog
+									if (meta.filetype == 'media') {
+										callback(url);
+									}
+									dlg.trigger('togleminimize');
+								};
+								gf.options.folders = true;
+								gf.options.multiple = false;
+								fm.commandMap.open = 'getfile';
 								
-								// make manager location
-								if (reg.test(loc)) {
-									loc = loc.replace(reg, '$1' + name);
-								} else {
-									loc += '?getfile=' + name;
+								hideMceDlg();
+								dlg.trigger('togleminimize').one('resize close', revar);
+								fm.toast({
+									mode: 'info',
+									msg: fm.i18n('dblclickToSelect')
+								});
+
+								return false;
+							},
+							images_upload_handler : function (blobInfo, success, failure) {
+								var file = blobInfo.blob(),
+									err = function(e) {
+										var dlg = e.data.dialog || {};
+		                                if (dlg.hasClass('elfinder-dialog-error') || dlg.hasClass('elfinder-confirm-upload')) {
+		                                    hideMceDlg();
+		                                    dlg.trigger('togleminimize').one('resize close', revert);
+		                                    fm.unbind('dialogopened', err);
+		                                }
+									},
+									revert = function() {
+										dlg.off('resize close', revert);
+										showMceDlg();
+									},
+									clipdata = true;
+
+								// check file object
+								if (file.name) {
+									// file blob of client side file object
+									clipdata = void(0);
 								}
-								// launch TinyMCE
-								tinymce.activeEditor.windowManager.open({
-									file: loc,
-									title: 'elFinder',
-									width: 900,	 
-									height: 450,
-									resizable: 'yes'
-								}, {
-									oninsert: function (file, elf) {
-										var url, reg, info;
-
-										// URL normalization
-										url = elf.convAbsUrl(file.url);
-										
-										// Make file info
-										info = file.name + ' (' + elf.formatSize(file.size) + ')';
-
-										// Provide file and text for the link dialog
-										if (meta.filetype == 'file') {
-											callback(url, {text: info, title: info});
-										}
-
-										// Provide image and alt text for the image dialog
-										if (meta.filetype == 'image') {
-											callback(url, {alt: info});
-										}
-
-										// Provide alternative source and posted for the media dialog
-										if (meta.filetype == 'media') {
-											callback(url);
+								fm.bind('dialogopened', err).exec('upload', Object.assign({
+									files: [file],
+									clipdata: clipdata // to get unique name on connector
+								}, self.confObj.uploadOpts), void(0), fm.cwd().hash).done(function(data) {
+									if (data.added && data.added.length) {
+										fm.url(data.added[0].hash, { async: true }).done(function(url) {
+											showMceDlg();
+											success(fm.convAbsUrl(url));
+										}).fail(function() {
+											failure(fm.i18n('errFileNotFound'));
+										});
+									} else {
+										failure(fm.i18n(data.error? data.error : 'errUpload'));
+									}
+								}).fail(function(err) {
+									var error = fm.parseError(err);
+									if (error) {
+										if (error === 'errUnknownCmd') {
+											error = 'errPerm';
+										} else if (error === 'userabort') {
+											error = 'errAbort';
 										}
 									}
+									failure(fm.i18n(error? error : 'errUploadNoFiles'));
 								});
-								return false;
 							}
 						};
+
+						// TinyMCE 5 supports "height: 100%"
+						if (tVer >= 5) {
+							opts.height = '100%';
+						}
 
 						// trigger event 'editEditorPrepare'
 						self.trigger('Prepare', {
@@ -2149,15 +2324,15 @@
 						});
 
 						// TinyMCE configure
-						tinymce.init(opts);
+						tinymce.init(Object.assign(opts, self.confObj.mceOpts));
 					};
 				
 				if (!self.confObj.loader) {
 					self.confObj.loader = $.Deferred();
-					$.getScript(fm.options.cdns.tinymce + '/tinymce.min.js', function() {
-						setTimeout(function() {
-							self.confObj.loader.resolve();
-						}, 0);
+					self.fm.loadScript([fm.options.cdns.tinymce + (fm.options.cdns.tinymce.match(/\.js/)? '' : '/tinymce.min.js')], function() {
+						self.confObj.loader.resolve();
+					}, {
+						loadType: 'tag'
 					});
 				}
 				self.confObj.loader.done(init);
