@@ -1,0 +1,2 @@
+ module_products_info_tab_boostap_title = Would you like to display tabs description of the product description
+ module_products_info_tab_boostap_description = Displays a tab page inside product desription

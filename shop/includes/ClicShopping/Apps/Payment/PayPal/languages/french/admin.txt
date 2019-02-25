@@ -1,0 +1,17 @@
+app_link_info = Info/Aide
+app_link_privacy = Confidantialité
+
+button_retrieve_live_credentials = Retrieve Live Credentials
+button_retrieve_sandbox_credentials = Retrieve Sandbox Credentials
+
+button_sort_order = Ordre de tri
+button_cancel = Annuler
+button_delete = Supprimer
+button_dialog_delete = Supprimer
+button_install = Installer
+button_install_title = Installer {{title}}
+button_save = Sauver
+button_uninstall =  Désintaller
+button_dialog_uninstall =  Désintaller
+button_view = View
+button_back = Retour

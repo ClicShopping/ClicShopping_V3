@@ -1,0 +1,33 @@
+app_link_info = Documentation
+app_link_privacy = Confidentialité
+
+button_retrieve_live_credentials = Retrieve Live Credentials
+button_retrieve_sandbox_credentials = Retrieve Sandbox Credentials
+
+button_sort_order = Ordre de tri
+button_delete_menu = Supprimer menu
+button_cancel = Annuler
+button_delete = Supprimer
+button_dialog_delete = Supprimer
+button_install = Installer
+button_install_title = Installer {{title}}
+button_save = Sauver
+button_uninstall =  Désintaller
+button_dialog_uninstall =  Désintaller
+button_view = View
+button_back = Retour
+
+button_balance = Balance
+button_configure = Configurer / Installer
+button_credential = Credential
+button_log = Log
+
+
+dialog_uninstall_title = Désintaller
+dialog_uninstall_body = Souhaitez vous intaller cette app ?
+dialog_uninstall_title = Souhaitez vous désinstaller cette app ?
+dialog_uninstall_body =  Etes vous sur de désinstaller ce module ?
+
+alert_module_install_success = Le module a été installé avec succès.
+alert_module_uninstall_success = Le module a été désinstallé avec succès.
+alert_cfg_saved_success = les paramètres ont été sauvegardé

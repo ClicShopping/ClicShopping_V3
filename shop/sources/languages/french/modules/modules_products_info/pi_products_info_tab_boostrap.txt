@@ -1,0 +1,2 @@
+ module_products_info_tab_boostap_title = Souhaitez-vous afficher des onglets descriptif de la fiche du produit
+ module_products_info_tab_boostap_description = Affiche une tabulation dans la page de présentation du produit
