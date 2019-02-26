@@ -29,7 +29,7 @@ js_error_no_payment_module_selected = * Please select a payment method for your 
 js_error_submitted = This form has already been submitted. Please press Ok and wait for this process to be completed.
 
 error_no_payment_module_selected = Please select a payment method for your order.
-error_payment_obscur = A error has been detect in the process verification, please retry or select another payment method
+error_payment_obscur = A error has been detected in the process verification, please retry or select another payment method
 
 entry_text_select = Select
 entry_spam_text = *
