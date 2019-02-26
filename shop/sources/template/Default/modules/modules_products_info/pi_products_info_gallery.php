@@ -53,6 +53,9 @@
         $products_image_zoom = $Qproducts->value('products_image_zoom');
         $products_image_medium = $Qproducts->value('products_image_medium');
 
+        $thumbail_height = MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT;
+        $thumbail_width = MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_WIDTH;
+
         $id = $CLICSHOPPING_ProductsCommon->getID();
         $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($id);
 

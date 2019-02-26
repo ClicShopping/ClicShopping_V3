@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -41,16 +41,15 @@ use ClicShopping\OM\HTML;
 
           if (!empty($image['htmlcontent'])) {
             if ($this->getVideo($image['htmlcontent']) === true) {
-              $pi_html[] = '<li class="image-additional"><a class="thumbnail popup-youtube" href="' . $image['htmlcontent'] . '"><img src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']) . '" width="' . MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT . '" height="' . MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT . '" title="' . $products_name . '" alt="' . $products_name . '" id="piGalImg_' . $pi_counter . '"></a></li>';
-              $video = $image['htmlcontent'];
+              $pi_html[] = '<li class="image-additional"><a class="thumbnail popup-youtube" href="' . $image['htmlcontent'] . '"><img src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']) . '" width="' . $thumbail_width . '" height="' . $thumbail_height . '" title="' . $products_name . '" alt="' . $products_name . '" id="piGalImg_' . $pi_counter . '"></a></li>';
 ?>
     </div>
 <?php
             } else {
-              echo '<li class="image-additional"><a class="thumbnail" href="' . $image['htmlcontent'] . '"><img src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']) . '" width="' . MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT . '" height="' . MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT . '" title="' . $products_name . '" alt="' . $products_name . '" id="piGalImg_' . $pi_counter . '"></a></li>';
+              $pi_html[] = '<li class="image-additional"><a class="thumbnail" href="' . $image['htmlcontent'] . '"><img src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']) . '" width="' . $thumbail_width . '" height="' . $thumbail_height . '" title="' . $products_name . '" alt="' . $products_name . '" id="piGalImg_' . $pi_counter . '"></a></li>';
             }
           } else {
-            echo '<li class="image-additional"><a class="thumbnail" href="'.  CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']) .'" title="' . $products_name . '">' . HTML::image(CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']), $products_name, MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT, MODULE_PRODUCTS_INFO_GALLERY_THUMBAIL_HEIGHT, ' title="' . $products_name . '" itemprop="image" hspace="5" vspace="5"  id="piGalImg_' . $pi_counter . '"', true) . '</a></li>';
+            $pi_html[] =  '<li class="image-additional"><a class="thumbnail" href="'.  CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']) .'" title="' . $products_name . '">' . HTML::image(CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $image['image']), $products_name, $thumbail_width, $thumbail_height, ' title="' . $products_name . '" itemprop="image" hspace="5" vspace="5"  id="piGalImg_' . $pi_counter . '"', true) . '</a></li>';
           }
         }
 
