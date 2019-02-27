@@ -127,37 +127,40 @@
 
       if ($this->oID != 0) {
 
+        if (!empty($this->ordersStatusSupportId)) {
+
 // verify and update the status if changed
-        if ( ($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
-           $data_array = ['orders_status' => (int)$this->status,
-                         'orders_status_invoice' => (int)$this->statusInvoice,
-                         'last_modified' => 'now()'
-                         ];
+          if ( ($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
+             $data_array = ['orders_status' => (int)$this->status,
+                           'orders_status_invoice' => (int)$this->statusInvoice,
+                           'last_modified' => 'now()'
+                           ];
 
-          $this->app->db->save('orders', $data_array, ['orders_id' => $this->oID]);
+            $this->app->db->save('orders', $data_array, ['orders_id' => $this->oID]);
 
-          $customer_notified = 0;
+            $customer_notified = 0;
 
-          if (isset($this->notify) && ($this->notify == 'on')) {
-            $this->getMail();
-            $customer_notified = 1;
+            if (isset($this->notify) && ($this->notify == 'on')) {
+              $this->getMail();
+              $customer_notified = 1;
+            }
+
+            $data_array = [ 'orders_id' => (int)$this->oID,
+                            'orders_status_id' => (int)$this->status,
+                            'orders_status_invoice_id' => (int)$this->statusInvoice,
+                            'admin_user_name' => AdministratorAdmin::getUserAdmin(),
+                            'date_added' => 'now()',
+                            'customer_notified' => (int)$customer_notified,
+                            'comments' => $this->comments,
+                            'orders_status_support_id' => $this->ordersStatusSupportId
+                          ];
+
+            $this->app->db->save('orders_status_history', $data_array);
+
+            $order_updated = true;
+          } else {
+            $order_updated = true;
           }
-
-          $data_array = [ 'orders_id' => (int)$this->oID,
-                          'orders_status_id' => (int)$this->status,
-                          'orders_status_invoice_id' => (int)$this->statusInvoice,
-                          'admin_user_name' => AdministratorAdmin::getUserAdmin(),
-                          'date_added' => 'now()',
-                          'customer_notified' => (int)$customer_notified,
-                          'comments' => $this->comments,
-                          'orders_status_support_id' => $this->ordersStatusSupportId
-                        ];
-
-          $this->app->db->save('orders_status_history', $data_array);
-
-          $order_updated = true;
-        } else {
-          $order_updated = true;
         }
       }
 
