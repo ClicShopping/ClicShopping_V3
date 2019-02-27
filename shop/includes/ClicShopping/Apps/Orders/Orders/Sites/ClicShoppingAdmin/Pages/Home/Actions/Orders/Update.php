@@ -162,11 +162,12 @@
       }
 
       if ($order_updated === true) {
-        $CLICSHOPPING_Hooks->call('Orders','Update');
         $CLICSHOPPING_MessageStack->add($this->app->getDef('success_order_updated'), 'success');
       } else {
         $CLICSHOPPING_MessageStack->add($this->app->getDef('warning_order_not_updated'), 'warning');
       }
+
+      $CLICSHOPPING_Hooks->call('Orders','Update');
 
       $this->app->redirect('Orders');
     }
