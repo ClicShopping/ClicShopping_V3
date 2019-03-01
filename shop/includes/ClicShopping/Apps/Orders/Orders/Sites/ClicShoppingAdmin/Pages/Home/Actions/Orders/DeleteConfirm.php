@@ -30,12 +30,15 @@
 
     public function execute() {
       $CLICSHOPPING_MessageStack =  Registry::get('MessageStack');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
      if ($this->oID != 0) {
        OrderAdmin::removeOrder($this->oID, $this->restock);
      } else {
        $CLICSHOPPING_MessageStack->add($this->app->getDef('warning_order_not_updated'), 'warning');
      }
+
+      $CLICSHOPPING_Hooks->call('Orders','DeleteConfirm');
 
       $this->app->redirect('Orders');
     }
