@@ -118,9 +118,10 @@
           if (DISPLAY_PRICE_WITH_TAX == 'True') $CLICSHOPPING_Order->info['shipping_cost'] += $CLICSHOPPING_Tax->calculate($CLICSHOPPING_Order->info['shipping_cost'], $shipping_tax);
         }
 
-        $this->output[] = array('title' => $CLICSHOPPING_Order->info['shipping_method'] . ':',
-                                'text' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['shipping_cost'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
-                                'value' => $CLICSHOPPING_Order->info['shipping_cost']);
+        $this->output[] = ['title' => $CLICSHOPPING_Order->info['shipping_method'],
+                            'text' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['shipping_cost'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
+                            'value' => $CLICSHOPPING_Order->info['shipping_cost']
+                          ];
       }
     }
 

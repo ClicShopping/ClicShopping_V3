@@ -381,7 +381,9 @@
   for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
     $pdf->SetY($Y_Table_Position + 5);
     $pdf->SetX(102);
+
     $temp = substr ($order->totals[$i]['text'],0 ,3);
+
     if ($temp == '<strong>') {
       $pdf->SetFont('Arial','B',7);
       $temp2 = substr($order->totals[$i]['text'], 3);
@@ -391,9 +393,6 @@
     $pdf->MultiCell(94,6, substr(utf8_decode(html_entity_decode($order->totals[$i]['title'])), 0, 30) . ' : ' . utf8_decode(html_entity_decode($order->totals[$i]['text'])),0,'R');
     $Y_Table_Position += 5;
   }
-
-
-
 
 //Draw the bottom line with invoice text
 // Ligne pour le pied de page

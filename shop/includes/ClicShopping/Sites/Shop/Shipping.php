@@ -45,8 +45,8 @@
             $class = Apps::getModuleClass($code, 'Shipping');
 
             $include_modules[] = ['class' => $code,
-                               'file' => $class
-                               ];
+                                  'file' => $class
+                                 ];
           }
         } else {
           foreach ($this->modules as $value) {
@@ -54,8 +54,8 @@
               $class = Apps::getModuleClass($value, 'Shipping');
 
               $include_modules[] = ['class' => $value,
-                                 'file' => $class
-                                 ];
+                                    'file' => $class
+                                   ];
             }
           }
         }
@@ -151,6 +151,7 @@
               return [
                       'id' => $obj->quotes['id'] . '_' . $method['id'],
                       'title' => $obj->quotes['module'] . (isset($method['title']) && !empty($method['title']) ? ' (' . $method['title'] . ')' : ''),
+                      'info' => $obj->quotes['info'] . (isset($method['info']) && !empty($method['info']) ? ' (' . $method['info'] . ')' : ''),
                       'cost' => $method['cost']
                      ];
             }
@@ -178,9 +179,10 @@
             for ($i=0, $n=count( $quotes['methods'] ? : []); $i<$n; $i++) {
               if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
                 $rates[] = ['id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
-                          'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
-                          'cost' => $quotes['methods'][$i]['cost']
-                         ];
+                           'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
+                           'info' => $quotes['info'] . (isset($quotes['methods'][$i]['info']) && !empty($quotes['methods'][$i]['info']) ? ' (' . $quotes['methods'][$i]['info'] . ')' : ''),
+                           'cost' => $quotes['methods'][$i]['cost']
+                          ];
               }
             }
           }

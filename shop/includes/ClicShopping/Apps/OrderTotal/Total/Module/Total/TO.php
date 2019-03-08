@@ -56,7 +56,7 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Order = Registry::get('Order');
 
-      $this->output[] = ['title' => $this->title . ':',
+      $this->output[] = ['title' => $this->title,
                           'text' => ' ' . $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . ' ',
                           'value' => $CLICSHOPPING_Order->info['total']
                         ];

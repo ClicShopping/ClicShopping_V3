@@ -99,6 +99,10 @@
                     $data .= $quote['methods'][$j]['title'] . '&nbsp;</strong>';
                   }
 
+                  if(!empty($quote['methods'][$j]['info'])) {
+                    $data .= $quote['methods'][$j]['info'] . '&nbsp;';
+                  }
+
                   if (isset($quote['icon']) && !empty($quote['icon'])) {
                     $data .=  '&nbsp;' . $quote['icon'];
                   }

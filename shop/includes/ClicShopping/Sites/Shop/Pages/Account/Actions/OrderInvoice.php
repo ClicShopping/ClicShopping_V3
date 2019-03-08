@@ -93,9 +93,9 @@
       $order_status_invoice_display = $QOrdersStatusInvoice->value('orders_status_invoice_name');
 
       $QstatusOrder = $CLICSHOPPING_Db->prepare('select orders_status
-                                           from :table_orders
-                                           where orders_id = :orders_id
-                                         ');
+                                                 from :table_orders
+                                                 where orders_id = :orders_id
+                                               ');
       $QstatusOrder->bindInt(':orders_id',  (int)$oID);
       $QstatusOrder->execute();
 
@@ -352,6 +352,7 @@
       for ($i = 0, $n = count($CLICSHOPPING_Order->totals); $i < $n; $i++) {
         $pdf->SetY($Y_Table_Position + 5);
         $pdf->SetX(102);
+
         $temp = substr ($CLICSHOPPING_Order->totals[$i]['text'],0 ,3);
 
         if ($temp == '<strong>') {
