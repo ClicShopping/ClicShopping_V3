@@ -108,6 +108,7 @@
                                                     and p.products_archive = 0
                                                     and p.products_id = p2c.products_id
                                                     and p2c.categories_id = c.categories_id
+                                                    and c.virtual_categories = 0
                                                     and c.status = 1
                                                     group by p.products_id
                                                     order by rand(),
@@ -120,7 +121,7 @@
 // Requetes SQL pour afficher les nouveaux produits lors que l'on ce trouve dans une categorie
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                             p.products_quantity as in_stock
-                                                    from :table_products p
+                                                    from :table_products p,
                                                          :table_products_to_categories p2c,
                                                          :table_categories c
                                                     where p.products_id = p2c.products_id

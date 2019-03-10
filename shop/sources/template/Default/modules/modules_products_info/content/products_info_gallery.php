@@ -54,7 +54,7 @@
         }
 
         if ( !empty($pi_html) ) {
-          echo '    <div>' . implode('', $pi_html) . '</div>';
+          echo '    ' . implode('', $pi_html) . '';
         }
       }
     }

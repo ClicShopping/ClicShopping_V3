@@ -51,7 +51,6 @@
         $last_order = HTML::sanitize($_GET['order_id']);
       }
 
-
 // Now get all downloadable products in that order
       $Qdownloads = HistoryInfo::getDownloadFilesPurchased();
 

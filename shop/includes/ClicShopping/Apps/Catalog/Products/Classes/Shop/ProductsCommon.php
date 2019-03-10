@@ -109,7 +109,6 @@
                                         where p.products_status = 1
                                         and p.products_view = 1
                                         and p.products_id = :products_id
-
                                         and p.products_id = p2c.products_id
                                         and p2c.categories_id = c.categories_id
                                         and c.status = 1
