@@ -65,7 +65,7 @@
                                                        and g.products_group_view = 1
                                                        and p.products_id = p2c.products_id
                                                        and p2c.categories_id = c.categories_id
-                                                       and p2c.categories_id = cd.categories_id
+                                                       and c.status = 1
                                                        and cd.language_id = :language_id
                                                        and (p.manufacturers_id = :manufacturers_id1 or p = :filter)
                                                        and p.products_archive = 0
@@ -84,15 +84,17 @@
                                                                                             m.manufacturers_name as name
                                                         from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
                                                              :table_products_to_categories p2c,
-                                                             :table_manufacturers  m
+                                                             :table_categories c,
+                                                             :table_manufacturers m
                                                         where p.products_status = 1
                                                         and g.customers_group_id = :customers_group_id
                                                         and g.products_group_view = 1
                                                         and p.manufacturers_id = m.manufacturers_id
-                                                        and p.products_id = p2c.products_id
                                                         and p.products_archive = 0
+                                                        and p.products_id = p2c.products_id
                                                         and p2c.categories_id = :categories_id
-                                                        and m.manufacturers_status = 0
+                                                        and c.status = 1
+                                                     and m.manufacturers_status = 0
                                                         order by m.manufacturers_name
                                                        ');
 
@@ -113,10 +115,11 @@
                                                              :table_products_to_categories p2c,
                                                              :table_categories c,
                                                              :table_categories_description cd
-                                                         where  p.products_status = 1tus
+                                                         where p.products_status = 1
                                                          and p.products_view = 1
                                                          and p.products_id = p2c.products_id
                                                          and p2c.categories_id = c.categories_id
+                                                         and c.status = 1
                                                          and p2c.categories_id = cd.categories_id
                                                          and p.products_archive = 0
                                                          and cd.language_id = :language_id
@@ -134,14 +137,16 @@
                                                                                    m.manufacturers_name as name
                                                         from :table_products p,
                                                             :table_products_to_categories p2c,
+                                                            :table_categories c
                                                             :table_manufacturers m
                                                         where p.products_status = 1
                                                         and p.products_view = 1
                                                         and p.manufacturers_id = m.manufacturers_id
-                                                        and p.products_id = p2c.products_id
                                                         and p.products_archive = 0
-                                                        and p2c.categories_id = :categories_id
                                                         and m.manufacturers_status = 0
+                                                        and p2c.categories_id = :categories_id
+                                                        and p.products_id = p2c.products_id
+                                                        and c.status = 1
                                                         group by m.manufacturers_id
                                                         order by m.manufacturers_name
                                                        ');

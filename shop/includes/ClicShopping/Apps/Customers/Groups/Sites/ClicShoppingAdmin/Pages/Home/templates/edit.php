@@ -504,20 +504,20 @@
   $index = 0;
 
   $QgroupToCategories = $CLICSHOPPING_Groups->db->prepare('select distinct c.discount,
-                                                                     c.categories_id,
-                                                                     c.customers_group_id,
-                                                                     g.categories_name,
-                                                                     g.language_id,
-                                                                     f.parent_id
-                                                    from :table_groups_to_categories  c,
-                                                         :table_categories_description g,
-                                                         :table_categories f
-                                                    where c.customers_group_id = :customers_group_id
-                                                    and c.categories_id = g.categories_id
-                                                    and c.categories_id = f.categories_id
-                                                    and g.language_id = :language_id
-                                                    order by g.categories_name
-                                                  ');
+                                                                           c.categories_id,
+                                                                           c.customers_group_id,
+                                                                           g.categories_name,
+                                                                           g.language_id,
+                                                                           f.parent_id
+                                                          from :table_groups_to_categories  c,
+                                                               :table_categories_description g,
+                                                               :table_categories f
+                                                          where c.customers_group_id = :customers_group_id
+                                                          and c.categories_id = g.categories_id
+                                                          and c.categories_id = f.categories_id
+                                                          and g.language_id = :language_id
+                                                          order by g.categories_name
+                                                        ');
   $QgroupToCategories->bindInt(':customers_group_id', (int)$_GET['cID']);
   $QgroupToCategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
 

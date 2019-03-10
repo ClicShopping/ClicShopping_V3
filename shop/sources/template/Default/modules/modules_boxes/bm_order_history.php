@@ -49,19 +49,24 @@
 // retreive the last x products purchased
 
         $Qorders = $CLICSHOPPING_Db->prepare('select distinct op.products_id,
-                                                      o.orders_id,
-                                                      o.date_purchased
-                                       from :table_orders o,
-                                            :table_orders_products op,
-                                            :table_products p
-                                        where o.customers_id = :customers_id
-                                        and o.orders_id = op.orders_id
-                                        and op.products_id = p.products_id
-                                        and p.products_status = 1
-                                        group by products_id,
-                                                 o.date_purchased
-                                        order by o.date_purchased desc
-                                        limit :limit
+                                                              o.orders_id,
+                                                              o.date_purchased
+                                               from :table_orders o,
+                                                    :table_orders_products op,
+                                                    :table_products p
+                                                    :table_products_to_categories p2c,
+                                                    :table_categories c
+                                                where o.customers_id = :customers_id
+                                                and o.orders_id = op.orders_id
+                                                and op.products_id = p.products_id
+                                                and p.products_status = 1
+                                                and p.products_id = p2c.products_id
+                                                and p2c.categories_id = c.categories_id
+                                                and c.status = 1
+                                                group by products_id,
+                                                         o.date_purchased
+                                                order by o.date_purchased desc
+                                                limit :limit
                                            ');
         $Qorders->bindInt(':limit', (int)MODULE_BOXES_ORDER_HISTORY_MAX_DISPLAY_PRODUCTS);
         $Qorders->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
@@ -77,12 +82,12 @@
           $customer_orders_string = null;
 
           $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
-                                                     products_name
-                                                from :table_products_description
-                                                where products_id in (' . implode(', ', $product_ids) . ')
-                                                and language_id = :language_id
-                                                order by products_name
-                                               ');
+                                                         products_name
+                                                  from :table_products_description
+                                                  where products_id in (' . implode(', ', $product_ids) . ')
+                                                  and language_id = :language_id
+                                                  order by products_name
+                                                 ');
           $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $Qproducts->execute();
 

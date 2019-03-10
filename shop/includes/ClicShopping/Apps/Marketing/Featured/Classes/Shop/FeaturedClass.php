@@ -46,11 +46,11 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QFeatured = $CLICSHOPPING_Db->query('select products_featured_id
-                                      from :table_products_featured
-                                      where scheduled_date is not null
-                                      and scheduled_date <= now()
-                                      and status <> 1
-                                     ');
+                                            from :table_products_featured
+                                            where scheduled_date is not null
+                                            and scheduled_date <= now()
+                                            and status <> 1
+                                           ');
 
       $QFeatured->execute();
       $QFeatured->execute();
@@ -67,11 +67,11 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QFeatured = $CLICSHOPPING_Db->query('select products_featured_id
-                                      from :table_products_featured
-                                      where status = 1
-                                      and expires_date is not null
-                                      and now() >= expires_date
-                                    ');
+                                            from :table_products_featured
+                                            where status = 1
+                                            and expires_date is not null
+                                            and now() >= expires_date
+                                          ');
 
       $QFeatured->execute();
 
@@ -133,41 +133,47 @@
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 
         $Qlisting .= ' p.products_id,
-                      p.products_quantity as in_stock
-                    from :table_products p  left join :table_products_groups g on p.products_id = g.products_id,
-                         :table_products_featured pf
+                       p.products_quantity as in_stock
+                    from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                         :table_products_featured pf,
+                         :table_products_to_categories p2c,
+                         :table_categories c
                     where (p.products_status = 1
-                            and pf.status = 1
-                            and p.products_id = pf.products_id
-                            and g.customers_group_id = :customers_group_id
-                            and g.products_group_view = 1
                             and g.price_group_view = 1
-                            and p.products_archive = 0
-                            and (pf.customers_group_id = :customers_group_id or pf.customers_group_id = 99)
                            )
                     or (p.products_status = 1
-                          and pf.status = 1
-                          and p.products_id = pf.products_id
-                          and g.customers_group_id = :customers_group_id
-                          and g.products_group_view = 1
                           and g.price_group_view <> 1
-                          and p.products_archive = 0
-                          and pf.products_id = p.products_id
-                          and (pf.customers_group_id = 0 or  pf.customers_group_id = 99)
                         )
+                    and pf.status = 1
+                    and p.products_id = pf.products_id
+                    and g.customers_group_id = :customers_group_id
+                    and g.products_group_view = 1
+                    and p.products_archive = 0
+                    and pf.products_id = p.products_id
+                    and (pf.customers_group_id = 0 or  pf.customers_group_id = 99)
+                    and p.products_id = p2c.products_id
+                    and p2c.categories_id = c.categories_id
+                    and c.virtual_categories = 0
+                    and c.status = 1
                    ';
 
       } else {
         $Qlisting .= ' p.products_id,
-                      p.products_quantity as in_stock
+                       p.products_quantity as in_stock
                     from :table_products p,
-                         :table_products_featured pf
+                         :table_products_featured pf,
+                         :table_products_to_categories p2c,
+                         :table_categories c
                     where p.products_status = 1
                     and p.products_id = pf.products_id
                     and pf.status = 1
                     and p.products_view = 1
                     and p.products_archive = 0
                     and (pf.customers_group_id = 0 or pf.customers_group_id = 99)
+                    and p.products_id = p2c.products_id
+                    and p2c.categories_id = c.categories_id
+                    and c.virtual_categories = 0
+                    and c.status = 1
                    ';
       }
 

@@ -52,25 +52,24 @@
           $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id
                                                     from :table_specials s,
                                                           :table_products p left join :table_products_groups g on p.products_id = g.products_id
+                                                          :table_products_to_categories p2c,
+                                                          :table_categories c
                                                     where (p.products_status = 1
-                                                            and s.status = 1
-                                                            and p.products_id = s.products_id
-                                                            and g.customers_group_id = :customers_group_id
-                                                            and g.products_group_view = 1
                                                             and g.price_group_view = 1
-                                                            and p.products_archive = 0
-                                                            and (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                            )
                                                         or (p.products_status = 1
-                                                           and s.status = 1
-                                                           and p.products_id = s.products_id
-                                                           and g.customers_group_id = :customers_group_id
-                                                           and g.products_group_view = 1
                                                            and g.price_group_view <> 1
-                                                           and p.products_archive = 0
-                                                           and (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                            )
+                                                    and g.products_group_view = 1
+                                                    and s.status = 1
+                                                    and p.products_id = s.products_id
+                                                    and p.products_archive = 0
+                                                    and g.customers_group_id = :customers_group_id
                                                     and p.products_id <> :products_id
+                                                    and p.products_id = p2c.products_id
+                                                    and p2c.categories_id = c.categories_id
+                                                    and c.status = 1
+                                                    and (s.customers_group_id = :customers_group_id or s.customers_group_id = 99)
                                                     order by rand(),
                                                              s.specials_date_added desc
                                                     limit :limit
@@ -85,7 +84,9 @@
 
           $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id
                                                   from :table_specials s,
-                                                       :table_products p
+                                                       :table_products p,
+                                                       :table_products_to_categories p2c,
+                                                       :table_categories c
                                                   where p.products_status = 1
                                                   and s.products_id = p.products_id
                                                   and s.status = 1
@@ -93,6 +94,9 @@
                                                   and (s.customers_group_id = 0 or s.customers_group_id = 99)
                                                   and p.products_archive = 0
                                                   and p.products_id <> :products_id
+                                                  and p.products_id = p2c.products_id
+                                                  and p2c.categories_id = c.categories_id
+                                                  and c.status = 1
                                                   order by rand(),
                                                            s.specials_date_added desc
                                                   limit :limit

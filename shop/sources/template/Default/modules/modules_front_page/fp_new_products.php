@@ -50,15 +50,19 @@
         if (MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY != 0) {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
             if ( (!isset($new_products_category_id)) || ($new_products_category_id == 0) ) {
-// Requetes SQL pour afficher les nouveaux produits groupe B2B lors que l'on ne ce trouve pas dans une categorie
+// Display products no inside categories
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                        p.products_quantity as in_stock
-                                                    from :table_products p left join :table_specials s on p.products_id = s.products_id
-                                                                           left join :table_products_groups g on p.products_id = g.products_id
+                                                            p.products_quantity as in_stock
+                                                    from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                                         :table_products_to_categories p2c,
+                                                         :table_categories c
                                                     where g.customers_group_id = :customers_group_id
                                                     and g.products_group_view = 1
                                                     and p.products_status = 1
                                                     and p.products_archive = 0
+                                                    and p.products_id = p2c.products_id
+                                                    and p2c.categories_id = c.categories_id
+                                                    and c.status = 1
                                                     group by p.products_id
                                                     order by rand(),
                                                              p.products_date_added DESC
@@ -69,51 +73,54 @@
             } else {
 // Requetes SQL pour afficher les nouveaux produits groupe B2B lorsque l'on se trouve dans une categorie
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                         p.products_quantity as in_stock
-                                                  from :table_products p left join :table_specials s on p.products_id = s.products_id left join :table_products_groups g on p.products_id = g.products_id,
-                                                                            :table_products_to_categories p2c,
-                                                                            :table_categories c
-                                                where p.products_id = p2c.products_id
-                                                and p2c.categories_id = c.categories_id
-                                                and c.parent_id = :parent_id
-                                                and g.customers_group_id = :customers_group_id
-                                                and g.products_group_view = 1
-                                                and p.products_status = 1
-                                                and p.products_archive = 0
-                                                and c.virtual_categories = 0
-                                                group by p.products_id
-                                                order by rand(),
-                                                         p.products_date_added DESC
-                                                limit :products_limit
-                                                ');
+                                                            p.products_quantity as in_stock
+                                                      from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                                            :table_products_to_categories p2c,
+                                                            :table_categories c
+                                                      where p.products_id = p2c.products_id
+                                                      and p2c.categories_id = c.categories_id
+                                                      and c.parent_id = :parent_id
+                                                      and g.customers_group_id = :customers_group_id
+                                                      and g.products_group_view = 1
+                                                      and p.products_status = 1
+                                                      and p.products_archive = 0
+                                                      and c.virtual_categories = 0
+                                                      and c.status = 1
+                                                      group by p.products_id
+                                                      order by rand(),
+                                                               p.products_date_added DESC
+                                                      limit :products_limit
+                                                      ');
               $Qproduct->bindInt(':parent_id', (int)$new_products_category_id);
               $Qproduct->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
               $Qproduct->bindInt(':products_limit', MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY);
             }
           } else {
-            if ( (!isset($new_products_category_id)) || ($new_products_category_id == 0) ) {
-// Requetes SQL pour afficher les nouveaux produits lors que l'on ne se trouve pas dans une categorie
-
+            if (!isset($new_products_category_id) || ($new_products_category_id == 0)) {
+// Display products no inside categories
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                        p.products_price,
-                                                        p.products_quantity as in_stock
-                                                  from :table_products p left join :table_specials s on p.products_id = s.products_id
-                                                  where p.products_status = 1
-                                                  and products_view = 1
-                                                  and p.products_archive = 0
-                                                  or (s.customers_group_id = 0 or s.customers_group_id = 99)
-                                                  group by p.products_id
-                                                  order by rand(),
-                                                           p.products_date_added DESC
-                                                  limit :products_limit
-                                                ');
+                                                            p.products_quantity as in_stock
+                                                    from :table_products p,
+                                                         :table_products_to_categories p2c,
+                                                         :table_categories c
+                                                    where p.products_status = 1
+                                                    and products_view = 1
+                                                    and p.products_archive = 0
+                                                    and p.products_id = p2c.products_id
+                                                    and p2c.categories_id = c.categories_id
+                                                    and c.status = 1
+                                                    group by p.products_id
+                                                    order by rand(),
+                                                             p.products_date_added DESC
+                                                    limit :products_limit
+                                                  ');
               $Qproduct->bindInt(':products_limit', (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY);
               $Qproduct->execute();
             } else {
 // Requetes SQL pour afficher les nouveaux produits lors que l'on ce trouve dans une categorie
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                         p.products_quantity as in_stock
-                                                    from :table_products p left join :table_specials s on p.products_id = s.products_id,
+                                                            p.products_quantity as in_stock
+                                                    from :table_products p
                                                          :table_products_to_categories p2c,
                                                          :table_categories c
                                                     where p.products_id = p2c.products_id
@@ -123,7 +130,7 @@
                                                     and p.products_view = 1
                                                     and p.products_archive = 0
                                                     and c.virtual_categories = 0
-                                                    or (s.customers_group_id = 0 or s.customers_group_id = 99)
+                                                    and c.status = 1
                                                     group by p.products_id
                                                     order by rand(),
                                                              p.products_date_added DESC
@@ -169,8 +176,6 @@
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-//Short description
-              $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
               $products_stock = $CLICSHOPPING_ProductsFunctionTemplate->getStock(MODULE_FRONT_PAGE_NEW_PRODUCTS_DISPLAY_STOCK, $products_id);
 //Flash discount

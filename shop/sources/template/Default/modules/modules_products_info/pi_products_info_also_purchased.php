@@ -45,27 +45,31 @@
         $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
          if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-
            $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                   p.products_image,
-                                                   p.products_image_medium,
-                                                   p.products_quantity as in_stock
-                                            from :table_orders_products opa,
-                                                 :table_orders_products opb,
-                                                 :table_orders o,
-                                                 :table_products p
-                                            where opa.products_id = :products_id
-                                            and opa.orders_id = opb.orders_id
-                                            and opb.products_id <> :products_id
-                                            and opb.products_id = p.products_id
-                                            and opb.orders_id = o.orders_id
-                                            and p.products_status = 1
-                                            and p.products_archive = 0
-                                            and p.products_view = 1
-                                            group by p.products_id
-                                            order by o.date_purchased desc
-                                            limit :limit
-                                          ');
+                                                          p.products_image,
+                                                          p.products_image_medium,
+                                                          p.products_quantity as in_stock
+                                                  from :table_orders_products opa,
+                                                       :table_orders_products opb,
+                                                       :table_orders o,
+                                                       :table_products p,
+                                                       :table_products_to_categories p2c,
+                                                      :table_categories c
+                                                  where opa.products_id = :products_id
+                                                  and opa.orders_id = opb.orders_id
+                                                  and opb.products_id <> :products_id
+                                                  and opb.products_id = p.products_id
+                                                  and opb.orders_id = o.orders_id
+                                                  and p.products_status = 1
+                                                  and p.products_archive = 0
+                                                  and p.products_view = 1
+                                                  and p.products_id = p2c.products_id
+                                                  and p2c.categories_id = c.categories_id
+                                                  and c.status = 1
+                                                  group by p.products_id
+                                                  order by o.date_purchased desc
+                                                  limit :limit
+                                                ');
 
             $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
             $Qproducts->bindInt(':limit', MODULE_PRODUCTS_INFO_ALSO_PURCHASED_MAX_DISPLAY);
@@ -80,7 +84,9 @@
                                           from :table_orders_products opa,
                                                :table_orders_products opb,
                                                :table_orders o,
-                                               :table_products p left join :table_products_groups g on p.products_id = g.products_id
+                                               :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                               :table_products_to_categories p2c,
+                                               :table_categories c
                                           where opa.products_id = :products_id
                                           and opa.orders_id = opb.orders_id
                                           and opb.products_id <> :products_id
@@ -91,6 +97,9 @@
                                           and g.customers_group_id = :customers_group_id
                                           and g.products_group_view = 1
                                           and g.price_group_view = 1
+                                          and p.products_id = p2c.products_id
+                                          and p2c.categories_id = c.categories_id
+                                          and c.status = 1
                                           group by p.products_id
                                           order by o.date_purchased desc
                                           limit :limit

@@ -9,24 +9,24 @@
  *
  */
 
-  namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions\Products;
+  namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Categories;
 
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductsStatusAdmin;
+  use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\Status;
 
   class SetFlag extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
 
     public function __construct(){
-      $this->app = Registry::get('Products');
+      $this->app = Registry::get('Categories');
     }
 
     public function execute()  {
       if ( ($_GET['flag'] == 0) || ($_GET['flag'] == 1) ) {
-        if (isset($_GET['pID'])) {
-          ProductsStatusAdmin::getProductStatus($_GET['pID'], $_GET['flag']);
+        if (isset($_GET['cID'])) {
+          Status::getCategoriesStatus($_GET['cID'], (int)$_GET['flag']);
         }
 
         Cache::clear('categories');
@@ -36,6 +36,6 @@
         Cache::clear('upcoming');
       }
 
-      $this->app->redirect('Products&cPath=' . $_GET['cPath'] . '&pID=' . $_GET['pID']);
+       $this->app->redirect('Categories&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']);
     }
   }

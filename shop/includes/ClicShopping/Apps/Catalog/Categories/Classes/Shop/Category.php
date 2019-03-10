@@ -182,9 +182,15 @@
         } else {
           $cPath_new = '';
 
-          $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array)-1)]]);
+          $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array)-1)],
+                                                              'status' => 1
+                                                              ]
+                                 );
 
-          $Qcurrent = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$current_category_id]);
+          $Qcurrent = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$current_category_id,
+                                                                 'status' => 1
+                                                                ]
+                                    );
 
           if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
             for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
@@ -265,6 +271,7 @@
           $Qcheck = $this->db->prepare('select categories_id
                                          from :table_categories
                                          where parent_id = :parent_id
+                                         and status = 1
                                         ');
           $Qcheck->bindInt(':parent_id', $this->_id);
           $Qcheck->execute();
@@ -289,16 +296,17 @@
 
     public function getCountCategoriesNested() {
       $Qcategories = $this->db->prepare('select count(*) as total
-                                    from :table_categories c,
-                                         :table_products_to_categories cd
-                                    where c.parent_id = 0
-                                    and c.categories_id = cd.categories_id
-                                    and cd.categories_id = :categories_id
-                                  ');
+                                         from :table_categories c,
+                                              :table_products_to_categories cd
+                                         where c.parent_id = 0
+                                         and c.categories_id = cd.categories_id
+                                         and cd.categories_id = :categories_id
+                                         and status = 1
+                                       ');
       $Qcategories->bindInt(':categories_id', $this->_id);
       $Qcategories->execute();
 
-      $total =$Qcategories->valueInt('total');
+      $total = $Qcategories->valueInt('total');
 
       return $total;
     }
@@ -314,6 +322,7 @@
       $Qcheck = $this->db->prepare('select categories_id
                                     from :table_categories
                                     where parent_id = :parent_id
+                                    and status = 1
                                     limit 1
                                   ');
       $Qcheck->bindInt(':parent_id', $category_id);
@@ -331,9 +340,10 @@
  */
     public function getSubcategories(&$subcategories_array, $parent_id = 0) {
       $Qsub = $this->db->prepare('select categories_id
-                              from :table_categories
-                              where parent_id = :parent_id
-                              ');
+                                  from :table_categories
+                                  where parent_id = :parent_id
+                                  and status = 1
+                                  ');
       $Qsub->bindInt(':parent_id', $parent_id);
       $Qsub->execute();
 
@@ -358,16 +368,17 @@
       if (!is_array($categories_array)) $categories_array = [];
 
       $Qcategories = $this->db->prepare('select c.categories_id,
-                                         cd.categories_name
-                                    from :table_categories c,
-                                         :table_categories_description cd
-                                    where parent_id = :parent_id
-                                    and c.categories_id = cd.categories_id
-                                    and cd.language_id = :language_id
-                                    and virtual_categories = 0
-                                    order by sort_order,
-                                             cd.categories_name
-                                   ');
+                                                cd.categories_name
+                                        from :table_categories c,
+                                             :table_categories_description cd
+                                        where parent_id = :parent_id
+                                        and c.categories_id = cd.categories_id
+                                        and cd.language_id = :language_id
+                                        and c.virtual_categories = 0
+                                        and c.status = 1
+                                        order by sort_order,
+                                                 cd.categories_name
+                                       ');
       $Qcategories->bindInt(':parent_id', (int)$parent_id);
       $Qcategories->bindInt(':language_id',  $this->lang->getId());
       $Qcategories->execute();
@@ -397,6 +408,7 @@
       $Qparent = $this->db->prepare('select parent_id
                                     from :table_categories
                                     where categories_id = :categories_id
+                                    and status = 1
                                     ');
 
       $Qparent->bindInt(':categories_id', $categories_id);
@@ -423,7 +435,7 @@
 
       $Qcategory = $this->db->prepare('select p2c.categories_id
                                       from :table_products p,
-                                          :table_products_to_categories p2c
+                                           :table_products_to_categories p2c
                                       where p.products_id = :products_id
                                       and p.products_status = 1
                                       and p.products_id = p2c.products_id

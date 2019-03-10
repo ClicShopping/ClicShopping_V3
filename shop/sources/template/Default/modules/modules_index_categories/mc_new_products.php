@@ -64,6 +64,7 @@
                                                       and  p.products_id = p2c.products_id
                                                       and p2c.categories_id = c.categories_id
                                                       and c.parent_id = :parent_id
+                                                      and c.status = 1
                                                       and g.products_group_view = 1
                                                       and p.products_status = 1
                                                       and p.products_archive = 0
@@ -89,6 +90,7 @@
                                                       and p2c.categories_id = c.categories_id
                                                       and c.parent_id = :parent_id
                                                       and c.categories_id = :categories_id
+                                                      and c.status = 1
                                                       and g.customers_group_id = :customers_group_id
                                                       and g.products_group_view = 1
                                                       and p.products_status = 1
@@ -118,6 +120,7 @@
                                                       where p.products_id = p2c.products_id
                                                       and p2c.categories_id = c.categories_id
                                                       and c.parent_id = :parent_id
+                                                      and c.status = 1
                                                       and p.products_status = 1
                                                       and p.products_view = 1
                                                       and p.products_archive = 0
@@ -140,6 +143,7 @@
                                                      and p2c.categories_id = c.categories_id
                                                      and c.categories_id = :categories_id
                                                      and c.parent_id = :parent_id
+                                                     and c.status = 1
                                                      and p.products_status = 1
                                                      and p.products_view = 1
                                                      and p.products_archive = 0
@@ -190,8 +194,6 @@
 
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-//Short description
-              $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
               $products_stock = $CLICSHOPPING_ProductsFunctionTemplate->getStock(MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_DISPLAY_STOCK, $products_id);
 //Flash discount

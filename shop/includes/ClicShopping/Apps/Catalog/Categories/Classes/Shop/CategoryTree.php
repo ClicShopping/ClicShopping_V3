@@ -77,19 +77,36 @@
         $this->_data = $_category_tree_data;
       } else {
 
-        $Qcategories = $this->db->prepare('select c.categories_id,
-                                           c.parent_id,
-                                           c.categories_image,
-                                           cd.categories_name,
-                                           cd.categories_description
-                                    from :table_categories c,
-                                         :table_categories_description cd
-                                    where c.categories_id = cd.categories_id
-                                    and cd.language_id = :language_id
-                                    order by c.parent_id,
-                                             c.sort_order,
-                                             cd.categories_name
-                                    ');
+        if (CLICSHOPPING::getSite() == 'Shop') {
+          $Qcategories = $this->db->prepare('select c.categories_id,
+                                                     c.parent_id,
+                                                     c.categories_image,
+                                                     cd.categories_name,
+                                                     cd.categories_description
+                                              from :table_categories c,
+                                                   :table_categories_description cd
+                                              where c.categories_id = cd.categories_id
+                                              and cd.language_id = :language_id
+                                              and c.status = 1
+                                              order by c.parent_id,
+                                                       c.sort_order,
+                                                       cd.categories_name
+                                              ');
+        } else {
+          $Qcategories = $this->db->prepare('select c.categories_id,
+                                                   c.parent_id,
+                                                   c.categories_image,
+                                                   cd.categories_name,
+                                                   cd.categories_description
+                                            from :table_categories c,
+                                                 :table_categories_description cd
+                                            where c.categories_id = cd.categories_id
+                                            and cd.language_id = :language_id
+                                            order by c.parent_id,
+                                                     c.sort_order,
+                                                     cd.categories_name
+                                            ');
+        }
 
         $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         $Qcategories->setCache('categories-lang' . $CLICSHOPPING_Language->getId());

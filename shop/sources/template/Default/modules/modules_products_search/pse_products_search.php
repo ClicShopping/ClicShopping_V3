@@ -166,8 +166,6 @@
 
 //products name
               $products_name = $CLICSHOPPING_ProductsFunctionTemplate->getManufacturerName($products_id);
-//Short description
-              $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
               $products_stock = $CLICSHOPPING_ProductsFunctionTemplate->getStock(MODULE_PRODUCTS_SEARCH_DISPLAY_STOCK, $products_id);
 //Flash discount

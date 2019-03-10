@@ -44,7 +44,7 @@
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
-        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
 
         $reviews_image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsImage())));
         $products_name = HTML::link($products_name_url, $CLICSHOPPING_ProductsCommon->getProductsName());

@@ -467,23 +467,29 @@
       $listing_sql .= ' and p.products_status = 1
                         and p.products_archive = 0
                         and c.virtual_categories = 0
+                        and c.status = 1
                         and p.products_id = pd.products_id
                         and p.products_id = p2c.products_id
                         and p2c.categories_id = c.categories_id
+                        and c.status = 1
                         and pd.language_id = :language_id
                       ';
 
       if ( $this->hasCategory() ) {
         if ( $this->isRecursive() ) {
-          $subcategories_array = array($this->_category);
+          $subcategories_array = [$this->_category];
+
           $listing_sql .= ' and p2c.products_id = p.products_id
                              and p2c.products_id = pd.products_id
-                             and p2c.categories_id in (' . implode(',', $CLICSHOPPING_CategoryTree->getChildren($this->_category, $subcategories_array)) . ')';
+                             and p2c.categories_id in (' . implode(',', $CLICSHOPPING_CategoryTree->getChildren($this->_category, $subcategories_array)) . ')
+                             and c.status = 1
+                           ';
         } else {
           $listing_sql .= ' and p2c.products_id = p.products_id
                              and p2c.products_id = pd.products_id
                              and pd.language_id = :language_id_c
                              and p2c.categories_id = :categories_id
+                             and c.status = 1
                           ';
                         }
       }

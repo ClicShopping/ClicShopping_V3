@@ -242,11 +242,16 @@
       }
 
       if (is_numeric($products_id) && is_numeric($qty) && ($attributes_pass_check === true)) {
-        $Qcheck = $this->db->prepare('select products_id
-                                      from :table_products
-                                      where products_id = :products_id
-                                      and products_status = 1
-                                      and products_archive = 0
+        $Qcheck = $this->db->prepare('select p.products_id
+                                      from :table_products p
+                                           :table_products_to_categories p2c,
+                                           :table_categories c
+                                      where p.products_id = :products_id
+                                      and p.products_status = 1
+                                      and p.products_archive = 0
+                                      and p.products_id = p2c.products_id
+                                      and p2c.categories_id = c.categories_id
+                                      and c.status = 1
                                     ');
 
         $Qcheck->bindInt(':products_id', $products_id);
@@ -327,12 +332,17 @@
       }
 
       if (is_numeric($products_id) && is_numeric($qty) && ($attributes_pass_check === true)) {
-        $Qcheck = $this->db->prepare('select products_id
-                                      from :table_products
-                                      where products_id = :products_id
-                                      and products_status = 1
-                                      and products_archive = 0
-                                      ');
+        $Qcheck = $this->db->prepare('select p.products_id
+                                      from :table_products p,
+                                           :table_products_to_categories p2c,
+                                           :table_categories c
+                                      where p.products_id = :products_id
+                                      and p.products_status = 1
+                                      and p.products_archive = 0
+                                      and p.products_id = p2c.products_id
+                                      and p2c.categories_id = c.categories_id
+                                      and c.status = 1
+                                    ');
 
         $Qcheck->bindInt(':products_id', $products_id);
         $Qcheck->execute();
@@ -575,10 +585,15 @@
                                                  p.products_dimension_depth,
                                                  g.price_group_view,
                                                  g.customers_group_price
-                                          from :table_products p left join :table_products_groups g on p.products_id = g.products_id
+                                          from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                               :table_products_to_categories p2c,
+                                               :table_categories c
                                           where p.products_id = :products_id
                                           and g.customers_group_id = :customers_group_id
                                           and g.products_group_view = 1
+                                          and p.products_id = p2c.products_id
+                                          and p2c.categories_id = c.categories_id
+                                          and c.status = 1
                                          ');
 
           $Qproduct->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
@@ -586,16 +601,21 @@
           $Qproduct->execute();
 
         } else {
-          $Qproduct = $this->db->prepare('select products_id,
-                                                 products_price,
-                                                 products_tax_class_id,
-                                                 products_weight,
-                                                 products_weight_class_id,
-                                                 products_dimension_width,
-                                                 products_dimension_height,
-                                                 products_dimension_depth
-                                          from :table_products
-                                          where products_id = :products_id
+          $Qproduct = $this->db->prepare('select p.products_id,
+                                                 p.products_price,
+                                                 p.products_tax_class_id,
+                                                 p.products_weight,
+                                                 p.products_weight_class_id,
+                                                 p.products_dimension_width,
+                                                 p.products_dimension_height,
+                                                 p.products_dimension_depth
+                                          from :table_products p,
+                                               :table_products_to_categories p2c,
+                                               :table_categories c
+                                          where p.products_id = :products_id
+                                          and p.products_id = p2c.products_id
+                                          and p2c.categories_id = c.categories_id
+                                          and c.status = 1
                                          ');
 
           $Qproduct->bindInt(':products_id', $products_id);
@@ -717,12 +737,17 @@
                                                  g.price_group_view,
                                                  g.customers_group_price
                                           from :table_products p left join :table_products_groups g on p.products_id = g.products_id,
-                                               :table_products_description pd
+                                               :table_products_description pd,
+                                               :table_products_to_categories p2c,
+                                               :table_categories c
                                           where p.products_id = :products_id
                                           and pd.products_id = p.products_id
                                           and g.customers_group_id = :customers_group_id
                                           and g.products_group_view = 1
                                           and pd.language_id = :language_id
+                                          and p.products_id = p2c.products_id
+                                          and p2c.categories_id = c.categories_id
+                                          and c.status = 1
                                     ');
 
           $Qproducts->bindInt(':products_id', $products_id);
@@ -744,11 +769,16 @@
                                                  p.products_dimension_depth,
                                                  p.products_tax_class_id
                                           from :table_products p,
-                                               :table_products_description pd
+                                               :table_products_description pd,
+                                               :table_products_to_categories p2c,
+                                               :table_categories c
                                           where p.products_id = :products_id
                                           and pd.products_id = p.products_id
                                           and pd.language_id = :language_id
-                                    ');
+                                          and p.products_id = p2c.products_id
+                                          and p2c.categories_id = c.categories_id
+                                          and c.status = 1
+                                       ');
           $Qproducts->bindInt(':products_id', $products_id);
           $Qproducts->bindInt(':language_id', (int)$this->lang->getId());
           $Qproducts->execute();
@@ -1012,10 +1042,15 @@
       $products_id = $this->prod->getProductID($products_id);
 
       if ($this->customer->getCustomersGroupID()  == 0) {
-        $QminOrderQty = $this->db->prepare('select products_min_qty_order
-                                              from :table_products
-                                              where products_id = :products_id
-                                            ');
+        $QminOrderQty = $this->db->prepare('select p.products_min_qty_order
+                                            from :table_products p,
+                                                 :table_products_to_categories p2c,
+                                                 :table_categories c
+                                            where p.products_id = :products_id
+                                            and p.products_id = p2c.products_id
+                                            and p2c.categories_id = c.categories_id
+                                            and c.status = 1
+                                          ');
         $QminOrderQty->bindInt(':products_id', $products_id);
 
         $QminOrderQty->execute();
@@ -1024,9 +1059,9 @@
       } else {
 
         $QcustomersGroupMinOrder = $this->db->prepare('select customers_group_quantity_default
-                                                        from :table_customers_groups
-                                                        where customers_group_id = :customers_group_id
-                                                      ');
+                                                       from :table_customers_groups
+                                                       where customers_group_id = :customers_group_id
+                                                     ');
         $QcustomersGroupMinOrder->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
         $QcustomersGroupMinOrder->execute();

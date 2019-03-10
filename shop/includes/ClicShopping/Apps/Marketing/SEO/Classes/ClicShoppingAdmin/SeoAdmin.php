@@ -193,10 +193,10 @@
       if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
       $Qcategory = $CLICSHOPPING_Db->prepare('select categories_head_title_tag
-                                      from :table_categories_description
-                                      where categories_id = :categories_id
-                                      and language_id = :language_id
-                                    ');
+                                              from :table_categories_description
+                                              where categories_id = :categories_id
+                                              and language_id = :language_id
+                                            ');
       $Qcategory->bindInt(':categories_id', (int)$category_id);
       $Qcategory->bindInt(':language_id', (int)$language_id);
 

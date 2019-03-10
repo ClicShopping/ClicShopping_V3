@@ -48,18 +48,18 @@
             foreach ($notify as $n) {
               if (is_numeric($n) && ($n > 0)) {
                 $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['products_id' => (int)$n,
-                                                                                   'customers_id' => (int)$CLICSHOPPING_Customer->getID()
-                                                                                  ],
-                                                                                  null,
-                                                                                  1
-                                        );
+                                                                                           'customers_id' => (int)$CLICSHOPPING_Customer->getID()
+                                                                                         ],
+                                                                                         null,
+                                                                                         1
+                                               );
 
                 if ( $Qcheck->fetch() === false ) {
                   $CLICSHOPPING_Db->save('products_notifications', ['products_id' => (int)$n,
-                                                             'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                                             'date_added' => 'now()'
-                                                            ]
-                                  );
+                                                                     'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+                                                                     'date_added' => 'now()'
+                                                                    ]
+                                        );
                 }
               }
             }
@@ -68,8 +68,8 @@
             foreach ($notify as $n) {
               if (is_numeric($n) && ($n > 0)) {
                 $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_products_notifications
-                                               where products_id = :products_id
-                                              ');
+                                                       where products_id = :products_id
+                                                      ');
                 $Qdelete->bindint(':products_id', $n);
                 $Qdelete->execute();
               }

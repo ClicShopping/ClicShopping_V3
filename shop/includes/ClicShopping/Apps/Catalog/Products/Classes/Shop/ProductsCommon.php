@@ -74,18 +74,17 @@
     }
 
     private function setData() {
-
       if ($this->customer->getCustomersGroupID() != 0) {
-        $Qproducts = $this->db->prepare('select  p.products_id,
-                                                  p.products_tax_class_id,
-                                                  p.orders_view,
-                                                  p.products_view,
-                                                  p.products_archive,
-                                                  p.products_quantity,
-                                                  g.customers_group_price,
-                                                  g.price_group_view,
-                                                  g.orders_group_view,
-                                                  g.products_group_view
+        $Qproducts = $this->db->prepare('select p.products_id,
+                                                p.products_tax_class_id,
+                                                p.orders_view,
+                                                p.products_view,
+                                                p.products_archive,
+                                                p.products_quantity,
+                                                g.customers_group_price,
+                                                g.price_group_view,
+                                                g.orders_group_view,
+                                                g.products_group_view
                                         from :table_products p left join :table_products_groups g on p.products_id = g.products_id
                                         where p.products_status = 1
                                         and g.customers_group_id = :customers_group_id
@@ -97,18 +96,23 @@
         $Qproducts->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
       } else {
+        $Qproducts = $this->db->prepare('select p.products_id,
+                                                p.products_tax_class_id,
+                                                p.products_quantity,
+                                                p.orders_view,
+                                                p.products_view,
+                                                p.products_archive,
+                                                p.products_tax_class_id
+                                        from :table_products p,
+                                             :table_products_to_categories p2c,
+                                             :table_categories c
+                                        where p.products_status = 1
+                                        and p.products_view = 1
+                                        and p.products_id = :products_id
 
-        $Qproducts = $this->db->prepare('select products_id,
-                                                products_tax_class_id,
-                                                products_quantity,
-                                                orders_view,
-                                                products_view,
-                                                products_archive,
-                                                products_tax_class_id
-                                        from :table_products
-                                        where products_status = 1
-                                        and products_view = 1
-                                        and products_id = :products_id
+                                        and p.products_id = p2c.products_id
+                                        and p2c.categories_id = c.categories_id
+                                        and c.status = 1
                                        ');
 
         $Qproducts->bindInt(':products_id', $this->getID());
@@ -117,6 +121,8 @@
       $Qproducts->execute();
 
       $result = $Qproducts->fetch();
+
+      if ($result === false) return false;
 
       return $result;
     }

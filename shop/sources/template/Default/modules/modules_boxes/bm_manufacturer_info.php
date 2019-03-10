@@ -52,10 +52,15 @@
                                                            mi.manufacturers_url,
                                                            m.manufacturers_status
                                                      from :table_manufacturers m left join :table_manufacturers_info mi on (m.manufacturers_id = mi.manufacturers_id and mi.languages_id = :languages_id),
-                                                          :table_products p
+                                                          :table_products p,
+                                                          :table_products_to_categories p2c,
+                                                          :table_categories c
                                                      where p.products_id = :products_id
                                                      and p.manufacturers_id = m.manufacturers_id
                                                      and m.manufacturers_status = 0
+                                                     and p.products_id = p2c.products_id
+                                                     and p2c.categories_id = c.categories_id
+                                                     and c.status = 1
                                                      ');
 
         $Qmanufacturers->bindInt(':languages_id', $CLICSHOPPING_Language->getId());

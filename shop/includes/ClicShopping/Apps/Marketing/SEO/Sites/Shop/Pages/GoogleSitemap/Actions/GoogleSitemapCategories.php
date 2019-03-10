@@ -29,11 +29,12 @@
       $Qcategorie = $CLICSHOPPING_Db->prepare('select c.categories_id,
                                                       cd.categories_name,
                                               coalesce(NULLIF(last_modified, :last_modified),
-                                                             date_added) as last_modified
+                                                              date_added) as last_modified
                                               from :table_categories c,
                                               :table_categories_description cd
                                               where virtual_categories = 0
                                               and c.categories_id = cd.categories_id
+                                              and c.status = 1
                                               and cd.language_id = :language_id
                                               group by categories_id
                                               order by last_modified DESC

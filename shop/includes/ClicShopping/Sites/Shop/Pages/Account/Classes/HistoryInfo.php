@@ -106,13 +106,18 @@
                                                                             op.orders_id,
                                                                             o.orders_id
                                                              from :table_products p,
-                                                                  :table_orders_products  op,
+                                                                  :table_orders_products op,
                                                                   :table_orders o,
-                                                                  :table_orders_status os
+                                                                  :table_orders_status os,
+                                                                  :table_products_to_categories p2c,
+                                                                  :table_categories c
                                                              where p.products_id = op.products_id
                                                              and o.orders_id = op.orders_id
                                                              and op.orders_id = :orders_id
                                                              and o.orders_status = 3
+                                                             and p.products_id = p2c.products_id
+                                                             and p2c.categories_id = c.categories_id
+                                                             and c.status = 1
                                                             ');
       $QdonwloadProductsFiles->bindInt(':orders_id', $_GET['order_id']);
 

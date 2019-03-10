@@ -54,6 +54,6 @@
 
       $CLICSHOPPING_Hooks->call('Featured','Update');
 
-      $CLICSHOPPING_Favorites->redirect('Featured', (isset($page) ? 'page=' . $page . '&' : '') . 'sID=' . $products_featured_id);
+      $CLICSHOPPING_Featured->redirect('Featured', (isset($page) ? 'page=' . $page . '&' : '') . 'sID=' . $products_featured_id);
     }
   }

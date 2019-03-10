@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
  *
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -114,10 +114,9 @@
       <table border="0" width="100%" cellspacing="0" cellpadding="2">
         <td>
           <table class="table table-sm table-hover table-striped">
-            <tbody>
             <thead>
             <tr class="dataTableHeadingRow">
- <!-- // select all the product to delete -->
+<!-- // select all the product to delete -->
               <th width="1" class="text-md-center"><input type="checkbox" onClick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
               <th colspan="3">&nbsp;</th>
               <th><?php echo $CLICSHOPPING_Products->getDef('table_heading_categories_products'); ?></th>
@@ -129,11 +128,9 @@
               <th class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_sort_order'); ?>&nbsp;</th>
               <th class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?>&nbsp;</th>
             </tr>
-            </thead>
+          </thead>
+          <tbody>
 <?php
-  // ################################################################################################################ -->
-  //                                         LISTING PRODUITS                                          -->
-  //################################################################################################################ -->
   $products_count = 0;
 
   $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($_POST['search']);
@@ -141,7 +138,6 @@
   $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
   if ($listingTotalRow > 0) {
-
     while ($Qproducts->fetch() ) {
       $products_count++;
       $rows++;

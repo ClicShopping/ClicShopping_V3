@@ -1,8 +1,8 @@
-heading_title = Catégories produits
-module_ct_title = Catégories produits
-module_ct_short_title = Catégories produits
+heading_title = Catégories
+module_ct_title = Catégories
+module_ct_short_title = Catégories
 
-text_products_categories =  Catégories produits
+text_products_categories = Catégories
 text_configure =  Configurer App Module
 
 text_intro = Cette app vous permet d'installer unsystème de gestion d'categories des produits. <br /><br />

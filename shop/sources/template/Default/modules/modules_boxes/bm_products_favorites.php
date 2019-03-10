@@ -51,30 +51,29 @@
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 
         $Qproducts = $CLICSHOPPING_Db->prepare('select distinct p.products_id
-                                                  from :table_products_favorites ph,
-                                                        :table_products p left join :table_products_groups g on p.products_id = g.products_id
-                                                  where (p.products_status = 1
-                                                        and ph.status = 1
-                                                        and p.products_id = ph.products_id
-                                                        and g.customers_group_id = :customers_group_id
-                                                        and g.products_group_view = 1
-                                                        and g.price_group_view = 1
-                                                        and p.products_archive = 0
-                                                        and (ph.customers_group_id = :customers_group_id or ph.customers_group_id = 99)
-                                                        )
-                                                 or (p.products_status = 1
-                                                     and ph.status = 1
-                                                     and p.products_id = ph.products_id
-                                                     and g.customers_group_id = :customers_group_id
-                                                     and g.products_group_view = 1
-                                                     and g.price_group_view != 1
-                                                     and p.products_archive = 0
-                                                     and (ph.customers_group_id = 0 or ph.customers_group_id = 99)
-                                                     )
-                                                  and p.products_id <> :products_id
-                                                  order by rand()
-                                                  limit :limit
-                                                ');
+                                                from :table_products_favorites ph,
+                                                      :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                                      :table_products_to_categories p2c,
+                                                      :table_categories c
+                                                where (p.products_status = 1
+                                                      and g.price_group_view = 1
+                                                      )
+                                               or (p.products_status = 1
+                                                   and g.price_group_view <> 1
+                                                   )
+                                                and p.products_id <> :products_id
+                                                and ph.status = 1
+                                                and p.products_id = ph.products_id
+                                                and g.customers_group_id = :customers_group_id
+                                                and g.products_group_view = 1
+                                                and p.products_archive = 0
+                                                and (ph.customers_group_id = :customers_group_id or ph.customers_group_id = 99)
+                                                and p.products_id = p2c.products_id
+                                                and p2c.categories_id = c.categories_id
+                                                and c.status = 1
+                                                order by rand()
+                                                limit :limit
+                                              ');
 
         $Qproducts->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
         $Qproducts->bindInt(':products_id', (int)$_GET['products_id']);
@@ -85,7 +84,9 @@
 
         $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id
                                                 from :table_products p,
-                                                      :table_products_favorites ph
+                                                     :table_products_favorites ph,
+                                                     :table_products_to_categories p2c,
+                                                     :table_categories c
                                                  where p.products_status = 1
                                                  and p.products_id = ph.products_id
                                                  and ph.status = 1
@@ -93,6 +94,9 @@
                                                  and (ph.customers_group_id = 0 or ph.customers_group_id = 99)
                                                  and p.products_archive = 0
                                                  and p.products_id <> :products_id
+                                                 and p.products_id = p2c.products_id
+                                                 and p2c.categories_id = c.categories_id
+                                                 and c.status = 1
                                                  order by rand()
                                                  limit  :limit
                                                 ');

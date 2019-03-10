@@ -28,7 +28,7 @@
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
-      $this->title = CLICSHOPPING::getDef('module_products_favorites');
+      $this->title = CLICSHOPPING::getDef('module_products_favorites_title');
       $this->description = CLICSHOPPING::getDef('module_products_favorites_description');
 
       if (defined('MODULE_PRODUCTS_FAVORITES_STATUS')) {
@@ -156,8 +156,6 @@
 
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-//Short description
-              $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription(null, $delete_word, $products_short_description_number);
 //Stock (good, alert, out of stock).
               $products_stock = $CLICSHOPPING_ProductsFunctionTemplate->getStock(MODULE_PRODUCTS_FAVORITES_DISPLAY_STOCK, $products_id);
 //Flash discount

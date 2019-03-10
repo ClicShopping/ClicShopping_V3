@@ -50,12 +50,12 @@
 
 // Now get all downloadable products in that order
           $Qdownloads = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
-                                                            opd.download_maxdays,
-                                                            op.products_name,
-                                                            opd.orders_products_download_id,
-                                                            opd.orders_products_filename,
-                                                            opd.download_count,
-                                                            opd.download_maxdays
+                                                          opd.download_maxdays,
+                                                          op.products_name,
+                                                          opd.orders_products_download_id,
+                                                          opd.orders_products_filename,
+                                                          opd.download_count,
+                                                          opd.download_maxdays
                                                     from :table_orders o,
                                                          :table_orders_products op,
                                                          :table_orders_products_download opd,

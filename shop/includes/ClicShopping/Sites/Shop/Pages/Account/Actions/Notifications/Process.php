@@ -103,10 +103,10 @@
         } else {
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id
-                                        from :table_products_notifications
-                                        where customers_id = :customers_id
-                                        limit 1
-                                        ');
+                                               from :table_products_notifications
+                                               where customers_id = :customers_id
+                                               limit 1
+                                              ');
           $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $Qcheck->execute();
 

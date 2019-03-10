@@ -47,6 +47,7 @@
                                                                      c.sort_order,
                                                                      c.date_added,
                                                                      c.last_modified ,
+                                                                     c.status,
                                                                      c.virtual_categories
                                           from :table_categories c,
                                                :table_categories_description cd
@@ -69,6 +70,7 @@
                                                                      c.sort_order,
                                                                      c.date_added,
                                                                      c.last_modified,
+                                                                     c.status,
                                                                      c.virtual_categories
                                         from :table_categories c,
                                              :table_categories_description cd
@@ -188,7 +190,6 @@
  * @return mixed
  */
     public function getCatalogInCategoryCount($categories_id, $include_deactivated = false) {
-
       if ($include_deactivated) {
         $Qproducts = $this->db->get([
                                       'products p',

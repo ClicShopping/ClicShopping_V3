@@ -106,8 +106,9 @@
                              from :table_products p left join :table_specials s on p.products_id = s.products_id
                                                     left join :table_products_groups g on p.products_id = g.products_id,
                                   :table_products_description pd,
-                                  :table_manufacturers  m,
-                                  :table_products_to_categories p2c
+                                  :table_manufacturers m,
+                                  :table_products_to_categories p2c,
+                                  :table_categories c
                              where p.products_status = 1
                              and g.customers_group_id = :customers_group_id
                              and g.products_group_view = 1
@@ -118,6 +119,7 @@
                              and p.products_archive = 0
                              and pd.language_id = :language_id
                              and p2c.categories_id = :categories_id
+                             and c.status = 1
                              and m.manufacturers_status = 0
                             ';
           } else {
@@ -127,7 +129,9 @@
                              from :table_products p left join :table_specials s on p.products_id = s.products_id
                                                     left join :table_products_groups g on p.products_id = g.products_id,
                                   :table_products_description pd,
-                                  :table_manufacturers  m
+                                  :table_manufacturers m,
+                                  :table_products_to_categories p2c,
+                                  :table_categories c
                              where p.products_status = 1
                              and g.customers_group_id = :customers_group_id
                              and g.products_group_view = 1
@@ -137,6 +141,9 @@
                              and p.manufacturers_id = m.manufacturers_id
                              and m.manufacturers_id = :manufacturers_id
                              and m.manufacturers_status = 0
+                             and p.products_id = p2c.products_id
+                             and p2c.categories_id = c.categories_id
+                             and c.status = 1
                            ';
           }
         } else {
@@ -148,8 +155,9 @@
                             from :table_products p left join :table_specials s on p.products_id = s.products_id
                                                    left join :table_products_groups g on p.products_id = g.products_id,
                                  :table_products_description pd,
-                                 :table_manufacturers  m,
-                                 :table_products_to_categories p2c
+                                 :table_manufacturers m,
+                                 :table_products_to_categories p2c,
+                                 :table_categories c
                             where p.products_status = 1
                             and g.customers_group_id = :customers_group_id
                             and g.products_group_view = 1
@@ -160,6 +168,7 @@
                             and p.products_archive = 0
                             and pd.language_id = :language_id
                             and p2c.categories_id = :categories_id
+                            and c.status = 1
                             and m.manufacturers_status = 0
                            ';
           } else {
@@ -171,7 +180,8 @@
                                  :table_products p left join :table_manufacturers  m on p.manufacturers_id = m.manufacturers_id
                                                    left join :table_specials s on p.products_id = s.products_id
                                                    left join :table_products_groups g on p.products_id = g.products_id,
-                                 :table_products_to_categories p2c
+                                 :table_products_to_categories p2c,
+                                 :table_categories c
                             where p.products_status = 1
                             and g.customers_group_id = :customers_group_id
                             and g.products_group_view = 1
@@ -180,6 +190,7 @@
                             and p.products_archive = 0
                             and pd.language_id = :language_id
                             and p2c.categories_id = :categories_id
+                            and c.status = 1
                            ';
           }
         }
@@ -196,8 +207,9 @@
                              p.products_sort_order
                             from :table_products p left join :table_specials s on p.products_id = s.products_id,
                                  :table_products_description pd,
-                                 :table_manufacturers  m,
-                                 :table_products_to_categories p2c
+                                 :table_manufacturers m,
+                                 :table_products_to_categories p2c,
+                                 :table_categories c
                             where p.products_status = 1
                             and p.products_view = 1
                             and p.manufacturers_id = m.manufacturers_id
@@ -208,6 +220,7 @@
                             and pd.language_id = :language_id
                             and p2c.categories_id = :categories_id
                             and m.manufacturers_status = 0
+                            and c.status = 1
                            ';
           } else {
 
@@ -216,7 +229,9 @@
                              p.products_sort_order
                             from :table_products p left join :table_specials s on p.products_id = s.products_id,
                                  :table_products_description pd,
-                                 :table_manufacturers  m
+                                 :table_manufacturers m,
+                                 :table_products_to_categories p2c,
+                                 :table_categories c
                             where p.products_status = 1
                             and p.products_view = 1
                             and pd.products_id = p.products_id
@@ -225,6 +240,9 @@
                             and p.manufacturers_id = m.manufacturers_id
                             and m.manufacturers_id = :manufacturers_id
                             and m.manufacturers_status = 0
+                            and p.products_id = p2c.products_id
+                            and p2c.categories_id = c.categories_id
+                            and c.status = 1
                            ';
           }
         } else {
@@ -235,8 +253,9 @@
                              p.products_sort_order
                             from :table_products p left join :table_specials s on p.products_id = s.products_id,
                                  :table_products_description pd,
-                                 :table_manufacturers  m,
-                                 :table_products_to_categories p2c
+                                 :table_manufacturers m,
+                                 :table_products_to_categories p2c,
+                                 :table_categories c
                             where p.products_status = 1
                             and p.products_view = 1
                             and p.manufacturers_id = m.manufacturers_id
@@ -247,6 +266,7 @@
                             and pd.language_id = :language_id
                             and p2c.categories_id = :categories_id
                             and m.manufacturers_status = 0
+                            and c.status = 1
                            ';
           } else {
 // Affichage general de la liste des produits d'une categorie avec tout les Marques
@@ -256,7 +276,8 @@
                             from :table_products_description pd,
                                  :table_products p left join :table_manufacturers  m on p.manufacturers_id = m.manufacturers_id
                                                    left join :table_specials s on p.products_id = s.products_id,
-                                 :table_products_to_categories p2c
+                                 :table_products_to_categories p2c,
+                                 :table_categories c
                             where p.products_status = 1
                             and p.products_view = 1
                             and p.products_id = p2c.products_id
@@ -264,6 +285,7 @@
                             and p.products_archive = 0
                             and pd.language_id = :language_id
                             and p2c.categories_id = :categories_id
+                            and c.status = 1
                            ';
           }
         }

@@ -41,16 +41,16 @@
         for ($i=0, $n=count($notify); $i<$n; $i++) {
 
           $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                                                              'products_id' => (int)$notify[$i]
-                                                                             ]
-                                    );
+                                                                                    'products_id' => (int)$notify[$i]
+                                                                                   ]
+                                         );
 
           if ($Qcheck->fetch() === false) {
             $CLICSHOPPING_Db->save('products_notifications', ['products_id' => (int)$notify[$i],
-                                                        'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                                        'date_added' => 'now()'
-                                                       ]
-                            );
+                                                              'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+                                                              'date_added' => 'now()'
+                                                             ]
+                                 );
           }
         }
 
