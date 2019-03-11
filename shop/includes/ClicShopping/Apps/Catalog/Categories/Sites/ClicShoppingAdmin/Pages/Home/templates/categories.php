@@ -43,7 +43,8 @@
                <div class="form-group">
                  <div class="controls">
 <?php
-  if (isset($_POST['cPath'])) $current_category_id = $_POST['cPath'];
+  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
+  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
   echo HTML::form('goto', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
   echo HTML::selectMenu('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
@@ -76,7 +77,7 @@
   }
 
   if (!isset($_GET['search'])) {
-    echo HTML::button($CLICSHOPPING_Categories->getDef('button_new_category'), null, $CLICSHOPPING_Categories->link('Insert&cPath=' . $cPath), 'info') . '&nbsp;';
+    echo HTML::button($CLICSHOPPING_Categories->getDef('button_new_category'), null, $CLICSHOPPING_Categories->link('Insert&cPath=' . $cPath . '&cID=' . $_GET['cID']), 'info') . '&nbsp;';
     echo HTML::button($CLICSHOPPING_Categories->getDef('button_products'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&cPath=' . $cPath), 'success');
   }
 ?>

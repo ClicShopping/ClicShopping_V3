@@ -22,21 +22,16 @@
     protected  $app;
 
     public function execute()  {
-
       $this->app = Registry::get('Categories');
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_POST['categories_id'])) $categories_id = HTML::sanitize($_POST['categories_id']);
-
-      if (empty($categories_id)) {
-        $categories_id = HTML::sanitize($_GET['cID']);
-      }
+      if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_POST['cID']);
 
       $cPath = HTML::sanitize($_GET['cPath']);
       $sort_order = HTML::sanitize($_POST['sort_order']);
-      $current_category_id = $_POST['move_to_category_id'];
+      $current_category_id = $_POST['parent_id'];
 
       $sql_data_array = ['parent_id' => (int)$current_category_id,
                          'sort_order' => (int)$sort_order

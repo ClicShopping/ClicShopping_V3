@@ -106,7 +106,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id) . HTML::hiddenField('current_category_id', $current_category_id); ?>
+                    <?php echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id); ?>
                   </div>
                 </div>
               </div>

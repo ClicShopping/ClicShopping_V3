@@ -63,6 +63,9 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
   $form_action = (isset($_GET['cID'])) ? 'update_category' : 'insert_category';
+
+  $current_category_id = HTML::sanitize($_GET['cID']);
+
   echo HTML::form('new_category', $CLICSHOPPING_Categories->link('Categories&Update&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'post', 'enctype="multipart/form-data"');
 
   echo HTMLOverrideAdmin::getCkeditor();

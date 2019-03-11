@@ -18,21 +18,19 @@
 
   class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract {
     protected  $app;
-    protected  $ID;
-    protected  $cPath;
 
     public function execute()  {
       $this->app = Registry::get('Categories');
 
-      $this->ID = HTML::sanitize($_GET['categories_id']);
-      $this->cPath = HTML::sanitize($_GET['cPath']);
+      $categories_id = HTML::sanitize($_GET['categories_id']);
+      $cPath = HTML::sanitize($_GET['cPath']);
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
-      if (isset($this->ID) && is_numeric($this->ID) && isset($this->cPath)) {
+      if (isset($categories_id) && is_numeric($categories_id) && isset($cPath)) {
 
-        $categories = $CLICSHOPPING_CategoriesAdmin->getCategoryTree($this->ID, '', '0', '', true);
+        $categories = $CLICSHOPPING_CategoriesAdmin->getCategoryTree($categories_id, '', '0', '', true);
         $products = [];
         $products_delete = [];
 
@@ -86,6 +84,6 @@
       Cache::clear('products_cross_sell');
       Cache::clear('upcoming');
 
-      $this->app->redirect('Categories&cPath=' . $this->cPath);
+      $this->app->redirect('Categories&cPath=' . $cPath);
     }
   }

@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\Status;
 
@@ -25,6 +26,10 @@
 
     public function execute()  {
       if ( ($_GET['flag'] == 0) || ($_GET['flag'] == 1) ) {
+
+        $cPath = HTML::sanitize($_GET['cPath']);
+
+
         if (isset($_GET['cID'])) {
           Status::getCategoriesStatus($_GET['cID'], (int)$_GET['flag']);
         }
@@ -36,6 +41,6 @@
         Cache::clear('upcoming');
       }
 
-       $this->app->redirect('Categories&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']);
+      $this->app->redirect('Categories&cPath=' . $cPath);
     }
   }

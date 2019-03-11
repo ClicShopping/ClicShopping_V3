@@ -21,14 +21,14 @@
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
   $Qcategories= $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
-                                                       cd.categories_name,
-                                                       c.parent_id
-                                                from :table_categories c,
-                                                     :table_categories_description cd
-                                                where c.categories_id = cd.categories_id
-                                                and cd.language_id = :language_id
-                                                and c.categories_id = :categories_id
-                                                ');
+                                                               cd.categories_name,
+                                                               c.parent_id
+                                                        from :table_categories c,
+                                                             :table_categories_description cd
+                                                        where c.categories_id = cd.categories_id
+                                                        and cd.language_id = :language_id
+                                                        and c.categories_id = :categories_id
+                                                        ');
   $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
   $Qcategories->bindInt(':categories_id', $_GET['cID']);
 
@@ -36,6 +36,8 @@
 
   $category_childs = ['childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id'))];
   $category_products = ['products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id'))];
+
+  $cPath = HTML::sanitize($_GET['cPath']);
 
   $cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
   $cInfo = new ObjectInfo($cInfo_array);

@@ -70,7 +70,7 @@
 
           $CLICSHOPPING_Hooks->call('Categories','Insert');
 
-          $this->app->redirect('Categories&cPath=' . $new_parent_id . '&cID=' . $this->categoryID);
+          $this->app->redirect('Categories&cPath=' . $new_parent_id);
         }
       }
     }

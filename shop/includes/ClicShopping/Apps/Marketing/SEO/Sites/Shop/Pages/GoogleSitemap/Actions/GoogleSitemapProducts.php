@@ -36,10 +36,10 @@
                                                        :table_categories c
                                                   where p.products_status = 1
                                                   and p.products_view = 1
-                                                  and p.customers_group_id = 0
+                                                  and p.customers_group_id = 0                                              
                                                   and p.products_id = p2c.products_id
                                                   and p2c.categories_id = c.categories_id
-                                                  and c.status = 1
+                                                  and c.status = 1    
                                                   order by last_modified desc
                                                   ');
 

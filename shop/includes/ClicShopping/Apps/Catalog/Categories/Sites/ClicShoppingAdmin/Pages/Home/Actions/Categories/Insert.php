@@ -27,16 +27,19 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $sort_order = HTML::sanitize($_POST['sort_order']);
+      if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_POST['cID']);
+
       $cPath = HTML::sanitize($_GET['cPath']);
+      $sort_order = HTML::sanitize($_POST['sort_order']);
+
       $sql_data_array = ['sort_order' => (int)$sort_order];
 
-      $current_category_id = $_POST['move_to_category_id'];
+      $parent_id = $_POST['move_to_category_id'];
 
-      $insert_sql_data = ['parent_id' => (int)$current_category_id,
-                         'date_added' => 'now()',
-                         'virtual_categories' => 0
-                         ];
+      $insert_sql_data = ['parent_id' => (int)$parent_id,
+                          'date_added' => 'now()',
+                          'virtual_categories' => 0
+                          ];
 
       $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
@@ -102,6 +105,6 @@
 
       $CLICSHOPPING_Hooks->call('Categories','Insert');
 
-      $this->app->redirect('Categories&cPath=' . $cPath . '&cID=' . $categories_id);
+      $this->app->redirect('Categories&cPath=' . $parent_id );
     }
   }
