@@ -37,6 +37,8 @@
     public function getSearch($keywords = null) {
       $current_category_id = HTML::sanitize($_POST['cPath']);
 
+      if (is_null($current_category_id)) $current_category_id = 0;
+
       if (isset($keywords) && !empty($keywords)) {
         $search = HTML::sanitize($keywords);
 
