@@ -29,7 +29,6 @@
 
         $cPath = HTML::sanitize($_GET['cPath']);
 
-
         if (isset($_GET['cID'])) {
           Status::getCategoriesStatus($_GET['cID'], (int)$_GET['flag']);
         }
@@ -41,6 +40,6 @@
         Cache::clear('upcoming');
       }
 
-      $this->app->redirect('Categories&cPath=' . $cPath);
+      $this->app->redirect('Categories&cPath=' . $cPath .'&cID=' . $_GET['cID']);
     }
   }

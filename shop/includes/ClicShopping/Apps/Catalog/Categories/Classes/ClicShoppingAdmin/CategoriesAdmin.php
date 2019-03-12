@@ -38,6 +38,8 @@
       $current_category_id = HTML::sanitize($_POST['cPath']);
 
       if (is_null($current_category_id)) $current_category_id = 0;
+      if (isset($_POST['cPath'])) $current_category_id = $_POST['cPath'];
+      if (isset($_GET['cPath'])) $current_category_id = $_GET['cPath'];
 
       if (isset($keywords) && !empty($keywords)) {
         $search = HTML::sanitize($keywords);
