@@ -53,7 +53,7 @@
                                                               o.date_purchased
                                                from :table_orders o,
                                                     :table_orders_products op,
-                                                    :table_products p
+                                                    :table_products p,
                                                     :table_products_to_categories p2c,
                                                     :table_categories c
                                                 where o.customers_id = :customers_id
