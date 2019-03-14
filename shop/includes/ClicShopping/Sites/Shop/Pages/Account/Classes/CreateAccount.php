@@ -12,6 +12,7 @@
   namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class CreateAccount {
 
