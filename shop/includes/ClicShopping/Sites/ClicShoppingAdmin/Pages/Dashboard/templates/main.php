@@ -47,19 +47,21 @@
 <?php
     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Dashboard/';
 
-    $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'IndexDahboardTop*');
+    if (is_dir($source_folder)) {
+      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'IndexDahboardTop*');
 
-    if (is_array($files_get)) {
-      foreach ($files_get as $value) {
-        if (!empty($value['name'])) {
-          echo $CLICSHOPPING_Hooks->output('Dashboard', $value['name']);
+      if (is_array($files_get)) {
+        foreach ($files_get as $value) {
+          if (!empty($value['name'])) {
+            echo $CLICSHOPPING_Hooks->output('Dashboard', $value['name']);
+          }
         }
+
+        echo '<div class="separator"></div>';
       }
 
-      echo '<div class="separator"></div>';
+      echo $CLICSHOPPING_Hooks->output('IndexDashboardTop', 'PageTabContent', null, 'display');
     }
-
-    echo $CLICSHOPPING_Hooks->output('IndexDashboardTop', 'PageTabContent', null, 'display');
 ?>
       </div>
     </div>
