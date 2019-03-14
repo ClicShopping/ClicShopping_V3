@@ -82,7 +82,7 @@
             <label for="InputSiret" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_siret'); ?></label>
             <div class="col-md-8">
 <?php
-  echo HTML::inputField('siret', null, 'required aria-required="true" id="InputSiret" aria-describedby="' . CLICSHOPPING::getDef('entry_siret') . '" placeholder="' . CLICSHOPPING::getDef('entry_siret') . '" minlength="'. ENTRY_SIRET_MIN_LENGTH .'"');
+  echo HTML::inputField('siret', null, 'required aria-required="true" id="InputSiret" aria-describedby="' . CLICSHOPPING::getDef('entry_siret') . '" placeholder="' . CLICSHOPPING::getDef('entry_siret') . '" minlength="' . ENTRY_SIRET_MIN_LENGTH . '" maxlength="14"');
   if (ENTRY_SIRET_MIN_LENGTH > 0) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_siret_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_siret_text') . '</span>': '');
   }
@@ -103,7 +103,7 @@
             <label for="InputCodeApe" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_code_ape'); ?></label>
             <div class="col-md-8">
 <?php
-  echo HTML::inputField('ape', null, 'required aria-required="true" id="InputCodeApe" aria-describedby="' . CLICSHOPPING::getDef('entry_code_ape') . '" placeholder="' . CLICSHOPPING::getDef('entry_code_ape') . '" minlength="'. ENTRY_CODE_APE_MAX_LENGTH .'"');
+  echo HTML::inputField('ape', null, 'required aria-required="true" id="InputCodeApe" aria-describedby="' . CLICSHOPPING::getDef('entry_code_ape') . '" placeholder="' . CLICSHOPPING::getDef('entry_code_ape') . '" minlength="' . ENTRY_CODE_APE_MAX_LENGTH . '" maxlength="4"');
 
   if (ENTRY_CODE_APE_MAX_LENGTH > 0) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_code_ape_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_code_ape_text') . '</span>': '');
@@ -135,7 +135,7 @@
           <div class="form-group row">
             <label for="InputTvaIntracom" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_tva_intracom'); ?></label>
             <div class="col-md-8">
-              <?php echo HTML::inputField('tva_intracom', null, 'id="InputTvaIntracom" aria-describedby="' . CLICSHOPPING::getDef('entry_tva_intracom') . '" placeholder="' . CLICSHOPPING::getDef('entry_tva_intracom') . '" minlength="'. ENTRY_TVA_INTRACOM_MAX_LENGTH .'"'); ?>
+              <?php echo HTML::inputField('tva_intracom', null, 'id="InputTvaIntracom" aria-describedby="' . CLICSHOPPING::getDef('entry_tva_intracom') . '" placeholder="' . CLICSHOPPING::getDef('entry_tva_intracom') . '" minlength="' . ENTRY_TVA_INTRACOM_MAX_LENGTH . '"  maxlength="14"'); ?>
               <input type="text" size="2" maxlength="2" name="ISO" onFocus="setTimeout('document.country.ISO.blur()',1);" value="<?php echo $default_country_pro ?>" style ="bottom:auto; background-color:#fff; border: #fff;">&nbsp;
             </div>
           </div>

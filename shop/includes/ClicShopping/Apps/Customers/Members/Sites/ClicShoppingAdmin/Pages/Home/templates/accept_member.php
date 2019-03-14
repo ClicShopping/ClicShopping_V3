@@ -60,7 +60,7 @@
     </div>
 
     <div class="col-md-12 mainTitle"><strong><?php echo  $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname; ?></strong></div>
-    <?php echo HTML::form('customers', CLICSHOPPING::link('Members&ConfirmMembers&cID=' . $cInfo->customers_id)); ?>
+    <?php echo HTML::form('customers', $CLICSHOPPING_Members->link('Members&ConfirmMembers&cID=' . $cInfo->customers_id)); ?>
     <div class="adminformTitle">
       <div class="row">
         <div class="separator"></div>

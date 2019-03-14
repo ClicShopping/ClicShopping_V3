@@ -13,9 +13,9 @@
   namespace ClicShopping\Apps\Customers\Members\Sites\ClicShoppingAdmin\Pages\Home\Actions\Members;
 
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Hash;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
 
