@@ -29,13 +29,13 @@
         $page_manager_array = [];
 
         $QpageManager = $CLICSHOPPING_Db->prepare('select pages_id,
-                                                         page_type,
+                                                          page_type,
                                                    coalesce(NULLIF(last_modified, :last_modified),
                                                                    date_added) as last_modified
                                                     from :table_pages_manager
                                                     where status = 1
                                                     and customers_group_id = 0
-                                                    and page_type = 3
+                                                    and page_type = 4
                                                     order by last_modified desc
                                                    ');
 
@@ -44,7 +44,6 @@
 
         while ($QpageManager->fetch() ) {
           $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getPageManagerContentUrl($QpageManager->valueInt('pages_id'))));
-
           $page_manager_array[$QpageManager->valueInt('pages_id')]['loc'] = $location;
           $page_manager_array[$QpageManager->valueInt('pages_id')]['lastmod'] = $QpageManager->value('last_modified');
           $page_manager_array[$QpageManager->valueInt('pages_id')]['changefreq'] = 'weekly';
