@@ -586,8 +586,7 @@
 
       if ( $QPage->fetch() !== false ) {
         if ($QPage->value('page_type') == 3) {
-          $url = CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
-          header('Location: ' . $url);
+          CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
         } else {
           $pages = ['pages_id' => $QPage->valueInt('pages_id'),
                     'pages_title' => $QPage->value('pages_title'),
@@ -595,8 +594,7 @@
                    ];
         }
       }  else {
-        $url = CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php');
-        header('Location: ' . $url);
+        CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php');
       }
 
       return $pages['pages_html_text'];
@@ -631,8 +629,7 @@
 
       if ( $QPage->fetch() !== false ) {
         if ($QPage->valueInt('page_type') == 3) {
-          $url = CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
-          header('Location: ' . $url);
+          CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
         } else {
           $pages = ['pages_id' => $QPage->valueInt('pages_id'),
                     'pages_title' => $QPage->value('pages_title')
