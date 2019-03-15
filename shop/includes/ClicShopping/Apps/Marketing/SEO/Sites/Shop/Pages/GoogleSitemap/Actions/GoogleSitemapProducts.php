@@ -31,12 +31,11 @@
         $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                  coalesce(NULLIF(p.products_last_modified, :products_last_modified),
                                                                  p.products_date_added) as last_modified
-                                                  from :table_products p,
+                                                  from :table_products p
                                                        :table_products_to_categories p2c,
                                                        :table_categories c
                                                   where p.products_status = 1
-                                                  and p.products_view = 1
-                                                  and p.customers_group_id = 0                                              
+                                                  and p.products_view = 1                                                                                         
                                                   and p.products_id = p2c.products_id
                                                   and p2c.categories_id = c.categories_id
                                                   and c.status = 1    
