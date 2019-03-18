@@ -25,7 +25,13 @@
     <div class="hr"></div>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
+<?php
+  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ACCOUNT_COMPANY_PRO == 'true')) {
+?>
+          <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
+<?php
+  }
+?>
         <span><h3><?php echo CLICSHOPPING::getDef('entry_company'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -34,8 +40,7 @@
 // Clients B2C et B2B
 // Nouvelle adresse : Affichage du nom societe par defaut si il existe dans la table customers.
 // Edition adresse :  Affiche le nom de la societe present dans le carnet d'adresse table address_book.
-  if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_COMPANY == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true'))) {
-
+  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true')) {
      $QaccountGroup = $CLICSHOPPING_Db->prepare('select customers_company
                                                  from :table_customers
                                                  where customers_id = :customers_id
@@ -52,10 +57,10 @@
   if (isset($_GET['Edit']) && is_numeric($_GET['edit'])) {
     echo HTML::inputField('company', (isset($entry['company']) ? $entry['company'] : ''), 'id="InputCompany" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
   } else {
-    echo HTML::inputField('company', $QaccountGroup->value('customers_company'), 'id="InputCompany" ria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
+    echo HTML::inputField('company', $QaccountGroup->value('customers_company'), 'id="InputCompany" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
   }
 
-  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_COMPANY_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_COMPANY_PRO_MIN_LENGTH > 0) ) {
+  if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_COMPANY_MIN_LENGTH > 0 || $CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_COMPANY_PRO_MIN_LENGTH > 0) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_company_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_company_text') . '</span>': '');
   }
 ?>

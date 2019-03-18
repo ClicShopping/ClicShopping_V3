@@ -119,9 +119,11 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (CLICSHOPPING_APP_MONEYORDER_MO_LOGO) {
-       $this->public_title = $this->title . '&nbsp;&nbsp;&nbsp;' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_MONEYORDER_MO_LOGO);
-      } else {
-        $this->public_title = $this->title;
+        if (!empty(CLICSHOPPING_APP_MONEYORDER_MO_LOGO) && is_file($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_MONEYORDER_MO_LOGO)) {
+          $this->public_title = $this->public_title . '&nbsp;&nbsp;&nbsp;' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_MONEYORDER_MO_LOGO);
+        } else {
+          $this->public_title = $this->public_title;
+        }
       }
 
       return ['id' => $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code,

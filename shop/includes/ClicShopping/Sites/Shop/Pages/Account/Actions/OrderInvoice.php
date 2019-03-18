@@ -41,8 +41,8 @@
       define('FPDF_FONTPATH', 'ext/fpdf/font/');
       require('ext/fpdf/fpdf.php');
 
-      require_once('includes/ClicShopping/Sites/Common/pdf.php');
-      $pdf = new \PDF();
+      require_once('includes/ClicShopping/Sites/Common/pdfInvoice.php');
+      $pdf = new \pdfInvoice();
 
       $CLICSHOPPING_Language->loadDefinitions('orders_invoice');
 

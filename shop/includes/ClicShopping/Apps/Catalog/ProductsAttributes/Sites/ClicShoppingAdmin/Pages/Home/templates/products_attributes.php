@@ -1024,6 +1024,7 @@
                   </td>
                   <td class="text-md-right"><?php echo HTML::inputField('value_price'); ?></td>
                   <td class="text-md-right"><?php echo HTML::inputField('price_prefix'); ?></td>
+                  <td></td>
                   <td class="text-md-right"><?php echo HTML::inputField('value_sort_order'); ?></td>
                   <td></td>
                   <td class="text-md-right"><?php echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_insert'), null, null, 'primary', null, 'sm'); ?></td>
