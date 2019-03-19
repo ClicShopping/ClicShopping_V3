@@ -860,7 +860,7 @@
 
       $this->exec('SET FOREIGN_KEY_CHECKS = 0');
 
-      $directory = CLICSHOPPING::BASE_DIR .'Custom/OM/Schema/';
+      $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/';
       $path_file = $directory . $filename .'txt';
       $file = $directory . $filename;
 
