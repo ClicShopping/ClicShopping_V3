@@ -13,14 +13,14 @@
  I am looking for a team to continue to develop this application. Programmers, community managers, translators ... All help is welcome.
  If you are interested, contact me and you are welcome in this crazy project :)
 
- How to install
+ - How to install
 
  Step1 : Download ClicShopping
 
  Step2 : Install Clicshopping : https://www.mysite.com/shop/install
 
 
- All informations about the ClicShopping(tm)
+ - All informations about the ClicShopping(tm)
 
  Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
 
@@ -36,7 +36,7 @@
 
  Information / technical documents : See the community
 
- Required configuration:
+ - Required configuration:
 
  Apache 2.4
 
@@ -60,8 +60,8 @@ Project quality under : https://insight.symfony.com
 
  Thank you for your support
 
- ![image1](https://www.clicshopping.org/images/backoffice.png)
-
- ![image2](https://www.clicshopping.org/images/catalog_smartphone.png)
+ ![image2](https://www.clicshopping.org/images/frontoffice.png)
 
  ![image3](https://www.clicshopping.org/images/order.png)
+ 
+ ![image1](https://www.clicshopping.org/images/dashboard.png)
