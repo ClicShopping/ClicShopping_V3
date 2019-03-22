@@ -56,21 +56,26 @@
         return false;
       }
 
-      if (isset($_GET['Products']) && isset($_GET['Description']) ) {
+      if (isset($_GET['Products']) && isset($_GET['Description'])) {
         if ( $CLICSHOPPING_ProductsCommon->getProductsStock() > 0) {
           $stock = 'InStock';
         } else {
-          $stock = 'OutofSock';
+          $stock = 'OutofStock';
+        }
+
+        if (STOCK_ALLOW_CHECKOUT == 'True') {
+          $stock = 'InStock';
         }
 
         $products_packaging = $CLICSHOPPING_ProductsCommon->getProductsPackaging();
-        if ($products_packaging == 0) $products_packaging = 'null';
+        if ($products_packaging == 0) $products_packaging = 'http://schema.org/NewCondition'; // default newCondition
         if ($products_packaging == 1) $products_packaging = 'http://schema.org/NewCondition';
         if ($products_packaging == 2) $products_packaging = 'http://schema.org/RefurbishedCondition';
         if ($products_packaging == 3) $products_packaging = 'http://schema.org/UsedCondition';
 
         $ean = $CLICSHOPPING_ProductsCommon->getProductsEAN();
         $sku = $CLICSHOPPING_ProductsCommon->getProductsSKU();
+        $price = floatval(preg_replace('/[^\d\.]/', '', $CLICSHOPPING_ProductsCommon->getCustomersPrice()));
 
         $result = '<!--  products json_ltd -->' . "\n";
         $result .= '
@@ -91,7 +96,7 @@
    "offers": [
                 {
                  "@type": "Offer",
-                 "price": "' . $CLICSHOPPING_ProductsCommon->setDisplayPriceGroup() . '",
+                 "price": "' . $price . '",
                  "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
                  "itemCondition": "' . $products_packaging . '",
                  "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",

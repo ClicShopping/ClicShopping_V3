@@ -24,6 +24,7 @@ success_address_book_entry_updated = Your address book has been successfully upd
 
 warning_primary_address_deletion = The primary address cannot be deleted. Please set another address as the primary address and try again.
 
+error_address_book_entry = An error has been detected, please check your informations.
 error_nonexisting_address_book_entry = The address book entry does not exist.
 error_address_book_full = Your address book is full. Please delete an unneeded address to save a new one.
 error_address_book_no_add = You are not authorized to add a new address in your personal notebook. Do not hesitate to contact us to receive more information over this impossibility.
