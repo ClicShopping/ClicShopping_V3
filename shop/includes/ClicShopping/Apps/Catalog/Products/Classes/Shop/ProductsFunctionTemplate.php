@@ -127,7 +127,7 @@
       $button = '';
 
       if ($constant == 'False') {
-        if ($icon == null) {
+        if (is_null($icon)) {
           $button = HTML::button(CLICSHOPPING::getDef('button_details'), '', $this->rewriteUrl->getProductNameUrl($products_id), $button_color, $params, $button_size);
         } else {
           $button = HTML::button(null, $icon, $this->rewriteUrl->getProductNameUrl($products_id), $button_color, $params, $button_size);
