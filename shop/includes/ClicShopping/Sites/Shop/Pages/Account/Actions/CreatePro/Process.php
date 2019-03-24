@@ -111,7 +111,7 @@
 // Clients B2B : Controle entree code APE
         if (ACCOUNT_APE_PRO == 'true') {
           if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH && strlen($ape) > 4) {
-            $error = true&&
+            $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_code_ape_error', ['min_length' => ENTRY_CODE_APE_MIN_LENGTH]), 'error', 'create_account_pro');
           }
