@@ -95,6 +95,7 @@
           if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0) ) {
 
             for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
+              $reference = '';
 
               if (!empty($CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'])) {
                 $reference = $CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'] . ' / ';

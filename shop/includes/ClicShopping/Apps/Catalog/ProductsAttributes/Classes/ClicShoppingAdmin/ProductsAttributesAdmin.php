@@ -19,10 +19,13 @@
 
   class ProductsAttributesAdmin {
     protected $lang;
+    protected $db;
+    protected $app;
 
     public function __construct() {
       $this->lang = Registry::get('Language');
       $this->db = Registry::get('Db');
+      $this->app = Registry::get('ProductsAttributes');
     }
 
 
@@ -116,5 +119,17 @@
       }
 
       return $products_image_name;
+    }
+
+/**
+ * Set attribut option type
+ * @return array
+ */
+    public function setAttributeType() {
+      $products_options_type =  [array('id' =>'select', 'text' => $this->app->getDef('text_select')),
+                                 array('id' =>'radio', 'text' => $this->app->getDef('text_radio'))
+                                ];
+
+      return $products_options_type;
     }
  }

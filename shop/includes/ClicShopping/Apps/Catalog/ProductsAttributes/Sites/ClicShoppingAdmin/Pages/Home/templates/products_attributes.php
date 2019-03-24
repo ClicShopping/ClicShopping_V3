@@ -95,10 +95,7 @@
             <table class="table table-sm table-hover table-striped">
 <!-- options //-->
 <?php
-
-  $products_options_type =  array(array('id' =>'select', 'text' => $CLICSHOPPING_ProductsAttributes->getDef('text_select')),
-                          array('id' =>'radio', 'text' => $CLICSHOPPING_ProductsAttributes->getDef('text_radio')),
-                         );
+  $products_options_type = $CLICSHOPPING_ProductsAttributesAdmin->setAttributeType();
 
   if (isset($_GET['DeleteProductOption'])) { // delete product option
     $QoptionValues = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_id,

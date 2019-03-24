@@ -226,7 +226,6 @@
         } // end else
 
         if ($error === false) {
-
           $sql_data_array = ['entry_firstname' => $firstname,
                              'entry_lastname' => $lastname,
                              'entry_street_address' => $street_address,
@@ -267,15 +266,10 @@
             $new_address_book_id = $CLICSHOPPING_Db->lastInsertId();
 
 // register session variables
-          if ( (isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $CLICSHOPPING_Customer->getDefaultAddressID()) ) {
+          if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $CLICSHOPPING_Customer->getDefaultAddressID())) {
             $CLICSHOPPING_Customer->setCountryID($country);
             $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
             $CLICSHOPPING_Customer->setDefaultAddressID($_GET['id']);
-
-/// pb avec namespace
-//            $default_address_id = $CLICSHOPPING_Customer->getDefautlAddressID();
-
-            if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) $default_address_id  = $new_address_book_id;
 
             $sql_data_array = ['customers_firstname' => $firstname,
                                'customers_lastname' => $lastname,
@@ -294,11 +288,11 @@
 
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Create');
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_address_book_entry_updated'), 'error', 'addressbook');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_address_book_entry_updated'), 'success', 'addressbook');
           }  else {
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Create');
           }// end isset($_POST['primary']
-        } // end else
+        }// end $error
 
         if (HTML::sanitize($_POST['shopping']) == 1) {
           CLICSHOPPING::redirect(null, 'Cart');

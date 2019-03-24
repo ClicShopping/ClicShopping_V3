@@ -123,7 +123,6 @@
                             );
 
             if (isset($this->contents[$products_id]['attributes'])) {
-
               foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
                 $this->db->save('customers_basket_attributes', ['customers_id' =>  (int)$this->customer->getID(),
                                                                 'products_id' => $products_id,
@@ -134,7 +133,6 @@
               }
             }
           } else {
-
             $this->db->save('customers_basket', ['customers_basket_quantity' => (int)$qty],
                                                 ['customers_id' => (int)$this->customer->getID(),
                                                  'products_id' => $products_id

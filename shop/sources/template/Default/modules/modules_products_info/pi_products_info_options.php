@@ -110,13 +110,13 @@
             $products_options_content_display .= '<span class="ModuleProductsInfoOptionsText"><h3>' . CLICSHOPPING::getDef('text_product_options') . '</h3></span>';
 
             while ($QproductsOptionsName->fetch() ) {
-
               $products_options_array = [];
 
               $QproductsOptions = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($CLICSHOPPING_ProductsCommon->getID(), $QproductsOptionsName->valueInt('products_options_id'), null, $CLICSHOPPING_Language->getId());
-
+//
+// select
+//
               if ($QproductsOptionsName->value('products_options_type') == 'select') {
-
                 while ($QproductsOptions->fetch() !== false) {
 
                   $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
@@ -150,10 +150,13 @@
 
                 $products_options_content_display .='<div>';
                 $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">'. $QproductsOptionsName->value('products_options_name') . ' : </label>';
-                $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::selectMenu('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $products_options_array, $selected_attribute, 'class="ModuleProductsInfoOptionsPullDownMenuOptionsInside"') . '</span>';
+                $products_options_content_display .='<span class="ModuleProductsInfoOptionsPullDownMenu">' . HTML::selectMenu('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $products_options_array, $selected_attribute, 'class="ModuleProductsInfoOptionsPullDownMenuOptionsInside" required aria-required="true"') . '</span>';
                 $products_options_content_display .='</div>';
                 $products_options_content_display .='<div class="separator"></div>';
               } else {
+//
+// radio
+//
                 while ($QproductsOptions->fetch() !== false) {
                   $products_options_array[] = ['id' => $QproductsOptions->valueInt('products_options_values_id'),
                                                'text' => $QproductsOptions->value('products_options_values_name'),
@@ -183,7 +186,7 @@
                   $selected_attribute = false;
                 }
 
-                $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">'. $QproductsOptionsName->value('products_options_name') . ': </label>';
+                $products_options_content_display .='<label class="ModuleProductsInfoOptionsName">' . $QproductsOptionsName->value('products_options_name') . ': </label>';
 
                 foreach ($products_options_array as $value) {
                   if (!is_null($value['image'])) {
@@ -194,7 +197,7 @@
 
                   $products_options_content_display .= '<div class="col-md-12">';
                   $products_options_content_display .= '<span class="ModuleProductsInfoOptionsPullDownMenu">';
-                  $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'id="' . $value['text'] .'"') . ' ' . $products_attributes_image . $value['text'] . ' ' .'</span>';
+                  $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'required aria-required="true"  id="' . $value['text'] .'"') . ' ' . $products_attributes_image . $value['text'] . ' ' .'</span>';
                   $products_options_content_display .= '<label for="' . $value['text'] .'" class="sr-only">' . $value['text'] . '</label>';
                   $products_options_content_display .= '</div>';
                 }
@@ -219,10 +222,8 @@
 
             $products_options_content_display .= '<!-- end products_options -->' . "\n";
             $CLICSHOPPING_Template->addBlock($products_options_content_display, $this->group);
-
           } // end total
         }
-
     } // public function execute
 
     public function isEnabled() {
