@@ -223,7 +223,7 @@
           }
         } // end else
 
-        if ($error == true) {
+        if ($error === true) {
           $process = true;
         }
 
