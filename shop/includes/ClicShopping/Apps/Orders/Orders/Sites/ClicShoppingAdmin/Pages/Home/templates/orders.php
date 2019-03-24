@@ -457,9 +457,29 @@
       } else {
         echo '<td class="text-md-center"></td>';
       }
+
+      if ($Qorders->value('orders_status') == 1) {
 ?>
-              <td class="text-md-right"><?php echo $Qorders->value('orders_status_name'); ?></td>
+        <td class="text-md-right"><span class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
 <?php
+      } elseif ($Qorders->value('orders_status') == 2) {
+?>
+        <td class="text-md-right"><span class="badge badge-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+<?php
+      } elseif ($Qorders->value('orders_status') == 3) {
+?>
+        <td class="text-md-right"><span class="badge badge-success"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+<?php
+      } elseif ($Qorders->value('orders_status') == 4) {
+?>
+        <td class="text-md-right"><span class="badge badge-danger"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+<?php
+      } else {
+?>
+        <td class="text-md-right"><span class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+<?php
+      }
+
       if ($Qorders->valueInt('erp_invoice') == 1 ) {
 ?>
               <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_erp')); ?></td>
