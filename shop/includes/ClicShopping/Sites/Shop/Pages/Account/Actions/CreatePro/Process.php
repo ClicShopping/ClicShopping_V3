@@ -100,7 +100,7 @@
 
 // Clients B2B : Controle entree numero de siret
         if (ACCOUNT_SIRET_PRO == 'true') {
-          if (strlen($siret) < ENTRY_SIRET_MIN_LENGTH and strlen($siret) > 14) {
+          if (strlen($siret) < ENTRY_SIRET_MIN_LENGTH && strlen($siret) > 14) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_siret_error', ['min_length' => ENTRY_SIRET_MIN_LENGTH]), 'error', 'create_account_pro');
@@ -110,8 +110,8 @@
 
 // Clients B2B : Controle entree code APE
         if (ACCOUNT_APE_PRO == 'true') {
-          if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH and strlen($ape) > 4) {
-            $error = true;
+          if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH && strlen($ape) > 4) {
+            $error = true&&
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_code_ape_error', ['min_length' => ENTRY_CODE_APE_MIN_LENGTH]), 'error', 'create_account_pro');
           }
@@ -119,7 +119,7 @@
 
 // Clients B2B : Controle entree numero de TVA Intracom
         if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-          if (strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH and strlen($tva_intracom) > 14) {
+          if (strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH && strlen($tva_intracom) > 14) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_tva_intracom_error', ['min_length' => ENTRY_TVA_INTRACOM_MIN_LENGTH]), 'danger', 'create_account_pro');
