@@ -328,7 +328,7 @@
       return ( $Qcheck->fetch() !== false );
     }
 
-    function getProductNotifications() {
+    public function getProductNotifications() {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $Qproducts = $this->db->prepare('select pd.products_id,
