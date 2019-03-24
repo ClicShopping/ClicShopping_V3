@@ -331,6 +331,7 @@
                                                                               o.currency,
                                                                               o.currency_value,
                                                                               s.orders_status_name,
+                                                                              s.orders_status_id,
                                                                               ot.text as order_total,
                                                                               o.erp_invoice
                                                    from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
@@ -458,19 +459,19 @@
         echo '<td class="text-md-center"></td>';
       }
 
-      if ($Qorders->value('orders_status') == 1) {
+      if ($Qorders->valueInt('orders_status_id') == 1) {
 ?>
         <td class="text-md-right"><span class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
 <?php
-      } elseif ($Qorders->value('orders_status') == 2) {
+      } elseif ($Qorders->valueInt('orders_status') == 2) {
 ?>
         <td class="text-md-right"><span class="badge badge-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
 <?php
-      } elseif ($Qorders->value('orders_status') == 3) {
+      } elseif ($Qorders->valueInt('orders_status_id') == 3) {
 ?>
         <td class="text-md-right"><span class="badge badge-success"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
 <?php
-      } elseif ($Qorders->value('orders_status') == 4) {
+      } elseif ($Qorders->valueInt('orders_status_id') == 4) {
 ?>
         <td class="text-md-right"><span class="badge badge-danger"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
 <?php
