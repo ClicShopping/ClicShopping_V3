@@ -96,12 +96,5 @@
         </div>
       </div>
     </div>
-
-    <div class="separator"></div>
-    <div class="alert alert-info">
-      <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Weight->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Weight->getDef('title_help_general') ?></div>
-      <div class="separator"></div>
-      <div class="col-md-11"><?php echo $CLICSHOPPING_Weight->getDef('help_general'); ?></div>
-    </div>
   </form>
 </div>

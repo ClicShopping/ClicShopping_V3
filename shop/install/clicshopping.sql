@@ -187,6 +187,7 @@ INSERT INTO administrator_menu VALUES(772, 'index.php?A&Marketing\\Favorites&Fav
 INSERT INTO administrator_menu VALUES(773, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_favorites', 117, 1, 0, 'products_favorites.png', 0, 'app_marketing_favorites', 1);
 INSERT INTO administrator_menu VALUES(774, 'index.php?A&Marketing\\Featured&Featured', 5, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(775, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
+INSERT INTO administrator_menu VALUES(776, 'index.php?A&Configuration\\ProductsLength&ProductsLength', 20, 4, 1, 'products_length.png', 0, 'app_configuration_products_length', NULL);
 
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
@@ -511,6 +512,11 @@ INSERT INTO administrator_menu_description VALUES(504, 'Web Service', 1);
 INSERT INTO administrator_menu_description VALUES(504, 'Web Service', 2);
 INSERT INTO administrator_menu_description VALUES(654, 'Zones', 1);
 INSERT INTO administrator_menu_description VALUES(654, 'Zones', 2);
+
+INSERT INTO administrator_menu_description VALUES(756, 'Weight', 1);
+INSERT INTO administrator_menu_description VALUES(756, 'Poids', 2);
+INSERT INTO administrator_menu_description VALUES(776, 'Products Length', 1);
+INSERT INTO administrator_menu_description VALUES(776, 'Dimension produits', 2);
 
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
@@ -1426,6 +1432,7 @@ INSERT INTO configuration VALUES(1467, 'Ordre de tri d\'affichage', 'MODULE_HEAD
 INSERT INTO configuration VALUES(1468, 'Souhaitez vous activer ce module ?', 'MODULE_HEADER_NOSCRIPT_STATUS', 'True', 'Souhaitez vous activer ce module ?', 6, 1, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1469, 'Veuillez indiquer la largeur du contenu', 'MODULE_HEADER_NOSCRIPT_CONTENT_WIDTH', '12', 'Veuillez indiquer une largeur d\'affichage', 6, 2, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1470, 'Ordre de tri d\'affichage', 'MODULE_HEADER_NOSCRIPT_SORT_ORDER', '1', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2019-01-16 19:07:19', NULL, '');
+INSERT INTO configuration VALUES(1471, 'Dimension du produit par défaut', 'PRODUCTS_LENGTH_UNIT', '2', 'Sélectionnez l\'unité de produit qui sera utilisé par défaut', 9, 6, '2006-10-23 01:17:10', '2006-04-09 16:13:48', 'clic_cfg_use_get_products_length_title', 'clic_cfg_set_products_length_classes_pulldown_menu');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
@@ -1762,6 +1769,27 @@ INSERT INTO orders_status_support  VALUES(3, 1, 'Support Treatment');
 INSERT INTO orders_status_support  VALUES(4, 2, 'Support terminé');
 INSERT INTO orders_status_support  VALUES(4, 1, 'Support realised');
 
+INSERT INTO products_length_classes VALUES(1, 'mm', 1, 'Millimeter(s)');
+INSERT INTO products_length_classes VALUES(1, 'mm', 2, 'millimètre(s)');
+INSERT INTO products_length_classes VALUES(2, 'cm', 1, 'Centimeter(s)');
+INSERT INTO products_length_classes VALUES(2, 'cm', 2, 'Centimètre(s)');
+INSERT INTO products_length_classes VALUES(3, 'm', 1, 'meter(s)');
+INSERT INTO products_length_classes VALUES(3, 'm', 2, 'mètre(s)');
+INSERT INTO products_length_classes VALUES(4, 'in', 1, 'Inch(s)');
+INSERT INTO products_length_classes VALUES(4, 'in', 2, 'Pouce(s)');
+
+INSERT INTO products_length_classes_rules VALUES(1, 2, '0.10000');
+INSERT INTO products_length_classes_rules VALUES(1, 3, '0.00100');
+INSERT INTO products_length_classes_rules VALUES(1, 4, '0.03937');
+INSERT INTO products_length_classes_rules VALUES(2, 1, '10.00000');
+INSERT INTO products_length_classes_rules VALUES(2, 3, '0.01000');
+INSERT INTO products_length_classes_rules VALUES(2, 4, '0.39370');
+INSERT INTO products_length_classes_rules VALUES(3, 1, '1000.00000');
+INSERT INTO products_length_classes_rules VALUES(3, 2, '100.00000');
+INSERT INTO products_length_classes_rules VALUES(3, 4, '39.37007');
+INSERT INTO products_length_classes_rules VALUES(4, 1, '25.40000');
+INSERT INTO products_length_classes_rules VALUES(4, 2, '2.54000');
+INSERT INTO products_length_classes_rules VALUES(4, 3, '0.02540');
 
 INSERT INTO pages_manager VALUES(1, '', 0, 1, 1, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-08 15:39:50', '2008-09-03 20:38:09', 0, 0);
 INSERT INTO pages_manager VALUES(2, '', 1, 1, 2, 0, '0', NULL, NULL, '1000-01-01 00:00:00', '2018-11-23 18:13:03', NULL, 0, 0);

@@ -13,9 +13,9 @@
   use ClicShopping\OM\CLICSHOPPING;
 
 /**
- * the status name
+ * the weight title
  *
- * @param string  $orders_status_id, $language_id
+ * @param int id
  * @return string $orders_status['orders_status_name'],  name of the status
  * @access public
  *

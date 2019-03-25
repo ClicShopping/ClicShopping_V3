@@ -2,7 +2,7 @@
  "title":	"Weight App",
  "app": "Weight",
  "vendor":"Configuration",
- "version":	"1.0.0",
+ "version":	"1.0.1",
  "req_core_version":	"3.0",
  "license":	"GPL-2",
  "authors": [
@@ -21,6 +21,9 @@
     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert",
     "CopyConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CopyConfirm",
     "CloneProducts":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CloneProducts"
+   },
+   "ClicShoppingAdmin/Preview": {
+    "PreviewContent":	"Module\\Hooks\\ClicShoppingAdmin\\Preview\\PreviewContent"
    }
   }
  },

@@ -30,7 +30,6 @@
       $m->install();
 
       static::installDbMenuAdministration();
-      static::installProductsWeightDb();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Weight->getDef('alert_module_install_success'), 'success', 'Weight');
 
@@ -81,33 +80,6 @@
         }
 
         Cache::clear('menu-administrator');
-      }
-    }
-
-
-    private function installProductsWeightDb() {
-      $CLICSHOPPING_Db = Registry::get('Db');
-
-      $Qcheck = $CLICSHOPPING_Db->query('show tables like ":table_weight"');
-
-      if ($Qcheck->fetch() === false) {
-        /*
-$sql = <<<EOD
-CREATE TABLE :table_weight (
-  weight_id int not_null auto_increment,
-  tax_zone_id int not_null,
-  tax_class_id int not_null,
-  tax_priority int(5) default(1)
-  weight decimal(7,4) not_null,
-  tax_description varchar(255) not_null,
-  last_modified datetime,
-  date_added datetime not_null,
-  code_tax_erp varchar(15) null
-  PRIMARY KEY weight_id
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
-EOD;
-        $CLICSHOPPING_Db->exec($sql);
-*/
       }
     }
   }

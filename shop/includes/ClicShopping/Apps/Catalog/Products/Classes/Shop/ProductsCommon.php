@@ -650,6 +650,7 @@
  * @access private
  */
     private function setProductsDimension($id = null) {
+      $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
 
       if (is_null($id)) {
         $id = $this->getID();
@@ -657,39 +658,47 @@
 
       $Qproducts = $this->db->get('products', ['products_dimension_width',
                                                'products_dimension_height',
-                                               'products_dimension_depth'
+                                               'products_dimension_depth',
+                                               'products_weight_class_id'
                                               ],
                                               ['products_status' => 1,
                                                'products_id' => (int)$id
                                               ]
                                     );
+      $products_length_class_id = $Qproducts->valueInt('products_length_class_id');
+
+      $products_dimension_width = $Qproducts->valueDecimal('products_dimension_width');
+      $products_dimension_height = $Qproducts->valueDecimal('products_dimension_height');
+      $products_dimension_depth = $Qproducts->valueDecimal('products_dimension_depth');
+
+      $products_type = $CLICSHOPPING_ProductsLength->getUnit($products_length_class_id, $this->language->getId());
 
 // Affichage de la dimension du produit
-      if (($Qproducts->valueDecimal('products_dimension_width')  != 0.00 || $Qproducts->valueDecimal('products_dimension_width') != 0) ||
-        ($Qproducts->valueDecimal('products_dimension_height') != 0.00 || $Qproducts->valueDecimal('products_dimension_height') != 0) ||
-        ($Qproducts->valueDecimal('products_dimension_depth')  != 0.00 || $Qproducts->valueDecimal('products_dimension_depth')  != 0)
+      if (($products_dimension_width  != 0.00 || $products_dimension_width != 0) ||
+        ($products_dimension_height != 0.00 || $products_dimension_height != 0) ||
+        ($products_dimension_depth  != 0.00 || $products_dimension_depth  != 0)
       ) {
 
-        if ($Qproducts->valueDecimal('products_dimension_width') == 0.00) {
-          $products_dimension_width = '';
+        if ($products_dimension_width == 0.00) {
+          $products_width = '';
         } else {
-          $products_dimension_width = $Qproducts->valueDecimal('products_dimension_width');
+          $products_width = $products_dimension_width;
         }
 
-        if ($Qproducts->valueDecimal('products_dimension_height') == 0.00) {
-          $products_dimension_height = '';
+        if ($products_dimension_height == 0.00) {
+          $products_height = '';
         } else {
-          $products_dimension_height = $Qproducts->valueDecimal('products_dimension_height');
+          $products_height = $products_dimension_height;
         }
 
-        if ($Qproducts->valueDecimal('products_dimension_depth') == 0.00) {
-          $products_dimension_depth = '';
+        if ($products_dimension_depth == 0.00) {
+          $products_depth = '';
         } else {
-          $products_dimension_depth = ' x ' . $Qproducts->valueDecimal('products_dimension_depth');
+          $products_depth = ' x ' . $products_dimension_depth;
         }
 
-        if (!is_null($Qproducts->valueDecimal('products_dimension_width')) || !is_null($Qproducts->valueDecimal('products_dimension_height'))) $separator = ' x ';
-        $products_dimension =  HTML::outputProtected($products_dimension_width  . $separator . $products_dimension_height  . $products_dimension_depth . ' ' .  $Qproducts->value('products_dimension_type'));
+        if (!is_null($products_dimension_width) || !is_null($products_dimension_height)) $separator = ' x ';
+        $products_dimension =  HTML::outputProtected($products_width  . $separator . $products_height  . $products_depth . ' ' . $products_type);
       }
 
       return HTML::outputProtected($products_dimension);

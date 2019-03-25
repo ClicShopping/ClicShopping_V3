@@ -1,0 +1,2 @@
+text_products_length_type = Type de dimension
+text_products_length = Dimension  (LxHxP)

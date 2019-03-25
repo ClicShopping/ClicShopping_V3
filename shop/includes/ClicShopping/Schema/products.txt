@@ -25,7 +25,7 @@ products_price_comparison char(1)  default(0) not_null
 products_dimension_width decimal(5,2) default(0.00) not_null
 products_dimension_height decimal(5,2) default(0.00) not_null
 products_dimension_depth decimal(5,2) default(0.00) not_null
-products_dimension_type varchar(50) null
+products_length_class_id int(11) default(2) not_null
 admin_user_name varchar(64) null
 products_volume varchar(50) null
 products_quantity_unit_id int default(0) not_null

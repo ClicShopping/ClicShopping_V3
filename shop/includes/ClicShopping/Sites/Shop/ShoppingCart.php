@@ -731,6 +731,7 @@
                                                  p.products_dimension_width,
                                                  p.products_dimension_height,
                                                  p.products_dimension_depth,
+                                                 p.products_length_class_id,
                                                  p.products_tax_class_id,
                                                  g.price_group_view,
                                                  g.customers_group_price
@@ -765,6 +766,7 @@
                                                  p.products_dimension_width,
                                                  p.products_dimension_height,
                                                  p.products_dimension_depth,
+                                                 p.products_length_class_id,
                                                  p.products_tax_class_id
                                           from :table_products p,
                                                :table_products_description pd,

@@ -1,13 +1,13 @@
 <?php
-  /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+/**
+*
+*  @copyright 2008 - https://www.clicshopping.org
+*  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+*  @Licence GPL 2 & MIT
+*  @licence MIT - Portion of osCommerce 2.4
+*  @Info : https://www.clicshopping.org/forum/trademark/
+*
+*/
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -31,8 +31,6 @@
   $Qproducts->execute();
 
   $products = $Qproducts->fetch();
-
-
 
   $Qmanufacturer = $CLICSHOPPING_Preview->db->prepare('select m.manufacturers_id,
                                                                m.manufacturers_name,
@@ -71,8 +69,6 @@
 <?php
     } else {
 ?>
-
-
     <div class="contentBody">
       <div class="row" id="tab1ContentRow1">
         <div class="col-md-12">
@@ -118,10 +114,8 @@
         <div class="row" id="tab1ContentRow3">
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_model') . ' ' . $products['products_model']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_ean') . ' ' . $products['products_ean']; ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_weight') . ' ' . $products['products_model']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_sku') . ' ' . $products['products_sku']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_volume') . ' ' . $products['products_volume']; ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_dimension') . ' ' .$products['products_dimension_width'] .' x ' .$products['products_dimension_height'] . ' x ' . $products['products_dimension_depth'] . ' ' .  $products['products_dimension_type']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_url') . ' ' .$products['products_url']; ?></div>
 <?php
   if ($products['products_only_online'] == '1') $check_products_only_online = 'true';
@@ -155,7 +149,6 @@
   }
 ?>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_status') . ' ' . $products_status; ?></div>
-
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_quantity') . ' ' . $products['products_quantity']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_min_order_quantity') . ' ' . $product_qty_unit['products_min_qty_order']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_date_available') . ' ' . $products['products_date_available']; ?></div>
@@ -189,9 +182,7 @@
                                                           ');
 
     $QcustomersGroup->execute();
-
   }
-
 
 // Activation du module B2B
   if  (MODE_B2B_B2C == 'true') {

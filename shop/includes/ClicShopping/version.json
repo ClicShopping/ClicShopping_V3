@@ -1,5 +1,5 @@
 {
- "version": "3.10",
- "description": "Add ctaegories status and update sql request",
- "date": "March 2019"
+ "version": "3.11",
+ "description": "Add product lenght, update sql, bug fix",
+ "date": "April 2019"
 }

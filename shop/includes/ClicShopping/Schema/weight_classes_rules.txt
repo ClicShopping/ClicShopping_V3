@@ -1,5 +1,5 @@
-weight_class_from_id int(10) UNSIGNED not_null
-weight_class_to_id int(10) UNSIGNED not_null
+weight_class_from_id int(11) not_null
+weight_class_to_id int(11) not_null
 weight_class_rule decimal(15,4) not_null
 --
 primary weight_class_from_id weight_class_to_id

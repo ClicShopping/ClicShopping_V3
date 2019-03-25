@@ -49,7 +49,7 @@
 
       $products_weight_class_id = $this->getProductsWeightId();
 
-      if (is_null($products_weight_class_id)) {
+      if ($products_weight_class_id == 0) {
         $weight_class_id = SHIPPING_WEIGHT_UNIT;
       } else {
         $weight_class_id = $products_weight_class_id;

@@ -45,10 +45,10 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qclasses = $CLICSHOPPING_Db->prepare('select weight_class_id, 
-                                                    weight_class_title 
-                                              from :table_weight_classes 
-                                              where language_id = :language_id 
+      $Qclasses = $CLICSHOPPING_Db->prepare('select weight_class_id,
+                                                    weight_class_title
+                                              from :table_weight_classes
+                                              where language_id = :language_id
                                               order by weight_class_title
                                             ');
       $Qclasses->bindInt(':language_id', $CLICSHOPPING_Language->getID());
@@ -64,39 +64,31 @@
     }
 
 /**
- * Display a weight class
+ * Display a weight class title
  *
- * @param int $id the products id
- * @param string $manufacturers['manufacturer_description'], The description of manufacturer
- * @access private
+ * @param int products_weight_class_id
+ * @param string $result weight title
+ * @access public
  */
-    private function setWeightType($id = null) {
-      Registry::set('Weight', new Weight());
 
-      $CLICSHOPPING_Weight = Registry::get('WeightAdmin');
+    public static function getWeightTitle($id = null) {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_null($id)) {
-        $id = $this->getID();
+      if (!is_null($id)) {
+        $Qweight = $CLICSHOPPING_Db->prepare('select weight_class_title
+                                               from :table_weight_classes
+                                               where weight_class_id = :weight_class_id
+                                               and language_id = :language_id
+                                               ');
+        $Qweight->bindInt(':weight_class_id', $id);
+        $Qweight->bindInt(':language_id', $CLICSHOPPING_Language->getID());
+
+        $Qweight->execute();
+
+        $result = $Qweight->value('weight_class_title');
       }
 
-      $Qproducts = $this->db->get('products', ['products_weight',
-                                               'products_weight_class_id'
-      ],
-        ['products_status' => 1,
-         'products_id' => (int)$id
-        ]
-      );
-
-      $weight = $CLICSHOPPING_Weight->display(null, $Qproducts->valueInt('products_weight_class_id'));
-
-      return $weight;
-    }
-
-
-    public function getWeightType($id = null) {
-      return $this->setWeightType($id);
+      return $result;
     }
   }
-
-
-

@@ -51,7 +51,7 @@
 <!--  Start Product Qty Unit Hooks      -->
 <!-- ######################## -->
 <script>
-$('#PreviewRow4').prepend(
+$('#tab1ContentRow4').prepend(
     '{$content}'
 );
 </script>

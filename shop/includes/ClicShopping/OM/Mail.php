@@ -25,7 +25,7 @@
     protected $debug_output = 'phpmail_error.log';
     protected $phpMail;
 
-    Public function __construct($headers = '') {
+    public function __construct($headers = '') {
 
       require_once (CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/PHPMailer-master/vendor/autoload.php');
 
@@ -81,7 +81,7 @@
       return str_replace($from, $to, $string);
     }
 
-    Public function addText($text = '') {
+    public function addText($text = '') {
       $this->phpMail->IsHTML(false);
       $this->text = $this->convertLinefeeds(array("\r\n", "\n", "\r"), $this->lf, $text);
     }
@@ -92,7 +92,7 @@
  * content-id's.
  */
 
-    Public function addTHtml($html, $text = NULL, $images_dir = NULL) {
+    public function addHtml($html, $text = NULL, $images_dir = NULL) {
       $this->phpMail->IsHTML(true);
       $this->html = $this->convertLinefeeds(array("\r\n", "\n", "\r"), '<br />', $html);
       $this->html_text = $this->convertLinefeeds(array("\r\n", "\n", "\r"), $this->lf, $text);
@@ -107,7 +107,7 @@
  */
 
 // FCKeditor
-    Public function addHtmlCkeditor($html, $text = NULL, $images_dir = NULL) {
+    public function addHtmlCkeditor($html, $text = NULL, $images_dir = NULL) {
       $this->phpMail->IsHTML(true);
 
       $this->html = $this->convertLinefeeds(array("\r\n", "\n", "\r"), '', $html);
@@ -117,11 +117,11 @@
     }
 
 
-    Public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment') {
+    public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment') {
       $this->phpMail->AddAttachment($path, $name, $encoding, $type, $disposition);
     }
 
-    Public function build_message() {
+    public function build_message() {
       //out of work function
     }
 
@@ -135,7 +135,7 @@
  * @return bool
  * @throws \PHPMailer\PHPMailer\Exception
  */
-    Public function send($to_name, $to_addr, $from_name, $from_addr, $subject = '', $reply_to = false) {
+    public function send($to_name, $to_addr, $from_name, $from_addr, $subject = '', $reply_to = false) {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
       }
@@ -226,14 +226,14 @@
  * @param string $from_email_address The email address of the sender
  * @access public
  */
-    Public function clicMail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address) {
+    public function clicMail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address) {
       if (SEND_EMAILS != 'true') return false;
 
 // Build the text version
       $text = strip_tags($email_text);
 
       if (EMAIL_USE_HTML == 'true') {
-        $this->addTHtml($email_text, $text);
+        $this->addHtml($email_text, $text);
       } else {
         $this->addText($text);
       }

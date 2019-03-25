@@ -1,0 +1,2 @@
+text_products_length_type = Product lenght type
+text_products_length = Product lenght (LxHxW)

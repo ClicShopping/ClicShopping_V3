@@ -180,8 +180,7 @@ text_sort_order = Ordre de tri
 text_products_status = Statut
 text_products_date_available = Date de disponibilité
 text_products_available = En stock
-text_products_dimension = Dimensions (LxHxP)
-text_products_dimension_type = Type de dimension
+
 text_products_not_available = Hors stock
 
 text_products_name = Nom du produit

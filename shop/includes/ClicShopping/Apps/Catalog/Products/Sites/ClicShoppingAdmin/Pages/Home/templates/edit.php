@@ -69,16 +69,11 @@
                   'orders_view' => '',
                   'products_tax_class_id' => '',
                   'products_min_qty_order' => '',
-                  'products_dimension_width' => '',
-                  'products_dimension_height' => '',
-                  'products_dimension_depth' => '',
-                  'products_dimension_type' => '',
                   'products_volume' => '',
                   'products_only_online' => '',
                   'products_image_medium' => '',
                   'products_cost' => '',
                   'products_handling' => '',
-
                   'products_packaging' => '',
                   'products_sort_order' => '',
                   'products_shipping_delay' => '',
@@ -89,7 +84,6 @@
                   'products_description_summary' => '',
                   'products_type' => '',
                 ];
-
 
   $pInfo = new ObjectInfo($parameters);
 
@@ -259,27 +253,6 @@
             </div>
           </div>
         </div>
-
-        <div class="row" id="tab1ContentRow8">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_dimension'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_dimension'); ?></label>
-              <div class="col-md-5">
-                <?php echo HTML::inputField('products_dimension_width', $pInfo->products_dimension_width, 'id="products_dimension_width" class="form-control-sm"') . ' <br />' . HTML::inputField('products_dimension_height', $pInfo->products_dimension_height, 'id="products_dimension_height" class="form-control-sm"') . ' <br />' . HTML::inputField('products_dimension_depth', $pInfo->products_dimension_depth, 'id="products_dimension_depth" class="form-control-sm"'); ?>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_dimension_type'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_dimension_type'); ?></label>
-              <div class="col-md-5">
-                <?php echo HTML::inputField('products_dimension_type', $pInfo->products_dimension_type, 'id="products_dimension_type"'); ?>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
 
         <div class="row" id="tab1ContentRow10">
           <div class="col-md-5">
