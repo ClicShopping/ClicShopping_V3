@@ -38,8 +38,6 @@
         $products_length_class_key = HTML::sanitize($_POST['products_length_class_key']);
 
         for ($i=0, $n=count($languages); $i<$n; $i++) {
-
-          var_dump($_POST['products_length_class_title']);
           $products_length_class_title_array = HTML::sanitize($_POST['products_length_class_title']);
           $language_id = $languages[$i]['id'];
 
@@ -53,9 +51,6 @@
                              ];
 
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          var_dump($sql_data_array);
-
 
           $this->app->db->save('products_length_classes', $sql_data_array);
         }
