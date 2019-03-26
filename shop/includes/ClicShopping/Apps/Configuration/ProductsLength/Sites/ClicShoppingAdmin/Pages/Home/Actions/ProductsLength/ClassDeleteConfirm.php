@@ -33,6 +33,8 @@
                                                               ]
                             );
 
+      $this->app->db->delete('products_length_classes', ['products_length_class_id' => (int)$products_length_class_from_id]);
+
       Cache::clear('products_length-classes');
       Cache::clear('products_length-rules');
 

@@ -42,7 +42,7 @@
       $Qcheck->bindInt(':products_length_class_to_id_old', $products_length_class_to_id_old);
       $Qcheck->execute();
 
-      if ($Qcheck->fetch() === false) {
+      if ($Qcheck->fetch()) {
         $Qupdate = $this->app->db->prepare('update :table_products_length_classes_rules
                                             set products_length_class_from_id = :products_length_class_from_id,
                                             products_length_class_to_id = :products_length_class_to_id,
@@ -53,18 +53,6 @@
 
         $Qupdate->bindInt(':products_length_class_from_id', $products_length_class_from_id);
         $Qupdate->bindInt(':products_length_class_to_id', $products_length_class_to_id);
-        $Qupdate->bindDecimal(':products_length_class_rule',$products_length_class_rule);
-        $Qupdate->bindInt(':products_length_class_from_id_old', $products_length_class_from_id_old);
-        $Qupdate->bindInt(':products_length_class_to_id_old', $products_length_class_to_id_old);
-        $Qupdate->execute();
-
-      } else {
-        $Qupdate = $this->app->db->prepare('update :table_products_length_classes_rules
-                                            set products_length_class_rule = :products_length_class_rule
-                                            where products_length_class_from_id = :products_length_class_from_id_old
-                                            and products_length_class_to_id = :products_length_class_to_id_old
-                                          ');
-
         $Qupdate->bindDecimal(':products_length_class_rule',$products_length_class_rule);
         $Qupdate->bindInt(':products_length_class_from_id_old', $products_length_class_from_id_old);
         $Qupdate->bindInt(':products_length_class_to_id_old', $products_length_class_to_id_old);

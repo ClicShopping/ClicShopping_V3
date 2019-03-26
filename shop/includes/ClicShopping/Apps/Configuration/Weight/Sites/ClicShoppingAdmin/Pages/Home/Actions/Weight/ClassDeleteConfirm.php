@@ -33,6 +33,8 @@
                                                      ]
                             );
 
+      $this->app->db->delete('weight_classes', ['weight_class_id' => (int)$weight_class_from_id]);
+
       Cache::clear('weight-classes');
       Cache::clear('weight-rules');
 

@@ -30,7 +30,7 @@
 
       $weight_class_from_id = HTML::sanitize($_POST['weight_class_id']);
       $weight_class_to_id = HTML::sanitize($_POST['weight_class_to_id']);
-      $weight_class_rule  = $_POST['weight_class_rule'];
+      $weight_class_rule  = HTML::sanitize($_POST['weight_class_rule']);
 
 
       $Qcheck = $this->app->db->prepare('select weight_class_from_id,
@@ -44,7 +44,8 @@
       $Qcheck->bindInt(':weight_class_to_id_old', $weight_class_to_id_old);
       $Qcheck->execute();
 
-      if ($Qcheck->fetch() === false) {
+
+      if ($Qcheck->fetch()) {
         $Qupdate = $this->app->db->prepare('update :table_weight_classes_rules
                                             set weight_class_from_id = :weight_class_from_id,
                                             weight_class_to_id = :weight_class_to_id,
@@ -55,18 +56,6 @@
 
         $Qupdate->bindInt(':weight_class_from_id', $weight_class_from_id);
         $Qupdate->bindInt(':weight_class_to_id', $weight_class_to_id);
-        $Qupdate->bindDecimal(':weight_class_rule',$weight_class_rule);
-        $Qupdate->bindInt(':weight_class_from_id_old', $weight_class_from_id_old);
-        $Qupdate->bindInt(':weight_class_to_id_old', $weight_class_to_id_old);
-        $Qupdate->execute();
-
-      } else {
-        $Qupdate = $this->app->db->prepare('update :table_weight_classes_rules
-                                            set weight_class_rule = :weight_class_rule
-                                            where weight_class_from_id = :weight_class_from_id_old
-                                            and weight_class_to_id = :weight_class_to_id_old
-                                          ');
-
         $Qupdate->bindDecimal(':weight_class_rule',$weight_class_rule);
         $Qupdate->bindInt(':weight_class_from_id_old', $weight_class_from_id_old);
         $Qupdate->bindInt(':weight_class_to_id_old', $weight_class_to_id_old);
