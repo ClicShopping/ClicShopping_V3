@@ -54,7 +54,7 @@
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_CONTENT_WIDTH;
 
         if (is_array($CLICSHOPPING_Payment->modules)) {
-           if ($CLICSHOPPING_Payment->process_button() != false) {
+           if ($CLICSHOPPING_Payment->process_button() !== false) {
              $process_button = $CLICSHOPPING_Payment->process_button();
           } else {
              $process_button = HTML::button(CLICSHOPPING::getDef('module_checkout_confirmation_process_order_button_pay', ['total' => $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value'])]), null, null, 'success', ['params' => 'data-button="payNow"']);
