@@ -142,7 +142,9 @@
 // en relation avec SitesAbstract
       $page_code = $this->default_page;
 
-      if (class_exists('ClicShopping\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code)) {
+      if (class_exists('ClicShopping\Custom\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code)) {
+        $class = 'ClicShopping\Custom\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code;
+      } elseif (class_exists('ClicShopping\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code)) {
         $class = 'ClicShopping\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code;
       }
 
@@ -162,7 +164,11 @@
         } else {
           $req = basename(array_keys($_GET)[0]);
 
-          if (class_exists('ClicShopping\Sites\\' . $this->code . '\Pages\\' . $req . '\\' . $req)) {
+          if (class_exists('ClicShopping\Custom\Sites\\' . $this->code . '\Pages\\' . $req . '\\' . $req)) {
+            $page_code = $req;
+
+            $class = 'ClicShopping\Custom\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code;
+          } elseif (class_exists('ClicShopping\Sites\\' . $this->code . '\Pages\\' . $req . '\\' . $req)) {
             $page_code = $req;
 
             $class = 'ClicShopping\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code;

@@ -27,8 +27,8 @@
        $CLICSHOPPING_Language = Registry::get('Language');
        $languages = $CLICSHOPPING_Language->getLanguages();
 
-        $QlastId = $this->app->db->prepare('select products_length_class_id 
-                                            from :table_products_length_classes 
+        $QlastId = $this->app->db->prepare('select products_length_class_id
+                                            from :table_products_length_classes
                                             order by products_length_class_id desc
                                             limit 1
                                            ');
