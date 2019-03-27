@@ -37,7 +37,8 @@
         $Qproducts = $this->app->db->prepare('select products_length_class_id,
                                                       products_dimension_width,
                                                       products_dimension_height,
-                                                      products_dimension_depth
+                                                      products_dimension_depth,
+                                                      products_volume
                                               from :table_products
                                               where products_id = :products_id
                                              ');
@@ -49,6 +50,7 @@
                       'products_dimension_width' => (float)$Qproducts->valueInt('products_dimension_width'),
                       'products_dimension_height' => (float)$Qproducts->valueInt('products_dimension_height'),
                       'products_dimension_depth' => (float)$Qproducts->valueInt('products_dimension_depth'),
+                      'products_volume' => $Qproducts->value('products_volume')
                      ];
 
         $insert_array = ['products_id' => HTML::sanitize($_POST['clone_products_id'])];

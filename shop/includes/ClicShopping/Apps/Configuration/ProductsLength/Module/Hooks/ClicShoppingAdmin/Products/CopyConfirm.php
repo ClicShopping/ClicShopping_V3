@@ -38,7 +38,8 @@
         $products_length = $this->app->db->prepare('select products_length_class_id,
                                                             products_dimension_width,
                                                             products_dimension_height,
-                                                            products_dimension_depth
+                                                            products_dimension_depth,
+                                                            products_volume
                                                      from :table_products
                                                      where products_id = :products_id
                                                     ');
@@ -49,6 +50,7 @@
         $products_dimension_width = $products_length->valueInt('products_dimension_width');
         $products_dimension_height = $products_length->valueInt('products_dimension_height');
         $products_dimension_depth = $products_length->valueInt('products_dimension_depth');
+        $products_volume = $products_length->value('products_volume');
 
         $Qproducts = $this->app->db->prepare('select products_id 
                                               from :table_products                                            
@@ -62,7 +64,8 @@
         $sql_data_array = ['products_length_class_id'  => (int)$products_length_class_id,
                            'products_dimension_width'  => (float)$products_dimension_width,
                            'products_dimension_height'  => (float)$products_dimension_height,
-                           'products_dimension_depth'  => (float)$products_dimension_height
+                           'products_dimension_depth'  => (float)$products_dimension_depth,
+                           'products_volume'  => $products_volume
                           ];
 
         $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);

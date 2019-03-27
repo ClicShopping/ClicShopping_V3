@@ -189,8 +189,6 @@ text_products_description = Products Description
 text_products_quantity = Stock quantity:
 
 text_products_min_order_quantity = Quantity minimal for a customer order :
-
-text_products_volume = Product volume :
 text_products_model = Model
 
 text_products_ean = EAN

@@ -187,8 +187,8 @@ text_products_name = Nom du produit
 text_products_description = Description du produit
 
 text_products_quantity = Quantité en stock
+
 text_products_min_order_quantity = Quantité minimale d'achat pour une commande :
-text_products_volume = Volume du produit
 text_products_model = Référence
 
 text_products_ean = EAN

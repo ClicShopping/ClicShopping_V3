@@ -69,7 +69,6 @@
                   'orders_view' => '',
                   'products_tax_class_id' => '',
                   'products_min_qty_order' => '',
-                  'products_volume' => '',
                   'products_only_online' => '',
                   'products_image_medium' => '',
                   'products_cost' => '',
@@ -243,17 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="row" id="tab1ContentRow7">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_volume'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_volume'); ?></label>
-              <div class="col-md-5">
-                <?php echo HTML::inputField('products_volume', $pInfo->products_volume, 'id="products_volume"'); ?>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <div class="row" id="tab1ContentRow6"></div>
         <div class="row" id="tab1ContentRow10">
           <div class="col-md-5">
             <div class="form-group row">

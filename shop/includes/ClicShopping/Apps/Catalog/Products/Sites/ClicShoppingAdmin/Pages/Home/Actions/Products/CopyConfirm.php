@@ -86,7 +86,6 @@
                                         'orders_view' =>  (int)$product['orders_view'],
                                         'products_min_qty_order' => (int)$product['products_min_qty_order'],
                                         'admin_user_name' => AdministratorAdmin::getUserAdmin(),
-                                        'products_volume' => $product['products_volume'],
                                         'products_only_online' => (int)$product['products_only_online'],
                                         'products_image_medium' => $product['products_image_medium'],
                                         'products_cost' => (float)$product['products_cost'],

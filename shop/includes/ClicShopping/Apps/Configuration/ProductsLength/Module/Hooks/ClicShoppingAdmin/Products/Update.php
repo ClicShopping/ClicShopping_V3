@@ -39,6 +39,7 @@
                           'products_dimension_width' => (float)HTML::sanitize($_POST['products_dimension_width']),
                           'products_dimension_height' => (float)HTML::sanitize($_POST['products_dimension_height']),
                           'products_dimension_depth' => (float)HTML::sanitize($_POST['products_dimension_height']),
+                          'products_volume' => HTML::sanitize($_POST['products_volume'])
                           ];
 
         $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
