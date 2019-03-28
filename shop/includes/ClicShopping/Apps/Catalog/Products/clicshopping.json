@@ -2,7 +2,7 @@
  "title":	"Products Products App",
  "app": "Products",
  "vendor":"Products",
- "version":	"1.0.0",
+ "version":	"1.0.1",
  "req_core_version":	"3.0",
  "license":	"GPL-2",
  "authors": [
@@ -44,6 +44,9 @@
     "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\BarCode\\SaveBarCode",
     "ProductsContentTab2":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\ProductDiscountinued\\ProductsContentTab2",
     "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\ProductDiscountinued\\SaveProductDiscountinued"
+   },
+   "ClicShoppingAdmin/Categories": {
+    "PageTabContent":	"Module\\Hooks\\ClicShoppingAdmin\\Categories\\PageTabContentProducts"
    }
   }
  },

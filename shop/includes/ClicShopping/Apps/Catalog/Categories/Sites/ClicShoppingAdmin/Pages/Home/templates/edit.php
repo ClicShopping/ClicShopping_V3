@@ -90,7 +90,6 @@
     </div>
     <div class="separator"></div>
 
-
     <div id="categoriesTabs" style="overflow: auto;">
       <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist"  id="myTab">
         <li class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' .  $CLICSHOPPING_Categories->getDef('tab_general') . '</a>'; ?></li>
@@ -362,12 +361,11 @@
               <div><?php echo $CLICSHOPPING_Categories->getDef('help_image_categories'); ?></div>
             </div>
           </div>
-          <div class="separator"></div>
 <?php
   //***********************************
   // extension
   //***********************************
-  echo $CLICSHOPPING_Hooks->output('Categories', 'Page', null, 'display');
+  echo $CLICSHOPPING_Hooks->output('Categories', 'PageTabContent', null, 'display');
 ?>
         </div>
       </div>
