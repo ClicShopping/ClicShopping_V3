@@ -40,8 +40,6 @@
     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\Insert"
    },
    "ClicShoppingAdmin/Products": {
-    "ProductsContentTab1":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\BarCode\\ProductsContentTab1",
-    "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\BarCode\\SaveBarCode",
     "ProductsContentTab2":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\ProductDiscountinued\\ProductsContentTab2",
     "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\ProductDiscountinued\\SaveProductDiscountinued"
    },
