@@ -50,9 +50,6 @@
 
  Donation can help to continue the work and to finance the infrastructure.
 
-Project quality under : https://insight.symfony.com
-[![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/big.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
-
 
  More information is available on the community website.
 
