@@ -29,15 +29,16 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QordersStatus = $CLICSHOPPING_Db->prepare('select orders_status_name,
-                                                          orders_status_id
+                                                         orders_status_id
                                                   from :table_orders_status
                                                   where language_id = :language_id
+                                                  order by orders_status_id
                                                 ');
       $QordersStatus->bindint(':language_id', $CLICSHOPPING_Language->getId());
       $QordersStatus->execute();
 
       while ($QordersStatus->fetch() ) {
-        $QordersPending = $CLICSHOPPING_Db->prepare('select count(*) as count
+        $QordersPending = $CLICSHOPPING_Db->prepare('select count(orders_id) as count
                                                      from :table_orders
                                                      where orders_status = :orders_status
                                                    ');
@@ -58,12 +59,10 @@
               </div>
             ';
         }
+      }
 
-        if ($QordersPending->valueInt('count') > 0) {
-          foreach($result as $x => $x_value) {
-            echo  $x_value;
-          }
-        }
+      foreach($result as $value) {
+        echo $value;
       }
     }
   }
