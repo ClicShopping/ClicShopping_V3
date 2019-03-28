@@ -40,7 +40,7 @@ products_quantity_alert int(4) default(0) not_null
 products_only_shop tinyint(1) default(0) not_null
 products_download_filename varchar(255) null
 products_download_public tinyint(1) default(0) not_null
-products_type varchar(12) null
+products_type varchar(20) null
 --
 primary products_id
 idx_products_model products_model
