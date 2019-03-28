@@ -60,7 +60,7 @@ text_warning_upgrade = <p><strong>The process has began, please wait a moment. T
 text_upgrade_version =
 <p>Your ClicShopping version <strong>is not up to date</strong>. Your current version :
 
-text_upgrade_site = All applications are available at theses address (please note this space is experimental and it can have error) :
+text_upgrade_site = All applications are available at theses address :<br />
 
 text_upgrade_new_version = The new version is :
 text_reload = re-test
