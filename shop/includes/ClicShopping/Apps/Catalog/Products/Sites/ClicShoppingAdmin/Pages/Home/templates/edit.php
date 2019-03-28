@@ -349,10 +349,10 @@
       </div>
       <div class="adminformTitle">
         <div class="row" id="tab2ContentRow1">
-          <div class="col-md-5">
+          <div class="col-md-12">
             <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?></label>
-              <div class="col-md-5">
+              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?>" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?></label>
+              <div class="col-md-7">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
                   <span class="col-md-12"><?php echo HTML::radioField('products_status', '1', $in_status) . '&nbsp;' . $CLICSHOPPING_Products->getDef('text_products_available'); ?></span>
                   <span class="col-md-10"><?php echo HTML::radioField('products_status', '0', $out_status) . '&nbsp;' . $CLICSHOPPING_Products->getDef('text_products_not_available'); ?></span>
