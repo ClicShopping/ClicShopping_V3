@@ -10,7 +10,8 @@ text_sent_password = Si vous avez oublié votre mot de passe, veuillez insérer 
 text_no_email_address_found = Aucune adresse email ou pseudo n'a été trouvé
 
 email_password_reminder_subject = {{store_name}} (Panel d'administration) - Nouveau mot de passe
-email_password_reminder_body = Un nouveau mot de passe vous a été envoyé à partir de cette adresse IP : {{remote_address}}. <br ><br >Votre nouveau mode passe pour accéder au panneau d'administration de {{store_name}} est :{{new_password}}<br ><br >
+email_password_reminder_body = Un nouveau mot de passe vous a été envoyé à partir de cette adresse IP : {{remote_address}}. <br /><br />
+Votre nouveau mode passe pour accéder au panneau d'administration de {{store_name}} est :{{new_password}}<br /><br />
 
 success_password_sent = Succès: un nouveau de passe a été envoyé à votre adresse email.
 button_submit = Envoyer
