@@ -61,8 +61,10 @@
         }
       }
 
-      foreach($result as $value) {
-        echo $value;
+      if (is_array($result)) {
+        foreach($result as $value) {
+          echo $value;
+        }
       }
     }
   }
