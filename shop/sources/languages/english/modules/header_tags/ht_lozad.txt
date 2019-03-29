@@ -1,0 +1,2 @@
+module_header_tags_lozad_title = Do you want use The Lozad image treatment ?
+module_header_tags_lozad_description = Lozad optimize the treatment image by the browser.

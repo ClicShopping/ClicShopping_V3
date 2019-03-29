@@ -1,0 +1,2 @@
+module_header_tags_lozad_title = Souhaitez-vous afficher utiliser le Lazy load, traitement image ?
+module_header_tags_lozad_description = Lazy load optimise le traitement des images par le navigateur
