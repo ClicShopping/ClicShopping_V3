@@ -1,0 +1,2 @@
+module_header_tags_lazyload_title = Do you want use The Lazy Load image treatment ?
+module_header_tags_lazyload_description = Lazy load optimize the treatment image by the browser.
