@@ -75,7 +75,7 @@
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDERS_APP_CONTENT_WIDTH;
 
-      $output = '<span class="' . $content_width . '">';
+      $output = '<div class="' . $content_width . '">';
       $output .= '<div class="separator"></div>';
       $output .= '<table class="table table-sm table-hover">';
       $output .= '<thead>';
@@ -107,7 +107,7 @@
         }
         $output .=
          '    <td>' . HTML::outputProtected($orders['orders_status_name']) . '</td>' .
-         '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order')));
+         '    <td class="text-md-right">' . HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&Edit&oID=' . (int)$orders['orders_id']),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_order')));
                       HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . (int)$orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_edit_customer')));
                       HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders&cID=' . $orders['customers_id']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/order.gif', $this->app->getDef('module_admin_dashboard_orders_app_icon_view_customers_all_orders')));
 
@@ -116,9 +116,8 @@
       }
 
       $output .= '</tbody>';
-      $output .= '&nbsp;';
       $output .= '</table>';
-      $output .= '</span>';
+      $output .= '</div>';
 
       return $output;
     }
