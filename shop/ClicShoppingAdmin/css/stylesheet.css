@@ -443,33 +443,7 @@ div.backgroundMenu {
 
 
 blockquote {
-
    border-left:none;
-}
-
-.cardStatsSuccess {
-  background-color: #28a745;
-  color:#fff
-}
-
-.cardStatsPrimary {
-  background-color: #2969C3;
-  color:#fff
-}
-
-.cardStatsInfo {
-  background-color: #5bc0de;
-  color:#fff
-}
-
-.cardStatsWarning {
-  background-color: #f0ad4e;
-  color:#fff
-}
-
-.cardStatsDanger {
-  background-color: #dc3545;
-  color:#fff
 }
 
 
@@ -612,12 +586,38 @@ boostrap 4
 */
 
 .card {
-  padding: 10px 5px 5px 10px;
+/*  padding: 10px 5px 5px 10px;*/
+  padding: 0px 0px 0px 0px;
 }
 
 
 .cardPrice {
   padding: 0px 0px 0px 0px;
+}
+
+.cardStatsSuccess {
+  background-color: #28a745;
+  color:#fff
+}
+
+.cardStatsPrimary {
+  background-color: #2969C3;
+  color:#fff
+}
+
+.cardStatsInfo {
+  background-color: #5bc0de;
+  color:#fff
+}
+
+.cardStatsWarning {
+  background-color: #f0ad4e;
+  color:#fff
+}
+
+.cardStatsDanger {
+  background-color: #dc3545;
+  color:#fff
 }
 
 div.headerCard {

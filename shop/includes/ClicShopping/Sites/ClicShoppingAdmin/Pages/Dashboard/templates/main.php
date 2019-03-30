@@ -26,15 +26,17 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-block headerCard">
-          <div class="row">
-            <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/home.gif', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?></span>
-            <span class="col-md-5 pageHeading"><?php echo CLICSHOPPING::getDef('heading_title'); ?></span>
-            <span class="col-md-6 text-md-right">
-              <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories')), null, 'class="btn btn-primary btn-sm" role="button"><span class="fas fa-list-alt" title="' . CLICSHOPPING::getDef('heading_short_categories') . '"') ;?>
-              <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products')), null, 'class="btn btn-info btn-sm" role="button"><span class="fab fa-product-hunt" title="' . CLICSHOPPING::getDef('heading_short_products') . '"') ;?>
-              <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders')), null, 'class="btn btn-success btn-sm" role="button"><span class="fas fa-bookmark" title="' . CLICSHOPPING::getDef('heading_short_orders') . '"') ;?>
-              <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers')), null, 'class="btn btn-warning btn-sm" role="button"><span class="fas fa-user" title="' . CLICSHOPPING::getDef('heading_short_customers') . '"') ;?>
-            </span>
+          <div class="card-title">
+              <div class="row col-md-12"  style="padding-top:5px">
+                <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/home.gif', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?></span>
+                <span class="col-md-5 pageHeading"><?php echo CLICSHOPPING::getDef('heading_title'); ?></span>
+                <span class="col-md-6 text-md-right">
+                  <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories')), null, 'class="btn btn-primary btn-sm" role="button"><span class="fas fa-list-alt" title="' . CLICSHOPPING::getDef('heading_short_categories') . '"') ;?>
+                  <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products')), null, 'class="btn btn-info btn-sm" role="button"><span class="fab fa-product-hunt" title="' . CLICSHOPPING::getDef('heading_short_products') . '"') ;?>
+                  <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders')), null, 'class="btn btn-success btn-sm" role="button"><span class="fas fa-bookmark" title="' . CLICSHOPPING::getDef('heading_short_orders') . '"') ;?>
+                  <?php echo HTML::link(CLICSHOPPING::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers')), null, 'class="btn btn-warning btn-sm" role="button"><span class="fas fa-user" title="' . CLICSHOPPING::getDef('heading_short_customers') . '"') ;?>
+                </span>
+              </div>
           </div>
         </div>
       </div>
@@ -44,6 +46,7 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-12">
+
 <?php
     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Dashboard/';
 
@@ -70,6 +73,7 @@
     <span class="col-md-8 float-md-left">
       <div class="row card card-block">
         <div class="float-md-left col-md-12">
+          <div class="separator"></div>
           <div class="d-flex flex-wrap">
 
 <?php
@@ -83,14 +87,6 @@
       foreach ($adm_array as $adm) {
         if (strpos($adm, '\\') !== false) {
           $class = Apps::getModuleClass($adm, 'AdminDashboard');
-        } else {
-
-          $class = substr($adm, 0, strrpos($adm, '.'));
-
-          if ( !class_exists($class) ) {
-            $CLICSHOPPING_Language->loadDefinitions('modules/dashboard/' . pathinfo($adm, PATHINFO_FILENAME));
-            include($CLICSHOPPING_Template->getModulesDirectory() . '/' . 'dashboard/' . $class . '.php');
-          }
         }
 
         $ad = new $class();
@@ -100,15 +96,10 @@
         }
       }
     } else {
-      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=dashboard&list=new'), ClicShopping::getDef('text_install_dashboard')) . '</div>';
-      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), ClicShopping::getDef('text_install_upgrade')) . '</div>';
+      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=dashboard&list=new'), ClicShopping::getDef('text_install_dashboard')) . '<br /></div>';
+      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), ClicShopping::getDef('text_install_upgrade')) . '<br /></div>';
       echo '<div class="col-md-12 text-md-center alert-warning">' . ClicShopping::getDef('text_good_luck') . '</div>';
     }
-
-  } else {
-    echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link('modules.php?set=dashboard'), ClicShopping::getDef('text_install_dashboard')) . '</div>';
-    echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), ClicShopping::getDef('text_install_upgrade')) . '</div>';
-    echo '<div class="col-md-12 text-md-center alert-warning">' . ClicShopping::getDef('text_good_luck') . '</div>';
   }
 ?>
         </div>

@@ -77,9 +77,17 @@
       $content_width = 'col-lg-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH;
 
       $output = <<<EOD
-<span class="$content_width text-md-center">
-<div class="text-md-center">$chart_tiltle</div>
-<div id="d_total_customers_app" class="col-md-12" style="width:100%; height: 200px;"></div>
+<div class="col-sm-'. $content_width . '">
+  <div class="card mb-3">
+    <div class="card-header">
+    <h6><i class="fa fa-female"></i> {$chart_tiltle}</h6>
+    </div>
+    <div class="card-body">
+      <div id="d_total_customers_app" class="col-md-12" style="width:100%; height: 200px;"></div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 $(function () {
   var plot30 = [$js_array];
@@ -148,8 +156,6 @@ $('#d_total_customers_app').bind('plothover', function (event, pos, item) {
   }
 });
 </script>
-</span>
-
 EOD;
 
       return $output;

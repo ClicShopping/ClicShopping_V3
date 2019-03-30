@@ -48,8 +48,6 @@
   <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/stylesheet.css'); ?>">
   <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/stylesheet_responsive.css'); ?>">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
 
   <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/general.js'); ?>"></script>
@@ -74,7 +72,7 @@
         <span class="infoHeader">
 <?php
   if (isset($_SESSION['admin'])) {
-    if ($access_level == 0 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt')) > 0) {
+    if ($_SESSION['admin']['access'] == 1 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt')) > 0) {
 ?>
     <span><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogError', null, null, ['params' => 'data-dismiss="modal"']), '<i class="fas fa-exclamation-circle text-warning"></i>'); ?></span>
  <?php
