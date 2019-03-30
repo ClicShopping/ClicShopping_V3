@@ -77,6 +77,7 @@
                                                  :table_products_description pd 
                                              where pd.products_id = r.products_id 
                                             and pd.language_id = :language_id
+                                            and r.status = 0
                                             order by r.date_added desc limit 6
                                           ');
 
