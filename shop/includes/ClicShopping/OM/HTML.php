@@ -153,7 +153,7 @@
 
       if (CLICSHOPPING::getSite() == 'Shop') {
 
-        $class[] = 'lazy-load media-object';
+        $class[] = 'lozad media-object';
 
         if ($responsive === true) {
           $class[] = 'img-fluid';

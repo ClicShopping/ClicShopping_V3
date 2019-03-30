@@ -246,12 +246,12 @@
 ?>
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
-                    <?php echo HTML::inputField('first_name', '', 'placeholder="' . CLICSHOPPING::getDef('text_firstname') . '" required aria-required="true" aria-describedby="basic-addon1"'); ?>
+                    <?php echo HTML::inputField('first_name', '', 'placeholder="' . CLICSHOPPING::getDef('text_firstname') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
                   </div>
                   <div class="separator"></div>
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
-                    <?php echo HTML::inputField('name', '', 'placeholder="' . CLICSHOPPING::getDef('text_name') . '" required aria-required="true" aria-describedby="basic-addon1"'); ?>
+                    <?php echo HTML::inputField('name', '', 'placeholder="' . CLICSHOPPING::getDef('text_name') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
                   </div>
                   <div class="separator"></div>
 <?php
@@ -259,12 +259,12 @@
 ?>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"></span>
-                <?php echo HTML::inputField('username', '', 'placeholder="' . CLICSHOPPING::getDef('text_username') . '" required aria-required="true" aria-describedby="basic-addon1"'); ?>
+                <?php echo HTML::inputField('username', '', 'placeholder="' . CLICSHOPPING::getDef('text_username') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
               </div>
               <div class="separator"></div>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"></span>
-                <?php echo HTML::passwordField('password', '','placeholder="' . CLICSHOPPING::getDef('text_password') . '" required aria-required="true" aria-describedby="basic-addon1"'); ?>
+                <?php echo HTML::passwordField('password', '','placeholder="' . CLICSHOPPING::getDef('text_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
               </div>
               <div class="separator"></div>
               <div class="text-md-right">
@@ -300,7 +300,7 @@
               <div class="text-danger" style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
-                <?php echo HTML::inputField('username', '','size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true"  aria-describedby="basic-addon1"'); ?>
+                <?php echo HTML::inputField('username', '','size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
               </div>
               <div class="separator"></div>
             </div>

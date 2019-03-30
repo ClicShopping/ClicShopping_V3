@@ -63,7 +63,7 @@
         <div class="form-group row">
           <label for="code" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Administrators->getDef('text_info_name'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('name', $Qadmin->value('name'), 'required aria-required="true" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_name') . '"'); ?>
+            <?php echo HTML::inputField('name', $Qadmin->value('name'), 'required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_name') . '"'); ?>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
         <div class="form-group row">
           <label for="code" class="col-5 col-form-label"><?php echo  $CLICSHOPPING_Administrators->getDef('text_info_firstname'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('first_name', $Qadmin->value('first_name'), 'required aria-required="true" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_first_name') . '"'); ?>
+            <?php echo HTML::inputField('first_name', $Qadmin->value('first_name'), 'required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_first_name') . '"'); ?>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
         <div class="form-group row">
           <label for="code" class="col-5 col-form-label"><?php echo  $CLICSHOPPING_Administrators->getDef('text_info_username'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('username', $Qadmin->value('user_name'), 'required aria-required="true" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_username') . '"', 'email'); ?>
+            <?php echo HTML::inputField('username', $Qadmin->value('user_name'), 'required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_username') . '"', 'email'); ?>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
         <div class="form-group row">
           <label for="code" class="col-5 col-form-label"><?php echo  $CLICSHOPPING_Administrators->getDef('text_info_password'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('password', null, 'placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"', 'password'); ?>
+            <?php echo HTML::inputField('password', null, 'autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"', 'password'); ?>
           </div>
         </div>
       </div>
