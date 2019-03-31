@@ -74,7 +74,7 @@
                                 );
 
       while ($Qlogins->fetch()) {
-        $output .= '  <tr>' .
+        $output .= '  <tr class="dataTableRow backgroundBlank">' .
                    '    <td class="text-md-center"><i class="fas fa-' . (($Qlogins->valueInt('success') === 1) ? 'check fa-lg' : 'times fa-lg') . '"></i>&nbsp;' .
                    '    <td><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
                    '    <td class="text-md-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .

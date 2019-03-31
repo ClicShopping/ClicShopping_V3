@@ -92,7 +92,7 @@
           $status_icon = HTML::link($this->app->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
         }
 
-        $content .= '  <tr class="dataTableRow">' .
+        $content .= '  <tr class="dataTableRow backgroundBlank">' .
                    '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('products_name')) . '</td>' .
                    '    <td class="dataTableContent">' . DateTime::toShort($Qreviews->value('date_added')) . '</td>' .
                    '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('customers_name')) . '</td>' .

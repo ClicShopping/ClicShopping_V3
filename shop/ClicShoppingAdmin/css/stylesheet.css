@@ -561,6 +561,15 @@ span.adminformAideContent {
   padding-left:0.625rem;
 }
 
+.backgroundBlank {
+  background-color: #fff;
+}
+
+.dashboard {
+  background-color: #F4F4F4;
+}
+
+
 .centerInputFields {
   height:1.875rem;
   padding-top:0.625rem;
@@ -622,6 +631,7 @@ boostrap 4
 
 div.headerCard {
   background-color:#FDFDFD;
+  padding:0.3125rem 0.3125rem 0.3125rem 0.3125rem;
 }
 
 .blackline {

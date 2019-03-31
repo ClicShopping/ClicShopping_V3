@@ -17,18 +17,14 @@
   $CLICSHOPPING_Language = Registry::get('Language');
 ?>
     </div>
-  </div>
-
-<div class="clearfix"></div>
-<div class="separator"></div>
-<footer>
-  <div id="footer">
-    <div class="footerCadre">
-      <span class="navbar navbar-fixed-bottom navbar-light bg-faded">
-        <div class="col-md-12 navbar-collapse text-md-left" id="footer-body">
-          <span class="col-md-3 navbar-text">
-            <?php echo 'ClicShopping™ - V. '. CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date("Y"); ?><br />
-            <small>based on osCommerce™</small>
+    <footer>
+      <div id="footer">
+        <div class="footerCadre">
+          <span class="navbar navbar-fixed-bottom navbar-light bg-faded">
+            <div class="col-md-12 navbar-collapse text-md-left" id="footer-body">
+              <span class="col-md-3 navbar-text">
+                <?php echo 'ClicShopping™ - V. '. CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date("Y"); ?><br />
+                <small>based on osCommerce™</small>
           </span>
 <?php
   if (isset($_SESSION['admin'])) {
@@ -48,12 +44,13 @@
   }
 ?>
 
+            </div>
+          </span>
         </div>
-      </span>
-    </div>
-  </div>
-  <div class="footerCadre separator"></div>
-</footer>
+      </div>
+      <div class="footerCadre separator"></div>
+    </footer>
+
 <!-- if the page request contains a link to a tab, open that tab on page load -->
     <script>
       $(function() {
@@ -66,7 +63,6 @@
         }
       });
     </script>
-
 
 <!--smartmenu -->
     <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/smartmenus_config.js'); ?>"></script>

@@ -22,7 +22,7 @@
 ?>
 <!-- header_eof //-->
 <!-- body //-->
-  <div class="contentBody">
+  <div class="contentBody dashboard">
     <div class="row">
       <div class="col-md-12">
         <div class="card card-block headerCard">
@@ -41,9 +41,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="separator"></div>
-  <div class="col-md-12">
+
+    <div class="separator"></div>
     <div class="row">
       <div class="col-md-12">
 
@@ -68,14 +67,12 @@
 ?>
       </div>
     </div>
-  </div>
+
   <div class="col-md-12">
     <span class="col-md-8 float-md-left">
-      <div class="row card-block">
-        <div class="float-md-left col-md-12">
-          
+      <div class="row">
+        <div class="float-md-left">
           <div class="d-flex flex-wrap">
-
 <?php
   if ( defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && !is_null(MODULE_ADMIN_DASHBOARD_INSTALLED) ) {
     $adm_array = explode(';', MODULE_ADMIN_DASHBOARD_INSTALLED);
@@ -96,9 +93,10 @@
         }
       }
     } else {
-      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=dashboard&list=new'), ClicShopping::getDef('text_install_dashboard')) . '<br /></div>';
-      echo '<div class="col-md-12 text-md-center alert-warning">' . HTML::link(CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), ClicShopping::getDef('text_install_upgrade')) . '<br /></div>';
-      echo '<div class="col-md-12 text-md-center alert-warning">' . ClicShopping::getDef('text_good_luck') . '</div>';
+      echo '<div class="alert alert-primary">';
+      echo '<div class="col-md-12 text-md-center">' . HTML::link(CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=dashboard&list=new'), ClicShopping::getDef('text_install_dashboard')) . '<br /></div>';
+      echo '<div class="col-md-12 text-md-center">' . ClicShopping::getDef('text_good_luck') . '</div>';
+      echo'</div>';
     }
   }
 ?>
@@ -124,9 +122,9 @@
 <!-- ------------------------------------------------------------ //-->
         <div class="tab-pane active" id="tab1">
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('title_index_order'); ?></div>
-          <div class="adminformTitle"><?php echo $CLICSHOPPING_Hooks->output('Dashboard', 'ActionStatsCountStatus'); ?></div>
+          <div class="adminformTitle backgroundBlank"><?php echo $CLICSHOPPING_Hooks->output('Dashboard', 'ActionStatsCountStatus'); ?></div>
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('heading_title_divers'); ?></div>
-          <div class="adminformTitle">
+          <div class="adminformTitle backgroundBlank">
             <div id="tab1Content"></div>
 <?php
   echo $CLICSHOPPING_Hooks->output('StatsDashboard', 'PageTabContent', null, 'display');
@@ -146,8 +144,9 @@
     <div><?php echo $CLICSHOPPING_Hooks->output('Dashboard', 'ActionLinkedin'); ?></div>
     <div><?php echo $CLICSHOPPING_Hooks->output('Dashboard', 'ActionDonate'); ?></div>
   </span>
+  <div class="clearfix"></div>
  </div>
-
+</div>
 <!-- footer //-->
 <!--[if IE]><script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/excanvas.min.js"></script><![endif]-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>

@@ -69,7 +69,7 @@
 
         $output .= '<table class="table table-hover" width="100%">';
         $output .= '<thead>';
-        $output .= '<tr class="dataTableHeadingRow">';
+        $output .= '<tr class="dataTableRow backgroundBlank">';
         $output .= '<th width="10%">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_online') . '</th>';
         $output .= '<th width="20%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_full_name') . '</th>';
         $output .= '<th width="10%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_ip_address') . '</th>';
