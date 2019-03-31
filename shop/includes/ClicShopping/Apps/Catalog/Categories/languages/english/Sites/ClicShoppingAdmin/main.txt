@@ -133,7 +133,7 @@ icon_edit = Edit
 icon_move = Move
 icon_folder = Folder
 
-text_alert_info_categories = Please select a categories to see a sub-categories
+text_alert_info_categories = Please select a categories to view a sub-categories
 
 help_image_products = <li>automatic resizing image : <br />
 <blockquote>

@@ -318,4 +318,4 @@ help_general_tab8_1 =  - The size can not be more :
 
 text_products_large_image_delete_title = Delete image
 text_products_large_image_confirm_delete = Are you sure ?
-text_alert_info_product = Please selet a categorie to see a product
+text_alert_info_product = Please selet a categorie to view a product

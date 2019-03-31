@@ -71,7 +71,7 @@
   <div class="col-md-12">
     <span class="col-md-8 float-md-left">
       <div class="row">
-        <div class="float-md-left">
+        <div class="col-md-12">
           <div class="d-flex flex-wrap">
 <?php
   if ( defined('MODULE_ADMIN_DASHBOARD_INSTALLED') && !is_null(MODULE_ADMIN_DASHBOARD_INSTALLED) ) {
