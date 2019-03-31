@@ -89,10 +89,10 @@
       $chart_label_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Orders');
       $chart_title = HTML::output($this->app->getDef('module_admin_dashboard_total_month_app_chart_link'));
 
-      $content_width = 'col-lg-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_CONTENT_WIDTH;
+      $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_CONTENT_WIDTH;
 
       $output = <<<EOD
-<div class="col-sm-'. $content_width . '">
+<div class="{$content_width}">
   <div class="card-deck mb-3">
     <div class="card">
       <div class="card-body">
@@ -100,7 +100,7 @@
         <p class="card-text"><div id="d_total_month" class="col-md-12" style="width:100%; height: 200px;"></div></p>
       </div>
     </div>
-  </div>              
+  </div>
 </div>
 
 <script type="text/javascript">
