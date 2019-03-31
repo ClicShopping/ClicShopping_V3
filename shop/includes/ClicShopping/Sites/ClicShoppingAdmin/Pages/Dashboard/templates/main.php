@@ -71,9 +71,9 @@
   </div>
   <div class="col-md-12">
     <span class="col-md-8 float-md-left">
-      <div class="row card card-block">
+      <div class="row card-block">
         <div class="float-md-left col-md-12">
-          <div class="separator"></div>
+          
           <div class="d-flex flex-wrap">
 
 <?php

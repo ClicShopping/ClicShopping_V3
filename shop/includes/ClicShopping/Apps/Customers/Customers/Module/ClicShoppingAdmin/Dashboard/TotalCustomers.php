@@ -78,14 +78,14 @@
 
       $output = <<<EOD
 <div class="col-sm-'. $content_width . '">
-  <div class="card mb-3">
-    <div class="card-header">
-    <h6><i class="fa fa-female"></i> {$chart_tiltle}</h6>
+  <div class="card-deck mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title"><i class="fa fa-female"></i> {$chart_tiltle}</h6>
+        <p class="card-text"><div id="d_total_customers_app" class="col-md-12" style="width:100%; height: 200px;"></div></p>
+      </div>
     </div>
-    <div class="card-body">
-      <div id="d_total_customers_app" class="col-md-12" style="width:100%; height: 200px;"></div>
-    </div>
-  </div>
+  </div>              
 </div>
 
 <script type="text/javascript">
