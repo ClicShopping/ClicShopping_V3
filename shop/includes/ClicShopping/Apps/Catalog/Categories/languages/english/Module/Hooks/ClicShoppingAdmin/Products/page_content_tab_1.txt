@@ -8,6 +8,6 @@ text_categories_preview_title = Categorie preview
 text_categories_image_delete = Delete image
 text_create = Create
 
-text_select_category_action = Select your action
+text_select_category_action = Select your action if necessary
 text_copy_as_link = link to a category
-text_copy_as_duplicate = Dupliquer inside catégorie
+text_copy_as_duplicate = Duplicate inside catégorie
