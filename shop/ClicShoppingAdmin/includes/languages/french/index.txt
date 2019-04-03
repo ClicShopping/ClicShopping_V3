@@ -15,6 +15,14 @@ box_entry_customer_basket = Nombre de commande pouvant être "recouvrés"
 box_entry_contact_demand_no_archive = Demandes de contact à analyser
 box_entry_products_no_purchase = Moyenne produits non vendus / vendus
 
+
+text_number_products_stock_warning = Alerte stock
+text_number_products_out_of_stock = Produits hors stock
+text_number_products_expected = Produits en attente
+text_number_members_b2b = Clients à valider B2B
+text_number_of_reviews = Commentaires en attente
+text_view = Plus d'informations
+
 catalog_contents = Contenus
 reports_products = Produits
 reports_orders = Commandes

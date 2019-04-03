@@ -45,29 +45,31 @@
     <div class="separator"></div>
     <div class="row">
       <div class="col-md-12">
+        <div class="d-flex flex-wrap justify-content-center">
 
 <?php
     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Dashboard/';
 
     if (is_dir($source_folder)) {
-      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'IndexDahboardTop*');
+      $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'IndexDashboardTop*');
 
       if (is_array($files_get)) {
         foreach ($files_get as $value) {
-          if (!empty($value['name'])) {
-            echo $CLICSHOPPING_Hooks->output('Dashboard', $value['name']);
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->output('Dashboard', $value['name']);
           }
         }
 
         echo '<div class="separator"></div>';
       }
-
+?>
+        </div>
+      </div>
+<?php
       echo $CLICSHOPPING_Hooks->output('IndexDashboardTop', 'PageTabContent', null, 'display');
     }
 ?>
-      </div>
     </div>
-
   <div class="col-md-12">
     <span class="col-md-8 float-md-left">
       <div class="row">

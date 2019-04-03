@@ -11,23 +11,22 @@ heading_title_divers = Miscelleaneous
 
 box_title_orders = Orders
 box_title_statistics = Statistics
-
-
-
 box_entry_stock_expecting = Products expected number
 box_entry_customer_basket = Recover cart sales number
-
 box_entry_contact_demand_no_archive = Contact requests to analyse
-
 box_entry_products_no_purchase = Products not sold / products sold
 
-
+text_number_products_stock_warning = Stock warning
+text_number_products_out_of_stock = Products Out of Stock
+text_number_products_expected = Products expected
+text_number_members_b2b = Customer to approve
+text_number_of_reviews = Pending reviews
+text_view = More informations
 
 catalog_contents = Content
 reports_products = Products
 reports_orders = Orders
 title_twitter = Tweet ClicShopping
-
 
 title_db_index = Size of Data Base
 title_web_site_size = Taille du site internet

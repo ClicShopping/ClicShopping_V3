@@ -393,7 +393,6 @@ td, th {
 
 
 .dataTableContent {
-
   color: #000000;
 }
 
@@ -402,8 +401,6 @@ td, th {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-
 
 .modal-footer {
   border-top: 0rem;
@@ -648,8 +645,6 @@ div.headerCard {
 .sortHandle {
   cursor: move;
 }
-
-
 
 /******************************
 // Stats box
