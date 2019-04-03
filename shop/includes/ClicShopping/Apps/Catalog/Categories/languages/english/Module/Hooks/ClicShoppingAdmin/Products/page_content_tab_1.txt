@@ -12,4 +12,4 @@ text_select_category_action = Select your action if necessary
 text_copy_as_none = No action
 text_copy_as_move = Move inside a category (select only one)
 text_copy_as_link = link to a category / categories
-text_copy_as_duplicate = Duplicate inside catégorie / catégories
+text_copy_as_duplicate = Duplicate inside categorie / categories
