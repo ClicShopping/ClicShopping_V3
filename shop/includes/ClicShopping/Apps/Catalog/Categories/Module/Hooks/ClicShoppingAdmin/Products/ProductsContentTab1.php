@@ -52,8 +52,7 @@
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' .  $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
-//        $content .= HTML::selectMenu('move_to_category_id[]', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), null, 'id="category_id" multiple="multiple" size="10" style="width:200px;"');
-        $content .= '<select name="move_to_category_id" id="category_id"><option value="0">' .  $this->app->getDef('text_select_categorie') . '</option>';
+        $content .= '<select name="move_to_category_id[]" id="category_id"><option value="0">' .  $this->app->getDef('text_select_categorie') . '</option>';
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
         $content .= '<a href="' .  $this->app->link('CategoriesPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' .  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
@@ -71,9 +70,12 @@
         $content .= HTML::selectMenu('move_to_category_id[]', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'multiple="multiple" size="10"');
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
         $content .= '</div>';
-
         $content .= '<div class="col-md-5">';
-        $content .= $this->app->getDef('text_select_category_action') .' <br />' .  HTML::radioField('copy_as', 'link', true) . ' ' . $this->app->getDef('text_copy_as_link') . '<br />' . HTML::radioField('copy_as', 'duplicate') . ' ' .  $this->app->getDef('text_copy_as_duplicate');
+        $content .= $this->app->getDef('text_select_category_action') .' <br />';
+        $content .= HTML::radioField('copy_as', 'none', true) . ' ' . $this->app->getDef('text_copy_as_none') . '<br />';
+        $content .= HTML::radioField('copy_as', 'link') . ' ' . $this->app->getDef('text_copy_as_link') . '<br />';
+        $content .= HTML::radioField('copy_as', 'duplicate') . ' ' .  $this->app->getDef('text_copy_as_duplicate') . '<br />';
+        $content .= HTML::radioField('copy_as', 'move') . ' ' . $this->app->getDef('text_copy_as_move') . '<br />';
         $content .= '</div>';
       }
       $content .= '</div>';

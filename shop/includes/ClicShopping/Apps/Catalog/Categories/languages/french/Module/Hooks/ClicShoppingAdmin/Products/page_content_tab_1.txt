@@ -9,5 +9,7 @@ text_categories_image_delete = Supprimer l'image
 text_create = Créer
 
 text_select_category_action = Sélectionnez votre action si nécessaire
-text_copy_as_link = Lier à une catégorie
-text_copy_as_duplicate = Dupliquer dans une catégories
+text_copy_as_none = Aucune action
+text_copy_as_move = Déplacer dans une autre categorie (en sélectionner une)
+text_copy_as_link = Lier à une / des catégories
+text_copy_as_duplicate = Dupliquer dans une / des catégories

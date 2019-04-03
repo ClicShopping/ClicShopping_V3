@@ -23,6 +23,7 @@
   class Update implements \ClicShopping\OM\Modules\HooksInterface {
     protected $app;
     protected $productsAdmin;
+    protected $productsLink;
 
     public function __construct()   {
       if (!Registry::exists('Categories')) {
@@ -31,61 +32,85 @@
 
       $this->app = Registry::get('Categories');
 
+      $this->productsLink = HTML::sanitize($_POST['copy_as']);
+      $this->currentCategoryId = HTML::sanitize($_POST['cPath']);
+
       $this->productsAdmin = new ProductsAdmin();
     }
 
-    private function UpdateProductCategories($id = null) {
+    public function moveCategory($move_new_category, $id) {
+      $QCheck = $this->app->db->prepare('select count(*)
+                                                    from :table_products_to_categories
+                                                    where products_id = :products_id
+                                                    and categories_id not in ( :categories_id )
+                                                  ');
+      $QCheck->bindInt(':products_id',$id);
+      $QCheck->bindInt(':categories_id', $move_new_category);
+      $QCheck->execute();
+
+      if ($QCheck->rowCount() > 0) {
+        $Qupdate = $this->app->db->prepare('update :table_products_to_categories
+                                            set categories_id = :categories_id
+                                            where products_id = :products_id
+                                            and categories_id = :categories_id1
+                                          ');
+        $Qupdate->bindInt(':categories_id', $move_new_category);
+        $Qupdate->bindInt(':products_id', $id);
+        $Qupdate->bindInt(':categories_id1', $this->currentCategoryId);
+
+        $Qupdate->execute();
+      }
+    }
+
+    public function UpdateProductCategories($id = null) {
       $CLICSHOPPING_MessageStack =  Registry::get('MessageStack');
 
       $new_category = HTML::sanitize($_POST['move_to_category_id']);
-      $current_category = HTML::sanitize($_POST['cPath']);
-      $products_link = HTML::sanitize($_POST['copy_as']);
-
 
       if (isset($_GET['Update'])) {
+        if (empty($this->productsLink) || $this->productsLink == 'move') {
+          $new_category = HTML::sanitize($_POST['move_to_category_id']);
+          $move_new_category = $new_category[0];
+
+          $this->moveCategory($move_new_category, $id);
+        } elseif ($this->productsLink != 'none') {
+          if ($this->productsLink != 'move') {
 //link the category
-        if (is_array($new_category) && isset($new_category)) {
-          foreach ($new_category as $value_id) {
-           $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
-                                                                                      'categories_id' => (int)$value_id
-                                                                                     ]
-                                         );
+            if (is_array($new_category) && isset($new_category)) {
+              foreach ($new_category as $value_id) {
+                $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
+                                                                                          'categories_id' => (int)$value_id
+                                                                                         ]
+                                             );
 
-           if ($Qcheck->fetch()) {
-//move in other category
-             if ($new_category == $current_category) {
-              $Qupdate = $this->app->db->prepare('update :table_products_to_categories
-                                                  set categories_id = :categories_id
-                                                  where products_id = :products_id
-                                                ');
-              $Qupdate->bindInt(':products_id', (int)$id);
-              $Qupdate->bindInt(':categories_id', (int)$value_id);
-              $Qupdate->execute();
-             }
-           } else {
+                if ($Qcheck->fetch() === false) {
+
+
 //if the product does not exist inside the category
-              if ($value_id != $current_category) {
-                $count = $this->productsAdmin->getCountProductsToCategory($id, $value_id);
+                  if ($value_id != $this->currentCategoryId) {
+                    $count = $this->productsAdmin->getCountProductsToCategory($id, $value_id);
 
-                if ($count < 1) {
+                    if ($count < 1) {
 // just link the product another category
-                  if ($products_link == 'link') {
-                    if ($current_category != $value_id) {
-                      $sql_array = ['products_id' => (int)$id,
-                                    'categories_id' => (int)$value_id
-                                   ];
+                      if ($this->productsLink == 'link') {
+                        if ($this->currentCategoryId != $value_id) {
+                          $sql_array = ['products_id' => (int)$id,
+                                        'categories_id' => (int)$value_id
+                                       ];
 
-                      $this->app->db->save('products_to_categories', $sql_array);
-                    } else {
-                      $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'danger');
+                          $this->app->db->save('products_to_categories', $sql_array);
+                        } else {
+                          $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'danger');
+                        }
+                      }
                     }
+                  }
+
+                  if ($this->productsLink == 'duplicate') {
+                     $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
                   }
                 }
               }
-
-             if ($products_link == 'duplicate') {
-               $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
-             }
             }
           }
         }
@@ -103,8 +128,10 @@
         return false;
       }
 
-      $id =  HTML::sanitize($_GET['pID']);
+      if (isset($_GET['pID'])) {
+        $id =  HTML::sanitize($_GET['pID']);
 
-      $this->UpdateProductCategories($id);
+        $this->UpdateProductCategories($id);
+      }
     }
   }

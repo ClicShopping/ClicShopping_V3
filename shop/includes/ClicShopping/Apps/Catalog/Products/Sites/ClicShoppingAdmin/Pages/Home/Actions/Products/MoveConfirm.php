@@ -47,17 +47,16 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (!is_null($this->ID)) {
+        $QCheck = $this->app->db->prepare('select count(*)
+                                            from :table_products_to_categories
+                                            where products_id = :products_id
+                                            and categories_id not in ( :categories_id )
+                                          ');
+        $QCheck->bindInt(':products_id', $this->ID);
+        $QCheck->bindInt(':categories_id',$this->newParentId);
+        $QCheck->execute();
 
-        $QduplicateCheck = $this->app->db->prepare('select count(*)
-                                                    from :table_products_to_categories
-                                                    where products_id = :products_id
-                                                    and categories_id not in ( :categories_id )
-                                                  ');
-        $QduplicateCheck->bindInt(':products_id', $this->ID);
-        $QduplicateCheck->bindInt(':categories_id',$this->newParentId);
-        $QduplicateCheck->execute();
-
-        if ($QduplicateCheck->rowCount() > 0) {
+        if ($QCheck->rowCount() > 0) {
           $Qupdate = $this->app->db->prepare('update :table_products_to_categories
                                               set categories_id = :categories_id
                                               where products_id = :products_id
