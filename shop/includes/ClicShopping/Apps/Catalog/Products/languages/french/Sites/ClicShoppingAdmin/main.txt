@@ -154,7 +154,6 @@ text_products_categories_copy = Produit à cloner ou copier
 clone_products_from = Produit à cloner
 clone_products_to = Destination du clonage
 
-
 text_edit_sort_order = Ordre de tri :
 
 text_info_copy_to_intro = Veuillez choisir une nouvelle catégorie dans laquelle vous voulez copier ce produit
@@ -166,8 +165,8 @@ text_info_heading_copy_to = Copier vers
 text_info_heading_archive = Archivage du produit
 text_info_archive_intro = Souhaitez vous mettre ce produit en archive ? <br /><br />Ce produit pourra être réactivé à partir de la section archive. <br /><br /><strong>Note : </strong>L'archivage permet de faire disparaitre de votre catalogue le produit mais il ne le supprime pas. Les clients auront toujours accès au produit via les moteurs de recherche mais ils ne pourront pas le commander. Ce système est utile pour le référencement de votre site.
 
-text_delete_product_intro = Etes vous sur de vouloir supprimer définitivement ce produit ?
-text_delete_product_info = Veuillez décocher les produits que vous souhaitez supprimer (si c'est un produit lié) ?
+text_delete_products_intro = Etes vous sur de vouloir supprimer définitivement ce produit ?
+text_delete_products_info = Veuillez cocher les produits que vous souhaitez supprimer (si c'est un produit lié) ?
 
 text_delete_warning_childs = <strong>ATTENTION :</strong> Il y a {{delete_child}} (sous-)catégories liées &aacute; cette catégorie !
 text_delete_warning_products = <strong>ATTENTION :</strong> Il y a  {{delete_child}}  produits liées &aacute; cette catégorie !

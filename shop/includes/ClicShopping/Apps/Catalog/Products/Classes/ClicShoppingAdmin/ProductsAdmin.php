@@ -952,14 +952,32 @@
     }
 
 /**
- * cloneProductsInOtherCategory
- *
- * @return
- * @access private
- *
+ * getCountProductsToCategory count the products into category
+ * @param $id - products id of the products
+ * @param $categories_id - category id
+ * @access public
  */
-    private function cloneProductsInOtherCategory($id) {
-      $multi_clone_categories_id_to = HTML::sanitize($_POST['clone_categories_id_to']);
+    public function getCountProductsToCategory($id, $categories_id) {
+      $Qcheck = $this->db->prepare('select count(*) as total
+                                           from :table_products_to_categories
+                                           where products_id = :products_id
+                                           and categories_id = :categories_id
+                                          ');
+      $Qcheck->bindInt(':products_id', $id);
+      $Qcheck->bindInt(':categories_id', $categories_id);
+      $Qcheck->execute();
+
+      return $Qcheck->valueInt('total');
+    }
+
+/**
+ * cloneProductsInOtherCategory
+ * @param $id - products id of the products
+ * @param $categories_id - category id
+ * @access public
+ */
+    public function cloneProductsInOtherCategory($id, $categories_id) {
+      $multi_clone_categories_id_to[] = $categories_id;
 
       $Qproducts = $this->db->prepare('select *
                                       from :table_products
@@ -970,40 +988,36 @@
       $Qproducts->execute();
 
       for ($i=0; $i < count($multi_clone_categories_id_to); $i++) {
-
-// clonage dans la categorie
         $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
-        // copy du produit
-        $this->db->save('products', [
-                                    'products_quantity' => (int)$Qproducts->valueInt('products_quantity'),
-                                    'products_model' => $Qproducts->value('products_model'),
-                                    'products_ean' => $Qproducts->value('products_ean'),
-                                    'products_sku' => $Qproducts->value('products_sku'),
-                                    'products_image' => $Qproducts->value('products_image'),
-                                    'products_image_zoom' => $Qproducts->value('products_image_zoom'),
-                                    'products_price' => (float)$Qproducts->value('products_price'),
-                                    'products_date_added' => 'now()',
-                                    'products_date_available' => (empty($Qproducts->value('products_date_available')) ? "null" : "'" . $Qproducts->value('products_date_available') . "'"),
-                                    'products_weight' => (float)$Qproducts->value('products_weight'),
-                                    'products_price_kilo' => (float)$Qproducts->value('products_price_kilo'),
-                                    'products_status' => 0,
-                                    'products_tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
-                                    'products_view' => (int)$Qproducts->valueInt('products_view'),
-                                    'orders_view' => (int)$Qproducts->valueInt('orders_view'),
-                                    'products_min_qty_order' => (int)$Qproducts->valueInt('products_min_qty_order'),
-                                    'admin_user_name' =>  AdministratorAdmin::getUserAdmin(),
-                                    'products_only_online' => (int)$Qproducts->valueInt('products_only_online'),
-                                    'products_image_medium' => $Qproducts->value('products_image_medium'),
-                                    'products_cost' => (float)$Qproducts->value('products_cost'),
-                                    'products_handling' => (int)$Qproducts->value('products_handling'),
-                                    'products_packaging' => (int)$Qproducts->valueInt('products_packaging'),
-                                    'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
-                                    'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
-                                    'products_only_shop' => (int)$Qproducts->valueInt('products_only_shop'),
-                                    'products_type' => HTML::sanitize($_POST['products_type'])
-                                  ]
-                      );
+        $sql_array = ['products_quantity' => (int)$Qproducts->valueInt('products_quantity'),
+                      'products_model' => $Qproducts->value('products_model'),
+                      'products_ean' => $Qproducts->value('products_ean'),
+                      'products_sku' => $Qproducts->value('products_sku'),
+                      'products_image' => $Qproducts->value('products_image'),
+                      'products_image_zoom' => $Qproducts->value('products_image_zoom'),
+                      'products_price' => (float)$Qproducts->value('products_price'),
+                      'products_date_added' => 'now()',
+                      'products_date_available' => (empty($Qproducts->value('products_date_available')) ? "null" : "'" . $Qproducts->value('products_date_available') . "'"),
+                      'products_weight' => (float)$Qproducts->value('products_weight'),
+                      'products_price_kilo' => (float)$Qproducts->value('products_price_kilo'),
+                      'products_status' => $Qproducts->value('products_status'),
+                      'products_tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
+                      'products_view' => (int)$Qproducts->valueInt('products_view'),
+                      'orders_view' => (int)$Qproducts->valueInt('orders_view'),
+                      'products_min_qty_order' => (int)$Qproducts->valueInt('products_min_qty_order'),
+                      'admin_user_name' =>  AdministratorAdmin::getUserAdmin(),
+                      'products_only_online' => (int)$Qproducts->valueInt('products_only_online'),
+                      'products_image_medium' => $Qproducts->value('products_image_medium'),
+                      'products_cost' => (float)$Qproducts->value('products_cost'),
+                      'products_handling' => (int)$Qproducts->value('products_handling'),
+                      'products_packaging' => (int)$Qproducts->valueInt('products_packaging'),
+                      'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
+                      'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
+                     ];
+
+// copy du produit
+        $this->db->save('products', $sql_array);
         $dup_products_id = $this->db->lastInsertId();
 
 // ---------------------
@@ -1018,14 +1032,13 @@
         $QproductImage->execute();
 
         while ($QproductImage->fetch() ) {
+          $sql_array = ['products_id' => (int)$dup_products_id,
+                        'image' => $QproductImage->value('image'),
+                        'htmlcontent' => $QproductImage->value('htmlcontent'),
+                        'sort_order' => $QproductImage->valueInt('sort_order')
+                        ];
 
-          $this->db->save('products_images', [
-                                                'products_id' =>  (int)$dup_products_id,
-                                                'image' => $QproductImage->value('image'),
-                                                'htmlcontent' => $QproductImage('htmlcontent'),
-                                                'sort_order' => (int)$QproductImage->valueInt('sort_order')
-                                              ]
-                          );
+          $this->db->save('products_images', $sql_array);
         }
 
 // ---------------------
@@ -1050,37 +1063,38 @@
 
         while ($Qdescription->fetch() ) {
 
-          $this->db->save('products_description', [
-                                                    'products_id' => (int)$dup_products_id,
-                                                    'language_id' =>  (int)$Qdescription->valueInt('language_id'),
-                                                    'products_name' => $Qdescription->value('products_name'),
-                                                    'products_description' => $Qdescription->value('products_description'),
-                                                    'products_head_title_tag' => $Qdescription->value('products_head_title_tag'),
-                                                    'products_head_desc_tag' => $Qdescription->value('products_head_desc_tag'),
-                                                    'products_head_keywords_tag' => $Qdescription->value('products_head_keywords_tag'),
-                                                    'products_url' => $Qdescription->value('products_url'),
-                                                    'products_viewed' => 0,
-                                                    'products_head_tag' => $Qdescription->value('products_head_tag'),
-                                                    'products_shipping_delay' => $Qdescription->value('products_shipping_delay'),
-                                                    'products_description_summary' => $Qdescription->value('products_description_summary')
-                                                  ]
-                        );
+          $sql_array = ['products_id' => (int)$dup_products_id,
+                        'language_id' =>  (int)$Qdescription->valueInt('language_id'),
+                        'products_name' => $Qdescription->value('products_name'),
+                        'products_description' => $Qdescription->value('products_description'),
+                        'products_head_title_tag' => $Qdescription->value('products_head_title_tag'),
+                        'products_head_desc_tag' => $Qdescription->value('products_head_desc_tag'),
+                        'products_head_keywords_tag' => $Qdescription->value('products_head_keywords_tag'),
+                        'products_url' => $Qdescription->value('products_url'),
+                        'products_viewed' => 0,
+                        'products_head_tag' => $Qdescription->value('products_head_tag'),
+                        'products_shipping_delay' => $Qdescription->value('products_shipping_delay'),
+                        'products_description_summary' => $Qdescription->value('products_description_summary')
+                      ];
+
+          $this->db->save('products_description', $sql_array);
         }
 
 // ---------------------
 // insertion table
 // ----------------------
-        $this->db->save('products_to_categories', [
-                                                    'products_id' => (int)$dup_products_id,
-                                                    'categories_id' =>  (int)$clone_categories_id_to
-                                                  ]
-                       );
+        $sql_array = ['products_id' => (int)$dup_products_id,
+                      'categories_id' =>  (int)$clone_categories_id_to
+                      ];
+
+        $this->db->save('products_to_categories', $sql_array);
 
         $clone_products_id = $dup_products_id;
         $_POST['clone_products_id'] = $clone_products_id; // for hooks
-  // ---------------------
-  // groupe client clonage
-  // ----------------------
+
+// ---------------------
+// groupe client clonage
+// ----------------------
         $QcustomersGroup = $this->db->prepare('select distinct customers_group_id,
                                                                customers_group_name,
                                                                customers_group_discount
@@ -1188,21 +1202,19 @@
             }
 // Prix + Afficher Prix public + Afficher Produit + Autoriser Commande
           } elseif ($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] != '') {
+            $sql_array = ['products_id' => (int)$clone_products_id,
+                          'products_price' => (float)$_POST['products_price'],
+                          'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
+                          'customers_group_price' => (float)$_POST['price' . $QcustomersGroup->valueInt('customers_group_id')],
+                          'price_group_view' => (int)$_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+                          'products_group_view' => (int)$_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+                          'orders_group_view' => (int)$_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+                          'products_quantity_unit_id_group' => (int)$_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')],
+                          'products_model_group' =>  $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')],
+                          'products_quantity_fixed_group' => (int)$_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')],
+                          ];
 
-            $this->db->save('products_groups', [
-                                                'products_id' => (int)$clone_products_id,
-                                                'products_price' => (float)$_POST['products_price'],
-                                                'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
-                                                'customers_group_price' => (float)$_POST['price' . $QcustomersGroup->valueInt('customers_group_id')],
-                                                'price_group_view' => (int)$_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-                                                'products_group_view' => (int)$_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-                                                'orders_group_view' => (int)$_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-                                                'products_quantity_unit_id_group' => (int)$_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')],
-                                                'products_model_group' =>  $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')],
-                                                'products_quantity_fixed_group' => (int)$_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')],
-                                              ]
-                          );
-
+            $this->db->save('products_groups', $sql_array);
           }
         } // end while
 
@@ -1309,18 +1321,10 @@
  * @access public
  */
 
-
     public function save($id = null, $action) {
-
-//---------------------------------------------------------------------------------------------
-//  Prepare
-//---------------------------------------------------------------------------------------------
-
       $products_date_available = HTML::sanitize($_POST['products_date_available']);
 
       $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
-
-      $current_category_id = HTML::sanitize($_POST['move_to_category_id']);
 
 // Definir la position 0 ou 1 pour --> products_view : Affichage Produit Grand public - orders_view : Autorisation Commande
       if (HTML::sanitize($_POST['products_view']) == 1) {
@@ -1432,19 +1436,6 @@
         $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
         $this->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
-
-        $Qupdate = $this->db->prepare('update :table_products_to_categories
-                                        set categories_id = :categories_id
-                                        where products_id = :products_id
-                                      ');
-        $Qupdate->bindInt(':products_id', (int)$id);
-        $Qupdate->bindInt(':categories_id',(int)$current_category_id);
-        $Qupdate->execute();
-
-        if (isset($_POST['clone_categories_id_to'])) {
-          $this->cloneProductsInOtherCategory($id);
-        }
-
       } else {
 //insert
         $insert_sql_data = ['products_date_added' => 'now()'];
@@ -1454,11 +1445,6 @@
         $this->db->save('products', $sql_data_array);
 
         $id = $this->db->lastInsertId();
-
-        $this->db->save('products_to_categories', [ 'products_id' => (int)$id,
-                                                    'categories_id' => (int)$current_category_id
-                                                  ]
-                       );
 
 //for hooks
         $_POST['insertId'] = $id; // take the new id of the product

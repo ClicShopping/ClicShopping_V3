@@ -29,12 +29,14 @@
 
     public function execute()  {
       if (isset($_GET['Insert'])) {
-        $Qproducts = $this->app->db->prepare('select products_id 
-                                              from :table_products                                            
+        $Qproducts = $this->app->db->prepare('select products_id
+                                              from :table_products
                                               order by products_id desc
-                                               limit 1 
+                                               limit 1
                                               ');
         $Qproducts->execute();
+
+        $_POST['cPath'] = $this->currentCategoryId;
 
         $id = $Qproducts->valueInt('products_id');
 

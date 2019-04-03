@@ -168,7 +168,7 @@ text_info_heading_archive = Archiving Product
 text_info_archive_intro = Do you want to put this product in archive? <br /> <br /> This product can be reactivated in the archive section. <br /> <br /> <strong> Note: </strong> Archiving allows to remove your product catalog, but it does not deleted. Customers will have access to the product via search engines but they can not order it. This system is useful for referencing your site.
 
 text_delete_products_intro = Are you sure you want to permanently delete this product?
-text_delete_products_info = Please unselect the product that you want delete (if it's a product link)?
+text_delete_products_info = Please select the product that you want delete (if it's a product link)?
 
 text_delete_warning_childs = <strong>WARNING:</strong> There are {{delete_child}} (child-)categories still linked to this category!
 text_delete_warning_products = <strong>WARNING:</strong> There are {{delete_warning}} products still linked to this category!

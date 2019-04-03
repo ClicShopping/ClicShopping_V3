@@ -67,7 +67,7 @@
 
 // language
       $CLICSHOPPING_Language = new Language();
-      $CLICSHOPPING_Language->setUseCache(true);
+//      $CLICSHOPPING_Language->setUseCache(true); //@todo
 
       Registry::set('Language', $CLICSHOPPING_Language);
 

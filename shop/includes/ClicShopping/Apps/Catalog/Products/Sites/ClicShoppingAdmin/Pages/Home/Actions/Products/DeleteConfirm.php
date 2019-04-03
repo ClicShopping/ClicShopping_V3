@@ -39,11 +39,11 @@
 
         for ($i=0, $n = $products_categories_id; $i<$n; $i++) {
 // delete product of categorie
-          $this->app->db->delete('products_to_categories', [
-                                                            'products_id' => (int)$this->ID,
-                                                            'categories_id' => (int)$this->productCategoriesId[$i]
-                                                            ]
-                                );
+          $sql_array = ['products_id' => (int)$this->ID,
+                        'categories_id' => (int)$this->productCategoriesId[$i]
+                       ];
+
+          $this->app->db->delete('products_to_categories',$sql_array);
 
           $this->app->db->delete('products_notifications', ['products_id' => (int)$this->ID] );
         } // end for

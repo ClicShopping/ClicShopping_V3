@@ -9,7 +9,6 @@
  *
  */
 
-
   namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions\Products;
 
   use ClicShopping\OM\HTML;
@@ -29,7 +28,14 @@
         $this->ID = HTML::sanitize($_POST['pID']); // update
       }
 
-      $this->currentCategoryId =  HTML::sanitize($_POST['cPath']);
+      $current_category = HTML::sanitize($_POST['cPath']);
+      $move_to_category_id = HTML::sanitize($_POST['move_to_category_id'][0]);
+
+      if ($current_category != $move_to_category_id) {
+        $this->currentCategoryId = $move_to_category_id;
+      } else {
+        $this->currentCategoryId = $current_category;
+      }
     }
 
     public function execute() {
