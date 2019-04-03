@@ -16,7 +16,7 @@ box_entry_customer_basket = Recover cart sales number
 box_entry_contact_demand_no_archive = Contact requests to analyse
 box_entry_products_no_purchase = Products not sold / products sold
 
-text_number_products_stock_warning = Stock warning
+text_number_products_stock_warning = Products stock warning
 text_number_products_out_of_stock = Products Out of Stock
 text_number_products_expected = Products expected
 text_number_members_b2b = Customer to approve
