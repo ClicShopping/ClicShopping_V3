@@ -30,7 +30,7 @@
       $this->app = Registry::get('Products');
 
       $this->ID = HTML::sanitize($_POST['products_id']);
-      $this->categoriesId = $_POST['categories_id'];
+      $this->categoriesId = HTML::sanitize($_POST['categories_id']);
       $this->currentCategoryId = HTML::sanitize($_POST['current_category_id']);
       $this->copyAs = $_POST['copy_as'];
 
