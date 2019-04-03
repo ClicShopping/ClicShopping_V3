@@ -54,15 +54,14 @@
           <tbody>
 <?php
   $Qcheck = $CLICSHOPPING_Db->query("show columns from :table_products like 'products_warehouse_time_replenishment'");
-  $check = $Qcheck->fetch();
 
-  if ($check === false) {
+  if ($Qcheck->fetch()) {
     $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
-                                                                                 p.products_quantity,
-                                                                                  p.products_model,
-                                                                                  pd.products_name,
-                                                                                  p.products_image,
-                                                                                  p.products_packaging
+                                                                                        p.products_quantity,
+                                                                                        p.products_model,
+                                                                                        pd.products_name,
+                                                                                        p.products_image,
+                                                                                        p.products_packaging
                                                            from :table_products p,
                                                                 :table_products_description pd
                                                            where p.products_id = pd.products_id
@@ -74,26 +73,26 @@
                                                                 :page_set_max_results
                                                           ');
   } else {
-    $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
-                                                                                 p.products_quantity,
-                                                                                  p.products_model,
-                                                                                  pd.products_name,
-                                                                                  p.products_image,
-                                                                                  p.products_warehouse_time_replenishment,
-                                                                                  p.products_warehouse,
-                                                                                  p.products_warehouse_row,
-                                                                                  p.products_warehouse_level_location,
-                                                                                  p.products_packaging
-                                                   from :table_products p,
-                                                        :table_products_description pd
-                                                   where p.products_id = pd.products_id
-                                                   and pd.language_id = :language_id
-                                                   and p.products_quantity < :products_quantity
-                                                   group by pd.products_id
-                                                   order by pd.products_name ASC
-                                                   limit :page_set_offset,
-                                                        :page_set_max_results
-                                                  ');
+    $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select SQL_CALC_FOUND_ROWS  p.products_id,
+                                                                                      p.products_quantity,
+                                                                                      p.products_model,
+                                                                                      pd.products_name,
+                                                                                      p.products_image,
+                                                                                      p.products_warehouse_time_replenishment,
+                                                                                      p.products_warehouse,
+                                                                                      p.products_warehouse_row,
+                                                                                      p.products_warehouse_level_location,
+                                                                                      p.products_packaging
+                                                            from :table_products p,
+                                                            :table_products_description pd
+                                                            where p.products_id = pd.products_id
+                                                            and pd.language_id = :language_id
+                                                            and p.products_quantity < :products_quantity
+                                                            group by pd.products_id
+                                                            order by pd.products_name ASC
+                                                            limit :page_set_offset,
+                                                            :page_set_max_results
+                                                            ');
   }
 
   $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());

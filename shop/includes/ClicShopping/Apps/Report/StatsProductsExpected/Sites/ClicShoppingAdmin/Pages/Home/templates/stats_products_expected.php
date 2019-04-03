@@ -62,7 +62,7 @@
                                                                 :table_products p
                                                            where p.products_id = pd.products_id
                                                            and (p.products_date_available = :products_date_available
-                                                               or p.products_date_available <>:products_date_available1)
+                                                               or p.products_date_available <> :products_date_available1)
                                                            and pd.language_id = :language_id
                                                            order by p.products_date_available DESC
                                                            limit :page_set_offset, :page_set_max_results
