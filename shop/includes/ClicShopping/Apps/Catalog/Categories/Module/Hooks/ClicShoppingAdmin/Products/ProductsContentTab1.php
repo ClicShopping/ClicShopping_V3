@@ -46,13 +46,12 @@
       $content .= '<div class="form-group row">';
       $content .= '<div class="col-md-2">' .  $this->app->getDef('text_categories_name') . '</div>';
 
-      if ($current_category_id == 0 || empty($_GET['cPath'])) {
-        $categories_ajax = CLICSHOPPING::link('ajax/products_categories.php');
+      if (isset($_GET['Insert'])) {
 
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' .  $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
-        $content .= '<select name="move_to_category_id[]" id="category_id"><option value="0">' .  $this->app->getDef('text_select_categorie') . '</option>';
+        $content .= HTML::selectMenu('move_to_category_id[]', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id);
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
         $content .= '<a href="' .  $this->app->link('CategoriesPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' .  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';

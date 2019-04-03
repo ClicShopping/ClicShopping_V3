@@ -39,6 +39,8 @@
 
   $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
+  $cPath = HTML::sanitize($_POST['cPath']);
+
   if ($_GET['error'] == 'fileNotSupported') {
 ?>
     <div class="alert alert-warning" role="alert"><?php echo $CLICSHOPPING_Products->getDef('error_file_not_supported'); ?></div>
@@ -83,7 +85,7 @@
   }
 
   if (!isset($_GET['search'])) {
-    echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, $CLICSHOPPING_Products->link('Edit&cPath=' . $cPath), 'success') . '&nbsp;';
+    echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, $CLICSHOPPING_Products->link('Edit&Insert&cPath=' . $cPath), 'success') . '&nbsp;';
   }
 
   // select all the product to delete
