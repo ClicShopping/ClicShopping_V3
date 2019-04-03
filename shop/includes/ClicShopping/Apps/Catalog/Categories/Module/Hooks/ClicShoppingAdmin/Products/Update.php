@@ -80,12 +80,12 @@
                       $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'danger');
                     }
                   }
-
-                  if ($products_link == 'duplicate') {
-                    $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
-                  }
                 }
               }
+
+             if ($products_link == 'duplicate') {
+               $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
+             }
             }
           }
         }

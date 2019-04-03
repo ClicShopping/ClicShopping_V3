@@ -1,1 +1,1 @@
-text_products = Afiliate products
+text_products = Affiliate products

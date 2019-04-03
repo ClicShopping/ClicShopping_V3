@@ -1,5 +1,5 @@
-text_categories_name =
-text_select_categorie = -- Sélectionner votre catégorie --
+text_categories_name = Categories
+text_select_categorie = -- Cliquez pour activer --
 text_top = --- Haut ---
 text_categories = Catégories
 
@@ -7,3 +7,7 @@ text_description_categories = Description de la Catégorie
 text_categories_preview_title = Prévisualisation de la catégorie
 text_categories_image_delete = Supprimer l'image
 text_create = Créer
+
+text_select_category_action = Sélectionnez votre action
+text_copy_as_link = Lier à une catégorie
+text_copy_as_duplicate = Dupliquer dans une catégories

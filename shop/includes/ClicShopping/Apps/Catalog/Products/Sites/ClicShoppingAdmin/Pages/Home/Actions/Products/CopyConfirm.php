@@ -30,31 +30,49 @@
       $this->app = Registry::get('Products');
 
       $this->ID = HTML::sanitize($_POST['products_id']);
-      $this->categoriesId = HTML::sanitize($_POST['categories_id']);
+      $this->categoriesId = $_POST['categories_id'];
       $this->currentCategoryId = HTML::sanitize($_POST['current_category_id']);
       $this->copyAs = $_POST['copy_as'];
 
       $this->productsAdmin = new ProductsAdmin();
     }
 
-
     private function Link() {
       if ($this->categoriesId != $this->currentCategoryId) {
-        $count = $this->productsAdmin->getCountProductsToCategory($this->ID, $this->categoriesId);
+        $new_category = $this->categoriesId;
 
-        if ($count < 1) {
-          $sql_array = ['products_id' => $this->ID,
-                        'categories_id' => $this->categoriesId
-                       ];
+        if (is_array($new_category) && isset($new_category)) {
+          foreach ($new_category as $value_id) {
+            $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$this->ID,
+                                                                                      'categories_id' => (int)$value_id
+                                                                                    ]
+                                        );
+            if ($Qcheck->fetch() === false) {
+              if ($value_id != $this->currentCategoryId) {
+                $count = $this->productsAdmin->getCountProductsToCategory($this->ID, $value_id);
+                if ($count < 1) {
+                  $sql_array = ['products_id' => $this->ID,
+                                'categories_id' => $value_id
+                               ];
 
-          $this->app->db->save('products_to_categories', $sql_array);
+                  $this->app->db->save('products_to_categories', $sql_array);
+                }
+              }
+            }
+          }
         }
       }
     }
 
     private function productsDuplicate() {
-      if ($this->copyAs == 'duplicate') {
-         $this->productsAdmin->cloneProductsInOtherCategory($this->ID, $this->categoriesId);
+      $new_category = $this->categoriesId;
+
+      if (is_array($new_category) && isset($new_category)) {
+        foreach ($new_category as $value_id) {
+          if ($this->copyAs == 'duplicate') {
+            $this->productsAdmin->cloneProductsInOtherCategory($this->ID, $value_id);
+          }
+        }
       }
     }
 
@@ -69,7 +87,6 @@
         }
       }
     }
-
 
     public function execute()  {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
