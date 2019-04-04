@@ -138,7 +138,7 @@
 <!-- ------------------------------------------------------------ //-->
         <div class="tab-pane" id="tab3">
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('title_customer_information'); ?></div>
-          <div class="adminformTitle"><?php echo $CLICSHOPPING_Hooks->output('Dashboard', 'ActionInformation'); ?></div>
+          <div class="backgroundBlank"><?php echo $CLICSHOPPING_Hooks->output('Dashboard', 'ActionInformation'); ?></div>
         </div>
       </div>
        <?php echo $CLICSHOPPING_Hooks->output('Index', 'PageTabTwitter', null, 'display'); ?>
