@@ -55,7 +55,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $index = HTTP::getShopUrlDomain() . 'index.php';
-      $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['PHP_SELF'];
+      $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['REQUEST_URI'];
 
       if ($index === $url) {
         $Qsubmit = $this->app->db->prepare('select submit_id,

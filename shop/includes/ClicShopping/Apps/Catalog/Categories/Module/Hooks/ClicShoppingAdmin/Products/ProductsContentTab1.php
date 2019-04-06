@@ -80,8 +80,9 @@
       $content .= '</div>';
       $content .= '<!-- End Categories -->';
 
+      $categories_ajax = CLICSHOPPING::link('ajax/products_categories.php');
 
-        $output = <<<EOD
+      $output = <<<EOD
 <!-- ######################## -->
 <!--  Start Categories Hooks      -->
 <!-- ######################## -->

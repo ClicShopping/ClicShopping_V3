@@ -1230,7 +1230,6 @@ updateGross();
         </div>
         <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab9', null, 'display'); ?>
       </div>
-      <div class="separator"></div>
 <?php
   //***********************************
   // extension
