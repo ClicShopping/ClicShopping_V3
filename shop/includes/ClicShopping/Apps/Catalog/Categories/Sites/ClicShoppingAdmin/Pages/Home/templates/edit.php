@@ -88,6 +88,8 @@
         </div>
       </div>
     </div>
+  </div>
+
     <div class="separator"></div>
 
     <div id="categoriesTabs" style="overflow: auto;">
@@ -362,14 +364,12 @@
             </div>
           </div>
 <?php
-  //***********************************
-  // extension
-  //***********************************
-  echo $CLICSHOPPING_Hooks->output('Categories', 'PageTabContent', null, 'display');
+//***********************************
+// extension
+//***********************************
+        echo $CLICSHOPPING_Hooks->output('Categories', 'PageTabContent', null, 'display');
 ?>
         </div>
       </div>
-    </div>
     </form>
   </div>
-

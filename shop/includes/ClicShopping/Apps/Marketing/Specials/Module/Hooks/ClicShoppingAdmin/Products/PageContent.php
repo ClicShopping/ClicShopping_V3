@@ -62,7 +62,6 @@ $('#tab9Content').prepend(
 <!-- ######################## -->
 <!--  End SpecialsApp      -->
 <!-- ######################## -->
-
 EOD;
         return $output;
     }

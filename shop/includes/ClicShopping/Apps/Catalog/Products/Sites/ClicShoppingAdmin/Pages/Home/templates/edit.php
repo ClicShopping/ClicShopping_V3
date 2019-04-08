@@ -146,7 +146,7 @@
     </div>
     <div class="separator"></div>
     <div id="productsTabs" style="overflow: auto;">
-      <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist"  id="myTab">
+      <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
         <li class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Products->getDef('tab_general') . '</a>'; ?></li>
         <li class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_stock'); ?></a></li>
         <li class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Products->getDef('tab_price'); ?></a></li>
@@ -158,7 +158,6 @@
       <div class="tabsClicShopping">
         <div class="tab-content">
 <?php
-
 // packaging
   $products_packaging_array = array(array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
                                     array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),

@@ -92,13 +92,12 @@
         $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
 
         $output =
-            <<<EOD
+<<<EOD
 {$title}
 {$description}
 {$keywords}
 {$new_keywords}
 EOD;
-
       }
 
       return $output;

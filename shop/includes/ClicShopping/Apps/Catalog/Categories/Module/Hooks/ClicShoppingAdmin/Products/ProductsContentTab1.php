@@ -30,7 +30,7 @@
     }
 
 
-    public function display()  {
+    public function display() {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
@@ -47,7 +47,6 @@
       $content .= '<div class="col-md-2">' .  $this->app->getDef('text_categories_name') . '</div>';
 
       if (isset($_GET['Insert'])) {
-
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' .  $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
@@ -77,6 +76,7 @@
         $content .= HTML::radioField('copy_as', 'move') . ' ' . $this->app->getDef('text_copy_as_move') . '<br />';
         $content .= '</div>';
       }
+
       $content .= '</div>';
       $content .= '<!-- End Categories -->';
 

@@ -101,6 +101,8 @@ text_submit_language_reviews_title = Titre des commentaires
 text_submit_language_reviews_keywords = Mots clefs des commentaires
 text_submit_language_reviews_description = Description des commentaires
 
+text_products_page_seo = SEO
+
 title_help_submit = Notes sur la gestion des métadonnées
 help_submit = <li>Le système gère automatiquement la gestion des métadonnées.<br />
 <blockquote>il inscrit automatiquement les éléments dans l'ordre suivant si les champs ne sont pas renseignées:<br />

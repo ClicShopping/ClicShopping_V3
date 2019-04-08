@@ -698,7 +698,7 @@
 //***********************************
 // extension
 //***********************************
-    echo $CLICSHOPPING_Hooks->output('PageManager', 'Page', null, 'display');
+    echo $CLICSHOPPING_Hooks->output('PageManager', 'PageTab', null, 'display');
 ?>
       </div>
     </div>
