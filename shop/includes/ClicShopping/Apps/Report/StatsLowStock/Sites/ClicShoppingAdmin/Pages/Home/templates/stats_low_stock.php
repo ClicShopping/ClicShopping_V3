@@ -55,7 +55,7 @@
 <?php
   $Qcheck = $CLICSHOPPING_Db->query("show columns from :table_products like 'products_warehouse_time_replenishment'");
 
-  if ($Qcheck->fetch()) {
+  if ($Qcheck->fetch() === false) {
     $Qproducts = $CLICSHOPPING_StatsLowStock->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
                                                                                         p.products_quantity,
                                                                                         p.products_model,
