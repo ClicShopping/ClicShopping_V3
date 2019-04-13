@@ -87,7 +87,7 @@
                                                     and pd.language_id = :language_id
                                                   ');
           $QproductInfo->bindInt(':products_id', $products_id);
-          $QproductInfo->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
+          $QproductInfo->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $QproductInfo->execute();
 
           $QcategoryInfo = $this->app->db->prepare('select cd.categories_name

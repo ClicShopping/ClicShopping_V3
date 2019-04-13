@@ -194,7 +194,7 @@
 
     public function getProductsManufacturer($products_id, $tag = ' ') {
       if (!empty($this->productsCommon->getProductsManufacturer($products_id))) {
-        $products_manufacturers =  CLICSHOPPING::getDef('text_manufacturer')  . $tag . $this->productsCommon->getProductsManufacturer();
+        $products_manufacturers =  CLICSHOPPING::getDef('text_manufacturer')  . $tag . $this->productsCommon->getProductsManufacturer($products_id);
 
         return $products_manufacturers;
       }

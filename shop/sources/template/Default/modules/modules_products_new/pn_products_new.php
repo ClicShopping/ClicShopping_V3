@@ -43,7 +43,7 @@
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
-     if (isset($_GET['Products']) && isset($_GET['ProductsNew']) ) {
+      if (isset($_GET['Products']) && isset($_GET['ProductsNew'])) {
         if (MODULE_PRODUCTS_NEW_MAX_DISPLAY != 0 ) {
 
           $products_template = MODULE_PRODUCTS_NEW_TEMPLATE;
