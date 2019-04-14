@@ -249,9 +249,10 @@
             </div>
           </div>
         </div>
+
         <div class="row" id="tab1ContentRow6"></div>
 
-        <div class="row" id="tab1ContentRow10">
+        <div class="row" id="tab1ContentRow8">
           <div class="col-md-5">
             <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?></label>
@@ -273,23 +274,25 @@
             </div>
           </div>
         </div>
-
-        <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_url'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_url') . ' <small>' . $CLICSHOPPING_Products->getDef('text_products_url_without_http') . '</small>'; ?></label>
-<?php
-  for ($i=0, $n=count($languages); $i<$n; $i++) {
-?>
-        <div class="form-group row">
-          <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-          <div class="col-md-5"><?php echo HTML::inputField('products_url[' . $languages[$i]['id'] . ']', (isset($products_url[$languages[$i]['id']]) ? $products_url[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsUrl($pInfo->products_id, $languages[$i]['id'], 'id="products_url[' . $languages[$i]['id'] . ']"'))); ?></div>
-        </div>
-<?php
-  }
-?>
-      </div>
+     </div>
       <div class="separator"></div>
       <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Products->getDef('text_products_other_information'); ?></div>
       <div class="adminformTitle">
-        <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tab1ContentRow11">
+        <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tab1ContentRow10">
+          <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_url'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_url') . ' <small>' . $CLICSHOPPING_Products->getDef('text_products_url_without_http') . '</small>'; ?></label>
+<?php
+  for ($i=0, $n=count($languages); $i<$n; $i++) {
+?>
+            <div class="form-group row">
+              <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+              <div class="col-md-5"><?php echo HTML::inputField('products_url[' . $languages[$i]['id'] . ']', (isset($products_url[$languages[$i]['id']]) ? $products_url[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsUrl($pInfo->products_id, $languages[$i]['id'], 'id="products_url[' . $languages[$i]['id'] . ']"'))); ?></div>
+            </div>
+<?php
+  }
+?>
+        </div>
+
+        <div class="col-md-12" style="padding-top:10px; padding-bottom:10px;" id="tab1ContentRow12">
           <span class="col-sm-4"><?php echo $CLICSHOPPING_Products->getDef('text_products_shipping_delay'); ?></span>
           <span>
             <a href="<?php echo $CLICSHOPPING_Products->link('ConfigurationPopUpFields&cKey=DISPLAY_SHIPPING_DELAY'); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('text_create')); ?></a>
@@ -312,7 +315,7 @@
 <?php
   }
 ?>
-        <div class="row" id="tab1ContentRow12">
+        <div class="row" id="tab1ContentRow13">
           <div class="col-md-5">
             <div class="form-group row">
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_sort_order'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_sort_order'); ?></label>

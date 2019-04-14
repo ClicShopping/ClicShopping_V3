@@ -1433,6 +1433,10 @@ INSERT INTO configuration VALUES(1468, 'Souhaitez vous activer ce module ?', 'MO
 INSERT INTO configuration VALUES(1469, 'Veuillez indiquer la largeur du contenu', 'MODULE_HEADER_NOSCRIPT_CONTENT_WIDTH', '12', 'Veuillez indiquer une largeur d\'affichage', 6, 2, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1470, 'Ordre de tri d\'affichage', 'MODULE_HEADER_NOSCRIPT_SORT_ORDER', '1', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2019-01-16 19:07:19', NULL, '');
 INSERT INTO configuration VALUES(1471, 'Dimension du produit par défaut', 'PRODUCTS_LENGTH_UNIT', '2', 'Sélectionnez l\'unité de produit qui sera utilisé par défaut', 9, 6, '2006-10-23 01:17:10', '2006-04-09 16:13:48', 'clic_cfg_use_get_products_length_title', 'clic_cfg_set_products_length_classes_pulldown_menu');
+INSERT INTO configuration VALUES(1472, 'Statut', 'CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS', 'True', 'Souhaitez vous activer ce module à votre boutique', 6, 0, NULL, '2019-04-14 08:46:32', NULL, NULL);
+INSERT INTO configuration VALUES(1473, 'Ordre de tri', 'CLICSHOPPING_APP_PROUCTS_LENGTH_PL_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2019-04-14 08:46:32', NULL, NULL);
+INSERT INTO configuration VALUES(1474, 'Parameter [ProductsLength App]', 'MODULE_MODULES_PROUCTS_LENGTH_INSTALLED', 'Configuration\\ProductsLength\\PL', 'Parameter [ProductsLength App]', 6, 0, NULL, '2019-04-14 08:46:32', NULL, NULL);
+
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
