@@ -237,14 +237,13 @@
     }
 
     public function getProductsPackaging($products_id, $tag = ' ') {
-      if ($this->productsCommon->getProductsPackaging($products_id) == 1) {
         $products_packaging = $this->productsCommon->getProductsPackaging($products_id);
+
         if ($products_packaging == 1) $products_packaging = CLICSHOPPING::getDef('text_products_info_packaging_text') . $tag . CLICSHOPPING::getDef('text_products_packaging_new');
         if ($products_packaging == 2) $products_packaging = CLICSHOPPING::getDef('text_products_info_packaging_text') . $tag . CLICSHOPPING::getDef('text_products_packaging_repackaged');
         if ($products_packaging == 3) $products_packaging = CLICSHOPPING::getDef('text_products_info_packaging_text') . $tag . CLICSHOPPING::getDef('text_products_packaging_used');
 
         return $products_packaging;
-      }
     }
 
     public function getProductsShippingDelay($products_id, $tag = ' ') {
