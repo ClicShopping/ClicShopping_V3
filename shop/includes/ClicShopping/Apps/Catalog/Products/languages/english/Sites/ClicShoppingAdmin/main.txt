@@ -120,6 +120,7 @@ text_products_sort_order = Sort order
 
 text_products_other_information = Others informations
 
+text_products_packaging = Product packaging type
 text_products_packaging_new = New product
 text_products_packaging_repackaged = Product repackaged
 text_products_packaging_used = Product Used

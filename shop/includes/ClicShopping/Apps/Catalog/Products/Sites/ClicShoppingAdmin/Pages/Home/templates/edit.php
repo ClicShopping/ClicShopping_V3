@@ -230,6 +230,14 @@
               </div>
             </div>
           </div>
+          <div class="col-md-5" id="tab1ContentRow4ProducsPackaging">
+            <div class="form-group row">
+              <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_packaging'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_packaging'); ?></label>
+              <div class="col-md-5">
+                <?php echo HTML::selectField('products_packaging', $products_packaging_array, $pInfo->products_packaging); ?>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row" id="tab1ContentRow5">
           <div class="col-md-5">

@@ -120,6 +120,7 @@ text_products_sort_order = Ordre de tri
 
 text_products_other_information = Autres informations
 
+text_products_packaging = Type condition du produit
 text_products_packaging_new = Produit neuf
 text_products_packaging_repackaged = Produit reconditionné
 text_products_packaging_used = Produit d'occasion
