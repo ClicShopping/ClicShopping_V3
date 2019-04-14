@@ -240,6 +240,62 @@
     }
 
 /**
+ * All files about the catalog
+ *
+ * @string $catalog_files, string, nwe specific files
+ * @access public
+ * @return array, file list
+ */
+    public static function getCatalogFiles($catalog_files = null) {
+      $file_array = ['Account&AddressBook',
+                    'Account&Create',
+                    'Account&CreatePro',
+                    'Account&CreateProSuccess',
+                    'Account&Delete',
+                    'Account&Edit',
+                    'Account&History',
+                    'Account&HistoryInfo',
+                    'Account&Login',
+                    'Account&MyFeedBack',
+                    'Account&Newsletter',
+                    'Account&NewsletterNoAccount',
+                    'Account&NewsletterNoAccountSuccess',
+                    'Account&Notification',
+                    'Account&Password',
+                    'Blog&Categories',
+                    'Blog&Content',
+                    'Categories',
+                    'Cart',
+                    'Checkout&Shipping',
+                    'Checkout&ShippingAddress',
+                    'Checkout&Billing',
+                    'Checkout&PaymentAddress',
+                    'Checkout&Confirmation',
+                    'Checkout&Success',
+                    'Compare&ProductsCompare',
+                    'Info&Contact',
+                    'Info&Cookies',
+                    'Info&Content',
+                    'Info&SiteMap',
+                    'Info&SSLcheck',
+                    'Products&Description',
+                    'Products&Favorites',
+                    'Products&Featured',
+                    'Products&ProductsNew',
+                    'Products&Specials',
+                    'search&AdvancedSearch',
+                    'search&Q',
+                  ];
+
+      if (!is_null($catalog_files)) {
+        $file_array = [$catalog_files];
+      }
+
+      return $file_array;
+    }
+
+
+/**
  *  Dynamic Template System
  * Return an array of the catalog directory. mechanism for reading this.
  */
@@ -248,45 +304,7 @@
 
       if (is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
 
-      $file = ['Account&AddressBook',
-              'Account&Create',
-              'Account&CreatePro',
-              'Account&CreateProSuccess',
-              'Account&Delete',
-              'Account&Edit',
-              'Account&History',
-              'Account&HistoryInfo',
-              'Account&Login',
-              'Account&MyFeedBack',
-              'Account&Newsletter',
-              'Account&NewsletterNoAccount',
-              'Account&NewsletterNoAccountSuccess',
-              'Account&Notification',
-              'Account&Password',
-              'Blog&Categories',
-              'Blog&Content',
-              'Categories',
-              'Cart',
-              'Checkout&Shipping',
-              'Checkout&ShippingAddress',
-              'Checkout&Billing',
-              'Checkout&PaymentAddress',
-              'Checkout&Confirmation',
-              'Checkout&Success',
-              'Info&Contact',
-              'Info&Cookies',
-              'Info&Content',
-              'Info&SiteMap',
-              'Info&SSLcheck',
-              'Products&ProductsNew',
-              'Products&Favorites',
-              'Products&Featured',
-              'Products&Product',
-              'Products&Specials',
-              'search&AdvancedSearch',
-              'search&Q',
-              ];
-
+      $file = static::getCatalogFiles();
 
       $result = [];
 

@@ -182,7 +182,7 @@
 
           $this->page->runActions();
         } else {
-            trigger_error('ClicShopping\Sites\Shop\Shop::setPage() - ' . $page_code . ': Page does not implement ClicShopping\OM\PagesInterface and cannot be loaded.');
+          trigger_error('ClicShopping\Sites\Shop\Shop::setPage() - ' . $page_code . ': Page does not implement ClicShopping\OM\PagesInterface and cannot be loaded.');
         }
       }
     }
@@ -205,7 +205,6 @@
           }
         }
       }
-
 
       if (!empty($result)) {
         usort($result, function ($a, $b) {

@@ -16,7 +16,6 @@
   $CLICSHOPPING_Template = Registry::get('Template');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-//  require($CLICSHOPPING_Template->GetPathDirectoryTemplatetLanguageFiles('shopping_cart'));
   $CLICSHOPPING_Language->loadDefinitions('shopping_cart');
 
 // templates

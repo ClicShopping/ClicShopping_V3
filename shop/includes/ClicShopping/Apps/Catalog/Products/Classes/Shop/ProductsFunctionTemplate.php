@@ -239,6 +239,7 @@
     public function getProductsPackaging($products_id, $tag = ' ') {
         $products_packaging = $this->productsCommon->getProductsPackaging($products_id);
 
+        if ($products_packaging == 0) $products_packaging = '';
         if ($products_packaging == 1) $products_packaging = CLICSHOPPING::getDef('text_products_info_packaging_text') . $tag . CLICSHOPPING::getDef('text_products_packaging_new');
         if ($products_packaging == 2) $products_packaging = CLICSHOPPING::getDef('text_products_info_packaging_text') . $tag . CLICSHOPPING::getDef('text_products_packaging_repackaged');
         if ($products_packaging == 3) $products_packaging = CLICSHOPPING::getDef('text_products_info_packaging_text') . $tag . CLICSHOPPING::getDef('text_products_packaging_used');
@@ -278,7 +279,7 @@
     public function getProductsWeight($products_id, $tag = ' / ') {
       if (!empty($this->productsCommon->getProductsWeight($products_id))) {
         $weight_symbol = $this->productsCommon->getSymbolbyProducts($this->productsCommon->getWeightClassIdByProducts($products_id));
-        $products_weight = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' .  $this->productsCommon->getProductsWeight($products_id) . $tag . $weight_symbol;
+        $products_weight = CLICSHOPPING::getDef('text_products_weight') . '  ' .  $this->productsCommon->getProductsWeight($products_id) . $tag . $weight_symbol;
 
         return $products_weight;
       }
@@ -314,4 +315,13 @@
 
       return $image;
     }
+
+    public function getProductslength($products_id) {
+      if (!empty($this->productsCommon->getProductsDimension($products_id))) {
+        $products_length = CLICSHOPPING::getDef('text_products_length') . ' : ' .  $this->productsCommon->getProductsDimension($products_id);
+
+        return $products_length;
+      }
+    }
+
   }
