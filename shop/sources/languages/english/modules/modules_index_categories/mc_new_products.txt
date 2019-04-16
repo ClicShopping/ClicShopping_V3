@@ -1,6 +1,6 @@
 
-module_index_categories_new_products_title = Do  you want to display the products news in the categories ?
-module_index_categories_new_products_description = Do  you want the products news in the categories ?
+module_index_categories_new_products_title = Do you want to display the products news in the categories ?
+module_index_categories_new_products_description = Display products news in the categories
 module_index_categories_new_products_name = The latest news in these categories
 
 module_index_categories_products_heading_title = New products

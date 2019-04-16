@@ -136,7 +136,6 @@
           }
 
           $new_prods_content .= '<div class="separator"></div>';
-
           $new_prods_content .= '</div>'. "\n";
           $new_prods_content .= '<div class="boxContentsModulesSearch">';
 
@@ -161,10 +160,9 @@
               $_POST['products_id'] = $products_id;
 
               $in_stock = $Qlisting->valueInt('in_stock');
-
+//rewriting
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
-
-//products name
+//product name
               $products_name = $CLICSHOPPING_ProductsFunctionTemplate->getManufacturerName($products_id);
 //Stock (good, alert, out of stock).
               $products_stock = $CLICSHOPPING_ProductsFunctionTemplate->getStock(MODULE_PRODUCTS_SEARCH_DISPLAY_STOCK, $products_id);

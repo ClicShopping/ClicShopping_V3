@@ -233,7 +233,6 @@
 // Quantity type
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
 
-
 // **************************************************
 // Button Free - Must be above getProductsExhausted
 // **************************************************
@@ -323,7 +322,7 @@
 
             $CLICSHOPPING_Template->addBlock($new_prods_content, $this->group);
 
-            } // max display
+            }
           }
         }
       }

@@ -1803,11 +1803,11 @@ INSERT INTO pages_manager VALUES(4, '_self', 3, 1, 4, 0, '', NULL, NULL, '1000-0
 INSERT INTO pages_manager VALUES(5, '', 4, 1, 4, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-16 14:55:26', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(7, '_self', 5, 1, 4, 0, '0', NULL, NULL, '2008-09-02 10:36:53', '2018-07-27 20:39:03', NULL, 0, 0);
 INSERT INTO pages_manager VALUES(8, '_self', 6, 1, 4, 0, '0', NULL, NULL, '2008-09-16 14:48:16', '2018-07-27 20:39:29', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(10, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:40:45', NULL, NULL, 0, 0);
-INSERT INTO pages_manager VALUES(11, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
-INSERT INTO pages_manager VALUES(13, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
-INSERT INTO pages_manager VALUES(14, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
-INSERT INTO pages_manager VALUES(15, '_self', 0, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(10, '_self', 8, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:40:45', NULL, NULL, 0, 0);
+INSERT INTO pages_manager VALUES(11, '_self', 9, 1, 5, 3, '0', NULL, NULL, '2018-07-27 20:41:34', '2018-07-27 20:45:22', NULL, 0, 0);
+INSERT INTO pages_manager VALUES(13, '_self', 10, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:04:35', NULL, NULL, 99, 0);
+INSERT INTO pages_manager VALUES(14, '_self', 11, 1, 5, 3, '0', NULL, NULL, '2018-12-19 11:06:23', '2018-12-19 11:07:11', NULL, 99, 0);
+INSERT INTO pages_manager VALUES(15, '_self', 7, 1, 5, 3, '0', NULL, NULL, '2018-07-31 09:23:54', NULL, NULL, 0, 0);
 
 INSERT INTO pages_manager_description VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
 INSERT INTO pages_manager_description VALUES(1, 'page intro', '', '', 2, NULL, NULL, NULL);
@@ -1829,8 +1829,8 @@ INSERT INTO pages_manager_description VALUES(11, 'News', '', 'index.php/Products
 INSERT INTO pages_manager_description VALUES(11, 'Nouveautés', '', 'index.php/Products/ProductsNew', 2, '', '', '');
 INSERT INTO pages_manager_description VALUES(13, 'Featured', '', 'index.php?Products&Featured', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(13, 'Nos sélections', '', 'index.php?Products&Featured', 2, '', '', '');
-INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'index.php?Products&Featured', 1, '', '', '');
-INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'index.php?Products&Featured', 2, '', '', '');
+INSERT INTO pages_manager_description VALUES(14, 'Favorites', '', 'index.php?Products&Favorites', 1, '', '', '');
+INSERT INTO pages_manager_description VALUES(14, 'Nos Coups de coeur', '', 'index.php?Products&Favorites', 2, '', '', '');
 INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 1, '', '', '');
 INSERT INTO pages_manager_description VALUES(15, 'Index', '', 'index.php', 2, '', '', '');
 

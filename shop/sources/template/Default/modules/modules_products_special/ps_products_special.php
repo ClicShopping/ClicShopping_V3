@@ -43,7 +43,6 @@
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
       if (isset($_GET['Products']) && isset($_GET['Specials']) ) {
-
         if (MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY != 0 ) {
           $Qlisting = SpecialsClass::getListing();
 
@@ -75,7 +74,7 @@
             $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
-            $column_list =  SpecialsClass::getCountColumnList();
+            $column_list = SpecialsClass::getCountColumnList();
 
             for ($col = 0, $n = count($column_list); $col < $n; $col++) {
               switch ($column_list[$col]) {

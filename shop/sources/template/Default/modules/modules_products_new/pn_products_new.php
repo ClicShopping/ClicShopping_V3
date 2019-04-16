@@ -46,8 +46,6 @@
       if (isset($_GET['Products']) && isset($_GET['ProductsNew'])) {
         if (MODULE_PRODUCTS_NEW_MAX_DISPLAY != 0 ) {
 
-          $products_template = MODULE_PRODUCTS_NEW_TEMPLATE;
-
           $Qlisting = ProductsNewClass::getListing();
 
           $Qlisting->setPageSet((int)MODULE_PRODUCTS_NEW_MAX_DISPLAY);
@@ -168,6 +166,7 @@
 
               $in_stock = $Qlisting->valueInt('in_stock');
 
+              $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
 //Stock (good, alert, out of stock).
@@ -214,8 +213,6 @@
 // Button Free - Must be above getProductsExhausted
 // **************************************************
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
-                $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
-
                 $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
                 $min_quantity = 0;
                 $form = '';

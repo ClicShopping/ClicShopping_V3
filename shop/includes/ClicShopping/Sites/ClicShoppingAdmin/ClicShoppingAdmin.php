@@ -118,7 +118,7 @@
 
 // include the language translations
       $CLICSHOPPING_Language->loadDefinitions('main');
-      $CLICSHOPPING_Language->setUseCache(true);
+//      $CLICSHOPPING_Language->setUseCache(true); @todo
 
       $current_page = CLICSHOPPING::getBaseNameIndex();
 

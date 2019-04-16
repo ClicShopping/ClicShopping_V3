@@ -304,9 +304,8 @@
             $new_prods_content .= '<!-- New Products End -->' . "\n";
 
             $CLICSHOPPING_Template->addBlock($new_prods_content, $this->group);
-
           }
-        } // max display
+        }
       }
     } // public function execute
 

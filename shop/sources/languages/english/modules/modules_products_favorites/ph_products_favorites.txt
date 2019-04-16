@@ -1,5 +1,5 @@
 
-module_products_favorites = Do you want to display the favorites ?
+module_products_favorites_title = Do you want to display the favorites ?
 module_products_favorites_description = Display the favorites
 
 text_date_added = In sell since the :
