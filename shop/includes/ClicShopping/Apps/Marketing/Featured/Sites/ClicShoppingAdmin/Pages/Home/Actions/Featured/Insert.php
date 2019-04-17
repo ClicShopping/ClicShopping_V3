@@ -24,7 +24,6 @@
       $products_id = HTML::sanitize($_POST['products_id']);
       $expdate = HTML::sanitize($_POST['expdate']);
       $schdate = HTML::sanitize($_POST['schdate']);
-      $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
       $expires_date = '';
       if (!empty($expdate)) {

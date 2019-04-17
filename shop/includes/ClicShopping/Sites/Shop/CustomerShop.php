@@ -188,7 +188,6 @@
           }
 
           $_SESSION['customer'] = $this->_data;
-
         }
       }
 

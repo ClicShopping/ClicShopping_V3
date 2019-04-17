@@ -73,7 +73,6 @@
         if ($products_packaging == 2) $products_packaging = 'http://schema.org/RefurbishedCondition';
         if ($products_packaging == 3) $products_packaging = 'http://schema.org/UsedCondition';
 
-        $ean = $CLICSHOPPING_ProductsCommon->getProductsEAN();
         $sku = $CLICSHOPPING_ProductsCommon->getProductsSKU();
         $price = floatval(preg_replace('/[^\d\.]/', '', $CLICSHOPPING_ProductsCommon->getCustomersPrice()));
 

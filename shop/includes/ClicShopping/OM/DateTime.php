@@ -293,9 +293,9 @@
     public static function validate($date_to_check, $format_string, &$date_array) {
       $separator_idx = -1;
 
-      $separators = array('-', ' ', '/', '.');
-      $month_abbr = array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
-      $no_of_days = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+      $separators = ['-', ' ', '/', '.'];
+      $month_abbr = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+      $no_of_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
       $format_string = strtolower($format_string);
 
@@ -388,7 +388,7 @@
         return false;
       }
 
-      $date_array = array($year, $month, $day);
+      $date_array = [$year, $month, $day];
 
       return true;
     }

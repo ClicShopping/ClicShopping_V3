@@ -75,7 +75,6 @@
         $js_array = substr($js_array, 0, -1);
       }
 
-      $chart_label = HTML::output($this->app->getDef('module_admin_dashboard_total_revenue_app_chart_link'));
       $chart_label_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Orders');
       $chart_title = HTML::output($this->app->getDef('module_admin_dashboard_total_revenue_app_chart_link'));
 

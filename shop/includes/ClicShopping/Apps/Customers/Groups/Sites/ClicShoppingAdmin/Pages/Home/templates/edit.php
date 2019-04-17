@@ -22,10 +22,10 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
   $QcustomersGroup = $CLICSHOPPING_Groups->db->prepare('select *
-                                                 from :table_customers_groups
-                                                 where customers_group_id = :customers_group_id
-                                                 order by customers_group_id
-                                                ');
+                                                         from :table_customers_groups
+                                                         where customers_group_id = :customers_group_id
+                                                         order by customers_group_id
+                                                        ');
   $QcustomersGroup->bindInt(':customers_group_id', (int)$_GET['cID'] );
   $QcustomersGroup->execute();
 

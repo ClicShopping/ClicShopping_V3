@@ -46,6 +46,15 @@
         });
     }
 
+
+/**
+ * Add a message to the stack
+ *
+ * @param string $group The group the message belongs to
+ * @param string $message The message information text
+ * @param string $type The type of message: info, error, warning, success
+ * 
+ */
     public function add($message, $type = 'error', $group = 'main') {
         switch ($type) {
           case 'error':
@@ -74,6 +83,12 @@
         }
     }
 
+/**
+ * Checks to see if a group in the stack contains messages
+ *
+ * @param string $group The name of the group to check
+ *
+ */
     public function exists($group = null)
     {
         if (isset($group)) {
@@ -83,6 +98,22 @@
         return !empty($this->data);
     }
 
+/**
+ * Checks to see if the message stack contains messages
+ *
+ */
+
+    public function hasContent() {
+      return !empty($this->_data);
+    }
+    
+/**
+ * Get the messages belonging to a group. The messages are placed into an
+ * unsorted list wrapped in a DIV element with the "messageStack" style sheet
+ * class.
+ *
+ * @param string $group The name of the group to get the messages from
+ */
     public function get($group)
     {
         $result = '';
@@ -110,6 +141,10 @@
         return $result;
     }
 
+/**
+ * Get the message stack array data set
+ *
+ */
     public function getAll($group = null)
     {
         if (isset($group)) {
@@ -123,6 +158,11 @@
         return $this->data;
     }
 
+/**
+ * Get the number of messages belonging to a group
+ *
+ * @param string $group The name of the group to check
+ */
     public function size($group = null)
     {
         if (isset($group)) {

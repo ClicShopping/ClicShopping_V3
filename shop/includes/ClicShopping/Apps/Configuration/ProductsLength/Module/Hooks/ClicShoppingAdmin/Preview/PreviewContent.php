@@ -46,29 +46,6 @@
       return $result;
     }
 
-    private function getLength() {
-      $product_length = $this->getProductsProductsLength();
-
-      $products_length_class_id = $product_length['products_length_class_id'];
-
-      $Qproducts = $this->app->db->prepare('select products_length_class_id,
-                                                   products_dimension_width,
-                                                   products_dimension_height,
-                                                   products_dimension_depth
-                                            from :table_products
-                                            where products_id = :products_id
-                                            and language_id = : language_id
-                                          ');
-      $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
-      $Qproducts->bindInt(':language_id', HTML::sanitize($_GET['pID']));
-
-      $Qproducts->execute();
-      $result = $Qproducts->toArray();
-
-      return $result;
-    }
-
-
     public function display()  {
       if (!defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
         return false;

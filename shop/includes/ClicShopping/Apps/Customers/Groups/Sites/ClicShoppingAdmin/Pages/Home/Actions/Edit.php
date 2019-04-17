@@ -16,7 +16,6 @@
   class Edit extends \ClicShopping\OM\PagesActionsAbstract {
     public function execute() {
       $CLICSHOPPING_Groups = Registry::get('Groups');
-      $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
       $this->page->setFile('edit.php');
 

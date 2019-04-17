@@ -29,7 +29,7 @@
       $m = Registry::get('ModulesAdminConfig' . $current_module);
       $m->install();
 
-//      static::installDbMenuAdministration();
+      static::installDbMenuAdministration();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Modules->getDef('alert_module_install_success'), 'success', 'Modules');
 
@@ -47,7 +47,7 @@
 
         $sql_data_array = ['sort_order' => 1,
                            'link' => 'index.php?A&Configuration\Modules&Modules',
-                           'image' => 'currencies.gif',
+                           'image' => '',
                            'b2b_menu' => 0,
                            'access' => 0,
                            'app_code' => 'app_configuration_modules'

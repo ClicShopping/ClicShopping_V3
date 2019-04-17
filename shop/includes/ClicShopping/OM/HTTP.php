@@ -194,8 +194,6 @@
       return $body;
     }
 
-
-
 /**
  * Get the IP address of the client
  * @param string $ip , th ip of the client
