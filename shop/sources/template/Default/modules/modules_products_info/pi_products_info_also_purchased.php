@@ -414,7 +414,7 @@
           'configuration_description' => 'Est-que vous souhaitez afficher une image indiquant une information sur le stock du produit (En stock, pratiquement épuisé, hors stock) ?',
           'configuration_group_id' => '6',
           'sort_order' => '10',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'),',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))',
           'date_added' => 'now()'
         ]
       );

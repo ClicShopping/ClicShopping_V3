@@ -94,7 +94,7 @@
           'configuration_description' => 'Choose where the boxe must be displayed',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'Left Column\', \'Right Column\'),',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'Left Column\', \'Right Column\'))',
           'date_added' => 'now()'
         ]
       );

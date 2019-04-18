@@ -48,11 +48,13 @@
     $cInfo = new ObjectInfo(array());
   }
 
-  $current_category_id = HTML::sanitize($_GET['cID']);
+  $current_category_id = HTML::sanitize($_POST['cID']);
+  $cPath = HTML::sanitize($_GET['cPath']);
+
   $languages = $CLICSHOPPING_Language->getLanguages();
   $form_action = (isset($_GET['cID'])) ? 'Update' : 'Insert';
 
-  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'post');
+  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath . '&cID=' . $current_category_id), 'post');
 
 ?>
 <!-- body //-->
@@ -65,7 +67,7 @@
           <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
           <span class="col-md-9 text-md-right">
             <span class="text-md-right"><?php echo HTML::hiddenField('parent_id', $cInfo->parent_id) . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_update'), null, null, 'success'); ?>&nbsp;</span>
-            <span class="text-md-right" style="padding-left:5px;"><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'warning'); ?>&nbsp;</span>
+            <span class="text-md-right" style="padding-left:5px;"><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $current_category_id), 'warning'); ?>&nbsp;</span>
           </span>
         </div>
       </div>
@@ -163,14 +165,14 @@
             </div>
 
 <?php
-  if (!isset($_GET['EditCategory'])) {
+  if (isset($_GET['Edit'])) {
 ?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $current_category_id) . HTML::hiddenField('current_category_id', $current_category_id); ?>
+                        <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $cPath) . HTML::hiddenField('current_category_id', $current_category_id); ?>
                       </div>
                     </div>
                   </div>

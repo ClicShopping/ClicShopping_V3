@@ -224,7 +224,7 @@
           'configuration_description' => 'Parmi les options qui vous sont proposées , veuillez en choisir une. <strong>Note :</strong><br /><br /><i>- Column right : Colonne de droite<br />- Column left : Colonne de gauche</i>',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'Left Column\', \'Right Column\'),',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'Left Column\', \'Right Column\'))',
           'date_added' => 'now()'
         ]
       );

@@ -103,7 +103,7 @@
           'configuration_description' => 'Display the module in function your choice.',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'),',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
           'date_added' => 'now()'
         ]
       );

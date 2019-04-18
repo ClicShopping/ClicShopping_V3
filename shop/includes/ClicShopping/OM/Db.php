@@ -811,7 +811,7 @@
     }
 
 /**
- * Calculate the size of databse
+ * Calculate the size of database
  * @return  $size_db
  * @access public
  */
@@ -828,6 +828,7 @@
       }
 
       $size_db = round(($size/1024)/1024, 1);
+
       return $size_db;
     }
 
