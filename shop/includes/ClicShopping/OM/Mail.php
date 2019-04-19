@@ -11,12 +11,13 @@
 
   namespace ClicShopping\OM;
 
+  use ClicShopping\OM\MessageStack;
+  use ClicShopping\OM\Registry;
 
   require_once (CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/PHPMailer-master/vendor/autoload.php');
 
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
-  use ClicShopping\OM\MessageStack;
 
   class Mail {
 
