@@ -101,6 +101,7 @@
 
 
   if (!isset($_GET['search'])) {
+    $cPath = HTML::sanitize($_POST['cPath']);
     echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_new_category'), null, $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath), 'success') . '&nbsp;';
   }
 ?>
@@ -133,21 +134,22 @@
     $search = HTML::sanitize($_POST['search']);
 
     $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
-                                                                a.link,
-                                                                a.parent_id,
-                                                                a.access,
-                                                                a.sort_order,
-                                                                a.b2b_menu,
-                                                                amd.label
-                                                          from :table_administrator_menu a,
-                                                               :table_administrator_menu_description amd
-                                                          where a.id = amd.id
-                                                          and amd.language_id = :language_id
-                                                          and amd.label like :search
-                                                          and a.status = 1
-                                                          order by a.parent_id,
-                                                                   a.sort_order
-                                                          ');
+                                                                        a.link,
+                                                                        a.parent_id,
+                                                                        a.access,
+                                                                        a.sort_order,
+                                                                        a.b2b_menu,
+                                                                        a.app_code,
+                                                                        amd.label
+                                                                  from :table_administrator_menu a,
+                                                                       :table_administrator_menu_description amd
+                                                                  where a.id = amd.id
+                                                                  and amd.language_id = :language_id
+                                                                  and (amd.label like :search or a.id like :search  or a.app_code like :search)
+                                                                  and a.status = 1
+                                                                  order by a.parent_id,
+                                                                           a.sort_order
+                                                                  ');
 
     $Qcategories->bindValue(':search', '%' . $search . '%');
     $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());

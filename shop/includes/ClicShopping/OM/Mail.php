@@ -11,28 +11,23 @@
 
   namespace ClicShopping\OM;
 
-
   require_once (CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/PHPMailer-master/vendor/autoload.php');
 
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
-  use ClicShopping\OM\MessageStack;
 
   class Mail {
-
     protected $html;
     protected $text;
     protected $html_text;
     protected $lf;
-    protected $debug = 2;
+    protected $debug = 0;
 //Enable SMTP debugging
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
     protected $debugOutput = 'phpmail_error.log';
     protected $phpMail;
-
-    public $messageStack;
 
     public function __construct($headers = '') {
 
@@ -45,7 +40,6 @@
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
 
-      $this->messageStack = Registry::get('MessageStack');
 /*
 //Configure message signing (the actual signing does not occur until sending)
       $phpMail->sign('/path/to/cert.crt', //The location of your certificate file
@@ -74,7 +68,7 @@
         try {
           $this->phpMail->isSendmail();
         } catch (Exception $e) {
-          $this->messageStack->add(CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]), 'error');
+          echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
         }
       }
 
@@ -119,7 +113,6 @@
  * content-id's.
  */
 
-// FCKeditor
     public function addHtmlCkeditor($html, $text = NULL, $images_dir = NULL) {
       $this->phpMail->IsHTML(true);
 
@@ -222,7 +215,7 @@
         try {
           $this->phpMail->isSendmail();
         } catch (Exception $e) {
-          $this->messageStack->add(CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]), 'error');
+          echo CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]);
         }
       }
 

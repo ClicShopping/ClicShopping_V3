@@ -20,8 +20,12 @@
 
     public static function start() {
 // initialize the message stack for output messages
+      $CLICSHOPPING_Service = Registry::get('Service');
+
       if (is_file(CLICSHOPPING::BASE_DIR . 'OM/MessageStack.php')) {
         Registry::set('MessageStack', new MessageStackClass());
+
+        $CLICSHOPPING_Service->addCallBeforePageContent('Address', 'initialize');
 
         return true;
       } else {
