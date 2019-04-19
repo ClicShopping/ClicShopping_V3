@@ -458,3 +458,6 @@ text_error_upload_file = Error : file upload failed
 text_number_of_item = Item number
 text_success_import = Success Import
 button_continue = Continue
+
+error_phpmailer = If you have this message : escapeshellcmd() has been disabled for security reasons, you must configure your mail in smtp and not use sendmail by default<br />
+Message could not be sent. Mailer Error:  {{phpmailer_error}}

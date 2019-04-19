@@ -102,6 +102,7 @@
  * Checks to see if the message stack contains messages
  *
  */
+
     public function hasContent() {
       return !empty($this->_data);
     }

@@ -16,6 +16,7 @@
 
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
+  use ClicShopping\OM\MessageStack;
 
   class Mail {
 
@@ -31,6 +32,8 @@
     protected $debugOutput = 'phpmail_error.log';
     protected $phpMail;
 
+    public $messageStack;
+
     public function __construct($headers = '') {
 
       $this->phpMail = new PHPMailer();
@@ -41,6 +44,8 @@
       $this->phpMail->CharSet = CLICSHOPPING::getDef('charset');
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
+
+      $this->messageStack = Registry::get('MessageStack');
 /*
 //Configure message signing (the actual signing does not occur until sending)
       $phpMail->sign('/path/to/cert.crt', //The location of your certificate file
@@ -69,10 +74,7 @@
         try {
           $this->phpMail->isSendmail();
         } catch (Exception $e) {
-          echo '<div span class="warning">';
-          echo 'If ou have this message : escapeshellcmd() has been disabled for security reasons, you must configure your mail in smtp.';
-          echo 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}';
-          echo '</div>';
+          $this->messageStack->add(CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]), 'error');
         }
       }
 
@@ -220,10 +222,7 @@
         try {
           $this->phpMail->isSendmail();
         } catch (Exception $e) {
-          echo '<div span class="warning">';
-          echo 'If ou have this message : escapeshellcmd() has been disabled for security reasons, you must configure your mail in smtp.';
-          echo 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}';
-          echo '</div>';
+          $this->messageStack->add(CLICSHOPPING::getDef('error_phpmailer', ['phpmailer_error' => $this->phpMail->ErrorInfo]), 'error');
         }
       }
 
