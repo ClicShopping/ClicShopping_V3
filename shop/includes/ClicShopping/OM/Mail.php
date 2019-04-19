@@ -11,29 +11,33 @@
 
   namespace ClicShopping\OM;
 
+
+  require_once (CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/PHPMailer-master/vendor/autoload.php');
+
+  use PHPMailer\PHPMailer\Exception;
+  use PHPMailer\PHPMailer\PHPMailer;
+
   class Mail {
 
     protected $html;
     protected $text;
     protected $html_text;
     protected $lf;
-    protected $debug = 0;
+    protected $debug = 2;
 //Enable SMTP debugging
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-    protected $debug_output = 'phpmail_error.log';
+    protected $debugOutput = 'phpmail_error.log';
     protected $phpMail;
 
     public function __construct($headers = '') {
 
-      require_once (CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/PHPMailer-master/vendor/autoload.php');
-
-      $this->phpMail = new \PHPMailer\PHPMailer\PHPMailer;
+      $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
       $this->phpMail->SMTPDebug = $this->debug;
-      $this->phpMail->Debugoutput =  CLICSHOPPING::BASE_DIR . 'Work/Log/phpmail_error.log';
+      $this->phpMail->debugOutput =  CLICSHOPPING::BASE_DIR . 'Work/Log/phpmail_error.log';
       $this->phpMail->CharSet = CLICSHOPPING::getDef('charset');
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
@@ -62,7 +66,14 @@
         $this->phpMail->Password = EMAIL_SMTP_PASSWORD;
 
       } else {
-        $this->phpMail->isSendmail();
+        try {
+          $this->phpMail->isSendmail();
+        } catch (Exception $e) {
+          echo '<div span class="warning">';
+          echo 'If ou have this message : escapeshellcmd() has been disabled for security reasons, you must configure your mail in smtp.';
+          echo 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}';
+          echo '</div>';
+        }
       }
 
       if (EMAIL_LINEFEED == 'CRLF') {
@@ -116,11 +127,21 @@
       if (isset($images_dir)) $this->html = $this->phpMail->msgHTML($this->html, $images_dir);
     }
 
-
+/**
+ * @param $path
+ * @param string $name
+ * @param string $encoding
+ * @param string $type
+ * @param string $disposition
+ * @throws Exception
+ */
     public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment') {
       $this->phpMail->AddAttachment($path, $name, $encoding, $type, $disposition);
     }
 
+/**
+ * Must be removed
+ */
     public function build_message() {
       //out of work function
     }
@@ -196,7 +217,14 @@
         $this->phpMail->Password = EMAIL_SMTP_PASSWORD;
 
       } else {
-        $this->phpMail->isSendmail();
+        try {
+          $this->phpMail->isSendmail();
+        } catch (Exception $e) {
+          echo '<div span class="warning">';
+          echo 'If ou have this message : escapeshellcmd() has been disabled for security reasons, you must configure your mail in smtp.';
+          echo 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}';
+          echo '</div>';
+        }
       }
 
       $error = false;
