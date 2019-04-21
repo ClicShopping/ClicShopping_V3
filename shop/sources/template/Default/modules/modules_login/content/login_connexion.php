@@ -18,6 +18,7 @@ use ClicShopping\OM\HTML;
       <h2><?php echo CLICSHOPPING::getDef('module_login_connexion_heading_returning_customer'); ?></h2>
     </div>
     <div class="card-block">
+      <div class="separator"></div>
       <div class="card-text">
 <?php
   echo $form;

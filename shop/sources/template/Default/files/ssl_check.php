@@ -24,12 +24,14 @@
       <div class="card card-danger">
         <div class="card-header"><?php echo CLICSHOPPING::getDef('box_information_heading'); ?></div>
         <div class="card-block">
+          <div class="separator"></div>
           <?php echo CLICSHOPPING::getDef('box_information'); ?>
         </div>
       </div>
       <div class="separator"></div>
       <div class="card card-danger">
         <div class="card-block">
+          <div class="separator"></div>
           <?php echo CLICSHOPPING::getDef('text_information'); ?>
         </div>
       </div>

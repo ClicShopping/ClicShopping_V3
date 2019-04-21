@@ -21,6 +21,7 @@
     <span class="col-md-6">
       <div class="card-header"><?php echo '<strong>' . CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_delivery_address')  . '</strong>'; ?></div>
       <div class="card-block">
+        <div class="separator"></div>
         <?php echo $address_delivery; ?>
       </div>
     </span>
@@ -30,6 +31,7 @@
     <span class="col-md-6">
       <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_shipping_method'); ?></strong></div>
       <div class="card-block">
+        <div class="separator"></div>
         <?php echo $shipping_method; ?>
       </div>
     </span>
@@ -41,6 +43,7 @@
       <div>
         <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_billing_address'); ?></strong></div>
         <div class="card-block">
+          <div class="separator"></div>
           <?php echo $billing_address; ?></td>
         </div>
       </div>
@@ -49,6 +52,7 @@
   <div class="col-md-6">
     <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_address_heading_payment_method'); ?></strong></div>
     <div class="card-block">
+      <div class="separator"></div>
       <?php echo $payment_method; ?>
     </div>
   </div>

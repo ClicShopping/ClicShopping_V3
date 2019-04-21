@@ -18,6 +18,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <span><h3><?php echo CLICSHOPPING::getDef('module_checkout_payment_agreement_table_heading_conditions'); ?></h3></span>
     </div>
     <div class="card-block">
+      <div class="separator"></div>
       <div class="card-text moduleCheckoutPaymentAgreementText">
         <?php echo CLICSHOPPING::getDef('module_checkout_payment_agreement_text_conditions_confirm', ['shop_code_url_conditions_vente' => CLICSHOPPING::link(SHOP_CODE_URL_CONDITIONS_VENTE)]). '<br /><br /> '; ?>
         <?php echo CLICSHOPPING::getDef('module_checkout_payment_agreement_text_conditions_description') . ' ' . $checkbox_aggreement;?>

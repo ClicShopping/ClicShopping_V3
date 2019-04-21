@@ -14,13 +14,14 @@
   }
  ],
  "modules": {
-		"AdminDashboard": {
-		 "Orders":	"Module\\ClicShoppingAdmin\\Dashboard\\Orders",
+    "AdminDashboard": {
+     "Orders":	"Module\\ClicShoppingAdmin\\Dashboard\\Orders",
      "SalesCommission":	"Module\\ClicShoppingAdmin\\Dashboard\\SalesCommission",
      "TotalCaByYear":	"Module\\ClicShoppingAdmin\\Dashboard\\TotalCaByYear",
      "TotalMonth":	"Module\\ClicShoppingAdmin\\Dashboard\\TotalMonth",
-     "TotalRevenue":	"Module\\ClicShoppingAdmin\\Dashboard\\TotalRevenue"
-		},
+     "TotalRevenue":	"Module\\ClicShoppingAdmin\\Dashboard\\TotalRevenue",
+     "OrderMap":	"Module\\ClicShoppingAdmin\\Dashboard\\OrderMap"
+     },
   "Hooks": {
    "ClicShoppingAdmin/StatsDashboard": {
     "PageTabContent":	"Module\\Hooks\\ClicShoppingAdmin\\StatsDashboard\\PageTabContent"

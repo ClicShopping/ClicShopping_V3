@@ -114,6 +114,21 @@
   $products = $CLICSHOPPING_ShoppingCart->get_products();
 
   foreach ($products as $k => $v) {
+/*
+    $name = $v['name'];
+    $image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $v['image'], HTML::outputProtected($name), 50, 50, null, true);
+
+    echo '
+          <div class="row">
+            <div class="col-md-12">
+              <li class="headerMultiTemplateDefaultLi">&nbsp;&nbsp;
+                <div class="float-md-left">' . $v['quantity'] . ' - ' . $name . '</div>
+                <div class="float-md-right text-md-right">' .  $CLICSHOPPING_Currencies->display_price($v['final_price'], $CLICSHOPPING_Tax->getTaxRate($v['tax_class_id']), $v['quantity']) . '</div>
+              </li>
+            </div>
+          </div>
+    ';
+*/    
     echo '<li class="headerMultiTemplateDefaultLi">&nbsp;&nbsp;
             <span class="float-md-left">' . $v['quantity'] . ' - ' . $v['name'] . '</span>
             <span class="float-md-right">' .  $CLICSHOPPING_Currencies->display_price($v['final_price'], $CLICSHOPPING_Tax->getTaxRate($v['tax_class_id']), $v['quantity']) . '</span>

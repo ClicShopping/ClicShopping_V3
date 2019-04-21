@@ -89,7 +89,8 @@
                                                     </div>
                                                   </div>
                                                   <div class="card-block">
-                                                  <div class="card-text">
+                                                    <div class="separator"></div>
+                                                    <div class="card-text">
                                               ';
 
           if (AddressBook::countCustomerOrders() > 0) {

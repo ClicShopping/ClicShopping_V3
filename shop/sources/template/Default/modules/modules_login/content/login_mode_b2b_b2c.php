@@ -24,6 +24,7 @@ use ClicShopping\OM\HTML;
           <span class="mainloginB2BB2C"><?php echo CLICSHOPPING::getDef('text_b2b'); ?></span>
         </div>
         <div class="card-block">
+          <div class="separator"></div>
           <div class="card-text">
            <div class="mainLogin"><?php echo CLICSHOPPING::getDef('text_intro_b2b'); ?></div>
             <div class="text-md-ight">
@@ -45,6 +46,7 @@ use ClicShopping\OM\HTML;
           <span class="mainloginB2BB2C"><?php echo CLICSHOPPING::getDef('text_b2c'); ?></span>
         </div>
         <div class="card-block">
+          <div class="separator"></div>
           <div class="card-text">
             <div class="mainLogin"><?php echo CLICSHOPPING::getDef('text_intro_b2c'); ?></div>
             <div class="text-md-right">

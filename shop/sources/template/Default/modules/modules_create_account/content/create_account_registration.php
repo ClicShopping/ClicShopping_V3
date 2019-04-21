@@ -29,6 +29,7 @@
         <span class="modulesCreateAccountRegistrationPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_personal'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
           <div class="row" id="RowContentAccountRegistration1">
             <div class="col-md-12">
@@ -106,6 +107,7 @@
         <span class="modulesCreateAccountRegistrationCategoryOptionsPageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
           <div class="row" id="RowContentAccountRegistration6">
             <div class="col-md-12">
@@ -132,8 +134,8 @@
         <span class="modulesCreateAccountRegistrationPasswordPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_password'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
-
           <div class="row" id="RowContentAccountRegistration7">
             <div class="col-md-12">
               <div class="form-group row">

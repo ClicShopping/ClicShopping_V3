@@ -17,6 +17,7 @@
     <div class="card-deck">
       <div class="card">
         <div class="card-block">
+          <div class="separator"></div>
           <div class="card-img-top ModulesProductsFavoritesBoostrapColumn5Image">
             <?php echo $products_image . $ticker; ?>
           </div>

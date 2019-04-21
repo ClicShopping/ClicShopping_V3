@@ -23,6 +23,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card moduleCheckoutPaymentAddressCard">
       <div class="card-header moduleCheckoutPaymentAddressCardHeader"><h3><?php echo CLICSHOPPING::getDef('module_checkout_payment_address_title_payment_address'); ?></h3></div>
       <div class="card-block moduleCheckoutPaymentAddressCardBlock">
+        <div class="separator"></div>
         <?php echo $address_billto; ?>
       </div>
     </div>

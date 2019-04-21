@@ -23,6 +23,8 @@ use ClicShopping\OM\CLICSHOPPING;
             <strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_delivery_title') ; ?></strong><?php echo $delivery_address_link; ?>
           </div>
           <div class="card-block moduleCheckoutConfirmationDeliveryAddressCardBlock">
+            <div class="separator"></div>
+            <div class="separator"></div>
             <?php echo $delivery_address; ?>
           </div>
         </div>
@@ -38,6 +40,8 @@ use ClicShopping\OM\CLICSHOPPING;
               <strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_shipping_title') ; ?></strong><?php echo $shipping_link; ?>
             </div>
             <div class="card-block moduleCheckoutConfirmationDeliveryAddressCardBlock">
+             <div class="separator"></div>
+             <div class="separator"></div>
               <?php echo $shipping_method; ?>
             </div>
           </div>

@@ -30,6 +30,7 @@ use ClicShopping\OM\CLICSHOPPING;
         <span><h2><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_title'); ?></h2></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
           <div class="checkoutConfirmationLawHamon"><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_conditions'); ?>&nbsp;</div>
           <div class="text-md-right"><?php echo $agree_checkbox; ?></div>

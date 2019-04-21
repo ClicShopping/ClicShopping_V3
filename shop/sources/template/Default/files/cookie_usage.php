@@ -24,6 +24,7 @@
 
       <div class="card card-danger">
         <div class="card-block">
+          <div class="separator"></div>
           <?php echo CLICSHOPPING::getDef('text_information'); ?>
         </div>
       </div>

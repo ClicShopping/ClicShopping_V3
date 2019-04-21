@@ -18,6 +18,7 @@ use ClicShopping\OM\HTML;
       <span><h2><?php echo CLICSHOPPING::getDef('heading_title_b2b'); ?></h2></span>
     </div>
     <div class="card-block">
+      <div class="separator"></div>
       <div class="card-text">
         <div class="mainLogin"><?php echo CLICSHOPPING::getDef('text_intro_b2b'); ?></div>
         <div class="text-rmd-ight">

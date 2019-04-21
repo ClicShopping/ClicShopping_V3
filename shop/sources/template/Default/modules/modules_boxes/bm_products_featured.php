@@ -123,6 +123,7 @@
         $data .= '<div class="card-img-top boxeBannerContentsFeatured">' . $featured_banner . '</div>';
         $data .= '<div class="card-header boxeHeadingFeatured"><span class="card-title boxeTitleFeatured">'. HTML::link(CLICSHOPPING::link(null,'Products&Featured'), CLICSHOPPING::getDef('module_boxes_products_featured_box_title')) . '</span></div>';
         $data .= '<div class="card-block  text-md-center boxeContentArroundFeatured">';
+        $data .= '<div class="separator"></div>';
 
         while ($Qproducts->fetch() ) {
           $products_id = $Qproducts->valueInt('products_id');

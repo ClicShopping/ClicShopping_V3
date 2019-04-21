@@ -20,6 +20,7 @@
       <div><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_download_text_heading_title'); ?></h3></div>
     </div>
     <div class="card-block">
+      <div class="separator"></div>
       <div class="card-text">
         <table border="0" width="100%" cellspacing="1" cellpadding="2">
 <?php

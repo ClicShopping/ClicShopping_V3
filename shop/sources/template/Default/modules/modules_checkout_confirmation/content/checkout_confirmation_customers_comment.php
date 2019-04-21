@@ -18,6 +18,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card moduleCheckoutConfirmationCustomersCommentCard">
       <div class="card-header moduleCheckoutConfirmationCustomersCommentCardHeader"><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_heading_order_comments') ; ?></strong><?php echo $edit_comment; ?></div>
       <div class="card-block moduleCheckoutConfirmationCustomersCommentCardBlock">
+        <div class="separator"></div>
         <?php echo $comment; ?>
       </div>
     </div>

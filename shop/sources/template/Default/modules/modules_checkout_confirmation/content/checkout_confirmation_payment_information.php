@@ -17,6 +17,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card moduleCheckoutConfirmationPaymentInformationCard">
       <div class="card-header moduleCheckoutConfirmationPaymentInformationCardHeader"><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_heading_payment_information'); ?></strong></div>
       <div class="card-block moduleCheckoutConfirmationPaymentInformationCardBlock">
+        <div class="separator"></div>
         <table class="table moduleCheckoutConfirmationPaymentInformationCardTable">
           <?php echo $data; ?>
         </table>

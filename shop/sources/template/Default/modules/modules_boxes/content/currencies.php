@@ -18,6 +18,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <span class="card-title boxeTitleCurrencies"><?php echo CLICSHOPPING::getDef('module_boxes_currencies_box_title'); ?></span>
     </div>
     <div class="card-block boxeContentArroundCurrencies">
+      <div class="separator"></div>
       <div class="card-text boxeContentsCurrencies"><?php echo $output; ?></div>
     </div>
     <div class="card-footer boxeBottomCurrencies"></div>

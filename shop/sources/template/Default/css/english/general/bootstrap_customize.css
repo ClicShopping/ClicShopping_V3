@@ -184,11 +184,9 @@ blockquote {
   font-size: 1rem;
 }
 
-.card {
-  padding: 0rem 0rem 0.625rem 0rem;
-}
-
 .card-block {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
 }
 
 .card-primary {

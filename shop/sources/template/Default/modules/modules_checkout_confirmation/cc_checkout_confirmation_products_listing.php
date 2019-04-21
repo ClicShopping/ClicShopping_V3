@@ -64,6 +64,7 @@
           $confirmation .= '</div>';
           $confirmation .= '<div class="hr"></div>';
           $confirmation .= '<div class="card-block moduleCheckoutConfirmationProductsListingCardBlock">';
+          $confirmation .= '<div class="separator"></div>';
           $confirmation .= '<table width="100%">';
           $confirmation .= '<tr>';
           $confirmation .= '<td class="text-md-right"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_tax')  . '</strong></td>';
@@ -80,6 +81,7 @@
         }
 
         $confirmation .= '<div class="card-block moduleCheckoutConfirmationProductsListingCardBlock">';
+        $confirmation .= '<div class="separator"></div>';
         $confirmation .= '<table width="100%">';
 
         for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {

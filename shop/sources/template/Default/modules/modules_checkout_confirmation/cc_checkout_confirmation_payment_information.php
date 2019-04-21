@@ -78,6 +78,7 @@
                 $display .=  '<div class="card moduleCheckoutConfirmationPaymentInformationCard">';
                 $display .=  '<div class="card-header moduleCheckoutConfirmationPaymentInformationCardHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_payment_information_heading_payment_information') . '</strong></div>';
                 $display .=  '<div class="card-block moduleCheckoutConfirmationPaymentInformationCardBlock">';
+                $display .=  '<div class="separator"></div>';
 
                 for ($i=0, $n=count($confirmation['fields']); $i<$n; $i++) {
 

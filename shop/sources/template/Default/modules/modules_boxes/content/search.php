@@ -19,6 +19,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <span class="card-title boxeTitleSearch"><?php echo CLICSHOPPING::getDef('module_boxes_search_box_title'); ?></span>
     </div>
     <div class="card-block boxeContentArroundSearch">
+      <div class="separator"></div>
       <div class="card-text text-md-center boxeContentsSearch">
 <?php
   echo $output;

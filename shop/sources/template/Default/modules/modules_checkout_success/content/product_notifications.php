@@ -18,6 +18,7 @@ use ClicShopping\OM\html;
   <div class="card card-success">
     <div class="card-header"><?php echo CLICSHOPPING::getDef('module_checkout_success_product_notifications_text_notify_products'); ?></div>
     <div class="card-block">
+      <div class="separator"></div>
       <div><p class="checkoutSuccessProductsNotifications"><?php echo $products_notifications; ?></p></div>
     </div>
     <div class="separator"></div>

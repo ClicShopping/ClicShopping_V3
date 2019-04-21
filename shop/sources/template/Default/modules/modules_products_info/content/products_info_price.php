@@ -14,6 +14,7 @@ use ClicShopping\OM\CLICSHOPPING;
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="card ModulesProductsInfoBackground">
     <div class="card-block">
+      <div class="separator"></div>
       <div class="card-text">
         <div class="ModulesProductsInfoPrice">
           <?php echo CLICSHOPPING::getDef('text_price_info'); ?>

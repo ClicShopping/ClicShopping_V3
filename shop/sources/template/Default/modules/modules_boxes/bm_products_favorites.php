@@ -123,6 +123,7 @@
         $data .= '<div class="card-img-top boxeBannerContentsFavorites">' . $favorites_banner . '</div>';
         $data .= '<div class="card-header boxeHeadingFavorites"><span class="card-title boxeTitleFavorites">' . HTML::link(CLICSHOPPING::link(null,'Products&Favorites'), CLICSHOPPING::getDef('module_boxes_products_favorites_box_title')) . '</span></div>';
         $data .= '<div class="card-block  text-md-center boxeContentArroundFavorites">';
+        $data .= '<div class="separator"></div>';
 
         while ($Qproducts->fetch() ) {
           $products_id = $Qproducts->valueInt('products_id');

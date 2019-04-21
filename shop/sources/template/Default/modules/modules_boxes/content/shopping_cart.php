@@ -19,7 +19,8 @@ use ClicShopping\OM\CLICSHOPPING;
       <span class="card-title boxeTitleShoppingCart"><?php echo HTML::link(CLICSHOPPING::link(null,'Cart'), CLICSHOPPING::getDef('module_boxes_shopping_cart_box_title')); ?></span>
     </div>
     <div class="card-block boxeContentArroundShoppingCart">
-        <?php echo $cart_contents_string; ?>
+      <div class="separator"></div>
+      <?php echo $cart_contents_string; ?>
     </div>
     <div class="card-footer boxeBottomContentsShoppingCart"></div>
   </div>

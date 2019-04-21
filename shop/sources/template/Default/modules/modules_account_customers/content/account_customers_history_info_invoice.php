@@ -19,7 +19,7 @@
   <div class="card">
     <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_number', ['order_id' => $_GET['order_id']]) . ' <span class="badge float-md-right">' . $CLICSHOPPING_Order->info['orders_status'] . '</span>'; ?></strong></div>
     <div class="card-block">
-
+      <div class="separator"></div>
       <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
         <thead>
 <?php

@@ -26,6 +26,7 @@ use ClicShopping\OM\CLICSHOPPING;
     </div>
 
     <div class="card-block">
+      <div class="separator"></div>
       <div class="card-text">
         <div class="separator"></div>
         <div class="moduleAccountCustomersMyAccountListAccount">

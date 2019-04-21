@@ -49,6 +49,7 @@
         <div class="card card-default">
           <div class="card-header"><?php echo CLICSHOPPING::getDef('title_shipping_address'); ?></div>
           <div class="card-block">
+            <div class="separator"></div>
             <?php echo AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['sendto'], true, ' ', '<br />'); ?>
           </div>
         </div>
@@ -78,7 +79,10 @@
         <div class="col-md-4">
           <div class="card panel-<?php echo ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->hasDefaultAddress()) ? 'primary' : 'default'; ?>">
             <div class="card-header"><strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong></div>
-            <div class="card-block"><?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?> </div>
+            <div class="card-block">
+              <div class="separator"></div>
+              <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
+            </div>
             <div class="card-footer text-md-center"><?php echo HTML::radioField('address', $Qaddresses->valueInt('address_book_id'), ($Qaddresses->valueInt('address_book_id')== $_SESSION['sendto'])); ?></div>
           </div>
         </div>
@@ -108,6 +112,7 @@
         </div>
 
         <div class="card-block">
+          <div class="separator"></div>
           <div class="card-text">
           <span><?php echo CLICSHOPPING::getDef('text_create_new_shipping_address'); ?></span>
 <?php

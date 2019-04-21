@@ -16,6 +16,9 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-img-top boxeBannerContentsBestSellers"><?php echo $best_sellers_banner; ?></div>
     <meta itemprop="itemListOrder" content="https://schema.org/ItemListOrderDescending" />
     <div class="card-header boxeHeadingBestSellers" itemprop="name"><?php echo CLICSHOPPING::getDef('module_boxes_best_sellers_box_title'); ?></div>
-    <div class="card-block boxeContentArroundBestSellers"><?php echo $bestsellers_list; ?></div>
+    <div class="card-block boxeContentArroundBestSellers">
+      <div class="separator"></div>
+      <?php echo $bestsellers_list; ?>
+    </div>
   </div>
 </section>

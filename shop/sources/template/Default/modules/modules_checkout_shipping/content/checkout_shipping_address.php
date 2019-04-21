@@ -25,6 +25,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card moduleCheckoutShippingAddressCard">
       <div class="card-header moduleCheckoutShippingAddressCardHeader"><h3><?php echo  CLICSHOPPING::getDef('module_checkout_shipping_address_title_shipping_address'); ?></h3></div>
       <div class="card-block moduleCheckoutShippingAddressCardBlock">
+        <div class="separator"></div>
         <?php echo $address_send_to; ?>
       </div>
     </div>

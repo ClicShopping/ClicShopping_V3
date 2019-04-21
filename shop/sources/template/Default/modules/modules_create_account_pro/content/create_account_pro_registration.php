@@ -38,6 +38,7 @@
         <span class="modulesCreateAccountRegistrationPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_company'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
 <?php
     if (ACCOUNT_COMPANY_PRO == 'true') {
@@ -161,6 +162,7 @@
         <span class="modulesCreateAccountProRegistrationCategoryAddressProPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_address_pro'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
 
           <div class="row">
@@ -324,6 +326,7 @@
         <span class="modulesCreateAccountProRegistrationContactPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_contact'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
           <div class="row">
             <div class="col-md-12">
@@ -381,6 +384,7 @@
           <span class="modulesCreateAccountProRegistrationCategoryPersonnalPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_personal_pro'); ?></h3></span>
         </div>
         <div class="card-block">
+          <div class="separator"></div>
           <div class="card-text">
 
 <?php
@@ -474,6 +478,7 @@
         <span class="modulesCreateAccountProRegistrationCategoryOptionsPageHeader"><h3><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
           <div class="row">
             <div class="col-md-12">
@@ -501,8 +506,8 @@
         <span class="modulesCreateAccountProRegistrationPasswordPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_password'); ?></h3></span>
       </div>
       <div class="card-block">
+        <div class="separator"></div>
         <div class="card-text">
-
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row">

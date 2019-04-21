@@ -71,6 +71,7 @@
             <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
           </div>
           <div class="card-block">
+            <div class="separator"></div>
             <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
           </div>
 <?php
@@ -81,6 +82,7 @@
             <strong><?php echo HTML::outputProtected($Qaddresses->value('firstname') . ' ' . $Qaddresses->value('lastname')); ?></strong><?php if ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) echo '&nbsp;<small><i>' . CLICSHOPPING::getDef('primary_address') . '</i></small>'; ?>
           </div>
           <div class="card-block">
+            <div class="separator"></div>
             <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
           </div>
           <div class="card-footer text-md-center">

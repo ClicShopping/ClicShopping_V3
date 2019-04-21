@@ -573,6 +573,7 @@
         } else {
           echo $CLICSHOPPING_Customers->getDef('entry_newsletter_no');
         }
+
         echo HTML::hiddenField('customers_newsletter');
       } else {
         echo HTML::selectMenu('customers_newsletter', $newsletter_array, (($cInfo->customers_newsletter == 1) ? 1 : 0));
