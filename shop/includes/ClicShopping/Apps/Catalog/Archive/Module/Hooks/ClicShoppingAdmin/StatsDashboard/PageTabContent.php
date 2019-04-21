@@ -79,21 +79,6 @@
        ';
       }
 
-      if ($this->statsCountProductsNoArchive() != 0) {
-        $content .= '
-        <div class="row">
-          <div class="col-md-11 mainTable">
-            <div class="form-group row">
-              <label for="' . $this->app->getDef('box_entry_products_no_archives') . '" class="col-9 col-form-label"><a href="' . $this->app->link('Archive') . '">' . $this->app->getDef('box_entry_products_no_archives') . '</a></label>
-              <div class="col-md-3">
-                ' . $this->statsCountProductsNoArchive() . '
-              </div>
-            </div>
-          </div>
-        </div>
-       ';
-      }
-
         $output = <<<EOD
   <!-- ######################## -->
   <!--  Start Products      -->
