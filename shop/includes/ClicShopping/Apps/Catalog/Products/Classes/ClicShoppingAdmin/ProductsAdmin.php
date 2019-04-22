@@ -45,6 +45,12 @@
       $this->lang = Registry::get('Language');
     }
 
+/**
+ * Get all products information
+ * @param $id products_id
+ * @return array, table data
+ * @access public
+ */
     public function get($id) {
       $Qproducts = $this->db->prepare('select p.*,
                                               date_format(p.products_date_available, \'%Y-%m-%d\') as products_date_available,
@@ -66,6 +72,12 @@
     }
 
 
+/**
+ * Save the product description
+ * @param $id, produts_id
+ * @param $action, save or insert
+ * @access private
+ */
     private function saveProductsDescription($id, $action) {
       $languages = $this->lang->getLanguages();
 
@@ -971,6 +983,22 @@
     }
 
 /**
+ * Prepare to clone a products in other category for products page
+ * @param $id - products id of the products
+ * @param $categories_id - category id
+*/
+    private function prepageCloneProducts($id, $categories_id) {
+      $new_category = $categories_id;
+
+      if (is_array($new_category) && isset($new_category)) {
+        foreach ($new_category as $value_id) {
+          $this->cloneProductsInOtherCategory($id, $value_id);
+        }
+      }
+    }
+
+
+/**
  * cloneProductsInOtherCategory
  * @param $id - products id of the products
  * @param $categories_id - category id
@@ -1452,6 +1480,11 @@
 
       $this->saveGalleryImage($id);
       $this->saveProductsDescription($id, $action);
+
+      if (isset($_POST['clone_categories_id_to'])) {
+        $categories_id = $_POST['clone_categories_id_to'];
+        $this->prepageCloneProducts($id, $categories_id);
+      }
 
       $this->hooks->call('Products','Save');
     }

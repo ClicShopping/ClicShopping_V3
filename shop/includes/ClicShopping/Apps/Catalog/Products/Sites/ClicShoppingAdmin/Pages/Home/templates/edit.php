@@ -1218,9 +1218,9 @@ updateGross();
             </span>
             <span  class="col-md-2 float-md-left" style="padding-top:50px;"> <?php echo $CLICSHOPPING_Products->getDef('clone_products_to'); ?></span>
             <span  class="col-md-4 float-md-left">
-              <select name="clone_categories_id_to[]" multiple size="10">
+              <select name="clone_categories_id_to[]" multiple="multiple" size="10">
 <?php
-    while ($Qcategories->fetch() ) {
+  while ($Qcategories->fetch() ) {
       echo '<option name="' . $Qcategories->value('categories_name') . '" value="' . $Qcategories->valueInt('categories_id') . '">' . $Qcategories->value('categories_name') . '</option>';
     }
 ?>
