@@ -34,8 +34,8 @@
   $error = false;
   $processed = false;
 
-  $newsletter_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_yes'),
-                            array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_no'))));
+  $newsletter_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_yes')),
+                            array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_newsletter_no')));
 
   $customers_email_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_yes')),
                                  array('id' => '0', 'text' => $CLICSHOPPING_Customers->getDef('entry_customers_no')));
