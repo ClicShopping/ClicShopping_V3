@@ -130,7 +130,7 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_code'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Langues->getDef('text_info_language_locale'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Langues->getDef('text_info_language_locale'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('locale', null, 'placeholder="' . $CLICSHOPPING_Langues->getDef('text_locale') . '" required aria-required="true"'); ?>
           </div>

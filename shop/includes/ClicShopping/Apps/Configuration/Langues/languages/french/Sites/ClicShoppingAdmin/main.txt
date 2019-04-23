@@ -56,7 +56,7 @@ text_info_heading_delete_language = Supprimer langue
 text_create_language = Confirmation de la création des répertoires
 text_create_directory = où créer un nouveau répertoire de langue
 text_info_language_locale = Locale
-text_locale = locale
+text_locale = en_US.UTF-8;en_US.UTF8;enu_usa
 text_default = Défaut
 text_set_default = Défaut
 
