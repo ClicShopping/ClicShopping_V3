@@ -33,7 +33,6 @@
 
       $this->app->db->delete('currencies', ['currencies_id' => (int)$currencies_id]);
 
-      $this->app->redirect('currency&page=' . $_GET['page']);
-
+      $this->app->redirect('Currency&&page=' . $_GET['page']);
     }
   }

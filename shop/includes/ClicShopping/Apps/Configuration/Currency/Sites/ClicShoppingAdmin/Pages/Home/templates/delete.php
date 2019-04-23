@@ -27,7 +27,7 @@
 
   $currencies_id = HTML::sanitize($_GET['cID']);
 
-  $Qcurrency = $CLICSHOPPING_Currency->db->get('currency', 'code', ['currencies_id' => (int)$currencies_id]);
+  $Qcurrency = $CLICSHOPPING_Currency->db->get('currencies', 'code', ['currencies_id' => (int)$currencies_id]);
 
   $remove_currency = true;
   if ($Qcurrency->value('code') == DEFAULT_CURRENCY) {
@@ -57,7 +57,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' .  $cInfo->title . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br /><?php echo (($remove_currency) ?  HTML::button($CLICSHOPPING_Currency->getDef('button_delete'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id . '&action=deleteconfirm'), 'primary', null, 'sm')  : '') . ' </span><span>' .HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null,  $CLICSHOPPING_Template->link('Currency&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id), 'warning', null, 'sm'); ?></span>
+        <span><br /><?php echo (($remove_currency) ?  HTML::button($CLICSHOPPING_Currency->getDef('button_delete'), null, null, 'primary', null, 'sm')  : '') . ' </span><span>' .HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null,  $CLICSHOPPING_Currency->link('Currency&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>
