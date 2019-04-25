@@ -1,0 +1,7 @@
+.jqvmap-label {
+    z-index: 999;
+}
+#vmap {
+    width: 100%;
+    height: 270px;
+}

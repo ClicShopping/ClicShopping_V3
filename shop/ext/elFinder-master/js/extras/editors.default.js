@@ -527,7 +527,7 @@
 							paths : {
 								'fabric/dist/fabric.require' : cdns.fabric16 + '/fabric.require.min',
 								'tui-code-snippet' : cdns.tui + '/tui.code-snippet/latest/tui-code-snippet.min',
-								'tui-color-picker' : cdns.tui + '/tui.code-snippet/latest/tui-color-picker.min',
+								'tui-color-picker' : cdns.tui + '/tui-color-picker/latest/tui-color-picker.min',
 								'tui-image-editor' : cdns.tui + '/tui-image-editor/'+ver+'/tui-image-editor.min'
 							}
 						});
@@ -712,6 +712,7 @@
 					spnr = $('<div class="elfinder-edit-spinner elfinder-edit-photopea"/>')
 						.html('<span class="elfinder-spinner-text">' + fm.i18n('nowLoading') + '</span><span class="elfinder-spinner"/>')
 						.appendTo(ifm.parent()),
+					saveTypes = fm.arrayFlip(['jpg', 'png', 'gif', 'bmp', 'tiff', 'webp']),
 					getType = function(mime) {
 						var ext = getExtention(mime, fm),
 							extmime = ext2mime[ext];
@@ -721,7 +722,7 @@
 						} else if (ext === 'jpeg') {
 							ext = 'jpg';
 						}
-						if (!ext || ext === 'xcf' || ext === 'dng' || ext === 'sketch') {
+						if (!ext || !saveTypes[ext]) {
 							ext = 'psd';
 							extmime = ext2mime[ext];
 							ifm.closest('.ui-dialog').trigger('changeType', {
@@ -2606,6 +2607,7 @@
 					uiToast = fm.getUI('toast'),
 					idxs = {},
 					allowZip = fm.uploadMimeCheck('application/zip', file.phash),
+					selfUrl = $('base').length? document.location.href.replace(/#.*$/, '') : '',
 					getExt = function(cat, con) {
 						var c;
 						if (set.catExts[cat]) {
@@ -2782,7 +2784,7 @@
 								}
 							});
 							if (type.children().length) {
-								ul.append($('<li/>').append($('<a/>').attr('href', '#' + id).text(t)));
+								ul.append($('<li/>').append($('<a/>').attr('href', selfUrl + '#' + id).text(t)));
 								btns.append(type);
 								idxs[cname] = i++;
 							}

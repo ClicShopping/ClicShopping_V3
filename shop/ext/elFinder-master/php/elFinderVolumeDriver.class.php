@@ -290,6 +290,7 @@ abstract class elFinderVolumeDriver
             'css:text/x-asm' => 'text/css',
             'css:text/plain' => 'text/css',
             'csv:text/plain' => 'text/csv',
+            'java:text/x-c' => 'text/x-java-source',
             'json:text/plain' => 'application/json',
             'sql:text/plain' => 'text/x-sql',
             'rtf:text/rtf' => 'application/rtf',
@@ -2042,7 +2043,7 @@ abstract class elFinderVolumeDriver
     }
 
     /**
-     * Create thumbnail for required file and return its name of false on failed
+     * Create thumbnail for required file and return its name or false on failed
      *
      * @param $hash
      *
