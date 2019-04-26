@@ -13,16 +13,16 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Sites\Shop\Address as AddressClass;
+  use ClicShopping\Sites\ClicShoppingAdmin\AddressAdmin as AddressClass;
 
   class Address implements \ClicShopping\OM\ServiceInterface {
 
     public static function start() {
 
-      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Address.php')) {
-        if (!Registry::exists('Address')) {
+      if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/AddressAdmin.php')) {
+       if (!Registry::exists('AddressClass')) {
          Registry::set('Address', new AddressClass());
-        }
+       }
         return true;
       } else {
         return false;

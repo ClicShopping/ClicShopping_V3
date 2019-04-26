@@ -44,11 +44,11 @@
       $Qaddress = Registry::get('Db')->get('address_format', 'address_format_id', null, 'address_format_id');
 
       while ($Qaddress->fetch()) {
-        $address_format_array[] = [
-                                    'id' => $Qaddress->valueInt('address_format_id'),
-                                    'text' => $Qaddress->valueInt('address_format_id')
+        $address_format_array[] = ['id' => $Qaddress->valueInt('address_format_id'),
+                                   'text' => $Qaddress->valueInt('address_format_id')
                                   ];
       }
+
       return $address_format_array;
     }
 
@@ -83,7 +83,7 @@
  *
  */
     public static function getAddressFormatRadio($address_format_id) {
-      return parent::addressFormat($address_format_id, AddressAdmin::setAddressFormatArrayAdmin(), true, '', '<br />');
+    return parent::addressFormat($address_format_id, AddressAdmin::setAddressFormatArrayAdmin(), true, '', '<br />');
     }
 
 /**
@@ -97,9 +97,9 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qzones = $CLICSHOPPING_Db->prepare('select geo_zone_name
-                                   from :table_geo_zones
-                                   where geo_zone_id = :geo_zone_id
-                                   ');
+                                           from :table_geo_zones
+                                           where geo_zone_id = :geo_zone_id
+                                           ');
       $Qzones->bindInt(':geo_zone_id', (int)$geo_zone_id);
       $Qzones->execute();
 
@@ -157,21 +157,21 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QaddressesBook = $CLICSHOPPING_Db->prepare('select address_book_id,
-                                                   entry_firstname as firstname,
-                                                   entry_lastname as lastname,
-                                                   entry_company as company,
-                                                   entry_street_address as street_address,
-                                                   entry_suburb as suburb,
-                                                   entry_city as city,
-                                                   entry_postcode as postcode,
-                                                   entry_state as state,
-                                                   entry_zone_id as zone_id,
-                                                   entry_country_id as country_id ,
-                                                   entry_telephone as telephone
-                                            from :table_address_book
-                                            where customers_id = :customers_id
-                                            order by address_book_id
-                                            ');
+                                                         entry_firstname as firstname,
+                                                         entry_lastname as lastname,
+                                                         entry_company as company,
+                                                         entry_street_address as street_address,
+                                                         entry_suburb as suburb,
+                                                         entry_city as city,
+                                                         entry_postcode as postcode,
+                                                         entry_state as state,
+                                                         entry_zone_id as zone_id,
+                                                         entry_country_id as country_id ,
+                                                         entry_telephone as telephone
+                                                  from :table_address_book
+                                                  where customers_id = :customers_id
+                                                  order by address_book_id
+                                                  ');
       $QaddressesBook->bindInt(':customers_id', (int)$id);
       $QaddressesBook->execute();
 
