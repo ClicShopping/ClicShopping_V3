@@ -41,7 +41,7 @@ tab_submit_default = Défaut
 tab_submit_categories = Catégories
 tab_submit_products_info = Description produits
 tab_submit_products_new = Nouveautés
-tab_submit_special = Promotions
+tab_submit_specials = Promotions
 tab_submit_reviews = Commentaires
 
 keywords_google_trend = Tendance des mots clefs selon Google

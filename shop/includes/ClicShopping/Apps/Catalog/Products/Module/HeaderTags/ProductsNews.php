@@ -54,8 +54,8 @@
         return false;
       }
 
-      if (isset($_GET['products']) && isset($_GET['ProductsNew'])) {
-        $Qsubmit = $this->app->D->prepare('select submit_id,
+      if (isset($_GET['Products']) && isset($_GET['ProductsNew'])) {
+        $Qsubmit = $this->app->db->prepare('select submit_id,
                                                   language_id,
                                                   submit_defaut_language_title,
                                                   submit_defaut_language_keywords,
@@ -73,27 +73,27 @@
         $tags_array = [];
 
         if (empty($Qsubmit->value('submit_language_products_new_title'))) {
-          $tags_array['title']= HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+          $title = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
         } else {
-          $tags_array['title']= HTML::sanitize($Qsubmit->value('submit_language_products_new_title'));
+          $title = HTML::sanitize($Qsubmit->value('submit_language_products_new_title'));
         }
 
         if (empty($Qsubmit->value('submit_language_products_new_description'))) {
-          $tags_array['desc']= HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+          $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
         } else {
-          $tags_array['desc']= HTML::sanitize($Qsubmit->value('submit_language_products_new_description'));;
+          $description = HTML::sanitize($Qsubmit->value('submit_language_products_new_description'));;
         }
 
         if (empty($Qsubmit->value('submit_language_products_new_keywords'))) {
-          $tags_array['keywords']= HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+          $keywords = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
         } else {
-          $tags_array['keywords']= HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords'));;
+          $keywords = HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords'));;
         }
 
-        $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
+        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
+        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
 
         $output =
 <<<EOD

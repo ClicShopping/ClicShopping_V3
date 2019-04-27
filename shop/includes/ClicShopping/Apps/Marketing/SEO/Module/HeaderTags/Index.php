@@ -57,17 +57,19 @@
       $index = HTTP::getShopUrlDomain() . 'index.php';
       $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['REQUEST_URI'];
 
-      if ($index === $url) {
+      $language = HTML::sanitize($_GET['language']);
+
+      if (($index === $url || isset($language)) && !isset($_GET['Products']) && !isset($_GET['Blog']) && !isset($_GET['Info'])) {
         $Qsubmit = $this->app->db->prepare('select submit_id,
                                                   language_id,
                                                   submit_defaut_language_title,
                                                   submit_defaut_language_keywords,
                                                   submit_defaut_language_description
                                               from :table_submit_description
-                                              where submit_id = :submit_id
+                                              where submit_id = 1
                                               and language_id = :language_id
                                           ');
-        $Qsubmit->bindInt(':submit_id', 1);
+
         $Qsubmit->bindInt(':language_id', $this->lang->getId() );
         $Qsubmit->execute();
         $submit = $Qsubmit->fetch();
