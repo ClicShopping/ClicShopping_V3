@@ -125,7 +125,7 @@ html, body {height: 100%;}
     require('includes/ClicShopping/Sites/Shop/Templates/Default/footer.php');
     ob_end_flush();
   } else {
-    HTTP::redirect(CLICSHOPPING::link());
+    HTTP::redirect(CLICSHOPPING::link('index.php'));
   }
 ?>
 
