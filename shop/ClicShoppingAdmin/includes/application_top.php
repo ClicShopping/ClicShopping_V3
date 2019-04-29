@@ -21,13 +21,13 @@
 // Set the level of error reporting
   defined( 'E_DEPRECATED' ) ? error_reporting( E_ALL & ~E_NOTICE & ~E_DEPRECATED ) : error_reporting( E_ALL & ~E_NOTICE );
 
-  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
   CLICSHOPPING::initialize();
 
   if (PHP_VERSION_ID < 70000) {
-    include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/random_compat/random.php');
+    include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/random_compat/random.php');
   }
 
   CLICSHOPPING::loadSite('ClicShoppingAdmin');

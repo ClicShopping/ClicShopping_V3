@@ -13,14 +13,14 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
   if ( $CLICSHOPPING_MessageStack->exists('login') ) {
     echo $CLICSHOPPING_MessageStack->get('login');
   }
 ?>
   <div id="loginModules">
-      <?php require($CLICSHOPPING_Page->data['content']); ?>
+      <?php require_once($CLICSHOPPING_Page->data['content']); ?>
   </div>
 <?php
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

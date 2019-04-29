@@ -52,7 +52,7 @@
         $data = '<!-- pr_products_reviews_listing_description start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_description'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_description'));
 
         $data .= ob_get_clean();
 

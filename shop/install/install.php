@@ -10,7 +10,7 @@
  */
 
 
-  require('includes/application.php');
+  require_once('includes/application.php');
 
   $page_contents = 'install.php';
 
@@ -30,4 +30,4 @@
     }
   }
 
-  require('templates/main_page.php');
+  require_once('templates/main_page.php');

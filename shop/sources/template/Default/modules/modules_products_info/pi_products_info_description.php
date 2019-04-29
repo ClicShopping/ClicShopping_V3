@@ -48,7 +48,7 @@
         $products_description_content = '<!-- Start products_description -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_description'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_description'));
 
         $products_description_content .= ob_get_clean();
 

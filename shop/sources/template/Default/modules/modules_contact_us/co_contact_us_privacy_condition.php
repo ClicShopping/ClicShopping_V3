@@ -43,7 +43,7 @@
           $contact_us_privacy_condition = '<!--  contact_us_privacy_condition start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_privacy_condition'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_privacy_condition'));
 
           $contact_us_privacy_condition .= ob_get_clean();
 

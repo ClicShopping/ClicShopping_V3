@@ -43,7 +43,7 @@
         $advanced_search_help = '<!-- Start advanced search help -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_help'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_help'));
 
         $advanced_search_help .= ob_get_clean();
 

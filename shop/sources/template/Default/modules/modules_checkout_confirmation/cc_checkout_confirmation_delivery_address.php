@@ -53,7 +53,7 @@
         $confirmation = '  <!-- processing_checkout_confirmation_delivery -->'. "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_delivery_address'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_delivery_address'));
 
         $confirmation .= ob_get_clean();
 

@@ -27,7 +27,7 @@
   $CLICSHOPPING_Address = Registry::get('Address');
 
   define('FPDF_FONTPATH','../ext/fpdf/font/');
-  require('../ext/fpdf/fpdf.php');
+  require_once('../ext/fpdf/fpdf.php');
 
   Registry::set('PDF', new PDF());
   $PDF = Registry::get('PDF');

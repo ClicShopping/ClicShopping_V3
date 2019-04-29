@@ -179,7 +179,7 @@
         $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getDirectoryPathShopDefaultTemplateHtml() . '/languages/' . $CLICSHOPPING_Language->get('directory') . '/modules/'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
       }
 
-      include($module_directory . $file);
+      include_once($module_directory . $file);
 
       $class = substr($file, 0, strrpos($file, '.'));
 

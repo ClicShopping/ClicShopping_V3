@@ -17,7 +17,7 @@
 
   define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/') . '/ClicShopping/');
 
-  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
   if (isset($_GET['language'])) {

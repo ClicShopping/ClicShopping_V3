@@ -10,7 +10,6 @@
  */
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
 
   class chs_redirect_old_order {

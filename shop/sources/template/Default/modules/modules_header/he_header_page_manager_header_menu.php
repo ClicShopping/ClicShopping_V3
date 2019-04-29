@@ -49,7 +49,7 @@
 
         ob_start();
 
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_page_manager_header_menu'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_page_manager_header_menu'));
 
         $data .= ob_get_clean();
 

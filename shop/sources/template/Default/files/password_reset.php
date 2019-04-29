@@ -19,7 +19,7 @@
     echo $CLICSHOPPING_MessageStack->get('password_reset');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="password_reset" id="password_reset">
   <div class="contentContainer">
@@ -30,5 +30,5 @@
   </div>
 </section>
 <?php
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
 

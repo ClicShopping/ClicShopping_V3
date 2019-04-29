@@ -8,7 +8,7 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="favorites" id="favorites">
   <div class="contentContainer">

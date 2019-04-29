@@ -16,7 +16,7 @@ $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
 $current_module = $CLICSHOPPING_Page->data['current_module'];
 
-require(__DIR__ . '/template_top.php');
+require_once(__DIR__ . '/template_top.php');
 ?>
   <div class="row col-md-12">
   <ul class="nav nav-tabs flex-column flex-sm-row" id="appPayPalToolbar">
@@ -34,7 +34,7 @@ $('#appPayPalToolbar li[data-module="<?php echo $current_module; ?>"]').addClass
 <form name="paypalCredentials" action="<?php echo $CLICSHOPPING_PayPal->link('Credentials&Process&module=' . $current_module); ?>" method="post">
 
 <?php
-require(__DIR__ . '/credentials_' . strtolower($current_module) . '.php');
+require_once(__DIR__ . '/credentials_' . strtolower($current_module) . '.php');
 ?>
 <br /><br />
   <div class="col-md-12 text-md-right">
@@ -44,4 +44,4 @@ require(__DIR__ . '/credentials_' . strtolower($current_module) . '.php');
 </form>
 
 <?php
-require(__DIR__ . '/template_bottom.php');
+require_once(__DIR__ . '/template_bottom.php');

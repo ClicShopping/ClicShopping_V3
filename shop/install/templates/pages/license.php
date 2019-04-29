@@ -56,7 +56,7 @@
   </div>
   <div class="card-block">
     <p class="card-text col-md-12">
-      <?php include('license.txt'); ?>
+      <?php include_once('license.txt'); ?>
     </p>
   </div>
 </div>

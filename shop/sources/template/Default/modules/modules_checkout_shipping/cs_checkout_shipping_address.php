@@ -55,7 +55,7 @@
         }
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_address'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_address'));
 
         $shipping .= ob_get_clean();
 

@@ -13,7 +13,7 @@
    echo $CLICSHOPPING_MessageStack->get('account_edit');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="account_edit" id="account_edit">
   <div class="contentContainer">

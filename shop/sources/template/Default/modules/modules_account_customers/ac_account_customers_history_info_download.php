@@ -60,7 +60,7 @@
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_DOWNLOAD_CONTENT_WIDTH;
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_download'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_download'));
         $account .= ob_get_clean();
 
         $account .= '<!-- end account_customers_download-->' . "\n";

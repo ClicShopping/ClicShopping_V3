@@ -12,7 +12,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -26,13 +26,13 @@
       }
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
-        require($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('header.php'));
+        require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('header.php'));
       }
 
-      include($page_file);
+      include_once($page_file);
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
-        require($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('footer.php'));
+        require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('footer.php'));
       }
     }
     goto main_sub3;
@@ -40,4 +40,4 @@
 
   main_sub3: // Sites and Apps skip to here
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('application_bottom.php'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('application_bottom.php'));

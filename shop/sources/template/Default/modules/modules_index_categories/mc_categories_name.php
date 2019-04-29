@@ -52,7 +52,7 @@
           $categories_content = '<!-- Index Categories name start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/categories_name'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/categories_name'));
           $categories_content .= ob_get_clean();
 
           $categories_content .= '<!-- Index Categories name end -->' . "\n";

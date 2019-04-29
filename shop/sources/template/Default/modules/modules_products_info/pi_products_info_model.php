@@ -48,7 +48,7 @@
         $products_model_content = '<!-- Start products model -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_model'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_model'));
         $products_model_content .= ob_get_clean();
 
         $products_model_content .= '<!-- end products model -->' . "\n";

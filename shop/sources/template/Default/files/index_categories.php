@@ -14,8 +14,8 @@
   use ClicShopping\OM\HTTP;
 
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
   <section class="index_categories" id="index_categories">
     <div class="contentContainer">
@@ -25,4 +25,4 @@
     </div>
   </section>
 <?php
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

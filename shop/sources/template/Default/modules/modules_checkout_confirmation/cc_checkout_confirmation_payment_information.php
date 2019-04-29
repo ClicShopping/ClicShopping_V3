@@ -97,7 +97,7 @@
                 $display .= '</div>';
               } else {
                 ob_start();
-                require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_payment_information'));
+                require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_payment_information'));
 
                 $display .= ob_get_clean();
               }

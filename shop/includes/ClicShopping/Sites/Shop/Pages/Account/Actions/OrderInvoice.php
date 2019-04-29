@@ -39,7 +39,7 @@
       }
 
       define('FPDF_FONTPATH', 'ext/fpdf/font/');
-      require('ext/fpdf/fpdf.php');
+      require_once('ext/fpdf/fpdf.php');
 
       require_once('includes/ClicShopping/Sites/Common/pdfInvoice.php');
       $pdf = new \pdfInvoice();

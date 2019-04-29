@@ -13,7 +13,7 @@
                             array('id' => 'french', 'text' => 'Francais'),
                     );
 
- require('includes/languages/' . $language . '.php');
+ require_once('includes/languages/' . $language . '.php');
 
   $template = 'main_page';
 ?>
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <?php require('templates/pages/' . $page_contents); ?>
+    <?php require_once('templates/pages/' . $page_contents); ?>
 
     <div class="row">
       <div class="col-md-12">

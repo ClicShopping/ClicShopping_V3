@@ -29,7 +29,6 @@
 //Content
         $this->page->data['content'] = $CLICSHOPPING_Template->getTemplateFiles('create_account_pro_success');
 //language
-//        require($CLICSHOPPING_Template->GetPathDirectoryTemplatetLanguageFiles('create_account_pro_success'));;
         $CLICSHOPPING_Language->loadDefinitions('create_account_pro_success');
 
         $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('nav_bar_title_1'),  CLICSHOPPING::link(null, 'Account&CreatePro'));

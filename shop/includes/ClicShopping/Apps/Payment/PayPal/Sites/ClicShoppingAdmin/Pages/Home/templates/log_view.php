@@ -14,7 +14,7 @@ use ClicShopping\OM\HTML;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  require(__DIR__ . '/template_top.php');
+  require_once(__DIR__ . '/template_top.php');
 ?>
 
 <div class="text-md-right">
@@ -70,4 +70,4 @@ foreach ($CLICSHOPPING_Page->data['log_response'] as $key => $value) {
 </table>
 
 <?php
-  require(__DIR__ . '/template_bottom.php');
+  require_once(__DIR__ . '/template_bottom.php');

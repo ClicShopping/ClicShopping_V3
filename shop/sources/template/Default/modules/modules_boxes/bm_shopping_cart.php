@@ -104,7 +104,7 @@
           $data = '<!-- boxe shopping cart start-->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/shopping_cart'));
+          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/shopping_cart'));
 
           $data .= ob_get_clean();
 

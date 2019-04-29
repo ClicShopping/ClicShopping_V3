@@ -21,8 +21,8 @@
 // templates
   $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Cart'));
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
-  require($CLICSHOPPING_Template->getTemplateFiles('shopping_cart'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('shopping_cart'));
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

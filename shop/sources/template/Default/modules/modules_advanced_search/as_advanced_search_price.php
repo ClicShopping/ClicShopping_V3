@@ -42,7 +42,7 @@
         $advanced_search_price = '<!-- Start advanced search price -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_price'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_price'));
         $advanced_search_price .= ob_get_clean();
 
         $advanced_search_price .= '<!-- end advanced search price -->' . "\n";

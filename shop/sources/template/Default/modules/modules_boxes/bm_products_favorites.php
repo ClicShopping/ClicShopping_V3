@@ -177,7 +177,7 @@
           }
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/products_favorites'));
+          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/products_favorites'));
           $data .= ob_get_clean();
 
           $col ++;

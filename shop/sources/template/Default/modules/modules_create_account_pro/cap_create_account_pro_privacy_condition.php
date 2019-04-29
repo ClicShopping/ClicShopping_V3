@@ -44,7 +44,7 @@
         $create_account_pro = '<!-- Start create_account_pro_privacy_condition start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_pro_privacy_condition'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_pro_privacy_condition'));
 
         $create_account_pro .= ob_get_clean();
 

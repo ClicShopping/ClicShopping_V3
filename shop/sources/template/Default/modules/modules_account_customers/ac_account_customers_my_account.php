@@ -44,7 +44,7 @@
 
         $account_customers_my_account_content = '<!-- Start account_customers_my_account --> ' . "\n";
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_my_account'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_my_account'));
         $account_customers_my_account_content .= ob_get_clean();
 
         $account_customers_my_account_content .= '<!-- end account_customers_my_account -->' . "\n";

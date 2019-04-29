@@ -119,7 +119,7 @@
                 $products_price_content .=  HTML::hiddenField('products_id', (int)$_GET['products_id']);
 
                 ob_start();
-                require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_price'));
+                require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_price'));
                 $products_price_content .= ob_get_clean();
 
 // Strong relations with pi_products_options.php Don't delete

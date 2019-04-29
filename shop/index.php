@@ -16,13 +16,13 @@
   define('PAGE_PARSE_START_TIME', microtime());
   define('CLICSHOPPING_BASE_DIR', __DIR__ . '/includes/ClicShopping/');
 
-  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
   CLICSHOPPING::initialize();
 
   if (PHP_VERSION_ID < 70000) {
-    include('includes/third_party/random_compat/random.php');
+    include_once('includes/third_party/random_compat/random.php');
   }
 
   CLICSHOPPING::loadSite('Shop');
@@ -38,13 +38,13 @@
       }
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
-        include($CLICSHOPPING_Template->getFile('header.php', 'Default'));
+        include_once($CLICSHOPPING_Template->getFile('header.php', 'Default'));
       }
 
-      include($page_file);
+      include_once($page_file);
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
-        require($CLICSHOPPING_Template->getFile('footer.php', 'Default'));
+        require_once($CLICSHOPPING_Template->getFile('footer.php', 'Default'));
       }
     }
 
@@ -53,4 +53,4 @@
 
   main_sub3: // Sites and Apps skip to here
 
-  require(CLICSHOPPING::BASE_DIR .'/Sites/Shop/Templates/Default/footer.php');
+  require_once(CLICSHOPPING::BASE_DIR .'/Sites/Shop/Templates/Default/footer.php');

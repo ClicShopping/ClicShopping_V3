@@ -55,7 +55,7 @@
       $endform = '</form>';
 
       ob_start();
-      require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_registration'));
+      require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_registration'));
 
       $create_account .= ob_get_clean();
 

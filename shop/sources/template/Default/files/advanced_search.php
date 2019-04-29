@@ -15,7 +15,7 @@
   if ( $CLICSHOPPING_MessageStack->exists('search') ) {
     echo $CLICSHOPPING_MessageStack->get('search');
   }
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="advanced_search" role="form"', ['session_id' => true]);
 ?>

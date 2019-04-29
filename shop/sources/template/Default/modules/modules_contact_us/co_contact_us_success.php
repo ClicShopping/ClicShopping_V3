@@ -47,7 +47,7 @@
         $contact_us_page_manager = '<!--  co_contact_us_success start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_success'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_success'));
 
         $contact_us_page_manager .= ob_get_clean();
 

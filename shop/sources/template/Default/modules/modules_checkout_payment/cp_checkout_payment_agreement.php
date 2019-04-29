@@ -48,7 +48,7 @@
           $checkbox_aggreement = HTML::checkboxField('conditions', '1', false, 'id="conditions" required aria-required="true"');
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_agreement'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_agreement'));
 
           $payment_process .= ob_get_clean();
 

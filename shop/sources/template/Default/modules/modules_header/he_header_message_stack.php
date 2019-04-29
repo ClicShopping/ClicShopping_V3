@@ -50,7 +50,7 @@
 
         ob_start();
 
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_message_stack'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_message_stack'));
 
         $data .= ob_get_clean();
 

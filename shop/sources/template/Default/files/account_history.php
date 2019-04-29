@@ -9,7 +9,7 @@
  *
  */
 
- require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+ require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
 ?>
 <section class="account_history" id="account_history">

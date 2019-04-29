@@ -211,7 +211,7 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
           $class = isset($module['class']) ? $module['class'] : basename($file, '.php');
           $code = isset($module['code']) ? $module['code'] : $file;
 
-          include($m['dir'] . $file);
+          include_once($m['dir'] . $file);
 
           $mo = new $class();
           $mo->install();

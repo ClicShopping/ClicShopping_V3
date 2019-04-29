@@ -306,7 +306,7 @@
           $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/payment/' . $include_modules[$i]['file']);
 
           if (is_file($module_directory . $file)) {
-           include($module_directory . $file);
+           include_once($module_directory . $file);
 
            $class = substr($file, 0, strrpos($file, '.'));
 
@@ -415,7 +415,7 @@
          if (in_array ($include_modules[$i]['file'], $modules_shipping)) {
            $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
            if (is_file($module_directory . $file)) {
-             include($module_directory . $file);
+             include_once($module_directory . $file);
 
              $class = substr($file, 0, strrpos($file, '.'));
              if (class_exists($class)) {

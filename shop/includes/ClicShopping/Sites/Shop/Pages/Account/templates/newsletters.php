@@ -14,10 +14,10 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
   $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_newsletter_updated'), 'success', 'account');
 
-  require($CLICSHOPPING_Page->data['content']);
+  require_once($CLICSHOPPING_Page->data['content']);
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

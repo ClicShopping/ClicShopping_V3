@@ -20,7 +20,7 @@
     echo $CLICSHOPPING_MessageStack->get('checkout_shipping');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('checkout_shipping', CLICSHOPPING::link(null, 'Checkout&Shipping&Process'), 'post', 'class="form-inline" role="form" id="checkout_shipping"', ['tokenize' => true, 'action' => 'process']);
 ?>

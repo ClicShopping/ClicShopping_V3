@@ -9,7 +9,7 @@
  *
  */
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   if ( $CLICSHOPPING_MessageStack->exists('account_notification') ) {
     echo $CLICSHOPPING_MessageStack->get('account_notification');

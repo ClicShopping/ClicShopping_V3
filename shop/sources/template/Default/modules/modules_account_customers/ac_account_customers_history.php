@@ -48,7 +48,7 @@
         $ordersTotalRow = History::getOrderTotalRows();
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history'));
         $account_history .= ob_get_clean();
 
         $account_history .= '<!-- end account_customers_my_account -->' . "\n";

@@ -49,7 +49,7 @@
           $confirmation = '  <!-- checkout confirmation law Hamon start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_law_hamon'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_law_hamon'));
 
           $confirmation .= ob_get_clean();
 

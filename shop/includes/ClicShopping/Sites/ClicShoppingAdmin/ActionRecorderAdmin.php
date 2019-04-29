@@ -35,7 +35,7 @@
 
               $this->lang->loadDefinitions('Shop/modules/action_recorder/' . $module);
 
-              include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/' . $module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.')+1)));
+              include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/' . $module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.')+1)));
             } else {
               return false;
             }

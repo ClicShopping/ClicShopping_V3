@@ -55,7 +55,7 @@
         $currency ='<!-- Boxe currencies start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/currencies'));
+        require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/currencies'));
         $currency .= ob_get_clean();
 
         $currency .='<!-- Boxe currencies end -->' . "\n";

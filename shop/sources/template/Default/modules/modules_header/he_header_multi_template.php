@@ -88,7 +88,7 @@
 
       if (is_file($filename)) {
         ob_start();
-        require($filename);
+        require_once($filename);
         $header_template .= ob_get_clean();
       } else {
         echo  '<div class="alert alert-warning text-md-center" role="alert">' . CLICSHOPPING::getDef('template_does_not_exist') . '</div>';

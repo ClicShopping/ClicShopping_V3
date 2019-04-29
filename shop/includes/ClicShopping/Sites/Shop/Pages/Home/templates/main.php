@@ -21,16 +21,16 @@
 
   if ($CLICSHOPPING_Category->getDepth() == 'products') {
     if ($CLICSHOPPING_Category->getCountCategoriesNested() > 0) {
-      require($CLICSHOPPING_Template->getTemplateFiles('index_listing'));
+      require_once($CLICSHOPPING_Template->getTemplateFiles('index_listing'));
     } else {
 // nested
-      require($CLICSHOPPING_Template->getTemplateFiles('index_categories'));
+      require_once($CLICSHOPPING_Template->getTemplateFiles('index_categories'));
     }
 
   } elseif ($CLICSHOPPING_Category->getDepth() == 'nested' || (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id']))) {
 //CATEGORIES Page  2nd level / Listing
-    require($CLICSHOPPING_Template->getTemplateFiles('index_listing'));
+    require_once($CLICSHOPPING_Template->getTemplateFiles('index_listing'));
 //Index page
   } else {
-    require($CLICSHOPPING_Template->getTemplateFiles('index_default'));
+    require_once($CLICSHOPPING_Template->getTemplateFiles('index_default'));
   }

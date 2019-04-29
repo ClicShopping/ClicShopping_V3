@@ -16,7 +16,7 @@
   header('Cache-Control: no-cache, must-revalidate');
   header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
-  require('includes/application.php');
+  require_once('includes/application.php');
 
   $dir_fs_www_root = dirname(__FILE__);
 

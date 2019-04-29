@@ -12,7 +12,7 @@
 use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  require(__DIR__ . '/template_top.php');
+  require_once(__DIR__ . '/template_top.php');
 
   $Qlog = $CLICSHOPPING_PayPal->db->prepare('select SQL_CALC_FOUND_ROWS l.id,
                                                                   l.customers_id,
@@ -123,4 +123,4 @@ $(function() {
 </script>
 
 <?php
-require(__DIR__ . '/template_bottom.php');
+require_once(__DIR__ . '/template_bottom.php');

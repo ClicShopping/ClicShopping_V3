@@ -15,7 +15,7 @@
 
   $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="cart" id="cart">
   <div class="contentContainer">

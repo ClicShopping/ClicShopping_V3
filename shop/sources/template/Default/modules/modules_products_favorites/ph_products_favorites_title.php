@@ -45,7 +45,7 @@
         $content .= '<div class="ModulesProductsFavoritesContainer">';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_favorites_title'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_favorites_title'));
         $content .= ob_get_clean();
 
         $content .= '</div>' . "\n";

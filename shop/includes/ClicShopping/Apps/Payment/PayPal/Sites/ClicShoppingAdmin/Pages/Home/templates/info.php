@@ -11,7 +11,7 @@
 
 use ClicShopping\OM\HTML;
 
-require(__DIR__ . '/template_top.php');
+require_once(__DIR__ . '/template_top.php');
 ?>
 
 
@@ -153,4 +153,4 @@ require(__DIR__ . '/template_top.php');
   <div class="text-md-center"><small><?php echo $CLICSHOPPING_PayPal->getDef('text_license'); ?></small></div>
 
 <?php
-require(__DIR__ . '/template_bottom.php');
+require_once(__DIR__ . '/template_bottom.php');

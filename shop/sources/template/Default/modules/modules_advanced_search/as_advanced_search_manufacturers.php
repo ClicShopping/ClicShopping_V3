@@ -44,7 +44,7 @@
         $advanced_search_manufacturers = '<!-- Start advanced search manufacturers -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_manufacturers'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_manufacturers'));
 
         $advanced_search_manufacturers .= ob_get_clean();
 

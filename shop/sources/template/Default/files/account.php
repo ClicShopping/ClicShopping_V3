@@ -9,7 +9,7 @@
  *
  */
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   if ( $CLICSHOPPING_MessageStack->exists('main_account') ) {
     echo $CLICSHOPPING_MessageStack->get('main_account');

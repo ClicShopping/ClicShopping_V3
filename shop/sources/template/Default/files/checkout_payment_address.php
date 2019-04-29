@@ -24,7 +24,7 @@
     echo $CLICSHOPPING_MessageStack->get('checkout_address');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('checkout_address', CLICSHOPPING::link(null, 'Checkout&PaymentAddress&Process'), 'post', 'role="form" id="usrForm"', ['tokenize' => true, 'action' => 'process']);
 
@@ -117,7 +117,7 @@
             <span><?php echo CLICSHOPPING::getDef('text_create_new_payment_address'); ?></span>
 <?php
     if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 || ACCOUNT_ADRESS_BOOK_PRO == 'true') {
-      require($CLICSHOPPING_Template->getTemplateModules('customers_address/checkout_new_address'));
+      require_once($CLICSHOPPING_Template->getTemplateModules('customers_address/checkout_new_address'));
     }
 ?>
           </div>

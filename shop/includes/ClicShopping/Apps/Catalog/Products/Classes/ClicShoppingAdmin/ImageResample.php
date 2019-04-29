@@ -272,7 +272,7 @@
 
   <?php
      if( isset($_POST['submit']) ) {
-        include('SimpleImage.php');
+        include_once('SimpleImage.php');
         $image = new SimpleImage();
         $image->load($_FILES['uploaded_image']['tmp_name']);
         $image->resizeToWidth(150);

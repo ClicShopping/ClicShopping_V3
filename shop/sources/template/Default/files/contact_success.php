@@ -13,7 +13,7 @@
     echo $CLICSHOPPING_MessageStack->get('contact');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="contact_success" id="contact_success">
   <div class="contentContainer">

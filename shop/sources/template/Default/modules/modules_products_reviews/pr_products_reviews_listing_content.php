@@ -89,7 +89,7 @@
           $review_star = HTML::stars($Qreviews->valueInt('reviews_rating'));
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_content'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_content'));
 
           $data.= ob_get_clean();
         }

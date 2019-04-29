@@ -90,7 +90,7 @@
           $data = '<!-- boxe manufacturer Info start-->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/manufacturer_info'));
+          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/manufacturer_info'));
 
           $data .= ob_get_clean();
 

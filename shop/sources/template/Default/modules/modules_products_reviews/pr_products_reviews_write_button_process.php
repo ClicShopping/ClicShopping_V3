@@ -53,7 +53,7 @@
         $data = '<!-- pr_modules_products_reviews_write_rating start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_button_process'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_button_process'));
 
         $data .= ob_get_clean();
 

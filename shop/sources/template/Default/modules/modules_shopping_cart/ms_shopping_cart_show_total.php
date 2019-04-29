@@ -48,7 +48,7 @@
         $shopping_cart = '  <!-- ms_shopping_cart_show_total -->'. "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_show_total'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_show_total'));
 
         $shopping_cart .= ob_get_clean();
 

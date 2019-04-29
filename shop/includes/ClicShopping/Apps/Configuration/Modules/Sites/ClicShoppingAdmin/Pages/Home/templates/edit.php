@@ -138,7 +138,7 @@
     } else {
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
 
-      include($module_directory . $file);
+      include_once($module_directory . $file);
 
       $class = substr($file, 0, strrpos($file, '.'));
       if (class_exists($class)) {

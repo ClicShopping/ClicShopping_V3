@@ -115,7 +115,7 @@
 
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_listing'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_listing'));
 
         $payment_process .= ob_get_clean();
 

@@ -65,7 +65,7 @@
         $account = '<!-- Start account_customers_my_account Notification --> ' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_notifications'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_notifications'));
         $account .= ob_get_clean();
 
         $account .= '<!-- end account_customers_my_account Notification -->' . "\n";

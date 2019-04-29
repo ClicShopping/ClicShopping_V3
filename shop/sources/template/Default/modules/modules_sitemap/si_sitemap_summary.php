@@ -43,7 +43,7 @@
         $sitemap_summary = '<!-- sitemap summary start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/sitemap_summary'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/sitemap_summary'));
 
         $sitemap_summary .= ob_get_clean();
 

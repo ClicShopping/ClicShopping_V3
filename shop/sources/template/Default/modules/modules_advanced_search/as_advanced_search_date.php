@@ -44,7 +44,7 @@
         $advanced_search_date = '<!-- Start advanced search date -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_date'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_date'));
 
         $advanced_search_date .= ob_get_clean();
 

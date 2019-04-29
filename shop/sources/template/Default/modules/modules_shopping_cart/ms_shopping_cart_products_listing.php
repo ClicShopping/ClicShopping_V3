@@ -178,7 +178,7 @@
           $cart .= Registry::get('Hooks')->output('Cart', 'AdditionalCheckoutSaveMoney');
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_products_listing'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_products_listing'));
           $shopping_cart .= ob_get_clean();
         }
 

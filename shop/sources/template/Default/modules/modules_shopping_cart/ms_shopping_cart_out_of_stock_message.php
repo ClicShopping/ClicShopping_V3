@@ -61,7 +61,7 @@
 
               ob_start();
 
-              require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_out_of_stock_message'));
+              require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_out_of_stock_message'));
               $stock .= ob_get_clean();
 
               $CLICSHOPPING_Template->addBlock($stock, $this->group);

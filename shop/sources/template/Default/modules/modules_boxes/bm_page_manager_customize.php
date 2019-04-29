@@ -69,7 +69,7 @@
          $data = '<!-- boxe page manager customize start-->' . "\n";
 
          ob_start();
-         require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/page_manager_customize'));
+         require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/page_manager_customize'));
 
          $data .= ob_get_clean();
 

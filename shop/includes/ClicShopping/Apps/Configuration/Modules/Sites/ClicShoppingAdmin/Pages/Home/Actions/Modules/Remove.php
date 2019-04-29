@@ -61,7 +61,7 @@
         $class = basename($_GET['module']);
 
         if (is_file($module_directory . $class . $file_extension)) {
-          include($module_directory . $class . $file_extension);
+          include_once($module_directory . $class . $file_extension);
           $module = new $class;
         }
       }

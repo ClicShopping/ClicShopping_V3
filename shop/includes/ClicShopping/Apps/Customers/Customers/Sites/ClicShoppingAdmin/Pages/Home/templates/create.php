@@ -238,7 +238,7 @@
               </div>
             </div>
 <?php
-    include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
+    include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
   }
 ?>
           <div class="row" id="tab1ContentRow13">

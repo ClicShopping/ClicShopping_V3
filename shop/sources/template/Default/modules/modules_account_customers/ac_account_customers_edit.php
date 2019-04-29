@@ -72,7 +72,7 @@
         $endform ='</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_edit'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_edit'));
         $account_edit .= ob_get_clean();
 
         $account_edit .= '<!-- end account_customers_edit -->' . "\n";

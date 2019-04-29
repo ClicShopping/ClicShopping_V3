@@ -56,7 +56,7 @@
         $confirmation = '  <!-- cc_checkout_confirmation_billing_address start -->'. "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_billing_address'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_billing_address'));
 
         $confirmation .= ob_get_clean();
 

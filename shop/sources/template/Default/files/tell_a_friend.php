@@ -21,7 +21,7 @@
     echo $CLICSHOPPING_MessageStack->get('friend');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('email_friend', CLICSHOPPING::link(null, 'Products&TellAFriend&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="tell_a_friend"', ['tokenize' => true, 'action' => 'process']);
 ?>

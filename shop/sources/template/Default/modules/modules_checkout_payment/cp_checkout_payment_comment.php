@@ -48,7 +48,7 @@
         $comment_fields = HTML::textAreaField('comments', (isset($_SESSION['comments']) ? $_SESSION['comments'] : ''), 30, 5, 'class="form-control" id="inputComments" placeholder="' . CLICSHOPPING::getDef('module_checkout_payment_comment_text') . '"');
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_comment'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_comment'));
 
         $payment_process .= ob_get_clean();
 

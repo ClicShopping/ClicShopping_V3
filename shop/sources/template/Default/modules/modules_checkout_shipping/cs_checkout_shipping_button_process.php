@@ -48,7 +48,7 @@
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_button_process'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_button_process'));
 
         $shipping .= ob_get_clean();
 

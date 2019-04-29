@@ -52,7 +52,7 @@
           $confirmation = '  <!-- cc_checkout_confirmation_customers_comment start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_customers_comment'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_customers_comment'));
 
           $confirmation .= ob_get_clean();
 

@@ -52,7 +52,7 @@
         $endform = '</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_password_reset'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_password_reset'));
 
         $ml_password .= ob_get_clean();
 

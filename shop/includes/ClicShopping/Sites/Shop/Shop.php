@@ -54,7 +54,7 @@
         $CLICSHOPPING_Db = Db::initialize();
         Registry::set('Db', $CLICSHOPPING_Db);
       } catch (\Exception $e) {
-        include(CLICSHOPPING::getConfig('dir_root') . 'includes/error_documents/maintenance.php');
+        include_once(CLICSHOPPING::getConfig('dir_root') . 'includes/error_documents/maintenance.php');
         exit;
       }
 

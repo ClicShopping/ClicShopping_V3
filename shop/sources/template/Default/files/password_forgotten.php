@@ -16,7 +16,7 @@
     echo $CLICSHOPPING_MessageStack->get('password_forgotten');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="password_forgotten" id="password_forgotten">
   <div class="contentContainer">

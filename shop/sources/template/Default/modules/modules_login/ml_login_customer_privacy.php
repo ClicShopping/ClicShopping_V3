@@ -44,7 +44,7 @@
         $login_information_customers = '<!-- login_customer_privacy start -->'. "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_customer_privacy'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_customer_privacy'));
 
         $login_information_customers .= ob_get_clean();
 

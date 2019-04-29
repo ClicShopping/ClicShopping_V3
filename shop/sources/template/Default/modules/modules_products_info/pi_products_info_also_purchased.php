@@ -267,7 +267,7 @@
 
               if (is_file($filename)) {
                 ob_start();
-                require($filename);
+                require_once($filename);
                 $new_prods_content .= ob_get_clean();
               } else {
                 echo CLICSHOPPING::getDef('template_does_not_exist') . '<br /> ' . $filename;

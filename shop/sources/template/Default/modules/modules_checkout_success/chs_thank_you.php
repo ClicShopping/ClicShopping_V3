@@ -68,7 +68,7 @@
 
         ob_start();
 
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/thank_you'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/thank_you'));
         $thank_you .= ob_get_clean();
 
         $thank_you .= '<!-- cs_thank_you end -->' . "\n";

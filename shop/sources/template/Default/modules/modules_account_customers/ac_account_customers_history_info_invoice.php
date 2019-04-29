@@ -50,7 +50,7 @@
         $account_history = '<!-- Start account_customers_history_info_rules --> ' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_invoice'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_invoice'));
         $account_history .= ob_get_clean();
 
         $account_history .= '<!-- end account_customers_history_info_rules -->' . "\n";

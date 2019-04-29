@@ -40,7 +40,7 @@
       $header_template = '<!-- header no script start -->';
 
       ob_start();
-      require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_noscript'));
+      require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_noscript'));
       $header_template .= ob_get_clean();
 
       $header_template .= '<!-- header no script end -->' . "\n";

@@ -176,7 +176,7 @@
           }
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/products_featured'));
+          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/products_featured'));
           $data .= ob_get_clean();
 
           $col ++;

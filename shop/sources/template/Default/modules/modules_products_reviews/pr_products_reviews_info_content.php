@@ -75,7 +75,7 @@
           $data = '<!-- pr_products_reviews_info_content start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_info_content'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_info_content'));
 
           $data .= ob_get_clean();
 

@@ -121,7 +121,7 @@
 
             ob_start();
 
-            require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/product_notifications'));
+            require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/product_notifications'));
             $notification .= ob_get_clean();
 
 

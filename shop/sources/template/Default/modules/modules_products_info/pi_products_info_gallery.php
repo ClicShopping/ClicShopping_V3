@@ -92,7 +92,7 @@
         }
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_gallery'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_gallery'));
         $products_image .= ob_get_clean();
 
         $products_image .= '<!-- end gallery -->' . "\n";

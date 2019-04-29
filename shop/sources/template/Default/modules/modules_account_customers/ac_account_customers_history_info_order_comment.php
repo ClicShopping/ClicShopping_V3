@@ -47,7 +47,7 @@
         $account_history = '<!-- Start ac_account_customers_history_info_order_comment --> ' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_order_comment'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_order_comment'));
         $account_history .= ob_get_clean();
 
         $account_history .= '<!-- end ac_account_customers_history_info_order_comment -->' . "\n";

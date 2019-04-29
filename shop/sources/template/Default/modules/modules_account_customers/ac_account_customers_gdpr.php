@@ -53,7 +53,7 @@
         $endform ='</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_gdpr'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_gdpr'));
         $account_gdpr .= ob_get_clean();
 
         $account_gdpr .= '<!-- end account_customers_gdpr -->' . "\n";

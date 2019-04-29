@@ -21,7 +21,7 @@
     echo $CLICSHOPPING_MessageStack->get('addressbook');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
 // error checking when updating or adding an entry
   $process = false;

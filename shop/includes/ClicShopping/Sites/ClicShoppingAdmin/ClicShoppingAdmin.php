@@ -36,7 +36,7 @@
         $CLICSHOPPING_Db = Db::initialize();
         Registry::set('Db', $CLICSHOPPING_Db);
       } catch (\Exception $e) {
-        include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/error_documents/maintenance.php');
+        include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/error_documents/maintenance.php');
         exit;
       }
 
@@ -47,7 +47,7 @@
                                                'configuration_key as k',
                                                'configuration_value as v'
                                               ]
-                             );
+                             );//, null, null, null, 'configuration'); // TODO add cache when supported by admin
 
       while ($Qcfg->fetch()) {
         define($Qcfg->value('k'), $Qcfg->value('v'));

@@ -51,7 +51,7 @@
           $confirmation = '  <!-- cc_checkout_confirmation_order_total start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_order_total'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_order_total'));
 
           $confirmation .= ob_get_clean();
 

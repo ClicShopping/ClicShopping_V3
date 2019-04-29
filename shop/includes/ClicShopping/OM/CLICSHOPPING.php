@@ -403,9 +403,9 @@
       }
 
       if (is_file($custom)) {
-        require($custom);
+        require_once($custom);
       } elseif (is_file($file)) {
-        require($file);
+        require_once($file);
       }
     }
 

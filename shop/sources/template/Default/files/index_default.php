@@ -9,7 +9,7 @@
  *
  */
 
-   require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+   require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 ?>
  <section class="index" id="index">
     <div class="contentContainer">
@@ -19,4 +19,4 @@
     </div>
  </section>
 <?php
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

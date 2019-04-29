@@ -44,7 +44,7 @@
         $advanced_search_criteria = '<!-- Start advanced search criteria -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_criteria'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_criteria'));
 
         $advanced_search_criteria .= ob_get_clean();
 

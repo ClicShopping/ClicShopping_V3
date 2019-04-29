@@ -53,7 +53,7 @@
         $data = '<!-- ta_tell_a_friend_button_process start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_button_process'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_button_process'));
 
         $data .= ob_get_clean();
 

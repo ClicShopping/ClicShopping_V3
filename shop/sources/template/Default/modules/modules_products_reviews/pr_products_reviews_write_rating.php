@@ -49,7 +49,7 @@
         $rating = HTMLOverrideCommon::starTagRateYo(null, null, false, '40');
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_rating'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_rating'));
 
         $data .= ob_get_clean();
         $data .= '<!-- pr_products_reviews_write end -->' . "\n";

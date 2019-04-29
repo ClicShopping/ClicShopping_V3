@@ -46,7 +46,7 @@
           $login_mode_b2b_b2c = '<!-- login_mode_b2b_b2c start -->'. "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_mode_b2b_b2c'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_mode_b2b_b2c'));
 
           $login_mode_b2b_b2c .= ob_get_clean();
 

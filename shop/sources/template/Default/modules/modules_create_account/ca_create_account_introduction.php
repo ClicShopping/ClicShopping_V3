@@ -43,7 +43,7 @@
       $create_account = '<!-- create_account_registration start -->' . "\n";
 
       ob_start();
-      require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_introduction'));
+      require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/create_account_introduction'));
 
       $create_account .= ob_get_clean();
 

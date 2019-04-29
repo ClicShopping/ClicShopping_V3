@@ -46,7 +46,7 @@
         $endform = '</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_password_forgotten'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_password_forgotten'));
 
         $ml_login_connexion .= ob_get_clean();
 

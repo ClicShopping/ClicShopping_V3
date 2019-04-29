@@ -52,7 +52,7 @@
         $products_date_available_content = '<!-- Start products_date_available -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_date_available'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_date_available'));
         $products_date_available_content .= ob_get_clean();
 
         $products_date_available_content .= '<!-- products_date_available -->' . "\n";

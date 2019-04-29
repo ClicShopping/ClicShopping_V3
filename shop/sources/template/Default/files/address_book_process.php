@@ -22,7 +22,7 @@
     echo $CLICSHOPPING_MessageStack->get('addressbook');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   if (!isset($_GET['delete']) && isset($_GET['edit'])) {
 
@@ -75,7 +75,7 @@
 // ----------------------
 //  Address Detail
 // ----------------------
-  require($CLICSHOPPING_Template->getTemplateModules('customers_address/address_book_details'));
+  require_once($CLICSHOPPING_Template->getTemplateModules('customers_address/address_book_details'));
 
   if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 ?>

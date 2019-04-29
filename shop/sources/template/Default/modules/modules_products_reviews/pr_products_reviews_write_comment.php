@@ -51,7 +51,7 @@
         $data = '<!-- pr_products_reviews_write_comment start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_comment'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_comment'));
 
         $data .= ob_get_clean();
 

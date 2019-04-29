@@ -30,7 +30,7 @@
     echo $CLICSHOPPING_MessageStack->get('review_write');
   }
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('product_reviews_write', CLICSHOPPING::link(null, 'Products&ReviewsWrite&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="productReviewsWrite" onsubmit="return checkForm();"', ['tokenize' => true, 'action' => 'process']);
 ?>

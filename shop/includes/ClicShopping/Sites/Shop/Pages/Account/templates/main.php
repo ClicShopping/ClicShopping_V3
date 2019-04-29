@@ -29,8 +29,8 @@
 
   $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Account&Main'));
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
-  require($CLICSHOPPING_Template->getTemplateFiles('account'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('account'));
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

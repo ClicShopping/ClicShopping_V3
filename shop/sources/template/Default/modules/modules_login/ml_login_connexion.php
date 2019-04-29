@@ -48,7 +48,7 @@
         $endform = '</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_connexion'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_connexion'));
 
         $ml_login_connexion .= ob_get_clean();
 

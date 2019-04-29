@@ -21,7 +21,7 @@
 
   $login_request = true;
 
-  require('includes/application_top.php');
+  require_once('includes/application_top.php');
 
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -219,7 +219,7 @@
     $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_create_first_administrator'), 'warning');
   }
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('header.php'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('header.php'));
 
   if ($Qcheck->check()) {
     $form_action = 'process';
@@ -323,5 +323,5 @@
 ?>
   <div class="clearfix"></div>
 <?php
-  require($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('footer.php'));
-  require($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('application_bottom.php'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('footer.php'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('application_bottom.php'));

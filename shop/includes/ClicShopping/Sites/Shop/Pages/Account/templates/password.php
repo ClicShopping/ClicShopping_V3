@@ -14,12 +14,12 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
   if ( $CLICSHOPPING_MessageStack->exists('header') ) {
     echo $CLICSHOPPING_MessageStack->get('header');
   }
 
-  require($CLICSHOPPING_Page->data['content']);
+  require_once($CLICSHOPPING_Page->data['content']);
 
-  require($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
+  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));

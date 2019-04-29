@@ -49,7 +49,7 @@
             $products_listing = '<!-- product_listing_description start -->' . "\n";
 
             ob_start();
-            require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_listing_categories_name'));
+            require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_listing_categories_name'));
 
             $products_listing .= ob_get_clean();
 

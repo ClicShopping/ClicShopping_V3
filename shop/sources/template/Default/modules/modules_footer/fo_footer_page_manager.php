@@ -65,7 +65,7 @@
 
           ob_start();
 
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/footer_page_manager'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/footer_page_manager'));
 
           $page_manager_footer .= ob_get_clean();
 

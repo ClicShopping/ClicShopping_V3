@@ -13,7 +13,7 @@
 
   use ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin\CategoriesAdmin;
 
-  require('../includes/application_top.php');
+  require_once('../includes/application_top.php');
 
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');

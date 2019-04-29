@@ -11,7 +11,7 @@
 
 use ClicShopping\OM\HTML;
 
-  require(__DIR__ . '/template_top.php');
+  require_once(__DIR__ . '/template_top.php');
 ?>
 <div class="contentBody">
   <div class="separator"></div>
@@ -35,4 +35,4 @@ use ClicShopping\OM\HTML;
   </div>
 </div>
 <?php
-  require(__DIR__ . '/template_bottom.php');
+  require_once(__DIR__ . '/template_bottom.php');

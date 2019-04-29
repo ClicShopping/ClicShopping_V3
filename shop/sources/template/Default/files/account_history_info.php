@@ -10,7 +10,7 @@
  */
   use ClicShopping\OM\CLICSHOPPING;
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="account_history_info" id="account_history_info">
   <div class="contentContainer">

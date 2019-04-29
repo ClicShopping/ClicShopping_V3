@@ -47,7 +47,7 @@
         $shopping_cart_information_customers = '  <!-- start ms_shopping_cart_out_of_message -->'. "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_delay_save_cart_message'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_delay_save_cart_message'));
 
         $shopping_cart_information_customers .= ob_get_clean();
 

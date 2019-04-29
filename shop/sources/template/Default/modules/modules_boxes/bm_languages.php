@@ -55,7 +55,7 @@
         $data = '<!-- boxe languages start-->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/languages'));
+        require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/languages'));
         $data .= ob_get_clean();
 
         $data .='<!-- Boxe languages end -->' . "\n";

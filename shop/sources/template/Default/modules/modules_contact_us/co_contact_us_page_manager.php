@@ -52,7 +52,7 @@
           $contact_us_page_manager = '<!--  contact_us_page_manager start -->' . "\n";
 
           ob_start();
-          require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_page_manager'));
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/contact_us_page_manager'));
 
           $contact_us_page_manager .= ob_get_clean();
 

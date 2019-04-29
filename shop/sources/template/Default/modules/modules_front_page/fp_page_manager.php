@@ -51,7 +51,7 @@
            $page_manager_content = '<!-- page_manager_content start -->' . "\n";
 
            ob_start();
-           require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/page_manager'));
+           require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/page_manager'));
            $page_manager_content = ob_get_clean();
 
            $page_manager_content .= '<!-- page_manager_content end -->' . "\n";

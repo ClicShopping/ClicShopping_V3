@@ -15,7 +15,7 @@
   $CLICSHOPPING_Template = Registry::get('Template');
   $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="reviews" id="reviews">
   <div class="contentContainer">

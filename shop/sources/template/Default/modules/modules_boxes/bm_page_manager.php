@@ -68,7 +68,7 @@
          $link = $CLICSHOPPING_PageManagerShop->pageManagerDisplayBox();
 
          ob_start();
-         require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/page_manager'));
+         require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/page_manager'));
 
          $data .= ob_get_clean();
 

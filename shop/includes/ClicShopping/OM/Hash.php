@@ -34,7 +34,7 @@
 
         if ($algo == 'phpass') {
             if (!class_exists('PasswordHash', false)) {
-              include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/PasswordHash.php');
+              include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/PasswordHash.php');
             }
 
             $hasher = new \PasswordHash(10, true);
@@ -74,7 +74,7 @@
             switch (static::getType($hash)) {
                 case 'phpass':
                     if (!class_exists('PasswordHash', false)) {
-                        include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/PasswordHash.php');
+                      include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/PasswordHash.php');
                     }
 
                     $hasher = new \PasswordHash(10, true);

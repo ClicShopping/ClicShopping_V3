@@ -72,7 +72,7 @@ class PS extends \ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Conf
 
         if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/payment/' . $class . '.php')) {
             if (!class_exists($class)) {
-                include(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/payment/' . $class . '.php');
+                include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/payment/' . $class . '.php');
             }
 
             $module = new $class();

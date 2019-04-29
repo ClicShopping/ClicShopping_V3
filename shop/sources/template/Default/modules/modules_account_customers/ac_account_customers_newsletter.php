@@ -55,7 +55,7 @@
         $endform ='</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_newsletter'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_newsletter'));
         $account .= ob_get_clean();
 
         $account .= '<!-- end account_customers_my_account -->' . "\n";

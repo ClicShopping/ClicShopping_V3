@@ -56,7 +56,7 @@
         $shopping_cart_information_customers = '  <!-- start ms_shopping_cart_order_button_process -->'. "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_order_button_process'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_order_button_process'));
         $shopping_cart_information_customers .= ob_get_clean();
 
         $shopping_cart_information_customers .= '<!-- end ms_shopping_cart_order_button_process -->' . "\n";

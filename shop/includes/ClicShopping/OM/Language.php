@@ -62,7 +62,7 @@
 
         while ($Qlanguages->fetch()) {
           $this->languages[$Qlanguages->value('code')] = [
-                                                          'id' => $Qlanguages->valueInt('languages_id'),
+                                                          'id' => (int)$Qlanguages->valueInt('languages_id'),
                                                           'code' => $Qlanguages->value('code'),
                                                           'name' => $Qlanguages->value('name'),
                                                           'image' => $Qlanguages->value('image'),

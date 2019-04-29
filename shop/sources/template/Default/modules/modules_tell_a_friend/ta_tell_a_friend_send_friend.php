@@ -47,7 +47,7 @@
         $data = '<!-- ta_tell_a_friend_send_friend start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_send_friend'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_send_friend'));
 
         $data .= ob_get_clean();
 

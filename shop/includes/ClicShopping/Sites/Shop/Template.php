@@ -435,18 +435,18 @@
                 if ($group == $modules_boxes) {
 //check the module exist inside the template or take default template
                   if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
-                    include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
+                    include_once(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
                   } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
-                    include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                    include_once(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                   } else {
                     if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
-                      include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                      include_once($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                     }
                   }
                 } else {
 //default module
                   if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
-                    include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                    include_once($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                   }
                 }
 
@@ -456,18 +456,18 @@
 
                   if (!is_null($result)) {
                     if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
-                      include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
+                      include_once(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php');
                     } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules  . $group . '/' . $class . '.php')) {
-                      include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                      include_once(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                     } else {
                       if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
-                        include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                        include_once($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                       }
                     }
                   } else {
                     if ($group != $modules_boxes) {
                       if ( is_file($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php') ) {
-                        include($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                        include_once($this->_directoryIncludes . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                       }
                     }
                   }

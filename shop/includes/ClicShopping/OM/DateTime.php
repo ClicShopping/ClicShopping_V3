@@ -20,54 +20,58 @@
     protected $raw_pattern_date = 'Y-m-d';
     protected $raw_pattern_time = 'H:i:s';
 
-    public function __construct($datetime, $use_raw_pattern = false, $strict = false)
-    {
-        if ($use_raw_pattern === false) {
-         $pattern = CLICSHOPPING::getDef('date_time_format');
-        } else {
-          $pattern = $this->raw_pattern_date . ' ' . $this->raw_pattern_time;
-        }
+    public function __construct($datetime, $use_raw_pattern = false, $strict = false) {
+      if ($use_raw_pattern === false) {
+       $pattern = CLICSHOPPING::getDef('date_time_format');
+      } else {
+        $pattern = $this->raw_pattern_date . ' ' . $this->raw_pattern_time;
+      }
 
 // format time as 00:00:00 if it is missing from the date
-        $new_datetime = strtotime($datetime);
+      $new_datetime = strtotime($datetime);
 
-        if ($new_datetime !== false) {
-            $new_datetime = date($pattern, $new_datetime);
+      if ($new_datetime !== false) {
+          $new_datetime = date($pattern, $new_datetime);
 
-            $this->datetime = \DateTime::createFromFormat($pattern, $new_datetime);
+          $this->datetime = \DateTime::createFromFormat($pattern, $new_datetime);
 
-            $strict_log = false;
-        }
+          $strict_log = false;
+      }
 
-        if ($this->datetime === false) {
-            $strict_log = true;
-        } else {
-            $errors = \DateTime::getLastErrors();
+      if ($this->datetime === false) {
+          $strict_log = true;
+      } else {
+          $errors = \DateTime::getLastErrors();
 
-            if (($errors['warning_count'] > 0) || ($errors['error_count'] > 0)) {
-                $this->datetime = false;
+          if (($errors['warning_count'] > 0) || ($errors['error_count'] > 0)) {
+              $this->datetime = false;
 
-                $strict_log = true;
-            }
-        }
+              $strict_log = true;
+          }
+      }
 
-        if (($strict === true) && ($strict_log === true)) {
-            trigger_error('DateTime: ' . $datetime . ' (' . $new_datetime . ') cannot be formatted to ' . $pattern);
-        }
+      if (($strict === true) && ($strict_log === true)) {
+          trigger_error('DateTime: ' . $datetime . ' (' . $new_datetime . ') cannot be formatted to ' . $pattern);
+      }
     }
 
-    public function isValid()
-    {
-        return $this->datetime instanceof \DateTime;
+/**
+ * @return bool
+ */
+    public function isValid() {
+      return $this->datetime instanceof \DateTime;
     }
 
-    public function get($pattern = null)
-    {
-        if (isset($pattern)) {
-            return $this->datetime->format($pattern);
-        }
+/**
+ * @param null $pattern
+ * @return bool
+ */
+    public function get($pattern = null) {
+      if (isset($pattern)) {
+          return $this->datetime->format($pattern);
+      }
 
-        return $this->datetime;
+      return $this->datetime;
     }
 
 /*
@@ -77,15 +81,13 @@
  * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
  */
 
-    public function getShort($with_time = false)
-    {
+    public function getShort($with_time = false) {
       $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
       return strftime($pattern, $this->getTimestamp());
     }
 
 
-    public static function toShort($raw_datetime, $with_time = false, $strict = true)
-    {
+    public static function toShort($raw_datetime, $with_time = false, $strict = true) {
       $result = '';
 
       if (!empty($raw_datetime)) {
@@ -100,7 +102,6 @@
       return $result;
     }
 
-
 /*
  * Output a  date string in the selected locale date format
  * @param : $date,date format
@@ -109,33 +110,39 @@
   * $date needs to be in this format: Saturday february 2015
  */
 
-    public function getLong()
-    {
-        return strftime(CLICSHOPPING::getDef('date_format_long'), $this->getTimestamp());
+    public function getLong() {
+      return strftime(CLICSHOPPING::getDef('date_format_long'), $this->getTimestamp());
     }
 
-    public static function toLong($raw_datetime, $strict = true)
-    {
-        $result = '';
+/**
+ * @param $raw_datetime
+ * @param bool $strict
+ * @return string
+ */
+    public static function toLong($raw_datetime, $strict = true) {
+      $result = '';
 
-        $date = new DateTime($raw_datetime, true, $strict);
+      $date = new DateTime($raw_datetime, true, $strict);
 
-        if ($date->isValid()) {
-          $result = strftime(CLICSHOPPING::getDef('date_format_long'), $date->getTimestamp());
-        }
+      if ($date->isValid()) {
+        $result = strftime(CLICSHOPPING::getDef('date_format_long'), $date->getTimestamp());
+      }
 
-        return $result;
+      return $result;
     }
 
-    public function getRaw($with_time = true)
-    {
-        $pattern = $this->raw_pattern_date;
+/**
+ * @param bool $with_time
+ * @return mixed
+ */
+    public function getRaw($with_time = true) {
+      $pattern = $this->raw_pattern_date;
 
-        if ($with_time === true) {
-            $pattern .= ' ' . $this->raw_pattern_time;
-        }
+      if ($with_time === true) {
+          $pattern .= ' ' . $this->raw_pattern_time;
+      }
 
-        return $this->datetime->format($pattern);
+      return $this->datetime->format($pattern);
     }
 
 /*
@@ -202,13 +209,11 @@
     return date_default_timezone_set($time_zone);
   }
 
-/*
+/**
  * Output a date now
- * @param : $format,date format
- * @return string format date
- * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
+ * @param null $format date format
+ * @return false|string
  */
-
     public static function getNow($format = null) {
 
       if (!isset($format)) {
@@ -218,10 +223,8 @@
       return date($format);
     }
 
-
-/*
+/**
  * Output a  date reference  for invoice
- * @param : $date,date format
  * @return string short date reference
  * $date needs to be in this format: YYYYMMDD
  */
@@ -230,6 +233,11 @@
       return strftime(CLICSHOPPING::getDef('date_format'), $this->getTimestamp());
     }
 
+/**
+ * @param $raw_datetime
+ * @param bool $strict
+ * @return string
+ */
     public static function  toDateReferenceShort($raw_datetime, $strict = true) {
 
       $result = '';
@@ -243,13 +251,12 @@
       return $result;
     }
 
-
-/*
-* Date Unix Timestamp
-* @param $timestamp, $format
-* @return
-*/
-
+/**
+ * Date Unix Timestamp
+ * @param $timestamp
+ * @param null $format
+ * @return false|string
+ */
     public static function fromUnixTimestamp($timestamp, $format = null) {
       if (!isset($format)) {
         $format = CLICSHOPPING::getDef('date_format_long');
@@ -258,12 +265,11 @@
       return date($format, $timestamp);
     }
 
-/*
-* Unix Date
-* @param $year, date format
-* @return true / false
-*/
-
+/**
+ * Unix Date
+ * @param null $year
+ * @return bool
+ */
     public static function isLeapYear($year = null)  {
 
       if (!isset($year)) {
@@ -283,13 +289,14 @@
       return false;
     }
 
-/*
+/**
  * Check date
- * @param
- * @return string short date
+ * @param $date_to_check
+ * @param $format_string
+ * @param $date_array
+ * @return bool
  * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
  */
-
     public static function validate($date_to_check, $format_string, &$date_array) {
       $separator_idx = -1;
 
@@ -304,8 +311,10 @@
       }
 
       $size = count($separators);
+
       for ($i = 0; $i < $size; $i++) {
         $pos_separator = strpos($date_to_check, $separators[$i]);
+
         if ($pos_separator !== false) {
           $date_separator_idx = $i;
           break;
@@ -314,6 +323,7 @@
 
       for ($i = 0; $i < $size; $i++) {
         $pos_separator = strpos($format_string, $separators[$i]);
+
         if ($pos_separator !== false) {
           $format_separator_idx = $i;
           break;
@@ -326,16 +336,19 @@
 
       if ($date_separator_idx != -1) {
         $format_string_array = explode($separators[$date_separator_idx], $format_string);
+
         if (count($format_string_array) != 3) {
           return false;
         }
 
         $date_to_check_array = explode($separators[$date_separator_idx], $date_to_check);
+
         if (count($date_to_check_array) != 3) {
           return false;
         }
 
         $size = count($format_string_array);
+
         for ($i = 0; $i < $size; $i++) {
           if ($format_string_array[$i] == 'mm' || $format_string_array[$i] == 'mmm') $month = $date_to_check_array[$i];
           if ($format_string_array[$i] == 'dd') $day = $date_to_check_array[$i];
@@ -344,9 +357,11 @@
       } else {
         if (strlen($format_string) == 8 || strlen($format_string) == 9) {
           $pos_month = strpos($format_string, 'mmm');
+
           if ($pos_month !== false) {
             $month = substr($date_to_check, $pos_month, 3);
             $size = count($month_abbr);
+
             for ($i = 0; $i < $size; $i++) {
               if ($month == $month_abbr[$i]) {
                 $month = $i;
@@ -393,12 +408,12 @@
       return true;
     }
 
-
-
 /**
  * Interval between 2 date
- *
- * @return string, date interval
+ * @param $dateStart
+ * @param $dateEnd
+ * @param string $differenceFormat
+ * @return string
  */
     public static function getIntervalDate($dateStart, $dateEnd, $differenceFormat = '%r%a') {
 

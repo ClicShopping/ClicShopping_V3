@@ -47,7 +47,7 @@
 // ------------------------------------------------------------
 
     if ( $CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
-      require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+      require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       $CLICSHOPPING_ProductsCommon->countUpdateProductsView();
 ?>
 <section class="product" id="product">

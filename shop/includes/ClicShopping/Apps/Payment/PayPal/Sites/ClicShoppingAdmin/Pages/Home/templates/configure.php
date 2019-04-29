@@ -19,7 +19,7 @@
 
   $CLICSHOPPING_PayPal_Config = Registry::get('PayPalAdminConfig' . $current_module);
 
-  require(__DIR__ . '/template_top.php');
+  require_once(__DIR__ . '/template_top.php');
 ?>
 
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="appPayPalToolbar">
@@ -141,4 +141,4 @@ if ($CLICSHOPPING_PayPal_Config->is_installed === true) {
 <?php
 }
 
-require(__DIR__ . '/template_bottom.php');
+require_once(__DIR__ . '/template_bottom.php');

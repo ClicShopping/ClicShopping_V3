@@ -63,7 +63,7 @@
 
 
       ob_start();
-      require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/search'));
+      require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/search'));
       $data .= ob_get_clean();
 
       $data .='<!-- Boxe Search end -->' . "\n";

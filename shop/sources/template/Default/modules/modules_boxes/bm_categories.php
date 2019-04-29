@@ -57,7 +57,7 @@
         $data ='<!-- Boxe categories start -->' . "\n";
 
         ob_start();
-        include($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/categories'));
+        include_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/categories'));
 
         $data .= ob_get_clean();
 

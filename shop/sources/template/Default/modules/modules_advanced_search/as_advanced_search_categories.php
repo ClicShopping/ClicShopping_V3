@@ -45,7 +45,7 @@
         $advanced_search_categories = '<!-- Start advanced search categories -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_categories'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_categories'));
         $advanced_search_categories .= ob_get_clean();
 
         $advanced_search_categories .= '<!-- end advanced search categories -->' . "\n";

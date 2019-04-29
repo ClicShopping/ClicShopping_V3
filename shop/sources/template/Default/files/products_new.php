@@ -9,7 +9,7 @@
  *
  */
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="products_new" id="products_new">
   <div class="contentContainer">

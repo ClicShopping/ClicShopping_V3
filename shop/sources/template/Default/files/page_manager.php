@@ -19,7 +19,7 @@
   $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($id);
 
   const HEADING_TITLE = '';
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="information" id="information">
   <div class="contentContainer">

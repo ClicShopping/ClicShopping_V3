@@ -18,7 +18,7 @@
   define('PAGE_PARSE_START_TIME', microtime());
   define('CLICSHOPPING_BASE_DIR', __DIR__ . '/includes/ClicShopping/');
 
-  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
   CLICSHOPPING::initialize();

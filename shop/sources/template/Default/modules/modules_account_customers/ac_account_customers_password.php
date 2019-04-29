@@ -52,7 +52,7 @@
         $endform ='</form>';
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_password'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_password'));
         $account_password .= ob_get_clean();
 
         $account_password .= '<!-- end account_customers_my_account -->' . "\n";

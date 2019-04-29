@@ -10,7 +10,7 @@
  */
   use ClicShopping\OM\CLICSHOPPING;
 
-  require($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+  require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>
 <section class="create_account_pro" id="create_account_pro">
   <div class="contentContainer">

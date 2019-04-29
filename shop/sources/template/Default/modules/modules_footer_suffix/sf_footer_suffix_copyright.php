@@ -43,7 +43,7 @@
       $footer_copyright = '<!-- footer copyright start -->' . "\n";
 
       ob_start();
-      require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/suffix_footer_copyright'));
+      require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/suffix_footer_copyright'));
 
       $footer_copyright .= ob_get_clean();
 

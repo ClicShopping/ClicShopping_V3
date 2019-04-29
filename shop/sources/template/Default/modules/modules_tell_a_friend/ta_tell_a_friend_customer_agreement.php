@@ -51,7 +51,7 @@
         $data = '<!-- ta_tell_a_friend_customer_agreement start -->' . "\n";
 
         ob_start();
-        require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_customer_agreement'));
+        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/tell_a_friend_customer_agreement'));
 
         $data .= ob_get_clean();
 
