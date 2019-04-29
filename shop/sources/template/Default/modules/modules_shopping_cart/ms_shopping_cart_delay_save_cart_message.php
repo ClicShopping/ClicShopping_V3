@@ -34,8 +34,6 @@
      }
 
     public function execute() {
-      global $any_out_of_stock;
-
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Template = Registry::get('Template');
 
