@@ -59,7 +59,7 @@
                                           from :table_orders o,
                                                :table_orders_total ot
                                           where date_sub(now(), interval 365 day) <= o.date_purchased
-                                          and (o.orders_status = 3 or o.orders_status = 4)
+                                          and o.orders_status = 3
                                           and o.orders_id = ot.orders_id
                                           and (ot.class = :class or ot.class = :class1)
                                           group by dateday

@@ -54,7 +54,7 @@
                                           from :table_orders  o,
                                                :table_orders_total ot
                                           where  o.orders_id = ot.orders_id
-                                          and (o.orders_status = 3 or o.orders_status = 4)
+                                          and o.orders_status = 3
                                           and (ot.class = :class or class = :class1)
                                           group by year
                                        ');

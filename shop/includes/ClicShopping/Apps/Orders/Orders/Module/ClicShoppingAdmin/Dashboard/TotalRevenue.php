@@ -54,7 +54,7 @@
                                       from :table_orders o,
                                            :table_orders_total ot
                                       where date_sub(curdate(), interval 30 day) <= o.date_purchased
-                                      and (o.orders_status = 1 or o.orders_status = 2 or o.orders_status = 3)
+                                      and (o.orders_status > 0 and o.orders_status <> 4)
                                       and o.orders_id = ot.orders_id
                                       and (ot.class = "ot_subtotal" or ot.class = "ST")
                                       group by dateday
