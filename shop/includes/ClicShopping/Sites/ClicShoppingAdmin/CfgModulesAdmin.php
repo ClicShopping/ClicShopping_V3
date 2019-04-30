@@ -34,15 +34,17 @@
               include_once($CLICSHOPPING_Template->getModulesDirectory()   . '/Module/CfgModules/' . $class . '.php');
 
               $m = new $class();
-
-              $this->_modules[] = ['code' => $m->code,
-                                    'directory' => $m->directory,
-                                    'language_directory' => $m->language_directory,
-                                    'key' => $m->key,
-                                    'title' => $m->title,
-                                    'template_integration' => $m->template_integration,
-                                    'site' => $m->site
-                                  ];
+	      
+              if (is_object($m)) {
+	              $this->_modules[] = ['code' => $m->code,
+	                                    'directory' => $m->directory,
+	                                    'language_directory' => $m->language_directory,
+	                                    'key' => $m->key,
+	                                    'title' => $m->title,
+	                                    'template_integration' => $m->template_integration,
+	                                    'site' => $m->site
+	                                  ];
+              }
             }
           }
         }
@@ -54,18 +56,21 @@
     }
 
     public function get($code, $key) {
-
-      foreach ($this->_modules as $m) {
-        if ($m['code'] == $code) {
-          return $m[$key];
+      if (is_array($this->_modules)) {
+        foreach ($this->_modules as $m) {
+          if ($m['code'] == $code) {
+            return $m[$key];
+          }
         }
       }
     }
 
     public function exists($code) {
-      foreach ($this->_modules as $m) {
-        if ($m['code'] == $code) {
-          return true;
+      if (is_array($this->_modules)) {
+        foreach ($this->_modules as $m) {
+          if ($m['code'] == $code) {
+            return true;
+          }
         }
       }
 

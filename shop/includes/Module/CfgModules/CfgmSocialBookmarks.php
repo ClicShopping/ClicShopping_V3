@@ -25,6 +25,8 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       $this->directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/social_bookmarks/';
+
       $this->language_directory = $CLICSHOPPING_Template->getPathLanguageShopDirectory();
+      $this->title = CLICSHOPPING::getDef('module_cfg_module_social_bookmarks_title');
     }
   }
