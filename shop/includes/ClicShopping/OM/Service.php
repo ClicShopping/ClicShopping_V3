@@ -34,6 +34,7 @@
       } else {
         $files = array_diff(scandir($this->directory), $exclude);
       }
+
       foreach ( $files as $sm ) {
         $result['file'][] = ['files_name' => $sm];
       }

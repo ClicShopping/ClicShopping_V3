@@ -76,7 +76,7 @@
                                                   ');
 
           $Qproducts->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-          $Qproducts->bindInt(':products_id', (int)$_GET['products_id']);
+          $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
           $Qproducts->bindInt(':limit', (int)MODULE_BOXES_SPECIALS_MAX_DISPLAY_LIMIT);
           $Qproducts->execute();
 
@@ -102,7 +102,7 @@
                                                   limit :limit
                                                 ');
 
-          $Qproducts->bindInt(':products_id', (int)$_GET['products_id']);
+          $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
           $Qproducts->bindInt(':limit', (int)MODULE_BOXES_SPECIALS_MAX_DISPLAY_LIMIT);
           $Qproducts->execute();
 
@@ -136,7 +136,7 @@
             $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 
             $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-            $products_name_image = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id, $in_stock);
+            $products_name_image = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id);
   // *************************
   //       Flash discount
   // **************************
@@ -178,7 +178,7 @@
             }
 
             ob_start();
-            require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/specials'));
+            require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/specials'));
             $data .= ob_get_clean();
 
             $col ++;

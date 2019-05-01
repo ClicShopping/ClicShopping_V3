@@ -33,17 +33,17 @@
         if ($status == '1') {
 
           return $CLICSHOPPING_Db->save('banners', ['status' => 1,
-                                             'date_status_change' => 'now()',
-                                             'date_scheduled' => 'null'],
-                                             ['banners_id' => (int)$banners_id]
-                                 );
+                                                   'date_status_change' => 'now()',
+                                                   'date_scheduled' => 'null'],
+                                                   ['banners_id' => (int)$banners_id]
+                                       );
 
 
       } elseif ($status == '0') {
           return $CLICSHOPPING_Db->save('banners', ['status' => 0,
-                                              'date_status_change' => 'now()'],
-                                             ['banners_id' => (int)$banners_id]
-                                  );
+                                                    'date_status_change' => 'now()'],
+                                                   ['banners_id' => (int)$banners_id]
+                                        );
       } else {
           return -1;
       }
@@ -60,11 +60,11 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qbanners = $CLICSHOPPING_Db->query('select banners_id
-                                    from :table_banners
-                                    where date_scheduled is not null
-                                    and date_scheduled <= now()
-                                    and status != 1
-                                   ');
+                                            from :table_banners
+                                            where date_scheduled is not null
+                                            and date_scheduled <= now()
+                                            and status <> 1
+                                           ');
 
       $Qbanners->execute();
 
@@ -86,17 +86,17 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qbanners = $CLICSHOPPING_Db->query('select b.banners_id,
-                                          sum(bh.banners_shown) as banners_shown
-                                    from :table_banners b,
-                                         :table_banners_history bh
-                                    where b.status = 1
-                                    and b.banners_id = bh.banners_id
-                                    and ((b.expires_date is not null
-                                         and now() >= b.expires_date)
-                                         or (b.expires_impressions >= banners_shown)
-                                        )
-                                    group by b.banners_id
-                                  ');
+                                                  sum(bh.banners_shown) as banners_shown
+                                            from :table_banners b,
+                                                 :table_banners_history bh
+                                            where b.status = 1
+                                            and b.banners_id = bh.banners_id
+                                            and ((b.expires_date is not null
+                                                 and now() >= b.expires_date)
+                                                 or (b.expires_impressions >= banners_shown)
+                                                )
+                                            group by b.banners_id
+                                          ');
 
       $Qbanners->execute();
 
@@ -126,38 +126,34 @@
       $banner = null;
 
       if ($action == 'dynamic') {
-
         $Qcheck = $CLICSHOPPING_Db->prepare('select banners_id
-                                     from :table_banners
-                                     where banners_group = :banners_group
-                                     and status = :status
-                                     limit 1
-                                     ');
+                                             from :table_banners
+                                             where banners_group = :banners_group
+                                             and status = :status
+                                             limit 1
+                                             ');
         $Qcheck->bindValue(':banners_group', $identifier);
         $Qcheck->bindInt(':status', 1);
         $Qcheck->execute();
 
         if ( $Qcheck !== false ) {
-
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != '0') { // Clients en mode B2B
-
             $Qbanner = $CLICSHOPPING_Db->prepare('select  banners_id,
-                                                    banners_title,
-                                                    banners_image,
-                                                    banners_target,
-                                                    banners_html_text,
-                                                    customers_group_id,
-                                                    banners_group,
-                                                    languages_id
-                                           from :table_banners
-                                           where banners_group = :banners_group
-                                           and status = 1
-                                           and (customers_group_id = :customers_group_id or customers_group_id = :99)
-                                           and (languages_id  = :languages_id or languages_id = 0)
-                                           order by rand()
-                                           limit 1
-                                        ');
-
+                                                          banners_title,
+                                                          banners_image,
+                                                          banners_target,
+                                                          banners_html_text,
+                                                          customers_group_id,
+                                                          banners_group,
+                                                          languages_id
+                                                 from :table_banners
+                                                 where banners_group = :banners_group
+                                                 and status = 1
+                                                 and (customers_group_id = :customers_group_id or customers_group_id = :99)
+                                                 and (languages_id  = :languages_id or languages_id = 0)
+                                                 order by rand()
+                                                 limit 1
+                                              ');
 
             $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':customers_group_id',  (int)$CLICSHOPPING_Customer->getCustomersGroupID() );
@@ -165,25 +161,23 @@
             $Qbanner->execute();
 
             $banner = $Qbanner->fetch();
-
           } else {
-
             $Qbanner = $CLICSHOPPING_Db->prepare('select  banners_id,
-                                                    banners_title,
-                                                    banners_image,
-                                                    banners_target,
-                                                    banners_html_text,
-                                                    customers_group_id,
-                                                    banners_group,
-                                                    languages_id
-                                           from :table_banners
-                                           where banners_group = :banners_group
-                                           and status = 1
-                                           and (customers_group_id = 0 or customers_group_id = 99)
-                                           and (languages_id  = :languages_id or languages_id  = 0)
-                                           order by rand()
-                                           limit 1
-                                        ');
+                                                          banners_title,
+                                                          banners_image,
+                                                          banners_target,
+                                                          banners_html_text,
+                                                          customers_group_id,
+                                                          banners_group,
+                                                          languages_id
+                                                 from :table_banners
+                                                 where banners_group = :banners_group
+                                                 and status = 1
+                                                 and (customers_group_id = 0 or customers_group_id = 99)
+                                                 and (languages_id  = :languages_id or languages_id  = 0)
+                                                 order by rand()
+                                                 limit 1
+                                              ');
 
 
             $Qbanner->bindValue(':banners_group', 'Developpement_shopping_cart');
@@ -200,20 +194,20 @@
         } else {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
 
-            $Qbanner = $CLICSHOPPING_Db->prepare('select  banners_id,
-                                                   banners_title,
-                                                   banners_image,
-                                                   banners_target,
-                                                   banners_html_text,
-                                                   customers_group_id,
-                                                   languages_id
-                                           from :table_banners
-                                           where status = 1
-                                           and banners_group = :banners_group
-                                           and (customers_group_id = :customers_group_id or customers_group_id = 99)
-                                           and (languages_id  = :languages_id or languages_id  = 0)
-                                           limit 1
-                                         ');
+            $Qbanner = $CLICSHOPPING_Db->prepare('select banners_id,
+                                                         banners_title,
+                                                         banners_image,
+                                                         banners_target,
+                                                         banners_html_text,
+                                                         customers_group_id,
+                                                         languages_id
+                                                 from :table_banners
+                                                 where status = 1
+                                                 and banners_group = :banners_group
+                                                 and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                                 and (languages_id  = :languages_id or languages_id  = 0)
+                                                 limit 1
+                                               ');
             $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID() );
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
@@ -221,20 +215,20 @@
 
           } else {
 
-            $Qbanner = $CLICSHOPPING_Db->prepare('select  banners_id,
-                                                   banners_title,
-                                                   banners_image,
-                                                   banners_target,
-                                                   banners_html_text,
-                                                   customers_group_id,
-                                                   languages_id
-                                           from :table_banners
-                                           where status = 1
-                                           and banners_group = :banners_group
-                                           and (customers_group_id = 0 or customers_group_id = 99)
-                                           and (languages_id  = :languages_id or languages_id  = 0)
-                                           limit 1
-                                         ');
+            $Qbanner = $CLICSHOPPING_Db->prepare('select banners_id,
+                                                         banners_title,
+                                                         banners_image,
+                                                         banners_target,
+                                                         banners_html_text,
+                                                         customers_group_id,
+                                                         languages_id
+                                                 from :table_banners
+                                                 where status = 1
+                                                 and banners_group = :banners_group
+                                                 and (customers_group_id = 0 or customers_group_id = 99)
+                                                 and (languages_id  = :languages_id or languages_id  = 0)
+                                                 limit 1
+                                               ');
             $Qbanner->bindValue(':banners_group', $identifier);
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
             $Qbanner->execute();
@@ -279,27 +273,24 @@
 
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
-                                                banners_title,
-                                                banners_image,
-                                                banners_target,
-                                                banners_html_text,
-                                                languages_id,
-                                               customers_group_id
-                                       from :table_banners
-                                       where banners_group = :banners_group
-                                       and status = :status
-                                       and (customers_group_id = :customers_group_id or customers_group_id = :customers_group_id1 )
-                                       and (languages_id  = :languages_id or languages_id  = :languages_id1)
-                                       order by rand()
-                                       limit 1
-                                      ');
+                                                        banners_title,
+                                                        banners_image,
+                                                        banners_target,
+                                                        banners_html_text,
+                                                        languages_id,
+                                                       customers_group_id
+                                               from :table_banners
+                                               where banners_group = :banners_group
+                                               and status = 1
+                                               and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                               and (languages_id = :languages_id or languages_id = 0)
+                                               order by rand()
+                                               limit 1
+                                              ');
 
-          $Qbanners->bindInt(':status', 1);
           $Qbanners->bindValue(':banners_group', $identifier);
           $Qbanners->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
-          $Qbanners->bindInt(':customers_group_id1', 99);
           $Qbanners->bindInt(':languages_id', $CLICSHOPPING_Language->getId());
-          $Qbanners->bindInt(':languages_id1', 0);
 
           $Qbanners->execute();
 
@@ -310,27 +301,23 @@
         } else {
 
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
-                                                banners_title,
-                                                banners_image,
-                                                banners_target,
-                                                banners_html_text,
-                                                languages_id,
-                                               customers_group_id
-                                       from :table_banners
-                                       where banners_group = :banners_group
-                                       and status = :status
-                                       and (customers_group_id = :customers_group_id or customers_group_id = :customers_group_id1 )
-                                       and (languages_id  = :languages_id or languages_id  = :languages_id1)
-                                       order by rand()
-                                       limit 1
-                                      ');
+                                                        banners_title,
+                                                        banners_image,
+                                                        banners_target,
+                                                        banners_html_text,
+                                                        languages_id,
+                                                       customers_group_id
+                                               from :table_banners
+                                               where banners_group = :banners_group
+                                               and status = 1
+                                               and (customers_group_id = 0 or customers_group_id = 99)
+                                               and (languages_id = :languages_id or languages_id  = 0)
+                                               order by rand()
+                                               limit 1
+                                              ');
 
-          $Qbanners->bindInt(':status', 1);
           $Qbanners->bindValue(':banners_group', $identifier);
-          $Qbanners->bindInt(':customers_group_id', 0 );
-          $Qbanners->bindInt(':customers_group_id1', 99);
           $Qbanners->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
-          $Qbanners->bindInt(':languages_id1', 0);
 
           $Qbanners->execute();
 
@@ -343,25 +330,23 @@
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
 
           $Qbanners= $CLICSHOPPING_Db->prepare('select banners_id,
-                                                 banners_title,
-                                                 banners_image,
-                                                 banners_target,
-                                                 banners_html_text,
-                                                 customers_group_id,
-                                                 languages_id
-                                          from :table_banners
-                                          where status = :status
-                                          and banners_group = :banners_group
-                                          and (customers_group_id = :customers_group_id or customers_group_id = :customers_group_id1)
-                                          and (languages_id  = :languages_id or languages_id  = languages_id1)
-                                        ');
+                                                       banners_title,
+                                                       banners_image,
+                                                       banners_target,
+                                                       banners_html_text,
+                                                       customers_group_id,
+                                                       languages_id
+                                                from :table_banners
+                                                where status = 1
+                                                and banners_group = :banners_group
+                                                and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                                and (languages_id = :languages_id or languages_id  = 0)
+                                              ');
 
-          $Qbanners->bindValue(':status', 1);
+
           $Qbanners->bindValue(':banners_group', $identifier );
           $Qbanners->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID() );
-          $Qbanners->bindInt(':customers_group_id1', 99 );
           $Qbanners->bindInt(':languages_id',(int)$CLICSHOPPING_Language->getId() );
-          $Qbanners->bindInt(':languages_id1', 0 );
 
           $Qbanners->execute();
 
@@ -371,25 +356,21 @@
         } else {
 
           $Qbanners= $CLICSHOPPING_Db->prepare('select banners_id,
-                                               banners_title,
-                                               banners_image,
-                                               banners_target,
-                                               banners_html_text,
-                                               customers_group_id,
-                                               languages_id
-                                          from :table_banners
-                                          where status = :status
-                                          and banners_group = :banners_group
-                                          and (customers_group_id = :customers_group_id or customers_group_id = :customers_group_id1 )
-                                          and (languages_id = :languages_id or languages_id = :languages_id1 )
-                                        ');
+                                                       banners_title,
+                                                       banners_image,
+                                                       banners_target,
+                                                       banners_html_text,
+                                                       customers_group_id,
+                                                       languages_id
+                                                  from :table_banners
+                                                  where status = 1
+                                                  and banners_group = :banners_group
+                                                  and (customers_group_id = 0 or customers_group_id = 99 )
+                                                  and (languages_id = :languages_id or languages_id = 0)
+                                                ');
 
-          $Qbanners->bindInt(':status', 1);
           $Qbanners->bindValue(':banners_group', $identifier );
-          $Qbanners->bindInt(':customers_group_id', 0 );
-          $Qbanners->bindInt(':customers_group_id1', 99);
           $Qbanners->bindInt(':languages_id',(int)$CLICSHOPPING_Language->getId() );
-          $Qbanners->bindInt(':languages_id1', 0);
 
           $Qbanners->execute();
 
@@ -411,42 +392,37 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select banners_history_id
-                                      from :table_banners_history
-                                      where banners_id = :banners_id
-                                      and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
-                                      limit 1
-                                     ');
+                                            from :table_banners_history
+                                            where banners_id = :banners_id
+                                            and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
+                                            limit 1
+                                           ');
 
       $Qcheck->bindInt(':banners_id', $banner_id);
       $Qcheck->execute();
 
+      $count = $Qcheck->rowCount();
       $result = $Qcheck->fetch();
 
-      if ( ($result !== false) && ($result['count'] > 0) ) {
-
+      if ( ($result !== false) && ($count > 0) ) {
         $Qview = $CLICSHOPPING_Db->prepare('update :table_banners_history
-                                      set banners_shown = banners_shown + 1
-                                      where banners_id = :banners_id
-                                      and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
-                                      ');
+                                            set banners_shown = banners_shown + 1
+                                            where banners_id = :banners_id
+                                            and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
+                                            ');
         $Qview->bindInt(':banners_id', $banner_id);
         $Qview->execute();
-
       } else {
         $Qbanner = $CLICSHOPPING_Db->prepare('insert into :table_banners_history (banners_id,
                                                                             banners_shown,
                                                                             banners_history_date)
-                                        values (:banners_id,
-                                                1, now()
-                                                )
-                                      ');
+                                              values (:banners_id,
+                                                      1, now()
+                                                      )
+                                            ');
+        $Qbanner->bindInt(':banners_id', $banner_id);
+        $Qbanner->execute();
       }
-
-//    return $Qview->rowCount();
-      $Qbanner->bindInt(':banners_id', $banner_id);
-      $Qbanner->execute();
-
-
     }
 
 
@@ -461,28 +437,28 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select count(*) as count
-                                    from :table_banners_history where banners_id = :banners_id
-                                    and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
-                                   ');
+                                            from :table_banners_history where banners_id = :banners_id
+                                            and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
+                                           ');
       $Qcheck->bindInt(':banners_id', $banner_id);
       $Qcheck->execute();
 
       if ( ( $Qcheck->fetch() !== false) && ( $Qcheck->value('count') > 0) ) {
 
         $Qbanner = $CLICSHOPPING_Db->prepare('update :table_banners_history
-                                        set banners_clicked = banners_clicked + 1
-                                        where banners_id = :banners_id
-                                        and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
-                                       ');
+                                              set banners_clicked = banners_clicked + 1
+                                              where banners_id = :banners_id
+                                              and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
+                                             ');
       } else {
         $Qbanner = $CLICSHOPPING_Db->prepare('insert into :table_banners_history (banners_id,
                                                                             banners_clicked,
                                                                             banners_history_date)
-                                        values (:banners_id,
-                                                1,
-                                                now()
-                                               )
-                                      ');
+                                              values (:banners_id,
+                                                      1,
+                                                      now()
+                                                     )
+                                             ');
       }
 
       $Qbanner->bindInt(':banners_id', $banner_id);

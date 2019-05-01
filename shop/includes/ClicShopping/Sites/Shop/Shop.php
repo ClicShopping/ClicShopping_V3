@@ -39,7 +39,7 @@
 //check configuration
       if (!CLICSHOPPING::configExists('db_server') || (strlen(CLICSHOPPING::getConfig('db_server')) < 1)) {
         if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/install')) {
-          header('Location: install/index.php');
+          header('Location: /install/index.php');
           exit;
         } elseif (is_file($_SERVER['DOCUMENT_ROOT'] . '/shop/install/index.php')) {
           header('Location: /shop/install/index.php');
@@ -127,7 +127,9 @@
         WhosOnlineShop::getWhosOnlineUpdateSession_id($parameters['old_id'], session_id());
       });
 
-      require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/config_clicshopping.php');
+      if (is_file(CLICSHOPPING::getConfig('dir_root') . 'includes/config_clicshopping.php')) {
+        require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/config_clicshopping.php');
+      }
 
       Registry::set('Service', new Service());
       Registry::get('Service')->start();

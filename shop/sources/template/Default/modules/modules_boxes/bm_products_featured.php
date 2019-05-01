@@ -134,7 +134,7 @@
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 
           $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-          $products_name_image = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id, $in_stock);
+          $products_name_image = $CLICSHOPPING_ProductsFunctionTemplate->getProductsNameUrl($products_id);
 // *************************
 //       Flash discount
 // **************************
@@ -176,7 +176,7 @@
           }
 
           ob_start();
-          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/products_featured'));
+          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/products_featured'));
           $data .= ob_get_clean();
 
           $col ++;

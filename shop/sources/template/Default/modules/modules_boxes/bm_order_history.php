@@ -106,7 +106,7 @@
           $data = '<!-- boxe OrderHistory  start-->' . "\n";
 
           ob_start();
-          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/order_history'));
+          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/order_history'));
 
           $data .= ob_get_clean();
 

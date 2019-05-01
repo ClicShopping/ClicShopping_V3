@@ -57,7 +57,9 @@
       $index = HTTP::getShopUrlDomain() . 'index.php';
       $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['REQUEST_URI'];
 
-      $language = HTML::sanitize($_GET['language']);
+      if (isset($_GET['language'])) {
+        $language = HTML::sanitize($_GET['language']);
+      }
 
       if (($index === $url || isset($language)) && !isset($_GET['Products']) && !isset($_GET['Blog']) && !isset($_GET['Info'])) {
         $Qsubmit = $this->app->db->prepare('select submit_id,
