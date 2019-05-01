@@ -160,4 +160,41 @@ class FileSystem {
     $group['read'] . $group['write'] . $group['execute'] .
     $world['read'] . $world['write'] . $world['execute'];
   }
+
+/**
+ * Copy file
+ * @param string $source
+ * @param string $destination
+ * @return bool
+ */
+  public static function copyFile(string $source, string $destination): bool {
+    $target_dir = dirname($destination);
+
+    if (!is_dir($target_dir)) {
+      mkdir($target_dir, 0777, true);
+    }
+
+    return copy($source, $destination);
+  }
+
+/**
+ * Move File
+ * @param string $source
+ * @param string $destination
+ * @return bool
+ */
+  public static function moveFile(string $source, string $destination): bool {
+    $target_dir = dirname($destination);
+
+    if (!is_dir($target_dir)) {
+      mkdir($target_dir, 0777, true);
+    }
+
+    if (copy($source, $destination)) {
+      unlink($source);
+      return true;
+    }
+
+    return false;
+  }
 }

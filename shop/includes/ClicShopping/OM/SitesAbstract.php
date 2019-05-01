@@ -9,7 +9,6 @@
  *
  */
 
-
   namespace ClicShopping\OM;
 
   abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface {
