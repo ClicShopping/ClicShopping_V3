@@ -717,10 +717,7 @@
           }
         }
 
-// Mise en commentaire dela mise a jour derniere version MS2 RC2a
-//$shown_price = $CLICSHOPPING_Currencies->calculate_price($this->products[$index]['final_price'], $this->products[$index]['tax'], $this->products[$index]['qty']);
 // discount coupons
-
         if (is_object($this->coupon)) {
           $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
 
