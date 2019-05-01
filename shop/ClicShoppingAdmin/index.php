@@ -29,7 +29,7 @@
         require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('header.php'));
       }
 
-      include_once($page_file);
+      include($page_file);
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
         require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('footer.php'));

@@ -314,9 +314,9 @@
 
 // recuperation des informations clients normaux pour enregistrement commandes avec en plus infos sur customers_group_id
       } else {
-
         $customer_address = ['customers_firstname' => null,
                             'customers_lastname' => null,
+                            'customers_group_id' => null,
                             'customers_telephone' => null,
                             'customers_cellular_phone' => null,
                             'customers_email_address' => null,
@@ -335,7 +335,6 @@
                             'address_format_id' => 0,
                             'entry_state' => null
                           ];
-
 
         if ($CLICSHOPPING_Customer->getID()) {
           $Qcustomer = $this->db->prepare('select c.customers_firstname,
@@ -392,7 +391,6 @@
                              ];
 
       } elseif (is_numeric($_SESSION['sendto'])) {
-
         $Qaddress = $this->db->prepare('select ab.entry_firstname,
                                                ab.entry_lastname,
                                                ab.entry_company,
@@ -401,14 +399,14 @@
                                                ab.entry_postcode,
                                                ab.entry_city,
                                                ab.entry_zone_id,
-                                               z.zone_name,
                                                ab.entry_country_id,
+                                               ab.entry_state,      
+                                               z.zone_name,
                                                c.countries_id,
                                                c.countries_name,
                                                c.countries_iso_code_2,
                                                c.countries_iso_code_3,
-                                               c.address_format_id,
-                                               ab.entry_state
+                                               c.address_format_id
                                        from :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id)
                                                                    left join :table_countries c on (ab.entry_country_id = c.countries_id)
                                        where ab.customers_id = :customers_id
@@ -441,8 +439,7 @@
                             ];
       }
 
-      if (is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
-
+      if (isset($_SESSION['billto']) && is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
         $billing_address = ['entry_firstname' => $_SESSION['billto']['firstname'],
                             'entry_lastname' => $_SESSION['billto']['lastname'],
                             'entry_company' => $_SESSION['billto']['company'],
@@ -483,7 +480,7 @@
                                          and ab.address_book_id = :address_book_id
                                         ');
         $Qaddress->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-        $Qaddress->bindInt(':address_book_id', $_SESSION['billto']);
+        $Qaddress->bindInt(':address_book_id', $CLICSHOPPING_Customer->getDefaultAddressID());
         $Qaddress->execute();
 
         $billing_address = $Qaddress->toArray();
@@ -548,7 +545,7 @@
       }
 
       $this->customer = ['firstname' => $customer_address['customers_firstname'],
-                        'group_id' => $customer_address['customers_group_id'],
+                        'customers_group_id' => $customer_address['customers_group_id'],
                         'lastname' => $customer_address['customers_lastname'],
                         'company' => $company_name,
                         'street_address' => $customer_address['entry_street_address'],
@@ -823,7 +820,7 @@
       }
 
       $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                        'customers_group_id' => (int)$this->customer['group_id'],
+                        'customers_group_id' => (int)$this->customer['customers_group_id'],
                         'customers_name' => $this->customer['firstname'] . ' ' . $this->customer['lastname'],
                         'customers_company' => $this->customer['company'],
                         'customers_street_address' => $this->customer['street_address'],
