@@ -461,7 +461,6 @@
                             'entry_state' => $_SESSION['billto']['zone_name']
                             ];
       } else {
-
         $Qaddress = $this->db->prepare('select ab.entry_firstname,
                                                 ab.entry_lastname,
                                                 ab.entry_company,
@@ -1411,26 +1410,29 @@
  * @return
  * @access private
 */
+
     private function getCodeCoupon() {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-      $coupon = HTML::sanitize($_POST['coupon']);
+      if (isset($_POST['coupon'])) {
+        $coupon = HTML::sanitize($_POST['coupon']);
 
-      if ((isset($_SESSION['coupon']) && !empty($_SESSION['coupon'])) || (isset($coupon)) && !empty($coupon)) {
-        if (empty($_SESSION['coupon'])) {
-          $_SESSION['coupon'] = $coupon;
-          $code_coupon =  HTML::sanitize($_SESSION['coupon']);
-        } else {
-          $code_coupon = HTML::sanitize($_SESSION['coupon']);
+        if ((isset($_SESSION['coupon']) && !empty($_SESSION['coupon'])) || !empty($coupon)) {
+          if (empty($_SESSION['coupon'])) {
+            $_SESSION['coupon'] = $coupon;
+            $code_coupon =  HTML::sanitize($_SESSION['coupon']);
+          } else {
+            $code_coupon = HTML::sanitize($_SESSION['coupon']);
+          }
+
+          if (!Registry::exists('DiscountCouponCustomer')) {
+            Registry::set('DiscountCouponCustomer', new DiscountCouponCustomer($code_coupon));
+            $this->coupon = Registry::get('DiscountCouponCustomer');
+          }
+
+          $this->coupon->getTotalValidProducts($products);
         }
-
-        if (!Registry::exists('DiscountCouponCustomer')) {
-          Registry::set('DiscountCouponCustomer', new DiscountCouponCustomer($code_coupon));
-          $this->coupon = Registry::get('DiscountCouponCustomer');
-        }
-
-        $this->coupon->getTotalValidProducts($products);
       }
     }
 

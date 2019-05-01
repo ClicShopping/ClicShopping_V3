@@ -40,7 +40,7 @@
       return $this->rewriteUrl;
     }
 
-    public function getProductsNameUrl($products_id, $in_stock) {
+    public function getProductsNameUrl($products_id) {
       $products_name = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) .'</span>', 'itemprop="url"');
 
       return $products_name;
@@ -288,13 +288,8 @@
     public function getManufacturerName($products_id) {
       $name= '';
 
-      if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
+      if (isset($_GET['manufacturers_id']) && !is_null($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
         $manufacturer_id = HTML::sanitize($_GET['manufacturers_id']);
-      } else {
-        $manufacturer_id = HTML::sanitize($_GET['manufacturers_id']);
-      }
-
-      if (isset( $manufacturer_id) && !is_null( $manufacturer_id)) {
         $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturers_id=' .  $manufacturer_id . '&products_id=' . $products_id), '<span itemprop="name">' .   $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
       } else {
         $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&' . ($this->category->getPath() ? 'cPath=' . $this->category->getPath() . '&' : '') . 'products_id=' . $products_id), '<span itemprop="name">' .   $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');

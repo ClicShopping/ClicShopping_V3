@@ -35,11 +35,12 @@
     }
 
     public function execute() {
-      if (isset($_GET['products_id']) && isset($_GET['Products'])) {
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+
+      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products'])) {
         $content_width = (int)MODULE_PRODUCTS_INFO_PRICE_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_INFO_PRICE_POSITION;
 
-        $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_Customer = Registry::get('Customer');
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_Category = Registry::get('Category');
@@ -55,14 +56,19 @@
            if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
              $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
              $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol ;
+           } else {
+             $product_price_kilo = '';
            }
 // Products attributes
            if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1 ) {
              $clic_has_product_attributes = $CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
            }
+
 // Minimum quantity to take an order
            if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
              $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') .' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
+           } else {
+             $min_order_quantity_products_display = '';
            }
 
 // display the differents prices before button
@@ -116,7 +122,7 @@
               $products_price_content .= '<div class="contentText"  style="float:'. MODULE_PRODUCTS_INFO_PRICE_POSITION .';">';
 
               if ($CLICSHOPPING_ProductsCommon->getProductsArchive() == 0) {
-                $products_price_content .=  HTML::hiddenField('products_id', (int)$_GET['products_id']);
+                $products_price_content .=  HTML::hiddenField('products_id', $CLICSHOPPING_ProductsCommon->getID());
 
                 ob_start();
                 require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_price'));

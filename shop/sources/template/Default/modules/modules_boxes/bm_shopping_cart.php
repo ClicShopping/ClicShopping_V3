@@ -98,6 +98,8 @@
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SHOPPING_CART_BANNER_GROUP)) {
               $shopping_cart_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
+            } else {
+              $shopping_cart_banner = '';
             }
           }
 

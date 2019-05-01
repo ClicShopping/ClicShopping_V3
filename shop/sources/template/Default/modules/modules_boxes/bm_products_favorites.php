@@ -76,7 +76,7 @@
                                               ');
 
         $Qproducts->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-        $Qproducts->bindInt(':products_id', (int)$_GET['products_id']);
+        $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qproducts->bindInt(':limit', (int)MODULE_BOXES_PRODUCTS_FAVORITES_MAX_DISPLAY_LIMIT);
         $Qproducts->execute();
 
@@ -101,7 +101,7 @@
                                                  limit  :limit
                                                 ');
 
-        $Qproducts->bindInt(':products_id', (int)$_GET['products_id']);
+        $Qproducts->bindInt(':products_id',  $CLICSHOPPING_ProductsCommon->getID());
         $Qproducts->bindInt(':limit', (int)MODULE_BOXES_PRODUCTS_FAVORITES_MAX_DISPLAY_LIMIT);
         $Qproducts->execute();
       }
@@ -113,6 +113,8 @@
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PRODUCTS_FAVORITES_BANNER_GROUP)) {
             $favorites_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
+          } else {
+            $favorites_banner = '';
           }
         }
 
@@ -154,6 +156,8 @@
 // **************************
           if (MODULE_BOXES_PRODUCTS_FAVORITES_DETAIL_BUTTON == 'True') {
             $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_detail'), null, $products_name_url, 'info', null, 'sm');
+          } else {
+            $button_small_view_details = '';
           }
 
           $products_image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($products_id), HTML::outputProtected($products_name), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT));

@@ -47,6 +47,8 @@
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SEARCH_BANNER_GROUP)) {
           $search_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
+        } else {
+          $search_banner = '';
         }
       }
 

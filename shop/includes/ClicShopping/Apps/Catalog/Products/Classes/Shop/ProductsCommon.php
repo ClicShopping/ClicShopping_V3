@@ -92,9 +92,10 @@
                                         and p.products_id = :products_id
                                        ');
 
-        $Qproducts->bindInt(':products_id', $this->getID() );
+        $Qproducts->bindInt(':products_id', $this->getID());
         $Qproducts->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
-
+        $Qproducts->execute();
+        $result = $Qproducts->toArray();
       } else {
         $Qproducts = $this->db->prepare('select p.products_id,
                                                 p.products_tax_class_id,
@@ -115,24 +116,33 @@
                                        ');
 
         $Qproducts->bindInt(':products_id', $this->getID());
+        $Qproducts->execute();
+        $result = $Qproducts->toArray();
       }
-
-      $Qproducts->execute();
-
-      $result = $Qproducts->fetch();
 
       if ($result === false) return false;
 
       return $result;
     }
 
+
     public function getData()  {
       return $this->setData();
     }
 
-// returns a single element of the data array
-    public function get($obj)  {
-      return $this->getData()[$obj];
+/**
+ * returns a single element of the data array
+ * @param null $obj
+ * @return bool
+ */
+    public function get($obj = null)  {
+      $array_data = $this->getData();
+
+      if ( isset($array_data[$obj]) ) {
+        return $array_data[$obj];
+      }
+
+      return $array_data;
     }
 
     public function getProductsGroupView() {
@@ -2726,6 +2736,7 @@
 * @access private
 */
     private function setProductsSaveMoneyCustomer($id) {
+      $savemoney = '';
 
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
         $savemoney = (round((($this->setPrice($id) - $this->setSpecialPriceGroup($id) )) , 2)) ;
@@ -2773,6 +2784,7 @@
       }
 
       $nb_discount = $QprodutsQuantityDiscount->rowCount(); // dans ton exemple 3 discounts
+      $new_discount_price = '';
 
       $i = $nb_discount -1; // 0,1,2 pour les indices des tableaux de ton exemple
 
@@ -2791,7 +2803,11 @@
         }
       }
 
-      return $new_discount_price;
+      if (!is_null($new_discount_price) || !empty($new_discount_price)) {
+         return $new_discount_price;
+      } else {
+        return false;
+      }
     }
 
 /**

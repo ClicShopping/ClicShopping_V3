@@ -189,14 +189,9 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['order']))  {
-        $orders_id = HTML::sanitize($_GET['order']);
-      } else {
-        $orders_id = HTML::sanitize($_GET['order_id']);
-      }
-
-
       if (isset($_GET['order'])) {
+        $orders_id = HTML::sanitize($_GET['order']);
+
         $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
                                                        opd.download_maxdays,
                                                        opd.download_count,
@@ -224,6 +219,10 @@
         $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         $Qdownload->execute();
       } else {
+
+       $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['customers_id' => $CLICSHOPPING_Customer->getID()], 'orders_id desc', 1);
+       $last_order = $Qorders->valueInt('orders_id');
+
         $Qdownload = $CLICSHOPPING_Db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as date_purchased_day,
                                                        opd.download_maxdays,
                                                        opd.download_count,
@@ -245,7 +244,7 @@
                                                 and os.language_id = :language_id
                                               ');
 
-        $Qdownload->bindInt(':orders_id', $orders_id);
+        $Qdownload->bindInt(':orders_id', $last_order);
         $Qdownload->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
         $Qdownload->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         $Qdownload->execute();

@@ -404,10 +404,11 @@
 
 //return '<span class="pagination">
         return '<span class="">' . Language::parseDefinition($text, [
-            'listing_from' => $from,
-            'listing_to' => $to,
-            'listing_total' => $this->page_set_total_rows
-        ]) . '</span>';
+                                                                      'listing_from' => $from,
+                                                                      'listing_to' => $to,
+                                                                      'listing_total' => $this->page_set_total_rows
+                                                                  ]
+                                                             ) . '</span>';
     }
 
 /**

@@ -38,13 +38,13 @@
     public function execute() {
       $CLICSHOPPING_Tax = Registry::get('Tax');
       $CLICSHOPPING_Category = Registry::get('Category');
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (isset($_GET['products_id']) && isset($_GET['Products']) ) {
+      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products']) ) {
 
         $content_width = (int)MODULE_PRODUCTS_INFO_OPTIONS_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_INFO_OPTIONS_POSITION;
 
-        $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_Customer = Registry::get('Customer');
         $CLICSHOPPING_Db = Registry::get('Db');
         $CLICSHOPPING_Template = Registry::get('Template');

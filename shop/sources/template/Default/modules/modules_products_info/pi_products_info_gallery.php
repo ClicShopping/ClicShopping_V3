@@ -38,8 +38,9 @@
     }
 
     public function execute() {
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (isset($_GET['products_id']) && isset($_GET['Products']) ) {
+      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products']) ) {
         $content_width = (int)MODULE_PRODUCTS_INFO_GALLERY_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_INFO_GALLERY_POSITION;
 
@@ -74,6 +75,8 @@
         $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
 
         $products_image = '<!-- Start gallery -->' . "\n";
+
+        $ticker_image = '';
 
         if ($CLICSHOPPING_ProductsCommon->getProductsTickerSpecials() == 'True' && MODULE_PRODUCTS_INFO_GALLERY_TICKER == 'True') {
           $ticker_image = HTML::tickerImage(CLICSHOPPING::getDef('text_ticker_specials'), 'ModulesProductsInfoBootstrapTickerSpecialImageGallery', $CLICSHOPPING_ProductsCommon->getProductsTickerSpecials());

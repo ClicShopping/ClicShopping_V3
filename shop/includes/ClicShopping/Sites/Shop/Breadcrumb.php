@@ -182,6 +182,8 @@
 
       $this->rewriteUrl = Registry::get('RewriteUrl');
 
+      $result = null;
+
       // calculate category path
       if ($CLICSHOPPING_Category->getPath()) {
         $cPath = $CLICSHOPPING_Category->getPath();
@@ -222,6 +224,10 @@
         }
       }
 
-      return $result;
+      if (is_null($result)) {
+        return false;
+      } else {
+        return $result;
+      }
     }
   }

@@ -41,31 +41,30 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
+      $last_order = '';
 
       if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
 // Get last order id for checkout_success
         $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['customers_id' => $CLICSHOPPING_Customer->getID()], 'orders_id desc', 1);
 
         $last_order = $Qorders->valueInt('orders_id');
-      } else {
-        $last_order = HTML::sanitize($_GET['order_id']);
-      }
 
 // Now get all downloadable products in that order
       $Qdownloads = HistoryInfo::getDownloadFilesPurchased();
 
-      if ($Qdownloads->fetch() !== false) {
-        $account = '<!-- Start account_customers_download --> ' . "\n";
+        if ($Qdownloads->fetch() !== false) {
+          $account = '<!-- Start account_customers_download --> ' . "\n";
 
-        $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_DOWNLOAD_CONTENT_WIDTH;
+          $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_DOWNLOAD_CONTENT_WIDTH;
 
-        ob_start();
-        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_download'));
-        $account .= ob_get_clean();
+          ob_start();
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/account_customers_history_info_download'));
+          $account .= ob_get_clean();
 
-        $account .= '<!-- end account_customers_download-->' . "\n";
+          $account .= '<!-- end account_customers_download-->' . "\n";
 
-        $CLICSHOPPING_Template->addBlock($account, $this->group);
+          $CLICSHOPPING_Template->addBlock($account, $this->group);
+        }
       }
     } // function execute
 

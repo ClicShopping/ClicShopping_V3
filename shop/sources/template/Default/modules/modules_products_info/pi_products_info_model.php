@@ -34,13 +34,12 @@
     }
 
     public function execute() {
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (isset($_GET['products_id']) && isset($_GET['Products']) ) {
-
+      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products']) ) {
         $content_width = (int)MODULE_PRODUCTS_INFO_MODEL_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_INFO_MODEL_POSITION;
 
-        $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_Template = Registry::get('Template');
 
         $products_model =  $CLICSHOPPING_ProductsCommon->getProductsModel();

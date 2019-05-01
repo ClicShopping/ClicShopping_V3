@@ -178,6 +178,7 @@
 // **************************
               if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity($products_id) != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity($products_id) != 0) {
                 $submit_button = '';
+                $form = '';
 
                 if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                   $form =  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add' ),'post','class="justify-content-center"', ['tokenize' => true]). "\n";

@@ -84,6 +84,8 @@
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_MANUFACTURER_INFO_BANNER_GROUP)) {
               $manufacturer_infos_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
+            } else {
+              $manufacturer_infos_banner = '';
             }
           }
 
