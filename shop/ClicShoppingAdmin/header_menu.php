@@ -137,7 +137,7 @@
 
 //--------------------------------------------------------------
 // level 2
-    if (!is_null($menus['sub_menu'])) {
+    if (isset($menus['sub_menu'])) {
       echo '<ul>';
       foreach($menus['sub_menu'] as $second_level) {
         $image = '';
@@ -149,7 +149,7 @@
         }
 //--------------------------------------------------------------
 // level 3
-        if ($menu_sub[$second_level]['sub_menu'] != '')  {
+        if (isset($menu_sub[$second_level]['sub_menu']))  {
           echo '<ul>';
 
           foreach($menu_sub[$second_level]['sub_menu'] as $third_level) {
@@ -163,7 +163,7 @@
 
 //--------------------------------------------------------------
 // level 4
-            if ($menu_sub[ $third_level]['sub_menu'] != '')  {
+            if (isset($menu_sub[ $third_level]['sub_menu']))  {
 //              echo '<ul>';
 
               foreach($menu_sub[$third_level]['sub_menu'] as $fourth_level) {
@@ -176,6 +176,7 @@
                   echo '<li><a class="nav-link">' . $image . ' ' . $menu_sub[$fourth_level]['label'] . '</a>';
                 }
               }
+
               if (is_null($menu_sub[$fourth_level]['link'])) {
                 echo '</li>';
               }
