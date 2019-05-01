@@ -26,7 +26,6 @@
     protected $group;
 
     protected function init() {
-
       if (!Registry::exists('SEO')) {
         Registry::set('SEO', new SEOApp());
       }
@@ -107,9 +106,8 @@
 {$new_keywords}
 EOD;
 
+        return $output;
       }
-
-      return $output;
     }
 
     public function Install() {

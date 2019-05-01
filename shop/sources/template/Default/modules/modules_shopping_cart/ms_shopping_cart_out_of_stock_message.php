@@ -51,7 +51,7 @@
             $stock_check = $CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity']);
 
             if (!empty($stock_check)) {
-              if (STOCK_ALLOW_CHECKOUT == 'True') {
+              if (STOCK_ALLOW_CHECKOUT == 'true') {
                 $out_of_stock = CLICSHOPPING::getDef('module_shopping_cart_out_of_stock_can_checkout', ['out_of_stock' => STOCK_MARK_PRODUCT_OUT_OF_STOCK]);
               } else {
                 $out_of_stock = CLICSHOPPING::getDef('module_shopping_cart_out_of_stock_cant_checkout', ['out_of_stock' => STOCK_MARK_PRODUCT_OUT_OF_STOCK]);

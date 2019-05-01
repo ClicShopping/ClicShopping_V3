@@ -63,7 +63,7 @@
           $stock = 'OutofStock';
         }
 
-        if (STOCK_ALLOW_CHECKOUT == 'True') {
+        if (STOCK_ALLOW_CHECKOUT == 'true') {
           $stock = 'InStock';
         }
 
