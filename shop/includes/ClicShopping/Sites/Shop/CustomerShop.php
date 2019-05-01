@@ -38,35 +38,51 @@
     }
 
     public function setIsLoggedOn($state) {
-      if ( !is_bool($state) ) {
-        $state = false;
+      if ( $state === true ) {
+        $this->_is_logged_on = true;
+      } else {
+        $this->_is_logged_on = false;
       }
-
-      $this->_is_logged_on = $state;
     }
 
     public function isLoggedOn() {
-      return $this->_is_logged_on;
+      if ( $this->_is_logged_on === true ) {
+        return true;
+      }
+
+      return false;
     }
 
     public function get($key = null) {
       if ( isset($key) ) {
         return $this->_data[$key];
+      } else {
+        return $this->_data;
+      }
+    }
+    
+    public function getID() {
+      if ( isset($this->_data['id']) && is_numeric($this->_data['id']) ) {
+        return (int)$this->_data['id'];
       }
 
-      return $this->_data;
-    }
-
-    public function getID() {
-      return $this->get('id');
+      return 0;
     }
 
     public function getFirstName() {
-      return $this->get('first_name');
+      if ( isset($this->_data['first_name']) ) {
+        return $this->_data['first_name'];
+      }
+
+      return false;
     }
 
     public function getLastName() {
-      return $this->get('last_name');
+      if ( isset($this->_data['last_name']) ) {
+        return $this->_data['last_name'];
+      }
+
+      return false;
     }
 
     public function getName() {
@@ -88,7 +104,11 @@
     }
 
     public function getGender() {
-      return $this->get('gender');
+      if ( isset($this->_data['gender']) ) {
+        return $this->_data['gender'];
+      }
+
+      return false;
     }
 
     public function hasEmailAddress() {
@@ -96,23 +116,59 @@
     }
 
     public function getEmailAddress() {
-      return $this->_data['email_address'];
+      if ( isset($this->_data['email_address']) ) {
+        return $this->_data['email_address'];
+      }
+
+      return false;
     }
 
+    public function setTelephone($telephone) {
+      $this->_data['telephone'] = $telephone;
+    }
+    
     public function getTelephone() {
-      return $this->get('telephone');
+      if ( isset($this->_data['telephone']) ) {
+        return $this->_data['telephone'];
+      }
+
+      return false;
     }
 
     public function getCountryID() {
-      return $this->_data['country_id'];
+      static $country_id = null;
+
+      if ( is_null($country_id) ) {
+        if ( isset($this->_data['country_id']) ) {
+          $country_id = $this->_data['country_id'];
+        }
+      }
+
+      return $country_id;
     }
 
     public function getZoneID() {
-      return $this->_data['zone_id'];
+      static $zone_id = null;
+
+      if ( is_null($zone_id) ) {
+        if ( isset($this->_data['zone_id']) ) {
+          $zone_id = $this->_data['zone_id'];
+        }
+      }
+
+      return $zone_id;
     }
 
     public function getDefaultAddressID() {
-      return $this->_data['default_address_id'];
+      static $id = null;
+
+      if ( is_null($id) ) {
+        if ( isset($this->_data['default_address_id']) ) {
+          $id = $this->_data['default_address_id'];
+        }
+      }
+
+      return $id;
     }
 
 // B2B
@@ -197,6 +253,8 @@
     public function setID($id) {
       if ( is_numeric($id) && ($id > 0) ) {
         $this->_data['id'] = $id;
+      } else {
+        $this->_data['id'] = false;
       }
     }
 
@@ -215,16 +273,24 @@
         }
 
         $this->_data['default_address_id'] = $id;
+      } else {
+        $this->_data['default_address_id'] = false;
       }
     }
 
     public function hasDefaultAddress() {
-      return isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id']);
+      if ( isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id']) ) {
+        return true;
+      }
+
+      return false;
     }
 
     public function setGender($gender) {
       if ( (strtolower($gender) == 'm') || (strtolower($gender) == 'f') ) {
         $this->_data['gender'] = strtolower($gender);
+      } else {
+        $this->_data['gender'] = false;
       }
     }
 
@@ -238,10 +304,6 @@
 
     public function setEmailAddress($email_address) {
       $this->_data['email_address'] = $email_address;
-    }
-
-    public function setTelephone($telephone) {
-      $this->_data['telephone'] = $telephone;
     }
 
     public function getCustomerGuestAccount($id) {
