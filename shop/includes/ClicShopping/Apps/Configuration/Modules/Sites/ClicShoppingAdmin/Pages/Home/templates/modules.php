@@ -13,9 +13,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Apps;
-  use ClicShopping\OM\Cache;
-
-  use ClicShopping\Sites\ClicShoppingAdmin\CallUserFuncModule;
 
   $CLICSHOPPING_Modules = Registry::get('Modules');
   $CLICSHOPPING_Language = Registry::get('Language');
@@ -41,7 +38,6 @@
   $module_key = $CLICSHOPPING_CfgModule->get($set, 'key');
 
   $template_integration = $CLICSHOPPING_CfgModule->get($set, 'template_integration');
-  $language_template_module_directory = $CLICSHOPPING_CfgModule->get($set, 'languageTemplateModuleDirectory');
 
   define('HEADING_TITLE', $CLICSHOPPING_CfgModule->get($set, 'title'));
 
@@ -76,7 +72,7 @@
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
-  if ($_GET['action'] == 'edit') {
+  if (isset($_GET['action']) && $_GET['action'] == 'edit') {
     echo '<span class="cols-xs-3 float-right">';
     echo HTML::button($CLICSHOPPING_Modules->getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') .'&nbsp;';
     echo HTML::form('modules', $CLICSHOPPING_Modules->link('Modules&set=' . $set . '&module=' . $_GET['module'] . '&action=save'));
@@ -173,21 +169,20 @@
     } else {
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
 
-      if (is_file($module_language_directory . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.php') ||  is_file($module_language_directory . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.txt')) {
+      if (is_file($module_language_directory . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.txt')) {
         $CLICSHOPPING_Language->loadDefinitions($module_site . '/modules/'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
       } else {
         $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getDirectoryPathShopDefaultTemplateHtml() . '/languages/' . $CLICSHOPPING_Language->get('directory') . '/modules/'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
       }
 
-      include_once($module_directory . $file);
+      include($module_directory . $file);
 
       $class = substr($file, 0, strrpos($file, '.'));
 
       if (class_exists($class)) {
         $module = new $class;
-        }
       }
-
+    }
 
     if (isset($module)) {
       if ($module->check() > 0) {
@@ -210,8 +205,6 @@
         $module_keys = $module->keys();
 
         $keys_extra = [];
-
-
 
         for ($j=0, $k=count($module_keys); $j<$k; $j++) {
 

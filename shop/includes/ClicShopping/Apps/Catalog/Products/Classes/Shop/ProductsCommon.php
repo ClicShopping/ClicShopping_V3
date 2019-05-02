@@ -1396,14 +1396,12 @@
  * @access public
  */
 
-    private function setProductsModel($id = null)  {
-
+    private function setProductsModel($id = null) {
       if (is_null($id)) {
         $id = $this->getID();
       }
 
       if ($this->customer->getCustomersGroupID() != 0) {
-
         $Qproducts = $this->db->prepare('select g.products_model_group
                                           from :table_products p left join :table_products_groups g on p.products_id = g.products_id
                                           where p.products_status = 1
@@ -1416,9 +1414,7 @@
         $Qproducts->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID() );
 
         $Qproducts->execute();
-
       } else {
-
         $Qproducts = $this->db->prepare('select products_model
                                         from :table_products
                                         where products_status = 1
@@ -1433,6 +1429,7 @@
 // display the good producs_model
       if ($this->customer->getCustomersGroupID() != 0 && !empty($Qproducts->value('products_model_group'))) {
         $products_model = HTML::outputProtected($Qproducts->value('products_model_group'));
+
         if (empty($Qproducts->value('products_model_group'))) {
           $products_model  = HTML::outputProtected($Qproducts->value('products_model'));
         }

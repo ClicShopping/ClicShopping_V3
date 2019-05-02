@@ -45,7 +45,6 @@
   $module_key = $CLICSHOPPING_CfgModule->get($set, 'key');
 
   $template_integration = $CLICSHOPPING_CfgModule->get($set, 'template_integration');
-  $language_template_module_directory = $CLICSHOPPING_CfgModule->get($set, 'languageTemplateModuleDirectory');
 
   define('HEADING_TITLE', $CLICSHOPPING_CfgModule->get($set, 'title'));
 
@@ -58,7 +57,7 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_unit.png', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?></span>
+          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_unit.png', $CLICSHOPPING_Modules->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
@@ -72,7 +71,6 @@
     </div>
   </div>
   <div class="separator"></div>
-
 <?php
   $modules_installed = (defined($module_key) ? explode(';', constant($module_key)) : array());
 
@@ -125,6 +123,7 @@
 
   for ($i=0, $n=count($directory_array); $i<$n; $i++) {
     $file = $directory_array[$i];
+
     if (strpos($file, '\\') !== false) {
       $file_extension = '';
 
@@ -138,9 +137,10 @@
     } else {
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
 
-      include_once($module_directory . $file);
+      include($module_directory . $file);
 
       $class = substr($file, 0, strrpos($file, '.'));
+
       if (class_exists($class)) {
         $module = new $class;
       }
@@ -157,12 +157,12 @@
 
       if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
         $module_info = ['code' => $module->code,
-                        'title' => $module->title,
-                        'description' => $module->description,
-                        'status' => $module->check(),
-                        'signature' => (isset($module->signature) ? $module->signature : null),
-                        'api_version' => (isset($module->api_version) ? $module->api_version : null)
-        ];
+                         'title' => $module->title,
+                         'description' => $module->description,
+                         'status' => $module->check(),
+                         'signature' => (isset($module->signature) ? $module->signature : null),
+                         'api_version' => (isset($module->api_version) ? $module->api_version : null)
+                        ];
 
         $module_keys = $module->keys();
 
@@ -170,24 +170,22 @@
 
         for ($j=0, $k=count($module_keys); $j<$k; $j++) {
 
-          $keyValue = $CLICSHOPPING_Db->prepare('select configuration_title,
-                                                          configuration_value,
-                                                          configuration_description,
-                                                          use_function,
-                                                          set_function
-                                                   from :table_configuration
-                                                   where configuration_key = :configuration_key
-                                                  ');
-          $keyValue->bindValue(':configuration_key', $module_keys[$j]);
-          $keyValue->execute();
+          $Qkeys = $CLICSHOPPING_Db->get('configuration', [
+                                                          'configuration_title',
+                                                          'configuration_value',
+                                                          'configuration_description',
+                                                          'use_function',
+                                                          'set_function'
+                                                          ], [
+                                                          'configuration_key' => $module_keys[$j]
+                                                          ]
+                                        );
 
-          $key_value = $keyValue->fetch();
-
-          $keys_extra[$module_keys[$j]]['title'] = $key_value['configuration_title'];
-          $keys_extra[$module_keys[$j]]['value'] = $key_value['configuration_value'];
-          $keys_extra[$module_keys[$j]]['description'] = $key_value['configuration_description'];
-          $keys_extra[$module_keys[$j]]['use_function'] = $key_value['use_function'];
-          $keys_extra[$module_keys[$j]]['set_function'] = $key_value['set_function'];
+          $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
+          $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
+          $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
+          $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
+          $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
         }
 
         $module_info['keys'] = $keys_extra;
