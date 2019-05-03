@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   class InsertGeoZone extends \ClicShopping\OM\PagesActionsAbstract {
     protected $app;
@@ -28,7 +29,7 @@
       $zone_id = HTML::sanitize($_POST['state']);
 
       $this->app->db->save('zones_to_geo_zones', [
-                                                  'zone_country_id' =>  (int)$zone_country_id,
+                                                  'zone_country_id' => (int)$zone_country_id,
                                                   'zone_id' => (int)$zone_id,
                                                   'geo_zone_id' =>  (int)$zID,
                                                   'date_added' => 'now()'
@@ -40,5 +41,3 @@
       $this->app->redirect('ListGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $new_subzone_id);
     }
   }
-
-  include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');

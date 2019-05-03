@@ -9,8 +9,7 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
-
+  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 ?>
 <script type="text/javascript"><!--
