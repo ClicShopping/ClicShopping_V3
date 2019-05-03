@@ -210,7 +210,7 @@ use ClicShopping\OM\HTML;
 ?>
               <td>
 <?php
-      if ($Qspecials->value('selected')) {
+      if (isset($_POST['selected'])) {
 ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $Qspecials->valueInt('specials_id'); ?>" checked="checked" />
 <?php

@@ -188,7 +188,7 @@
 ?>
               <td>
 <?php
-      if ($Qfavorites->value('selected')) {
+      if (isset($_POST['selected'])) {
 ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $Qfavorites->valueInt('products_favorites_id'); ?>" checked="checked" />
 <?php

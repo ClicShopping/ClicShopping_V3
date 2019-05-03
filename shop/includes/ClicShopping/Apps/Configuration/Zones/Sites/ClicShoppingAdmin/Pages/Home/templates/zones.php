@@ -122,7 +122,7 @@ use ClicShopping\OM\HTML;
 ?>
             <th>
 <?php
-      if ($Qzones->value('selected')) {
+      if (isset($_POST['selected'])) {
 ?>
             <input type="checkbox" name="selected[]" value="<?php echo $Qzones->valueInt('zone_id'); ?>" checked="checked" /><?php HTML::hiddenField('flag_selected', $Qzones->valueInt('zone_status')); ?>
 <?php

@@ -130,7 +130,7 @@
 ?>
             <td>
 <?php
-      if ($Qpages->value('selected')) {
+      if (isset($_POST['selected'])) {
 ?>
               <input type="checkbox" name="selected[]" value="<?php echo   $Qpages->valueInt('pages_id'); ?>" checked="checked" />
 <?php

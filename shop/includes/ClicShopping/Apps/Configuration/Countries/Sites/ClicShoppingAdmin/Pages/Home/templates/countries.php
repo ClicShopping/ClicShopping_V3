@@ -80,7 +80,7 @@
 ?>
             <td>
 <?php
-      if (($Qcountries->value('selected'))) {
+      if (isset($_POST['selected'])) {
 ?>
         <input type="checkbox" name="selected[]" value="<?php echo $Qcountries->valueInt('countries_id'); ?>" checked="checked" />
 <?php

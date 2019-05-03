@@ -188,7 +188,7 @@ use ClicShopping\OM\HTML;
 ?>
               <td>
 <?php
-      if ($Qfeatured->value('selected')) {
+      if (isset($_POST['selected'])) {
 ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $Qfeatured->valueInt('products_featured_id'); ?>" checked="checked" />
 <?php

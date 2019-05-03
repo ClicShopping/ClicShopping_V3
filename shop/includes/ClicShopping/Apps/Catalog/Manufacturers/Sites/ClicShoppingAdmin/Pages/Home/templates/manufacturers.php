@@ -85,7 +85,7 @@
 ?>
                 <td>
 <?php
-      if ($Qmanufacturers->value('selected')) {
+      if (isset($_POST['selected'])) {
 ?>
                   <input type="checkbox" name="selected[]" value="<?php echo $Qmanufacturers->valueInt('manufacturers_id'); ?>" checked="checked" />
 <?php

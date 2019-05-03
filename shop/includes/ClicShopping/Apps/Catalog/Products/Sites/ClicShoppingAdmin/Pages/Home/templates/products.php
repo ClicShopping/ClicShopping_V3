@@ -172,7 +172,7 @@
 ?>
                   <td>
 <?php // select all the product to delete
-  if ($Qproducts->value('selected')) {
+  if (isset($_POST['selected'])) {
 ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $Qproducts->valueInt('products_id'); ?>" checked="checked" />
 <?php

@@ -21,7 +21,7 @@
     public $_user_name;
 
     public function __construct($module, $user_id = null, $user_name = null) {
-       $CLICSHOPPING_Template = Registry::get('Template');
+      $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $module = HTML::sanitize(str_replace(' ', '', $module));
@@ -78,7 +78,6 @@
     }
 
     public function record($success = true) {
-
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (!is_null($this->_module)) {

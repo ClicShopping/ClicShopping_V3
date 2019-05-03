@@ -145,7 +145,7 @@
 ?>
                 <td>
 <?php
-        if ($Qnewsletters->value('selected')) {
+        if (isset($_POST['selected'])) {
 ?>
                   <input type="checkbox" name="selected[]" value="<?php echo $Qnewsletters->valueInt('newsletters_id'); ?>" checked="checked" />
 <?php

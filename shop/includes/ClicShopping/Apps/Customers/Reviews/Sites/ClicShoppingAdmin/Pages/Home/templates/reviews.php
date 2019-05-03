@@ -156,7 +156,7 @@
 ?>
             <td>
 <?php
-      if ($Qreviews->value('selected')) {
+     if (isset($_POST['selected'])) {
 ?>
     <input type="checkbox" name="selected[]" value="<?php echo $Qreviews->valueInt('reviews_id') ; ?>"  checked="checked"/>
 <?php
