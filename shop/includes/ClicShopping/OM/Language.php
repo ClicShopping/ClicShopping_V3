@@ -67,7 +67,7 @@
                                                           'name' => $Qlanguages->value('name'),
                                                           'image' => $Qlanguages->value('image'),
                                                           'directory' => $Qlanguages->value('directory'),
-                                                          'status' => $Qlanguages->value('status'),
+                                                          'status' => (int)$Qlanguages->value('status'),
                                                           'locale' => $Qlanguages->value('locale'),
                                                         ];
         }

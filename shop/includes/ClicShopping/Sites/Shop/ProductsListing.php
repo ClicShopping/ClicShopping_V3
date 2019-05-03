@@ -89,9 +89,7 @@
         }
       }
 
-      if (isset($_GET['filter_id'])) {
-        $filter_id = HTML::sanitize($_GET['filter_id']);
-      }
+      $filter_id = HTML::sanitize($_GET['filter_id']);
 
       if (!is_null($CLICSHOPPING_Manufacturers->getID())) {
         $manufacturers_id = HTML::sanitize($CLICSHOPPING_Manufacturers->getID());

@@ -31,7 +31,7 @@
             if (substr($file, strrpos($file, '.')) == $file_extension) {
               $class = substr($file, 0, strrpos($file, '.'));
 
-              include_once($CLICSHOPPING_Template->getModulesDirectory()   . '/Module/CfgModules/' . $class . '.php');
+              include($CLICSHOPPING_Template->getModulesDirectory()   . '/Module/CfgModules/' . $class . '.php');
 
               $m = new $class();
 	      

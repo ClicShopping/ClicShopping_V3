@@ -8,8 +8,6 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-//  require_once('includes/counter.php');
-
   if (STORE_PAGE_PARSE_TIME == 'true') {
     $time_start = explode(' ', PAGE_PARSE_START_TIME);
     $time_end = explode(' ', microtime());

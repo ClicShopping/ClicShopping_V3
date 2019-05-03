@@ -47,7 +47,7 @@
                                                'configuration_key as k',
                                                'configuration_value as v'
                                               ]
-                             );//, null, null, null, 'configuration'); // TODO add cache when supported by admin
+                             );
 
       while ($Qcfg->fetch()) {
         define($Qcfg->value('k'), $Qcfg->value('v'));
@@ -117,7 +117,6 @@
 
 // include the language translations
       $CLICSHOPPING_Language->loadDefinitions('main');
-//      $CLICSHOPPING_Language->setUseCache(true); @todo
 
       $current_page = CLICSHOPPING::getBaseNameIndex();
 
