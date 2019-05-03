@@ -18,15 +18,8 @@
   $CLICSHOPPING_Groups = Registry::get('Groups');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-/*
-  if ($CLICSHOPPING_MessageStack->exists('groups')) {
-    echo $CLICSHOPPING_MessageStack->get('groups');
-  }
-*/
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   // Permettre l'utilisation de des groupes clients
   if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect();
@@ -121,7 +114,7 @@
   if ($listingTotalRow > 0) {
 
     while ($customers_group = $QustomersGroup->fetch()) {
-      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $QustomersGroup->valueInt('customers_group_id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $QustomersGroup->valueInt('customers_group_id')))) && !isset($cInfo)) {
         $cInfo = new ObjectInfo($QustomersGroup->toArray());
       }
 ?>
@@ -135,9 +128,9 @@
               <td class="text-md-left"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
               <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $_GET['page'] . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
+      echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
       echo '&nbsp;';
-        echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $_GET['page'] . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')));
+        echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')));
       echo '&nbsp;';
 
       if ($QustomersGroup->valueInt('customers_group_id') > 1) {

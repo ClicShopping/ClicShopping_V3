@@ -39,6 +39,8 @@ use ClicShopping\OM\HTML;
   $template_email_description = $QtemplateEmailDescription->fetch();
 
   $tInfo = new ObjectInfo($QtemplateEmailDescription->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -52,7 +54,7 @@ use ClicShopping\OM\HTML;
 <?php
   echo HTML::form('template_emails',  $CLICSHOPPING_TemplateEmail->link('TemplateEmail&Update&ID=' . $_GET['tID']));
   echo HTML::hiddenField('template_email', $_GET['tID']);
-  echo HTML::button($CLICSHOPPING_TemplateEmail->getDef('button_cancel'), null,  $CLICSHOPPING_TemplateEmail->link('TemplateEmail&page=' . $_GET['page']. '&tID=' . $_GET['tID']), 'warning') . '&nbsp;';
+  echo HTML::button($CLICSHOPPING_TemplateEmail->getDef('button_cancel'), null,  $CLICSHOPPING_TemplateEmail->link('TemplateEmail&page=' . $page. '&tID=' . $_GET['tID']), 'warning') . '&nbsp;';
   echo HTML::button($CLICSHOPPING_TemplateEmail->getDef('button_update'), null, null, 'success');
 
   echo HTMLOverrideAdmin::getCkeditor();

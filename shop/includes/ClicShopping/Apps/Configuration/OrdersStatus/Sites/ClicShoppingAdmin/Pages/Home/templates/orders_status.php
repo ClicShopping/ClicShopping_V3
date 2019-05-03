@@ -64,7 +64,7 @@ use ClicShopping\OM\HTML;
       if ($listingTotalRow > 0) {
       while ($Qstatus->fetch()) {
 
-      if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $Qstatus->valueInt('orders_status_id')))) && !isset($oInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $Qstatus->valueInt('orders_status_id')))) && !isset($oInfo)) {
         $oInfo = new ObjectInfo($Qstatus->toArray());
       }
 

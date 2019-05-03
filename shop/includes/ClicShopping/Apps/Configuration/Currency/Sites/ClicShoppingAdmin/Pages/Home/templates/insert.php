@@ -30,6 +30,8 @@
       $currency_select_array[] = array('id' => $cs['code'], 'text' => '[' . $cs['code'] . '] ' . $cs['title']);
     }
   }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -41,8 +43,8 @@
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $_GET['page'] . '&cID=' . $_GET['cID']), 'warning')  . ' ';
-  echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&Insert&page=' . $_GET['page'] . (isset($cInfo) ? '&cID=' . $cInfo->currencies_id : '')));
+  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page), 'warning')  . ' ';
+  echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&Insert&page=' . $page . (isset($cInfo) ? '&cID=' . $cInfo->currencies_id : '')));
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, null, 'success');
 ?>
           </span>

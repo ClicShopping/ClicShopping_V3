@@ -16,6 +16,8 @@
 
   $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -28,7 +30,7 @@
           <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSHOPPING_TaxClass->link('TaxClass'), 'warning')  . ' ';
-  echo HTML::form('status_tax_class', $CLICSHOPPING_TaxClass->link('TaxClass&Insert&page=' . $_GET['page']));
+  echo HTML::form('status_tax_class', $CLICSHOPPING_TaxClass->link('TaxClass&Insert&page=' . $page));
   echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, null, 'success')
 ?>
           </span>

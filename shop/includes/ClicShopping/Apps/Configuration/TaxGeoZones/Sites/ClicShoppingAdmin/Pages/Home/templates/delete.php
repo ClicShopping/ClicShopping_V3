@@ -29,6 +29,8 @@
   $Qzones->execute();
 
   $zInfo = new ObjectInfo($Qzones->toArray());
+
+  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -44,7 +46,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_heading_delete_zone'); ?></strong></div>
-  <?php echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&DeleteConfirm&zpage=' . $_GET['zpage'] . '&zID=' . $zInfo->geo_zone_id)); ?>
+  <?php echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&DeleteConfirm&zpage=' . $page . '&zID=' . $zInfo->geo_zone_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>

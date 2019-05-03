@@ -17,6 +17,8 @@
 
   $CLICSHOPPING_Administrators = Registry::get('Administrators');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -29,7 +31,7 @@
           <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators'), 'warning')  . ' ';
-  echo HTML::form('administrators', $CLICSHOPPING_Administrators->link('Administrators&Insert&page=' . $_GET['page']), 'post', 'autocomplete="off"');
+  echo HTML::form('administrators', $CLICSHOPPING_Administrators->link('Administrators&Insert&page=' . $page), 'post', 'autocomplete="off"');
   echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, null, 'success')
 ?>
           </span>

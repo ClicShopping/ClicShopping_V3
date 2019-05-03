@@ -33,12 +33,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/backup.gif', $CLICSHOPPING_Backup->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Backup->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-  if ($CLICSHOPPING_Backup->is_installed === true) {
-    echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup_access'), null, $CLICSHOPPING_Backup->link('Backup'), 'success');
-  }
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Backup->getDef('button_backup_access'), null, $CLICSHOPPING_Backup->link('Backup'), 'success'); ?></span>
         </div>
       </div>
     </div>

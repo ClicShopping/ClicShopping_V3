@@ -29,7 +29,9 @@
 
   $QproductsQquantityUnit->execute();
 
-  $oInfo = new ObjectInfo($QproductsQquantityUnit->toArray())
+  $oInfo = new ObjectInfo($QproductsQquantityUnit->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -41,7 +43,7 @@
           <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'); ?></span>
           <span class="col-md-9 text-md-right">
 <?php
-  echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&Update&page=' . $_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id));
+  echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&Update&page=' . $page . '&oID=' . $oInfo->products_quantity_unit_id));
   echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit'), 'warning');
 ?>

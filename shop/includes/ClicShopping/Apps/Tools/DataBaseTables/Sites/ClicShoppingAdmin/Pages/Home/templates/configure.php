@@ -33,10 +33,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/database_analyse.gif', $CLICSHOPPING_DataBaseTables->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_DataBaseTables->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-    echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_data_base_tables'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'success');
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_data_base_tables'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'success'); ?></span>
         </div>
       </div>
     </div>

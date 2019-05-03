@@ -9,8 +9,8 @@
  *
  */
 
-use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -18,9 +18,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -33,8 +31,8 @@ use ClicShopping\OM\HTML;
 
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, $CLICSHOPPING_Countries->link('Insert&page=' . $_GET['page']), 'success');
-  echo HTML::form('update_all', $CLICSHOPPING_Countries->link('Countries&UpdateAll&page=' . $_GET['page']));
+  echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, $CLICSHOPPING_Countries->link('Insert&page=' . $page), 'success');
+  echo HTML::form('update_all', $CLICSHOPPING_Countries->link('Countries&UpdateAll&page=' .$page));
 ?>
             <a onclick="$('update').prop('action', ''); $('form').submit();" class="button"><?php echo  HTML::button($CLICSHOPPING_Countries->getDef('button_update'), null, null, 'warning');  ?></a>&nbsp;
            </span>
@@ -76,7 +74,7 @@ use ClicShopping\OM\HTML;
   if ($listingTotalRow > 0) {
 
     while ($Qcountries->fetch()) {
-      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcountries->valueInt('countries_id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcountries->valueInt('countries_id')))) && !isset($cInfo)) {
         $cInfo = new ObjectInfo($Qcountries->toArray());
       }
 ?>
@@ -97,9 +95,9 @@ use ClicShopping\OM\HTML;
             <td class="text-md-center">
 <?php
       if ($Qcountries->valueInt('status') == 1) {
-        echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=0&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $_GET['page']),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+        echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=0&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $page),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
       } else {
-        echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=1&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $_GET['page']),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+        echo HTML::link($CLICSHOPPING_Countries->link('Countries&SetFlag&flag=1&cID=' . $Qcountries->valueInt('countries_id') . '&page=' . $page),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
       }
 ?>
             </td>
@@ -107,11 +105,9 @@ use ClicShopping\OM\HTML;
             <td class="text-md-center" width="40"><?php echo $Qcountries->value('countries_iso_code_3'); ?></td>
             <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Countries->link('Edit&page=' . $_GET['page'] . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Countries->getDef('icon_edit')));
-//      echo '<a href="' . $CLICSHOPPING_Countries->link('Edit&page=' . $_GET['page'] . '&cID=' . $Qcountries->valueInt('countries_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Countries->getDef('icon_edit')) . '</a>' ;
+      echo HTML::link($CLICSHOPPING_Countries->link('Edit&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Countries->getDef('icon_edit')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $_GET['page'] . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Countries->getDef('icon_delete')));
-//      echo '<a href="' . $CLICSHOPPING_Countries->link('Delete&page=' . $_GET['page'] . '&cID=' . $Qcountries->valueInt('countries_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Countries->getDef('icon_delete')) . '</a>';
+      echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Countries->getDef('icon_delete')));
 ?>
             </td>
             </tr>

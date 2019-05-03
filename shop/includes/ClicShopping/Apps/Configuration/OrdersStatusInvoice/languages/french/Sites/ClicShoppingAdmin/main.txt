@@ -37,14 +37,21 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 text_result_page = Page {{listing_from}}  sur{{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
 
+icon_edit = Edit
+icon_delete = delete
+text_set_default = Default
 
-table_heading_orders_status = Statut du type d'édition de fichier PDF commandes / factures
+text_info_delete_info = Souhaitez-vous supprimer ce status ?
+text_default = Défaut
+
+table_heading_invoice_status = Statut du type d'édition de fichier PDF commandes / factures
 table_heading_action = Action
 
 text_info_edit_intro = Merci de faire les changements nécessaires
 text_info_orders_status_name = Statuts :
 text_info_insert_intro = Merci de compléter cette nouvelle demande avec les données liées
 text_info_delete_intro = Etes vous sur de vouloir supprimer ce statut ?
+
 text_info_heading_new_orders_status = Nouveau statut
 text_info_heading_edit_orders_status = Editer statut
 text_info_heading_delete_orders_status = Supprimer ce statut

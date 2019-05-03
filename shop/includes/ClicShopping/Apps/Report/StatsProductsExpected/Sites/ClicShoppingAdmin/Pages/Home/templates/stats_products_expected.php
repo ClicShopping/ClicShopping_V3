@@ -25,6 +25,8 @@
                                 ');
   $Qupdate->bindValue(':products_date_available', '' );
   $Qupdate->execute();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 
   <div class="contentBody">

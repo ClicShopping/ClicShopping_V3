@@ -35,6 +35,8 @@
   $wInfo = new ObjectInfo($Qweight->toArray());
 
   $languages = $CLICSHOPPING_Language->getLanguages();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -46,7 +48,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('weight_edit', $CLICSHOPPING_Weight->link('Weight&WeightUpdate&page=' . $_GET['page']));
+  echo HTML::form('weight_edit', $CLICSHOPPING_Weight->link('Weight&WeightUpdate&page=' . $page));
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 

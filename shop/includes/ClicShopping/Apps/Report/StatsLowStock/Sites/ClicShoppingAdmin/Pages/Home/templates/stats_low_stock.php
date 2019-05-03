@@ -19,8 +19,9 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $CLICSHOPPING_StatsLowStock = Registry::get('StatsLowStock');
-?>
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+?>
   <div class="contentBody">
     <div class="row">
       <div class="col-md-12">
@@ -103,6 +104,7 @@
   $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
   if ($listingTotalRow > 0) {
+    $rows = 0;
 
     while ($Qproducts->fetch()) {
       $rows++;
@@ -112,26 +114,13 @@
       }
 ?>
                 <tr>
-                  <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsLowStock->getDef('icon_preview'))); ?></td>
+                  <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsLowStock->getDef('icon_preview'))); ?></td>
                   <td><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                   <th>&nbsp;<?php echo $Qproducts->value('products_name'); ?></th>
                   <td><?php echo $Qproducts->value('products_model'); ?></td>
-<?php
-      if ($check === false) {
-?>
-
-                  <td></td>
-                  <td></td>
-                  <td></td>
-<?php
-      } else {
-?>
                   <td><?php echo $Qproducts->value('products_warehouse_time_replenishment'); ?></td>
                   <td><?php echo $Qproducts->value('products_warehouse'); ?></td>
                   <td><?php echo $Qproducts->value('products_warehouse_row'); ?></td>
-<?php
-      }
-?>
                   <td><?php echo $Qproducts->value('products_warehouse_level_location'); ?></td>
                   <td class="text-md-center"><strong><?php echo  $Qproducts->value('products_quantity'); ?></strong></td>
                   <td class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link(null ,'A&Catalog\Products&Products&action=new_product&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsLowStock->getDef('icon_edit'))); ?></td>

@@ -24,9 +24,7 @@
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 ?>
@@ -41,7 +39,7 @@
           <span class="col-md-6 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Insert'), 'success') .'&nbsp;';
-  echo HTML::form('delete_all', $CLICSHOPPING_Newsletter->link('Newsletter&DeleteAll&page=' . $_GET['page']));
+  echo HTML::form('delete_all', $CLICSHOPPING_Newsletter->link('Newsletter&DeleteAll&page=' . $page));
 ?>
             <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_delete'), null, null, 'danger'); ?></span></a>
            </span>
@@ -141,7 +139,7 @@
           $newsletters_language['name'] =  $CLICSHOPPING_Newsletter->getDef('text_all_languages');
         }
 
-        if ((!isset($_GET['nID']) || (isset($_GET['nID']) && ((int)$_GET['nID'] ===  $Qnewsletters->valueInt('newsletters_id')))) && !isset($nInfo) && (substr($action, 0, 3) != 'new')) {
+        if ((!isset($_GET['nID']) || (isset($_GET['nID']) && ((int)$_GET['nID'] ===  $Qnewsletters->valueInt('newsletters_id')))) && !isset($nInfo)) {
           $nInfo = new ObjectInfo($Qnewsletters->toArray());
         }
 ?>
@@ -158,7 +156,7 @@
         }
 ?>
                 </td>
-                <th scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $_GET['page'] . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') .'</a>'; ?></th>
+                <th scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') .'</a>'; ?></th>
                 <td class="text-md-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
                 <td class="text-md-center"><?php echo $Qnewsletters->value('module'); ?></td>
                 <td class="text-md-center"><?php echo $newsletters_language['name']; ?></td>
@@ -175,12 +173,12 @@
                 <td class="text-md-center"><?php if ($Qnewsletters->valueInt('locked') > 0) { echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/locked.gif', $CLICSHOPPING_Newsletter->getDef('icon_locked')); } else { echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unlocked.gif', $CLICSHOPPING_Newsletter->getDef('icon_unlocked')); } ?></td>
                 <td class="text-md-right">
 <?php
-        if ($Qnewsletters->valueInt('locked') > 0) { echo '<a href="' .  $CLICSHOPPING_Newsletter->link('Update&page=' . $_GET['page'] . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Newsletter->getDef('icon_edit')) . '</a>&nbsp;'; }
-        echo '<a href="' . $CLICSHOPPING_Newsletter->link('Preview&page=' . $_GET['page'] . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Newsletter->getDef('icon_preview')) . '</a>' ;
+        if ($Qnewsletters->valueInt('locked') > 0) { echo '<a href="' .  $CLICSHOPPING_Newsletter->link('Update&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Newsletter->getDef('icon_edit')) . '</a>&nbsp;'; }
+        echo '<a href="' . $CLICSHOPPING_Newsletter->link('Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Newsletter->getDef('icon_preview')) . '</a>' ;
         echo '&nbsp;';
 
-        if ($Qnewsletters->valueInt('locked') > 0) { echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Unlock&page=' . $_GET['page'] . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unlock.gif', $CLICSHOPPING_Newsletter->getDef('icon_unlock')) . '</a>'; } else { echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Lock&page=' . $_GET['page'] . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/lock.gif', $CLICSHOPPING_Newsletter->getDef('image_lock')) . '</a>'; }
-        if ($Qnewsletters->valueInt('locked') > 0) { echo '&nbsp;<a href="' . $CLICSHOPPING_Newsletter->link('Send&page=' . $_GET['page'] . '&nID=' . $Qnewsletters->valueInt('newsletters_id') . '&nlID=' . $Qnewsletters->valueInt('languages_id') .'&cgID=' . $Qnewsletters->valueInt('customers_group_id') . '&ac='. $Qnewsletters->valueInt('newsletters_accept_file') . '&at='. $Qnewsletters->valueInt('newsletters_twitter') . '&ana=' . $Qnewsletters->valueInt('newsletters_customer_no_account')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/send.gif', $CLICSHOPPING_Newsletter->getDef('image_send')) . '</a>'; }
+        if ($Qnewsletters->valueInt('locked') > 0) { echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Unlock&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unlock.gif', $CLICSHOPPING_Newsletter->getDef('icon_unlock')) . '</a>'; } else { echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Lock&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/lock.gif', $CLICSHOPPING_Newsletter->getDef('image_lock')) . '</a>'; }
+        if ($Qnewsletters->valueInt('locked') > 0) { echo '&nbsp;<a href="' . $CLICSHOPPING_Newsletter->link('Send&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id') . '&nlID=' . $Qnewsletters->valueInt('languages_id') .'&cgID=' . $Qnewsletters->valueInt('customers_group_id') . '&ac='. $Qnewsletters->valueInt('newsletters_accept_file') . '&at='. $Qnewsletters->valueInt('newsletters_twitter') . '&ana=' . $Qnewsletters->valueInt('newsletters_customer_no_account')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/send.gif', $CLICSHOPPING_Newsletter->getDef('image_send')) . '</a>'; }
         echo '&nbsp;';
 ?>
                 </td>

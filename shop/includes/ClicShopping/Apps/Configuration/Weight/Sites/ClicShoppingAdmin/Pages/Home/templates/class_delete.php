@@ -28,6 +28,8 @@
   $Qweight->execute();
 
   $wInfo = new ObjectInfo($Qweight->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -43,7 +45,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Weight->getDef('text_info_heading_delete_weight');; ?></strong></div>
-  <?php echo HTML::form('delete', $CLICSHOPPING_Weight->link('Weight&ClassDeleteConfirm&page=' . $_GET['page'] . '&wID=' . $wInfo->weight_class_from_id . '&tID=' . $wInfo->weight_class_to_id)); ?>
+  <?php echo HTML::form('delete', $CLICSHOPPING_Weight->link('Weight&ClassDeleteConfirm&page=' . $page . '&wID=' . $wInfo->weight_class_from_id . '&tID=' . $wInfo->weight_class_to_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>

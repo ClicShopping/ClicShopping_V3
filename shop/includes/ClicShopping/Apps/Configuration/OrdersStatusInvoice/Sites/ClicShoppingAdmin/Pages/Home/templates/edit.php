@@ -15,6 +15,7 @@
 
   use ClicShopping\Apps\Configuration\OrdersStatusInvoice\Classes\ClicShoppingAdmin\Status;
 
+  $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 

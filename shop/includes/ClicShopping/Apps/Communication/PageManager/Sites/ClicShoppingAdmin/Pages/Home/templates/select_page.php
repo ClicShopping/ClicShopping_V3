@@ -19,24 +19,22 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
   $page_type_contact = 'true';
 
   $Qpages = $CLICSHOPPING_PageManager->db->prepare('select page_type
-                                             from :table_pages_manager
-                                             where page_type = 3
-                                            ');
+                                                     from :table_pages_manager
+                                                     where page_type = 3
+                                                    ');
 
   $Qpages->execute();
 
   if ($Qpages->fetch() !== false) {
-    while ($pages = $Qpages->fetch() ) {
-      if ($pages['page_type'] == '3') {
+    while ($Qpages->fetch()) {
+      if ($Qpages->valueInt('page_type') == '3') {
         $page_type_contact = 'false';
       }
     }
@@ -121,7 +119,7 @@
           <span class="col-md-6 text-md-right">
 <?php
   echo HTML::form('page_manager', $CLICSHOPPING_PageManager->link('Edit'), 'post', 'enctype="multipart/form-data"');
-  echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . (!empty($bID) and $bID != "" ? 'bID=' . $bID : '')), 'warning') .'&nbsp;';
+  echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($page) ? 'page=' . $page . '&' : '') . (!empty($bID) and $bID != "" ? 'bID=' . $bID : '')), 'warning') .'&nbsp;';
   echo HTML::button(CLICSHOPPING::getDef('button_new'), null, null, 'success', null, null);
 ?>
          </span>

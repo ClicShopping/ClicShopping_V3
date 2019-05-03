@@ -38,10 +38,9 @@
 <?php
   echo HTML::button($CLICSHOPPING_StatsProductsPurchased->getDef('button_configure'), null, CLICSHOPPING::link(null, 'A&Report\StatsProductsPurchased'),  'primary') . ' ';
 
-  if ($CLICSHOPPING_StatsProductsPurchased_Config->is_installed === true) {
     echo HTML::button($CLICSHOPPING_StatsProductsPurchased->getDef('button_stats_products_purchased'), null, $CLICSHOPPING_StatsProductsPurchased->link('StatsProductsPurchased'), 'success');
-  }
 ?>
+          </span>
         </div>
       </div>
     </div>

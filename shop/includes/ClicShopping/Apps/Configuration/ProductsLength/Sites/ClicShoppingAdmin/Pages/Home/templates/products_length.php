@@ -22,9 +22,7 @@ use ClicShopping\OM\HTML;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -36,8 +34,8 @@ use ClicShopping\OM\HTML;
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_products_length'), null, $CLICSHOPPING_ProductsLength->link('ProductsLengthInsert&page=' . $_GET['page']), 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), null, $CLICSHOPPING_ProductsLength->link('ClassInsert&page=' . $_GET['page']), 'success');
+  echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_products_length'), null, $CLICSHOPPING_ProductsLength->link('ProductsLengthInsert&page=' . $page), 'primary') . ' ';
+  echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), null, $CLICSHOPPING_ProductsLength->link('ClassInsert&page=' . $page), 'success');
 ?>
           </span>
         </div>
@@ -84,7 +82,7 @@ use ClicShopping\OM\HTML;
   if ($listingTotalRow > 0) {
 
     while ($Qproducts_length->fetch()) {
-      if ((!isset($_GET['wID']) || (isset($_GET['wID']) && ((int)$_GET['wID'] ===  $Qproducts_length->valueInt('products_length_id')))) && !isset($trInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['wID']) || (isset($_GET['wID']) && ((int)$_GET['wID'] ===  $Qproducts_length->valueInt('products_length_id')))) && !isset($trInfo)) {
         $trInfo = new ObjectInfo($Qproducts_length->toArray());
       }
 
@@ -98,11 +96,11 @@ use ClicShopping\OM\HTML;
               <td><?php echo $Qproducts_length->value('products_length_class_rule'); ?></td>
               <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $_GET['page'] . '&wID=' .  $Qproducts_length->valueInt('products_length_class_id') . '&tID=' .  $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit')));
+      echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $page . '&wID=' .  $Qproducts_length->valueInt('products_length_class_id') . '&tID=' .  $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_ProductsLength->link('ProductsLengthEdit&page=' . $_GET['page'] . '&wID=' .  $Qproducts_length->valueInt('products_length_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit_class_title')));
+      echo HTML::link($CLICSHOPPING_ProductsLength->link('ProductsLengthEdit&page=' . $page . '&wID=' .  $Qproducts_length->valueInt('products_length_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit_class_title')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassDelete&page=' . $_GET['page'] . '&wID=' .  $Qproducts_length->valueInt('products_length_class_id') . '&tID=' .  $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsLength->getDef('icon_delete')));
+      echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassDelete&page=' . $page . '&wID=' .  $Qproducts_length->valueInt('products_length_class_id') . '&tID=' .  $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsLength->getDef('icon_delete')));
       echo '&nbsp;';
 ?>
               </td>

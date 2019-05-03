@@ -27,11 +27,14 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $form_action = 'Insert';
+  $variable = '';
 
   if ( (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
     $form_action = 'Update';
     $variable =  '&mID=' . $_GET['mID'];
   }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
   <div class="contentBody">
     <div class="row">
@@ -42,10 +45,10 @@
             <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Suppliers->getDef('heading_title'); ?></span>
             <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::form ('suppliers',  $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable) );
+  echo HTML::form ('suppliers',  $CLICSHOPPING_Suppliers->link('Suppliers&' . $form_action . $variable));
   if ($form_action == 'Update') echo HTML::hiddenField('suppliers_id', $_GET['mID']);
 
-  echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $_GET['page'] . '&mID=' . $_GET['mID']), 'warning') .'&nbsp;';
+  echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_cancel'), null, $CLICSHOPPING_Suppliers->link('Suppliers&page=' . $page . $variable), 'warning') .'&nbsp;';
   echo (($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Suppliers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Suppliers->getDef('button_update'), null, null, 'success'));
 ?>
             </span>
@@ -55,13 +58,12 @@
     </div>
     <div class="separator"></div>
 <?php
-  if ( (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
-
+  if (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID'])) {
     $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select *
-                                                  from :table_suppliers
-                                                  where suppliers_id = :suppliers_id
-                                                ');
-    $Qsuppliers->bindInt(':suppliers_id',(int)$_GET['mID']);
+                                                        from :table_suppliers
+                                                        where suppliers_id = :suppliers_id
+                                                      ');
+    $Qsuppliers->bindInt(':suppliers_id', (int)$_GET['mID']);
     $Qsuppliers->execute();
 
     $suppliers = $Qsuppliers->fetch();

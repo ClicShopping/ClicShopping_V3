@@ -287,7 +287,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_company'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_company'); ?></label>
                   <div class="col-md-5">
-                    <?php echo  HTML::inputField('customers_company', $customers_company, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_company') . '" maxlength="32"'); ?>
+                    <?php echo  HTML::inputField('customers_company', null, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_company') . '" maxlength="32"'); ?>
                   </div>
                 </div>
               </div>
@@ -300,7 +300,7 @@
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?></label>
                       <div class="col-md-5">
-                        <?php echo  HTML::inputField('customers_siret', $customers_siret, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_siret') . '" maxlength="14"') . '&nbsp;<span class="fieldRequired">' .  $CLICSHOPPING_Customers->getDef('entry_siret_exemple') . '</span>'; ?>
+                        <?php echo  HTML::inputField('customers_siret', null, 'placeholder="' . $CLICSHOPPING_Customers->getDef('entry_siret') . '" maxlength="14"') . '&nbsp;<span class="fieldRequired">' .  $CLICSHOPPING_Customers->getDef('entry_siret_exemple') . '</span>'; ?>
                       </div>
                     </div>
                   </div>
@@ -311,7 +311,7 @@
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('customers_ape', $customers_ape, 'placeholder="' .  $CLICSHOPPING_Customers->getDef('entry_ape') . '" maxlength="4"') . '&nbsp;<span class="fieldRequired">' .  $CLICSHOPPING_Customers->getDef('entry_ape_exemple') . '</span>'; ?>
+                        <?php echo HTML::inputField('customers_ape', null, 'placeholder="' .  $CLICSHOPPING_Customers->getDef('entry_ape') . '" maxlength="4"') . '&nbsp;<span class="fieldRequired">' .  $CLICSHOPPING_Customers->getDef('entry_ape_exemple') . '</span>'; ?>
                       </div>
                     </div>
                   </div>
@@ -325,15 +325,14 @@
                         <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?></label>
                         <div class="col-md-5">
                           <?php
-                            echo HTML::selectMenuIsoList('customers_tva_intracom_code_iso', $customers_tva_intracom_code_iso, 'onchange="ISO_account_edit();"');
-                            echo '&nbsp;' . HTML::inputField('customers_tva_intracom', $customers_tva_intracom, 'placeholder="Number" maxlength="14"');
+                            echo HTML::selectMenuIsoList('customers_tva_intracom_code_iso', null, 'onchange="ISO_account_edit();"');
+                            echo '&nbsp;' . HTML::inputField('customers_tva_intracom', null, 'placeholder="Number" maxlength="14"');
                           ?>
                         </div>
                       </div>
                     </div>
                     <span class="col-md-4">
 <!-- lien pointant sur le site de verification -->
-                  <a href="<?php echo 'http://ec.europa.eu/taxation_customs/vies/vieshome.do?ms=' . $customers_tva_intracom_code_iso . '&iso='.$customers_tva_intracom_code_iso.'&vat=' . $customers_tva_intracom; ?>" target="_blank" rel="noreferrer"><?php echo  $CLICSHOPPING_Customers->getDef('tva_intracom_verify'); ?></a>
                 <span>
               </div>
 <?php

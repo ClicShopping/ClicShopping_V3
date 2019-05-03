@@ -21,9 +21,7 @@ use ClicShopping\OM\HTML;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -33,7 +31,7 @@ use ClicShopping\OM\HTML;
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/tax_rates.gif', $CLICSHOPPING_TaxRates->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, $CLICSHOPPING_TaxRates->link('Insert&page=' . $_GET['page']), 'success'); ?></span>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, $CLICSHOPPING_TaxRates->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -82,7 +80,7 @@ use ClicShopping\OM\HTML;
   if ($listingTotalRow > 0) {
 
     while ($Qrates->fetch()) {
-      if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ((int)$_GET['tID'] ===  $Qrates->valueInt('tax_rates_id')))) && !isset($trInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ((int)$_GET['tID'] ===  $Qrates->valueInt('tax_rates_id')))) && !isset($trInfo)) {
         $trInfo = new ObjectInfo($Qrates->toArray());
       }
 ?>
@@ -94,9 +92,9 @@ use ClicShopping\OM\HTML;
               <td><?php echo  $Qrates->value('code_tax_erp'); ?></td>
               <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $_GET['page'] . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
+      echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $page . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_TaxRates->link('Delete&page=' . $_GET['page'] . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxRates->getDef('icon_delete')));
+      echo HTML::link($CLICSHOPPING_TaxRates->link('Delete&page=' . $page . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxRates->getDef('icon_delete')));
       echo '&nbsp;';
 ?>
               </td>

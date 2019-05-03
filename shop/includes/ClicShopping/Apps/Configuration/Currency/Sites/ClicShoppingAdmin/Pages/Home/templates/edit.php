@@ -24,6 +24,8 @@
   $Qcurrency->execute();
 
   $cInfo = new ObjectInfo($Qcurrency->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -35,9 +37,9 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id));
+  echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $page . '&cID=' . $cInfo->currencies_id));
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_update'), null, null, 'success') . ' ';
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null,  $CLICSHOPPING_Currency->link('Currency&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id), 'warning');
+  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null,  $CLICSHOPPING_Currency->link('Currency&page=' . $page . '&cID=' . $cInfo->currencies_id), 'warning');
 ?>
           </span>
         </div>

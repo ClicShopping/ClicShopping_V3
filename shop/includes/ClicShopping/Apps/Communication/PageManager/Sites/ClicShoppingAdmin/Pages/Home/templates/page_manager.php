@@ -19,9 +19,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 ?>
@@ -36,7 +34,7 @@
             <span class="col-md-6 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_PageManager->getDef('button_new'), null, $CLICSHOPPING_PageManager->link('SelectPage'), 'success');
-  echo HTML::form('delete_all', $CLICSHOPPING_PageManager->link('PageManager&DeleteAll&page=' . $_GET['page']));
+  echo HTML::form('delete_all', $CLICSHOPPING_PageManager->link('PageManager&DeleteAll&page=' . $page));
 ?>
               <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_PageManager->getDef('button_delete'), null, null, 'danger'); ?></span></a>
             </span>
@@ -126,7 +124,7 @@
       }
     }
 
-    if ((!isset($_GET['bID']) || (isset($_GET['bID']) && ((int)$_GET['bID'] === $Qpages->valueInt('pages_id')))) && !isset($bInfo) && (substr($action, 0, 3) != 'new')) {
+    if ((!isset($_GET['bID']) || (isset($_GET['bID']) && ((int)$_GET['bID'] === $Qpages->valueInt('pages_id')))) && !isset($bInfo)) {
       $bInfo = new ObjectInfo($Qpages->toArray());
     }
 ?>
@@ -215,7 +213,7 @@
               <td class="text-md-center"><?php echo $Qpages->valueInt('sort_order'); ?></td>
               <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' .   $Qpages->valueInt('pages_id') . '&page=' . $_GET['page']) .'">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_PageManager->getDef('icon_edit')) . '</a>';
+      echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' .   $Qpages->valueInt('pages_id') . '&page=' . $page) .'">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_PageManager->getDef('icon_edit')) . '</a>';
       echo '&nbsp;';
       // suppression du bouton delete
       if ((  $Qpages->valueInt('pages_id') == 4) || (  $Qpages->valueInt('pages_id') == 5)) {

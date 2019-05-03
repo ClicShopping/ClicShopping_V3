@@ -34,6 +34,8 @@
     $remove_currency = false;
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('error_remove_default_currency'), 'error');
   }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -49,7 +51,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Currency->getDef('text_info_heading_delete_currency'); ?></strong></div>
-  <?php echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&DeleteConfirm&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id)); ?>
+  <?php echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&DeleteConfirm&page=' . $page . '&cID=' . $cInfo->currencies_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>

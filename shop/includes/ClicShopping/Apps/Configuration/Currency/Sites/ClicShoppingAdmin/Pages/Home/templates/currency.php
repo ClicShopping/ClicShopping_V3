@@ -19,9 +19,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -37,7 +35,7 @@ use ClicShopping\OM\HTML;
             echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null,  $CLICSHOPPING_Currency->link('Insert'), 'success') . ' ';
 
             if (defined('CLICSHOPPING_APP_CURRENCY_CR_API_KEY') && !empty(CLICSHOPPING_APP_CURRENCY_CR_API_KEY)) {
-              echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null,  $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id), 'info');
+              echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null,  $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $page . '&cID=' . $cInfo->currencies_id), 'info');
             }
 ?>
           </span>
@@ -85,7 +83,7 @@ use ClicShopping\OM\HTML;
     if ($listingTotalRow > 0) {
 
     while ($Qcurrency->fetch()) {
-      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcurrency->valueInt('currencies_id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcurrency->valueInt('currencies_id')))) && !isset($cInfo)) {
         $cInfo = new ObjectInfo($Qcurrency->toArray());
       }
 
@@ -101,17 +99,17 @@ use ClicShopping\OM\HTML;
             <td class="text-md-center">
 <?php
   if ($Qcurrency->valueInt('status') == 1) {
-    echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $_GET['page']),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+    echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
   } else {
-    echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=1&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $_GET['page']),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+    echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=1&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
   }
 ?>
             </td>
             <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')));
+      echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('image_delete')));
+      echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('image_delete')));
       echo '&nbsp;';
 ?>
             </td>

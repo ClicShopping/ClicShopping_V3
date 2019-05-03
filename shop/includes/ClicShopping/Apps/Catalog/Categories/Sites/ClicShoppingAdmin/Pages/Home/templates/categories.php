@@ -20,6 +20,8 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+
+  $current_category_id = null;
 ?>
     <div class="contentBody">
       <div class="row">
@@ -33,13 +35,13 @@
                  <div class="controls">
 <?php
   echo HTML::form('search', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
-  echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="'. $CLICSHOPPING_Categories->getDef('heading_title') . '"');
+  echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Categories->getDef('heading_title') . '"');
 ?>
                   </form>
                  </div>
                </div>
               </span>
-                  <span class="col-md-3 text-md-center">
+              <span class="col-md-3 text-md-center">
                <div class="form-group">
                  <div class="controls">
 <?php
@@ -77,8 +79,8 @@
   }
 
   if (!isset($_GET['search'])) {
-    echo HTML::button($CLICSHOPPING_Categories->getDef('button_new_category'), null, $CLICSHOPPING_Categories->link('Insert&cPath=' . $cPath . '&cID=' . $_GET['cID']), 'info') . '&nbsp;';
-    echo HTML::button($CLICSHOPPING_Categories->getDef('button_products'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&cPath=' . $cPath), 'success');
+    echo HTML::button($CLICSHOPPING_Categories->getDef('button_new_category'), null, $CLICSHOPPING_Categories->link('Insert&cPath=' . $current_category_id), 'info') . '&nbsp;';
+    echo HTML::button($CLICSHOPPING_Categories->getDef('button_products'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&cPath=' . $current_category_id), 'success');
   }
 ?>
               </span>
@@ -128,7 +130,6 @@
   if ($listingTotalRow > 0) {
     while ($Qcategories->fetch() ) {
       $categories_count++;
-      $rows++;
 
 // Get categories_id for product if search
       if (isset($_POST['search'])) {

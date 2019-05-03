@@ -17,9 +17,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $QtemplateEmail = $CLICSHOPPING_TemplateEmail->db->prepare('select ted.language_id,
                                                               ted.template_email_name,
@@ -86,11 +84,11 @@ use ClicShopping\OM\HTML;
             <tr>
               <th scope="row"><?php echo $QtemplateEmail->value('template_email_name'); ?></th>
               <td><?php echo $template_email_type; ?></td>
-              <td><?php echo $template['template_email_short_description']; ?></td>
+              <td><?php echo $QtemplateEmail->value('template_email_short_description'); ?></td>
               <td class="text-md-center"><?php echo $template_email_customer_group; ?></td>
               <td class="text-md-right">
 <?php
-  echo HTML::link($CLICSHOPPING_TemplateEmail->link('Edit&page=' . $_GET['page'] . '&tID=' . $QtemplateEmail->valueInt('template_email_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TemplateEmail->getDef('image_edit')));
+  echo HTML::link($CLICSHOPPING_TemplateEmail->link('Edit&page=' . $page . '&tID=' . $QtemplateEmail->valueInt('template_email_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TemplateEmail->getDef('image_edit')));
 ?>
               </td>
             </tr>

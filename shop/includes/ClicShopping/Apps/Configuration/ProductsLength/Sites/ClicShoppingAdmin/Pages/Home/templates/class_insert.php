@@ -24,6 +24,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -35,7 +36,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('ClassInsert', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassInsert&page=' . (int)$_GET['page']));
+  echo HTML::form('ClassInsert', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassInsert&page=' . $page));
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert'), null, null, 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength'), 'warning');
 ?>

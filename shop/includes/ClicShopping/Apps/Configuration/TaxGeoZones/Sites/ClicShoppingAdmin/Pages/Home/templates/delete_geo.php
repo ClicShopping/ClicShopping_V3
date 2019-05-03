@@ -39,9 +39,9 @@
 
   $Qcountries->bindInt('countries_id', $sInfo->zone_country_id); ///3
   $Qcountries->execute();
+
+  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
-
-
 <!-- body //-->
 <div class="contentBody">
   <div class="row">
@@ -57,7 +57,7 @@
   <div class="separator"></div>
 
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_heading_delete_sub_zone'); ?></strong></div>
-  <?php echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&DeleteGeoConfirm&ListGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $sInfo->association_id)); ?>
+  <?php echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&DeleteGeoConfirm&ListGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $page . '&sID=' . $sInfo->association_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
@@ -65,7 +65,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $Qcountries->value('countries_name') . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <?php echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_delete'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null,  $CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning', null, 'sm'); ?>
+        <?php echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_delete'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null,  $CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning', null, 'sm'); ?>
       </div>
     </div>
   </div>

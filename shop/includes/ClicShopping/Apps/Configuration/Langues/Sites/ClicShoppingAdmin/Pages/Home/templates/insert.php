@@ -53,6 +53,8 @@
 
     return ($a['id'] < $b['id']) ? -1 : 1;
   });
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -159,7 +161,7 @@
     </div>
     <div class="separator"></div>
     <div class="col-md-12 text-md-center">
-      <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_insert'), null, null, 'primary', null, 'sm') . ' </span><span>' .HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $_GET['page'] . '&lID=' . $_GET['lID']), 'warning', null, 'sm'); ?>
+      <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_insert'), null, null, 'primary', null, 'sm') . ' </span><span>' .HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page), 'warning', null, 'sm'); ?>
     </div>
     <div class="separator"></div>
   </div>

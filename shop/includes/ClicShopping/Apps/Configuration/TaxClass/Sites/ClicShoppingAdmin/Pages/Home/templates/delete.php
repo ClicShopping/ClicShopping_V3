@@ -24,6 +24,8 @@
   $Qclasse->execute();
 
   $tcInfo = new ObjectInfo($Qclasse->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -39,7 +41,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_TaxClass->getDef('text_info_heading_delete_tax_class'); ?></strong></div>
-  <?php echo HTML::form('classes', $CLICSHOPPING_TaxClass->link('TaxClass&DeleteConfirm&page=' . $_GET['page'] . '&tID=' . $tcInfo->tax_class_id)) ; ?>
+  <?php echo HTML::form('classes', $CLICSHOPPING_TaxClass->link('TaxClass&DeleteConfirm&page=' . $page . '&tID=' . $tcInfo->tax_class_id)) ; ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>

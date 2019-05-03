@@ -21,6 +21,8 @@
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
   $parameters = ['expires_date' => '',
                   'date_scheduled' => '',
                   'banners_title' => '',
@@ -75,8 +77,8 @@
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Insert', (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '')), 'post', 'enctype="multipart/form-data"');
-  echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null,  $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
+  echo HTML::form('new_banner', $CLICSHOPPING_BannerManager->link('BannerManager&Insert', (isset($page) ? 'page=' . $page . '&' : '')), 'post', 'enctype="multipart/form-data"');
+  echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null,  $CLICSHOPPING_BannerManager->link('BannerManager&BannerManager' . (isset($page) ? 'page=' . $page . '&' : '') . (isset($_GET['bID']) ? 'bID=' . $_GET['bID'] : '')), 'warning') . ' ';
   echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_insert'), null, null, 'success');
 ?>
           </span>

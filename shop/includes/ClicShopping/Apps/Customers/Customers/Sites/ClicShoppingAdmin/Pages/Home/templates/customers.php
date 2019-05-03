@@ -20,9 +20,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Db = Registry::get('Db');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   if (isset($_GET['search'])) {
     $_POST['search'] = HTML::sanitize($_GET['search']);
@@ -50,7 +48,7 @@
           <div class="col-md-2 text-md-right">
 <?php
   if (isset($_POST['search']) && !is_null($_POST['search'])) {
-    echo HTML::button($CLICSHOPPING_Customers->getDef('button_reset'), null, $CLICSHOPPING_Customers->link('Customers&page=' . $_GET['page']), 'warning');
+    echo HTML::button($CLICSHOPPING_Customers->getDef('button_reset'), null, $CLICSHOPPING_Customers->link('Customers&page=' . $page), 'warning');
   }
 ?>
           </div>
@@ -62,7 +60,7 @@
     echo HTML::button($CLICSHOPPING_Customers->getDef('button_create_account'), null, $CLICSHOPPING_Customers->link('Create'), 'success');
   }
 
-  echo HTML::form('delete_all', $CLICSHOPPING_Customers->link('Customers&DeleteAll&page=' . $_GET['page']));
+  echo HTML::form('delete_all', $CLICSHOPPING_Customers->link('Customers&DeleteAll&page=' . $page));
 ?>
             <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><?php echo HTML::button($CLICSHOPPING_Customers->getDef('button_delete'), null, null, 'danger'); ?></a>&nbsp;
           </div>
@@ -204,6 +202,7 @@
                                                            from :table_countries
                                                            where countries_id = :countries_id
                                                           ');
+        
         $Qcountry->bindInt(':countries_id', $Qcustomers->valueInt('entry_country_id'));
         $Qcountry->execute();
 
@@ -213,6 +212,7 @@
                                                            from :table_reviews
                                                            where customers_id = :customers_id
                                                           ');
+
         $Qreviews->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
         $Qreviews->execute();
 
@@ -226,18 +226,19 @@
         }
 
         if (!is_array($Qreviews->fetch())) {
-          $reviews = array ('Customers is NULL');
+          $reviews = array('Customers is NULL');
         }
 
         $Qorders = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_orders
                                                           from :table_orders
                                                           where customers_id = :customers_id
                                                          ');
+
         $Qorders->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
         $Qorders->execute();
 
         $customer_info = array_merge(array($country), array($info), array($reviews), $Qorders->toArray());
-        $cInfo_array = array_merge($Qcustomers->toArray(), (array)$Scustomer_info, (array)$cust_ret);
+        $cInfo_array = array_merge($Qcustomers->toArray(), (array)$customer_info, (array)$cust_ret);
 
         $cInfo = new ObjectInfo($cInfo_array);
       }

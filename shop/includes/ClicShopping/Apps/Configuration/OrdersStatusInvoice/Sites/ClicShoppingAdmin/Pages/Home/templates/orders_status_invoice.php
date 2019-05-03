@@ -18,9 +18,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -64,7 +62,7 @@ use ClicShopping\OM\HTML;
       if ($listingTotalRow > 0) {
       while ($QordersStatusInvoice->fetch()) {
 
-      if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] ===  $QordersStatusInvoice->valueInt('orders_status_invoice_id')))) && !isset($oInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] ===  $QordersStatusInvoice->valueInt('orders_status_invoice_id'))))) {
         $oInfo = new ObjectInfo($QordersStatusInvoice->toArray());
       }
 
@@ -77,11 +75,11 @@ use ClicShopping\OM\HTML;
         <td class="text-md-right">
 <?php
       if ( $QordersStatusInvoice->valueInt('orders_status_invoice_id') > 4) {
-        echo '<a href="' . $CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $_GET['page'] . '&oID=' .  $QordersStatusInvoice->valueInt('orders_status_invoice_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete')) . '</a>';
+        echo '<a href="' . $CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $page . '&oID=' .  $QordersStatusInvoice->valueInt('orders_status_invoice_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete')) . '</a>';
       }
 
       echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_OrdersStatusInvoice->link('Edit&page=' . $_GET['page'] . '&oID=' .  $QordersStatusInvoice->valueInt('orders_status_invoice_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_edit')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_OrdersStatusInvoice->link('Edit&page=' . $page . '&oID=' .  $QordersStatusInvoice->valueInt('orders_status_invoice_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
 ?>
         </td>

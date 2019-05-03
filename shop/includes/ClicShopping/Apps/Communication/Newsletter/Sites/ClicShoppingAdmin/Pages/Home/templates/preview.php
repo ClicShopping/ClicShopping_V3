@@ -30,17 +30,21 @@
 // --------------------------------------------------------
 //       Previsualisation
 // --------------------------------------------------------
-  $nID = HTML::sanitize($_GET['nID']);
+  if (isset($_GET['nID'])) {
+    $nID = HTML::sanitize($_GET['nID']);
 
-  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
-                                                            'content',
-                                                            'module'
-                                                            ], [
-                                                              'newsletters_id' => (int)$nID
-                                                            ]
-                                            );
+    $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
+                                                              'content',
+                                                              'module'
+                                                              ], [
+                                                                'newsletters_id' => (int)$nID
+                                                              ]
+                                              );
 
-  $nInfo = new ObjectInfo($Qnewsletter->toArray());
+    $nInfo = new ObjectInfo($Qnewsletter->toArray());
 ?>
   <!-- Effacer nl2br qui provoque des br suplémentaire à chaque ligne //-->
   <div><?php echo $nInfo->content; ?></div>
+<?php
+  }
+?>

@@ -20,31 +20,29 @@
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
-
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-  $nID = HTML::sanitize($_GET['nID']);
+  if (isset($_GET['nID'])) {
+    $nID = HTML::sanitize($_GET['nID']);
 
-  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
-                                                            'title',
-                                                            'content',
-                                                            'module'
-                                                           ], [
-                                                              'newsletters_id' => (int)$nID
-                                                            ]
-                                          );
+    $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
+                                                              'title',
+                                                              'content',
+                                                              'module'
+                                                             ], [
+                                                                'newsletters_id' => (int)$nID
+                                                              ]
+                                            );
 
-  $nInfo = new ObjectInfo($Qnewsletter->toArray());
+    $nInfo = new ObjectInfo($Qnewsletter->toArray());
 
-  $module_name = $nInfo->module;
-  $module = new NewsletterModule($nInfo->title, $nInfo->content);
+    $module_name = $nInfo->module;
+    $module = new NewsletterModule($nInfo->title, $nInfo->content);
 
- if ($module->show_choose_audience) {
-    echo $module->choose_audience();
-  } else {
-    echo $module->confirm();
+   if ($module->show_choose_audience) {
+      echo $module->choose_audience();
+    } else {
+      echo $module->confirm();
+    }
   }
 ?>

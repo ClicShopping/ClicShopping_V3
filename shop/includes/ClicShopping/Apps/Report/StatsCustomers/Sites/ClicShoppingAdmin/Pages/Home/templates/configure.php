@@ -34,12 +34,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/produit.gif', $CLICSHOPPING_StatsCustomers->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_StatsCustomers->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-  if ($CLICSHOPPING_StatsCustomers->is_installed === true) {
-    echo HTML::button($CLICSHOPPING_StatsCustomers->getDef('button_stats_customers'), null, $CLICSHOPPING_StatsCustomers->link('StatsCustomers'), 'success');
-  }
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_StatsCustomers->getDef('button_stats_customers'), null, $CLICSHOPPING_StatsCustomers->link('StatsCustomers'), 'success'); ?></span>
         </div>
       </div>
     </div>

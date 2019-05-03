@@ -23,9 +23,7 @@
     echo $CLICSHOPPING_MessageStack->get('reviews');
   }
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 
 <!-- body //-->
@@ -37,7 +35,7 @@
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/reviews.gif', $CLICSHOPPING_Reviews->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
-            <?php echo HTML::form('delete_all', $CLICSHOPPING_Reviews->link('Reviews&DeleteAll&page=' . $_GET['page'])); ?>
+            <?php echo HTML::form('delete_all', $CLICSHOPPING_Reviews->link('Reviews&DeleteAll&page=' . $page)); ?>
             <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><?php echo HTML::button($CLICSHOPPING_Reviews->getDef('button_delete'), null, null, 'danger'); ?></a>&nbsp;
           </span>
         </div>
@@ -170,7 +168,7 @@
 ?>
             </td>
             <td></td>
-            <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Reviews->getDef('icon_preview_comment'))); ?></td>
+            <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Reviews->getDef('icon_preview_comment'))); ?></td>
             <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qreviews->value('products_image'), $Qreviews->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
             <td><?php echo $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('reviews_id')); ?></td>
             <td><?php echo '<i>' .  HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
@@ -188,7 +186,7 @@
       }
 ?>
             </td>
-            <td class="dataTableContent text-md-right"><?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Reviews->getDef('icon_edit'))); ?></td>
+            <td class="dataTableContent text-md-right"><?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Reviews->getDef('icon_edit'))); ?></td>
             </tr>
 <?php
     } //end while

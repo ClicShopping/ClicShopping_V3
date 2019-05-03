@@ -17,9 +17,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $Qadmin = $CLICSHOPPING_Administrators->db->get('administrators', ['id',
                                                               'user_name',
@@ -39,7 +37,7 @@ use ClicShopping\OM\HTML;
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/administrators.gif', $CLICSHOPPING_Administrators->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Administrators->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, $CLICSHOPPING_Administrators->link('Insert&page=' . $_GET['page']), 'success'); ?></span>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_insert'), null, $CLICSHOPPING_Administrators->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -57,7 +55,7 @@ use ClicShopping\OM\HTML;
     <tbody>
 <?php
   while ($Qadmin->fetch() !== false) {
-    if ((!isset($_GET['aID']) || (isset($_GET['aID']) && ((int)$_GET['aID'] === $Qadmin->valueInt('id')))) && !isset($aInfo) && (substr($action, 0, 3) != 'new')) {
+    if ((!isset($_GET['aID']) || (isset($_GET['aID']) && ((int)$_GET['aID'] === $Qadmin->valueInt('id')))) && !isset($aInfo)) {
       $aInfo = new ObjectInfo($Qadmin->toArray());
     }
 ?>

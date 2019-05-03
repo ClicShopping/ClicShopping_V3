@@ -17,6 +17,8 @@
 
   $CLICSHOPPING_TaxRates = Registry::get('TaxRates');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -29,7 +31,7 @@
           <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSHOPPING_TaxRates->link('TaxRates'), 'warning')  . ' ';
-  echo HTML::form('rates', $CLICSHOPPING_TaxRates->link('TaxRates&Insert&page=' . $_GET['page']));
+  echo HTML::form('rates', $CLICSHOPPING_TaxRates->link('TaxRates&Insert&page=' . $page));
   echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, null, 'success')
 ?>
           </span>

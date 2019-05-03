@@ -33,10 +33,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/log.png', $CLICSHOPPING_EditLogError->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_EditLogError->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-    echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_edit_log_error'), null, $CLICSHOPPING_EditLogError->link('EditLogError'), 'success');
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_edit_log_error'), null, $CLICSHOPPING_EditLogError->link('LogError'), 'success'); ?></span>
         </div>
       </div>
     </div>

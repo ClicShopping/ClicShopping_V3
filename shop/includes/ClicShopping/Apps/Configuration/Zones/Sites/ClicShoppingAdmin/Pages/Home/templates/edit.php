@@ -27,6 +27,8 @@
   $Qzones->execute();
 
   $cInfo = new ObjectInfo($Qzones->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -38,7 +40,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Update&page=' . $_GET['page'] . '&cID=' . $cInfo->zone_id));
+  echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Update&page=' . $page . '&cID=' . $cInfo->zone_id));
   echo HTML::button($CLICSHOPPING_Zones->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning');
 ?>

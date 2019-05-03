@@ -37,6 +37,8 @@
 
   $wInfo = new ObjectInfo($Qweight->toArray());
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
   if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
     echo $CLICSHOPPING_MessageStack->get('class_edit');
   }
@@ -51,7 +53,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&ClassUpdate&page=' . $_GET['page'] . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
+  echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&ClassUpdate&page=' . $page . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 ?>

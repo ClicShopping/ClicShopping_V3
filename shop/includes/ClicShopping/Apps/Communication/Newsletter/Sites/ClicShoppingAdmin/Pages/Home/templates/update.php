@@ -25,15 +25,15 @@
 
   if (!isset($_GET['nID']) ) {
     $CLICSHOPPING_Newsletter->redirect('Newsletter');
+  } else {
+    $nID = HTML::sanitize($_GET['nID']);
   }
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
-   echo HTML::form('newsletter', $CLICSHOPPING_Newsletter->link('Newsletter&Update&page=' . $_GET['page']));
+   echo HTML::form('newsletter', $CLICSHOPPING_Newsletter->link('Newsletter&Update&page=' . $page));
    echo HTML::hiddenField('newsletter_id', $_GET['nID']);
 ?>
 
@@ -46,7 +46,7 @@
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] ), 'warning') .'&nbsp;';
+  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page . '&nID=' . $_GET['nID'] ), 'warning') .'&nbsp;';
   echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_update'), null, null, 'success');
 ?>
            </span>
@@ -65,8 +65,6 @@
                   ];
 
     $nInfo = new ObjectInfo($parameters);
-
-    $nID = HTML::sanitize($_GET['nID']);
 
     $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
                                                               'title',

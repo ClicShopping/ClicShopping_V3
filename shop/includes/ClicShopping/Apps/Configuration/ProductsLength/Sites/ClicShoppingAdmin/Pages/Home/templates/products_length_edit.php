@@ -35,6 +35,8 @@
   $wInfo = new ObjectInfo($Qproducts_length->toArray());
 
   $languages = $CLICSHOPPING_Language->getLanguages();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -46,7 +48,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('products_length_edit', $CLICSHOPPING_ProductsLength->link('ProductsLength&ProductsLengthUpdate&page=' . $_GET['page']));
+  echo HTML::form('products_length_edit', $CLICSHOPPING_ProductsLength->link('ProductsLength&ProductsLengthUpdate&page=' . $page));
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength'), 'warning');
 

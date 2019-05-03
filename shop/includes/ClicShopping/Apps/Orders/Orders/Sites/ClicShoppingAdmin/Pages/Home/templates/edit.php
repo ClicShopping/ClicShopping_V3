@@ -30,6 +30,8 @@
 
   $order_id = HTML::sanitize($_GET['oID']);
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
   $orders_statuses = [];
   $orders_status_array = [];
 
@@ -331,7 +333,7 @@
     $QproductsImage->execute();
 
             echo '    <tr class="dataTableRow">' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $products_id . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
+      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $products_id . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
       '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&Edit&pID=' . $products_id),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
       '      <td class="dataTableContent" valign="top"><img src=" ' . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $QproductsImage->value('products_image') . '" width=" '. (int)SMALL_IMAGE_WIDTH_ADMIN .'" height="'. (int)SMALL_IMAGE_HEIGHT_ADMIN .'"></td>' . "\n" .
       '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .

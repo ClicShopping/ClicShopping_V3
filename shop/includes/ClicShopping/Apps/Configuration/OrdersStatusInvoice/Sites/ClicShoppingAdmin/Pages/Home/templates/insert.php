@@ -18,8 +18,9 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $orders_status_invoice_inputs_string = '';
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-  $languages = $CLICSHOPPING_Language->Languages();
+  $languages = $CLICSHOPPING_Language->getLanguages();
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -32,7 +33,7 @@
           <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'warning')  . ' ';
-  echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Insert&page=' . $_GET['page']));
+  echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Insert&page=' . $page));
   echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_insert'), null, null, 'success')
 ?>
           </span>
@@ -43,7 +44,7 @@
   <div class="separator"></div>
 
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_new_orders_status'); ?></strong></div>
-  <?php echo HTML::form('status_invoice', CLICSHOPPING::link('orders_status_invoice.php', 'page=' . $_GET['page'] . '&action=insert')); ?>
+  <?php echo HTML::form('status_invoice', CLICSHOPPING::link('orders_status_invoice.php', 'page=' .$page . '&action=insert')); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">

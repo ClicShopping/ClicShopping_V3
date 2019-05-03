@@ -16,6 +16,8 @@
 
   $CLICSHOPPING_Zones = Registry::get('Zones');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -28,7 +30,7 @@
           <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning')  . ' ';
-  echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Insert&page=' . $_GET['page']));
+  echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Insert&page=' . $page));
   echo HTML::button($CLICSHOPPING_Zones->getDef('button_insert'), null, null, 'success')
 ?>
           </span>

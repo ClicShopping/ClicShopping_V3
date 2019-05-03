@@ -23,9 +23,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 ?>
@@ -47,8 +45,8 @@ use ClicShopping\OM\HTML;
           <span class="col-md-9 text-md-right">
 <?php
   echo HTML::form('products_featured', $CLICSHOPPING_Featured->link('Featured&' . $form_action));
-  if ($form_action == 'Update') echo HTML::hiddenField('products_featured_id', $_GET['sID']) .  HTML::hiddenField('page', $_GET['page']);
-  echo HTML::button($CLICSHOPPING_Featured->getDef('button_cancel'), null, $CLICSHOPPING_Featured->link('Featured&page=' . $_GET['page'] . (isset($_GET['sID']) ? '&sID=' . $_GET['sID'] : '')), 'warning', null, null) .'&nbsp;';
+  if ($form_action == 'Update') echo HTML::hiddenField('products_featured_id', $_GET['sID']) .  HTML::hiddenField('page', $page);
+  echo HTML::button($CLICSHOPPING_Featured->getDef('button_cancel'), null, $CLICSHOPPING_Featured->link('Featured&page=' . $page . (isset($_GET['sID']) ? '&sID=' . $_GET['sID'] : '')), 'warning', null, null) .'&nbsp;';
   echo (($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Featured->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Featured->getDef('button_update'), null, null, 'success'));
 ?>
           </span>

@@ -16,9 +16,7 @@
   $CLICSHOPPING_Langues = Registry::get('Langues');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -28,7 +26,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/languages.gif', $CLICSHOPPING_Langues->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Langues->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_new'), null, $CLICSHOPPING_Langues->link('Insert&page=' . $_GET['page']), 'success'); ?></span>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_new'), null, $CLICSHOPPING_Langues->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -68,7 +66,7 @@
   if ($listingTotalRow > 0) {
 
     while ($Qlanguages->fetch()) {
-      if ((!isset($_GET['lID']) || (isset($_GET['lID']) && ((int)$_GET['lID'] === $Qlanguages->valueInt('languages_id')))) && !isset($lInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['lID']) || (isset($_GET['lID']) && ((int)$_GET['lID'] === $Qlanguages->valueInt('languages_id')))) && !isset($lInfo)) {
         $lInfo = new ObjectInfo($Qlanguages->toArray());
       }
 
@@ -84,20 +82,20 @@
 //pb when the english when the status is off
 //      if ($Qlanguages->valueInt('languages_id') != 1 && DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
         if ($Qlanguages->valueInt('status') == 1) {
-          echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $_GET['page'] . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+          echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
         } else {
-          echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $_GET['page'] . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+          echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
         }
 //      }
 ?>
             </td>
             <td class="text-md-right">
 <?php
-      echo HTML::link( $CLICSHOPPING_Langues->link('Edit&page=' . $_GET['page'] . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Langues->getDef('icon_edit')));
+      echo HTML::link( $CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Langues->getDef('icon_edit')));
       echo '&nbsp;';
 
       if ($Qlanguages->valueInt('languages_id') > 1) {
-        echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $_GET['page'] . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('image_delete')));
+        echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('image_delete')));
       }
       echo '&nbsp;';
 ?>

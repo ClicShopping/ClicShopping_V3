@@ -27,6 +27,8 @@
   $wInfo = new ObjectInfo(array());
 
   $languages = $CLICSHOPPING_Language->getLanguages();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -38,7 +40,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('form_product_length', $CLICSHOPPING_ProductsLength->link('ProductsLength&ProductsLengthInsert&page=' . $_GET['page']));
+  echo HTML::form('form_product_length', $CLICSHOPPING_ProductsLength->link('ProductsLength&ProductsLengthInsert&page=' . $page));
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert'), null, null, 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength'), 'warning');
 ?>
@@ -72,7 +74,7 @@
                 <div class="form-group row">
                   <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   <div class="col-md-10">
-                    <?php echo HTML::inputField('products_length_class_title[' . $languages[$i]['id'] . ']', (isset($products_length_class_title[$languages[$i]['id']]) ? $products_length_class_title[$languages[$i]['id']] : $CLICSHOPPING_ProductsLengthAdmin->getTitle($wInfo->products_length_class_id, $languages[$i]['id'])), 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_title') . '"',  true) . '&nbsp;'; ?>
+                    <?php echo HTML::inputField('products_length_class_title[' . $languages[$i]['id'] . ']', '', 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_title') . '"',  true) . '&nbsp;'; ?>
                   </div>
                 </div>
               </div>

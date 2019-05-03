@@ -28,6 +28,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -39,7 +40,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&WeightInsert&page=' . $_GET['page']));
+  echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&WeightInsert&page=' . $page));
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert'), null, null, 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 ?>
@@ -73,7 +74,7 @@
                 <div class="form-group row">
                   <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   <div class="col-md-10">
-                    <?php echo HTML::inputField('weight_class_title[' . $languages[$i]['id'] . ']', (isset($weight_class_title[$languages[$i]['id']]) ? $weight_class_title[$languages[$i]['id']] : $CLICSHOPPING_WeightAdmin->getTitle($wInfo->weight_class_id, $languages[$i]['id'])), 'class="form-control" required aria-required="true" required="" id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_title') . '"',  true) . '&nbsp;'; ?>
+                    <?php echo HTML::inputField('weight_class_title[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" required="" id="weight_class_title" placeholder="' . $CLICSHOPPING_Weight->getDef('text_weight_class_title') . '"',  true) . '&nbsp;'; ?>
                   </div>
                 </div>
               </div>

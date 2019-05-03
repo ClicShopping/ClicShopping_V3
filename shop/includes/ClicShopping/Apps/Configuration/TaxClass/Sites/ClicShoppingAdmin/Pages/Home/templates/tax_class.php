@@ -19,9 +19,7 @@ use ClicShopping\OM\HTML;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -31,7 +29,7 @@ use ClicShopping\OM\HTML;
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/tax_classes.gif', $CLICSHOPPING_TaxClass->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxClass->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, $CLICSHOPPING_TaxClass->link('Insert&page=' . $_GET['page']), 'success'); ?></span>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, $CLICSHOPPING_TaxClass->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -68,7 +66,7 @@ use ClicShopping\OM\HTML;
   if ($listingTotalRow > 0) {
 
     while ($Qclasse->fetch()) {
-      if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ($_GET['tID'] ==  $Qclasse->valueInt('tax_class_id')))) && !isset($tcInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ($_GET['tID'] ==  $Qclasse->valueInt('tax_class_id')))) && !isset($tcInfo)) {
         $tcInfo = new ObjectInfo($Qclasse->toArray());
       }
 ?>
@@ -76,9 +74,9 @@ use ClicShopping\OM\HTML;
               <td><?php echo  $Qclasse->value('tax_class_description'); ?></td>
               <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $_GET['page'] . '&tID=' .  $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxClass->getDef('icon_edit')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' .  $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxClass->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_TaxClass->link('Delete&page=' . $_GET['page'] . '&tID=' .  $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxClass->getDef('icon_delete')) . '</a>';
+      echo '<a href="' . $CLICSHOPPING_TaxClass->link('Delete&page=' . $page . '&tID=' .  $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxClass->getDef('icon_delete')) . '</a>';
       echo '&nbsp;';
 ?>
               </td>

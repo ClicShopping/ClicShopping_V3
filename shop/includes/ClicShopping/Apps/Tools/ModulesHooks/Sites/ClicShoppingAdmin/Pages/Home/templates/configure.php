@@ -48,10 +48,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/hooks.png', $CLICSHOPPING_ModulesHooks->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ModulesHooks->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-    echo HTML::button($CLICSHOPPING_ModulesHooks->getDef('button_modules_hooks_access'), null, $CLICSHOPPING_ModulesHooks->link('ModulesHooks'), 'success');
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_ModulesHooks->getDef('button_modules_hooks_access'), null, $CLICSHOPPING_ModulesHooks->link('ModulesHooks'), 'success'); ?></span>
         </div>
       </div>
     </div>

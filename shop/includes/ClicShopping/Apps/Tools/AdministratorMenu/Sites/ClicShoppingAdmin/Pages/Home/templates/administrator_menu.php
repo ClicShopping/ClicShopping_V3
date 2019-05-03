@@ -18,9 +18,6 @@
 
   $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-
-
-
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
@@ -187,7 +184,7 @@
 // Get parent_id for subcategories if search
     $cPath = $Qcategories->valueInt('parent_id');
 
-    if ((!isset($_GET['cID']) && !isset($_GET['pID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+    if ((!isset($_GET['cID']) && !isset($_GET['pID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('id')))) && !isset($cInfo)) {
       $category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
 
       $cInfo_array = array_merge($Qcategories->toArray(), $category_childs);

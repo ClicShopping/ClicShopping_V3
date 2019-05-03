@@ -18,9 +18,7 @@ use ClicShopping\OM\HTML;
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -63,25 +61,25 @@ use ClicShopping\OM\HTML;
       $listingTotalRow = $QproductsQuantityUnit->getPageSetTotalRows();
 
       if ($listingTotalRow > 0) {
-      while ( $QproductsQuantityUnit->fetch()) {
+        while ( $QproductsQuantityUnit->fetch()) {
 
-      if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $QproductsQuantityUnit->valueInt('products_quantity_unit_id')))) && !isset($oInfo) && (substr($action, 0, 3) != 'new')) {
-        $oInfo = new ObjectInfo($QproductsQuantityUnit->toArray());
-      }
+        if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $QproductsQuantityUnit->valueInt('products_quantity_unit_id')))) && !isset($oInfo)) {
+          $oInfo = new ObjectInfo($QproductsQuantityUnit->toArray());
+        }
 
-      if (DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID == $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) {
-        echo '                <th scope="row"><strong>' . $QproductsQuantityUnit->value('products_quantity_unit_title') . ' (' . $CLICSHOPPING_ProductsQuantityUnit->getDef('text_default') . ')</strong></th>' . "\n";
-      } else {
-        echo '                <th scope="row">' . $QproductsQuantityUnit->value('products_quantity_unit_title') . '</th>' . "\n";
-      }
+        if (DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID == $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) {
+          echo '                <th scope="row"><strong>' . $QproductsQuantityUnit->value('products_quantity_unit_title') . ' (' . $CLICSHOPPING_ProductsQuantityUnit->getDef('text_default') . ')</strong></th>' . "\n";
+        } else {
+          echo '                <th scope="row">' . $QproductsQuantityUnit->value('products_quantity_unit_title') . '</th>' . "\n";
+        }
 ?>
         <td class="text-md-right">
 <?php
-      if ($QproductsQuantityUnit->valueInt('products_quantity_unit_id') > 1) {
-        echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Delete&page=' . $_GET['page'] . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_delete')) . '</a>';
-      }
-      echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Edit&page=' . $_GET['page'] . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_edit')) . '</a>' ;
+        if ($QproductsQuantityUnit->valueInt('products_quantity_unit_id') > 1) {
+          echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Delete&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_delete')) . '</a>';
+        }
+        echo '&nbsp;';
+        echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Edit&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_edit')) . '</a>' ;
 ?>
             </td>
           </tbody>

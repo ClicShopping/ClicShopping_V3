@@ -16,6 +16,8 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -28,7 +30,7 @@
           <span class="col-md-9 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit'), 'warning')  . ' ';
-  echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&Insert&page=' . $_GET['page']));
+  echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&Insert&page=' . $page));
   echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_insert'), null, null, 'success')
 ?>
           </span>

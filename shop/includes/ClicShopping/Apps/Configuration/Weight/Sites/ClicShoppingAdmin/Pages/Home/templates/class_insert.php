@@ -24,6 +24,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -35,7 +36,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('ClassInsert', $CLICSHOPPING_Weight->link('Weight&ClassInsert&page=' . (int)$_GET['page']));
+  echo HTML::form('ClassInsert', $CLICSHOPPING_Weight->link('Weight&ClassInsert&page=' . $page));
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert'), null, null, 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight'), 'warning');
 ?>
@@ -59,7 +60,7 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title_to_id'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title_to_id'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::selectField('weight_class_id', WeightAdmin::getClassesPullDown()); ?>
           </div>

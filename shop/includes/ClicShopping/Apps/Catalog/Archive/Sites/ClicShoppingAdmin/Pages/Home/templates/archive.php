@@ -19,13 +19,10 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $CLICSHOPPING_Archive = Registry::get('Archive');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
@@ -53,12 +50,12 @@
           <div class="col-md-1">
 <?php
   if (isset($_POST['search']) && !is_null($_POST['search'])) {
-    echo HTML::button($CLICSHOPPING_Archive->getDef('button_reset'), null, $CLICSHOPPING_Archive->link('Archive&page=' . $_GET['page']), 'warning');
+    echo HTML::button($CLICSHOPPING_Archive->getDef('button_reset'), null, $CLICSHOPPING_Archive->link('Archive&page=' . $page), 'warning');
   }
 ?>
           </div>
           <span class="col-md-3 text-md-right">
-              <?php echo HTML::form('delete_all', $CLICSHOPPING_Archive->link('Archive&DeleteAll&page=' . $_GET['page'])); ?>
+              <?php echo HTML::form('delete_all', $CLICSHOPPING_Archive->link('Archive&DeleteAll&page=' . $page)); ?>
             <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_unpack'), null, null, 'info'); ?></a>&nbsp;
            </span>
         </div>
@@ -66,20 +63,6 @@
     </div>
   </div>
   <div class="separator"></div>
-<?php // Gestion des erreurs et de succes des validations
-  if ($CLICSHOPPING_MessageStack->size > 0) {
-    $ClassMessageStack = "messageStackSuccess";
-    if ($ClassMessageStackError == 1) {
-      $ClassMessageStack = "messageStackError";
-    }
-?>
-
-    <div class="<?php echo $ClassMessageStack; ?>">
-      <?php echo $CLICSHOPPING_MessageStack->output(); ?>
-    </div>
-    <?php
-  }
-?>
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING DES produits                                      -->
   <!-- //################################################################################################################ -->
@@ -214,7 +197,7 @@
             </td>
             <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $_GET['page'] . '&aID=' .  $Qproducts->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Archive->getDef('icon_unpack')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $page . '&aID=' .  $Qproducts->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Archive->getDef('icon_unpack')) . '</a>' ;
       echo '&nbsp;';
 ?>
             </td>

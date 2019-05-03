@@ -47,10 +47,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/service.png', $CLICSHOPPING_ServiceAPP->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ServiceAPP->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-    echo HTML::button($CLICSHOPPING_ServiceAPP->getDef('button_modules_service_access'), null, $CLICSHOPPING_ServiceAPP->link('ServiceAPP'), 'success');
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_ServiceAPP->getDef('button_modules_service_access'), null, $CLICSHOPPING_ServiceAPP->link('ServiceAPP'), 'success'); ?></span>
         </div>
       </div>
     </div>

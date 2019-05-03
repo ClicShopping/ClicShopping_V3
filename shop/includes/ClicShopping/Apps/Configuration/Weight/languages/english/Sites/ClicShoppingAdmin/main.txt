@@ -57,6 +57,7 @@ text_weight_class_title = Weight name
 text_weight_class_key = Weight symbol
 text_weight_rules = Weight value
 text_info_class_title = Weight name
+text_info_class_title_to_id = To
 
 text_info_edit_intro = Please make any necessary changes
 text_info_delete_info = Delete this weight

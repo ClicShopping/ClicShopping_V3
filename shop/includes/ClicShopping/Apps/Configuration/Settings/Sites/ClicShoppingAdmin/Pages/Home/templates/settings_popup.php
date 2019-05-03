@@ -52,7 +52,7 @@
       $cfgValue = $Qconfiguration->value('configuration_value');
     }
 
-    if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qconfiguration->valueInt('configuration_id')))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+    if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qconfiguration->valueInt('configuration_id')))) && !isset($cInfo)) {
 
       $Qextra = $CLICSHOPPING_Settings->db->get('configuration', [
                                                                   'configuration_key',

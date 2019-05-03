@@ -14,10 +14,6 @@
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
-
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
 ?>
 
 <div class="contentBody">

@@ -20,9 +20,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
   <div class="contentBody">
     <div class="row">
@@ -34,7 +32,7 @@
             <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_new'), null, $CLICSHOPPING_Manufacturers->link('Edit'), 'success');
-  echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $_GET['page']));
+  echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $page));
 ?>
               <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_delete'), null, null, 'danger'); ?></span></a>
            </span>
@@ -102,15 +100,15 @@
                 <td class="text-md-center">
 <?php
       if ($Qmanufacturers->value('manufacturers_status') == '0') {
-        echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $_GET['page'] . '&flag=1&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=1&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
       } else {
-        echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $_GET['page'] . '&flag=0&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Manufacturers&SetFlag&page=' . $page . '&flag=0&id=' . $Qmanufacturers->valueInt('manufacturers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
       }
 ?>
                 </td>
                 <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Edit&page=' . $_GET['page'] . '&mID=' . $Qmanufacturers->valueInt('manufacturers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Manufacturers->getDef('icon_edit')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_Manufacturers->link('Edit&page=' . $page . '&mID=' . $Qmanufacturers->valueInt('manufacturers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Manufacturers->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
 ?>
                 </td>

@@ -19,13 +19,11 @@
   $CLICSHOPPING_StatsProductsNotification = Registry::get('StatsProductsNotification');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   // show customers for a product
   if (isset($_GET['show_customers']) && (int)$_GET['pID']) {
-  $products_id = (int)$_GET['pID'];
+    $products_id = HTMl::sanitize($_GET['pID']);
 ?>
 
   <div class="contentBody">
@@ -114,7 +112,7 @@
   // default
   } else {
 
-  if (isset($_GET['page']) && ($_GET['page'] > 1)) $rows = $_GET['page'] * (int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN - (int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN;
+  if (isset($page) && ($page > 1)) $rows = $page * (int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN - (int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN;
 ?>
     <!-- body //-->
     <div class="contentBody">
@@ -184,7 +182,7 @@
       }
 ?>
                   <tr>
-                    <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
+                    <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
                     <td><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                     <td><?php echo $rows; ?>.</td>
                     <td><?php echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $products['products_id'] . '&page=' . $page), $Qproducts->value('products_name')); ?></td>

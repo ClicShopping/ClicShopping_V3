@@ -23,26 +23,26 @@
   }
 
   $Qpage = $CLICSHOPPING_SEO->db->prepare('select  p.submit_id,
-                                            p.language_id,
-                                            p.submit_defaut_language_title,
-                                            p.submit_defaut_language_keywords,
-                                            p.submit_defaut_language_description,
-                                            p.submit_defaut_language_footer,
-                                            p.submit_language_products_info_title,
-                                            p.submit_language_products_info_keywords,
-                                            p.submit_language_products_info_description,
-                                            p.submit_language_products_new_title,
-                                            p.submit_language_products_new_keywords,
-                                            p.submit_language_products_new_description,
-                                            p.submit_language_special_title,
-                                            p.submit_language_special_keywords,
-                                            p.submit_language_special_description,
-                                            p.submit_language_reviews_title,
-                                            p.submit_language_reviews_keywords,
-                                            p.submit_language_reviews_description
-                                   from :table_submit_description p
-                                   where p.submit_id = 1
-                                  ');
+                                                  p.language_id,
+                                                  p.submit_defaut_language_title,
+                                                  p.submit_defaut_language_keywords,
+                                                  p.submit_defaut_language_description,
+                                                  p.submit_defaut_language_footer,
+                                                  p.submit_language_products_info_title,
+                                                  p.submit_language_products_info_keywords,
+                                                  p.submit_language_products_info_description,
+                                                  p.submit_language_products_new_title,
+                                                  p.submit_language_products_new_keywords,
+                                                  p.submit_language_products_new_description,
+                                                  p.submit_language_special_title,
+                                                  p.submit_language_special_keywords,
+                                                  p.submit_language_special_description,
+                                                  p.submit_language_reviews_title,
+                                                  p.submit_language_reviews_keywords,
+                                                  p.submit_language_reviews_description
+                                         from :table_submit_description p
+                                         where p.submit_id = 1
+                                        ');
   $Qpage->execute();
 
   while($Qpage->fetch())  {

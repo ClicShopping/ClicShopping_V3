@@ -17,9 +17,7 @@
   $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
   <div class="contentBody">
     <div class="row">
@@ -31,7 +29,7 @@
             <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_new'), null,$CLICSHOPPING_Suppliers->link('Edit'), 'success');
-  echo HTML::form('delete_all', $CLICSHOPPING_Suppliers->link('Suppliers&DeleteAll&page=' . $_GET['page']));
+  echo HTML::form('delete_all', $CLICSHOPPING_Suppliers->link('Suppliers&DeleteAll&page=' . $page));
 ?>
               <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_delete'), null, null, 'danger'); ?></span></a>
            </span>
@@ -73,7 +71,7 @@
   if ($listingTotalRow > 0) {
 
     while ($Qsuppliers->fetch()) {
-      if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ((int)$_GET['mID'] == $Qsuppliers->valueInt('suppliers_id')))) && !isset($mInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ((int)$_GET['mID'] == $Qsuppliers->valueInt('suppliers_id')))) && !isset($mInfo)) {
 
         $Qproducts = $CLICSHOPPING_Suppliers->db->get('products', 'count(*) as products_count', ['suppliers_id' => $Qsuppliers->valueInt('suppliers_id')]);
 
@@ -103,15 +101,15 @@
                 <td class="text-md-center">
 <?php
       if ($Qsuppliers->valueInt('suppliers_status') == 0) {
-        echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $_GET['page'] . '&flag=1&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $page . '&flag=1&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
       } else {
-        echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $_GET['page'] . '&flag=0&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $page . '&flag=0&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
       }
 ?>
                 </td>
                 <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_Suppliers->link('Edit&page=' . $_GET['page'] . '&mID=' . $Qsuppliers->valueInt('suppliers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Suppliers->getDef('icon_edit')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_Suppliers->link('Edit&page=' . $page . '&mID=' . $Qsuppliers->valueInt('suppliers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Suppliers->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
 ?>
                 </td>

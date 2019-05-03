@@ -72,6 +72,8 @@
 
     return ($a['id'] < $b['id']) ? -1 : 1;
   });
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -87,7 +89,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_edit_language'); ?></strong></div>
-  <?php echo HTML::form('languages', $CLICSHOPPING_Langues->link('Langues&Save&page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id)); ?>
+  <?php echo HTML::form('languages', $CLICSHOPPING_Langues->link('Langues&Save&page=' . $page . '&lID=' . $lInfo->languages_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">
@@ -200,7 +202,7 @@
 ?>
       <div class="separator"></div>
       <div class="col-md-12 text-md-center">
-        <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_update'), null, null, 'primary', null, 'sm') . ' </span><span>' .HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm'); ?>
+        <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_update'), null, null, 'primary', null, 'sm') . ' </span><span>' .HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm'); ?>
       </div>
     </div>
   </div>

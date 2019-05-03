@@ -37,6 +37,8 @@
 
   $wInfo = new ObjectInfo($Qproducts_length->toArray());
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
   if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
     echo $CLICSHOPPING_MessageStack->get('class_edit');
   }
@@ -51,7 +53,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('form_product_length', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassUpdate&page=' . $_GET['page'] . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
+  echo HTML::form('form_product_length', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassUpdate&page=' . $page . '&wID=' . $_GET['wID'] . '&tID=' . $_GET['tID']));
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength'), 'warning');
 ?>

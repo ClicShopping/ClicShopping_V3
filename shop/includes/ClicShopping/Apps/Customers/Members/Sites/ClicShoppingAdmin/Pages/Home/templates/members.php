@@ -17,9 +17,7 @@
   $CLICSHOPPING_Members = Registry::get('Members');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
 // Permettre l'utilisation de l'approbation des comptes en mode B2B
   if (defined('B2C') && B2C == 'true') {
@@ -48,9 +46,9 @@
             </div>
           </span>
 <?php
-  if (!is_null($_POST['search'])) {
+  if (isset($_POST['search'])) {
 ?>
-    <span class="col-md-3 text-md-right"><?php echo HTML::button($CLICSHOPPING_Members->getDef('button_reset'), null, CLICSHOPPING::link('members.php', null), 'warning'); ?></span>
+    <span class="col-md-3 text-md-right"><?php echo HTML::button($CLICSHOPPING_Members->getDef('button_reset'), null, $CLICSHOPPING_Members->link('Members'), 'warning'); ?></span>
 <?php
   }
 ?>
@@ -142,7 +140,7 @@
     $Qinfo->bindInt(':customers_info_id', (int)$Qcustomers->valueInt('customers_id'));
     $Qinfo->execute();
 
-    if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcustomers->valueInt('customers_id')))) && !isset($lInfo) && (substr($action, 0, 3) != 'new')) {
+    if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcustomers->valueInt('customers_id')))) && !isset($lInfo)) {
 
       $lInfo = new ObjectInfo($Qinfo->toArray());
 

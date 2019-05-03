@@ -21,9 +21,7 @@
     $_GET['spage'] = 1;
   }
 
-  if (!isset($_GET['zpage']) || !is_numeric($_GET['zpage'])) {
-    $_GET['zpage'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 
 
@@ -38,7 +36,7 @@
           <span class="col-md-4 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_back'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLICSHOPPING_TaxGeoZones->link('InsertGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage']), 'success');
+  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLICSHOPPING_TaxGeoZones->link('InsertGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage']), 'success');
 ?>
           </span>
         </div>
@@ -87,7 +85,7 @@
 
     while ($Qzones->fetch()) {
 
-      if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo)) {
         $sInfo = new ObjectInfo($Qzones->toArray());
         if (is_null($sInfo->countries_name)) {
           $sInfo->countries_name = $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries');
@@ -102,9 +100,9 @@
               <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
               <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $_GET['zpage'] . '&zID=' .$_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID='. $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' .$_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID='. $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID='. $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')) . '</a>';
+      echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID='. $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')) . '</a>';
       echo '&nbsp;';
 ?>
               </td>

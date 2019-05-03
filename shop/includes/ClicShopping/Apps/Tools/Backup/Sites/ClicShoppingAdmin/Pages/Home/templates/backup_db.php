@@ -23,6 +23,7 @@
   $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
 
   $dir_ok = false;
+
   if (is_dir($backup_directory)) {
     if (FileSystem::isWritable($backup_directory)) {
       $dir_ok = true;

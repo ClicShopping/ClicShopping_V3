@@ -50,7 +50,9 @@
 
   $QproductsQquantityUnit->execute();
 
-  $oInfo = new ObjectInfo($QproductsQquantityUnit->toArray())
+  $oInfo = new ObjectInfo($QproductsQquantityUnit->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -66,7 +68,7 @@
   </div>
   <div class="separator"></div>
 
-  <?php echo HTML::form('status_products_quantity_unit',$CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&DeleteConfirm&page=' . $_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id)); ?>
+  <?php echo HTML::form('status_products_quantity_unit',$CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&DeleteConfirm&page=' . $page . '&oID=' . $oInfo->products_quantity_unit_id)); ?>
 
   <div class="col-md-12 mainTitle"><strong><?php echo  $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong></div>
   <div class="adminformTitle">

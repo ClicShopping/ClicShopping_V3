@@ -27,11 +27,14 @@
   $CLICSHOPPING_ManufacturerAdmin = Registry::get('ManufacturerAdmin');
 
   $form_action = 'Insert';
+  $variable = '';
 
   if ( (isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
     $form_action = 'Update';
     $variable =  '&mID=' . $_GET['mID'];
   }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   echo HTMLOverrideAdmin::getCkeditor();
 ?>
@@ -48,7 +51,7 @@
   echo HTML::form ('manufacturers',  $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable) );
   if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', $_GET['mID']);
 
-  echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $_GET['page'] . '&mID=' . $_GET['mID']), 'warning') .'&nbsp;';
+  echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $page . $variable), 'warning') .'&nbsp;';
   echo (($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Manufacturers->getDef('button_update'), null, null, 'success'));
 ?>
             </span>

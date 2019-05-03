@@ -39,9 +39,15 @@
 
   $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
-  $cPath = HTML::sanitize($_POST['cPath']);
+  $cPath = '';
 
-  if ($_GET['error'] == 'fileNotSupported') {
+  if (isset($_POST['cPath'])) {
+    $cPath = HTML::sanitize($_POST['cPath']);
+  }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
+  if (isset($_GET['error']) && $_GET['error'] == 'fileNotSupported') {
 ?>
     <div class="alert alert-warning" role="alert"><?php echo $CLICSHOPPING_Products->getDef('error_file_not_supported'); ?></div>
 <?php
@@ -69,7 +75,7 @@
                <div class="form-group">
                  <div class="controls">
 <?php
- if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
+ if (isset($cPath)) $current_category_id = HTML::sanitize($cPath);
   echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', ['session_id' => true]);
   echo HTML::selectMenu('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
 ?>
@@ -80,7 +86,7 @@
 
               <span class="col-md-6 text-md-right">
 <?php
-  if (isset($_GET['search']) || isset($_POST['cPath'])) {
+  if (isset($_GET['search']) || isset($cPath)) {
     echo HTML::button($CLICSHOPPING_Products->getDef('button_back'), null, $CLICSHOPPING_Products->link('Products&' . $cPath_back . 'cID=' . $current_category_id), 'primary') . '&nbsp;';
   }
 
@@ -107,7 +113,7 @@
       </div>
       <div class="separator"></div>
 <?php
-  if (!isset($_POST['cPath'])) {
+  if (!isset($cPath)) {
 ?>
       <div class="alert alert-info" role="alert"><?php echo $CLICSHOPPING_Products->getDef('text_alert_info_product'); ?></div>
 <?php
@@ -134,6 +140,7 @@
           <tbody>
 <?php
   $products_count = 0;
+  $rows = 0;
 
   $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($_POST['search']);
 
@@ -155,7 +162,7 @@
         }
       }
 
-      if ((!isset($_GET['pID']) && !isset($_GET['cID']) || (isset($_GET['pID']) && ((int)$_GET['pID'] ===  $Qproducts->valueInt('products_id')))) && !isset($pInfo) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['pID']) && !isset($_GET['cID']) || (isset($_GET['pID']) && ((int)$_GET['pID'] ===  $Qproducts->valueInt('products_id')))) && !isset($pInfo) && !isset($cInfo)) {
 // find   the rating average from customer reviews
         $Qreviews = $CLICSHOPPING_Products->db->get('reviews', '(avg(reviews_rating) / 5 * 100) as average_rating', ['products_id' => $Qproducts->valueInt('products_id')]);
 
@@ -188,7 +195,7 @@
 <?php
     }
 ?>
-                  <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?></td>
+                  <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?></td>
                   <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                   <td><?php echo $Qproducts->value('products_name') .' ['. $Qproducts->value('products_model') .']' ; ?></td>
                   <td class="text-md-center">

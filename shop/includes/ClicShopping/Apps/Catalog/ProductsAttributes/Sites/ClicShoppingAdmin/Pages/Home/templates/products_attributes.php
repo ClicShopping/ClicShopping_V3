@@ -40,9 +40,7 @@
 
   $upload_max_filesize = ini_get('upload_max_filesize');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   echo HTMLOverrideAdmin::getCkeditor();
 ?>
@@ -62,7 +60,7 @@
     }
   }
 
-  if ($_GET['error'] == 'fileNotSupported') {
+  if (isset($_GET['error']) && $_GET['error'] == 'fileNotSupported') {
 ?>
   <div class="alert alert-warning" role="alert"><?php echo $CLICSHOPPING_ProductsAttributes->getDef('error_file_not_supported'); ?></div>
 <?php
@@ -175,7 +173,7 @@
                         <span class="float-md-right">
 <?php
       echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_delete'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&DeleteOption&option_id=' . $_GET['option_id']), 'danger', null, 'sm') . ' ';
-      echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . (isset($_GET['order_by']) ? 'order_by=' . $_GET['order_by'] . '&' : '') . (isset($_GET['page']) ? 'page=' . $_GET['page'] : '')), 'warning', null, 'sm');
+      echo HTML::button($CLICSHOPPING_ProductsAttributes->getDef('button_cancel'), null, $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&' . (isset($_GET['order_by']) ? 'order_by=' . $_GET['order_by'] . '&' : '') . (isset($page) ? 'page=' . $page : '')), 'warning', null, 'sm');
 ?>
                         </span>
                       </td>
@@ -913,9 +911,9 @@
 <?php
 //ProductsAttributes&ProductsAttributes&UpdateAttribute&attribute_id=1&option_page=1&value_page=1&attribute_page=1#tab3
         if ($Qattributes->valueInt('status') == 1) {
-          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=0&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id') . '&cPath=' . $cPath),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=0&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id') ),'<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
         } else {
-          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=1&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id') . '&cPath=' . $cPath),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+          echo HTML::link($CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&SetFlag&flag=1&products_attributes_id=' . $Qattributes->valueInt('products_attributes_id')),'<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
         }
 ?>
                   </td>

@@ -22,9 +22,7 @@ use ClicShopping\OM\HTML;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -36,8 +34,8 @@ use ClicShopping\OM\HTML;
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_weight'), null, $CLICSHOPPING_Weight->link('WeightInsert&page=' . $_GET['page']), 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CLICSHOPPING_Weight->link('ClassInsert&page=' . $_GET['page']), 'success');
+  echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_weight'), null, $CLICSHOPPING_Weight->link('WeightInsert&page=' . $page), 'primary') . ' ';
+  echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert_class'), null, $CLICSHOPPING_Weight->link('ClassInsert&page=' . $page), 'success');
 ?>
           </span>
         </div>
@@ -84,7 +82,7 @@ use ClicShopping\OM\HTML;
   if ($listingTotalRow > 0) {
 
     while ($Qweight->fetch()) {
-      if ((!isset($_GET['wID']) || (isset($_GET['wID']) && ((int)$_GET['wID'] ===  $Qweight->valueInt('weight_id')))) && !isset($trInfo) && (substr($action, 0, 3) != 'new')) {
+      if ((!isset($_GET['wID']) || (isset($_GET['wID']) && ((int)$_GET['wID'] ===  $Qweight->valueInt('weight_id')))) && !isset($trInfo)) {
         $trInfo = new ObjectInfo($Qweight->toArray());
       }
 
@@ -98,11 +96,11 @@ use ClicShopping\OM\HTML;
               <td><?php echo $Qweight->value('weight_class_rule'); ?></td>
               <td class="text-md-right">
 <?php
-      echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $_GET['page'] . '&wID=' .  $Qweight->valueInt('weight_class_id') . '&tID=' .  $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Weight->getDef('icon_edit')));
+      echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' .  $Qweight->valueInt('weight_class_id') . '&tID=' .  $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Weight->getDef('icon_edit')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Weight->link('WeightEdit&page=' . $_GET['page'] . '&wID=' .  $Qweight->valueInt('weight_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Weight->getDef('icon_edit_class_title')));
+      echo HTML::link($CLICSHOPPING_Weight->link('WeightEdit&page=' . $page . '&wID=' .  $Qweight->valueInt('weight_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Weight->getDef('icon_edit_class_title')));
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Weight->link('ClassDelete&page=' . $_GET['page'] . '&wID=' .  $Qweight->valueInt('weight_class_id') . '&tID=' .  $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Weight->getDef('icon_delete')));
+      echo HTML::link($CLICSHOPPING_Weight->link('ClassDelete&page=' . $page . '&wID=' .  $Qweight->valueInt('weight_class_id') . '&tID=' .  $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Weight->getDef('icon_delete')));
       echo '&nbsp;';
 ?>
               </td>

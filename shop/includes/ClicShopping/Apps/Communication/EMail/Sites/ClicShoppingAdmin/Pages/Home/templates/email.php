@@ -127,7 +127,7 @@
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_EMail->getDef('text_message'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_EMail->getDef('text_message'); ?></label>
                 <div class="col-md-5">
-                  <?php  echo HTMLOverrideAdmin::textAreaCkeditor('message',  $nInfo->message, '750','300'); ?>
+                  <?php  echo HTMLOverrideAdmin::textAreaCkeditor('message', null, '750','300'); ?>
                 </div>
               </div>
             </div>

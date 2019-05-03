@@ -25,9 +25,7 @@
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
@@ -70,8 +68,8 @@
          </span>
          <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Favorites->getDef('button_new'), null, $CLICSHOPPING_Favorites->link('Edit&page=' . $_GET['page'] . '&action=new'), 'success');
-  echo HTML::form('delete_all', $CLICSHOPPING_Favorites->link('Favorites&Favorites&DeleteAll&page=' . $_GET['page']));
+  echo HTML::button($CLICSHOPPING_Favorites->getDef('button_new'), null, $CLICSHOPPING_Favorites->link('Edit&page=' . $page . '&action=new'), 'success');
+  echo HTML::form('delete_all', $CLICSHOPPING_Favorites->link('Favorites&Favorites&DeleteAll&page=' . $page));
 ?>
            <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_Favorites->getDef('button_delete'), null, null, 'danger'); ?></span></a>
          </span>
@@ -201,7 +199,7 @@
       }
 ?>
               </td>
-              <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qfavorites->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Favorites->getDef('icon_preview'))); ?></td>
+              <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qfavorites->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Favorites->getDef('icon_preview'))); ?></td>
               <td><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qfavorites->value('products_image'), $Qfavorites->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
               <td><?php echo $Qfavorites->value('products_model'); ?></td>
               <td><?php echo $Qfavorites->value('products_name'); ?></td>
@@ -254,15 +252,15 @@
                 <td class="text-md-center">
 <?php
       if ($Qfavorites->valueInt('status') == 1) {
-        echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$_GET['page'] . '&flag=0&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$page . '&flag=0&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
       } else {
-        echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$_GET['page'] . '&flag=1&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Favorites->link('Favorites&Favorites&SetFlag&page=' . (int)$page . '&flag=1&id=' . (int)$Qfavorites->valueInt('products_favorites_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
       }
 ?>
                 </td>
                 <td class="text-md-right">
 <?php
-     echo '<a href="' . $CLICSHOPPING_Favorites->link('Edit&page=' . (int)$_GET['page'] . '&sID=' . (int)$Qfavorites->valueInt('products_favorites_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Favorites->getDef('icon_edit')) . '</a>' ;
+     echo '<a href="' . $CLICSHOPPING_Favorites->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qfavorites->valueInt('products_favorites_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Favorites->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
 ?>
                 </td>

@@ -28,6 +28,8 @@
   $Qproducts_length->execute();
 
   $wInfo = new ObjectInfo($Qproducts_length->toArray());
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -43,7 +45,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_delete_products_length');; ?></strong></div>
-  <?php echo HTML::form('delete', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassDeleteConfirm&page=' . $_GET['page'] . '&wID=' . $wInfo->products_length_class_from_id . '&tID=' . $wInfo->products_length_class_to_id)); ?>
+  <?php echo HTML::form('delete', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassDeleteConfirm&page=' . $page . '&wID=' . $wInfo->products_length_class_from_id . '&tID=' . $wInfo->products_length_class_to_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>

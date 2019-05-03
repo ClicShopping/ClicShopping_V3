@@ -28,7 +28,7 @@
 
   $lInfo = new ObjectInfo($Qlanguages->toArray());
 
-
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -61,10 +61,10 @@
 
 
   if ($Qlanguages->value('code') != DEFAULT_LANGUAGE) {
-    echo '<span><br />' . HTML::button($CLICSHOPPING_Langues->getDef('button_delete'), null, $CLICSHOPPING_Langues->link('Langues&DeleteConfirm&page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id), 'primary', null, 'sm') . ' </span>';
+    echo '<span><br />' . HTML::button($CLICSHOPPING_Langues->getDef('button_delete'), null, $CLICSHOPPING_Langues->link('Langues&DeleteConfirm&page=' . $page . '&lID=' . $lInfo->languages_id), 'primary', null, 'sm') . ' </span>';
   }
 
-  echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null,  $CLICSHOPPING_Langues->link('Langues&page=' . $_GET['page'] . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm');
+  echo '<span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null,  $CLICSHOPPING_Langues->link('Langues&page=' . $page . '&lID=' . $lInfo->languages_id), 'warning', null, 'sm');
 ?>
         </span>
       </div>

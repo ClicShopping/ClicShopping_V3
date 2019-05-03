@@ -22,6 +22,7 @@
     echo $CLICSHOPPING_MessageStack->get('reviews');
   }
 
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   if (!isset($_POST)) {
     $rInfo = new ObjectInfo($_POST);
@@ -81,8 +82,8 @@
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $_GET['page'] . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
-  echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $_GET['page'] . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
+  echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
+  echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
   foreach ( $_POST as $key => $value ) echo HTML::hiddenField($key, $value);
   echo HTML::button($CLICSHOPPING_Reviews->getDef('button_update'), null, null, 'success');
 ?>

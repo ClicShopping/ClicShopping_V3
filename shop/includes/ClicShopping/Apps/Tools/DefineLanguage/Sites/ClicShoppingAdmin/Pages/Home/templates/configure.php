@@ -32,10 +32,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/define_language.gif', $CLICSHOPPING_DefineLanguage->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_DefineLanguage->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
-<?php
-    echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_define_language'), null, $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'success');
-?>
+          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_define_language'), null, $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'success'); ?></span>
         </div>
       </div>
     </div>

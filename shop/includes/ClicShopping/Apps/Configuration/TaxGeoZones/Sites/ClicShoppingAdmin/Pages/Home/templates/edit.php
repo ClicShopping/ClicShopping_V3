@@ -30,6 +30,8 @@
   $Qzones->execute();
 
   $zInfo = new ObjectInfo($Qzones->toArray());
+
+  $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -41,7 +43,7 @@
           <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&Update&zpage=' . $_GET['zpage'] . '&zID=' . $zInfo->geo_zone_id . '&action=save_zone'));
+  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&Update&zpage=' . $page . '&zID=' . $zInfo->geo_zone_id . '&action=save_zone'));
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'warning');
 ?>
