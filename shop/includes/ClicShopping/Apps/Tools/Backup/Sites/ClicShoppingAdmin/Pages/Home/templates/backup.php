@@ -126,7 +126,6 @@
         </tbody>
       </table></td>
     </table>
-    <div><?php echo $CLICSHOPPING_Backup->getDef('text_backup_directory') . ' ' . $backup_directory; ?></div>
 <?php
     if (defined('DB_LAST_RESTORE')) {
 ?>

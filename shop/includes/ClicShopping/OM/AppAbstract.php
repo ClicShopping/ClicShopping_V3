@@ -111,7 +111,10 @@
 
       $this->title = $json['title'];
       $this->version = $json['version'];
-      $this->modules = $json['modules'];
+
+      if (!empty($json['modules'])) {
+        $this->modules = $json['modules'];
+      }
     }
 
     final public function getDef() {

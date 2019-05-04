@@ -106,7 +106,7 @@
 
 // build report
             $report = date("D M j G:i:s Y") . "\n\n"  . CLICSHOPPING::getDef('report_access_login');
-            $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . $ip;
+            $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' .$ip;
             $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name') . $host;
             $report .= "\n" . CLICSHOPPING::getDef('report_sender_username') . $username;
             $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');

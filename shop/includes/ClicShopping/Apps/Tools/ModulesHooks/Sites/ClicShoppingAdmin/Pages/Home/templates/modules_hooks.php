@@ -134,5 +134,4 @@
         </table>
       </td>
     </table>
-    <div class="contentText"><p><?php echo $CLICSHOPPING_ModulesHooks->getDef('text_modules_hooks_directory') . ' ' . $directory; ?></p></div>
   </div>

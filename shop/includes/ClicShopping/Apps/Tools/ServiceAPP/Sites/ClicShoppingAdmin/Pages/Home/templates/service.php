@@ -77,6 +77,5 @@
         </table>
       </td>
     </table>
-    <div class="col-md-12"><?php echo $CLICSHOPPING_ServiceAPP->getDef('text_modules_service_directory') . ' ' . $directory; ?></div>
 <!-- body_eof //-->
-</div>
+  </div>

@@ -106,9 +106,6 @@
     }
   }
 ?>
-            <tr>
-              <td colspan="3"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('text_directory') . ' ' . CLICSHOPPING::getConfig('dir_root', 'Shop'); ?></td>
-            </tr>
           </tbody>
         </table></td>
       </tr>

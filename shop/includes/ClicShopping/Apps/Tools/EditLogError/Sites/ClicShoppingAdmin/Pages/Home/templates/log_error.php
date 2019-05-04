@@ -73,6 +73,4 @@
 ?>
       </tbody>
     </table>
-
-    <div><?php echo $CLICSHOPPING_EditLogError->getDef('log_directory', ['path' => FileSystem::displayPath(ErrorHandler::getDirectory())]); ?></div>
   </div>

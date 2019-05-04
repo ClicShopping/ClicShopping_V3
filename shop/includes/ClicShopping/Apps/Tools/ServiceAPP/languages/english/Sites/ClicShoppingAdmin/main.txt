@@ -32,7 +32,7 @@ alert_module_install_success = Module has been successfully installed.
 alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
-table_heading_services = Servuices list used
+table_heading_services = Services list used
 table_heading_class = Class
 text_modules_service_directory = Directory
 
