@@ -113,7 +113,7 @@
       </div>
       <div class="separator"></div>
 <?php
-  if (!isset($cPath)) {
+  if (!is_null($cPath)) {
 ?>
       <div class="alert alert-info" role="alert"><?php echo $CLICSHOPPING_Products->getDef('text_alert_info_product'); ?></div>
 <?php
