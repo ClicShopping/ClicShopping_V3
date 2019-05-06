@@ -104,8 +104,6 @@
       }
 
       if ($this->statsCountCustomers() != 0) {
-        $output= '';
-
         $content = '
         <div class="row">
           <div class="col-md-11 mainTable">

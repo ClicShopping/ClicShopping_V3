@@ -62,8 +62,6 @@
         return false;
       }
 
-      $output= '';
-
       if ($this->statsCountProductsArchive() != 0) {
         $content = '
         <div class="row">

@@ -17,6 +17,8 @@
     public $site = 'Shop';
     public $key = 'MODULE_SERVICES_INSTALLED';
     public $title;
+    public $language_directory;
+    public $template_integration = false;
 
     public function __construct() {
 
