@@ -514,8 +514,6 @@
       echo '&nbsp;';
       echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
       echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Orders->link('Delete&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Orders->getDef('icon_delete')));
-      echo '&nbsp;';
 
       if ($archive_id != 1) {
         echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/archive.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
