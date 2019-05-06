@@ -167,22 +167,25 @@
     public function getCheapest() {
       if (is_array($this->modules)) {
         $rates = [];
+        $obj =  [];
 
         foreach($this->modules as $value) {
           if (strpos($value, '\\') !== false) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
           }
 
-          if ($obj->enabled) {
-            $quotes = $obj->quotes;
+          if (!array($obj)) {
+            if ($obj->enabled) {
+              $quotes = $obj->quotes;
 
-            for ($i=0, $n=count( $quotes['methods'] ? : []); $i<$n; $i++) {
-              if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
-                $rates[] = ['id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
-                           'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
-                           'info' => $quotes['info'] . (isset($quotes['methods'][$i]['info']) && !empty($quotes['methods'][$i]['info']) ? ' (' . $quotes['methods'][$i]['info'] . ')' : ''),
-                           'cost' => $quotes['methods'][$i]['cost']
-                          ];
+              for ($i=0, $n=count( $quotes['methods'] ? : []); $i<$n; $i++) {
+                if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
+                  $rates[] = ['id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
+                             'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
+                             'info' => $quotes['info'] . (isset($quotes['methods'][$i]['info']) && !empty($quotes['methods'][$i]['info']) ? ' (' . $quotes['methods'][$i]['info'] . ')' : ''),
+                             'cost' => $quotes['methods'][$i]['cost']
+                            ];
+                }
               }
             }
           }

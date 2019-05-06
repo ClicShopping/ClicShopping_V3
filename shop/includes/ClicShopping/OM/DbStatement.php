@@ -273,7 +273,9 @@
 
             case 'string':
             default:
+              if (isset($this->result[$column])){
                 return $this->result[$column];
+              }
         }
     }
 
@@ -364,24 +366,23 @@
 /**
  * @return mixed
  */
-    public function getPageSetResultsPerPage()
-    {
+    public function getPageSetResultsPerPage() {
         return $this->page_set_results_per_page;
     }
 
 /**
  * @return mixed
  */
-    public function getPageSetTotalRows()
-    {
+    public function getPageSetTotalRows() {
+      if (isset($this->page_set_total_rows)) {
         return $this->page_set_total_rows;
+      }
     }
 
 /**
  * @param \PDO $instance
  */
-    public function setPDO(\PDO $instance)
-    {
+    public function setPDO(\PDO $instance) {
         $this->pdo = $instance;
     }
 

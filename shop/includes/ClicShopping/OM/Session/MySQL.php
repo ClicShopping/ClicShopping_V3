@@ -23,7 +23,12 @@ class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerI
         session_set_save_handler($this, true);
     }
 
-    public function exists($session_id) {
+/**
+ * Checks if a session exists
+ *
+ * @param string $session_id The ID of the session
+ */
+    public function exists($session_id): bool {
       $Qsession = $this->db->prepare('select 1 from :table_sessions where sesskey = :sesskey');
       $Qsession->bindValue(':sesskey', $session_id);
       $Qsession->execute();
@@ -31,15 +36,26 @@ class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerI
       return $Qsession->fetch() !== false;
     }
 
-    public function open($save_path, $name)   {
+/**
+ * Opens the database storage handler
+ */
+    public function open($save_path, $name): bool {
       return true;
     }
 
-    public function close()  {
+/**
+ * Closes the database storage handler
+ */
+    public function close(): bool  {
       return true;
     }
 
-    public function read($session_id)  {
+/**
+ * Read session data from the database storage handler
+ *
+ * @param string $session_id The ID of the session
+ */
+    public function read($session_id): string  {
       $Qsession = $this->db->prepare('select value from :table_sessions where sesskey = :sesskey');
       $Qsession->bindValue(':sesskey', $session_id);
       $Qsession->execute();
@@ -50,7 +66,13 @@ class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerI
       return '';
     }
 
-    public function write($session_id, $session_data) {
+/**
+ * Writes session data to the database storage handler
+ *
+ * @param string $session_id The ID of the session
+ * @param string $session_data The session data to store
+ */
+    public function write($session_id, $session_data): bool {
         if ($this->exists($session_id)) {
             $result = $this->db->save('sessions', [
                 'expiry' => time(),
@@ -68,9 +90,12 @@ class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerI
 
         return $result !== false;
     }
-
-    public function destroy($session_id)
-    {
+/**
+ * Deletes the session data from the database storage handler
+ *
+ * @param string $session_id The ID of the session
+ */
+    public function destroy($session_id): bool {
         $result = $this->db->delete('sessions', [
             'sesskey' => $session_id
         ]);
@@ -78,8 +103,12 @@ class MySQL extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerI
         return $result !== false;
     }
 
-    public function gc($maxlifetime)
-    {
+/**
+ * Garbage collector for the database storage handler
+ *
+ * @param int $maxlifetime The maxmimum time a session should exist
+ */
+    public function gc($maxlifetime): bool {
         $Qdel = $this->db->prepare('delete from :table_sessions where expiry < :expiry');
         $Qdel->bindValue(':expiry', time() - $maxlifetime);
         $Qdel->execute();

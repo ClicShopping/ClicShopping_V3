@@ -67,8 +67,8 @@
         $Qproducts->execute();
 
         $products_name = $Qproducts->value('products_name');
-      }
 
-      return $products_name;
+        return $products_name;
+      }
     }
   }

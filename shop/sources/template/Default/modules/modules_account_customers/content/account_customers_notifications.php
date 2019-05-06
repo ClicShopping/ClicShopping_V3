@@ -32,7 +32,7 @@ use ClicShopping\OM\HTML;
 // ----------------------
 // --- Notification   -----
 // ----------------------
-  if ($global != 1) {
+  if ($global_notification != 1) {
 ?>
   <div class="separator"></div>
   <div class="hr"></div>

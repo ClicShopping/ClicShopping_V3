@@ -46,7 +46,9 @@
         $position = MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION;
 
         if (isset($CLICSHOPPING_NavigationHistory->path[$back])) {
-          $button_navigation_history =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['page'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'info');
+          if (!is_null(($CLICSHOPPING_NavigationHistory->path[$back]))) {
+            $button_navigation_history = HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'info');
+          }
         }
 
         $button_continue =  HTML::button(CLICSHOPPING::getDef('button_order'), null, CLICSHOPPING::link(null, 'Checkout&Shipping'), 'success');

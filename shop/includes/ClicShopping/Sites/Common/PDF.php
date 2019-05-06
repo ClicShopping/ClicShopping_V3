@@ -161,7 +161,7 @@
     /*
      * output_table_heading
      */
-    public function outputTableHeadingPdf($Y_Fields_Name_position){
+    public static function outputTableHeadingPdf($Y_Fields_Name_position){
       $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);
@@ -192,7 +192,7 @@
 
 // Création entête du tableau des produits pour les bons de livraison
 //  output_table_heading_packingslip
-    public function outputTableHeadingPackingslip($Y_Fields_Name_position){
+    public static function outputTableHeadingPackingslip($Y_Fields_Name_position){
       $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);
@@ -230,7 +230,7 @@
 
 //output_table_customers_suppliers
 //
-    public function outputTableCustomersSuppliers($Y_Fields_Name_position){
+    public static function outputTableCustomersSuppliers($Y_Fields_Name_position){
       $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);

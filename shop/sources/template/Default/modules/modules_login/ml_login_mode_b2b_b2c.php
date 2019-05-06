@@ -52,10 +52,9 @@
 
           $login_mode_b2b_b2c .= '<!-- login_mode_b2b_b2c  end-->' . "\n";
 
+          $CLICSHOPPING_Template->addBlock($login_mode_b2b_b2c, $this->group);
+
         } // end MODE_MANAGEMENT_B2C_B2B
-
-
-        $CLICSHOPPING_Template->addBlock($login_mode_b2b_b2c, $this->group);
       }
     } // function execute
 

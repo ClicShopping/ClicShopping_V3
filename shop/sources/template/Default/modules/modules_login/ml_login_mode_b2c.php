@@ -49,9 +49,9 @@
           $login_mode_b2c .= ob_get_clean();
 
           $login_mode_b2c .= '<!-- login_mode_b2c  end-->' . "\n";
-        }
 
-        $CLICSHOPPING_Template->addBlock($login_mode_b2c, $this->group);
+          $CLICSHOPPING_Template->addBlock($login_mode_b2c, $this->group);
+        }
       }
     } // function execute
 

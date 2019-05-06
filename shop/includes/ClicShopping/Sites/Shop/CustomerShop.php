@@ -60,7 +60,7 @@
         return $this->_data;
       }
     }
-    
+
     public function getID() {
       if ( isset($this->_data['id']) && is_numeric($this->_data['id']) ) {
         return (int)$this->_data['id'];

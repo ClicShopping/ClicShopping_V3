@@ -243,18 +243,18 @@
                       ';
       }
 
-        $Qproduct = $this->db->prepare($sql_query);
+      $Qproduct = $this->db->prepare($sql_query);
 
-        if ( is_numeric($id) ) {
-          $Qproduct->bindInt(':products_id', $id);
-        } else {
-          $Qproduct->bindValue(':products_keyword', $id);
-        }
-
-        $Qproduct->execute();
-
-        $result = $Qproduct->fetch();
+      if ( is_numeric($id) ) {
+        $Qproduct->bindInt(':products_id', $id);
+      } else {
+        $Qproduct->bindValue(':products_keyword', $id);
       }
+
+      $Qproduct->execute();
+
+      $result = $Qproduct->fetch();
+    }
 
       return ( ($result !== false) && (count($result) === 1) );
     }
@@ -1426,11 +1426,13 @@
         $Qproducts->execute();
       }
 
+      $products_model_group = '';
+
 // display the good producs_model
-      if ($this->customer->getCustomersGroupID() != 0 && !empty($Qproducts->value('products_model_group'))) {
+      if ($this->customer->getCustomersGroupID() != 0 && !is_null($Qproducts->value('products_model_group'))) {
         $products_model = HTML::outputProtected($Qproducts->value('products_model_group'));
 
-        if (empty($Qproducts->value('products_model_group'))) {
+        if (is_null($Qproducts->value('products_model_group'))) {
           $products_model  = HTML::outputProtected($Qproducts->value('products_model'));
         }
       } else {
@@ -2342,9 +2344,8 @@
 
       if ($Qproduct->fetch() !== false) {
         $result = $Qproduct->valueDecimal('specials_new_products_price');
+        return $result;
       }
-
-      return $result;
     }
 
 /**
@@ -2611,13 +2612,12 @@
  * @access public
  */
     private function setProductsTickerSpecialsPourcentage($id, $tag = ' %') {
-
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
         $pourcentage_price = (round((($this->setSpecialPriceGroup($id) / $this->setPrice($id))) , 2));
         $pourcentage_price = ((1 - $pourcentage_price) * (-100)) . $tag;
-      }
 
-      return $pourcentage_price;
+        return $pourcentage_price;
+      }
     }
 
 /**

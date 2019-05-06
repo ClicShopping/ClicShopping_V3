@@ -79,15 +79,20 @@
       }
     }
 
-
 /**
-   nl2br() prior PHP 4.2.0 did not convert linefeeds on all OSs (it only converted \n)
+ * nl2br() prior PHP 4.2.0 did not convert linefeeds on all OSs (it only converted \n)
+ * @param $from
+ * @param $to
+ * @param $string
+ * @return mixed
  */
     private function convertLinefeeds($from, $to, $string) {
-
       return str_replace($from, $to, $string);
     }
 
+/**
+ * @param string $text
+ */
     public function addText($text = '') {
       $this->phpMail->IsHTML(false);
       $this->text = $this->convertLinefeeds(array("\r\n", "\n", "\r"), $this->lf, $text);
@@ -122,6 +127,70 @@
       if (isset($images_dir)) $this->html = $this->phpMail->msgHTML($this->html, $images_dir);
     }
 
+/**
+ * @param string $encoding
+ */
+    public function setContentTransferEncoding(string $encoding) {
+      $this->phpMail->Encoding = $encoding;
+    }
+
+/**
+ * @param string $email_address
+ * @param string|null $name
+ * @return bool
+ * @throws Exception
+ */
+    public function addCC(string $email_address, string $name = null) {
+      return $this->phpMail->addCC($email_address, $name);
+    }
+
+/**
+ * @param string $email_address
+ * @param string|null $name
+ * @return bool
+ * @throws Exception
+ */
+   public function addBCC(string $email_address, string $name = null) {
+      return $this->phpMail->addBCC($email_address, $name);
+    }
+
+/**
+ * Clear all recipients
+ */
+   public function clearTo(){
+      $this->phpMail->clearAllRecipients();
+    }
+
+/**
+ * @param string $charset
+ */
+    public function setCharset(string $charset) {
+      $this->phpMail->CharSet = $charset;
+    }
+
+/**
+ * @param string $key
+ * @param string $value
+ */
+    public function addHeader(string $key, string $value) {
+      $this->phpMail->addCustomHeader($key, $value);
+    }
+
+/**
+ * Clear header
+ */
+    public function clearHeaders() {
+      $this->phpMail->clearCustomHeaders();
+    }
+
+/**
+ *
+ * @return mixed
+ */
+    public function getMailer() {
+      return $this->phpmailer;
+    }
+    
 /**
  * @param $path
  * @param string $name

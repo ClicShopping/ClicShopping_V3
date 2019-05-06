@@ -106,7 +106,7 @@
                                       where orders_status_id = :orders_status_id
                                       and language_id = :language_id
                                     ');
-      $Qstatus->bindInt(':orders_status_id', (int)$Qorder->value['orders_status']);
+      $Qstatus->bindInt(':orders_status_id', (int)$Qorder->value('orders_status'));
       $Qstatus->bindInt(':language_id', $this->lang->getId());
       $Qstatus->execute();
 
@@ -116,7 +116,7 @@
                                                   where orders_status_invoice_id = :orders_status_invoice_id
                                                   and language_id = :language_id
                                                 ');
-      $QorderStatusInvoice->bindInt(':orders_status_invoice_id', (int)$Qorder->value['orders_status_invoice']);
+      $QorderStatusInvoice->bindInt(':orders_status_invoice_id', (int)$Qorder->value('orders_status_invoice'));
       $QorderStatusInvoice->bindInt(':language_id', $this->lang->getId());
       $QorderStatusInvoice->execute();
 
@@ -129,14 +129,14 @@
                     'cc_expires' => $Qorder->value('cc_expires'),
                     'date_purchased' => $Qorder->value('date_purchased'),
                     'orders_status' => $Qstatus->value('orders_status_name'),
-                    'orders_status_invoice' => $QorderStatusInvoice->value['orders_status_invoice_name'],
+                    'orders_status_invoice' => $QorderStatusInvoice->value('orders_status_invoice_name'),
                     'last_modified' => $Qorder->value('last_modified'),
                     'total' => $order_total,
                     'shipping_method' => $shipping_title
                     ];
 
       $this->customer = ['id' => $Qorder->valueInt('customers_id'),
-                        'group_id' => $Qorder->valueInt['customers_group_id'],
+                        'group_id' => $Qorder->valueInt('customers_group_id'),
                         'name' => $Qorder->value('customers_name'),
                         'company' => $Qorder->value('customers_company'),
                         'street_address' => $Qorder->value('customers_street_address'),
@@ -147,7 +147,7 @@
                         'country' => array('title' => $Qorder->value('customers_country')),
                         'format_id' => $Qorder->valueInt('customers_address_format_id'),
                         'telephone' => $Qorder->value('customers_telephone'),
-                        'cellular_phone' => $Qorder->value['customers_cellular_phone'],
+                        'cellular_phone' => $Qorder->value('customers_cellular_phone'),
                         'email_address' => $Qorder->value('customers_email_address')
                        ];
 

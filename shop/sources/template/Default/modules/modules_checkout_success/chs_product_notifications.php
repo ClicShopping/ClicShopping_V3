@@ -104,6 +104,7 @@
             while ($Qproducts->fetch()) {
               if (!isset($products_displayed[$Qproducts->valueInt('products_id')])) {
                 $products_id = $Qproducts->valueInt('products_id');
+                $check = false;
 
                 if (Notifications::getGlobalProductNotificationsProduct($products_id)) {
                   $check = true;

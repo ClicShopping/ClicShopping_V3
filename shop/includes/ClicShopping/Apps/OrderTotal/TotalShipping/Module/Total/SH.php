@@ -101,8 +101,7 @@
       }
 
       if (!is_null($CLICSHOPPING_Order->info['shipping_method'])) {
-        if ($CLICSHOPPING_SM->tax_class > 0) {
-
+        if (isset($CLICSHOPPING_SM->tax_class) && $CLICSHOPPING_SM->tax_class > 0) {
           $shipping_tax = $CLICSHOPPING_Tax->getTaxRate($CLICSHOPPING_SM->tax_class, $CLICSHOPPING_Order->delivery['country']['id'], $CLICSHOPPING_Order->delivery['zone_id']);
           $shipping_tax_description = $CLICSHOPPING_Tax->getTaxRateDescription($CLICSHOPPING_SM->tax_class, $CLICSHOPPING_Order->delivery['country']['id'], $CLICSHOPPING_Order->delivery['zone_id']);
           $CLICSHOPPING_Order->info['tax'] += $CLICSHOPPING_Tax->calculate($CLICSHOPPING_Order->info['shipping_cost'], $shipping_tax);

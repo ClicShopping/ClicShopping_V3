@@ -19,9 +19,6 @@
 
   namespace ClicShopping\Sites\Common;
 
-define('FPDF_VERSION','1.6');
-
-
   class FPDF {
 
   public $page;               //current page number

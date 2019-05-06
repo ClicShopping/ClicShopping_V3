@@ -44,7 +44,7 @@
 
         $shipping = '<!-- start cs_checkout_shipping_comment -->'. "\n";
 
-        $comment_fields = HTML::textAreaField('comments', $_SESSION['comments'], 60, 5, 'class="form-control" id="inputComments" placeholder="' . CLICSHOPPING::getDef('module_checkout_shipping_comment_text')  . '"');
+        $comment_fields = HTML::textAreaField('comments', (isset($_SESSION['comments']) ? $_SESSION['comments'] : ''), 60, 5, 'class="form-control" id="inputComments" placeholder="' . CLICSHOPPING::getDef('module_checkout_shipping_comment_text')  . '"');
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_comment'));

@@ -611,9 +611,9 @@
         foreach ($languages as $value) {
           $content .= ' ' . HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . ' ';
         }
-      }
 
-      return $content;
+        return $content;
+      }
     }
 
 /**

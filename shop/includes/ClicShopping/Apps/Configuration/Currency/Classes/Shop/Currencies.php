@@ -184,6 +184,7 @@
       if (isset($CLICSHOPPING_Currencies) && is_object($CLICSHOPPING_Currencies) && (count($CLICSHOPPING_Currencies->currencies) > 1)) {
         reset($CLICSHOPPING_Currencies->currencies);
         $currencies_array = [];
+        $currency_header = '';
 
         foreach($CLICSHOPPING_Currencies->currencies as $key => $value) {
           $currencies_array[] = ['id' => $key,
@@ -204,9 +205,9 @@
           $currency_header .= '<label for="CurrencyDropDown" class="sr-only">Currency</label>';
           $currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
           $currency_header .= '</form>';
+        } else {
+          return $currency_header;
         }
       }
-
-      return $currency_header;
     }
   }

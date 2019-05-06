@@ -33,7 +33,7 @@
 //verify the order is make
       CheckoutSuccess::getCheckoutSuccessOrderCheck();
 
-      if (isset($_GET['Checkout']) &&  isset($_GET['Success']) && $_GET['action'] == 'update') {
+      if (isset($_GET['Checkout']) &&  isset($_GET['Success']) && (isset($_GET['action']) && $_GET['action'] == 'update')) {
         $QglobalNotifications = $CLICSHOPPING_Db->prepare('select global_product_notifications
                                                     from :table_customers_info
                                                     where customers_info_id = :customers_info_id

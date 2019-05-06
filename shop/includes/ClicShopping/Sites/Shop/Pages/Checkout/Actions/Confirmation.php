@@ -71,7 +71,7 @@
         }
       }
 
-       if (!isset($_SESSION['coupon'])) {
+       if (!isset($_SESSION['coupon']) && isset($_POST['coupon'])) {
          $_SESSION['coupon'] = HTML::sanitize($_POST['coupon']);
        }
 
