@@ -192,8 +192,13 @@
 
       $split_parameters = explode('&', $query_result);
 
-      for($i = 0; $i < count($split_parameters); $i++) {
-        $final_split = explode('=', $split_parameters[$i]);
+      foreach ($split_parameters as $value) {
+        $final_split = explode('=', $value);
+
+        if ( ! isset($final_split[1])) {
+          $final_split[1] = null;
+        }
+
         $split_complete[$final_split[0]] = $final_split[1];
       }
 
