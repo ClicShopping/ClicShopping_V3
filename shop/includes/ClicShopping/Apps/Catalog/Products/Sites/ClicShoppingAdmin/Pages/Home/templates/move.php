@@ -41,9 +41,8 @@
 
   $cPath = 0;
 
-  if (isset($cPath)) {
-    $cPath = HTML::sanitize($_GET['cPath']);
-  }
+  if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+
 ?>
   <div class="contentBody">
     <div class="row">

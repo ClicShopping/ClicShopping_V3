@@ -21,7 +21,11 @@
     protected $Id;
 
     public function __construct() {
-      $archive_id = HTML::sanitize($_GET['aID']);
+      if(isset($_GET['aID'])) {
+        $archive_id = HTML::sanitize($_GET['aID']);
+      } else {
+        $archive_id = 0;
+      }
 
       if (!Registry::exists('Orders')) {
         Registry::set('Orders', new OrdersApp());

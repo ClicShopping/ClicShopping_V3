@@ -1426,8 +1426,6 @@
         $Qproducts->execute();
       }
 
-      $products_model_group = '';
-
 // display the good producs_model
       if ($this->customer->getCustomersGroupID() != 0 && !is_null($Qproducts->value('products_model_group'))) {
         $products_model = HTML::outputProtected($Qproducts->value('products_model_group'));

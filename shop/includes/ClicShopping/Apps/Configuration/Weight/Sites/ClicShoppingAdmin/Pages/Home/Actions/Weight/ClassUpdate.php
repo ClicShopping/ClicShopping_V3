@@ -23,8 +23,6 @@
     }
 
     public function execute() {
-      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-
       $weight_class_from_id_old = HTML::sanitize($_GET['wID']);
       $weight_class_to_id_old = HTML::sanitize($_GET['tID']);
 

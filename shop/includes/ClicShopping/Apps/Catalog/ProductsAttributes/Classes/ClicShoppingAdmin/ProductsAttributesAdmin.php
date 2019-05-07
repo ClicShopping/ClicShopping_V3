@@ -72,25 +72,19 @@
 
       $dir_products_image = 'attributes_options/';
 
-
       $error = true;
 
 // load originale image
       $image = new Upload('products_image_resize', $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg']);
 
 // When the image is updated
-
       if ($image->check() && $image->save()) {
         $error = false;
-      }
-
-      if ($error === false) {
-        $sql_data_array['image'] = $dir_products_image . $image->getFilename();
       } else {
-        $sql_data_array['image'] = '';
+        $error = true;
       }
 
-      if ($image->check()) {
+      if ($error === false && $image->check()) {
         $image_name = $image->getFilename();
         $CLICSHOPPING_ImageResample->load($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
 

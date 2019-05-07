@@ -145,7 +145,7 @@
           $cPath = HTML::sanitize($_POST['cPath']);
         } else {
           if (isset($_GET['cPath'])) {
-          $cPath = HTML::sanitize($_GET['cPath']);
+            $cPath = HTML::sanitize($_GET['cPath']);
           } else {
             $cPath = null;
           }

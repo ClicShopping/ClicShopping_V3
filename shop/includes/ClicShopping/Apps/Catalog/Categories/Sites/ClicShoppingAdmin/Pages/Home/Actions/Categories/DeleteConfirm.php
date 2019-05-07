@@ -22,8 +22,8 @@
     public function execute()  {
       $this->app = Registry::get('Categories');
 
-      $categories_id = HTML::sanitize($_GET['categories_id']);
-      $cPath = HTML::sanitize($_GET['cPath']);
+      if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_GET['categories_id']);
+      if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');

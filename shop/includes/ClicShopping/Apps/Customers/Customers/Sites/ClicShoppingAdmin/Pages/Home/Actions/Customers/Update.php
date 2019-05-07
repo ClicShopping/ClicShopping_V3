@@ -75,11 +75,10 @@
       if (isset($_POST['entry_zone_id'])) $entry_zone_id = HTML::sanitize($_POST['entry_zone_id']);
 
 // Autorisation aux clients de modifier adresse principal
-      $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
-      $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+      if (isset($_POST['customers_modify_address_default'])) $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+      if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
 
       $dobDateTime = new DateTime($customers_dob, false);
-
 
 // Contrôle des saisies faites sur les champs TVA Intracom
       if ((strlen($customers_tva_intracom_code_iso) > 0) || (strlen($customers_tva_intracom) > 0)) {
@@ -93,7 +92,7 @@
         $QcustomersTva->execute();
 
         if ($QcustomersTva->fetch() ) {
-          $customers_tva_intracom_code_iso_error = false;
+          $error = false;
         } else {
           $error = true;
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_code_iso'), 'error', 'header');
@@ -103,17 +102,15 @@
       if (strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_firstname'), 'error', 'header');
-        $entry_firstname_error = true;
       } else {
-        $entry_firstname_error = false;
+        $error = false;
       }
 
       if (strlen($customers_lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_lastname'), 'error', 'header');
-        $entry_lastname_error = true;
       } else {
-        $entry_lastname_error = false;
+        $error = false;
       }
 
 // suppression de la date de vérification de l'anniversaire
@@ -122,34 +119,29 @@
 
       if (!Is::email($customers_email_address)) {
         $error = true;
-        $entry_email_address_check_error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error', 'header');
       } else {
-        $entry_email_address_check_error = false;
+        $error = false;
       }
 
       if (strlen($entry_street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
         $error = true;
-        $entry_street_address_error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_street_address'), 'error', 'header');
       } else {
-        $entry_street_address_error = false;
+        $error = false;
       }
 
       if (strlen($entry_postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_postcode'), 'error', 'header');
-        $entry_post_code_error = true;
       } else {
-        $entry_post_code_error = false;
+        $error = false;
       }
 
       if (strlen($entry_city) < ENTRY_CITY_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_city'), 'error', 'header');
-        $entry_city_error = true;
       } else {
-        $entry_city_error = false;
+        $error = false;
       }
 
       if ($entry_country_id === false) {

@@ -70,8 +70,6 @@
         $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
         $Qsubmit->execute();
 
-        $tags_array = [];
-
         if (empty($Qsubmit->value('submit_language_products_new_title'))) {
           $title = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
         } else {

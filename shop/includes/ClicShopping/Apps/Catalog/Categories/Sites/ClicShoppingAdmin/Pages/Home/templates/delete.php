@@ -37,7 +37,7 @@
   $category_childs = ['childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id'))];
   $category_products = ['products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id'))];
 
-  $cPath = HTML::sanitize($_GET['cPath']);
+  if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
   $cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
   $cInfo = new ObjectInfo($cInfo_array);

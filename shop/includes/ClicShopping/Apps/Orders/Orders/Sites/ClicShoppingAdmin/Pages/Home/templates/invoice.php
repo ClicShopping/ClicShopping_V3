@@ -286,6 +286,7 @@
 // Entete du tableau des produits
   $PDF->outputTableHeadingPdf($Y_Fields_Name_position);
 
+  $item_count = 0;
 // Boucle sur les produits
 // Show the products information line by line
   for ($i = 0, $n = count($order->products); $i < $n; $i++) {

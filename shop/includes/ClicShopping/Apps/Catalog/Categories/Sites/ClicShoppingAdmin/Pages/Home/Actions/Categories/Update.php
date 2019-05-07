@@ -28,10 +28,9 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_POST['cID']);
-
-      $cPath = HTML::sanitize($_GET['cPath']);
-      $sort_order = HTML::sanitize($_POST['sort_order']);
-      $current_category_id = $_POST['parent_id'];
+      if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+      if (isset($_GET['sort_order'])) $sort_order = HTML::sanitize($_GET['sort_order']);
+      if (isset($_GET['parent_id'])) $current_category_id = HTML::sanitize($_GET['parent_id']);
 
       $sql_data_array = ['parent_id' => (int)$current_category_id,
                          'sort_order' => (int)$sort_order

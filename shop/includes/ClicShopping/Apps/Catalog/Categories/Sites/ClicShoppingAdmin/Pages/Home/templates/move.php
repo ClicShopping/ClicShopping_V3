@@ -45,9 +45,7 @@
 
   $cPath = 0;
 
-  if (isset($_GET['cPath'])) {
-    $cPath = HTML::sanitize($_GET['cPath']);
-  }
+  if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
   echo HTMLOverrideAdmin::getCkeditor();
 ?>

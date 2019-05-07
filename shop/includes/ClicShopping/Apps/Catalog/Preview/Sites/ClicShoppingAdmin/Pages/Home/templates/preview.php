@@ -76,7 +76,7 @@
             <div class="row">
               <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/produit.gif', $CLICSHOPPING_Preview->getDef('heading_title'), '40', '40'); ?></span>
               <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Preview->getDef('heading_title'); ?></span>
-              <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_new_product'), null, CLICSHOPPING::link(null, 'A&Catalog\Products&page=' . $_GET['pID'] . '&cPath=&action=new_product'), 'success'); ?>
+              <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_new_product'), null, CLICSHOPPING::link(null, 'A&Catalog%5CProducts&Edit&Insert&cPath=0'), 'success'); ?>
           </span>
             </div>
           </div>
@@ -118,7 +118,11 @@
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_volume') . ' ' . $products['products_volume']; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_url') . ' ' .$products['products_url']; ?></div>
 <?php
-  if ($products['products_only_online'] == '1') $check_products_only_online = 'true';
+  if ($products['products_only_online'] == '1')  {
+    $check_products_only_online = true;
+  } else {
+    $check_products_only_online = false;
+  }
 ?>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_only_online'). ' ' . HTML::checkboxField('products_only_online', '', $check_products_only_online); ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_manufacturer') . ' ' . $manufacturer['manufacturers_name']; ?></div>
@@ -150,9 +154,9 @@
 ?>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_status') . ' ' . $products_status; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_quantity') . ' ' . $products['products_quantity']; ?></div>
-            <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_min_order_quantity') . ' ' . $product_qty_unit['products_min_qty_order']; ?></div>
+            <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_min_order_quantity') . ' ' . $products['products_min_qty_order']; ?></div>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_date_available') . ' ' . $products['products_date_available']; ?></div>
-            <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_shipping_delay') . ' ' . $product_qty_unit['products_shipping_delay']; ?></div>
+            <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_shipping_delay') . ' ' . $products['products_shipping_delay']; ?></div>
 
         </div>
       </div>
@@ -236,9 +240,23 @@
     if (isset($_GET['pID'])) {
   // Si c'est un nouveau produit case coche par defaut
 
-      if ($products['products_view'] == '1') $check_product_view = 'true';
-      if ($products['orders_view'] == '1') $check_product_order_view = 'true';
-      if ($products['products_price_kilo'] == '1') $check_products_price_kilo = 'true';
+      if ($products['products_view'] == '1') {
+        $check_product_view = true;
+      } else {
+        $check_product_view = false;
+      }
+
+      if ($products['orders_view'] == '1') {
+        $check_product_order_view = true;
+      } else {
+        $check_product_order_view = false;
+      }
+
+      if ($products['products_price_kilo'] == '1') {
+        $check_products_price_kilo = true;
+      } else {
+        $check_products_price_kilo = false;
+      }
 
 ?>
       <div><?php echo HTML::checkboxField('products_view', '', $check_product_view) . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/last.png', $CLICSHOPPING_Preview->getDef('text_products_view')) . '&nbsp;&nbsp;' . HTML::checkboxField('product_order_view', '', $check_product_order_view)  . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/orders-up.gif', $CLICSHOPPING_Preview->getDef('tab_orders_view')); ?>&nbsp;</div>
@@ -255,7 +273,11 @@
 
   if (isset($_GET['pID'])) {
     // Si c'est un nouveau produit case coche par defaut
-    if ($products['products_price_kilo'] == '1') $check_products_price_kilo = 'true';
+    if ($products['products_price_kilo'] == '1') {
+      $check_products_price_kilo = true;
+    } else {
+      $check_products_price_kilo = false;
+    }
   }
 ?>
             <div class="col-md-12"><?php echo $CLICSHOPPING_Preview->getDef('text_products_price_kilo') . ' ' . HTML::checkboxField('products_view', '', $check_products_price_kilo); ?></div>

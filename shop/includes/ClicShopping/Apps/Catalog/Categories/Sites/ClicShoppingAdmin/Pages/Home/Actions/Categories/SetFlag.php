@@ -26,8 +26,7 @@
 
     public function execute()  {
       if ( ($_GET['flag'] == 0) || ($_GET['flag'] == 1) ) {
-
-        $cPath = HTML::sanitize($_GET['cPath']);
+        if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
         if (isset($_GET['cID'])) {
           Status::getCategoriesStatus($_GET['cID'], (int)$_GET['flag']);

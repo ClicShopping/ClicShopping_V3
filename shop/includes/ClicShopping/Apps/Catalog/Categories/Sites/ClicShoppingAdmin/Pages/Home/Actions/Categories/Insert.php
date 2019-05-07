@@ -28,8 +28,8 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_POST['cID']);
+      if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
-      $cPath = HTML::sanitize($_GET['cPath']);
       $sort_order = HTML::sanitize($_POST['sort_order']);
 
       $sql_data_array = ['sort_order' => (int)$sort_order];
@@ -105,6 +105,6 @@
 
       $CLICSHOPPING_Hooks->call('Categories','Insert');
 
-      $this->app->redirect('Categories&cPath=' . $parent_id );
+      $this->app->redirect('Categories&cPath=' . $cPath );
     }
   }

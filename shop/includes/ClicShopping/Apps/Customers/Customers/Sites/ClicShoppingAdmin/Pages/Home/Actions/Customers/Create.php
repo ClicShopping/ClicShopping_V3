@@ -96,7 +96,6 @@
         $QmultipleGroups->execute();
 
         while ($QmultipleGroups->fetch() ) {
-
           $Qmultiplecustomers = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
                                                                       from :table_customers_groups
                                                                       where customers_group_id = :customers_group_id
@@ -105,8 +104,8 @@
           $Qmultiplecustomers->bindInt(':customers_group_id', $QmultipleGroups->valueInt('customers_group_id') );
           $Qmultiplecustomers->execute();
 
-          if (!($multiple_groups = $Qmultiplecustomers->fetch())) {
-            $Qdelete = $CLICSHOPPING_Customers->db->prepare('select
+          if (!$Qmultiplecustomers->fetch()) {
+            $Qdelete = $CLICSHOPPING_Customers->db->prepare('delete 
                                                              from :table_products_groups
                                                              where customers_group_id = :customers_group_id
                                                            ');
@@ -115,11 +114,8 @@
           }
         } // end while
 
-
-
 // Controle des saisies faites sur les champs TVA Intracom
         if ((strlen($customers_tva_intracom_code_iso) > 0) || (strlen($customers_tva_intracom) > 0)) {
-
           $QcustomersTva = $CLICSHOPPING_Customers->db->prepare('select countries_iso_code_2
                                                                  from :table_countries
                                                                  where countries_iso_code_2 = :countries_iso_code_2
