@@ -39,12 +39,6 @@
 
   $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
-  $cPath = '';
-
-  if (isset($_POST['cPath'])) {
-    $cPath = HTML::sanitize($_POST['cPath']);
-  }
-
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   if (isset($_GET['error']) && $_GET['error'] == 'fileNotSupported') {
@@ -75,9 +69,13 @@
                <div class="form-group">
                  <div class="controls">
 <?php
- if (isset($cPath)) $current_category_id = HTML::sanitize($cPath);
-  echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', ['session_id' => true]);
-  echo HTML::selectMenu('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
+  $current_category_id = 0;
+
+  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
+  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
+
+  echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
 ?>
                    </form>
                   </div>
@@ -86,16 +84,16 @@
 
               <span class="col-md-6 text-md-right">
 <?php
-  if (isset($_GET['search']) || isset($cPath)) {
+  if (isset($_GET['search']) || $current_category_id) {
     echo HTML::button($CLICSHOPPING_Products->getDef('button_back'), null, $CLICSHOPPING_Products->link('Products&' . $cPath_back . 'cID=' . $current_category_id), 'primary') . '&nbsp;';
   }
 
   if (!isset($_GET['search'])) {
-    echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, $CLICSHOPPING_Products->link('Edit&Insert&cPath=' . $cPath), 'success') . '&nbsp;';
+    echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, $CLICSHOPPING_Products->link('Edit&Insert&cPath=' . $current_category_id), 'success') . '&nbsp;';
   }
 
   // select all the product to delete
-  echo HTML::form('delete_all', $CLICSHOPPING_Products->link('Products&DeleteAll&cPath=' . $cPath));
+  echo HTML::form('delete_all', $CLICSHOPPING_Products->link('Products&DeleteAll&cPath=' . $current_category_id));
 ?>
                 <a onClick="$('delete').prop('action', ''); $('form').submit();" class="button"><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_delete'), null, null, 'danger'); ?></a>&nbsp;
               </span>
@@ -113,7 +111,7 @@
       </div>
       <div class="separator"></div>
 <?php
-  if (!is_null($cPath)) {
+  if (!is_null($current_category_id)) {
 ?>
       <div class="alert alert-info" role="alert"><?php echo $CLICSHOPPING_Products->getDef('text_alert_info_product'); ?></div>
 <?php
@@ -142,7 +140,13 @@
   $products_count = 0;
   $rows = 0;
 
-  $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($_POST['search']);
+  $search = '';
+
+  if (isset($_POST['search'])) {
+    $search = HTML::sanitize($_POST['search']);
+  }
+
+  $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($search);
 
   $listingTotalRow = $Qproducts->getPageSetTotalRows();
 

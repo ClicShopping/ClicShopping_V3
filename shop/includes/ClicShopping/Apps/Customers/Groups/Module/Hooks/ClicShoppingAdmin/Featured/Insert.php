@@ -9,7 +9,7 @@
  *
  */
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\BannerManager;
+  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Featured;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
@@ -29,19 +29,19 @@
 
     public function execute() {
       if (isset($_GET['Insert'])) {
-        if (isset($_POST['customers_groups'])) {
-          $customers_group_id = HTML::sanitize($_POST['customers_groups']);
+        if (isset($_POST['customers_group'])) {
+        $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
-          $Qbanners = $this->app->db->prepare('select banners_id
-                                               from :table_banners
-                                               order by banners_id desc
+        $Qfeatured = $this->app->db->prepare('select products_featured_id
+                                               from :table_products_featured
+                                               order by products_featured_id desc
                                                limit 1
                                               ');
-          $Qbanners->execute();
+        $Qfeatured->execute();
 
-          $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
+        $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
 
-          $this->app->db->save('banners', $sql_data_array,  ['banners_id' => (int)$Qbanners->valueInt('banners_id')]);
+        $this->app->db->save('products_featured', $sql_data_array,  ['products_featured_id' => (int)$Qfeatured->valueInt('products_featured_id')]);
         }
       }
     }

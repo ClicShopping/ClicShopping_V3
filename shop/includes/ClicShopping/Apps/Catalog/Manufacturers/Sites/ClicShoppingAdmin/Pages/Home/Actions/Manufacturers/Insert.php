@@ -30,6 +30,8 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
       $manufacturers_image = HTML::sanitize($_POST['manufacturers_image']);
       $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
@@ -38,10 +40,10 @@
       if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && ($_POST['delete_image'] != 'yes')) {
         $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
       } else {
-        $manufacturers_image = 'null';
+        $manufacturers_image = null;
       }
 
-      if(empty($suppliers_id)) $suppliers_id = 0;
+      if (empty($suppliers_id)) $suppliers_id = 0;
 
       $sql_data_array = ['manufacturers_name' => $manufacturers_name,
                          'suppliers_id' => $suppliers_id
@@ -86,6 +88,6 @@
 
       $CLICSHOPPING_Hooks->call('Manufacturers','Insert');
 
-      $this->app->redirect('Manufacturers&' . HTML::sanitize($_GET['page']) . '&mID=' . $manufacturers_id);
+      $this->app->redirect('Manufacturers&page=' . $page . '&mID=' . $manufacturers_id);
     }
   }

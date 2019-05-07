@@ -41,6 +41,8 @@
       $suppliers_notes = $_POST['suppliers_notes'];
       $suppliers_image = HTML::sanitize($_POST['suppliers_image']);
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
 // Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
       if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && ($_POST['delete_image'] != 'yes')) {
         $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
@@ -94,6 +96,6 @@
 
       $CLICSHOPPING_Hooks->call('Suppliers','Insert');
 
-      $this->app->redirect('Suppliers&' . $_GET['page'] . '&mID=' . $suppliers_id);
+      $this->app->redirect('Suppliers&page=' . $page . '&mID=' . $suppliers_id);
     }
   }

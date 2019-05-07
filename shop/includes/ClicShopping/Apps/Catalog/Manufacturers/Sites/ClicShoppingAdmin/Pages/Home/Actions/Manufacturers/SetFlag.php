@@ -25,8 +25,14 @@
 
     public function execute() {
 
-      Status::getManufacturersStatus($_GET['id'], $_GET['flag']);
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $this->app->redirect('Manufacturers&' . $_GET['page'] . '&mID=' . $_GET['id']);
+      if (isset($_GET['id']) && isset($_GET['flag'])) {
+        Status::getManufacturersStatus($_GET['id'], $_GET['flag']);
+
+        $this->app->redirect('Manufacturers&page=' . $page . '&mID=' . $_GET['id']);
+      } else {
+        $this->app->redirect('Manufacturers&page=' . $page);
+      }
     }
   }

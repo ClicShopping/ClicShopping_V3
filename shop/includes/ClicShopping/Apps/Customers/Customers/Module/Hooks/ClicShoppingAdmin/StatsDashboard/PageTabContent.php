@@ -29,6 +29,8 @@
     }
 
     private function statsCountCustomers($groups = null) {
+      $condition = '';
+
       if (!is_null($groups)) {
         if ($groups == 'B2C') {
           $condition = 'where customers_group_id = 0';
@@ -72,6 +74,8 @@
     }
 
     private function statsAverageCustomersWomen() {
+      $avgage = '';
+
       $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent,
                                                             ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                        from :table_customers

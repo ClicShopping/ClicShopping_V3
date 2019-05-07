@@ -270,7 +270,6 @@
 <?php
   for ($i=0, $n=count($languages); $i<$n; $i++) {
 ?>
-
               <div class="row">
                 <div class="col-md-1">
                   <div class="form-group row">
@@ -284,7 +283,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?></label>
                     <div class="col-md-8">
-                      <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']', (($categories_head_title_tag[$languages[$i]['id']]) ? $categories_head_title_tag[$languages[$i]['id']] : SeoAdmin::getCategoriesSeoTitle($cInfo->categories_id, $languages[$i]['id'])),'maxlength="70" size="77" id="default_title_'.$i.'"', false); ?>
+                      <?php echo HTML::inputField('categories_head_title_tag[' . $languages[$i]['id'] . ']',  SeoAdmin::getCategoriesSeoTitle($cInfo->categories_id, $languages[$i]['id']),'maxlength="70" size="77" id="default_title_'.$i.'"', false); ?>
                     </div>
                   </div>
                 </div>
@@ -295,7 +294,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_header_description'); ?></label>
                     <div class="col-md-8">
-                      <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', (isset($categories_head_desc_tag[$languages[$i]['id']]) ? $categories_head_desc_tag[$languages[$i]['id']] : SeoAdmin::getCategoriesSeoDescription($cInfo->categories_id, $languages[$i]['id'])), '75', '2', 'id="default_description_'.$i.'"'); ?>
+                      <?php echo HTML::textAreaField('categories_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoDescription($cInfo->categories_id, $languages[$i]['id']), '75', '2', 'id="default_description_'.$i.'"'); ?>
                     </div>
                   </div>
                 </div>
@@ -306,7 +305,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_products_page_title'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_products_keywords'); ?></label>
                     <div class="col-md-8">
-                      <?php echo HTML::textAreaField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', (isset($categories_head_keywords_tag[$languages[$i]['id']]) ? $categories_head_keywords_tag[$languages[$i]['id']] : SeoAdmin::getCategoriesSeoKeywords($cInfo->categories_id, $languages[$i]['id'])), '75', '5'); ?>
+                      <?php echo HTML::textAreaField('categories_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getCategoriesSeoKeywords($cInfo->categories_id, $languages[$i]['id']), '75', '5'); ?>
                     </div>
                   </div>
                 </div>

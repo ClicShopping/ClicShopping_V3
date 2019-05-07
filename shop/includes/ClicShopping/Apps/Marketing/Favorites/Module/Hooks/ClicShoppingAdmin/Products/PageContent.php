@@ -35,18 +35,16 @@
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/PageContent');
 
-      $output = '';
-
-     $content = '<div class="row">';
-     $content .= '<div class="col-md-9">';
-     $content .= '<div class="form-group row">';
-     $content .= '<label for="' . $this->app->getDef('text_products_favorites') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_favorites') . '</label>';
-     $content .= '<div class="col-md-5">';
-     $content .= HTML::checkboxField('products_favorites', 'yes', false);
-     $content .= '</div>';
-     $content .= '</div>';
-     $content .= '</div>';
-     $content .= '</div>';
+      $content = '<div class="row">';
+      $content .= '<div class="col-md-9">';
+      $content .= '<div class="form-group row">';
+      $content .= '<label for="' . $this->app->getDef('text_products_favorites') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_favorites') . '</label>';
+      $content .= '<div class="col-md-5">';
+      $content .= HTML::checkboxField('products_favorites', 'yes', false);
+      $content .= '</div>';
+      $content .= '</div>';
+      $content .= '</div>';
+      $content .= '</div>';
 
       $output = <<<EOD
 <!-- ######################## -->

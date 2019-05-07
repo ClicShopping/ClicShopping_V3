@@ -60,10 +60,13 @@
 
       $manufacturer = $this->getManufacturer();
 
-      $manufacturers_id = $manufacturer[0]['manufacturers_id'];
-      $manufacturers_name = $manufacturer[0]['manufacturers_name'];
-
-      $output = '';
+      if (count($manufacturer) > 0) {
+        $manufacturers_id = $manufacturer[0]['manufacturers_id'];
+        $manufacturers_name = $manufacturer[0]['manufacturers_name'];
+      } else {
+        $manufacturers_id = null;
+        $manufacturers_name = '';
+      }
 
       $content = '<!-- Link trigger modal -->';
       $content .= '<div class="col-md-5">';

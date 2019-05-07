@@ -116,9 +116,9 @@
         $attribute_image_name_end = strstr($attribute_image_name, '&quot;');
         $attribute_image_name = str_replace($attribute_image_name_end, '', $attribute_image_name);
         $products_image_name = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $attribute_image_name);
-      }
 
-      return $products_image_name;
+        return $products_image_name;
+      }
     }
 
 /**

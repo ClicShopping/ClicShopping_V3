@@ -38,8 +38,6 @@
         return false;
       }
 
-      $output = '';
-
       if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
       $content = '<!-- Categories -->';

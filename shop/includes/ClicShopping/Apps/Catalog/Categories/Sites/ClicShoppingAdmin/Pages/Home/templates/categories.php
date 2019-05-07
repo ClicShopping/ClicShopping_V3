@@ -20,8 +20,6 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-
-  $current_category_id = null;
 ?>
     <div class="contentBody">
       <div class="row">
@@ -45,11 +43,13 @@
                <div class="form-group">
                  <div class="controls">
 <?php
+  $current_category_id = 0;
+
   if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
   if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
   echo HTML::form('goto', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
-  echo HTML::selectMenu('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
+  echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
                   </form>
@@ -123,7 +123,13 @@
 <?php
   $categories_count = 0;
 
-  $Qcategories = $CLICSHOPPING_CategoriesAdmin->getSearch($_POST['search']);
+  if (isset($_POST['search'])) {
+    $search = HTML::sanitize($_POST['search']);
+  } else {
+    $search = null;
+  }
+
+  $Qcategories = $CLICSHOPPING_CategoriesAdmin->getSearch($search);
 
   $listingTotalRow = $Qcategories->getPageSetTotalRows();
 
@@ -132,13 +138,17 @@
       $categories_count++;
 
 // Get categories_id for product if search
-      if (isset($_POST['search'])) {
+      if (!empty($search)) {
         $cPath = $Qcategories->valueInt('categories_id');
       } else {
         if (isset($_POST['cPath'])) {
           $cPath = HTML::sanitize($_POST['cPath']);
         } else {
+          if (isset($_GET['cPath'])) {
           $cPath = HTML::sanitize($_GET['cPath']);
+          } else {
+            $cPath = null;
+          }
         }
       }
 

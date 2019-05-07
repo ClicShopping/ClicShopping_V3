@@ -30,6 +30,7 @@
     }
 
     private function statsAverageCustomersMen() {
+      $numberByPerCentMen = '   ';
 
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                             from :table_customers
@@ -48,7 +49,8 @@
 
 
     private function statsAverageCustomersWomen() {
-
+      $numberByPerCentWomen = '   ';
+      
       $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                               from :table_customers
                                                               where customers_gender = :customers_gender

@@ -30,6 +30,8 @@
 
       if (isset($_GET['mID'])) $manufacturers_id = HTML::sanitize($_GET['mID']);
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $manufacturers_image = $_POST['manufacturers_image'];
       $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
       $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
@@ -45,7 +47,7 @@
       $this->app->db->save('manufacturers', $sql_data_array, ['manufacturers_id' => (int)$manufacturers_id] );
 
 // Insertion images des fabricants via l'editeur FCKeditor (fonctionne sur les nouvelles et editions des fabricants)
-      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && !empty($_POST['manufacturers_image']) && ($_POST['delete_image'] != 'yes')) {
+      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && !empty($_POST['manufacturers_image']) && (isset($_POST['delete_image']) && $_POST['delete_image'] != 'yes')) {
         $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
 
         $sql_data_array = ['manufacturers_image' => $manufacturers_image];
@@ -84,6 +86,6 @@
 
       $CLICSHOPPING_Hooks->call('Manufacturers','Update');
 
-      $this->app->redirect('Manufacturers&page=' . $_GET['page'] . '&mID=' . $manufacturers_id);
+      $this->app->redirect('Manufacturers&page=' . $page . '&mID=' . $manufacturers_id);
     }
   }

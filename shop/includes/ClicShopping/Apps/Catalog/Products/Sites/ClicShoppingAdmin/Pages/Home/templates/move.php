@@ -39,7 +39,11 @@
 
   $pInfo = new ObjectInfo($array_products);
 
-  $cPath = HTML::sanitize($_GET['cPath']);
+  $cPath = 0;
+
+  if (isset($cPath)) {
+    $cPath = HTML::sanitize($_GET['cPath']);
+  }
 ?>
   <div class="contentBody">
     <div class="row">
@@ -66,7 +70,7 @@
         </div>
         <div class="separator"></div>
         <div class="col-md-12">
-          <span class="col-sm-4"><br /><?php echo $CLICSHOPPING_Products->getDef('text_move', ['products_name' => $pInfo->products_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id); ?></span>
+          <span class="col-sm-4"><br /><?php echo $CLICSHOPPING_Products->getDef('text_move', ['products_name' => $pInfo->products_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cPath); ?></span>
         </div>
         <div class="separator"></div>
         <div class="col-md-12 text-md-center">

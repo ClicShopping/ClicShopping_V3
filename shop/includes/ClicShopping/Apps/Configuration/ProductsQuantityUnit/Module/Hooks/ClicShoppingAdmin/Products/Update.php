@@ -28,7 +28,7 @@
     }
 
     public function execute()  {
-      if (isset($_GET['Update'])) {
+      if (isset($_GET['Update']) && isset($_GET['pID']) && isset($_POST['products_quantity_unit_id'])) {
         $id = HTML::sanitize($_GET['pID']);
 
         $Qupdate = $this->app->db->prepare('update :table_products

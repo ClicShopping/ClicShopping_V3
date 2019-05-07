@@ -35,8 +35,6 @@
 
      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/PageContent');
 
-     $output = '';
-
      $content = '<div class="row">';
      $content .= '<div class="col-md-9">';
      $content .= '<div class="form-group row">';

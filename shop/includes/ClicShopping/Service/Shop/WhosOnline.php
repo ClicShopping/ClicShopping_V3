@@ -28,7 +28,12 @@
         $wo_session_id = session_id();
         $wo_ip_address = HTTP::GetIpAddress();
         $wo_last_page_url = HTML::outputProtected(substr($_SERVER['REQUEST_URI'], 0, 255));
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+        if (isset($_SERVER['HTTP_USER_AGENT'])) {
+          $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        } else {
+          $user_agent = '';
+        }
 
         $current_time = time();
         $xx_mins_ago = ($current_time - 900);

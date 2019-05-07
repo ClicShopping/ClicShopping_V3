@@ -29,13 +29,15 @@
 
     private function removeGroups($id) {
 
-      if (!empty($_POST['remove_id'])) {
+      if (isset($_POST['remove_id']) && !empty($_POST['remove_id'])) {
         $this->app->db->delete('products_groups', ['products_id' => (int)$id]);
       }
     }
 
     public function execute() {
-      $id = HTML::sanitize($_POST['remove_id']);
-      $this->removeGroups($id);
+      if (isset($_POST['remove_id'])) {
+        $id = HTML::sanitize($_POST['remove_id']);
+        $this->removeGroups($id);
+      }
     }
   }

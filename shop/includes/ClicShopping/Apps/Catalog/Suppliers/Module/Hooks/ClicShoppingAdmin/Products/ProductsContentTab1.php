@@ -30,11 +30,17 @@
     }
 
     private function getSupplier() {
+
+
+      if (isset($_GET['pID'])) {
+        $pID = HTML::sanitize($_GET['pID']);
+      }
+
       $Qproducts = $this->app->db->prepare('select suppliers_id
                                             from :table_products
                                             where products_id = :products_id
                                           ');
-      $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
+      $Qproducts->bindInt(':products_id', HTML::sanitize($pID));
 
       $Qproducts->execute();
 
@@ -60,10 +66,13 @@
 
       $suppliers = $this->getSupplier();
 
-      $suppliers_id = $suppliers[0]['suppliers_id'];
-      $suppliers_name = $suppliers[0]['suppliers_name'];
-
-      $output = '';
+      if (count($suppliers) > 0) {
+        $suppliers_id = $suppliers[0]['suppliers_id'];
+        $suppliers_name = $suppliers[0]['suppliers_name'];
+      } else {
+        $suppliers_id = null;
+        $suppliers_name = null;
+      }
 
       $content = '<!-- Link trigger modal -->';
       $content .= '<div class="col-md-5">';

@@ -28,34 +28,36 @@
     }
 
     public function execute() {
-      $current_products_id = HTML::sanitize($_POST['products_id']);
-
       if (!defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
         return false;
       }
 
-      if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
-        $Qmanufacturers = $this->app->db->prepare('select manufacturers_id
-                                                 from :table_products
-                                                 where products_id = :products_id
-                                                ');
-        $Qmanufacturers->bindInt(':products_id', $current_products_id);
-        $Qmanufacturers->execute();
+      if (isset($_POST['products_id'])) {
+      $current_products_id = HTML::sanitize($_POST['products_id']);
 
-        $manufacturers_id = $Qmanufacturers->valueInt('manufacturers_id');
+        if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
+          $Qmanufacturers = $this->app->db->prepare('select manufacturers_id
+                                                   from :table_products
+                                                   where products_id = :products_id
+                                                  ');
+          $Qmanufacturers->bindInt(':products_id', $current_products_id);
+          $Qmanufacturers->execute();
 
-        $Qproducts = $this->app->db->prepare('select products_id 
-                                              from :table_products                                            
-                                              order by products_id desc
-                                              limit 1 
-                                             ');
-        $Qproducts->execute();
+          $manufacturers_id = $Qmanufacturers->valueInt('manufacturers_id');
 
-        $id = $Qproducts->valueInt('products_id');
+          $Qproducts = $this->app->db->prepare('select products_id 
+                                                from :table_products                                            
+                                                order by products_id desc
+                                                limit 1 
+                                               ');
+          $Qproducts->execute();
 
-        $sql_data_array = ['manufacturers_id'  => (int)$manufacturers_id];
+          $id = $Qproducts->valueInt('products_id');
 
-        $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
+          $sql_data_array = ['manufacturers_id'  => (int)$manufacturers_id];
+
+          $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
+        }
       }
     }
   }

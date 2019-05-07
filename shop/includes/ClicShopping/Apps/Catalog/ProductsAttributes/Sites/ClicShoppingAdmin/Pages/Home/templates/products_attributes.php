@@ -47,7 +47,7 @@
 <script language="javascript"><!--
   function go_option() {
     if (document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value != "none") {
-      location = "<?php echo $CLICSHOPPING_ProductsAttributes->link('productsAttributes&option_page=' . ($_GET['option_page'] ? $_GET['option_page'] : 1)); ?>&option_order_by="+document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value;
+      location = "<?php echo $CLICSHOPPING_ProductsAttributes->link('productsAttributes&option_page=' . $option_page); ?>&option_order_by="+document.option_order_by.selected.options[document.option_order_by.selected.selectedIndex].value;
     }
   }
 //--></script>

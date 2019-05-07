@@ -345,7 +345,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_title'); ?></label>
                     <div class="col-md-8">
-                      <?php echo HTML::inputField('manufacturer_seo_title[' . $languages[$i]['id'] . ']', (($manufacturer_seo_title[$languages[$i]['id']]) ? $manufacturer_seo_title[$languages[$i]['id']] : SeoAdmin::getManufacturerSeoTitle($mInfo->manufacturers_id, $languages[$i]['id'])),'maxlength="70" size="77" id="default_title_'.$i.'"', false); ?>
+                      <?php echo HTML::inputField('manufacturer_seo_title[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoTitle($mInfo->manufacturers_id, $languages[$i]['id']),'maxlength="70" size="77" id="default_title_'.$i.'"', false); ?>
                     </div>
                   </div>
                 </div>
@@ -356,7 +356,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturer_seo_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_description'); ?></label>
                     <div class="col-md-8">
-                      <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages[$i]['id'] . ']', (isset($manufacturer_seo_description[$languages[$i]['id']]) ? $manufacturer_seo_description[$languages[$i]['id']] : SeoAdmin::getManufacturerSeoDescription($mInfo->manufacturers_id, $languages[$i]['id'])), '75', '2', 'id="default_description_'.$i.'"'); ?>
+                      <?php echo HTML::textAreaField('manufacturer_seo_description[' . $languages[$i]['id'] . ']', SeoAdmin::getManufacturerSeoDescription($mInfo->manufacturers_id, $languages[$i]['id']), '75', '2', 'id="default_description_'.$i.'"'); ?>
                     </div>
                   </div>
                 </div>
@@ -367,7 +367,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo_keywords'); ?></label>
                     <div class="col-md-8">
-                      <?php echo HTML::textAreaField('manufacturer_seo_keyword[' . $languages[$i]['id'] . ']', (isset($manufacturer_seo_keyword[$languages[$i]['id']]) ? $manufacturer_seo_keyword[$languages[$i]['id']] : SeoAdmin::getManufacturerSeoKeyword($mInfo->manufacturers_id, $languages[$i]['id'])), '75', '5'); ?>
+                      <?php echo HTML::textAreaField('manufacturer_seo_keyword[' . $languages[$i]['id'] . ']',  SeoAdmin::getManufacturerSeoKeyword($mInfo->manufacturers_id, $languages[$i]['id']), '75', '5'); ?>
                     </div>
                   </div>
                 </div>

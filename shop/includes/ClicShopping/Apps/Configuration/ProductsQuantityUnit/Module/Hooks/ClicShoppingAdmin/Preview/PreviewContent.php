@@ -41,10 +41,7 @@
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Preview/preview_content');
 
-      $output = '';
-
       $content = '<div class="col-md-12">' . $this->app->getDef('text_products_quantity_unit') . ' : ' . $this->qteUnit->getProductsQuantityUnitTitle() . '</div>';
-
 
       $output = <<<EOD
 <!-- ######################## -->

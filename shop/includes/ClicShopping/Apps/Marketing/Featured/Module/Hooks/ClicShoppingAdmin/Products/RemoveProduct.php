@@ -36,7 +36,9 @@
 
 
     public function execute() {
-      $id = HTML::sanitize($_POST['pID']);
-      $this->removeProducts($id);
+      if (isset($_POST['pID'])) {
+        $id = HTML::sanitize($_POST['pID']);
+        $this->removeProducts($id);
+      }
     }
   }

@@ -9,7 +9,7 @@
  *
  */
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\BannerManager;
+  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Favorites;
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -30,15 +30,15 @@
     }
 
     private function getCustomerGroupId() {
-      if (isset($_GET['bID'])) {
-        $Qbanners = $this->app->db->prepare('select customers_group_id
-                                             from :table_banners
-                                             where banners_id = :banners_id
-                                            ');
-        $Qbanners->bindInt('banners_id', $_GET['bID']);
-        $Qbanners->execute();
+      if (isset($_GET['sID'])) {
+        $Qfavorites = $this->app->db->prepare('select customers_group_id
+                                           from :table_products_favorites
+                                           where products_favorites_id = :products_favorites_id
+                                          ');
+        $Qfavorites->bindInt('products_favorites_id', $_GET['sID']);
+        $Qfavorites->execute();
 
-        return $Qbanners->valueInt('customers_group_id');
+        return $Qfavorites->valueInt('customers_group_id');
       }
     }
 
@@ -57,7 +57,7 @@
           $content .= '<div class="form-group row">';
           $content .= '<label for="'  . $this->app->getDef('text_customer_group') .'" class="col-5 col-form-label">' . $this->app->getDef('text_customer_group') . '</label>';
           $content .= '<div class="col-md-5">';
-          $content .=  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $this->getCustomerGroupId());
+          $content .=  HTML::selectMenu('customers_group', GroupsB2BAdmin::getAllGroups(), $this->getCustomerGroupId());
           $content .= '</div>';
           $content .= '</div>';
           $content .= '</div>';

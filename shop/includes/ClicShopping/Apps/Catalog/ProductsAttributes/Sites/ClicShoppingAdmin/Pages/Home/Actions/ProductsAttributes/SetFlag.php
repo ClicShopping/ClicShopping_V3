@@ -30,6 +30,10 @@
         }
       }
 
-      $this->app->redirect('ProductsAttributes&products_attributes_id=' . $_GET['products_attributes_id'] . '#tab3');
+      if (isset($_GET['products_attributes_id'])) {
+        $this->app->redirect('ProductsAttributes&products_attributes_id=' . $_GET['products_attributes_id'] . '#tab3');
+      } else {
+        $this->app->redirect('ProductsAttributes#tab3');
+      }
     }
   }

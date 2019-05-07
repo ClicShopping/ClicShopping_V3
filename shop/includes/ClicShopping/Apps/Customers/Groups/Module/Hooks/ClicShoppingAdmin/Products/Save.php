@@ -28,9 +28,13 @@
 
       $this->app = Registry::get('Groups');
 
-      $this->id = HTML::sanitize($_GET['pID']);
+      if (isset($_GET['pID'])) {
+        $this->id = HTML::sanitize($_GET['pID']);
+      }
 
-      $this->currentCategoryId = HTML::sanitize($_POST['current_category_id']);
+      if (isset($_POST['current_category_id'])) {
+      	$this->currentCategoryId = HTML::sanitize($_POST['current_category_id']);
+      }
     }
 
     public function execute() {

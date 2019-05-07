@@ -24,7 +24,7 @@
     }
 
     public function execute()  {
-      if ( ($_GET['flag'] == 0) || ($_GET['flag'] == 1) ) {
+      if (isset($_GET['flag']) && ($_GET['flag'] == 0 || $_GET['flag'] == 1)) {
         if (isset($_GET['pID'])) {
           ProductsStatusAdmin::getProductStatus($_GET['pID'], $_GET['flag']);
         }
@@ -36,6 +36,12 @@
         Cache::clear('upcoming');
       }
 
-      $this->app->redirect('Products&cPath=' . $_GET['cPath'] . '&pID=' . $_GET['pID']);
+      if (isset($_GET['cPath']) && isset($_GET['pID'])) {
+        $this->app->redirect('Products&cPath=' . $_GET['cPath'] . '&pID=' . $_GET['pID']);
+      } elseif (isset($_GET['pID'])) {
+        $this->app->redirect('Products&pID=' . $_GET['pID']);
+      } else {
+        $this->app->redirect('Products');
+      }
     }
   }

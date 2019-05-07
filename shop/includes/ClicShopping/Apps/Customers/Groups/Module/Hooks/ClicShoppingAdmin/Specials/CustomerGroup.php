@@ -30,14 +30,16 @@
     }
 
     private function getCustomerGroupId() {
-      $Qspecials = $this->app->db->prepare('select customers_group_id
-                                         from :table_specials
-                                         where specials_id = :specials_id
-                                        ');
-      $Qspecials->bindInt('specials_id', $_GET['sID']);
-      $Qspecials->execute();
+      if (isset($_GET['sID'])) {
+        $Qspecials = $this->app->db->prepare('select customers_group_id
+                                           from :table_specials
+                                           where specials_id = :specials_id
+                                          ');
+        $Qspecials->bindInt('specials_id', $_GET['sID']);
+        $Qspecials->execute();
 
-      return $Qspecials->valueInt('customers_group_id');
+        return $Qspecials->valueInt('customers_group_id');
+      }
     }
 
     public function display() {
@@ -48,8 +50,6 @@
       }
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/CustomerGroup/customer_group');
-
-      $output = '';
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True' &&  !empty(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS)) {
         if (MODE_B2B_B2C == 'true') {

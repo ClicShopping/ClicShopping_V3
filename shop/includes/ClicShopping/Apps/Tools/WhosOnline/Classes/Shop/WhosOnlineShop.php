@@ -89,6 +89,12 @@
         $referer = 'localhost or not defined';
       }
 
+      if (isset($_SERVER['HTTP_USER_AGENT'])) {
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+      } else {
+        $user_agent = 'user aget or not defined';
+      }
+
       if ($Qsession->fetch() !== false) {
         $sql_array = ['customer_id' => $wo_customer_id,
                       'full_name' => $wo_full_name,
@@ -96,7 +102,7 @@
                       'time_last_click' => $current_time,
                       'last_page_url' => $wo_last_page_url,
                       'http_referer' => $referer,
-                      'user_agent' => $_SERVER['HTTP_USER_AGENT']
+                      'user_agent' => $user_agent
                      ];
 
         $CLICSHOPPING_Db->save('whos_online', $sql_array, ['session_id' => $wo_session_id]);
@@ -109,7 +115,7 @@
                       'time_last_click' => $current_time,
                       'last_page_url' => $wo_last_page_url,
                       'http_referer' => $referer,
-                      'user_agent' => $_SERVER['HTTP_USER_AGENT']
+                      'user_agent' => $user_agent
                      ];
 
         $CLICSHOPPING_Db->save('whos_online', $sql_array);

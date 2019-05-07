@@ -154,7 +154,7 @@
     }
 
     private function saveFileUpload() {
-      if (!is_null($_POST['products_download_filename'])) {
+      if (isset($_POST['products_download_filename'])  && !is_null($_POST['products_download_filename'])) {
         $upload_file = new Upload('products_download_filename', $this->template->getPathDownloadShopDirectory(), null, array('zip', 'doc', 'pdf', 'odf', 'xls',  'mp3', 'mp4', 'avi'));
 
         if ( $upload_file->check() && $upload_file->save() ) {
@@ -171,9 +171,9 @@
           $file = HTML::removeFileAccents($_POST['products_download_filename']);
           $sql_data_array['products_download_filename'] = $file;
         }
-      }
 
-      return $sql_data_array['products_download_filename'];
+        return $sql_data_array['products_download_filename'];
+      }
     }
 
 /**
@@ -221,8 +221,12 @@
         $error = true;
 
 // image resample
-        $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
-        $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
+        if (isset($_POST['new_directory_products_image'])) {
+          $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
+          $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
+        } else {
+          $new_dir_products_image = '';
+        }
 
         if(empty($new_dir_products_image)) {
           $dir_products_image = 'products/';
@@ -239,12 +243,11 @@
 
 
 // load originale image
-        $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
-// When the image is updated
+          $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
 
-        if ($image->check() && $image->save()) {
-          $error = false;
-        }
+          if ($image->check() && $image->save()) {
+            $error = false;
+          }
 
         if ($error === false) {
           $sql_data_array['image'] = $dir_products_image . $image->getFilename();
@@ -301,15 +304,17 @@
           if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name)) {
             @unlink($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
           }
+        } else {
+          $big_image_resized = '';
+          $medium_image_resized = '';
         }
 
 // Ajoute ou efface l'image dans la base de donnees
-        if ($_POST['delete_image'] == 'yes') {
+        if (isset($_POST['delete_image']) &&  $_POST['delete_image'] == 'yes') {
           $this->products_image = $sql_data_array['products_image'] = null;
           $this->products_image_zoom = $sql_data_array['products_image_zoom'] = null;
           $this->products_image_medium = $sql_data_array['products_image_medium'] = null;
         } else {
-
           if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || $small_image_resized != '') {
 
 // Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
@@ -331,8 +336,9 @@
           }
 
 // big image
-          if ((isset($_POST['products_image_zoom'])) || $big_image_resized != '') {
-            $products_image_zoom_name = HTML::sanitize($_POST['products_image_zoom']);
+
+          if (!empty($big_image_resized)) {
+            $products_image_zoom_name = HTML::sanitize($big_image_resized);
             $products_image_zoom_name = htmlspecialchars($products_image_zoom_name);
             $products_image_zoom_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_zoom_name);
             $products_image_zoom_name_end = strstr($products_image_zoom_name, '&quot;');
@@ -349,8 +355,8 @@
           }
 
 // medium image
-          if ((isset($_POST['products_image_medium']) && !is_null($_POST['products_image_medium'])) || $medium_image_resized != '') {
-            $products_image_medium_name = HTML::sanitize($_POST['products_image_medium']);
+          if ( !empty($medium_image_resized)) {
+            $products_image_medium_name = HTML::sanitize($medium_image_resized);
             $products_image_medium_name = htmlspecialchars($products_image_medium_name);
             $products_image_medium_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_medium_name);
             $products_image_medium_name_end = strstr($products_image_medium_name, '&quot;');
@@ -378,9 +384,14 @@
       $error = true;
 
 // gallery
-      $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);
-      $new_dir = strtolower($new_dir_without_accents);
-      $dir = 'products/' . (!empty($new_dir) ? $new_dir : $_POST['directory']);
+      if (isset($_POST['new_directory'])){
+        $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);
+        $new_dir = strtolower($new_dir_without_accents);
+        $dir = 'products/' . (!empty($new_dir) ? $new_dir : $_POST['directory']);
+      } else {
+        $dir = '';
+      }
+
 
       if (!empty($new_dir) && !is_dir($new_dir)) {
 // depend server configuration
@@ -389,12 +400,12 @@
         $separator = '/';
       }
 
-      if (!is_null($_POST['directory'])) {
+      if (isset($_POST['directory']) && !is_null($_POST['directory'])) {
         $separator = '/';
       }
 
       $pi_sort_order = 0;
-      $piArray = array(0);
+      $piArray = [0];
 
       foreach ($_FILES as $key => $value) {
 // Update existing large product images
@@ -1299,10 +1310,14 @@
         $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qproducts->execute();
       } else {
+        $current_category_id = 0;
+
         if (isset($_POST['cPath'])) {
           $current_category_id = HTML::sanitize($_POST['cPath']);
         } else {
-          $current_category_id = HTML::sanitize($_GET['cPath']);
+          if (isset($_GET['cPath'])) {
+            $current_category_id = HTML::sanitize($_GET['cPath']);
+          }
         }
 
         $Qproducts = $this->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
@@ -1355,34 +1370,34 @@
       $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
 
 // Definir la position 0 ou 1 pour --> products_view : Affichage Produit Grand public - orders_view : Autorisation Commande
-      if (HTML::sanitize($_POST['products_view']) == 1) {
+      if (isset($_POST['products_view']) && HTML::sanitize($_POST['products_view']) == 1) {
         $products_view = 1;
       } else {
         $products_view = 0;
       }
 
-      if (HTML::sanitize($_POST['orders_view']) == 1) {
+      if (isset($_POST['orders_view']) &&  HTML::sanitize($_POST['orders_view']) == 1) {
         $orders_view = 1;
       } else {
         $orders_view = 0;
       }
 
 // Gestion de l'affichage concernant la le prix / kg
-      if (HTML::sanitize($_POST['products_price_kilo']) == 1) {
+      if (isset($_POST['products_price_kilo']) && HTML::sanitize($_POST['products_price_kilo']) == 1) {
         $products_price_kilo = 1;
       } else {
         $products_price_kilo = 0;
       }
 
 // Gestion de l'affichage concernant les produits uniquement online ou en boutique (physique)
-      if (HTML::sanitize($_POST['products_only_online']) == 1) {
+      if (isset($_POST['products_only_online']) && HTML::sanitize($_POST['products_only_online']) == 1) {
         $products_only_online = 1;
       } else {
         $products_only_online = 0;
       }
 
 // Gestion de l'affichage concernant les produits uniquement en boutique (physique)
-      if (HTML::sanitize($_POST['products_only_shop']) == 1) {
+      if (isset($_POST['products_only_shop']) && HTML::sanitize($_POST['products_only_shop']) == 1) {
         $products_only_shop = 1;
       } else {
         $products_only_shop = 0;
@@ -1390,14 +1405,14 @@
 
 // Gestion de l'affichage concernant le telechargementde fichier publix / privee
 
-      if (HTML::sanitize($_POST['products_download_public']) == 1) {
+      if (isset($_POST['products_download_public']) && HTML::sanitize($_POST['products_download_public']) == 1) {
         $products_download_public = 1;
       } else {
         $products_download_public = 0;
       }
 
 // manual price B2B
-      if ($_POST['products_percentage'] == 'on') {
+      if (isset($_POST['products_percentage']) && $_POST['products_percentage'] == 'on') {
         $_POST['products_percentage'] = 0;
       }
 

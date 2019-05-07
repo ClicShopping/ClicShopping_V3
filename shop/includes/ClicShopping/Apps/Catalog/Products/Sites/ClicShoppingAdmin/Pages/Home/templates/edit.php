@@ -86,7 +86,7 @@
 
   $pInfo = new ObjectInfo($parameters);
 
-  if (isset($_GET['pID']) && empty($_POST)) {
+  if (isset($_GET['pID']) && isset($_POST)) {
 // products_view : Affichage Produit Grand Public - orders_view : Autorisation Commande - Referencement
     $data_products = $CLICSHOPPING_ProductsAdmin->get($_GET['pID']);
     $pInfo->ObjectInfo($data_products);
@@ -112,6 +112,12 @@
     }
   }
 
+  $cPath = 0;
+  
+  if (isset($_GET['cPath'])) {
+    $cPath = HTML::sanitize($_GET['cPath']);
+  }
+
   $form_action = (isset($_GET['pID'])) ? 'Update' : 'Insert';
 
   echo HTML::form('new_product', $CLICSHOPPING_Products->link('Products&' . $form_action . '&cPath=' . $cPath . (isset($_GET['pID']) ? '&pID=' . $_GET['pID'] : '') ), 'post', 'enctype="multipart/form-data" id="new_product"');
@@ -127,9 +133,9 @@
             <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
             <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::hiddenField('products_date_added', (($pInfo->date_added) ? $pInfo->date_added : date('Y-m-d')));
-  echo HTML::hiddenField('parent_id', $pInfo->parent_id);
-  echo HTML::hiddenField('cPath', HTML::sanitize($_GET['cPath']));
+  echo HTML::hiddenField('products_date_added', (($pInfo->products_date_added) ? $pInfo->products_date_added : date('Y-m-d')));
+  echo HTML::hiddenField('parent_id', $cPath);
+  echo HTML::hiddenField('cPath', HTML::sanitize($cPath));
 
   if ($form_action== 'Update') {
     echo HTML::button($CLICSHOPPING_Products->getDef('button_update'), null, null, 'success') . ' ';
@@ -137,7 +143,7 @@
     echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success') . ' ';
   }
 
-  echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&cID=' . $_GET['cID']), 'warning');
+  echo HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath), 'warning');
 ?>
             </span>
           </div>
@@ -1082,7 +1088,7 @@ updateGross();
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_page_title'); ?></label>
                 <div class="col-md-8">
-                  <?php echo  '&nbsp;' . HTML::inputField('products_head_title_tag[' . $languages[$i]['id'] . ']', (($products_head_title_tag[$languages[$i]['id']]) ? $products_head_title_tag[$languages[$i]['id']] : SeoAdmin::getProductsSeoTitle($pInfo->products_id, $languages[$i]['id'])),'maxlength="70" size="77" id="default_title_'.$i.'"', false); ?>
+                  <?php echo  '&nbsp;' . HTML::inputField('products_head_title_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoTitle($pInfo->products_id, $languages[$i]['id']),'maxlength="70" size="77" id="default_title_'.$i.'"', false); ?>
                 </div>
               </div>
             </div>
@@ -1093,7 +1099,7 @@ updateGross();
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_header_description'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::textAreaField('products_head_desc_tag[' . $languages[$i]['id'] . ']', (isset($products_head_desc_tag[$languages[$i]['id']]) ? $products_head_desc_tag[$languages[$i]['id']] : SeoAdmin::getProductsSeoDescription($pInfo->products_id, $languages[$i]['id'])), '75', '2', 'id="default_description_'.$i.'"'); ?>
+                  <?php echo HTML::textAreaField('products_head_desc_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoDescription($pInfo->products_id, $languages[$i]['id']), '75', '2', 'id="default_description_'.$i.'"'); ?>
                 </div>
               </div>
             </div>
@@ -1104,7 +1110,7 @@ updateGross();
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_keywords'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::textAreaField('products_head_keywords_tag[' . $languages[$i]['id'] . ']', (isset($products_head_keywords_tag[$languages[$i]['id']]) ? $products_head_keywords_tag[$languages[$i]['id']] : SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages[$i]['id'])), '75', '5'); ?>
+                  <?php echo HTML::textAreaField('products_head_keywords_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoKeywords($pInfo->products_id, $languages[$i]['id']), '75', '5'); ?>
                 </div>
               </div>
             </div>
@@ -1115,7 +1121,7 @@ updateGross();
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?>" class="col-1 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_tag'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::inputField('products_head_tag[' . $languages[$i]['id'] . ']', (($products_head_tag[$languages[$i]['id']]) ? $products_head_tag[$languages[$i]['id']] : SeoAdmin::getProductsSeoTag($pInfo->products_id, $languages[$i]['id'])),'maxlength="50" size="77" id="default_tag_'.$i.'"', false); ?>
+                  <?php echo HTML::inputField('products_head_tag[' . $languages[$i]['id'] . ']', SeoAdmin::getProductsSeoTag($pInfo->products_id, $languages[$i]['id']),'maxlength="50" size="77" id="default_tag_'.$i.'"', false); ?>
                 </div>
               </div>
             </div>
@@ -1159,7 +1165,7 @@ updateGross();
                                                         and c.categories_id <> :categories_id
                                                        ');
     $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-    $Qcategories->bindInt(':categories_id', $_GET['cPath']);
+    $Qcategories->bindInt(':categories_id', $cPath);
     $Qcategories->execute();
   }
 ?>

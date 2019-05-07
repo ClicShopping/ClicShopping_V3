@@ -37,15 +37,17 @@
 
 
     protected function getProducts() {
-      $Qproducts =  $this->app->db->prepare('select products_id,
-                                                    products_percentage
-                                            from :table_products
-                                            where products_id =  :products_id
-                                            ');
-      $Qproducts->bindInt(':products_id', $_GET['pID']);
-      $Qproducts->execute();
+      if (isset( $_GET['pID'])) {
+        $Qproducts =  $this->app->db->prepare('select products_id,
+                                                      products_percentage
+                                              from :table_products
+                                              where products_id =  :products_id
+                                              ');
+        $Qproducts->bindInt(':products_id', $_GET['pID']);
+        $Qproducts->execute();
 
-      return $Qproducts->fetchAll();
+        return $Qproducts->fetchAll();
+      }
     }
 
     public function display() {
@@ -60,8 +62,6 @@
       }
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/CustomerGroup/customer_group');
-
-      $output = '';
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True' &&  !empty(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS)) {
         if (MODE_B2B_B2C == 'true') {
@@ -218,8 +218,8 @@
           $content .= '<span class="col-sm-12">&nbsp;<strong>' . '&nbsp;' . $this->app->getDef('help_others_group') . '</strong></span>';
           $content .= '</div>';
           $content .= '</div>';
-          $output = '';
-          $output .= <<<EOD
+
+          $output = <<<EOD
 <!-- ######################## -->
 <!--  Start CustomersGroup      -->
 <!-- ######################## -->

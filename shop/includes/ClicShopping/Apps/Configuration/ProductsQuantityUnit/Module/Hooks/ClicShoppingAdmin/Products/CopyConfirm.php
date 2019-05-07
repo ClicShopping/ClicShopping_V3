@@ -28,32 +28,34 @@
     }
 
     public function execute() {
-      $current_products_id = HTML::sanitize($_POST['products_id']);
+      if (isset($_GET['CopyConfirm'])) {
+        if (isset($_POST['products_id'])) {
+          $current_products_id = HTML::sanitize($_POST['products_id']);
 
-      if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {
-        $QproductQty = $this->app->db->prepare('select products_quantity_unit_id
-                                                 from :table_products
-                                                 where products_id = :products_id
-                                                ');
-        $QproductQty->bindInt(':products_id', $current_products_id);
-        $QproductQty->execute();
+          $QproductQty = $this->app->db->prepare('select products_quantity_unit_id
+                                                   from :table_products
+                                                   where products_id = :products_id
+                                                  ');
+          $QproductQty->bindInt(':products_id', $current_products_id);
+          $QproductQty->execute();
 
-        $products_quantity_unit_id = $QproductQty->valueInt('products_quantity_unit_id');
-
-
-        $Qproducts = $this->app->db->prepare('select products_id 
-                                              from :table_products                                            
-                                              order by products_id desc
-                                              limit 1 
-                                             ');
-        $Qproducts->execute();
-
-        $id = $Qproducts->valueInt('products_id');
-
-        $sql_data_array = ['products_quantity_unit_id'  => (int)$products_quantity_unit_id];
+          $products_quantity_unit_id = $QproductQty->valueInt('products_quantity_unit_id');
 
 
-        $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
+          $Qproducts = $this->app->db->prepare('select products_id 
+                                                from :table_products                                            
+                                                order by products_id desc
+                                                limit 1 
+                                               ');
+          $Qproducts->execute();
+
+          $id = $Qproducts->valueInt('products_id');
+
+          $sql_data_array = ['products_quantity_unit_id'  => (int)$products_quantity_unit_id];
+
+
+          $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
+        }
       }
     }
   }

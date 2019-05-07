@@ -39,6 +39,7 @@
 
       if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products']) ) {
         $content_width = (int)MODULE_PRODUCTS_INFO_NAME_CONTENT_WIDTH;
+        $text_position = MODULE_PRODUCTS_INFO_NAME_POSITION;
 
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
@@ -104,7 +105,7 @@
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'none\') ',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-none\') ',
           'date_added' => 'now()'
         ]
       );

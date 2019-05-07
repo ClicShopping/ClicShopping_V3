@@ -23,9 +23,14 @@
     }
 
     public function execute() {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      Status::getSuppliersStatus($_GET['id'], $_GET['flag']);
+      if (isset($_GET['id']) && isset($_GET['flag'])){
+        Status::getSuppliersStatus($_GET['id'], $_GET['flag']);
 
-      $this->app->redirect('Suppliers&' . $_GET['page'] . '&mID=' . $_GET['id']);
+        $this->app->redirect('Suppliers&page=' . $page . '&mID=' . $_GET['id']);
+      } else {
+        $this->app->redirect('Suppliers&page=' . $page);
+      }
     }
   }

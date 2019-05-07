@@ -40,6 +40,10 @@
         Cache::clear('upcoming');
       }
 
-      $this->app->redirect('Categories&cPath=' . $cPath .'&cID=' . $_GET['cID']);
+      if (isset($_GET['cID'])) {
+        $this->app->redirect('Categories&cPath=' . $cPath . '&cID=' . $_GET['cID']);
+      } else {
+        $this->app->redirect('Categories&cPath=' . $cPath);
+      }
     }
   }

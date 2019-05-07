@@ -29,18 +29,20 @@
 
     public function execute() {
       if (isset($_GET['Insert'])) {
-        $customers_group_id = HTML::sanitize($_POST['customers_group']);
+        if (isset($_POST['customers_group'])) {
+          $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
-        $Qspecials = $this->app->db->prepare('select specials_id
-                                               from :table_specials
-                                               order by specials_id desc
-                                               limit 1
-                                              ');
-        $Qspecials->execute();
+          $Qspecials = $this->app->db->prepare('select specials_id
+                                                 from :table_specials
+                                                 order by specials_id desc
+                                                 limit 1
+                                                ');
+          $Qspecials->execute();
 
-        $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
+          $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
 
-        $this->app->db->save('specials', $sql_data_array,  ['specials_id' => (int)$Qspecials->valueInt('specials_id')]);
+          $this->app->db->save('specials', $sql_data_array,  ['specials_id' => (int)$Qspecials->valueInt('specials_id')]);
+        }
       }
     }
   }

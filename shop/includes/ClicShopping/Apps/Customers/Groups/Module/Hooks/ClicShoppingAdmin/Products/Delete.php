@@ -28,8 +28,10 @@
     }
 
     public function execute() {
-      $product_id = HTML::sanitize($_POST['product_id']);
+      if (isset($_POST['product_id'])) {
+        $product_id = HTML::sanitize($_POST['product_id']);
 
-      $this->app->db->delete('products_groups', ['products_id' => (int)$product_id]);
+        $this->app->db->delete('products_groups', ['products_id' => (int)$product_id]);
+      }
     }
   }

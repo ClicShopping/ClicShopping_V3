@@ -43,6 +43,12 @@
   $cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
   $cInfo = new ObjectInfo($cInfo_array);
 
+  $cPath = 0;
+
+  if (isset($_GET['cPath'])) {
+    $cPath = HTML::sanitize($_GET['cPath']);
+  }
+
   echo HTMLOverrideAdmin::getCkeditor();
 ?>
   <div class="contentBody">
@@ -65,7 +71,7 @@
         <div class="col-md-12"><?php echo $CLICSHOPPING_Categories->getDef('text_move_categories_intro', ['categorie_name' => $cInfo->categories_name]); ?><br/><br/></div>
         <div class="separator"></div>
         <div class="col-md-12">
-          <span class="col-md-3"><?php echo $CLICSHOPPING_Categories->getDef('text_move', ['categorie_name' => $cInfo->categories_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id); ?></span>
+          <span class="col-md-3"><?php echo $CLICSHOPPING_Categories->getDef('text_move', ['categorie_name' => $cInfo->categories_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cInfo->parent_id); ?></span>
         </div>
         <div class="separator"></div>
         <div class="col-md-12 text-md-center">

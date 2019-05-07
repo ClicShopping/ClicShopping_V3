@@ -28,6 +28,8 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       if (isset($_GET['mID'])) $suppliers_id = HTML::sanitize($_GET['mID']);
 
       $suppliers_name = HTML::sanitize($_POST['suppliers_name']);
@@ -95,6 +97,6 @@
 
       $CLICSHOPPING_Hooks->call('Suppliers','Update');
 
-      $this->app->redirect('Suppliers&page=' . $_GET['page']);
+      $this->app->redirect('Suppliers&page=' . $page);
     }
   }

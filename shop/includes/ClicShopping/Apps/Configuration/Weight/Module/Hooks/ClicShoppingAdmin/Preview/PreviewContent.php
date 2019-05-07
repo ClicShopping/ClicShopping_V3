@@ -31,17 +31,19 @@
     }
 
     private function getProductsWeight() {
-      $Qproducts = $this->app->db->prepare('select products_weight_class_id,
-                                                  products_weight
-                                            from :table_products
-                                            where products_id = :products_id
-                                          ');
-      $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
+      if (isset($_GET['pID'])) {
+        $Qproducts = $this->app->db->prepare('select products_weight_class_id,
+                                                    products_weight
+                                              from :table_products
+                                              where products_id = :products_id
+                                            ');
+        $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
 
-      $Qproducts->execute();
-      $result = $Qproducts->toArray();
+        $Qproducts->execute();
+        $result = $Qproducts->toArray();
 
-      return $result;
+        return $result;
+      }
     }
 
 

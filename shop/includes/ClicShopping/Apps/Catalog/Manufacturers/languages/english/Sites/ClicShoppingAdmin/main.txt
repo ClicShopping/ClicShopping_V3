@@ -106,3 +106,5 @@ keywords: the fields keywords, the product name (leather jacket), the product na
 </blockquote></li>
 <li><strong>please do not put too keywords (maximum 10)</strong> and establish consistency between each field to find the words the most important first</li>
 
+text_help_clone = Note on the use of the wysiwyg
+text_help_wysiwyg = <li>To activate wysiwyg, you must click twice on Source button for Firefox users.</li><li>If you inserted plugin in Firefox, there can be incompatibilities (ex: adblock more)</li>

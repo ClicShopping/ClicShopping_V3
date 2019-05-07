@@ -9,7 +9,7 @@
  *
  */
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\BannerManager;
+  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Featured;
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -30,17 +30,18 @@
     }
 
     private function getCustomerGroupId() {
-      if (isset($_GET['bID'])) {
-        $Qbanners = $this->app->db->prepare('select customers_group_id
-                                             from :table_banners
-                                             where banners_id = :banners_id
-                                            ');
-        $Qbanners->bindInt('banners_id', $_GET['bID']);
-        $Qbanners->execute();
+      if (isset($_GET['sID'])) {
+        $Qfeatured = $this->app->db->prepare('select customers_group_id
+                                           from :table_products_featured
+                                           where products_featured_id = :products_featured_id
+                                          ');
+        $Qfeatured->bindInt('products_featured_id', $_GET['sID']);
+        $Qfeatured->execute();
 
-        return $Qbanners->valueInt('customers_group_id');
+        return $Qfeatured->valueInt('customers_group_id');
       }
     }
+
 
     public function display() {
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
@@ -57,7 +58,7 @@
           $content .= '<div class="form-group row">';
           $content .= '<label for="'  . $this->app->getDef('text_customer_group') .'" class="col-5 col-form-label">' . $this->app->getDef('text_customer_group') . '</label>';
           $content .= '<div class="col-md-5">';
-          $content .=  HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $this->getCustomerGroupId());
+          $content .=  HTML::selectMenu('customers_group', GroupsB2BAdmin::getAllGroups(), $this->getCustomerGroupId());
           $content .= '</div>';
           $content .= '</div>';
           $content .= '</div>';

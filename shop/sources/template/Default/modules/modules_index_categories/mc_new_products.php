@@ -218,6 +218,8 @@
               IF (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_DELETE_BUY_BUTTON == 'False') {
                 if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
                   $submit_button = '';
+                  $form = '';
+                  $endform = '';
 
                   if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                     $form =  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add' ),'post','class="justify-content-center"', ['tokenize' => true]). "\n";

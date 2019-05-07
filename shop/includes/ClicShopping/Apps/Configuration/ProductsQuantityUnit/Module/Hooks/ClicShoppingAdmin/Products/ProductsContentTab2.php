@@ -36,15 +36,17 @@
     }
 
     private function getQtyUnit() {
-      $QtyUnit = $this->app->db->prepare('select products_quantity_unit_id
-                                           from :table_products
-                                           where  products_id = :products_id
-                                         ');
-      $QtyUnit->bindInt(':products_id', HTML::sanitize($_GET['pID']));
+      if (isset($_GET['pID'])) {
+        $QtyUnit = $this->app->db->prepare('select products_quantity_unit_id
+                                             from :table_products
+                                             where  products_id = :products_id
+                                           ');
+        $QtyUnit->bindInt(':products_id', HTML::sanitize($_GET['pID']));
 
-      $QtyUnit->execute();
+        $QtyUnit->execute();
 
-      return $QtyUnit->valueInt('products_quantity_unit_id');
+        return $QtyUnit->valueInt('products_quantity_unit_id');
+      }
     }
 
 
@@ -56,8 +58,6 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_2');
 
       $products_quantity_unit_drop_down = $this->qteUnit->productsQuantityUnitDropDown();
-
-      $output = '';
 
       $content = '<div class="col-md-5">';
       $content .= '<div class="form-group row">';

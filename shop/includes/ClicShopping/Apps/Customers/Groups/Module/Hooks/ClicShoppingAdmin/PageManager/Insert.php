@@ -28,17 +28,19 @@
     }
 
     public function execute() {
-      $customers_group_id = HTML::sanitize($_POST['customers_group']);
+      if (isset($_POST['customers_group'])) {
+        $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
-      $Qpages = $this->app->db->prepare('select pages_id
-                                         from :table_pages_manager
-                                         order by pages_id desc
-                                         limit 1
-                                        ');
-      $Qpages->execute();
+        $Qpages = $this->app->db->prepare('select pages_id
+                                           from :table_pages_manager
+                                           order by pages_id desc
+                                           limit 1
+                                          ');
+        $Qpages->execute();
 
-      $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
+        $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
 
-      $this->app->db->save('pages_manager', $sql_data_array,  ['pages_id' => (int)$Qpages->valueInt('pages_id')]);
+        $this->app->db->save('pages_manager', $sql_data_array,  ['pages_id' => (int)$Qpages->valueInt('pages_id')]);
+      }
     }
   }

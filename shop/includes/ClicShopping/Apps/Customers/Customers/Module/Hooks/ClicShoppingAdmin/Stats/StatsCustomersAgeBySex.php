@@ -29,6 +29,8 @@
     }
 
     private function statsAgeCustomersMen() {
+      $statAnalyseCustomersMan =  '    ';
+      
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                           from :table_customers
                                                           where customers_gender = :customers_gender
@@ -38,7 +40,7 @@
       $QstatAnalyseCustomersMan->execute();
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
-        $statAnalyseCustomersMan =  $QstatAnalyseCustomersMan->valueDecimal('avgage');
+        $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
       }
 
       return $statAnalyseCustomersMan;
@@ -46,6 +48,8 @@
 
 
     private function statsAgeCustomersWomen() {
+      $statAnalyseCustomersWomen = '    ';
+	  
       $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                               from :table_customers
                                                               where customers_gender = :customers_gender

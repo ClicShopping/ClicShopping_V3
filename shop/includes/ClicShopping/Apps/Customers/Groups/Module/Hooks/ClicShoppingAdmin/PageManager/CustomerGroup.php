@@ -30,14 +30,16 @@
     }
 
     private function getCustomerGroupId() {
-      $Qpages = $this->app->db->prepare('select customers_group_id
-                                         from :table_pages_manager
-                                         where pages_id = :pages_id
-                                        ');
-      $Qpages->bindInt('pages_id', $_GET['bID']);
-      $Qpages->execute();
+      if (isset($_GET['bID'])) {
+        $Qpages = $this->app->db->prepare('select customers_group_id
+                                           from :table_pages_manager
+                                           where pages_id = :pages_id
+                                          ');
+        $Qpages->bindInt('pages_id', $_GET['bID']);
+        $Qpages->execute();
 
-      return $Qpages->valueInt('customers_group_id');
+        return $Qpages->valueInt('customers_group_id');
+      }
     }
 
 
@@ -47,8 +49,6 @@
       }
 
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/CustomerGroup/customer_group');
-
-      $output = '';
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True' &&  !empty(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS)) {
         if (MODE_B2B_B2C == 'true') {

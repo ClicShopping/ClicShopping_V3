@@ -9,7 +9,7 @@
  *
  */
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\BannerManager;
+  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Favorites;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
@@ -29,19 +29,19 @@
 
     public function execute() {
       if (isset($_GET['Insert'])) {
-        if (isset($_POST['customers_groups'])) {
-          $customers_group_id = HTML::sanitize($_POST['customers_groups']);
+        if (isset($_POST['customers_group'])) {
+          $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
-          $Qbanners = $this->app->db->prepare('select banners_id
-                                               from :table_banners
-                                               order by banners_id desc
-                                               limit 1
-                                              ');
-          $Qbanners->execute();
+          $Qfavorites = $this->app->db->prepare('select products_favorites_id
+                                                 from :table_products_favorites
+                                                 order by products_favorites_id desc
+                                                 limit 1
+                                                ');
+          $Qfavorites->execute();
 
           $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
 
-          $this->app->db->save('banners', $sql_data_array,  ['banners_id' => (int)$Qbanners->valueInt('banners_id')]);
+          $this->app->db->save('products_favorites', $sql_data_array,  ['products_favorites_id' => (int)$Qfavorites->valueInt('products_favorites_id')]);
         }
       }
     }

@@ -9,7 +9,7 @@
  *
  */
 
-  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Specials;
+  namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Featured;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
@@ -29,14 +29,14 @@
 
     public function execute() {
       if (isset($_GET['Update'])) {
-        if (isset($_POST['customers_group'])) {
+        if (isset($_POST['customers_group']) && isset($_POST['products_featured_id'])) {
           $customers_group_id = HTML::sanitize($_POST['customers_group']);
 
-          $specials_id = HTML::sanitize($_POST['specials_id']);
+          $products_featured_id = HTML::sanitize($_POST['products_featured_id']);
 
           $sql_data_array =  ['customers_group_id' => (int)$customers_group_id];
 
-          $this->app->db->save('specials', $sql_data_array,  ['specials_id' => (int)$specials_id]);
+          $this->app->db->save('products_featured', $sql_data_array,  ['products_featured_id' => (int)$products_featured_id]);
         }
       }
     }

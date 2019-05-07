@@ -177,7 +177,7 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_city'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_city'); ?></label>
                     <div class="col-md-5">
-                      <?php echo  HTML::inputField('text_suppliers_city',  $mInfo->text_suppliers_city); ?>
+                      <?php echo  HTML::inputField('text_suppliers_city',  $mInfo->suppliers_city); ?>
                     </div>
                   </div>
                 </div>
@@ -187,19 +187,7 @@
                 <div class="col-md-5">
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_country'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_country'); ?></label>
-                    <div class="col-md-5">
-<?php
-  if ($error === true) {
-    if ($entry_country_error === true) {
-      echo  HTML::selectMenuCountryList('suppliers_country_id', $mInfo->suppliers_country_id)  . '&nbsp;' . $CLICSHOPPING_Suppliers->getDef('entry_country_error');
-    } else {
-      echo $CLICSHOPPING_Address->getCountryName($mInfo->suppliers_country_id) . HTML::hiddenField('suppliers_country_id');
-    }
-  } else {
-    echo HTML::selectMenuCountryList('suppliers_country_id', $mInfo->suppliers_country_id) ;
-  }
-?>
-                    </div>
+                    <div class="col-md-5"><?php echo HTML::selectMenuCountryList('suppliers_country_id', $mInfo->suppliers_country_id); ?></div>
                   </div>
                 </div>
                 <div class="col-md-5">
