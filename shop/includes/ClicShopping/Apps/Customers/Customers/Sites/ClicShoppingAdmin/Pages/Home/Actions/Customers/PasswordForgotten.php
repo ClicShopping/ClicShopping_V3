@@ -27,6 +27,8 @@
 
       $CLICSHOPPING_Customer->loadDefinitions('Sites/ClicShoppingAdmin/password_forgotten');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $QcheckCustomer = $CLICSHOPPING_Customer->db->prepare('select customers_firstname,
                                                                      customers_lastname,
                                                                      customers_password,
@@ -75,6 +77,6 @@
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customer->getDef('text_new_password') . '&nbsp;' . ($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname')), 'success');
       }
 
-      $CLICSHOPPING_Customer->redirect('Customers');
+      $CLICSHOPPING_Customer->redirect('Customers&page=' . $page);
     }
   }

@@ -28,16 +28,19 @@
 
 // insert by default in the first group
       $customers_group_id = 1;
-      $customers_id = HTML::sanitize($_GET['cID']);
+
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
+      if (isset($_GET['cID'])) $customers_id = HTML::sanitize($_GET['cID']);
 
       $QdefaultCustomerGroup = $CLICSHOPPING_Members->db->prepare('select customers_group_id,
-                                                                   group_order_taxe,
-                                                                   group_payment_unallowed,
-                                                                   group_shipping_unallowed
-                                                             from :table_customers_groups
-                                                             where customers_group_id = :customers_group_id
-                                                            ');
-      $QdefaultCustomerGroup->bindInt(':customers_group_id', (int)$customers_group_id);
+                                                                           group_order_taxe,
+                                                                           group_payment_unallowed,
+                                                                           group_shipping_unallowed
+                                                                     from :table_customers_groups
+                                                                     where customers_group_id = :customers_group_id
+                                                                    ');
+      $QdefaultCustomerGroup->bindInt(':customers_group_id', $customers_group_id);
       $QdefaultCustomerGroup->execute();
 
       $sql_data_array = ['member_level' => '1',
@@ -48,14 +51,14 @@
       $CLICSHOPPING_Members->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id ] );
 
       $QcheckCustomer = $CLICSHOPPING_Members->db->prepare('select customers_id,
-                                                             customers_firstname,
-                                                             customers_lastname,
-                                                             customers_password,
-                                                             customers_email_address
-                                                       from :table_customers
-                                                       where customers_id = :customers_id
-                                                      ');
-      $QcheckCustomer->bindInt(':customers_id', (int)$_GET['cID']);
+                                                                   customers_firstname,
+                                                                   customers_lastname,
+                                                                   customers_password,
+                                                                   customers_email_address
+                                                             from :table_customers
+                                                             where customers_id = :customers_id
+                                                            ');
+      $QcheckCustomer->bindInt(':customers_id', $customers_id);
       $QcheckCustomer->execute();
 
 // Cryptage du mot de passe
@@ -73,7 +76,7 @@
 
       $Qupdate->execute();
 
-      if (COUPON_CUSTOMER_B2B != '') {
+      if (!empty(COUPON_CUSTOMER_B2B)) {
         $email_coupon = $CLICSHOPPING_Members->getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
         $email_coupon = html_entity_decode($email_coupon);
       }
@@ -103,6 +106,6 @@
       $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, '');
       $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') .' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, '<br />'. nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
-      $CLICSHOPPING_Members->redirect('Members&page=' . $_GET['page']);
+      $CLICSHOPPING_Members->redirect('Members&page=' . $page);
     }
   }

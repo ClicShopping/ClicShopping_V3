@@ -13,6 +13,7 @@
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\ObjectInfo;
 
   use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin;
   use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
@@ -48,7 +49,7 @@
   if (isset($_GET['oID']) && is_numeric($_GET['oID']) && ($_GET['oID'] > 0)) {
     $oID = HTML::sanitize($_GET['oID']);
 
-    $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['orders_id' => (int)$oID]);
+    $Qorders = $CLICSHOPPING_Db->get('orders', ['orders_id', 'customers_group_id'], ['orders_id' => (int)$oID]);
 
     if ($Qorders->fetch()) {
       Registry::set('Order', new OrderAdmin($Qorders->valueInt('orders_id')));
@@ -79,7 +80,7 @@
   // Permettre l'affichage des couleurs des groupes en mode B2B
   if (MODE_B2B_B2C == 'true') {
     echo HTML::form('grouped', $CLICSHOPPING_Orders->link('Orders'), 'post', 'class="form-inline" role="form"');
-    echo HTML::selectMenu('customers_group_id', array_merge(GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Orders->getDef('visitor_name')), (array)$oInfo->customers_group_id), '', 'onchange="this.form.submit();"');
+    echo HTML::selectField('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Orders->getDef('visitor_name'), null), '', 'onchange="this.form.submit();"');
     echo '</form>';
   }
 ?>
@@ -142,12 +143,18 @@
         </thead>
         <tbody>
 <?php
-  $archive_id = HTML::sanitize($_GET['aID']);
+  if(isset($_GET['aID'])) {
+    $archive_id = HTML::sanitize($_GET['aID']);
+  } else {
+    $archive_id = 0;
+  }
 
   if (isset($_GET['cID'])) {
     $cID = HTML::sanitize($_GET['cID']);
-  } else {
+  } elseif (isset($_POST['cID'])) {
     $cID = HTML::sanitize($_POST['cID']);
+  } else {
+    $cID = '';
   }
 
   if (!empty($cID)) {

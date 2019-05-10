@@ -37,6 +37,8 @@
   $color_bar = $QcustomersGroup->value('color_bar');
   $customers_group_quantity_default = $QcustomersGroup->valueInt('customers_group_quantity_default');
 
+  $error = false;
+
 // Affichage des prix de la boutique pour le groupe avec une taxe inclus ou exclus
   if (!isset($cInfo->group_tax)) $cInfo->group_tax = 'true';
 
@@ -133,7 +135,7 @@
                   <label for="<?php echo $CLICSHOPPING_Groups->getDef('entry_groups_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Groups->getDef('entry_groups_name'); ?></label>
                   <div class="col-md-5">
 <?php
-  if ($error == "name") {
+  if ($error == 'name') {
     echo HTML::inputField('customers_group_name', '', 'required aria-required="true" id="customers_group_name" placeholder="' . $CLICSHOPPING_Groups->getDef('entry_groups_name') . '" maxlength="32" style="border: 2px solid #FF0000"', true);
   } else {
     echo HTML::inputField('customers_group_name', $cInfo->customers_group_name, 'required aria-required="true" id="customers_group_name" maxlength="32"', true);
@@ -246,7 +248,6 @@
 <?php
   // Search payment module
   $payments_unallowed = explode (',',$cInfo->group_payment_unallowed);
-  $module_directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/payment/';
   $module_key = 'MODULE_PAYMENT_INSTALLED';
 
   $Qconfiguration_payment = $CLICSHOPPING_Groups->db->prepare('select configuration_value
@@ -257,7 +258,6 @@
   $Qconfiguration_payment->execute();
 
   $modules_payment = explode(';', $Qconfiguration_payment->value('configuration_value'));
-  $module_active = $modules_payment;
 
   $include_modules = [];
 
@@ -267,11 +267,6 @@
 
       $include_modules[] = ['class' => $value,
                             'file' => $class
-                           ];
-    } else {
-      $class = basename($value, '.php');
-      $include_modules[] = ['class' => $class,
-                            'file' => $value
                            ];
     }
   }
@@ -292,50 +287,10 @@
               </div>
             </div>
 <?php
-        if ($_POST['payment_unallowed'][$i]) {
+        if (isset($_POST['payment_unallowed'][$i]) && $_POST['payment_unallowed'][$i]) {
           $_POST['group_payment_unallowed'] .= $_POST['payment_unallowed'][$i] . ',';
         }
       }
-
-/*
-      else {
-        $file = $include_modules[$i]['file'];
-
-         if (in_array ($include_modules[$i]['file'], $modules_payment)) {
-
-          $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/payment/' . $include_modules[$i]['file']);
-
-          if (is_file($module_directory . $file)) {
-           include_once($module_directory . $file);
-
-           $class = substr($file, 0, strrpos($file, '.'));
-
-           if (class_exists($class)) {
-             $module = new $class;
-             if ($module->check() > 0) {
-               $installed_modules[] = $file;
-             }
-           }
-          }
-?>
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code , (in_array ($module->code, $payments_unallowed)) ?  true : false); ?>
-                    <?php echo $module->title; ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-<?php
-        if ($_POST['payment_unallowed'][$i]) {
-          $_POST['group_payment_unallowed'] .= $_POST['payment_unallowed'][$i] . ',';
-        }
-      } // end in_array
-    } // end class
-*/
-
   } // end for
 ?>
 
@@ -356,19 +311,17 @@
 <?php
   // Seach shipping module
   $shipping_unallowed = explode (',', $cInfo->group_shipping_unallowed);
-  $module_directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/shipping/';
 
   $module_key = 'MODULE_SHIPPING_INSTALLED';
 
   $Qconfiguration_shipping = $CLICSHOPPING_Groups->db->prepare('select configuration_value
-                                                          from :table_configuration
-                                                          where configuration_key = :configuration_key
-                                                        ');
+                                                                from :table_configuration
+                                                                where configuration_key = :configuration_key
+                                                              ');
   $Qconfiguration_shipping->bindValue(':configuration_key', $module_key);
   $Qconfiguration_shipping->execute();
 
   $modules_shipping = explode(';', $Qconfiguration_shipping->value('configuration_value'));
-  $module_active = $modules_shipping;
 
   $include_modules = [];
 
@@ -378,11 +331,6 @@
 
       $include_modules[] = ['class' => $value,
                             'file' => $class
-                            ];
-    } else {
-      $class = basename($value, '.php');
-      $include_modules[] = ['class' => $class,
-                            'file' => $value
                             ];
     }
   }
@@ -403,46 +351,10 @@
             </div>
           </div>
 <?php
-      if ($_POST['shipping_unallowed'][$i]) {
+      if (isset($_POST['shipping_unallowed'][$i]) && $_POST['shipping_unallowed'][$i]) {
         $_POST['group_shipping_unallowed'] .= $_POST['shipping_unallowed'][$i] . ',';
       }
     }
-    /*
-       else {
-
-         $file = $include_modules[$i]['file'];
-
-         if (in_array ($include_modules[$i]['file'], $modules_shipping)) {
-           $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
-           if (is_file($module_directory . $file)) {
-             include_once($module_directory . $file);
-
-             $class = substr($file, 0, strrpos($file, '.'));
-             if (class_exists($class)) {
-               $module = new $class;
-               if ($module->check() > 0) {
-                 $installed_modules[] = $file;
-               }
-             }
-           }
-   ?>
-             <div class="row">
-               <div class="col-md-5">
-                 <div class="form-group row">
-                   <div class="col-md-12">
-                     <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code , (in_array ($module->code, $shipping_unallowed)) ?  true : false); ?>
-                     <?php echo $module->title; ?>
-                   </div>
-                 </div>
-               </div>
-             </div>
-   <?php
-           if ($_POST['shipping_unallowed'][$i]) {
-             $_POST['group_shipping_unallowed'] .= $_POST['shipping_unallowed'][$i] . ',';
-           }
-         } // end in_array
-       } // end class
-   */
   } // end for
 ?>
           </div>
@@ -574,6 +486,7 @@
         </div>
       </div>
     </div>
+    <?php echo $CLICSHOPPING_Hooks->output('Groups', 'pageTab', null, 'display'); ?>
   </div>
 </div>
 <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/colorpicker/jscolor.js'); ?>"></script>

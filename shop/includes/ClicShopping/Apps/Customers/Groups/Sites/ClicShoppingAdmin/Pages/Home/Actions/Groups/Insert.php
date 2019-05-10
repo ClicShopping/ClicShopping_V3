@@ -23,11 +23,11 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $customers_groups_name = HTML::sanitize($_POST['customers_group_name']);
-      $customers_groups_discount = HTML::sanitize($_POST['customers_group_discount']);
-      $color_bar = HTML::sanitize($_POST['color_bar']); //ok
-      $customers_group_quantity_default =  HTML::sanitize($_POST['customers_group_quantity_default']);
-      $group_order_taxe = HTML::sanitize($_POST['group_order_taxe']);
+      if (isset($_POST['customers_group_name'])) $customers_groups_name = HTML::sanitize($_POST['customers_group_name']);
+      if (isset($_POST['customers_group_discount'])) $customers_groups_discount = HTML::sanitize($_POST['customers_group_discount']);
+      if (isset($_POST['color_bar'])) $color_bar = HTML::sanitize($_POST['color_bar']); //ok
+      if (isset($_POST['customers_group_quantity_default'])) $customers_group_quantity_default =  HTML::sanitize($_POST['customers_group_quantity_default']);
+      if (isset($_POST['group_order_taxe'])) $group_order_taxe = HTML::sanitize($_POST['group_order_taxe']);
 
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
       if (strlen($customers_groups_name) == '') {

@@ -22,7 +22,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $groups_id = HTML::sanitize($_GET['cID']);
+      if (isset($_GET['cID'])) $groups_id = HTML::sanitize($_GET['cID']);
 
        $Qpricek = $CLICSHOPPING_Groups->db->prepare('select p.products_price,
                                                            p.products_id,

@@ -23,7 +23,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $group_id = HTML::sanitize($_POST['cID']);
+      if (isset($_POST['cID'])) $group_id = HTML::sanitize($_POST['cID']);
 
       if ((empty($_POST['discount'])) || ($_POST['categories_id']) == 0) {
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_categorie_error'));
@@ -38,10 +38,10 @@
         $new_category_discount = round($new_category_discount,2);
 
         $Qcheck = $CLICSHOPPING_Groups->db->prepare('select *
-                                               from :table_groups_to_categories
-                                               where customers_group_id = :customers_group_id
-                                               and categories_id = :categories_id
-                                             ');
+                                                     from :table_groups_to_categories
+                                                     where customers_group_id = :customers_group_id
+                                                     and categories_id = :categories_id
+                                                   ');
         $Qcheck->bindInt(':customers_group_id', (int)$group_id );
         $Qcheck->bindInt(':categories_id', (int)$new_category_id );
         $Qcheck->execute();

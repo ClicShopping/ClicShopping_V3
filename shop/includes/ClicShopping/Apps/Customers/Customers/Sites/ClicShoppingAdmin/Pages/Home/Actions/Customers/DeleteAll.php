@@ -20,6 +20,8 @@
 
       $CLICSHOPPING_Customers = Registry::get('Customers');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       if (!empty($_POST['selected'])) {
         foreach ($_POST['selected'] as $id ) {
 
@@ -45,6 +47,6 @@
         }
       }
 
-      $CLICSHOPPING_Customers->redirect('Customers', 'page=' . $_GET['page']);
+      $CLICSHOPPING_Customers->redirect('Customers', 'page=' . $page);
     }
   }

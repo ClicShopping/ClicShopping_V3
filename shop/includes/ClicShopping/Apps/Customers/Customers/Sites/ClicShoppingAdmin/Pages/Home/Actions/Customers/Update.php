@@ -27,56 +27,82 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-        $_GET['page'] = 1;
-      }
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       $error = false;
 
-      $customers_id = HTML::sanitize($_POST['customers_id']);
-      $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
-      $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
-      $customers_email_address = HTML::sanitize($_POST['customers_email_address']);
-      $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
-      $customers_fax = HTML::sanitize($_POST['customers_fax']);
-      $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
-      $language_id = HTML::sanitize($_POST['languages_id']);
-      $customers_gender = HTML::sanitize($_POST['customers_gender']);
-      $customers_dob = HTML::sanitize($_POST['customers_dob']);
+      if (isset($_POST['customers_id'])) $customers_id = HTML::sanitize($_POST['customers_id']);
+      if (isset($_POST['customers_firstname'])) $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
+      if (isset($_POST['customers_lastname'])) $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
+      if (isset($_POST['customers_email_address'])) $customers_email_address = HTML::sanitize($_POST['customers_email_address']);
+      if (isset($_POST['customers_telephone'])) $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
+      if (isset($_POST['customers_fax'])) $customers_fax = HTML::sanitize($_POST['customers_fax']);
+      if (isset($_POST['customers_newsletter'])) $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
+      if (isset($_POST['languages_id'])) $language_id = HTML::sanitize($_POST['languages_id']);
+      if (isset($_POST['customers_gender'])) $customers_gender = HTML::sanitize($_POST['customers_gender']);
+      if (isset($_POST['customers_dob'])) $customers_dob = HTML::sanitize($_POST['customers_dob']);
 
-      $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
-      $customers_notes = $_POST['customers_notes'];
+      if (isset($_POST['customers_cellular_phone'])) $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
+      if (isset($_POST['customers_notes'])) $customers_notes = $_POST['customers_notes'];
 
 // Autorisation aux clients de modifier Les informations de la société
-      $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
+      if (isset($_POST['customers_modify_company'])) $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
 
 // Informations sur le type de facturation
 
-      $default_address_id = HTML::sanitize($_POST['default_address_id']);
-      $entry_street_address = HTML::sanitize($_POST['entry_street_address']);
-      $entry_suburb = HTML::sanitize($_POST['entry_suburb']);
-      $entry_postcode = HTML::sanitize($_POST['entry_postcode']);
-      $entry_city = HTML::sanitize($_POST['entry_city']);
-      $entry_country_id = HTML::sanitize($_POST['entry_country_id']);
-      $entry_company = HTML::sanitize($_POST['entry_company']);
-      $entry_state = HTML::sanitize($_POST['entry_state']);
-      $entry_telephone = HTML::sanitize($_POST['entry_telephone']);
+      if (isset($_POST['default_address_id'])) $default_address_id = HTML::sanitize($_POST['default_address_id']);
+      if (isset($_POST['entry_street_address'])) $entry_street_address = HTML::sanitize($_POST['entry_street_address']);
+      if (isset($_POST['entry_suburb'])) $entry_suburb = HTML::sanitize($_POST['entry_suburb']);
+      if (isset($_POST['entry_postcode'])) $entry_postcode = HTML::sanitize($_POST['entry_postcode']);
+      if (isset($_POST['entry_city'])) $entry_city = HTML::sanitize($_POST['entry_city']);
+      if (isset($_POST['entry_country_id'])) $entry_country_id = HTML::sanitize($_POST['entry_country_id']);
+      if (isset($_POST['entry_company'])) $entry_company = HTML::sanitize($_POST['entry_company']);
+      if (isset($_POST['entry_state'])) $entry_state = HTML::sanitize($_POST['entry_state']);
+
+      if (isset($_POST['entry_telephone'])) {
+        $entry_telephone = HTML::sanitize($_POST['entry_telephone']);
+      } else {
+        $entry_telephone = '';
+      }
 
 // Informations sur la société
-      if (ACCOUNT_COMPANY_PRO == 'true') $customers_company = HTML::sanitize($_POST['customers_company']);
-      if (ACCOUNT_SIRET_PRO == 'true') $customers_siret = HTML::sanitize($_POST['customers_siret']);
-      if (ACCOUNT_APE_PRO == 'true') $customers_ape = HTML::sanitize($_POST['customers_ape']);
+      if (ACCOUNT_COMPANY_PRO == 'true') {
+        if (isset($_POST['customers_company']))  $customers_company = HTML::sanitize($_POST['customers_company']);
+      }
+      if (ACCOUNT_SIRET_PRO == 'true') {
+        if (isset($_POST['customers_siret'])) $customers_siret = HTML::sanitize($_POST['customers_siret']);
+      }
+      if (ACCOUNT_APE_PRO == 'true') {
+        if (isset($_POST['customers_ape'])) $customers_ape = HTML::sanitize($_POST['customers_ape']);
+      }
 
 // Information numéro de TVA avec transformation de code ISO en majuscule
-      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
-      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
-      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+        if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
+      }
 
-      if (isset($_POST['entry_zone_id'])) $entry_zone_id = HTML::sanitize($_POST['entry_zone_id']);
+      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+        if (isset($_POST['customers_id'])) $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+      } else {
+        $customers_tva_intracom_code_iso = 0;
+      }
+
+      if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+        if (isset($_POST['customers_tva_intracom'])) $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+      }
+
+      if (isset($_POST['entry_zone_id'])) {
+        if (isset($_POST['entry_zone_id'])) $entry_zone_id = HTML::sanitize($_POST['entry_zone_id']);
+      }
 
 // Autorisation aux clients de modifier adresse principal
-      if (isset($_POST['customers_modify_address_default'])) $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
-      if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+      if (isset($_POST['customers_modify_address_default'])) {
+        if (isset($_POST['customers_modify_address_default'])) $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+      }
+
+      if (isset($_POST['customers_add_address'])) {
+        if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+      }
 
       $dobDateTime = new DateTime($customers_dob, false);
 
@@ -84,9 +110,9 @@
       if ((strlen($customers_tva_intracom_code_iso) > 0) || (strlen($customers_tva_intracom) > 0)) {
 
         $QcustomersTva = $CLICSHOPPING_Customers->db->prepare('select countries_iso_code_2
-                                                         from :table_countries
-                                                         where countries_iso_code_2 = :countries_iso_code_2
-                                                        ');
+                                                               from :table_countries
+                                                               where countries_iso_code_2 = :countries_iso_code_2
+                                                              ');
         $QcustomersTva->bindValue(':countries_iso_code_2',$customers_tva_intracom_code_iso );
 
         $QcustomersTva->execute();
@@ -225,8 +251,13 @@
         if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = $customers_company;
         if (ACCOUNT_SIRET_PRO == 'true') $sql_data_array['customers_siret'] = $customers_siret;
         if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $customers_ape;
-        if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $customers_tva_intracom_code_iso;
-        if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom'] = $customers_tva_intracom;
+        if (ACCOUNT_TVA_INTRACOM_PRO == 'true')  $sql_data_array['customers_tva_intracom_code_iso'] = $customers_tva_intracom_code_iso;
+
+        if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+          $sql_data_array['customers_tva_intracom'] = $customers_tva_intracom;
+        } else {
+          $customers_tva_intracom = '';
+        }
 
 // Autorisation aux clients de modifier informations société et adresse principal + Ajout adresse
         if ($customers_modify_company != '1') $customers_modify_company = '0';
@@ -288,7 +319,7 @@
 
         $CLICSHOPPING_Hooks->call('Customers', 'Update');
 
-        $CLICSHOPPING_Customers->redirect('Customers&page=' . $_GET['page']. '&cID=' . $customers_id);
+        $CLICSHOPPING_Customers->redirect('Customers&page=' . $page. '&cID=' . $customers_id);
 
       } elseif ($error === true) {
 

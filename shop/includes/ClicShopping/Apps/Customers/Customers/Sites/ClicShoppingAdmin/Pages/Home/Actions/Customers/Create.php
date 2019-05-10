@@ -29,56 +29,59 @@
       $CLICSHOPPING_Mail = Registry::get('Mail');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $error = false;
 
-        if (isset($_POST['customers_gender'])) {
-          $customers_gender = HTML::sanitize($_POST['customers_gender']);
-        } else {
-          $error = true;
-        }
+      if (isset($_POST['customers_gender'])) {
+        $customers_gender = HTML::sanitize($_POST['customers_gender']);
+      } else {
+        $error = true;
+      }
 
 // Informations client
-        $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
-        $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
-        $customers_email_address = $_POST['customers_email_address'];
-        $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
-        $customers_fax = HTML::sanitize($_POST['customers_fax']);
-        $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
-        $customers_languages_id = HTML::sanitize($_POST['customers_languages_id']);
-        $customers_dob = HTML::sanitize($_POST['customers_dob']);
-        $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+      if (isset($_POST['customers_firstname'])) $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
+      if (isset($_POST['customers_lastname']))$customers_lastname = HTML::sanitize($_POST['customers_lastname']);
+      if (isset($_POST['customers_telephone'])) $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
+      if (isset($_POST['customers_fax'])) $customers_fax = HTML::sanitize($_POST['customers_fax']);
+      if (isset($_POST['customers_cellular_phone'])) $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
+      if (isset($_POST['customers_languages_id'])) $customers_languages_id = HTML::sanitize($_POST['customers_languages_id']);
+      if (isset($_POST['customers_dob'])) $customers_dob = HTML::sanitize($_POST['customers_dob']);
+      if (isset($_POST['customers_group_id'])) $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
         $dobDateTime = new DateTime($customers_dob, false);
 
 // Informations sur la societe
-        $customers_company = HTML::sanitize($_POST['customers_company']);
-        $customers_siret = HTML::sanitize($_POST['customers_siret']);
-        $customers_ape = HTML::sanitize($_POST['customers_ape']);
+      if (isset($_POST['customers_company'])) $customers_company = HTML::sanitize($_POST['customers_company']);
+      if (isset($_POST['customers_siret'])) $customers_siret = HTML::sanitize($_POST['customers_siret']);
+      if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_ape = HTML::sanitize($_POST['customers_ape']);
 
 // Informations numero de TVA avec transformation de code ISO en majuscule
-        $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
-        $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
-        $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+      if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
+      $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+
+      if (isset($_POST['customers_tva_intracom'])) $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
 
 // Informations sur le type de facturation
-        $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
-        $default_address_id = HTML::sanitize($_POST['default_address_id']);
-        $customers_street_address = HTML::sanitize($_POST['customers_street_address']);
-        $customers_suburb = HTML::sanitize($_POST['customers_suburb']);
-        $customers_postcode = HTML::sanitize($_POST['postcode']);
-        $customers_city = HTML::sanitize($_POST['city']);
-        $customers_country_id = HTML::sanitize($_POST['country']);
-        $customers_company = HTML::sanitize($_POST['customers_company']);
-        $customers_state = HTML::sanitize($_POST['state']);
+      if (isset($_POST['customers_options_order_taxe'])) $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
+      if (isset($_POST['default_address_id'])) $default_address_id = HTML::sanitize($_POST['default_address_id']);
+      if (isset($_POST['customers_street_address'])) $customers_street_address = HTML::sanitize($_POST['customers_street_address']);
+      if (isset($_POST['customers_suburb'])) $customers_suburb = HTML::sanitize($_POST['customers_suburb']);
+      if (isset($_POST['postcode'])) $customers_postcode = HTML::sanitize($_POST['postcode']);
+      if (isset($_POST['city'])) $customers_city = HTML::sanitize($_POST['city']);
+      if (isset($_POST['country'])) $customers_country_id = HTML::sanitize($_POST['country']);
+      if (isset($_POST['customers_company'])) $customers_company = HTML::sanitize($_POST['customers_company']);
+      if (isset($_POST['state'])) $customers_state = HTML::sanitize($_POST['state']);
 
 // Autorisation aux clients de modifier Les informations de la societe
-        $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
+      if (isset($_POST['customers_modify_company'])) $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
 
 // Autorisation aux clients de modifier adresse principal
-        $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
-        $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+      if (isset($_POST['customers_modify_address_default'])) $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+      if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
 
-        $customers_email = HTML::sanitize($_POST['customers_email']);
+      if (isset($_POST['customers_email'])) $customers_email = HTML::sanitize($_POST['customers_email']);
+      if (isset($_POST['customers_email_address'])) $customers_email_address = $_POST['customers_email_address'];
 
 // Information sur la zone geographique
         $customers_zone_id = false;
@@ -380,6 +383,6 @@
 
         $CLICSHOPPING_Hooks->call('Customers','Create');
 
-        $CLICSHOPPING_Customers->redirect('Customers', 'page=' . $_GET['page']);
+        $CLICSHOPPING_Customers->redirect('Customers', 'page=' . $page . 'error=' . $error);
     }
   }

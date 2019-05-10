@@ -76,34 +76,13 @@
   $QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QordersStatusInvoice->execute();
 
-  while ($QordersStatusInvoice->fetch() !== false) {
-    $orders_invoice_statuses[] = ['id'   => $QordersStatusInvoice->valueInt('orders_status_invoice_id'),
+  while ($QordersStatusInvoice->fetch()) {
+    $orders_invoice_statuses[] = ['id' => $QordersStatusInvoice->valueInt('orders_status_invoice_id'),
                                   'text' => $QordersStatusInvoice->value('orders_status_invoice_name')
                                   ];
 
     $orders_status_invoice_array[$QordersStatusInvoice->valueInt('orders_status_invoice_id')] = $QordersStatusInvoice->value('orders_status_invoice_name');
   }
-
-
-  // orders_support status Dropdown
-  $orders_support_statuses = [];
-  $orders_status_support_array = [];
-
-  $QordersStatusSupport = $CLICSHOPPING_Db->prepare('select orders_status_support_id,
-                                                           orders_status_support_name
-                                                     from :table_orders_status_support
-                                                     where language_id = :language_id
-                                                    ');
-  $QordersStatusSupport->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  $QordersStatusSupport->execute();
-
-  while ($QordersStatusSupport->fetch() !== false ) {
-    $orders_support_statuses[] = ['id'   => $QordersStatusSupport->valueInt('orders_status_support_id'),
-                                  'text' => $QordersStatusSupport->value('orders_status_support_name')
-                                 ];
-    $orders_status_support_array[$QordersStatusSupport->valueInt('orders_status_support_id')] = $QordersStatusSupport->value('orders_status_support_name');
-  }
-
 
   $Qcustomers = $CLICSHOPPING_Orders->db->prepare('select c.customers_id,
                                                           o.customers_id,
@@ -410,13 +389,6 @@
               <div class="col-md-12" id="contentTab3"></div>
 
               <div class="separator"></div>
-              <div class="col-md-12" id="StatusSupport">
-                <div class="row" id="tab3ContentRow3">
-                  <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status_orders_support_name'); ?></strong></span>
-                  <span class="col-md-4"><?php echo HTML::selectMenu('orders_status_support_id', $orders_support_statuses, $order->info['orders_status_support']); ?></span>
-                </div>
-              </div>
-              <div class="separator"></div>
               <div class="col-md-12" id="StatusNotify">
                 <div class="row" id="tab3ContentRow4">
                   <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?></strong></span>
@@ -450,9 +422,6 @@
                                                              date_added,
                                                              customer_notified,
                                                              comments,
-                                                             orders_status_tracking_id,
-                                                             orders_tracking_number,
-                                                             orders_status_support_id,
                                                              evidence
                                                       from :table_orders_status_history
                                                       where orders_id = :orders_id
@@ -462,9 +431,9 @@
   $QordersHistory->execute();
 
   if ($QordersHistory->rowCount() > 0) {
-    while ($QordersHistory->fetch() !== false) {
+    while ($QordersHistory->fetch()) {
       echo '      <tr>' . "\n" .
-        '        <td class="text-md-center">' . DateTime::toShort($QordersHistory->value('date_added')) . '</td>' . "\n" .
+        '        <td class="text-md-center">' . DateTime::toLong($QordersHistory->value('date_added')) . '</td>' . "\n" .
         '        <td class="text-md-center">';
 
       if ($QordersHistory->valueInt('customer_notified') === 1) {
@@ -475,14 +444,15 @@
 
       echo '        </td>';
 
-      echo '        <td class="text-md-center">' . $orders_status_array[$QordersHistory->valueInt('orders_status_id')] . '</td>' . "\n" .
-           '        <td>
-           ' . $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />
-           ' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />
-           ' . $CLICSHOPPING_Orders->getDef('entry_status_orders_support_name') . ' : ' . $orders_status_support_array[$QordersHistory->valueInt('orders_status_support_id')]   . '<hr>
-           ' . $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />
-           ' . nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
+     $content =  '<td class="text-md-center">' . $orders_status_array[$QordersHistory->valueInt('orders_status_id')] . '</td>' . "\n";
+     $content .= '<td id="orderCommentcontentTab3">';
+     $content .= $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />';
+     $content .= $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />';
+     $content .= $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />';
+     $content .= nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
 
+      echo $content;
+      
       if(!is_null($QordersHistory->value('evidence'))) {
         echo $CLICSHOPPING_Orders->getDef('entry_status_evidence') . '<br />' . HTML::link(CLICSHOPPING::link('../sources/Download/Evidence/' . $QordersHistory->value('evidence')),$QordersHistory->value('evidence')) . '<br />';
       }

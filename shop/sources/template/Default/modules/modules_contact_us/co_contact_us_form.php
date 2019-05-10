@@ -217,8 +217,6 @@
               </div>
             </div>
           ';
-        } else {
-          define('CONTACT_DEPARTMENT_LIST', 'Not configured');
         }
 // ----------------------
 // Subject

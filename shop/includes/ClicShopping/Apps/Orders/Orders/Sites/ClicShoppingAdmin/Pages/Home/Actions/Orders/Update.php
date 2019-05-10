@@ -28,26 +28,22 @@
     protected $status;
     protected $statusInvoice;
     protected $comments;
-    protected $ordersStatusSupportId;
     protected $notifyComments;
     protected $notify;
-    protected $ordersStatusSupport;
 
     public function __construct() {
       $this->app = Registry::get('Orders');
       $this->lang = Registry::get('Language');
       $this->db = Registry::get('Db');
 
-      $this->oID = HTML::sanitize($_GET['oID']);
-      $this->status = HTML::sanitize($_POST['status']);
-      $this->statusInvoice = HTML::sanitize($_POST['status_invoice']);
-      $this->comments = HTML::sanitize($_POST['comments']);
-      $this->ordersTrackingId = HTML::sanitize($_POST['orders_tracking_id']);
-      $this->ordersTrackingNumber = HTML::sanitize($_POST['orders_tracking_number']);
-      $this->ordersStatusSupportId = HTML::sanitize($_POST['orders_status_support_id']);
-      $this->notifyComments = HTML::sanitize($_POST['notify_comments']);
-      $this->notify = HTML::sanitize($_POST['notify']);
-      $this->ordersStatusSupport = HTML::sanitize($_POST['orders_status_support']);
+      if (isset($_POST['oID'])) $this->oID = HTML::sanitize($_GET['oID']);
+      if (isset($_POST['status'])) $this->status = HTML::sanitize($_POST['status']);
+
+      if (isset($_POST['status_invoice'])) $this->statusInvoice = HTML::sanitize($_POST['status_invoice']);
+      if (isset($_POST['comments'])) $this->comments = HTML::sanitize($_POST['comments']);
+
+      if (isset($_POST['notify_comments'])) $this->notifyComments = HTML::sanitize($_POST['notify_comments']);
+      if (isset($_POST['notify'])) $this->notify = HTML::sanitize($_POST['notify']);
     }
 
     private function getCheckStatus() {
@@ -83,21 +79,6 @@
         $notify_comments = html_entity_decode($notify_comments);
       }
 
-      if ($this->ordersStatusSupportId > 1) {
-        $QordersStatusSupport = $this->db->prepare('select orders_status_support_name
-                                                     from :table_orders_status_support
-                                                     where language_id = :language_id
-                                                     and orders_status_support_id = :orders_status_support_id
-                                                    ');
-        $QordersStatusSupport->bindInt(':language_id', $this->lang->getId());
-        $QordersStatusSupport->bindInt(':orders_status_support_id', $this->ordersStatusSupportId);
-        $QordersStatusSupport->execute();
-
-        $customer_support = $QordersStatusSupport->value('orders_status_support_name') .'<br />';
-      }
-
-      $CLICSHOPPING_Hooks->call('Orders','OrderEmail');
-
       $template_email_intro_command = TemplateEmailAdmin::getTemplateEmailIntroCommand();
       $template_email_signature = TemplateEmailAdmin::getTemplateEmailSignature();
       $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
@@ -105,7 +86,7 @@
 
       $email_subject =  $this->app->getDef('email_text_subject', ['store_name' => STORE_NAME]);
 
-      $email_text = $template_email_intro_command . '<br />'. $status_order . '<br />'.   $this->app->getDef('email_separator') . '<br /><br />'. $this->app->getDef('email_text_order_number') . ' '. $this->oID . '<br /><br />'. $this->app->getDef('email_text_invoice_url') . '<br />'. CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking_id . '<br />' . '<br />' . $customer_support . '<br />' . $notify_comments .'<br /><br />' .  $template_email_signature . '<br /><br />' . $template_email_footer;
+      $email_text = $template_email_intro_command . '<br />'. $status_order . '<br />'.   $this->app->getDef('email_separator') . '<br /><br />'. $this->app->getDef('email_text_order_number') . ' '. $this->oID . '<br /><br />'. $this->app->getDef('email_text_invoice_url') . '<br />'. CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking_id . '<br />' . $notify_comments .'<br /><br />' .  $template_email_signature . '<br /><br />' . $template_email_footer;
 
 
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
@@ -115,6 +96,8 @@
       $CLICSHOPPING_Mail->build_message();
       $from = STORE_OWNER_EMAIL_ADDRESS;
       $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], '', $from, $email_subject);
+
+      $CLICSHOPPING_Hooks->call('Orders','OrderEmail');
     }
 
     public function execute() {
@@ -126,9 +109,6 @@
       $check = $this->getCheckStatus();
 
       if ($this->oID != 0) {
-
-        if (!empty($this->ordersStatusSupportId)) {
-
 // verify and update the status if changed
           if ( ($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
              $data_array = ['orders_status' => (int)$this->status,
@@ -141,7 +121,6 @@
             $customer_notified = 0;
 
             if (isset($this->notify) && ($this->notify == 'on')) {
-              $this->getMail();
               $customer_notified = 1;
             }
 
@@ -152,7 +131,6 @@
                             'date_added' => 'now()',
                             'customer_notified' => (int)$customer_notified,
                             'comments' => $this->comments,
-                            'orders_status_support_id' => $this->ordersStatusSupportId
                           ];
 
             $this->app->db->save('orders_status_history', $data_array);
@@ -161,7 +139,6 @@
           } else {
             $order_updated = true;
           }
-        }
       }
 
       if ($order_updated === true) {
@@ -170,7 +147,11 @@
         $CLICSHOPPING_MessageStack->add($this->app->getDef('warning_order_not_updated'), 'warning');
       }
 
-      $CLICSHOPPING_Hooks->call('Orders','Update');
+      $CLICSHOPPING_Hooks->call('Orders', 'Update');
+
+      if (isset($this->notify) && ($this->notify == 'on')) {
+        $this->getMail();
+      }
 
       $this->app->redirect('Orders');
     }

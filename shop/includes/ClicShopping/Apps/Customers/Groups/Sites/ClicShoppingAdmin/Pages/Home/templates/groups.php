@@ -24,6 +24,9 @@
   // Permettre l'utilisation de des groupes clients
   if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect();
 
+  if (isset($_GET['search'])) {
+    $_POST['search'] = HTML::sanitize($_GET['search']);
+  }
 ?>
 <div class="contentBody">
   <div class="row">
@@ -37,7 +40,7 @@
             <div class="form-group">
               <div class="controls">
 <?php
-  echo HTML::form('search', 'Groups', 'post', null, ['session_id' => true]);
+  echo HTML::form('search', $CLICSHOPPING_Groups->link('Groups'), 'post', 'role="form" class="form-inline"', ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Groups->getDef('heading_title_search') . '"');
 ?>
                 </form>
@@ -49,10 +52,10 @@
               <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_insert'), null, $CLICSHOPPING_Groups->link('Insert'), 'success'); ?>
             </span>
 <?php
-  if (!is_null($_GET['search'])) {
+  if (!isset($_GET['search'])) {
 ?>
-    <span class="col-md-6"> <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_reset'), null, $CLICSHOPPING_Groups->link('customers_groups.php', null), 'warning'); ?></span>
-    <?php
+    <span class="col-md-6"> <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_reset'), null, $CLICSHOPPING_Groups->link('Groups'), 'warning'); ?></span>
+<?php
   }
 ?>
               </span>
@@ -76,7 +79,7 @@
 <?php
   } else {
 ?>
-    <th><?php echo $CLICSHOPPING_Groups->getDef('table_heading_discount'); ?></th>
+          <th><?php echo $CLICSHOPPING_Groups->getDef('table_heading_discount'); ?></th>
 <?php
   }
 ?>
@@ -85,7 +88,8 @@
         </thead>
 <?php
   $search = '';
-  if ( ($_POST['search']) && (!is_null($_POST['search'])) ) {
+
+  if (isset($_POST['search'])) {
     $keywords = HTML::sanitize($_POST['search']);
 
     $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
@@ -99,7 +103,6 @@
     $QustomersGroup->execute();
 
   } else {
-
     $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
                                                          from :table_customers_groups
                                                          limit :page_set_offset,
@@ -118,7 +121,8 @@
         $cInfo = new ObjectInfo($QustomersGroup->toArray());
       }
 ?>
-              <th scope="row"><?php echo $QustomersGroup->value('customers_group_name'); ?></th>
+      <tr>
+              <td scope="row"><?php echo $QustomersGroup->value('customers_group_name'); ?></td>
               <td class="text-md-center">
                 <table cellspacing="0" cellpadding="0" border="0"  width="30px">
                   <td class="text-md-center" bgcolor="<?php echo $QustomersGroup->value('color_bar'); ?>">&nbsp;</td>
@@ -139,7 +143,7 @@
       }
 ?>
               </td>
-              </tr>
+            </tr>
 <?php
     }
   } // end $listingTotalRow

@@ -828,9 +828,9 @@
         $product_button_new_arrival = HTML::button(CLICSHOPPING::getDef('button_new_product'), null, null, 'new', null, $size_button);
 
         $icon_new_arrival_products = '&nbsp' . $product_button_new_arrival;
-      }
 
-      return $icon_new_arrival_products;
+        return $icon_new_arrival_products;
+      }
     }
 
 

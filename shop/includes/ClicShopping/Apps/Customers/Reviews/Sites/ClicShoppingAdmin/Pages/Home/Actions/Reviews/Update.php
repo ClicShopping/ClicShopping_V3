@@ -16,29 +16,33 @@
   use ClicShopping\OM\HTML;
 
   class Update extends \ClicShopping\OM\PagesActionsAbstract {
-
     public function execute() {
-
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      $reviews_id = HTML::sanitize($_GET['rID']);
-      $reviews_rating = HTML::sanitize($_POST['reviews_rating']);
-      $reviews_text = HTML::sanitize($_POST['reviews_text']);
-      $reviews_status = HTML::sanitize($_POST['status']);
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $CLICSHOPPING_Reviews->db->save('reviews', [
-                                          'reviews_rating' => $reviews_rating,
-                                          'status' => (int)$reviews_status,
-                                          'last_modified' => 'now()'
-                                          ], [
-                                          'reviews_id' => (int)$reviews_id
-                                          ]
-                              );
+      if (isset($_GET['id'])) $id = $_GET['id'];
+      if (isset($_GET['rID'])) $reviews_id = HTML::sanitize($_GET['rID']);
+      if (isset($_POST['reviews_rating'])) $reviews_rating = HTML::sanitize($_POST['reviews_rating']);
+      if (isset($_POST['reviews_text']))$reviews_text = HTML::sanitize($_POST['reviews_text']);
+      if (isset($_POST['status'])) $reviews_status = HTML::sanitize($_POST['status']);
+      if (isset($_POST['languages_id'])) $languages_id = HTML::sanitize($_POST['languages_id']);
 
-      $CLICSHOPPING_Reviews->db->save('reviews_description', ['reviews_text' => $reviews_text],
-                                                      ['reviews_id' => (int)$reviews_id]
-                              );
+      $sql_array = ['reviews_rating' => (int)$reviews_rating,
+                    'status' => (int)$reviews_status,
+                    'last_modified' => 'now()'
+                   ];
 
-      $CLICSHOPPING_Reviews->redirect('Reviews&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'rID=' . $_GET['id']);
+      var_dump($sql_array);
+
+      $CLICSHOPPING_Reviews->db->save('reviews', $sql_array, ['reviews_id' => (int)$reviews_id]);
+
+      $sql_array = ['reviews_text' => $reviews_text,
+                    'languages_id' => (int)$languages_id,
+                   ];
+
+      $CLICSHOPPING_Reviews->db->save('reviews_description', $sql_array, ['reviews_id' => (int)$reviews_id]);
+
+      $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page . '&rID=' . $id);
     }
   }

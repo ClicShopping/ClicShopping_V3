@@ -219,7 +219,7 @@
 // See the button more view details
                 $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), null, CLICSHOPPING::link($products_name_url, 'info', null, 'sm'));
 // 10 - Display the image
-                $products_image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qproducts->value('products_image'), HTML::outputProtected($Qproducts->value('products_name')), MODULE_PRODUCTS_INFO_CROSS_SELL_IMAGE_WIDTH, MODULE_PRODUCTS_INFO_CROSS_SELL_IMAGE_HEIGHT, null, true));
+                $products_image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qproducts->value('products_image'), HTML::outputProtected($Qproducts->value('products_name')), MODULE_PRODUCTS_INFO_ALSO_PURCHASED_IMAGE_WIDTH, MODULE_PRODUCTS_INFO_ALSO_PURCHASED_IMAGE_HEIGHT, null, true));
 //Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_INFO_ALSO_PURCHASED_TICKER, $products_id, 'ModulesProductsInfoBootstrapTickerSpecial', 'ModulesProductsInfoBootstrapTickerFavorite', 'ModulesProductsInfoBootstrapTickerFeatured', 'ModulesProductsInfoBootstrapTickerNew');
 

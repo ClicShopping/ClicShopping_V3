@@ -205,7 +205,6 @@
         
         $Qcountry->bindInt(':countries_id', $Qcustomers->valueInt('entry_country_id'));
         $Qcountry->execute();
-
         $country = $Qcountry->fetch();
 
         $Qreviews = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_reviews
@@ -215,6 +214,7 @@
 
         $Qreviews->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
         $Qreviews->execute();
+        $reviews = $Qreviews->fetch();
 
   // recover from bad records
         if (!is_array($Qcountry->fetch())) {
@@ -222,12 +222,13 @@
         }
 
         if (!is_array($Qinfo->fetch())) {
-          $info = array ('Info is NULL');
+          $info = ['Info is NULL'];
         }
 
         if (!is_array($Qreviews->fetch())) {
-          $reviews = array('Customers is NULL');
+          $reviews = ['Customers is NULL'];
         }
+
 
         $Qorders = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_orders
                                                           from :table_orders

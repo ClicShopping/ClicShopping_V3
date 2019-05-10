@@ -21,8 +21,11 @@
 
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      if (!empty($_POST['selected'])) {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
+      if (isset($_GET['id'])) $rId = HTML::sanitize($_GET['id']);
+
+      if (!empty($_POST['selected'])) {
         foreach ($_POST['selected'] as $id ) {
           $reviews_id = HTML::sanitize($id);
 
@@ -32,6 +35,6 @@
         }
       }
 
-      $CLICSHOPPING_Reviews->redirect('Reviews&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'rID=' . $_GET['id']);
+      $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page . '&rID=' . $rId);
     }
   }

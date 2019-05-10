@@ -73,7 +73,8 @@
         <tbody>
 <?php
   $search = '';
-  if ( ($_POST['search']) && (!is_null($_POST['search'])) ) {
+
+  if (isset($_POST['search'])) {
     $keywords = HTML::sanitize($_POST['search']);
 
     $Qcustomers = $CLICSHOPPING_Members->db->prepare('select  SQL_CALC_FOUND_ROWS  c.customers_id,

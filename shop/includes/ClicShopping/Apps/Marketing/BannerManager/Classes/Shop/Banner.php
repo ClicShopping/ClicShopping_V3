@@ -240,7 +240,7 @@
 
       $output = '';
 
-      if (isset($banner)) {
+      if (is_array($banner)) {
         if (!empty($banner['banners_html_text'])) {
           $output = $banner['banners_html_text'];
         } else {

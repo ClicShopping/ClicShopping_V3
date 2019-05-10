@@ -22,7 +22,7 @@
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $group_id = HTML::sanitize($_GET['cID']);
+      if (isset($_GET['cID'])) $group_id = HTML::sanitize($_GET['cID']);
 
       $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete
                                               from :table_groups_to_categories

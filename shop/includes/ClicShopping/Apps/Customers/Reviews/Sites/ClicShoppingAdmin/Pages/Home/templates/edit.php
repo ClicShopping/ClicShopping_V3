@@ -24,40 +24,38 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-  if (!isset($_POST)) {
-    $rInfo = new ObjectInfo($_POST);
-  } else {
-    $rID = HTML::sanitize($_GET['rID']);
+  if (isset($_GET['rID'])) $rID = HTML::sanitize($_GET['rID']);
 
     $Qreviews = $CLICSHOPPING_Db->prepare('select r.reviews_id,
-                                          r.products_id,
-                                          r.customers_name,
-                                          r.date_added,
-                                          r.last_modified,
-                                          r.reviews_read,
-                                          r.status,
-                                          rd.reviews_text,
-                                          r.reviews_rating
-                                   from :table_reviews r,
-                                        :table_reviews_description rd
-                                   where r.reviews_id = :reviews_id
-                                   and r.reviews_id = rd.reviews_id
-                                  ');
+                                                  r.products_id,
+                                                  r.customers_name,
+                                                  r.date_added,
+                                                  r.last_modified,
+                                                  r.reviews_read,
+                                                  r.status,
+                                                  r.reviews_rating,
+                                                  rd.reviews_text,
+                                                  rd.languages_id
+                                           from :table_reviews r,
+                                                :table_reviews_description rd
+                                           where r.reviews_id = :reviews_id
+                                           and r.reviews_id = rd.reviews_id
+                                          ');
     $Qreviews->bindValue(':reviews_id',(int)$rID);
     $Qreviews->execute();
 
     $Qproducts = $CLICSHOPPING_Db->prepare('select products_image
-                                     from :table_products
-                                     where products_id = :products_id
-                                    ');
+                                             from :table_products
+                                             where products_id = :products_id
+                                            ');
     $Qproducts->bindValue(':products_id', $Qreviews->valueInt('products_id'));
     $Qproducts->execute();
 
     $QproductsName = $CLICSHOPPING_Db->prepare('select products_name
-                                         from :table_products_description
-                                         where products_id = :products_id
-                                         and language_id = :language_id
-                                        ');
+                                                 from :table_products_description
+                                                 where products_id = :products_id
+                                                 and language_id = :language_id
+                                                ');
     $QproductsName->bindValue(':products_id', $Qreviews->valueInt('products_id'));
     $QproductsName->bindValue(':language_id', $CLICSHOPPING_Language->getId());
     $QproductsName->execute();
@@ -69,9 +67,9 @@
     $status_array = array(array('id' => '1', 'text' => $CLICSHOPPING_Reviews->getDef('entry_status_yes')),
                           array('id' => '0', 'text' => $CLICSHOPPING_Reviews->getDef('entry_status_no'))
                         );
-  }
-?>
 
+  echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
+?>
 <!-- body //-->
 <div class="contentBody">
   <div class="row">
@@ -83,8 +81,7 @@
           <span class="col-md-6 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
-  echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
-  foreach ( $_POST as $key => $value ) echo HTML::hiddenField($key, $value);
+  echo HTML::hiddenField('language_id', $rInfo->languages_id);
   echo HTML::button($CLICSHOPPING_Reviews->getDef('button_update'), null, null, 'success');
 ?>
           </span>
@@ -189,6 +186,8 @@
               <span class="col-md-10">
 
                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
+
+                <?php echo '--------------' . $rInfo->reviews_rating; ?>
 <script>
   $(function () {
     $("#rateYo").rateYo({

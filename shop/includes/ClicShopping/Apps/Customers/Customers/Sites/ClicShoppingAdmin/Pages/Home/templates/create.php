@@ -47,11 +47,10 @@
   </div>
   <div class="separator"></div>
 <?php
-  if ($error === true) {
+  if (isset($_GET['error']) && $error === true) {
 ?>
   <div class="alert alert-warning" role="alert">
     <?php echo $CLICSHOPPING_Customers->getDef('warning_edit_customers'); ?><br />
-    <?php echo $message_error; ?>
   </div>
 <?php
   }
@@ -122,7 +121,7 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
                   <div class="col-md-5 input-group">
 <?php
-  if ($error === true) {
+  if (isset($_GET['error']) && $error === true) {
     if ($entry_date_of_birth_error === true) {
       echo HTML::inputField('customers_dob', $cInfo->customers_dob, 'maxlength="10" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
     } else {
@@ -449,7 +448,6 @@
 
 
 <script type="text/javascript"><!--
-
   function check_form() {
     var error = 0;
     var error_message = "<?php echo $CLICSHOPPING_Customers->getDef('js_error'); ?>";

@@ -77,7 +77,7 @@
       return $clean;
     }
 
-    public function starHeaderTagRateYo() {
+    public static function starHeaderTagRateYo() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $header_tag = '<!--   Rate Yo start -->' . "\n";
@@ -89,7 +89,7 @@
       return $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
     }
 
-    public function starTagRateYo($rating = null, $color = null, $readonly = true, $size = '20') {
+    public static function starTagRateYo($rating = null, $color = null, $readonly = true, $size = '20') {
 
       $star_rating = '<!--   Rate Yo start -->'."\n";
       $star_rating .='<script> ';

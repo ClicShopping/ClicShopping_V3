@@ -20,7 +20,7 @@
 
   use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
-  class PageTabContent4 implements \ClicShopping\OM\Modules\HooksInterface {
+  class pageTab4 implements \ClicShopping\OM\Modules\HooksInterface {
     protected $app;
 
     public function __construct()   {
@@ -40,7 +40,7 @@
         return false;
       }
 
-      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Customers/page_content4');
+      $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Customers/page_tab_4');
 
       $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select customers_group_id
                                                           from :table_customers
@@ -60,17 +60,16 @@
                                                                  from :table_customers_groups
                                                                  where customers_group_id = :customers_group_id
                                                                 ');
-        $QcustomersGroup->bindInt(':customers_group_id', (int)$cInfo->customers_group_id );
+        $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id );
         $QcustomersGroup->execute();
 
-        $customers_array = $QcustomersGroup->toArray();
-
-        $cInfo_group = new ObjectInfo($customers_array);
+        $cInfo_group = new ObjectInfo($QcustomersGroup->toArray());
       }
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
 // Affiche la case cochée par défaut pour le mode de facturation utilisée avec taxe ou non
         if (!isset($cInfo->customers_options_order_taxe)) $cInfo->customers_options_order_taxe = '0';
+
         switch ($cInfo->customers_options_order_taxe) {
           case '0': $status_order_taxe = true; $status_order_no_taxe = false; break;
           case '1': $status_order_taxe = false; $status_order_no_taxe = true; break;
@@ -78,12 +77,7 @@
         }
 
         if (MODE_B2B_B2C == 'true') {
-          $content = '<div class="separator"></div>';
-
-          $content .= '<div class="mainTitle">';
-          $content .= '<span class="col-md-12">'. $this->app->getDef('category_group_customer') . '</span>';
-          $content .= '</div>';
-          $content .= '<div class="adminformTitle">';
+          $content = '<div class="adminformTitle">';
           $content .= '<div class="row">';
           $content .= '<div class="col-md-12">';
 
@@ -150,8 +144,10 @@
           $content .= '<div class="col-md-12">';
 
 // Search payment module
-          $payments_unallowed = explode (',', $cInfo_group->group_payment_unallowed);
-          $module_directory = $CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/payment/';
+          if ($cInfo->customers_group_id != 0 && $cInfo_group->group_payment_unallowed) {
+            $payments_unallowed = explode(',', $cInfo_group->group_payment_unallowed);
+          }
+
           $module_key = 'MODULE_PAYMENT_INSTALLED';
 
           $Qconfiguration_payment = $CLICSHOPPING_Customers->db->prepare('select configuration_value
@@ -162,7 +158,6 @@
           $Qconfiguration_payment->execute();
 
           $modules_payment = explode(';', $Qconfiguration_payment->value('configuration_value'));
-          $module_active = $modules_payment;
 
           $include_modules = [];
 
@@ -173,11 +168,6 @@
               $include_modules[] = ['class' => $value,
                                     'file' => $class
                                     ];
-            } else {
-              $class = basename($value, '.php');
-              $include_modules[] = ['class' => $class,
-                                    'file' => $value
-                                  ];
             }
           }
 
@@ -188,7 +178,6 @@
               $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
               if (($cInfo->customers_group_id != 0) && (in_array($module->code, $payments_unallowed))) {
-
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
@@ -199,9 +188,7 @@
                 $content .= '</div>';
                 $content .= '</div>';
                 $content .= '</div>';
-
               } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $payments_unallowed))) {
-
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
@@ -224,77 +211,32 @@
                 $content .= '</div>';
                 $content .= '</div>';
               } // end customers_group_id
-            } else {
-
-              $file = $include_modules[$i]['file'];
-
-              if (in_array ($include_modules[$i]['file'], $modules_payment)) {
-
-                $CLICSHOPPING_Language->loadDefinitions('modules/payment/' . pathinfo($include_modules[$i]['file'], PATHINFO_FILENAME));
-
-                include($module_directory . $file);
-
-                $class = substr($file, 0, strrpos($file, '.'));
-                if (class_exists($class)) {
-                  $module = new $class;
-                  if ($module->check() > 0) {
-                    $installed_modules[] = $file;
-                  }
-                }
-
-                if (($cInfo->customers_group_id != 0) && (in_array($module->code, $payments_unallowed))) {
-                  $content .= '<div class="row">';
-                  $content .= '<div class="col-md-5">';
-                  $content .= '<div class="form-group row">';
-                  $content .= '<div class="col-md-12">';
-                  $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-                  $content .= '<span class="col-md-3">' . $module->title . '</span>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $payments_unallowed))) {
-                  $content .= '<div class="row">';
-                  $content .= '<div class="col-md-5">';
-                  $content .= '<div class="form-group row">';
-                  $content .= '<div class="col-md-12">';
-                  $content .= '<span class="col-md-1"><i class="fas fa-times fa-lg" aria-hidden="true"></i></span>';
-                  $content .= '<span class="col-md-3">' . $module->title . '</span>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                } elseif ($cInfo->customers_group_id == 0) {
-                  $content .= '<div class="row">';
-                  $content .= '<div class="col-md-5">';
-                  $content .= '<div class="form-group row">';
-                  $content .= '<div class="col-md-12">';
-                  $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-                  $content .= '<span class="col-md-3">' . $module->title . '</span>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-                  $content .= '</div>';
-
-                } // end customers_group_id
-              } // end in_array
-            } // end class
+            }
           } // end for
 
           $content .= '</div>';
           $content .= '</div>';
           $content .= '</div>';
 
+          $title = $this->app->getDef('category_group_customer');
+          $tab_title = $this->app->getDef('Payment');
 
         $output = <<<EOD
 <!-- ######################## -->
 <!--  Start Customers Group App      -->
 <!-- ######################## -->
+<div class="tab-pane" id="section_PaymentCustomerApp_content">
+  <div class="mainTitle">
+    <span class="col-md-12">{$title}</span>
+  </div>
+  {$content}
+</div>
+
 <script>
-$('#tab4Content').prepend(
-    '{$content}'
-);
+$('#section_PaymentCustomerApp_content').appendTo('#customersTabs .tab-content');
+$('#customersTabs .nav-tabs').append('    <li class="nav-item"><a data-target="#section_PaymentCustomerApp_content" role="tab" data-toggle="tab" class="nav-link">{$tab_title}</a></li>');
 </script>
+
 <!-- ######################## -->
 <!--  End Customers Group App      -->
 <!-- ######################## -->

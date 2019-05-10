@@ -21,6 +21,8 @@
   // Permettre l'utilisation de l'approbation des comptes en mode B2B
   if (MODE_B2B_B2C == 'false')  CLICSHOPPING::redirect();
 
+  if (isset($_GET['cID'])) $cID = HTML::sanitize($_GET['cID']);
+
   $Qcustomers = $CLICSHOPPING_Members->db->prepare('select customers_id,
                                                           customers_lastname,
                                                           customers_firstname
@@ -28,14 +30,14 @@
                                                     where customers_id = :customers_id
                                                    ');
 
-  $Qcustomers->bindInt(':customers_id', $_GET['cID']);
+  $Qcustomers->bindInt(':customers_id', $cID);
   $Qcustomers->execute();
 
   $Qreviews = $CLICSHOPPING_Members->db->prepare('select count(*) as number_of_reviews
                                                  from :table_reviews
                                                  where customers_id = :customers_id
                                                 ');
-  $Qreviews->bindInt(':customers_id', $_GET['cID']);
+  $Qreviews->bindInt(':customers_id', $cID);
   $Qreviews->execute();
 
   $cInfo_array = array_merge($Qcustomers->toArray(), $Qreviews->toArray());

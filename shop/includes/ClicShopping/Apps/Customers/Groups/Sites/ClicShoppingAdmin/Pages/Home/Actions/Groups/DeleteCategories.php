@@ -21,8 +21,8 @@
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $category_id = HTML::sanitize($_POST['catID']);
-      $customers_groups_id = HTML::sanitize($_POST['customers_groups_id']);
+      if (isset($_POST['catID'])) $category_id = HTML::sanitize($_POST['catID']);
+      if (isset($_POST['customers_groups_id'])) $customers_groups_id = HTML::sanitize($_POST['customers_groups_id']);
 
       $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete
                                              from :table_groups_to_categories

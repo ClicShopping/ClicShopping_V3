@@ -59,6 +59,21 @@
   $Qcustomers->execute();
 
   $cInfo = new ObjectInfo($Qcustomers->toArray());
+
+  // Lecture sur la base de données des informations facturations et livraison du groupe client
+  if ($cInfo->customers_group_id != 0 ) {
+    $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
+                                                                        group_order_taxe,
+                                                                        group_payment_unallowed,
+                                                                        group_shipping_unallowed
+                                                                 from :table_customers_groups
+                                                                 where customers_group_id = :customers_group_id
+                                                                ');
+    $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id );
+    $QcustomersGroup->execute();
+
+    $cInfo_group = new ObjectInfo($QcustomersGroup->toArray());
+  }
 ?>
 
 <script type="text/javascript"><!--
@@ -204,8 +219,6 @@
       <li class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Customers->getDef('tab_general'); ?></a></li>
       <li class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
       <li class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_adresse_book'); ?></a></li>
-      <li class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_orders'); ?></a></li>
-      <li class="nav-item"><?php echo '<a href="#tab5" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_shipping'); ?></a></li>
       <li class="nav-item"><?php echo '<a href="#tab6" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_notes'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
@@ -282,25 +295,13 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
                   <div class="col-md-5 input-group">
 <?php
-      if ($cInfo->customers_dob != '') {
+      if (!empty($cInfo->customers_dob)) {
         $date_dob = DateTime::toShort($cInfo->customers_dob);
       } else {
         $date_dob = $cInfo->customers_dob;
@@ -967,139 +968,6 @@
                 <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_customers_default_address'); ?></div>
               </div>
             </div>
-<!-- //################################################################################################################ -->
-<!--          ONGLET Facturation          //-->
-<!-- //################################################################################################################ -->
-        <div class="tab-pane" id="tab4">
-          <div id="tab4Content">
-            <?php echo $CLICSHOPPING_Hooks->output('Customers', 'PageTabContent4', null, 'display'); ?>
-          </div>
-        </div>
-<!-- //################################################################################################################ -->
-<!--          ONGLET Livraisons          //-->
-<!-- //################################################################################################################ -->
-        <div class="tab-pane" id="tab5">
-<?php
-// Activation du module B2B
-      if ($cInfo->customers_group_id != 0) {
-?>
-          <div class="mainTitle">
-            <span class="col-md-2"><?php echo $CLICSHOPPING_Customers->getDef('category_shipping_customer_group') . '&nbsp;' . $cInfo_group->customers_group_name; ?></span>
-          </div>
-<?php
-// Activation du module B2B
-      } else {
-?>
-          <div class="mainTitle">
-            <?php echo $CLICSHOPPING_Customers->getDef('category_shipping_customer'); ?>
-          </div>
-<?php
-      }
-?>
-          <div class="adminformTitle">
-
-<?php
-// Search Shipping Module
-      $shipping_unallowed = explode (",", $cInfo_group->group_shipping_unallowed);
-      $module_key = 'MODULE_SHIPPING_INSTALLED';
-
-      $Qconfiguration_shipping = $CLICSHOPPING_Customers->db->prepare('select configuration_value
-                                                                        from :table_configuration
-                                                                        where configuration_key = :configuration_key
-                                                                      ');
-      $Qconfiguration_shipping->bindValue(':configuration_key', $module_key);
-      $Qconfiguration_shipping->execute();
-
-      $modules_shipping = explode(';', $Qconfiguration_shipping->value('configuration_value'));
-      $module_active = $modules_shipping;
-
-      $include_modules = [];
-
-
-      foreach($modules_shipping as $value) {
-        if (strpos($value, '\\') !== false) {
-          $class = Apps::getModuleClass($value, 'Shipping');
-
-          $include_modules[] = ['class' => $value,
-                                'file' => $class
-                                ];
-        }
-      }
-
-      for ($i=0, $n=count($include_modules); $i<$n; $i++) {
-
-        if (strpos($include_modules[$i]['class'], '\\') !== false) {
-          Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
-          $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
-
-          if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>
-                <span class="col-md-3"><?php echo $module->title; ?></span>
-              </div>
-<?php
-          } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>
-                <span class="col-md-3"><?php echo $module->title; ?></span>
-              </div>
-<?php
-          } elseif ($cInfo->customers_group_id == 0) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>
-                <span class="col-md-3"><?php echo $module->title; ?></span>
-              </div>
-<?php
-          } // end customers_group_id
-        } else {
-
-          $file = $include_modules[$i]['file'];
-
-          if (in_array ($include_modules[$i]['file'], $modules_shipping)) {
-
-            $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
-
-            $class = substr($file, 0, strrpos($file, '.'));
-
-            if (class_exists($class)) {
-              $module = new $class;
-              if ($module->check() > 0) {
-                $installed_modules[] = $file;
-              }
-            }
-
-            if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>
-                <span class="col-md-3"><?php echo $module->title; ?></span>
-              </div>
-<?php
-            } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>
-                <span class="col-md-3"><?php echo $module->title; ?></span>
-              </div>
-<?php
-            } elseif ($cInfo->customers_group_id == 0) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>
-                <span class="col-md-3"><?php echo $module->title; ?></span>
-              </div>
-<?php
-            } // end customers_group_id
-          } // end in_array
-        } // end class
-      } // end for
-?>
-          </div>
-          <div id="tab5Content"></div>
-        </div>
 <?php
 //################################################################################################################ -->
 //          ONGLET customers notes     //-->
@@ -1146,7 +1014,9 @@
 ?>
             </div>
           </div>
-          <div id="tab6Content"></div>
+          <div id="tab4Content">
+            <?php echo $CLICSHOPPING_Hooks->output('Customers', 'pageTab4', null, 'display'); ?>
+          </div>
         </div>
       </div>
     </div>

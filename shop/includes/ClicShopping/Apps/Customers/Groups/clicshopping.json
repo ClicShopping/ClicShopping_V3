@@ -63,7 +63,8 @@
     "Delete":	"Module\\Hooks\\ClicShoppingAdmin\\BannerManager\\Delete"
    },
    "ClicShoppingAdmin/Customers": {
-    "PageTabContent4":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\PageTabContent4",
+    "pageTab4":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\pageTab4",
+    "pageTab5":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\pageTab5",
     "Update":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\Update"
    }
   }

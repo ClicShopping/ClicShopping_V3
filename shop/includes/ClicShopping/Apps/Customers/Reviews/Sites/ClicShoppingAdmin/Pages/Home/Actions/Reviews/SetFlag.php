@@ -23,10 +23,12 @@
 
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       if (isset($_GET['id'])) {
         Status::getReviewsStatus(HTML::sanitize($_GET['id']), HTML::sanitize($_GET['flag']));
       }
 
-      $CLICSHOPPING_Reviews->redirect('Reviews&Reviews' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'rID=' . $_GET['id']);
+      $CLICSHOPPING_Reviews->redirect('Reviews&Reviews&page=' .$page . '&rID=' . $_GET['id']);
     }
   }

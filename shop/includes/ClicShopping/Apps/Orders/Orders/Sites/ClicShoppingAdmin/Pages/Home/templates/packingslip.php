@@ -287,6 +287,8 @@
 
 // Boucle sur les produits
 // Show the products information line by line
+  $item_count = 0;
+
   for ($i = 0, $n = count($order->products); $i < $n; $i++) {
 
 // Quantity
