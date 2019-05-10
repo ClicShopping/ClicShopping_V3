@@ -206,8 +206,10 @@
           $currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
           $currency_header .= '</form>';
         } else {
-          return $currency_header;
+          $currency_header = '';
         }
+
+        return $currency_header;
       }
     }
   }

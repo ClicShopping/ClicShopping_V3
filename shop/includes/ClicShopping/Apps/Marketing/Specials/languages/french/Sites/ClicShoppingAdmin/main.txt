@@ -59,8 +59,9 @@ table_heading_percentage = Pourcentage
 table_heading_flash_discount = Flash
 table_heading_percentage = Percentage
 
+
 text_specials_product = Produit :
-text_specials_special_price = Prix promotionnel hors taxes :
+text_specials_price = Prix promotionnel hors taxes :
 text_specials_expires_date = Date d'expiration :
 text_specials_group = Groupe Client :
 text_specials_flash_discount = S'agit-il d'une promotion flash ?

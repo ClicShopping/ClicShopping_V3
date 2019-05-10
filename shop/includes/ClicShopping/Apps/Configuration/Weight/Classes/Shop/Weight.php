@@ -102,6 +102,7 @@
       } else {
         $convert = number_format($value * $this->weight_classes[(int)$unit_from][(int)$unit_to], $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
       }
+
       return $convert;
     }
 

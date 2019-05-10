@@ -44,6 +44,8 @@
 
       if (substr(CLICSHOPPING::getBaseNameIndex(), 0, 8) != 'Checkout') {
 
+        $currencies_banner = '';
+
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CURRENCIES_BANNER_GROUP)) {
             $currencies_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';

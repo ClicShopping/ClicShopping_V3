@@ -12,6 +12,7 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_best_sellers" id="boxe_best_sellers">
+  <div class="separator"></div>
   <div class="card boxeContainerBestSellers" itemscope itemtype="https://schema.org/ItemList">
     <div class="card-img-top boxeBannerContentsBestSellers"><?php echo $best_sellers_banner; ?></div>
     <meta itemprop="itemListOrder" content="https://schema.org/ItemListOrderDescending" />

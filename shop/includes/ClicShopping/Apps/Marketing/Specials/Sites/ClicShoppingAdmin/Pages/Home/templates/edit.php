@@ -86,8 +86,12 @@ use ClicShopping\OM\HTML;
 
       $sInfo = new ObjectInfo($Qproducts->toArray());
     } else {
-
       $sInfo = new ObjectInfo(array());
+
+      $sInfo->products_name = null;
+      $sInfo->flash_discount = '';
+      $sInfo->scheduled_date = null;
+      $sInfo->expires_date = null;
 
 // create an array of products on special, which will be excluded from the pull down menu of products
 // (when creating a new product on special)
@@ -111,7 +115,6 @@ use ClicShopping\OM\HTML;
       $input_groups=[];
 
       if(isset($_GET['sID']) && $sInfo->customers_group_id != 0 ){
-
         $QcustomerGroupPrice = $CLICSHOPPING_Specials->db->prepare('select customers_group_price
                                                                     from :table_products_groups
                                                                     where products_id = :products_id
@@ -173,7 +176,7 @@ use ClicShopping\OM\HTML;
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Specials->getDef('text_specials_flash_discount'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Specials->getDef('text_specials_flash_discount'); ?></label>
                 <div class="col-md-5">
-                  <?php echo  HTML::checkboxField('flash_discount', '1', $sInfo->flash_discount); ?>
+                  <?php echo  HTML::checkboxField('flash_discount', '1', (isset($sInfo->flash_discount) ? $sInfo->flash_discount : '')); ?>
                 </div>
               </div>
             </div>

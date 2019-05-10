@@ -51,8 +51,15 @@ use ClicShopping\OM\HTML;
              <div class="controls">
 <?php
   if (MODE_B2B_B2C == 'true') {
+
+    if (isset($_POST['customers_group_id'])) {
+      $customers_group_id = $_POST['customers_group_id'];
+    } else {
+      $customers_group_id = null;
+    }
+
     echo HTML::form('grouped', $CLICSHOPPING_Featured->link('Featured'), 'post', 'class="form-inline"');
-    echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $_POST['customers_group_id'], 'onchange="this.form.submit();"');
+    echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id, 'onchange="this.form.submit();"');
     echo '</form>';
   }
 ?>
@@ -68,8 +75,8 @@ use ClicShopping\OM\HTML;
          </span>
          <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Featured->getDef('button_new'), null, $CLICSHOPPING_Featured->link('Edit&page=' . $_GET['page'] . '&action=new'), 'success');
-  echo HTML::form('delete_all', $CLICSHOPPING_Featured->link('Featured&Featured&DeleteAll&page=' . $_GET['page']));
+  echo HTML::button($CLICSHOPPING_Featured->getDef('button_new'), null, $CLICSHOPPING_Featured->link('Edit&page=' . $page . '&action=new'), 'success');
+  echo HTML::form('delete_all', $CLICSHOPPING_Featured->link('Featured&Featured&DeleteAll&page=' . $page));
 ?>
            <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_Featured->getDef('button_delete'), null, null, 'danger'); ?></span></a>
          </span>
@@ -199,7 +206,7 @@ use ClicShopping\OM\HTML;
       }
 ?>
               </td>
-              <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qfeatured->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Featured->getDef('icon_preview'))); ?></td>
+              <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qfeatured->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Featured->getDef('icon_preview'))); ?></td>
               <td><?php echo  HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qfeatured->value('products_image'), $Qfeatured->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
               <td><?php echo $Qfeatured->value('products_model'); ?></td>
               <td><?php echo $Qfeatured->value('products_name'); ?></td>
@@ -252,15 +259,15 @@ use ClicShopping\OM\HTML;
                 <td class="text-md-center">
 <?php
       if ($Qfeatured->valueInt('status') == 1) {
-        echo '<a href="' . $CLICSHOPPING_Featured->link('Featured&Featured&SetFlag&page=' . (int)$_GET['page'] . '&flag=0&id=' . (int)$Qfeatured->valueInt('products_featured_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Featured->link('Featured&Featured&SetFlag&page=' . (int)$page . '&flag=0&id=' . (int)$Qfeatured->valueInt('products_featured_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
       } else {
-        echo '<a href="' . $CLICSHOPPING_Featured->link('Featured&Featured&SetFlag&page=' . (int)$_GET['page'] . '&flag=1&id=' . (int)$Qfeatured->valueInt('products_featured_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+        echo '<a href="' . $CLICSHOPPING_Featured->link('Featured&Featured&SetFlag&page=' . (int)$page . '&flag=1&id=' . (int)$Qfeatured->valueInt('products_featured_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
       }
 ?>
                 </td>
                 <td class="text-md-right">
 <?php
-      echo '<a href="' . $CLICSHOPPING_Featured->link('Edit&page=' . (int)$_GET['page'] . '&sID=' . (int)$Qfeatured->valueInt('products_featured_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Featured->getDef('icon_edit')) . '</a>' ;
+      echo '<a href="' . $CLICSHOPPING_Featured->link('Edit&page=' . (int)$page . '&sID=' . (int)$Qfeatured->valueInt('products_featured_id') . '&action=update') . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Featured->getDef('icon_edit')) . '</a>' ;
       echo '&nbsp;';
 ?>
                 </td>

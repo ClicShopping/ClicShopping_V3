@@ -21,6 +21,8 @@
       $CLICSHOPPING_Specials = Registry::get('Specials');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $products_id = HTML::sanitize($_POST['products_id']);
       $specials_price = HTML::sanitize($_POST['specials_price']);
       $expdate = HTML::sanitize($_POST['expdate']);
@@ -32,13 +34,12 @@
         $flash_discount = 0;
       }
 
-
       if (substr($specials_price, -1) == '%') {
-
         $Qproduct = $CLICSHOPPING_Specials->db->get('products', 'products_price', ['products_id' => (int)$products_id]);
 
         $products_price = $Qproduct->valueDecimal('products_price');
-        $specials_price = ($products_price - (($specials_price / 100) * $products_price));
+        $discount = ($specials_price / 100) * $products_price;
+        $specials_price = $products_price - $discount;
       }
 
       $expires_date = '';
@@ -63,6 +64,6 @@
 
       $CLICSHOPPING_Hooks->call('Specials','Insert');
 
-      $CLICSHOPPING_Specials->redirect('Specials', 'page=' . $_GET['page']);
+      $CLICSHOPPING_Specials->redirect('Specials', 'page=' . $page);
     }
   }

@@ -87,6 +87,10 @@ use ClicShopping\OM\HTML;
 
       $sInfo = new ObjectInfo(array());
 
+      $sInfo->products_name = null;
+      $sInfo->scheduled_date = null;
+      $sInfo->expires_date = null;
+
 // create an array of products on special, which will be excluded from the pull down menu of products
 // (when creating a new product on special)
 

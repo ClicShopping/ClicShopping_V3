@@ -661,6 +661,7 @@
  */
     private function setProductsDimension($id = null) {
       $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
+      $products_dimension = '';
 
       if (is_null($id)) {
         $id = $this->getID();

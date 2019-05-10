@@ -52,7 +52,14 @@ use ClicShopping\OM\HTML;
 <?php
   if (MODE_B2B_B2C == 'true') {
     echo HTML::form('grouped', $CLICSHOPPING_Specials->link('Specials'), 'post', 'class="form-inline"');
-    echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $_POST['customers_group_id'], 'onchange="this.form.submit();"');
+
+    if (isset($_POST['customers_group_id'])) {
+      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+    } else {
+      $customers_group_id = null;
+    }
+
+    echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id, 'onchange="this.form.submit();"');
     echo '</form>';
   }
 ?>

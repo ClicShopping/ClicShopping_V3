@@ -76,9 +76,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
        if ( !isset($this->tax_rates[$class_id][$country_id][$zone_id]['description']) ) {
-
          if ( DISPLAY_PRICE_WITH_TAX == 'true') {
            $tag = CLICSHOPPING::getDef('text_price_with_tax_tag') ;
+         } else {
+           $tag = '';
          }
 
          $Qtax = $CLICSHOPPING_Db->prepare('select tr.tax_description

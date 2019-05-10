@@ -94,16 +94,16 @@
       if (isset($this->ID) && isset($this->categoriesId)) {
         $this->productsDuplicate();
         $this->productsLink();
+
+        Cache::clear('categories');
+        Cache::clear('products-also_purchased');
+        Cache::clear('products_related');
+        Cache::clear('products_cross_sell');
+        Cache::clear('upcoming');
+
+        $CLICSHOPPING_Hooks->call('Products','CopyConfirm');
+
+        $this->app->redirect('Products&cPath=' . $this->categoriesId . '&pID=' . $this->ID);
       }
-
-      Cache::clear('categories');
-      Cache::clear('products-also_purchased');
-      Cache::clear('products_related');
-      Cache::clear('products_cross_sell');
-      Cache::clear('upcoming');
-
-      $CLICSHOPPING_Hooks->call('Products','CopyConfirm');
-
-      $this->app->redirect('Products&cPath=' . $this->categoriesId);
     }
   }

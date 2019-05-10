@@ -21,17 +21,15 @@
       $CLICSHOPPING_Specials = Registry::get('Specials');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-        $_GET['page'] = 1;
-      }
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $specials_id = HTML::sanitize($_POST['specials_id']);
-      $products_price = HTML::sanitize($_POST['products_price']);
-      $specials_price = HTML::sanitize($_POST['specials_price']);
-      $expdate = HTML::sanitize($_POST['expdate']);
-      $schdate = HTML::sanitize($_POST['schdate']);
+      if (isset($_POST['specials_id'])) $specials_id = HTML::sanitize($_POST['specials_id']);
+      if (isset($_POST['products_price'])) $products_price = HTML::sanitize($_POST['products_price']);
+      if (isset($_POST['specials_price'])) $specials_price = HTML::sanitize($_POST['specials_price']);
+      if (isset($_POST['expdate'])) $expdate = HTML::sanitize($_POST['expdate']);
+      if (isset($_POST['schdate'])) $schdate = HTML::sanitize($_POST['schdate']);
 
-      if (HTML::sanitize($_POST['flash_discount']) == 1) {
+      if (isset($_POST['flash_discount']) && HTML::sanitize($_POST['flash_discount']) == 1) {
         $flash_discount = 1;
       } else {
         $flash_discount = 0;
@@ -68,6 +66,6 @@
 
       $CLICSHOPPING_Hooks->call('Specials','Update');
 
-      $CLICSHOPPING_Specials->redirect('Specials', (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'sID=' . $specials_id);
+      $CLICSHOPPING_Specials->redirect('Specials&page=', $page . '&sID=' . $specials_id);
     }
   }

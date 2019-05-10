@@ -49,9 +49,10 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-      $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products[$i]['id']);
-
       for ($i=0, $n=count($products); $i<$n; $i++) {
+
+        $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products[$i]['id']);
+
         $cart_contents_string .= '<div>';
 
         if ((isset($_SESSION['new_products_id_inCart'])) && ($_SESSION['new_products_id_inCart'] == $products[$i]['id'])) {

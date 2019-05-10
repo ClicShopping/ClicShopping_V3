@@ -38,6 +38,7 @@
   overflow: hidden;
   font-size: 0.75rem;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .card-footer.boxeBottomManufacturer {
@@ -53,7 +54,7 @@
 }
 
 
-.boxePullDownsideManufacturer {
+.boxePullDownManufacturer {
   width:90%;
 }
 
