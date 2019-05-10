@@ -149,7 +149,7 @@
                                                  from :table_banners
                                                  where banners_group = :banners_group
                                                  and status = 1
-                                                 and (customers_group_id = :customers_group_id or customers_group_id = :99)
+                                                 and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                                  and (languages_id  = :languages_id or languages_id = 0)
                                                  order by rand()
                                                  limit 1
