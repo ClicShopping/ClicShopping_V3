@@ -33,8 +33,6 @@
                     'last_modified' => 'now()'
                    ];
 
-      var_dump($sql_array);
-
       $CLICSHOPPING_Reviews->db->save('reviews', $sql_array, ['reviews_id' => (int)$reviews_id]);
 
       $sql_array = ['reviews_text' => $reviews_text,
