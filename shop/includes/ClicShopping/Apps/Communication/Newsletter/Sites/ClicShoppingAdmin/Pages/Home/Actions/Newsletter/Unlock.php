@@ -20,12 +20,14 @@
     public function execute() {
       $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
 
-      $newsletter_id = HTML::sanitize($_GET['nID']);
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
+      if (isset($_GET['nID'])) $newsletter_id = HTML::sanitize($_GET['nID']);
+
       $status = 0;
 
       $CLICSHOPPING_Newsletter->db->save('newsletters', ['locked' => $status], ['newsletters_id' => (int)$newsletter_id]);
 
-      $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']);
-
+      $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . $page . '&nID=' . $newsletter_id);
     }
   }

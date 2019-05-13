@@ -101,8 +101,10 @@
               }
 
               if (($column_list[$col] != 'PRODUCT_LIST_BUY_NOW') && ($column_list[$col] != 'PRODUCT_LIST_IMAGE')) {
-                $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading($_GET['sort'], $col + 1, $lc_text);
-                $new_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
+                if (isset($_GET['sort'])) {
+                  $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading($_GET['sort'], $col + 1, $lc_text);
+                  $new_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
+                }
               }
             }
 

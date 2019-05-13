@@ -32,9 +32,7 @@
     }
 
     public function display()  {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Customers = Registry::get('Customers');
-      $CLICSHOPPING_Language = Registry::get('Language');
 
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
         return false;

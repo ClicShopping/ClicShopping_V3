@@ -332,7 +332,7 @@
             }
           } else {
             if ($QPageSecondary->valueInt('pages_id') != 3) {
-              $link = $this->rewriteUrl->getPageManagerContentUrl($QPageSecondary->valueInt('pages_id'));
+              $link_secondary = $this->rewriteUrl->getPageManagerContentUrl($QPageSecondary->valueInt('pages_id'));
             } else {
               $link_secondary = CLICSHOPPING::link(null, 'Info&Contact');
             }

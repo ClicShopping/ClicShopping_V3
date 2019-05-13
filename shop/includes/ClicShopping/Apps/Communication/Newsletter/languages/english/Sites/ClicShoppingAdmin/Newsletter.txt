@@ -45,10 +45,13 @@ text_info_delete_intro = Are you sure that you want to delete this newsletter?
 text_please_wait = Please wait and do not interrupt this process !<br /><br />Sending emails...<br /><br />The treatment may be longer or shorter depending on the number of mail to deal
 text_finished_sending_email = Finished sending e-mails!
 
+text_help_wysiwyg = Wysiwyg
+
 icon_edit = Edit
-icon_lock = Lock
+image_lock = Lock
 icon_unlock = Unlock
 image_send = send
+icon_preview = Preview
 
 error_newsletter_title = Error: Newsletter title required
 error_newsletter_module = Error: Newsletter module required

@@ -30,25 +30,27 @@
     }
 
     private function getManufacturer() {
-      $Qproducts = $this->app->db->prepare('select manufacturers_id
-                                            from :table_products
-                                            where products_id = :products_id
-                                          ');
-      $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
-
-      $Qproducts->execute();
-
-      $Qmanufacturers =  $this->app->db->prepare('select manufacturers_id,
-                                                         manufacturers_name
-                                                  from :table_manufacturers
-                                                  where manufacturers_id = :manufacturers_id
-                                                ');
-      $Qmanufacturers->bindInt(':manufacturers_id', $Qproducts->valueInt('manufacturers_id'));
-      $Qmanufacturers->execute();
-
-      $result = $Qmanufacturers->fetchAll();
-
-      return $result;
+      if (isset($_GET['pID'])) {
+        $Qproducts = $this->app->db->prepare('select manufacturers_id
+                                              from :table_products
+                                              where products_id = :products_id
+                                            ');
+        $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
+  
+        $Qproducts->execute();
+  
+        $Qmanufacturers =  $this->app->db->prepare('select manufacturers_id,
+                                                           manufacturers_name
+                                                    from :table_manufacturers
+                                                    where manufacturers_id = :manufacturers_id
+                                                  ');
+        $Qmanufacturers->bindInt(':manufacturers_id', $Qproducts->valueInt('manufacturers_id'));
+        $Qmanufacturers->execute();
+  
+        $result = $Qmanufacturers->fetchAll();
+  
+        return $result;
+      }
     }
 
     public function display()  {
@@ -60,7 +62,7 @@
 
       $manufacturer = $this->getManufacturer();
 
-      if (count($manufacturer) > 0) {
+      if (is_array($manufacturer) && count($manufacturer) > 0) {
         $manufacturers_id = $manufacturer[0]['manufacturers_id'];
         $manufacturers_name = $manufacturer[0]['manufacturers_name'];
       } else {

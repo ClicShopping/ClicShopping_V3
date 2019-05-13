@@ -65,7 +65,12 @@
         $this->_description = $this->_data['description'];
         $this->_image = $this->_data['image'];
         $this->_parent_id = $this->_data['parent_id'];
-        $this->_category_depth = $this->_data['category_depth'];
+	
+        if (isset($this->_data['category_depth'])) {
+          $this->_category_depth = $this->_data['category_depth'];
+        } else {
+          $this->_category_depth = 0;
+        }
       }
 
       if (!Registry::exists('RewriteUrl')) {

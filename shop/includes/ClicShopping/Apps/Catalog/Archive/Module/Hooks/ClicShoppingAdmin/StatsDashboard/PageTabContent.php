@@ -41,23 +41,7 @@
       return $products_archives_total;
     }
 
-
-    private function statsCountProductsNoArchive() {
-      $QproductsArchives = $this->app->db->prepare('select count(products_id) as count
-                                                    from :table_products
-                                                    where products_archive = 0
-                                                    limit 1
-                                                   ');
-      $QproductsArchives->execute();
-
-      $products_archives_total = $QproductsArchives->valueInt('count');
-
-      return $products_archives_total;
-    }
-
-
     public function display() {
-
       if (!defined('CLICSHOPPING_APP_ARCHIVE_AR_STATUS') || CLICSHOPPING_APP_ARCHIVE_AR_STATUS == 'False') {
         return false;
       }

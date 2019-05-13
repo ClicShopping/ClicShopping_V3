@@ -23,20 +23,19 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (!isset($_GET['nID']) ) {
-    $CLICSHOPPING_Newsletter->redirect('Newsletter');
-  } else {
-    $nID = HTML::sanitize($_GET['nID']);
-  }
-
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
-
+  
+  if (isset($_GET['nID'])) {
+   $nID = HTML::sanitize($_GET['nID']);
    echo HTML::form('newsletter', $CLICSHOPPING_Newsletter->link('Newsletter&Update&page=' . $page));
-   echo HTML::hiddenField('newsletter_id', $_GET['nID']);
+   echo HTML::hiddenField('newsletter_id', $nID);
+  } else {
+    $nID = null;
+    echo HTML::form('newsletter', $CLICSHOPPING_Newsletter->link('Newsletter&Insert&page=' . $page));
+  }
 ?>
-
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -46,8 +45,13 @@
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page . '&nID=' . $_GET['nID'] ), 'warning') .'&nbsp;';
-  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_update'), null, null, 'success');
+  if (isset($_GET['Update'])) {
+    echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page . '&nID=' . $nID), 'warning') .'&nbsp;';
+    echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_update'), null, null, 'success');
+  } else {
+    echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null,  $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page), 'warning') . '&nbsp;';
+    echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_save'), null, null, 'success');
+  }
 ?>
            </span>
         </div>
@@ -56,64 +60,51 @@
   </div>
   <div class="separator"></div>
 <?php
-
-    $parameters = ['title' => '',
+   $parameters = ['title' => '',
                    'content' => '',
                    'module' => '',
                    'languages_id' => '',
-                   'customers_group_id' => ''
+                   'customers_group_id' => '',
+                   'newsletters_accept_file' => ''
                   ];
-
-    $nInfo = new ObjectInfo($parameters);
-
-    $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
-                                                              'title',
-                                                              'content',
-                                                              'module',
-                                                              'languages_id',
-                                                              'customers_group_id',
-                                                              'newsletters_accept_file',
-                                                              'newsletters_customer_no_account'
-                                                              ], [
-                                                                'newsletters_id' => (int)$nID
-                                                              ]
-                                            );
-
+    
+  $nInfo = new ObjectInfo($parameters);
+  
+  if (isset($_GET['Update']) && !is_null($nID)) {
+     $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
+                                                                    'content',
+                                                                    'module',
+                                                                    'languages_id',
+                                                                    'customers_group_id',
+                                                                    'newsletters_accept_file'
+                                                                    ], [
+                                                                      'newsletters_id' => (int)$nID
+                                                                    ]
+                                                   );
     $nInfo->ObjectInfo($Qnewsletter->toArray());
-
-    if (!isset($nInfo->newsletters_customer_no_account)) $nInfo->newsletters_customer_no_account = '1';
-    switch ($nInfo->newsletters_customer_no_account) {
-      case '0':
-        $in_accept_customer_no_account = false;
-        $out_accept_customer_no_account = true;
-        break;
-      case '1':
-        $in_accept_customer_no_account = true;
-        $out_accept_customer_no_account = false;
-        break;
-      default:
-        $in_accept_customer_no_account = true;
-        $out_accept_customer_no_account = false;
-        break;
-    }
 
 //ok
     if (!isset($nInfo->newsletters_accept_file)) $nInfo->newsletters_accept_file = '1';
-    switch ($nInfo->newsletters_accept_file) {
-      case '0':
-        $in_accept_file = false;
-        $out_accept_file = true;
-        break;
-      case '1':
-        $in_accept_file = true;
-        $out_accept_file = false;
-        break;
-      default:
-        $in_accept_file = true;
-        $out_accept_file = false;
-        break;
+      switch ($nInfo->newsletters_accept_file) {
+        case '0':
+          $in_accept_file = false;
+          $out_accept_file = true;
+          break;
+        case '1':
+          $in_accept_file = true;
+          $out_accept_file = false;
+          break;
+        default:
+          $in_accept_file = true;
+          $out_accept_file = false;
+          break;
+      }
+    } else {
+      $in_accept_file =  $in_accept_file ?? false;
+      $out_accept_file =  $out_accept_file ?? true;
     }
 
+  
   $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
   $directory_array = [];
 
@@ -160,7 +151,7 @@
                                  ];
   }
 ?>
-  <div id="NewsletterTabs" style="overflow: auto;">
+  <div id="newsletterTab" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist"  id="myTab">
       <li class="nav-item"><a href="#tab1" role="tab" data-toggle="tab" class="nav-link active"><?php echo $CLICSHOPPING_Newsletter->getDef('tab_general'); ?></a></li>
       <li class="nav-item"><a href="#tab2" role="tab" data-toggle="tab" class="nav-link"><?php echo $CLICSHOPPING_Newsletter->getDef('tab_description'); ?></a></li>
@@ -211,7 +202,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="newsletterTitle">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_title'); ?></label>
@@ -222,18 +213,7 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-9">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_customer_no_account'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_customer_no_account'); ?></label>
-                  <div class="col-md-5">
-                    <?php echo  HTML::radioField('newsletters_customer_no_account', '1', $in_accept_customer_no_account) . '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('text_yes') . '&nbsp;' . HTML::radioField('newsletters_customer_no_account', '0', $out_accept_customer_no_account) . '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('text_no'); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
+            <div class="row" id="newsletterFile">
               <div class="col-md-9">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_create_file_html'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_create_file_html'); ?></label>
@@ -243,10 +223,9 @@
                 </div>
               </div>
             </div>
+            
+            <?php echo $CLICSHOPPING_Hooks->output('Newsletter', 'NewsletterContentTab1', null, 'display'); ?>
           </div>
-<?php
-    echo $CLICSHOPPING_Hooks->output('Newsletter', 'PageTwitter', null, 'display');
-?>
         </div>
 <?php
   //-------------------------------------------
@@ -283,7 +262,7 @@
                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                        <h4 class="modal-title" id="myModalLabel"><?php echo $CLICSHOPPING_Newsletter->getDef('text_help_wysiwyg'); ?></h4>
                      </div>
-                     <div class="modal-body" style="text-align:center;">
+                     <div class="modal-body text-md-center">
                        <img class="img-fluid" src="<?php echo  $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png' ;?>">
                      </div>
                    </div>
@@ -295,8 +274,7 @@
         </div>
       </div>
     </div>
+    <?php echo $CLICSHOPPING_Hooks->output('Newsletter', 'PageTab', null, 'display'); ?>
     </form>
   </div>
-
-
-
+</div>

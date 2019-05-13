@@ -11,6 +11,9 @@
 
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
+
+  $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
 ?>
 
 <div class="contentBody">
@@ -34,11 +37,11 @@
     $nID = HTML::sanitize($_GET['nID']);
 
     $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['title',
-                                                              'content',
-                                                              'module'
-                                                              ], [
-                                                                'newsletters_id' => (int)$nID
-                                                              ]
+                                                                    'content',
+                                                                    'module'
+                                                                    ], [
+                                                                      'newsletters_id' => (int)$nID
+                                                                    ]
                                               );
 
     $nInfo = new ObjectInfo($Qnewsletter->toArray());

@@ -27,20 +27,19 @@
   $cgID = HTML::sanitize($_GET['cgID']);
   $ac = HTML::sanitize($_GET['ac']);
 
-  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', [
-                                                            'newsletters_id',
-                                                            'title',
-                                                            'content',
-                                                            'module',
-                                                            'languages_id',
-                                                            'customers_group_id',
-                                                            'newsletters_accept_file',
-                                                            'newsletters_twitter',
-                                                            'newsletters_customer_no_account'
-                                                          ], [
-                                                              'newsletters_id' => (int)$nID
-                                                            ]
-                                                          );
+  $Qnewsletter = $CLICSHOPPING_Newsletter->db->get('newsletters', ['newsletters_id',
+                                                                  'title',
+                                                                  'content',
+                                                                  'module',
+                                                                  'languages_id',
+                                                                  'customers_group_id',
+                                                                  'newsletters_accept_file',
+                                                                  'newsletters_twitter',
+                                                                  'newsletters_customer_no_account'
+                                                                ], [
+                                                                    'newsletters_id' => (int)$nID
+                                                                  ]
+                                                                );
 
   $nInfo = new ObjectInfo($Qnewsletter->toArray());
 

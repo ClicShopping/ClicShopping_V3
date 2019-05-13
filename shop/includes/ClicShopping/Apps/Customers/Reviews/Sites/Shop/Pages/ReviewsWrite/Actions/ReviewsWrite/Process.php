@@ -21,7 +21,6 @@
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
-      $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
        if (isset($_POST['action']) && ($_POST['action'] == 'process')  && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
 

@@ -21,12 +21,10 @@
 
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-        $_GET['page'] = 1;
-      }
-
-       if (!empty($_POST['selected'])) {
+      if (!is_null($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           if ($id != 4) {
             if ($id != 5) {
@@ -38,7 +36,7 @@
           }
         }
       }
-
+      
       Cache::clear('boxe_page_manager_primary-');
       Cache::clear('boxe_page_manager_secondary-');
       Cache::clear('page_manager_display_header_menu-');
@@ -47,6 +45,6 @@
       Cache::clear('boxe_page_manager_display_information-');
       Cache::clear('boxe_page_manager_display_title-');
 
-      $CLICSHOPPING_PageManager->redirect('PageManager&page=' . $_GET['page']);
+      $CLICSHOPPING_PageManager->redirect('PageManager&page=' . $page);
     }
   }

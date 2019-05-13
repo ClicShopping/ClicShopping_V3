@@ -22,24 +22,45 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
-
-      if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-        $_GET['page'] = 1;
-      }
+  
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       if (isset($_POST['pages_id'])) $pages_id = HTML::sanitize($_POST['pages_id']);
-
-      $sort_order = HTML::sanitize($_POST['sort_order']);
-      $page_type = HTML::sanitize($_POST['page_type']);
-      $links_target = HTML::sanitize($_POST['links_target']);
-      $page_box = HTML::sanitize($_POST['page_box']);
-      $page_time = HTML::sanitize($_POST['page_time']);
-      $page_date_start = HTML::sanitize($_POST['page_date_start']);
-      $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
-      $page_general_condition = HTML::sanitize($_POST['page_general_condition']);
-      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+  
+      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
+      if (isset($_POST['page_type'])) $page_type = HTML::sanitize($_POST['page_type']);
+      
+      if (isset($_POST['links_target'])) {
+        $links_target = HTML::sanitize($_POST['links_target']);
+      } else {
+        $links_target = '';
+      }
+      
+      if (isset($_POST['page_time'])) {
+        $page_box = HTML::sanitize($_POST['page_box']);
+      } else {
+        $page_box = 0;
+      }
+      
+      if (isset($_POST['page_time'])) {
+        $page_time = HTML::sanitize($_POST['page_time']);
+      } else {
+        $page_time = '';
+      }
+      
+      
+      if (isset($_POST['page_date_start'])) $page_date_start = HTML::sanitize($_POST['page_date_start']);
+      if (isset($_POST['page_date_closed'])) $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
+      
+      if (isset($_POST['page_general_condition'])) {
+        $page_general_condition = HTML::sanitize($_POST['page_general_condition']);
+      } else {
+        $page_general_condition = 0;
+      }
+      
+      if (isset($_POST['customers_group_id'])) $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
       $page_error = false;
 
@@ -102,36 +123,72 @@
           $sql_array = ['page_date_closed' => null] ;
           $CLICSHOPPING_PageManager->db->save('pages_manager', $sql_array, ['pages_id' => (int)$pages_id]);
         }
-
+        
         for ($i=0, $n=count($languages); $i<$n; $i++) {
           $language_id = $languages[$i]['id'];
+  
+          if (isset($_POST['pages_title_' . $languages[$i]['id']])) {
+            $pages_title = HTML::sanitize($_POST['pages_title_' . $languages[$i]['id']]);
+          } else {
+            $error = true;
+          }
+          if (isset($_POST['pages_html_text_' . $languages[$i]['id']])) {
+            $pages_html_text = $_POST['pages_html_text_' . $languages[$i]['id']];
+          } else {
+            $pages_html_text = null;
+          }
 
-          $pages_title = HTML::sanitize($_POST['pages_title_' . $languages[$i]['id']]);
-          $pages_html_text = $_POST['pages_html_text_' . $languages[$i]['id']];
-
-          $externallink = HTML::sanitize($_POST['externallink_' . $languages[$i]['id']]);
-          $page_manager_head_title_tag = HTML::sanitize($_POST['page_manager_head_title_tag_' . $languages[$i]['id']]);
-          $page_manager_head_keywords_tag = HTML::sanitize($_POST['page_manager_head_keywords_tag_' . $languages[$i]['id']]);
-          $page_manager_head_desc_tag = HTML::sanitize($_POST['page_manager_head_desc_tag_' . $languages[$i]['id']]);
-
-          $sql_data_array = ['pages_title' => $pages_title,
-                             'pages_html_text' => $pages_html_text,
-                             'externallink' => $externallink,
-                             'page_manager_head_title_tag'  => $page_manager_head_title_tag,
-                             'page_manager_head_keywords_tag'  => $page_manager_head_keywords_tag,
-                             'page_manager_head_desc_tag'  => $page_manager_head_desc_tag
-                            ];
-
-          $insert_sql_data = [
-                              'pages_id' => $pages_id,
-                              'language_id' => $language_id
-                             ];
-
+          if (isset($_POST['externallink_' . $languages[$i]['id']])) {
+            $externallink = HTML::sanitize($_POST['externallink_' . $languages[$i]['id']]);
+          } else {
+            $externallink = null;
+          }
+          
+          if (isset($_POST['page_manager_head_title_tag_' . $languages[$i]['id']])) {
+            $page_manager_head_title_tag = HTML::sanitize($_POST['page_manager_head_title_tag_' . $languages[$i]['id']]);
+          } else {
+            $page_manager_head_title_tag = null;
+          }
+          
+          if (isset($_POST['page_manager_head_desc_tag_' . $languages[$i]['id']])) {
+            $page_manager_head_desc_tag = HTML::sanitize($_POST['page_manager_head_desc_tag_' . $languages[$i]['id']]);
+          } else {
+            $page_manager_head_desc_tag = null;
+          }
+          
+          if (isset($_POST['page_manager_head_keywords_tag_' . $languages[$i]['id']])) {
+            $page_manager_head_keywords_tag = HTML::sanitize($_POST['page_manager_head_keywords_tag_' . $languages[$i]['id']]);
+          } else {
+            $page_manager_head_keywords_tag = null;
+          }
+         
           if (isset($_GET['Insert'])) {
-            $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
+            $sql_data_array = ['pages_id' => $pages_id,
+                               'pages_title' => $pages_title,
+                              'pages_html_text' => $pages_html_text,
+                              'externallink' => $externallink,
+                              'page_manager_head_title_tag' => $page_manager_head_title_tag,
+                              'page_manager_head_keywords_tag' => $page_manager_head_keywords_tag,
+                              'page_manager_head_desc_tag' => $page_manager_head_desc_tag,
+                              'language_id' => $language_id
+                            ];
+            
             $CLICSHOPPING_PageManager->db->save('pages_manager_description', $sql_data_array );
           } else {
+            $sql_data_array = ['pages_title' => $pages_title,
+                              'pages_html_text' => $pages_html_text,
+                              'externallink' => $externallink,
+                              'page_manager_head_title_tag' => $page_manager_head_title_tag,
+                              'page_manager_head_keywords_tag' => $page_manager_head_keywords_tag,
+                              'page_manager_head_desc_tag' => $page_manager_head_desc_tag
+                            ];
+
+            $insert_sql_data = ['pages_id' => $pages_id,
+                                'language_id' => $language_id
+                                ];
+
+            $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+            
             $CLICSHOPPING_PageManager->db->save('pages_manager_description', $sql_data_array, $insert_sql_data);
           }
         }
@@ -148,7 +205,7 @@
         Cache::clear('boxe_page_manager_display_information-');
         Cache::clear('boxe_page_manager_display_title-');
 
-        $CLICSHOPPING_PageManager->redirect('PageManager&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'bID=' . (int)$pages_id);
+        $CLICSHOPPING_PageManager->redirect('PageManager&page=' . $page . '&bID=' . (int)$pages_id . '&error=' . $page_error);
       } else {
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('success_page_not_updated'), 'error');
 

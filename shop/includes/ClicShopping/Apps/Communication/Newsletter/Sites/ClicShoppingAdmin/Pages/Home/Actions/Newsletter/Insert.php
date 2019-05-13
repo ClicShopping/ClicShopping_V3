@@ -22,25 +22,25 @@
       $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-
-      if (isset($_POST['newsletter_id'])) $newsletter_id = HTML::sanitize($_POST['newsletter_id']);
+  
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       $newsletter_module = basename(HTML::sanitize($_POST['module']));
+
       $title = HTML::sanitize($_POST['title']);
       $content = $_POST['message'];
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
       $languages_newsletter_id = HTML::sanitize($_POST['languages_id']);
       $newsletters_accept_file = HTML::sanitize($_POST['newsletters_accept_file']);
-      $newsletters_customer_no_account = HTML::sanitize($_POST['newsletters_customer_no_account']);
 
       $newsletter_error = false;
-
+      
       if(empty($newsletter_module) &&  $newsletter_module != 'Newsletter') {
-        $CLICSHOPPING_Newsletter->redirect('Newsletter&Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']);
+        $CLICSHOPPING_Newsletter->redirect('Newsletter&Newsletter&page=' . $page);
       }
 
       if(empty($newsletter_module) && $newsletter_module != 'ProductNotification') {
-        $CLICSHOPPING_Newsletter->redirect('Newsletter&Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']);
+        $CLICSHOPPING_Newsletter->redirect('Newsletter&Newsletter&page=' . $page);
       }
 
       $allowed = array_map(function($v) {return basename($v, '.php');}, glob(CLICSHOPPING::BASE_DIR . 'Apps/Communication/Newsletter/Module/ClicShoppingAdmin/Newsletter/*.php'));
@@ -50,17 +50,10 @@
         $newsletter_error = true;
       }
 
-
       if ($newsletters_accept_file == 'on') {
         $newsletters_accept_file = 0;
       } else {
         $newsletters_accept_file = 1;
-      }
-
-      if ($newsletters_customer_no_account == 'on') {
-        $newsletters_customer_no_account = 0;
-      } else {
-        $newsletters_customer_no_account = 1;
       }
 
       if (empty($title)) {
@@ -79,8 +72,7 @@
                            'module' => $newsletter_module,
                            'languages_id' => (int)$languages_newsletter_id,
                            'customers_group_id' => (int)$customers_group_id,
-                           'newsletters_accept_file' => (int)$newsletters_accept_file,
-                           'newsletters_customer_no_account' => (int)$newsletters_customer_no_account
+                           'newsletters_accept_file' => (int)$newsletters_accept_file
                           ];
 
         $sql_data_array['date_added'] = 'now()';
@@ -93,7 +85,7 @@
 
         $CLICSHOPPING_Hooks->call('Newsletter', 'Insert');
 
-        $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . $_GET['page'] . '&nID=' . $newsletter_id);
+        $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . $page . '&nID=' . $newsletter_id);
       }
     }
   }

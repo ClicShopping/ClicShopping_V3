@@ -67,8 +67,8 @@
             $value_language = null;
           }
         }
-      }
 
-      return $value_language;
+        return $value_language;
+      }
     }
   }

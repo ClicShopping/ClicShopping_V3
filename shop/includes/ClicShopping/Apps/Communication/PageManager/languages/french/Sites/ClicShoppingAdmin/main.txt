@@ -79,6 +79,8 @@ text_all_groups = Tous les groupes
 title_pages_type = Type de la page
 text_pages_box = Choix boxe d'affichage
 text_pages_type = Type de page
+
+page_manager_select = ---- Selectionnez ----
 page_manager_introduction_page = Introduction
 page_manager_main_page = Accueil
 page_manager_contact_us = Nous contacter
@@ -156,6 +158,7 @@ error_page_title_required_curseur = <span class="errorText">Veuillez informer le
 
 image_new_page = Nouvelle page
 icon_edit = Editer la page
+icon_preview = Prévisualiser
 
 text_result_page = Page {{listing_from}} à {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

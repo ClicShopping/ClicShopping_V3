@@ -45,9 +45,7 @@
                                         'pd.products_name'
                                       ], [
                                             'pd.language_id' =>  (int)$CLICSHOPPING_Language->getId(),
-                                            'pd.products_id' => [
-                                                                  'rel' => 'p.products_id'
-                                                                ],
+                                            'pd.products_id' => [ 'rel' => 'p.products_id'],
                                             'p.products_status' => '1',
                                             'p.products_view' => '1',
                                             'p.products_archive' => '0',

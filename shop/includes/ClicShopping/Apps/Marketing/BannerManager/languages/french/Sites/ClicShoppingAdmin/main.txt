@@ -115,6 +115,7 @@ title_banners_date = Date
 title_banners_image = Image bannière
 title_banners_html = Code HTML d'une bannière
 
+text_help_banners_image = Aide
 title_help_banners_image = Note sur l'image d'une bannière
 title_help_banners_date = Note sur l'utilisation des dates d'une bannière
 title_help_banners_html_text = Note sur le code HTML d'une bannière

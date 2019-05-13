@@ -63,8 +63,6 @@
       if (isset($_POST['customers_tva_intracom'])) $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
 
 // Informations sur le type de facturation
-      if (isset($_POST['customers_options_order_taxe'])) $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
-      if (isset($_POST['default_address_id'])) $default_address_id = HTML::sanitize($_POST['default_address_id']);
       if (isset($_POST['customers_street_address'])) $customers_street_address = HTML::sanitize($_POST['customers_street_address']);
       if (isset($_POST['customers_suburb'])) $customers_suburb = HTML::sanitize($_POST['customers_suburb']);
       if (isset($_POST['postcode'])) $customers_postcode = HTML::sanitize($_POST['postcode']);

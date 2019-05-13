@@ -32,10 +32,10 @@
       if ($language_id == 0) $language_id = $CLICSHOPPING_Language->getId();
 
       $QpageManager = $CLICSHOPPING_Db->prepare('select page_manager_head_title_tag
-                                          from :table_pages_manager_description
-                                          where pages_id = :pages_id
-                                          and language_id = :language_id
-                                         ');
+                                                  from :table_pages_manager_description
+                                                  where pages_id = :pages_id
+                                                  and language_id = :language_id
+                                                 ');
       $QpageManager->bindInt(':pages_id', (int)$pages_id);
       $QpageManager->bindInt(':language_id', (int)$language_id);
 
@@ -58,10 +58,10 @@
       if ($language_id == 0) $language_id = $CLICSHOPPING_Language->getId();
 
       $QpageManager = $CLICSHOPPING_Db->prepare('select page_manager_head_desc_tag
-                                            from :table_pages_manager_description
-                                            where pages_id = :pages_id
-                                            and language_id = :language_id
-                                           ');
+                                                from :table_pages_manager_description
+                                                where pages_id = :pages_id
+                                                and language_id = :language_id
+                                               ');
       $QpageManager->bindInt(':pages_id', (int)$pages_id);
       $QpageManager->bindInt(':language_id', (int)$language_id);
 
@@ -84,10 +84,10 @@
       if ($language_id == 0) $language_id = $CLICSHOPPING_Language->getId();
 
       $QpageManager = $CLICSHOPPING_Db->prepare('select page_manager_head_keywords_tag
-                                            from :table_pages_manager_description
-                                            where pages_id = :pages_id
-                                            and language_id = :language_id
-                                           ');
+                                                from :table_pages_manager_description
+                                                where pages_id = :pages_id
+                                                and language_id = :language_id
+                                               ');
       $QpageManager->bindInt(':pages_id', (int)$pages_id);
       $QpageManager->bindInt(':language_id', (int)$language_id);
 

@@ -45,6 +45,14 @@ text_info_delete_intro = Etes vous sur de vouloir supprimer ce bulletin d'inform
 text_please_wait = Veuillez patienter et ne pas interrompre ce traitement !<br /><br />Envois en cours...<br /><br />Le traitement peut être plus ou moins long en fonction du nombre de mail à traiter
 text_finished_sending_emails = Fini.. Tous les courriers électroniques sont envoyés !
 
+text_help_wysiwyg = Wysiwyg
+
+icon_edit = Editer
+image_lock = Vérrouiller
+icon_unlock = Dévérrouiller
+image_send = Envoyer
+icon_preview = Prévisualiser
+
 error_newsletter_title = Erreur : Titre du bulletin d'informations requis
 error_newsletter_module = Erreur : Module bulletin d'informations requis
 error_remove_unlocked_newsletter = Erreur : Merci de fermer le bulletin d'informations avant de le supprimer.

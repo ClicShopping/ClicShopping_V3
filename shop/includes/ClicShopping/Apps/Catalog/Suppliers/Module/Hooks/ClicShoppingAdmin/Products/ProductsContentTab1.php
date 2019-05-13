@@ -30,31 +30,29 @@
     }
 
     private function getSupplier() {
-
-
       if (isset($_GET['pID'])) {
         $pID = HTML::sanitize($_GET['pID']);
-      }
-
-      $Qproducts = $this->app->db->prepare('select suppliers_id
-                                            from :table_products
-                                            where products_id = :products_id
-                                          ');
-      $Qproducts->bindInt(':products_id', HTML::sanitize($pID));
-
-      $Qproducts->execute();
-
-      $Qsuppliers =  $this->app->db->prepare('select suppliers_id,
-                                                     suppliers_name
-                                              from :table_suppliers
-                                              where suppliers_id = :suppliers_id
+  
+        $Qproducts = $this->app->db->prepare('select suppliers_id
+                                              from :table_products
+                                              where products_id = :products_id
                                             ');
-      $Qsuppliers->bindInt(':suppliers_id', $Qproducts->valueInt('suppliers_id'));
-      $Qsuppliers->execute();
-
-      $result = $Qsuppliers->fetchAll();
-
-      return $result;
+        $Qproducts->bindInt(':products_id', HTML::sanitize($pID));
+  
+        $Qproducts->execute();
+  
+        $Qsuppliers =  $this->app->db->prepare('select suppliers_id,
+                                                       suppliers_name
+                                                from :table_suppliers
+                                                where suppliers_id = :suppliers_id
+                                              ');
+        $Qsuppliers->bindInt(':suppliers_id', $Qproducts->valueInt('suppliers_id'));
+        $Qsuppliers->execute();
+  
+        $result = $Qsuppliers->fetchAll();
+  
+        return $result;
+      }
     }
 
     public function display()  {
@@ -66,7 +64,7 @@
 
       $suppliers = $this->getSupplier();
 
-      if (count($suppliers) > 0) {
+      if (is_array($suppliers) && count($suppliers) > 0) {
         $suppliers_id = $suppliers[0]['suppliers_id'];
         $suppliers_name = $suppliers[0]['suppliers_name'];
       } else {

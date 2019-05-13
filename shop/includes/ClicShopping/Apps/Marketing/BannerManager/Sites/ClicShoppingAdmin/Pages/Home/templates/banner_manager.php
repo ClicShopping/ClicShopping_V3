@@ -100,51 +100,50 @@ use ClicShopping\OM\HTML;
                  )
               ";
 
-    $Qbanner = $CLICSHOPPING_BannerManager->db->prepare('select  SQL_CALC_FOUND_ROWS banners_id,
-                                                                               banners_title,
-                                                                               banners_image,
-                                                                               banners_group,
-                                                                               banners_target,
-                                                                               status,
-                                                                               expires_date,
-                                                                               expires_impressions,
-                                                                               date_status_change,
-                                                                               date_scheduled,
-                                                                               date_added,
-                                                                               customers_group_id,
-                                                                               languages_id,
-                                                                               banners_title_admin
-                                                   from :table_banners
-                                                   where ' . $search . '
-                                                   order by banners_title_admin desc,
-                                                            banners_title,
-                                                            banners_group
-                                                   limit :page_set_offset, :page_set_max_results
-                                                ');
+    $Qbanner = $CLICSHOPPING_BannerManager->db->prepare('select SQL_CALC_FOUND_ROWS banners_id,
+                                                                                     banners_title,
+                                                                                     banners_image,
+                                                                                     banners_group,
+                                                                                     banners_target,
+                                                                                     status,
+                                                                                     expires_date,
+                                                                                     expires_impressions,
+                                                                                     date_status_change,
+                                                                                     date_scheduled,
+                                                                                     date_added,
+                                                                                     customers_group_id,
+                                                                                     languages_id,
+                                                                                     banners_title_admin
+                                                         from :table_banners
+                                                         where ' . $search . '
+                                                         order by banners_title_admin desc,
+                                                                  banners_title,
+                                                                  banners_group
+                                                         limit :page_set_offset, :page_set_max_results
+                                                      ');
 
   } else {
-    $Qbanner = $CLICSHOPPING_BannerManager->db->prepare('select  SQL_CALC_FOUND_ROWS banners_id,
-                                                                               banners_title,
-                                                                               banners_image,
-                                                                               banners_group,
-                                                                               banners_target,
-                                                                               status,
-                                                                               expires_date,
-                                                                               expires_impressions,
-                                                                               date_status_change,
-                                                                               date_scheduled,
-                                                                               date_added,
-                                                                               customers_group_id,
-                                                                               languages_id,
-                                                                               banners_title_admin
-                                                     from :table_banners
-                                                     order by banners_title_admin desc,
-                                                              banners_title,
-                                                              banners_group
-                                                     limit :page_set_offset, :page_set_max_results
-                                                ');
+    $Qbanner = $CLICSHOPPING_BannerManager->db->prepare('select SQL_CALC_FOUND_ROWS banners_id,
+                                                                                   banners_title,
+                                                                                   banners_image,
+                                                                                   banners_group,
+                                                                                   banners_target,
+                                                                                   status,
+                                                                                   expires_date,
+                                                                                   expires_impressions,
+                                                                                   date_status_change,
+                                                                                   date_scheduled,
+                                                                                   date_added,
+                                                                                   customers_group_id,
+                                                                                   languages_id,
+                                                                                   banners_title_admin
+                                                         from :table_banners
+                                                         order by banners_title_admin desc,
+                                                                  banners_title,
+                                                                  banners_group
+                                                         limit :page_set_offset, :page_set_max_results
+                                                    ');
   }
-
 
   $Qbanner->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
   $Qbanner->execute();

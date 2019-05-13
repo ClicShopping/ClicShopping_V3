@@ -232,7 +232,7 @@
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                           <h4 class="modal-title" id="myModalLabel"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_wysiwyg'); ?></h4>
                         </div>
-                        <div class="modal-body" style="text-align:center;">
+                        <div class="modal-body text-md-center">
                           <img class="img-fluid" src="<?php echo  $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png' ;?>">
                         </div>
                       </div>

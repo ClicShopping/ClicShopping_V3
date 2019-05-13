@@ -321,6 +321,5 @@
       </table>
     </td>
   </table>
-  <div class="col-md-12"><?php echo $CLICSHOPPING_Modules->getDef('text_module_directory') . ' ' . $module_directory; ?></div>
 <!-- body_eof //-->
 </div>

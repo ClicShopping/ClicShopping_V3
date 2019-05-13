@@ -38,7 +38,11 @@
         return false;
       }
 
-      if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
+      if (isset($_GET['cPath'])) {
+        $current_category_id = HTML::sanitize($_GET['cPath']);
+      } else {
+        $current_category_id = 0;
+      }
 
       $content = '<!-- Categories -->';
       $content .= '<div class="form-group row">';

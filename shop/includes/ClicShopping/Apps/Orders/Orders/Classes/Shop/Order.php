@@ -779,7 +779,7 @@
 /***********************************************************
 * Insert
 ***********************************************************/
-    public function Insert()  {
+    public function Insert() {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');

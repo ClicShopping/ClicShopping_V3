@@ -14,11 +14,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
-
-  use ClicShopping\Apps\Communication\Newsletter\Module\ClicShoppingAdmin\Newsletter\Newsletter as NewsletterModule;
-
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
@@ -38,7 +33,7 @@
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Insert'), 'success') .'&nbsp;';
+  echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_insert'), null, $CLICSHOPPING_Newsletter->link('Update'), 'success') .'&nbsp;';
   echo HTML::form('delete_all', $CLICSHOPPING_Newsletter->link('Newsletter&DeleteAll&page=' . $page));
 ?>
             <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><span><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_delete'), null, null, 'danger'); ?></span></a>
@@ -82,23 +77,23 @@
           </thead>
           <tbody>
 <?php
-    $Qnewsletters = $CLICSHOPPING_Newsletter->db->prepare('select  SQL_CALC_FOUND_ROWS newsletters_id,
-                                                                                 title,
-                                                                                 length(content) as content_length,
-                                                                                 module,
-                                                                                 date_added,
-                                                                                 date_sent,
-                                                                                 status,
-                                                                                 languages_id,
-                                                                                 customers_group_id,
-                                                                                 locked,
-                                                                                 newsletters_accept_file,
-                                                                                 newsletters_twitter,
-                                                                                 newsletters_customer_no_account
-                                                    from :table_newsletters
-                                                    order by date_added desc
-                                                    limit :page_set_offset, :page_set_max_results
-                                                    ');
+    $Qnewsletters = $CLICSHOPPING_Newsletter->db->prepare('select SQL_CALC_FOUND_ROWS newsletters_id,
+                                                                                       title,
+                                                                                       length(content) as content_length,
+                                                                                       module,
+                                                                                       date_added,
+                                                                                       date_sent,
+                                                                                       status,
+                                                                                       languages_id,
+                                                                                       customers_group_id,
+                                                                                       locked,
+                                                                                       newsletters_accept_file,
+                                                                                       newsletters_twitter,
+                                                                                       newsletters_customer_no_account
+                                                          from :table_newsletters
+                                                          order by date_added desc
+                                                          limit :page_set_offset, :page_set_max_results
+                                                          ');
 
     $Qnewsletters->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
     $Qnewsletters->execute();
@@ -111,9 +106,9 @@
         if (MODE_B2B_B2C == 'true') {
 
           $QcustomersGroup = $CLICSHOPPING_Newsletter->db->prepare('select customers_group_name
-                                                              from :table_customers_groups
-                                                              where customers_group_id = :customers_group_id
-                                                            ');
+                                                                    from :table_customers_groups
+                                                                    where customers_group_id = :customers_group_id
+                                                                  ');
           $QcustomersGroup->bindInt(':customers_group_id', $Qnewsletters->valueInt('customers_group_id'));
           $QcustomersGroup->execute();
 
@@ -127,9 +122,9 @@
         if ($Qnewsletters->valueInt('languages_id') != 0) {
 
           $QnewslettersLanguages = $CLICSHOPPING_Newsletter->db->prepare('select name
-                                                                   from :table_languages
-                                                                   where languages_id = :language_id
-                                                                  ');
+                                                                         from :table_languages
+                                                                         where languages_id = :language_id
+                                                                        ');
           $QnewslettersLanguages->bindInt(':language_id', $Qnewsletters->valueInt('languages_id'));
           $QnewslettersLanguages->execute();
 

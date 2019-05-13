@@ -31,10 +31,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturer_seo_description
-                                          from :table_manufacturers_info
-                                          where manufacturers_id = :manufacturers_id
-                                          and languages_id = :language_id
-                                        ');
+                                                  from :table_manufacturers_info
+                                                  where manufacturers_id = :manufacturers_id
+                                                  and languages_id = :language_id
+                                                ');
 
       $Qmanufacturers->bindInt(':manufacturers_id', (int)$manufacturers_id);
       $Qmanufacturers->bindInt(':language_id', (int)$language_id);
@@ -55,10 +55,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturer_seo_title
-                                          from :table_manufacturers_info
-                                          where manufacturers_id = :manufacturers_id
-                                          and languages_id = :language_id
-                                        ');
+                                                    from :table_manufacturers_info
+                                                    where manufacturers_id = :manufacturers_id
+                                                    and languages_id = :language_id
+                                                  ');
 
       $Qmanufacturers->bindInt(':manufacturers_id', (int)$manufacturers_id);
       $Qmanufacturers->bindInt(':language_id', (int)$language_id);
@@ -79,10 +79,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturer_seo_keyword
-                                          from :table_manufacturers_info
-                                          where manufacturers_id = :manufacturers_id
-                                          and languages_id = :language_id
-                                        ');
+                                                    from :table_manufacturers_info
+                                                    where manufacturers_id = :manufacturers_id
+                                                    and languages_id = :language_id
+                                                  ');
 
       $Qmanufacturers->bindInt(':manufacturers_id', (int)$manufacturers_id);
       $Qmanufacturers->bindInt(':language_id', (int)$language_id);
@@ -104,10 +104,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qproduct = $CLICSHOPPING_Db->prepare('select products_head_title_tag
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                    ');
+                                             from :table_products_description
+                                             where products_id = :products_id
+                                             and language_id = :language_id
+                                            ');
       $Qproduct->bindInt(':products_id', (int)$product_id);
       $Qproduct->bindInt(':language_id', (int)$language_id);
 
@@ -127,10 +127,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qproduct = $CLICSHOPPING_Db->prepare('select products_head_desc_tag
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                   ');
+                                             from :table_products_description
+                                             where products_id = :products_id
+                                             and language_id = :language_id
+                                           ');
       $Qproduct->bindInt(':products_id', (int)$product_id);
       $Qproduct->bindInt(':language_id', (int)$language_id);
 
@@ -150,10 +150,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qproduct = $CLICSHOPPING_Db->prepare('select products_head_keywords_tag
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                   ');
+                                             from :table_products_description
+                                             where products_id = :products_id
+                                             and language_id = :language_id
+                                           ');
       $Qproduct->bindInt(':products_id', (int)$product_id);
       $Qproduct->bindInt(':language_id', (int)$language_id);
 
@@ -174,10 +174,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qproduct = $CLICSHOPPING_Db->prepare('select products_head_tag
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                   ');
+                                             from :table_products_description
+                                             where products_id = :products_id
+                                             and language_id = :language_id
+                                           ');
       $Qproduct->bindInt(':products_id', (int)$product_id);
       $Qproduct->bindInt(':language_id', (int)$language_id);
 

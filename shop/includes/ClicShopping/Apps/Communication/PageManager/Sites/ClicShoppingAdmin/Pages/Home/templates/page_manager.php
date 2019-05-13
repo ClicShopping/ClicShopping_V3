@@ -71,29 +71,29 @@
           <tbody>
 
 <?php
-  $Qpages = $CLICSHOPPING_PageManager->db->prepare('select  SQL_CALC_FOUND_ROWS  p.pages_id,
-                                                                           p.links_target,
-                                                                           p.page_type,
-                                                                           p.page_box,
-                                                                           p.status,
-                                                                           p.sort_order,
-                                                                           p.date_added,
-                                                                           p.page_date_start,
-                                                                           p.page_date_closed,
-                                                                           p.last_modified,
-                                                                           p.date_status_change,
-                                                                           s.pages_title,
-                                                                           s.externallink,
-                                                                           p.customers_group_id,
-                                                                           p.page_general_condition
-                                              from :table_pages_manager p,
-                                                   :table_pages_manager_description s
-                                              where s.language_id= :language_id
-                                              and p.pages_id = s.pages_id
-                                              order by  p.pages_id
-                                              limit :page_set_offset,
-                                                    :page_set_max_results
-                                              ');
+  $Qpages = $CLICSHOPPING_PageManager->db->prepare('select SQL_CALC_FOUND_ROWS  p.pages_id,
+                                                                               p.links_target,
+                                                                               p.page_type,
+                                                                               p.page_box,
+                                                                               p.status,
+                                                                               p.sort_order,
+                                                                               p.date_added,
+                                                                               p.page_date_start,
+                                                                               p.page_date_closed,
+                                                                               p.last_modified,
+                                                                               p.date_status_change,
+                                                                               s.pages_title,
+                                                                               s.externallink,
+                                                                               p.customers_group_id,
+                                                                               p.page_general_condition
+                                                  from :table_pages_manager p,
+                                                       :table_pages_manager_description s
+                                                  where s.language_id= :language_id
+                                                  and p.pages_id = s.pages_id
+                                                  order by  p.pages_id
+                                                  limit :page_set_offset,
+                                                        :page_set_max_results
+                                                  ');
 
   $Qpages->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
   $Qpages->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);

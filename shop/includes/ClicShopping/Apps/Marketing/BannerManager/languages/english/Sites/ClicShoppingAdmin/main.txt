@@ -113,6 +113,7 @@ title_banners_date = Date
 title_banners_image = Image banner
 title_banners_html = Banner HTML code
 
+text_help_banners_image = Help
 title_help_banners_image = Note on the banner image
 title_help_banners_date = Note on the use of the dates of a banner
 title_help_banners_html_text = Note on code HTML of a banner

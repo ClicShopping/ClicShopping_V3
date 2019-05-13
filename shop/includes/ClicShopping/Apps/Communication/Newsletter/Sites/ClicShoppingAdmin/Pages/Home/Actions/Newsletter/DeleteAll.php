@@ -11,11 +11,16 @@
 
   namespace ClicShopping\Apps\Communication\Newsletter\Sites\ClicShoppingAdmin\Pages\Home\Actions\Newsletter;
 
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
   class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract {
     public function execute() {
       $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
+
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
+      if (isset($_GET['nID'])) $nID = HTML::sanitize($_GET['nID']);
 
       if (!empty($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
@@ -29,6 +34,6 @@
         }
       }
 
-      $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']);
+      $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . $page  . '&nID=' . $nID);
     }
   }

@@ -41,7 +41,11 @@
   }
 
   $page_type_statut = [];
-
+  
+  $page_type_statut[] = ['id' => '0',
+                          'text' => $CLICSHOPPING_PageManager->getDef('page_manager_select')
+                        ];
+  
   $page_type_statut[] = ['id' => '1',
                          'text' => $CLICSHOPPING_PageManager->getDef('page_manager_introduction_page')
                         ];
@@ -119,7 +123,7 @@
           <span class="col-md-6 text-md-right">
 <?php
   echo HTML::form('page_manager', $CLICSHOPPING_PageManager->link('Edit'), 'post', 'enctype="multipart/form-data"');
-  echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($page) ? 'page=' . $page . '&' : '') . (!empty($bID) and $bID != "" ? 'bID=' . $bID : '')), 'warning') .'&nbsp;';
+  echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($page) ? 'page=' . $page . '&' : '') . (!empty($bID) and $bID != '' ? 'bID=' . $bID : '')), 'warning') .'&nbsp;';
   echo HTML::button(CLICSHOPPING::getDef('button_new'), null, null, 'success', null, null);
 ?>
          </span>
@@ -136,7 +140,7 @@
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_pages_choose'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_choose'); ?></label>
           <div class="col-md-3">
-            <?php echo HTML::selectMenu('page_type', $page_type_statut); ?>
+            <?php echo HTML::selectMenu('page_type', $page_type_statut,  null, 'onchange="this.form.submit();"'); ?>
           </div>
         </div>
       </div>
@@ -144,3 +148,10 @@
   </div>
   </form>
 </div>
+<script>
+    $(document).ready( function() {
+        $('#select').change( function() {
+            location.href = $(this).val();
+        });
+    });
+</script>
