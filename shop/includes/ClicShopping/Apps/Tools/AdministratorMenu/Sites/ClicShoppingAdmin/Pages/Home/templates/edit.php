@@ -48,13 +48,16 @@
     $cInfo = new ObjectInfo(array());
   }
 
-  $current_category_id = HTML::sanitize($_POST['cID']);
-  $cPath = HTML::sanitize($_GET['cPath']);
+  if (isset($_POST['cPath'])) {
+    $cPath = HTML::sanitize($_GET['cPath']);
+  } else {
+    $cPath = 0;
+  }
 
   $languages = $CLICSHOPPING_Language->getLanguages();
   $form_action = (isset($_GET['cID'])) ? 'Update' : 'Insert';
 
-  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath . '&cID=' . $current_category_id), 'post');
+  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath), 'post');
 
 ?>
 <!-- body //-->
@@ -66,8 +69,8 @@
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
           <span class="col-md-9 text-md-right">
-            <span class="text-md-right"><?php echo HTML::hiddenField('parent_id', $cInfo->parent_id) . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_update'), null, null, 'success'); ?>&nbsp;</span>
-            <span class="text-md-right" style="padding-left:5px;"><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $current_category_id), 'warning'); ?>&nbsp;</span>
+            <span class="text-md-right"><?php echo HTML::hiddenField('parent_id', $cInfo->parent_id ?? null) . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_update'), null, null, 'success'); ?>&nbsp;</span>
+            <span class="text-md-right" style="padding-left:5px;"><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath), 'warning'); ?>&nbsp;</span>
           </span>
         </div>
       </div>
@@ -101,7 +104,7 @@
                     <div class="form-group row">
                       <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('label[' . $languages[$i]['id'] . ']', (isset($label[$languages[$i]['id']]) ? $label[$languages[$i]['id']] : AdministratorMenu::getAdministratorMenuLabel($cInfo->id, $languages[$i]['id'])), 'class="form-control" required aria-required="true" required="" id="label" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_menu')  . '"',  true) . '&nbsp;'; ?>
+                        <?php echo HTML::inputField('label[' . $languages[$i]['id'] . ']', AdministratorMenu::getAdministratorMenuLabel($cInfo->id ?? null, $languages[$i]['id']), 'class="form-control" required aria-required="true" required="" id="label" placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_menu')  . '"',  true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -114,7 +117,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('link', $cInfo->link, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link') . '"'); ?>
+                    <?php echo HTML::inputField('link', $cInfo->link ?? null, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_link') . '"'); ?>
                   </div>
                 </div>
               </div>
@@ -125,7 +128,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_access_administrator'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_access_administrator'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::selectMenu('access_administrator', AdministratorAdmin::getAdministratorMenuRight($CLICSHOPPING_AdministratorMenu->getDef('text_selected')), $cInfo->access); ?>
+                    <?php echo HTML::selectMenu('access_administrator', AdministratorAdmin::getAdministratorMenuRight($CLICSHOPPING_AdministratorMenu->getDef('text_selected')), $cInfo->access ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -136,7 +139,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_image'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_image'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('image', $cInfo->image, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_image') . '"'); ?>
+                    <?php echo HTML::inputField('image', $cInfo->image ?? null, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_image') . '"'); ?>
                   </div>
                 </div>
               </div>
@@ -147,7 +150,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_b2b_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_b2b_menu'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::checkboxField('b2b_menu', $cInfo->b2b_menu, $cInfo->b2b_menu); ?>
+                    <?php echo HTML::checkboxField('b2b_menu', $cInfo->b2b_menu ?? null, $cInfo->b2b_menu ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -158,7 +161,7 @@
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('sort_order', $cInfo->sort_order, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order') . '" size="2"'); ?>
+                    <?php echo HTML::inputField('sort_order', $cInfo->sort_order ?? null, 'placeholder="' . $CLICSHOPPING_AdministratorMenu->getDef('text_edit_sort_order') . '" size="2"'); ?>
                   </div>
                 </div>
               </div>
@@ -172,7 +175,7 @@
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_select_menu'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $cPath) . HTML::hiddenField('current_category_id', $current_category_id); ?>
+                        <?php echo HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $cPath) . HTML::hiddenField('current_category_id', $cPath); ?>
                       </div>
                     </div>
                   </div>

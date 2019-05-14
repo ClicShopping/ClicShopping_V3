@@ -9,11 +9,12 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
   use ClicShopping\OM\ObjectInfo;
+
   $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -43,6 +44,18 @@ use ClicShopping\OM\HTML;
 
   $cInfo_array = array_merge($Qcategories->toArray(), $category_childs);
   $cInfo = new ObjectInfo($cInfo_array);
+
+  if (isset($_GET['cPath'])) {
+    $cPath = HTML::sanitize($_GET['cPath']);
+  } else {
+    $cPath = '';
+  }
+
+  if (isset($_GET['cID'])) {
+    $current_category_id = HTML::sanitize($_GET['cID']);
+  } else {
+    $current_category_id = 0;
+  }
 ?>
 <!-- body //-->
 <div class="contentBody">

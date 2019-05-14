@@ -38,6 +38,11 @@
     CLICSHOPPING::redirect();
   }
 
+  if (isset($_POST['cPath'])) {
+    $cPath = HTML::sanitize($_POST['cPath']);
+  } else {
+    $cPath = '';
+  }
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -63,8 +68,11 @@
            <div class="form-group">
              <div class="controls">
 <?php
-  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
-  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
+  if (isset($_POST['cPath'])) {
+    $current_category_id = HTML::sanitize($_POST['cPath']);
+  } else {
+    $current_category_id = null;
+  }
 
   echo HTML::form('goto', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu'), 'post', 'class="form-inline"', ['session_id' => true]);
   echo HTML::selectMenu('cPath', AdministratorMenu::getLabelTree(), $current_category_id, 'onchange="this.form.submit();"');
@@ -96,9 +104,7 @@
     echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_reset'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $cPath_back . 'cID=' . $current_category_id), 'warning') . '&nbsp;';
   }
 
-
   if (!isset($_GET['search'])) {
-    $cPath = HTML::sanitize($_POST['cPath']);
     echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_new_category'), null, $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath), 'success') . '&nbsp;';
   }
 ?>

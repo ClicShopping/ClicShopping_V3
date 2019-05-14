@@ -28,11 +28,17 @@
     public function execute() {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $sort_order = HTML::sanitize($_POST['sort_order']);
-      $link = HTML::sanitize($_POST['link']);
-      $image = HTML::sanitize($_POST['image']);
-      $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
-      $access = HTML::sanitize($_POST['access_administrator']);
+      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
+      if (isset($_POST['link'])) $link = HTML::sanitize($_POST['link']);
+      if (isset($_POST['image'])) $image = HTML::sanitize($_POST['image']);
+
+      if (isset($_POST['b2b_menu'])) {
+        $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
+      } else {
+        $b2b_menu = false;
+      }
+
+      if (isset($_POST['access_administrator'])) $access = $_POST['access_administrator'];
 
       $current_category_id = HTML::sanitize($_POST['move_to_category_id']);
 

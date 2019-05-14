@@ -70,25 +70,16 @@ use ClicShopping\OM\HTML;
       <div class="col-md-12">
         <span class="col-md-3"><?php echo $cInfo->label; ?></span>
       </div>
-      <?php
+<?php
         if ($cInfo->childs_count > 0) {
-          ?>
+?>
           <div class="separator"></div>
           <div class="col-md-12">
             <span class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_warning_childs', ['delete_child' => $cInfo->childs_count]); ?></span>
           </div>
-          <?php
+<?php
         }
-
-        if ($cInfo->products_count > 0) {
-          ?>
-          <div class="separator"></div>
-          <div class="col-md-12">
-            <span class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_warning_products', ['delete_warning' => $cInfo->products_count]); ?></span>
-          </div>
-          <?php
-        }
-      ?>
+?>
       <div class="separator"></div>
       <div class="col-md-12 text-md-center">
         <span><br /><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_delete'), null,null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>

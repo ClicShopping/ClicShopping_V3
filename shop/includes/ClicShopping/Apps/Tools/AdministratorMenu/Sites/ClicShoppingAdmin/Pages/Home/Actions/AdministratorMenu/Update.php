@@ -25,18 +25,34 @@
 
     public function execute() {
       $CLICSHOPPING_Language = Registry::get('Language');
-      if (isset($_POST['id'])) $id = HTML::sanitize($_POST['id']);
-      if (isset($_GET['id'])) $id = HTML::sanitize($_GET['id']);
 
-      $sort_order = HTML::sanitize($_POST['sort_order']);
-      $link = HTML::sanitize($_POST['link']);
-      $image = HTML::sanitize($_POST['image']);
-      $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
-      $access = $_POST['access_administrator'];
-      $move_to_category_id = $_POST['move_to_category_id'];
+      var_dump($_POST);
 
+      if (isset($_POST['current_category_id'])) $id = HTML::sanitize($_POST['current_category_id']);
+      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
+      if (isset($_POST['link'])) $link = HTML::sanitize($_POST['link']);
+      if (isset($_POST['image'])) $image = HTML::sanitize($_POST['image']);
 
-      if ($b2b_menu == 'on') {
+      if (isset($_POST['b2b_menu'])) {
+        $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
+      } else {
+        $b2b_menu = false;
+      }
+
+      if (isset($_POST['access_administrator'])) $access = $_POST['access_administrator'];
+      if (isset($_POST['move_to_category_id'])) $move_to_category_id = $_POST['move_to_category_id'];
+
+      if (isset($_GET['cPath'])) {
+        $cPath = HTML::sanitize($_GET['cPath']);
+      } else {
+        $cPath = '';
+      }
+
+      if (isset($_POST['label'])) {
+        $label_array = HTML::sanitize($_POST['label']);
+      }
+
+      if (isset($b2b_menu)) {
         $b2b_menu = 1;
       } else {
         $b2b_menu = 0;
@@ -55,21 +71,19 @@
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i=0, $n=count($languages); $i<$n; $i++) {
+          $language_id = $languages[$i]['id'];
 
-        $label_array = $_POST['label'];
+          $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];
+          $insert_array =  ['id' => (int)$id,
+                            'language_id' => (int)$languages[$i]['id']
+                           ];
 
-        $language_id = $languages[$i]['id'];
 
-        $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];
-
-        $this->app->db->save('administrator_menu_description', $sql_data_array, ['id' => (int)$id,
-                                                                                'language_id' => (int)$languages[$i]['id']
-                                                                                 ]
-                            );
+          $this->app->db->save('administrator_menu_description', $sql_data_array, $insert_array);
       }
 
       Cache::clear('menu-administrator');
 
-      $this->app->redirect('AdministratorMenu&cPath=' . (int)$_GET['cPath'] . '&cID=' . $id);
+      $this->app->redirect('AdministratorMenu&cPath=' . $cPath . '&cID=' . $id);
     }
   }
