@@ -29,6 +29,8 @@ alert_module_install_success = Le module a été installée.
 alert_module_uninstall_success = Le module a été désinstallée.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
+icon_edit_customer = Editer client
+
 table_heading_number = No.
 table_heading_customers = Clients
 table_heading_total_purchased = Total acheté

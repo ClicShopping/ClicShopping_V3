@@ -134,6 +134,8 @@
   $listingTotalRow = $Qcategories->getPageSetTotalRows();
 
   if ($listingTotalRow > 0) {
+    $categories_count = 0;
+
     while ($Qcategories->fetch() ) {
       $categories_count++;
 

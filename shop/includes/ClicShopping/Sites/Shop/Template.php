@@ -509,11 +509,11 @@
                       if($this->match($page, $string) === true) {
                         $mb->execute();
                       } else {
-                        $mb->notEnabled;
+                        $mb->isEnabled();
                       }
                     }
                   }
-                } // end Dynamic Template
+                }
               }
             }
           }
@@ -540,9 +540,9 @@
           $replace = substr($replace, 0, strpos($replace, 'language'));
         }
 
-				if (strpos($search, 'currency') !== false) {
-						$replace = substr($replace, 0, strpos($replace, 'currency'));
-				}
+        if (strpos($search, 'currency') !== false) {
+          $replace = substr($replace, 0, strpos($replace, 'currency'));
+        }
 
         $url_string = $replace;
 

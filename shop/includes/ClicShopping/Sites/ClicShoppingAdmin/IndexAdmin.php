@@ -54,62 +54,54 @@
 /**
  * Calculate the size of a directory by iterating its contents
  * @Access public
- * @param       string   $directory    Path to directory
+ * @Return size if the directory
  */
-    Public Static function getDirSize($path) {
-      // Init
-      $size = 0;
+    Public Static function getDirSize() {
 
-      // Trailing slash
-      if (substr($path, -1, 1) !== DIRECTORY_SEPARATOR) {
-        $path .= DIRECTORY_SEPARATOR;
-      }
-// path
       $path = CLICSHOPPING::getConfig('dir_root', 'Shop');
-      // Sanity check
-      if (is_file($path)) {
-        return filesize($path);
-      } elseif (!is_dir($path)) {
-        return false;
-      }
 
-      // Iterate queue
-      $queue = array($path);
+      $dir = rtrim(str_replace('\\', '/', $path), '/');
 
-      for ($i = 0, $j = count($queue); $i < $j; ++$i) {
-        // Open directory
-        $parent = $i;
-        if (is_dir($queue[$i]) * $dir = @dir($queue[$i])) {
-          $subdirs = [];
-          while (false !== ($entry = $dir->read())) {
-            // Skip pointers
-            if ($entry == '.' || $entry == '..') {
-              continue;
-            }
+      if (is_dir($dir) === true) {
+        $totalSize = 0;
+        $os = strtoupper(substr(PHP_OS, 0, 3));
 
-            // Get list of directories or filesizes
-            $path = $queue[$i] . $entry;
-            if (is_dir($path)) {
-              $path .= DIRECTORY_SEPARATOR;
-              $subdirs[] = $path;
-            } elseif (is_file($path)) {
-              $size += filesize($path);
-            }
+// If on a Unix Host (Linux, Mac OS)
+        if ($os !== 'WIN') {
+          $io = popen('/usr/bin/du -sb ' . $dir, 'r');
+
+          if ($io !== false) {
+            $totalSize = intval(fgets($io, 80));
+            pclose($io);
+
+            return $totalSize;
           }
-
-          // Add subdirectories to start of queue
-          unset($queue[0]);
-          $queue = array_merge($subdirs, $queue);
-
-          // Recalculate stack size
-          $i = -1;
-          $j = count($queue);
-
-          // Clean up
-          $dir->close();
-          unset($dir);
         }
+
+// If on a Windows Host (WIN32, WINNT, Windows)
+        if ($os === 'WIN' && extension_loaded('com_dotnet')) {
+          $obj = new \COM('scripting.filesystemobject');
+
+          if (is_object($obj)) {
+            $ref       = $obj->getfolder($dir);
+            $totalSize = $ref->size;
+            $obj       = null;
+
+            return $totalSize;
+          }
+        }
+
+// If System calls did't work, use slower PHP 5
+        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
+
+        foreach ($files as $file) {
+          $totalSize += $file->getSize();
+        }
+
+        return $totalSize;
+
+      } elseif (is_file($dir) === true) {
+        return filesize($dir);
       }
-      return $size;
     }
   }

@@ -32,6 +32,8 @@ alert_module_install_success = Module has been successfully installed.
 alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
+image_delete = Delete
+icon_preview = Preview
 
 table_heading_number = No.
 table_heading_products = Products

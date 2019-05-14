@@ -35,7 +35,12 @@
       }
 
       $this->moveToCategoryID = HTML::sanitize($_POST['move_to_category_id']);
-      $this->cPath = HTML::sanitize($_GET['cPath']);
+
+      if (isset($_GET['cPath'])) {
+        $this->cPath = HTML::sanitize($_GET['cPath']);
+      } else {
+        $this->cPath =  0;
+      }
     }
 
     public function execute()  {

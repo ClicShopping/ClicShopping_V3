@@ -260,15 +260,21 @@
 
         switch ($type) {
             case 'protected':
+              if (isset($this->result[$column])){
                 return HTML::outputProtected($this->result[$column]);
+              }
                 break;
 
             case 'int':
+              if (isset($this->result[$column])){
                 return (int)$this->result[$column];
+              }
                 break;
 
             case 'decimal':
+              if (isset($this->result[$column])){
                 return (float)$this->result[$column];
+              }
                 break;
 
             case 'string':

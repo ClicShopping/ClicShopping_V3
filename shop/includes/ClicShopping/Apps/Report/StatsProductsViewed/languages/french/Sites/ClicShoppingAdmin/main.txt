@@ -30,6 +30,9 @@ alert_module_install_success = Le module a été installée.
 alert_module_uninstall_success = Le module a été désinstallée.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
+image_delete = Supprimer
+icon_preview = Prévisualiser
+
 text_result_page = Page {{listing_from}} sur {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
 

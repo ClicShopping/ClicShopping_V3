@@ -169,8 +169,7 @@ public function __construct($orientation='P', $unit='mm', $format='A4') {
   $this->PDFVersion='1.3';
 }
 
-public function SetMargins($left, $top, $right=null)
-{
+public function SetMargins($left, $top, $right=null) {
   //Set left, top and right margins
   $this->lMargin=$left;
   $this->tMargin=$top;
@@ -179,36 +178,31 @@ public function SetMargins($left, $top, $right=null)
   $this->rMargin=$right;
 }
 
-public function SetLeftMargin($margin)
-{
+public function SetLeftMargin($margin) {
   //Set left margin
   $this->lMargin=$margin;
   if($this->page>0 && $this->x<$margin)
     $this->x=$margin;
 }
 
-public function SetTopMargin($margin)
-{
+public function SetTopMargin($margin) {
   //Set top margin
   $this->tMargin=$margin;
 }
 
-public function SetRightMargin($margin)
-{
+public function SetRightMargin($margin) {
   //Set right margin
   $this->rMargin=$margin;
 }
 
-public function SetAutoPageBreak($auto, $margin=0)
-{
+public function SetAutoPageBreak($auto, $margin=0) {
   //Set auto page break mode and triggering margin
   $this->AutoPageBreak=$auto;
   $this->bMargin=$margin;
   $this->PageBreakTrigger=$this->h-$margin;
 }
 
-public function SetDisplayMode($zoom, $layout='continuous')
-{
+public function SetDisplayMode($zoom, $layout='continuous') {
   //Set display mode in viewer
   if($zoom=='fullpage' || $zoom=='fullwidth' || $zoom=='real' || $zoom=='default' || !is_string($zoom))
     $this->ZoomMode=$zoom;
@@ -220,8 +214,7 @@ public function SetDisplayMode($zoom, $layout='continuous')
     $this->Error('Incorrect layout display mode: '.$layout);
 }
 
-public function SetCompression($compress)
-{
+public function SetCompression($compress) {
   //Set page compression
   if(function_exists('gzcompress'))
     $this->compress=$compress;
@@ -229,24 +222,21 @@ public function SetCompression($compress)
     $this->compress=false;
 }
 
-public function SetTitle($title, $isUTF8=false)
-{
+public function SetTitle($title, $isUTF8=false) {
   //Title of document
   if($isUTF8)
     $title=$this->_UTF8toUTF16($title);
   $this->title=$title;
 }
 
-public function SetSubject($subject, $isUTF8=false)
-{
+public function SetSubject($subject, $isUTF8=false) {
   //Subject of document
   if($isUTF8)
     $subject=$this->_UTF8toUTF16($subject);
   $this->subject=$subject;
 }
 
-public function SetAuthor($author, $isUTF8=false)
-{
+public function SetAuthor($author, $isUTF8=false) {
   //Author of document
   if($isUTF8)
     $author=$this->_UTF8toUTF16($author);

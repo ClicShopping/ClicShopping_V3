@@ -72,9 +72,7 @@
           $CLICSHOPPING_MessageStack->add('File Upload [PUT]: $_SERVER[\'CONTENT_LENGTH\'] (' . (int)$_SERVER['CONTENT_LENGTH'] . ') not set or not equal to stream size (' . (int)$size . ')', 'warning');
         }
       } elseif ( isset($_FILES[$this->_file]) ) {
-
         if ( isset($_FILES[$this->_file]['tmp_name']) && !empty($_FILES[$this->_file]['tmp_name']) && is_uploaded_file($_FILES[$this->_file]['tmp_name']) && ($_FILES[$this->_file]['size'] > 0) ) {
-
           $this->_upload = ['type' => 'POST',
                              'name' => $_FILES[$this->_file]['name'],
                              'size' => $_FILES[$this->_file]['size'],

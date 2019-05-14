@@ -43,19 +43,49 @@
 
  MYSQL 7 / MariaDb
 
- PHP 6+, 7.2, 7.3 and +
+ PHP 7 +
 
  License GPL2 - MIT
 
- If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a>
+ - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a>
 
- Donation can help to continue the work and to finance the infrastructure.
+ - Donation can help to continue the work and to finance the infrastructure.
+
+ - More information are available on the community website.
+
+ - ClicShopping(tm) has a trademark deposed
 
 
- More information is available on the community website.
 
- ClicShopping(tm) has a trademark deposed
+- Some functionnalities included
 
+- PHP 7.x and Mariadb /Mysql
+
+- B2B - B2C  full functionalities
+- WYSIWYG to create your products description, content with CKeditor4.x
+
+- Image Editor management with El-Finder 2.x - drag and drop
+- Full SEO functionalities optimization ad url
+- Payment and Shipping modules included inside the application with Paypal
+- Extension System to install new Applications via the back-office
+- No limit to insert content
+- Some dynamic statistics inside the dashboard and all the back-office
+- GDRP included and some regulation aspect
+- Some configuration capacities to adapt the settings in function of your needs in B2B or B2C
+- Ready for mobile, tablet and desktop with BootStrap 4.x technology
+- Several modes of payment / delivery can be installed
+- More 250 modules available and free functional on the marketplace and available on Github !
+- Full responsive design  application with Bootstrap 4.x
+- Multi-template
+- multi-currency
+- Multi-language (English and french included)
+- Lazy load image optimization
+- Free Apps osCommerce, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
+
+
+ [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
+
+  
  Thank you for your support
 
  ![image2](https://www.clicshopping.org/images/frontoffice.png)
