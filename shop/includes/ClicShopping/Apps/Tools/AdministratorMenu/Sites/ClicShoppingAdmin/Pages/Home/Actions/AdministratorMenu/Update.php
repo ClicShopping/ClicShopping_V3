@@ -26,8 +26,6 @@
     public function execute() {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      var_dump($_POST);
-
       if (isset($_POST['current_category_id'])) $id = HTML::sanitize($_POST['current_category_id']);
       if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
       if (isset($_POST['link'])) $link = HTML::sanitize($_POST['link']);
