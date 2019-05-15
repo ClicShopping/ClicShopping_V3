@@ -85,7 +85,7 @@
 
 // register a random ID in the session to check throughout the checkout procedure
 // against alterations in the shopping cart contents
-      if (isset($_SESSION['cartID']) && ($_SESSION['cartID'] != $CLICSHOPPING_ShoppingCart->cartID) && isset($_SESSION['shipping'])) {
+      if (isset($_SESSION['cartID']) && isset($_SESSION['shipping']) && ($_SESSION['cartID'] != $CLICSHOPPING_ShoppingCart->cartID)) {
         unset($_SESSION['shipping']);
       }
 

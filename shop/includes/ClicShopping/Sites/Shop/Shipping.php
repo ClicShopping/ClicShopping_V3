@@ -104,9 +104,7 @@
       $quotes_array = [];
 
       if (is_array($this->modules)) {
-        $shipping_quoted = '';
-
-        $include_quotes = [];
+         $include_quotes = [];
 
         foreach($this->modules as $value) {
           if (strpos($value, '\\') !== false) {

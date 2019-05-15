@@ -21,10 +21,6 @@
 
   CLICSHOPPING::initialize();
 
-  if (PHP_VERSION_ID < 70000) {
-    include_once('includes/third_party/random_compat/random.php');
-  }
-
   CLICSHOPPING::loadSite('Shop');
 
   $CLICSHOPPING_Template = Registry::get('Template');

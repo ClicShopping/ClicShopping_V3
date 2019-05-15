@@ -509,7 +509,7 @@
                       if($this->match($page, $string) === true) {
                         $mb->execute();
                       } else {
-                        $mb->isEnabled();
+                        $mb->isEnabled() = false;
                       }
                     }
                   }
@@ -704,17 +704,19 @@
  * @access public
  */
     public function getSpecificFiles($source_folder, $filename, $ext = 'php') {
-      if( !is_dir( $source_folder ) ) {
-        die ( "Invalid directory.\n\n" );
-      }
 
-      $FILES = glob($source_folder . $filename . '.' . $ext);
+        if( !is_dir( $source_folder ) ) {
+          die ( "Invalid directory.\n\n" );
+        }
 
-      foreach($FILES as $key => $file) {
-        $result = str_replace($source_folder, '', $file);
-        $FILE_LIST[$key]['name'] = str_replace('.' . $ext, '', $result);
-      }
+        $FILES = glob($source_folder . $filename . '.' . $ext);
+        $FILE_LIST[] = '';
 
-      return $FILE_LIST;
+        foreach($FILES as $key => $file) {
+          $result = str_replace($source_folder, '', $file);
+          $FILE_LIST[$key]['name'] = str_replace('.' . $ext, '', $result);
+        }
+
+        return $FILE_LIST;
     }
   }
