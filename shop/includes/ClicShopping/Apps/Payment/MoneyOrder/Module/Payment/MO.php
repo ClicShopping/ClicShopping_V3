@@ -26,6 +26,7 @@
     public $description;
     public $enabled;
     public $app;
+    public $title_selection;
 
     public function __construct() {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -137,8 +138,9 @@
 
     public function confirmation() {
       $CLICSHOPPING_Template = Registry::get('Template');
+      $this->title_selection = '';
 
-      if (CLICSHOPPING_APP_MONEYORDER_MO_LOGO) {
+      if (defined('CLICSHOPPING_APP_MONEYORDER_MO_LOGO') && !empty(CLICSHOPPING_APP_MONEYORDER_MO_LOGO)) {
         $this->title_selection .= HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'logos/payment/' . CLICSHOPPING_APP_MONEYORDER_MO_LOGO);
       }
 
