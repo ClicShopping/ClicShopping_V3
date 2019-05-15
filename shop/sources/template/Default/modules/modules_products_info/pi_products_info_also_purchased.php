@@ -188,6 +188,10 @@
                   $endform = '</form>';
                   $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton($products_id);
                 }
+              } else {
+                $submit_button = '';
+                $form = '';
+                $endform = '';
               }
 // Quantity type
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);

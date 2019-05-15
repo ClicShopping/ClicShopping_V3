@@ -191,6 +191,8 @@
                 }
               } else {
                 $submit_button = '';
+                $form = '';
+                $endform = '';
               }
 
 // Quantity type

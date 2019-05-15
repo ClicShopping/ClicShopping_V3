@@ -509,7 +509,7 @@
                       if($this->match($page, $string) === true) {
                         $mb->execute();
                       } else {
-                        $mb->isEnabled() = false;
+                        $mb->isEnabled();
                       }
                     }
                   }
