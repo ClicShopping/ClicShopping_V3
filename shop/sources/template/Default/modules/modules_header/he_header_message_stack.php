@@ -45,9 +45,18 @@
 
         $data ='<!-- Start header Message Stack -->' . "\n";
 
-        $error_message = htmlspecialchars(urldecode($_GET['error_message']));
-        $info_message = htmlspecialchars(urldecode($_GET['info_message']));
+        if (isset($_GET['error_message'])) {
+          $error_message = htmlspecialchars(urldecode($_GET['error_message']));
+        } else {
+          $error_message = '';
+        }
 
+        if (isset($_GET['info_message'])) {
+          $info_message = htmlspecialchars(urldecode($_GET['info_message']));
+        } else {
+          $info_message = '';
+        }
+	
         ob_start();
 
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/header_message_stack'));

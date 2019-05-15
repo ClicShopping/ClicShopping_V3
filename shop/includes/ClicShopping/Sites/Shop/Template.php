@@ -680,11 +680,10 @@
 /**
  * public
  * Select the javascript inside a specific theme directory
- * @param $name $name of the js
+ * @param $name $name of the js string
  * @return string $javascript, directory of javascript in the template directory
  */
     public function getTemplateThemaJavaScript($name) {
-
       if (is_file(static::getPathDirectoryTemplateThema() . '/javascript/' . $name)) {
         $javascript = static::getPathDirectoryTemplateThema()  .  '/javascript/' . $name;
       } else {
@@ -696,27 +695,29 @@
 
 /**
  * Select all the files inside directory
- *
  * @param string $source_folder, directory
  * @param string $filename, name of the file
- *@param string $ext, file extension
- * @param return array, files name
+ * @param string $ext, file extension
+ * @return array|bool
  * @access public
  */
     public function getSpecificFiles($source_folder, $filename, $ext = 'php') {
+      if( !is_dir( $source_folder)) {
+        die ('Invalid directory.');
+      }
 
-        if( !is_dir( $source_folder ) ) {
-          die ( "Invalid directory.\n\n" );
-        }
+      $FILES = glob($source_folder . $filename . '.' . $ext);
+      $FILE_LIST[] = '';
 
-        $FILES = glob($source_folder . $filename . '.' . $ext);
-        $FILE_LIST[] = '';
+      foreach($FILES as $key => $file) {
+        $result = str_replace($source_folder, '', $file);
+        $FILE_LIST[$key] = str_replace('.' . $ext, '', $result);
+      }
 
-        foreach($FILES as $key => $file) {
-          $result = str_replace($source_folder, '', $file);
-          $FILE_LIST[$key]['name'] = str_replace('.' . $ext, '', $result);
-        }
-
+      if (is_array($FILE_LIST)) {
         return $FILE_LIST;
+      } else {
+        return false;
+      }
     }
   }
