@@ -26,8 +26,4 @@
 
   CLICSHOPPING::initialize();
 
-  if (PHP_VERSION_ID < 70000) {
-    include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/third_party/random_compat/random.php');
-  }
-
   CLICSHOPPING::loadSite('ClicShoppingAdmin');

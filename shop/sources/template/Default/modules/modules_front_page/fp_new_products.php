@@ -198,23 +198,19 @@
 // **************************
 // display the differents buttons before minorder qty
 // **************************
+              $submit_button = '';
+              $form = '';
+              $endform = '';
+
               if (MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON == 'False') {
                 if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity($products_id) != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity($products_id) != 0) {
-                  $submit_button = '';
-                  $form = '';
-                  $endform = '';
-
-                  if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
+                      if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
                     $form =  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add' ),'post','class="justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
                     $endform = '</form>';
                     $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton($products_id);
                   }
                 }
-              } else {
-                $submit_button = '';
-                $form = '';
-                $endform = '';
               }
 
 // Quantity type
@@ -226,8 +222,6 @@
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
                 $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
                 $min_quantity = 0;
-                $form = '';
-                $endform = '';
                 $input_quantity ='';
                 $min_order_quantity_products_display = '';
               }
