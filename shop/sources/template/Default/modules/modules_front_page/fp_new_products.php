@@ -70,6 +70,7 @@
                                                     ');
               $Qproduct->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
               $Qproduct->bindInt(':products_limit', (int)MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY);
+              $Qproduct->execute();
             } else {
 // Requetes SQL pour afficher les nouveaux produits groupe B2B lorsque l'on se trouve dans une categorie
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
@@ -94,6 +95,7 @@
               $Qproduct->bindInt(':parent_id', (int)$new_products_category_id);
               $Qproduct->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
               $Qproduct->bindInt(':products_limit', MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY);
+              $Qproduct->execute();
             }
           } else {
             if (!isset($new_products_category_id) || ($new_products_category_id == 0)) {

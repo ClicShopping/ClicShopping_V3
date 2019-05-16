@@ -107,7 +107,7 @@
 
            $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
            $Qproducts->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-           $Qproducts->bindInt(':limit', MODULE_PRODUCTS_INFO_CROSS_SELL_MAX_DISPLAY);
+           $Qproducts->bindInt(':limit', MODULE_PRODUCTS_INFO_ALSO_PURCHASED_MAX_DISPLAY);
            $Qproducts->execute();
         }
 

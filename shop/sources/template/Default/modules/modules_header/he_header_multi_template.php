@@ -61,6 +61,7 @@
       $form = HTML::form('loginForm',  CLICSHOPPING::link(null, 'Account&LogIn&Process'), 'post', 'id="loginForm"', ['tokenize' => true]);
       $endform = '</form>';
 
+      $banner_header = '';
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_LOGO_BANNER_GROUP)) {
           $logo_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
