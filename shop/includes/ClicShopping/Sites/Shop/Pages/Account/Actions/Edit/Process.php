@@ -30,35 +30,46 @@
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
 
-        if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if (isset($_POST['gender']) && ((ACCOUNT_GENDER == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_GENDER_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $gender = HTML::sanitize($_POST['gender']);
         }
 
-        $firstname = HTML::sanitize($_POST['firstname']);
-        $lastname = HTML::sanitize($_POST['lastname']);
-        $country = HTML::sanitize($_POST['country']);
+        if (isset($_POST['firstname'])) $firstname = HTML::sanitize($_POST['firstname']);
+        if (isset($_POST['lastname'])) $lastname = HTML::sanitize($_POST['lastname']);
+        if (isset($_POST['country'])) $country = HTML::sanitize($_POST['country']);
 
-        if (((ACCOUNT_DOB == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if (isset($_POST['dob']) &&  ((ACCOUNT_DOB == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
           $dob = HTML::sanitize($_POST['dob']);
+        }else {
+          $dob = null;
         }
 
-        $email_address = HTML::sanitize($_POST['email_address']);
-        $telephone = HTML::sanitize($_POST['telephone']);
+        if (isset($_POST['email_address'])) $email_address = HTML::sanitize($_POST['email_address']);
 
-        if (((ACCOUNT_CELLULAR_PHONE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_CELLULAR_PHONE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if (isset($_POST['telephone'])) {
+          $telephone = HTML::sanitize($_POST['telephone']);
+        } else {
+          $telephone = null;
+        }
+
+        if (isset($_POST['cellular_phone']) && ((ACCOUNT_CELLULAR_PHONE == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ((ACCOUNT_CELLULAR_PHONE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
           $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
+        } else {
+          $cellular_phone = null;
         }
 
-        if (((ACCOUNT_FAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_FAX_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if (isset($_POST['fax']) && ((ACCOUNT_FAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ((ACCOUNT_FAX_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
           $fax = HTML::sanitize($_POST['fax']);
+        } else {
+          $fax = null;
         }
 // Clients en mode B2B : Informations societe
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-          if (ACCOUNT_COMPANY_PRO == 'true') $company = HTML::sanitize($_POST['company']);
-          if (ACCOUNT_SIRET_PRO == 'true') $siret = HTML::sanitize($_POST['siret']);
-          if (ACCOUNT_APE_PRO == 'true') $ape = HTML::sanitize($_POST['ape']);
-          if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
-          if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $iso = HTML::sanitize($_POST['iso']);
+          if (ACCOUNT_COMPANY_PRO == 'true' && isset($_POST['company'])) $company = HTML::sanitize($_POST['company']);
+          if (ACCOUNT_SIRET_PRO == 'true' && isset($_POST['siret'])) $siret = HTML::sanitize($_POST['siret']);
+          if (ACCOUNT_APE_PRO == 'true' && isset($_POST['ape'])) $ape = HTML::sanitize($_POST['ape']);
+          if (ACCOUNT_TVA_INTRACOM_PRO == 'true' && isset($_POST['tva_intracom'])) $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
+          if (ACCOUNT_TVA_INTRACOM_PRO == 'true' && isset($_POST['compisoany'])) $iso = HTML::sanitize($_POST['iso']);
         }
 
         $error = false;
@@ -82,13 +93,12 @@
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (is_numeric($country) === false) {
             $country = Edit::CheckCountryIsoCode2($country);
-          }else{
+          } else {
             $error = true;
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error'), 'danger', 'account_edit');
           }
         }
 
-// Clients B2B : Controle entree de la societe
         if ((ACCOUNT_COMPANY_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           if (strlen($company) < ENTRY_COMPANY_PRO_MIN_LENGTH) {
             $error = true;
@@ -97,7 +107,6 @@
           }
         }
 
-// Clients B2B : Controle entree numero de siret
         if ((ACCOUNT_SIRET_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           if (strlen($siret) < ENTRY_SIRET_MIN_LENGTH) {
             $error = true;
@@ -106,7 +115,6 @@
           }
         }
 
-// Clients B2B : Controle entree code APE
         if ((ACCOUNT_APE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH) {
             $error = true;
@@ -115,7 +123,6 @@
           }
         }
 
-// Clients B2B : Controle entree numero de TVA Intracom
         if ((ACCOUNT_TVA_INTRACOM_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           if (strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH) {
             $error = true;
@@ -124,7 +131,6 @@
           }
         }
 
-// Clients B2C et B2B : Controle entree du prenom
         if ((strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
@@ -135,7 +141,6 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'danger', 'account_edit');
         }
 
-// Clients B2C et B2B : Controle entree du nom de famille
         if ((strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
@@ -146,7 +151,6 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'danger', 'account_edit');
         }
 
-// Clients B2C et B2B : Controle entree date de naissance
         if ((ACCOUNT_DOB == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
 
           $dobDateTime = new DateTime($dob, false);

@@ -33,6 +33,7 @@ alert_module_install_success = Le module a été installée.
 alert_module_uninstall_success = Le module a été désinstallée.
 alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
 
+icon_edit = Edit
 
 table_heading_filename = Error Log
 table_heading_filesize = File Size

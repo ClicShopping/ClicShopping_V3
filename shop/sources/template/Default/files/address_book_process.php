@@ -87,7 +87,7 @@
 <?php
      }
 ?>
-       <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) .  HTML::hiddenField('shopping', (int)$_GET['shopping']) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
+       <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) .  HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
     </div>
     <div class="clearfix"></div>
 <?php

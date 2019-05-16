@@ -142,7 +142,7 @@
             </div>
           </div>
 <?php
-  if ($_GET['newcustomer'] == 1) {
+  if (isset($_GET['newcustomer']) == 1) {
 ?>
           <div class="row">
             <div class="col-md-12">
@@ -334,7 +334,13 @@
         echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"');
       }
     } else {
-      echo HTML::inputField('state', (isset($entry['country_id']) ? $CLICSHOPPING_Address->getZoneName($entry['country_id'], $entry['zone_id'], $entry['entry_state']) : ''), 'id="state" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"');
+      if (isset($entry['country_id']) && $entry['country_id'] != 0) {
+        $country_id = $CLICSHOPPING_Address->getZoneName($entry['country_id'], $entry['zone_id'], $entry['entry_state']);
+      } else {
+        $country_id = '';
+      }
+
+      echo HTML::inputField('state', $country_id, 'id="state" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"');
     }
 
     if (((!is_null(CLICSHOPPING::getDef('entry_state_text'))) && (ENTRY_STATE_MIN_LENGTH > 0) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((!is_null(CLICSHOPPING::getDef('entry_state_text'))) && (ENTRY_STATE_PRO_MIN_LENGTH > 0) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -350,7 +356,7 @@
     }
   }
 
-  if ($_GET['newcustomer'] != 1) {
+  if (isset($_GET['newcustomer']) != 1) {
 //   Allow or not to customer change this address ou to change the default address if oddo is activated.
     if ((isset($_GET['edit']) && ($CLICSHOPPING_Customer->getDefaultAddressID() != $_GET['edit']) && (AddressBook::countCustomersModifyAddressDefault() == 1)) || (isset($_GET['edit']) === false) && (AddressBook::countCustomersModifyAddressDefault() == 1)) {
 ?>

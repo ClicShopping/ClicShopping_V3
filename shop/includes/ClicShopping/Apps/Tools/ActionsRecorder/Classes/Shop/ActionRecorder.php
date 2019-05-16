@@ -81,15 +81,20 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (!is_null($this->_module)) {
+        if ($success === true) {
+          $success = 1;
+        } else {
+          $success = 0;
+        }
 
         $CLICSHOPPING_Db->save('action_recorder', ['module' => $this->_module,
-                                            'user_id' => (int)$this->_user_id,
-                                            'user_name' => $this->_user_name,
-                                            'identifier' => $this->getIdentifier(),
-                                            'success' => ($success === true ? 1 : 0),
-                                            'date_added' => 'now()'
-                                          ]
-                       );
+                                                    'user_id' => (int)$this->_user_id,
+                                                    'user_name' => $this->_user_name,
+                                                    'identifier' => $this->getIdentifier(),
+                                                    'success' => $success,
+                                                    'date_added' => 'now()'
+                                                  ]
+                              );
       }
     }
 
