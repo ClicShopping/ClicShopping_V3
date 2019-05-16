@@ -70,10 +70,10 @@
         $output .= '</div>';
         $output .= '</div>';
         $output .= '<div class="separator"></div>';
-      }
 
-      return $output;
-    }
+        return $output;
+      }
+     }
 
     public function Install() {
       if ($this->lang->getId() != 2) {

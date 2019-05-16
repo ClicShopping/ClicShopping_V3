@@ -7,3 +7,5 @@ table_heading_review_author = Author
 table_heading_rating = Rating
 table_heading_approved = Approuved ?
 table_heading_action = Actions
+
+icon_edit = Edit

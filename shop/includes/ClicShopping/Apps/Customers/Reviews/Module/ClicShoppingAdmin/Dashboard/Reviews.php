@@ -115,9 +115,9 @@
   <!--  Start Reviews      -->
   <!-- ######################## -->
 EOD;
-      }
 
-      return $output;
+        return $output;
+      }
     }
 
     public function Install() {
