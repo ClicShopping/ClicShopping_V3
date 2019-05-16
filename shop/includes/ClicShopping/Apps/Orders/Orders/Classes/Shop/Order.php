@@ -612,6 +612,22 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
+      // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
+      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+//Group tax
+        $QgroupTax = $this->db->prepare('select group_order_taxe,
+                                                   group_tax
+                                           from :table_customers_groups
+                                           where customers_group_id = :customers_group_id
+                                          ');
+        $QgroupTax->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+        $QgroupTax->execute();
+
+        $group_tax = $QgroupTax->fetch();
+      } else {
+        $group_tax = false;
+      }
+
       for ($i = 0, $n = count($products); $i < $n; $i++) {
 
 // Display an indicator to identify if the product belongs at a customer group or not.
@@ -647,17 +663,6 @@
 
 // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-//Group tax
-          $QgroupTax = $this->db->prepare('select group_order_taxe,
-                                                   group_tax
-                                           from :table_customers_groups
-                                           where customers_group_id = :customers_group_id
-                                          ');
-          $QgroupTax->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-          $QgroupTax->execute();
-
-          $group_tax = $QgroupTax->fetch();
-
 // order customers price
           $QordersCustomersPrice = $this->db->prepare('select customers_group_price
                                                         from :table_products_groups

@@ -1,5 +1,3 @@
-
-
 entry_sold_to = SOLD TO:
 entry_ship_to = SHIP TO:
 

@@ -19,6 +19,6 @@
 
       $this->page->setFile('archive.php');
 
-      $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/Orders');
+      $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

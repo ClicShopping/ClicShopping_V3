@@ -56,7 +56,7 @@
       $Qpages->execute();
 
       if ( $Qpages->valueInt('count') > 0) {
-
+        $page_manager_banner = '';
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PAGE_MANAGER_BANNER_GROUP)) {
             $page_manager_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
@@ -75,9 +75,9 @@
          $data .= ob_get_clean();
 
          $data .='<!-- Boxe page manager  main end -->' . "\n";
-      }
 
-      $CLICSHOPPING_Template->addBlock($data, $this->group);
+        $CLICSHOPPING_Template->addBlock($data, $this->group);
+      }
     }
 
 

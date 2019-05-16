@@ -43,38 +43,47 @@
 
         $CLICSHOPPING_Hooks->call('CreatePro','PreAction');
 
-        $firstname = HTML::sanitize($_POST['firstname']);
-        $lastname = HTML::sanitize($_POST['lastname']);
-        $email_address = HTML::sanitize($_POST['email_address']);
-        $email_address_confirmation = HTML::sanitize($_POST['email_address_confirm']);
-        $postcode = HTML::sanitize($_POST['postcode']);
-        $city = HTML::sanitize($_POST['city']);
-        $customer_website_company = HTML::sanitize($_POST['customer_website_company']);
-        $street_address = HTML::sanitize($_POST['street_address']);
+        if (isset($_POST['firstname'])) $firstname = HTML::sanitize($_POST['firstname']);
+        if (isset($_POST['lastname'])) $lastname = HTML::sanitize($_POST['lastname']);
+        if (isset($_POST['email_address'])) $email_address = HTML::sanitize($_POST['email_address']);
+        if (isset($_POST['email_address_confirm'])) $email_address_confirmation = HTML::sanitize($_POST['email_address_confirm']);
+        if (isset($_POST['postcode'])) $postcode = HTML::sanitize($_POST['postcode']);
+        if (isset($_POST['city'])) $city = HTML::sanitize($_POST['city']);
+        if (isset($_POST['customer_website_company'])) {
+          $customer_website_company = HTML::sanitize($_POST['customer_website_company']);
+        } else {
+          $customer_website_company = null;
+        }
+        if (isset($_POST['street_address'])) $street_address = HTML::sanitize($_POST['street_address']);
 
-        if (ACCOUNT_DOB_PRO == 'true') $dob = HTML::sanitize($_POST['dob']);
-        if (ACCOUNT_GENDER_PRO == 'true') $gender = HTML::sanitize($_POST['gender']);
-        if (ACCOUNT_COMPANY_PRO == 'true') $company = HTML::sanitize($_POST['company']);
-        if (ACCOUNT_SIRET_PRO == 'true') $siret = HTML::sanitize($_POST['siret']);
-        if (ACCOUNT_APE_PRO == 'true') $ape = HTML::sanitize($_POST['ape']);
-        if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
-        if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $iso = HTML::sanitize($_POST['ISO']);
+        if (isset($_POST['dob']) && ACCOUNT_DOB_PRO == 'true') $dob = HTML::sanitize($_POST['dob']);
+        if (isset($_POST['gender']) && ACCOUNT_GENDER_PRO == 'true') $gender = HTML::sanitize($_POST['gender']);
+        if (isset($_POST['company']) && ACCOUNT_COMPANY_PRO == 'true') $company = HTML::sanitize($_POST['company']);
+        if (isset($_POST['siret']) && ACCOUNT_SIRET_PRO == 'true') $siret = HTML::sanitize($_POST['siret']);
+        if (isset($_POST['ape']) && ACCOUNT_APE_PRO == 'true') $ape = HTML::sanitize($_POST['ape']);
+        if (isset($_POST['tva_intracom']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
+        if (isset($_POST['ISO']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') $iso = HTML::sanitize($_POST['ISO']);
 
         if (ACCOUNT_SUBURB_PRO == 'true') $suburb = HTML::sanitize($_POST['suburb']);
 
         if (ACCOUNT_STATE_PRO == 'true') {
-          $state = HTML::sanitize($_POST['state']);
+          if (isset($_POST['state'])) {
+            $state = HTML::sanitize($_POST['state']);
+          } else {
+            $state = null;
+          }
+
           if (isset($_POST['zone_id'])) {
             $zone_id = HTML::sanitize($_POST['zone_id']);
           }
         }
 
-        $country = HTML::sanitize($_POST['country']);
+        if (isset($_POST['country'])) $country = HTML::sanitize($_POST['country']);
 
-        $telephone = HTML::sanitize($_POST['telephone']);
+        if (isset($_POST['telephone'])) $telephone = HTML::sanitize($_POST['telephone']);
 
-        if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
-        if (ACCOUNT_FAX_PRO == 'true')     $fax = HTML::sanitize($_POST['fax']);
+        if (isset($_POST['cellular_phone']) && ACCOUNT_CELLULAR_PHONE_PRO == 'true') $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
+        if (isset($_POST['fax']) && ACCOUNT_FAX_PRO == 'true') $fax = HTML::sanitize($_POST['fax']);
 
         $newsletter = HTML::sanitize($_POST['newsletter']);
         $password = HTML::sanitize($_POST['password']);
@@ -453,17 +462,7 @@
 // build the message content
           $name = $firstname . ' ' . $lastname;
 
-          if (ACCOUNT_GENDER_PRO == 'true') {
-            if ($gender == 'm') {
-              $email_gender = sprintf(CLICSHOPPING::getDef('email_greet_mr'), $lastname);
-            } else {
-              $email_gender = sprintf(CLICSHOPPING::getDef('email_greet_ms'), $lastname);
-            }
-          } else {
-            $email_gender = sprintf(CLICSHOPPING::getDef('email_greet_none'), $firstname);
-          }
-
-          if (COUPON_CUSTOMER_B2B != '') {
+          if (defined('COUPON_CUSTOMER_B2B') && !empty(COUPON_CUSTOMER_B2B)) {
             $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' '. COUPON_CUSTOMER_B2B;
           }
 
@@ -474,7 +473,7 @@
             $template_email_welcome_catalog = CLICSHOPPING::getDef('email_welcome');
           }
 
-          if (!empty(COUPON_CUSTOMER)) {
+          if (defined('COUPON_CUSTOMER') &&  !empty(COUPON_CUSTOMER)) {
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
             $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
           }

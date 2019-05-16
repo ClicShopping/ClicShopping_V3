@@ -20,6 +20,6 @@
       $this->page->setFile('edit.php');
       $this->page->data['action'] = 'Edit';
 
-      $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/Orders');
+      $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

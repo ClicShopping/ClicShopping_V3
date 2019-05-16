@@ -49,7 +49,6 @@
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-
         $Qproducts = $CLICSHOPPING_Db->prepare('select distinct p.products_id
                                                 from :table_products_featured pf,
                                                       :table_products p left join :table_products_groups g on p.products_id = g.products_id,
@@ -66,7 +65,7 @@
                                                 and g.products_group_view = 1
                                                 and p.products_archive = 0
                                                 and g.customers_group_id = :customers_group_id
-                                                and (pf.customers_group_id = :customers_group_id or pf.customers_group_id = :customers_group_idpf.customers_group_id = 99)
+                                                and (pf.customers_group_id = :customers_group_id or pf.customers_group_id = 99)
                                                 and p.products_id <> :products_id
                                                 and p.products_id = p2c.products_id
                                                 and p2c.categories_id = c.categories_id
@@ -76,12 +75,11 @@
                                               ');
 
         $Qproducts->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-        $Qproducts->bindInt(':products_id',  $CLICSHOPPING_ProductsCommon->getID());
+        $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qproducts->bindInt(':limit', (int)MODULE_BOXES_PRODUCTS_FEATURED_MAX_DISPLAY_LIMIT);
         $Qproducts->execute();
 
       } else {
-
         $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id
                                                 from :table_products p,
                                                      :table_products_featured pf,

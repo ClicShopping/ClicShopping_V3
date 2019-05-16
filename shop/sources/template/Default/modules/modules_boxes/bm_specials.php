@@ -51,7 +51,7 @@
 
           $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id
                                                     from :table_specials s,
-                                                          :table_products p left join :table_products_groups g on p.products_id = g.products_id
+                                                          :table_products p left join :table_products_groups g on p.products_id = g.products_id,
                                                           :table_products_to_categories p2c,
                                                           :table_categories c
                                                     where (p.products_status = 1

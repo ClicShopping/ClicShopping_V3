@@ -20,6 +20,6 @@
       $this->page->setUseSiteTemplate(false); //don't display Header / Footer
       $this->page->setFile('page_manager_order_contract.php');
 
-      $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/Orders');
+      $CLICSHOPPING_Orders->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }
