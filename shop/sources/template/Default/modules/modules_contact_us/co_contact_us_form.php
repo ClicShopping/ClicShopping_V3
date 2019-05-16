@@ -47,6 +47,8 @@
 
         if ( isset($_GET['order_id']) && is_numeric($_GET['order_id']) ) {
           $order_id = HTML::sanitize($_GET['order_id']);
+        } else {
+          $order_id = 0;
         }
 
         $contact_us_form = '<!--  contact_us_form start -->' . "\n";

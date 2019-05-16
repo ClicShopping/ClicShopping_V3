@@ -26,7 +26,7 @@
   class Process extends \ClicShopping\OM\PagesActionsAbstract  {
 
     public function execute()  {
-       $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -49,9 +49,15 @@
         $email_address = HTML::sanitize($_POST['email_address']);
         $email_address_confirm = HTML::sanitize($_POST['email_address_confirm']);
 
-        $newsletter = HTML::sanitize($_POST['newsletter']);
+        if (isset($_POST['newsletter'])) {
+          $newsletter = HTML::sanitize($_POST['newsletter']);
+        } else {
+          $newsletter = 0;
+        }
+
         $password = HTML::sanitize($_POST['password']);
         $confirmation = HTML::sanitize($_POST['confirmation']);
+
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
@@ -211,10 +217,9 @@
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
 
-            $data_array = ['customer_name' => $_POST['lastname'],
-                           'customer_firstame' => $_POST['firstname'],
-                           'customer_company' => $_POST['company'],
-                           'customer_mail' => $_POST['email_address']
+            $data_array = ['customer_name' => $lastname,
+                           'customer_firstame' => $firstname,
+                           'customer_mail' => $email_address
                           ];
 
             $admin_email_text_admin = CLICSHOPPING::getDef('admin_email_text', $data_array);

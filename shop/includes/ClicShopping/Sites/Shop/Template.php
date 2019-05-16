@@ -702,22 +702,25 @@
  * @access public
  */
     public function getSpecificFiles($source_folder, $filename, $ext = 'php') {
-      if( !is_dir( $source_folder)) {
-        die ('Invalid directory.');
-      }
+      if(is_dir( $source_folder)) {
+        $FILES = glob($source_folder . $filename . '.' . $ext);
+        $FILE_LIST[] = '';
 
-      $FILES = glob($source_folder . $filename . '.' . $ext);
-      $FILE_LIST[] = '';
+        if (is_array($FILES)) {
+          foreach($FILES as $key => $file) {
+            $result = str_replace($source_folder, '', $file);
+            $name = str_replace('.' . $ext, '', $result);
 
-      foreach($FILES as $key => $file) {
-        $result = str_replace($source_folder, '', $file);
-        $FILE_LIST[$key] = str_replace('.' . $ext, '', $result);
-      }
+            if (!empty($name)) {
+              $FILE_LIST[$key] = [];
+              $FILE_LIST[$key]['name'] = $name;
+            }
+          }
+        }
 
-      if (is_array($FILE_LIST)) {
-        return $FILE_LIST;
-      } else {
-        return false;
+        if (is_array($FILE_LIST)) {
+          return $FILE_LIST;
+        }
       }
     }
   }

@@ -46,11 +46,22 @@
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH;
 
       $process = isset($_SESSION['process']);
-      $entry_state_has_zones = $_SESSION['entry_state_has_zones'];
-      $country = (int)$_SESSION['country'];
+
+      if (isset( $_SESSION['entry_state_has_zones'])) {
+        $entry_state_has_zones = $_SESSION['entry_state_has_zones'];
+      } else {
+        $entry_state_has_zones = false;
+      }
+
+      if (isset( $_SESSION['entry_state_has_zones'])) {
+        $country = (int)$_SESSION['country'];
+      } else {
+        $country = null;
+      }
 
       $default_country_pro = CreateAccount::getCountryPro();
-      if (!isset($default_country_pro)) $default_country_pro = $_POST['country'];
+
+      if (!isset($default_country_pro)) $default_country_pro = HTML::sanitize($_POST['country']);
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 

@@ -97,13 +97,15 @@
     }
 
     public function convert($value, $unit_from, $unit_to) {
-      if ( $unit_from == $unit_to ) {
-        $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
-      } else {
-        $convert = number_format($value * $this->weight_classes[(int)$unit_from][(int)$unit_to], $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
-      }
+      if (!is_null($value)) {
+        if ( $unit_from == $unit_to ) {
+          $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
+        } else {
+          $convert = number_format($value * $this->weight_classes[(int)$unit_from][(int)$unit_to], $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
+        }
 
-      return $convert;
+        return $convert;
+      }
     }
 
     public function display($value, $class) {
