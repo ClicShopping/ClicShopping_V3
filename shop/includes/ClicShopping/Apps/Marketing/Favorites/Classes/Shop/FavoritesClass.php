@@ -149,10 +149,8 @@
                             and p.products_id = p2c.products_id
                             and p2c.categories_id = c.categories_id
                             and c.virtual_categories = 0
-                            and c.status = 1
-                          
+                            and c.status = 1                          
                    ';
-
       } else {
         $Qlisting .= ' p.products_id,
                        p.products_quantity as in_stock

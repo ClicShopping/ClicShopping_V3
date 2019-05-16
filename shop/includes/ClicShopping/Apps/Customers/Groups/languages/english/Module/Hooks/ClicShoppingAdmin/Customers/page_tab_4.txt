@@ -1,3 +1,4 @@
+title_tab_payment = Payment
 entry_customers_group_name = Customer group
 category_group_customer = Type of customer
 category_order_taxe = Mode of invoicing
