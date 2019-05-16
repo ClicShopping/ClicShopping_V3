@@ -137,33 +137,20 @@
                          :table_products_favorites ph,
                          :table_products_to_categories p2c,
                          :table_categories c
-                    where (p.products_status = 1
+                    where p.products_status = 1
+                            and g.price_group_view = 1    
                             and ph.status = 1
                             and p.products_id = ph.products_id
-                            and (g.customers_group_id = :customers_group_id or g.customers_group_id = 99)
+                            and g.customers_group_id = :customers_group_id
                             and g.products_group_view = 1
-                            and g.price_group_view = 1
                             and p.products_archive = 0
+                            and ph.products_id = p.products_id
                             and (ph.customers_group_id = :customers_group_id or ph.customers_group_id = 99)
                             and p.products_id = p2c.products_id
                             and p2c.categories_id = c.categories_id
                             and c.virtual_categories = 0
                             and c.status = 1
-                           )
-                    or (p.products_status = 1
-                          and ph.status = 1
-                          and p.products_id = ph.products_id
-                          and (g.customers_group_id = :customers_group_id  or g.customers_group_id = 99)
-                          and g.products_group_view = 1
-                          and g.price_group_view <> 1
-                          and p.products_archive = 0
-                          and ph.products_id = p.products_id
-                          and (ph.customers_group_id = 0 or  ph.customers_group_id = 99)
-                          and p.products_id = p2c.products_id
-                          and p2c.categories_id = c.categories_id
-                          and c.virtual_categories = 0
-                          and c.status = 1
-                        )
+                          
                    ';
 
       } else {

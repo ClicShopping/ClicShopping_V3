@@ -95,7 +95,7 @@
 
               $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading($_GET['sort'], $col+1, $lc_text);
 
-              $new_compare_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
+              $new_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
             }
 
             $new_prods_content .= '</ul>';
@@ -339,7 +339,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select your template ?',
           'configuration_key' => 'MODULE_PRODUCTS_FEATURED_TEMPLATE',
-          'configuration_value' => 'template_compare_bootstrap_column_5.php',
+          'configuration_value' => 'template_bootstrap_column_5.php',
           'configuration_description' => 'Select your template you want to display',
           'configuration_group_id' => '6',
           'sort_order' => '2',

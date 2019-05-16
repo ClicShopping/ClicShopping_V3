@@ -2135,6 +2135,8 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
+      $normal_price = 1;
+
       if ($this->customer->getCustomersGroupID() != 0) {
 
         $Qproducts = $this->db->prepare('select g.price_group_view
