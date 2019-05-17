@@ -103,10 +103,10 @@
     if ($menus['parent_id'] == 0) {
       $menu_parent[$menus['id']] = $menus;
     } else {
-      if (isset($menu_parent[ $menus['parent_id'] ])) {
+      if (isset($menu_parent[$menus['parent_id']]) && !is_null($menu_parent[$menus['parent_id']])) {
         $menu_parent[ $menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
         $menu_sub[$menus['id']] = $menus;
-      } else if (isset($menu_sub[ $menus['parent_id'] ])) {
+      } elseif (isset($menu_sub[$menus['parent_id']]) && !is_null($menu_sub[$menus['parent_id']])) {
         $menu_sub[ $menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
         $menu_sub[$menus['id']] = $menus;
       }
