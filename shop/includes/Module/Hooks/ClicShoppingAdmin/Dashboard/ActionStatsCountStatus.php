@@ -37,6 +37,8 @@
       $QordersStatus->bindint(':language_id', $CLICSHOPPING_Language->getId());
       $QordersStatus->execute();
 
+      $result = null;
+
       while ($QordersStatus->fetch() ) {
         $QordersPending = $CLICSHOPPING_Db->prepare('select count(orders_id) as count
                                                      from :table_orders
@@ -61,7 +63,7 @@
         }
       }
 
-      if (is_array($result)) {
+      if (!is_null($result) && is_array($result)) {
         foreach($result as $value) {
           echo $value;
         }
