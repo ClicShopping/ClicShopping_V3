@@ -59,49 +59,16 @@
     Public Static function getDirSize() {
 
       $path = CLICSHOPPING::getConfig('dir_root', 'Shop');
+      $path = rtrim(str_replace('\\', '/', $path), '/');
+      $bytestotal = 0;
+      $path = realpath($path);
 
-      $dir = rtrim(str_replace('\\', '/', $path), '/');
-
-      if (is_dir($dir) === true) {
-        $totalSize = 0;
-        $os = strtoupper(substr(PHP_OS, 0, 3));
-
-// If on a Unix Host (Linux, Mac OS)
-        if ($os !== 'WIN') {
-          $io = popen('/usr/bin/du -sb ' . $dir, 'r');
-
-          if ($io !== false) {
-            $totalSize = intval(fgets($io, 80));
-            pclose($io);
-
-            return $totalSize;
-          }
+      if($path!==false && $path!='' && file_exists($path)){
+        foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS)) as $object){
+          $bytestotal += $object->getSize();
         }
-
-// If on a Windows Host (WIN32, WINNT, Windows)
-        if ($os === 'WIN' && extension_loaded('com_dotnet')) {
-          $obj = new \COM('scripting.filesystemobject');
-
-          if (is_object($obj)) {
-            $ref       = $obj->getfolder($dir);
-            $totalSize = $ref->size;
-            $obj       = null;
-
-            return $totalSize;
-          }
-        }
-
-// If System calls did't work, use slower PHP 5
-        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
-
-        foreach ($files as $file) {
-          $totalSize += $file->getSize();
-        }
-
-        return $totalSize;
-
-      } elseif (is_file($dir) === true) {
-        return filesize($dir);
       }
+
+      return $bytestotal;
     }
   }
