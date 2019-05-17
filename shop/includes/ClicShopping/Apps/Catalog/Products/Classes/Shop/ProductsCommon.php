@@ -2837,6 +2837,8 @@
         $keywords = HTML::sanitize($_POST['keywords']);
       } elseif (isset($_GET['keywords'])) {
         $keywords = HTML::sanitize($_GET['keywords']);
+      } else {
+        $keywords =  '';
       }
 
       if ($sortby) {
