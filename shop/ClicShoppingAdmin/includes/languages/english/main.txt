@@ -49,6 +49,7 @@ box_localization_languages = Languages
 box_newsletter = Bulletin d'information
 box_heading_help = Support
 
+
 box_catalog_categories_priceupdate = Quick update
 box_customers_approval = Waiting approval
 box_customers_groups = Groups
@@ -339,7 +340,7 @@ text_header_online_customers = Customers
 text_header_number_of_customers = {{online_customer}} online
 
 text_header_icon_number_of_customers = View the customers online
-text_help_wysiwyg = Information on supporting the use of Wysiwyg in pictures
+text_help_wysiwyg = Information on supporting the use of WYSIWYG in pictures
 text_close = Close
 
 text_image_nonexistent = No image

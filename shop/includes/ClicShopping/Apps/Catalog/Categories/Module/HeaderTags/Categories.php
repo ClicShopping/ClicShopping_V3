@@ -138,10 +138,10 @@
 {$new_keywords}
 EOD;
 
+
+            return $output;
           }
         }
-	
-        return $output;
       }
     }
 
