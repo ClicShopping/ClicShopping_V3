@@ -1,0 +1,114 @@
+text_url_status = Statut de l'URL
+text_url_valid_status = Félicitations! Votre URL est valide
+text_url_dns_not_found = Aucun DNS trouvé - ou hôte local utilisé
+text_url_google_result_preview = Aperçu des résultats de la recherche Google
+text_url_google_result_preview_info = L'Url n'est pas réécrite mais sur Goole est le sera
+
+text_error = Votre page ne retourne pas de résultat. S'il vous plaît vérifier et rectifier
+
+text_title_tag = Balise de titre
+text_title_meta_tag = Le meta titre de votre page a une longueur de {{title_text}} caractères. La plupart des moteurs de recherche tronqueront les méta-titres à 70 caractères
+
+text_meta_description = Meta Description
+text_title_meta_tag_description = La méta description de votre page a une longueur de {{title_description}} caractères. La plupart des moteurs de recherche tronqueront les méta descriptions à 160 caractères
+
+text_common_keywords = Test des mots les plus courants
+text_common_keywords_info = Il n’ya probablement pas de densité de mot clé optimale (les algorithmes des moteurs de recherche ont évolué au-delà de
+mesure de la densité des mots clés en tant que facteur de classement significatif). Toutefois, il peut être utile de noter les mots-clés qui apparaissent le plus souvent sur votre page et s’ils reflètent le sujet de votre page. Plus
+ Il est important de noter que les mots-clés de votre page doivent apparaître dans une copie à la sonorité naturelle et grammaticalement correcte.
+
+text_common_keywords_no_repeat = Votre page n'a pas de mot-clé répété
+text_keywords_usage = Utilisation du mot clé
+text_keywords_usage_meta = Votre page contient des mots-clés communs issus des balises META.
+text_keywords_info = Nos mots clés les plus courants n'apparaissent pas dans une ou plusieurs des balises méta ci-dessus. Vos mots-clés principaux doivent apparaître dans vos méta-tags pour vous aider à identifier le sujet de votre page Web dans les moteurs de recherche.
+
+text_heading_status_h1 = H1 Statut du titre
+text_heading_status_h1_ok = Vos pages ayant ces en-têtes H1
+text_heading_status_h2 = H2 Statut du titre
+text_heading_status_h2_ok = Vos pages ayant ces en-têtes H3
+text_heading_status_h3 = H3 Statut du titre
+text_heading_status_h3_ok = Vos pages ayant ces en-têtes H3
+
+text_sitemap_test = Test du plan du site
+text_sitemap_ok = Félicitations! Nous avons trouvé un fichier sitemap pour votre site web:
+
+text_broken_links = Test des liens rompus
+text_link_broken = Félicitations! Votre page n'a pas de liens cassés.
+text_link_broken_count = Votre page contient des liens brisés, comptez:
+
+text_image_alt = Test alternatif de l'image
+text_image_error = Vos pages n'ont aucune image
+text_image_alt_success = Félicitations {{result_image}} images trouvées dans votre page, et toutes ont le texte "ALT".
+text_image_not_found = {{result_image}} images trouvées dans votre page et {{result_image_not_found}} images ne contiennent pas de texte "ALT".
+
+text_google_analytics = Google Analytics
+text_google_analytics_success = Félicitations! Votre page est déjà soumise à Google Analytics.
+text_google_analytics_error = Votre page n'a pas été soumise à Google Analytics
+
+text_favicon = Test Favicon
+text_favicon_success = Félicitations! Votre site Web semble avoir un favicon.
+
+text_site_loading = Test de vitesse de chargement de site
+text_site_loading_speed = Le temps de chargement de votre site est d'environ <strong> {{result_loading}} secondes </ strong>, ainsi que de la vitesse de chargement moyenne de tout site Web pendant <strong> 5 secondes </ strong>.
+text_site_loading_error = Impossible d'obtenir le temps de chargement de votre site
+
+text_site_flash = Test Flash
+text_site_flash_error = Votre site Web comprend des objets Flash (une technologie obsolète qui était parfois utilisée pour fournir un contenu multimédia riche). Le contenu Flash ne fonctionne pas bien sur les appareils mobiles et est difficile à interpréter pour les robots d'exploration.
+text_site_flash_success = Félicitations! Votre site Web n'inclut pas les objets Flash (une technologie obsolète qui était parfois utilisée pour fournir un contenu multimédia riche). Le contenu Flash ne fonctionne pas bien sur les appareils mobiles et est difficile à interpréter pour les robots d'exploration.
+
+text_site_frame = Test du cadre
+text_site_frame_error = Votre page Web utilise des cadres.
+text_site_frame_success = Félicitations! Votre page Web n'utilise pas de cadres
+
+text_site_css_minification = Minification CSS
+text_site_css_minification_success = Votre page contenant {{report_css}} fichiers css externes
+text_site_css_minification_no_success = 'et {{report_no_success_css}} fichiers CSS sont minifiés
+text_site_css_minification_error = et aucun fichier n'est minifié
+text_site_css_minification_no_minified = Les fichiers suivants ne sont pas minifiés:
+text_site_css_minification_no_external_css_found = Aucun css externe trouvé
+text_site_css_minification_no_css_found = Aucun css trouvé
+
+
+text_site_js_minification = Minification JS
+text_site_js_minification_external = Votre page contenant {{report_js_external}} fichiers js externes
+text_site_js_minification_minified = et {{report_js_minified}} les fichiers js sont minifiés.
+text_site_js_minification_no_file_minified = et aucun fichier n'est minifié
+text_site_js_minification_following_minified = Les fichiers suivants ne sont pas minifiés:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

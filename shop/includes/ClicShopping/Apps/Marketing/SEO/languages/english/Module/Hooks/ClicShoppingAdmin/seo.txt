@@ -1,0 +1,115 @@
+text_url_status = Url Status
+text_url_valid_status = Congratulations! Your Url is valid
+text_url_dns_not_found = No DNS Found - or localhost used
+text_url_google_result_preview = Google Search Results Preview
+text_url_google_result_preview_info = The url is not rewrited but on google it will display de rewrited url
+
+text_error = Your page doesn't return a result. Please check and rectify
+
+text_title_tag = Title Tag
+text_title_meta_tag = The meta title of your page has a length of {{title_text}} characters. Most search engines will truncate meta titles to 70 characters
+
+text_meta_description = Meta Description
+text_title_meta_tag_description = The meta description of your page has a length of {{title_description}} characters. Most search engines will truncate meta descriptions to 160 characters
+
+text_common_keywords = Most Common Keywords Test
+text_common_keywords_info = There is likely no optimal keyword density (search engine algorithms have evolved beyond
+keyword density metrics as a significant ranking factor). It can be useful, however, to note which keywords appear most often on your page and if they reflect the intended topic of your page. More
+ importantly, the keywords on your page should appear within natural sounding and grammatically correct copy.
+
+text_common_keywords_no_repeat = Your page doens't have any repeated keywords
+text_keywords_usage = Keyword Usage
+text_keywords_usage_meta = Your page have common keywords from meta tags.
+text_keywords_info = Our most common keywords are not appearing in one or more of the meta-tags above. Your primary keywords should appear in your meta-tags to help identify the topic of your webpage to search engines.
+
+text_heading_status_h1 = H1 Heading status
+text_heading_status_h1_ok =Your pages having these H1 headings
+text_heading_status_h2 = H2 Heading status
+text_heading_status_h2_ok = Your pages having these H3 headings
+text_heading_status_h3 = H3 Heading status
+text_heading_status_h3_ok = Your pages having these H3 headings
+
+text_sitemap_test = Sitemap Test
+text_sitemap_ok = Congratulations! We've found sitemap file for your website:
+
+text_broken_links = Broken Links Test
+text_link_broken = Congratulations! Your page doesn't have any broken links.
+text_link_broken_count = Your page has some broken links, count :
+
+text_image_alt = Image Alt Test
+text_image_error = Your pages does not have any images
+text_image_alt_success = Congratulations {{result_image}} images found in your page, and all have "ALT" text.
+text_image_not_found = {{result_image}} images found in your page and {{result_image_not_found}} images are without "ALT" text.
+
+text_google_analytics = Google Analytics
+text_google_analytics_success = Congratulations! Your page is already submitted to Google Analytics
+text_google_analytics_error = Your page not submitted to Google Analytics
+
+text_favicon = Favicon Test
+text_favicon_success = Congratulations! Your website appears to have a favicon.
+
+text_site_loading = Site Loading Speed Test
+text_site_loading_speed = Your site loading time is around <strong>{{result_loading}} seconds</strong> and the average loading speed of any website which is <strong>5 seconds</strong> required.
+text_site_loading_error = Unable to get load time of your site
+
+text_site_flash = Flash Test
+text_site_flash_error = Your website include flash objects (an outdated technology that was sometimes used to deliver rich multimedia content). Flash content does not work well on mobile devices, and is difficult for crawlers to interpret
+text_site_flash_success = Congratulations! Your website does not include flash objects (an outdated technology that was sometimes used to deliver rich multimedia content). Flash content does not work well on mobile devices, and is difficult for crawlers to interpret
+
+text_site_frame = Frame test
+text_site_frame_error = Your webpage use frames.
+text_site_frame_success = Congratulations! Your webpage does not use frames
+
+text_site_css_minification = CSS Minification
+text_site_css_minification_success = Your page having {{report_css}} external css files
+text_site_css_minification_no_success = 'and out of them {{report_no_success_css}}  css files are minified
+text_site_css_minification_error = and no file is minified
+text_site_css_minification_no_minified = Following files are not minified :
+text_site_css_minification_no_external_css_found = No external css found
+text_site_css_minification_no_css_found = No css found
+
+
+text_site_js_minification = JS Minification
+text_site_js_minification_external = Your page having {{report_js_external}} external js files
+text_site_js_minification_minified = and out of them {{report_js_minified}} js files are minified.
+text_site_js_minification_no_file_minified = and no file is minified
+text_site_js_minification_following_minified = Following files are not minified :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

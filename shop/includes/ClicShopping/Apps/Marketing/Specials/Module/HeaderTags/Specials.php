@@ -98,9 +98,9 @@
 {$keywords}
 {$new_keywords}
 EOD;
-      }
 
-      return $output;
+        return $output;
+      }
     }
 
     public function Install() {
