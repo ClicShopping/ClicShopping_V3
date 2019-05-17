@@ -54,10 +54,12 @@
       }
 
       $xml = $CLICSHOPPING_Template->addBlock('<link rel="alternate" type="application/rss+xml" title="' . STORE_NAME . '" href="'. HTTP::getShopUrlDomain() . 'index.php?Info&RSS'.'">', $this->group);
+
       $output =
 <<<EOD
 {$xml}
 EOD;
+
       return $output;
     }
 

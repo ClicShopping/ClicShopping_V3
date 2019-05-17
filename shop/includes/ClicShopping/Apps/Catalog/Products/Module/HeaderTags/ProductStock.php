@@ -116,9 +116,9 @@
 <<<EOD
 {$display_result}
 EOD;
-      }
 
-      return $output;
+        return $output;
+      }
     }
 
     public function Install() {
