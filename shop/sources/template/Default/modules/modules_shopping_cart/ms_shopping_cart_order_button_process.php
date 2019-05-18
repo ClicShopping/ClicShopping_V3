@@ -41,14 +41,22 @@
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
 
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
+        if (is_array($CLICSHOPPING_NavigationHistory)) {
+          $back = count($CLICSHOPPING_NavigationHistory->path)-2;
+        } else {
+          $back = null;
+        }
 
-        $back = count($CLICSHOPPING_NavigationHistory->path)-2;
-        $position = MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION;
+        $text_position = MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION;
 
         if (isset($CLICSHOPPING_NavigationHistory->path[$back])) {
           if (!is_null(($CLICSHOPPING_NavigationHistory->path[$back]))) {
             $button_navigation_history = HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'info');
+          } else {
+            $button_navigation_history = '';
           }
+        } else {
+          $button_navigation_history = '';
         }
 
         $button_continue =  HTML::button(CLICSHOPPING::getDef('button_order'), null, CLICSHOPPING::link(null, 'Checkout&Shipping'), 'success');

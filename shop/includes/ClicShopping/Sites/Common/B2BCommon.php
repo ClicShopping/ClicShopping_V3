@@ -119,8 +119,14 @@
         $Qshipping->execute();
 
         $shipping_not_allowed = $Qshipping->fetch();
-        $shipping_unallowed = explode (",",$shipping_not_allowed['group_payment_unallowed']);
-        $shipping_clearance = (!in_array ($shipping_check, $shipping_unallowed)) ?  true : false;
+
+        if (!empty($shipping_not_allowed['group_payment_unallowed'])) {
+          $shipping_unallowed = explode (',', $shipping_not_allowed['group_payment_unallowed']);
+
+          $shipping_clearance = (!in_array ($shipping_check, $shipping_unallowed)) ?  true : false;
+        } else {
+          $shipping_clearance = false;
+        }
       }
 
       return $shipping_clearance;

@@ -81,7 +81,7 @@
         }
       }
 
-      if (strpos($_SESSION['shipping']['id'], '\\') !== false) {
+      if (isset($_SESSION['shipping']) && strpos($_SESSION['shipping']['id'], '\\') !== false) {
         list($vendor, $app, $module) = explode('\\', $_SESSION['shipping']['id']);
         list($module, $method) = explode('_', $module);
 
@@ -91,12 +91,6 @@
 
         if (Registry::exists($code)) {
           $CLICSHOPPING_SM = Registry::get($code);
-        }
-      } else {
-        list($module, $method) = explode('_', $_SESSION['shipping']['id']);
-
-        if (is_object($GLOBALS[$module])) {
-          $CLICSHOPPING_SM = $GLOBALS[$module];
         }
       }
 

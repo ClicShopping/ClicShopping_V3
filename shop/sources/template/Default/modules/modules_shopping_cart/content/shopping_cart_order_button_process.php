@@ -1,5 +1,5 @@
 <div class="clearfix"></div>
-<div class="col-md-<?php echo $content_width; ?> <?php echo $position; ?>">
+<div class="col-md-<?php echo $content_width; ?> <?php echo $text_position; ?>">
   <div class="separator"></div>
   <div class="separator"></div>
   <div class="col-md-12">

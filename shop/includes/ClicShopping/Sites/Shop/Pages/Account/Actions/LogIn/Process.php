@@ -35,7 +35,11 @@
         CLICSHOPPING::redirect(null, 'Info&Cookies');
       }
 
-      $login_customer_id = $_SESSION['login_customer_id'];
+      if (isset($_SESSION['login_customer_id'])) {
+        $login_customer_id = $_SESSION['login_customer_id'];
+      } else {
+        $login_customer_id = 0;
+      }
 
       if (is_numeric($login_customer_id ) && ($login_customer_id > 0)) {
         if ($login_customer_id > 0) {

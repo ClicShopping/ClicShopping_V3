@@ -207,8 +207,8 @@
             }
           }
 
-          $cPath_new .= '_' . $current_category_id;
-
+          $cPath_new .= '' . $current_category_id;
+	  
           if (substr($cPath_new, 0, 1) == '_') {
             $cPath_new = substr($cPath_new, 1);
           }
@@ -217,7 +217,6 @@
 
       return 'cPath=' . $cPath_new;
     }
-
 
 
 /**
