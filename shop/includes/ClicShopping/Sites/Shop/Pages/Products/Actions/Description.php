@@ -27,7 +27,7 @@
 
       $spider_flag = WhosOnline::getResultSpiderFlag();
 
-      if (!isset($_GET['products_id']) && !is_numeric($_GET['products_id'])) {
+      if (!isset($_GET['products_id'])) {
         CLICSHOPPING::redirect();
       }
 

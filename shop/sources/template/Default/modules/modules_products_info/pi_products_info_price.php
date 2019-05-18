@@ -89,7 +89,9 @@
 
 // Display an input allowing for the customer to insert a quantity
            if ($CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity() !='' ) {
-              $input_quantity =  CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+             $input_quantity =  CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+           } else {
+             $input_quantity = '';
            }
 
 // Quantity type
