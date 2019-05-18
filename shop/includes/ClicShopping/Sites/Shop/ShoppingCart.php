@@ -32,6 +32,7 @@
     protected $prod;
     protected $tax;
     protected $productsAttributes;
+    public $cartID;
 
     public function __construct() {
 

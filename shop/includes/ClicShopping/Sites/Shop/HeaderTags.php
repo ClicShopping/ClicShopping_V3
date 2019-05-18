@@ -72,18 +72,20 @@
       $str = $string;
       $chars = preg_split('/&/', $str, -1);
 
-      if ($chars[1]) {
-        $newstring = "?" . $chars[1];
-      }
+      foreach ($chars as $value) {
+        if (!is_null($value[1])) {
+          $newstring = "?" . $value[1];
+        }
 
-      if ($chars[2]) {
-        $newstring = $newstring . "&" . $chars[2];
+        if ($value[2] !== null) {
+          $newstring = $newstring . "&" . $value[2];
+        }
       }
 
       if ($newstring) {
-        $canonical_link = $domain . preg_replace('#$search#', $replace, $string) . $newstring; // merges the variables and echoing them
+        $canonical_link = $domain . preg_replace('#' . $search . '#', $replace, $string); // merges the variables and echoing them
       } else {
-        $canonical_link = $domain . preg_replace('#$search#', $replace, $string);   // merges the variables and echoing them
+        $canonical_link = $domain . preg_replace('#' . $search . '#', $replace, $string);   // merges the variables and echoing them
       }
       return $canonical_link;
     }

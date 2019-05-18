@@ -479,7 +479,7 @@
         $field .= '<option value="">' . CLICSHOPPING::getDef('text_select') . '</option>';
       }
 
-      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
+      if (empty($default) && ((isset($_GET[$name]) && is_string($_GET[$name]) && !is_null($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name] && !is_null($_POST[$name]))))) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
           $default = static::output($_GET[$name]);
         } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
@@ -616,6 +616,7 @@
     public static function breakString($string, $len, $break_char = '-') {
       $l = 0;
       $output = '';
+
       for ($i=0, $n=strlen($string); $i<$n; $i++) {
         $char = substr($string, $i, 1);
         if ($char != ' ') {

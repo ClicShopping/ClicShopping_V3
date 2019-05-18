@@ -29,7 +29,7 @@
     protected $debugOutput = 'phpmail_error.log';
     protected $phpMail;
 
-    public function __construct($headers = '') {
+    public function __construct() {
 
       $this->phpMail = new PHPMailer();
 

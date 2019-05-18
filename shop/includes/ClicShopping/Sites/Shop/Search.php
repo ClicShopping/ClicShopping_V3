@@ -326,7 +326,7 @@
     private function getManufacturer() {
       if (isset($_POST['manufacturers_id']) && !empty($_POST['manufacturers_id']) && is_numeric($_POST['manufacturers_id'])) {
         $this->_manufacturer = true;
-      } elseif (isset($_GET['manufacturers_id'])  && !empty($_GET['manufacturers_id']) && is_numeric($_POST['manufacturers_id'])) {
+      } elseif (isset($_GET['manufacturers_id'])  && !empty($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
         $this->_manufacturer = true;
       } else {
         $this->_manufacturer = false;

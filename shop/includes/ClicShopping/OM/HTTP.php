@@ -220,7 +220,9 @@
       if (isset($_SERVER['REMOTE_ADDR'])) {
         $ips[] = trim($_SERVER['REMOTE_ADDR']);
       }
+
       $ip = '0.0.0.0';
+
       foreach ($ips as $req_ip) {
         if (Is::ip_address($req_ip)) {
           $ip = $req_ip;
@@ -239,8 +241,7 @@
  * @access public
  */
     public static function getProviderNameCustomer() {
-
-      if (!empty($_SERVER["REMOTE_ADDR"]))  { //check ip from share internet
+      if (!empty($_SERVER["REMOTE_ADDR"]) && $_SERVER["REMOTE_ADDR"] != '::1')  { //check ip from share internet
         $provider_client_ip = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
         $str = preg_split("/\./", $provider_client_ip);
         $i = count($str);
@@ -249,7 +250,7 @@
         $isp_provider_client = $str[$n] . "." . $str[$x];
         return $isp_provider_client;
       } else {
-        return 'Unkown';
+        return 'Unkown or localhost';
       }
     }
 
