@@ -102,7 +102,6 @@
 EOD;
 
         return $output;
-
       }
     }
 

@@ -48,8 +48,6 @@
 
 //display a button on the stock (good, alert, out of stock).
     public function getStock($constant, $products_id, $tag = ' ') {
-      $products_stock = '';
-
       if ($constant == 'number') {
         $products_stock = CLICSHOPPING::getDef('text_stock') . $tag . $this->productsCommon->getProductsStock($products_id);
       } elseif($constant == 'image') {
@@ -67,9 +65,9 @@
 
       if (!empty($this->productsCommon->getProductsFlashDiscount($products_id))) {
         $products_flash_discount =  CLICSHOPPING::getDef('text_flash_discount') . $tag . $this->productsCommon->getProductsFlashDiscount($products_id);
-
-        return $products_flash_discount;
       }
+
+      return $products_flash_discount;
     }
 
 // Minimum quantity to take an order
@@ -139,8 +137,6 @@
 
 
     public function getImage($constant, $products_id, $parameters = '', $responsive = true, $css = '') {
-      $products_image = '';
-
       if ($constant == 'Medium') {
         if ($this->productsCommon->getProductsImageMedium($products_id) !== false ) {
           $products_image = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), HTML::image($this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImageMedium($products_id), HTML::outputProtected($this->productsCommon->getProductsName($products_id)), (int)MEDIUM_IMAGE_WIDTH, (int)MEDIUM_IMAGE_HEIGHT, $parameters, $responsive, $css));
@@ -171,8 +167,6 @@
     }
 
     public function getTickerPourcentage($constant, $products_id, $cssPourcentage) {
-      $ticker = '';
-
       if ($constant == 'True' && !is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
         $ticker = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id), $cssPourcentage, true));
       } else {
@@ -286,8 +280,6 @@
     }
 
     public function getManufacturerName($products_id) {
-      $name= '';
-
       if (isset($_GET['manufacturers_id']) && !is_null($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
         $manufacturer_id = HTML::sanitize($_GET['manufacturers_id']);
         $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturers_id=' .  $manufacturer_id . '&products_id=' . $products_id), '<span itemprop="name">' .   $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
@@ -299,8 +291,6 @@
     }
 
     public function getManufacturerImage($products_id, $products_image) {
-      $image = '';
-
       if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
         $manufacturer_id = HTML::sanitize($_GET['manufacturers_id']);
         $image = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturers_id=' . $manufacturer_id . '&products_id=' . $products_id), HTML::image($this->template->getDirectoryTemplateImages() . $products_image, HTML::outputProtected($this->productsCommon->getProductsName($products_id), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, null, true)));
