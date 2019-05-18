@@ -2830,9 +2830,6 @@
 * @access public
 */
     public function createSortHeading($sortby, $column, $heading) {
-      $sort_prefix = '';
-      $sort_suffix = '';
-
       if (isset($_POST['keywords'])) {
         $keywords = HTML::sanitize($_POST['keywords']);
       } elseif (isset($_GET['keywords'])) {
@@ -2841,7 +2838,7 @@
         $keywords =  '';
       }
 
-      if ($sortby) {
+      if (isset($sortby)) {
         if (isset($_POST['keywords']) || isset($_GET['keywords'])) {
           $sort_prefix = '<a href="' . CLICSHOPPING::link(CLICSHOPPING::getIndex(), CLICSHOPPING::getAllGET(array('page', 'info', 'sort')) . '&keywords='. $keywords . '&page=1&sort=' . $column . ($sortby == $column . 'a' ? 'd' : 'a')) . '" title="' . HTML::output(CLICSHOPPING::getDef('text_sort_products') . ($sortby == $column . 'd' || substr($sortby, 0, 1) != $column ? CLICSHOPPING::getDef('text_ascendingly') : CLICSHOPPING::getDef('text_descendingly')) . CLICSHOPPING::getDef('text_by') . $heading) . '" class="productListing-heading">';
           $sort_suffix = ' ' . (substr($sortby, 0, 1) == $column ? (substr($sortby, 1, 1) == 'a' ? '+' : '-') : '') . '</a>';

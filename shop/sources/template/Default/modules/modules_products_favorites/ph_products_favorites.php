@@ -92,7 +92,7 @@
                 break;
               }
 
-              $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading($_GET['sort'], $col+1, $lc_text);
+              $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(isset($_GET['sort']) ?? false, $col+1, $lc_text);
 
               $new_prods_content .= '<li>' . $lc_text . '</li>';
             }
