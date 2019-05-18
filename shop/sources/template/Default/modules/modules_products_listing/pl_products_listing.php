@@ -144,7 +144,7 @@
                 $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 
 //Manufacturer name
-                $manufacturer_name = $CLICSHOPPING_ProductsFunctionTemplate->getManufacturerName($products_id, $in_stock);
+                $manufacturer_name = $CLICSHOPPING_ProductsFunctionTemplate->getManufacturerName($products_id);
 //Stock (good, alert, out of stock).
                 $products_stock = $CLICSHOPPING_ProductsFunctionTemplate->getStock(MODULE_PRODUCTS_LISTING_DISPLAY_STOCK, $products_id);
 //Flash discount
@@ -360,7 +360,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please indicate the number of column that you want to display  ?',
           'configuration_key' => 'MODULE_PRODUCTS_LISTING_COLUMNS',
-          'configuration_value' => '6',
+          'configuration_value' => '4',
           'configuration_description' => 'Choose a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '3',

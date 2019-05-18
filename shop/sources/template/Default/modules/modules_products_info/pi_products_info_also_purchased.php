@@ -235,6 +235,8 @@
                 $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
                 $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+// products_price
+              $product_price = '';
 // display date available
                 $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
