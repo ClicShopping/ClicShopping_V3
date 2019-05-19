@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
@@ -25,17 +25,17 @@
   $cKey = HTML::sanitize($_GET['cKey']);
 
   $Qconfiguration = $CLICSHOPPING_Products->db->get('configuration', [
-                                                    'configuration_id',
-                                                    'configuration_title',
-                                                    'configuration_value',
-                                                    'use_function'
-                                                    ], [
-                                                    'configuration_key' => $cKey
-                                                    ],
-                                                    'sort_order'
-                                            );
+    'configuration_id',
+    'configuration_title',
+    'configuration_value',
+    'use_function'
+  ], [
+    'configuration_key' => $cKey
+  ],
+    'sort_order'
+  );
 
-  while ($Qconfiguration->fetch() ) {
+  while ($Qconfiguration->fetch()) {
     if ($Qconfiguration->hasValue('use_function') && !is_null($Qconfiguration->value('use_function'))) {
       $use_function = $Qconfiguration->value('use_function');
 
@@ -43,7 +43,7 @@
         $class_method = explode('->', $use_function);
 
         if (!is_object(${$class_method[0]})) {
-          include_once('includes/classes/'. $class_method[0] . '.php');
+          include_once('includes/classes/' . $class_method[0] . '.php');
           ${$class_method[0]} = new $class_method[0]();
         }
 
@@ -59,16 +59,16 @@
     if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qconfiguration->valueInt('configuration_id')))) && !isset($cInfo)) {
 
       $Qextra = $CLICSHOPPING_Products->db->get('configuration', [
-                                                  'configuration_key',
-                                                  'configuration_description',
-                                                  'date_added',
-                                                  'last_modified',
-                                                  'use_function',
-                                                  'set_function'
-                                                  ], [
-                                                    'configuration_id' => $Qconfiguration->valueInt('configuration_id')
-                                                  ]
-                              );
+        'configuration_key',
+        'configuration_description',
+        'date_added',
+        'last_modified',
+        'use_function',
+        'set_function'
+      ], [
+          'configuration_id' => $Qconfiguration->valueInt('configuration_id')
+        ]
+      );
 
       $cInfo_array = array_merge($Qconfiguration->toArray(), $Qextra->toArray());
       $cInfo = new ObjectInfo($cInfo_array);
@@ -81,16 +81,19 @@
     $value_field = HTML::inputField('configuration[' . $cInfo->configuration_key . ']', $cInfo->configuration_value);
   }
 
-  echo HTML::form('ajaxform', $CLICSHOPPING_Products->link('ConfigurationPopUpFields&Save&cKey='  . $_GET['cKey']), 'post', 'id="ajaxform"');
+  echo HTML::form('ajaxform', $CLICSHOPPING_Products->link('ConfigurationPopUpFields&Save&cKey=' . $_GET['cKey']), 'post', 'id="ajaxform"');
 ?>
 <div class="row">
   <div class="col-md-12">
     <div class="card card-block headerCard">
       <div class="row">
-        <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_1.gif', 'configuration', '40', '40'); ?></span>
-        <span class="col-md-8 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
+        <span
+          class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_1.gif', 'configuration', '40', '40'); ?></span>
+        <span
+          class="col-md-8 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
         <span class="col-md-3">
-            <div class="text-md-right">&nbsp;<?php echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
+            <div
+              class="text-md-right">&nbsp;<?php echo HTML::button($CLICSHOPPING_Products->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
             <div id="simple-msg" class="text-md-right"></div>
           </span>
       </div>
@@ -99,7 +102,7 @@
 </div>
 
 <div style="padding:20px 10px 30px 10px; text-align:left;">
-  <div  style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
+  <div style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
   <div>&nbsp;</div>
   <div><?php echo $cInfo->configuration_description; ?></div>
   <div>&nbsp;</div>
@@ -108,6 +111,7 @@
 
 </form>
 
-<script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/ajax_form/bootstrap_ajax_form_fields_configuration.js'); ?>"></script>
+<script
+  src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/ajax_form/bootstrap_ajax_form_fields_configuration.js'); ?>"></script>
 
 <!-- footer //-->

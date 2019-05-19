@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\PasswordForgotten;
 
@@ -19,9 +19,11 @@
   use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       global $password_reset_initiated;
 
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -50,7 +52,7 @@
           $Qcheck->bindValue(':customers_email_address', $email_address);
           $Qcheck->execute();
 
-          if ( $Qcheck->fetch() !== false ) {
+          if ($Qcheck->fetch() !== false) {
             if ($Qcheck->valueInt('member_level') == 1) {
 
               Registry::set('ActionRecorder', new ActionRecorder('ar_reset_password', $Qcheck->valueInt('customers_id'), $email_address));
@@ -61,21 +63,21 @@
 
                 $reset_key = Hash::getRandomString(40);
 
-                $CLICSHOPPING_Db->save('customers_info',['password_reset_key' => $reset_key, 'password_reset_date' => 'now()'],
-                                                         ['customers_info_id' => $Qcheck->valueInt('customers_id')]
-                                      );
+                $CLICSHOPPING_Db->save('customers_info', ['password_reset_key' => $reset_key, 'password_reset_date' => 'now()'],
+                  ['customers_info_id' => $Qcheck->valueInt('customers_id')]
+                );
 
                 $reset_key_url = CLICSHOPPING::link(null, 'Account&PasswordReset&account=' . urlencode($email_address) . '&key=' . $reset_key);
 
-                if ( strpos($reset_key_url, '&amp;') !== false ) {
+                if (strpos($reset_key_url, '&amp;') !== false) {
                   $reset_key_url = str_replace('&amp;', '&', $reset_key_url);
                 }
 
                 $message = CLICSHOPPING::getDef('email_password_reset_body', ['store_name' => STORE_NAME,
-                                                                               'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
-                                                                               'reset_url' => $reset_key_url
-                                                                              ]
-                                                );
+                    'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
+                    'reset_url' => $reset_key_url
+                  ]
+                );
 
                 $email_password_reminder_body = $message . "\n";
                 $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . "\n";

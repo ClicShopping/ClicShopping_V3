@@ -1,28 +1,30 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
   use ClicShopping\OM\CLICSHOPPING;
 
-  class DateTime {
+  class DateTime
+  {
 
-   protected $datetime = false;
+    protected $datetime = false;
 
     protected $raw_pattern_date = 'Y-m-d';
     protected $raw_pattern_time = 'H:i:s';
 
-    public function __construct($datetime, $use_raw_pattern = false, $strict = false) {
+    public function __construct($datetime, $use_raw_pattern = false, $strict = false)
+    {
       if ($use_raw_pattern === false) {
-       $pattern = CLICSHOPPING::getDef('date_time_format');
+        $pattern = CLICSHOPPING::getDef('date_time_format');
       } else {
         $pattern = $this->raw_pattern_date . ' ' . $this->raw_pattern_time;
       }
@@ -31,63 +33,67 @@
       $new_datetime = strtotime($datetime);
 
       if ($new_datetime !== false) {
-          $new_datetime = date($pattern, $new_datetime);
+        $new_datetime = date($pattern, $new_datetime);
 
-          $this->datetime = \DateTime::createFromFormat($pattern, $new_datetime);
+        $this->datetime = \DateTime::createFromFormat($pattern, $new_datetime);
 
-          $strict_log = false;
+        $strict_log = false;
       }
 
       if ($this->datetime === false) {
-          $strict_log = true;
+        $strict_log = true;
       } else {
-          $errors = \DateTime::getLastErrors();
+        $errors = \DateTime::getLastErrors();
 
-          if (($errors['warning_count'] > 0) || ($errors['error_count'] > 0)) {
-              $this->datetime = false;
+        if (($errors['warning_count'] > 0) || ($errors['error_count'] > 0)) {
+          $this->datetime = false;
 
-              $strict_log = true;
-          }
+          $strict_log = true;
+        }
       }
 
       if (($strict === true) && ($strict_log === true)) {
-          trigger_error('DateTime: ' . $datetime . ' (' . $new_datetime . ') cannot be formatted to ' . $pattern);
+        trigger_error('DateTime: ' . $datetime . ' (' . $new_datetime . ') cannot be formatted to ' . $pattern);
       }
     }
 
-/**
- * @return bool
- */
-    public function isValid() {
+    /**
+     * @return bool
+     */
+    public function isValid()
+    {
       return $this->datetime instanceof \DateTime;
     }
 
-/**
- * @param null $pattern
- * @return bool
- */
-    public function get($pattern = null) {
+    /**
+     * @param null $pattern
+     * @return bool
+     */
+    public function get($pattern = null)
+    {
       if (isset($pattern)) {
-          return $this->datetime->format($pattern);
+        return $this->datetime->format($pattern);
       }
 
       return $this->datetime;
     }
 
-/*
- * Output a  date string in the selected locale date format
- * @param : $date,date format
- * @return string short date
- * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
- */
+    /*
+     * Output a  date string in the selected locale date format
+     * @param : $date,date format
+     * @return string short date
+     * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
+     */
 
-    public function getShort($with_time = false) {
+    public function getShort($with_time = false)
+    {
       $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
       return strftime($pattern, $this->getTimestamp());
     }
 
 
-    public static function toShort($raw_datetime, $with_time = false, $strict = true) {
+    public static function toShort($raw_datetime, $with_time = false, $strict = true)
+    {
       $result = '';
 
       if (!empty($raw_datetime)) {
@@ -102,24 +108,26 @@
       return $result;
     }
 
-/*
- * Output a  date string in the selected locale date format
- * @param : $date,date format
- * @return string long date
- * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
-  * $date needs to be in this format: Saturday february 2015
- */
+    /*
+     * Output a  date string in the selected locale date format
+     * @param : $date,date format
+     * @return string long date
+     * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
+      * $date needs to be in this format: Saturday february 2015
+     */
 
-    public function getLong() {
+    public function getLong()
+    {
       return strftime(CLICSHOPPING::getDef('date_format_long'), $this->getTimestamp());
     }
 
-/**
- * @param $raw_datetime
- * @param bool $strict
- * @return string
- */
-    public static function toLong($raw_datetime, $strict = true) {
+    /**
+     * @param $raw_datetime
+     * @param bool $strict
+     * @return string
+     */
+    public static function toLong($raw_datetime, $strict = true)
+    {
       $result = '';
 
       $date = new DateTime($raw_datetime, true, $strict);
@@ -131,114 +139,119 @@
       return $result;
     }
 
-/**
- * @param bool $with_time
- * @return mixed
- */
-    public function getRaw($with_time = true) {
+    /**
+     * @param bool $with_time
+     * @return mixed
+     */
+    public function getRaw($with_time = true)
+    {
       $pattern = $this->raw_pattern_date;
 
       if ($with_time === true) {
-          $pattern .= ' ' . $this->raw_pattern_time;
+        $pattern .= ' ' . $this->raw_pattern_time;
       }
 
       return $this->datetime->format($pattern);
     }
 
-/*
-* Date Timestamp
-* @param $date
-* @return
-* ex : 1430965442
-*/
+    /*
+    * Date Timestamp
+    * @param $date
+    * @return
+    * ex : 1430965442
+    */
     public function getTimestamp()
     {
-        return $this->datetime->getTimestamp();
+      return $this->datetime->getTimestamp();
     }
 
-/**
- * Return an array of available time zones.
- *
- * @return array
- */
+    /**
+     * Return an array of available time zones.
+     *
+     * @return array
+     */
 
-  public static function getTimeZones() {
+    public static function getTimeZones()
+    {
       $time_zones_array = [];
 
       foreach (\DateTimeZone::listIdentifiers() as $id) {
-          $tz_string = str_replace('_', ' ', $id);
+        $tz_string = str_replace('_', ' ', $id);
 
-          $id_array = explode('/', $tz_string, 2);
+        $id_array = explode('/', $tz_string, 2);
 
-          $time_zones_array[$id_array[0]][$id] = isset($id_array[1]) ? $id_array[1] : $id_array[0];
+        $time_zones_array[$id_array[0]][$id] = isset($id_array[1]) ? $id_array[1] : $id_array[0];
       }
 
       $result = [];
 
       foreach ($time_zones_array as $zone => $zones_array) {
-          foreach ($zones_array as $key => $value) {
-              $result[] = [
-                  'id' => $key,
-                  'text' => $value,
-                  'group' => $zone
-              ];
-          }
+        foreach ($zones_array as $key => $value) {
+          $result[] = [
+            'id' => $key,
+            'text' => $value,
+            'group' => $zone
+          ];
+        }
       }
 
       return $result;
-  }
-
-/**
- * Set the time zone to use for dates.
- *
- * @param string $time_zone An optional time zone to set to
- * @param string $site The Site to retrieve the time zone from
- * @return boolean
- */
-
-   public static function setTimeZone($time_zone = null) {
-
-    if (!isset($time_zone)) {
-      $time_zone = CLICSHOPPING::configExists('time_zone') ? CLICSHOPPING::getConfig('time_zone') : date_default_timezone_get();
     }
 
-    if ($time_zone === null || empty($time_zone)) {
-      $time_zone = 'UTC';
+    /**
+     * Set the time zone to use for dates.
+     *
+     * @param string $time_zone An optional time zone to set to
+     * @param string $site The Site to retrieve the time zone from
+     * @return boolean
+     */
+
+    public static function setTimeZone($time_zone = null)
+    {
+
+      if (!isset($time_zone)) {
+        $time_zone = CLICSHOPPING::configExists('time_zone') ? CLICSHOPPING::getConfig('time_zone') : date_default_timezone_get();
+      }
+
+      if ($time_zone === null || empty($time_zone)) {
+        $time_zone = 'UTC';
+      }
+
+      return date_default_timezone_set($time_zone);
     }
 
-    return date_default_timezone_set($time_zone);
-  }
-
-/**
- * Output a date now
- * @param null $format date format
- * @return false|string
- */
-    public static function getNow($format = null) {
+    /**
+     * Output a date now
+     * @param null $format date format
+     * @return false|string
+     */
+    public static function getNow($format = null)
+    {
 
       if (!isset($format)) {
         $format = CLICSHOPPING::getDef('date_format_long');
-     }
+      }
 
       return date($format);
     }
 
-/**
- * Output a  date reference  for invoice
- * @return string short date reference
- * $date needs to be in this format: YYYYMMDD
- */
+    /**
+     * Output a  date reference  for invoice
+     * @return string short date reference
+     * $date needs to be in this format: YYYYMMDD
+     */
     public function getDateReferenceShort()
     {
       return strftime(CLICSHOPPING::getDef('date_format'), $this->getTimestamp());
     }
 
-/**
- * @param $raw_datetime
- * @param bool $strict
- * @return string
- */
-    public static function  toDateReferenceShort($raw_datetime, $strict = true) {
+    /**
+     * @param $raw_datetime
+     * @param bool $strict
+     * @return string
+     */
+    public static function toDateReferenceShort($raw_datetime, $strict = true)
+    {
 
       $result = '';
 
@@ -251,13 +264,14 @@
       return $result;
     }
 
-/**
- * Date Unix Timestamp
- * @param $timestamp
- * @param null $format
- * @return false|string
- */
-    public static function fromUnixTimestamp($timestamp, $format = null) {
+    /**
+     * Date Unix Timestamp
+     * @param $timestamp
+     * @param null $format
+     * @return false|string
+     */
+    public static function fromUnixTimestamp($timestamp, $format = null)
+    {
       if (!isset($format)) {
         $format = CLICSHOPPING::getDef('date_format_long');
       }
@@ -265,12 +279,13 @@
       return date($format, $timestamp);
     }
 
-/**
- * Unix Date
- * @param null $year
- * @return bool
- */
-    public static function isLeapYear($year = null)  {
+    /**
+     * Unix Date
+     * @param null $year
+     * @return bool
+     */
+    public static function isLeapYear($year = null)
+    {
 
       if (!isset($year)) {
         $year = self::getNow('Y');
@@ -289,19 +304,20 @@
       return false;
     }
 
-/**
- * Check date
- * @param $date_to_check
- * @param $format_string
- * @param $date_array
- * @return bool
- * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
- */
-    public static function validate($date_to_check, $format_string, &$date_array) {
+    /**
+     * Check date
+     * @param $date_to_check
+     * @param $format_string
+     * @param $date_array
+     * @return bool
+     * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
+     */
+    public static function validate($date_to_check, $format_string, &$date_array)
+    {
       $separator_idx = -1;
 
       $separators = ['-', ' ', '/', '.'];
-      $month_abbr = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+      $month_abbr = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
       $no_of_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
       $format_string = strtolower($format_string);
@@ -408,14 +424,15 @@
       return true;
     }
 
-/**
- * Interval between 2 date
- * @param $dateStart
- * @param $dateEnd
- * @param string $differenceFormat
- * @return string
- */
-    public static function getIntervalDate($dateStart, $dateEnd, $differenceFormat = '%r%a') {
+    /**
+     * Interval between 2 date
+     * @param $dateStart
+     * @param $dateEnd
+     * @param string $differenceFormat
+     * @return string
+     */
+    public static function getIntervalDate($dateStart, $dateEnd, $differenceFormat = '%r%a')
+    {
 
       $start = date_create($dateStart);
       $end = date_create($dateEnd);

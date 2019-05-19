@@ -1,15 +1,15 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
@@ -33,21 +33,23 @@ use ClicShopping\OM\HTML;
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_favorites.png', $CLICSHOPPING_Favorites->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Favorites->getDef('heading_title'); ?></span>
-<?php
-    $form_action = 'Insert';
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_favorites.png', $CLICSHOPPING_Favorites->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Favorites->getDef('heading_title'); ?></span>
+          <?php
+            $form_action = 'Insert';
 
-    if (isset($_GET['sID'])) {
-      $form_action = 'Update';
-    }
-?>
+            if (isset($_GET['sID'])) {
+              $form_action = 'Update';
+            }
+          ?>
           <span class="col-md-9 text-md-right">
 <?php
   echo HTML::form('favorites', $CLICSHOPPING_Favorites->link('Favorites&' . $form_action));
-  if ($form_action == 'Update') echo HTML::hiddenField('products_favorites_id', $_GET['sID']) .  HTML::hiddenField('page', $page);
-  echo HTML::button($CLICSHOPPING_Favorites->getDef('button_cancel'), null, $CLICSHOPPING_Favorites->link('Favorites&page=' . $page . (isset($_GET['sID']) ? '&sID=' . $_GET['sID'] : '')), 'warning', null, null) .'&nbsp;';
-  echo (($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Favorites->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Favorites->getDef('button_update'), null, null, 'success'));
+  if ($form_action == 'Update') echo HTML::hiddenField('products_favorites_id', $_GET['sID']) . HTML::hiddenField('page', $page);
+  echo HTML::button($CLICSHOPPING_Favorites->getDef('button_cancel'), null, $CLICSHOPPING_Favorites->link('Favorites&page=' . $page . (isset($_GET['sID']) ? '&sID=' . $_GET['sID'] : '')), 'warning', null, null) . '&nbsp;';
+  echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Favorites->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Favorites->getDef('button_update'), null, null, 'success'));
 ?>
           </span>
         </div>
@@ -55,7 +57,7 @@ use ClicShopping\OM\HTML;
     </div>
   </div>
   <div class="separator"></div>
-<?php
+  <?php
     $form_action = 'Insert';
 
     if (isset($_GET['sID'])) {
@@ -76,8 +78,8 @@ use ClicShopping\OM\HTML;
                                                           and s.products_favorites_id = :products_favorites_id
                                                           ');
 
-      $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
-      $Qproducts->bindInt(':products_favorites_id',(int)$_GET['sID']  );
+      $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+      $Qproducts->bindInt(':products_favorites_id', (int)$_GET['sID']);
       $Qproducts->execute();
 
       $product = $Qproducts->fetch();
@@ -106,71 +108,73 @@ use ClicShopping\OM\HTML;
 
       $Qproducts->execute();
 
-      while ($Qproducts->fetch() ) {
+      while ($Qproducts->fetch()) {
         $products_favorites_array[] = (int)$Qproducts->valueInt('products_id') . ":" . $Qproducts->valueInt('customers_group_id');
       }
 
-      $input_groups=[];
+      $input_groups = [];
 
-      if(isset($_GET['sID']) && $sInfo->customers_group_id != 0 ){
+      if (isset($_GET['sID']) && $sInfo->customers_group_id != 0) {
 
         $QcustomerGroupPrice = $CLICSHOPPING_Favorites->db->prepare('select customers_group_price
                                                                     from :table_products_groups
                                                                     where products_id = :products_id
                                                                     and customers_group_id =  :customers_group_id
                                                                   ');
-        $QcustomerGroupPrice->bindInt(':products_id', $sInfo->products_id  );
+        $QcustomerGroupPrice->bindInt(':products_id', $sInfo->products_id);
         $QcustomerGroupPrice->bindInt(':customers_group_id', $sInfo->customers_group_id);
 
         $QcustomerGroupPrice->execute();
 
-        if ($customer_group_price = $QcustomerGroupPrice->fetch() ) {
+        if ($customer_group_price = $QcustomerGroupPrice->fetch()) {
           $sInfo->products_price = $customer_group_price['customers_group_price'];
         }
       }
     }
-?>
+  ?>
 
   <div id="productsFavoritesTabs" style="overflow: auto;">
-    <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist"  id="myTab">
-      <li class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Favorites->getDef('tab_general') . '</a>'; ?></li>
+    <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
+      <li
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Favorites->getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
-<!-- //#################################################################### //-->
-<!--          ONGLET Information General de la Promotion                    //-->
-<!-- //#################################################################### //-->
+        <!-- //#################################################################### //-->
+        <!--          ONGLET Information General de la Promotion                    //-->
+        <!-- //#################################################################### //-->
 
         <div class="mainTitle"><?php echo $CLICSHOPPING_Favorites->getDef('title_products_favorites_general'); ?></div>
         <div class="adminformTitle" id="tabContentFavorites">
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_groups'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_groups'); ?></label>
+                <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_groups'); ?>"
+                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_groups'); ?></label>
                 <div class="col-md-5">
-<?php
-  echo (isset($sInfo->products_name)) ? $sInfo->products_name . ' <small>(' . $CLICSHOPPING_Currencies->format($sInfo->products_price) . ')</small>' : HTMLOverrideAdmin::selectMenuProductsPullDown('products_id', null, $products_favorites_array);
-  echo HTML::hiddenField('products_price', (isset($sInfo->products_price) ? $sInfo->products_price : ''));
+                  <?php
+                    echo (isset($sInfo->products_name)) ? $sInfo->products_name . ' <small>(' . $CLICSHOPPING_Currencies->format($sInfo->products_price) . ')</small>' : HTMLOverrideAdmin::selectMenuProductsPullDown('products_id', null, $products_favorites_array);
+                    echo HTML::hiddenField('products_price', (isset($sInfo->products_price) ? $sInfo->products_price : ''));
 
-  if (isset($_GET['sID'])) {
-    echo HTML::hiddenField('products_id', $sInfo->products_id);
-  }
-?>
+                    if (isset($_GET['sID'])) {
+                      echo HTML::hiddenField('products_id', $sInfo->products_id);
+                    }
+                  ?>
                 </div>
               </div>
             </div>
           </div>
         </div>
-<?php
-//***********************************
-// extension
-//***********************************
-      if (!isset($_GET['Udapte'])) {
-        echo $CLICSHOPPING_Hooks->output('Favorites', 'PageTwitter', null, 'display');
-      }
+        <?php
+          //***********************************
+          // extension
+          //***********************************
+          if (!isset($_GET['Udapte'])) {
+            echo $CLICSHOPPING_Hooks->output('Favorites', 'PageTwitter', null, 'display');
+          }
 
-       echo $CLICSHOPPING_Hooks->output('Favorites', 'CustomerGroup', null, 'display');
-?>
+          echo $CLICSHOPPING_Hooks->output('Favorites', 'CustomerGroup', null, 'display');
+        ?>
         <div class="separator"></div>
         <div class="mainTitle"><?php echo $CLICSHOPPING_Favorites->getDef('title_products_favorites_date'); ?></div>
         <div class="adminformTitle">
@@ -178,7 +182,8 @@ use ClicShopping\OM\HTML;
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date'); ?></label>
+                <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date'); ?>"
+                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date'); ?></label>
                 <div class="col-md-5">
                   <?php echo HTML::inputField('schdate', (!is_null($sInfo->scheduled_date) ? substr($sInfo->scheduled_date, 0, 4) . '-' . substr($sInfo->scheduled_date, 5, 2) . '-' . substr($sInfo->scheduled_date, 8, 2) : ''), 'id="schdate" placeholder="' . $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date') . '"'); ?>
                 </div>
@@ -190,7 +195,8 @@ use ClicShopping\OM\HTML;
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date'); ?></label>
+                <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date'); ?>"
+                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date'); ?></label>
                 <div class="col-md-5">
                   <?php echo HTML::inputField('expdate', (!is_null($sInfo->expires_date) ? substr($sInfo->expires_date, 0, 4) . '-' . substr($sInfo->expires_date, 5, 2) . '-' . substr($sInfo->expires_date, 8, 2) : ''), 'id="expdate" placeholder="' . $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date') . '"'); ?>
                 </div>
@@ -206,13 +212,13 @@ use ClicShopping\OM\HTML;
           <div><?php echo $CLICSHOPPING_Favorites->getDef('text_help_products_favorites_price'); ?></div>
         </div>
       </div>
-<?php
-//***********************************
-// extension
-//***********************************
-  echo $CLICSHOPPING_Hooks->output('Favorites', 'PageTab', null, 'display');
-?>
-      </div>
+      <?php
+        //***********************************
+        // extension
+        //***********************************
+        echo $CLICSHOPPING_Hooks->output('Favorites', 'PageTab', null, 'display');
+      ?>
     </div>
+  </div>
   </form>
 </div>

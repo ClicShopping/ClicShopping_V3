@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Products\Actions\TellAFriend;
 
@@ -20,9 +20,11 @@
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
   use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -30,7 +32,7 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process')  && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $error = false;
 
         $CLICSHOPPING_Hooks->call('PreAction', 'TellAFriend');
@@ -100,14 +102,14 @@
 
         if ($error === false) {
           $email_subject = CLICSHOPPING::getDef('text_email_subject', ['from_name' => $from_name, 'store_name' => STORE_NAME]);
-          $email_body = CLICSHOPPING::getDef('text_email_intro', [ 'to_name' => $to_name, 'from_name' => $from_name, 'products_name' => $CLICSHOPPING_ProductsCommon->getProductsName(), 'store_name' => STORE_NAME]) . "\n\n";
+          $email_body = CLICSHOPPING::getDef('text_email_intro', ['to_name' => $to_name, 'from_name' => $from_name, 'products_name' => $CLICSHOPPING_ProductsCommon->getProductsName(), 'store_name' => STORE_NAME]) . "\n\n";
 
           if (!empty($message)) {
             $email_body .= $message . "\n\n";
           }
 
           $email_body .= CLICSHOPPING::getDef('text_email_link', ['url_product' => CLICSHOPPING::link(null, 'products&Product&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID())]) . "\n\n";
-          $email_body .=  CLICSHOPPING::getDef('text_email_signature', ['store_name' => STORE_NAME . "\n" . HTTP::getShopUrlDomain() . "\n", 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
+          $email_body .= CLICSHOPPING::getDef('text_email_signature', ['store_name' => STORE_NAME . "\n" . HTTP::getShopUrlDomain() . "\n", 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
 
           $email_body .= TemplateEmail::getTemplateEmailSignature();
 
@@ -119,7 +121,7 @@
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_email_successful_sent', ['products_name' => $CLICSHOPPING_ProductsCommon->getProductsName(), 'to_name' => HTML::outputProtected($to_name)]), 'success', 'header');
 
-          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID() );
+          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
         }
 
         // revoir cette partie

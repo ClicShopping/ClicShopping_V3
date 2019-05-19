@@ -1,38 +1,39 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
   abstract class ModulesAbstract
   {
-      public $code;
-      protected $interface;
-      protected $ns = 'ClicShopping\Apps\\';
+    public $code;
+    protected $interface;
+    protected $ns = 'ClicShopping\Apps\\';
 
-      abstract public function getInfo($app, $key, $data);
-      abstract public function getClass($module);
+    abstract public function getInfo($app, $key, $data);
 
-      final public function __construct()
-      {
-          $this->code = (new \ReflectionClass($this))->getShortName();
+    abstract public function getClass($module);
 
-          $this->init();
-      }
+    final public function __construct()
+    {
+      $this->code = (new \ReflectionClass($this))->getShortName();
 
-      protected function init()
-      {
-      }
+      $this->init();
+    }
 
-      public function filter($modules, $filter)
-      {
-          return $modules;
-      }
+    protected function init()
+    {
+    }
+
+    public function filter($modules, $filter)
+    {
+      return $modules;
+    }
   }

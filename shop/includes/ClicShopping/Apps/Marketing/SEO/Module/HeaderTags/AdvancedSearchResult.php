@@ -1,26 +1,28 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
-  class AdvancedSearchResult extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class AdvancedSearchResult extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('SEO')) {
         Registry::set('SEO', new SEOApp());
       }
@@ -41,11 +43,13 @@
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
 
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -62,7 +66,7 @@
                                           and language_id = :language_id
                                         ');
         $Qsubmit->bindInt(':submit_id', 1);
-        $Qsubmit->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
+        $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qsubmit->execute();
         $submit = $Qsubmit->fetch();
 
@@ -71,36 +75,36 @@
 
         $keywords = HTML::outputProtected($_GET['keywords']);
 
-        if (!empty($keywords) ) {
+        if (!empty($keywords)) {
 
-          if(empty($keywords)) {
+          if (empty($keywords)) {
             if (empty($submit['submit_defaut_language_title'])) {
-              $tags_array['title']= $keywords .', ' . HTML::outputProtected(TITLE);
+              $tags_array['title'] = $keywords . ', ' . HTML::outputProtected(TITLE);
             } else {
-              $tags_array['title'] = $keywords . ',  '. HTML::sanitize($submit['submit_defaut_language_title']);
+              $tags_array['title'] = $keywords . ',  ' . HTML::sanitize($submit['submit_defaut_language_title']);
             }
           } else {
-            $tags_array['title'] = HTML::sanitize($keywords) .', ' . HTML::outputProtected(TITLE);
+            $tags_array['title'] = HTML::sanitize($keywords) . ', ' . HTML::outputProtected(TITLE);
           }
 
-          if(empty($categories['categories_head_desc_tag'])) {
+          if (empty($categories['categories_head_desc_tag'])) {
             if (empty($submit['submit_defaut_language_description'])) {
-              $tags_array['desc']= $keywords .', ' . HTML::outputProtected(TITLE);
+              $tags_array['desc'] = $keywords . ', ' . HTML::outputProtected(TITLE);
             } else {
-              $tags_array['desc'] = $keywords . ', ' .  HTML::sanitize($submit['submit_defaut_language_description']);
+              $tags_array['desc'] = $keywords . ', ' . HTML::sanitize($submit['submit_defaut_language_description']);
             }
           } else {
-            $tags_array['desc'] = HTML::sanitize($keywords)  . ', ' . HTML::outputProtected(TITLE);
+            $tags_array['desc'] = HTML::sanitize($keywords) . ', ' . HTML::outputProtected(TITLE);
           }
 
-          if(empty($categories['categories_head_keywords_tag'])) {
+          if (empty($categories['categories_head_keywords_tag'])) {
             if (empty($submit['submit_defaut_language_keywords'])) {
-              $tags_array['keywords']= $keywords .', ' . HTML::outputProtected(TITLE);
+              $tags_array['keywords'] = $keywords . ', ' . HTML::outputProtected(TITLE);
             } else {
-              $tags_array['keywords']= $keywords . ', ' . HTML::sanitize($submit['submit_defaut_language_keywords']);
+              $tags_array['keywords'] = $keywords . ', ' . HTML::sanitize($submit['submit_defaut_language_keywords']);
             }
           } else {
-            $tags_array['keywords']= $keywords . ', ' . HTML::outputProtected(TITLE);
+            $tags_array['keywords'] = $keywords . ', ' . HTML::outputProtected(TITLE);
           }
 
           $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
@@ -109,7 +113,7 @@
           $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
 
           $output =
- <<<EOD
+            <<<EOD
 {$title}
 {$description}
 {$keywords}
@@ -123,8 +127,8 @@ EOD;
     }
 
 
-
-    public function install() {
+    public function install()
+    {
 
       $this->app->db->save('configuration', [
           'configuration_title' => 'Souhaitez vous activer ce module ?',
@@ -151,16 +155,18 @@ EOD;
       );
 
       return $this->app->db->save('configuration', ['configuration_value' => '1'],
-                                                   ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                                );
+        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
+      );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_STATUS',
-                   'MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_SORT_ORDER');
+        'MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_SORT_ORDER');
     }
   }

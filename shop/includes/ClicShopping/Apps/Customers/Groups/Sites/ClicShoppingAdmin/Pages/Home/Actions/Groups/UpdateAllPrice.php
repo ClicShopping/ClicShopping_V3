@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
@@ -15,16 +15,18 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class UpdateAllPrice extends \ClicShopping\OM\PagesActionsAbstract {
+  class UpdateAllPrice extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if (isset($_GET['cID'])) $groups_id = HTML::sanitize($_GET['cID']);
 
-       $Qpricek = $CLICSHOPPING_Groups->db->prepare('select p.products_price,
+      $Qpricek = $CLICSHOPPING_Groups->db->prepare('select p.products_price,
                                                            p.products_id,
                                                            p.products_percentage,
                                                            pc.categories_id
@@ -35,7 +37,7 @@
       $Qpricek->execute();
 
       if ($Qpricek->rowCount() > 0) {
-        while ($Qpricek->fetch() ) {
+        while ($Qpricek->fetch()) {
 
 // if products is not manual update all price
           if ($Qpricek->valueInt('products_percentage') != 0) {
@@ -102,12 +104,12 @@
             if (is_null($Qattributes->valueInt('customers_group_id'))) {
               if ($groups_id != 0) {
                 $CLICSHOPPING_Groups->db->save('products_groups', [
-                                                                    'customers_group_id' => (int)$groups_id,
-                                                                    'customers_group_price' => (float)$newprice,
-                                                                    'products_id' => (int)$Qpricek->valueInt('products_id'),
-                                                                    'products_price' => (float)$pricek
-                                                                  ]
-                                              );
+                    'customers_group_id' => (int)$groups_id,
+                    'customers_group_price' => (float)$newprice,
+                    'products_id' => (int)$Qpricek->valueInt('products_id'),
+                    'products_price' => (float)$pricek
+                  ]
+                );
 
 
                 $CLICSHOPPING_Hooks->call('UpdateAllPrice', 'Save');
@@ -116,18 +118,18 @@
               if ($groups_id != 0) {
 
                 $Qcheck = $CLICSHOPPING_Groups->db->get('products_groups', 'products_id', ['products_id' => (int)$Qpricek->valueInt('products_id'),
-                                                                                           'customers_group_id' => (int)$groups_id
-                                                                                          ]
-                                                       );
+                    'customers_group_id' => (int)$groups_id
+                  ]
+                );
 
                 if ($Qcheck->fetch() === false) {
                   $sql_data_array = ['customers_group_price' => $newprice,
-                                     'products_price' => (float)$pricek
-                                    ];
+                    'products_price' => (float)$pricek
+                  ];
 
                   $insert_sql_data = ['customers_group_id' => (int)$groups_id,
-                                      'products_id' => $Qpricek->valueInt('products_id')
-                                     ];
+                    'products_id' => $Qpricek->valueInt('products_id')
+                  ];
 
                   $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
@@ -147,7 +149,7 @@
                   $Qupdate->execute();
                 }
 
-                $CLICSHOPPING_Hooks->call('UpdateAllPrice','Save');
+                $CLICSHOPPING_Hooks->call('UpdateAllPrice', 'Save');
               }
             }
           }

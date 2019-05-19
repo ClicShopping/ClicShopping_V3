@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\ReviewsWrite\Actions\ReviewsWrite;
 
@@ -15,19 +15,21 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
 
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-       if (isset($_POST['action']) && ($_POST['action'] == 'process')  && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
 
         $error = false;
 
-        $rating =  HTML::sanitize((int)$_POST['rating']);
-        $review =  HTML::sanitize($_POST['review']);
+        $rating = HTML::sanitize((int)$_POST['rating']);
+        $review = HTML::sanitize($_POST['review']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
         if ($customer_agree_privacy != 'on') {
@@ -55,7 +57,7 @@
 
           $products_id = HTML::sanitize($_GET['products_id']);
 
-          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&Success&products_id='. $products_id);
+          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&Success&products_id=' . $products_id);
         }
 
         if ($error === true) {

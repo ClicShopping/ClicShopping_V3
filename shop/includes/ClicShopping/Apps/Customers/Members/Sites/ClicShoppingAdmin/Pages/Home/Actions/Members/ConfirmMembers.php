@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Members\Sites\ClicShoppingAdmin\Pages\Home\Actions\Members;
@@ -19,9 +19,11 @@
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
 
-  class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract {
+  class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Members = Registry::get('Members');
       $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -44,11 +46,11 @@
       $QdefaultCustomerGroup->execute();
 
       $sql_data_array = ['member_level' => '1',
-                         'customers_group_id' => (int)$customers_group_id,
-                         'customers_options_order_taxe' => $QdefaultCustomerGroup->valueInt('group_order_taxe')
-                        ];
+        'customers_group_id' => (int)$customers_group_id,
+        'customers_options_order_taxe' => $QdefaultCustomerGroup->valueInt('group_order_taxe')
+      ];
 
-      $CLICSHOPPING_Members->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id ] );
+      $CLICSHOPPING_Members->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id]);
 
       $QcheckCustomer = $CLICSHOPPING_Members->db->prepare('select customers_id,
                                                                    customers_firstname,
@@ -71,7 +73,7 @@
                                                      where customers_id = :customers_id
                                                    ');
 
-      $Qupdate->bindValue(':customers_password', $crypted_password );
+      $Qupdate->bindValue(':customers_password', $crypted_password);
       $Qupdate->bindInt(':customers_id', (int)$QcheckCustomer->valueInt('customers_id'));
 
       $Qupdate->execute();
@@ -82,21 +84,21 @@
       }
 
       $text_password_body = html_entity_decode($CLICSHOPPING_Members->getDef('email_password_reminder_body', ['store_name' => STORE_NAME,
-                                                                                                            'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
-                                                                                                            'url' => HTTP::getShopUrlDomain(),
-                                                                                                            'password' => $newpass,
-                                                                                                            'username' => $QcheckCustomer->value('customers_email_address')
-                                                                                                            ]
-                                                                            )
-                                                );
+          'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
+          'url' => HTTP::getShopUrlDomain(),
+          'password' => $newpass,
+          'username' => $QcheckCustomer->value('customers_email_address')
+        ]
+      )
+      );
 
       $email_text_subject = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_subject', ['store_name' => STORE_NAME]));
       $email_text_confirm = html_entity_decode($CLICSHOPPING_Members->getDef('email_text_confirm', ['store_name' => STORE_NAME,
-                                                                                                    'store_name_address' => STORE_NAME_ADDRESS,
-                                                                                                    'store_ownler_email_address' => STORE_OWNER_EMAIL_ADDRESS
-                                                                                                  ]
-                                                                            )
-                                                );
+          'store_name_address' => STORE_NAME_ADDRESS,
+          'store_ownler_email_address' => STORE_OWNER_EMAIL_ADDRESS
+        ]
+      )
+      );
 
       $email_signature = TemplateEmailAdmin::getTemplateEmailSignature();
       $email_warning = TemplateEmailAdmin::getTemplateEmailTextFooter();
@@ -104,7 +106,7 @@
 
 // mails avec le mot de passe
       $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, $email_text, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, '');
-      $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') .' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, '<br />'. nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+      $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_text_subject, '<br />' . nl2br(sprintf($text_password_body, $QcheckCustomer->value('customers_email_address'), $newpass)), STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
       $CLICSHOPPING_Members->redirect('Members&page=' . $page);
     }

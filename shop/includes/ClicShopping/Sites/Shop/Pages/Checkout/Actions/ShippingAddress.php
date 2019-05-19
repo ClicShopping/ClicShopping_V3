@@ -1,22 +1,24 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class ShippingAddress extends \ClicShopping\OM\PagesActionsAbstract {
+  class ShippingAddress extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -50,11 +52,11 @@
                                                        from :table_customers
                                                        where customers_id = :customers_id
                                                      ');
-        $QaddresseDefault->bindInt(':customers_id',(int)$CLICSHOPPING_Customer->getID());
+        $QaddresseDefault->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
         $QaddresseDefault->execute();
 
         if ($QaddresseDefault->rowCount() == 1) {
-          CLICSHOPPING::redirect(null,'Account&AddressBookProcess&newcustomer=1&shopping=1&edit=' . $QaddresseDefault->valueInt('customers_default_address_id'));
+          CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&newcustomer=1&shopping=1&edit=' . $QaddresseDefault->valueInt('customers_default_address_id'));
         }
       }
 
@@ -70,7 +72,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_shipping_address');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null,'Checkout&Shipping'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null,'Checkout&ShippingAddress'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Checkout&Shipping'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null, 'Checkout&ShippingAddress'));
     }
   }

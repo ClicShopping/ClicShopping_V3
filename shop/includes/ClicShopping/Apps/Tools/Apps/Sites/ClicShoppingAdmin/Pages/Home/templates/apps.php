@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -16,84 +16,87 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 ?>
-  <div class="contentBody">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-block headerCard">
-          <div class="row">
-            <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Apps->getDef('heading_title'), '40', '40'); ?></span>
-            <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Apps->getDef('heading_title'); ?></span>
-          </div>
+<div class="contentBody">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-block headerCard">
+        <div class="row">
+          <span
+            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Apps->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Apps->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
-    <div class="separator"></div>
-    <div class="separator"></div>
-    <div class="spaceRow"></div>
-    <table id="appsInstalledTable" class="table table-sm table-hover">
-      <thead>
-      <tr class="dataTableHeadingRow">
-        <th><?php echo $CLICSHOPPING_Apps->getDef('table_heading_apps'); ?></th>
-        <th><?php echo $CLICSHOPPING_Apps->getDef('table_heading_vendor'); ?></th>
-        <th class="text-md-right"><?php echo $CLICSHOPPING_Apps->getDef('table_heading_version'); ?></th>
-        <th class="action"></th>
-      </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  </div>
+  <div class="separator"></div>
+  <div class="separator"></div>
+  <div class="spaceRow"></div>
+  <table id="appsInstalledTable" class="table table-sm table-hover">
+    <thead>
+    <tr class="dataTableHeadingRow">
+      <th><?php echo $CLICSHOPPING_Apps->getDef('table_heading_apps'); ?></th>
+      <th><?php echo $CLICSHOPPING_Apps->getDef('table_heading_vendor'); ?></th>
+      <th class="text-md-right"><?php echo $CLICSHOPPING_Apps->getDef('table_heading_version'); ?></th>
+      <th class="action"></th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-    <script id="appInstalledTableEntry" type="x-tmpl-mustache">
+  <script id="appInstalledTableEntry" type="x-tmpl-mustache">
     <tr>
       <td>{{title}}</td>
       <td>{{vendor}}</td>
       <td class="text-md-right">{{version}}</td>
     </tr>
+
   </script>
-  </div>
+</div>
 <script>
-  $(function() {
-    function rpcGetInstalledApps() {
-      $('#appsInstalledTable tbody').empty();
+    $(function () {
+        function rpcGetInstalledApps() {
+            $('#appsInstalledTable tbody').empty();
 
-      $('#appsInstalledTable tbody').append('<tr><td colspan="' + $('#appsInstalledTable thead th').length + '"><i class="fas fa-spinner fa-spin"></i></td></tr>');
+            $('#appsInstalledTable tbody').append('<tr><td colspan="' + $('#appsInstalledTable thead th').length + '"><i class="fas fa-spinner fa-spin"></i></td></tr>');
 
-      $.get('<?= addslashes($CLICSHOPPING_Apps->link('Apps&getInstalledApps&action=1')); ?>', function(response) {
-        $('#appsInstalledTable tbody').empty();
+            $.get('<?= addslashes($CLICSHOPPING_Apps->link('Apps&getInstalledApps&action=1')); ?>', function (response) {
+                $('#appsInstalledTable tbody').empty();
 
-        if ((typeof response == 'object') && ('result' in response) && (response.result === 1)) {
-          var appInstalledTableEntry = $('#appInstalledTableEntry').html();
-          Mustache.parse(appInstalledTableEntry);
+                if ((typeof response == 'object') && ('result' in response) && (response.result === 1)) {
+                    var appInstalledTableEntry = $('#appInstalledTableEntry').html();
+                    Mustache.parse(appInstalledTableEntry);
 
-          $(response.apps).each(function(k, v) {
-            var entry = $.parseHTML(Mustache.render(appInstalledTableEntry, {
-              title: v.title,
-              vendor: v.vendor,
-              version: v.version
-            }));
+                    $(response.apps).each(function (k, v) {
+                        var entry = $.parseHTML(Mustache.render(appInstalledTableEntry, {
+                            title: v.title,
+                            vendor: v.vendor,
+                            version: v.version
+                        }));
 
-            $(entry).appendTo('#appsInstalledTable tbody');
-          });
+                        $(entry).appendTo('#appsInstalledTable tbody');
+                    });
 
-          if ($('#appsInstalledTable tbody tr').length < 1) {
-            $('#appsInstalledTable tbody').append('<tr><td colspan="' + $('#appsInstalledTable thead th').length + '">There are currently no Apps installed.</td></tr>');
-          }
-        } else {
-          errorRpcGetInstalledApps();
-        }
-      }, 'json').fail(function() {
-        errorRpcGetInstalledApps();
-      });
-    };
+                    if ($('#appsInstalledTable tbody tr').length < 1) {
+                        $('#appsInstalledTable tbody').append('<tr><td colspan="' + $('#appsInstalledTable thead th').length + '">There are currently no Apps installed.</td></tr>');
+                    }
+                } else {
+                    errorRpcGetInstalledApps();
+                }
+            }, 'json').fail(function () {
+                errorRpcGetInstalledApps();
+            });
+        };
 
-    $('#appsInstalledTable tbody').on('click', 'tr[data-row="rpcError"] td a[data-action="doRpcGetInstalledApps"]', function() {
-      rpcGetInstalledApps();
+        $('#appsInstalledTable tbody').on('click', 'tr[data-row="rpcError"] td a[data-action="doRpcGetInstalledApps"]', function () {
+            rpcGetInstalledApps();
+        });
+
+        function errorRpcGetInstalledApps() {
+            $('#appsInstalledTable tbody').empty().append('<tr data-row="rpcError"><td colspan="' + $('#appsInstalledTable thead th').length + '">There was a problem retrieving the list of installed Apps. <a data-action="doRpcGetInstalledApps">Try again.</a></td></tr>');
+        };
+
+        rpcGetInstalledApps();
+        rpcGetShowcase();
     });
-
-    function errorRpcGetInstalledApps() {
-      $('#appsInstalledTable tbody').empty().append('<tr data-row="rpcError"><td colspan="' + $('#appsInstalledTable thead th').length + '">There was a problem retrieving the list of installed Apps. <a data-action="doRpcGetInstalledApps">Try again.</a></td></tr>');
-    };
-
-    rpcGetInstalledApps();
-    rpcGetShowcase();
-  });
 </script>

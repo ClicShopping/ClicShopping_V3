@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM\Module\Hooks\Shop\Account;
 
@@ -16,12 +16,14 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class AccountGdprReviews {
+  class AccountGdprReviews
+  {
 
     protected $countMyFeedback;
     protected $deleteMyFeedback;
 
-    public function getCheck() {
+    public function getCheck()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -37,7 +39,8 @@
       return $QReviews->fetch();
     }
 
-    public function display() {
+    public function display()
+    {
       if ($this->getCheck() === true) {
         $output = '<div>';
         $output .= '<label class="checkbox-inline">';

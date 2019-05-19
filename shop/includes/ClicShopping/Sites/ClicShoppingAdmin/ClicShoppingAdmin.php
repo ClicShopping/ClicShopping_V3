@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
@@ -22,11 +22,13 @@
   use ClicShopping\OM\Service;
   use ClicShopping\OM\HTTP;
 
-  class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract {
+  class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
+  {
 
     public $default_page = 'Dashboard';
 
-    protected function init()  {
+    protected function init()
+    {
       global $login_request;
 
       $CLICSHOPPING_Cookies = new Cookies();
@@ -44,10 +46,10 @@
 
 // set the application parameters
       $Qcfg = $CLICSHOPPING_Db->get('configuration', [
-                                               'configuration_key as k',
-                                               'configuration_value as v'
-                                              ]
-                             );
+          'configuration_key as k',
+          'configuration_value as v'
+        ]
+      );
 
       while ($Qcfg->fetch()) {
         define($Qcfg->value('k'), $Qcfg->value('v'));
@@ -84,16 +86,16 @@
 
 // if the first page request is to the login page, set the current page to the index page
 // so the redirection on a successful login is not made to the login page again
-      if ( ($current_page == 'login.php') && !isset($_SESSION['redirect_origin']) ) {
-        $current_page = 'index.php';
-      }
-
-      if ($current_page != 'login.php') {
-        if (!isset($_SESSION['redirect_origin'])) {
-                    $_SESSION['redirect_origin'] = ['page' => $current_page,
-                                                    'get' => []
-                                                   ];
+        if (($current_page == 'login.php') && !isset($_SESSION['redirect_origin'])) {
+          $current_page = 'index.php';
         }
+
+        if ($current_page != 'login.php') {
+          if (!isset($_SESSION['redirect_origin'])) {
+            $_SESSION['redirect_origin'] = ['page' => $current_page,
+              'get' => []
+            ];
+          }
 
 // try to automatically login with the HTTP Authentication values if it exists
           if (!isset($_SESSION['auth_ignore'])) {
@@ -137,7 +139,8 @@
       Registry::get('Service')->start();
     }
 
-    public function setPage()  {
+    public function setPage()
+    {
 
 //important dans la redirection sinon page blanche
       $page_code = $this->default_page;
@@ -157,7 +160,7 @@
             if (Apps::exists($vendor . '\\' . $app) && ($page = Apps::getRouteDestination(null, $vendor . '\\' . $app)) !== null) {
 // get controller class name from namespace
               $page_namespace = explode('\\', $page);
-              $page_code = $page_namespace[count($page_namespace)-1];
+              $page_code = $page_namespace[count($page_namespace) - 1];
 
               if (class_exists('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $page . '\\' . $page_code)) {
                 $this->app = $vendor . '\\' . $app;
@@ -183,12 +186,13 @@
           $this->page = new $class($this);
           $this->page->runActions();
         } else {
-            trigger_error('ClicShopping\Sites\ClicShoppingAdmin\ClicShoppingAdmin::setPage() - ' . $page_code . ': Page does not implement ClicShopping\OM\PagesInterface and cannot be loaded.');
+          trigger_error('ClicShopping\Sites\ClicShoppingAdmin\ClicShoppingAdmin::setPage() - ' . $page_code . ': Page does not implement ClicShopping\OM\PagesInterface and cannot be loaded.');
         }
       }
     }
 
-    public static function resolveRoute(array $route, array $routes)  {
+    public static function resolveRoute(array $route, array $routes)
+    {
       return array_values($routes)[0];
     }
   }

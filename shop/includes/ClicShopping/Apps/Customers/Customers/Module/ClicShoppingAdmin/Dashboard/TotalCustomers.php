@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Customers\Module\ClicShoppingAdmin\Dashboard;
 
@@ -17,12 +17,14 @@
 
   use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
-  class TotalCustomers extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class TotalCustomers extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('Customers')) {
         Registry::set('Customers', new CustomersApp());
@@ -36,17 +38,18 @@
       $this->title = $this->app->getDef('module_admin_dashboard_total_customers_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_total_customers_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
 
       $days = [];
-      for($i = 0; $i < 30; $i++) {
-        $days[date('Y-m-d', strtotime('-'. $i .' days'))] = 0;
+      for ($i = 0; $i < 30; $i++) {
+        $days[date('Y-m-d', strtotime('-' . $i . ' days'))] = 0;
       }
 
       $Qorders = $this->app->db->query('select date_format(customers_info_date_account_created, "%Y-%m-%d") as dateday,
@@ -64,7 +67,7 @@
 
       $js_array = '';
       foreach ($days as $date => $total) {
-        $js_array .= '[' . (mktime(0, 0, 0, substr($date, 5, 2), substr($date, 8, 2), substr($date, 0, 4))*1000) . ', ' . $total . '],';
+        $js_array .= '[' . (mktime(0, 0, 0, substr($date, 5, 2), substr($date, 8, 2), substr($date, 0, 4)) * 1000) . ', ' . $total . '],';
       }
 
       if (!empty($js_array)) {
@@ -161,7 +164,8 @@ EOD;
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
       if ($this->lang->getId() != 2) {
         $this->app->db->save('configuration', [
             'configuration_title' => 'Souhaitez vous activer ce module ?',
@@ -263,11 +267,12 @@ EOD;
       }
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS',
-               'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH',
-               'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_INTERVAL',
-               'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_SORT_ORDER'
-              ];
+        'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_INTERVAL',
+        'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_SORT_ORDER'
+      ];
     }
   }

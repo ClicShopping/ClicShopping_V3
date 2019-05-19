@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Products\Module\Hooks\ClicShoppingAdmin\Langues;
 
@@ -16,12 +16,14 @@
 
   use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
-  class Insert implements \ClicShopping\OM\Modules\HooksInterface {
+  class Insert implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
     protected $lang;
     protected $insert_language_id;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('Products')) {
         Registry::set('Products', new ProductsApp());
       }
@@ -31,7 +33,8 @@
       $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
     }
 
-    private function insert() {
+    private function insert()
+    {
 
       if (isset($this->insert_language_id)) {
         $Qproducts = $this->app->db->prepare('select p.products_id as orig_product_id,
@@ -57,7 +60,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
       }

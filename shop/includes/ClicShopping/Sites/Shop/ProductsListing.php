@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop;
 
@@ -15,44 +15,48 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 
-  class ProductsListing {
+  class ProductsListing
+  {
     protected $db;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->db = Registry::get('Db');
     }
 
-/**
- * Get column listing
- * @return array
- */
-    public function getColumnList() {
+    /**
+     * Get column listing
+     * @return array
+     */
+    public function getColumnList()
+    {
       $define_list = ['PRODUCT_LIST_MODEL' => CLICSHOPPING::getDef('product_list_model'),
-                      'PRODUCT_LIST_NAME' => CLICSHOPPING::getDef('product_list_name'),
-                      'PRODUCT_LIST_MANUFACTURER' => CLICSHOPPING::getDef('product_list_manufacturer'),
-                      'PRODUCT_LIST_PRICE' => CLICSHOPPING::getDef('product_list_price'),
-                      'PRODUCT_LIST_QUANTITY' => CLICSHOPPING::getDef('product_list_quantity'),
-                      'PRODUCT_LIST_WEIGHT' => CLICSHOPPING::getDef('product_list_weight'),
-                      'PRODUCT_LIST_IMAGE' => CLICSHOPPING::getDef('product_list_image'),
-                      'PRODUCT_LIST_DATE' => CLICSHOPPING::getDef('product_list_date'),
-                      ];
+        'PRODUCT_LIST_NAME' => CLICSHOPPING::getDef('product_list_name'),
+        'PRODUCT_LIST_MANUFACTURER' => CLICSHOPPING::getDef('product_list_manufacturer'),
+        'PRODUCT_LIST_PRICE' => CLICSHOPPING::getDef('product_list_price'),
+        'PRODUCT_LIST_QUANTITY' => CLICSHOPPING::getDef('product_list_quantity'),
+        'PRODUCT_LIST_WEIGHT' => CLICSHOPPING::getDef('product_list_weight'),
+        'PRODUCT_LIST_IMAGE' => CLICSHOPPING::getDef('product_list_image'),
+        'PRODUCT_LIST_DATE' => CLICSHOPPING::getDef('product_list_date'),
+      ];
 
       asort($define_list);
 
       $column_list = [];
 
-      foreach($define_list as $key => $value) {
+      foreach ($define_list as $key => $value) {
         if (!empty($value)) $column_list[] = $key;
       }
 
       return $column_list;
     }
 
-/**
- * get listing data
- * @return mixed
- */
-    public function getData() {
+    /**
+     * get listing data
+     * @return mixed
+     */
+    public function getData()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Category = Registry::get('Category');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -63,7 +67,7 @@
 
       $search_query = 'select SQL_CALC_FOUND_ROWS ';
 
-      for ($i=0, $n=count($column_list); $i<$n; $i++) {
+      for ($i = 0, $n = count($column_list); $i < $n; $i++) {
         switch ($column_list[$i]) {
           case 'PRODUCT_LIST_MODEL':
             $search_query .= ' p.products_model,';
@@ -84,7 +88,7 @@
             $search_query .= ' p.products_weight,';
             break;
           case 'PRODUCT_LIST_DATE':
-            $search_query.= 'p.products_date_added,';
+            $search_query .= 'p.products_date_added,';
             break;
         }
       }
@@ -297,12 +301,12 @@
 // ####### END B2B #######
       $search_query .= ' group by p.products_id ';
 
-      if ( (!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list)) ) {
-        for ($i=0, $n=count($column_list); $i<$n; $i++) {
+      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list))) {
+        for ($i = 0, $n = count($column_list); $i < $n; $i++) {
           if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
-            $_GET['sort'] = $i+1 . 'a';
+            $_GET['sort'] = $i + 1 . 'a';
 
-            $search_query .= ' order by' ;
+            $search_query .= ' order by';
             $search_query .= ' p.products_sort_order, ';
             $search_query .= ' pd.products_name';
 
@@ -310,10 +314,10 @@
           }
         }
       } else {
-        $sort_col = substr($_GET['sort'], 0 , 1);
+        $sort_col = substr($_GET['sort'], 0, 1);
         $sort_order = substr($_GET['sort'], 1);
 
-        switch ($column_list[$sort_col-1]) {
+        switch ($column_list[$sort_col - 1]) {
 
           case 'PRODUCT_LIST_MODEL':
             $search_query .= ' order by p.products_model ' . ($sort_order == 'd' ? 'desc' : '') . ', pd.products_name';
@@ -355,12 +359,12 @@
             $Qlisting->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
             $Qlisting->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-            $Qlisting->bindInt(':categories_id', $filter_id );
+            $Qlisting->bindInt(':categories_id', $filter_id);
           } else {
 // Affichage des produits en mode B2B sur la selection d'une marque depuis la boxe manufacturer
             $Qlisting->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qlisting->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-            $Qlisting->bindInt(':manufacturers_id', $manufacturers_id );
+            $Qlisting->bindInt(':manufacturers_id', $manufacturers_id);
           }
         } else {
           if (isset($filter_id) && !is_null($filter_id)) {
@@ -426,7 +430,8 @@
       return $Qlisting;
     }
 
-    public function getTotalRow() {
+    public function getTotalRow()
+    {
       $listingTotalRow = $this->getData()->getPageSetTotalRows();
 
       return $listingTotalRow;

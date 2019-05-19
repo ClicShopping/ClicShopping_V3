@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\Weight\Module\Hooks\ClicShoppingAdmin\Products;
 
@@ -18,10 +18,12 @@
 
   use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
 
-  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface {
+  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('Weight')) {
         Registry::set('Weight', new WeightApp());
       }
@@ -30,7 +32,8 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
     }
 
-    private function getProductsWeightId() {
+    private function getProductsWeightId()
+    {
       $Qproducts = $this->app->db->prepare('select products_weight_class_id
                                             from :table_products
                                             where products_id = :products_id
@@ -42,7 +45,8 @@
       return $Qproducts->valueInt('products_weight_class_id');
     }
 
-    public function display()  {
+    public function display()
+    {
       if (!defined('CLICSHOPPING_APP_WEIGHT_WE_STATUS') || CLICSHOPPING_APP_WEIGHT_WE_STATUS == 'False') {
         return false;
       }
@@ -55,16 +59,16 @@
         $weight_class_id = $products_weight_class_id;
       }
 
-      $content ='<div class="col-md-5">';
-      $content .='<div class="form-group row">';
-      $content .='<label for="' .  $this->app->getDef('text_products_weight_type') . '" class="col-5 col-form-label">' .  $this->app->getDef('text_products_weight_type') . '</label>';
-      $content .='<div class="col-md-5">';
-      $content .= HTML::selectField('products_weight_class_id', WeightAdmin::getClassesPullDown(), $weight_class_id). '<br />';
-      $content .='</div>';
-      $content .='</div>';
-      $content .='</div>';
+      $content = '<div class="col-md-5">';
+      $content .= '<div class="form-group row">';
+      $content .= '<label for="' . $this->app->getDef('text_products_weight_type') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_weight_type') . '</label>';
+      $content .= '<div class="col-md-5">';
+      $content .= HTML::selectField('products_weight_class_id', WeightAdmin::getClassesPullDown(), $weight_class_id) . '<br />';
+      $content .= '</div>';
+      $content .= '</div>';
+      $content .= '</div>';
 
-        $output = <<<EOD
+      $output = <<<EOD
 <!-- ######################## -->
 <!--  Start Weight Hooks      -->
 <!-- ######################## -->
@@ -79,7 +83,7 @@ $('#tab1ContentRow5').append(
 <!-- ######################## -->
 
 EOD;
-        return $output;
+      return $output;
 
     }
   }

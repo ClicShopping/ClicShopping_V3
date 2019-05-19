@@ -1,20 +1,22 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\OrdersStatus\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
   use ClicShopping\OM\Registry;
 
-  class Configure extends \ClicShopping\OM\PagesActionsAbstract {
-    public function execute() {
+  class Configure extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    public function execute()
+    {
       $CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
 
       $this->page->setFile('configure.php');
@@ -27,7 +29,7 @@
       $default_module = 'OU';
 
       foreach ($modules as $m) {
-        if ($CLICSHOPPING_OrdersStatus->getConfigModuleInfo($m, 'is_installed') === true ) {
+        if ($CLICSHOPPING_OrdersStatus->getConfigModuleInfo($m, 'is_installed') === true) {
           $default_module = $m;
           break;
         }

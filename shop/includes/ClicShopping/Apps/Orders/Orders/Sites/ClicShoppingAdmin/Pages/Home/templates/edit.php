@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
@@ -43,10 +43,10 @@
   $QordersStatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QordersStatus->execute();
 
-  while ($QordersStatus->fetch() !== false ) {
+  while ($QordersStatus->fetch() !== false) {
     $orders_statuses[] = ['id' => $QordersStatus->valueInt('orders_status_id'),
-                          'text' => $QordersStatus->value('orders_status_name')
-                         ];
+      'text' => $QordersStatus->value('orders_status_name')
+    ];
     $orders_status_array[$QordersStatus->valueInt('orders_status_id')] = $QordersStatus->value('orders_status_name');
   }
 
@@ -64,7 +64,7 @@
     }
   }
 
-// orders_invoice status Dropdown
+  // orders_invoice status Dropdown
   $orders_invoice_statuses = [];
   $orders_status_invoice_array = [];
 
@@ -78,8 +78,8 @@
 
   while ($QordersStatusInvoice->fetch()) {
     $orders_invoice_statuses[] = ['id' => $QordersStatusInvoice->valueInt('orders_status_invoice_id'),
-                                  'text' => $QordersStatusInvoice->value('orders_status_invoice_name')
-                                  ];
+      'text' => $QordersStatusInvoice->value('orders_status_invoice_name')
+    ];
 
     $orders_status_invoice_array[$QordersStatusInvoice->valueInt('orders_status_invoice_id')] = $QordersStatusInvoice->value('orders_status_invoice_name');
   }
@@ -103,8 +103,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/orders.gif', $CLICSHOPPING_Orders->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' .  (int)$order_id; ?></span>
+          <span
+            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/orders.gif', $CLICSHOPPING_Orders->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' . (int)$order_id; ?></span>
           <span class="col-md-9 text-md-right">
 <?php
   if ($Qcustomers->valueInt('customers_id') != 0) {
@@ -116,7 +118,7 @@
   echo '&nbsp;';
   echo HTML::button($CLICSHOPPING_Orders->getDef('button_packingslip'), null, $CLICSHOPPING_Orders->link('PackingSlip&oID=' . (int)$order_id), 'info', ['newwindow' => true]);
   echo '&nbsp;';
-  echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null,  $CLICSHOPPING_Orders->link('Orders'), 'primary');
+  echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPING_Orders->link('Orders'), 'primary');
 ?>
           </span>
         </div>
@@ -137,14 +139,17 @@
   -->
 
 
-<!-- //###########################################//-->
-<!--          Customer information tab  1        //-->
-<!-- //###########################################//-->
+  <!-- //###########################################//-->
+  <!--          Customer information tab  1        //-->
+  <!-- //###########################################//-->
   <div id="orderTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
-      <li class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Orders->getDef('tab_general'); ?></a></li>
-      <li class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Orders->getDef('tab_orders_details'); ?></a></li>
-      <li class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Orders->getDef('tab_statut'); ?></a></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Orders->getDef('tab_general'); ?></a></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Orders->getDef('tab_orders_details'); ?></a></li>
+      <li
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Orders->getDef('tab_statut'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -156,19 +161,25 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer'); ?></h4>
-                  <p class="card-text"><strong><?php echo $CLICSHOPPING_Address->addressFormat($order->customer['format_id'], $order->customer, 1, '', '<br />'); ?></strong></p>
+                  <p class="card-text">
+                    <strong><?php echo $CLICSHOPPING_Address->addressFormat($order->customer['format_id'], $order->customer, 1, '', '<br />'); ?></strong>
+                  </p>
                 </div>
               </div>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title"><?php echo $CLICSHOPPING_Orders->getDef('entry_shipping_address'); ?></h4>
-                  <p class="card-text"><strong><?php echo $CLICSHOPPING_Address->addressFormat($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?></strong></p>
+                  <p class="card-text">
+                    <strong><?php echo $CLICSHOPPING_Address->addressFormat($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?></strong>
+                  </p>
                 </div>
               </div>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title"><?php echo $CLICSHOPPING_Orders->getDef('entry_billing_address'); ?></h4>
-                  <p class="card-text"><strong><?php echo $CLICSHOPPING_Address->addressFormat($order->billing['format_id'], $order->billing, 1, '', '<br />'); ?></strong>.</p>
+                  <p class="card-text">
+                    <strong><?php echo $CLICSHOPPING_Address->addressFormat($order->billing['format_id'], $order->billing, 1, '', '<br />'); ?></strong>.
+                  </p>
                 </div>
               </div>
             </div>
@@ -178,37 +189,45 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_customers'); ?></div>
           <div class="adminformTitle">
             <div class="row" id="tab1ContentRow1">
-<?php
-  if (MODE_B2B_B2C == 'false') {
-?>
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_siret'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->customer['siret']; ?></strong></span>
-              </div>
-              <div class="separator"></div>
+              <?php
+                if (MODE_B2B_B2C == 'false') {
+                  ?>
+                  <div class="col-md-12">
+                    <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_siret'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->customer['siret']; ?></strong></span>
+                  </div>
+                  <div class="separator"></div>
 
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_code_ape'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->customer['ape']; ?></strong></span>
-              </div>
-              <div class="separator"></div>
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_tva_intracom'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->customer['tva_intracom']; ?></strong></span>
-              </div>
-<?php
-  }
-?>
-              <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/modal_popup.js'); ?>"></script>
+                  <div class="col-md-12">
+                    <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_order_code_ape'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->customer['ape']; ?></strong></span>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="col-md-12">
+                    <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_tva_intracom'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->customer['tva_intracom']; ?></strong></span>
+                  </div>
+                  <?php
+                }
+              ?>
+              <script
+                src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/modal_popup.js'); ?>"></script>
               <div class="col-md-8">
                 <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Orders->getDef('text_condition_general_of_sales'); ?></label>
                   <div class="col-md-5">
-                    <a href="<?php echo $CLICSHOPPING_Orders->link('PageManagerOrderHistoryContract&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"  data-toggle="modal" data-refresh="true" data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit')); ?></a>
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <a
+                      href="<?php echo $CLICSHOPPING_Orders->link('PageManagerOrderHistoryContract&order_id=' . (int)$order_id . '&customer_id=' . $Qcustomers->valueInt('customers_id')); ?>"
+                      data-toggle="modal" data-refresh="true"
+                      data-target="#myModal"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit')); ?></a>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
-                          <div class="modal-body"><div class="te"></div></div>
+                          <div class="modal-body">
+                            <div class="te"></div>
+                          </div>
                         </div> <!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
@@ -219,9 +238,11 @@
 
               <div class="col-md-12">
                 <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_telephone_number'); ?></span>
-                <span class="col-md-3"><strong><?php echo  $order->customer['telephone']; ?></strong></span>
-                <span class="col-md-3 text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?></span>
-                <span class="col-md-3"><a target="_blank" rel="noreferrer" href="http://maps.google.com/maps?q=<?php echo $order->delivery['street_address'], ',', $order->delivery['postcode'], ',', $order->delivery['state'], ',', $order->delivery['country']; ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/google_map.gif', $CLICSHOPPING_Orders->getDef('entry_customer_location')); ?></a></span>
+                <span class="col-md-3"><strong><?php echo $order->customer['telephone']; ?></strong></span>
+                <span
+                  class="col-md-3 text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('entry_customer_location'); ?></span>
+                <span class="col-md-3"><a target="_blank" rel="noreferrer"
+                                          href="http://maps.google.com/maps?q=<?php echo $order->delivery['street_address'], ',', $order->delivery['postcode'], ',', $order->delivery['state'], ',', $order->delivery['country']; ?>&hl=fr&um=1&ie=UTF-8&sa=N&tab=wl"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/google_map.gif', $CLICSHOPPING_Orders->getDef('entry_customer_location')); ?></a></span>
               </div>
               <div class="separator"></div>
               <div class="col-md-12">
@@ -231,7 +252,8 @@
               <div class="separator"></div>
               <div class="col-md-12">
                 <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_email_address'); ?></span>
-                <span class="col-md-5"><strong><?php echo '<a href="mailto:' . $order->customer['email_address'] . '"><u>' . $order->customer['email_address'] . '</u></a>'; ?></strong></span>
+                <span
+                  class="col-md-5"><strong><?php echo '<a href="mailto:' . $order->customer['email_address'] . '"><u>' . $order->customer['email_address'] . '</u></a>'; ?></strong></span>
               </div>
               <div class="separator"></div>
               <div class="col-md-12">
@@ -254,106 +276,115 @@
                 <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_payment_method'); ?></span>
                 <span class="col-md-5"><strong><?php echo $order->info['payment_method']; ?></strong></span>
               </div>
-<?php
-  if (!is_null($order->info['cc_type']) || !is_null($order->info['cc_owner']) || !is_null($order->info['cc_number'])) {
-?>
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_type'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->info['cc_type']; ?></strong></span>
-              </div>
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_owner'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->info['cc_owner']; ?></strong></span>
-              </div>
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_number'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->info['cc_number']; ?></strong></span>
-              </div>
-              <div class="col-md-12">
-                <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_express'); ?></span>
-                <span class="col-md-5"><strong><?php echo $order->info['cc_expires']; ?></strong></span>
-              </div>
-<?php
-  }
-?>
+              <?php
+                if (!is_null($order->info['cc_type']) || !is_null($order->info['cc_owner']) || !is_null($order->info['cc_number'])) {
+                  ?>
+                  <div class="col-md-12">
+                    <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_type'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->info['cc_type']; ?></strong></span>
+                  </div>
+                  <div class="col-md-12">
+                    <span class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_owner'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->info['cc_owner']; ?></strong></span>
+                  </div>
+                  <div class="col-md-12">
+                    <span
+                      class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_number'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->info['cc_number']; ?></strong></span>
+                  </div>
+                  <div class="col-md-12">
+                    <span
+                      class="col-md-3"><?php echo $CLICSHOPPING_Orders->getDef('entry_credit_card_express'); ?></span>
+                    <span class="col-md-5"><strong><?php echo $order->info['cc_expires']; ?></strong></span>
+                  </div>
+                  <?php
+                }
+              ?>
               <div class="separator"></div>
               <div class="separator"></div>
             </div>
           </div>
           <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab1', null, 'display'); ?>
         </div>
-<!-- //###########################################//-->
-<!--          Order informations  Tab2                                                   //-->
-<!-- //###########################################//-->
+        <!-- //###########################################//-->
+        <!--          Order informations  Tab2                                                   //-->
+        <!-- //###########################################//-->
 
         <div class="tab-pane" id="tab2">
           <table width="100%" border="0" cellspacing="0" cellpadding="5" class="adminformTitle">
             <tr class="dataTableHeadingRow">
               <td></td>
               <td></td>
-              <td  colspan="3" class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_products'); ?></td>
+              <td colspan="3"
+                  class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_products'); ?></td>
               <td><?php echo $CLICSHOPPING_Orders->getDef('table_heading_products_model'); ?></td>
-              <td  class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_tax'); ?></td>
-              <td  class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_excluding_tax'); ?></td>
-              <td  class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_including_tax'); ?></td>
-              <td  class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_excluding_tax'); ?></td>
-              <td  class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_including_tax'); ?></td>
+              <td class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_tax'); ?></td>
+              <td
+                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_excluding_tax'); ?></td>
+              <td
+                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_including_tax'); ?></td>
+              <td
+                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_excluding_tax'); ?></td>
+              <td
+                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_including_tax'); ?></td>
             </tr>
-<?php
-  for ($i=0, $n=count($order->products); $i<$n; $i++) {
-    $products_id = $order->products[$i]['products_id'];
+            <?php
+              for ($i = 0, $n = count($order->products); $i < $n; $i++) {
+                $products_id = $order->products[$i]['products_id'];
 
-    $QproductsImage = $CLICSHOPPING_Orders->db->prepare('select products_image,
+                $QproductsImage = $CLICSHOPPING_Orders->db->prepare('select products_image,
                                                                 products_id
                                                         from :table_products
                                                         where products_id = :products_id
                                                        ');
-    $QproductsImage->bindInt(':products_id', $products_id);
-    $QproductsImage->execute();
+                $QproductsImage->bindInt(':products_id', $products_id);
+                $QproductsImage->execute();
 
-            echo '    <tr class="dataTableRow">' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $products_id . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&Edit&pID=' . $products_id),  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
-      '      <td class="dataTableContent" valign="top"><img src=" ' . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $QproductsImage->value('products_image') . '" width=" '. (int)SMALL_IMAGE_WIDTH_ADMIN .'" height="'. (int)SMALL_IMAGE_HEIGHT_ADMIN .'"></td>' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . $order->products[$i]['name'];
+                echo '    <tr class="dataTableRow">' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $products_id . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&Edit&pID=' . $products_id), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top"><img src=" ' . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $QproductsImage->value('products_image') . '" width=" ' . (int)SMALL_IMAGE_WIDTH_ADMIN . '" height="' . (int)SMALL_IMAGE_HEIGHT_ADMIN . '"></td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . $order->products[$i]['name'];
 
-    if (isset($order->products[$i]['attributes']) && (count($order->products[$i]['attributes']) > 0)) {
-      for ($j = 0, $k = count($order->products[$i]['attributes']); $j < $k; $j++) {
+                if (isset($order->products[$i]['attributes']) && (count($order->products[$i]['attributes']) > 0)) {
+                  for ($j = 0, $k = count($order->products[$i]['attributes']); $j < $k; $j++) {
 
 // attributes reference
-        if ($order->products[$i]['attributes'][$j]['reference'] != '' || $order->products[$i]['attributes'][$j]['reference'] !='null') {
-          $attributes_reference = '<strong> ' .$order->products[$i]['attributes'][$j]['reference'] . '</strong> - ';
-        }
+                    if ($order->products[$i]['attributes'][$j]['reference'] != '' || $order->products[$i]['attributes'][$j]['reference'] != 'null') {
+                      $attributes_reference = '<strong> ' . $order->products[$i]['attributes'][$j]['reference'] . '</strong> - ';
+                    }
 
-        echo '<br /><nobr><small>&nbsp;<i> - ' . $attributes_reference  . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'];
+                    echo '<br /><nobr><small>&nbsp;<i> - ' . $attributes_reference . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'];
 
-        if ($order->products[$i]['attributes'][$j]['price'] != 0) echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $CLICSHOPPING_Currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
-        echo '</i></small></nobr>';
-      }
-    }
+                    if ($order->products[$i]['attributes'][$j]['price'] != 0) echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $CLICSHOPPING_Currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
+                    echo '</i></small></nobr>';
+                  }
+                }
 
-    echo '      </td>' . "\n" .
-      '      <td class="dataTableContent" valign="top">' . $order->products[$i]['model'] . '</td>' . "\n" .
-      '      <td class="text-md-right dataTableContent">' . $order->products[$i]['tax'] . '</td>' . "\n" .
-      '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n" .
-      '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format(Tax::addTax($order->products[$i]['final_price'], $order->products[$i]['tax'], true), true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n" .
-      '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n" .
-      '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format(Tax::addTax($order->products[$i]['final_price'], $order->products[$i]['tax'], true) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n";
-    echo '    </tr>' . "\n";
-  }
-?>
+                echo '      </td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . $order->products[$i]['model'] . '</td>' . "\n" .
+                  '      <td class="text-md-right dataTableContent">' . $order->products[$i]['tax'] . '</td>' . "\n" .
+                  '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n" .
+                  '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format(Tax::addTax($order->products[$i]['final_price'], $order->products[$i]['tax'], true), true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n" .
+                  '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n" .
+                  '      <td class="text-md-right dataTableContent"><strong>' . $CLICSHOPPING_Currencies->format(Tax::addTax($order->products[$i]['final_price'], $order->products[$i]['tax'], true) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . '</strong></td>' . "\n";
+                echo '    </tr>' . "\n";
+              }
+            ?>
             <tr>
-              <td class="text-md-right" colspan="11"><table border="0" cellspacing="0" cellpadding="2" width="100%">
-<?php
-  foreach ($order->totals as $value) {
-    echo '      <tr>' . "\n" .
-      '          <td class="text-md-right"><strong>' . $value['title'] . '</strong></td>' . "\n" .
-      '          <td class="text-md-right"><strong>' . strip_tags($value['text']) . '</strong></td>' . "\n" .
-      '        </tr>' . "\n";
-  }
-?>
-                </table></td>
+              <td class="text-md-right" colspan="11">
+                <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                  <?php
+                    foreach ($order->totals as $value) {
+                      echo '      <tr>' . "\n" .
+                        '          <td class="text-md-right"><strong>' . $value['title'] . '</strong></td>' . "\n" .
+                        '          <td class="text-md-right"><strong>' . strip_tags($value['text']) . '</strong></td>' . "\n" .
+                        '        </tr>' . "\n";
+                    }
+                  ?>
+                </table>
+              </td>
             </tr>
           </table>
           <div class="col-md-12" id="contentTab2"></div>
@@ -361,9 +392,9 @@
         </div>
 
 
-<!-- //###########################################//-->
-<!--          ONGLET statut commande tab3                                        //-->
-<!-- //###########################################//-->
+        <!-- //###########################################//-->
+        <!--          ONGLET statut commande tab3                                        //-->
+        <!-- //###########################################//-->
         <div class="tab-pane" id="tab3">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_comments'); ?></div>
           <?php echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders&Update&oID=' . $oID)); ?>
@@ -371,17 +402,23 @@
             <div class="row">
               <div class="col-md-12" id="tab3ContentRow1">
                 <div class="row">
-                  <div class="col-md-8"><?php echo HTML::textAreaField('comments', null, '60', '5', 'placeholder="' . $CLICSHOPPING_Orders->getDef('entry_notify_comments') .'"'); ?></div>
-                  <div class="col-md-4 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_update'), null, null, 'success'); ?></div>
+                  <div
+                    class="col-md-8"><?php echo HTML::textAreaField('comments', null, '60', '5', 'placeholder="' . $CLICSHOPPING_Orders->getDef('entry_notify_comments') . '"'); ?></div>
+                  <div
+                    class="col-md-4 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_update'), null, null, 'success'); ?></div>
                 </div>
               </div>
               <div class="separator"></div>
               <div class="col-md-12">
                 <div class="row" id="tab3ContentRow2">
-                  <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status'); ?></strong></span>
-                  <span class="col-md-4"><?php echo HTML::selectMenu('status', $orders_statuses, $order->info['orders_status']); ?></span>
-                  <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status_invoice'); ?></strong></span>
-                  <span class="col-md-4"><?php echo HTML::selectMenu('status_invoice', $orders_invoice_statuses, $order->info['orders_status_invoice']); ?></span>
+                  <span
+                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status'); ?></strong></span>
+                  <span
+                    class="col-md-4"><?php echo HTML::selectMenu('status', $orders_statuses, $order->info['orders_status']); ?></span>
+                  <span
+                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_status_invoice'); ?></strong></span>
+                  <span
+                    class="col-md-4"><?php echo HTML::selectMenu('status_invoice', $orders_invoice_statuses, $order->info['orders_status_invoice']); ?></span>
                 </div>
               </div>
 
@@ -391,32 +428,38 @@
               <div class="separator"></div>
               <div class="col-md-12" id="StatusNotify">
                 <div class="row" id="tab3ContentRow4">
-                  <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?></strong></span>
+                  <span
+                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_customer'); ?></strong></span>
                   <span class="col-md-4"><?php echo HTML::checkboxField('notify', '', true); ?></span>
-                  <span class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_comments'); ?></strong></span>
+                  <span
+                    class="col-md-2"><strong><?php echo $CLICSHOPPING_Orders->getDef('entry_notify_comments'); ?></strong></span>
                   <span class="col-md-4"><?php echo HTML::checkboxField('notify_comments', '', true); ?></span>
                 </div>
               </div>
             </div>
             <div class="separator"></div>
             <div id="ErpOrder"></div>
-          </form>
-        </div>
-        <div class="separator"></div>
+            </form>
+          </div>
+          <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Orders->getDef('title_orders_history'); ?></div>
           <div class="adminformTitle">
             <table class="table table-sm table-hover">
               <thead>
               <tr>
-                <td class="smallText text-md-center"><strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_date_added'); ?></strong></td>
-                <td class="smallText text-md-center"><strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_customer_notified'); ?></strong></td>
-                <td class="smallText text-md-center"><strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_status'); ?></strong></td>
-                <td class="smallText text-md-center"><strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_comments'); ?></strong></td>
+                <td class="smallText text-md-center">
+                  <strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_date_added'); ?></strong></td>
+                <td class="smallText text-md-center">
+                  <strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_customer_notified'); ?></strong></td>
+                <td class="smallText text-md-center">
+                  <strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_status'); ?></strong></td>
+                <td class="smallText text-md-center">
+                  <strong><?php echo $CLICSHOPPING_Orders->getDef('table_heading_comments'); ?></strong></td>
               </tr>
               </thead>
               <tbody>
-<?php
-  $QordersHistory = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
+              <?php
+                $QordersHistory = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
                                                              orders_status_invoice_id,
                                                              admin_user_name,
                                                              date_added,
@@ -427,58 +470,58 @@
                                                       where orders_id = :orders_id
                                                       order by date_added
                                                      ');
-  $QordersHistory->bindInt(':orders_id', $oID);
-  $QordersHistory->execute();
+                $QordersHistory->bindInt(':orders_id', $oID);
+                $QordersHistory->execute();
 
-  if ($QordersHistory->rowCount() > 0) {
-    while ($QordersHistory->fetch()) {
-      echo '      <tr>' . "\n" .
-        '        <td class="text-md-center">' . DateTime::toLong($QordersHistory->value('date_added')) . '</td>' . "\n" .
-        '        <td class="text-md-center">';
+                if ($QordersHistory->rowCount() > 0) {
+                  while ($QordersHistory->fetch()) {
+                    echo '      <tr>' . "\n" .
+                      '        <td class="text-md-center">' . DateTime::toLong($QordersHistory->value('date_added')) . '</td>' . "\n" .
+                      '        <td class="text-md-center">';
 
-      if ($QordersHistory->valueInt('customer_notified') === 1) {
-        echo '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' . "\n";
-      } else {
-        echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>' . "\n";
-      }
+                    if ($QordersHistory->valueInt('customer_notified') === 1) {
+                      echo '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' . "\n";
+                    } else {
+                      echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>' . "\n";
+                    }
 
-      echo '        </td>';
+                    echo '        </td>';
 
-     $content =  '<td class="text-md-center">' . $orders_status_array[$QordersHistory->valueInt('orders_status_id')] . '</td>' . "\n";
-     $content .= '<td id="orderCommentcontentTab3">';
-     $content .= $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />';
-     $content .= $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />';
-     $content .= $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />';
-     $content .= nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
+                    $content = '<td class="text-md-center">' . $orders_status_array[$QordersHistory->valueInt('orders_status_id')] . '</td>' . "\n";
+                    $content .= '<td id="orderCommentcontentTab3">';
+                    $content .= $CLICSHOPPING_Orders->getDef('entry_status_comment_invoice') . $orders_status_invoice_array[$QordersHistory->valueInt('orders_status_invoice_id')] . '<br />';
+                    $content .= $CLICSHOPPING_Orders->getDef('entry_status_invoice_realised') . $QordersHistory->value('admin_user_name') . '<br />';
+                    $content .= $CLICSHOPPING_Orders->getDef('entry_status_invoice_note') . '<br />';
+                    $content .= nl2br(HTML::sanitize($QordersHistory->value('comments'))) . '<br />';
 
-      echo $content;
-      
-      if(!is_null($QordersHistory->value('evidence'))) {
-        echo $CLICSHOPPING_Orders->getDef('entry_status_evidence') . '<br />' . HTML::link(CLICSHOPPING::link('../sources/Download/Evidence/' . $QordersHistory->value('evidence')),$QordersHistory->value('evidence')) . '<br />';
-      }
+                    echo $content;
 
-      echo    '        </td>' . "\n" .
-              '      </tr>' . "\n";
+                    if (!is_null($QordersHistory->value('evidence'))) {
+                      echo $CLICSHOPPING_Orders->getDef('entry_status_evidence') . '<br />' . HTML::link(CLICSHOPPING::link('../sources/Download/Evidence/' . $QordersHistory->value('evidence')), $QordersHistory->value('evidence')) . '<br />';
+                    }
 
-      echo $CLICSHOPPING_Hooks->output('Orders', 'OrderContentHistory');
-    }
-  } else {
-    echo '      <tr>' . "\n" .
-      '        <td colspan="5">' . $CLICSHOPPING_Orders->getDef('text_no_order_history') . '</td>' . "\n" .
-      '      </tr>' . "\n";
-  }
-?>
+                    echo '        </td>' . "\n" .
+                      '      </tr>' . "\n";
+
+                    echo $CLICSHOPPING_Hooks->output('Orders', 'OrderContentHistory');
+                  }
+                } else {
+                  echo '      <tr>' . "\n" .
+                    '        <td colspan="5">' . $CLICSHOPPING_Orders->getDef('text_no_order_history') . '</td>' . "\n" .
+                    '      </tr>' . "\n";
+                }
+              ?>
               </tbody>
             </table>
           </div>
 
           <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab3', null, 'display'); ?>
         </div>
-<!-- //################################################################################################################ -->
-<!-- //                                              Other Tab                                                -->
-<!-- //################################################################################################################ -->
-<?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageTab', null, 'display'); ?>
+        <!-- //################################################################################################################ -->
+        <!-- //                                              Other Tab                                                -->
+        <!-- //################################################################################################################ -->
+        <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageTab', null, 'display'); ?>
 
+      </div>
     </div>
   </div>
-</div>

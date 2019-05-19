@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Orders\Orders\Sites\ClicShoppingAdmin\Pages\Home\Actions\Orders;
@@ -20,7 +20,8 @@
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract {
+  class Update extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
     protected $lang;
     protected $db;
@@ -31,7 +32,8 @@
     protected $notifyComments;
     protected $notify;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('Orders');
       $this->lang = Registry::get('Language');
       $this->db = Registry::get('Db');
@@ -46,14 +48,15 @@
       if (isset($_POST['notify'])) $this->notify = HTML::sanitize($_POST['notify']);
     }
 
-    private function getCheckStatus() {
+    private function getCheckStatus()
+    {
       $data_array = ['customers_name',
-                     'customers_email_address',
-                     'orders_status',
-                     'date_purchased',
-                     'orders_status_invoice',
-                     'erp_invoice'
-                    ];
+        'customers_email_address',
+        'orders_status',
+        'date_purchased',
+        'orders_status_invoice',
+        'erp_invoice'
+      ];
 
       $QcheckStatus = $this->app->db->get('orders', $data_array, ['orders_id' => (int)$this->oID]);
 
@@ -62,11 +65,12 @@
       return $check;
     }
 
-    private function getMail() {
+    private function getMail()
+    {
       global $tracking_id;
 
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
-      $CLICSHOPPING_Mail  = Registry::get('Mail');
+      $CLICSHOPPING_Mail = Registry::get('Mail');
 
       if ($this->oID != 0) {
         $check = $this->getCheckStatus();
@@ -75,7 +79,7 @@
       $notify_comments = '';
 
       if (isset($this->notifyComments) && ($this->notifyComments == 'on')) {
-        $notify_comments = $this->app->getDef('email_text_comments_update',  ['comment' => nl2br($this->comments)]) . "\n\n";
+        $notify_comments = $this->app->getDef('email_text_comments_update', ['comment' => nl2br($this->comments)]) . "\n\n";
         $notify_comments = html_entity_decode($notify_comments);
       }
 
@@ -84,9 +88,9 @@
       $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
       $status_order = $this->app->getDef('email_text_new_order_status', ['status' => $this->status]);
 
-      $email_subject =  $this->app->getDef('email_text_subject', ['store_name' => STORE_NAME]);
+      $email_subject = $this->app->getDef('email_text_subject', ['store_name' => STORE_NAME]);
 
-      $email_text = $template_email_intro_command . '<br />'. $status_order . '<br />'.   $this->app->getDef('email_separator') . '<br /><br />'. $this->app->getDef('email_text_order_number') . ' '. $this->oID . '<br /><br />'. $this->app->getDef('email_text_invoice_url') . '<br />'. CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking_id . '<br />' . $notify_comments .'<br /><br />' .  $template_email_signature . '<br /><br />' . $template_email_footer;
+      $email_text = $template_email_intro_command . '<br />' . $status_order . '<br />' . $this->app->getDef('email_separator') . '<br /><br />' . $this->app->getDef('email_text_order_number') . ' ' . $this->oID . '<br /><br />' . $this->app->getDef('email_text_invoice_url') . '<br />' . CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking_id . '<br />' . $notify_comments . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
 
 
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
@@ -97,11 +101,12 @@
       $from = STORE_OWNER_EMAIL_ADDRESS;
       $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], '', $from, $email_subject);
 
-      $CLICSHOPPING_Hooks->call('Orders','OrderEmail');
+      $CLICSHOPPING_Hooks->call('Orders', 'OrderEmail');
     }
 
-    public function execute() {
-      $CLICSHOPPING_MessageStack =  Registry::get('MessageStack');
+    public function execute()
+    {
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       $order_updated = false;
@@ -110,35 +115,35 @@
 
       if ($this->oID != 0) {
 // verify and update the status if changed
-          if ( ($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
-             $data_array = ['orders_status' => (int)$this->status,
-                           'orders_status_invoice' => (int)$this->statusInvoice,
-                           'last_modified' => 'now()'
-                           ];
+        if (($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
+          $data_array = ['orders_status' => (int)$this->status,
+            'orders_status_invoice' => (int)$this->statusInvoice,
+            'last_modified' => 'now()'
+          ];
 
-            $this->app->db->save('orders', $data_array, ['orders_id' => $this->oID]);
+          $this->app->db->save('orders', $data_array, ['orders_id' => $this->oID]);
 
-            $customer_notified = 0;
+          $customer_notified = 0;
 
-            if (isset($this->notify) && ($this->notify == 'on')) {
-              $customer_notified = 1;
-            }
-
-            $data_array = [ 'orders_id' => (int)$this->oID,
-                            'orders_status_id' => (int)$this->status,
-                            'orders_status_invoice_id' => (int)$this->statusInvoice,
-                            'admin_user_name' => AdministratorAdmin::getUserAdmin(),
-                            'date_added' => 'now()',
-                            'customer_notified' => (int)$customer_notified,
-                            'comments' => $this->comments,
-                          ];
-
-            $this->app->db->save('orders_status_history', $data_array);
-
-            $order_updated = true;
-          } else {
-            $order_updated = true;
+          if (isset($this->notify) && ($this->notify == 'on')) {
+            $customer_notified = 1;
           }
+
+          $data_array = ['orders_id' => (int)$this->oID,
+            'orders_status_id' => (int)$this->status,
+            'orders_status_invoice_id' => (int)$this->statusInvoice,
+            'admin_user_name' => AdministratorAdmin::getUserAdmin(),
+            'date_added' => 'now()',
+            'customer_notified' => (int)$customer_notified,
+            'comments' => $this->comments,
+          ];
+
+          $this->app->db->save('orders_status_history', $data_array);
+
+          $order_updated = true;
+        } else {
+          $order_updated = true;
+        }
       }
 
       if ($order_updated === true) {

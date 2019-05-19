@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions\Shipping;
 
@@ -16,9 +16,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\Sites\Shop\Shipping;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
@@ -70,7 +72,7 @@
               }
             }
 
-            if ( isset($CLICSHOPPING_SM) || ($_SESSION['shipping'] == 'free_free') ) {
+            if (isset($CLICSHOPPING_SM) || ($_SESSION['shipping'] == 'free_free')) {
               if ($_SESSION['shipping'] == 'free_free') {
                 $quote[0]['methods'][0]['title'] = CLICSHOPPING::getDef('free_shipping_title');
                 $quote[0]['methods'][0]['cost'] = '0';
@@ -82,12 +84,12 @@
                 unset($_SESSION['shipping']);
               } else {
 
-                for ($i=0, $n=count($quote[0]['methods']); $i<$n; $i++) {
+                for ($i = 0, $n = count($quote[0]['methods']); $i < $n; $i++) {
                   if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
                     $_SESSION['shipping'] = ['id' => $_SESSION['shipping'],
-                                             'title' => (($_SESSION['free_shipping'] === true) ?  $quote[0]['methods'][$i]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][$i]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' ' . $quote[0]['methods'][$i]['title'] . '' : '')),
-                                             'cost' => $quote[0]['methods'][$i]['cost']
-                                            ];
+                      'title' => (($_SESSION['free_shipping'] === true) ? $quote[0]['methods'][$i]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][$i]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' ' . $quote[0]['methods'][$i]['title'] . '' : '')),
+                      'cost' => $quote[0]['methods'][$i]['cost']
+                    ];
 
                     $CLICSHOPPING_Hooks->call('Shipping', 'Process');
 

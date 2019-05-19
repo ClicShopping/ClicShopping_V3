@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Customers\Module\Hooks\ClicShoppingAdmin\Stats;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
-  class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInterface {
+  class StatsCustomersPercentageBySex implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
 
       if (!Registry::exists('Customers')) {
         Registry::set('Customers', new CustomersApp());
@@ -29,7 +31,8 @@
 
     }
 
-    private function statsAverageCustomersMen() {
+    private function statsAverageCustomersMen()
+    {
       $numberByPerCentMen = '   ';
 
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent
@@ -48,9 +51,10 @@
     }
 
 
-    private function statsAverageCustomersWomen() {
+    private function statsAverageCustomersWomen()
+    {
       $numberByPerCentWomen = '   ';
-      
+
       $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                               from :table_customers
                                                               where customers_gender = :customers_gender
@@ -67,7 +71,8 @@
     }
 
 
-    public function execute() {
+    public function execute()
+    {
 
       $output = '
   <div class="card col-md-2 cardStatsPrimary">
@@ -79,8 +84,8 @@
             <i class="fas fa-transgender fa-2x" aria-hidden="true"></i>
           </span>
           <span class="col-md-8 float-md-right">
-            <div class="col-sm-12 StatsValue">' .  $this->statsAverageCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
-            <div class="col-sm-12 StatsValue">' .  $this->statsAverageCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>
+            <div class="col-sm-12 StatsValue">' . $this->statsAverageCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
+            <div class="col-sm-12 StatsValue">' . $this->statsAverageCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>
           </span>
         </div>
       </div>

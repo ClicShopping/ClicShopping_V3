@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\Reviews;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
-  class Reviews extends \ClicShopping\OM\PagesAbstract {
+  class Reviews extends \ClicShopping\OM\PagesAbstract
+  {
     public $app;
 
-    protected function init()  {
+    protected function init()
+    {
 
       if (!Registry::exists('ReviewsApp')) {
         Registry::set('ReviewsApp', new ReviewsApp());

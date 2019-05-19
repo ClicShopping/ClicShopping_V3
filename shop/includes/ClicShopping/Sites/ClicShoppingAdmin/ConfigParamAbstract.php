@@ -1,19 +1,20 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
   use ClicShopping\OM\HTML;
 
-  abstract class ConfigParamAbstract  {
+  abstract class ConfigParamAbstract
+  {
     protected $code;
     protected $key_prefix;
     protected $key;
@@ -24,7 +25,8 @@
 
     abstract protected function init();
 
-    public function __construct()  {
+    public function __construct()
+    {
       $this->code = (new \ReflectionClass($this))->getShortName();
 
       $this->key = $this->key_prefix . $this->code;
@@ -32,24 +34,27 @@
       $this->init();
     }
 
-    protected function getInputValue()  {
+    protected function getInputValue()
+    {
       $key = strtoupper($this->key);
       $value = defined($key) ? constant($key) : null;
 
       if (!isset($value) && isset($this->default)) {
-          $value = $this->default;
+        $value = $this->default;
       }
 
       return $value;
     }
 
-    public function getInputField()  {
+    public function getInputField()
+    {
       $input = HTML::inputField($this->key, $this->getInputValue());
 
       return $input;
     }
 
-    public function getSetField() {
+    public function getSetField()
+    {
       $input = $this->getInputField();
 
       $result = <<<EOT

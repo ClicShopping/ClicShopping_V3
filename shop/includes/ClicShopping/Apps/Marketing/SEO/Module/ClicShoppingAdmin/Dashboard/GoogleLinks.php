@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\SEO\Module\ClicShoppingAdmin\Dashboard;
 
@@ -15,12 +15,14 @@
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
-  class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('SEO')) {
         Registry::set('SEO', new SEOApp());
@@ -35,60 +37,61 @@
       $this->title = $this->app->getDef('module_admin_dashboard_googlelinks_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_googlelinks_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
 
-  	   $url_adsense = 'https://google.com/adsense';
+      $url_adsense = 'https://google.com/adsense';
       $url_analytics = 'https://www.google.com/analytics/';
-  	   $url_adwords = 'https://adwords.google.com';
-  	   $url_webmastertools = 'https://www.google.com/webmasters/tools/';
-  	   $url_alerts = 'https://www.google.com/alerts';
-  	   $url_places = 'https://accounts.google.com/ServiceLogin?service=lbc&continue=https://www.google.com/local/add%3Fservice%3Dlbc';
-  	   $url_plus = 'https://plus.google.com';
-  	   $url_merchant = 'https://www.google.com/merchants/default';
+      $url_adwords = 'https://adwords.google.com';
+      $url_webmastertools = 'https://www.google.com/webmasters/tools/';
+      $url_alerts = 'https://www.google.com/alerts';
+      $url_places = 'https://accounts.google.com/ServiceLogin?service=lbc&continue=https://www.google.com/local/add%3Fservice%3Dlbc';
+      $url_plus = 'https://plus.google.com';
+      $url_merchant = 'https://www.google.com/merchants/default';
 
       $content_width = (int)MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH;
 
       $output = '<div class="col-md-' . $content_width . '">';
       $output .= '<div class="separator"></div>';
       $output .= '<table class="table table-sm table-hover">' .
-                '<thead>' .
-                '  <tr class="dataTableHeadingRow">' .
-                '    <th width="20">&nbsp;</th>' .
-                '    <th>' . $this->app->getDef('module_admin_dashboard_googlelinks_app_title') . '</th>' .
-                '  </tr>' .
-                '</thead>';
-                '<tbody>';
+        '<thead>' .
+        '  <tr class="dataTableHeadingRow">' .
+        '    <th width="20">&nbsp;</th>' .
+        '    <th>' . $this->app->getDef('module_admin_dashboard_googlelinks_app_title') . '</th>' .
+        '  </tr>' .
+        '</thead>';
+      '<tbody>';
 
       $output .= '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_analytics . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_analytics') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_webmastertools . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_webmastertools') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_places . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_places') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_alerts . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_alerts') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_adsense . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adsense') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_adwords . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adwords') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_plus . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_plus') . '</a></td>' .
-               '  </tr>' .
-               '  <tr>' .
-               '    <td colspan="2"><a href="' . $url_merchant . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_merchant') . '</a></td>' .
-               '  </tr>';
+        '    <td colspan="2"><a href="' . $url_analytics . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_analytics') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_webmastertools . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_webmastertools') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_places . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_places') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_alerts . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_alerts') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_adsense . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adsense') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_adwords . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adwords') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_plus . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_plus') . '</a></td>' .
+        '  </tr>' .
+        '  <tr>' .
+        '    <td colspan="2"><a href="' . $url_merchant . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_merchant') . '</a></td>' .
+        '  </tr>';
 
       $output .= '<tbody>';
       $output .= '</table>';
@@ -98,10 +101,11 @@
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
 
 
-        $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Enable Summary google Links SEO',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS',
           'configuration_value' => 'True',
@@ -113,7 +117,7 @@
         ]
       );
 
-         $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Select the width to display',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH',
           'configuration_value' => '12',
@@ -125,7 +129,7 @@
         ]
       );
 
-         $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_SORT_ORDER',
           'configuration_value' => '400',
@@ -138,11 +142,12 @@
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS',
-            'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH',
-            'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_SORT_ORDER'
-            ];
+        'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_SORT_ORDER'
+      ];
     }
   }
 

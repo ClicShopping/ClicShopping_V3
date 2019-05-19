@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop;
 
@@ -16,17 +16,19 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTTP;
 
-  class HeaderTags {
+  class HeaderTags
+  {
 
-/**
-* Function to return the metatag in the footer
-* public function
-* @param string $footer
-* @return string metatag in the footer
-* get_submit_footer
-*/
+    /**
+     * Function to return the metatag in the footer
+     * public function
+     * @param string $footer
+     * @return string metatag in the footer
+     * get_submit_footer
+     */
 
-    public static function geFooterTag() {
+    public static function geFooterTag()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -37,7 +39,7 @@
       $Qsubmit_footer->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
       $Qsubmit_footer->execute();
 
-      if($Qsubmit_footer->fetch()) {
+      if ($Qsubmit_footer->fetch()) {
         $footer = HTML::outputProtected($Qsubmit_footer->value('submit_defaut_language_footer'));
 
         $delimiter = ',';
@@ -55,15 +57,16 @@
     }
 
 
-/*
- * Function to return the canonical URL
-
- * @version 1.0
- * public function
- * @param string $canonical_link
- * @return string url of the website
- */
-    public static function getCanonicalUrl()  {
+    /*
+     * Function to return the canonical URL
+    
+     * @version 1.0
+     * public function
+     * @param string $canonical_link
+     * @return string url of the website
+     */
+    public static function getCanonicalUrl()
+    {
 
       $domain = HTTP::typeUrlDomain(); // gets the base URL minus the trailing slash
       $string = $_SERVER['REQUEST_URI'];   // gets the url

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\Zones\Sites\ClicShoppingAdmin\Pages\Home\Actions\Zones;
 
@@ -15,14 +15,17 @@
 
   use ClicShopping\Apps\Configuration\Zones\Classes\ClicShoppingAdmin\Status;
 
-  class AllFlag extends \ClicShopping\OM\PagesActionsAbstract {
+  class AllFlag extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('Zones');
     }
 
-    public function execute() {
+    public function execute()
+    {
 
       if (!empty($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
@@ -32,7 +35,7 @@
                                               where zone_id = :zone_id
                                              ');
 
-            $Qzones->bindInt(':zone_id',$id);
+            $Qzones->bindInt(':zone_id', $id);
             $Qzones->execute();
 
             if ($Qzones->valueInt('zone_status') == 1) {

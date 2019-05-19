@@ -1,39 +1,42 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\ProductsAttributes\Classes\Shop;
 
   use ClicShopping\OM\Registry;
 
-  class ProductsAttributesShop {
+  class ProductsAttributesShop
+  {
     protected $lang;
     protected $app;
     protected $productsCommon;
     protected $customer;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->lang = Registry::get('Language');
       $this->db = Registry::get('Db');
       $this->productsCommon = Registry::get('ProductsCommon');
       $this->customer = Registry::get('Customer');
     }
 
-/**
- * Count the number of attributes on product
- *
- * @param string
- * @return string $products_attributes['total'], total of attributes
- * @access public
- */
-    private function setCountProductsAttributes($id = null) {
+    /**
+     * Count the number of attributes on product
+     *
+     * @param string
+     * @return string $products_attributes['total'], total of attributes
+     * @access public
+     */
+    private function setCountProductsAttributes($id = null)
+    {
       if (is_null($id)) {
         $id = $this->productsCommon->getID();
       }
@@ -80,16 +83,18 @@
       return $products_attributes['total'];
     }
 
-    Public function getCountProductsAttributes($id = null)  {
+    Public function getCountProductsAttributes($id = null)
+    {
       return $this->setCountProductsAttributes($id);
     }
 
-/**
- * Check if product has attributes
- * @param string $products_id
- * @return the checking of the products attributbes
- */
-    public function getHasProductAttributes($id = null) {
+    /**
+     * Check if product has attributes
+     * @param string $products_id
+     * @return the checking of the products attributbes
+     */
+    public function getHasProductAttributes($id = null)
+    {
 
       if (is_null($id)) {
         $id = $this->productsCommon->getID();
@@ -108,15 +113,16 @@
       return $Qattributes->fetch() !== false;
     }
 
-/**
- * Get attributes Information
- * @param int $products_id
- * @param int $option_id
- * @param int $options_values_id
- * @param int $language_id
- * @return mixed
- */
-    public function getProductsAttributesInfo($products_id, $option_id, $options_values_id = null, $language_id) {
+    /**
+     * Get attributes Information
+     * @param int $products_id
+     * @param int $option_id
+     * @param int $options_values_id
+     * @param int $language_id
+     * @return mixed
+     */
+    public function getProductsAttributesInfo($products_id, $option_id, $options_values_id = null, $language_id)
+    {
       if (!is_null($options_values_id)) {
         if ($this->customer->getCustomersGroupID() != 0) {
           $Qattributes = $this->db->prepare('select distinct popt.products_options_name,
@@ -225,12 +231,13 @@
       return $Qattributes;
     }
 
-/**
- *
- * @param int $id
- * @return bool
- */
-    public function getCheckProductsStatus($id) {
+    /**
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function getCheckProductsStatus($id)
+    {
       $Qcheck = $this->db->prepare('select products_id
                                     from :table_products
                                     where products_id = :products_id
@@ -244,14 +251,15 @@
       return $Qcheck->fetch();
     }
 
-/**
- * Check products attributes
- * @param int $products_id
- * @param int $option_id
- * @param int $options_values_id
- * @return bool
- */
-    public function GetCheckProductsAttributes($products_id, $option_id, $options_values_id) {
+    /**
+     * Check products attributes
+     * @param int $products_id
+     * @param int $option_id
+     * @param int $options_values_id
+     * @return bool
+     */
+    public function GetCheckProductsAttributes($products_id, $option_id, $options_values_id)
+    {
       if ($this->customer->getCustomersGroupID() != 0) {
         $Qcheck = $this->db->prepare('select products_attributes_id
                                       from :table_products_attributes
@@ -290,13 +298,14 @@
       return $Qcheck->false;
     }
 
-/**
- * get the attributes price
- * @param in $products_id, the id of the products
- * @return $attributes_price the price of the attributes
- * @access public
- */
-    public function getAttributesPrice($products_id) {
+    /**
+     * get the attributes price
+     * @param in $products_id , the id of the products
+     * @return $attributes_price the price of the attributes
+     * @access public
+     */
+    public function getAttributesPrice($products_id)
+    {
       $attributes_price = 0;
 
       if (isset($this->contents[$products_id]['attributes'])) {
@@ -334,13 +343,14 @@
 // Download
 ///******************************************************
 
-/**
- * Check products download
- * @param int $products_id
- * @param int $options_values_id
- * @return bool
- */
-    public function getCheckProductsDownload($products_id, $options_values_id) {
+    /**
+     * Check products download
+     * @param int $products_id
+     * @param int $options_values_id
+     * @return bool
+     */
+    public function getCheckProductsDownload($products_id, $options_values_id)
+    {
       if ($this->customer->getCustomersGroupID() != 0) {
         $Qcheck = $this->db->prepare('select pa.products_attributes_id
                                       from :table_products_attributes pa,
@@ -379,15 +389,16 @@
       return $check;
     }
 
-/**
- * get the attributes download - used payment
- * @param int $products_id
- * @param int $options_id
- * @param int $options_values_id
- * @param int $language_id
- * @return mixed
- */
-    public function getAttributesDownloaded($products_id, $options_id, $options_values_id, $language_id) {
+    /**
+     * get the attributes download - used payment
+     * @param int $products_id
+     * @param int $options_id
+     * @param int $options_values_id
+     * @param int $language_id
+     * @return mixed
+     */
+    public function getAttributesDownloaded($products_id, $options_id, $options_values_id, $language_id)
+    {
       if (DOWNLOAD_ENABLED == 'true') {
         if ($this->customer->getCustomersGroupID() != 0) {
           $Qattributes = $this->db->prepare('select popt.products_options_name,

@@ -1,27 +1,30 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\Currency\Sites\ClicShoppingAdmin\Pages\Home\Actions\Currency;
 
   use ClicShopping\Apps\Configuration\Currency\Lib\PHPXurrency;
   use ClicShopping\OM\Registry;
 
-  class UpdateAll extends \ClicShopping\OM\PagesActionsAbstract {
+  class UpdateAll extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('Currency');
     }
 
-    public function getConvertCurrency() {
+    public function getConvertCurrency()
+    {
       $api_id = CLICSHOPPING_APP_CURRENCY_CR_API_KEY;
 
       $url = 'https://openexchangerates.org/api/latest.json?app_id=' . $api_id;
@@ -60,7 +63,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $Qcurrency = $this->app->db->prepare('select currencies_id,
                                                    code,
                                                    title
@@ -90,12 +94,12 @@
           if ($rate == 0) $rate = 1;
 
           $this->app->db->save('currencies', [
-                                              'value' => $rate,
-                                              'last_updated' => 'now()'
-                                              ], [
-                                                'currencies_id' => $Qcurrency->valueInt('currencies_id')
-                                              ]
-                              );
+            'value' => $rate,
+            'last_updated' => 'now()'
+          ], [
+              'currencies_id' => $Qcurrency->valueInt('currencies_id')
+            ]
+          );
         }
       }
 

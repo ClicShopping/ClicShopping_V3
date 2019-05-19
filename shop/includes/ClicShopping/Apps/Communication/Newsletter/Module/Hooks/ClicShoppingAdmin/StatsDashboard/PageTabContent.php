@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Communication\Newsletter\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Communication\Newsletter\Newsletter as NewsletterApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface {
+  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       if (!Registry::exists('Newsletter')) {
         Registry::set('Newsletter', new NewsletterApp());
       }
@@ -29,7 +31,8 @@
     }
 
 
-    private function statsCountCustomersNewsletter() {
+    private function statsCountCustomersNewsletter()
+    {
       $QcustomersNewsletter = $this->app->db->prepare('select count(customers_id) as count
                                                        from :table_customers
                                                        where customers_newsletter = 1
@@ -43,7 +46,8 @@
     }
 
 // Nbr de clients total
-    private function statCountCustomersB2C() {
+    private function statCountCustomersB2C()
+    {
       $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                             from :table_customers
                                             where customers_group_id = 0
@@ -57,15 +61,17 @@
     }
 
 // Average newlstter subcribers vs total customers
-    private function statAverageCustomersNewsletterB2C() {
-      if ($this->statCountCustomersB2C() > 0 &&$this->statsCountCustomersNewsletter() > 0) {
-        $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2C()) * 100, 2) .' %';
+    private function statAverageCustomersNewsletterB2C()
+    {
+      if ($this->statCountCustomersB2C() > 0 && $this->statsCountCustomersNewsletter() > 0) {
+        $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2C()) * 100, 2) . ' %';
       }
       return $Average;
     }
 
 // Nbr de clients total
-    private function statCountCustomersB2B() {
+    private function statCountCustomersB2B()
+    {
       $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                              from :table_customers
                                              where customers_group_id > 0
@@ -78,15 +84,17 @@
     }
 
 // Average newlstter subcribers vs total customers
-    private function statAverageCustomersNewsletterB2B() {
+    private function statAverageCustomersNewsletterB2B()
+    {
       if ($this->statCountCustomersB2B() > 0 && $this->statsCountCustomersNewsletter() > 0) {
-        $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2B()) * 100, 2) .' %';
+        $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2B()) * 100, 2) . ' %';
       }
 
       return $Average;
     }
 
-    public function display() {
+    public function display()
+    {
 
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
         return false;
@@ -121,7 +129,7 @@
           </div>
           ';
         }
-        
+
 //        $output .= '<div class="col-md-11 mainTable"></div>';
 
         $output = <<<EOD

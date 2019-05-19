@@ -1,27 +1,30 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
-  class LoggerAdmin {
-    public  $timerStart;
+  class LoggerAdmin
+  {
+    public $timerStart;
     public $timerStop;
     public $timer_total;
 
 // class constructor
-    public function __construct() {
+    public function __construct()
+    {
       $this->timerStart();
     }
 
-    public function timerStart() {
+    public function timerStart()
+    {
       if (defined("PAGE_PARSE_START_TIME")) {
         $this->timerStart = PAGE_PARSE_START_TIME;
       } else {
@@ -29,7 +32,8 @@
       }
     }
 
-    public function timerStop($display = 'false') {
+    public function timerStop($display = 'false')
+    {
       $this->timerStop = microtime();
 
       $time_start = explode(' ', $this->timerStart);
@@ -44,11 +48,13 @@
       }
     }
 
-    public function timerDisplay() {
+    public function timerDisplay()
+    {
       return '<span>Parse Time: ' . $this->timer_total . 's</span>';
     }
 
-    public static function write($message, $type) {
+    public static function write($message, $type)
+    {
       error_log(strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' [' . $type . '] ' . $message . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
     }
   }

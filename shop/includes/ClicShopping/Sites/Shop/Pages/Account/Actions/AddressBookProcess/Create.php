@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\AddressBookProcess;
 
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Create extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Create extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -25,7 +27,7 @@
 
       $process = false;
 
-      if (isset($_POST['action']) && $_POST['action'] == 'process' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken']) ) {
+      if (isset($_POST['action']) && $_POST['action'] == 'process' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $process = true;
         $error = false;
 
@@ -52,11 +54,11 @@
           $telephone = HTML::sanitize($_POST['telephone']);
         }
 
-        if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_CELLULAR_PHONE =='true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_CELLULAR_PHONE_PRO == 'true'))) {
+        if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_CELLULAR_PHONE == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_CELLULAR_PHONE_PRO == 'true'))) {
           $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
         }
 
-        if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_FAX =='true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_FAX_PRO == 'true'))) {
+        if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_FAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_FAX_PRO == 'true'))) {
           $fax = HTML::sanitize($_POST['fax']);
         }
 
@@ -71,13 +73,13 @@
 
 // Clients B2C et B2B : Controle selection de la civilite
         if ((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
-          if ( ($gender != 'm') && ($gender != 'f') ) {
+          if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error'), 'error', 'addressbook');
           }
         } else if ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-          if ( ($gender != 'm') && ($gender != 'f') ) {
+          if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error', 'addressbook');
@@ -227,13 +229,13 @@
 
         if ($error === false) {
           $sql_data_array = ['entry_firstname' => $firstname,
-                             'entry_lastname' => $lastname,
-                             'entry_street_address' => $street_address,
-                             'entry_postcode' => $postcode,
-                             'entry_city' => $city,
-                             'entry_country_id' => (int)$country,
-                             'entry_telephone' => $telephone
-                            ];
+            'entry_lastname' => $lastname,
+            'entry_street_address' => $street_address,
+            'entry_postcode' => $postcode,
+            'entry_city' => $city,
+            'entry_country_id' => (int)$country,
+            'entry_telephone' => $telephone
+          ];
 
           if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
             $sql_data_array['entry_gender'] = $gender;
@@ -259,11 +261,11 @@
           }
 
 // create address
-            $sql_data_array['customers_id'] = (int)$CLICSHOPPING_Customer->getID();
+          $sql_data_array['customers_id'] = (int)$CLICSHOPPING_Customer->getID();
 
-            $CLICSHOPPING_Db->save('address_book', $sql_data_array);
+          $CLICSHOPPING_Db->save('address_book', $sql_data_array);
 
-            $new_address_book_id = $CLICSHOPPING_Db->lastInsertId();
+          $new_address_book_id = $CLICSHOPPING_Db->lastInsertId();
 
 // register session variables
           if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $CLICSHOPPING_Customer->getDefaultAddressID())) {
@@ -272,11 +274,11 @@
             $CLICSHOPPING_Customer->setDefaultAddressID($_GET['id']);
 
             $sql_data_array = ['customers_firstname' => $firstname,
-                               'customers_lastname' => $lastname,
-                               'customers_cellular_phone' => $cellular_phone,
-                               'customers_fax' => $fax,
-                               'customers_telephone' => $telephone
-                              ];
+              'customers_lastname' => $lastname,
+              'customers_cellular_phone' => $cellular_phone,
+              'customers_fax' => $fax,
+              'customers_telephone' => $telephone
+            ];
 
             if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
               $sql_data_array['customers_gender'] = $gender;
@@ -289,7 +291,7 @@
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Create');
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_address_book_entry_updated'), 'success', 'addressbook');
-          }  else {
+          } else {
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Create');
           }// end isset($_POST['primary']
         }// end $error
@@ -297,7 +299,7 @@
         if (HTML::sanitize($_POST['shopping']) == 1) {
           CLICSHOPPING::redirect(null, 'Cart');
         } else {
-          CLICSHOPPING::redirect(null,'Account&AddressBook');
+          CLICSHOPPING::redirect(null, 'Account&AddressBook');
         }
       } // end $error
     } // end isset($_POST['action']

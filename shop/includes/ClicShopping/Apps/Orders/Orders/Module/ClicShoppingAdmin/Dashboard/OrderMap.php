@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Dashboard;
 
@@ -18,11 +18,13 @@
 
   use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  class OrderMap extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class OrderMap extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('Orders')) {
         Registry::set('Orders', new OrdersApp());
@@ -36,24 +38,25 @@
       $this->title = $this->app->getDef('module_admin_dashboard_order_map_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_order_map_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH;
 
       $link = CLICSHOPPING::link('ajax/map.php');
       $text_sale_total_ht = $this->app->getDef('text_sale_total_ht');
       $text_order_number = $this->app->getDef('text_order_number');
       $text_orders_status = $this->app->getDef('text_orders_status');
-      $text_order_delivery =  $this->app->getDef('text_order_delivery');
+      $text_order_delivery = $this->app->getDef('text_order_delivery');
 
 
-      $output = '<link type="text/css" href="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/jqvmap.css') .'" rel="stylesheet" media="screen" />';
-      $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') .'" rel="stylesheet" />';
+      $output = '<link type="text/css" href="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/jqvmap.css') . '" rel="stylesheet" media="screen" />';
+      $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" />';
 
       $output .= '<div class="' . $content_width . '">';
       $output .= '<div class="card">';
@@ -62,14 +65,14 @@
       $output .= '</div>';
       $output .= '</div>';
 
-      $output .= '<script type="text/javascript" src="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/jquery.vmap.js') .'"></script>';
+      $output .= '<script type="text/javascript" src="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/jquery.vmap.js') . '"></script>';
       $output .= '<script type="text/javascript" src="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/maps/jquery.vmap.world.js') . '"></script>';
 
       $output .= '
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$.ajax({
-		url:  \'' .$link . '\',
+		url:  \'' . $link . '\',
 		dataType: \'json\',
 		success: function(json) {
 			data = [];
@@ -91,7 +94,7 @@ $(document).ready(function() {
 				normalizeFunction: \'polynomial\',
 				onLabelShow: function(event, label, code) {
 					if (json[code]) {
-						label.html(\'<strong>\' + label.text() + \'</strong><br />\' + \'' . $text_order_number . ' \' + json[code][\'total\'] + \'<br />\' + \'' . $text_sale_total_ht .' \' + json[code][\'amount\'] + \'<br />\' + \'' . $text_orders_status .' \' + \'' . $text_order_delivery . '\');
+						label.html(\'<strong>\' + label.text() + \'</strong><br />\' + \'' . $text_order_number . ' \' + json[code][\'total\'] + \'<br />\' + \'' . $text_sale_total_ht . ' \' + json[code][\'amount\'] + \'<br />\' + \'' . $text_orders_status . ' \' + \'' . $text_order_delivery . '\');
 					}
 				},
 				onResize: function (element, width, height) {
@@ -111,7 +114,8 @@ $(document).ready(function() {
     }
 
 
-    public function Install() {
+    public function Install()
+    {
 
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want to enable this module ?',
@@ -150,10 +154,11 @@ $(document).ready(function() {
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_STATUS',
-              'MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH',
-              'MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_SORT_ORDER'
-            ];
+        'MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_SORT_ORDER'
+      ];
     }
   }

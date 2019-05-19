@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
@@ -28,11 +28,13 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_26.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_26.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'warning')  . ' ';
+  echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'warning') . ' ';
   echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Insert&page=' . $page));
   echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_insert'), null, null, 'success')
 ?>
@@ -43,19 +45,22 @@
   </div>
   <div class="separator"></div>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_new_orders_status'); ?></strong></div>
-  <?php echo HTML::form('status_invoice', CLICSHOPPING::link('orders_status_invoice.php', 'page=' .$page . '&action=insert')); ?>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_new_orders_status'); ?></strong>
+  </div>
+  <?php echo HTML::form('status_invoice', CLICSHOPPING::link('orders_status_invoice.php', 'page=' . $page . '&action=insert')); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?></label>
         </div>
       </div>
     </div>
-<?php
-  for ($i=0, $n=count($languages); $i<$n; $i++) {
-?>
+    <?php
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        ?>
         <div class="row">
           <div class="col-md-5">
             <div class="form-group row">
@@ -67,13 +72,14 @@
             </div>
           </div>
         </div>
-<?php
-  }
-?>
+        <?php
+      }
+    ?>
     <div class="separator"></div>
     <div class="col-md-12">
       <span class="col-md-3"></span>
-      <span class="col-md-3"><br /><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?></span>
+      <span
+        class="col-md-3"><br/><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?></span>
     </div>
   </div>
 

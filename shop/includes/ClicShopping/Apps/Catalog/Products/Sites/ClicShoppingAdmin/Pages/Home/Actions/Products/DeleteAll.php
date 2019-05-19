@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions\Products;
@@ -17,19 +17,22 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
-  class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract {
+  class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
     protected $selected;
     protected $cPath;
 
-    public function __construct(){
+    public function __construct()
+    {
       $this->app = Registry::get('Products');
 
       $this->selected = $_POST['selected'];
       $this->cPath = HTML::sanitize($_GET['cPath']);
     }
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
@@ -45,7 +48,7 @@
 
             if ($Qcheck->rowCount() > 0) {
               $CLICSHOPPING_ProductsAdmin->removeProduct($items);
-              $CLICSHOPPING_Hooks->call('Products','DeleteAll');
+              $CLICSHOPPING_Hooks->call('Products', 'DeleteAll');
             }
           }
         }

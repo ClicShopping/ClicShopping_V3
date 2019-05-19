@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\ReviewsWrite\Actions;
 
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class ReviewsWrite extends \ClicShopping\OM\PagesActionsAbstract {
+  class ReviewsWrite extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -36,7 +38,7 @@
         CLICSHOPPING::redirect(null, CLICSHOPPING::getAllGET(array('action')));
       }
 
-        $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
+      $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
                                                 products_quantity as in_stock,
                                                 products_image
                                           from :table_products
@@ -44,9 +46,9 @@
                                           and products_status = 1
                                           and products_view = 1
                                         ');
-        $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
+      $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
 
-        $Qproducts->execute();
+      $Qproducts->execute();
 
       if ($Qproducts->fetch() === false) {
         CLICSHOPPING::redirect(null, CLICSHOPPING::getAllGET(array('action')));

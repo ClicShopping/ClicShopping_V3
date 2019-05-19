@@ -1,21 +1,22 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
-
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\OM\Is;
 
-  class email  {
+  class email
+  {
 
-    public static function execute($email, $disable_dns_check = false) {
+    public static function execute($email, $disable_dns_check = false)
+    {
 
       $email = trim($email);
       if (!empty($email) && (strlen($email) <= 255) && filter_var($email, FILTER_VALIDATE_EMAIL)) {

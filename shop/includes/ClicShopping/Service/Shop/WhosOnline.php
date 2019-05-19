@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Service\Shop;
 
@@ -16,11 +16,13 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTTP;
 
-  class WhosOnline implements \ClicShopping\OM\ServiceInterface {
+  class WhosOnline implements \ClicShopping\OM\ServiceInterface
+  {
 
     private static $spider_flag;
 
-    public static function start() {
+    public static function start()
+    {
       if (!Registry::exists('WhosOnline')) {
         $CLICSHOPPING_Customer = Registry::get('Customer');
         $CLICSHOPPING_Db = Registry::get('Db');
@@ -38,7 +40,7 @@
         $current_time = time();
         $xx_mins_ago = ($current_time - 900);
 
-        if ( $CLICSHOPPING_Customer->isLoggedOn() ) {
+        if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $wo_customer_id = $CLICSHOPPING_Customer->getID();
           $wo_full_name = $CLICSHOPPING_Customer->getName();
         } else {
@@ -47,7 +49,7 @@
           $wo_full_name = 'Guest';
           self::$spider_flag = false;
 
-          if (!empty($user_agent) || strpos ($user_agent, "Googlebot") > 0) {
+          if (!empty($user_agent) || strpos($user_agent, "Googlebot") > 0) {
             $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
             if (!empty($user_agent)) {
@@ -65,7 +67,7 @@
           }
         }
 
-  // remove entries that have expired
+        // remove entries that have expired
         $Qwhosonline = $CLICSHOPPING_Db->prepare('delete
                                                   from :table_whos_online
                                                   where time_last_click < :time_last_click
@@ -82,14 +84,14 @@
         $Qsession->execute();
 
         if ($Qsession->fetch() !== false) {
-          $CLICSHOPPING_Db->save('whos_online', ['customer_id' =>(int)$wo_customer_id,
-                                                'full_name' => $wo_full_name,
-                                                'ip_address' => $wo_ip_address,
-                                                'time_last_click' => $current_time,
-                                                'last_page_url' => $wo_last_page_url
-                                                ],
-                                                ['session_id' => $wo_session_id]
-                              );
+          $CLICSHOPPING_Db->save('whos_online', ['customer_id' => (int)$wo_customer_id,
+            'full_name' => $wo_full_name,
+            'ip_address' => $wo_ip_address,
+            'time_last_click' => $current_time,
+            'last_page_url' => $wo_last_page_url
+          ],
+            ['session_id' => $wo_session_id]
+          );
 
         } else {
           if ($_SERVER['HTTP_REFERER'] === null) {
@@ -99,16 +101,16 @@
           }
 
           $CLICSHOPPING_Db->save('whos_online', ['customer_id' => (int)$wo_customer_id,
-                                                'full_name' => $wo_full_name,
-                                                'session_id' => $wo_session_id,
-                                                'ip_address' => $wo_ip_address,
-                                                'time_entry' => $current_time,
-                                                'time_last_click' => $current_time,
-                                                'last_page_url' => $wo_last_page_url,
-                                                'http_referer' => $http_referer,
-                                                'user_agent' => $user_agent
-                                               ]
-                                );
+              'full_name' => $wo_full_name,
+              'session_id' => $wo_session_id,
+              'ip_address' => $wo_ip_address,
+              'time_entry' => $current_time,
+              'time_last_click' => $current_time,
+              'last_page_url' => $wo_last_page_url,
+              'http_referer' => $http_referer,
+              'user_agent' => $user_agent
+            ]
+          );
         }
 
       } else {
@@ -116,19 +118,22 @@
       }
     }
 
-    public static function getResultSpiderFlag() {
+    public static function getResultSpiderFlag()
+    {
       return self::$spider_flag;
     }
 
-    public static function stop() {
+    public static function stop()
+    {
       return true;
     }
 
-    public static function whosOnlineUpdateSessionId($old_id, $new_id) {
+    public static function whosOnlineUpdateSessionId($old_id, $new_id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('whos_online', ['session_id' => $new_id],
-                                             ['session_id' => $old_id]
-                            );
+        ['session_id' => $old_id]
+      );
     }
   }

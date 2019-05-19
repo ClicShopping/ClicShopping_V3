@@ -1,22 +1,24 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Classes;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class CheckoutSuccess {
+  class CheckoutSuccess
+  {
 
-    public static function getCheckoutSuccessOrder() {
+    public static function getCheckoutSuccessOrder()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -32,15 +34,17 @@
       return $Qorders;
     }
 
-    public static function getCheckoutSuccessOrderCheck() {
+    public static function getCheckoutSuccessOrderCheck()
+    {
       $Qorders = static::getCheckoutSuccessOrder();
-  // redirect to shopping cart page if no orders exist
+      // redirect to shopping cart page if no orders exist
       if ($Qorders->fetch() === false) {
         CLICSHOPPING::redirect(null, 'Cart');
       }
     }
 
-    public static function getCheckoutSuccessOrderId() {
+    public static function getCheckoutSuccessOrderId()
+    {
       $Qorders = static::getCheckoutSuccessOrder();
 
       $orders = $Qorders->toArray();

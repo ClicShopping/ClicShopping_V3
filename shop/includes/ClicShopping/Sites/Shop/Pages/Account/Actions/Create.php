@@ -1,13 +1,14 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
+
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions;
 
   use ClicShopping\OM\CLICSHOPPING;
@@ -17,10 +18,12 @@
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
-  class Create extends \ClicShopping\OM\PagesActionsAbstract {
+  class Create extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
-      $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
+    public function execute()
+    {
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
 

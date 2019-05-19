@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Customers\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface {
+  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       if (!Registry::exists('Customers')) {
         Registry::set('Customers', new CustomersApp());
       }
@@ -28,7 +30,8 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
     }
 
-    private function statsCountCustomers($groups = null) {
+    private function statsCountCustomers($groups = null)
+    {
       $condition = '';
 
       if (!is_null($groups)) {
@@ -50,7 +53,8 @@
       return $customers_total;
     }
 
-    private function statsAverageCustomersMen() {
+    private function statsAverageCustomersMen()
+    {
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent,
                                                                   ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                           from :table_customers
@@ -65,15 +69,16 @@
       }
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
-        $avgage =  $QstatAnalyseCustomersMan->valueDecimal('avgage');
+        $avgage = $QstatAnalyseCustomersMan->valueDecimal('avgage');
       }
 
-      $stat_analyse_customers_man = $numberByGenderPerCent .'% <br />' . $avgage.' ' .  $this->app->getDef('text_year');
+      $stat_analyse_customers_man = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
 
       return $stat_analyse_customers_man;
     }
 
-    private function statsAverageCustomersWomen() {
+    private function statsAverageCustomersWomen()
+    {
       $avgage = '';
 
       $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent,
@@ -91,17 +96,17 @@
       }
 
       if (!is_null($stat_analyse_customers_woman['avgage'])) {
-        $avgage =  $stat_analyse_customers_woman['avgage'];
+        $avgage = $stat_analyse_customers_woman['avgage'];
       }
 
-      $stat_analyse_customers_woman = $numberByGenderPerCent .'% <br />' . $avgage .' ' .  $this->app->getDef('text_year');
+      $stat_analyse_customers_woman = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
 
       return $stat_analyse_customers_woman;
     }
 
 
-
-    public function display() {
+    public function display()
+    {
 
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
         return false;

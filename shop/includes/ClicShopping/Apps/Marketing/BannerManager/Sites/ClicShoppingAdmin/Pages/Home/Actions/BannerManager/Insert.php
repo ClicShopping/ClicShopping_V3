@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\BannerManager\Sites\ClicShoppingAdmin\Pages\Home\Actions\BannerManager;
 
@@ -16,9 +16,11 @@
 
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
-  class insert extends \ClicShopping\OM\PagesActionsAbstract {
+  class insert extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
 
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -33,7 +35,7 @@
       $banners_group = (empty($new_banners_group)) ? HTML::sanitize($_POST['banners_group']) : $new_banners_group;
 
       $banners_target = $_POST['banners_target'];
-      $banners_html_text =  $_POST['banners_html_text'];
+      $banners_html_text = $_POST['banners_html_text'];
 
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
@@ -76,24 +78,24 @@
       if ($banner_error === false) {
 
         $sql_data_array = ['banners_title' => $banners_title,
-                          'banners_url' => $banners_url,
-                          'banners_group' => $banners_group,
-                          'banners_target' => $banners_target,
-                          'languages_id' => (int)$language_id,
-                          'banners_html_text' => $banners_html_text,
-                          'expires_date' => null,
-                          'expires_impressions' => 0,
-                          'date_scheduled' => null,
-                          'banners_title_admin' => $banners_title_admin,
-                          'customers_group_id' => $customers_group_id
-                          ];
+          'banners_url' => $banners_url,
+          'banners_group' => $banners_group,
+          'banners_target' => $banners_target,
+          'languages_id' => (int)$language_id,
+          'banners_html_text' => $banners_html_text,
+          'expires_date' => null,
+          'expires_impressions' => 0,
+          'date_scheduled' => null,
+          'banners_title_admin' => $banners_title_admin,
+          'customers_group_id' => $customers_group_id
+        ];
 
         $insert_image_sql_data = ['banners_image' => $banners_image_local];
         $sql_data_array = array_merge($sql_data_array, $insert_image_sql_data);
 
         $insert_sql_data = ['date_added' => 'now()',
-                            'status' => 1
-                           ];
+          'status' => 1
+        ];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
@@ -108,18 +110,18 @@
           $expires_date = substr($expires_date, 0, 4) . substr($expires_date, 5, 2) . substr($expires_date, 8, 2);
 
           $CLICSHOPPING_BannerManager->db->save('banners', ['expires_date' => $expires_date,
-                                                     'expires_impressions' => 'null'
-                                                    ],
-                                                    ['banners_id' => (int)$banners_id]
-                                        );
+            'expires_impressions' => 'null'
+          ],
+            ['banners_id' => (int)$banners_id]
+          );
 
         } elseif (!empty($expires_impressions)) {
 
           $CLICSHOPPING_BannerManager->db->save('banners', ['expires_date' => 'null',
-                                                     'expires_impressions' => $expires_impressions
-                                                    ],
-                                                    ['banners_id' => (int)$banners_id]
-                                        );
+            'expires_impressions' => $expires_impressions
+          ],
+            ['banners_id' => (int)$banners_id]
+          );
         }
 
 // date debut
@@ -127,11 +129,11 @@
           $date_scheduled = substr($date_scheduled, 0, 4) . substr($date_scheduled, 5, 2) . substr($date_scheduled, 8, 2);
 
 
-          $CLICSHOPPING_BannerManager->db->save('banners', ['status' =>  '0',
-                                                     'date_scheduled' =>$date_scheduled
-                                                    ],
-                                          ['banners_id' => (int)$banners_id]
-                                        );
+          $CLICSHOPPING_BannerManager->db->save('banners', ['status' => '0',
+            'date_scheduled' => $date_scheduled
+          ],
+            ['banners_id' => (int)$banners_id]
+          );
         }
 
         $CLICSHOPPING_Hooks->call('Insert', 'BannerManager');

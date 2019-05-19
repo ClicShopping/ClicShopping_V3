@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Categories;
@@ -16,14 +16,16 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Cache;
 
-  class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract {
-    protected  $app;
-    protected  $ID;
-    protected  $cPath;
-    protected  $moveToCategoryID;
-    protected  $categoriesAdmin;
+  class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    protected $app;
+    protected $ID;
+    protected $cPath;
+    protected $moveToCategoryID;
+    protected $categoriesAdmin;
 
-    public function __construct(){
+    public function __construct()
+    {
       $this->app = Registry::get('Categories');
 
       $this->categoriesAdmin = Registry::get('CategoriesAdmin');
@@ -39,11 +41,12 @@
       if (isset($_GET['cPath'])) {
         $this->cPath = HTML::sanitize($_GET['cPath']);
       } else {
-        $this->cPath =  0;
+        $this->cPath = 0;
       }
     }
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
@@ -60,12 +63,12 @@
         } else {
 
           $this->app->db->save('categories', [
-                                              'parent_id' => (int)$new_parent_id,
-                                              'last_modified' => 'now()'
-                                              ], [
-                                                'categories_id' => (int)$categories_id
-                                              ]
-                              );
+            'parent_id' => (int)$new_parent_id,
+            'last_modified' => 'now()'
+          ], [
+              'categories_id' => (int)$categories_id
+            ]
+          );
 
           Cache::clear('categories');
           Cache::clear('products-also_purchased');
@@ -73,7 +76,7 @@
           Cache::clear('products_cross_sell');
           Cache::clear('upcoming');
 
-          $CLICSHOPPING_Hooks->call('Categories','Insert');
+          $CLICSHOPPING_Hooks->call('Categories', 'Insert');
 
           $this->app->redirect('Categories&cPath=' . $new_parent_id);
         }

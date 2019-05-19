@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\ProductsAttributes\Sites\ClicShoppingAdmin\Pages\Home\Actions\ProductsAttributes;
 
@@ -17,14 +17,17 @@
 
   use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
 
-  class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract {
+  class AddProductAttributes extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('ProductsAttributes');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
@@ -47,16 +50,16 @@
       $page_info = 'option_page=' . HTML::sanitize($option_page) . '&value_page=' . HTML::sanitize($value_page) . '&attribute_page=' . HTML::sanitize($attribute_page);
 
       $this->app->db->save('products_attributes', ['products_id' => (int)$products_id,
-                                                  'options_id' => (int)$options_id,
-                                                  'options_values_id' => (int)$values_id,
-                                                  'options_values_price' => (float)$value_price,
-                                                  'price_prefix' => $price_prefix,
-                                                  'products_options_sort_order' => (int)$value_sort_order,
-                                                  'products_attributes_reference' => $products_attributes_reference,
-                                                  'customers_group_id' => $customers_group_id,
-                                                  'products_attributes_image' => $products_attributes_image
-                                                  ]
-                          );
+          'options_id' => (int)$options_id,
+          'options_values_id' => (int)$values_id,
+          'options_values_price' => (float)$value_price,
+          'price_prefix' => $price_prefix,
+          'products_options_sort_order' => (int)$value_sort_order,
+          'products_attributes_reference' => $products_attributes_reference,
+          'customers_group_id' => $customers_group_id,
+          'products_attributes_image' => $products_attributes_image
+        ]
+      );
 
       if (DOWNLOAD_ENABLED == 'true') {
         $products_attributes_id = $this->app->db->lastInsertId();
@@ -68,29 +71,29 @@
 
         $error = true;
 
-        if ( $upload_file->check() && $upload_file->save()) {
+        if ($upload_file->check() && $upload_file->save()) {
           $error = false;
         }
 
-        if ( $error === false ) {
+        if ($error === false) {
           $this->app->db->save('products_attributes_download', ['products_attributes_id' => (int)$products_attributes_id,
-                                                                'products_attributes_filename' => $upload_file->getFilename(),
-                                                                'products_attributes_maxdays' => (int)$products_attributes_maxdays,
-                                                                'products_attributes_maxcount' => (int)$products_attributes_maxcount
-                                                                ]
-                               );
+              'products_attributes_filename' => $upload_file->getFilename(),
+              'products_attributes_maxdays' => (int)$products_attributes_maxdays,
+              'products_attributes_maxcount' => (int)$products_attributes_maxcount
+            ]
+          );
 
         } else {
-           $this->app->db->save('products_attributes_download', ['products_attributes_id' => (int)$products_attributes_id,
-                                                                 'products_attributes_filename' => '',
-                                                                 'products_attributes_maxdays' => (int)$products_attributes_maxdays,
-                                                                 'products_attributes_maxcount' => (int)$products_attributes_maxcount
-                                                                ]
-                              );
+          $this->app->db->save('products_attributes_download', ['products_attributes_id' => (int)$products_attributes_id,
+              'products_attributes_filename' => '',
+              'products_attributes_maxdays' => (int)$products_attributes_maxdays,
+              'products_attributes_maxcount' => (int)$products_attributes_maxcount
+            ]
+          );
         }
       }
 
-      $CLICSHOPPING_Hooks->call('AddProductAttribute','Insert');
+      $CLICSHOPPING_Hooks->call('AddProductAttribute', 'Insert');
 
       $this->app->redirect('ProductsAttributes', $page_info);
     }

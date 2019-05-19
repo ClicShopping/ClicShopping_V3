@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Configuration\OrdersStatusInvoice\Sites\ClicShoppingAdmin\Pages\Home\Actions\OrdersStatusInvoice;
@@ -15,19 +15,22 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  class Insert extends \ClicShopping\OM\PagesActionsAbstract {
+  class Insert extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('OrdersStatusInvoice');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i=0, $n=count($languages); $i<$n; $i++) {
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $orders_status_invoice_name_array = $_POST['orders_status_invoice_name'];
         $language_id = $languages[$i]['id'];
 
@@ -41,8 +44,8 @@
         }
 
         $insert_sql_data = ['orders_status_invoice_id' => (int)$orders_status_invoice_id,
-                            'language_id' => (int)$language_id
-                           ];
+          'language_id' => (int)$language_id
+        ];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
@@ -51,11 +54,11 @@
 
       if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
         $this->app->db->save('configuration', [
-                                              'configuration_value' => $orders_status_invoice_id
-                                              ], [
-                                                'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
-                                              ]
-                            );
+          'configuration_value' => $orders_status_invoice_id
+        ], [
+            'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
+          ]
+        );
       }
 
       $this->app->redirect('OrdersStatusInvoice&page=' . $_GET['page'] . '&oID=' . $orders_status_invoice_id);

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Communication\PageManager\Classes\Shop;
 
@@ -17,7 +17,8 @@
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTML;
 
-  class PageManagerShop {
+  class PageManagerShop
+  {
 
     protected $pages_string;
     protected $pages_introduction;
@@ -33,18 +34,20 @@
     protected $lang;
     protected $rewriteUrl;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->db = Registry::get('Db');
       $this->customer = Registry::get('Customer');
       $this->lang = Registry::get('Language');
       $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
-/**
- * Count the introduction page
- * @return mixed
- */
-    private function pageManagerDisplayPageIntroCount() {
+    /**
+     * Count the introduction page
+     * @return mixed
+     */
+    private function pageManagerDisplayPageIntroCount()
+    {
       $Qpages = $this->db->prepare('select count(*) as count
                                      from :table_pages_manager
                                      where status = 1
@@ -55,11 +58,12 @@
       return $Qpages->valueInt('count');
     }
 
-/**
- * Time to display the introduction page
- * @return mixed
- */
-    public function pageManagerDisplayPageIntroTime() {
+    /**
+     * Time to display the introduction page
+     * @return mixed
+     */
+    public function pageManagerDisplayPageIntroTime()
+    {
 
       if ($this->pageManagerDisplayPageIntroCount() > 0) {
 
@@ -73,23 +77,24 @@
         $Qpages->execute();
 
         $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
-                  'page_time' => $Qpages->value('page_time')
-                  ];
+          'page_time' => $Qpages->value('page_time')
+        ];
       } else {
 
         $pages = ['pages_id' => 0,
-                  'page_time' => 0
-                 ];
+          'page_time' => 0
+        ];
       }
 
       return $pages['page_time'];
     }
 
-/**
- * display the introduction page
- * @return mixed
- */
-    public function pageManagerDisplayPageIntro() {
+    /**
+     * display the introduction page
+     * @return mixed
+     */
+    public function pageManagerDisplayPageIntro()
+    {
       if ($this->pageManagerDisplayPageIntroCount() > 0) {
 
         $Qpages = $this->db->prepare('select p.pages_id,
@@ -103,26 +108,27 @@
                                        order by rand()
                                        limit 1
                                       ');
-        $Qpages->bindValue(':language_id', (int)$this->lang->getId() );
+        $Qpages->bindValue(':language_id', (int)$this->lang->getId());
         $Qpages->execute();
 
         $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
-                  'pages_html_text' => $Qpages->value('pages_html_text')
-                 ];
+          'pages_html_text' => $Qpages->value('pages_html_text')
+        ];
       } else {
         $pages = ['pages_id' => 0,
-                  'pages_html_text' => ''
-                 ];
+          'pages_html_text' => ''
+        ];
       }
 
       return $pages['pages_html_text'];
     }
 
-/**
- * Display informations on frontpage
- * @return mixed
- */
-    public function pageManagerDisplayFrontPage() {
+    /**
+     * Display informations on frontpage
+     * @return mixed
+     */
+    public function pageManagerDisplayFrontPage()
+    {
       $Qpages = $this->db->prepare('select count(*) as count
                                      from :table_pages_manager
                                      where status = 1
@@ -149,27 +155,28 @@
                                        limit 1
                                      ');
 
-        $Qpages->bindInt(':language_id', (int)$this->lang->getId() );
-        $Qpages->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID()  );
+        $Qpages->bindInt(':language_id', (int)$this->lang->getId());
+        $Qpages->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
         $Qpages->execute();
 
         $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
-                  'pages_html_text' => $Qpages->value('pages_html_text')
-                 ];
+          'pages_html_text' => $Qpages->value('pages_html_text')
+        ];
       } else {
         $pages = ['pages_id' => 0,
-                  'pages_html_text' => ''
-                 ];
+          'pages_html_text' => ''
+        ];
       }
 
       return $pages['pages_html_text'];
     }
 
-/**
- * display information in contact page
- * @return mixed
- */
-    public function pageManagerDisplayContact() {
+    /**
+     * display information in contact page
+     * @return mixed
+     */
+    public function pageManagerDisplayContact()
+    {
       $Qpages = $this->db->prepare('select  p.pages_id,
                                              s.pages_html_text
                                      from :table_pages_manager p,
@@ -181,34 +188,35 @@
                                      and (p.customers_group_id = :customers_group_id  or p.customers_group_id = 99)
                                   ');
 
-      $Qpages->bindInt(':language_id', (int)$this->lang->getId() );
-      $Qpages->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID() );
+      $Qpages->bindInt(':language_id', (int)$this->lang->getId());
+      $Qpages->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
 
       $Qpages->execute();
 
-      if ( $Qpages->fetch() !== true ) {
+      if ($Qpages->fetch() !== true) {
         $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
-                  'pages_html_text' => $Qpages->value('pages_html_text')
-                 ];
+          'pages_html_text' => $Qpages->value('pages_html_text')
+        ];
       } else {
         $pages = ['pages_id' => 0,
-                  'pages_html_text' => ''
-                  ];
+          'pages_html_text' => ''
+        ];
       }
 
       return $pages['pages_html_text'];
     }
 
-/**
- * display information in footer
- * @param string $start_class
- * @param string $end_class
- * @param string $separation
- * @return mixed
- */
-    public function pageManagerDisplayBox($start_class = '<div class="pageManagerDisplayBox">', $end_class = '</div>', $separation = '') {
+    /**
+     * display information in footer
+     * @param string $start_class
+     * @param string $end_class
+     * @param string $separation
+     * @return mixed
+     */
+    public function pageManagerDisplayBox($start_class = '<div class="pageManagerDisplayBox">', $end_class = '</div>', $separation = '')
+    {
 
-        $QPage = $this->db->prepare('select  p.pages_id,
+      $QPage = $this->db->prepare('select  p.pages_id,
                                             p.sort_order,
                                             p.status,
                                             p.page_box,
@@ -239,7 +247,7 @@
       $page_liste_box = $start_class;
 
       while ($QPage->fetch() !== false) {
-        if (!empty($QPage->value('externallink')))  {
+        if (!empty($QPage->value('externallink'))) {
           $search = strpos($QPage->value('externallink'), 'index.php');
 
           if ($search === false) {
@@ -248,7 +256,7 @@
             $page_liste_box .= '<span>' . HTML::link(CLICSHOPPING::link($QPage->value('externallink')), $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '"') . '</span>' . '<br />';
           }
         } else {
-          if ($QPage->valueInt('pages_id') != 3){
+          if ($QPage->valueInt('pages_id') != 3) {
             $link = $this->rewriteUrl->getPageManagerContentUrl($QPage->valueInt('pages_id'));
           } else {
             $link = CLICSHOPPING::link(null, 'Info&Contact');
@@ -257,7 +265,7 @@
           if (!empty($QPage->value('pages_title'))) {
             $search = strpos($QPage->value('externallink'), 'index.php');
 
-             if ($search === false) {
+            if ($search === false) {
               $page_liste_box .= $start_class . $separ . HTML::link($link, $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '" rel="noreferrer"') . $end_class;
             } else {
               $page_liste_box .= $start_class . $separ . HTML::link($link, $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '"') . $end_class . '<br />';
@@ -269,17 +277,18 @@
       $page_liste_box .= '</div>';
       $page = ['text' => $page_liste_box];
 
-      return  $page['text'];
-     }
+      return $page['text'];
+    }
 
-/**
- * display the secondary box
- * @param string $start_class
- * @param string $end_class
- * @param string $separation
- * @return mixed
- */
-    public function pageManagerDisplaySecondaryBox($start_class = '<div class="pageManagerDisplaySecondaryBox">', $end_class = '</div>', $separation = '|') {
+    /**
+     * display the secondary box
+     * @param string $start_class
+     * @param string $end_class
+     * @param string $separation
+     * @return mixed
+     */
+    public function pageManagerDisplaySecondaryBox($start_class = '<div class="pageManagerDisplaySecondaryBox">', $end_class = '</div>', $separation = '|')
+    {
       $QPageSecondary = $this->db->prepare('select SQL_CALC_FOUND_ROWS p.pages_id,
                                                                         p.sort_order,
                                                                         p.status,
@@ -309,14 +318,14 @@
 
       $TotalRow = $QPageSecondary->getPageSetTotalRows();
 
-      if ($TotalRow > 0 ) {
+      if ($TotalRow > 0) {
         $rows = 0;
         $page_liste_box_secondary = $start_class;
 
         while ($QPageSecondary->fetch()) {
           $rows++;
 
-          if($rows != 1)  {
+          if ($rows != 1) {
             $separ = $separation;
           } else {
             $separ = '';
@@ -357,14 +366,15 @@
       return $pages_liste_info_box_secondary['text'];
     }
 
-/**
- * @param string $start_class
- * @param string $end_class
- * @param string $separation
- * @return mixed
- */
-    public function pageManagerDisplayHeaderMenu($start_class = '<span class="menuHeaderPageManager">', $end_class = '</span>', $separation = '|') {
-        $QPage = $this->db->prepare('select  p.pages_id,
+    /**
+     * @param string $start_class
+     * @param string $end_class
+     * @param string $separation
+     * @return mixed
+     */
+    public function pageManagerDisplayHeaderMenu($start_class = '<span class="menuHeaderPageManager">', $end_class = '</span>', $separation = '|')
+    {
+      $QPage = $this->db->prepare('select  p.pages_id,
                                             p.sort_order,
                                             p.status,
                                             p.page_box,
@@ -381,15 +391,15 @@
                                      order by p.sort_order, s.pages_title
                                     ');
 
-        $QPage->bindInt(':language_id', (int)$this->lang->getId() );
-        $QPage->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID() );
+      $QPage->bindInt(':language_id', (int)$this->lang->getId());
+      $QPage->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
 
-        $QPage->setCache('page_manager_display_header_menu-lang' . $this->lang->getId());
+      $QPage->setCache('page_manager_display_header_menu-lang' . $this->lang->getId());
 
-        $QPage->execute();
+      $QPage->execute();
 
-        $rows = 0;
-        $page_menu_header = '';
+      $rows = 0;
+      $page_menu_header = '';
 
 //***********************************
 // -------- menu header -----------
@@ -398,13 +408,13 @@
 
         $rows++;
 
-        if($rows != 1)  {
+        if ($rows != 1) {
           $separ = $separation;
         } else {
           $separ = '';
         }
 
-        if (!empty($QPage->value('externallink')))  {
+        if (!empty($QPage->value('externallink'))) {
           $search = strpos($QPage->value('externallink'), 'index.php');
 
           if ($search === false) {
@@ -420,13 +430,14 @@
       return $pages['text'];
     }
 
-/**
- * @param string $start_class
- * @param string $end_class
- * @param string $separation
- * @return mixed
- */
-    public function pageManagerDisplayFooterMenu($start_class = '<span class="menuFooterPageManager">', $end_class = '</span>', $separation = ' | ') {
+    /**
+     * @param string $start_class
+     * @param string $end_class
+     * @param string $separation
+     * @return mixed
+     */
+    public function pageManagerDisplayFooterMenu($start_class = '<span class="menuFooterPageManager">', $end_class = '</span>', $separation = ' | ')
+    {
       $QPage = $this->db->prepare('select  p.pages_id,
                                             p.sort_order,
                                             p.status,
@@ -444,8 +455,8 @@
                                      order by p.sort_order, s.pages_title
                                     ');
 
-      $QPage->bindInt(':language_id', (int)$this->lang->getId() );
-      $QPage->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID() );
+      $QPage->bindInt(':language_id', (int)$this->lang->getId());
+      $QPage->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
 
       $QPage->setCache('page_manager_display_footer_menu-lang' . $this->lang->getId());
 
@@ -460,13 +471,13 @@
       while ($QPage->fetch() !== false) {
         $rows++;
 
-        if($rows != 1)  {
+        if ($rows != 1) {
           $separ = $separation;
         } else {
           $separ = '';
         }
 
-        if (!empty($QPage->value('externallink')))  {
+        if (!empty($QPage->value('externallink'))) {
           $search = strpos($QPage->value('externallink'), 'index.php');
 
           if ($search === false) {
@@ -482,11 +493,12 @@
       return $pages['text'];
     }
 
-/**
- * display the footer menu information
- * @return mixed
- */
-    public function pageManagerDisplayFooter() {
+    /**
+     * display the footer menu information
+     * @return mixed
+     */
+    public function pageManagerDisplayFooter()
+    {
       $QPage = $this->db->prepare('select  p.pages_id,
                                             p.sort_order,
                                             p.status,
@@ -506,8 +518,8 @@
                                      order by p.sort_order, s.pages_title
                                     ');
 
-      $QPage->bindInt(':language_id', (int)$this->lang->getId() );
-      $QPage->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID() );
+      $QPage->bindInt(':language_id', (int)$this->lang->getId());
+      $QPage->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
 
       $QPage->setCache('page_manager_display_footer-lang' . $this->lang->getId());
 
@@ -524,19 +536,19 @@
 
         $rows++;
 
-        if($rows != 1)  {
+        if ($rows != 1) {
           $separation = ' | ';
         } else {
           $separation = '';
         }
 
-        if (!empty($QPage->value('externallink')))  {
+        if (!empty($QPage->value('externallink'))) {
           $search = strpos($QPage->value('externallink'), 'index.php');
 
           if ($search === false) {
             $page_liste_footer .= $separation . HTML::link($QPage->value('externallink'), $QPage->value('pages_title'), 'target="' . $QPage->value('links_target') . '"', ' class="footerPageManager" rel="noreferrer"');
           } else {
-            $page_liste_footer .= $separation. HTML::link(CLICSHOPPING::link($QPage->value('externallink')), $QPage->value('pages_title'), 'class="footerPageManager" target="' . $QPage->value('links_target') . '"');
+            $page_liste_footer .= $separation . HTML::link(CLICSHOPPING::link($QPage->value('externallink')), $QPage->value('pages_title'), 'class="footerPageManager" target="' . $QPage->value('links_target') . '"');
           }
         } else {
           if ($QPage->valueInt('pages_id') != 3) {
@@ -557,12 +569,13 @@
       return $pages['text'];
     }
 
-/**
- * display the content information
- * @param $id
- * @return mixed
- */
-    public function pageManagerDisplayInformation($id) {
+    /**
+     * display the content information
+     * @param $id
+     * @return mixed
+     */
+    public function pageManagerDisplayInformation($id)
+    {
       $QPage = $this->db->prepare('select p.pages_id,
                                           p.page_type,
                                           s.pages_html_text,
@@ -584,16 +597,16 @@
 
       $QPage->setCache('boxe_page_manager_display_information-lang' . $this->lang->getId());
 
-      if ( $QPage->fetch() !== false ) {
+      if ($QPage->fetch() !== false) {
         if ($QPage->value('page_type') == 3) {
           CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
         } else {
           $pages = ['pages_id' => $QPage->valueInt('pages_id'),
-                    'pages_title' => $QPage->value('pages_title'),
-                    'pages_html_text' => $QPage->value('pages_html_text')
-                   ];
+            'pages_title' => $QPage->value('pages_title'),
+            'pages_html_text' => $QPage->value('pages_html_text')
+          ];
         }
-      }  else {
+      } else {
         CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php');
       }
 
@@ -601,12 +614,13 @@
     }
 
 
-/**
- *
- * @param $id
- * @return mixed
- */
-    public function pageManagerDisplayTitle($id) {
+    /**
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function pageManagerDisplayTitle($id)
+    {
       $QPage = $this->db->prepare('select p.pages_id,
                                           p.page_type,
                                           s.pages_title
@@ -619,21 +633,21 @@
                                      and (s.language_id  = :language_id or s.language_id  = 0)
                                      and (p.customers_group_id = :customers_group_id  or p.customers_group_id = 99)
                                   ');
-      $QPage->bindInt(':pages_id', $id );
-      $QPage->bindInt(':language_id', $this->lang->getId() );
-      $QPage->bindInt(':customers_group_id', $this->customer->getCustomersGroupID() );
+      $QPage->bindInt(':pages_id', $id);
+      $QPage->bindInt(':language_id', $this->lang->getId());
+      $QPage->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
       $QPage->execute();
 
       $QPage->setCache('boxe_page_manager_display_title-lang' . $this->lang->getId());
 
-      if ( $QPage->fetch() !== false ) {
+      if ($QPage->fetch() !== false) {
         if ($QPage->valueInt('page_type') == 3) {
           CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
         } else {
           $pages = ['pages_id' => $QPage->valueInt('pages_id'),
-                    'pages_title' => $QPage->value('pages_title')
-                   ];
+            'pages_title' => $QPage->value('pages_title')
+          ];
         }
       }
 
@@ -641,13 +655,14 @@
     }
 
 
-/**
- * Index and information status
- * @param $pages_id
- * @param $status
- * @return int
- */
-    private function setPageManagerStatus($pages_id, $status) {
+    /**
+     * Index and information status
+     * @param $pages_id
+     * @param $status
+     * @return int
+     */
+    private function setPageManagerStatus($pages_id, $status)
+    {
       if ($status == 1) {
 
         $Qupdate = $this->db->prepare('update :table_pages_manager
@@ -683,10 +698,11 @@
       }
     }
 
-/**
- * Auto activation index and information
- */
-    public function  activatePageManager() {
+    /**
+     * Auto activation index and information
+     */
+    public function activatePageManager()
+    {
 
       $QPages = $this->db->query('select pages_id
                                   from :table_pages_manager
@@ -700,16 +716,17 @@
       if ($QPages->fetch() !== false) {
         do {
           $this->setPageManagerStatus($QPages->valueInt('pages_id'), 1);
-        } while($QPages->fetch());
+        } while ($QPages->fetch());
 
         $this->getClearCache();
       }
     }
 
-/**
- * Auto expiration index and information
- */
-    public function expirePageManager()  {
+    /**
+     * Auto expiration index and information
+     */
+    public function expirePageManager()
+    {
       $QPages = $this->db->query('select pages_id
                                     from :table_pages_manager
                                     where status = 1
@@ -722,21 +739,22 @@
       if ($QPages->fetch() !== false) {
         do {
           $this->setPageManagerStatus($QPages->valueInt('pages_id'), 0);
-        } while($QPages->fetch());
+        } while ($QPages->fetch());
 
         $this->getClearCache();
       }
     }
 
 
-/**
- * Get the general condition to include in the order
- *
- * @param string $customer_group, $CLICSHOPPING_Language->getId()
- * @return string page_manager_general_condition, the text of the general condition of sales
- * @access public
- */
-    public function pageManagerGeneralCondition() {
+    /**
+     * Get the general condition to include in the order
+     *
+     * @param string $customer_group , $CLICSHOPPING_Language->getId()
+     * @return string page_manager_general_condition, the text of the general condition of sales
+     * @access public
+     */
+    public function pageManagerGeneralCondition()
+    {
       $QpageManagerGeneralGroup = $this->db->prepare('select pages_id,
                                                               customers_group_id
                                                        from :table_pages_manager
@@ -745,7 +763,7 @@
                                                        and page_general_condition = 1
                                                        and status = 1
                                                      ');
-      $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID() );
+      $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
       $QpageManagerGeneralGroup->execute();
 
       if ($QpageManagerGeneralGroup->valueInt('customers_group_id') == 99) {
@@ -762,8 +780,8 @@
                                                            and pm.status = 1
                                                            limit 1
                                                           ');
-        $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId() );
-        $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id')  );
+        $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
+        $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
 
         $QpageManagerGeneralCondition->execute();
 
@@ -776,7 +794,7 @@
                                                          and page_general_condition = 1
                                                          and status = 1
                                                        ');
-        $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID() );
+        $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
         $QpageManagerGeneralGroup->execute();
 
         if ($this->customer->getCustomersGroupID() == 0) {
@@ -792,8 +810,8 @@
                                                                and pm.status = 1
                                                                limit 1
                                                               ');
-          $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId() );
-          $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id') );
+          $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
+          $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
 
 
           $QpageManagerGeneralCondition->execute();
@@ -813,9 +831,9 @@
                                                                and pm.status = 1
                                                                limit 1
                                                               ');
-          $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId() );
-          $QpageManagerGeneralCondition->bindInt(':customers_group_id', $this->customer->getCustomersGroupID() );
-          $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id') );
+          $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
+          $QpageManagerGeneralCondition->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+          $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
 
           $QpageManagerGeneralCondition->execute();
         }
@@ -823,19 +841,20 @@
 
       if ($QpageManagerGeneralCondition->fetch() !== false) {
         if (!empty($QpageManagerGeneralCondition->value('pages_html_text'))) {
-          $general_condition =  $QpageManagerGeneralCondition->value('pages_html_text');
+          $general_condition = $QpageManagerGeneralCondition->value('pages_html_text');
         }
       } else {
-        $general_condition =  '';
+        $general_condition = '';
       }
 
       return $general_condition;
     }
 
-/**
- * clear cache
- */
-    private function getClearCache() {
+    /**
+     * clear cache
+     */
+    private function getClearCache()
+    {
       Cache::clear('boxe_page_manager_primary-lang');
       Cache::clear('boxe_page_manager_secondary-lang');
       Cache::clear('page_manager_display_header_menu-lang');

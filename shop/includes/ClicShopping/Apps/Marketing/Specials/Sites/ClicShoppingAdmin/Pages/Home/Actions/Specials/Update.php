@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Marketing\Specials\Sites\ClicShoppingAdmin\Pages\Home\Actions\Specials;
@@ -15,8 +15,10 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract {
-    public function execute() {
+  class Update extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    public function execute()
+    {
 
       $CLICSHOPPING_Specials = Registry::get('Specials');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -57,14 +59,14 @@
                                                       where specials_id = :specials_id
                                                     ');
       $Qupdate->bindDecimal(':specials_new_products_price', $specials_price);
-      $Qupdate->bindValue(':expires_date', !empty($expires_date) ? $expires_date  : null);
+      $Qupdate->bindValue(':expires_date', !empty($expires_date) ? $expires_date : null);
       $Qupdate->bindValue(':scheduled_date', !empty($scheduled_date) ? $scheduled_date : null);
       $Qupdate->bindInt(':flash_discount', $flash_discount);
       $Qupdate->bindInt(':specials_id', $specials_id);
 
       $Qupdate->execute();
 
-      $CLICSHOPPING_Hooks->call('Specials','Update');
+      $CLICSHOPPING_Hooks->call('Specials', 'Update');
 
       $CLICSHOPPING_Specials->redirect('Specials&page=', $page . '&sID=' . $specials_id);
     }

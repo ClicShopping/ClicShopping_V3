@@ -1,16 +1,19 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
-use ClicShopping\OM\HTML;
-  use ClicShopping\OM\Registry;;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
+
+  ;
+
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -27,9 +30,12 @@ use ClicShopping\OM\HTML;
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/tax_classes.gif', $CLICSHOPPING_TaxClass->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxClass->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, $CLICSHOPPING_TaxClass->link('Insert&page=' . $page), 'success'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/tax_classes.gif', $CLICSHOPPING_TaxClass->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxClass->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_insert'), null, $CLICSHOPPING_TaxClass->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -46,8 +52,8 @@ use ClicShopping\OM\HTML;
         </tr>
         </thead>
         <tbody>
-<?php
-  $Qclasse = $CLICSHOPPING_TaxClass->db->prepare('select  SQL_CALC_FOUND_ROWS  tax_class_id,
+        <?php
+          $Qclasse = $CLICSHOPPING_TaxClass->db->prepare('select  SQL_CALC_FOUND_ROWS  tax_class_id,
                                                                          tax_class_title,
                                                                          tax_class_description,
                                                                          last_modified,
@@ -58,48 +64,51 @@ use ClicShopping\OM\HTML;
                                                   :page_set_max_results
                                             ');
 
-  $Qclasse->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-  $Qclasse->execute();
+          $Qclasse->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+          $Qclasse->execute();
 
-  $listingTotalRow = $Qclasse->getPageSetTotalRows();
+          $listingTotalRow = $Qclasse->getPageSetTotalRows();
 
-  if ($listingTotalRow > 0) {
+          if ($listingTotalRow > 0) {
 
-    while ($Qclasse->fetch()) {
-      if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ($_GET['tID'] ==  $Qclasse->valueInt('tax_class_id')))) && !isset($tcInfo)) {
-        $tcInfo = new ObjectInfo($Qclasse->toArray());
-      }
-?>
-              <th scope="row"><?php echo  $Qclasse->value('tax_class_title'); ?></th>
-              <td><?php echo  $Qclasse->value('tax_class_description'); ?></td>
+            while ($Qclasse->fetch()) {
+              if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ($_GET['tID'] == $Qclasse->valueInt('tax_class_id')))) && !isset($tcInfo)) {
+                $tcInfo = new ObjectInfo($Qclasse->toArray());
+              }
+              ?>
+              <th scope="row"><?php echo $Qclasse->value('tax_class_title'); ?></th>
+              <td><?php echo $Qclasse->value('tax_class_description'); ?></td>
               <td class="text-md-right">
-<?php
-      echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' .  $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxClass->getDef('icon_edit')) . '</a>' ;
-      echo '&nbsp;';
-      echo '<a href="' . $CLICSHOPPING_TaxClass->link('Delete&page=' . $page . '&tID=' .  $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxClass->getDef('icon_delete')) . '</a>';
-      echo '&nbsp;';
-?>
+                <?php
+                  echo '<a href="' . $CLICSHOPPING_TaxClass->link('Edit&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxClass->getDef('icon_edit')) . '</a>';
+                  echo '&nbsp;';
+                  echo '<a href="' . $CLICSHOPPING_TaxClass->link('Delete&page=' . $page . '&tID=' . $Qclasse->valueInt('tax_class_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxClass->getDef('icon_delete')) . '</a>';
+                  echo '&nbsp;';
+                ?>
               </td>
-            </tr>
+              </tr>
 
-<?php
-    } // end while
-  }
-?>
+              <?php
+            } // end while
+          }
+        ?>
         </tbody>
-      </table></td>
-    </table>
-<?php
-  if ($listingTotalRow > 0) {
-?>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qclasse->getPageSetLabel($CLICSHOPPING_TaxClass->getDef('text_display_number_of_link')); ?></div>
-        <div class="float-md-right text-md-right"> <?php echo $Qclasse->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+      </table>
+    </td>
+  </table>
+  <?php
+    if ($listingTotalRow > 0) {
+      ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qclasse->getPageSetLabel($CLICSHOPPING_TaxClass->getDef('text_display_number_of_link')); ?></div>
+          <div
+            class="float-md-right text-md-right"> <?php echo $Qclasse->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+        </div>
       </div>
-    </div>
-<?php
-  } // end $listingTotalRow
-?>
+      <?php
+    } // end $listingTotalRow
+  ?>
 
 </div>

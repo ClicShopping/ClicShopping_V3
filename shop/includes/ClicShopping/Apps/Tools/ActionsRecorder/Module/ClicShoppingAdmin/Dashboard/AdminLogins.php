@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\ActionsRecorder\Module\ClicShoppingAdmin\Dashboard;
 
@@ -18,12 +18,14 @@
 
   use ClicShopping\Apps\Tools\ActionsRecorder\ActionsRecorder as ActionsRecorderApp;
 
-  class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('ActionsRecorder')) {
         Registry::set('ActionsRecorder', new ActionsRecorderApp());
@@ -37,13 +39,14 @@
       $this->title = $this->app->getDef('module_admin_dashboard_admin_logins_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_admin_logins_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_STATUS')) {
         $this->sort_order = MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       $content_width = (int)MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_CONTENT_WIDTH;
@@ -51,35 +54,35 @@
       $output = '<div class="col-md-' . $content_width . '">';
       $output .= '<div class="separator"></div>';
       $output .= '<table class="table table-sm table-hover">' .
-                '<thead>' .
-                '  <tr class="dataTableHeadingRow">' .
-                '    <th width="20">&nbsp;</th>' .
-                '    <th>' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
-                '    <th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
-                '    <th class="text-md-right">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
-                '  </tr>' .
-                '</thead>';
-                '<tbody>';
+        '<thead>' .
+        '  <tr class="dataTableHeadingRow">' .
+        '    <th width="20">&nbsp;</th>' .
+        '    <th>' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
+        '    <th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
+        '    <th class="text-md-right">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
+        '  </tr>' .
+        '</thead>';
+      '<tbody>';
 
       $Qlogins = $this->app->db->get('action_recorder', [
-                                                      'id',
-                                                      'user_name',
-                                                      'success',
-                                                      'date_added'
-                                                    ], [
-                                                      'module' => 'ar_admin_login'
-                                                    ],
-                                                    'date_added desc',
-                                                    6
-                                );
+        'id',
+        'user_name',
+        'success',
+        'date_added'
+      ], [
+        'module' => 'ar_admin_login'
+      ],
+        'date_added desc',
+        6
+      );
 
       while ($Qlogins->fetch()) {
         $output .= '  <tr class="dataTableRow backgroundBlank">' .
-                   '    <td class="text-md-center"><i class="fas fa-' . (($Qlogins->valueInt('success') === 1) ? 'check fa-lg' : 'times fa-lg') . '"></i>&nbsp;' .
-                   '    <td><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
-                   '    <td class="text-md-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .
-                   '    <td class="text-md-right"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
-                   '  </tr>';
+          '    <td class="text-md-center"><i class="fas fa-' . (($Qlogins->valueInt('success') === 1) ? 'check fa-lg' : 'times fa-lg') . '"></i>&nbsp;' .
+          '    <td><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
+          '    <td class="text-md-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .
+          '    <td class="text-md-right"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
+          '  </tr>';
       }
 
       $output .= '<tbody>';
@@ -90,9 +93,10 @@
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
 
-        $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Enable Administrator Logins Module',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_STATUS',
           'configuration_value' => 'True',
@@ -104,7 +108,7 @@
         ]
       );
 
-         $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Select the width to display',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_CONTENT_WIDTH',
           'configuration_value' => '12',
@@ -116,7 +120,7 @@
         ]
       );
 
-         $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_SORT_ORDER',
           'configuration_value' => '400',
@@ -128,9 +132,10 @@
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_STATUS',
-              'MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_SORT_ORDER'
-             ];
+        'MODULE_ADMIN_DASHBOARD_ADMIN_LOGINS_APP_SORT_ORDER'
+      ];
     }
   }

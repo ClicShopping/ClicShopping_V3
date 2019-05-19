@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Archive\Module\Hooks\ClicShoppingAdmin\StatsDashboard;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Catalog\Archive\Archive as ArchiveApp;
 
-  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface {
+  class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       if (!Registry::exists('Archive')) {
         Registry::set('Archive', new ArchiveApp());
       }
@@ -28,7 +30,8 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/StatsDashboard/page_tab_content');
     }
 
-    private function statsCountProductsArchive() {
+    private function statsCountProductsArchive()
+    {
       $QproductsArchives = $this->app->db->prepare('select count(products_id) as count
                                                     from :table_products
                                                     where products_archive = 1
@@ -41,7 +44,8 @@
       return $products_archives_total;
     }
 
-    public function display() {
+    public function display()
+    {
       if (!defined('CLICSHOPPING_APP_ARCHIVE_AR_STATUS') || CLICSHOPPING_APP_ARCHIVE_AR_STATUS == 'False') {
         return false;
       }
@@ -70,6 +74,6 @@
   <!-- ######################## -->
 EOD;
         return $output;
-        }
       }
     }
+  }

@@ -1,28 +1,30 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\Currency\Classes\Shop;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-	use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Sites\Shop\Tax;
 
-  class Currencies {
+  class Currencies
+  {
 
     public $currencies = [];
     protected $db;
 
-    Public function __construct() {
+    Public function __construct()
+    {
       $this->db = Registry::get('Db');
       $this->currencies = [];
 
@@ -42,22 +44,23 @@
 
       while ($Qcurrencies->fetch()) {
         $this->currencies[$Qcurrencies->value('code')] = ['title' => $Qcurrencies->value('title'),
-                                                          'symbol_left' => $Qcurrencies->value('symbol_left'),
-                                                          'symbol_right' => $Qcurrencies->value('symbol_right'),
-                                                          'decimal_point' => $Qcurrencies->value('decimal_point'),
-                                                          'thousands_point' => $Qcurrencies->value('thousands_point'),
-                                                          'decimal_places' => $Qcurrencies->valueInt('decimal_places'),
-                                                          'value' => $Qcurrencies->valueDecimal('value')
-                                                          ];
+          'symbol_left' => $Qcurrencies->value('symbol_left'),
+          'symbol_right' => $Qcurrencies->value('symbol_right'),
+          'decimal_point' => $Qcurrencies->value('decimal_point'),
+          'thousands_point' => $Qcurrencies->value('thousands_point'),
+          'decimal_places' => $Qcurrencies->valueInt('decimal_places'),
+          'value' => $Qcurrencies->valueDecimal('value')
+        ];
       }
     }
 
-    public function format($number, $calculate_currency_value = true, $currency_type = '', $currency_value = null) {
-      if ( empty($currency_type) && CLICSHOPPING::getSite() == 'Shop' ) {
+    public function format($number, $calculate_currency_value = true, $currency_type = '', $currency_value = null)
+    {
+      if (empty($currency_type) && CLICSHOPPING::getSite() == 'Shop') {
         $currency_type = $_SESSION['currency'];
       }
 
-     if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
+      if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
         $currency_type = DEFAULT_CURRENCY;
       }
 
@@ -72,11 +75,13 @@
       return $format_string;
     }
 
-    public function calculate_price($products_price, $products_tax, $quantity = 1) {
+    public function calculate_price($products_price, $products_tax, $quantity = 1)
+    {
       return round(Tax::addTax($products_price, $products_tax), $this->currencies[$_SESSION['currency']]['decimal_places']) * $quantity;
     }
 
-    public function is_set($code) {
+    public function is_set($code)
+    {
       if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
         return true;
       } else {
@@ -84,29 +89,33 @@
       }
     }
 
-    public function get_value($code) {
+    public function get_value($code)
+    {
       return $this->currencies[$code]['value'];
     }
 
-    public function get_decimal_places($code) {
+    public function get_decimal_places($code)
+    {
       return $this->currencies[$code]['decimal_places'];
     }
 
-/*
-    public function value($code) {
-      if ( $this->get_value($code) ) {
-        return $this->currencies[$code]['value'][$code]['value'];
-      }
+    /*
+        public function value($code) {
+          if ( $this->get_value($code) ) {
+            return $this->currencies[$code]['value'][$code]['value'];
+          }
+    
+          return false;
+        }
+    */
 
-      return false;
-    }
-*/
-
-    public function getData() {
+    public function getData()
+    {
       return $this->currencies;
     }
 
-    private function priceTag() {
+    private function priceTag()
+    {
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
       $tag = $CLICSHOPPING_Tax->getTag();
@@ -124,7 +133,8 @@
 
 // Formatage du prix du produit
 // Add a tag after the price ex 100 euros HT or TTC
-    public function display_price($products_price, $products_tax, $quantity = 1) {
+    public function display_price($products_price, $products_tax, $quantity = 1)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
@@ -139,7 +149,7 @@
         }
       }
 
-      if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID()!= 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX_PRO == 'true')) ) {
+      if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX_PRO == 'true'))) {
         return $this->format($this->calculate_price($products_price, $products_tax, $quantity)) . ' ' . $this->priceTag();
       } else {
 
@@ -158,11 +168,12 @@
 
 // Product Price per kilo calculation
 // Calcul du prix du produit au kilo
-    public function displayPriceKilo($products_price, $products_weight, $value, $products_tax, $quantity = 1) {
+    public function displayPriceKilo($products_price, $products_weight, $value, $products_tax, $quantity = 1)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (($products_weight > 0) && ($products_weight > '0') && ($value == 1)) {
-        $products_price_kilo = round(($products_price / $products_weight),2);
+        $products_price_kilo = round(($products_price / $products_weight), 2);
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX_PRO == 'true'))) {
           return $this->format($this->calculate_price($products_price_kilo, $products_tax, $quantity)) . ' ' . $this->priceTag() . '';
@@ -174,28 +185,29 @@
       }
     }
 
-/**
-	* Dispaly a Currencies DropDown
-	* @return string
-*/
-    public function getCurrenciesDropDown($class = '') {
-    $CLICSHOPPING_Currencies = Registry::get('Currencies');
+    /**
+     * Dispaly a Currencies DropDown
+     * @return string
+     */
+    public function getCurrenciesDropDown($class = '')
+    {
+      $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
       if (isset($CLICSHOPPING_Currencies) && is_object($CLICSHOPPING_Currencies) && (count($CLICSHOPPING_Currencies->currencies) > 1)) {
         reset($CLICSHOPPING_Currencies->currencies);
         $currencies_array = [];
         $currency_header = '';
 
-        foreach($CLICSHOPPING_Currencies->currencies as $key => $value) {
+        foreach ($CLICSHOPPING_Currencies->currencies as $key => $value) {
           $currencies_array[] = ['id' => $key,
-                                 'text' => $value['title']
-                                ];
+            'text' => $value['title']
+          ];
         }
 
         $hidden_get_variables = '';
 
-        foreach ( $_GET as $key => $value ) {
-          if ( is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y') ) {
+        foreach ($_GET as $key => $value) {
+          if (is_string($value) && ($key != 'currency') && ($key != session_name()) && ($key != 'x') && ($key != 'y')) {
             $hidden_get_variables .= HTML::hiddenField($key, $value);
           }
         }

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\PasswordReset;
 
@@ -18,9 +18,11 @@
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -63,14 +65,14 @@
         if ($error === false) {
 
           $CLICSHOPPING_Db->save('customers', ['customers_password' => Hash::encrypt($password_new)],
-                                              ['customers_id' => (int)$Qcheck->valueInt('customers_id')]
-                                );
+            ['customers_id' => (int)$Qcheck->valueInt('customers_id')]
+          );
 
 
           $sql_array = ['customers_info_date_account_last_modified' => 'now()',
-                         'password_reset_key' => 'null',
-                         'password_reset_date' => 'null'
-                       ];
+            'password_reset_key' => 'null',
+            'password_reset_date' => 'null'
+          ];
 
           $CLICSHOPPING_Db->save('customers_info', $sql_array, ['customers_info_id' => (int)$Qcheck->valueInt('customers_id')]);
 

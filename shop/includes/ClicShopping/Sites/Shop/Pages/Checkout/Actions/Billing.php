@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 
@@ -17,9 +17,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\Sites\Shop\Payment;
 
-  class Billing extends \ClicShopping\OM\PagesActionsAbstract {
+  class Billing extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -53,10 +55,10 @@
       }
 
 // Stock Check
-      if ( (STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true') ) {
+      if ((STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true')) {
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-        for ($i=0, $n=count($products); $i<$n; $i++) {
+        for ($i = 0, $n = count($products); $i < $n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'])) {
             CLICSHOPPING::redirect(null, 'Cart');
             break;
@@ -69,7 +71,7 @@
         $_SESSION['billto'] = $CLICSHOPPING_Customer->getDefaultAddressID();
       } else {
 // verify the selected billing address
-        if ( (is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto']) ) {
+        if ((is_array($_SESSION['billto']) && empty($_SESSION['billto'])) || is_numeric($_SESSION['billto'])) {
 
           $QcheckAddress = $CLICSHOPPING_Db->prepare('select count(*) as total
                                                       from :table_address_book
@@ -77,7 +79,7 @@
                                                       and address_book_id =  :address_book_id
                                                      ');
           $QcheckAddress->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-          $QcheckAddress->bindInt(':address_book_id', $_SESSION['billto'] );
+          $QcheckAddress->bindInt(':address_book_id', $_SESSION['billto']);
           $QcheckAddress->execute();
 
           if ($QcheckAddress->fetch() === false) {

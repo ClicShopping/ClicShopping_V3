@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -30,7 +30,7 @@
                                             where a.association_id = :association_id
                                             ');
 
-  $Qzones->bindInt('association_id',  $_GET['sID']); ///3
+  $Qzones->bindInt('association_id', $_GET['sID']); ///3
   $Qzones->execute();
 
   $sInfo = new ObjectInfo($Qzones->toArray());
@@ -44,8 +44,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
   echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&UpdateGeoZone&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $sInfo->association_id));
@@ -59,12 +61,14 @@
   </div>
   <div class="separator"></div>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_heading_edit_sub_zone'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_heading_edit_sub_zone'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_new_sub_zone_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_new_sub_zone_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_new_sub_zone_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_new_sub_zone_intro'); ?></label>
         </div>
       </div>
     </div>
@@ -73,7 +77,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::selectMenuCountryList('zone_country_id', $sInfo->zone_country_id, 'onchange="update_zone(this.form);"'); ?>
           </div>
@@ -84,9 +89,10 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country_zone'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country_zone'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country_zone'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('text_info_country_zone'); ?></label>
           <div class="col-md-5">
-            <?php echo  HTML::selectField('zone_id', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown($sInfo->zone_country_id), $sInfo->zone_id);  ?>
+            <?php echo HTML::selectField('zone_id', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown($sInfo->zone_country_id), $sInfo->zone_id); ?>
           </div>
         </div>
       </div>
@@ -95,30 +101,31 @@
 
 
   <script type="text/javascript"><!--
-    function resetZoneSelected(theForm) {
-      if (theForm.state.value != '') {
-        theForm.zone_id.selectedIndex = '0';
-        if (theForm.zone_id.options.length > 0) {
-          theForm.state.value = '<?php echo $CLICSHOPPING_TaxGeoZones->getDef('js_state_select'); ?>';
-        }
-      }
-    }
-
-    function update_zone(theForm) {
-      var NumState = theForm.zone_id.options.length;
-      var SelectedCountry = "";
-
-      while(NumState > 0) {
-        NumState--;
-        theForm.zone_id.options[NumState] = null;
+      function resetZoneSelected(theForm) {
+          if (theForm.state.value != '') {
+              theForm.zone_id.selectedIndex = '0';
+              if (theForm.zone_id.options.length > 0) {
+                  theForm.state.value = '<?php echo $CLICSHOPPING_TaxGeoZones->getDef('js_state_select'); ?>';
+              }
+          }
       }
 
-      SelectedCountry = theForm.zone_country_id.options[theForm.zone_country_id.selectedIndex].value;
+      function update_zone(theForm) {
+          var NumState = theForm.zone_id.options.length;
+          var SelectedCountry = "";
 
-      <?php echo HTMLOverrideAdmin::getJsZoneList('SelectedCountry', 'theForm', 'zone_id'); ?>
+          while (NumState > 0) {
+              NumState--;
+              theForm.zone_id.options[NumState] = null;
+          }
 
-    }
-    //--></script>
+          SelectedCountry = theForm.zone_country_id.options[theForm.zone_country_id.selectedIndex].value;
+
+        <?php echo HTMLOverrideAdmin::getJsZoneList('SelectedCountry', 'theForm', 'zone_id'); ?>
+
+      }
+
+      //--></script>
 
 
   </form>

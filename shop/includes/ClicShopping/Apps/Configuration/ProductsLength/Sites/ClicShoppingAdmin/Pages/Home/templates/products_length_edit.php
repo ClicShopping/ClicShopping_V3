@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -44,8 +44,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_length.png', $CLICSHOPPING_ProductsLength->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_length.png', $CLICSHOPPING_ProductsLength->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
   echo HTML::form('products_length_edit', $CLICSHOPPING_ProductsLength->link('ProductsLength&ProductsLengthUpdate&page=' . $page));
@@ -60,13 +62,15 @@
     </div>
   </div>
   <div class="separator"></div>
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_edit_products_length'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_edit_products_length'); ?></strong></div>
   <div class="adminformTitle">
 
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_edit_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_edit_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_edit_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_edit_intro'); ?></label>
         </div>
       </div>
     </div>
@@ -74,24 +78,26 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_class_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_class_title'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_class_title'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_class_title'); ?></label>
           <div class="col-md-5">
-<?php
-  for ($i=0, $n=count($languages); $i<$n; $i++) {
-?>
+            <?php
+              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                ?>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group row">
-                      <label for="code" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                      <label for="code"
+                             class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                       <div class="col-md-10">
-                        <?php echo HTML::inputField('products_length_class_title[' . $languages[$i]['id'] . ']', (isset($products_length_class_title[$languages[$i]['id']]) ? $products_length_class_title[$languages[$i]['id']] : $CLICSHOPPING_ProductsLengthAdmin->getTitle($_GET['wID'], $languages[$i]['id'])), 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_title') . '"',  true) . '&nbsp;'; ?>
+                        <?php echo HTML::inputField('products_length_class_title[' . $languages[$i]['id'] . ']', (isset($products_length_class_title[$languages[$i]['id']]) ? $products_length_class_title[$languages[$i]['id']] : $CLICSHOPPING_ProductsLengthAdmin->getTitle($_GET['wID'], $languages[$i]['id'])), 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
                 </div>
-<?php
-  }
-?>
+                <?php
+              }
+            ?>
           </div>
         </div>
       </div>
@@ -100,12 +106,13 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="products_length_class_title" class="col-2 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_key'); ?></label>
+          <label for="products_length_class_title"
+                 class="col-2 col-form-label"><?php echo $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_key'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('products_length_class_key', $wInfo->products_length_class_key, 'class="form-control" required aria-required="true" required="" id="products_length_class_title" placeholder="' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_class_key') . '"'); ?>
           </div>
         </div>
       </div>
     </div>
-   </form>
+    </form>
   </div>

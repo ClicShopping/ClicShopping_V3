@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
@@ -18,7 +18,8 @@
 
   use ClicShopping\Service\Shop\SEFU;
 
-  class Language {
+  class Language
+  {
     protected $language;
     protected $languages = [];
     protected $definitions = [];
@@ -27,7 +28,8 @@
     protected $db;
     protected $content;
 
-    public function __construct($code = null) {
+    public function __construct($code = null)
+    {
 
       $this->db = Registry::get('Db');
 
@@ -60,19 +62,19 @@
         $Qlanguages->execute();
       }
 
-        while ($Qlanguages->fetch()) {
-          $this->languages[$Qlanguages->value('code')] = [
-                                                          'id' => (int)$Qlanguages->valueInt('languages_id'),
-                                                          'code' => $Qlanguages->value('code'),
-                                                          'name' => $Qlanguages->value('name'),
-                                                          'image' => $Qlanguages->value('image'),
-                                                          'directory' => $Qlanguages->value('directory'),
-                                                          'status' => (int)$Qlanguages->value('status'),
-                                                          'locale' => $Qlanguages->value('locale'),
-                                                        ];
-        }
+      while ($Qlanguages->fetch()) {
+        $this->languages[$Qlanguages->value('code')] = [
+          'id' => (int)$Qlanguages->valueInt('languages_id'),
+          'code' => $Qlanguages->value('code'),
+          'name' => $Qlanguages->value('name'),
+          'image' => $Qlanguages->value('image'),
+          'directory' => $Qlanguages->value('directory'),
+          'status' => (int)$Qlanguages->value('status'),
+          'locale' => $Qlanguages->value('locale'),
+        ];
+      }
 
-       if (!isset($code) || !$this->exists($code)) {
+      if (!isset($code) || !$this->exists($code)) {
         if (isset($_SESSION['language'])) {
           $code = $_SESSION['language'];
         } else {
@@ -89,16 +91,18 @@
       setlocale(LC_NUMERIC, $system_locale_numeric);
     }
 
-    public function getLocale() {
+    public function getLocale()
+    {
       $code = $this->getCode();
       return $this->get('locale', $code);
     }
 
-/**
- * Set Code
- * @param $code
- */
-    protected function set($code) {
+    /**
+     * Set Code
+     * @param $code
+     */
+    protected function set($code)
+    {
       $this->code = $code;
 
       if ($this->exists($this->code)) {
@@ -108,75 +112,77 @@
       }
     }
 
-    public function getCode() {
+    public function getCode()
+    {
       return $this->language;
     }
 
-/**
- * Check browser
- * @return bool|int|string
- */
-    public function getBrowserSetting()  {
+    /**
+     * Check browser
+     * @return bool|int|string
+     */
+    public function getBrowserSetting()
+    {
       if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         $browser_languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
         $languages = [
-            'ar' => 'ar([-_][[:alpha:]]{2})?|arabic',
-            'be' => 'be|belarusian',
-            'bg' => 'bg|bulgarian',
-            'br' => 'pt[-_]br|brazilian portuguese',
-            'ca' => 'ca|catalan',
-            'cs' => 'cs|czech',
-            'da' => 'da|danish',
-            'de' => 'de([-_][[:alpha:]]{2})?|german',
-            'el' => 'el|greek',
-            'en' => 'en([-_][[:alpha:]]{2})?|english',
-            'es' => 'es([-_][[:alpha:]]{2})?|spanish',
-            'et' => 'et|estonian',
-            'eu' => 'eu|basque',
-            'fa' => 'fa|farsi',
-            'fi' => 'fi|finnish',
-            'fo' => 'fo|faeroese',
-            'fr' => 'fr([-_][[:alpha:]]{2})?|french',
-            'ga' => 'ga|irish',
-            'gl' => 'gl|galician',
-            'he' => 'he|hebrew',
-            'hi' => 'hi|hindi',
-            'hr' => 'hr|croatian',
-            'hu' => 'hu|hungarian',
-            'id' => 'id|indonesian',
-            'it' => 'it|italian',
-            'ja' => 'ja|japanese',
-            'ko' => 'ko|korean',
-            'ka' => 'ka|georgian',
-            'lt' => 'lt|lithuanian',
-            'lv' => 'lv|latvian',
-            'mk' => 'mk|macedonian',
-            'mt' => 'mt|maltese',
-            'ms' => 'ms|malaysian',
-            'nl' => 'nl([-_][[:alpha:]]{2})?|dutch',
-            'no' => 'no|norwegian',
-            'pl' => 'pl|polish',
-            'pt' => 'pt([-_][[:alpha:]]{2})?|portuguese',
-            'ro' => 'ro|romanian',
-            'ru' => 'ru|russian',
-            'sk' => 'sk|slovak',
-            'sq' => 'sq|albanian',
-            'sr' => 'sr|serbian',
-            'sv' => 'sv|swedish',
-            'sz' => 'sz|sami',
-            'sx' => 'sx|sutu',
-            'th' => 'th|thai',
-            'ts' => 'ts|tsonga',
-            'tr' => 'tr|turkish',
-            'tn' => 'tn|tswana',
-            'uk' => 'uk|ukrainian',
-            'ur' => 'ur|urdu',
-            'vi' => 'vi|vietnamese',
-            'tw' => 'zh[-_]tw|chinese traditional',
-            'zh' => 'zh|chinese simplified',
-            'ji' => 'ji|yiddish',
-            'zu' => 'zu|zulu'
+          'ar' => 'ar([-_][[:alpha:]]{2})?|arabic',
+          'be' => 'be|belarusian',
+          'bg' => 'bg|bulgarian',
+          'br' => 'pt[-_]br|brazilian portuguese',
+          'ca' => 'ca|catalan',
+          'cs' => 'cs|czech',
+          'da' => 'da|danish',
+          'de' => 'de([-_][[:alpha:]]{2})?|german',
+          'el' => 'el|greek',
+          'en' => 'en([-_][[:alpha:]]{2})?|english',
+          'es' => 'es([-_][[:alpha:]]{2})?|spanish',
+          'et' => 'et|estonian',
+          'eu' => 'eu|basque',
+          'fa' => 'fa|farsi',
+          'fi' => 'fi|finnish',
+          'fo' => 'fo|faeroese',
+          'fr' => 'fr([-_][[:alpha:]]{2})?|french',
+          'ga' => 'ga|irish',
+          'gl' => 'gl|galician',
+          'he' => 'he|hebrew',
+          'hi' => 'hi|hindi',
+          'hr' => 'hr|croatian',
+          'hu' => 'hu|hungarian',
+          'id' => 'id|indonesian',
+          'it' => 'it|italian',
+          'ja' => 'ja|japanese',
+          'ko' => 'ko|korean',
+          'ka' => 'ka|georgian',
+          'lt' => 'lt|lithuanian',
+          'lv' => 'lv|latvian',
+          'mk' => 'mk|macedonian',
+          'mt' => 'mt|maltese',
+          'ms' => 'ms|malaysian',
+          'nl' => 'nl([-_][[:alpha:]]{2})?|dutch',
+          'no' => 'no|norwegian',
+          'pl' => 'pl|polish',
+          'pt' => 'pt([-_][[:alpha:]]{2})?|portuguese',
+          'ro' => 'ro|romanian',
+          'ru' => 'ru|russian',
+          'sk' => 'sk|slovak',
+          'sq' => 'sq|albanian',
+          'sr' => 'sr|serbian',
+          'sv' => 'sv|swedish',
+          'sz' => 'sz|sami',
+          'sx' => 'sx|sutu',
+          'th' => 'th|thai',
+          'ts' => 'ts|tsonga',
+          'tr' => 'tr|turkish',
+          'tn' => 'tn|tswana',
+          'uk' => 'uk|ukrainian',
+          'ur' => 'ur|urdu',
+          'vi' => 'vi|vietnamese',
+          'tw' => 'zh[-_]tw|chinese traditional',
+          'zh' => 'zh|chinese simplified',
+          'ji' => 'ji|yiddish',
+          'zu' => 'zu|zulu'
         ];
 
         foreach ($browser_languages as $browser_language) {
@@ -191,13 +197,14 @@
       return false;
     }
 
-/**
- * Get language
- * @param null $data
- * @param null $language_code
- * @return mixed
- */
-    public function get($data = null, $language_code = null) {
+    /**
+     * Get language
+     * @param null $data
+     * @param null $language_code
+     * @return mixed
+     */
+    public function get($data = null, $language_code = null)
+    {
       if (!isset($data)) {
         $data = 'code';
       }
@@ -209,54 +216,59 @@
       return $this->languages[$language_code][$data];
     }
 
-/**
- * get the  language id
- * @param null $language_code
- * @return int
- */
-    public function getId($language_code = null) {
-       return (int)$this->get('id', $language_code);
+    /**
+     * get the  language id
+     * @param null $language_code
+     * @return int
+     */
+    public function getId($language_code = null)
+    {
+      return (int)$this->get('id', $language_code);
     }
 
-/**
- * get all language in array
- * @return array
- */
-    public function getAll() {
+    /**
+     * get all language in array
+     * @return array
+     */
+    public function getAll()
+    {
       return $this->languages;
     }
 
-/**
- * Check the language
- *
- * @param return the code of the language
- * @access public
- */
-    public function exists($code) {
+    /**
+     * Check the language
+     *
+     * @param return the code of the language
+     * @access public
+     */
+    public function exists($code)
+    {
       return isset($this->languages[$code]);
     }
 
-/**
- * get image svg 4:3
- * @param $language_code
- * @param null $width
- * @param null $height
- * @return string
- */
-    public function getImage($language_code, $width = null, $height = null) {
+    /**
+     * get image svg 4:3
+     * @param $language_code
+     * @param null $width
+     * @param null $height
+     * @return string
+     */
+    public function getImage($language_code, $width = null, $height = null)
+    {
 
       if (!isset($width) || !is_int($width)) {
-          $width = 16;
+        $width = 16;
       }
 
       if (!isset($height) || !is_int($height)) {
-          $height = 12;
+        $height = 12;
       }
 
       return HTML::image(CLICSHOPPING::link('Shop/sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', null, false), $this->get('name', $language_code), $width, $height);
     }
 
-    public function getDef($key, $values = null, $scope = 'global') {
+    public function getDef($key, $values = null, $scope = 'global')
+    {
       if (isset($this->definitions[$scope][$key])) {
         $def = $this->definitions[$scope][$key];
 
@@ -270,37 +282,38 @@
       return $key;
     }
 
-/**
- * Parse the definition
- * @param $string
- * @param $values
- * @return null|string|string[]
- */
+    /**
+     * Parse the definition
+     * @param $string
+     * @param $values
+     * @return null|string|string[]
+     */
     public static function parseDefinition($string, $values)
     {
-        if (is_array($values) && !empty($values)) {
-            $string = preg_replace_callback('/\{\{([A-Za-z0-9-_]+)\}\}/', function($matches) use ($values) {
-                return isset($values[$matches[1]]) ? $values[$matches[1]] : $matches[1];
-            }, $string);
-        }
+      if (is_array($values) && !empty($values)) {
+        $string = preg_replace_callback('/\{\{([A-Za-z0-9-_]+)\}\}/', function ($matches) use ($values) {
+          return isset($values[$matches[1]]) ? $values[$matches[1]] : $matches[1];
+        }, $string);
+      }
 
-        return $string;
+      return $string;
     }
 
-/**
- * check if defintion exist
- * @param $group
- * @param null $language_code
- * @return bool|mixed
- */
-    public function definitionsExist($group, $language_code = null) {
+    /**
+     * check if defintion exist
+     * @param $group
+     * @param null $language_code
+     * @return bool|mixed
+     */
+    public function definitionsExist($group, $language_code = null)
+    {
       $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
       $site = CLICSHOPPING::getSite();
 
       if ((strpos($group, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
-          $site = $matches[1];
-          $group = $matches[2];
+        $site = $matches[1];
+        $group = $matches[2];
       }
 
       If ($site == 'ClicShoppingAdmin') {
@@ -312,25 +325,26 @@
       $pathname .= '.txt';
 
       if (is_file($pathname)) {
-          return true;
+        return true;
       }
 
       if ($language_code != DEFAULT_LANGUAGE) {
         return call_user_func([$this, __FUNCTION__], $group, DEFAULT_LANGUAGE);
       }
 
-        return false;
+      return false;
     }
 
-/**
- * Load the language
- * @param $group
- * @param null $language_code
- * @param null $scope
- * @param null $force_directory_language
- * @return bool
- */
-    public function loadDefinitions($group, $language_code = null, $scope = null, $force_directory_language = null) {
+    /**
+     * Load the language
+     * @param $group
+     * @param null $language_code
+     * @param null $scope
+     * @param null $force_directory_language
+     * @return bool
+     */
+    public function loadDefinitions($group, $language_code = null, $scope = null, $force_directory_language = null)
+    {
       $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
       if (!isset($scope)) {
@@ -363,14 +377,15 @@
       $this->injectDefinitions($defs, $scope);
     }
 
-/**
- * Get definition
- * @param $group
- * @param $language_code
- * @param $pathname
- * @return array|mixed
- */
-    public function getDefinitions($group, $language_code, $pathname) {
+    /**
+     * Get definition
+     * @param $group
+     * @param $language_code
+     * @param $pathname
+     * @return array|mixed
+     */
+    public function getDefinitions($group, $language_code, $pathname)
+    {
 
       $defs = [];
 
@@ -383,32 +398,32 @@
       $DefCache = new Cache('languages-defs-' . $group_key . '-lang' . $this->getId($language_code));
 
       if ($DefCache->exists()) {
-         $defs = $DefCache->get();
+        $defs = $DefCache->get();
       } else {
         $Qdefs = $this->db->get('languages_definitions', [
-                                                           'definition_key',
-                                                           'definition_value'
-                                                         ], [
-                                                           'languages_id' => $this->getId($language_code),
-                                                           'content_group' => $group_key
-                                                         ]
-                                );
+          'definition_key',
+          'definition_value'
+        ], [
+            'languages_id' => $this->getId($language_code),
+            'content_group' => $group_key
+          ]
+        );
 
-      while ($Qdefs->fetch()) {
+        while ($Qdefs->fetch()) {
           $defs[$Qdefs->value('definition_key')] = $Qdefs->value('definition_value');
-      }
+        }
 
         if (empty($defs)) {
           $defs = $this->getDefinitionsFromFile($pathname);
 
           foreach ($defs as $key => $value) {
             $this->db->save('languages_definitions', [
-                                                      'languages_id' => $this->getId($language_code),
-                                                      'content_group' => $group_key,
-                                                      'definition_key' => $key,
-                                                      'definition_value' => $value
-                                                     ]
-                            );
+                'languages_id' => $this->getId($language_code),
+                'content_group' => $group_key,
+                'definition_key' => $key,
+                'definition_value' => $value
+              ]
+            );
           }
         }
 
@@ -418,61 +433,64 @@
       return $defs;
     }
 
-/**
- * Get definition from file
- * @param $filename
- * @return array
- */
-    public function getDefinitionsFromFile($filename) {
-        $defs = [];
+    /**
+     * Get definition from file
+     * @param $filename
+     * @return array
+     */
+    public function getDefinitionsFromFile($filename)
+    {
+      $defs = [];
 
-        if (is_file($filename)) {
+      if (is_file($filename)) {
         foreach (file($filename) as $line) {
-            $line = trim($line);
+          $line = trim($line);
 
-            if (!empty($line) && (substr($line, 0, 1) != '#')) {
-                $delimiter = strpos($line, '=');
+          if (!empty($line) && (substr($line, 0, 1) != '#')) {
+            $delimiter = strpos($line, '=');
 
-                if (($delimiter !== false) && (preg_match('/^[A-Za-z0-9_-]/', substr($line, 0, $delimiter)) === 1) && (substr_count(substr($line, 0, $delimiter), ' ') === 1)) {
-                    $key = trim(substr($line, 0, $delimiter));
-                    $value = trim(substr($line, $delimiter + 1));
+            if (($delimiter !== false) && (preg_match('/^[A-Za-z0-9_-]/', substr($line, 0, $delimiter)) === 1) && (substr_count(substr($line, 0, $delimiter), ' ') === 1)) {
+              $key = trim(substr($line, 0, $delimiter));
+              $value = trim(substr($line, $delimiter + 1));
 
-                    $defs[$key] = $value;
-                } elseif (isset($key)) {
-                    $defs[$key] .= "\n" . $line;
-                }
-              }
+              $defs[$key] = $value;
+            } elseif (isset($key)) {
+              $defs[$key] .= "\n" . $line;
+            }
           }
         }
+      }
 
-        return $defs;
+      return $defs;
     }
 
-/**
- * Inject definition
- * @param $defs
- * @param $scope
- */
-    public function injectDefinitions($defs, $scope) {
-        if (isset($this->definitions[$scope])) {
-            $this->definitions[$scope] = array_merge($this->definitions[$scope], $defs);
-        } else {
-            $this->definitions[$scope] = $defs;
-        }
+    /**
+     * Inject definition
+     * @param $defs
+     * @param $scope
+     */
+    public function injectDefinitions($defs, $scope)
+    {
+      if (isset($this->definitions[$scope])) {
+        $this->definitions[$scope] = array_merge($this->definitions[$scope], $defs);
+      } else {
+        $this->definitions[$scope] = $defs;
+      }
     }
 
-/**
- * Set cache is used
- * @param $flag
- */
-    public function setUseCache($flag) {
-        $this->use_cache = ($flag === true);
+    /**
+     * Set cache is used
+     * @param $flag
+     */
+    public function setUseCache($flag)
+    {
+      $this->use_cache = ($flag === true);
     }
 
-/**Detect encoding
- * @param $filename
- * @return bool
- */
+    /**Detect encoding
+     * @param $filename
+     * @return bool
+     */
     public function detectFileEncoding($filename)
     {
       $response_encoding = 'UTF-8';
@@ -495,15 +513,15 @@
     }
 
 
-
-/**
- * Get the code language to display (french english)
- *
- * @param return code of the language
- * @access public
- *
- */
-    public function getLanguageCode() {
+    /**
+     * Get the code language to display (french english)
+     *
+     * @param return code of the language
+     * @access public
+     *
+     */
+    public function getLanguageCode()
+    {
 
       if (!is_null($this->getUrlValueLanguage())) {
         $_GET['language'] = $this->getUrlValueLanguage();
@@ -521,10 +539,11 @@
     }
 
 
-/* Get the language value of the URL when Search engine is activate
- * @return $value_language, the value of the language
-*/
-    public function getUrlValueLanguage() {
+    /* Get the language value of the URL when Search engine is activate
+     * @return $value_language, the value of the language
+    */
+    public function getUrlValueLanguage()
+    {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
         $value_language = SEFU::getUrlValue();
       } else {
@@ -534,20 +553,21 @@
       return $value_language;
     }
 
-/**
- * Display the diffrent language under text
- *
- * @param string
- * @return string $languages_string, flag language
- * @access public
- */
-    public function getLanguageText($tag = ' - ') {
+    /**
+     * Display the diffrent language under text
+     *
+     * @param string
+     * @return string $languages_string, flag language
+     * @access public
+     */
+    public function getLanguageText($tag = ' - ')
+    {
       if (!isset($_GET['Checkout'])) {
-      $languages_string = '';
+        $languages_string = '';
 
         $get_params = [];
 
-        foreach ( $_GET as $key => $value ) {
+        foreach ($_GET as $key => $value) {
           if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
             $get_params[] = ($value) ? "$key=$value" : $key;
           }
@@ -555,7 +575,7 @@
 
         $get_params = implode($get_params, '&');
 
-        if ( !empty($get_params) ) {
+        if (!empty($get_params)) {
           $get_params .= '&';
         }
 
@@ -567,14 +587,15 @@
       return $languages_string;
     }
 
-/**
- * Display the language flag image in catalog when the status is valid
- *
- * @param string
- * @return string $flag, flag language
- * @access public
- */
-    public function getFlag() {
+    /**
+     * Display the language flag image in catalog when the status is valid
+     *
+     * @param string
+     * @return string $flag, flag language
+     * @access public
+     */
+    public function getFlag()
+    {
       if (!isset($_GET['Checkout'])) {
 
 // If only one language is selected
@@ -596,7 +617,7 @@
 
         $get_params = [];
 
-        foreach ( $_GET as $key => $value ) {
+        foreach ($_GET as $key => $value) {
           if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
             $get_params[] = ($value) ? "$key=$value" : $key;
           }
@@ -604,7 +625,7 @@
 
         $get_params = implode($get_params, '&');
 
-        if ( !empty($get_params) ) {
+        if (!empty($get_params)) {
           $get_params .= '&';
         }
 
@@ -616,78 +637,81 @@
       }
     }
 
-/**
- * the language
- *
- * @param string
- * @return string $languages_array,
- * @access public
- */
-    public function getLanguages() {
+    /**
+     * the language
+     *
+     * @param string
+     * @return string $languages_array,
+     * @access public
+     */
+    public function getLanguages()
+    {
 
       $languages_array = [];
 
       $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
-                                                            'name',
-                                                            'code',
-                                                            'image',
-                                                            'directory'
-                                                          ],
-                                                            null,
-                                                            'sort_order'
-                                            );
+        'name',
+        'code',
+        'image',
+        'directory'
+      ],
+        null,
+        'sort_order'
+      );
 
 
-      while ($Qlanguages->fetch() ) {
+      while ($Qlanguages->fetch()) {
         $languages_array[] = ['id' => $Qlanguages->valueInt('languages_id'),
-                              'name' => $Qlanguages->value('name'),
-                              'code' => $Qlanguages->value('code'),
-                              'image' => $Qlanguages->value('image'),
-                              'directory' => $Qlanguages->value('directory')
-                             ];
+          'name' => $Qlanguages->value('name'),
+          'code' => $Qlanguages->value('code'),
+          'image' => $Qlanguages->value('image'),
+          'directory' => $Qlanguages->value('directory')
+        ];
 
       }
 
       return $languages_array;
     }
 
-/**
- * get language name in function the id of the language
- *
- * @param string
- * @return string name, name of the language id
- * @access public
- */
-    public function getLanguagesName($id) {
+    /**
+     * get language name in function the id of the language
+     *
+     * @param string
+     * @return string name, name of the language id
+     * @access public
+     */
+    public function getLanguagesName($id)
+    {
       $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
-                                                           'name'
-                                                          ],
-                                                          ['languages_id' => (int)$id]
-                                              );
+        'name'
+      ],
+        ['languages_id' => (int)$id]
+      );
 
       return $Qlanguages->value('name');
     }
 
-/**
- * get All language or not
- *
- * @param string $option to display all language or not true, false
- * @return array $values_languages_id,, languages
- * @access public
- */
-    public function getAllLanguage($option = false) {
+    /**
+     * get All language or not
+     *
+     * @param string $option to display all language or not true, false
+     * @return array $values_languages_id,, languages
+     * @access public
+     */
+    public function getAllLanguage($option = false)
+    {
       $languages = $this->getLanguages();
 
       if ($option === true) {
-        $values_languages_id[0] = ['id' =>'0',
-                                   'text' => CLICSHOPPING::getDef('text_all_languages')
-                                  ];
+        $values_languages_id[0] = ['id' => '0',
+          'text' => CLICSHOPPING::getDef('text_all_languages')
+        ];
       }
 
-      for ($i=0, $n=count($languages); $i<$n; $i++) {
-        $values_languages_id[$i+1] = ['id' =>$languages[$i]['id'],
-                                      'text' =>$languages[$i]['name']
-                                     ];
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
+          'text' => $languages[$i]['name']
+        ];
       }
 
       return $values_languages_id;

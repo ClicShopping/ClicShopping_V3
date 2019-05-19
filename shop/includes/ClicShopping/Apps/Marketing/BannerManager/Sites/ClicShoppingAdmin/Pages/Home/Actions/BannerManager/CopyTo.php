@@ -1,21 +1,23 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\BannerManager\Sites\ClicShoppingAdmin\Pages\Home\Actions\BannerManager;
 
   use ClicShopping\OM\Registry;
 
-  class CopyTo extends \ClicShopping\OM\PagesActionsAbstract {
+  class CopyTo extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
 
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -44,23 +46,23 @@
         $QbannersCopy->execute();
 
         $CLICSHOPPING_BannerManager->db->save('banners', [
-                                                    'banners_title' => $QbannersCopy->value('banners_title'),
-                                                    'banners_url' => $QbannersCopy->value('banners_url'),
-                                                    'banners_image' => $QbannersCopy->value('banners_image'),
-                                                    'banners_group' => $QbannersCopy->value('banners_group'),
-                                                    'banners_target' => $QbannersCopy->value('banners_target'),
-                                                    'banners_html_text' => $QbannersCopy->value('banners_html_text'),
-                                                    'expires_impressions' => $QbannersCopy->value('expires_impressions'),
-                                                    'date_scheduled' => (empty($QbannersCopy->value('date_scheduled')) ? "null" : "'" . $QbannersCopy->value('date_scheduled') . "'"),
-                                                    'expires_date' => (empty($QbannersCopy->value('expires_date')) ? "null" : "'" . ($QbannersCopy->value('expires_date')) . "'"),
-                                                    'date_added' => 'now()',
-                                                    'date_status_change' => (empty($QbannersCopy->value('date_status_change')) ? "null" : "'" . $QbannersCopy->value('date_status_change') . "'"),
-                                                    'status' => 0,
-                                                    'customers_group_id' => (int)$QbannersCopy->valueInt('customers_group_id'),
-                                                    'languages_id' => (int)$QbannersCopy->valueInt('languages_id'),
-                                                    'banners_title_admin' => $QbannersCopy->value('banners_title_admin')
-                                                  ]
-                                      );
+            'banners_title' => $QbannersCopy->value('banners_title'),
+            'banners_url' => $QbannersCopy->value('banners_url'),
+            'banners_image' => $QbannersCopy->value('banners_image'),
+            'banners_group' => $QbannersCopy->value('banners_group'),
+            'banners_target' => $QbannersCopy->value('banners_target'),
+            'banners_html_text' => $QbannersCopy->value('banners_html_text'),
+            'expires_impressions' => $QbannersCopy->value('expires_impressions'),
+            'date_scheduled' => (empty($QbannersCopy->value('date_scheduled')) ? "null" : "'" . $QbannersCopy->value('date_scheduled') . "'"),
+            'expires_date' => (empty($QbannersCopy->value('expires_date')) ? "null" : "'" . ($QbannersCopy->value('expires_date')) . "'"),
+            'date_added' => 'now()',
+            'date_status_change' => (empty($QbannersCopy->value('date_status_change')) ? "null" : "'" . $QbannersCopy->value('date_status_change') . "'"),
+            'status' => 0,
+            'customers_group_id' => (int)$QbannersCopy->valueInt('customers_group_id'),
+            'languages_id' => (int)$QbannersCopy->valueInt('languages_id'),
+            'banners_title_admin' => $QbannersCopy->value('banners_title_admin')
+          ]
+        );
       }
 
 

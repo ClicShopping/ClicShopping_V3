@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Langues;
 
@@ -16,21 +16,24 @@
 
   use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
 
-  class Insert implements \ClicShopping\OM\Modules\HooksInterface {
+  class Insert implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
     protected $insert_language_id;
 
-    public function __construct() {
+    public function __construct()
+    {
       if (!Registry::exists('Manufacturers')) {
         Registry::set('Manufacturers', new ManufacturersApp());
       }
 
       $this->app = Registry::get('Manufacturers');
       $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
-      $this->lang =  Registry::get('Language');
+      $this->lang = Registry::get('Language');
     }
 
-    private function insert() {
+    private function insert()
+    {
       if (isset($this->insert_language_id)) {
         $Qmanufacturers = $this->app->db->prepare('select m.manufacturers_id as orig_manufacturer_id,
                                                           mi.*
@@ -56,7 +59,8 @@
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       if (!defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
         return false;
       }

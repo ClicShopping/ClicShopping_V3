@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Tools\AdministratorMenu\Sites\ClicShoppingAdmin\Pages\Home\Actions\AdministratorMenu;
@@ -18,14 +18,17 @@
   use ClicShopping\OM\HTML;
 
 
-  class Insert extends \ClicShopping\OM\PagesActionsAbstract {
+  class Insert extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('AdministratorMenu');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
@@ -49,16 +52,16 @@
       }
 
       $sql_data_array = ['sort_order' => (int)$sort_order,
-                         'link' => $link,
-                         'image' => $image,
-                         'b2b_menu' => (int)$b2b_menu,
-                         'access' => (int)$access,
-                         'status' => 1
-                        ];
+        'link' => $link,
+        'image' => $image,
+        'b2b_menu' => (int)$b2b_menu,
+        'access' => (int)$access,
+        'status' => 1
+      ];
 
       $insert_sql_data = ['parent_id' => (int)$current_category_id,
-                          'app_code' => Null
-                          ];
+        'app_code' => Null
+      ];
 
       $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
@@ -68,7 +71,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i=0, $n=count($languages); $i<$n; $i++) {
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
 
         $label_array = $_POST['label'];
 
@@ -77,12 +80,12 @@
         $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];
 
         $insert_sql_data = ['id' => $id,
-                            'language_id' => $languages[$i]['id']
-                           ];
+          'language_id' => $languages[$i]['id']
+        ];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $this->app->db->save('administrator_menu_description', $sql_data_array );
+        $this->app->db->save('administrator_menu_description', $sql_data_array);
       }
 
       Cache::clear('menu-administrator');

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\DefineLanguage\Sites\ClicShoppingAdmin\Pages\Home\Actions\DefineLanguage;
 
@@ -16,14 +16,17 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class Save extends \ClicShopping\OM\PagesActionsAbstract {
+  class Save extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('DefineLanguage');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -45,8 +48,8 @@
         if (isset($_POST['delete']) && is_array($_POST['delete'])) {
           foreach ($_POST['delete'] as $key => $value) {
             $this->app->db->delete(':table_languages_definitions', ['definition_key' => HTML::sanitize($key),
-                                                                    'content_group' => $content_group ]
-                                  );
+                'content_group' => $content_group]
+            );
           }
         }
 
@@ -54,19 +57,19 @@
         foreach ($definition_values as $definition_key => $language_definition) {
           foreach ($language_definition as $language_id => $definition_value) {
             $sql_data_array = [
-                                'content_group' => $content_group,
-                                'definition_key' => $definition_key,
-                                'languages_id' => $language_id,
-                                'definition_value' => $definition_value
-                              ];
+              'content_group' => $content_group,
+              'definition_key' => $definition_key,
+              'languages_id' => $language_id,
+              'definition_value' => $definition_value
+            ];
 
             $where_array = [
-                            'content_group' => $content_group,
-                            'definition_key' => $definition_key,
-                            'languages_id' => $language_id
-                          ];
+              'content_group' => $content_group,
+              'definition_key' => $definition_key,
+              'languages_id' => $language_id
+            ];
 
-            $Qdefinitions = $this->app->db->get(':table_languages_definitions', [ 'count(*) as total' ], $where_array);
+            $Qdefinitions = $this->app->db->get(':table_languages_definitions', ['count(*) as total'], $where_array);
 
             if ($Qdefinitions->valueInt('total') == 0) {
               $this->app->db->save(':table_languages_definitions', $sql_data_array);
@@ -79,23 +82,23 @@
 // add new_definition_key
         if (isset($new_definition_key)) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
-            $sql_data_array = [ 'content_group' => $content_group,
-                                'definition_key' => $new_definition_key,
-                                'languages_id' => $key,
-                                'definition_value' => $value
-                              ];
+            $sql_data_array = ['content_group' => $content_group,
+              'definition_key' => $new_definition_key,
+              'languages_id' => $key,
+              'definition_value' => $value
+            ];
 
             $where_array = ['content_group' => $content_group,
-                            'definition_key' => $new_definition_key,
-                            'languages_id' => $key
-                            ];
+              'definition_key' => $new_definition_key,
+              'languages_id' => $key
+            ];
 
-            $Qdefinitions = $this->app->db->get(':table_languages_definitions', [ 'count(*) as total' ], $where_array);
+            $Qdefinitions = $this->app->db->get(':table_languages_definitions', ['count(*) as total'], $where_array);
 
             if ($Qdefinitions->valueInt('total') == 0) {
               $this->app->db->save(':table_languages_definitions', $sql_data_array);
             } else {
-              $CLICSHOPPING_MessageStack->add($this->app>getDef('ms_error_db_save', [ 'definition_key' => $new_definition_key]), 'error');
+              $CLICSHOPPING_MessageStack->add($this->app > getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
             }
           }
         }
@@ -108,7 +111,7 @@
             if (!isset($definition_values[$new_definition_key][$key])) {
               $new_definition_values[$new_definition_key][$key] = $value;
             } else {
-              $CLICSHOPPING_MessageStack->add($this->app>getDef('ms_error_db_save', [ 'definition_key' => $new_definition_key]), 'error');
+              $CLICSHOPPING_MessageStack->add($this->app > getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
               $new_definition_key_error = true;
             }
           }
@@ -124,14 +127,13 @@
         $this->app->db->delete(':table_languages_definitions', $where_array);
 
 
-
         foreach ($definition_values as $definition_key => $language_definition) {
           foreach ($language_definition as $language_id => $definition_value) {
             $sql_data_array = ['content_group' => $content_group,
-                              'definition_key' => $definition_key,
-                              'languages_id' => $language_id,
-                              'definition_value' => $definition_value
-                              ];
+              'definition_key' => $definition_key,
+              'languages_id' => $language_id,
+              'definition_value' => $definition_value
+            ];
 
             $this->app->db->save(':table_languages_definitions', $sql_data_array);
 
@@ -143,22 +145,22 @@
       $groups = explode('-', $content_group);
       $path_to_file = '/';
 
-      for (($groups[0] == 'Apps' ? $i=3 : $i=1), $n=count($groups)-1; $i<$n; $i++) {
+      for (($groups[0] == 'Apps' ? $i = 3 : $i = 1), $n = count($groups) - 1; $i < $n; $i++) {
         $path_to_file .= $groups[$i] . '/';
       }
 
-      $file_name = $groups[count($groups)-1] . '.txt';
+      $file_name = $groups[count($groups) - 1] . '.txt';
 
-      $path_name = str_replace("-", "/", substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2]) ) )) . ".txt";
+      $path_name = str_replace("-", "/", substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . ".txt";
 
-      for ($i=0, $n=count($languages); $i<$n; $i++) {
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
 
         $language_dir = CLICSHOPPING::getConfig('dir_root', ($groups[0] == 'Apps' ? 'Shop' : $groups[0])) . ($groups[0] == 'Apps' ? 'includes/OSC/Apps/' . $groups[1] . '/' . $groups[2] . '/' : 'includes/') . 'languages/' . $languages[$i]['directory'];
 
         if (!is_file($language_dir . $path_name)) {
           if (!is_dir($language_dir . $path_to_file)) {
             if (!mkdir($language_dir . $path_to_file, 0777, true)) {
-              $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_create', [ 'pathname' => $language_dir . $path_to_file]), 'error');
+              $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_create', ['pathname' => $language_dir . $path_to_file]), 'error');
             }
           }
         } else {

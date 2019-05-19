@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\Stats;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Catalog\Categories\Categories as categoriesApp;
 
-  class StatsCategories implements \ClicShopping\OM\Modules\HooksInterface {
+  class StatsCategories implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('Categories')) {
         Registry::set('Categories', new categoriesApp());
       }
@@ -28,7 +30,8 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stat_categories');
     }
 
-    private function getCategoriesOn() {
+    private function getCategoriesOn()
+    {
       $QCategories = $this->app->db->prepare('select count(*) as count
                                               from :table_categories
                                               where status = 1
@@ -38,7 +41,8 @@
       return $QCategories->valueInt('count');
     }
 
-    private function getCategoriesOff() {
+    private function getCategoriesOff()
+    {
       $QCategories = $this->app->db->prepare('select count(*) as count
                                               from :table_categories
                                               where status = 0
@@ -48,12 +52,13 @@
       return $QCategories->valueInt('count');
     }
 
-    public function display() {
+    public function display()
+    {
       if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
         return false;
       }
 
-        $output = '
+      $output = '
   <div class="card col-md-2 cardStatsWarning">
     <div class="card-block">
       <h4 class="StatsTitle">' . $this->app->getDef('text_categories_alert') . '</h4>
@@ -63,8 +68,8 @@
             <i class="fas fa-bell-slash fa-2x" aria-hidden="true"></i>
           </span>
           <span class="float-md-right">
-            <div class="col-sm-12 StatsValue">' .  $this->getCategoriesOn() . ' - ' . $this->app->getDef('text_categories_on') . '</div>
-            <div class="col-sm-12 StatsValue">' .  $this->getCategoriesOff() . ' - ' . $this->app->getDef('text_categories_off') . '</div>
+            <div class="col-sm-12 StatsValue">' . $this->getCategoriesOn() . ' - ' . $this->app->getDef('text_categories_on') . '</div>
+            <div class="col-sm-12 StatsValue">' . $this->getCategoriesOff() . ' - ' . $this->app->getDef('text_categories_off') . '</div>
           </span>
         </div>
       </div>

@@ -1,21 +1,23 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
 
   use ClicShopping\OM\Registry;
 
-  class History {
+  class History
+  {
 
-    public static function getOrderHistory() {
+    public static function getOrderHistory()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -50,8 +52,9 @@
       return $Qorders;
     }
 
-    public static function getOrderTotalRows() {
-      $orders =  static::getOrderHistory();
+    public static function getOrderTotalRows()
+    {
+      $orders = static::getOrderHistory();
 
       $ordersTotalRow = $orders->getPageSetTotalRows();
 

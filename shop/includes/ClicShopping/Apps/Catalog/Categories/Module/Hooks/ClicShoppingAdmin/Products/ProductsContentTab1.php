@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\Products;
 
@@ -17,10 +17,12 @@
 
   use ClicShopping\Apps\Catalog\Categories\Categories as CategoriesApp;
 
-  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface {
+  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('Categories')) {
         Registry::set('Categories', new CategoriesApp());
       }
@@ -30,7 +32,8 @@
     }
 
 
-    public function display() {
+    public function display()
+    {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
 
@@ -46,16 +49,16 @@
 
       $content = '<!-- Categories -->';
       $content .= '<div class="form-group row">';
-      $content .= '<div class="col-md-2">' .  $this->app->getDef('text_categories_name') . '</div>';
+      $content .= '<div class="col-md-2">' . $this->app->getDef('text_categories_name') . '</div>';
 
       if (isset($_GET['Insert'])) {
         $content .= '<div class="col-md-5">';
-        $content .= '<label for="' .  $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
+        $content .= '<label for="' . $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
         $content .= HTML::selectMenu('move_to_category_id[]', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id);
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
-        $content .= '<a href="' .  $this->app->link('CategoriesPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' .  HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+        $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
         $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
         $content .= '<div class="modal-dialog">';
         $content .= '<div class="modal-content">';
@@ -71,10 +74,10 @@
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
         $content .= '</div>';
         $content .= '<div class="col-md-5">';
-        $content .= $this->app->getDef('text_select_category_action') .' <br />';
+        $content .= $this->app->getDef('text_select_category_action') . ' <br />';
         $content .= HTML::radioField('copy_as', 'none', true) . ' ' . $this->app->getDef('text_copy_as_none') . '<br />';
         $content .= HTML::radioField('copy_as', 'link') . ' ' . $this->app->getDef('text_copy_as_link') . '<br />';
-        $content .= HTML::radioField('copy_as', 'duplicate') . ' ' .  $this->app->getDef('text_copy_as_duplicate') . '<br />';
+        $content .= HTML::radioField('copy_as', 'duplicate') . ' ' . $this->app->getDef('text_copy_as_duplicate') . '<br />';
         $content .= HTML::radioField('copy_as', 'move') . ' ' . $this->app->getDef('text_copy_as_move') . '<br />';
         $content .= '</div>';
       }
@@ -122,7 +125,7 @@ $('#tab1ContentRow1').append(
 <!-- ######################## -->
 
 EOD;
-        return $output;
+      return $output;
 
     }
   }

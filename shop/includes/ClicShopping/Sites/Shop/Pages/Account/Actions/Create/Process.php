@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Create;
 
@@ -23,9 +23,11 @@
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -39,7 +41,7 @@
 // error checking when updating or adding an entry
         $error = false;
 
-        $CLICSHOPPING_Hooks->call('Create','PreAction');
+        $CLICSHOPPING_Hooks->call('Create', 'PreAction');
 
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
@@ -141,17 +143,17 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'danger', 'create_account');
         }
 
-        if ( $error === false ) {
+        if ($error === false) {
           $sql_data_array = ['customers_firstname' => $firstname,
-                             'customers_lastname' => $lastname,
-                             'customers_email_address' => $email_address,
-                             'customers_newsletter' => (int)$newsletter,
-                             'languages_id' => (int)$CLICSHOPPING_Language->getId(),
-                             'customers_password' => Hash::encrypt($password),
-                             'member_level' => 1,
-                             'client_computer_ip' => HTTP::getIPAddress(),
-                             'provider_name_client' => HTTP::getProviderNameCustomer()
-                            ];
+            'customers_lastname' => $lastname,
+            'customers_email_address' => $email_address,
+            'customers_newsletter' => (int)$newsletter,
+            'languages_id' => (int)$CLICSHOPPING_Language->getId(),
+            'customers_password' => Hash::encrypt($password),
+            'member_level' => 1,
+            'client_computer_ip' => HTTP::getIPAddress(),
+            'provider_name_client' => HTTP::getProviderNameCustomer()
+          ];
 
           if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = $dobDateTime->getRaw(false);
 
@@ -160,22 +162,22 @@
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
 // save element in address book
           $sql_data_array = ['customers_id' => (int)$customer_id,
-                              'entry_firstname' => $firstname,
-                              'entry_lastname' => $lastname
-                            ];
+            'entry_firstname' => $firstname,
+            'entry_lastname' => $lastname
+          ];
 
           $CLICSHOPPING_Db->save('address_book', $sql_data_array);
 
           $address_id = $CLICSHOPPING_Db->lastInsertId();
 
           $CLICSHOPPING_Db->save('customers', array('customers_default_address_id' => (int)$address_id),
-                                              array('customers_id' => (int)$customer_id)
-                                );
+            array('customers_id' => (int)$customer_id)
+          );
 
           $sql_array = ['customers_info_id' => (int)$customer_id,
-                        'customers_info_number_of_logons' => 0,
-                        'customers_info_date_account_created' => 'now()'
-                        ];
+            'customers_info_number_of_logons' => 0,
+            'customers_info_date_account_created' => 'now()'
+          ];
 
           $CLICSHOPPING_Db->save('customers_info', $sql_array);
 
@@ -201,8 +203,8 @@
           $template_email_signature = TemplateEmail::getTemplateEmailSignature();
           $template_email_footer = TemplateEmail::getTemplateEmailTextFooter();
           $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
-          $email_gender = CLICSHOPPING::getDef('female') . ', '.  CLICSHOPPING::getDef('male') . ' '. $lastname;
-          $email_text = $email_gender .',<br /><br />'. $template_email_welcome_catalog .'<br /><br />'. $email_coupon .'<br /><br />' .   $template_email_signature . '<br /><br />' . $template_email_footer;
+          $email_gender = CLICSHOPPING::getDef('female') . ', ' . CLICSHOPPING::getDef('male') . ' ' . $lastname;
+          $email_text = $email_gender . ',<br /><br />' . $template_email_welcome_catalog . '<br /><br />' . $email_coupon . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
 
 // EEmail send
           $message = $email_text;
@@ -218,9 +220,9 @@
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
 
             $data_array = ['customer_name' => $lastname,
-                           'customer_firstame' => $firstname,
-                           'customer_mail' => $email_address
-                          ];
+              'customer_firstame' => $firstname,
+              'customer_mail' => $email_address
+            ];
 
             $admin_email_text_admin = CLICSHOPPING::getDef('admin_email_text', $data_array);
 
@@ -234,7 +236,7 @@
 
           $CLICSHOPPING_ActionRecorder->record();
 
-          $CLICSHOPPING_Hooks->call('Create','Process');
+          $CLICSHOPPING_Hooks->call('Create', 'Process');
 
           CLICSHOPPING::redirect(null, 'Account&Main');
         }

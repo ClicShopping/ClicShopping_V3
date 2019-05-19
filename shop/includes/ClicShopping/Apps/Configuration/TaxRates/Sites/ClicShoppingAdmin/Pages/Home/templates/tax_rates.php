@@ -1,15 +1,15 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
@@ -29,9 +29,12 @@ use ClicShopping\OM\HTML;
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/tax_rates.gif', $CLICSHOPPING_TaxRates->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, $CLICSHOPPING_TaxRates->link('Insert&page=' . $page), 'success'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/tax_rates.gif', $CLICSHOPPING_TaxRates->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, $CLICSHOPPING_TaxRates->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -52,9 +55,9 @@ use ClicShopping\OM\HTML;
         </tr>
         </thead>
         <tbody>
-<?php
+        <?php
 
-  $Qrates = $CLICSHOPPING_TaxRates->db->prepare('select  SQL_CALC_FOUND_ROWS  r.tax_rates_id,
+          $Qrates = $CLICSHOPPING_TaxRates->db->prepare('select  SQL_CALC_FOUND_ROWS  r.tax_rates_id,
                                                                      z.geo_zone_id,
                                                                      z.geo_zone_name,
                                                                      tc.tax_class_title,
@@ -72,52 +75,55 @@ use ClicShopping\OM\HTML;
                                                 :page_set_max_results
                                           ');
 
-  $Qrates->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-  $Qrates->execute();
+          $Qrates->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+          $Qrates->execute();
 
-  $listingTotalRow = $Qrates->getPageSetTotalRows();
+          $listingTotalRow = $Qrates->getPageSetTotalRows();
 
-  if ($listingTotalRow > 0) {
+          if ($listingTotalRow > 0) {
 
-    while ($Qrates->fetch()) {
-      if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ((int)$_GET['tID'] ===  $Qrates->valueInt('tax_rates_id')))) && !isset($trInfo)) {
-        $trInfo = new ObjectInfo($Qrates->toArray());
-      }
-?>
-              <th scope="row"><?php echo  $Qrates->valueInt('tax_priority'); ?></th>
+            while ($Qrates->fetch()) {
+              if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ((int)$_GET['tID'] === $Qrates->valueInt('tax_rates_id')))) && !isset($trInfo)) {
+                $trInfo = new ObjectInfo($Qrates->toArray());
+              }
+              ?>
+              <th scope="row"><?php echo $Qrates->valueInt('tax_priority'); ?></th>
               <td><?php echo $Qrates->value('tax_class_title'); ?></td>
               <td><?php echo $Qrates->value('geo_zone_name'); ?></td>
               <td><?php echo Tax::displayTaxRateValue($Qrates->valueDecimal('tax_rate')); ?></td>
-              <td><?php echo  $Qrates->value('tax_description'); ?></td>
-              <td><?php echo  $Qrates->value('code_tax_erp'); ?></td>
+              <td><?php echo $Qrates->value('tax_description'); ?></td>
+              <td><?php echo $Qrates->value('code_tax_erp'); ?></td>
               <td class="text-md-right">
-<?php
-      echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $page . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
-      echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_TaxRates->link('Delete&page=' . $page . '&tID=' .  $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxRates->getDef('icon_delete')));
-      echo '&nbsp;';
-?>
+                <?php
+                  echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
+                  echo '&nbsp;';
+                  echo HTML::link($CLICSHOPPING_TaxRates->link('Delete&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxRates->getDef('icon_delete')));
+                  echo '&nbsp;';
+                ?>
               </td>
-            </tr>
+              </tr>
 
-<?php
-    } // end while
-  }
-?>
+              <?php
+            } // end while
+          }
+        ?>
         </tbody>
-      </table></td>
-    </table>
+      </table>
+    </td>
+  </table>
 
-<?php
-  if ($listingTotalRow > 0) {
-?>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qrates->getPageSetLabel($CLICSHOPPING_TaxRates->getDef('text_display_number_of_link')); ?></div>
-        <div class="float-md-right text-md-right"><?php echo $Qrates->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+  <?php
+    if ($listingTotalRow > 0) {
+      ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qrates->getPageSetLabel($CLICSHOPPING_TaxRates->getDef('text_display_number_of_link')); ?></div>
+          <div
+            class="float-md-right text-md-right"><?php echo $Qrates->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+        </div>
       </div>
-    </div>
-<?php
-  }
-?>
+      <?php
+    }
+  ?>
 </div>

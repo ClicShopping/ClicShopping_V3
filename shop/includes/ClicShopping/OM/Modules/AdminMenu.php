@@ -1,40 +1,43 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\OM\Modules;
 
   use ClicShopping\OM\Apps;
 
-  class AdminMenu extends \ClicShopping\OM\ModulesAbstract {
-      public function getInfo($app, $key, $data)  {
-          $result = [];
+  class AdminMenu extends \ClicShopping\OM\ModulesAbstract
+  {
+    public function getInfo($app, $key, $data)
+    {
+      $result = [];
 
-          $class = $this->ns . $app . '\\' . $data;
+      $class = $this->ns . $app . '\\' . $data;
 
-          if (is_subclass_of($class, 'ClicShopping\OM\Modules\\' . $this->code . 'Interface')) {
-              $result[$app . '\\' . $key] = $class;
-          }
-
-          return $result;
+      if (is_subclass_of($class, 'ClicShopping\OM\Modules\\' . $this->code . 'Interface')) {
+        $result[$app . '\\' . $key] = $class;
       }
 
-      public function getClass($module) {
+      return $result;
+    }
 
-        list($vendor, $app, $code) = explode('\\', $module, 3);
+    public function getClass($module)
+    {
 
-        $info = Apps::getInfo($vendor . '\\' . $app);
+      list($vendor, $app, $code) = explode('\\', $module, 3);
 
-        if (isset($info['modules'][$this->code][$code])) {
-            return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$code];
-        }
+      $info = Apps::getInfo($vendor . '\\' . $app);
+
+      if (isset($info['modules'][$this->code][$code])) {
+        return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$code];
       }
+    }
   }

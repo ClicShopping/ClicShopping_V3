@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Module\ClicShoppingAdmin\Dashboard;
 
@@ -17,12 +17,14 @@
 
   use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
-  class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class Reviews extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('Reviews')) {
         Registry::set('Reviews', new ReviewsApp());
@@ -36,13 +38,14 @@
       $this->title = $this->app->getDef('module_admin_dashboard_reviews_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_reviews_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_REVIEWS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -93,18 +96,18 @@
         }
 
         $content .= '  <tr class="dataTableRow backgroundBlank">' .
-                   '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('products_name')) . '</td>' .
-                   '    <td class="dataTableContent">' . DateTime::toShort($Qreviews->value('date_added')) . '</td>' .
-                   '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('customers_name')) . '</td>' .
-                   '    <td class="dataTableContent"><i>' .  HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i></td>' .
-                   '    <td class="dataTableContent text-md-center">' . $status_icon . '</td>' .
-                   '   <td class="dataTableContent text-md-right">' . HTML::link($this->app->link('&Edit&page=' . $_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('icon_edit'))) . '</td>' .
-                   '  </tr>';
+          '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('products_name')) . '</td>' .
+          '    <td class="dataTableContent">' . DateTime::toShort($Qreviews->value('date_added')) . '</td>' .
+          '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('customers_name')) . '</td>' .
+          '    <td class="dataTableContent"><i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i></td>' .
+          '    <td class="dataTableContent text-md-center">' . $status_icon . '</td>' .
+          '   <td class="dataTableContent text-md-right">' . HTML::link($this->app->link('&Edit&page=' . $_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('icon_edit'))) . '</td>' .
+          '  </tr>';
 
-      $content .= ' </tbody>';
-      $content .= '</table>';
-      $content .= '</div>';
-      $content .= '</div>';
+        $content .= ' </tbody>';
+        $content .= '</table>';
+        $content .= '</div>';
+        $content .= '</div>';
 
         $output = <<<EOD
   <!-- ######################## -->
@@ -120,7 +123,8 @@ EOD;
       }
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want to enable this Module ?',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS',
@@ -158,10 +162,11 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_REVIEWS_APP_STATUS',
-               'MODULE_ADMIN_DASHBOARD_REVIEWS_APP_CONTENT_WIDTH',
-               'MODULE_ADMIN_DASHBOARD_REVIEWS_APP_SORT_ORDER'
-              ];
+        'MODULE_ADMIN_DASHBOARD_REVIEWS_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_REVIEWS_APP_SORT_ORDER'
+      ];
     }
   }

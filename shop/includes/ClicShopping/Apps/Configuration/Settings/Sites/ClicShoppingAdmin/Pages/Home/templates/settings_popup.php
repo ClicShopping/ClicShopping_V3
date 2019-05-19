@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\Sites\ClicShoppingAdmin\CallUserFuncConfiguration;
@@ -20,17 +20,17 @@
   $gID = (isset($_GET['gID'])) ? $_GET['gID'] : 1;
 
   $Qconfiguration = $CLICSHOPPING_Settings->db->get('configuration', [
-                                                                      'configuration_id',
-                                                                      'configuration_title',
-                                                                      'configuration_value',
-                                                                      'use_function'
-                                                                      ], [
-                                                                      'configuration_group_id' => (int)$gID
-                                                                      ],
-                                                                      'sort_order'
-                                                  );
+    'configuration_id',
+    'configuration_title',
+    'configuration_value',
+    'use_function'
+  ], [
+    'configuration_group_id' => (int)$gID
+  ],
+    'sort_order'
+  );
 
-  while ($Qconfiguration->fetch() ) {
+  while ($Qconfiguration->fetch()) {
 
     if ($Qconfiguration->hasValue('use_function') && !is_null($Qconfiguration->value('use_function'))) {
       $use_function = $Qconfiguration->value('use_function');
@@ -39,7 +39,7 @@
         $class_method = explode('->', $use_function);
 
         if (!is_object(${$class_method[0]})) {
-          include_once('includes/classes/'. $class_method[0] . '.php');
+          include_once('includes/classes/' . $class_method[0] . '.php');
           ${$class_method[0]} = new $class_method[0]();
         }
 
@@ -55,16 +55,16 @@
     if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qconfiguration->valueInt('configuration_id')))) && !isset($cInfo)) {
 
       $Qextra = $CLICSHOPPING_Settings->db->get('configuration', [
-                                                                  'configuration_key',
-                                                                  'configuration_description',
-                                                                  'date_added',
-                                                                  'last_modified',
-                                                                  'use_function',
-                                                                  'set_function'
-                                                                  ], [
-                                                                    'configuration_id' => $Qconfiguration->valueInt('configuration_id')
-                                                                  ]
-                                              );
+        'configuration_key',
+        'configuration_description',
+        'date_added',
+        'last_modified',
+        'use_function',
+        'set_function'
+      ], [
+          'configuration_id' => $Qconfiguration->valueInt('configuration_id')
+        ]
+      );
 
       $cInfo_array = array_merge($Qconfiguration->toArray(), $Qextra->toArray());
       $cInfo = new ObjectInfo($cInfo_array);
@@ -85,8 +85,10 @@
   <div class="col-md-12">
     <div class="card card-block headerCard">
       <div class="row">
-        <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_' . $gID . '.gif', '', '40', '40'); ?></span>
-        <span class="pageHeading col-md-7"><?php echo '&nbsp;' . $CLICSHOPPING_Settings->getDef('heading_title'); ?></span>
+        <span
+          class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_' . $gID . '.gif', '', '40', '40'); ?></span>
+        <span
+          class="pageHeading col-md-7"><?php echo '&nbsp;' . $CLICSHOPPING_Settings->getDef('heading_title'); ?></span>
         <span class="col-md-4 text-md-right">&nbsp;
           <?php echo HTML::button($CLICSHOPPING_Settings->getDef('button_update'), null, null, 'success'); ?>
         </span>
@@ -97,7 +99,7 @@
 
 
 <div style="padding:20px 10px 30px 10px;">
-  <div  style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
+  <div style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
   <div class="separator"></div>
   <div><?php echo $cInfo->configuration_description; ?></div>
   <div class="separator"></div>

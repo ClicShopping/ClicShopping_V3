@@ -1,18 +1,19 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class ht_datepicker_jquery {
+  class ht_datepicker_jquery
+  {
     public $code;
     public $group;
     public $title;
@@ -20,19 +21,21 @@
     public $sort_order;
     public $enabled = false;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = 'footer_scripts';
       $this->title = CLICSHOPPING::getDef('module_header_tags_datepicker_jquery_title');
       $this->description = CLICSHOPPING::getDef('module_header_tags_datepicker_jquery_description');
 
-      if ( defined('MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS')) {
         $this->sort_order = MODULE_HEADER_TAGS_DATEPICKER_JQUERY_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS == 'True');
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -58,26 +61,28 @@
           $CLICSHOPPING_Template->addBlock('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>' . "\n", $this->group);
 
 
-
           // create_account
           // account edit
-          $CLICSHOPPING_Template->addBlock('<script>$(\'#dob\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',viewMode: 2});</script>', $this->group);
+          $CLICSHOPPING_Template->addBlock('<script>$(\'#dob\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format') . '\',viewMode: 2});</script>', $this->group);
           // advanced search
-          $CLICSHOPPING_Template->addBlock('<script>var nowTemp = new Date(); var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0); $(\'#dfrom\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}}); </script>', $this->group);
-          $CLICSHOPPING_Template->addBlock('<script>$(\'#dto\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format')  . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}});</script>', $this->group);
+          $CLICSHOPPING_Template->addBlock('<script>var nowTemp = new Date(); var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0); $(\'#dfrom\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format') . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}}); </script>', $this->group);
+          $CLICSHOPPING_Template->addBlock('<script>$(\'#dto\').datepicker({dateFormat: \'' . CLICSHOPPING::getDef('js_date_format') . '\',onRender: function(date) {return date.valueOf() > now.valueOf() ? \'disabled\' : \'\';}});</script>', $this->group);
         }
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return defined('MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
 
@@ -120,27 +125,30 @@
 
 
       return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                            );
+        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
+      );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULE_HEADER_TAGS_DATEPICKER_JQUERY_STATUS',
-                   'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_SORT_ORDER',
-                   'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES'
-                   );
+        'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_SORT_ORDER',
+        'MODULE_HEADER_TAGS_DATEPICKER_JQUERY_PAGES'
+      );
     }
 
-    public function get_default_pages() {
-        return array('Search&AdvancedSearch',
-                    'Account&Edit',
-                    'Account&Create',
-                    'Account&CreatePro'
-                    );
+    public function get_default_pages()
+    {
+      return array('Search&AdvancedSearch',
+        'Account&Edit',
+        'Account&Create',
+        'Account&CreatePro'
+      );
     }
 
   }

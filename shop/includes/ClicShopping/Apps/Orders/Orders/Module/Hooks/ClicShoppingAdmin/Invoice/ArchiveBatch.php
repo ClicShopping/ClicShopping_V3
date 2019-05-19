@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Orders\Orders\Module\Hooks\ClicShoppingAdmin\Invoice;
 
@@ -16,12 +16,14 @@
 
   use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface {
+  class ArchiveBatch implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
     protected $Id;
 
-    public function __construct() {
-      if(isset($_GET['aID'])) {
+    public function __construct()
+    {
+      if (isset($_GET['aID'])) {
         $archive_id = HTML::sanitize($_GET['aID']);
       } else {
         $archive_id = 0;
@@ -36,7 +38,8 @@
       $this->Id = HTML::sanitize($archive_id);
     }
 
-    public function execute() {
+    public function execute()
+    {
 
       if (!defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
         return false;
@@ -54,10 +57,10 @@
                       <h4 class="modal-title text-md-left" id="myModalLabel">' . $this->app->getDef('text_archive_batch_heading') . '</h4>
                     </div>
                     <div class="modal-body text-md-center">
-                      ' . HTML::form('archive', $this->app->link('Orders')) .'
+                      ' . HTML::form('archive', $this->app->link('Orders')) . '
                         ' . HTML::hiddenField('aID', 1) . '
                        </form>
-                      ' . HTML::form('archive',  $this->app->link('Orders&ArchiveBatch')) . '
+                      ' . HTML::form('archive', $this->app->link('Orders&ArchiveBatch')) . '
                         <div class="separator"></div>
                         <div class="col-md-12">
                           <div class="col-md-12 text-md-left">' . $this->app->getDef('label_text_order_number') . '</div>
@@ -66,7 +69,7 @@
                         </div>
                         <div class="separator"></div>
                         <div>
-                        ' . HTML::button($this->app->getDef('button_archive'), null, null, 'primary') . ' ' .  HTML::button($this->app->getDef('button_archive_consult'), null, $this->app->link('Orders&aID=1'), 'secondary') . '
+                        ' . HTML::button($this->app->getDef('button_archive'), null, null, 'primary') . ' ' . HTML::button($this->app->getDef('button_archive_consult'), null, $this->app->link('Orders&aID=1'), 'secondary') . '
                         </div>
                       </form>
                     </div>
@@ -78,4 +81,6 @@
 
       return $output;
     }
-  };
+  }
+
+  ;

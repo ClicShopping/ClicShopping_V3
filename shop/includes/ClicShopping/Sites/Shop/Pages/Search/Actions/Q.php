@@ -1,27 +1,29 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Search\Actions;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class Q extends \ClicShopping\OM\PagesActionsAbstract {
+  class Q extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       global $listingTotalRow, $Qlisting;
 
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_MessageStack= Registry::get('MessageStack');
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Search = Registry::get('Search');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -31,13 +33,13 @@
         $max_display = 1;
       }
 
-      if ( $CLICSHOPPING_Search->hasKeywords() && empty($CLICSHOPPING_Search->hasKeywords()) &&
-         ( $CLICSHOPPING_Search->getDateFrom() && (empty($CLICSHOPPING_Search->getDateFrom()) || ($CLICSHOPPING_Search->getDateFrom() == CLICSHOPPING::getDef('dob_format_string')))) &&
-         ( $CLICSHOPPING_Search->getDateTo() && (empty($CLICSHOPPING_Search->getDateTo()) || ($CLICSHOPPING_Search->getDateTo() == CLICSHOPPING::getDef('dob_format_string')))) &&
-         ( $CLICSHOPPING_Search->getPriceFrom() && !is_numeric($CLICSHOPPING_Search->getPriceFrom())) &&
-         ( $CLICSHOPPING_Search->getPriceTo() && !is_numeric($CLICSHOPPING_Search->getPriceTo())) ) {
+      if ($CLICSHOPPING_Search->hasKeywords() && empty($CLICSHOPPING_Search->hasKeywords()) &&
+        ($CLICSHOPPING_Search->getDateFrom() && (empty($CLICSHOPPING_Search->getDateFrom()) || ($CLICSHOPPING_Search->getDateFrom() == CLICSHOPPING::getDef('dob_format_string')))) &&
+        ($CLICSHOPPING_Search->getDateTo() && (empty($CLICSHOPPING_Search->getDateTo()) || ($CLICSHOPPING_Search->getDateTo() == CLICSHOPPING::getDef('dob_format_string')))) &&
+        ($CLICSHOPPING_Search->getPriceFrom() && !is_numeric($CLICSHOPPING_Search->getPriceFrom())) &&
+        ($CLICSHOPPING_Search->getPriceTo() && !is_numeric($CLICSHOPPING_Search->getPriceTo()))) {
 
-       $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
       } else {
         $search = $CLICSHOPPING_Search->getResult();
 
@@ -56,6 +58,6 @@
       $CLICSHOPPING_Language->loadDefinitions('advanced_search');
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Search&AdvancedSearch'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null,  CLICSHOPPING::getAllGET(), true));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null, CLICSHOPPING::getAllGET(), true));
     }
   }

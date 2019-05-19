@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -36,7 +36,7 @@
                                                           order by a.parent_id,
                                                                    a.sort_order
                                                           ');
-  $Qcategories->bindInt(':id', $_GET['cID'] );
+  $Qcategories->bindInt(':id', $_GET['cID']);
   $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qcategories->execute();
 
@@ -63,8 +63,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
           <span class="col-md-9 text-md-right">
 
           </span>
@@ -74,19 +76,23 @@
   </div>
   <div class="separator"></div>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_info_heading_move_category'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_info_heading_move_category'); ?></strong></div>
   <?php echo HTML::form('move', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&MoveCategoryConfirm&cPath=' . $cPath . '&id=' . $cInfo->id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
-      <div class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move_categories_intro', [ 'move_category' => $cInfo->label]); ?><br/><br/></div>
+      <div
+        class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move_categories_intro', ['move_category' => $cInfo->label]); ?>
+        <br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12">
-        <span class="col-md-3"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move', ['move_label' => $cInfo->label]) . '<br />' . HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $current_category_id); ?></span>
+        <span
+          class="col-md-3"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_move', ['move_label' => $cInfo->label]) . '<br />' . HTML::selectMenu('move_to_category_id', AdministratorMenu::getLabelTree(), $current_category_id); ?></span>
       </div>
       <div class="separator"></div>
       <div class="col-md-12 text-md-center">
-        <span><br /><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

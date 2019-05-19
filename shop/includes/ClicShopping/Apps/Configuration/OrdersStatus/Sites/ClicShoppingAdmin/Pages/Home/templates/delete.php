@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -22,7 +22,7 @@
                                               and orders_status_id = :orders_status_id
                                               ');
 
-  $Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
+  $Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qstatus->bindInt(':orders_status_id', $_GET['oID']);
   $Qstatus->execute();
 
@@ -54,13 +54,16 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/order_status.gif', $CLICSHOPPING_OrdersStatus->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatus->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/order_status.gif', $CLICSHOPPING_OrdersStatus->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatus->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_info_heading_delete_orders_status'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_info_heading_delete_orders_status'); ?></strong></div>
   <?php echo HTML::form('status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&DeleteConfirm&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id)); ?>
   <div class="adminformTitle">
     <div class="row">
@@ -69,17 +72,17 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_name . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-md-center">
-<?php
-  if ($remove_status) {
-?>
-    <span><br /><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' .HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
-    <?php
-  } else {
-?>
-    <span><br /><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
-<?php
-  }
-?>
+        <?php
+          if ($remove_status) {
+            ?>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
+            <?php
+          } else {
+            ?>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
+            <?php
+          }
+        ?>
       </div>
     </div>
   </div>

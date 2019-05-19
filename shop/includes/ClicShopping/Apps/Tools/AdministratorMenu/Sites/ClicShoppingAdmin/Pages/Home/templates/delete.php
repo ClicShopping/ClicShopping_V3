@@ -1,15 +1,15 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
@@ -37,11 +37,11 @@ use ClicShopping\OM\HTML;
                                                                 order by a.parent_id,
                                                                          a.sort_order
                                                                 ');
-  $Qcategories->bindInt(':id', $_GET['cID'] );
+  $Qcategories->bindInt(':id', $_GET['cID']);
   $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qcategories->execute();
 
-  $category_childs = ['childs_count' =>  AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
+  $category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
 
   $cInfo_array = array_merge($Qcategories->toArray(), $category_childs);
   $cInfo = new ObjectInfo($cInfo_array);
@@ -52,37 +52,42 @@ use ClicShopping\OM\HTML;
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_info_heading_delete_category'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_info_heading_delete_category'); ?></strong></div>
   <?php echo HTML::form('categories', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&DeleteCategoryConfirm&cPath=' . $cPath . '&id=' . $cInfo->id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
-      <div class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_category_intro'); ?><br/><br/></div>
+      <div class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_category_intro'); ?>
+        <br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12">
         <span class="col-md-3"><?php echo $cInfo->label; ?></span>
       </div>
-<?php
+      <?php
         if ($cInfo->childs_count > 0) {
-?>
+          ?>
           <div class="separator"></div>
           <div class="col-md-12">
-            <span class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_warning_childs', ['delete_child' => $cInfo->childs_count]); ?></span>
+            <span
+              class="col-md-12"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_delete_warning_childs', ['delete_child' => $cInfo->childs_count]); ?></span>
           </div>
-<?php
+          <?php
         }
-?>
+      ?>
       <div class="separator"></div>
       <div class="col-md-12 text-md-center">
-        <span><br /><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_delete'), null,null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_AdministratorMenu->getDef('button_cancel'), null, $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&cPath=' . $cPath . '&cID=' . $cInfo->id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

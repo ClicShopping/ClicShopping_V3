@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Products\Module\HeaderTags;
 
@@ -18,13 +18,15 @@
 
   use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
-  class ProductStock extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class ProductStock extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('Products')) {
         Registry::set('Products', new ProductsApp());
       }
@@ -38,17 +40,19 @@
       $this->title = $this->app->getDef('module_header_tags_product_stock_title');
       $this->description = $this->app->getDef('module_header_tags_product_stock_description');
 
-      if ( defined('MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCTS_STOCK_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS == 'True');
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
@@ -57,7 +61,7 @@
       }
 
       if (isset($_GET['Products']) && isset($_GET['Description'])) {
-        if ( $CLICSHOPPING_ProductsCommon->getProductsStock() > 0) {
+        if ($CLICSHOPPING_ProductsCommon->getProductsStock() > 0) {
           $stock = 'InStock';
         } else {
           $stock = 'OutofStock';
@@ -88,17 +92,17 @@
              },
    "sku": "' . $sku . '",
    "description": "' . $CLICSHOPPING_ProductsCommon->getProductsDescription() . '",
-   "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
+   "url": "' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) . '",
    "name": "' . $CLICSHOPPING_ProductsCommon->getProductsName() . '",
    "image": "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '/' . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage() . '",
-   "itemCondition": "http://schema.org/' . $products_packaging .'",
+   "itemCondition": "http://schema.org/' . $products_packaging . '",
    "offers": [
                 {
                  "@type": "Offer",
                  "price": "' . $price . '",
                  "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
                  "itemCondition": "' . $products_packaging . '",
-                 "url": "' .  CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) .  '",
+                 "url": "' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) . '",
                  "sku": "' . $sku . '",
                  "availability": "' . $stock . '"
                 }
@@ -113,7 +117,7 @@
         $display_result = $CLICSHOPPING_Template->addBlock($result, $this->group);
 
         $output =
-<<<EOD
+          <<<EOD
 {$display_result}
 EOD;
 
@@ -121,7 +125,8 @@ EOD;
       }
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS',
@@ -147,9 +152,10 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_HEADER_TAGS_PRODUCTS_STOCK_STATUS',
-              'MODULE_HEADER_TAGS_PRODUCTS_STOCK_SORT_ORDER'
-             ];
+        'MODULE_HEADER_TAGS_PRODUCTS_STOCK_SORT_ORDER'
+      ];
     }
   }

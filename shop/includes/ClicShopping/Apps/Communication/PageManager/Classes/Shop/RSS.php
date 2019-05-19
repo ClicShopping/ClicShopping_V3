@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Communication\PageManager\Classes\Shop;
 
@@ -19,7 +19,8 @@
   use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
 
-  class RSS  {
+  class RSS
+  {
 
     protected $products_id;
     protected $site_name;
@@ -28,27 +29,29 @@
     protected $navigationHistory;
     protected $rewriteUrl;
 
-/**
- * Constructor
- *
- * @param string $xmlns XML namespace
- * @param string $site_name the name of your site
- */
-      public function __construct () {
-        $this->site_name = STORE_NAME;
-        $this->db = Registry::get('Db');
-        $this->lang = Registry::get('Language');
-        $this->navigationHistory = Registry::get('NavigationHistory');
-        $this->rewriteUrl = Registry::get('RewriteUrl');
-      }
+    /**
+     * Constructor
+     *
+     * @param string $xmlns XML namespace
+     * @param string $site_name the name of your site
+     */
+    public function __construct()
+    {
+      $this->site_name = STORE_NAME;
+      $this->db = Registry::get('Db');
+      $this->lang = Registry::get('Language');
+      $this->navigationHistory = Registry::get('NavigationHistory');
+      $this->rewriteUrl = Registry::get('RewriteUrl');
+    }
 
-/**
- * Site link
- *
- * @return $xmlns  Site link for rss
- */
+    /**
+     * Site link
+     *
+     * @return $xmlns  Site link for rss
+     */
 
-    public function xmlns() {
+    public function xmlns()
+    {
 // set more namespaces if you need them
 
       $xmlns = '
@@ -119,16 +122,17 @@
                 xmlns:xrds="xri://$xrds"
                 ';
 
-     $xmlns = $xmlns ? ' ' . $xmlns : '';
-     return $xmlns;
+      $xmlns = $xmlns ? ' ' . $xmlns : '';
+      return $xmlns;
     }
 
-/**
- * Title of the site
- *
- * @return string $title, Title of the site
- */
-    private function setTitle() {
+    /**
+     * Title of the site
+     *
+     * @return string $title, Title of the site
+     */
+    private function setTitle()
+    {
       $Qsubmit = $this->db->prepare('select submit_id,
                                             language_id,
                                             submit_defaut_language_title
@@ -137,7 +141,7 @@
                                     and language_id = :language_id
                                     limit 1
                                     ');
-      $Qsubmit->bindInt(':language_id',  (int)$this->lang->getId() );
+      $Qsubmit->bindInt(':language_id', (int)$this->lang->getId());
       $Qsubmit->execute();
 
       if ($Qsubmit->fetch() !== false) {
@@ -149,12 +153,13 @@
       return $title;
     }
 
-/**
-* Description of the site
-*
-* @return string $description, Description of the site
-*/
-    private function setDescription() {
+    /**
+     * Description of the site
+     *
+     * @return string $description, Description of the site
+     */
+    private function setDescription()
+    {
       $Qsubmit = $this->db->prepare('select submit_id,
                                             language_id,
                                             submit_defaut_language_description
@@ -163,7 +168,7 @@
                                     and language_id = :language_id
                                     limit 1
                                     ');
-      $Qsubmit->bindInt(':language_id',  (int)$this->lang->getId() );
+      $Qsubmit->bindInt(':language_id', (int)$this->lang->getId());
       $Qsubmit->execute();
 
       if ($Qsubmit->fetch() !== false) {
@@ -176,27 +181,29 @@
     }
 
 
-/**
-* Number max of item to display
-*
-* @return string $number_of_item, Number max of item to display
-*/
-    public function getMaxListing($number_of_item = 20) {
-     return $number_of_item;
+    /**
+     * Number max of item to display
+     *
+     * @return string $number_of_item, Number max of item to display
+     */
+    public function getMaxListing($number_of_item = 20)
+    {
+      return $number_of_item;
     }
 
 
-/**
- * List of items
- *
- * @return string all list of items
- */
-    public function setListRSS() {
+    /**
+     * List of items
+     *
+     * @return string all list of items
+     */
+    public function setListRSS()
+    {
       $this->navigationHistory->removeCurrentPage();
 
 // show the products
       if (STOCK_CHECK == 'true') {
-        $Qlisting =  $this->db->prepare('select DISTINCTROW  p.products_id,
+        $Qlisting = $this->db->prepare('select DISTINCTROW  p.products_id,
                                                              p.products_image,
                                                               pd.products_name,
                                                               pd.products_description,
@@ -242,30 +249,32 @@
                                      ');
       }
 
-      $Qlisting->bindInt(':limit', $this->getMaxListing() );
-      $Qlisting->bindInt(':language_id',  (int)$this->lang->getId() );
+      $Qlisting->bindInt(':limit', $this->getMaxListing());
+      $Qlisting->bindInt(':language_id', (int)$this->lang->getId());
 
       $Qlisting->execute();
 
       return $Qlisting->fetchAll();
     }
 
-/**
- * Number of item
- *
- * @return string $countRSS; num ber of item
- */
-    public function countRSS() {
+    /**
+     * Number of item
+     *
+     * @return string $countRSS; num ber of item
+     */
+    public function countRSS()
+    {
       $countRSS = count($this->setListRSS());
-      return  $countRSS;
+      return $countRSS;
     }
 
-/**
- * Choose the last added product date
- *
- * @return string products_date_added
- */
-    public function productDateAdded() {
+    /**
+     * Choose the last added product date
+     *
+     * @return string products_date_added
+     */
+    public function productDateAdded()
+    {
       $Qproducts = $this->db->prepare('select products_date_added
                                         from :table_products
                                         where products_status = 1
@@ -279,12 +288,13 @@
       return $Qproducts->value('products_date_added');
     }
 
-/**
- * Generate RSS 2.0 feed
- *
- * @return string RSS 2.0 xml
- */
-    public function displayFeed() {
+    /**
+     * Generate RSS 2.0 feed
+     *
+     * @return string RSS 2.0 xml
+     */
+    public function displayFeed()
+    {
       $xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
       $xml .= '<?xml-stylesheet href="https://www.w3.org/2000/08/w3c-synd/style.css" type="text/css"?>' . "\n";
 
@@ -294,19 +304,18 @@
 // channel required properties
       $xml .= '<channel>' . "\n";
       $xml .= '<title>' . $this->setTitle() . '</title>' . "\n";
-      $xml .= '<link>' . HTTP::typeUrlDomain()  . '</link>' . "\n";
-      $xml .= '<description>'. $this->setDescription() .'</description>' . "\n";
+      $xml .= '<link>' . HTTP::typeUrlDomain() . '</link>' . "\n";
+      $xml .= '<description>' . $this->setDescription() . '</description>' . "\n";
       $xml .= '<copyright>' . $this->setTitle() . '</copyright>' . "\n";
 
 
-
       $link_atom = CLICSHOPPING::link(null, 'Info&Rss');
-      $link_atom = str_replace('&','&amp;', $link_atom);
+      $link_atom = str_replace('&', '&amp;', $link_atom);
 
       $xml .= '<atom:link href="' . $link_atom . '" type="application/rss+xml"/>' . "\n";
       $xml .= '<language>' . $_SESSION['language'] . '</language>' . "\n";
       $xml .= '<image>' . "\n";
-      $xml .= '<title>' .  $this->setTitle()  . '</title>' . "\n";
+      $xml .= '<title>' . $this->setTitle() . '</title>' . "\n";
       $xml .= '<link>' . HTTP::typeUrlDomain() . '</link>' . "\n";
       $xml .= '<url>' . HTTP::getShopUrlDomain() . 'sources/images/icons/icon_feed.gif' . '</url>' . "\n";
       $xml .= '</image>' . "\n";
@@ -316,30 +325,30 @@
 // get RSS channel items
       $rss_item = $this->setListRSS();
 
-      for ($i=0, $n=count($rss_item); $i<$n; $i++) {
+      for ($i = 0, $n = count($rss_item); $i < $n; $i++) {
 
         $products_id = $rss_item[$i]['products_id'];
-        $date_added = date('Y-m-d',strtotime($rss_item[$i]['products_date_added']));
+        $date_added = date('Y-m-d', strtotime($rss_item[$i]['products_date_added']));
 
         $name = strip_tags($rss_item[$i]['products_name']);
         $description = strip_tags($rss_item[$i]['products_description']);
 
-        $description =  HTMLOverrideCommon::stripHtmlTags($description);
-        $description =  HTMLOverrideCommon::cleanHtml($description);
-        $description = str_replace('<','', $description);
+        $description = HTMLOverrideCommon::stripHtmlTags($description);
+        $description = HTMLOverrideCommon::cleanHtml($description);
+        $description = str_replace('<', '', $description);
 
 // http://www.w3.org/TR/REC-xml/#dt-chardata
 // The ampersand character (&) and the left angle bracket (<) MUST NOT appear in their literal form
-        $url =  $this->rewriteUrl->getProductNameUrl($products_id);
+        $url = $this->rewriteUrl->getProductNameUrl($products_id);
 
-        $link = str_replace('&','&amp;', $url);
+        $link = str_replace('&', '&amp;', $url);
 
         $xml .= '<item>' . "\n";
         $xml .= '<title>' . $name . '</title>' . "\n";
         $xml .= '<link>' . $link . '</link>' . "\n";
         $xml .= '<description>' . $description . '</description>' . "\n";
 
-        $xml .= '<pubDate>' . gmdate("D, d M Y H:i:s", strtotime($date_added)). ' GMT' . '</pubDate>' . "\n";
+        $xml .= '<pubDate>' . gmdate("D, d M Y H:i:s", strtotime($date_added)) . ' GMT' . '</pubDate>' . "\n";
         $xml .= '<guid>' . $link . '</guid>' . "\n";
         $xml .= '</item>' . "\n";
       }

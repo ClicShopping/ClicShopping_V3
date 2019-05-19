@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\WhosOnline\Module\ClicShoppingAdmin\Dashboard;
 
@@ -16,12 +16,14 @@
 
   use ClicShopping\Apps\Tools\WhosOnline\WhosOnline as WhosOnlineApp;
 
-  class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('WhosOnline')) {
         Registry::set('WhosOnline', new WhosOnlineApp());
@@ -41,14 +43,15 @@
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $xx_mins_ago = (time() - 900);
 
       $Qdelete = $this->app->db->prepare('delete
                                           from :table_whos_online
                                           where time_last_click < :time_last_click
                                         ');
-      $Qdelete->bindValue(':time_last_click',  $xx_mins_ago);
+      $Qdelete->bindValue(':time_last_click', $xx_mins_ago);
       $Qdelete->execute();
 
       $QwhosOnline = $this->app->db->prepare('select customer_id,
@@ -65,7 +68,7 @@
         $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_CONTENT_WIDTH;
 
         $output = '<span class="' . $content_width . '">';
-        $output .=  '<div class="separator"></div>';
+        $output .= '<div class="separator"></div>';
 
         $output .= '<table class="table table-hover" width="100%">';
         $output .= '<thead>';
@@ -73,26 +76,26 @@
         $output .= '<th width="10%">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_online') . '</th>';
         $output .= '<th width="20%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_full_name') . '</th>';
         $output .= '<th width="10%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_ip_address') . '</th>';
-        $output .= '<th width="60%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_user_agent'). '</th>';
+        $output .= '<th width="60%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_user_agent') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';
 
-        while ($QwhosOnline->fetch() ) {
+        while ($QwhosOnline->fetch()) {
 
           $time_online = (time() - $QwhosOnline->value('time_entry'));
 
           $output .= '<tr class="dataTableRow">';
           $output .= '<td class="dataTableContent">' . gmdate('H:i:s', $time_online) . '</td> ';
 
-          if( $QwhosOnline->valueInt('customer_id') == 0){
+          if ($QwhosOnline->valueInt('customer_id') == 0) {
             $output .= '<td class="dataTableContent text-md-left">' . $QwhosOnline->value('full_name') . '</td>';
           } else {
-            $output .= '<td class="dataTableContent"><a href="' . CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' .  $QwhosOnline->valueInt('customer_id')) . '" title="View Customer">' .  $QwhosOnline->value('full_name') . '</a></td>';
+            $output .= '<td class="dataTableContent"><a href="' . CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Edit&cID=' . $QwhosOnline->valueInt('customer_id')) . '" title="View Customer">' . $QwhosOnline->value('full_name') . '</a></td>';
           }
 
-          $output .= '<td class="dataTableContent text-md-center"><a href="https://ip-lookup.net/index.php?ip='. urlencode( $QwhosOnline->valueInt('ip_address')). '" title="Lookup" target="_blank" rel="noreferrer">'.  $QwhosOnline->value('ip_address') .'</a></td>';
-          $output .= '<td class="dataTableContent">' .  $QwhosOnline->value('user_agent') . '</td>';
+          $output .= '<td class="dataTableContent text-md-center"><a href="https://ip-lookup.net/index.php?ip=' . urlencode($QwhosOnline->valueInt('ip_address')) . '" title="Lookup" target="_blank" rel="noreferrer">' . $QwhosOnline->value('ip_address') . '</a></td>';
+          $output .= '<td class="dataTableContent">' . $QwhosOnline->value('user_agent') . '</td>';
           $output .= '</tr>';
         } // end while
 
@@ -100,14 +103,15 @@
         $output .= '</table>';
         $output .= '</span>';
         $output .= '<div>';
-        $output .= '<p class="text-md-right" style="size:0.2rem;"><small>' . $this->app->getDef('module_admin_dashboard_whos_online_app_customers_online') . ' ' . $QwhosOnline->rowCount() .'</small></p>';
+        $output .= '<p class="text-md-right" style="size:0.2rem;"><small>' . $this->app->getDef('module_admin_dashboard_whos_online_app_customers_online') . ' ' . $QwhosOnline->rowCount() . '</small></p>';
         $output .= '</div>';
       }
 
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
       if ($this->lang->getId() != 2) {
 
         $this->app->db->save('configuration', [
@@ -160,7 +164,7 @@
           ]
         );
 
-         $this->app->db->save('configuration', [
+        $this->app->db->save('configuration', [
             'configuration_title' => 'Select the width to display',
             'configuration_key' => 'MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_CONTENT_WIDTH',
             'configuration_value' => '12',
@@ -172,7 +176,7 @@
           ]
         );
 
-         $this->app->db->save('configuration', [
+        $this->app->db->save('configuration', [
             'configuration_title' => 'Sort Order',
             'configuration_key' => 'MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_SORT_ORDER',
             'configuration_value' => '90',
@@ -186,10 +190,11 @@
       }
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_STATUS',
-               'MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_CONTENT_WIDTH',
-               'MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_SORT_ORDER'
-             ];
+        'MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_WHOS_ONLINE_APP_SORT_ORDER'
+      ];
     }
   }

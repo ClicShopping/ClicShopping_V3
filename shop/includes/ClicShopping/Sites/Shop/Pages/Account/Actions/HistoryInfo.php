@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions;
 
@@ -17,11 +17,13 @@
 
   use ClicShopping\Sites\Shop\Pages\Account\Classes\HistoryInfo as Info;
 
-  class HistoryInfo extends \ClicShopping\OM\PagesActionsAbstract {
+  class HistoryInfo extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -53,6 +55,6 @@
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Account&Main'));
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null, 'Account&HistoryInfo'));
-      $CLICSHOPPING_Breadcrumb->add(sprintf(CLICSHOPPING::getDef('navbar_title_3', ['order_id'=> HTML::sanitize($_GET['order_id'])]), $_GET['order_id']), CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$_GET['order_id']));
+      $CLICSHOPPING_Breadcrumb->add(sprintf(CLICSHOPPING::getDef('navbar_title_3', ['order_id' => HTML::sanitize($_GET['order_id'])]), $_GET['order_id']), CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . (int)$_GET['order_id']));
     }
   }

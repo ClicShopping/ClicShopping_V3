@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
@@ -54,28 +54,28 @@
         if ($CLICSHOPPING_ActionRecorder->canPerform()) {
 
           $Qadmin = $CLICSHOPPING_Db->get('administrators', ['id',
-                                                             'user_name',
-                                                             'user_password',
-                                                             'name',
-                                                             'first_name',
-                                                             'access'
-                                                            ],
-                                                            [ 'user_name' => $username ]
-                                          );
+            'user_name',
+            'user_password',
+            'name',
+            'first_name',
+            'access'
+          ],
+            ['user_name' => $username]
+          );
 
           if ($Qadmin->fetch() !== false) {
             if (Hash::verify($password, $Qadmin->value('user_password'))) {
 // migrate old hashed password to new php password_hash
               if (Hash::needsRehash($Qadmin->value('user_password'))) {
                 $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
-                                                         ['id' => $Qadmin->valueInt('id')]
-                                     );
+                  ['id' => $Qadmin->valueInt('id')]
+                );
               }
 
               $_SESSION['admin'] = ['id' => $Qadmin->valueInt('id'),
-                                    'username' => $Qadmin->value('user_name'),
-                                    'access' =>  $Qadmin->value('access')
-                                    ];
+                'username' => $Qadmin->value('user_name'),
+                'access' => $Qadmin->value('access')
+              ];
 
               $CLICSHOPPING_ActionRecorder->_user_id = $_SESSION['admin']['id'];
               $CLICSHOPPING_ActionRecorder->record();
@@ -105,14 +105,14 @@
             $referer = $_SERVER['HTTP_REFERER'];
 
 // build report
-            $report = date("D M j G:i:s Y") . "\n\n"  . CLICSHOPPING::getDef('report_access_login');
-            $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' .$ip;
+            $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login');
+            $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' . $ip;
             $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name') . $host;
             $report .= "\n" . CLICSHOPPING::getDef('report_sender_username') . $username;
             $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
             $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
 // mail report
-            $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS,  CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+            $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
           }
         } else {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
@@ -136,7 +136,7 @@
         $CLICSHOPPING_Hooks->call('Account', 'LogoutAfter');
 
         CLICSHOPPING::redirect();
-      break;
+        break;
       case 'create':
         $Qcheck = $CLICSHOPPING_Db->get('administrators', 'id', null, null, 1);
 
@@ -146,16 +146,16 @@
           $name = HTML::sanitize($_POST['name']);
           $first_name = HTML::sanitize($_POST['first_name']);
 
-          if (!empty($username) ) {
+          if (!empty($username)) {
 
             $CLICSHOPPING_Db->save('administrators', [
-                                                      'user_name' =>  $username,
-                                                      'user_password' => Hash::encrypt($password),
-                                                      'name' => $name,
-                                                      'first_name' => $first_name,
-                                                      'access' => 1
-                                                      ]
-                                  );
+                'user_name' => $username,
+                'user_password' => Hash::encrypt($password),
+                'name' => $name,
+                'first_name' => $first_name,
+                'access' => 1
+              ]
+            );
           }
         }
 
@@ -195,9 +195,9 @@
             $Qupdate->execute();
 
             $body_subject = CLICSHOPPING::getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]);
-            $email_body .=  CLICSHOPPING::getDef('email_password_reminder_body', ['store_name' => STORE_NAME, 'remote_address' => $_SERVER['REMOTE_ADDR'], 'new_password' => $new_password ]) . "\n";
-            $email_body .=  TemplateEmailAdmin::getTemplateEmailSignature() . "\n";
-            $email_body .=  TemplateEmailAdmin::getTemplateEmailTextFooter();
+            $email_body .= CLICSHOPPING::getDef('email_password_reminder_body', ['store_name' => STORE_NAME, 'remote_address' => $_SERVER['REMOTE_ADDR'], 'new_password' => $new_password]) . "\n";
+            $email_body .= TemplateEmailAdmin::getTemplateEmailSignature() . "\n";
+            $email_body .= TemplateEmailAdmin::getTemplateEmailTextFooter();
 
             $CLICSHOPPING_Mail->clicMail('', $username, $body_subject, sprintf($email_body, $new_password), STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 
@@ -209,7 +209,7 @@
           CLICSHOPPING::redirect('login.php');
         }
 
-      break;
+        break;
     }
   }
 
@@ -230,9 +230,9 @@
   }
 
   if ($action != 'password') {
-?>
+    ?>
 
-    <div id="loginModal"  tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
+    <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -241,9 +241,9 @@
           <?php echo HTML::form('login', CLICSHOPPING::link('login.php', 'action=' . $form_action)); ?>
           <div class="modal-body">
             <div class="col-md-12 center-block">
-<?php
+              <?php
                 if ($form_action == 'create') {
-?>
+                  ?>
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
                     <?php echo HTML::inputField('first_name', '', 'placeholder="' . CLICSHOPPING::getDef('text_firstname') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
@@ -254,9 +254,9 @@
                     <?php echo HTML::inputField('name', '', 'placeholder="' . CLICSHOPPING::getDef('text_name') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
                   </div>
                   <div class="separator"></div>
-<?php
+                  <?php
                 }
-?>
+              ?>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"></span>
                 <?php echo HTML::inputField('username', '', 'placeholder="' . CLICSHOPPING::getDef('text_username') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
@@ -264,7 +264,7 @@
               <div class="separator"></div>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"></span>
-                <?php echo HTML::passwordField('password', '','placeholder="' . CLICSHOPPING::getDef('text_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
+                <?php echo HTML::passwordField('password', '', 'placeholder="' . CLICSHOPPING::getDef('text_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
               </div>
               <div class="separator"></div>
               <div class="text-md-right">
@@ -276,19 +276,25 @@
           </form>
           <div class="modal-footer">
             <div class="col-md-6">
-              <a href="../index.php"><button class="btn float-left" data-dismiss="modal" aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button></a>
+              <a href="../index.php">
+                <button class="btn float-left" data-dismiss="modal"
+                        aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
+              </a>
             </div>
             <div class="col-md-6">
-              <a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>"><button class="btn float-right" data-dismiss="modal" aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button></a>
+              <a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
+                <button class="btn float-right" data-dismiss="modal"
+                        aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-<?php
+    <?php
   } else {
-?>
-    <div id="loginModal"  tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
+    ?>
+    <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
       <div class="modal-dialog">
         <div class="modal-content">
           <?php echo HTML::form('send_password', CLICSHOPPING::link('login.php', 'action=send_password')); ?>
@@ -297,17 +303,21 @@
           </div>
           <div class="modal-body">
             <div class="col-md-12 center-block">
-              <div class="text-danger" style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
+              <div class="text-danger"
+                   style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
-                <?php echo HTML::inputField('username', '','size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
+                <?php echo HTML::inputField('username', '', 'size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
               </div>
               <div class="separator"></div>
             </div>
           </div>
           <div class="row col-md-12">
             <div class="col-md-6">
-              <a href="<?php echo CLICSHOPPING::link('login.php'); ?>"><button class="btn btn-secondary text-md-left" type="button"><?php echo CLICSHOPPING::getDef('header_title_administration'); ?></button></a>
+              <a href="<?php echo CLICSHOPPING::link('login.php'); ?>">
+                <button class="btn btn-secondary text-md-left"
+                        type="button"><?php echo CLICSHOPPING::getDef('header_title_administration'); ?></button>
+              </a>
             </div>
             <div class="col-md-6 text-md-right">
               <?php echo HTML::button(CLICSHOPPING::getDef('button_submit'), null, null, 'primary'); ?>
@@ -318,7 +328,7 @@
       </div>
     </div>
 
-<?php
+    <?php
   }
 ?>
   <div class="clearfix"></div>

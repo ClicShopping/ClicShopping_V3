@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Marketing\Specials\Sites\ClicShoppingAdmin\Pages\Home\Actions\Specials;
@@ -15,8 +15,10 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Insert extends \ClicShopping\OM\PagesActionsAbstract {
-    public function execute() {
+  class Insert extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    public function execute()
+    {
 
       $CLICSHOPPING_Specials = Registry::get('Specials');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -52,17 +54,17 @@
         $schedule_date = substr($schdate, 0, 4) . substr($schdate, 5, 2) . substr($schdate, 8, 2);
       }
 
-      $CLICSHOPPING_Specials->db->save('specials', [ 'products_id' => (int)$products_id,
-                                                    'specials_new_products_price' => (float)$specials_price,
-                                                    'specials_date_added' => 'now()',
-                                                    'scheduled_date' => !empty($schedule_date) ? $schedule_date : 'null',
-                                                    'expires_date' => !empty($expires_date) ? $expires_date : 'null',
-                                                    'status' => 1,
-                                                    'flash_discount' => (int)$flash_discount
-                                                  ]
-                                      );
+      $CLICSHOPPING_Specials->db->save('specials', ['products_id' => (int)$products_id,
+          'specials_new_products_price' => (float)$specials_price,
+          'specials_date_added' => 'now()',
+          'scheduled_date' => !empty($schedule_date) ? $schedule_date : 'null',
+          'expires_date' => !empty($expires_date) ? $expires_date : 'null',
+          'status' => 1,
+          'flash_discount' => (int)$flash_discount
+        ]
+      );
 
-      $CLICSHOPPING_Hooks->call('Specials','Insert');
+      $CLICSHOPPING_Hooks->call('Specials', 'Insert');
 
       $CLICSHOPPING_Specials->redirect('Specials', 'page=' . $page);
     }

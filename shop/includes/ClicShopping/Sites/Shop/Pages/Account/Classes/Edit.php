@@ -1,27 +1,31 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Classes;
 
   use ClicShopping\OM\Registry;
 
-  class Edit {
+  class Edit
+  {
     protected $db;
     protected $customer;
-    public function __construct() {
+
+    public function __construct()
+    {
       $this->db = Registry::get('Db');
       $this->customer = Registry::get('Customer');
     }
 
-    public static function getAccountEdit() {
+    public static function getAccountEdit()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -49,17 +53,18 @@
       return $account;
     }
 
-    public static function getCountEmail($email_address) {
+    public static function getCountEmail($email_address)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $QcheckEmail =$CLICSHOPPING_Db->prepare('select count(*) as total
+      $QcheckEmail = $CLICSHOPPING_Db->prepare('select count(*) as total
                                          from :table_customers
                                          where customers_email_address = :customers_email_address
                                          and customers_id != :customers_id
                                         ');
-      $QcheckEmail->bindValue(':customers_email_address', $email_address );
-      $QcheckEmail->bindInt(':customers_id', $CLICSHOPPING_Customer->getID() );
+      $QcheckEmail->bindValue(':customers_email_address', $email_address);
+      $QcheckEmail->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $QcheckEmail->execute();
 
       $check_email = $QcheckEmail->valueInt('total');
@@ -67,7 +72,8 @@
       return $check_email;
     }
 
-    public static function getCustomerAddressEmail($email_address) {
+    public static function getCustomerAddressEmail($email_address)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -85,7 +91,8 @@
       return $check;
     }
 
-    public static function getCheckCountryIsoCode2($country) {
+    public static function getCheckCountryIsoCode2($country)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select countries_id
@@ -93,7 +100,7 @@
                                     where countries_iso_code_2 = :countries_iso_code_2
                                     limit 1
                                     ');
-      $Qcheck->bindValue(':countries_iso_code_2', $country );
+      $Qcheck->bindValue(':countries_iso_code_2', $country);
       $Qcheck->execute();
 
       $country = $Qcheck->valueInt('countries_id');

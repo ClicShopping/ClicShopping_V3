@@ -1,11 +1,11 @@
 <?php
   /**
    *
-   *  @copyright 2008 - https://www.clicshopping.org
-   *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
-   *  @Licence GPL 2 & MIT
-   *  @licence MIT - Portion of osCommerce 2.4
-   *  @Info : https://www.clicshopping.org/forum/trademark/
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
 
@@ -20,7 +20,8 @@
 
   use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
-  class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface {
+  class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
     public function __construct()
@@ -32,7 +33,8 @@
       $this->app = Registry::get('Groups');
     }
 
-    public function display() {
+    public function display()
+    {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -54,7 +56,7 @@
       $cInfo = new ObjectInfo($Qcustomers->toArray());
 
 // Lecture sur la base de données des informations facturations et livraison du groupe client
-      if ($cInfo->customers_group_id != 0 ) {
+      if ($cInfo->customers_group_id != 0) {
         $QcustomersGroup = $this->app->db->prepare('select customers_group_name,
                                                                         group_order_taxe,
                                                                         group_payment_unallowed,
@@ -62,7 +64,7 @@
                                                                  from :table_customers_groups
                                                                  where customers_group_id = :customers_group_id
                                                                 ');
-        $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id );
+        $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id);
         $QcustomersGroup->execute();
 
         $cInfo_group = new ObjectInfo($QcustomersGroup->toArray());
@@ -73,7 +75,7 @@
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
 // Activation du module B2B
         if ($cInfo->customers_group_id != 0) {
-          $title =  $this->app->getDef('category_shipping_customer_group') . '&nbsp;' . $cInfo_group->customers_group_name;
+          $title = $this->app->getDef('category_shipping_customer_group') . '&nbsp;' . $cInfo_group->customers_group_name;
 // Activation du module B2B
         } else {
           $title = $this->app->getDef('category_shipping_customer');
@@ -82,105 +84,105 @@
         $content .= '<div class="adminformTitle">';
 
 // Search Shipping Module
-      if ($cInfo->customers_group_id != 0) {
-        $shipping_unallowed = explode(",", $cInfo_group->group_shipping_unallowed);
-      }
+        if ($cInfo->customers_group_id != 0) {
+          $shipping_unallowed = explode(",", $cInfo_group->group_shipping_unallowed);
+        }
 
-      $module_key = 'MODULE_SHIPPING_INSTALLED';
+        $module_key = 'MODULE_SHIPPING_INSTALLED';
 
-      $Qconfiguration_shipping = $this->app->db->prepare('select configuration_value
+        $Qconfiguration_shipping = $this->app->db->prepare('select configuration_value
                                                                   from :table_configuration
                                                                   where configuration_key = :configuration_key
                                                                 ');
-      $Qconfiguration_shipping->bindValue(':configuration_key', $module_key);
-      $Qconfiguration_shipping->execute();
+        $Qconfiguration_shipping->bindValue(':configuration_key', $module_key);
+        $Qconfiguration_shipping->execute();
 
-      $modules_shipping = explode(';', $Qconfiguration_shipping->value('configuration_value'));
+        $modules_shipping = explode(';', $Qconfiguration_shipping->value('configuration_value'));
 
-      $include_modules = [];
+        $include_modules = [];
 
 
-      foreach($modules_shipping as $value) {
-        if (strpos($value, '\\') !== false) {
-          $class = Apps::getModuleClass($value, 'Shipping');
+        foreach ($modules_shipping as $value) {
+          if (strpos($value, '\\') !== false) {
+            $class = Apps::getModuleClass($value, 'Shipping');
 
-          $include_modules[] = ['class' => $value,
-                                'file' => $class
-                                ];
+            $include_modules[] = ['class' => $value,
+              'file' => $class
+            ];
+          }
         }
-      }
 
-      for ($i=0, $n=count($include_modules); $i<$n; $i++) {
+        for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
 
-        if (strpos($include_modules[$i]['class'], '\\') !== false) {
-          Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
-          $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
-
-          if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
-            $content .= '<div class="col-md-12">';
-            $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-            $content .= '<span class="col-md-3">' . $module->title . '</span>';
-            $content .= '</div>';
-          } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
-            $content .= '<div class="col-md-12">';
-            $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-            $content .= '<span class="col-md-3">' . $module->title . '</span>';
-            $content .= '</div>';
-          } elseif ($cInfo->customers_group_id == 0) {
-            $content .= '<div class="col-md-12">';
-            $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-            $content .= '<span class="col-md-3">' . $module->title . '</span>';
-            $content .= '</div>';
-          } // end customers_group_id
-        } else {
-
-          $file = $include_modules[$i]['file'];
-
-          if (in_array ($include_modules[$i]['file'], $modules_shipping)) {
-
-            $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
-
-            $class = substr($file, 0, strrpos($file, '.'));
-
-            if (class_exists($class)) {
-              $module = new $class;
-              if ($module->check() > 0) {
-                $installed_modules[] = $file;
-              }
-            }
+          if (strpos($include_modules[$i]['class'], '\\') !== false) {
+            Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
+            $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
             if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
-
               $content .= '<div class="col-md-12">';
               $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
-
             } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
-
               $content .= '<div class="col-md-12">';
               $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
-
             } elseif ($cInfo->customers_group_id == 0) {
-
               $content .= '<div class="col-md-12">';
               $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
-
-
             } // end customers_group_id
-          } // end in_array
-        } // end class
-      } // end for
+          } else {
 
-      $content .= '</div>';
+            $file = $include_modules[$i]['file'];
 
-      $tab_title = $this->app->getDef('Shipping');
+            if (in_array($include_modules[$i]['file'], $modules_shipping)) {
 
-      $output = <<<EOD
+              $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
+
+              $class = substr($file, 0, strrpos($file, '.'));
+
+              if (class_exists($class)) {
+                $module = new $class;
+                if ($module->check() > 0) {
+                  $installed_modules[] = $file;
+                }
+              }
+
+              if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
+
+                $content .= '<div class="col-md-12">';
+                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-3">' . $module->title . '</span>';
+                $content .= '</div>';
+
+              } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
+
+                $content .= '<div class="col-md-12">';
+                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-3">' . $module->title . '</span>';
+                $content .= '</div>';
+
+              } elseif ($cInfo->customers_group_id == 0) {
+
+                $content .= '<div class="col-md-12">';
+                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-3">' . $module->title . '</span>';
+                $content .= '</div>';
+
+
+              } // end customers_group_id
+            } // end in_array
+          } // end class
+        } // end for
+
+        $content .= '</div>';
+
+        $tab_title = $this->app->getDef('Shipping');
+
+        $output = <<<EOD
 <!-- ######################## -->
 <!--  Start Customers Shiping Group App      -->
 <!-- ######################## -->
@@ -200,7 +202,7 @@ $('#customersTabs .nav-tabs').append('    <li class="nav-item"><a data-target="#
 <!-- ######################## -->
 
 EOD;
-          return $output;
+        return $output;
 
       }
     }

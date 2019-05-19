@@ -1,23 +1,23 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Categories\Classes\Shop;
 
   use ClicShopping\OM\Registry;
 
-/**
- * The Category class manages category information
- */
-
-  class Category {
+  /**
+   * The Category class manages category information
+   */
+  class Category
+  {
     protected $_id;
     protected $_title;
     protected $_image;
@@ -25,39 +25,41 @@
     protected $_description;
     protected $_category_depth;
 
-/**
- * An array containing the category information
- *
- * @var array
- * @access protected
- */
+    /**
+     * An array containing the category information
+     *
+     * @var array
+     * @access protected
+     */
 
     protected $_data = [];
     protected $db;
     protected $lang;
     protected $categoryTree;
     protected $rewriteUrl;
-/**
- * Constructor
- *
- * @param int $id The ID of the category to retrieve information from
- * @access public
- */
 
-    public function __construct($id = null) {
+    /**
+     * Constructor
+     *
+     * @param int $id The ID of the category to retrieve information from
+     * @access public
+     */
+
+    public function __construct($id = null)
+    {
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
       $this->categoryTree = Registry::get('CategoryTree');
 
-      if ( !isset($id) && isset($_GET['cPath']) ) {
+      if (!isset($id) && isset($_GET['cPath'])) {
         $cPath_array = array_unique(array_filter(explode('_', $_GET['cPath']), 'is_numeric'));
 
-        if (!empty($cPath_array) ) {
+        if (!empty($cPath_array)) {
           $id = end($cPath_array);
         }
       }
 
-      if ( isset($id) && $this->categoryTree->exists($id) ) {
+      if (isset($id) && $this->categoryTree->exists($id)) {
         $this->_data = $this->categoryTree->getData($id);
 
         $this->_id = $this->_data['id'];
@@ -65,7 +67,7 @@
         $this->_description = $this->_data['description'];
         $this->_image = $this->_data['image'];
         $this->_parent_id = $this->_data['parent_id'];
-	
+
         if (isset($this->_data['category_depth'])) {
           $this->_category_depth = $this->_data['category_depth'];
         } else {
@@ -80,103 +82,112 @@
       $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
-/**
- * Return the ID of the assigned category
- *
- * @access public
- * @return integer
- */
+    /**
+     * Return the ID of the assigned category
+     *
+     * @access public
+     * @return integer
+     */
 
-    public function getID() {
+    public function getID()
+    {
       return $this->_id;
     }
 
-/**
- * Return the description of the assigned category
- *
- * @access public
- * @return string
- */
+    /**
+     * Return the description of the assigned category
+     *
+     * @access public
+     * @return string
+     */
 
-    public function getDescription() {
+    public function getDescription()
+    {
       return $this->_description;
     }
 
 
-/**
- * Return the title of the assigned category
- *
- * @access public
- * @return string
- */
+    /**
+     * Return the title of the assigned category
+     *
+     * @access public
+     * @return string
+     */
 
-    public function getTitle() {
+    public function getTitle()
+    {
       return $this->_title;
     }
 
-/**
- * Check if the category has an image
- *
- * @access public
- * @return string
- */
+    /**
+     * Check if the category has an image
+     *
+     * @access public
+     * @return string
+     */
 
-    public function hasImage() {
-      return ( !empty($this->_image) );
+    public function hasImage()
+    {
+      return (!empty($this->_image));
     }
 
-/**
- * Return the image of the assigned category
- *
- * @access public
- * @return string
- */
+    /**
+     * Return the image of the assigned category
+     *
+     * @access public
+     * @return string
+     */
 
-    public function getImage() {
+    public function getImage()
+    {
       return $this->_image;
     }
 
-/**
- * Check if the assigned category has a parent category
- *
- * @access public
- * @return boolean
- */
+    /**
+     * Check if the assigned category has a parent category
+     *
+     * @access public
+     * @return boolean
+     */
 
-    public function hasParent() {
-      return ( $this->_parent_id > 0 );
+    public function hasParent()
+    {
+      return ($this->_parent_id > 0);
     }
 
-/**
- * Return the parent ID of the assigned category
- *
- * @access public
- * @return integer
- */
+    /**
+     * Return the parent ID of the assigned category
+     *
+     * @access public
+     * @return integer
+     */
 
-    public function getParent() {
+    public function getParent()
+    {
       return $this->_parent_id;
     }
 
-/**
- * Return the breadcrumb path of the assigned category
- *
- * @access public
- * @return string
- */
+    /**
+     * Return the breadcrumb path of the assigned category
+     *
+     * @access public
+     * @return string
+     */
 
-    public function getPath() {
+    public function getPath()
+    {
       return $this->categoryTree->buildBreadcrumb($this->_id);
     }
 
-/**
- * Return the the path about the subcategory
- *
- * @access public
- * string current_category_id =  the current categry id
- * @return string the new path
- */
-    public function getPathCategories($current_category_id = '') {
+    /**
+     * Return the the path about the subcategory
+     *
+     * @access public
+     * string current_category_id =  the current categry id
+     * @return string the new path
+     */
+    public function getPathCategories($current_category_id = '')
+    {
       $cPath_array = $this->getPathArray();
 
       if ($current_category_id == '') {
@@ -187,15 +198,15 @@
         } else {
           $cPath_new = '';
 
-          $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array)-1)],
-                                                              'status' => 1
-                                                              ]
-                                 );
+          $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array) - 1)],
+              'status' => 1
+            ]
+          );
 
           $Qcurrent = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$current_category_id,
-                                                                 'status' => 1
-                                                                ]
-                                    );
+              'status' => 1
+            ]
+          );
 
           if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
             for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
@@ -208,7 +219,7 @@
           }
 
           $cPath_new .= '' . $current_category_id;
-	  
+
           if (substr($cPath_new, 0, 1) == '_') {
             $cPath_new = substr($cPath_new, 1);
           }
@@ -219,42 +230,45 @@
     }
 
 
-/**
- * Return the breadcrumb path of the assigned category
- *
- * @access public
- * @return string
- */
-    public function getPathArray($id = null) {
+    /**
+     * Return the breadcrumb path of the assigned category
+     *
+     * @access public
+     * @return string
+     */
+    public function getPathArray($id = null)
+    {
       $cPath_array = explode('_', $this->getPath());
 
-      if ( isset($id) ) {
+      if (isset($id)) {
         return $cPath_array[$id];
       }
 
       return $cPath_array;
     }
 
-/**
- * Return specific information from the assigned category
- *
- * @access public
- * @return mixed
- */
+    /**
+     * Return specific information from the assigned category
+     *
+     * @access public
+     * @return mixed
+     */
 
-    public function getData($keyword) {
+    public function getData($keyword)
+    {
       return $this->_data[$keyword];
     }
 
 
-/**
- * Return deph the assigned category
- *
- * @access public
- * @return mixed
- */
+    /**
+     * Return deph the assigned category
+     *
+     * @access public
+     * @return mixed
+     */
 
-    public function getDepth() {
+    public function getDepth()
+    {
       $this->_category_depth = 'top';
 
       if (isset($_GET['cPath']) && !is_null($_GET['cPath'])) {
@@ -291,14 +305,15 @@
       return $this->_category_depth;
     }
 
-/**
- * Return a numlber about listing related themain category
- *
- * @access public
- * @return number of the product in the main category
- */
+    /**
+     * Return a numlber about listing related themain category
+     *
+     * @access public
+     * @return number of the product in the main category
+     */
 
-    public function getCountCategoriesNested() {
+    public function getCountCategoriesNested()
+    {
       $Qcategories = $this->db->prepare('select count(*) as total
                                          from :table_categories c,
                                               :table_products_to_categories cd
@@ -315,14 +330,15 @@
       return $total;
     }
 
-/**
- * Return True False in function the category is sub or not
- * string , $category_id, id of category
- * @access public
- * @return number of the product in the main category
- */
+    /**
+     * Return True False in function the category is sub or not
+     * string , $category_id, id of category
+     * @access public
+     * @return number of the product in the main category
+     */
 
-    public function getHasSubCategories($category_id) {
+    public function getHasSubCategories($category_id)
+    {
       $Qcheck = $this->db->prepare('select categories_id
                                     from :table_categories
                                     where parent_id = :parent_id
@@ -336,13 +352,14 @@
     }
 
 
-/**
- * Return all sub categories
- * string , $subcategories_array, id of category
- * string  $parent_id, id of the parent category
- * @access public
- */
-    public function getSubcategories(&$subcategories_array, $parent_id = 0) {
+    /**
+     * Return all sub categories
+     * string , $subcategories_array, id of category
+     * string  $parent_id, id of the parent category
+     * @access public
+     */
+    public function getSubcategories(&$subcategories_array, $parent_id = 0)
+    {
       $Qsub = $this->db->prepare('select categories_id
                                   from :table_categories
                                   where parent_id = :parent_id
@@ -360,15 +377,16 @@
       }
     }
 
-/**
- * Return all  categories
- * string , $categories_array, id of category
- * string  $parent_id, id of the parent category
- * string $indent, options
- * @access public
- */
+    /**
+     * Return all  categories
+     * string , $categories_array, id of category
+     * string  $parent_id, id of the parent category
+     * string $indent, options
+     * @access public
+     */
 
-    public function getCategories($categories_array = '', $parent_id = '0', $indent = '') {
+    public function getCategories($categories_array = '', $parent_id = '0', $indent = '')
+    {
       if (!is_array($categories_array)) $categories_array = [];
 
       $Qcategories = $this->db->prepare('select c.categories_id,
@@ -384,13 +402,13 @@
                                                  cd.categories_name
                                        ');
       $Qcategories->bindInt(':parent_id', (int)$parent_id);
-      $Qcategories->bindInt(':language_id',  $this->lang->getId());
+      $Qcategories->bindInt(':language_id', $this->lang->getId());
       $Qcategories->execute();
 
       while ($Qcategories->fetch()) {
         $categories_array[] = ['id' => $Qcategories->valueInt('categories_id'),
-                               'text' => $indent . $Qcategories->value('categories_name')
-                              ];
+          'text' => $indent . $Qcategories->value('categories_name')
+        ];
 
         if ($Qcategories->valueInt('categories_id') != $parent_id) {
           $categories_array = $this->getCategories($categories_array, $Qcategories->valueInt('categories_id'), $indent . '&nbsp;&nbsp;');
@@ -401,13 +419,14 @@
     }
 
 
-/**
- * Recursively go through the categories and retreive all parent categories IDs
- * @param $categories
- * @param $categories_id
- * @return bool
- */
-    public function getParentCategories(&$categories, $categories_id) {
+    /**
+     * Recursively go through the categories and retreive all parent categories IDs
+     * @param $categories
+     * @param $categories_id
+     * @return bool
+     */
+    public function getParentCategories(&$categories, $categories_id)
+    {
 
       $Qparent = $this->db->prepare('select parent_id
                                     from :table_categories
@@ -429,12 +448,13 @@
       }
     }
 
-/**
- * Construct a category path to the product
- * @param $products_id
- * @return string
- */
-    public function getProductPath($products_id) {
+    /**
+     * Construct a category path to the product
+     * @param $products_id
+     * @return string
+     */
+    public function getProductPath($products_id)
+    {
       $cPath = '';
 
       $Qcategory = $this->db->prepare('select p2c.categories_id
@@ -450,7 +470,7 @@
 
       $Qcategory->execute();
 
-      if ( $Qcategory->fetch() !== false ) {
+      if ($Qcategory->fetch() !== false) {
 
         $categories = [];
         $this->getParentCategories($categories, $Qcategory->valueInt('categories_id'));
@@ -469,12 +489,13 @@
       return $cPath;
     }
 
-/**
- * Rewrite link of Image
- * @param $categories_link
- * @return mixed
- */
-    public function getCategoryImageUrl($categories_id) {
+    /**
+     * Rewrite link of Image
+     * @param $categories_link
+     * @return mixed
+     */
+    public function getCategoryImageUrl($categories_id)
+    {
       $category = $this->getPathCategories($categories_id);
 
       $categories_url = $this->rewriteUrl->getCategoryImageUrl($category);
@@ -483,7 +504,8 @@
     }
 
 
-    public function getCategoryTitle($categories_name) {
+    public function getCategoryTitle($categories_name)
+    {
       $category_name = $this->rewriteUrl->getCategoryTreeTitle($categories_name);
 
       return $category_name;

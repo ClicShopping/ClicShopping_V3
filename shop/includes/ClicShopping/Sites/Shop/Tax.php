@@ -1,30 +1,32 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class Tax {
+  class Tax
+  {
 
     protected $tax_rates = [];
     public static $tag;
 
-    public function getTaxRate($class_id, $country_id = -1, $zone_id = -1) {
+    public function getTaxRate($class_id, $country_id = -1, $zone_id = -1)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ( ($country_id == -1) && ($zone_id == -1) ) {
-        if ( !$CLICSHOPPING_Customer->isLoggedOn() || !$CLICSHOPPING_Customer->hasDefaultAddress() ) {
+      if (($country_id == -1) && ($zone_id == -1)) {
+        if (!$CLICSHOPPING_Customer->isLoggedOn() || !$CLICSHOPPING_Customer->hasDefaultAddress()) {
           $country_id = STORE_COUNTRY;
           $zone_id = STORE_ZONE;
         } else {
@@ -72,17 +74,18 @@
     }
 
 // Return the tax description for a zone / class
-    public function getTaxRateDescription($class_id, $country_id, $zone_id) {
+    public function getTaxRateDescription($class_id, $country_id, $zone_id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-       if ( !isset($this->tax_rates[$class_id][$country_id][$zone_id]['description']) ) {
-         if ( DISPLAY_PRICE_WITH_TAX == 'true') {
-           $tag = CLICSHOPPING::getDef('text_price_with_tax_tag') ;
-         } else {
-           $tag = '';
-         }
+      if (!isset($this->tax_rates[$class_id][$country_id][$zone_id]['description'])) {
+        if (DISPLAY_PRICE_WITH_TAX == 'true') {
+          $tag = CLICSHOPPING::getDef('text_price_with_tax_tag');
+        } else {
+          $tag = '';
+        }
 
-         $Qtax = $CLICSHOPPING_Db->prepare('select tr.tax_description
+        $Qtax = $CLICSHOPPING_Db->prepare('select tr.tax_description
                                             from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
                                                                      left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
                                             where (za.zone_country_id is null or
@@ -102,7 +105,7 @@
         $Qtax->bindInt(':tax_class_id', $class_id);
         $Qtax->execute();
 
-         if ( $Qtax->rowCount() > 0 ) {
+        if ($Qtax->rowCount() > 0) {
           $tax_description = '';
 
           do {
@@ -118,24 +121,26 @@
       return $this->tax_rates[$class_id][$country_id][$zone_id]['description'];
     }
 
-    public static function calculate($price, $tax_rate) {
+    public static function calculate($price, $tax_rate)
+    {
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
       return round($price * $tax_rate / 100, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
     }
 
 
-    public static function displayTaxRateValue($value, $padding = null) {
-      if ( !is_numeric($padding) ) {
+    public static function displayTaxRateValue($value, $padding = null)
+    {
+      if (!is_numeric($padding)) {
         $padding = TAX_DECIMAL_PLACES;
       }
 
-      if ( strpos($value, '.') !== false ) {
-        while ( true ) {
-          if ( substr($value, -1) == '0' ) {
+      if (strpos($value, '.') !== false) {
+        while (true) {
+          if (substr($value, -1) == '0') {
             $value = substr($value, 0, -1);
           } else {
-            if ( substr($value, -1) == '.' ) {
+            if (substr($value, -1) == '.') {
               $value = substr($value, 0, -1);
             }
 
@@ -144,17 +149,17 @@
         }
       }
 
-      if ( $padding > 0 ) {
-        if ( ($decimal_pos = strpos($value, '.')) !== false ) {
-          $decimals = strlen(substr($value, ($decimal_pos+1)));
+      if ($padding > 0) {
+        if (($decimal_pos = strpos($value, '.')) !== false) {
+          $decimals = strlen(substr($value, ($decimal_pos + 1)));
 
-          for ( $i=$decimals; $i<$padding; $i++ ) {
+          for ($i = $decimals; $i < $padding; $i++) {
             $value .= '0';
           }
         } else {
           $value .= '.';
 
-          for ( $i=0; $i<$padding; $i++ ) {
+          for ($i = 0; $i < $padding; $i++) {
             $value .= '0';
           }
         }
@@ -163,14 +168,15 @@
       return $value . '%';
     }
 
-/**
- * Add tax to a products price
- * symbol tax :display information after currency (ex : HT / TTC)
- * @param $price
- * @param $tax
- * @return float
- */
-    public static function addTax($price, $tax) {
+    /**
+     * Add tax to a products price
+     * symbol tax :display information after currency (ex : HT / TTC)
+     * @param $price
+     * @param $tax
+     * @return float
+     */
+    public static function addTax($price, $tax)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -214,39 +220,41 @@
       }
     }
 
-/**
- * taxClassDropDown
- *
- * @return string $$tax_class_array, drop down with all tax title
- * @access public
- */
+    /**
+     * taxClassDropDown
+     *
+     * @return string $$tax_class_array, drop down with all tax title
+     * @access public
+     */
 
-    public static function taxClassDropDown() {
+    public static function taxClassDropDown()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $tax_class_array = array(array('id' => '0',
-                                     'text' => CLICSHOPPING::getDef('text_none')
-                                    )
-                              );
+        'text' => CLICSHOPPING::getDef('text_none')
+      )
+      );
 
       $QtaxClass = $CLICSHOPPING_Db->get('tax_class', [
-                                                      'tax_class_id',
-                                                      'tax_class_title'
-                                                      ],
-                                                      null,
-                                                      'tax_class_title'
-                                        );
+        'tax_class_id',
+        'tax_class_title'
+      ],
+        null,
+        'tax_class_title'
+      );
 
       while ($QtaxClass->fetch()) {
         $tax_class_array[] = ['id' => $QtaxClass->valueInt('tax_class_id'),
-                              'text' => $QtaxClass->value('tax_class_title')
-                              ];
+          'text' => $QtaxClass->value('tax_class_title')
+        ];
       }
 
       return $tax_class_array;
     }
 
-    public function getTag() {
+    public function getTag()
+    {
       $tag = static::$tag;
       return $tag;
     }

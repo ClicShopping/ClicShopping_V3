@@ -1,18 +1,19 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class ht_lozad {
+  class ht_lozad
+  {
     public $code;
     public $group;
     public $title;
@@ -20,26 +21,28 @@
     public $sort_order;
     public $enabled = false;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
       $this->title = CLICSHOPPING::getDef('module_header_tags_lozad_title');
       $this->description = CLICSHOPPING::getDef('module_header_tags_lozad_description');
 
-      if ( defined('MODULES_HEADER_TAGS_LOZAD_STATUS') ) {
+      if (defined('MODULES_HEADER_TAGS_LOZAD_STATUS')) {
         $this->sort_order = MODULES_HEADER_TAGS_LOZAD_SORT_ORDER;
         $this->enabled = (MODULES_HEADER_TAGS_LOZAD_STATUS == 'True');
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $footer_lozad = '<!--Lazyload Script start-->' . "\n";
-      $footer_lozad .='<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
+      $footer_lozad .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
 
-      $footer_lozad .='<script>';
+      $footer_lozad .= '<script>';
       $footer_lozad .= 'const observer = lozad(); observer.observe();s';
       $footer_lozad .= '</script>' . "\n";
 
@@ -48,15 +51,18 @@
       $CLICSHOPPING_Template->addBlock($footer_lozad, 'footer_scripts');
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function check() {
+    public function check()
+    {
       return defined('MODULES_HEADER_TAGS_LOZAD_STATUS');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
@@ -84,14 +90,17 @@
       );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULES_HEADER_TAGS_LOZAD_STATUS',
-              'MODULES_HEADER_TAGS_LOZAD_SORT_ORDER'
-             ];
+        'MODULES_HEADER_TAGS_LOZAD_SORT_ORDER'
+      ];
     }
   }
+
 ?>

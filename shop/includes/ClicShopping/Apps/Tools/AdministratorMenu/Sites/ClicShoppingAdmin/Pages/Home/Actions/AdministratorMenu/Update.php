@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\AdministratorMenu\Sites\ClicShoppingAdmin\Pages\Home\Actions\AdministratorMenu;
 
@@ -16,14 +16,17 @@
   use ClicShopping\OM\HTML;
 
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract {
+  class Update extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('AdministratorMenu');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (isset($_POST['current_category_id'])) $id = HTML::sanitize($_POST['current_category_id']);
@@ -57,27 +60,27 @@
       }
 
       $sql_data_array = ['sort_order' => (int)$sort_order,
-                         'link' => $link,
-                         'image' => $image,
-                         'b2b_menu' => (int)$b2b_menu,
-                         'access' => (int)$access,
-                         'parent_id' => (int)$move_to_category_id
-                        ];
+        'link' => $link,
+        'image' => $image,
+        'b2b_menu' => (int)$b2b_menu,
+        'access' => (int)$access,
+        'parent_id' => (int)$move_to_category_id
+      ];
 
-      $this->app->db->save('administrator_menu', $sql_data_array, ['id' => (int)$id] );
+      $this->app->db->save('administrator_menu', $sql_data_array, ['id' => (int)$id]);
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i=0, $n=count($languages); $i<$n; $i++) {
-          $language_id = $languages[$i]['id'];
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        $language_id = $languages[$i]['id'];
 
-          $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];
-          $insert_array =  ['id' => (int)$id,
-                            'language_id' => (int)$languages[$i]['id']
-                           ];
+        $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];
+        $insert_array = ['id' => (int)$id,
+          'language_id' => (int)$languages[$i]['id']
+        ];
 
 
-          $this->app->db->save('administrator_menu_description', $sql_data_array, $insert_array);
+        $this->app->db->save('administrator_menu_description', $sql_data_array, $insert_array);
       }
 
       Cache::clear('menu-administrator');

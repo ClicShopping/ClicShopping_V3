@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 
@@ -17,9 +17,11 @@
   use ClicShopping\Sites\Shop\Payment;
   use ClicShopping\Sites\Shop\Shipping;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       global $CLICSHOPPING_PM;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -49,7 +51,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
-      if ( (!is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment'])) ) {
+      if ((!is_null(MODULE_PAYMENT_INSTALLED)) && (!isset($_SESSION['payment']))) {
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
@@ -68,13 +70,13 @@
       $any_out_of_stock = false;
 
       if (STOCK_CHECK == 'true') {
-        for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
+        for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
           if ($CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty'])) {
             $any_out_of_stock = true;
           }
         }
         // Out of Stock
-        if ( (STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true) ) {
+        if ((STOCK_ALLOW_CHECKOUT != 'true') && ($any_out_of_stock === true)) {
           CLICSHOPPING::redirect(null, 'Cart');
         }
       }
@@ -89,7 +91,7 @@
         }
       }
 
-      if ( !isset($CLICSHOPPING_PM) || ($CLICSHOPPING_Payment->selected_module != $_SESSION['payment']) || ($CLICSHOPPING_PM->enabled === false) ) {
+      if (!isset($CLICSHOPPING_PM) || ($CLICSHOPPING_Payment->selected_module != $_SESSION['payment']) || ($CLICSHOPPING_PM->enabled === false)) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_payment_module_selected'), 'danger', 'header');
 
         CLICSHOPPING::redirect(null, 'Checkout&Billing');

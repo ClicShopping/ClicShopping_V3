@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\DateTime;
@@ -35,13 +35,13 @@
                                               from :table_orders_status
                                               where language_id = :language_id
                                               ');
-  $QordersStatus->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId());
+  $QordersStatus->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
   $QordersStatus->execute();
 
-  while ($QordersStatus->fetch() !== false ) {
+  while ($QordersStatus->fetch() !== false) {
     $orders_statuses[] = ['id' => $QordersStatus->valueInt('orders_status_id'),
-                          'text' => $QordersStatus->value('orders_status_name')
-                         ];
+      'text' => $QordersStatus->value('orders_status_name')
+    ];
 
     $orders_status_array[$QordersStatus->valueInt('orders_status_id')] = $QordersStatus->value('orders_status_name');
   }
@@ -64,8 +64,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row col-md-12">
-          <div class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/client.gif', $CLICSHOPPING_Orders->getDef('heading_title_'), '40', '40'); ?></div>
-          <div class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title'); ?></div>
+          <div
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/client.gif', $CLICSHOPPING_Orders->getDef('heading_title_'), '40', '40'); ?></div>
+          <div
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title'); ?></div>
           <div class="col-md-7">
            <span class="col-md-5 float-md-left">
 <?php
@@ -87,22 +89,23 @@
             </span>
             <span class="col-md-3 float-md-left">
 <?php
-  echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders'),'post', 'class="form-inline" role="form"', ['session_id' => true]);
+  echo HTML::form('status', $CLICSHOPPING_Orders->link('Orders'), 'post', 'class="form-inline" role="form"', ['session_id' => true]);
   echo HTML::selectMenu('status', array_merge(array(array('id' => '0', 'text' => $CLICSHOPPING_Orders->getDef('text_all_orders'))), $orders_statuses), '', 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
             </span>
           </div>
           <div class="cleafix"></div>
-          <div class="col-md-2 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
+          <div
+            class="col-md-2 text-md-right"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
-<!-- ################# -->
-<!-- Hooks Stats - just use execute function to display the hook-->
-<!-- ################# -->
+  <!-- ################# -->
+  <!-- Hooks Stats - just use execute function to display the hook-->
+  <!-- ################# -->
   <div class="row">
     <div class="col-md-12">
       <div class="card-deck">
@@ -121,18 +124,18 @@
           <th><?php echo $CLICSHOPPING_Orders->getDef('table_heading_customers'); ?>&nbsp;</th>
           <th><?php echo $CLICSHOPPING_Orders->getDef('table_heading_support'); ?>&nbsp;</th>
           <th><?php echo $CLICSHOPPING_Orders->getDef('table_heading_guest'); ?>&nbsp;</th>
-<?php
-// Permettre l'affichage des couleurs des groupes en mode B2B
-  if (MODE_B2B_B2C == 'true') {
-?>
-          <th class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_color_group'); ?></th>
-<?php
-  } else {
-?>
-          <th></th>
-<?php
-  }
-?>
+          <?php
+            // Permettre l'affichage des couleurs des groupes en mode B2B
+            if (MODE_B2B_B2C == 'true') {
+              ?>
+              <th class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_color_group'); ?></th>
+              <?php
+            } else {
+              ?>
+              <th></th>
+              <?php
+            }
+          ?>
           <th class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_order_total'); ?></th>
           <th class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_date_purchased'); ?></th>
           <th class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_status'); ?>&nbsp;</th>
@@ -142,23 +145,23 @@
         </tr>
         </thead>
         <tbody>
-<?php
-  if(isset($_GET['aID'])) {
-    $archive_id = HTML::sanitize($_GET['aID']);
-  } else {
-    $archive_id = 0;
-  }
+        <?php
+          if (isset($_GET['aID'])) {
+            $archive_id = HTML::sanitize($_GET['aID']);
+          } else {
+            $archive_id = 0;
+          }
 
-  if (isset($_GET['cID'])) {
-    $cID = HTML::sanitize($_GET['cID']);
-  } elseif (isset($_POST['cID'])) {
-    $cID = HTML::sanitize($_POST['cID']);
-  } else {
-    $cID = '';
-  }
+          if (isset($_GET['cID'])) {
+            $cID = HTML::sanitize($_GET['cID']);
+          } elseif (isset($_POST['cID'])) {
+            $cID = HTML::sanitize($_POST['cID']);
+          } else {
+            $cID = '';
+          }
 
-  if (!empty($cID)) {
-    $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
+          if (!empty($cID)) {
+            $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                             o.customers_id,
                                                                             o.customers_name,
                                                                             o.customers_company,
@@ -184,17 +187,17 @@
                                                          :page_set_max_results
                                                   ');
 
-    $Qorders->bindInt(':customers_id', $cID);
-    $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-    $Qorders->bindInt(':orders_archive', $archive_id);
-    $Qorders->bindValue(':class', 'ot_total');
-    $Qorders->bindValue(':class1', 'TO'); //total order
+            $Qorders->bindInt(':customers_id', $cID);
+            $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+            $Qorders->bindInt(':orders_archive', $archive_id);
+            $Qorders->bindValue(':class', 'ot_total');
+            $Qorders->bindValue(':class1', 'TO'); //total order
 
-  } elseif (isset($_POST['customers_group_id'])) {
+          } elseif (isset($_POST['customers_group_id'])) {
 
-    $customers_group_id = (int)$_POST['customers_group_id'];
+            $customers_group_id = (int)$_POST['customers_group_id'];
 
-    $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
+            $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                             o.customers_id,
                                                                             o.customers_name,
                                                                             o.customers_group_id,
@@ -219,18 +222,18 @@
                                                        :page_set_max_results
                                                 ');
 
-    $Qorders->bindInt(':customers_group_id', $customers_group_id );
-    $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-    $Qorders->bindInt(':orders_archive', $archive_id);
-    $Qorders->bindValue(':class', 'ot_total');
-    $Qorders->bindValue(':class1', 'TO');
+            $Qorders->bindInt(':customers_group_id', $customers_group_id);
+            $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+            $Qorders->bindInt(':orders_archive', $archive_id);
+            $Qorders->bindValue(':class', 'ot_total');
+            $Qorders->bindValue(':class1', 'TO');
 
-  } elseif (isset($_POST['status'])) {
-    $status = HTML::sanitize($_POST['status']);
+          } elseif (isset($_POST['status'])) {
+            $status = HTML::sanitize($_POST['status']);
 
-    if ($status == 0 ){
+            if ($status == 0) {
 
-      $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
+              $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                               o.customers_id,
                                                                               o.customers_name,
                                                                               o.customers_group_id,
@@ -254,13 +257,13 @@
                                                          :page_set_max_results
                                                 ');
 
-      $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qorders->bindInt(':orders_archive', $archive_id);
-      $Qorders->bindValue(':class', 'ot_total');
-      $Qorders->bindValue(':class1', 'TO');
-    } else {
+              $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+              $Qorders->bindInt(':orders_archive', $archive_id);
+              $Qorders->bindValue(':class', 'ot_total');
+              $Qorders->bindValue(':class1', 'TO');
+            } else {
 
-      $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
+              $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                                 o.customers_id,
                                                                                 o.customers_name,
                                                                                 o.customers_group_id,
@@ -285,16 +288,16 @@
                                                              :page_set_max_results
                                                     ');
 
-      $Qorders->bindInt(':orders_status_id', $status);
-      $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      $Qorders->bindInt(':orders_archive', $archive_id);
-      $Qorders->bindValue(':class', 'ot_total');
-      $Qorders->bindValue(':class1', 'TO');
-    }
-  }  elseif (isset($_POST['orders_id'])) {
-    $orders_id = HTML::sanitize($_POST['orders_id']);
+              $Qorders->bindInt(':orders_status_id', $status);
+              $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+              $Qorders->bindInt(':orders_archive', $archive_id);
+              $Qorders->bindValue(':class', 'ot_total');
+              $Qorders->bindValue(':class1', 'TO');
+            }
+          } elseif (isset($_POST['orders_id'])) {
+            $orders_id = HTML::sanitize($_POST['orders_id']);
 
-    $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
+            $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
                                                                               o.customers_id,
                                                                               o.customers_name,
                                                                               o.customers_group_id,
@@ -319,15 +322,15 @@
                                                          :page_set_max_results
                                                   ');
 
-    $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-    $Qorders->bindInt(':orders_archive', $archive_id);
-    $Qorders->bindInt(':orders_id', $orders_id);
-    $Qorders->bindValue(':class', 'ot_total');
-    $Qorders->bindValue(':class1', 'TO');
+            $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+            $Qorders->bindInt(':orders_archive', $archive_id);
+            $Qorders->bindInt(':orders_id', $orders_id);
+            $Qorders->bindValue(':class', 'ot_total');
+            $Qorders->bindValue(':class1', 'TO');
 
-  } else {
+          } else {
 
-    $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
+            $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
                                                                               o.customers_id,
                                                                               o.customers_name,
                                                                               o.customers_group_id,
@@ -352,32 +355,32 @@
                                                          :page_set_max_results
                                                   ');
 
-    $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-    $Qorders->bindInt(':orders_archive', $archive_id);
-    $Qorders->bindValue(':class', 'ot_total');
-    $Qorders->bindValue(':class1', 'TO');
-  }
+            $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+            $Qorders->bindInt(':orders_archive', $archive_id);
+            $Qorders->bindValue(':class', 'ot_total');
+            $Qorders->bindValue(':class1', 'TO');
+          }
 
-  $Qorders->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-  $Qorders->execute();
+          $Qorders->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+          $Qorders->execute();
 
-  $listingTotalRow = $Qorders->getPageSetTotalRows();
+          $listingTotalRow = $Qorders->getPageSetTotalRows();
 
-  if ($listingTotalRow > 0) {
+          if ($listingTotalRow > 0) {
 
-    while ($Qorders->fetch()) {
+            while ($Qorders->fetch()) {
 
-      $Qcustomers = $CLICSHOPPING_Orders->db->prepare('select customers_id,
+              $Qcustomers = $CLICSHOPPING_Orders->db->prepare('select customers_id,
                                                               customers_group_id,
                                                               customer_guest_account
                                                        from :table_customers
                                                        where customers_id = :customers_id
                                                      ');
-      $Qcustomers->bindInt(':customers_id', $Qorders->valueInt('customers_id'));
-      $Qcustomers->execute();
+              $Qcustomers->bindInt(':customers_id', $Qorders->valueInt('customers_id'));
+              $Qcustomers->execute();
 
-      // select the last update by the admin name
-      $Qhistory = $CLICSHOPPING_Orders->db->prepare('select osh.admin_user_name,
+              // select the last update by the admin name
+              $Qhistory = $CLICSHOPPING_Orders->db->prepare('select osh.admin_user_name,
                                                             osh.orders_id,
                                                             o.orders_id,
                                                             osh.orders_status_support_id
@@ -388,24 +391,24 @@
                                                      order by osh.date_added desc
                                                      limit 1
                                                     ');
-      $Qhistory->bindInt(':orders_id', $Qorders->valueInt('orders_id'));
-      $Qhistory->execute();
+              $Qhistory->bindInt(':orders_id', $Qorders->valueInt('orders_id'));
+              $Qhistory->execute();
 
 // Selectionne la couleur selon le groupe client au moment de la commande
-      if ($Qorders->valueInt('customers_group_id') != 0) {
-        $Qcolor= $CLICSHOPPING_Orders->db->prepare('select color_bar
+              if ($Qorders->valueInt('customers_group_id') != 0) {
+                $Qcolor = $CLICSHOPPING_Orders->db->prepare('select color_bar
                                                      from :table_customers_groups
                                                      where customers_group_id = :customers_group_id
                                                     ');
-        $Qcolor->bindInt(':customers_group_id', $Qorders->valueInt('customers_group_id'));
-        $Qcolor->execute();
-      }
-?>
+                $Qcolor->bindInt(':customers_group_id', $Qorders->valueInt('customers_group_id'));
+                $Qcolor->execute();
+              }
+              ?>
               <th scope="row"><?php echo $Qorders->valueInt('orders_id'); ?></th>
-              <td><?php echo $Qorders->value('customers_name') .'&nbsp;(' . $Qorders->value('customers_company') .')'; ?></td>
-<?php
-      if ($Qhistory->valueInt('orders_status_support_id') > 1) {
-        $QCustomerSupport= $CLICSHOPPING_Orders->db->prepare('select oss.orders_status_support_name
+              <td><?php echo $Qorders->value('customers_name') . '&nbsp;(' . $Qorders->value('customers_company') . ')'; ?></td>
+              <?php
+              if ($Qhistory->valueInt('orders_status_support_id') > 1) {
+                $QCustomerSupport = $CLICSHOPPING_Orders->db->prepare('select oss.orders_status_support_name
                                                                from :table_orders_status_history osh,
                                                                     :table_orders_status_support oss
                                                                where osh.orders_status_support_id = :orders_status_support_id
@@ -415,156 +418,170 @@
                                                                 limit 1
                                                               ');
 
-        $QCustomerSupport->bindInt(':orders_status_support_id', $Qhistory->valueInt('orders_status_support_id'));
-        $QCustomerSupport->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-        $QCustomerSupport->execute();
-?>
+                $QCustomerSupport->bindInt(':orders_status_support_id', $Qhistory->valueInt('orders_status_support_id'));
+                $QCustomerSupport->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+                $QCustomerSupport->execute();
+                ?>
                 <td><?php echo $QCustomerSupport->value('orders_status_support_name'); ?></td>
-<?php
-      } else {
-?>
+                <?php
+              } else {
+                ?>
                 <td></td>
-<?php
-      }
+                <?php
+              }
 
-      if ($Qcustomers->value('customer_guest_account') == 0) {
-?>
-        <td class="text-md-center" width="15"></td>
-<?php
-      } else {
-?>
-        <td class="text-md-center" width="15"><i class="fas fa-check fa-lg" aria-hidden="true"></i></td>
-<?php
-      }
+              if ($Qcustomers->value('customer_guest_account') == 0) {
+                ?>
+                <td class="text-md-center" width="15"></td>
+                <?php
+              } else {
+                ?>
+                <td class="text-md-center" width="15"><i class="fas fa-check fa-lg" aria-hidden="true"></i></td>
+                <?php
+              }
 
 // Permettre l'affichage couleurs du groupe B2B auquel le client ce trouvait au moment de la commande
-      if (MODE_B2B_B2C == 'true') {
-        if ($Qorders->valueInt('customers_group_id') != 0) {
-?>
-              <td class="text-md-center"><table width="15" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <td bgcolor="<?php echo $Qcolor->value('color_bar'); ?>"></td>
-                </tr>
-              </table></td>
-<?php
-        } else {
-?>
-              <td></td>
-<?php
-        }
-      } else {
-?>
-              <td></td>
-<?php
-      }
-?>
+              if (MODE_B2B_B2C == 'true') {
+                if ($Qorders->valueInt('customers_group_id') != 0) {
+                  ?>
+                  <td class="text-md-center">
+                    <table width="15" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td bgcolor="<?php echo $Qcolor->value('color_bar'); ?>"></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <?php
+                } else {
+                  ?>
+                  <td></td>
+                  <?php
+                }
+              } else {
+                ?>
+                <td></td>
+                <?php
+              }
+              ?>
               <td class="text-md-right"><?php echo strip_tags($Qorders->value('order_total')); ?></td>
-<?php
-      if (!is_null($Qorders->value('date_purchased'))) {
-        echo '<td class="text-md-center">' . DateTime::toShort($Qorders->value('date_purchased')) .'</td>';
-      } else {
-        echo '<td class="text-md-center"></td>';
-      }
+              <?php
+              if (!is_null($Qorders->value('date_purchased'))) {
+                echo '<td class="text-md-center">' . DateTime::toShort($Qorders->value('date_purchased')) . '</td>';
+              } else {
+                echo '<td class="text-md-center"></td>';
+              }
 
-      if ($Qorders->valueInt('orders_status_id') == 1) {
-?>
-        <td class="text-md-right"><span class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
-<?php
-      } elseif ($Qorders->valueInt('orders_status') == 2) {
-?>
-        <td class="text-md-right"><span class="badge badge-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
-<?php
-      } elseif ($Qorders->valueInt('orders_status_id') == 3) {
-?>
-        <td class="text-md-right"><span class="badge badge-success"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
-<?php
-      } elseif ($Qorders->valueInt('orders_status_id') == 4) {
-?>
-        <td class="text-md-right"><span class="badge badge-danger"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
-<?php
-      } else {
-?>
-        <td class="text-md-right"><span class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
-<?php
-      }
+              if ($Qorders->valueInt('orders_status_id') == 1) {
+                ?>
+                <td class="text-md-right"><span
+                    class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                <?php
+              } elseif ($Qorders->valueInt('orders_status') == 2) {
+                ?>
+                <td class="text-md-right"><span
+                    class="badge badge-primary"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                <?php
+              } elseif ($Qorders->valueInt('orders_status_id') == 3) {
+                ?>
+                <td class="text-md-right"><span
+                    class="badge badge-success"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                <?php
+              } elseif ($Qorders->valueInt('orders_status_id') == 4) {
+                ?>
+                <td class="text-md-right"><span
+                    class="badge badge-danger"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                <?php
+              } else {
+                ?>
+                <td class="text-md-right"><span
+                    class="badge badge-info"><?php echo $Qorders->value('orders_status_name'); ?></span></td>
+                <?php
+              }
 
-      if ($Qorders->valueInt('erp_invoice') == 1 ) {
-?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_erp')); ?></td>
-<?php
-      } elseif ($Qorders->valueInt('erp_invoice') == 2) {
-?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
-<?php
-      } elseif ($Qorders->valueInt('erp_invoice') == 3) {
-?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_erp')); ?></td>
-<?php
-      } elseif ($Qorders->valueInt('erp_invoice') == 4)  {
-?>
-              <td class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice_cancelled.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_cancel_erp')); ?></td>
-<?php
-      } else {
-?>
-              <td></td>
-<?php
-      }
-?>
+              if ($Qorders->valueInt('erp_invoice') == 1) {
+                ?>
+                <td
+                  class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_order.png', $CLICSHOPPING_Orders->getDef('image_orders_erp')); ?></td>
+                <?php
+              } elseif ($Qorders->valueInt('erp_invoice') == 2) {
+                ?>
+                <td
+                  class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_manual_erp')); ?></td>
+                <?php
+              } elseif ($Qorders->valueInt('erp_invoice') == 3) {
+                ?>
+                <td
+                  class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_erp')); ?></td>
+                <?php
+              } elseif ($Qorders->valueInt('erp_invoice') == 4) {
+                ?>
+                <td
+                  class="text-md-center"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/odoo_invoice_cancelled.png', $CLICSHOPPING_Orders->getDef('image_orders_invoice_cancel_erp')); ?></td>
+                <?php
+              } else {
+                ?>
+                <td></td>
+                <?php
+              }
+              ?>
               <td class="text-md-right"><?php echo $Qhistory->value('admin_user_name'); ?></td>
               <td class="text-md-right">
-<?php
-      echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
-      echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit_order')));
-      echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Orders->link('Invoice&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/invoice.gif', $CLICSHOPPING_Orders->getDef('icon_invoice')), 'target="_blank" rel="noreferrer"');
-      echo '&nbsp;';
-      echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
-      echo '&nbsp;';
+                <?php
+                  echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
+                  echo '&nbsp;';
+                  echo HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit_order')));
+                  echo '&nbsp;';
+                  echo HTML::link($CLICSHOPPING_Orders->link('Invoice&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/invoice.gif', $CLICSHOPPING_Orders->getDef('icon_invoice')), 'target="_blank" rel="noreferrer"');
+                  echo '&nbsp;';
+                  echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
+                  echo '&nbsp;';
 
-      if ($archive_id != 1) {
-        echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/archive.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
-      } else {
-        echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
-      }
+                  if ($archive_id != 1) {
+                    echo HTML::link($CLICSHOPPING_Orders->link('Archive&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/archive.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
+                  } else {
+                    echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
+                  }
 
-      echo '&nbsp;';
-?>
+                  echo '&nbsp;';
+                ?>
               </td>
-            </tr>
-<?php
-    } // while
-  } // end $listingTotalRow
-?>
+              </tr>
+              <?php
+            } // while
+          } // end $listingTotalRow
+        ?>
         </tbody>
-      </table></td>
+      </table>
+    </td>
   </table>
 
 
-<?php
-  if ($listingTotalRow > 0) {
-?>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qorders->getPageSetLabel($CLICSHOPPING_Orders->getDef('text_display_number_of_link')); ?></div>
-        <div class="float-md-right text-md-right"><?php echo $Qorders->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-      </div>
-    </div>
-<?php
-  } // end $listingTotalRow
-?>
-<!-- ################# -->
-<!-- Hooks Invoice - just use execute function to display the hook-->
-<!-- ################# -->
-    <div class="col-md-12">
-      <div class="card card-block headerCard">
-        <div>
-<?php
-// Batch Print order
-  echo $CLICSHOPPING_Hooks->output('Invoice', 'InvoiceBatch');
-?>
+  <?php
+    if ($listingTotalRow > 0) {
+      ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qorders->getPageSetLabel($CLICSHOPPING_Orders->getDef('text_display_number_of_link')); ?></div>
+          <div
+            class="float-md-right text-md-right"><?php echo $Qorders->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
+      <?php
+    } // end $listingTotalRow
+  ?>
+  <!-- ################# -->
+  <!-- Hooks Invoice - just use execute function to display the hook-->
+  <!-- ################# -->
+  <div class="col-md-12">
+    <div class="card card-block headerCard">
+      <div>
+        <?php
+          // Batch Print order
+          echo $CLICSHOPPING_Hooks->output('Invoice', 'InvoiceBatch');
+        ?>
+      </div>
     </div>
-    <div class="separator"></div>
   </div>
+  <div class="separator"></div>
+</div>

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\Products;
@@ -20,12 +20,14 @@
 
   use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ProductsAdmin;
 
-  class Update implements \ClicShopping\OM\Modules\HooksInterface {
+  class Update implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
     protected $productsAdmin;
     protected $productsLink;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('Categories')) {
         Registry::set('Categories', new CategoriesApp());
       }
@@ -38,13 +40,14 @@
       $this->productsAdmin = new ProductsAdmin();
     }
 
-    public function moveCategory($move_new_category, $id) {
+    public function moveCategory($move_new_category, $id)
+    {
       $QCheck = $this->app->db->prepare('select count(*)
                                                     from :table_products_to_categories
                                                     where products_id = :products_id
                                                     and categories_id not in ( :categories_id )
                                                   ');
-      $QCheck->bindInt(':products_id',$id);
+      $QCheck->bindInt(':products_id', $id);
       $QCheck->bindInt(':categories_id', $move_new_category);
       $QCheck->execute();
 
@@ -62,8 +65,9 @@
       }
     }
 
-    public function UpdateProductCategories($id = null) {
-      $CLICSHOPPING_MessageStack =  Registry::get('MessageStack');
+    public function UpdateProductCategories($id = null)
+    {
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       $new_category = HTML::sanitize($_POST['move_to_category_id']);
 
@@ -79,9 +83,9 @@
             if (is_array($new_category) && isset($new_category)) {
               foreach ($new_category as $value_id) {
                 $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
-                                                                                          'categories_id' => (int)$value_id
-                                                                                         ]
-                                             );
+                    'categories_id' => (int)$value_id
+                  ]
+                );
 
                 if ($Qcheck->fetch() === false) {
 
@@ -95,8 +99,8 @@
                       if ($this->productsLink == 'link') {
                         if ($this->currentCategoryId != $value_id) {
                           $sql_array = ['products_id' => (int)$id,
-                                        'categories_id' => (int)$value_id
-                                       ];
+                            'categories_id' => (int)$value_id
+                          ];
 
                           $this->app->db->save('products_to_categories', $sql_array);
                         } else {
@@ -107,7 +111,7 @@
                   }
 
                   if ($this->productsLink == 'duplicate') {
-                     $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
+                    $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
                   }
                 }
               }
@@ -123,13 +127,14 @@
       Cache::clear('upcoming');
     }
 
-    public function execute() {
+    public function execute()
+    {
       if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
         return false;
       }
 
       if (isset($_GET['pID'])) {
-        $id =  HTML::sanitize($_GET['pID']);
+        $id = HTML::sanitize($_GET['pID']);
 
         $this->UpdateProductCategories($id);
       }

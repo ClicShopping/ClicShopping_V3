@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Customers;
 
@@ -16,10 +16,12 @@
 
   use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
-  class Update implements \ClicShopping\OM\Modules\HooksInterface {
+  class Update implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('Groups')) {
         Registry::set('Groups', new GroupsApp());
       }
@@ -27,24 +29,25 @@
       $this->app = Registry::get('Groups');
     }
 
-    public function execute() {
+    public function execute()
+    {
       if (isset($_GET['Update'])) {
 
         $CLICSHOPPING_Customers = Registry::get('Customers');
 
         if (isset($_POST['customers_group_id'])) {
-         $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+          $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
           if (empty($customers_group_id)) $customers_group_id = 0;
 
           if (isset($_POST['customers_id'])) $customers_id = HTML::sanitize($_POST['customers_id']);
-/*
-          if (isset($_POST['customers_options_order_taxe'])) {
-            $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
-          } else {
-            $customers_options_order_taxe = 0;
-          }
-*/
+          /*
+                    if (isset($_POST['customers_options_order_taxe'])) {
+                      $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
+                    } else {
+                      $customers_options_order_taxe = 0;
+                    }
+          */
 
           $QmultipleGroups = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
                                                                    from :table_products_groups
@@ -52,7 +55,7 @@
 
           $QmultipleGroups->execute();
 
-          while ($QmultipleGroups->fetch() ) {
+          while ($QmultipleGroups->fetch()) {
             $QmultipleCustomers = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
                                                                       from :table_customers_groups
                                                                       where customers_group_id = :customers_group_id
@@ -73,7 +76,7 @@
 
           $sql_data_array = ['customers_group_id' => $customers_group_id];
 
-          $this->app->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id ]);
+          $this->app->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id]);
         }
       }
     }

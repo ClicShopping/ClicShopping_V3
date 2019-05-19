@@ -1,44 +1,49 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class securityCheckExtended_ext_directory_listing {
+  class securityCheckExtended_ext_directory_listing
+  {
     public $type = 'warning';
     public $has_doc = true;
 
-    public function __construct() {
+    public function __construct()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/extended/ext_directory_listing',null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/extended/ext_directory_listing', null, null, 'Shop');
 
       $this->title = CLICSHOPPING::getDef('module_security_check_extended_ext_directory_listing_title');
     }
 
-    public function pass() {
+    public function pass()
+    {
       $request = $this->getHttpRequest(CLICSHOPPING::link('Shop/ext/'));
 
       return $request['http_code'] != 200;
     }
 
-    public function getMessage() {
+    public function getMessage()
+    {
       return CLICSHOPPING::getDef('module_security_check_extended_ext_directory_listing_http_200', [
         'ext_url' => CLICSHOPPING::link('Shop/ext/'),
         'ext_path' => CLICSHOPPING::getConfig('http_path', 'Shop') . 'ext/'
       ]);
     }
 
-    public function getHttpRequest($url) {
+    public function getHttpRequest($url)
+    {
       $server = parse_url($url);
 
       if (isset($server['port']) === false) {

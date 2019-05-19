@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Catalog\Manufacturers\Sites\ClicShoppingAdmin\Pages\Home\Actions\ManufacturersPopUp;
@@ -16,14 +16,17 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Cache;
 
-  class Save extends \ClicShopping\OM\PagesActionsAbstract {
-    protected  $app;
+  class Save extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    protected $app;
 
-    public function __construct(){
+    public function __construct()
+    {
       $this->app = Registry::get('Manufacturers');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -56,13 +59,13 @@
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('manufacturers', $sql_data_array );
+        $CLICSHOPPING_Db->save('manufacturers', $sql_data_array);
 
         $manufacturers_id = $CLICSHOPPING_Db->lastInsertId();
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i=0, $n=count($languages); $i<$n; $i++) {
+        for ($i = 0, $n = count($languages); $i < $n; $i++) {
           $manufacturers_url_array = $_POST['manufacturers_url'];
           $language_id = $languages[$i]['id'];
 
@@ -70,21 +73,21 @@
 
 
           $insert_sql_data = ['manufacturers_url' => HTML::sanitize($manufacturers_url_array[$language_id]),
-                              'languages_id' => (int)$language_id
-                             ];
+            'languages_id' => (int)$language_id
+          ];
 
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-          $CLICSHOPPING_Db->save('manufacturers_info', $sql_data_array );
+          $CLICSHOPPING_Db->save('manufacturers_info', $sql_data_array);
 
-          $CLICSHOPPING_Hooks->call('Manufacturer','Insert');
+          $CLICSHOPPING_Hooks->call('Manufacturer', 'Insert');
         }
 
         Cache::clear('manufacturers');
 
         echo 'Success';
 //    echo "From Server : ".json_encode($_POST)."<br>";
-      }else {
+      } else {
         echo 'Error <br />';
       }
 

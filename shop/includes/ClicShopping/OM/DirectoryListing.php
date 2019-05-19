@@ -1,17 +1,18 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
-  class DirectoryListing {
+  class DirectoryListing
+  {
     protected $_directory = '';
     protected $_include_files = true;
     protected $_include_directories = true;
@@ -22,16 +23,19 @@
     protected $_add_directory_to_filename = false;
     protected $_listing;
 
-    public function __construct($directory = '', $stats = false) {
+    public function __construct($directory = '', $stats = false)
+    {
       $this->setDirectory(realpath($directory));
       $this->setStats($stats);
     }
 
-    public function setDirectory($directory) {
+    public function setDirectory($directory)
+    {
       $this->_directory = $directory;
     }
 
-    public function setIncludeFiles($boolean) {
+    public function setIncludeFiles($boolean)
+    {
       if ($boolean === true) {
         $this->_include_files = true;
       } else {
@@ -39,7 +43,8 @@
       }
     }
 
-    public function setIncludeDirectories($boolean) {
+    public function setIncludeDirectories($boolean)
+    {
       if ($boolean === true) {
         $this->_include_directories = true;
       } else {
@@ -47,7 +52,8 @@
       }
     }
 
-    public function setExcludeEntries($entries) {
+    public function setExcludeEntries($entries)
+    {
       if (is_array($entries)) {
         foreach ($entries as $value) {
           if (!in_array($value, $this->_exclude_entries)) {
@@ -61,7 +67,8 @@
       }
     }
 
-    public function setStats($boolean) {
+    public function setStats($boolean)
+    {
       if ($boolean === true) {
         $this->_stats = true;
       } else {
@@ -69,7 +76,8 @@
       }
     }
 
-    public function setRecursive($boolean) {
+    public function setRecursive($boolean)
+    {
       if ($boolean === true) {
         $this->_recursive = true;
       } else {
@@ -77,11 +85,13 @@
       }
     }
 
-    public function setCheckExtension($extension) {
+    public function setCheckExtension($extension)
+    {
       $this->_check_extension[] = strtolower($extension);
     }
 
-    public function setAddDirectoryToFilename($boolean) {
+    public function setAddDirectoryToFilename($boolean)
+    {
       if ($boolean === true) {
         $this->_add_directory_to_filename = true;
       } else {
@@ -89,7 +99,8 @@
       }
     }
 
-    public function read($directory = '') {
+    public function read($directory = '')
+    {
       if (empty($directory)) {
         $directory = $this->_directory;
       }
@@ -102,43 +113,43 @@
         while (($entry = $dir->read()) !== false) {
           if (!in_array($entry, $this->_exclude_entries)) {
             if (($this->_include_files === true) && is_file($dir->path . '/' . $entry)) {
-              if (empty($this->_check_extension) || in_array(strtolower(substr($entry, strrpos($entry, '.')+1)), $this->_check_extension)) {
+              if (empty($this->_check_extension) || in_array(strtolower(substr($entry, strrpos($entry, '.') + 1)), $this->_check_extension)) {
                 if ($this->_add_directory_to_filename === true) {
                   if ($dir->path != $this->_directory) {
-                    $entry = substr($dir->path, strlen($this->_directory)+1) . '/' . $entry;
+                    $entry = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
                   }
                 }
 
                 $this->_listing[] = array('name' => $entry,
-                                          'is_directory' => false);
+                  'is_directory' => false);
                 if ($this->_stats === true) {
                   $stats = array('size' => filesize($dir->path . '/' . $entry),
-                                 'permissions' => fileperms($dir->path . '/' . $entry),
-                                 'user_id' => fileowner($dir->path . '/' . $entry),
-                                 'group_id' => filegroup($dir->path . '/' . $entry),
-                                 'last_modified' => filemtime($dir->path . '/' . $entry));
-                  $this->_listing[count($this->_listing)-1] = array_merge($this->_listing[count($this->_listing)-1], $stats);
+                    'permissions' => fileperms($dir->path . '/' . $entry),
+                    'user_id' => fileowner($dir->path . '/' . $entry),
+                    'group_id' => filegroup($dir->path . '/' . $entry),
+                    'last_modified' => filemtime($dir->path . '/' . $entry));
+                  $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
                 }
               }
             } elseif (is_dir($dir->path . '/' . $entry)) {
               if ($this->_include_directories === true) {
-                $entry_name= $entry;
+                $entry_name = $entry;
 
                 if ($this->_add_directory_to_filename === true) {
                   if ($dir->path != $this->_directory) {
-                    $entry_name = substr($dir->path, strlen($this->_directory)+1) . '/' . $entry;
+                    $entry_name = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
                   }
                 }
 
                 $this->_listing[] = array('name' => $entry_name,
-                                          'is_directory' => true);
+                  'is_directory' => true);
                 if ($this->_stats === true) {
                   $stats = array('size' => filesize($dir->path . '/' . $entry),
-                                 'permissions' => fileperms($dir->path . '/' . $entry),
-                                 'user_id' => fileowner($dir->path . '/' . $entry),
-                                 'group_id' => filegroup($dir->path . '/' . $entry),
-                                 'last_modified' => filemtime($dir->path . '/' . $entry));
-                  $this->_listing[count($this->_listing)-1] = array_merge($this->_listing[count($this->_listing)-1], $stats);
+                    'permissions' => fileperms($dir->path . '/' . $entry),
+                    'user_id' => fileowner($dir->path . '/' . $entry),
+                    'group_id' => filegroup($dir->path . '/' . $entry),
+                    'last_modified' => filemtime($dir->path . '/' . $entry));
+                  $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
                 }
               }
 
@@ -154,7 +165,8 @@
       }
     }
 
-    public function getFiles($sort_by_directories = true) {
+    public function getFiles($sort_by_directories = true)
+    {
       if (!is_array($this->_listing)) {
         $this->read();
       }
@@ -170,7 +182,8 @@
       return array();
     }
 
-    public function getSize() {
+    public function getSize()
+    {
       if (!is_array($this->_listing)) {
         $this->read();
       }
@@ -178,11 +191,13 @@
       return count($this->_listing);
     }
 
-    public function getDirectory() {
+    public function getDirectory()
+    {
       return $this->_directory;
     }
 
-    protected function _sortListing($a, $b) {
+    protected function _sortListing($a, $b)
+    {
       return strcmp((($a['is_directory'] === true) ? 'D' : 'F') . $a['name'], (($b['is_directory'] === true) ? 'D' : 'F') . $b['name']);
     }
   }

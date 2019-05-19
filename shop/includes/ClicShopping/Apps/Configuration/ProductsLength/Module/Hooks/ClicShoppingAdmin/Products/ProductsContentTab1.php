@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\ProductsLength\Module\Hooks\ClicShoppingAdmin\Products;
 
@@ -18,10 +18,12 @@
 
   use ClicShopping\Apps\Configuration\ProductsLength\Classes\ClicShoppingAdmin\ProductsLengthAdmin;
 
-  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface {
+  class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct()   {
+    public function __construct()
+    {
       if (!Registry::exists('ProductsLength')) {
         Registry::set('ProductsLength', new ProductsLengthApp());
       }
@@ -30,7 +32,8 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
     }
 
-    private function getProductsProductsLength() {
+    private function getProductsProductsLength()
+    {
       if (isset($_GET['pID'])) {
         $Qproducts = $this->app->db->prepare('select products_length_class_id,
                                                      products_dimension_width,
@@ -49,7 +52,8 @@
       }
     }
 
-    public function display()  {
+    public function display()
+    {
       if (!defined('CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS') || CLICSHOPPING_APP_PROUCTS_LENGTH_PL_STATUS == 'False') {
         return false;
       }
@@ -68,7 +72,7 @@
         $products_length_class_id = $products_length_class_id;
       }
 
-      $content ='<!----- Products Lenght ---->';
+      $content = '<!----- Products Lenght ---->';
       $content .= '<div class="row col-md-12">';
       $content .= '<div class="col-md-12">';
       $content .= '<div class="row">';
@@ -115,7 +119,7 @@ $('#tab1ContentRow6').append(
 <!-- ######################## -->
 
 EOD;
-        return $output;
+      return $output;
 
     }
   }

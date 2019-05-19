@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
@@ -28,54 +28,57 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/service.png', $CLICSHOPPING_ServiceAPP->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ServiceAPP->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right"><?php echo '<span>' . HTML::button($CLICSHOPPING_ServiceAPP->getDef('button_service_admin'), null,  $CLICSHOPPING_ServiceAPP->link('ServiceAPPAdmin'), 'success') . '</span>'; ?>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/service.png', $CLICSHOPPING_ServiceAPP->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ServiceAPP->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-6 text-md-right"><?php echo '<span>' . HTML::button($CLICSHOPPING_ServiceAPP->getDef('button_service_admin'), null, $CLICSHOPPING_ServiceAPP->link('ServiceAPPAdmin'), 'success') . '</span>'; ?>
 
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
-    <table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <td>
-        <table class="table table-sm table-hover table-striped">
-          <thead>
-          <tr class="dataTableHeadingRow">
-            <th><?php echo $CLICSHOPPING_ServiceAPP->getDef('table_heading_services'); ?></th>
-            <th><?php echo $CLICSHOPPING_ServiceAPP->getDef('table_heading_class'); ?></th>
-          </tr>
-          </thead>
-          <tbody>
-<?php
-  foreach ( $files as $sm ) {
-    $result['file'][] = ['files_name' => $sm];
-  }
-  sort($result['file']);
+  <table border="0" width="100%" cellspacing="0" cellpadding="2">
+    <td>
+      <table class="table table-sm table-hover table-striped">
+        <thead>
+        <tr class="dataTableHeadingRow">
+          <th><?php echo $CLICSHOPPING_ServiceAPP->getDef('table_heading_services'); ?></th>
+          <th><?php echo $CLICSHOPPING_ServiceAPP->getDef('table_heading_class'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+          foreach ($files as $sm) {
+            $result['file'][] = ['files_name' => $sm];
+          }
+          sort($result['file']);
 
-  $i = 0;
+          $i = 0;
 
-  foreach($result['file'] as  &$module) {
+          foreach ($result['file'] as &$module) {
 
-    $class = substr($module['files_name'], 0, strrpos($module['files_name'], '.'));
-    $class1[] = $class;
+            $class = substr($module['files_name'], 0, strrpos($module['files_name'], '.'));
+            $class1[] = $class;
 
-    if (class_exists($class)) {
-      $module = new $class;
-    }
+            if (class_exists($class)) {
+              $module = new $class;
+            }
 
-      if (isset($module)) {
-?>
-            <td><?php echo $module['files_name']; ?></td>
-            <td><?php echo $class; ?></td>
-          </tr>
-<?php
-      }
-  }
-?>
-          </tbody>
-        </table>
-      </td>
-    </table>
-<!-- body_eof //-->
-  </div>
+            if (isset($module)) {
+              ?>
+              <td><?php echo $module['files_name']; ?></td>
+              <td><?php echo $class; ?></td>
+              </tr>
+              <?php
+            }
+          }
+        ?>
+        </tbody>
+      </table>
+    </td>
+  </table>
+  <!-- body_eof //-->
+</div>

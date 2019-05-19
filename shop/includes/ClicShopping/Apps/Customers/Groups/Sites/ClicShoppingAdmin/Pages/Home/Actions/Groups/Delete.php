@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Delete extends \ClicShopping\OM\PagesActionsAbstract {
+  class Delete extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -50,7 +52,7 @@
                                                          from :table_banners
                                                          where customers_group_id = :customers_group_id
                                                        ');
-      $QbannerCustomersId->bindInt(':customers_group_id', (int)$group_id );
+      $QbannerCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QbannerCustomersId->execute();
 
       $banner_customers_id = $QbannerCustomersId->fetch();
@@ -70,7 +72,7 @@
                                                                      from :table_products_extra_fields
                                                                      where customers_group_id = :customers_group_id
                                                                     ');
-      $QproductsExtraFieldsCustomersId->bindInt(':customers_group_id', (int)$group_id );
+      $QproductsExtraFieldsCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QproductsExtraFieldsCustomersId->execute();
 
       if ($QproductsExtraFieldsCustomersId->valueInt('count') > 0) {
@@ -87,7 +89,7 @@
                                                        from :table_pages_manager
                                                        where customers_group_id = :customers_group_id
                                                      ");
-      $QpageManagerCustomersId->bindInt(':customers_group_id', (int)$group_id );
+      $QpageManagerCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QpageManagerCustomersId->execute();
 
       if ($QpageManagerCustomersId->valueInt('count') > 0) {
@@ -105,7 +107,7 @@
                                                                    from :table_specials
                                                                    where customers_group_id = :customers_group_id
                                                                    ');
-      $QspecialsProductsCustomersId->bindInt(':customers_group_id', (int)$group_id );
+      $QspecialsProductsCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QspecialsProductsCustomersId->execute();
 
       if ($QspecialsProductsCustomersId->valueInt('count') > 0) {
@@ -123,7 +125,7 @@
                                                                from :table_products_favorites
                                                                where customers_group_id = :customers_group_id
                                                              ');
-      $QProductsFavoritesCustomersId->bindInt(':customers_group_id', (int)$group_id );
+      $QProductsFavoritesCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QProductsFavoritesCustomersId->execute();
 
       if ($QProductsFavoritesCustomersId->valueInt('count') > 0) {
@@ -141,7 +143,7 @@
                                                            from :table_newsletters
                                                            where customers_group_id = :customers_group_id
                                                          ');
-      $QnewsletteCustomersId->bindInt(':customers_group_id', (int)$group_id );
+      $QnewsletteCustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QnewsletteCustomersId->execute();
 
       if ($QnewsletteCustomersId->valueInt('count') > 0) {
@@ -159,10 +161,10 @@
                                                    from :table_customers
                                                    where customers_group_id = :customers_group_id
                                                  ');
-      $QcustomersId->bindInt(':customers_group_id',(int)$group_id);
+      $QcustomersId->bindInt(':customers_group_id', (int)$group_id);
       $QcustomersId->execute();
 
-      while($QcustomersId->fetch() ) {
+      while ($QcustomersId->fetch()) {
 
         $Qupdate = $CLICSHOPPING_Groups->db->prepare('update :table_customers
                                                 set customers_group_id = :customers_group_id
@@ -173,7 +175,7 @@
         $Qupdate->execute();
       }
 
-      $CLICSHOPPING_Hooks->call('CustomersGroup','Delete');
+      $CLICSHOPPING_Hooks->call('CustomersGroup', 'Delete');
 
       $CLICSHOPPING_Groups->redirect('Groups');
     }

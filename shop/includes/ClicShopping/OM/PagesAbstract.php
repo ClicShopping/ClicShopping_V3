@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
@@ -15,7 +15,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface {
+  abstract class PagesAbstract implements \ClicShopping\OM\PagesInterface
+  {
     public $data = [];
 
     protected $code;
@@ -27,99 +28,110 @@
     protected $is_rpc = false;
 
     protected $app;
-    final public function __construct(\ClicShopping\OM\SitesInterface $site)  {
+
+    final public function __construct(\ClicShopping\OM\SitesInterface $site)
+    {
       $this->code = (new \ReflectionClass($this))->getShortName();
       $this->site = $site;
 
       $this->init();
     }
 
-    protected function init()  {
+    protected function init()
+    {
     }
 
-    public function getCode()  {
-        return $this->code;
+    public function getCode()
+    {
+      return $this->code;
     }
 
-    public function getFile() {
+    public function getFile()
+    {
 
       if (isset($this->file)) {
-       return dirname(CLICSHOPPING::BASE_DIR) . '/' . str_replace('\\', '/', (new \ReflectionClass($this))->getNamespaceName()) . '/templates/' . $this->file;
+        return dirname(CLICSHOPPING::BASE_DIR) . '/' . str_replace('\\', '/', (new \ReflectionClass($this))->getNamespaceName()) . '/templates/' . $this->file;
       }
     }
 
-    public function setUseSiteTemplate($bool)  {
+    public function setUseSiteTemplate($bool)
+    {
       $this->use_site_template = ($bool === true);
     }
 
-    public function useSiteTemplate() {
+    public function useSiteTemplate()
+    {
       return $this->use_site_template;
     }
 
 
-    public function setFile($file)  {
+    public function setFile($file)
+    {
       $this->file = $file;
     }
 
-    public function isActionRequest() {
-        $furious_pete = [];
+    public function isActionRequest()
+    {
+      $furious_pete = [];
 
-        if (count($_GET) > $this->site->actions_index) {
-            $furious_pete = array_keys(array_slice($_GET, $this->site->actions_index, null, true));
+      if (count($_GET) > $this->site->actions_index) {
+        $furious_pete = array_keys(array_slice($_GET, $this->site->actions_index, null, true));
+      }
+
+      if (!empty($furious_pete)) {
+        $action = HTML::sanitize(basename($furious_pete[0]));
+
+        if (!in_array($action, $this->ignored_actions) && $this->actionExists($action)) {
+          return true;
         }
+      }
 
-        if (!empty($furious_pete)) {
-            $action = HTML::sanitize(basename($furious_pete[0]));
-
-            if (!in_array($action, $this->ignored_actions) && $this->actionExists($action)) {
-                return true;
-            }
-        }
-
-        return false;
+      return false;
     }
 
-    public function runAction($actions) {
-        if (!is_array($actions)) {
-            $actions = [
-                $actions
-            ];
-        }
+    public function runAction($actions)
+    {
+      if (!is_array($actions)) {
+        $actions = [
+          $actions
+        ];
+      }
 
-        $run = [];
+      $run = [];
 
-        foreach ($actions as $action) {
-            $run[] = $action;
+      foreach ($actions as $action) {
+        $run[] = $action;
 
-            if ($this->actionExists($run)) {
-                $this->actions_run[] = $action;
+        if ($this->actionExists($run)) {
+          $this->actions_run[] = $action;
 
-                $class = $this->getActionClassName($run);
+          $class = $this->getActionClassName($run);
 
-                $ns = explode('\\', $class);
+          $ns = explode('\\', $class);
 
-                if ((count($ns) > 2) && ($ns[0] == 'ClicShopping') && ($ns[1] == 'Apps')) {
-                    if (isset($this->app) && is_subclass_of($this->app, 'ClicShopping\OM\AppAbstract')) {
-                        if ($this->app->definitionsExist(implode('/', array_slice($ns, 4)))) {
-                            $this->app->loadDefinitions(implode('/', array_slice($ns, 4)));
-                        }
-                    }
-                }
-
-                $action = new $class($this);
-
-                $action->execute();
-
-                if ($action->isRPC()) {
-                    $this->is_rpc = true;
-                }
-            } else {
-                break;
+          if ((count($ns) > 2) && ($ns[0] == 'ClicShopping') && ($ns[1] == 'Apps')) {
+            if (isset($this->app) && is_subclass_of($this->app, 'ClicShopping\OM\AppAbstract')) {
+              if ($this->app->definitionsExist(implode('/', array_slice($ns, 4)))) {
+                $this->app->loadDefinitions(implode('/', array_slice($ns, 4)));
+              }
             }
+          }
+
+          $action = new $class($this);
+
+          $action->execute();
+
+          if ($action->isRPC()) {
+            $this->is_rpc = true;
+          }
+        } else {
+          break;
         }
+      }
     }
 
-    public function runActions()  {
+    public function runActions()
+    {
       $actions = $furious_pete = [];
 
       if (count($_GET) > $this->site->actions_index) {
@@ -132,53 +144,56 @@
         $actions[] = $action;
 
         if (in_array($action, $this->ignored_actions) || !$this->actionExists($actions)) {
-            array_pop($actions);
+          array_pop($actions);
 
-            break;
+          break;
         }
       }
 
       if (!empty($actions)) {
-          $this->runAction($actions);
+        $this->runAction($actions);
       }
     }
 
-    public function actionExists($action) {
-        if (!is_array($action)) {
-            $action = [
-                $action
-            ];
+    public function actionExists($action)
+    {
+      if (!is_array($action)) {
+        $action = [
+          $action
+        ];
+      }
+
+      $class = $this->getActionClassName($action);
+
+      if (class_exists($class)) {
+        if (is_subclass_of($class, 'ClicShopping\OM\PagesActionsInterface')) {
+          return true;
+        } else {
+          trigger_error('ClicShopping\OM\PagesAbstract::actionExists() - ' . implode('\\', $action) . ': Action does not implement ClicShopping\OM\PagesActionInterface and cannot be loaded.');
         }
+      }
 
-        $class = $this->getActionClassName($action);
-
-        if (class_exists($class)) {
-            if (is_subclass_of($class, 'ClicShopping\OM\PagesActionsInterface')) {
-                return true;
-            } else {
-                trigger_error('ClicShopping\OM\PagesAbstract::actionExists() - ' . implode('\\', $action) . ': Action does not implement ClicShopping\OM\PagesActionInterface and cannot be loaded.');
-            }
-        }
-
-        return false;
+      return false;
     }
 
-    public function getActionsRun() {
-        return $this->actions_run;
+    public function getActionsRun()
+    {
+      return $this->actions_run;
     }
 
-    public function isRPC()  {
+    public function isRPC()
+    {
       return ($this->is_rpc === true);
     }
 
     protected function getActionClassName($action)
     {
-        if (!is_array($action)) {
-            $action = [
-                $action
-            ];
-        }
+      if (!is_array($action)) {
+        $action = [
+          $action
+        ];
+      }
 
-        return (new \ReflectionClass($this))->getNamespaceName() . '\\Actions\\' . implode('\\', $action);
+      return (new \ReflectionClass($this))->getNamespaceName() . '\\Actions\\' . implode('\\', $action);
     }
-}
+  }

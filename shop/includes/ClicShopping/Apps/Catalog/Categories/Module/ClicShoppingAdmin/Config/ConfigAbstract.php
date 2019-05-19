@@ -1,20 +1,21 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Categories\Module\ClicShoppingAdmin\Config;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  abstract class ConfigAbstract {
+  abstract class ConfigAbstract
+  {
     protected $app;
 
     public $code;
@@ -29,7 +30,8 @@
 
     abstract protected function init();
 
-    final public function __construct() {
+    final public function __construct()
+    {
       $this->app = Registry::get('Categories');
 
       $this->code = (new \ReflectionClass($this))->getShortName();
@@ -39,7 +41,8 @@
       $this->init();
     }
 
-    public function install() {
+    public function install()
+    {
       $cut_length = strlen('CLICSHOPPING_APP_CATEGORIES_' . $this->code . '_');
 
       foreach ($this->getParameters() as $key) {
@@ -53,7 +56,8 @@
       }
     }
 
-    public function uninstall()  {
+    public function uninstall()
+    {
       $Qdelete = $this->app->db->prepare('delete from :table_configuration
                                           where configuration_key
                                           like :configuration_key
@@ -64,7 +68,8 @@
       return $Qdelete->rowCount();
     }
 
-    public function getParameters()  {
+    public function getParameters()
+    {
       $result = [];
 
       $directory = CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Module/ClicShoppingAdmin/Config/' . $this->code . '/Params';
@@ -86,7 +91,8 @@
       return $result;
     }
 
-    public function getInputParameters() {
+    public function getInputParameters()
+    {
       $result = [];
 
       $cut = 'CLICSHOPPING_APP_CATEGORIES_' . $this->code . '_';

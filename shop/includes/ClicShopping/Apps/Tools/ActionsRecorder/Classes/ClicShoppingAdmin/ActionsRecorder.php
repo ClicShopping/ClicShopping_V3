@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\ActionsRecorder\Classes\ClicShoppingAdmin;
 
@@ -15,19 +15,21 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
-  class ActionsRecorder {
+  class ActionsRecorder
+  {
 
     protected $category_id;
     protected $language_id;
 
-/**
- *  Return catagories path
- *
- * @param string $current_category_id
- * @return string $cPath_new,
- * @access public
- */
-    public static function getPath($current_category_id = '')   {
+    /**
+     *  Return catagories path
+     *
+     * @param string $current_category_id
+     * @return string $cPath_new,
+     * @access public
+     */
+    public static function getPath($current_category_id = '')
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Category = Registry::get('Category');
 
@@ -66,14 +68,15 @@
       return 'cPath=' . $cPath_new;
     }
 
-/**
- * the category name
- *
- * @param string $category_id , $language_id
- * @return string $category['categories_name'],  name of the categorie
- * @access public
- */
-    public static function getActionsRecorderLabel($id, $language_id)  {
+    /**
+     * the category name
+     *
+     * @param string $category_id , $language_id
+     * @return string $category['categories_name'],  name of the categorie
+     * @access public
+     */
+    public static function getActionsRecorderLabel($id, $language_id)
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
@@ -82,14 +85,15 @@
       return $Qcategory->value('label');
     }
 
-/**
-*  remove category
-*
-* @param string $category_id
-* @return string
-* @access public
-*/
-    public static function removeCategory($id) {
+    /**
+     *  remove category
+     *
+     * @param string $category_id
+     * @return string
+     * @access public
+     */
+    public static function removeCategory($id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->delete('actions_recorder', ['id' => (int)$id]);
@@ -99,52 +103,53 @@
     }
 
 
-/**
- * category tree
- *
- * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
- * @return string $category_tree_array, the tree of category
- * @access public
- */
-    public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)  {
+    /**
+     * category tree
+     *
+     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
+     * @return string $category_tree_array, the tree of category
+     * @access public
+     */
+    public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
-      
+
       if (!is_array($category_tree_array)) $category_tree_array = [];
       if ((count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
 
       if ($include_itself) {
         $Qcategory = $CLICSHOPPING_Db->get('actions_recorder_description', 'label', [
-                                                                                  'language_id' => (int)$CLICSHOPPING_Language->getId(),
-                                                                                  'id' => (int)$parent_id
-                                                                                ]
-                                   );
+            'language_id' => (int)$CLICSHOPPING_Language->getId(),
+            'id' => (int)$parent_id
+          ]
+        );
 
         $category_tree_array[] = [
-                                  'id' => $parent_id,
-                                  'text' => $Qcategory->value('label')
-                                ];
+          'id' => $parent_id,
+          'text' => $Qcategory->value('label')
+        ];
       }
 
       $Qcategories = $CLICSHOPPING_Db->get([
-                                      'actions_recorder c',
-                                      'actions_recorder_description cd'
-                                    ], [
-                                      'c.id',
-                                      'cd.label',
-                                      'c.parent_id'
-                                    ], [
-                                      'c.id' => [
-                                        'rel' => 'cd.id'
-                                      ],
-                                      'cd.language_id' => (int)$CLICSHOPPING_Language->getId(),
-                                      'c.parent_id' => (int)$parent_id
-                                    ], [
-                                        'c.sort_order',
-                                        'cd.label'
-                                      ]
-                                    );
+        'actions_recorder c',
+        'actions_recorder_description cd'
+      ], [
+        'c.id',
+        'cd.label',
+        'c.parent_id'
+      ], [
+        'c.id' => [
+          'rel' => 'cd.id'
+        ],
+        'cd.language_id' => (int)$CLICSHOPPING_Language->getId(),
+        'c.parent_id' => (int)$parent_id
+      ], [
+          'c.sort_order',
+          'cd.label'
+        ]
+      );
 
 
       while ($Qcategories->fetch()) {
@@ -155,17 +160,18 @@
       return $category_tree_array;
     }
 
-/**
- * getGeneratedActionsRecorderPathIds
- *
- * @param string $id , $from,
- * @return string $calculated_category_path_string
- * @access public
- */
+    /**
+     * getGeneratedActionsRecorderPathIds
+     *
+     * @param string $id , $from,
+     * @return string $calculated_category_path_string
+     * @access public
+     */
 
-    public static function getGeneratedActionsRecorderPathIds($id)  {
+    public static function getGeneratedActionsRecorderPathIds($id)
+    {
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
-      
+
       $calculated_category_path_string = '';
       $calculated_category_path = static::getGenerateCategoryPath($id);
 
@@ -183,45 +189,47 @@
     }
 
 
-    public static function getGenerateCategoryPath($id, $categories_array = '', $index = 0) {
+    public static function getGenerateCategoryPath($id, $categories_array = '', $index = 0)
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (!is_array($categories_array)) $categories_array = [];
 
       $Qcategory = $CLICSHOPPING_Db->get([
-                                    'actions_recorder c',
-                                    'actions_recorder_description cd'
-                                  ], [
-                                    'cd.label',
-                                    'c.parent_id'
-                                  ], [
-                                    'c.id' => [
-                                    'val' => (int)$id,
-                                    'rel' => 'cd.id'
-                                  ],
-                                    'cd.language_id' => (int)$CLICSHOPPING_Language->getId()
-                                  ]
-                                );
+        'actions_recorder c',
+        'actions_recorder_description cd'
+      ], [
+        'cd.label',
+        'c.parent_id'
+      ], [
+          'c.id' => [
+            'val' => (int)$id,
+            'rel' => 'cd.id'
+          ],
+          'cd.language_id' => (int)$CLICSHOPPING_Language->getId()
+        ]
+      );
 
       $categories_array[$index][] = [
-                                      'id' => (int)$id,
-                                      'text' => $Qcategory->value('label')
-                                    ];
+        'id' => (int)$id,
+        'text' => $Qcategory->value('label')
+      ];
 
-      if ( (!is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0') ) $categories_array = static::getGenerateBlogCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+      if ((!is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0')) $categories_array = static::getGenerateBlogCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
 
       return $categories_array;
     }
 
-/**
- * remove Administatrator Menu Category
- *
- * @param string $id
- * @return string
- * @access public
- */
-    public static  function getRemoveActionsRecorderCategory($id) {
+    /**
+     * remove Administatrator Menu Category
+     *
+     * @param string $id
+     * @return string
+     * @access public
+     */
+    public static function getRemoveActionsRecorderCategory($id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -245,10 +253,10 @@
                                                         from :table_actions_recorder
                                                         where image = :image
                                                        ');
-      $QduplicateImageCategories->bindValue(':image',  $QImage->value('image') );
+      $QduplicateImageCategories->bindValue(':image', $QImage->value('image'));
       $QduplicateImageCategories->execute();
 
-      if (($QduplicateImage->valueInt('total') < 2) &&  ($QduplicateImageCategories->valueInt('total') == 0)) {
+      if (($QduplicateImage->valueInt('total') < 2) && ($QduplicateImageCategories->valueInt('total') == 0)) {
 // delete categorie image
         if (is_file($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $QImage->value('image'))) {
           @unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $QImage->value('image'));
@@ -259,7 +267,7 @@
                                       from :table_actions_recorder
                                       where id = :id
                                     ');
-      $Qdelete->bindInt(':id',  (int)$id);
+      $Qdelete->bindInt(':id', (int)$id);
       $Qdelete->execute();
 
 
@@ -267,27 +275,27 @@
                                       from :table_actions_recorder_description
                                       where id = :id
                                     ');
-      $Qdelete->bindInt(':id',  (int)$id);
+      $Qdelete->bindInt(':id', (int)$id);
       $Qdelete->execute();
 
     }
 
 
-
-/**
- * category tree
- *
- * @param string $parent_id, $spacing, $exclude, $category_tree_array , $include_itself
- * @return string $category_tree_array, the tree of category
- * @access public
- */
-    public static function getActionsRecorderCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false) {
+    /**
+     * category tree
+     *
+     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
+     * @return string $category_tree_array, the tree of category
+     * @access public
+     */
+    public static function getActionsRecorderCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
-      
+
       if (!is_array($category_tree_array)) $category_tree_array = [];
-      if ( (count($category_tree_array) < 1) && ($exclude != '0') ) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
+      if ((count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
 
       if ($include_itself) {
         $Qcategory = $CLICSHOPPING_Db->prepare('select label
@@ -330,7 +338,8 @@
     }
 
 // Count how many subcategories exist in a category
-    public static function getChildsInMenuCount($id) {
+    public static function getChildsInMenuCount($id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $categories_count = 0;
@@ -340,7 +349,7 @@
                                         where parent_id = :parent_id
                                         ');
 
-      $Qcategories->bindInt(':parent_id', $id );
+      $Qcategories->bindInt(':parent_id', $id);
       $Qcategories->execute();
 
       while ($Qcategories->fetch() !== false) {

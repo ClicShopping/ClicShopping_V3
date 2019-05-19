@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\ProductsAttributes\Sites\ClicShoppingAdmin\Pages\Home\Actions\ProductsAttributes;
 
@@ -17,14 +17,17 @@
 
   use ClicShopping\Apps\Catalog\ProductsAttributes\Classes\ClicShoppingAdmin\ProductsAttributesAdmin;
 
-  class UpdateProductAttribute extends \ClicShopping\OM\PagesActionsAbstract {
+  class UpdateProductAttribute extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('ProductsAttributes');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
@@ -86,11 +89,11 @@
 
         $error = true;
 
-        if ( $upload_file->check() && $upload_file->save()) {
+        if ($upload_file->check() && $upload_file->save()) {
           $error = false;
         }
 
-        if ($error === false ) {
+        if ($error === false) {
           $Qreplace = $this->app->db->prepare('replace :table_products_attributes_download
                                                 set products_attributes_id = :products_attributes_id,
                                                     products_attributes_filename = :products_attributes_filename,
@@ -131,7 +134,7 @@
         }
       }
 
-      $CLICSHOPPING_Hooks->call('UpdateProductAttribute','Save');
+      $CLICSHOPPING_Hooks->call('UpdateProductAttribute', 'Save');
 
       $this->app->redirect('ProductsAttributes&' . $page_info);
     }

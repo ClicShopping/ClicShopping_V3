@@ -1,28 +1,30 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
   use ClicShopping\OM\Registry;
 
-  class GoogleSitemapCategories extends \ClicShopping\OM\PagesActionsAbstract {
+  class GoogleSitemapCategories extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
     protected $use_site_template = false;
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
       $this->rewriteUrl = Registry::get('RewriteUrl');
 
-      $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n".'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
+      $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
       $category_array = [];
 
@@ -44,10 +46,10 @@
       $Qcategorie->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $Qcategorie->execute();
 
-      while ($Qcategorie->fetch() ) {
+      while ($Qcategorie->fetch()) {
 
         $this->rewriteUrl->getCategoryTreeTitle($Qcategorie->value('categories_name'));
-        $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getCategoryTreeUrl($Qcategorie->valueInt('categories_id'))));
+        $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getCategoryTreeUrl($Qcategorie->valueInt('categories_id'))));
 
         $category_array[$Qcategorie->valueInt('categories_id')]['loc'] = $location;
         $category_array[$Qcategorie->valueInt('categories_id')]['lastmod'] = $Qcategorie->value('last_modified');

@@ -1,26 +1,27 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-/**
- * Directory list file with a drop down for products_favorites
- *
- * @param string $filename, $key
- * @return string $filename_array,  $filename, $name, the file name of directory
- * @access public
- */
+  /**
+   * Directory list file with a drop down for products_favorites
+   *
+   * @param string $filename , $key
+   * @return string $filename_array,  $filename, $name, the file name of directory
+   * @access public
+   */
 
-  function clic_cfg_set_multi_template_pull_down($filename, $key = '') {
+  function clic_cfg_set_multi_template_pull_down($filename, $key = '')
+  {
 
     $module = $_GET['set'];
 
@@ -49,8 +50,8 @@
         $filename_array = [];
         foreach ($found as $filename) {
           $filename_array[] = ['id' => $filename,
-                           'text' => $filename
-                           ];
+            'text' => $filename
+          ];
         }
       }
     }
@@ -63,7 +64,7 @@
 
     $QfileName->execute();
 
-    $filename  = $QfileName->value('configuration_value');
+    $filename = $QfileName->value('configuration_value');
 
-    return HTML::selectMenu($name, $filename_array,  $filename);
+    return HTML::selectMenu($name, $filename_array, $filename);
   }

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Catalog\Categories\Sites\ClicShoppingAdmin\Pages\Home\Actions\Categories;
@@ -16,10 +16,12 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Cache;
 
-  class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract {
-    protected  $app;
+  class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    protected $app;
 
-    public function execute()  {
+    public function execute()
+    {
       $this->app = Registry::get('Categories');
 
       if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_GET['categories_id']);
@@ -34,11 +36,11 @@
         $products = [];
         $products_delete = [];
 
-        for ($i=0, $n=count($categories); $i<$n; $i++) {
+        for ($i = 0, $n = count($categories); $i < $n; $i++) {
 
           $QproductIds = $this->app->db->get('products_to_categories', 'products_id', ['categories_id' => (int)$categories[$i]['id']]);
 
-          while ($QproductIds->fetch() ) {
+          while ($QproductIds->fetch()) {
             $products[$QproductIds->valueInt('products_id')]['categories'][] = $categories[$i]['id'];
           }
         }
@@ -46,7 +48,7 @@
         foreach ($products as $key => $value) {
           $category_ids = '';
 
-          for ($i=0, $n=count($value['categories']); $i<$n; $i++) {
+          for ($i = 0, $n = count($value['categories']); $i < $n; $i++) {
             $category_ids .= "'" . (int)$value['categories'][$i] . "', ";
           }
 
@@ -67,11 +69,11 @@
           }
         }
 
-        for ($i=0, $n=count($categories); $i<$n; $i++) {
+        for ($i = 0, $n = count($categories); $i < $n; $i++) {
           $CLICSHOPPING_CategoriesAdmin->removeCategory($categories[$i]['id']);
         }
 
-        foreach  (array_keys($products_delete) as $key) {
+        foreach (array_keys($products_delete) as $key) {
           $CLICSHOPPING_Hooks->call('Products', 'RemoveProduct');
         }
       }

@@ -1,13 +1,14 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
+
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions;
 
   use ClicShopping\OM\CLICSHOPPING;
@@ -15,9 +16,11 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Is;
 
-  class PasswordReset extends \ClicShopping\OM\PagesActionsAbstract {
+  class PasswordReset extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -28,7 +31,7 @@
 
       $error = false;
 
-      if ( !isset($_GET['account']) || !isset($_GET['key']) ) {
+      if (!isset($_GET['account']) || !isset($_GET['key'])) {
         $error = true;
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'header');
@@ -38,7 +41,7 @@
         $email_address = HTML::sanitize($_GET['account']);
         $password_key = HTML::sanitize($_GET['key']);
 
-        if ( (Is::email($email_address) === false) ) {
+        if ((Is::email($email_address) === false)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'danger', 'header');
@@ -64,7 +67,7 @@
           $Qcheck->execute();
 
           if ($Qcheck !== false) {
-            if ((strlen($Qcheck->value('password_reset_key')) != 40) || ($Qcheck->value('password_reset_key') != $password_key) || (strtotime($Qcheck->value('password_reset_date') . ' +1 day') <= time()) ) {
+            if ((strlen($Qcheck->value('password_reset_key')) != 40) || ($Qcheck->value('password_reset_key') != $password_key) || (strtotime($Qcheck->value('password_reset_date') . ' +1 day') <= time())) {
               $error = true;
 
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'header');

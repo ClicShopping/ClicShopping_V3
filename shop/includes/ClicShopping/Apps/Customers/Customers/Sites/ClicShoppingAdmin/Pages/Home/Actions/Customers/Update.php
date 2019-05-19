@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
@@ -19,9 +19,11 @@
 
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract {
+  class Update extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Customers = Registry::get('Customers');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -67,7 +69,7 @@
 
 // Informations sur la société
       if (ACCOUNT_COMPANY_PRO == 'true') {
-        if (isset($_POST['customers_company']))  $customers_company = HTML::sanitize($_POST['customers_company']);
+        if (isset($_POST['customers_company'])) $customers_company = HTML::sanitize($_POST['customers_company']);
       }
       if (ACCOUNT_SIRET_PRO == 'true') {
         if (isset($_POST['customers_siret'])) $customers_siret = HTML::sanitize($_POST['customers_siret']);
@@ -113,11 +115,11 @@
                                                                from :table_countries
                                                                where countries_iso_code_2 = :countries_iso_code_2
                                                               ');
-        $QcustomersTva->bindValue(':countries_iso_code_2',$customers_tva_intracom_code_iso );
+        $QcustomersTva->bindValue(':countries_iso_code_2', $customers_tva_intracom_code_iso);
 
         $QcustomersTva->execute();
 
-        if ($QcustomersTva->fetch() ) {
+        if ($QcustomersTva->fetch()) {
           $error = false;
         } else {
           $error = true;
@@ -192,10 +194,10 @@
           if ($entry_state_has_zones === true) {
 
             $Qzone = $CLICSHOPPING_Customers->db->get('zones', 'zone_id', [
-                                                                    'zone_country_id' => (int)$entry_country_id,
-                                                                    'zone_name' => $entry_state
-                                                                    ]
-                                              );
+                'zone_country_id' => (int)$entry_country_id,
+                'zone_name' => $entry_state
+              ]
+            );
 
             if ($Qzone->fetch() !== false) {
               $entry_zone_id = $Qzone->valueInt('zone_id');
@@ -233,16 +235,16 @@
 
       if ($error === false) {
         $sql_data_array = ['customers_firstname' => $customers_firstname,
-                          'customers_lastname' => $customers_lastname,
-                          'customers_email_address' => $customers_email_address,
-                          'customers_telephone' => $customers_telephone,
-                          'customers_fax' => $customers_fax,
-                          'customers_newsletter' => $customers_newsletter,
-                          'languages_id' => (int)$language_id,
-                          'customers_cellular_phone' => $customers_cellular_phone,
-                          ];
+          'customers_lastname' => $customers_lastname,
+          'customers_email_address' => $customers_email_address,
+          'customers_telephone' => $customers_telephone,
+          'customers_fax' => $customers_fax,
+          'customers_newsletter' => $customers_newsletter,
+          'languages_id' => (int)$language_id,
+          'customers_cellular_phone' => $customers_cellular_phone,
+        ];
 
- //       $customers_dob = str_replace('/', '-', $customers_dob);
+        //       $customers_dob = str_replace('/', '-', $customers_dob);
         $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob); //@todo
 
         if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $customers_gender;
@@ -251,7 +253,7 @@
         if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['customers_company'] = $customers_company;
         if (ACCOUNT_SIRET_PRO == 'true') $sql_data_array['customers_siret'] = $customers_siret;
         if (ACCOUNT_APE_PRO == 'true') $sql_data_array['customers_ape'] = $customers_ape;
-        if (ACCOUNT_TVA_INTRACOM_PRO == 'true')  $sql_data_array['customers_tva_intracom_code_iso'] = $customers_tva_intracom_code_iso;
+        if (ACCOUNT_TVA_INTRACOM_PRO == 'true') $sql_data_array['customers_tva_intracom_code_iso'] = $customers_tva_intracom_code_iso;
 
         if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
           $sql_data_array['customers_tva_intracom'] = $customers_tva_intracom;
@@ -272,32 +274,32 @@
         $CLICSHOPPING_Customers->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id]);
 
         $CLICSHOPPING_Customers->db->save('customers_info', ['customers_info_date_account_last_modified' => 'now()'],
-                                                            ['customers_info_id' => (int)$customers_id]
-                                          );
+          ['customers_info_id' => (int)$customers_id]
+        );
 
 // notes clients
         if (!empty($customers_notes)) {
 
           $CLICSHOPPING_Customers->db->save('customers_notes', [
-                                                                'customers_id' =>  (int)$customers_id,
-                                                                'customers_notes' => $customers_notes,
-                                                                'customers_notes_date' => 'now()',
-                                                                'user_administrator' => AdministratorAdmin::getUserAdmin()
-                                                              ]
-                                          );
+              'customers_id' => (int)$customers_id,
+              'customers_notes' => $customers_notes,
+              'customers_notes_date' => 'now()',
+              'user_administrator' => AdministratorAdmin::getUserAdmin()
+            ]
+          );
 
         } // end empty($customers_notes)
 
         if (isset($entry_zone_id) && $entry_zone_id > 0) $entry_state = '';
 
         $sql_data_array = ['entry_firstname' => $customers_firstname,
-                          'entry_lastname' => $customers_lastname,
-                          'entry_street_address' => $entry_street_address,
-                          'entry_postcode' => $entry_postcode,
-                          'entry_city' => $entry_city,
-                          'entry_country_id' => (int)$entry_country_id,
-                          'entry_telephone' => $entry_telephone
-                          ];
+          'entry_lastname' => $customers_lastname,
+          'entry_street_address' => $entry_street_address,
+          'entry_postcode' => $entry_postcode,
+          'entry_city' => $entry_city,
+          'entry_country_id' => (int)$entry_country_id,
+          'entry_telephone' => $entry_telephone
+        ];
 
         if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $entry_company;
         if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $entry_suburb;
@@ -313,13 +315,13 @@
         }
 
         $CLICSHOPPING_Customers->db->save('address_book', $sql_data_array, ['customers_id' => (int)$customers_id,
-                                                                             'address_book_id' => (int)$default_address_id
-                                                                            ]
-                                          );
+            'address_book_id' => (int)$default_address_id
+          ]
+        );
 
         $CLICSHOPPING_Hooks->call('Customers', 'Update');
 
-        $CLICSHOPPING_Customers->redirect('Customers&page=' . $page. '&cID=' . $customers_id);
+        $CLICSHOPPING_Customers->redirect('Customers&page=' . $page . '&cID=' . $customers_id);
 
       } elseif ($error === true) {
 

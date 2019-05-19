@@ -1,25 +1,28 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
+
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Communication\Newsletter\Newsletter as AppNewsletter;
 
-  class productNotification {
+  class productNotification
+  {
     public $show_choose_audience;
     public $title;
     public $content;
 
-    public function __construct($title, $content) {
+    public function __construct($title, $content)
+    {
 
       if (!Registry::exists('Newsletter')) {
         Registry::set('Newsletter', new AppNewsletter());
@@ -32,35 +35,36 @@
       $this->content = $content;
     }
 
-    public function choose_audience() {
+    public function choose_audience()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $products_array = [];
 
       $Qproducts = $this->app->db->get([
-                                        'products p',
-                                        'products_description pd'
-                                      ], [
-                                        'pd.products_id',
-                                        'pd.products_name'
-                                      ], [
-                                            'pd.language_id' =>  (int)$CLICSHOPPING_Language->getId(),
-                                            'pd.products_id' => [ 'rel' => 'p.products_id'],
-                                            'p.products_status' => '1',
-                                            'p.products_view' => '1',
-                                            'p.products_archive' => '0',
-                                          ],
-                                        'pd.products_name'
-                                      );
+        'products p',
+        'products_description pd'
+      ], [
+        'pd.products_id',
+        'pd.products_name'
+      ], [
+        'pd.language_id' => (int)$CLICSHOPPING_Language->getId(),
+        'pd.products_id' => ['rel' => 'p.products_id'],
+        'p.products_status' => '1',
+        'p.products_view' => '1',
+        'p.products_archive' => '0',
+      ],
+        'pd.products_name'
+      );
 
       while ($Qproducts->fetch()) {
         $products_array[] = [
-                             'id' => $Qproducts->valueInt('products_id'),
-                             'text' => $Qproducts->value('products_name')
-                            ];
+          'id' => $Qproducts->valueInt('products_id'),
+          'text' => $Qproducts->value('products_name')
+        ];
       }
 
-$choose_audience_string = '<script type="text/javascript"><!--
+      $choose_audience_string = '<script type="text/javascript"><!--
 function mover(move) {
   if (move == \'remove\') {
     for (x=0; x<(document.notifications.products.length); x++) {
@@ -96,7 +100,7 @@ function selectAll(FormName, SelectBox) {
   }
 
   if (x<1) {
-    alert(\'' .$this->app->getDef('js_please_select_products') . '\');
+    alert(\'' . $this->app->getDef('js_please_select_products') . '\');
     return false;
   } else {
     return true;
@@ -105,36 +109,37 @@ function selectAll(FormName, SelectBox) {
 //--></script>';
 
       $global_button = '<script language="javascript"><!--' . "\n" .
-                       'document.write(\'<input type="button" value="' . $this->app->getDef('button_global')  . '" style="width: 8em;" onclick="document.location=\\\'' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
-                       '//--></script><noscript><a href="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '">[ ' .$this->app->getDef('button_global') . ' ]</a></noscript>';
+        'document.write(\'<input type="button" value="' . $this->app->getDef('button_global') . '" style="width: 8em;" onclick="document.location=\\\'' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
+        '//--></script><noscript><a href="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '">[ ' . $this->app->getDef('button_global') . ' ]</a></noscript>';
 
       $choose_audience_string .= '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
-                                 '     <form name="notifications" action="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm') . '" method="post" onSubmit="return selectAll(\'notifications\', \'chosen[]\')">' . "\n" .
-                                 '      <tr>' .
-                                 '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_send'), null, null, 'primary') . '</td>' .
-                                 '          <td>&nbsp;</td>' .
-                                 '          <td class="text-md-right"><a href="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']) . '">' . HTML::button($this->app->getDef('button_cancel'), null, null, 'danger') . '</a></td>' .
-                                 '        </tr>' .
-                                 '      </table></td>' .
-                                 '    </tr>' .
-                                 '  </table></td>' .
-                                 '</tr>' .
-                                 '<tr>' .
-                                 '  <td>&nbsp;</td>' .
-                                 '</tr>';
+        '     <form name="notifications" action="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm') . '" method="post" onSubmit="return selectAll(\'notifications\', \'chosen[]\')">' . "\n" .
+        '      <tr>' .
+        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_send'), null, null, 'primary') . '</td>' .
+        '          <td>&nbsp;</td>' .
+        '          <td class="text-md-right"><a href="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']) . '">' . HTML::button($this->app->getDef('button_cancel'), null, null, 'danger') . '</a></td>' .
+        '        </tr>' .
+        '      </table></td>' .
+        '    </tr>' .
+        '  </table></td>' .
+        '</tr>' .
+        '<tr>' .
+        '  <td>&nbsp;</td>' .
+        '</tr>';
 
       $choose_audience_string .= '<table border="0" width="100%" cellspacing="0" cellpadding="2"><tr>' . "\n" .
-                                 '  <tr>' . "\n" .
-                                 '    <td class="text-md-center"><b>' . $this->app->getDef('text_products') . '</b><br />' . HTML::selectMenu('products', $products_array, '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
-                                 '    <td class="text-md-center">&nbsp;<br />' . $global_button . '<br /><br /><br /><input type="button" value="' .$this->app->getDef('button_select') . '" style="width: 8em;" onClick="mover(\'remove\');"><br /><br /><input type="button" value="' . $this->app->getDef('button_unselect') . '" style="width: 8em;" onClick="mover(\'add\');"></td>' . "\n" .
-                                 '    <td class="text-md-center"><b>' . $this->app->getDef('text_selected_products') . '</b><br />' . HTML::selectMenu('chosen[]', array(), '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
-                                 '  </tr>' . "\n" .
-                                 '</table></form>';
+        '  <tr>' . "\n" .
+        '    <td class="text-md-center"><b>' . $this->app->getDef('text_products') . '</b><br />' . HTML::selectMenu('products', $products_array, '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
+        '    <td class="text-md-center">&nbsp;<br />' . $global_button . '<br /><br /><br /><input type="button" value="' . $this->app->getDef('button_select') . '" style="width: 8em;" onClick="mover(\'remove\');"><br /><br /><input type="button" value="' . $this->app->getDef('button_unselect') . '" style="width: 8em;" onClick="mover(\'add\');"></td>' . "\n" .
+        '    <td class="text-md-center"><b>' . $this->app->getDef('text_selected_products') . '</b><br />' . HTML::selectMenu('chosen[]', array(), '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
+        '  </tr>' . "\n" .
+        '</table></form>';
 
       return $choose_audience_string;
     }
 
-    public function confirm() {
+    public function confirm()
+    {
       $audience = [];
 
       if (isset($_GET['global']) && ($_GET['global'] == 'true')) {
@@ -160,11 +165,11 @@ function selectAll(FormName, SelectBox) {
           }
         }
 
-        $ids = array_map(function($k) {
-                                    return ':products_id_' . $k;
-                                  },
-                                  array_keys($chosen)
-                        );
+        $ids = array_map(function ($k) {
+          return ':products_id_' . $k;
+        },
+          array_keys($chosen)
+        );
 
         $Qproducts = $this->app->db->prepare('select distinct customers_id
                                               from :table_products_notifications
@@ -196,53 +201,54 @@ function selectAll(FormName, SelectBox) {
             $confirm_button_string .= HTML::hiddenField('chosen[]', $chosen[$i]);
           }
         }
-        $confirm_button_string .= HTML::button($this->app->getDef('button_submit'), null, null, 'primary')  . ' ';
+        $confirm_button_string .= HTML::button($this->app->getDef('button_submit'), null, null, 'primary') . ' ';
       }
 
       $confirm_string = '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
-'      <tr>' . HTML::form('confirm', $this->app->link('Newsletter&ConfirmSend&page=' . $_GET['page'] . '&nID=' . $_GET['nID'])) .
-'          <td  class="text-md-right">' . $confirm_button_string . '</td>' .
-'          <td>&nbsp;</td>' .
-'          <td class="text-md-right">' .  HTML::button($this->app->getDef('button_back'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=send'), 'primary') . '</a></td>' .
-'          <td>&nbsp;</td>' .
-'          <td class="text-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']), 'danger') . '</a></td>' .
-'        </tr>' .
-'      </table></td>' .
-'    </tr>' .
-'  </table></td>' .
-'</tr>' .
-                        '<tr>' .
-                        '  <td>&nbsp;</td>' .
-                        '</tr>';
+        '      <tr>' . HTML::form('confirm', $this->app->link('Newsletter&ConfirmSend&page=' . $_GET['page'] . '&nID=' . $_GET['nID'])) .
+        '          <td  class="text-md-right">' . $confirm_button_string . '</td>' .
+        '          <td>&nbsp;</td>' .
+        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_back'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=send'), 'primary') . '</a></td>' .
+        '          <td>&nbsp;</td>' .
+        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']), 'danger') . '</a></td>' .
+        '        </tr>' .
+        '      </table></td>' .
+        '    </tr>' .
+        '  </table></td>' .
+        '</tr>' .
+        '<tr>' .
+        '  <td>&nbsp;</td>' .
+        '</tr>';
 
       $confirm_string .= '<table border="0" cellspacing="0" cellpadding="2">' . "\n" .
-                        '  <tr>' . "\n" .
-                        '    <td class="main"><p style="color:#ff0000;"><strong>' .$this->app->getDef('text_count_customers', ['audience' => count($audience)]) . '</strong></p></td>' . "\n" .
-                        '  </tr>' . "\n" .
-                        '  <tr>' . "\n" .
-                        '    <td>&nbsp;</td>' . "\n" .
-                        '  </tr>' . "\n" .
-                        '  <tr>' . "\n" .
-                        '    <td class="main"><strong>' . $this->title . '</strong></td>' . "\n" .
-                        '  </tr>' . "\n" .
-                        '  <tr>' . "\n" .
-                        '    <td>&nbsp;</td>' . "\n" .
-                        '  </tr>' . "\n" .
-                        '  <tr>' . "\n" .
-                        '    <td class="main">' . $this->content . '</td>' . "\n" .
-                        '  </tr>' . "\n" .
-                        '  <tr>' . "\n" .
-                        '    <td>&nbsp;</td>' . "\n" .
-                        '  </tr>' . "\n" .
-                        '</table>';
+        '  <tr>' . "\n" .
+        '    <td class="main"><p style="color:#ff0000;"><strong>' . $this->app->getDef('text_count_customers', ['audience' => count($audience)]) . '</strong></p></td>' . "\n" .
+        '  </tr>' . "\n" .
+        '  <tr>' . "\n" .
+        '    <td>&nbsp;</td>' . "\n" .
+        '  </tr>' . "\n" .
+        '  <tr>' . "\n" .
+        '    <td class="main"><strong>' . $this->title . '</strong></td>' . "\n" .
+        '  </tr>' . "\n" .
+        '  <tr>' . "\n" .
+        '    <td>&nbsp;</td>' . "\n" .
+        '  </tr>' . "\n" .
+        '  <tr>' . "\n" .
+        '    <td class="main">' . $this->content . '</td>' . "\n" .
+        '  </tr>' . "\n" .
+        '  <tr>' . "\n" .
+        '    <td>&nbsp;</td>' . "\n" .
+        '  </tr>' . "\n" .
+        '</table>';
 
       return $confirm_string;
     }
 
 // Envoie du mail sans gestion de Fckeditor
-    public function send($newsletter_id) {
+    public function send($newsletter_id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Mail= Registry::get('Mail');
+      $CLICSHOPPING_Mail = Registry::get('Mail');
 
       if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
@@ -253,54 +259,54 @@ function selectAll(FormName, SelectBox) {
       if (isset($_POST['global']) && ($_POST['global'] == 'true')) {
 
         $Qproducts = $CLICSHOPPING_Db->get([
-                                    'customers c',
-                                    'products_notifications pn'
-                                  ], [
-                                    'distinct pn.customers_id',
-                                    'c.customers_firstname',
-                                    'c.customers_lastname',
-                                    'c.customers_email_address'
-                                  ], [
-                                    'c.customers_id' => [
-                                      'rel' => 'pn.customers_id'
-                                    ]
-                                  ]
-                                 );
+          'customers c',
+          'products_notifications pn'
+        ], [
+          'distinct pn.customers_id',
+          'c.customers_firstname',
+          'c.customers_lastname',
+          'c.customers_email_address'
+        ], [
+            'c.customers_id' => [
+              'rel' => 'pn.customers_id'
+            ]
+          ]
+        );
 
         while ($Qproducts->fetch()) {
           $audience[$Qproducts->valueInt('customers_id')] = [
-                                                        'firstname' => $Qproducts->value('customers_firstname'),
-                                                        'lastname' => $Qproducts->value('customers_lastname'),
-                                                        'email_address' => $Qproducts->value('customers_email_address')
-                                                      ];
+            'firstname' => $Qproducts->value('customers_firstname'),
+            'lastname' => $Qproducts->value('customers_lastname'),
+            'email_address' => $Qproducts->value('customers_email_address')
+          ];
         }
 
         $Qcustomers = $CLICSHOPPING_Db->get([
-                                    'customers c',
-                                    'customers_info ci'
-                                  ], [
-                                    'c.customers_id',
-                                    'c.customers_firstname',
-                                    'c.customers_lastname',
-                                    'c.customers_email_address'
-                                  ], [
-                                    'c.customers_id' => [
-                                      'rel' => 'ci.customers_info_id'
-                                    ],
-                                    'ci.global_product_notifications' => '1',
-                                    'c.customers_email_validation' => '0'
-                                  ]
-                                  );
+          'customers c',
+          'customers_info ci'
+        ], [
+          'c.customers_id',
+          'c.customers_firstname',
+          'c.customers_lastname',
+          'c.customers_email_address'
+        ], [
+            'c.customers_id' => [
+              'rel' => 'ci.customers_info_id'
+            ],
+            'ci.global_product_notifications' => '1',
+            'c.customers_email_validation' => '0'
+          ]
+        );
 
         while ($Qcustomers->fetch()) {
           $audience[$Qcustomers->valueInt('customers_id')] = [
-                                                        'firstname' => $Qcustomers->value('customers_firstname'),
-                                                        'lastname' => $Qcustomers->value('customers_lastname'),
-                                                        'email_address' => $Qcustomers->value('customers_email_address')
-                                                      ];
+            'firstname' => $Qcustomers->value('customers_firstname'),
+            'lastname' => $Qcustomers->value('customers_lastname'),
+            'email_address' => $Qcustomers->value('customers_email_address')
+          ];
         }
       } else {
-       $chosen = [];
+        $chosen = [];
 
         foreach ($_POST['chosen'] as $id) {
           if (is_numeric($id) && !in_array($id, $chosen)) {
@@ -308,10 +314,10 @@ function selectAll(FormName, SelectBox) {
           }
         }
 
-        $ids = array_map(function($k) {
-                                    return ':products_id_' . $k;
-                                  }, array_keys($chosen)
-                      );
+        $ids = array_map(function ($k) {
+          return ':products_id_' . $k;
+        }, array_keys($chosen)
+        );
 
         $Qproducts = $CLICSHOPPING_Db->prepare('select distinct pn.customers_id,
                                                          c.customers_firstname,
@@ -331,67 +337,68 @@ function selectAll(FormName, SelectBox) {
 
         while ($Qproducts->fetch()) {
           $audience[$Qproducts->valueInt('customers_id')] = [
-                                                        'firstname' => $Qproducts->value('customers_firstname'),
-                                                        'lastname' => $Qproducts->value('customers_lastname'),
-                                                        'email_address' => $Qproducts->value('customers_email_address')
-                                                      ];
+            'firstname' => $Qproducts->value('customers_firstname'),
+            'lastname' => $Qproducts->value('customers_lastname'),
+            'email_address' => $Qproducts->value('customers_email_address')
+          ];
         }
 
 
         $Qcustomers = $CLICSHOPPING_Db->get([
-                                    'customers c',
-                                    'customers_info ci'
-                                  ], [
-                                    'c.customers_id',
-                                    'c.customers_firstname',
-                                    'c.customers_lastname',
-                                    'c.customers_email_address'
-                                  ], [
-                                    'c.customers_id' => [
-                                      'rel' => 'ci.customers_info_id'
-                                    ],
-                                    'ci.global_product_notifications' => '1',
-                                    'c.customers_email_validation' => '0'
-                                  ]
-                                 );
+          'customers c',
+          'customers_info ci'
+        ], [
+          'c.customers_id',
+          'c.customers_firstname',
+          'c.customers_lastname',
+          'c.customers_email_address'
+        ], [
+            'c.customers_id' => [
+              'rel' => 'ci.customers_info_id'
+            ],
+            'ci.global_product_notifications' => '1',
+            'c.customers_email_validation' => '0'
+          ]
+        );
 
-        while ($Qcustomers->fetch() ) {
+        while ($Qcustomers->fetch()) {
           $audience[$Qcustomers->valueInt('customers_id')] = array('firstname' => $Qcustomers->value('customers_firstname'),
-                                                                  'lastname' => $Qcustomers->value('customers_lastname'),
-                                                                  'email_address' => $Qcustomers->value('customers_email_address'));
+            'lastname' => $Qcustomers->value('customers_lastname'),
+            'email_address' => $Qcustomers->value('customers_email_address'));
         }
       } //end else
 
 // Build the text version
-        $text = strip_tags($this->content);
+      $text = strip_tags($this->content);
 
-        $CLICSHOPPING_Mail->addText($text . $this->app->getDef('text_unsubscribe') . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
-        $CLICSHOPPING_Mail->build_message();
+      $CLICSHOPPING_Mail->addText($text . $this->app->getDef('text_unsubscribe') . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
+      $CLICSHOPPING_Mail->build_message();
 
-        foreach ( $audience as $key => $value ) {
-          $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);
-        }
+      foreach ($audience as $key => $value) {
+        $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);
+      }
 
-        $newsletter_id = HTML::sanitize($newsletter_id);
+      $newsletter_id = HTML::sanitize($newsletter_id);
 
-        $CLICSHOPPING_Db->save('newsletters', ['date_sent' => 'now()',
-                                                'status' => '1'
-                                               ], [
-                                                'newsletters_id' => (int)$newsletter_id
-                                               ]
-                              );
+      $CLICSHOPPING_Db->save('newsletters', ['date_sent' => 'now()',
+        'status' => '1'
+      ], [
+          'newsletters_id' => (int)$newsletter_id
+        ]
+      );
 
     } //end function send
 
 
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
-    public function sendCkeditor($newsletter_id) {
+    public function sendCkeditor($newsletter_id)
+    {
       if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }
 
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Mail= Registry::get('Mail');
+      $CLICSHOPPING_Mail = Registry::get('Mail');
 
       $audience = [];
 
@@ -411,36 +418,36 @@ function selectAll(FormName, SelectBox) {
 
         while ($Qproducts->fetch()) {
           $audience[$Qproducts->valueInt('customers_id')] = [
-                                                              'firstname' => $Qproducts->value('customers_firstname'),
-                                                              'lastname' => $Qproducts->value('customers_lastname'),
-                                                              'email_address' => $Qproducts->value('customers_email_address')
-                                                            ];
+            'firstname' => $Qproducts->value('customers_firstname'),
+            'lastname' => $Qproducts->value('customers_lastname'),
+            'email_address' => $Qproducts->value('customers_email_address')
+          ];
         }
 
         $Qcustomers = $CLICSHOPPING_Db->get([
-                                        'customers c',
-                                        'customers_info ci'
-                                      ], [
-                                        'c.customers_id',
-                                        'c.customers_firstname',
-                                        'c.customers_lastname',
-                                        'c.customers_email_address'
-                                      ], [
-                                        'c.customers_id' => [
-                                                            'rel' => 'ci.customers_info_id'
-                                                            ],
-                                        'ci.global_product_notifications' => '1',
-                                        'c.customers_email_validation' => '0'
-                                      ]
-                                     );
+          'customers c',
+          'customers_info ci'
+        ], [
+          'c.customers_id',
+          'c.customers_firstname',
+          'c.customers_lastname',
+          'c.customers_email_address'
+        ], [
+            'c.customers_id' => [
+              'rel' => 'ci.customers_info_id'
+            ],
+            'ci.global_product_notifications' => '1',
+            'c.customers_email_validation' => '0'
+          ]
+        );
 
 
         while ($Qcustomers->fetch()) {
           $audience[$Qcustomers->valueInt('customers_id')] = [
-                                                              'firstname' => $Qcustomers->value('customers_firstname'),
-                                                              'lastname' => $Qcustomers->value('customers_lastname'),
-                                                              'email_address' => $Qcustomers->value('customers_email_address')
-                                                              ];
+            'firstname' => $Qcustomers->value('customers_firstname'),
+            'lastname' => $Qcustomers->value('customers_lastname'),
+            'email_address' => $Qcustomers->value('customers_email_address')
+          ];
         }
       } else {
         $chosen = $_POST['chosen'];
@@ -462,34 +469,34 @@ function selectAll(FormName, SelectBox) {
 
         while ($Qproducts->fetch()) {
           $audience[$Qproducts->valueInt('customers_id')] = array('firstname' => $Qproducts->value('customers_firstname'),
-                                                                  'lastname' => $Qproducts->value('customers_lastname'),
-                                                                  'email_address' => $Qproducts->value('customers_email_address')
-                                                                  );
+            'lastname' => $Qproducts->value('customers_lastname'),
+            'email_address' => $Qproducts->value('customers_email_address')
+          );
         }
 
         $Qcustomers = $CLICSHOPPING_Db->get([
-                                    'customers c',
-                                    'customers_info ci'
-                                  ], [
-                                    'c.customers_id',
-                                    'c.customers_firstname',
-                                    'c.customers_lastname',
-                                    'c.customers_email_address'
-                                  ], [
-                                    'c.customers_id' => [
-                                      'rel' => 'ci.customers_info_id'
-                                    ],
-                                    'ci.global_product_notifications' => '1',
-                                    'c.customers_email_validation' => '0'
-                                  ]
-                                 );
+          'customers c',
+          'customers_info ci'
+        ], [
+          'c.customers_id',
+          'c.customers_firstname',
+          'c.customers_lastname',
+          'c.customers_email_address'
+        ], [
+            'c.customers_id' => [
+              'rel' => 'ci.customers_info_id'
+            ],
+            'ci.global_product_notifications' => '1',
+            'c.customers_email_validation' => '0'
+          ]
+        );
 
         while ($Qproducts->fetch()) {
           $audience[$Qproducts->valueInt('customers_id')] = [
-                                                            'firstname' => $Qproducts->value('customers_firstname'),
-                                                            'lastname' => $Qproducts->value('customers_lastname'),
-                                                            'email_address' => $Qproducts->value('customers_email_address')
-                                                            ];
+            'firstname' => $Qproducts->value('customers_firstname'),
+            'lastname' => $Qproducts->value('customers_lastname'),
+            'email_address' => $Qproducts->value('customers_email_address')
+          ];
         }
 
       } // end else
@@ -500,17 +507,17 @@ function selectAll(FormName, SelectBox) {
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
       $CLICSHOPPING_Mail->build_message();
 
-      foreach ( $audience as $key => $value ) {
+      foreach ($audience as $key => $value) {
         $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);
       }
 
       $CLICSHOPPING_Db->save('newsletters', [
-                                    'date_sent' => 'now()',
-                                    'status' => '1'
-                                  ], [
-                                    'newsletters_id' => (int)$newsletter_id
-                                  ]
-                     );
+        'date_sent' => 'now()',
+        'status' => '1'
+      ], [
+          'newsletters_id' => (int)$newsletter_id
+        ]
+      );
 
     }
   } // end class

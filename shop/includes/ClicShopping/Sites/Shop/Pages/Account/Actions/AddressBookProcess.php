@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions;
 
@@ -16,13 +16,15 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\Sites\Shop\AddressBook;
 
-  class AddressBookProcess extends \ClicShopping\OM\PagesActionsAbstract {
+  class AddressBookProcess extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       global $exists;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
-      $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -38,7 +40,7 @@
       $new_customer = HTML::sanitize($_GET['newcustomer']);
 
       if ($new_customer == 1) {
-        if (!empty($CLICSHOPPING_Customer->getDefaultAddressID()))  {
+        if (!empty($CLICSHOPPING_Customer->getDefaultAddressID())) {
           $_GET['edit'] = $CLICSHOPPING_Customer->getDefaultAddressID();
         }
       }

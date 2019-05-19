@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\SecurityCheck\Module\ClicShoppingAdmin\Dashboard;
 
@@ -16,12 +16,14 @@
 
   use ClicShopping\Apps\Tools\SecurityCheck\SecurityCheck as SecurityCheckApp;
 
-  class SecurityCheck extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class SecurityCheck extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('SecurityCheck')) {
         Registry::set('SecurityCheck', new SecurityCheckApp());
@@ -35,15 +37,16 @@
       $this->title = $this->app->getDef('module_admin_dashboard_security_checks_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_security_checks_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
 
-       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       $secCheck_types = ['info', 'warning', 'error'];
 
@@ -70,7 +73,7 @@
         if (class_exists($secclass)) {
           $secCheck = new $secclass;
 
-          if ( !$secCheck->pass() ) {
+          if (!$secCheck->pass()) {
             if (!in_array($secCheck->type, $secCheck_types)) {
               $secCheck->type = 'info';
             }
@@ -91,7 +94,8 @@
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
 
       if ($this->lang->getId() != 2) {
         $this->app->db->save('configuration', [
@@ -171,10 +175,11 @@
 
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_STATUS',
-              'MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_CONTENT_WIDTH',
-              'MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_SORT_ORDER'
-              ];
+        'MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_SECURITY_CHECKS_APP_SORT_ORDER'
+      ];
     }
   }

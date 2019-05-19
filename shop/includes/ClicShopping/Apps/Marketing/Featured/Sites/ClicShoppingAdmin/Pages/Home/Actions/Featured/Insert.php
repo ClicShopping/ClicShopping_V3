@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Marketing\Featured\Sites\ClicShoppingAdmin\Pages\Home\Actions\Featured;
@@ -15,8 +15,10 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Insert extends \ClicShopping\OM\PagesActionsAbstract {
-    public function execute() {
+  class Insert extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    public function execute()
+    {
 
       $CLICSHOPPING_Featured = Registry::get('Featured');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -36,15 +38,15 @@
       }
 
       $CLICSHOPPING_Featured->db->save('products_featured', [
-                                                            'products_id' => (int)$products_id,
-                                                            'products_featured_date_added' => 'now()',
-                                                            'scheduled_date' => !empty($schedule_date) ? $schedule_date : 'null',
-                                                            'expires_date' => !empty($expires_date) ? $expires_date : 'null',
-                                                            'status' => 1
-                                                          ]
-                                        );
+          'products_id' => (int)$products_id,
+          'products_featured_date_added' => 'now()',
+          'scheduled_date' => !empty($schedule_date) ? $schedule_date : 'null',
+          'expires_date' => !empty($expires_date) ? $expires_date : 'null',
+          'status' => 1
+        ]
+      );
 
-      $CLICSHOPPING_Hooks->call('Featured','Insert');
+      $CLICSHOPPING_Hooks->call('Featured', 'Insert');
 
       $CLICSHOPPING_Featured->redirect('Featured');
     }

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Dashboard;
 
@@ -16,45 +16,45 @@
 
   use ClicShopping\Apps\Payment\PayPal\PayPal as PayPalApp;
 
-class PayPal extends \ClicShopping\OM\Modules\AdminDashboardAbstract
-{
+  class PayPal extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
     protected $app;
 
     protected function init()
     {
-        if (!Registry::exists('PayPal')) {
-            Registry::set('PayPal', new PayPalApp());
-        }
+      if (!Registry::exists('PayPal')) {
+        Registry::set('PayPal', new PayPalApp());
+      }
 
-        $this->app = Registry::get('PayPal');
+      $this->app = Registry::get('PayPal');
 
-        $this->app->loadDefinitions('ClicShoppingAdmin/balance');
-        $this->app->loadDefinitions('ClicShoppingAdmin/modules/dashboard/d_paypal_app');
+      $this->app->loadDefinitions('ClicShoppingAdmin/balance');
+      $this->app->loadDefinitions('ClicShoppingAdmin/modules/dashboard/d_paypal_app');
 
-        $this->title = $this->app->getDef('module_admin_dashboard_title');
-        $this->description = $this->app->getDef('module_admin_dashboard_description');
+      $this->title = $this->app->getDef('module_admin_dashboard_title');
+      $this->description = $this->app->getDef('module_admin_dashboard_description');
 
-        if (defined('MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER')) {
-            $this->sort_order = MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER;
-            $this->enabled = true;
-        }
+      if (defined('MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER')) {
+        $this->sort_order = MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER;
+        $this->enabled = true;
+      }
     }
 
     public function getOutput()
     {
-        $has_live_account = ($this->app->hasApiCredentials('live') === true) ? 'true' : 'false';
-        $has_sandbox_account = ($this->app->hasApiCredentials('sandbox') === true) ? 'true' : 'false';
-        $heading_live_account = $this->app->getDef('heading_live_account', ['account' => str_replace('_api1.', '@', $this->app->getApiCredentials('live', 'username')) ]);
-        $heading_sandbox_account = $this->app->getDef('heading_sandbox_account', ['account' => str_replace('_api1.', '@', $this->app->getApiCredentials('sandbox', 'username'))]);
-        $cached_notice = $this->app->getDef('cached_notice');
-        $receiving_balance_progress = $this->app->getDef('retrieving_balance_progress');
-        $app_get_started = HTML::button($this->app->getDef('button_app_get_started'), null, $this->app->link(), 'primary');
-        $error_balance_retrieval = addslashes($this->app->getDef('error_balance_retrieval'));
-        $get_balance_url = addslashes($this->app->link('RPC&GetBalance&type=PPTYPE'));
+      $has_live_account = ($this->app->hasApiCredentials('live') === true) ? 'true' : 'false';
+      $has_sandbox_account = ($this->app->hasApiCredentials('sandbox') === true) ? 'true' : 'false';
+      $heading_live_account = $this->app->getDef('heading_live_account', ['account' => str_replace('_api1.', '@', $this->app->getApiCredentials('live', 'username'))]);
+      $heading_sandbox_account = $this->app->getDef('heading_sandbox_account', ['account' => str_replace('_api1.', '@', $this->app->getApiCredentials('sandbox', 'username'))]);
+      $cached_notice = $this->app->getDef('cached_notice');
+      $receiving_balance_progress = $this->app->getDef('retrieving_balance_progress');
+      $app_get_started = HTML::button($this->app->getDef('button_app_get_started'), null, $this->app->link(), 'primary');
+      $error_balance_retrieval = addslashes($this->app->getDef('error_balance_retrieval'));
+      $get_balance_url = addslashes($this->app->link('RPC&GetBalance&type=PPTYPE'));
 
       $content_width = 'col-lg-' . (int)MODULE_ADMIN_DASHBOARD_PAYPAL_APP_CONTENT_WIDTH;
 
-        $output = <<<EOD
+      $output = <<<EOD
         <span class="$content_width text-md-center">
 <script>
 var CLICSHOPPING = {
@@ -195,20 +195,20 @@ $(function() {
 </span>
 EOD;
 
-        return $output;
+      return $output;
     }
 
     public function install()
     {
-        $this->app->db->save('configuration', [
-            'configuration_title' => 'Sort Order',
-            'configuration_key' => 'MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER',
-            'configuration_value' => '70',
-            'configuration_description' => 'Sort order of display. Lowest is displayed first.',
-            'configuration_group_id' => '6',
-            'sort_order' => '0',
-            'date_added' => 'now()'
-        ]);
+      $this->app->db->save('configuration', [
+        'configuration_title' => 'Sort Order',
+        'configuration_key' => 'MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER',
+        'configuration_value' => '70',
+        'configuration_description' => 'Sort order of display. Lowest is displayed first.',
+        'configuration_group_id' => '6',
+        'sort_order' => '0',
+        'date_added' => 'now()'
+      ]);
 
       $this->app->db->save('configuration', [
           'configuration_title' => 'Select the width to display',
@@ -226,9 +226,9 @@ EOD;
 
     public function keys()
     {
-        return [
-            'MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER',
-            'MODULE_ADMIN_DASHBOARD_PAYPAL_APP_CONTENT_WIDTH'
-        ];
+      return [
+        'MODULE_ADMIN_DASHBOARD_PAYPAL_APP_SORT_ORDER',
+        'MODULE_ADMIN_DASHBOARD_PAYPAL_APP_CONTENT_WIDTH'
+      ];
     }
-}
+  }

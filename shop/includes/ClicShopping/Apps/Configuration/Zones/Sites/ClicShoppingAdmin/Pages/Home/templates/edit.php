@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -36,8 +36,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/zones.gif', $CLICSHOPPING_Zones->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/zones.gif', $CLICSHOPPING_Zones->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
   echo HTML::form('status_zones', $CLICSHOPPING_Zones->link('Zones&Update&page=' . $page . '&cID=' . $cInfo->zone_id));
@@ -50,12 +52,14 @@
     </div>
   </div>
   <div class="separator"></div>
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Zones->getDef('text_info_heading_edit_zone'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_Zones->getDef('text_info_heading_edit_zone'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_edit_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_edit_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_edit_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_edit_intro'); ?></label>
         </div>
       </div>
     </div>
@@ -63,7 +67,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_name'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_name'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_name'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('zone_name', $cInfo->zone_name); ?>
           </div>
@@ -74,7 +79,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_code'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_code'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_code'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_zones_code'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('zone_code', $cInfo->zone_code); ?>
           </div>
@@ -85,7 +91,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_country_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_country_name'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_country_name'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_country_name'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::selectMenuCountryList('zone_country_id', $cInfo->countries_id, $cInfo->countries_id); ?>
           </div>

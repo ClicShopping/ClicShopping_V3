@@ -1,28 +1,31 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Categories;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class Categories extends \ClicShopping\OM\AppAbstract {
+  class Categories extends \ClicShopping\OM\AppAbstract
+  {
 
     protected $api_version = 1;
     protected $identifier = 'ClicShopping_Categories_V1';
 
-    protected function init() {
+    protected function init()
+    {
     }
 
-    public function getConfigModules() {
+    public function getConfigModules()
+    {
       static $result;
 
       if (!isset($result)) {
@@ -33,7 +36,7 @@
         if ($dir = new \DirectoryIterator($directory)) {
           foreach ($dir as $file) {
             if (!$file->isDot() && $file->isDir() && is_file($file->getPathname() . '/' . $file->getFilename() . '.php')) {
-               $class = 'ClicShopping\Apps\Catalog\Categories\Module\ClicShoppingAdmin\Config\\' . $file->getFilename() . '\\' . $file->getFilename();
+              $class = 'ClicShopping\Apps\Catalog\Categories\Module\ClicShoppingAdmin\Config\\' . $file->getFilename() . '\\' . $file->getFilename();
 
               if (is_subclass_of($class, 'ClicShopping\Apps\Catalog\Categories\Module\ClicShoppingAdmin\Config\ConfigAbstract')) {
                 $sort_order = $this->getConfigModuleInfo($file->getFilename(), 'sort_order');
@@ -67,22 +70,25 @@
       return $result;
     }
 
-    public function getConfigModuleInfo($module, $info)  {
+    public function getConfigModuleInfo($module, $info)
+    {
       if (!Registry::exists('CategoriesAdminConfig' . $module)) {
         $class = 'ClicShopping\Apps\Catalog\Categories\Module\ClicShoppingAdmin\Config\\' . $module . '\\' . $module;
 
         Registry::set('CategoriesAdminConfig' . $module, new $class);
       }
 
-     return Registry::get('CategoriesAdminConfig' . $module)->$info;
+      return Registry::get('CategoriesAdminConfig' . $module)->$info;
     }
 
 
-    public function getApiVersion()  {
+    public function getApiVersion()
+    {
       return $this->api_version;
     }
 
-    public function getIdentifier() {
+    public function getIdentifier()
+    {
       return $this->identifier;
     }
   }

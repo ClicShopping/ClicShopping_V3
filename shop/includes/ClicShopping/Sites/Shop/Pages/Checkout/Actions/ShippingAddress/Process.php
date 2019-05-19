@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions\ShippingAddress;
@@ -16,9 +16,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -28,7 +30,7 @@
 
         $error = false;
 // process a new shipping address
-        if ( !$CLICSHOPPING_Customer->hasDefaultAddress() || (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['street_address']) && !empty($_POST['street_address'])) ) {
+        if (!$CLICSHOPPING_Customer->hasDefaultAddress() || (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['street_address']) && !empty($_POST['street_address']))) {
 
           if (ACCOUNT_GENDER == 'true') $gender = HTML::sanitize($_POST['gender']);
           if (ACCOUNT_COMPANY == 'true') $company = HTML::sanitize($_POST['company']);
@@ -41,7 +43,7 @@
           $country = HTML::sanitize($_POST['country']);
           $entry_telephone = HTML::sanitize($_POST['entry_telephone']);
 
-          if ( ACCOUNT_STATE == 'true' ) {
+          if (ACCOUNT_STATE == 'true') {
             if (isset($_POST['zone_id'])) {
               $zone_id = HTML::sanitize($_POST['zone_id']);
             } else {
@@ -51,13 +53,13 @@
           }
 
           if ((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
-            if ( ($gender != 'm') && ($gender != 'f') ) {
+            if (($gender != 'm') && ($gender != 'f')) {
               $error = true;
 
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error', ['min_length' => ACCOUNT_GENDER]), 'danger', 'checkout_address');
             }
           } else if ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-            if ( ($gender != 'm') && ($gender != 'f') ) {
+            if (($gender != 'm') && ($gender != 'f')) {
               $error = true;
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro', ['min_length' => ACCOUNT_GENDER_PRO]), 'danger', 'checkout_address');
             }
@@ -130,7 +132,7 @@
 
             $entry_state_has_zones = ($Qcheck->fetch() !== false);
 
-            if ( $entry_state_has_zones === true ) {
+            if ($entry_state_has_zones === true) {
               if (ACCOUNT_STATE_DROPDOWN == 'true') {
                 $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                      from :table_zones
@@ -195,14 +197,14 @@
 
           if ($error === false) {
             $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                'entry_firstname' => $firstname,
-                                'entry_lastname' => $lastname,
-                                'entry_street_address' => $street_address,
-                                'entry_postcode' => $postcode,
-                                'entry_city' => $city,
-                                'entry_country_id' => (int)$country,
-                                'entry_telephone' => $entry_telephone
-                               ];
+              'entry_firstname' => $firstname,
+              'entry_lastname' => $lastname,
+              'entry_street_address' => $street_address,
+              'entry_postcode' => $postcode,
+              'entry_city' => $city,
+              'entry_country_id' => (int)$country,
+              'entry_telephone' => $entry_telephone
+            ];
 
             if (ACCOUNT_GENDER == 'true') $sql_data_array['entry_gender'] = $gender;
             if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $company;
@@ -221,15 +223,15 @@
 
             $_SESSION['sendto'] = $CLICSHOPPING_Db->lastInsertId();
 
-            if ( !$CLICSHOPPING_Customer->hasDefaultAddress() ) {
+            if (!$CLICSHOPPING_Customer->hasDefaultAddress()) {
               $CLICSHOPPING_Customer->setCountryID($country);
               $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
               $CLICSHOPPING_Customer->setDefaultAddressID($_SESSION['sendto']);
             }
 
-            $CLICSHOPPING_Hooks->call('ShippingAddress','Process');
+            $CLICSHOPPING_Hooks->call('ShippingAddress', 'Process');
 
-            if ( isset($_SESSION['shipping']) ) {
+            if (isset($_SESSION['shipping'])) {
               unset($_SESSION['shipping']);
             }
 
@@ -258,10 +260,10 @@
           $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $Qcheck->execute();
 
-          if ( $Qcheck->fetch() !== false ) {
-            $CLICSHOPPING_Hooks->call('ShippingAddress','Process');
+          if ($Qcheck->fetch() !== false) {
+            $CLICSHOPPING_Hooks->call('ShippingAddress', 'Process');
 
-            if ( $reset_shipping === true ) {
+            if ($reset_shipping === true) {
               unset($_SESSION['shipping']);
             }
 

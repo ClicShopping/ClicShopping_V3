@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Edit;
 
@@ -19,9 +19,11 @@
 
   use ClicShopping\Sites\Shop\Pages\Account\Classes\Edit;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -38,9 +40,9 @@
         if (isset($_POST['lastname'])) $lastname = HTML::sanitize($_POST['lastname']);
         if (isset($_POST['country'])) $country = HTML::sanitize($_POST['country']);
 
-        if (isset($_POST['dob']) &&  ((ACCOUNT_DOB == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
+        if (isset($_POST['dob']) && ((ACCOUNT_DOB == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
           $dob = HTML::sanitize($_POST['dob']);
-        }else {
+        } else {
           $dob = null;
         }
 
@@ -76,13 +78,13 @@
 
 // Clients B2C et B2B : Controle selection de la civilite
         if ((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
-          if ( ($gender != 'm') && ($gender != 'f') ) {
+          if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error'), 'error', 'account_edit');
           }
         } else if ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-          if ( ($gender != 'm') && ($gender != 'f') ) {
+          if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'danger', 'account_edit');
@@ -187,7 +189,7 @@
         if ($check_email > 0) {
           $check_customer_email = edit::getCustomerAddressEmail($email_address);
 
-          if ( $check_customer_email !== false ) {
+          if ($check_customer_email !== false) {
             $error = true;
 
             if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
@@ -212,10 +214,10 @@
 
         if ($error === false) {
           $sql_data_array = ['customers_firstname' => $firstname,
-                              'customers_lastname' => $lastname,
-                              'customers_email_address' => $email_address,
-                              'customers_telephone' => $telephone
-                             ];
+            'customers_lastname' => $lastname,
+            'customers_email_address' => $email_address,
+            'customers_telephone' => $telephone
+          ];
 
           if (((ACCOUNT_CELLULAR_PHONE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_CELLULAR_PHONE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
             $sql_data_array['customers_cellular_phone'] = $cellular_phone;
@@ -246,17 +248,17 @@
           $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);
 
           $CLICSHOPPING_Db->save('customers_info', ['customers_info_date_account_last_modified' => 'now()'],
-                                                   ['customers_info_id' => (int)$CLICSHOPPING_Customer->getID()]
-                                 );
+            ['customers_info_id' => (int)$CLICSHOPPING_Customer->getID()]
+          );
 
           $sql_data_array = ['customers_firstname' => $firstname,
-                             'customers_lastname' => $lastname
-                            ];
+            'customers_lastname' => $lastname
+          ];
 
 
           $CLICSHOPPING_Db->save('customers', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()],
-                                                               ['address_book_id' => (int)$CLICSHOPPING_Customer->getDefaultAddressID()]
-                                );
+            ['address_book_id' => (int)$CLICSHOPPING_Customer->getDefaultAddressID()]
+          );
 
 // Clients en mode B2B : Modifier le nom de la societe sur toutes les adresses ce trouvant dans le carnet d'adresse
           if (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true')) {
@@ -266,7 +268,7 @@
             $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);
           }
 
-          $CLICSHOPPING_Hooks->call('Edit','Process');
+          $CLICSHOPPING_Hooks->call('Edit', 'Process');
 
           $_SESSION['customer_first_name'] = $firstname;
 

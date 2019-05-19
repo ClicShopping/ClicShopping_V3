@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\ReviewsInfo\Actions;
 
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class ReviewsInfo extends \ClicShopping\OM\PagesActionsAbstract {
+  class ReviewsInfo extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -25,7 +27,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      if (!isset($_GET['products_id']) && !is_numeric($CLICSHOPPING_ProductsCommon->getId())  ) {
+      if (!isset($_GET['products_id']) && !is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
         CLICSHOPPING::redirect();
       }
 
@@ -44,19 +46,19 @@
 // *************************
 // See the button more view details
 // *************************
-      $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id='. $CLICSHOPPING_ProductsCommon->getID()), 'info', null,'sm');
+      $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info', null, 'sm');
 // *************************
 // Gestion de l'affichage des images et des zooms
 // *************************
       if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
-        $products_image =  '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"').'</h1>';
+        $products_image = '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"') . '</h1>';
       }
 
 // *************************
 // End of this file
 // *************************
 
-      if ( $CLICSHOPPING_ProductsCommon->getProductsArchive() === 1 &&  is_numeric($CLICSHOPPING_ProductsCommon->getId()) ) {
+      if ($CLICSHOPPING_ProductsCommon->getProductsArchive() === 1 && is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
         $product_price = '';
         $product_not_sell = CLICSHOPPING::getDef('products_not_sell');
       }
@@ -70,9 +72,9 @@
       $CLICSHOPPING_Language->loadDefinitions('product_reviews_info');
 
       $all_get = CLICSHOPPING::getAllGET([
-                                          'Products',
-                                          'Reviews'
-                                        ]);
+        'Products',
+        'Reviews'
+      ]);
 
       $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, $all_get));
     }

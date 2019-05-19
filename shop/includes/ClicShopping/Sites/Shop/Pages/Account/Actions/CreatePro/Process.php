@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\CreatePro;
 
@@ -23,9 +23,11 @@
 
   use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -41,7 +43,7 @@
         $_SESSION['process'] = true;
         $zone_id = false;
 
-        $CLICSHOPPING_Hooks->call('CreatePro','PreAction');
+        $CLICSHOPPING_Hooks->call('CreatePro', 'PreAction');
 
         if (isset($_POST['firstname'])) $firstname = HTML::sanitize($_POST['firstname']);
         if (isset($_POST['lastname'])) $lastname = HTML::sanitize($_POST['lastname']);
@@ -137,7 +139,7 @@
 
 // Clients B2C : Controle selection de la civilite
         if (ACCOUNT_GENDER_PRO == 'true') {
-          if ( ($gender != 'm') && ($gender != 'f') ) {
+          if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'danger', 'create_account_pro');
@@ -266,7 +268,7 @@
                                                     and zone_status = 0
                                                   ');
                 $Qzone->bindInt(':zone_country_id', $country); // 73
-                $Qzone->bindValue(':zone_name',  $state);
+                $Qzone->bindValue(':zone_name', $state);
 
                 $Qzone->execute();
               } else {
@@ -277,7 +279,7 @@
                                                   and zone_status = 0
                                                 ');
                 $Qzone->bindInt(':zone_country_id', $country); // 73
-                $Qzone->bindValue(':zone_id',  $state);
+                $Qzone->bindValue(':zone_id', $state);
 
                 $Qzone->execute();
               }
@@ -306,7 +308,7 @@
         }
 
 // Clients B2B : Controle entree du mot de passe selon si l'approbation des membres est sur false
-        if (MEMBER == 'false'){
+        if (MEMBER == 'false') {
           if (strlen($password) < ENTRY_PASSWORD_PRO_MIN_LENGTH) {
             $error = true;
 
@@ -332,11 +334,11 @@
 // Groupe par defaut e utiliser pour les nouveaux clients
 
         if ($QcustomersGroup->fetch() !== false) {
-          $customers_group =  $QcustomersGroup->fetch();
+          $customers_group = $QcustomersGroup->fetch();
         }
 
 // Controle si le compte doit etre valide selon la configuration d'approbation des membres
-        if (MEMBER == 'false'){
+        if (MEMBER == 'false') {
           $member_level_approbation = 1;
         } else {
           $member_level_approbation = 0;
@@ -373,27 +375,27 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'danger', 'create_account_pro');
         }
 
-        if ( $error === false ) {
+        if ($error === false) {
 // Enregistrement des informations du client dans la base de donnees
 // member_level sur 1 permet d'eviter d'avoir e faire une approbation pour des clients normaux
           $sql_data_array = ['customers_firstname' => $firstname,
-                              'customers_lastname' => $lastname,
-                              'customers_email_address' => $email_address,
-                              'customers_telephone' => $telephone,
-                              'customers_newsletter' => $newsletter,
-                              'customers_password' => Hash::encrypt($password),
-                              'languages_id' => (int)$CLICSHOPPING_Language->getId(),
-                              'member_level' => $member_level_approbation,
-                              'customers_modify_company' => $customers_modify_company,
-                              'customers_modify_address_default' => $customers_modify_address_default,
-                              'customers_add_address' => $customers_add_address,
-                              'client_computer_ip' => HTTP::getIPAddress(),
-                              'provider_name_client' => HTTP::getProviderNameCustomer(),
-                              'customer_website_company' => $customer_website_company
-                            ];
+            'customers_lastname' => $lastname,
+            'customers_email_address' => $email_address,
+            'customers_telephone' => $telephone,
+            'customers_newsletter' => $newsletter,
+            'customers_password' => Hash::encrypt($password),
+            'languages_id' => (int)$CLICSHOPPING_Language->getId(),
+            'member_level' => $member_level_approbation,
+            'customers_modify_company' => $customers_modify_company,
+            'customers_modify_address_default' => $customers_modify_address_default,
+            'customers_add_address' => $customers_add_address,
+            'client_computer_ip' => HTTP::getIPAddress(),
+            'provider_name_client' => HTTP::getProviderNameCustomer(),
+            'customer_website_company' => $customer_website_company
+          ];
 
-          if (ACCOUNT_CELLULAR_PHONE_PRO == 'true')  $sql_data_array['customers_cellular_phone'] = $cellular_phone;
-          if (ACCOUNT_FAX_PRO == 'true')  $sql_data_array['customers_fax'] = $fax;
+          if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = $cellular_phone;
+          if (ACCOUNT_FAX_PRO == 'true') $sql_data_array['customers_fax'] = $fax;
 
           if ($QcustomersGroup->fetch() !== false) $sql_data_array['customers_group_id'] = ACCOUNT_GROUP_DEFAULT_PRO;
           if ($QcustomersGroup->fetch() !== false) $sql_data_array['customers_options_order_taxe'] = $customers_group['group_order_taxe'];
@@ -412,13 +414,13 @@
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
 // save element in address book
           $sql_data_array = ['customers_id' => (int)$customer_id,
-                              'entry_firstname' => $firstname,
-                              'entry_lastname' => $lastname,
-                              'entry_street_address' => $street_address,
-                              'entry_postcode' => $postcode,
-                              'entry_city' => $city,
-                              'entry_country_id' => (int)$country
-                            ];
+            'entry_firstname' => $firstname,
+            'entry_lastname' => $lastname,
+            'entry_street_address' => $street_address,
+            'entry_postcode' => $postcode,
+            'entry_city' => $city,
+            'entry_country_id' => (int)$country
+          ];
 
           if (ACCOUNT_GENDER_PRO == 'true') $sql_data_array['entry_gender'] = $gender;
           if (ACCOUNT_COMPANY_PRO == 'true') $sql_data_array['entry_company'] = $company;
@@ -438,13 +440,13 @@
           $address_id = $CLICSHOPPING_Db->lastInsertId();
 
           $CLICSHOPPING_Db->save('customers', array('customers_default_address_id' => (int)$address_id),
-                                              array('customers_id' => (int)$customer_id)
-                                );
+            array('customers_id' => (int)$customer_id)
+          );
 
           $sql_array = ['customers_info_id' => (int)$customer_id,
-                        'customers_info_number_of_logons' => 0,
-                        'customers_info_date_account_created' => 'now()'
-                        ];
+            'customers_info_number_of_logons' => 0,
+            'customers_info_date_account_created' => 'now()'
+          ];
 
           $CLICSHOPPING_Db->save('customers_info', $sql_array);
 
@@ -463,7 +465,7 @@
           $name = $firstname . ' ' . $lastname;
 
           if (defined('COUPON_CUSTOMER_B2B') && !empty(COUPON_CUSTOMER_B2B)) {
-            $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' '. COUPON_CUSTOMER_B2B;
+            $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
           }
 
 // Envoi des e-mails selon si l'approbation est obligatoire
@@ -473,7 +475,7 @@
             $template_email_welcome_catalog = CLICSHOPPING::getDef('email_welcome');
           }
 
-          if (defined('COUPON_CUSTOMER') &&  !empty(COUPON_CUSTOMER)) {
+          if (defined('COUPON_CUSTOMER') && !empty(COUPON_CUSTOMER)) {
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
             $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
           }
@@ -482,8 +484,8 @@
           $template_email_signature = TemplateEmail::getTemplateEmailSignature();
           $template_email_footer = TemplateEmail::getTemplateEmailTextFooter();
           $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
-          $email_gender = CLICSHOPPING::getDef('female') . ', '.  CLICSHOPPING::getDef('male') . ' '. $lastname;
-          $email_text = $email_gender .',<br /><br />'. $template_email_welcome_catalog .'<br /><br />'. $email_coupon .'<br /><br />' .   $template_email_signature . '<br /><br />' . $template_email_footer;
+          $email_gender = CLICSHOPPING::getDef('female') . ', ' . CLICSHOPPING::getDef('male') . ' ' . $lastname;
+          $email_text = $email_gender . ',<br /><br />' . $template_email_welcome_catalog . '<br /><br />' . $email_coupon . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
 
 // EEmail send
           $message = $email_text;
@@ -499,10 +501,10 @@
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
 
             $data_array = ['customer_name' => HTML::sanitize($_POST['lastname']),
-                         'customer_firstame' => HTML::sanitize($_POST['firstname']),
-                         'customer_company' => HTML::sanitize($_POST['company']),
-                         'customer_mail' => $_POST['email_address']
-                        ];
+              'customer_firstame' => HTML::sanitize($_POST['firstname']),
+              'customer_company' => HTML::sanitize($_POST['company']),
+              'customer_mail' => $_POST['email_address']
+            ];
 
             $admin_email_text_admin = CLICSHOPPING::getDef('admin_email_text', $data_array);
 
@@ -516,7 +518,7 @@
 
           $CLICSHOPPING_ActionRecorder->record();
 
-          $CLICSHOPPING_Hooks->call('Create','Process');
+          $CLICSHOPPING_Hooks->call('Create', 'Process');
 
           CLICSHOPPING::redirect(null, 'Account&CreatePro&Success');
         }

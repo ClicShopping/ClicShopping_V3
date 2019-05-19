@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Communication\PageManager\Module\HeaderTags;
 
@@ -16,14 +16,16 @@
 
   use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 
-  class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $db;
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('PageManager')) {
         Registry::set('PageManager', new PageManagerApp());
       }
@@ -37,17 +39,19 @@
       $this->title = $this->app->getDef('module_header_tags_page_manager_title');
       $this->description = $this->app->getDef('module_header_tags_page_manager_description');
 
-      if ( defined('MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PAGE_MANAGER_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS == 'True');
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -66,7 +70,7 @@
                                              and language_id = :language_id
                                              ');
 
-        $Qsubmit->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
+        $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qsubmit->execute();
 
         $QpageManager = $this->app->db->prepare('select pages_id,
@@ -80,8 +84,8 @@
                                                    and language_id = :language_id
                                                   ');
 
-        $QpageManager->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
-        $QpageManager->bindInt(':pages_id',  (int)$_GET['pages_id']);
+        $QpageManager->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+        $QpageManager->bindInt(':pages_id', (int)$_GET['pages_id']);
         $QpageManager->execute();
 
         if (empty($QpageManager->value('page_manager_head_title_tag'))) {
@@ -94,34 +98,34 @@
 
         $tags_array = [];
 
-        if(empty($QpageManager->value('page_manager_head_title_tag'))) {
+        if (empty($QpageManager->value('page_manager_head_title_tag'))) {
           if (empty($Qsubmit->value('page_manager_head_title_tag'))) {
-            $tags_array['title']= $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+            $tags_array['title'] = $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
           } else {
-            $tags_array['title']=  $pages_title;
+            $tags_array['title'] = $pages_title;
           }
         } else {
-          $tags_array['title']=  $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+          $tags_array['title'] = $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
         }
 
-        if(empty($QpageManager->value('page_manager_head_desc_tag'))) {
+        if (empty($QpageManager->value('page_manager_head_desc_tag'))) {
           if (empty($Qsubmit->value('page_manager_head_desc_tag'))) {
-            $tags_array['desc']=  $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+            $tags_array['desc'] = $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
           } else {
-            $tags_array['desc']= $pages_title . $QpageManager->value('page_manager_head_desc_tag');
+            $tags_array['desc'] = $pages_title . $QpageManager->value('page_manager_head_desc_tag');
           }
         } else {
-          $tags_array['desc']=  $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+          $tags_array['desc'] = $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
         }
 
-        if(empty($QpageManager->value('page_manager_head_keywords_tag'))) {
+        if (empty($QpageManager->value('page_manager_head_keywords_tag'))) {
           if (empty($Qsubmit->value('page_manager_head_keywords_tag'))) {
             $tags_array['keywords'] = $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
           } else {
             $tags_array['keywords'] = $pages_title . $QpageManager->value('page_manager_head_keywords_tag');
           }
         } else {
-          $tags_array['keywords'] =  $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+          $tags_array['keywords'] = $pages_title . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
         }
 
         $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
@@ -130,8 +134,8 @@
         $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($CLICSHOPPING_Template->getKeywords());
 
 
-      $output =
-<<<EOD
+        $output =
+          <<<EOD
 {$title}
 {$description}
 {$keywords}
@@ -142,7 +146,8 @@ EOD;
       }
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS',
@@ -169,9 +174,10 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_HEADER_TAGS_PAGE_MANAGER_STATUS',
-               'MODULE_HEADER_TAGS_PAGE_MANAGER_SORT_ORDER'
-              ];
+        'MODULE_HEADER_TAGS_PAGE_MANAGER_SORT_ORDER'
+      ];
     }
   }

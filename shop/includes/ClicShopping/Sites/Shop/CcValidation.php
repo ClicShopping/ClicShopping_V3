@@ -1,24 +1,26 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop;
 
-  class CcValidation {
+  class CcValidation
+  {
 
     public $cc_type;
     public $cc_number;
     public $cc_expiry_month;
     public $cc_expiry_year;
 
-    public function __construct($number, $expiry_m, $expiry_y) {
+    public function __construct($number, $expiry_m, $expiry_y)
+    {
       $this->cc_number = preg_replace('/[^0-9]/', '', $number);
 
       if (preg_match('/^4[0-9]{12}([0-9]{3})?$/', $this->cc_number)) {
@@ -62,11 +64,12 @@
       return $this->isValid();
     }
 
-    public function isValid() {
+    public function isValid()
+    {
       $cardNumber = strrev($this->cc_number);
       $numSum = 0;
 
-      for ($i=0; $i<strlen($cardNumber); $i++) {
+      for ($i = 0; $i < strlen($cardNumber); $i++) {
         $currentNum = substr($cardNumber, $i, 1);
 
 // Double every second digit

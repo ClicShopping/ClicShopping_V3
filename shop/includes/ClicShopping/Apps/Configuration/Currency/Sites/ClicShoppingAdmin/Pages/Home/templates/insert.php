@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
@@ -39,11 +39,13 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/currencies.gif', $CLICSHOPPING_Currency->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/currencies.gif', $CLICSHOPPING_Currency->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page), 'warning')  . ' ';
+  echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page), 'warning') . ' ';
   echo HTML::form('currency', $CLICSHOPPING_Currency->link('Currency&Insert&page=' . $page . (isset($cInfo) ? '&cID=' . $cInfo->currencies_id : '')));
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, null, 'success');
 ?>
@@ -54,12 +56,14 @@
   </div>
   <div class="separator"></div>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Currency->getDef('text_info_heading_new_currency'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_Currency->getDef('text_info_heading_new_currency'); ?></strong></div>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_insert_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_insert_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_insert_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_insert_intro'); ?></label>
         </div>
       </div>
     </div>
@@ -67,7 +71,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_title'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_title'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_title'); ?></label>
           <div class="col-md-7">
             <?php echo HTML::inputField('title', null, 'required aria-required="true"'); ?>
           </div>
@@ -78,7 +83,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_code'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_code'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_code'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_code'); ?></label>
           <div class="col-md-7">
             <?php echo HTML::inputField('code', null, 'required aria-required="true"'); ?>
           </div>
@@ -89,7 +95,8 @@
     <div class="row">
       <div class="col-md-7">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_left'); ?>" class="col-7 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_left'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_left'); ?>"
+                 class="col-7 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_left'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('symbol_left'); ?>
           </div>
@@ -100,7 +107,8 @@
     <div class="row">
       <div class="col-md-7">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_right'); ?>" class="col-7 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_right'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_right'); ?>"
+                 class="col-7 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_right'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('symbol_right'); ?>
           </div>
@@ -111,7 +119,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_thousands_point'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_thousands_point'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_thousands_point'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_thousands_point'); ?></label>
           <div class="col-md-7">
             <?php echo HTML::inputField('thousands_point'); ?>
           </div>
@@ -122,7 +131,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?></label>
           <div class="col-md-7">
             <?php echo HTML::inputField('decimal_places'); ?>
           </div>
@@ -133,7 +143,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_value'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_value'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_value'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_value'); ?></label>
           <div class="col-md-7">
             <?php echo HTML::inputField('value'); ?>
           </div>
@@ -144,7 +155,8 @@
     <div class="row">
       <div class="col-md-12">
         <span class="col-md-5"></span>
-        <span class="col-md-3"><br /><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
+        <span
+          class="col-md-3"><br/><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
       </div>
     </div>
   </div>
@@ -152,25 +164,25 @@
 </div>
 
 <script type="text/javascript">
-  var currency_select = new Array();
-  <?php
-  foreach ($currency_select_array as $cs) {
-    if (!empty($cs['id'])) {
-      echo 'currency_select["' . $cs['id'] . '"] = new Array("' . $currency_select[$cs['id']]['title'] . '", "' . $currency_select[$cs['id']]['symbol_left'] . '", "' . $currency_select[$cs['id']]['symbol_right'] . '", "' . $currency_select[$cs['id']]['decimal_point'] . '", "' . $currency_select[$cs['id']]['thousands_point'] . '", "' . $currency_select[$cs['id']]['decimal_places'] . '");' . "\n";
+    var currency_select = new Array();
+    <?php
+    foreach ($currency_select_array as $cs) {
+      if (!empty($cs['id'])) {
+        echo 'currency_select["' . $cs['id'] . '"] = new Array("' . $currency_select[$cs['id']]['title'] . '", "' . $currency_select[$cs['id']]['symbol_left'] . '", "' . $currency_select[$cs['id']]['symbol_right'] . '", "' . $currency_select[$cs['id']]['decimal_point'] . '", "' . $currency_select[$cs['id']]['thousands_point'] . '", "' . $currency_select[$cs['id']]['decimal_places'] . '");' . "\n";
+      }
     }
-  }
-  ?>
+    ?>
 
-  function updateForm() {
-    var cs = document.forms["currency"].cs[document.forms["currency"].cs.selectedIndex].value;
+    function updateForm() {
+        var cs = document.forms["currency"].cs[document.forms["currency"].cs.selectedIndex].value;
 
-    document.forms["currency"].title.value = currency_select[cs][0];
-    document.forms["currency"].code.value = cs;
-    document.forms["currency"].symbol_left.value = currency_select[cs][1];
-    document.forms["currency"].symbol_right.value = currency_select[cs][2];
-    document.forms["currency"].decimal_point.value = currency_select[cs][3];
-    document.forms["currency"].thousands_point.value = currency_select[cs][4];
-    document.forms["currency"].decimal_places.value = currency_select[cs][5];
-    document.forms["currency"].value.value = 1;
-  }
+        document.forms["currency"].title.value = currency_select[cs][0];
+        document.forms["currency"].code.value = cs;
+        document.forms["currency"].symbol_left.value = currency_select[cs][1];
+        document.forms["currency"].symbol_right.value = currency_select[cs][2];
+        document.forms["currency"].decimal_point.value = currency_select[cs][3];
+        document.forms["currency"].thousands_point.value = currency_select[cs][4];
+        document.forms["currency"].decimal_places.value = currency_select[cs][5];
+        document.forms["currency"].value.value = 1;
+    }
 </script>

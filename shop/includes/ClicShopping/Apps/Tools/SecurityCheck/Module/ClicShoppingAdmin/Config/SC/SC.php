@@ -1,34 +1,37 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\SecurityCheck\Module\ClicShoppingAdmin\Config\SC;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class SC extends \ClicShopping\Apps\Tools\SecurityCheck\Module\ClicShoppingAdmin\Config\ConfigAbstract {
+  class SC extends \ClicShopping\Apps\Tools\SecurityCheck\Module\ClicShoppingAdmin\Config\ConfigAbstract
+  {
 
     protected $pm_code = 'security_check';
 
     public $is_uninstallable = true;
     public $sort_order = 400;
 
-    protected function init() {
-        $this->title = $this->app->getDef('module_sc_title');
-        $this->short_title = $this->app->getDef('module_sc_short_title');
-        $this->introduction = $this->app->getDef('module_sc_introduction');
-        $this->is_installed = defined('CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS') && (trim(CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS) != '');
+    protected function init()
+    {
+      $this->title = $this->app->getDef('module_sc_title');
+      $this->short_title = $this->app->getDef('module_sc_short_title');
+      $this->introduction = $this->app->getDef('module_sc_introduction');
+      $this->is_installed = defined('CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS') && (trim(CLICSHOPPING_APP_SECURITY_CHECK_SC_STATUS) != '');
     }
 
-    public function install() {
+    public function install()
+    {
       parent::install();
 
       if (defined('MODULE_MODULES_SECURITY_CHECK_INSTALLED')) {
@@ -40,7 +43,8 @@
       $this->app->saveCfgParam('MODULE_MODULES_SECURITY_CHECK_INSTALLED', implode(';', $installed));
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
       parent::uninstall();
 
       $installed = explode(';', MODULE_MODULES_SECURITY_CHECK_INSTALLED);

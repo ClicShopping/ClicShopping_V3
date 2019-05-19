@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Sites\Shop\Pages\Search\Actions;
@@ -17,12 +17,14 @@
 
   header('Content-Type: text/xml');
 
-  class OpenSearch extends \ClicShopping\OM\PagesActionsAbstract {
+  class OpenSearch extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       global $output;
 
-      if ( !defined('MODULE_HEADER_TAGS_OPENSEARCH_STATUS') || (MODULE_HEADER_TAGS_OPENSEARCH_STATUS != 'True') ) {
+      if (!defined('MODULE_HEADER_TAGS_OPENSEARCH_STATUS') || (MODULE_HEADER_TAGS_OPENSEARCH_STATUS != 'True')) {
         exit;
       }
 
@@ -59,7 +61,7 @@
 
       $output .= '
       <InputEncoding>UTF-8</InputEncoding>
-      <Url type="text/html" method="get" template="'. CLICSHOPPING::link(null, 'Search&amp;Q&amp;keywords={searchTerms}', false, false) .'" />
+      <Url type="text/html" method="get" template="' . CLICSHOPPING::link(null, 'Search&amp;Q&amp;keywords={searchTerms}', false, false) . '" />
       </OpenSearchDescription>
      ';
 

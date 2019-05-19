@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions\Products;
@@ -16,12 +16,14 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Cache;
 
-  class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract {
+  class MoveConfirm extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
     protected $newParentId;
     protected $currentCategoryId;
 
-    public function __construct(){
+    public function __construct()
+    {
       $this->app = Registry::get('Products');
 
       $this->newParentId = HTML::sanitize($_POST['move_to_category_id']);
@@ -37,13 +39,14 @@
       }
 
       if (isset($_POST['current_category_id'])) {
-        $this->currentCategoryId =  HTML::sanitize($_POST['current_category_id']); // insert- update
+        $this->currentCategoryId = HTML::sanitize($_POST['current_category_id']); // insert- update
       } else {
-        $this->currentCategoryId =  HTML::sanitize($_GET['cPath']); // boxe
+        $this->currentCategoryId = HTML::sanitize($_GET['cPath']); // boxe
       }
     }
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (!is_null($this->ID)) {
@@ -53,7 +56,7 @@
                                             and categories_id not in ( :categories_id )
                                           ');
         $QCheck->bindInt(':products_id', $this->ID);
-        $QCheck->bindInt(':categories_id',$this->newParentId);
+        $QCheck->bindInt(':categories_id', $this->newParentId);
         $QCheck->execute();
 
         if ($QCheck->rowCount() > 0) {
@@ -62,7 +65,7 @@
                                               where products_id = :products_id
                                               and categories_id = :categories_id1
                                             ');
-          $Qupdate->bindInt(':categories_id',$this->newParentId);
+          $Qupdate->bindInt(':categories_id', $this->newParentId);
           $Qupdate->bindInt(':products_id', $this->ID);
           $Qupdate->bindInt(':categories_id1', $this->currentCategoryId);
 
@@ -76,7 +79,7 @@
         Cache::clear('upcoming');
       }
 
-      $CLICSHOPPING_Hooks->call('Products','Move');
+      $CLICSHOPPING_Hooks->call('Products', 'Move');
 
       $this->app->redirect('Products&cPath=' . $this->newParentId . '&pID=' . $this->ID);
     }

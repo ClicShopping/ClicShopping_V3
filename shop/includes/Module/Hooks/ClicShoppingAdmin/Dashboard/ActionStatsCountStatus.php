@@ -1,29 +1,32 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Dashboard;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class ActionStatsCountStatus {
+  class ActionStatsCountStatus
+  {
 
-    public function __construct() {
+    public function __construct()
+    {
 
       if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         CLICSHOPPING::redirect();
       }
     }
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -39,7 +42,7 @@
 
       $result = null;
 
-      while ($QordersStatus->fetch() ) {
+      while ($QordersStatus->fetch()) {
         $QordersPending = $CLICSHOPPING_Db->prepare('select count(orders_id) as count
                                                      from :table_orders
                                                      where orders_status = :orders_status
@@ -64,7 +67,7 @@
       }
 
       if (!is_null($result) && is_array($result)) {
-        foreach($result as $value) {
+        foreach ($result as $value) {
           echo $value;
         }
       }

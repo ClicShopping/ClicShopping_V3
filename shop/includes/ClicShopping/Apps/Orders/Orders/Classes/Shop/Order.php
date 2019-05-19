@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Orders\Orders\Classes\Shop;
 
@@ -22,7 +22,8 @@
 
   use ClicShopping\Apps\Marketing\DiscountCoupon\Classes\Shop\DiscountCouponCustomer;
 
-  class Order {
+  class Order
+  {
 
     public $info;
     public $totals;
@@ -39,12 +40,13 @@
     protected $lang;
     protected $mail;
 
-    public function __construct($order_id = null) {
+    public function __construct($order_id = null)
+    {
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
       $this->mail = Registry::get('Mail');
 
-      if (isset($_GET['order_id']) && is_numeric($_GET['order_id']) ) {
+      if (isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
         $this->_id = HTML::sanitize($_GET['order_id']);
       }
 
@@ -63,7 +65,8 @@
       }
     }
 
-    public function query($order_id) {
+    public function query($order_id)
+    {
 
       $order_total = $shipping_title = '';
 
@@ -86,10 +89,10 @@
 
       while ($Qtotals->fetch()) {
         $this->totals[] = ['title' => $Qtotals->value('title'),
-                           'text' => $Qtotals->value('text')
-                          ];
+          'text' => $Qtotals->value('text')
+        ];
 
-        if ($Qtotals->value('class') == 'ot_total' || $Qtotals->value('class') == 'TO' ) {
+        if ($Qtotals->value('class') == 'ot_total' || $Qtotals->value('class') == 'TO') {
           $order_total = strip_tags($Qtotals->value('text'));
         } elseif ($Qtotals->value('class') == 'ot_shipping' || $Qtotals->value('class') == 'SH') {
           $shipping_title = strip_tags($Qtotals->value('title'));
@@ -121,61 +124,61 @@
       $QorderStatusInvoice->execute();
 
       $this->info = ['currency' => $Qorder->value('currency'),
-                    'currency_value' => $Qorder->valueDecimal('currency_value'),
-                    'payment_method' => $Qorder->value('payment_method'),
-                    'cc_type' => $Qorder->value('cc_type'),
-                    'cc_owner' => $Qorder->value('cc_owner'),
-                    'cc_number' => $Qorder->value('cc_number'),
-                    'cc_expires' => $Qorder->value('cc_expires'),
-                    'date_purchased' => $Qorder->value('date_purchased'),
-                    'orders_status' => $Qstatus->value('orders_status_name'),
-                    'orders_status_invoice' => $QorderStatusInvoice->value('orders_status_invoice_name'),
-                    'last_modified' => $Qorder->value('last_modified'),
-                    'total' => $order_total,
-                    'shipping_method' => $shipping_title
-                    ];
+        'currency_value' => $Qorder->valueDecimal('currency_value'),
+        'payment_method' => $Qorder->value('payment_method'),
+        'cc_type' => $Qorder->value('cc_type'),
+        'cc_owner' => $Qorder->value('cc_owner'),
+        'cc_number' => $Qorder->value('cc_number'),
+        'cc_expires' => $Qorder->value('cc_expires'),
+        'date_purchased' => $Qorder->value('date_purchased'),
+        'orders_status' => $Qstatus->value('orders_status_name'),
+        'orders_status_invoice' => $QorderStatusInvoice->value('orders_status_invoice_name'),
+        'last_modified' => $Qorder->value('last_modified'),
+        'total' => $order_total,
+        'shipping_method' => $shipping_title
+      ];
 
       $this->customer = ['id' => $Qorder->valueInt('customers_id'),
-                        'group_id' => $Qorder->valueInt('customers_group_id'),
-                        'name' => $Qorder->value('customers_name'),
-                        'company' => $Qorder->value('customers_company'),
-                        'street_address' => $Qorder->value('customers_street_address'),
-                        'suburb' => $Qorder->value('customers_suburb'),
-                        'city' => $Qorder->value('customers_city'),
-                        'postcode' => $Qorder->value('customers_postcode'),
-                        'state' => $Qorder->value('customers_state'),
-                        'country' => array('title' => $Qorder->value('customers_country')),
-                        'format_id' => $Qorder->valueInt('customers_address_format_id'),
-                        'telephone' => $Qorder->value('customers_telephone'),
-                        'cellular_phone' => $Qorder->value('customers_cellular_phone'),
-                        'email_address' => $Qorder->value('customers_email_address')
-                       ];
+        'group_id' => $Qorder->valueInt('customers_group_id'),
+        'name' => $Qorder->value('customers_name'),
+        'company' => $Qorder->value('customers_company'),
+        'street_address' => $Qorder->value('customers_street_address'),
+        'suburb' => $Qorder->value('customers_suburb'),
+        'city' => $Qorder->value('customers_city'),
+        'postcode' => $Qorder->value('customers_postcode'),
+        'state' => $Qorder->value('customers_state'),
+        'country' => array('title' => $Qorder->value('customers_country')),
+        'format_id' => $Qorder->valueInt('customers_address_format_id'),
+        'telephone' => $Qorder->value('customers_telephone'),
+        'cellular_phone' => $Qorder->value('customers_cellular_phone'),
+        'email_address' => $Qorder->value('customers_email_address')
+      ];
 
       $this->delivery = ['name' => $Qorder->value('delivery_name'),
-                        'company' => $Qorder->value('delivery_company'),
-                        'street_address' => $Qorder->value('delivery_street_address'),
-                        'suburb' => $Qorder->value('delivery_suburb'),
-                        'city' => $Qorder->value('delivery_city'),
-                        'postcode' => $Qorder->value('delivery_postcode'),
-                        'state' => $Qorder->value('delivery_state'),
-                        'country' => array('title' => $Qorder->value('delivery_country')),
-                        'format_id' => $Qorder->valueInt('delivery_address_format_id')
-                       ];
+        'company' => $Qorder->value('delivery_company'),
+        'street_address' => $Qorder->value('delivery_street_address'),
+        'suburb' => $Qorder->value('delivery_suburb'),
+        'city' => $Qorder->value('delivery_city'),
+        'postcode' => $Qorder->value('delivery_postcode'),
+        'state' => $Qorder->value('delivery_state'),
+        'country' => array('title' => $Qorder->value('delivery_country')),
+        'format_id' => $Qorder->valueInt('delivery_address_format_id')
+      ];
 
       if (empty($this->delivery['name']) && empty($this->delivery['street_address'])) {
         $this->delivery = false;
       }
 
       $this->billing = ['name' => $Qorder->value('billing_name'),
-                        'company' => $Qorder->value('billing_company'),
-                        'street_address' => $Qorder->value('billing_street_address'),
-                        'suburb' => $Qorder->value('billing_suburb'),
-                        'city' => $Qorder->value('billing_city'),
-                        'postcode' => $Qorder->value('billing_postcode'),
-                        'state' => $Qorder->value('billing_state'),
-                        'country' => array('title' => $Qorder->value('billing_country')),
-                        'format_id' => $Qorder->valueInt('billing_address_format_id')
-                        ];
+        'company' => $Qorder->value('billing_company'),
+        'street_address' => $Qorder->value('billing_street_address'),
+        'suburb' => $Qorder->value('billing_suburb'),
+        'city' => $Qorder->value('billing_city'),
+        'postcode' => $Qorder->value('billing_postcode'),
+        'state' => $Qorder->value('billing_state'),
+        'country' => array('title' => $Qorder->value('billing_country')),
+        'format_id' => $Qorder->valueInt('billing_address_format_id')
+      ];
 
       $index = 0;
 
@@ -196,13 +199,13 @@
       while ($QOrdersProducts->fetch()) {
 
         $this->products[$index] = ['qty' => $QOrdersProducts->valueInt('products_quantity'),
-                                  'id' => $QOrdersProducts->valueInt('products_id'),
-                                  'name' => $QOrdersProducts->value('products_name'),
-                                  'model' => $QOrdersProducts->value('products_model'),
-                                  'tax' => $QOrdersProducts->valueDecimal('products_tax'),
-                                  'price' => $QOrdersProducts->valueDecimal('products_price'),
-                                  'final_price' => $QOrdersProducts->valueDecimal('final_price')
-                                  ];
+          'id' => $QOrdersProducts->valueInt('products_id'),
+          'name' => $QOrdersProducts->value('products_name'),
+          'model' => $QOrdersProducts->value('products_model'),
+          'tax' => $QOrdersProducts->valueDecimal('products_tax'),
+          'price' => $QOrdersProducts->valueDecimal('products_price'),
+          'final_price' => $QOrdersProducts->valueDecimal('final_price')
+        ];
 
         $subindex = 0;
 
@@ -221,11 +224,11 @@
         if ($Qattributes->fetch() !== false) {
           do {
             $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options'),
-                                                                'value' => $Qattributes->value('products_options_values'),
-                                                                'prefix' => $Qattributes->value('price_prefix'),
-                                                                'price' => $Qattributes->valueDecimal('options_values_price'),
-                                                                'reference' => $Qattributes->value('products_attributes_reference')
-                                                                ];
+              'value' => $Qattributes->value('products_options_values'),
+              'prefix' => $Qattributes->value('price_prefix'),
+              'price' => $Qattributes->valueDecimal('options_values_price'),
+              'reference' => $Qattributes->value('products_attributes_reference')
+            ];
             $subindex++;
           } while ($Qattributes->fetch());
         }
@@ -236,7 +239,8 @@
       }
     }
 
-    public function cart() {
+    public function cart()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -254,27 +258,27 @@
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 
         $customer_address = ['customers_firstname' => null,
-                            'customers_lastname' => null,
-                            'customers_telephone' => null,
-                            'customers_cellular_phone' => null,
-                            'customers_email_address' => null,
-                            'customers_siret' => null,
-                            'customers_ape' => null,
-                            'customers_tva_intracom' => null,
-                            'entry_company' => null,
-                            'entry_street_address' => null,
-                            'entry_suburb' => null,
-                            'entry_postcode' => null,
-                            'entry_city' => null,
-                            'entry_zone_id' => null,
-                            'zone_name' => null,
-                            'countries_id' => null,
-                            'countries_name' => null,
-                            'countries_iso_code_2' => null,
-                            'countries_iso_code_3' => null,
-                            'address_format_id' => 0,
-                            'entry_state' => null
-                            ];
+          'customers_lastname' => null,
+          'customers_telephone' => null,
+          'customers_cellular_phone' => null,
+          'customers_email_address' => null,
+          'customers_siret' => null,
+          'customers_ape' => null,
+          'customers_tva_intracom' => null,
+          'entry_company' => null,
+          'entry_street_address' => null,
+          'entry_suburb' => null,
+          'entry_postcode' => null,
+          'entry_city' => null,
+          'entry_zone_id' => null,
+          'zone_name' => null,
+          'countries_id' => null,
+          'countries_name' => null,
+          'countries_iso_code_2' => null,
+          'countries_iso_code_3' => null,
+          'address_format_id' => 0,
+          'entry_state' => null
+        ];
 
         if ($CLICSHOPPING_Customer->getID()) {
           $Qcustomer = $this->db->prepare('select c.customers_firstname,
@@ -315,26 +319,26 @@
 // recuperation des informations clients normaux pour enregistrement commandes avec en plus infos sur customers_group_id
       } else {
         $customer_address = ['customers_firstname' => null,
-                            'customers_lastname' => null,
-                            'customers_group_id' => null,
-                            'customers_telephone' => null,
-                            'customers_cellular_phone' => null,
-                            'customers_email_address' => null,
-                            'customers_tva_intracom' => null,
-                            'entry_company' => null,
-                            'entry_street_address' => null,
-                            'entry_suburb' => null,
-                            'entry_postcode' => null,
-                            'entry_city' => null,
-                            'entry_zone_id' => null,
-                            'zone_name' => null,
-                            'countries_id' => null,
-                            'countries_name' => null,
-                            'countries_iso_code_2' => null,
-                            'countries_iso_code_3' => null,
-                            'address_format_id' => 0,
-                            'entry_state' => null
-                          ];
+          'customers_lastname' => null,
+          'customers_group_id' => null,
+          'customers_telephone' => null,
+          'customers_cellular_phone' => null,
+          'customers_email_address' => null,
+          'customers_tva_intracom' => null,
+          'entry_company' => null,
+          'entry_street_address' => null,
+          'entry_suburb' => null,
+          'entry_postcode' => null,
+          'entry_city' => null,
+          'entry_zone_id' => null,
+          'zone_name' => null,
+          'countries_id' => null,
+          'countries_name' => null,
+          'countries_iso_code_2' => null,
+          'countries_iso_code_3' => null,
+          'address_format_id' => 0,
+          'entry_state' => null
+        ];
 
         if ($CLICSHOPPING_Customer->getID()) {
           $Qcustomer = $this->db->prepare('select c.customers_firstname,
@@ -373,22 +377,22 @@
 
       if (is_array($_SESSION['sendto']) && !empty($_SESSION['sendto'])) {
         $shipping_address = ['entry_firstname' => $_SESSION['sendto']['firstname'],
-                            'entry_lastname' => $_SESSION['sendto']['lastname'],
-                            'entry_company' => $_SESSION['sendto']['company'],
-                            'entry_street_address' => $_SESSION['sendto']['street_address'],
-                            'entry_suburb' => $_SESSION['sendto']['suburb'],
-                            'entry_postcode' => $_SESSION['sendto']['postcode'],
-                            'entry_city' => $_SESSION['sendto']['city'],
-                            'entry_zone_id' => $_SESSION['sendto']['zone_id'],
-                            'zone_name' => $_SESSION['sendto']['zone_name'],
-                            'entry_country_id' => $_SESSION['sendto']['country_id'],
-                            'countries_id' => $_SESSION['sendto']['country_id'],
-                            'countries_name' => $_SESSION['sendto']['country_name'],
-                            'countries_iso_code_2' => $_SESSION['sendto']['country_iso_code_2'],
-                            'countries_iso_code_3' => $_SESSION['sendto']['country_iso_code_3'],
-                            'address_format_id' => $_SESSION['sendto']['address_format_id'],
-                            'entry_state' => $_SESSION['sendto']['zone_name']
-                             ];
+          'entry_lastname' => $_SESSION['sendto']['lastname'],
+          'entry_company' => $_SESSION['sendto']['company'],
+          'entry_street_address' => $_SESSION['sendto']['street_address'],
+          'entry_suburb' => $_SESSION['sendto']['suburb'],
+          'entry_postcode' => $_SESSION['sendto']['postcode'],
+          'entry_city' => $_SESSION['sendto']['city'],
+          'entry_zone_id' => $_SESSION['sendto']['zone_id'],
+          'zone_name' => $_SESSION['sendto']['zone_name'],
+          'entry_country_id' => $_SESSION['sendto']['country_id'],
+          'countries_id' => $_SESSION['sendto']['country_id'],
+          'countries_name' => $_SESSION['sendto']['country_name'],
+          'countries_iso_code_2' => $_SESSION['sendto']['country_iso_code_2'],
+          'countries_iso_code_3' => $_SESSION['sendto']['country_iso_code_3'],
+          'address_format_id' => $_SESSION['sendto']['address_format_id'],
+          'entry_state' => $_SESSION['sendto']['zone_name']
+        ];
 
       } elseif (is_numeric($_SESSION['sendto'])) {
         $Qaddress = $this->db->prepare('select ab.entry_firstname,
@@ -421,42 +425,42 @@
       } else {
 
         $shipping_address = ['entry_firstname' => null,
-                            'entry_lastname' => null,
-                            'entry_company' => null,
-                            'entry_street_address' => null,
-                            'entry_suburb' => null,
-                            'entry_postcode' => null,
-                            'entry_city' => null,
-                            'entry_zone_id' => null,
-                            'zone_name' => null,
-                            'entry_country_id' => null,
-                            'countries_id' => null,
-                            'countries_name' => null,
-                            'countries_iso_code_2' => null,
-                            'countries_iso_code_3' => null,
-                            'address_format_id' => 0,
-                            'entry_state' => null
-                            ];
+          'entry_lastname' => null,
+          'entry_company' => null,
+          'entry_street_address' => null,
+          'entry_suburb' => null,
+          'entry_postcode' => null,
+          'entry_city' => null,
+          'entry_zone_id' => null,
+          'zone_name' => null,
+          'entry_country_id' => null,
+          'countries_id' => null,
+          'countries_name' => null,
+          'countries_iso_code_2' => null,
+          'countries_iso_code_3' => null,
+          'address_format_id' => 0,
+          'entry_state' => null
+        ];
       }
 
       if (isset($_SESSION['billto']) && is_array($_SESSION['billto']) && !empty($_SESSION['billto'])) {
         $billing_address = ['entry_firstname' => $_SESSION['billto']['firstname'],
-                            'entry_lastname' => $_SESSION['billto']['lastname'],
-                            'entry_company' => $_SESSION['billto']['company'],
-                            'entry_street_address' => $_SESSION['billto']['street_address'],
-                            'entry_suburb' => $_SESSION['billto']['suburb'],
-                            'entry_postcode' => $_SESSION['billto']['postcode'],
-                            'entry_city' => $_SESSION['billto']['city'],
-                            'entry_zone_id' => $_SESSION['billto']['zone_id'],
-                            'zone_name' => $_SESSION['billto']['zone_name'],
-                            'entry_country_id' => $_SESSION['billto']['country_id'],
-                            'countries_id' => $_SESSION['billto']['country_id'],
-                            'countries_name' => $_SESSION['billto']['country_name'],
-                            'countries_iso_code_2' => $_SESSION['billto']['country_iso_code_2'],
-                            'countries_iso_code_3' => $_SESSION['billto']['country_iso_code_3'],
-                            'address_format_id' => $_SESSION['billto']['address_format_id'],
-                            'entry_state' => $_SESSION['billto']['zone_name']
-                            ];
+          'entry_lastname' => $_SESSION['billto']['lastname'],
+          'entry_company' => $_SESSION['billto']['company'],
+          'entry_street_address' => $_SESSION['billto']['street_address'],
+          'entry_suburb' => $_SESSION['billto']['suburb'],
+          'entry_postcode' => $_SESSION['billto']['postcode'],
+          'entry_city' => $_SESSION['billto']['city'],
+          'entry_zone_id' => $_SESSION['billto']['zone_id'],
+          'zone_name' => $_SESSION['billto']['zone_name'],
+          'entry_country_id' => $_SESSION['billto']['country_id'],
+          'countries_id' => $_SESSION['billto']['country_id'],
+          'countries_name' => $_SESSION['billto']['country_name'],
+          'countries_iso_code_2' => $_SESSION['billto']['country_iso_code_2'],
+          'countries_iso_code_3' => $_SESSION['billto']['country_iso_code_3'],
+          'address_format_id' => $_SESSION['billto']['address_format_id'],
+          'entry_state' => $_SESSION['billto']['zone_name']
+        ];
       } else {
         $Qaddress = $this->db->prepare('select ab.entry_firstname,
                                                 ab.entry_lastname,
@@ -489,30 +493,30 @@
 
       if ($this->content_type == 'virtual') {
         $tax_address = ['entry_country_id' => $billing_address['entry_country_id'],
-                        'entry_zone_id' => $billing_address['entry_zone_id']
-                       ];
+          'entry_zone_id' => $billing_address['entry_zone_id']
+        ];
       } else {
         $tax_address = ['entry_country_id' => $shipping_address['entry_country_id'],
-                        'entry_zone_id' => $shipping_address['entry_zone_id']
-                       ];
+          'entry_zone_id' => $shipping_address['entry_zone_id']
+        ];
       }
 
       $this->info = ['order_status' => DEFAULT_ORDERS_STATUS_ID,
-                    'order_status_invoice' => DEFAULT_ORDERS_STATUS_INVOICE_ID,
-                    'currency' => $_SESSION['currency'],
-                    'currency_value' => $CLICSHOPPING_Currencies->currencies[$_SESSION['currency']]['value'],
-                    'payment_method' => isset($_SESSION['payment']) ? $_SESSION['payment'] : '',
-                    'cc_type' => '',
-                    'cc_owner' => '',
-                    'cc_number' => '',
-                    'cc_expires' => '',
-                    'shipping_method' => isset($_SESSION['shipping']) ? $_SESSION['shipping']['title'] : '',
-                    'shipping_cost' => isset($_SESSION['shipping']) ? $_SESSION['shipping']['cost'] : 0,
-                    'subtotal' => 0,
-                    'tax' => 0,
-                    'tax_groups' => array(),
-                    'comments' => (isset($_SESSION['comments']) && !empty($_SESSION['comments']) ? $_SESSION['comments'] : '')
-                     ];
+        'order_status_invoice' => DEFAULT_ORDERS_STATUS_INVOICE_ID,
+        'currency' => $_SESSION['currency'],
+        'currency_value' => $CLICSHOPPING_Currencies->currencies[$_SESSION['currency']]['value'],
+        'payment_method' => isset($_SESSION['payment']) ? $_SESSION['payment'] : '',
+        'cc_type' => '',
+        'cc_owner' => '',
+        'cc_number' => '',
+        'cc_expires' => '',
+        'shipping_method' => isset($_SESSION['shipping']) ? $_SESSION['shipping']['title'] : '',
+        'shipping_cost' => isset($_SESSION['shipping']) ? $_SESSION['shipping']['cost'] : 0,
+        'subtotal' => 0,
+        'tax' => 0,
+        'tax_groups' => array(),
+        'comments' => (isset($_SESSION['comments']) && !empty($_SESSION['comments']) ? $_SESSION['comments'] : '')
+      ];
 
 
       if (isset($_SESSION['payment'])) {
@@ -545,24 +549,24 @@
       }
 
       $this->customer = ['firstname' => $customer_address['customers_firstname'],
-                        'customers_group_id' => $customer_address['customers_group_id'],
-                        'lastname' => $customer_address['customers_lastname'],
-                        'company' => $company_name,
-                        'street_address' => $customer_address['entry_street_address'],
-                        'suburb' => $customer_address['entry_suburb'],
-                        'city' => $customer_address['entry_city'],
-                        'postcode' => $customer_address['entry_postcode'],
-                        'state' => ((!is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
-                        'zone_id' => $customer_address['entry_zone_id'],
-                        'country' => array('id' => $customer_address['countries_id'],
-                        'title' => $customer_address['countries_name'],
-                        'iso_code_2' => $customer_address['countries_iso_code_2'],
-                        'iso_code_3' => $customer_address['countries_iso_code_3']),
-                        'format_id' => $customer_address['address_format_id'],
-                        'telephone' => $customer_address['customers_telephone'],
-                        'cellular_phone' => $customer_address['customers_cellular_phone'],
-                        'email_address' => $customer_address['customers_email_address']
-                         ];
+        'customers_group_id' => $customer_address['customers_group_id'],
+        'lastname' => $customer_address['customers_lastname'],
+        'company' => $company_name,
+        'street_address' => $customer_address['entry_street_address'],
+        'suburb' => $customer_address['entry_suburb'],
+        'city' => $customer_address['entry_city'],
+        'postcode' => $customer_address['entry_postcode'],
+        'state' => ((!is_null($customer_address['entry_state'])) ? $customer_address['entry_state'] : $customer_address['zone_name']),
+        'zone_id' => $customer_address['entry_zone_id'],
+        'country' => array('id' => $customer_address['countries_id'],
+          'title' => $customer_address['countries_name'],
+          'iso_code_2' => $customer_address['countries_iso_code_2'],
+          'iso_code_3' => $customer_address['countries_iso_code_3']),
+        'format_id' => $customer_address['address_format_id'],
+        'telephone' => $customer_address['customers_telephone'],
+        'cellular_phone' => $customer_address['customers_cellular_phone'],
+        'email_address' => $customer_address['customers_email_address']
+      ];
 
 // recuperation des informations societes pour les clients B2B qui est transmit au fichier checkout_process.php
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
@@ -572,32 +576,32 @@
       }
 
       $this->delivery = ['firstname' => $shipping_address['entry_firstname'],
-                        'lastname' => $shipping_address['entry_lastname'],
-                        'company' => $shipping_address['entry_company'],
-                        'street_address' => $shipping_address['entry_street_address'],
-                        'suburb' => $shipping_address['entry_suburb'],
-                        'city' => $shipping_address['entry_city'],
-                        'postcode' => $shipping_address['entry_postcode'],
-                        'state' => ((!is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
-                        'zone_id' => $shipping_address['entry_zone_id'],
-                        'country' => array('id' => $shipping_address['countries_id'], 'title' => $shipping_address['countries_name'], 'iso_code_2' => $shipping_address['countries_iso_code_2'], 'iso_code_3' => $shipping_address['countries_iso_code_3']),
-                        'country_id' => $shipping_address['entry_country_id'],
-                        'format_id' => $shipping_address['address_format_id']
-                         ];
+        'lastname' => $shipping_address['entry_lastname'],
+        'company' => $shipping_address['entry_company'],
+        'street_address' => $shipping_address['entry_street_address'],
+        'suburb' => $shipping_address['entry_suburb'],
+        'city' => $shipping_address['entry_city'],
+        'postcode' => $shipping_address['entry_postcode'],
+        'state' => ((!is_null($shipping_address['entry_state'])) ? $shipping_address['entry_state'] : $shipping_address['zone_name']),
+        'zone_id' => $shipping_address['entry_zone_id'],
+        'country' => array('id' => $shipping_address['countries_id'], 'title' => $shipping_address['countries_name'], 'iso_code_2' => $shipping_address['countries_iso_code_2'], 'iso_code_3' => $shipping_address['countries_iso_code_3']),
+        'country_id' => $shipping_address['entry_country_id'],
+        'format_id' => $shipping_address['address_format_id']
+      ];
 
       $this->billing = ['firstname' => $billing_address['entry_firstname'],
-                        'lastname' => $billing_address['entry_lastname'],
-                        'company' => $billing_address['entry_company'],
-                        'street_address' => $billing_address['entry_street_address'],
-                        'suburb' => $billing_address['entry_suburb'],
-                        'city' => $billing_address['entry_city'],
-                        'postcode' => $billing_address['entry_postcode'],
-                        'state' => ((!is_null($billing_address['entry_state'])) ? $billing_address['entry_state'] : $billing_address['zone_name']),
-                        'zone_id' => $billing_address['entry_zone_id'],
-                        'country' => array('id' => $billing_address['countries_id'], 'title' => $billing_address['countries_name'], 'iso_code_2' => $billing_address['countries_iso_code_2'], 'iso_code_3' => $billing_address['countries_iso_code_3']),
-                        'country_id' => $billing_address['entry_country_id'],
-                        'format_id' => $billing_address['address_format_id']
-                        ];
+        'lastname' => $billing_address['entry_lastname'],
+        'company' => $billing_address['entry_company'],
+        'street_address' => $billing_address['entry_street_address'],
+        'suburb' => $billing_address['entry_suburb'],
+        'city' => $billing_address['entry_city'],
+        'postcode' => $billing_address['entry_postcode'],
+        'state' => ((!is_null($billing_address['entry_state'])) ? $billing_address['entry_state'] : $billing_address['zone_name']),
+        'zone_id' => $billing_address['entry_zone_id'],
+        'country' => array('id' => $billing_address['countries_id'], 'title' => $billing_address['countries_name'], 'iso_code_2' => $billing_address['countries_iso_code_2'], 'iso_code_3' => $billing_address['countries_iso_code_3']),
+        'country_id' => $billing_address['entry_country_id'],
+        'format_id' => $billing_address['address_format_id']
+      ];
 
       $index = 0;
 
@@ -651,15 +655,15 @@
         }
 
         $this->products[$index] = ['qty' => $products[$i]['quantity'],
-                                    'name' => $products[$i]['name'],
-                                    'model' => $model[$i],
-                                    'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-                                    'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-                                    'price' => $products[$i]['price'],
-                                    'final_price' => $products[$i]['price'] + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
-                                    'weight' => $products[$i]['weight'],
-                                    'id' => $products[$i]['id']
-                                   ];
+          'name' => $products[$i]['name'],
+          'model' => $model[$i],
+          'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+          'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+          'price' => $products[$i]['price'],
+          'final_price' => $products[$i]['price'] + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
+          'weight' => $products[$i]['weight'],
+          'id' => $products[$i]['id']
+        ];
 
 // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
@@ -688,15 +692,15 @@
             }
 
             $this->products[$index] = ['qty' => $products[$i]['quantity'],
-                                       'name' => $products[$i]['name'],
-                                       'model' => $model[$i],
-                                       'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-                                       'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-                                       'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
-                                       'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
-                                       'weight' => $products[$i]['weight'],
-                                       'id' => $products[$i]['id']
-                                      ];
+              'name' => $products[$i]['name'],
+              'model' => $model[$i],
+              'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+              'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+              'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
+              'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
+              'weight' => $products[$i]['weight'],
+              'id' => $products[$i]['id']
+            ];
 
           }
         }
@@ -709,14 +713,14 @@
             $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
 
             $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options_name'),
-                                                                'value' => $Qattributes->value('products_options_values_name'),
-                                                                'option_id' => $option,
-                                                                'value_id' => $value, //products_options_values_id
-                                                                'prefix' => $Qattributes->value('price_prefix'),
-                                                                'price' => $Qattributes->value('options_values_price'),
-                                                                'reference' => $Qattributes->value('products_attributes_reference'),
-                                                                'products_attributes_image' => $Qattributes->value('products_attributes_image')
-                                                                ];
+              'value' => $Qattributes->value('products_options_values_name'),
+              'option_id' => $option,
+              'value_id' => $value, //products_options_values_id
+              'prefix' => $Qattributes->value('price_prefix'),
+              'price' => $Qattributes->value('options_values_price'),
+              'reference' => $Qattributes->value('products_attributes_reference'),
+              'products_attributes_image' => $Qattributes->value('products_attributes_image')
+            ];
 
             $subindex++;
           }
@@ -781,10 +785,11 @@
       $this->getFinalizeCouponDiscount();
     }
 
-/***********************************************************
-* Insert
-***********************************************************/
-    public function Insert() {
+    /***********************************************************
+     * Insert
+     ***********************************************************/
+    public function Insert()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
@@ -822,48 +827,48 @@
       }
 
       $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                        'customers_group_id' => (int)$this->customer['customers_group_id'],
-                        'customers_name' => $this->customer['firstname'] . ' ' . $this->customer['lastname'],
-                        'customers_company' => $this->customer['company'],
-                        'customers_street_address' => $this->customer['street_address'],
-                        'customers_suburb' => $this->customer['suburb'],
-                        'customers_city' => $this->customer['city'],
-                        'customers_postcode' => $this->customer['postcode'],
-                        'customers_state' => $this->customer['state'],
-                        'customers_country' => $this->customer['country']['title'],
-                        'customers_telephone' => $this->customer['telephone'],
-                        'customers_email_address' => $this->customer['email_address'],
-                        'customers_address_format_id' => (int)$this->customer['format_id'],
-                        'delivery_name' => trim($this->delivery['firstname'] . ' ' . $this->delivery['lastname']),
-                        'delivery_company' => $this->delivery['company'],
-                        'delivery_street_address' => $this->delivery['street_address'],
-                        'delivery_suburb' => $this->delivery['suburb'],
-                        'delivery_city' => $this->delivery['city'],
-                        'delivery_postcode' => $this->delivery['postcode'],
-                        'delivery_state' => $this->delivery['state'],
-                        'delivery_country' => $this->delivery['country']['title'],
-                        'delivery_address_format_id' => (int)$this->delivery['format_id'],
-                        'billing_name' => $this->billing['firstname'] . ' ' . $this->billing['lastname'],
-                        'billing_company' => $this->billing['company'],
-                        'billing_street_address' => $this->billing['street_address'],
-                        'billing_suburb' => $this->billing['suburb'],
-                        'billing_city' => $this->billing['city'],
-                        'billing_postcode' => $this->billing['postcode'],
-                        'billing_state' => $this->billing['state'],
-                        'billing_country' => $this->billing['country']['title'],
-                        'billing_address_format_id' => (int)$this->billing['format_id'],
-                        'payment_method' => $this->info['payment_method'],
-                        'cc_type' => $this->info['cc_type'],
-                        'cc_owner' => $cc_owner,
-                        'cc_number' => $this->info['cc_number'],
-                        'cc_expires' => $this->info['cc_expires'],
-                        'date_purchased' => 'now()',
-                        'orders_status' => $this->info['order_status'],
-                        'orders_status_invoice' => $this->info['order_status_invoice'],
-                        'currency' => $this->info['currency'],
-                        'currency_value' => $this->info['currency_value'],
-                        'customers_cellular_phone' => $this->customer['cellular_phone']
-                      ];
+        'customers_group_id' => (int)$this->customer['customers_group_id'],
+        'customers_name' => $this->customer['firstname'] . ' ' . $this->customer['lastname'],
+        'customers_company' => $this->customer['company'],
+        'customers_street_address' => $this->customer['street_address'],
+        'customers_suburb' => $this->customer['suburb'],
+        'customers_city' => $this->customer['city'],
+        'customers_postcode' => $this->customer['postcode'],
+        'customers_state' => $this->customer['state'],
+        'customers_country' => $this->customer['country']['title'],
+        'customers_telephone' => $this->customer['telephone'],
+        'customers_email_address' => $this->customer['email_address'],
+        'customers_address_format_id' => (int)$this->customer['format_id'],
+        'delivery_name' => trim($this->delivery['firstname'] . ' ' . $this->delivery['lastname']),
+        'delivery_company' => $this->delivery['company'],
+        'delivery_street_address' => $this->delivery['street_address'],
+        'delivery_suburb' => $this->delivery['suburb'],
+        'delivery_city' => $this->delivery['city'],
+        'delivery_postcode' => $this->delivery['postcode'],
+        'delivery_state' => $this->delivery['state'],
+        'delivery_country' => $this->delivery['country']['title'],
+        'delivery_address_format_id' => (int)$this->delivery['format_id'],
+        'billing_name' => $this->billing['firstname'] . ' ' . $this->billing['lastname'],
+        'billing_company' => $this->billing['company'],
+        'billing_street_address' => $this->billing['street_address'],
+        'billing_suburb' => $this->billing['suburb'],
+        'billing_city' => $this->billing['city'],
+        'billing_postcode' => $this->billing['postcode'],
+        'billing_state' => $this->billing['state'],
+        'billing_country' => $this->billing['country']['title'],
+        'billing_address_format_id' => (int)$this->billing['format_id'],
+        'payment_method' => $this->info['payment_method'],
+        'cc_type' => $this->info['cc_type'],
+        'cc_owner' => $cc_owner,
+        'cc_number' => $this->info['cc_number'],
+        'cc_expires' => $this->info['cc_expires'],
+        'date_purchased' => 'now()',
+        'orders_status' => $this->info['order_status'],
+        'orders_status_invoice' => $this->info['order_status_invoice'],
+        'currency' => $this->info['currency'],
+        'currency_value' => $this->info['currency_value'],
+        'customers_cellular_phone' => $this->customer['cellular_phone']
+      ];
 
 // recuperation des informations societes pour les clients B2B (voir fichier la classe OrderAdmin)
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
@@ -881,12 +886,12 @@
 
       for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
         $sql_data_array = ['orders_id' => (int)$this->insertID,
-                            'title' => $order_totals[$i]['title'],
-                            'text' => $order_totals[$i]['text'],
-                            'value' => (float)$order_totals[$i]['value'],
-                            'class' => $order_totals[$i]['code'],
-                            'sort_order' => (int)$order_totals[$i]['sort_order']
-                           ];
+          'title' => $order_totals[$i]['title'],
+          'text' => $order_totals[$i]['text'],
+          'value' => (float)$order_totals[$i]['value'],
+          'class' => $order_totals[$i]['code'],
+          'sort_order' => (int)$order_totals[$i]['sort_order']
+        ];
         $this->db->save('orders_total', $sql_data_array);
       }
 
@@ -900,7 +905,7 @@
                                                               where products_id = :products_id
                                                               and customers_group_id =  :customers_group_id
                                                             ');
-          $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID ($this->products[$i]['id']));
+          $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($this->products[$i]['id']));
           $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
           $QproductsModuleCustomersGroup->execute();
 
@@ -914,14 +919,14 @@
 
 // save data
         $sql_data_array = ['orders_id' => (int)$this->insertID,
-                          'products_id' => (int)$CLICSHOPPING_Prod::getProductID($this->products[$i]['id']),
-                          'products_model' => $products_model,
-                          'products_name' => $this->products[$i]['name'],
-                          'products_price' => (float)$this->products[$i]['price'],
-                          'final_price' => (float)$this->products[$i]['final_price'],
-                          'products_tax' => (float)$this->products[$i]['tax'],
-                          'products_quantity' =>(int)$this->products[$i]['qty']
-                          ];
+          'products_id' => (int)$CLICSHOPPING_Prod::getProductID($this->products[$i]['id']),
+          'products_model' => $products_model,
+          'products_name' => $this->products[$i]['name'],
+          'products_price' => (float)$this->products[$i]['price'],
+          'final_price' => (float)$this->products[$i]['final_price'],
+          'products_tax' => (float)$this->products[$i]['tax'],
+          'products_quantity' => (int)$this->products[$i]['qty']
+        ];
         $this->db->save('orders_products', $sql_data_array);
 
         $order_products_id = $this->db->lastInsertId();
@@ -931,24 +936,24 @@
             $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($this->products[$i]['id'], $this->products[$i]['attributes'][$j]['option_id'], $this->products[$i]['attributes'][$j]['value_id'], $this->lang->getId());
 
             $sql_data_array = ['orders_id' => (int)$this->insertID,
-                                'orders_products_id' => (int)$order_products_id,
-                                'products_options' => $Qattributes->value('products_options_name'),
-                                'products_options_values' => $Qattributes->value('products_options_values_name'),
-                                'options_values_price' => (float)$Qattributes->value('options_values_price'),
-                                'price_prefix' => $Qattributes->value('price_prefix'),
-                                'products_attributes_reference' => $Qattributes->value('products_attributes_reference')
-                              ];
+              'orders_products_id' => (int)$order_products_id,
+              'products_options' => $Qattributes->value('products_options_name'),
+              'products_options_values' => $Qattributes->value('products_options_values_name'),
+              'options_values_price' => (float)$Qattributes->value('options_values_price'),
+              'price_prefix' => $Qattributes->value('price_prefix'),
+              'products_attributes_reference' => $Qattributes->value('products_attributes_reference')
+            ];
 
             $this->db->save('orders_products_attributes', $sql_data_array);
 
             if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
 
               $sql_data_array = ['orders_id' => (int)$this->insertID,
-                                'orders_products_id' => (int)$order_products_id,
-                                'orders_products_filename' => $Qattributes->value('products_attributes_filename'),
-                                'download_maxdays' => (int)$Qattributes->value('products_attributes_maxdays'),
-                                'download_count' => (int)$Qattributes->value('products_attributes_maxcount')
-                                ];
+                'orders_products_id' => (int)$order_products_id,
+                'orders_products_filename' => $Qattributes->value('products_attributes_filename'),
+                'download_maxdays' => (int)$Qattributes->value('products_attributes_maxdays'),
+                'download_count' => (int)$Qattributes->value('products_attributes_maxcount')
+              ];
 
               $this->db->save('orders_products_download', $sql_data_array);
             }
@@ -961,19 +966,21 @@
       return $this->insertID;
     }
 
-/** Last order id
- * @return int last order id
- */
-    public function getLastOrderId() {
+    /** Last order id
+     * @return int last order id
+     */
+    public function getLastOrderId()
+    {
       return $this->insertID;
     }
 
-/**
- * GDPR Regulation
- * @param int $last_order_id
- * @param int $customer_id
- */
-    public function saveGdpr($last_order_id, $customer_id) {
+    /**
+     * GDPR Regulation
+     * @param int $last_order_id
+     * @param int $customer_id
+     */
+    public function saveGdpr($last_order_id, $customer_id)
+    {
       $Qgdpr = $this->db->prepare('select no_ip_address
                                    from :table_customers_gdpr
                                    where customers_id = :customers_id
@@ -986,24 +993,25 @@
         $ip_address = '';
         $provider_name = '';
       } else {
-        $ip_address =  HTTP::getIPAddress();
+        $ip_address = HTTP::getIPAddress();
         $provider_name = HTTP::getProviderNameCustomer();
       }
 
       $update_array = ['orders_id' => $last_order_id];
 
       $array = ['client_computer_ip' => $ip_address,
-                'provider_name_client' => $provider_name,
-               ];
+        'provider_name_client' => $provider_name,
+      ];
 
       $this->db->save('orders', $array, $update_array);
     }
 
-/***********************************************************
-* Process
-***********************************************************/
+    /***********************************************************
+     * Process
+     ***********************************************************/
 
-    public function process($order_id = null) {
+    public function process($order_id = null)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -1018,7 +1026,7 @@
       $Qproducts->bindInt(':orders_id', $order_id);
       $Qproducts->execute();
 
-      while ( $Qproducts->fetch() ) {
+      while ($Qproducts->fetch()) {
 // Stock Update
         if (STOCK_LIMITED == 'true') {
           if (DOWNLOAD_ENABLED == 'true') {
@@ -1091,16 +1099,16 @@
 
             if ($stock_left != $Qstock->valueInt('products_quantity')) {
               $this->db->save('products', ['products_quantity' => (int)$stock_left],
-                                          ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
-                                          ]
-                              );
+                ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
+                ]
+              );
             }
 
-            if ( ($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') ) {
+            if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false')) {
               $this->db->save('products', ['products_status' => 0],
-                                          ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
-                                          ]
-                              );
+                ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
+                ]
+              );
             }
 
 // alert an email if the product stock is < stock reorder level
@@ -1124,37 +1132,39 @@
       $this->adminOrdersStatusHistory($order_id);
       $this->sendCustomerEmail($order_id);
 
-      $CLICSHOPPING_Hooks->call('Orders','Process');
+      $CLICSHOPPING_Hooks->call('Orders', 'Process');
     }
 
-/*
- * adminOrdersStatusHistory : Status History order
- * @param $insert_id, order_id, $comment : customer order
- * @return array and save history
- * @access public
-*/
-    public function adminOrdersStatusHistory($insert_id = null, $comment = null) {
+    /*
+     * adminOrdersStatusHistory : Status History order
+     * @param $insert_id, order_id, $comment : customer order
+     * @return array and save history
+     * @access public
+    */
+    public function adminOrdersStatusHistory($insert_id = null, $comment = null)
+    {
       $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
 
       $sql_data_array = ['orders_id' => (int)$insert_id,
-                         'orders_status_id' => (int)$this->info['order_status'],
-                         'orders_status_invoice_id' => (int)$this->info['order_status_invoice'],
-                         'admin_user_name' => '',
-                         'date_added' => 'now()',
-                         'customer_notified' => (int)$customer_notification,
-                         'comments' => $this->info['comments'] . $comment
-                        ];
+        'orders_status_id' => (int)$this->info['order_status'],
+        'orders_status_invoice_id' => (int)$this->info['order_status_invoice'],
+        'admin_user_name' => '',
+        'date_added' => 'now()',
+        'customer_notified' => (int)$customer_notification,
+        'comments' => $this->info['comments'] . $comment
+      ];
 
       $this->db->save('orders_status_history', $sql_data_array);
     }
 
-/*
- * sendCustomerEmail : sent email to customer
- * @param $insert_id
- * @return email
- * @access public
-*/
-    public function sendCustomerEmail($insert_id) {
+    /*
+     * sendCustomerEmail : sent email to customer
+     * @param $insert_id
+     * @return email
+     * @access public
+    */
+    public function sendCustomerEmail($insert_id)
+    {
       global $CLICSHOPPING_PM;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -1185,7 +1195,7 @@
 
         $message_order = stripslashes(CLICSHOPPING::getDef('entry_text_order_number')) . ' ' . $insert_id . "\n" . stripslashes(CLICSHOPPING::getDef('email_text_invoice_url'));
 
-        $email_order = $message_order . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . $insert_id) . "\n" .  CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
+        $email_order = $message_order . ' ' . CLICSHOPPING::link(null, 'Account&HistoryInfo&order_id=' . $insert_id) . "\n" . CLICSHOPPING::getDef('email_text_date_ordered') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n\n";
 
         if ($this->info['comments']) {
           $email_order .= HTML::outputProtected($this->info['comments']) . "\n\n";
@@ -1195,7 +1205,7 @@
 
         $email_order .= html_entity_decode($message_order) . "\n" . CLICSHOPPING::getDef('email_separator') . "\n";
 
-        while ( $Qproducts->fetch() ) {
+        while ($Qproducts->fetch()) {
 
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
             $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
@@ -1204,7 +1214,7 @@
                                                                   and customers_group_id =  :customers_group_id
                                                                 ');
 
-            $QproductsModuleCustomersGroup->bindInt(':products_id', $Qproducts->valueInt('products_id') );
+            $QproductsModuleCustomersGroup->bindInt(':products_id', $Qproducts->valueInt('products_id'));
             $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
             $QproductsModuleCustomersGroup->execute();
 
@@ -1216,7 +1226,7 @@
             $products_model = $Qproducts->value('products_model');
           }
 
-          $email_order .= $Qproducts->valueInt('products_quantity') . ' x ' . $Qproducts->value('products_name') . ' (' . $products_model . ') = ' . html_entity_decode($CLICSHOPPING_Currencies->display_price($Qproducts->value('products_price'), $Qproducts->value('products_tax'), $Qproducts->valueInt('products_quantity') )) . "\n";
+          $email_order .= $Qproducts->valueInt('products_quantity') . ' x ' . $Qproducts->value('products_name') . ' (' . $products_model . ') = ' . html_entity_decode($CLICSHOPPING_Currencies->display_price($Qproducts->value('products_price'), $Qproducts->value('products_tax'), $Qproducts->valueInt('products_quantity'))) . "\n";
         }
 
         $email_order .= CLICSHOPPING::getDef('email_separator') . "\n";
@@ -1231,22 +1241,22 @@
         $Qtotals->bindInt(':orders_id', $insert_id);
         $Qtotals->execute();
 
-        while ( $Qtotals->fetch() ) {
+        while ($Qtotals->fetch()) {
           $email_order .= strip_tags($Qtotals->value('title') . ' ' . $Qtotals->value('text')) . "\n";
         }
 
 
         if ($this->content_type != 'virtual') {
           $message_order = stripslashes(CLICSHOPPING::getDef('email_text_delivery_address'));
-          $email_order .= "\n" . $message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n" .  AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['sendto'], 0, '', "\n") . "\n";
+          $email_order .= "\n" . $message_order . "\n" . CLICSHOPPING::getDef('email_separator') . "\n" . AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['sendto'], 0, '', "\n") . "\n";
         }
 
         $message_order = stripslashes(CLICSHOPPING::getDef('email_text_billing_address'));
-        $email_order .= "\n" .$message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n" .  AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['billto'], 0, '', "\n") . "\n\n";
+        $email_order .= "\n" . $message_order . "\n" . CLICSHOPPING::getDef('email_separator') . "\n" . AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['billto'], 0, '', "\n") . "\n\n";
 
-        if (isset($CLICSHOPPING_PM) ) {
+        if (isset($CLICSHOPPING_PM)) {
           $message_order = stripslashes(CLICSHOPPING::getDef('email_text_payment_method'));
-          $email_order .= $message_order . "\n" .  CLICSHOPPING::getDef('email_separator') . "\n";
+          $email_order .= $message_order . "\n" . CLICSHOPPING::getDef('email_separator') . "\n";
 
           $email_order .= $this->info['payment_method'] . "\n\n";
 
@@ -1290,7 +1300,7 @@
 
           $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
 
-          foreach($text as $key => $email){
+          foreach ($text as $key => $email) {
             $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
           }
         }
@@ -1298,7 +1308,8 @@
     }
 
 // Alert by mail product exhausted if a product is 0 or < 0
-    public function sendEmailAlertProductsExhausted($insert_id) {
+    public function sendEmailAlertProductsExhausted($insert_id)
+    {
       $CLICSHOPPING_Prod = Registry::get('Db');
 
       if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
@@ -1316,9 +1327,9 @@
         $Qproducts->execute();
 
 
-        if ( $Qproducts->fetch() !== false ) {
+        if ($Qproducts->fetch() !== false) {
 
-          while ( $Qproducts->fetch() ) {
+          while ($Qproducts->fetch()) {
 
             $Qstock = $this->db->prepare('select products_quantity_alert,
                                                   products_stock
@@ -1326,7 +1337,7 @@
                                             where products_id = :products_id
                                           ');
 
-            $Qstock->bindInt(':products_id', $Qproducts->valueInt('products_id') );
+            $Qstock->bindInt(':products_id', $Qproducts->valueInt('products_id'));
             $Qstock->execute();
 
             $stock_left = $Qstock->valueInt('products_stock');
@@ -1334,7 +1345,7 @@
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
               $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_subject_stock', ['store_name' => STORE_NAME]));
               $email_product_exhausted_stock = stripslashes(CLICSHOPPING::getDef('email_text_stock'));
-              $email_product_exhausted_stock .=  "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" .  CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) .  "\n";
+              $email_product_exhausted_stock .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . '  ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n";
 
               $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $email_product_exhausted_stock, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
@@ -1343,7 +1354,8 @@
       }
     }
 
-    public function sendEmailAlertStockWarning($insert_id) {
+    public function sendEmailAlertStockWarning($insert_id)
+    {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
       if (STOCK_ALERT_PRODUCT_REORDER_LEVEL == 'true') {
@@ -1361,9 +1373,9 @@
           $Qproducts->bindInt(':orders_id', $insert_id);
           $Qproducts->execute();
 
-          if ( $Qproducts->fetch() !== false ) {
+          if ($Qproducts->fetch() !== false) {
 
-            while ( $Qproducts->fetch() ) {
+            while ($Qproducts->fetch()) {
 
               $Qstock = $this->db->prepare('select products_quantity_alert,
                                                     products_stock
@@ -1371,7 +1383,7 @@
                                             where products_id = :products_id
                                           ');
 
-              $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')) );
+              $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id')));
               $Qstock->execute();
 
               $stock_products_quantity_alert = $Qstock->valueInt('products_quantity_alert');
@@ -1384,7 +1396,7 @@
                 $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_suject_stock', ['store_name' => STORE_NAME]));
 
                 $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('email_reorder_level_text_alert_stock'));
-                $reorder_stock_email .= "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model')  . ' ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' '  .  $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) .  "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' .$Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert  .'</strong>';
+                $reorder_stock_email .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . ' ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert . '</strong>';
 
                 $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
@@ -1393,7 +1405,7 @@
                 $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_suject_stock', ['store_name' => STORE_NAME]));
 
                 $reorder_stock_email = stripslashes(CLICSHOPPING::getDef('email_reorder_level_text_stock'));
-                $reorder_stock_email .= "\n"  . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) .  "\n" . CLICSHOPPING::getDef('email_text_model')  . ' ' . $Qproducts->value('products_model')  .  "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name')  .  "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' '  .  $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) .  "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' .$Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert  .'</strong>';
+                $reorder_stock_email .= "\n" . CLICSHOPPING::getDef('email_text_date_alert') . ' ' . strftime(CLICSHOPPING::getDef('date_format_long')) . "\n" . CLICSHOPPING::getDef('email_text_model') . ' ' . $Qproducts->value('products_model') . "\n" . CLICSHOPPING::getDef('email_text_products_name') . ' ' . $Qproducts->value('products_name') . "\n" . CLICSHOPPING::getDef('email_text_id_product') . ' ' . $CLICSHOPPING_Prod::getProductID($Qproducts->value('products_id')) . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_url') . ' </strong>' . HTTP::getShopUrlDomain() . 'index.php?Products&Description&products_id=' . $Qproducts->value('products_id') . "\n" . '<strong>' . CLICSHOPPING::getDef('email_text_product_stock') . ' ' . $stock_products_quantity_alert . '</strong>';
 
                 $this->mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_text_subject_stock, $reorder_stock_email, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
@@ -1403,14 +1415,15 @@
       }
     }
 
-/*
- * Verify the coupon
- * @param
- * @return
- * @access private
-*/
+    /*
+     * Verify the coupon
+     * @param
+     * @return
+     * @access private
+    */
 
-    private function getCodeCoupon() {
+    private function getCodeCoupon()
+    {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
@@ -1420,7 +1433,7 @@
         if ((isset($_SESSION['coupon']) && !empty($_SESSION['coupon'])) || !empty($coupon)) {
           if (empty($_SESSION['coupon'])) {
             $_SESSION['coupon'] = $coupon;
-            $code_coupon =  HTML::sanitize($_SESSION['coupon']);
+            $code_coupon = HTML::sanitize($_SESSION['coupon']);
           } else {
             $code_coupon = HTML::sanitize($_SESSION['coupon']);
           }
@@ -1435,15 +1448,16 @@
       }
     }
 
-/*
- * finalize the coupon discount processs
- * @param
- * @return array with the coupon discount
- * @access private
-*/
-    private function getFinalizeCouponDiscount() {
-      if( is_object( $this->coupon ) ) {
-        $this->info['total'] = $this->coupon->getFinalizeDiscount( $this->info );
+    /*
+     * finalize the coupon discount processs
+     * @param
+     * @return array with the coupon discount
+     * @access private
+    */
+    private function getFinalizeCouponDiscount()
+    {
+      if (is_object($this->coupon)) {
+        $this->info['total'] = $this->coupon->getFinalizeDiscount($this->info);
       }
       return $this->info['total'];
     }

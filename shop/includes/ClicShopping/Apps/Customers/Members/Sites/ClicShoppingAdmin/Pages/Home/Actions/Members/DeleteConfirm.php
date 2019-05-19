@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Members\Sites\ClicShoppingAdmin\Pages\Home\Actions\Members;
@@ -15,12 +15,14 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract {
+  class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Members = Registry::get('Members');
-      
+
       $customers_id = HTML::sanitize($_GET['cID']);
 
       if ($_POST['delete_reviews'] == 'on') {
@@ -29,16 +31,16 @@
                                                  from :table_reviews
                                                  where customers_id = :customers_id
                                                  ');
-        $Qreviews->bindInt(':customers_id',(int)$customers_id);
+        $Qreviews->bindInt(':customers_id', (int)$customers_id);
         $Qreviews->execute();
 
-        while ($Qreviews->fetch() !== false ) {
+        while ($Qreviews->fetch() !== false) {
 
           $Qdelete = $CLICSHOPPING_Members->db->prepare('delete
                                                  from :table_reviews_description
                                                  where reviews_id = :reviews_id
                                                 ');
-          $Qdelete->bindInt(':reviews_id',  (int)$Qreviews->valueInt('reviews_id'));
+          $Qdelete->bindInt(':reviews_id', (int)$Qreviews->valueInt('reviews_id'));
           $Qdelete->execute();
         }
 
@@ -104,7 +106,6 @@
                                             ');
       $Qdelete->bindInt(':customers_id', (int)$customers_id);
       $Qdelete->execute();
-
 
 
       $CLICSHOPPING_Members->redirect('Members');

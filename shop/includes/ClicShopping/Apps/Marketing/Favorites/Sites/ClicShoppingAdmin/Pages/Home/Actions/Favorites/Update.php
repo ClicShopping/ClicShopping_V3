@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Marketing\Favorites\Sites\ClicShoppingAdmin\Pages\Home\Actions\Favorites;
@@ -15,8 +15,10 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract {
-    public function execute() {
+  class Update extends \ClicShopping\OM\PagesActionsAbstract
+  {
+    public function execute()
+    {
 
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -46,13 +48,13 @@
                                                           scheduled_date = :scheduled_date
                                                       where products_favorites_id = :products_favorites_id
                                                     ');
-      $Qupdate->bindValue(':expires_date', !empty($expires_date) ? $expires_date  : null);
+      $Qupdate->bindValue(':expires_date', !empty($expires_date) ? $expires_date : null);
       $Qupdate->bindValue(':scheduled_date', !empty($scheduled_date) ? $scheduled_date : null);
       $Qupdate->bindInt(':products_favorites_id', $products_favorites_id);
 
       $Qupdate->execute();
 
-      $CLICSHOPPING_Hooks->call('Favorites','Update');
+      $CLICSHOPPING_Hooks->call('Favorites', 'Update');
 
       $CLICSHOPPING_Favorites->redirect('Favorites', (isset($page) ? 'page=' . $page . '&' : '') . 'sID=' . $products_favorites_id);
     }

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Categories\Classes\ClicShoppingAdmin;
 
@@ -15,23 +15,25 @@
 
   use ClicShopping\Apps\Catalog\Categories\Classes\Shop\CategoryTree;
 
-  class Status {
+  class Status
+  {
 
     protected $status;
     protected $categories_id;
 
-/**
- * Categories Status - Sets the status of a categorie
- *
- * @param string categories_id, status
- * @return string status on or off
- * @access public
- */
+    /**
+     * Categories Status - Sets the status of a categorie
+     *
+     * @param string categories_id, status
+     * @return string status on or off
+     * @access public
+     */
 
-    public static function getCategoriesStatus($categories_id, $status) {
+    public static function getCategoriesStatus($categories_id, $status)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ( Registry::exists('CategoryTree') ) {
+      if (Registry::exists('CategoryTree')) {
         $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
       } else {
         $CLICSHOPPING_CategoryTree = new CategoryTree();
@@ -41,12 +43,12 @@
       if ($status == 1) {
         $data = ['id' => $categories_id];
 
-        foreach ( array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c ) {
+        foreach (array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c) {
           $sql_array = ['status' => 1,
-                        'last_modified' => 'now()'
-                       ];
+            'last_modified' => 'now()'
+          ];
 
-          $update_array =  ['categories_id' => (int)$c];
+          $update_array = ['categories_id' => (int)$c];
 
           $CLICSHOPPING_Db->save('categories', $sql_array, $update_array);
         }
@@ -54,13 +56,13 @@
       } elseif ($status == 0) {
         $data = ['id' => $categories_id];
 
-        foreach ( array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c ) {
+        foreach (array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c) {
 
           $sql_array = ['status' => 0,
-                       'last_modified' => 'now()'
-                       ];
+            'last_modified' => 'now()'
+          ];
 
-          $update_array =  ['categories_id' => (int)$c];
+          $update_array = ['categories_id' => (int)$c];
 
           $CLICSHOPPING_Db->save('categories', $sql_array, $update_array);
         }

@@ -1,21 +1,23 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
 
-  class Tax extends \ClicShopping\Sites\Shop\Tax {
+  class Tax extends \ClicShopping\Sites\Shop\Tax
+  {
 
-    public function getTaxRate($class_id, $country_id = null, $zone_id = null) {
+    public function getTaxRate($class_id, $country_id = null, $zone_id = null)
+    {
       if (!isset($country_id) && !isset($zone_id)) {
         $country_id = STORE_COUNTRY;
         $zone_id = STORE_ZONE;
@@ -24,7 +26,8 @@
       return parent::getTaxRate($class_id, $country_id, $zone_id);
     }
 
-    public static function getClasses() {
+    public static function getClasses()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qtc = $CLICSHOPPING_Db->query('select tax_class_id,
@@ -38,7 +41,8 @@
     }
 
 // Add tax to a products price
-    public static function addTax($price, $tax, $override = false)  {
+    public static function addTax($price, $tax, $override = false)
+    {
       if (((DISPLAY_PRICE_WITH_TAX == 'true') || ($override === true)) && ($tax > 0)) {
         return $price + parent::calculate($price, $tax);
       } else {
@@ -46,24 +50,25 @@
       }
     }
 
-/**
- * Drop down of the class title
- *
- * @access public
- * @param string $parameters, $selected
- * @return string $select_string, the drop down f the title class
- *
- */
-    public function getTaxClassesPullDown($parameters, $selected = '') {
+    /**
+     * Drop down of the class title
+     *
+     * @access public
+     * @param string $parameters , $selected
+     * @return string $select_string, the drop down f the title class
+     *
+     */
+    public function getTaxClassesPullDown($parameters, $selected = '')
+    {
       $select_string = '<select ' . $parameters . '>';
 
       $Qclasses = Registry::get('Db')->get('tax_class', [
-                                                          'tax_class_id',
-                                                          'tax_class_title'
-                                                        ],
-                                                          null,
-                                                          'tax_class_title'
-                                            );
+        'tax_class_id',
+        'tax_class_title'
+      ],
+        null,
+        'tax_class_title'
+      );
 
       while ($Qclasses->fetch()) {
         $select_string .= '<option value="' . $Qclasses->valueInt('tax_class_id') . '"';
@@ -80,27 +85,30 @@
       return $select_string;
     }
 
-/**
- * return value of taxe
- *
- * @access public
- * @param string $class_id, class id
- * @return string  value of the taxe
- *
- */
-    public function getTaxRateValue($class_id) {
+    /**
+     * return value of taxe
+     *
+     * @access public
+     * @param string $class_id , class id
+     * @return string  value of the taxe
+     *
+     */
+    public function getTaxRateValue($class_id)
+    {
       return self::getTaxRate($class_id, -1, -1);
     }
 
-/**
- * return drop down
- *
- */
-    public static function taxClassDropDown() {
+    /**
+     * return drop down
+     *
+     */
+    public static function taxClassDropDown()
+    {
       return parent::taxClassDropDown();
     }
 
-    public static function displayTaxRateValue($value, $padding = null) {
+    public static function displayTaxRateValue($value, $padding = null)
+    {
       return parent::displayTaxRateValue($value, $padding);
     }
   }

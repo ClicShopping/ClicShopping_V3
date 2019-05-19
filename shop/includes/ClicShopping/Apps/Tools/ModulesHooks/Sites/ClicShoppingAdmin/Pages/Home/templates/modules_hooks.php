@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Apps;
@@ -65,73 +65,77 @@
     foreach ($h->getMethods(\ReflectionMethod::IS_STATIC | \ReflectionMethod::IS_PUBLIC) as $method) {
       if ($method->name != '__construct') {
         $hooks[$code][] = [
-                            'app' => $vendor . '\\' . $app,
-                            'method' => $method->name
-                          ];
+          'app' => $vendor . '\\' . $app,
+          'method' => $method->name
+        ];
       }
     }
   }
 ?>
 
 <style>
-.sitePill {
-  color: #fff;
-  background-color: #009933;
-  border-radius: 20px;
-  padding: 5px 10px;
-}
+  .sitePill {
+    color: #fff;
+    background-color: #009933;
+    border-radius: 20px;
+    padding: 5px 10px;
+  }
 
-.appPill {
-  color: #fff;
-  background-color: #0066CC;
-  border-radius: 20px;
-  padding: 5px 10px;
-}
+  .appPill {
+    color: #fff;
+    background-color: #0066CC;
+    border-radius: 20px;
+    padding: 5px 10px;
+  }
 </style>
-  <div class="contentBody">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-block headerCard">
-          <div class="row">
-            <span class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/hooks.png', $CLICSHOPPING_ModulesHooks->getDef('heading_title'), '40', '40'); ?></span>
-            <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ModulesHooks->getDef('heading_title'); ?></span>
-          </div>
+<div class="contentBody">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-block headerCard">
+        <div class="row">
+          <span
+            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/hooks.png', $CLICSHOPPING_ModulesHooks->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ModulesHooks->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
+  </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle"></div>
-    <table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <td>
-        <table class="table table-sm table-hover table-striped">
+  <table border="0" width="100%" cellspacing="0" cellpadding="2">
+    <td>
+      <table class="table table-sm table-hover table-striped">
 
-<?php
-  foreach ($hooks as $code => $data) {
-    $counter = 0;
+        <?php
+          foreach ($hooks as $code => $data) {
+            $counter = 0;
 
-    foreach ($data as $v) {
-      $counter++;
+            foreach ($data as $v) {
+              $counter++;
 
-      list($site, $group) = explode('/', $code, 2);
-?>
+              list($site, $group) = explode('/', $code, 2);
+              ?>
 
-      <tr class="dataTableRow">
+              <tr class="dataTableRow">
 
-<?php
-      if ($counter === 1) {
-?>
-        <td style="padding: 10px;" <?php if (count($data) > 1) echo 'rowspan="' . count($data) . '"';?>><?php echo '<span class="sitePill">' . $site . '</span> ' . $group; ?></td>
-<?php
-      }
-?>
-        <td  style="padding: 10px;"><?php echo (isset($v['app']) ? '<span class="appPill">' . $v['app'] . '</span> ' : '') . $v['method']; ?></td>
-      </tr>
+                <?php
+                  if ($counter === 1) {
+                    ?>
+                    <td
+                      style="padding: 10px;" <?php if (count($data) > 1) echo 'rowspan="' . count($data) . '"'; ?>><?php echo '<span class="sitePill">' . $site . '</span> ' . $group; ?></td>
+                    <?php
+                  }
+                ?>
+                <td
+                  style="padding: 10px;"><?php echo (isset($v['app']) ? '<span class="appPill">' . $v['app'] . '</span> ' : '') . $v['method']; ?></td>
+              </tr>
 
-<?php
-    }
-  }
-?>
-        </table>
-      </td>
-    </table>
-  </div>
+              <?php
+            }
+          }
+        ?>
+      </table>
+    </td>
+  </table>
+</div>

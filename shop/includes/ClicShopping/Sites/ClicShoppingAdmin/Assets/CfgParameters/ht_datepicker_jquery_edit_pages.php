@@ -1,19 +1,20 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  function ht_datepicker_jquery_edit_pages($values, $key) {
+  function ht_datepicker_jquery_edit_pages($values, $key)
+  {
     $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
     $select_array = $CLICSHOPPING_Template->getListCatalogFilesNotIncluded();
@@ -22,7 +23,7 @@
 
     $output = '';
     foreach ($select_array as $file) {
-      $output .= HTML::checkboxField('ht_datepicker_jquery_file[]', $file, in_array($file, $values_array)) . '&nbsp;' .  HTML::outputProtected($file) . '<br />';
+      $output .= HTML::checkboxField('ht_datepicker_jquery_file[]', $file, in_array($file, $values_array)) . '&nbsp;' . HTML::outputProtected($file) . '<br />';
     }
 
     if (!empty($output)) {

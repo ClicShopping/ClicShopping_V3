@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
 
@@ -28,15 +28,17 @@
   $supplier_inputs_string = '';
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  echo HTML::form('ajaxform', $CLICSHOPPING_Manufacturers->link('ManufacturersPopUp&Save'), 'post','id="ajaxform"');
+  echo HTML::form('ajaxform', $CLICSHOPPING_Manufacturers->link('ManufacturersPopUp&Save'), 'post', 'id="ajaxform"');
 ?>
 
 <div class="row">
   <div class="col-md-12">
     <div class="card card-block headerCard">
       <div class="row">
-        <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
-        <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
+        <span
+          class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
+        <span
+          class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
         <span class="col-md-4 text-md-right">
            <div><?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
            <div id="simple-msg"></div>
@@ -47,26 +49,30 @@
 </div>
 <div class="separator"></div>
 <div>
-  <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist"id="myTab">
-    <li class="nav-item"><?php echo '<a href="#tab20" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Manufacturers->getDef('tab_general') . '</a>'; ?></li>
-    <li class="nav-item"><?php echo '<a href="#tab21" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_visuel'); ?></a></li>
+  <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
+    <li
+      class="nav-item"><?php echo '<a href="#tab20" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Manufacturers->getDef('tab_general') . '</a>'; ?></li>
+    <li
+      class="nav-item"><?php echo '<a href="#tab21" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_visuel'); ?></a></li>
   </ul>
   <div class="tabsClicShopping">
     <div class="tab-content">
-<?php
-  // -- ------------------------------------------------------------ //
-  // --          ONGLET Information General du fabricant           //
-  // -- ------------------------------------------------------------ //
-?>
+      <?php
+        // -- ------------------------------------------------------------ //
+        // --          ONGLET Information General du fabricant           //
+        // -- ------------------------------------------------------------ //
+      ?>
       <div class="tab-pane active" id="tab20">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_general'); ?></div>
+          <div
+            class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_general'); ?></div>
         </div>
         <div class="adminformTitle">
 
           <div class="col-md-12">
             <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?></label>
+              <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?>"
+                     class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?></label>
               <div class="col-md-5">
                 <?php echo HTML::inputField('manufacturers_name', $mInfo->manufacturers_name, 'required aria-required="true" id="manufacturers_name"'); ?>
               </div>
@@ -75,54 +81,61 @@
 
           <div class="col-md-12">
             <div class="form-group row">
-              <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_url'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_url'); ?></label>
+              <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_url'); ?>"
+                     class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_url'); ?></label>
             </div>
           </div>
 
-<?php
-  for ($i=0, $n=count($languages); $i<$n; $i++) {
-?>
+          <?php
+            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              ?>
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="lang" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                  <label for="lang"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   <div class="col-md-5">
                     <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ManufacturersAdmin->getManufacturerUrl($mInfo->manufacturers_id, $languages[$i]['id'])); ?>
                   </div>
                 </div>
               </div>
-<?php
-  }
-?>
+              <?php
+            }
+          ?>
 
         </div>
       </div>
-<!-- ------------------------------------------------------------ //-->
-<!--          ONGLET Information visuelle          //-->
-<!-- ------------------------------------------------------------ //-->
+      <!-- ------------------------------------------------------------ //-->
+      <!--          ONGLET Information visuelle          //-->
+      <!-- ------------------------------------------------------------ //-->
       <div class="tab-pane" id="tab21">
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_image'); ?></div>
+          <div
+            class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_image'); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="row">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-12">
-                  <span class="col-md-3"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_new_image'); ?></span>
-                  <span  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
-                  <span  class="col-md-4"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette') . '<br /><br />' . HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212') ; ?></span>
+                  <span
+                    class="col-md-3"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_new_image'); ?></span>
+                  <span
+                    class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                  <span
+                    class="col-md-4"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette') . '<br /><br />' . HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-<!-- ------------------------------------------------------------ //-->
-<!--          ONGLET Information seo                              //-->
-<!-- ------------------------------------------------------------ //-->
+      <!-- ------------------------------------------------------------ //-->
+      <!--          ONGLET Information seo                              //-->
+      <!-- ------------------------------------------------------------ //-->
     </div>
   </div>
 </div>
 </form>
 
- <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/ajax_form//bootstrap_ajax_form_fields_configuration.js'); ?>"></script>
+<script
+  src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/ajax_form//bootstrap_ajax_form_fields_configuration.js'); ?>"></script>

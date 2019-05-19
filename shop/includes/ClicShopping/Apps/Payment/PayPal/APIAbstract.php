@@ -1,19 +1,20 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Payment\PayPal;
 
   use ClicShopping\OM\Registry;
 
-  abstract class APIAbstract  {
+  abstract class APIAbstract
+  {
     protected $app;
     protected $type = 'paypal';
     protected $server = 'live';
@@ -21,7 +22,8 @@
 
     abstract public function execute(array $extra_params = null);
 
-    public function __construct($server) {
+    public function __construct($server)
+    {
       $this->app = Registry::get('PayPal');
 
       $this->server = $server;
@@ -41,7 +43,8 @@
       }
     }
 
-    protected function getResult(array &$params, array $headers = null) {
+    protected function getResult(array &$params, array $headers = null)
+    {
       switch ($this->type) {
         case 'paypal':
           $params['VERSION'] = $this->app->getApiVersion();
@@ -54,7 +57,7 @@
         $value = utf8_encode(trim($value));
 
         if ($this->type == 'payflow') {
-            $key = $key . '[' . strlen($value) . ']';
+          $key = $key . '[' . strlen($value) . ']';
         }
 
         $post[$key] = $value;

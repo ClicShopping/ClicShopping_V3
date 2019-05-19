@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -32,8 +32,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/weight.png', $CLICSHOPPING_Weight->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/weight.png', $CLICSHOPPING_Weight->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
   echo HTML::form('ClassInsert', $CLICSHOPPING_Weight->link('Weight&ClassInsert&page=' . $page));
@@ -46,13 +48,15 @@
     </div>
   </div>
   <div class="separator"></div>
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_Weight->getDef('text_info_heading_insert_weight'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_Weight->getDef('text_info_heading_insert_weight'); ?></strong></div>
   <div class="adminformTitle">
 
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_edit_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_edit_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_edit_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_edit_intro'); ?></label>
         </div>
       </div>
     </div>
@@ -60,7 +64,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::selectField('weight_class_id', WeightAdmin::getClassesPullDown()); ?>
           </div>
@@ -72,7 +77,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title_to_id'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title_to_id'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title_to_id'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_title_to_id'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::selectField('weight_class_to_id', WeightAdmin::getClassesPullDown()); ?>
           </div>
@@ -84,7 +90,8 @@
     <div class="row">
       <div class="col-md-5">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_conversaion_value'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_conversaion_value'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_Weight->getDef('text_info_class_conversaion_value'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Weight->getDef('text_info_class_conversaion_value'); ?></label>
           <div class="col-md-5">
             <?php echo HTML::inputField('weight_class_rule', null); ?>
           </div>

@@ -1,22 +1,24 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Notifications;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -32,7 +34,7 @@
       $global = $Qglobal->fetch();
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-        if ( isset($_POST['product_global']) && is_numeric($_POST['product_global']) && in_array($_POST['product_global'], ['0', '1'])) {
+        if (isset($_POST['product_global']) && is_numeric($_POST['product_global']) && in_array($_POST['product_global'], ['0', '1'])) {
           $product_global = (int)$_POST['product_global'];
         } else {
           $product_global = 0;
@@ -48,7 +50,7 @@
                                           where customers_info_id = :customers_info_id
                                          ');
           $Qupdate->bindInt(':global_product_notifications', (int)$product_global);
-          $Qupdate->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID() );
+          $Qupdate->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID());
           $Qupdate->execute();
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'account_notification');
@@ -64,9 +66,9 @@
 
           if (count($products_parsed) > 0) {
 
-            $products_id_in = array_map(function($k) {
-                                                        return ':products_id_' . $k;
-                                                      }, array_keys($products_parsed));
+            $products_id_in = array_map(function ($k) {
+              return ':products_id_' . $k;
+            }, array_keys($products_parsed));
 
             $Qcheck = $CLICSHOPPING_Db->prepare('select products_id
                                                  from :table_products_notifications
@@ -75,7 +77,7 @@
                                                  limit 1
                                                  ');
 
-            $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID() );
+            $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
 
             foreach ($products_parsed as $k => $v) {
               $Qcheck->bindInt(':products_id', $v);
@@ -83,13 +85,13 @@
 
             $Qcheck->execute();
 
-            if ( $Qcheck->fetch() !== false ) {
+            if ($Qcheck->fetch() !== false) {
               $Qdelete = $CLICSHOPPING_Db->prepare('delete
                                                     from :table_products_notifications
                                                     where customers_id = :customers_id
                                                     and products_id not in (:products_id)
                                                     ');
-              $Qdelete->bindInt(':customers_id', $CLICSHOPPING_Customer->getID() );
+              $Qdelete->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
 
               foreach ($products_parsed as $k => $v) {
                 $Qdelete->bindInt(':products_id_' . $k, $v);
@@ -110,7 +112,7 @@
           $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
           $Qcheck->execute();
 
-          if ( $Qcheck->fetch() !== false ) {
+          if ($Qcheck->fetch() !== false) {
             $Qdelete = $CLICSHOPPING_Db->prepare('delete
                                             from :table_products_notifications
                                             where customers_id = :customers_id

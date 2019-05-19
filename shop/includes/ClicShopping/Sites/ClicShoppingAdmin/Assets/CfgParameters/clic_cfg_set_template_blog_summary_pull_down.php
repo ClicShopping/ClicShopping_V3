@@ -1,27 +1,28 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-/**
- * Directory list file with a drop down for blog
- *
- * @param string template_blog
- * @return string configuration_value., $filename_array,  $filename, hte file name in the directory
- * @access public
- */
+  /**
+   * Directory list file with a drop down for blog
+   *
+   * @param string template_blog
+   * @return string configuration_value., $filename_array,  $filename, hte file name in the directory
+   * @access public
+   */
 
-  function clic_cfg_set_template_blog_summary_pull_down($filename, $key = '') {
+  function clic_cfg_set_template_blog_summary_pull_down($filename, $key = '')
+  {
 
     $module = $_GET['set'];
 
@@ -35,11 +36,11 @@
       $fileTypes = array('php'); // Create an array of file types
       $found = []; // Traverse the folder, and add filename to $found array if type matches
 
-      $name = ( ( $key ) ? 'configuration[' . $key . ']' : 'configuration_value' );
+      $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
 
       foreach ($contents as $item) {
         $fileInfo = pathinfo($item);
-        if(array_key_exists('extension', $fileInfo) && in_array($fileInfo['extension'],$fileTypes)) {
+        if (array_key_exists('extension', $fileInfo) && in_array($fileInfo['extension'], $fileTypes)) {
           $found[] = $item;
         }
       }
@@ -47,9 +48,9 @@
       if ($found) { // Check the $found array is not empty
         natcasesort($found); // Sort in natural, case-insensitive order, and populate menu
         $filename_array = [];
-        foreach ($found as $filename){
+        foreach ($found as $filename) {
           $filename_array[] = array('id' => $filename,
-                                    'text' => $filename);
+            'text' => $filename);
         }
       }
     }
@@ -62,7 +63,7 @@
 
     $QfileName->execute();
     $fileName_result = $QfileName->fetch();
-    $filename  = $fileName_result['configuration_value'];
+    $filename = $fileName_result['configuration_value'];
 
-    return HTML::selectMenu($name, $filename_array,  $filename);
+    return HTML::selectMenu($name, $filename_array, $filename);
   }

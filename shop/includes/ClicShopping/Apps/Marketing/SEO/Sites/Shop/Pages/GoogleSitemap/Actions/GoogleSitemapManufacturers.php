@@ -1,30 +1,32 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
   use ClicShopping\OM\Registry;
 
-  class GoogleSitemapManufacturers extends \ClicShopping\OM\PagesActionsAbstract {
+  class GoogleSitemapManufacturers extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
     protected $use_site_template = false;
     protected $rewriteUrl;
 
-    public function execute() {
+    public function execute()
+    {
       $this->rewriteUrl = Registry::get('RewriteUrl');
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (MODE_VENTE_PRIVEE == 'false') {
 
-        $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n".'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
+        $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
         $manufacturer_array = [];
 
@@ -39,8 +41,8 @@
         $Qmanufacturers->bindValue(':last_modified', '');
         $Qmanufacturers->execute();
 
-        while ($Qmanufacturers->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))));
+        while ($Qmanufacturers->fetch()) {
+          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))));
 
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['loc'] = $location;
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['lastmod'] = $Qmanufacturers->value('last_modified');

@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM\Module\Hooks\Shop\Account;
 
@@ -16,11 +16,13 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class AccountGdprNoIp {
+  class AccountGdprNoIp
+  {
 
     protected $IpAddress;
 
-    public function getIpAddress() {
+    public function getIpAddress()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -36,14 +38,15 @@
       return $ip_address;
     }
 
-    public function display() {
-        $output = '<div>';
-        $output .= '<label class="checkbox-inline">';
-        $output .= HTML::checkboxField('no_ip_address', $this->getIpAddress(), $this->getIpAddress());
-        $output .= '</label>';
-        $output .= CLICSHOPPING::getDef('module_account_customers_gdpr_no_ip_address');
-        $output .= '</div>';
+    public function display()
+    {
+      $output = '<div>';
+      $output .= '<label class="checkbox-inline">';
+      $output .= HTML::checkboxField('no_ip_address', $this->getIpAddress(), $this->getIpAddress());
+      $output .= '</label>';
+      $output .= CLICSHOPPING::getDef('module_account_customers_gdpr_no_ip_address');
+      $output .= '</div>';
 
-        return $output;
+      return $output;
     }
   }

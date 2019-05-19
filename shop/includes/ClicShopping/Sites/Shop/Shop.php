@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop;
 
@@ -24,13 +24,15 @@
 
   use ClicShopping\Apps\Tools\WhosOnline\Classes\Shop\WhosOnlineShop;
 
-  class Shop extends \ClicShopping\OM\SitesAbstract {
+  class Shop extends \ClicShopping\OM\SitesAbstract
+  {
 
     protected static $_application;
 
-    protected function init()  {
+    protected function init()
+    {
 
-      defined( 'E_DEPRECATED' ) ? error_reporting( E_ALL & ~E_NOTICE & ~E_DEPRECATED ) : error_reporting( E_ALL & ~E_NOTICE );
+      defined('E_DEPRECATED') ? error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED) : error_reporting(E_ALL & ~E_NOTICE);
 
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
@@ -73,8 +75,8 @@
       }
 
 // set the session name and save path
-        $CLICSHOPPING_Session = Session::load();
-        Registry::set('Session', $CLICSHOPPING_Session);
+      $CLICSHOPPING_Session = Session::load();
+      Registry::set('Session', $CLICSHOPPING_Session);
 
 // start the session
       $CLICSHOPPING_Session->start();
@@ -113,16 +115,16 @@
       $CLICSHOPPING_Language->loadDefinitions('main');
 
 // Shopping cart actions
-      if ( isset($_GET['action']) ) {
+      if (isset($_GET['action'])) {
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled
-        if ( Registry::get('Session')->hasStarted() === false ) {
+        if (Registry::get('Session')->hasStarted() === false) {
           CLICSHOPPING::redirect(null, 'Info&Cookies');
         }
       }
 
       WhosOnlineShop::getUpdateWhosOnline();
 
-      Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function($parameters) {
+      Registry::get('Hooks')->watch('Session', 'Recreated', 'execute', function ($parameters) {
         WhosOnlineShop::getWhosOnlineUpdateSession_id($parameters['old_id'], session_id());
       });
 
@@ -138,7 +140,8 @@
       $CLICSHOPPING_Breadcrumb->getCategoriesManufacturer();
     }
 
-    public function setPage()  {
+    public function setPage()
+    {
 
 // en relation avec SitesAbstract
       $page_code = $this->default_page;
@@ -153,11 +156,11 @@
         if (($route = Apps::getRouteDestination()) !== null) {
           $this->route = $route;
 
-           list($vendor_app, $page) = explode('/', $route['destination'], 2);
+          list($vendor_app, $page) = explode('/', $route['destination'], 2);
 
 // get controller class name from namespace
           $page_namespace = explode('\\', $page);
-          $page_code = $page_namespace[count($page_namespace)-1];
+          $page_code = $page_namespace[count($page_namespace) - 1];
 
           if (class_exists('ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code)) {
             $class = 'ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code;
@@ -188,7 +191,8 @@
       }
     }
 
-    public static function resolveRoute(array $route, array $routes)  {
+    public static function resolveRoute(array $route, array $routes)
+    {
       $result = [];
 
       foreach ($routes as $vendor_app => $paths) {
@@ -198,10 +202,10 @@
           if (count($path_array) <= count($route)) {
             if ($path_array == array_slice($route, 0, count($path_array))) {
               $result[] = [
-                            'path' => $path,
-                            'destination' => $vendor_app . '/' . $page,
-                            'score' => count($path_array)
-                          ];
+                'path' => $path,
+                'destination' => $vendor_app . '/' . $page,
+                'score' => count($path_array)
+              ];
             }
           }
         }
@@ -209,13 +213,13 @@
 
       if (!empty($result)) {
         usort($result, function ($a, $b) {
-                if ($a['score'] == $b['score']) {
-                    return 0;
-                }
+          if ($a['score'] == $b['score']) {
+            return 0;
+          }
 
-                return ($a['score'] < $b['score']) ? 1 : -1; // sort highest to lowest
-              }
-            );
+          return ($a['score'] < $b['score']) ? 1 : -1; // sort highest to lowest
+        }
+        );
 
         return $result[0];
       }

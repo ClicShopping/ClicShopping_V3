@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
@@ -16,7 +16,8 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTTP;
 
-  class HTMLOverrideAdmin extends HTML {
+  class HTMLOverrideAdmin extends HTML
+  {
 
     protected $string;
     protected $name;
@@ -26,46 +27,49 @@
     protected $form;
     protected $field;
 
-/*
- *  remplace les espaces par un +
- *
- * @param string $string
- * @return string $string,
- * @access public
- */
+    /*
+     *  remplace les espaces par un +
+     *
+     * @param string $string
+     * @return string $string,
+     * @access public
+     */
 
-    public static function sanitizeReplace($string) {
+    public static function sanitizeReplace($string)
+    {
       $string = preg_replace("/ /", "+", $string);
       return preg_replace("/[<>]/", '_', $string);
     }
 
-/*
- *  Ckeditor
- *
- * @param string $string
- * @return string $string,
- * @access public
- *
- */
-    public static function getCkeditor() {
+    /*
+     *  Ckeditor
+     *
+     * @param string $string
+     * @return string $string,
+     * @access public
+     *
+     */
+    public static function getCkeditor()
+    {
       $script = '<script src="' . CLICSHOPPING::link('Shop/ext/ckeditor/ckeditor.js') . '"></script>';
 
       return $script;
     }
 
 
-/*
- * Outputs a form textarea field with ckeditor
- *
- * @param string $name The name and ID of the textarea field
- * @param string $value The default value for the textarea field
- * @param int $width The width of the textarea field
- * @param int $height The height of the textarea field
- * @param string $parameters Additional parameters for the textarea field
- * @param boolean $override Override the default value with the value found in the GET or POST scope
- * @access public
- */
-    public static function textAreaCkeditor($name, $value = null, $width, $height, $text = null, $parameters = null, $override = true) {
+    /*
+     * Outputs a form textarea field with ckeditor
+     *
+     * @param string $name The name and ID of the textarea field
+     * @param string $value The default value for the textarea field
+     * @param int $width The width of the textarea field
+     * @param int $height The height of the textarea field
+     * @param string $parameters Additional parameters for the textarea field
+     * @param boolean $override Override the default value with the value found in the GET or POST scope
+     * @access public
+     */
+    public static function textAreaCkeditor($name, $value = null, $width, $height, $text = null, $parameters = null, $override = true)
+    {
 
       $height = '750';
 
@@ -73,7 +77,7 @@
 
       if (!is_null($parameters)) $field .= ' ' . $parameters;
       $field .= ' />';
-      if ( ($override === true) && ( (isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])) ) ) {
+      if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
           $field .= HTML::outputProtected($_GET[$name]);
         } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
@@ -87,7 +91,7 @@
 
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
     {
-        width : '. $height .',
+        width : ' . $height . ',
         toolbar : "Full",
         filebrowserBrowseUrl :"' . CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.html') . '",
     });
@@ -96,16 +100,17 @@
       return $field;
     }
 
-/*
- * Create form textarea field with ckeditor for image icon and source only
- *
- * @param string $name The name and ID of the textarea field
- * @access public
- */
+    /*
+     * Create form textarea field with ckeditor for image icon and source only
+     *
+     * @param string $name The name and ID of the textarea field
+     * @access public
+     */
 
-    public static function fileFieldImageCkEditor($name, $value = null, $width = null, $height = null) {
+    public static function fileFieldImageCkEditor($name, $value = null, $width = null, $height = null)
+    {
       if (is_null($height)) {
-       $height = '250';
+        $height = '250';
       }
 
       if (is_null($width)) {
@@ -116,7 +121,7 @@
       $field .= '<script>
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
       {
-        width : '. $width .',
+        width : ' . $width . ',
         height : ' . $height . ',
         filebrowserBrowseUrl : "' . CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.html') . '",
      });
@@ -124,14 +129,15 @@
       return $field;
     }
 
-/**
- * Clean html code image
- *
- * @param string $image
- * @return string $image, without html
- * @access public
- */
-    public static function getCkeditorImageAlone($image) {
+    /**
+     * Clean html code image
+     *
+     * @param string $image
+     * @return string $image, without html
+     * @access public
+     */
+    public static function getCkeditorImageAlone($image)
+    {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       if (!empty($image)) {
@@ -153,14 +159,15 @@
       return $image;
     }
 
-/**
- * Pulldown products
- *
- * @param string $name, $parameters, $exclude
- * @return string $select_string, the pulldown value of products
- * @access public
- */
-    public static function selectMenuProductsPullDown($name, $parameters = '', $exclude = '', $class = 'form-control') {
+    /**
+     * Pulldown products
+     *
+     * @param string $name , $parameters, $exclude
+     * @return string $select_string, the pulldown value of products
+     * @access public
+     */
+    public static function selectMenuProductsPullDown($name, $parameters = '', $exclude = '', $class = 'form-control')
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -188,8 +195,8 @@
                                                     ');
       $QcustomersGroups->execute();
 
-      while ($existing_groups =  $QcustomersGroups->fetch()) {
-        $all_groups[$existing_groups['customers_group_id']]=$existing_groups['customers_group_name'];
+      while ($existing_groups = $QcustomersGroups->fetch()) {
+        $all_groups[$existing_groups['customers_group_id']] = $existing_groups['customers_group_name'];
       }
 
       $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id,
@@ -202,10 +209,10 @@
                                               and p.products_archive = 0
                                               order by products_name
                                              ');
-      $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
+      $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
       $Qproducts->execute();
 
-      while ($Qproducts->fetch() ) {
+      while ($Qproducts->fetch()) {
 
 // Permettre le changement de groupe en mode B2B
         if (MODE_B2B_B2C == 'true') {
@@ -222,19 +229,19 @@
 
             $product_prices = [];
 
-            while($prices_array = $Qprice->fetch() ) {
+            while ($prices_array = $Qprice->fetch()) {
               $product_prices[$prices_array['customers_group_id']] = $prices_array['customers_group_price'];
             }
 
             $price_string = '';
-            $sde=0;
+            $sde = 0;
 //while(list($sdek,$sdev)=each($all_groups)){
             foreach ($all_groups as $sdek => $sdev) {
               if (!in_array($Qproducts->valueInt('products_id') . ":" . (int)$sdek, $exclude)) {
-                if($sde)
+                if ($sde)
                   $price_string .= ' - ';
-                  $price_string .= $sdev . ' : ' . $CLICSHOPPING_Currencies->format(isset($product_prices[$sdek]) ? $product_prices[$sdek]:$Qproducts->valueDecimal('products_price'));
-                  $sde=1;
+                $price_string .= $sdev . ' : ' . $CLICSHOPPING_Currencies->format(isset($product_prices[$sdek]) ? $product_prices[$sdek] : $Qproducts->valueDecimal('products_price'));
+                $sde = 1;
               }
             }
 
@@ -256,12 +263,12 @@
     }
 
 
-
-/**
- * javascript to dynamically update the states/provinces list when the country is changed
- * TABLES: zones
-*/
-    public static function getJsZoneList($country, $form, $field) {
+    /**
+     * javascript to dynamically update the states/provinces list when the country is changed
+     * TABLES: zones
+     */
+    public static function getJsZoneList($country, $form, $field)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcountries = $CLICSHOPPING_Db->prepare('select distinct zone_country_id
@@ -274,7 +281,7 @@
       $num_country = 1;
       $output_string = '';
 
-      while ($countries = $Qcountries->fetch() ) {
+      while ($countries = $Qcountries->fetch()) {
         if ($num_country == 1) {
           $output_string .= '  if (' . $country . ' == "' . (int)$countries['zone_country_id'] . '") {' . "\n";
         } else {
@@ -293,7 +300,7 @@
         $Qzone->execute();
 
         $num_state = 1;
-        while ($states = $Qzone->fetch() ) {
+        while ($states = $Qzone->fetch()) {
           if ($num_state == '1') $output_string .= '    ' . $form . '.' . $field . '.options[0] = new Option("' . CLICSHOPPING::getDef('text_selected') . '", "");' . "\n";
           $output_string .= '    ' . $form . '.' . $field . '.options[' . $num_state . '] = new Option("' . $states['zone_name'] . '", "' . $states['zone_id'] . '");' . "\n";
           $num_state++;
@@ -306,4 +313,4 @@
 
       return $output_string;
     }
- }
+  }

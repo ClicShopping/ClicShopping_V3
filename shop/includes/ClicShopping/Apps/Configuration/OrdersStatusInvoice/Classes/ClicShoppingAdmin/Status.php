@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Configuration\OrdersStatusInvoice\Classes\ClicShoppingAdmin;
 
@@ -15,20 +15,22 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
-  class Status {
+  class Status
+  {
 
     protected $orders_status_tracking_id;
     protected $language_id;
 
 
-/**
- * the name of status invoice
- *
- * @param string  $orders_status_invoice_id, $language_id
- * @return string $orders_invoice_status['orders_status_invoice_name'],  name of the  status invoice
- * @access public
- */
-    Public static function getOrdersStatusInvoiceName($orders_status_invoice_id, $language_id = '') {
+    /**
+     * the name of status invoice
+     *
+     * @param string $orders_status_invoice_id , $language_id
+     * @return string $orders_invoice_status['orders_status_invoice_name'],  name of the  status invoice
+     * @access public
+     */
+    Public static function getOrdersStatusInvoiceName($orders_status_invoice_id, $language_id = '')
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -48,14 +50,15 @@
     }
 
 
-/**
- * Array of the name of status invoice
- *
- * @param string  $orders_status_invoice_id, $language_id
- * @return string orders_invoice_status_array,  array if the name status invoice
- * @access public
- */
-    Public static function getOrdersInvoiceStatus() {
+    /**
+     * Array of the name of status invoice
+     *
+     * @param string $orders_status_invoice_id , $language_id
+     * @return string orders_invoice_status_array,  array if the name status invoice
+     * @access public
+     */
+    Public static function getOrdersInvoiceStatus()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -72,10 +75,10 @@
       $Qinvoice->execute();
 
 
-      while ($orders_invoice_status = $Qinvoice->fetch() ) {
+      while ($orders_invoice_status = $Qinvoice->fetch()) {
         $orders_status_invoice_array[] = ['id' => $orders_invoice_status['orders_status_invoice_id'],
-                                          'text' => $orders_invoice_status['orders_status_invoice_name']
-                                         ];
+          'text' => $orders_invoice_status['orders_status_invoice_name']
+        ];
       }
 
       return $orders_status_invoice_array;

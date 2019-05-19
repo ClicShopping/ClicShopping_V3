@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Configuration\Langues\Sites\ClicShoppingAdmin\Pages\Home\Actions\Langues;
@@ -19,16 +19,19 @@
 
   use ClicShopping\Sites\ClicShoppingAdmin\ModuleDownload;
 
-  class Insert extends \ClicShopping\OM\PagesActionsAbstract {
+  class Insert extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
     protected $lang;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('Langues');
       $this->lang = Registry::get('Language');
     }
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -122,8 +125,8 @@
 // ---------------------------------------------------------
 // -- Copy the new language in the template design directory
 // ---------------------------------------------------------
-        $source =  CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/css/' . $lng_default_directory;
-        $dest =  CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/css/' .  $directory;
+        $source = CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/css/' . $lng_default_directory;
+        $dest = CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/css/' . $directory;
 
         if (is_dir($source)) {
           ModuleDownload::smartCopy($source, $dest);
@@ -134,15 +137,15 @@
 // -- insert datas
 // ---------------------------------------------------------
 
-      $this->app->db->save('languages', [ 'name' =>  $name,
-                                          'code' => $code,
-                                          'image' =>  $image,
-                                          'directory' => $directory,
-                                          'sort_order' => (int)$sort_order,
-                                          'status' => 0,
-                                          'locale' => $locale
-                                          ]
-                          );
+      $this->app->db->save('languages', ['name' => $name,
+          'code' => $code,
+          'image' => $image,
+          'directory' => $directory,
+          'sort_order' => (int)$sort_order,
+          'status' => 0,
+          'locale' => $locale
+        ]
+      );
 
       $insert_id = $this->app->db->lastInsertId();
       $_POST['insert_id'] = $insert_id;
@@ -150,8 +153,8 @@
 // create additional default configuration
       if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
         $this->app->db->save('configuration', ['configuration_value' => $code],
-                                              ['configuration_key' => 'DEFAULT_LANGUAGE']
-                            );
+          ['configuration_key' => 'DEFAULT_LANGUAGE']
+        );
       }
 
 // create additional products_options records
@@ -175,7 +178,7 @@
         $this->app->db->save('products_options_values', $cols);
       }
 
-      $CLICSHOPPING_Hooks->call('Langues','Insert');
+      $CLICSHOPPING_Hooks->call('Langues', 'Insert');
 
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');

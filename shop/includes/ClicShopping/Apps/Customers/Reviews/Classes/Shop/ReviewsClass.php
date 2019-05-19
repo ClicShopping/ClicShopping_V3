@@ -1,20 +1,21 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Classes\Shop;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class ReviewsClass {
+  class ReviewsClass
+  {
 
     protected $productsCommon;
     protected $db;
@@ -23,7 +24,8 @@
     protected $reviews_number_comments;
     protected $reviews_number_word;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->productsCommon = Registry::get('ProductsCommon');
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
@@ -42,14 +44,15 @@
       }
     }
 
-/**
- * get the total product review
- *
- * @param int $id, $id of the product
- * @return bool the numbeer of the review
- * @access public
- */
-    public function getTotalReviews() {
+    /**
+     * get the total product review
+     *
+     * @param int $id , $id of the product
+     * @return bool the numbeer of the review
+     * @access public
+     */
+    public function getTotalReviews()
+    {
       if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
         $Qcheck = $this->db->prepare('select count(r.reviews_id) as total
                                       from :table_reviews r,
@@ -83,13 +86,14 @@
     }
 
 
-/**
- * get all review about a product id
- *
- * @return array : $Qreviews reviews data
- * @access public
- */
-    public function getData() {
+    /**
+     * get all review about a product id
+     *
+     * @return array : $Qreviews reviews data
+     * @access public
+     */
+    public function getData()
+    {
 
       if ($this->customer->getCustomersGroupID() == 0) {
         $Qreviews = $this->db->prepare('select r.reviews_id,
@@ -110,10 +114,10 @@
                                                   r.date_added desc
                                           limit :limit
                                           ');
-        $Qreviews->bindInt(':products_id',  $this->productsCommon->getId());
+        $Qreviews->bindInt(':products_id', $this->productsCommon->getId());
         $Qreviews->bindInt(':languages_id', $this->lang->getId());
-        $Qreviews->bindInt(':limitText', $this->reviews_number_word );
-        $Qreviews->bindInt(':limit', $this->reviews_number_comments );
+        $Qreviews->bindInt(':limitText', $this->reviews_number_word);
+        $Qreviews->bindInt(':limit', $this->reviews_number_comments);
         $Qreviews->execute();
       } else {
         $Qreviews = $this->db->prepare('select r.reviews_id,
@@ -134,10 +138,10 @@
                                                   r.date_added desc
                                          limit :limit
                                         ');
-        $Qreviews->bindInt(':products_id',  $this->productsCommon->getId());
+        $Qreviews->bindInt(':products_id', $this->productsCommon->getId());
         $Qreviews->bindInt(':languages_id', $this->lang->getId());
-        $Qreviews->bindInt(':limitText', $this->reviews_number_word  );
-        $Qreviews->bindInt(':limit', $this->reviews_number_comments );
+        $Qreviews->bindInt(':limitText', $this->reviews_number_word);
+        $Qreviews->bindInt(':limit', $this->reviews_number_comments);
         $Qreviews->execute();
       }
 
@@ -146,23 +150,25 @@
       return $Qreviews;
     }
 
-/**
-* Count the total rows
-*
-* @return int : total row
-* @access public
-*/
-    public function getPageSetTotalRows() {
+    /**
+     * Count the total rows
+     *
+     * @return int : total row
+     * @access public
+     */
+    public function getPageSetTotalRows()
+    {
       return $this->getPageSetTotalRows;
     }
 
-/**
- * Customers has purchased with comment
- *
- * @return array : $Qhaspurchased : purchased informations
- * @access public
- */
-    public function hasPurchasedProduct() {
+    /**
+     * Customers has purchased with comment
+     *
+     * @return array : $Qhaspurchased : purchased informations
+     * @access public
+     */
+    public function hasPurchasedProduct()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -195,20 +201,21 @@
                                               and o.customers_group_id > 0
                                               ');
         $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-        $Qhaspurchased->bindInt(':products_id',$CLICSHOPPING_ProductsCommon->getID());
+        $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qhaspurchased->execute();
       }
 
       return ($Qhaspurchased->fetch() !== false);
     }
 
-/**
- * Get rewiews with specific reviews id
- *
- * @return array : $Qreviews : review informations
- * @access public
- */
-    public function getDataReviews($id = null) {
+    /**
+     * Get rewiews with specific reviews id
+     *
+     * @return array : $Qreviews : review informations
+     * @access public
+     */
+    public function getDataReviews($id = null)
+    {
       $reviews_id = HTML::sanitize($id);
 
       if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
@@ -252,58 +259,60 @@
       return $Qreviews->fetch();
     }
 
-/**
- * Save the review
- *
- * @param string
- * @return string
- * @access public
- */
-    public function saveEntry() {
+    /**
+     * Save the review
+     *
+     * @param string
+     * @return string
+     * @access public
+     */
+    public function saveEntry()
+    {
       if ($this->customer->getCustomersGroupID() == 0) {
         $array_sql = [
-                      'products_id' => (int)$this->productsCommon->getID(),
-                      'customers_id' => (int)$this->customer->getID(),
-                      'customers_name' => $this->customer->getName(),
-                      'reviews_rating' => (int)$_POST['rating'],
-                      'date_added' => 'now()',
-                      'last_modified' => 'now()',
-                      'status' => 0,
-                      'customers_group_id' => 0
-                    ];
+          'products_id' => (int)$this->productsCommon->getID(),
+          'customers_id' => (int)$this->customer->getID(),
+          'customers_name' => $this->customer->getName(),
+          'reviews_rating' => (int)$_POST['rating'],
+          'date_added' => 'now()',
+          'last_modified' => 'now()',
+          'status' => 0,
+          'customers_group_id' => 0
+        ];
 
-        $this->db->save('reviews',$array_sql);
+        $this->db->save('reviews', $array_sql);
       } else {
         $array_sql = [
-                      'products_id' => (int)$this->productsCommon->getID(),
-                      'customers_id' => (int)$this->customer->getID(),
-                      'customers_name' => $this->customer->getName(),
-                      'reviews_rating' => (int)$_POST['rating'],
-                      'date_added' => 'now()',
-                      'last_modified' => 'now()',
-                      'status' => 0,
-                      'customers_group_id' => (int)$this->customer->getCustomersGroupID()
-                      ];
+          'products_id' => (int)$this->productsCommon->getID(),
+          'customers_id' => (int)$this->customer->getID(),
+          'customers_name' => $this->customer->getName(),
+          'reviews_rating' => (int)$_POST['rating'],
+          'date_added' => 'now()',
+          'last_modified' => 'now()',
+          'status' => 0,
+          'customers_group_id' => (int)$this->customer->getCustomersGroupID()
+        ];
         $this->db->save('reviews', $array_sql);
       }
 
       $insert_id = $this->db->lastInsertId();
 
       $this->db->save('reviews_description', ['reviews_id' => (int)$insert_id,
-                                              'languages_id' => (int)$this->lang->getId(),
-                                              'reviews_text' => HTML::sanitize($_POST['review'])
-                                             ]
-                    );
+          'languages_id' => (int)$this->lang->getId(),
+          'reviews_text' => HTML::sanitize($_POST['review'])
+        ]
+      );
     }
 
-/**
- * Send an email
- *
- * @param string
- * @return string
- * @access public
- */
-    public function sendEmail() {
+    /**
+     * Send an email
+     *
+     * @param string
+     * @return string
+     * @access public
+     */
+    public function sendEmail()
+    {
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
       if (REVIEW_COMMENT_SEND_EMAIL == 'true') {
@@ -315,12 +324,13 @@
         $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
         $email_text = CLICSHOPPING::getDef('email_text', ['store_name' => STORE_NAME]);
 
-        $CLICSHOPPING_Mail->clicMail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $email_text,  $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
+        $CLICSHOPPING_Mail->clicMail(STORE_NAME, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $email_text, $this->productsCommon->getProductsName(), STORE_OWNER_EMAIL_ADDRESS);
       }
     }
 
 
-    public function deleteReviews($review_id) {
+    public function deleteReviews($review_id)
+    {
       $Odelete = $this->db->prepare('delete
                                     from :table_reviews
                                     where reviews_id = :reviews_id

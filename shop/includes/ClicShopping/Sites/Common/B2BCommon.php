@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Common;
 
@@ -15,19 +15,21 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class B2BCommon {
-/**
- * Display the payment mode in different mode B2B or not
- *
- * @param string $product_price_d, the price of the product or not
- * @access public
- */
+  class B2BCommon
+  {
+    /**
+     * Display the payment mode in different mode B2B or not
+     *
+     * @param string $product_price_d , the price of the product or not
+     * @access public
+     */
 
-    public static function getPaymentUnallowed($pay_check) {
+    public static function getPaymentUnallowed($pay_check)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin' ) {
+      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
 
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 
@@ -42,7 +44,7 @@
 
           $payments_not_allowed = $QpaymentsNotAllowed->fetch();
 
-          $payments_unallowed = explode(",",$payments_not_allowed['group_payment_unallowed']);
+          $payments_unallowed = explode(",", $payments_not_allowed['group_payment_unallowed']);
           $clearance = (in_array($pay_check, $payments_unallowed)) ? true : false;
 
         } else if ($CLICSHOPPING_Customer->isLoggedOn()) {
@@ -60,36 +62,38 @@
         $Qpayments->execute();
 
         $payments_not_allowed = $Qpayments->fetch();
-        $payments_unallowed = explode (",",$payments_not_allowed['group_payment_unallowed']);
-        $clearance = (!in_array ($pay_check, $payments_unallowed)) ?  true : false;
+        $payments_unallowed = explode(",", $payments_not_allowed['group_payment_unallowed']);
+        $clearance = (!in_array($pay_check, $payments_unallowed)) ? true : false;
       }
 
       return $clearance;
     }
 
-/**
- * Not Display  the payment module if customer_group = 0
- * @param string $customer_group_id, the group of the customer
- * @access public
- **/
-    public static function getPaymentNotDisplayPayment() {
+    /**
+     * Not Display  the payment module if customer_group = 0
+     * @param string $customer_group_id , the group of the customer
+     * @access public
+     **/
+    public static function getPaymentNotDisplayPayment()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $customer_group_id = $CLICSHOPPING_Customer->getID();
 
       return $customer_group_id;
     }
 
-/**
- * Display the shipping mode in different mode B2B or not
- *
- * @param string $product_price_d, the price of the product or not
- * @access public
- */
-    public static function getShippingUnallowed($shipping_check) {
+    /**
+     * Display the shipping mode in different mode B2B or not
+     *
+     * @param string $product_price_d , the price of the product or not
+     * @access public
+     */
+    public static function getShippingUnallowed($shipping_check)
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin' ) {
+      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
 
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 
@@ -104,7 +108,7 @@
 
           $shipping_not_allowed = $QshippingNotAllowed->fetch();
 
-          $shipping_unallowed = explode(",",$shipping_not_allowed['group_shipping_unallowed']);
+          $shipping_unallowed = explode(",", $shipping_not_allowed['group_shipping_unallowed']);
           $shipping_clearance = (in_array($shipping_check, $shipping_unallowed)) ? true : false;
         } elseif ($CLICSHOPPING_Customer->isLoggedOn()) {
           $shipping_clearance = true;
@@ -121,9 +125,9 @@
         $shipping_not_allowed = $Qshipping->fetch();
 
         if (!empty($shipping_not_allowed['group_payment_unallowed'])) {
-          $shipping_unallowed = explode (',', $shipping_not_allowed['group_payment_unallowed']);
+          $shipping_unallowed = explode(',', $shipping_not_allowed['group_payment_unallowed']);
 
-          $shipping_clearance = (!in_array ($shipping_check, $shipping_unallowed)) ?  true : false;
+          $shipping_clearance = (!in_array($shipping_check, $shipping_unallowed)) ? true : false;
         } else {
           $shipping_clearance = false;
         }
@@ -133,18 +137,19 @@
     }
 
 
-/**
- * Display the taxe or not mode in different mode B2B or not
- *
- * @param string $product_price_d, the price of the product or not
- * @access public
- * $tax_check no variable
- */
-    public static function getTaxUnallowed() {
+    /**
+     * Display the taxe or not mode in different mode B2B or not
+     *
+     * @param string $product_price_d , the price of the product or not
+     * @access public
+     * $tax_check no variable
+     */
+    public static function getTaxUnallowed()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin' ) {
+      if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
 
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 

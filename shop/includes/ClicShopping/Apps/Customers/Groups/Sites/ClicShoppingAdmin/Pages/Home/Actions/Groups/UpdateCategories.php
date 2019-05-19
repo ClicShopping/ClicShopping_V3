@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class UpdateCategories extends \ClicShopping\OM\PagesActionsAbstract {
+  class UpdateCategories extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -32,7 +34,7 @@
       } else {
 
         if (isset($_POST['upddiscount'])) $new_discount = HTML::sanitize($_POST['upddiscount']);
-        if (isset($_POST['catID']))  $category_id = HTML::sanitize($_POST['catID']);
+        if (isset($_POST['catID'])) $category_id = HTML::sanitize($_POST['catID']);
 
         $Qupdate = $CLICSHOPPING_Groups->db->prepare('update :table_groups_to_categories
                                                       set discount = :discount
@@ -44,7 +46,7 @@
         $Qupdate->bindInt(':categories_id', (int)$category_id);
         $Qupdate->execute();
 
-        $CLICSHOPPING_Hooks->call('CustomersGroup','UpdateCategories');
+        $CLICSHOPPING_Hooks->call('CustomersGroup', 'UpdateCategories');
 
         $CLICSHOPPING_Groups->redirect('Edit&cID=' . (int)$customers_group_id . '#tab4');
       }

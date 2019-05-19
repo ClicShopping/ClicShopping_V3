@@ -1,30 +1,32 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\SEO\Sites\Shop\Pages\GoogleSitemap\Actions;
 
   use ClicShopping\OM\Registry;
 
-  class GoogleSitemapFavorites extends \ClicShopping\OM\PagesActionsAbstract {
+  class GoogleSitemapFavorites extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
     protected $use_site_template = false;
     protected $rewriteUrl;
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $this->rewriteUrl = Registry::get('RewriteUrl');
 
       if (MODE_VENTE_PRIVEE == 'false') {
 
-        $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n".'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
+        $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
         $products_array = [];
 
@@ -40,8 +42,8 @@
         $Qproducts->bindValue(':products_favorites_last_modified', '');
         $Qproducts->execute();
 
-        while ($Qproducts->fetch() ) {
-          $location =  htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($Qproducts->valueInt('products_id'))));
+        while ($Qproducts->fetch()) {
+          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($Qproducts->valueInt('products_id'))));
 
           $products_array[$Qproducts->valueInt('products_id')]['loc'] = $location;
           $products_array[$Qproducts->valueInt('products_id')]['lastmod'] = $Qproducts->value('last_modified');

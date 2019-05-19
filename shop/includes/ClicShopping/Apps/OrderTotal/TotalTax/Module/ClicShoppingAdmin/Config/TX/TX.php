@@ -1,31 +1,34 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\OrderTotal\TotalTax\Module\ClicShoppingAdmin\Config\TX;
 
-  class TX extends \ClicShopping\Apps\OrderTotal\TotalTax\Module\ClicShoppingAdmin\Config\ConfigAbstract {
+  class TX extends \ClicShopping\Apps\OrderTotal\TotalTax\Module\ClicShoppingAdmin\Config\ConfigAbstract
+  {
 
     protected $pm_code = 'TotalTax';
 
     public $is_uninstallable = true;
     public $sort_order = 400;
 
-    protected function init() {
+    protected function init()
+    {
       $this->title = $this->app->getDef('modulemodule_tx_title');
       $this->short_title = $this->app->getDef('modulemodule_tx_short_title');
       $this->introduction = $this->app->getDef('modulemodule_tx_introduction');
       $this->is_installed = defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
     }
 
-    public function install() {
+    public function install()
+    {
       parent::install();
 
       if (defined('MODULE_ORDER_TOTAL_INSTALLED')) {
@@ -37,7 +40,8 @@
       $this->app->saveCfgParam('MODULE_ORDER_TOTAL_INSTALLED', implode(';', $installed));
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
       parent::uninstall();
 
       $installed = explode(';', MODULE_ORDER_TOTAL_INSTALLED);

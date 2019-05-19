@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Reviews\Module\HeaderTags;
 
@@ -16,13 +16,15 @@
 
   use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
-  class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('ReviewsApp')) {
         Registry::set('ReviewsApp', new ReviewsApp());
       }
@@ -36,21 +38,23 @@
       $this->title = $this->app->getDef('module_header_tags_products_reviews_title');
       $this->description = $this->app->getDef('module_header_tags_products_reviews_description');
 
-      if ( defined('MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_REVIEWS_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS == 'True');
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['Reviews'] )) {
+      if (isset($_GET['Reviews'])) {
         $Qsubmit = $this->app->db->prepare('select submit_id,
                                                     language_id,
                                                     submit_defaut_language_title,
@@ -63,7 +67,7 @@
                                             where submit_id = 1
                                             and language_id = :language_id
                                           ');
-        $Qsubmit->bindInt(':language_id',  (int)$CLICSHOPPING_Language->getId() );
+        $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qsubmit->execute();
 
         $tags_array = [];
@@ -92,7 +96,7 @@
         $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
 
         $output =
-<<<EOD
+          <<<EOD
 {$title}
 {$description}
 {$keywords}
@@ -103,7 +107,8 @@ EOD;
       }
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS',
@@ -130,9 +135,10 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_HEADER_TAGS_PRODUCT_REVIEWS_STATUS',
-              'MODULE_HEADER_TAGS_PRODUCT_REVIEWS_SORT_ORDER'
-             ];
+        'MODULE_HEADER_TAGS_PRODUCT_REVIEWS_SORT_ORDER'
+      ];
     }
   }

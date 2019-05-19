@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Marketing\SEO\Module\HeaderTags;
@@ -19,13 +19,15 @@
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
-  class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('SEO')) {
         Registry::set('SEO', new SEOApp());
       }
@@ -40,17 +42,19 @@
       $this->title = $this->app->getDef('module_header_tags_index_title');
       $this->description = $this->app->getDef('module_header_tags_index_description');
 
-      if ( defined('MODULE_HEADER_TAGS_INDEX_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_INDEX_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_INDEX_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_INDEX_STATUS == 'True');
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $index = HTTP::getShopUrlDomain() . 'index.php';
@@ -71,7 +75,7 @@
                                               and language_id = :language_id
                                           ');
 
-        $Qsubmit->bindInt(':language_id', $this->lang->getId() );
+        $Qsubmit->bindInt(':language_id', $this->lang->getId());
         $Qsubmit->execute();
         $submit = $Qsubmit->fetch();
 
@@ -94,12 +98,12 @@
         }
 
         $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($description  . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($keywords  . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords  . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
+        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
 
         $output =
-<<<EOD
+          <<<EOD
 {$title}
 {$description}
 {$keywords}
@@ -110,7 +114,8 @@ EOD;
       }
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_INDEX_STATUS',
@@ -137,9 +142,10 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_HEADER_TAGS_INDEX_STATUS',
-              'MODULE_HEADER_TAGS_INDEX_SORT_ORDER'
-             ];
+        'MODULE_HEADER_TAGS_INDEX_SORT_ORDER'
+      ];
     }
   }

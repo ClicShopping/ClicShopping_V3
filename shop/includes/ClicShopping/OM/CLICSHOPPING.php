@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
@@ -20,7 +20,8 @@
 
   use ClicShopping\Service\Shop\SEFU;
 
-  class CLICSHOPPING {
+  class CLICSHOPPING
+  {
     const BASE_DIR = CLICSHOPPING_BASE_DIR;
 
     protected static $version;
@@ -28,7 +29,8 @@
     protected static $cfg = [];
     protected static $_application;
 
-    public static function initialize()  {
+    public static function initialize()
+    {
 
       static::loadConfig();
 
@@ -42,14 +44,15 @@
       static::setSiteApplication();
     }
 
-/**
- * Get the installed version number
- *
- * @param string $v get the clicshopping_verion
- * @retunr : version of the site
- * @access public
- */
-    public static function getVersion()  {
+    /**
+     * Get the installed version number
+     *
+     * @param string $v get the clicshopping_verion
+     * @retunr : version of the site
+     * @access public
+     */
+    public static function getVersion()
+    {
       if (!isset(static::$version)) {
         $file = static::BASE_DIR . 'version.json';
 
@@ -66,7 +69,8 @@
       return static::$version;
     }
 
-    public static function siteExists($site, $strict = true) {
+    public static function siteExists($site, $strict = true)
+    {
       $class = 'ClicShopping\Sites\\' . $site . '\\' . $site;
 
       if (class_exists($class)) {
@@ -82,7 +86,8 @@
       return false;
     }
 
-    public static function loadSite($site = null)  {
+    public static function loadSite($site = null)
+    {
 
       if (!isset($site)) {
         $site = static::$site;
@@ -91,13 +96,14 @@
       static::setSite($site);
     }
 
-    public static function setSite($site) {
+    public static function setSite($site)
+    {
 
       if (!static::siteExists($site)) {
         $site = static::$site;
       }
 
-       static::$site = $site;
+      static::$site = $site;
 
       $class = 'ClicShopping\Sites\\' . $site . '\\' . $site;
 
@@ -107,38 +113,44 @@
       $CLICSHOPPING_Site->setPage();
     }
 
-    public static function getSite()  {
+    public static function getSite()
+    {
       return static::$site;
     }
 
-    public static function hasSitePage()  {
+    public static function hasSitePage()
+    {
       return Registry::get('Site')->hasPage();
     }
 
-    public static function getSitePageFile()  {
+    public static function getSitePageFile()
+    {
       return Registry::get('Site')->getPage()->getFile();
     }
 
-    public static function useSiteTemplateWithPageFile() {
+    public static function useSiteTemplateWithPageFile()
+    {
       return Registry::get('Site')->getPage()->useSiteTemplate();
     }
 
-    public static function isRPC()  {
+    public static function isRPC()
+    {
       $CLICSHOPPING_Site = Registry::get('Site');
 
       return $CLICSHOPPING_Site->hasPage() && $CLICSHOPPING_Site->getPage()->isRPC();
     }
 
-/**
- * Return an internal URL address.
- *
- * @param string $page The Site to link to. Default: The currently used Site.
- * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
- * @param bool $add_session_id Add the session ID to the link. Default: True.
- * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
- * @return string The URL address.
- */
-    public static function link($page = null, $parameters = null, $add_session_id = true, $search_engine_safe = true)  {
+    /**
+     * Return an internal URL address.
+     *
+     * @param string $page The Site to link to. Default: The currently used Site.
+     * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
+     * @param bool $add_session_id Add the session ID to the link. Default: True.
+     * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
+     * @return string The URL address.
+     */
+    public static function link($page = null, $parameters = null, $add_session_id = true, $search_engine_safe = true)
+    {
 
       if (is_null($page)) {
         $page = static::getConfig('bootstrap_file');
@@ -149,8 +161,8 @@
       $site = $req_site = static::$site;
 
       if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
-          $req_site = $matches[1];
-          $page = $matches[2];
+        $req_site = $matches[1];
+        $page = $matches[2];
       }
 
       if (!is_bool($add_session_id)) {
@@ -177,14 +189,14 @@
         }
 
         $p = str_replace([
-                          "\\", // apps
-                          '{', // product attributes
-                          '}' // product attributes
-                          ], [
-                            $replace_backslash,
-                            '%7B',
-                            '%7D'
-                          ], $p);
+          "\\", // apps
+          '{', // product attributes
+          '}' // product attributes
+        ], [
+          $replace_backslash,
+          '%7B',
+          '%7D'
+        ], $p);
 
         $link .= '?' . $p;
         $separator = '&';
@@ -192,7 +204,7 @@
         $separator = '?';
       }
 
-      while((substr($link, -1) == '&') || (substr($link, -1) == '?')) {
+      while ((substr($link, -1) == '&') || (substr($link, -1) == '?')) {
         $link = substr($link, 0, -1);
       }
 
@@ -207,7 +219,7 @@
         }
       }
 
-      while(strpos($link, '&&') !== false) {
+      while (strpos($link, '&&') !== false) {
         $link = str_replace('&&', '&', $link);
       }
 
@@ -218,43 +230,45 @@
       return $link;
     }
 
-    public static function linkImage() {
-        $args = func_get_args();
+    public static function linkImage()
+    {
+      $args = func_get_args();
 
-        if (!isset($args[0])) {
-            $args[0] = null;
-        }
+      if (!isset($args[0])) {
+        $args[0] = null;
+      }
 
-        if (!isset($args[1])) {
-            $args[1] = null;
-        }
+      if (!isset($args[1])) {
+        $args[1] = null;
+      }
 
-        $args[2] = false;
+      $args[2] = false;
 
-        $page = $args[0];
-        $req_site = static::$site;
+      $page = $args[0];
+      $req_site = static::$site;
 
-        if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
-          $req_site = $matches[1];
-          $page = $matches[2];
-        }
+      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
+        $req_site = $matches[1];
+        $page = $matches[2];
+      }
 
-        $args[0] = $req_site . '/' . static::getConfig('http_images_path', $req_site) . $page;
+      $args[0] = $req_site . '/' . static::getConfig('http_images_path', $req_site) . $page;
 
-        $url = forward_static_call_array('static::link', $args);
+      $url = forward_static_call_array('static::link', $args);
 
-        return $url;
+      return $url;
     }
 
-/**
- * Return an internal URL address for public objects.
- *
- * @param string $url The object location from the public/sites/SITE/ directory.
- * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
- * @param string $site Get a public link from a specific Site
- * @return string The URL address.
- */
-    public static function linkPublic() {
+    /**
+     * Return an internal URL address for public objects.
+     *
+     * @param string $url The object location from the public/sites/SITE/ directory.
+     * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
+     * @param string $site Get a public link from a specific Site
+     * @return string The URL address.
+     */
+    public static function linkPublic()
+    {
       $args = func_get_args();
 
       if (!isset($args[0])) {
@@ -282,14 +296,15 @@
       return $url;
     }
 
-/**
- * Redirect to a page
- *
- * @param string $v get the clicshopping_verion
- * @return string $url, url to redirect
- * @access public
- */
-    public static function redirect() {
+    /**
+     * Redirect to a page
+     *
+     * @param string $v get the clicshopping_verion
+     * @return string $url, url to redirect
+     * @access public
+     */
+    public static function redirect()
+    {
       $args = func_get_args();
 
       $url = forward_static_call_array('static::link', $args);
@@ -301,28 +316,31 @@
       HTTP::redirect($url);
     }
 
-/**
- * Return a language definition
- *
- * @param string $key The language definition to return
- * @param array $values Replace keywords with values
- * @return string The language definition
- */
-    public static function getDef() {
+    /**
+     * Return a language definition
+     *
+     * @param string $key The language definition to return
+     * @param array $values Replace keywords with values
+     * @return string The language definition
+     */
+    public static function getDef()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       return call_user_func_array([$CLICSHOPPING_Language, 'getDef'], func_get_args());
     }
 
-    public static function hasRoute(array $path)  {
+    public static function hasRoute(array $path)
+    {
       return array_slice(array_keys($_GET), 0, count($path)) == $path;
     }
 
-    public static function loadConfig() {
+    public static function loadConfig()
+    {
       static::loadConfigFile(static::BASE_DIR . 'Conf/global.php', 'global');
 
       if (is_file(static::BASE_DIR . 'Custom/Conf/global.php')) {
-         static::loadConfigFile(static::BASE_DIR . 'Custom/Conf/global.php', 'global');
+        static::loadConfigFile(static::BASE_DIR . 'Custom/Conf/global.php', 'global');
       }
 
       foreach (glob(static::BASE_DIR . 'Sites/*', GLOB_ONLYDIR) as $s) {
@@ -338,15 +356,16 @@
       }
     }
 
-    public static function loadConfigFile($file, $group) {
+    public static function loadConfigFile($file, $group)
+    {
 
       $cfg = [];
 
       if (is_file($file)) {
-        include($file );
+        include($file);
 
         if (isset($ini)) {
-            $cfg = parse_ini_string($ini);
+          $cfg = parse_ini_string($ini);
         }
       }
 
@@ -355,39 +374,43 @@
       }
     }
 
-    public static function getConfig($key, $group = null) {
+    public static function getConfig($key, $group = null)
+    {
       if (!isset($group)) {
-          $group = static::getSite();
+        $group = static::getSite();
       }
 
       if (isset(static::$cfg[$group][$key])) {
-          return static::$cfg[$group][$key];
+        return static::$cfg[$group][$key];
       }
 
       return static::$cfg['global'][$key];
     }
 
-    public static function configExists($key, $group = null) {
+    public static function configExists($key, $group = null)
+    {
       if (!isset($group)) {
-          $group = static::getSite();
+        $group = static::getSite();
       }
 
       if (isset(static::$cfg[$group][$key])) {
-          return true;
+        return true;
       }
 
       return isset(static::$cfg['global'][$key]);
     }
 
-    public static function setConfig($key, $value, $group = null) {
+    public static function setConfig($key, $value, $group = null)
+    {
       if (!isset($group)) {
-          $group = 'global';
+        $group = 'global';
       }
 
       static::$cfg[$group][$key] = $value;
     }
 
-    public static function autoload($class)  {
+    public static function autoload($class)
+    {
       $prefix = 'ClicShopping\\';
 
       if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
@@ -410,12 +433,13 @@
     }
 
 
-/**
- * Retrieve web server and database server information
- * return $data, array og php.ini information
- * @access public
- */
-    public static function getSystemInformation() {
+    /**
+     * Retrieve web server and database server information
+     * return $data, array og php.ini information
+     * @access public
+     */
+    public static function getSystemInformation()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qdate = $CLICSHOPPING_Db->query('select now() as datetime');
@@ -424,66 +448,68 @@
 
       $data = [];
 
-      $data['clicshopping']  = ['version' => static::getVersion()];
+      $data['clicshopping'] = ['version' => static::getVersion()];
 
       $data['system'] = ['date' => date('Y-m-d H:i:s O T'),
-                          'os' => PHP_OS,
-                          'kernel' => $kernel,
-                          'uptime' => @exec('uptime'),
-                          'http_server' => $_SERVER['SERVER_SOFTWARE']
-                        ];
+        'os' => PHP_OS,
+        'kernel' => $kernel,
+        'uptime' => @exec('uptime'),
+        'http_server' => $_SERVER['SERVER_SOFTWARE']
+      ];
 
-      $data['mysql']  = ['version' => $CLICSHOPPING_Db->getAttribute(\PDO::ATTR_SERVER_VERSION),
-                         'date' => $Qdate->value('datetime')
-                        ];
+      $data['mysql'] = ['version' => $CLICSHOPPING_Db->getAttribute(\PDO::ATTR_SERVER_VERSION),
+        'date' => $Qdate->value('datetime')
+      ];
 
-      $data['php']    = ['version' => PHP_VERSION,
-                          'zend' => zend_version(),
-                          'sapi' => PHP_SAPI,
-                          'int_size' => defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
-                          'open_basedir' => (int) @ini_get('open_basedir'),
-                          'memory_limit' => @ini_get('memory_limit'),
-                          'error_reporting' => error_reporting(),
-                          'display_errors' => (int)@ini_get('display_errors'),
-                          'allow_url_fopen' => (int) @ini_get('allow_url_fopen'),
-                          'allow_url_include' => (int) @ini_get('allow_url_include'),
-                          'file_uploads' => (int) @ini_get('file_uploads'),
-                          'upload_max_filesize' => @ini_get('upload_max_filesize'),
-                          'post_max_size' => @ini_get('post_max_size'),
-                          'disable_functions' => @ini_get('disable_functions'),
-                          'disable_classes' => @ini_get('disable_classes'),
-                          'enable_dl'	=> (int) @ini_get('enable_dl'),
-                          'filter.default'   => @ini_get('filter.default'),
-                          'unicode.semantics' => (int) @ini_get('unicode.semantics'),
-                          'zend_thread_safty'	=> (int) function_exists('zend_thread_id'),
-                          'extensions' => get_loaded_extensions()
-                          ];
+      $data['php'] = ['version' => PHP_VERSION,
+        'zend' => zend_version(),
+        'sapi' => PHP_SAPI,
+        'int_size' => defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
+        'open_basedir' => (int)@ini_get('open_basedir'),
+        'memory_limit' => @ini_get('memory_limit'),
+        'error_reporting' => error_reporting(),
+        'display_errors' => (int)@ini_get('display_errors'),
+        'allow_url_fopen' => (int)@ini_get('allow_url_fopen'),
+        'allow_url_include' => (int)@ini_get('allow_url_include'),
+        'file_uploads' => (int)@ini_get('file_uploads'),
+        'upload_max_filesize' => @ini_get('upload_max_filesize'),
+        'post_max_size' => @ini_get('post_max_size'),
+        'disable_functions' => @ini_get('disable_functions'),
+        'disable_classes' => @ini_get('disable_classes'),
+        'enable_dl' => (int)@ini_get('enable_dl'),
+        'filter.default' => @ini_get('filter.default'),
+        'unicode.semantics' => (int)@ini_get('unicode.semantics'),
+        'zend_thread_safty' => (int)function_exists('zend_thread_id'),
+        'extensions' => get_loaded_extensions()
+      ];
 
       return $data;
     }
 
-    protected static function siteApplicationExists($application) {
+    protected static function siteApplicationExists($application)
+    {
       $class = 'ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application;
 
       return $class;
     }
 
-    protected static function setSiteApplication($application = null) {
-      if ( isset($application) ) {
-        if ( !static::siteApplicationExists($application) ) {
+    protected static function setSiteApplication($application = null)
+    {
+      if (isset($application)) {
+        if (!static::siteApplicationExists($application)) {
           trigger_error('Application \'' . $application . '\' does not exist for Site \'' . static::getSite());
 
           $application = null;
         }
       } else {
-        if ( !empty($_GET) ) {
+        if (!empty($_GET)) {
           $requested_application = HTML::sanitize(basename(key(array_slice($_GET, 0, 1, true))));
 
-          if ( $requested_application == static::getSite() ) {
+          if ($requested_application == static::getSite()) {
             $requested_application = HTML::sanitize(basename(key(array_slice($_GET, 1, 1, true))));
           }
 
-          if ( !empty($requested_application) && static::siteApplicationExists($requested_application) ) {
+          if (!empty($requested_application) && static::siteApplicationExists($requested_application)) {
             $application = $requested_application;
           }
         }
@@ -491,20 +517,22 @@
       static::$_application = $application;
     }
 
-    public static function getSiteApplication() {
+    public static function getSiteApplication()
+    {
       return static::$_application;
     }
 
 
-/**
- * Get all parameters in the GET scope
- *
- * @param array $exclude A list of parameters to exclude
- * @return string
- */
-    public static function getAllGET($exclude = null) {
-      if ( !is_array($exclude) ) {
-        if ( !empty($exclude) ) {
+    /**
+     * Get all parameters in the GET scope
+     *
+     * @param array $exclude A list of parameters to exclude
+     * @return string
+     */
+    public static function getAllGET($exclude = null)
+    {
+      if (!is_array($exclude)) {
+        if (!empty($exclude)) {
           $exclude = [$exclude];
         } else {
           $exclude = [];
@@ -514,53 +542,56 @@
       $params = '';
 
       $array = [static::getSite(),
-                Registry::get('Session')->getName(),
-                'error',
-                'x',
-                'y'
-                ];
+        Registry::get('Session')->getName(),
+        'error',
+        'x',
+        'y'
+      ];
 
       $exclude = array_merge($exclude, $array);
 
-      foreach ( $_GET as $key => $value ) {
-        if ( !in_array($key, $exclude) ) {
-           $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
-         }
+      foreach ($_GET as $key => $value) {
+        if (!in_array($key, $exclude)) {
+          $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
+        }
       }
 
-      if ( !empty($params) ) {
+      if (!empty($params)) {
         $params = substr($params, 0, -1);
       }
 
       return $params;
     }
 
-/*  the global scope
-*   @return String : element of url like ClicShoppingAdmin/index.php or Shop/index.php
-*/
-    public static function getIndex() {
+    /*  the global scope
+    *   @return String : element of url like ClicShoppingAdmin/index.php or Shop/index.php
+    */
+    public static function getIndex()
+    {
       $req = parse_url($_SERVER['SCRIPT_NAME']);
       $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
 
       return $result;
     }
 
-/*  Take only index.php
-*   @return String : element of url like index.php
-*/
-    public static function getBaseNameIndex() {
+    /*  Take only index.php
+    *   @return String : element of url like index.php
+    */
+    public static function getBaseNameIndex()
+    {
       return basename(static::getIndex());
     }
 
 
-    public static function ArrayToString($array , $exclude = '', $equals = '=', $separator = '&') {
+    public static function ArrayToString($array, $exclude = '', $equals = '=', $separator = '&')
+    {
       if (!is_array($exclude)) $exclude = [];
 
       $get_string = '';
 
       if (!empty($array)) {
         foreach ($array as $key => $value) {
-          if ( (!in_array($key, $exclude)) && ($key != 'x') && ($key != 'y') ) {
+          if ((!in_array($key, $exclude)) && ($key != 'x') && ($key != 'y')) {
             $get_string .= $key . $equals . $value . $separator;
           }
         }
@@ -570,4 +601,4 @@
 
       return $get_string;
     }
- }
+  }

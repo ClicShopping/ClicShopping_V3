@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Products\Actions;
 
@@ -17,11 +17,13 @@
 
   use ClicShopping\Sites\Shop\Pages\Account\Classes\HistoryInfo;
 
-  class Download extends \ClicShopping\OM\PagesActionsAbstract {
+  class Download extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
 // Unlinks all subdirectories and files in $dir
 // Works only on one subdir level, will not recurse
-    protected function unlinkTempDir($dir) {
+    protected function unlinkTempDir($dir)
+    {
       $h1 = opendir($dir);
       while ($subdir = readdir($h1)) {
 // Ignore non directories
@@ -40,24 +42,25 @@
       closedir($h1);
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if ( !$CLICSHOPPING_Customer->isLoggedOn() ) {
+      if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         CLICSHOPPING::redirect('account', 'login');
       }
 
 // Check download.php was called with proper GET parameters
-      if ( (isset($_GET['order']) && !is_numeric($_GET['order'])) || (isset($_GET['id']) && !is_numeric($_GET['id'])) ) {
+      if ((isset($_GET['order']) && !is_numeric($_GET['order'])) || (isset($_GET['id']) && !is_numeric($_GET['id']))) {
         CLICSHOPPING::redirect();
       }
 
 // Check that order_id, customer_id and filename match
       $Qdownload = HistoryInfo::getDownloadFilesPurchased();
 
-      if ( $Qdownload->fetch() === false ) {
+      if ($Qdownload->fetch() === false) {
         CLICSHOPPING::redirect(null, null);
       }
 

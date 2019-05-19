@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop;
 
@@ -15,7 +15,8 @@
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\HTML;
 
-  class Search {
+  class Search
+  {
     protected $_period_min_year;
     protected $_period_max_year;
     protected $_keywords;
@@ -30,7 +31,8 @@
     protected $column_list;
     protected $db;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->db = Registry::get('Db');
 
       $Qproducts = $this->db->query('select min(year(products_date_added)) as min_year,
@@ -45,15 +47,18 @@
     }
 
 
-    public function getMinYear() {
+    public function getMinYear()
+    {
       return $this->_period_min_year;
     }
 
-    public function getMaxYear() {
+    public function getMaxYear()
+    {
       return $this->_period_max_year;
     }
 
-    public function getDateFrom() {
+    public function getDateFrom()
+    {
       if (isset($_POST['dfrom']) && !empty($_POST['dfrom'])) {
         $this->_date_from = HTML::sanitize($_POST['dfrom']);
       } elseif (isset($_GET['dfrom']) && !empty($_GET['dfrom'])) {
@@ -66,7 +71,8 @@
     }
 
 
-    public function hasDateFrom() {
+    public function hasDateFrom()
+    {
       $dfromDateTime = new DateTime($this->getDateFrom(), false);
 
       if ($dfromDateTime->isValid() === false) {
@@ -78,7 +84,8 @@
       return $datefrom;
     }
 
-    public function getDateTo() {
+    public function getDateTo()
+    {
       if (isset($_POST['dto']) && !empty($_POST['dto'])) {
         $this->_date_to = HTML::sanitize($_POST['dto']);
       } elseif (isset($_GET['dto']) && !empty($_GET['dto'])) {
@@ -91,7 +98,8 @@
     }
 
 
-    public function hasDateTo() {
+    public function hasDateTo()
+    {
       $dtoDateTime = new DateTime($this->getDateTo(), false);
 
       if ($dtoDateTime->isValid() === false) {
@@ -103,16 +111,19 @@
       return $dateto;
     }
 
-    public function setDateFrom($timestamp) {
+    public function setDateFrom($timestamp)
+    {
       $this->_date_from = $timestamp;
     }
 
-    public function setDateTo($timestamp) {
+    public function setDateTo($timestamp)
+    {
       $this->_date_to = $timestamp;
     }
 
 
-    public function getPriceFrom() {
+    public function getPriceFrom()
+    {
 
       if (isset($_POST['pfrom']) && !empty($_POST['pfrom']) && is_numeric($_POST['pfrom'])) {
         $this->_price_from = HTML::sanitize((float)$_POST['pfrom']);
@@ -126,8 +137,9 @@
     }
 
 
-    public function hasPriceFrom() {
-      if (empty($this->getPriceFrom() )) {
+    public function hasPriceFrom()
+    {
+      if (empty($this->getPriceFrom())) {
         $pricefrom = false;
       } else {
         $pricefrom = true;
@@ -135,7 +147,8 @@
       return $pricefrom;
     }
 
-    public function getPriceTo() {
+    public function getPriceTo()
+    {
       if (isset($_POST['pto']) && !empty($_POST['pto']) && is_numeric($_POST['pto'])) {
         $this->_price_to = HTML::sanitize((float)$_POST['pto']);
       } elseif (isset($_GET['pto']) && !empty($_POST['pto']) && is_numeric($_GET['pto'])) {
@@ -147,8 +160,9 @@
       return $this->_price_to;
     }
 
-    public function hasPriceTo() {
-      if (empty($this->getPriceTo() )) {
+    public function hasPriceTo()
+    {
+      if (empty($this->getPriceTo())) {
         $priceto = false;
       } else {
         $priceto = true;
@@ -157,24 +171,26 @@
       return $priceto;
     }
 
-/*
-  * Number of products result
-  * @param
-  * @return $this->_result['total'], total of products
-  * @access public
-*/
-      public function getNumberOfResults() {
-        return $this->_result['total'];
-      }
+    /*
+      * Number of products result
+      * @param
+      * @return $this->_result['total'], total of products
+      * @access public
+    */
+    public function getNumberOfResults()
+    {
+      return $this->_result['total'];
+    }
 
-/*
- * Search keywords
- * @param
- * @return $this->_keywords, the keywords
- * @access public
-*/
+    /*
+     * Search keywords
+     * @param
+     * @return $this->_keywords, the keywords
+     * @access public
+    */
 
-    public function getKeywords() {
+    public function getKeywords()
+    {
       if (isset($_POST['keywords'])) {
         $this->_keywords = HTML::sanitize($_POST['keywords']);
       } elseif (isset($_GET['keywords'])) {
@@ -186,24 +202,26 @@
       return $this->_keywords;
     }
 
-/*
- * Boolean True False
- * @return true or False
- * @access public
-*/
-    public function hasKeywords() {
-      if (!empty($this->getKeywords()) ) {
+    /*
+     * Boolean True False
+     * @return true or False
+     * @access public
+    */
+    public function hasKeywords()
+    {
+      if (!empty($this->getKeywords())) {
         return true;
       }
     }
 
-/*
- * explode keywords
- * @param $keywords, keywords
- * @return keywords under an array
- * @access public
-*/
-    public function setKeywords($keywords) {
+    /*
+     * explode keywords
+     * @param $keywords, keywords
+     * @return keywords under an array
+     * @access public
+    */
+    public function setKeywords($keywords)
+    {
 
       if (isset($keywords)) {
         $this->_keywords = HTML::sanitize($keywords);
@@ -226,16 +244,17 @@
         }
       }
 
-     $this->_keywords = implode(' ', $terms_array);
+      $this->_keywords = implode(' ', $terms_array);
     }
 
-/*
- * Search in description
- * @param
- * @return $this->_description, the keywords
- * @access public
-*/
-    private function getDescription() {
+    /*
+     * Search in description
+     * @param
+     * @return $this->_description, the keywords
+     * @access public
+    */
+    private function getDescription()
+    {
       if (isset($_POST['search_in_description']) == 1) {
         $this->_description = true;
       } elseif (isset($_GET['search_in_description']) == 1) {
@@ -247,26 +266,28 @@
       return $this->_description;
     }
 
-/*
- * Description
- * Boolean true False
- * @return true or False
- * @access public
-*/
-    private function hasDescription() {
+    /*
+     * Description
+     * Boolean true False
+     * @return true or False
+     * @access public
+    */
+    private function hasDescription()
+    {
       return $this->getDescription();
     }
 
-/*
- * Search in category
- * @param
- * @return $this->_category, the categorie
- * @access public
-*/
-    private function getCategory() {
-      if (isset($_POST['categories_id']) && !empty($_POST['categories_id']) && is_numeric($_POST['categories_id']) ) {
+    /*
+     * Search in category
+     * @param
+     * @return $this->_category, the categorie
+     * @access public
+    */
+    private function getCategory()
+    {
+      if (isset($_POST['categories_id']) && !empty($_POST['categories_id']) && is_numeric($_POST['categories_id'])) {
         $this->_category = true;
-      } elseif (isset($_GET['categories_id']) && !empty($_GET['categories_id']) && is_numeric($_POST['categories_id']) ) {
+      } elseif (isset($_GET['categories_id']) && !empty($_GET['categories_id']) && is_numeric($_POST['categories_id'])) {
         $this->_category = true;
       } else {
         $this->_category = false;
@@ -275,23 +296,25 @@
       return $this->_category;
     }
 
-/*
- * Category
- * Boolean true False
- * @return true or False
- * @access public
-*/
-    private function hasCategory() {
+    /*
+     * Category
+     * Boolean true False
+     * @return true or False
+     * @access public
+    */
+    private function hasCategory()
+    {
       return $this->getCategory();
     }
 
-/*
- * Category recusive
- * array id of recursive category
- * @return $this->_recursive, id fo categories
- * @access public
-*/
-    private function isRecursive() {
+    /*
+     * Category recusive
+     * array id of recursive category
+     * @return $this->_recursive, id fo categories
+     * @access public
+    */
+    private function isRecursive()
+    {
       if (isset($_POST['inc_subcat']) && ($_POST['inc_subcat'] == '1')) {
         $this->_recursive = true;
       } elseif (isset($_POST['inc_subcat']) && ($_POST['inc_subcat'] == '1')) {
@@ -299,34 +322,36 @@
       } else {
         $this->_recursive = false;
       }
-      return  $this->_recursive;
+      return $this->_recursive;
     }
 
-/*
- * getCategoryID
- * id of category
- * @return $category_id, id fo category
- * @access public
-*/
-    private function getCategoryID() {
-      if (isset($_POST['categories_id']) && !empty($_POST['categories_id']) ) {
+    /*
+     * getCategoryID
+     * id of category
+     * @return $category_id, id fo category
+     * @access public
+    */
+    private function getCategoryID()
+    {
+      if (isset($_POST['categories_id']) && !empty($_POST['categories_id'])) {
         $category_id = HTML::sanitize($_POST['categories_id']);
-      } elseif (isset($_GET['categories_id']) && !empty($_GET['categories_id']) ) {
+      } elseif (isset($_GET['categories_id']) && !empty($_GET['categories_id'])) {
         $category_id = HTML::sanitize($_GET['categories_id']);
       }
-        return $category_id;
+      return $category_id;
     }
 
-/*
-* Search in manufacturer
-* @param
-* @return $this->_manufacturer, the manufacturer
-* @access public
-*/
-    private function getManufacturer() {
+    /*
+    * Search in manufacturer
+    * @param
+    * @return $this->_manufacturer, the manufacturer
+    * @access public
+    */
+    private function getManufacturer()
+    {
       if (isset($_POST['manufacturers_id']) && !empty($_POST['manufacturers_id']) && is_numeric($_POST['manufacturers_id'])) {
         $this->_manufacturer = true;
-      } elseif (isset($_GET['manufacturers_id'])  && !empty($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
+      } elseif (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
         $this->_manufacturer = true;
       } else {
         $this->_manufacturer = false;
@@ -335,37 +360,39 @@
       return $this->_manufacturer;
     }
 
-/*
- * manufacturer
- * Boolean true False
- * @return true or False
- * @access public
-*/
-    private function hasManufacturer() {
+    /*
+     * manufacturer
+     * Boolean true False
+     * @return true or False
+     * @access public
+    */
+    private function hasManufacturer()
+    {
       return $this->getManufacturer();
     }
 
-/*
-* Sort order list
-* String
-* @return $define_list, sort order type
-* @access public
-*/
-    public function sortListSearch() {
+    /*
+    * Sort order list
+    * String
+    * @return $define_list, sort order type
+    * @access public
+    */
+    public function sortListSearch()
+    {
       $define_list = ['MODULE_PRODUCTS_SEARCH_LIST_NAME' => MODULE_PRODUCTS_SEARCH_LIST_NAME,
-                      'MODULE_PRODUCTS_SEARCH_LIST_MODEL' => MODULE_PRODUCTS_SEARCH_LIST_MODEL,
-                      'MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER' => MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER,
-                      'MODULE_PRODUCTS_SEARCH_LIST_PRICE' => MODULE_PRODUCTS_SEARCH_LIST_PRICE,
-                      'MODULE_PRODUCTS_SEARCH_LIST_QUANTITY' => MODULE_PRODUCTS_SEARCH_LIST_QUANTITY,
-                      'MODULE_PRODUCTS_SEARCH_LIST_WEIGHT' => MODULE_PRODUCTS_SEARCH_LIST_WEIGHT,
-                      'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED' => MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED
-                     ];
+        'MODULE_PRODUCTS_SEARCH_LIST_MODEL' => MODULE_PRODUCTS_SEARCH_LIST_MODEL,
+        'MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER' => MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER,
+        'MODULE_PRODUCTS_SEARCH_LIST_PRICE' => MODULE_PRODUCTS_SEARCH_LIST_PRICE,
+        'MODULE_PRODUCTS_SEARCH_LIST_QUANTITY' => MODULE_PRODUCTS_SEARCH_LIST_QUANTITY,
+        'MODULE_PRODUCTS_SEARCH_LIST_WEIGHT' => MODULE_PRODUCTS_SEARCH_LIST_WEIGHT,
+        'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED' => MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED
+      ];
 
       asort($define_list);
 
       $column_list = [];
 
-      foreach($define_list as $key => $value) {
+      foreach ($define_list as $key => $value) {
         if ($value > 0) $column_list[] = $key;
       }
 
@@ -373,13 +400,14 @@
     }
 
 
-/*
- * Execute
- *
- * @return $result : sql sesult
- * @access public
-*/
-    public function execute() {
+    /*
+     * Execute
+     *
+     * @return $result : sql sesult
+     * @access public
+    */
+    public function execute()
+    {
       global $Qlisting;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -398,14 +426,14 @@
 
       $result = [];
 
-      if ( $this->hasPriceFrom() ) {
-        if ( $CLICSHOPPING_Currencies->get_value($_SESSION['currency']) ) {
-           $this->_price_from = $this->_price_from / $CLICSHOPPING_Currencies->get_value($_SESSION['currency']);
-         }
+      if ($this->hasPriceFrom()) {
+        if ($CLICSHOPPING_Currencies->get_value($_SESSION['currency'])) {
+          $this->_price_from = $this->_price_from / $CLICSHOPPING_Currencies->get_value($_SESSION['currency']);
+        }
       }
 
-      if ( $this->hasPriceTo() ) {
-        if ( $CLICSHOPPING_Currencies->get_value($_SESSION['currency']) ) {
+      if ($this->hasPriceTo()) {
+        if ($CLICSHOPPING_Currencies->get_value($_SESSION['currency'])) {
           $this->_price_to = $this->_price_to / $CLICSHOPPING_Currencies->get_value($_SESSION['currency']);
         }
       }
@@ -417,11 +445,11 @@
                         pd.*,
                         m.*
                        ';
-/*
-                        if(s.status, s.specials_new_products_price, null) as specials_new_products_price,
-                        if(s.status, s.specials_new_products_price, p.products_price) as final_price
-';
-*/
+      /*
+                              if(s.status, s.specials_new_products_price, null) as specials_new_products_price,
+                              if(s.status, s.specials_new_products_price, p.products_price) as final_price
+      ';
+      */
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $listing_sql .= ', g.*';
         $listing_sql .= ' from :table_products p';
@@ -436,7 +464,7 @@
       $listing_sql .= ' left join :table_manufacturers m using(manufacturers_id) ';
 
 
-      if ( ($this->hasPriceFrom() || $this->hasPriceTo() ) && (DISPLAY_PRICE_WITH_TAX == 'true') ) {
+      if (($this->hasPriceFrom() || $this->hasPriceTo()) && (DISPLAY_PRICE_WITH_TAX == 'true')) {
 
         $listing_sql .= ' left join :table_tax_rates tr on p.products_tax_class_id = tr.tax_class_id';
         $listing_sql .= ' left join :table_zones_to_geo_zones gz on tr.tax_zone_id = gz.geo_zone_id
@@ -475,8 +503,8 @@
                         and pd.language_id = :language_id
                       ';
 
-      if ( $this->hasCategory() ) {
-        if ( $this->isRecursive() ) {
+      if ($this->hasCategory()) {
+        if ($this->isRecursive()) {
           $subcategories_array = [$this->_category];
 
           $listing_sql .= ' and p2c.products_id = p.products_id
@@ -491,17 +519,17 @@
                              and p2c.categories_id = :categories_id
                              and c.status = 1
                           ';
-                        }
+        }
       }
 
-      if ( $this->hasManufacturer() ) {
+      if ($this->hasManufacturer()) {
         $listing_sql .= ' and m.manufacturers_id = :manufacturers_id ';
       }
 
-      if ($this->hasKeywords() === true ) {
+      if ($this->hasKeywords() === true) {
         $array = explode(' ', $this->_keywords);
 
-        foreach ( $array as $this->_keywords ) {
+        foreach ($array as $this->_keywords) {
           $listing_sql .= ' and (';
           $listing_sql .= ' pd.products_name like :products_name_keywords or
                             pd.products_head_keywords_tag like :products_head_keywords_tag_keywords or
@@ -517,32 +545,32 @@
         }
       }
 
-      if ( $this->hasDateFrom() ) {
+      if ($this->hasDateFrom()) {
         if (isset($dfromDateTime) && $dfromDateTime->isValid()) {
           $listing_sql .= ' and p.products_date_added >= :products_date_added_from';
         }
       }
 
-      if ( $this->hasDateTo() ) {
+      if ($this->hasDateTo()) {
         if (isset($dtoDateTime) && $dtoDateTime->isValid()) {
           $listing_sql .= ' and p.products_date_added <= :products_date_added_to';
         }
       }
 
       if (DISPLAY_PRICE_WITH_TAX == 'true') {
-        if ( $this->_price_from > 0 ) {
+        if ($this->_price_from > 0) {
           $listing_sql .= ' and (if(s.status, s.specials_new_products_price, p.products_price) * if(gz.geo_zone_id is null, 1, 1 + (tr.tax_rate / 100) ) >= :price_from)';
         }
 
-        if ( $this->_price_to > 0 ) {
+        if ($this->_price_to > 0) {
           $listing_sql .= ' and (if(s.status, s.specials_new_products_price, p.products_price) * if(gz.geo_zone_id is null, 1, 1 + (tr.tax_rate / 100) ) <= :price_to)';
         }
       } else {
-        if ( $this->_price_from > 0 ) {
+        if ($this->_price_from > 0) {
           $listing_sql .= ' and (if(s.status, s.specials_new_products_price, p.products_price) >= :price_from)';
         }
 
-        if ( $this->_price_to > 0 ) {
+        if ($this->_price_to > 0) {
           $listing_sql .= ' and (if(s.status, s.specials_new_products_price, p.products_price) <= :price_to)';
         }
       }
@@ -551,9 +579,9 @@
 
       $column_list = $this->sortListSearch();
 
-      if ( (!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list)) ) {
+      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list))) {
         if (is_array($column_list)) {
-          for ($i=0, $n=count($column_list); $i<$n; $i++) {
+          for ($i = 0, $n = count($column_list); $i < $n; $i++) {
             if ($column_list[$i] == 'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED') {
               $_GET['sort'] = $i + 1 . 'a';
               $listing_sql .= ' order by p.products_sort_order DESC,
@@ -565,34 +593,34 @@
         }
       } else {
 
-        $sort_col = substr($_GET['sort'], 0 , 1);
+        $sort_col = substr($_GET['sort'], 0, 1);
         $sort_order = substr($_GET['sort'], 1);
 
-        switch ($column_list[$sort_col-1]) {
+        switch ($column_list[$sort_col - 1]) {
           case 'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED':
             $listing_sql .= ' order by p.products_date_added ' . ($sort_order == 'd' ? 'desc' : ' ');
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_LIST_PRICE':
             $listing_sql .= ' order by p.products_price ' . ($sort_order == 'd' ? 'desc' : '') . ', p.products_date_added DESC ';
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_LIST_MODEL':
             $listing_sql .= ' order by p.products_model ' . ($sort_order == 'd' ? 'desc' : '') . ', p.products_date_added DESC ';
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_LIST_QUANTITY':
             $listing_sql .= ' order by p.products_quantity ' . ($sort_order == 'd' ? 'desc' : '') . ', p.products_date_added DESC ';
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_LIST_WEIGHT':
             $listing_sql .= ' order by p.products_weight ' . ($sort_order == 'd' ? 'desc' : '') . ', p.products_date_added DESC ';
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_LIST_NAME':
             $listing_sql .= ' order by pd.products_name ' . ($sort_order == 'd' ? 'desc' : '') . ', p.products_date_added DESC ';
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_LIST_MANUFACTURER':
             $listing_sql .= ' order by m.manufacturers_name ' . ($sort_order == 'd' ? 'desc' : '') . ', p.products_date_added DESC ';
-          break;
+            break;
           case 'MODULE_PRODUCTS_SEARCH_DATE_ADDED':
             $listing_sql .= ' order by p.products_date_added ' . ($sort_order == 'd' ? 'desc' : '') . ', pd.products_name DESC ';
-          break;
+            break;
         }
       }
 
@@ -602,8 +630,8 @@
 
       $Qlisting = $this->db->prepare($listing_sql);
 
-      if ( ($this->hasPriceFrom() || $this->hasPriceTo()) && (DISPLAY_PRICE_WITH_TAX == 'true') ) {
-        if ( $CLICSHOPPING_Customer->isLoggedOn() ) {
+      if (($this->hasPriceFrom() || $this->hasPriceTo()) && (DISPLAY_PRICE_WITH_TAX == 'true')) {
+        if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $customer_country_id = $CLICSHOPPING_Customer->getCountryID();
           $customer_zone_id = $CLICSHOPPING_Customer->getZoneID();
         } else {
@@ -615,19 +643,19 @@
         $Qlisting->bindInt(':zone_id', $customer_zone_id);
       }
 
-      if ( $this->hasCategory() ) {
-        if (!$this->isRecursive() ) {
+      if ($this->hasCategory()) {
+        if (!$this->isRecursive()) {
           $Qlisting->bindInt(':categories_id', $this->getCategoryID());
           $Qlisting->bindInt(':language_id_c', $CLICSHOPPING_Language->getId());
         }
       }
 
-      if ( $this->hasManufacturer() ) {
-        $Qlisting->bindInt(':manufacturers_id', $this->getManufacturer() );
+      if ($this->hasManufacturer()) {
+        $Qlisting->bindInt(':manufacturers_id', $this->getManufacturer());
       }
 
-      if ( $this->hasKeywords()) {
-        $array = explode(' ',  $this->_keywords);
+      if ($this->hasKeywords()) {
+        $array = explode(' ', $this->_keywords);
         $keyword = $this->_keywords;
 
         foreach ($array as $keyword) {
@@ -642,32 +670,32 @@
         }
       }
 
-      if ( $this->hasDateFrom() ) {
+      if ($this->hasDateFrom()) {
         if (isset($dfromDateTime) && $dfromDateTime->isValid()) {
           $Qlisting->bindValue(':products_date_added_from', $dfromDateTime->getRaw());
         }
       }
 
-      if ( $this->hasDateTo() ) {
+      if ($this->hasDateTo()) {
         if (isset($dtoDateTime) && $dtoDateTime->isValid()) {
           $Qlisting->bindValue(':products_date_added_to', $dfromDateTime->getRaw());
         }
       }
 
-      if ( DISPLAY_PRICE_WITH_TAX == 'true' ) {
-        if ( $this->_price_from > 0 ) {
+      if (DISPLAY_PRICE_WITH_TAX == 'true') {
+        if ($this->_price_from > 0) {
           $Qlisting->bindDecimal(':price_from', $this->_price_from);
         }
 
-        if ( $this->_price_to > 0 ) {
+        if ($this->_price_to > 0) {
           $Qlisting->bindDecimal(':price_to', $this->_price_to);
         }
       } else {
-        if ( $this->_price_from > 0 ) {
+        if ($this->_price_from > 0) {
           $Qlisting->bindDecimal(':price_from', $this->_price_from);
         }
 
-        if ( $this->_price_to > 0 ) {
+        if ($this->_price_to > 0) {
           $Qlisting->bindDecimal(':price_to', $this->_price_to);
         }
       }
@@ -690,12 +718,14 @@
       $this->_result = $result;
     }
 
-    public function getListing() {
+    public function getListing()
+    {
       return $this->listing;
     }
 
-    public function getResult() {
-      if ( !isset($this->_result) ) {
+    public function getResult()
+    {
+      if (!isset($this->_result)) {
         $this->execute();
       }
 

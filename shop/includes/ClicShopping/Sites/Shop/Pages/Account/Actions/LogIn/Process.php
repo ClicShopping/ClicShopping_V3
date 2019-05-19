@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\LogIn;
 
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\Sites\Shop;
 
-  class Process extends \ClicShopping\OM\PagesActionsAbstract  {
+  class Process extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute()  {
+    public function execute()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -26,10 +28,10 @@
 
 // redirect the customer to a friendly cookie-must-be-enabled page if cookies are disabled (or the session has not started)
       if (Registry::get('Session')->hasStarted() === false) {
-        if ( !isset($_GET['cookie_test']) ) {
+        if (!isset($_GET['cookie_test'])) {
           $all_get = CLICSHOPPING::getAllGET();
 
-          CLICSHOPPING::redirect(null,'Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
+          CLICSHOPPING::redirect(null, 'Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
         }
 
         CLICSHOPPING::redirect(null, 'Info&Cookies');
@@ -41,7 +43,7 @@
         $login_customer_id = 0;
       }
 
-      if (is_numeric($login_customer_id ) && ($login_customer_id > 0)) {
+      if (is_numeric($login_customer_id) && ($login_customer_id > 0)) {
         if ($login_customer_id > 0) {
           $CLICSHOPPING_Customer->setData($login_customer_id);
         }
@@ -58,11 +60,11 @@
 
         $CLICSHOPPING_Hooks->call('Login', 'Process');
 // restore cart contents
-         $CLICSHOPPING_ShoppingCart->getRestoreContents();
+        $CLICSHOPPING_ShoppingCart->getRestoreContents();
 
-         $CLICSHOPPING_NavigationHistory->removeCurrentPage();
+        $CLICSHOPPING_NavigationHistory->removeCurrentPage();
 
-        if ($CLICSHOPPING_NavigationHistory->hasSnapshot() ) {
+        if ($CLICSHOPPING_NavigationHistory->hasSnapshot()) {
           $CLICSHOPPING_NavigationHistory->redirectToSnapshot();
         } else {
           CLICSHOPPING::redirect();

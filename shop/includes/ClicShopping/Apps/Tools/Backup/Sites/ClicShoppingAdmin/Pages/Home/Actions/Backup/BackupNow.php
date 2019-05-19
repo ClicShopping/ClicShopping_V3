@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\Backup\Sites\ClicShoppingAdmin\Pages\Home\Actions\Backup;
 
@@ -15,16 +15,19 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
-  class BackupNow extends \ClicShopping\OM\PagesActionsAbstract {
+  class BackupNow extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('Backup');
     }
 
 
-    public function execute() {
-      $CLICSHOPPING_MessageStack  = Registry::get('MessageStack');
+    public function execute()
+    {
+      $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       set_time_limit(0);
 
@@ -46,27 +49,27 @@
       fputs($fp, $schema);
 
       $Qtables = $this->app->db->get(['INFORMATION_SCHEMA.TABLES t',
-                                      'INFORMATION_SCHEMA.COLLATION_CHARACTER_SET_APPLICABILITY ccsa'
-                                      ],
-                                      [ 't.TABLE_NAME',
-                                        't.ENGINE',
-                                        't.TABLE_COLLATION',
-                                        'ccsa.CHARACTER_SET_NAME'
-                                      ],
-                                      ['t.TABLE_SCHEMA' => CLICSHOPPING::getConfig('db_database'),
-                                       't.TABLE_COLLATION' => [
-                                         'rel' => 'ccsa.COLLATION_NAME'
-                                       ]
-                                      ], null, null, null,
-                                      ['prefix_tables' => false]
-                                    );
+        'INFORMATION_SCHEMA.COLLATION_CHARACTER_SET_APPLICABILITY ccsa'
+      ],
+        ['t.TABLE_NAME',
+          't.ENGINE',
+          't.TABLE_COLLATION',
+          'ccsa.CHARACTER_SET_NAME'
+        ],
+        ['t.TABLE_SCHEMA' => CLICSHOPPING::getConfig('db_database'),
+          't.TABLE_COLLATION' => [
+            'rel' => 'ccsa.COLLATION_NAME'
+          ]
+        ], null, null, null,
+        ['prefix_tables' => false]
+      );
 
       while ($Qtables->fetch()) {
 
         $table = $Qtables->value('TABLE_NAME');
 
         $schema = 'drop table if exists ' . $table . ';' . "\n" .
-                  'create table ' . $table . ' (' . "\n";
+          'create table ' . $table . ' (' . "\n";
 
         $table_list = [];
 
@@ -99,9 +102,9 @@
 
           if (!isset($index[$kname])) {
             $index[$kname] = array('unique' => $Qkeys->valueInt('Non_unique') === 0,
-                                   'fulltext' => ($Qkeys->value('Index_type') == 'FULLTEXT' ? '1' : '0'),
-                                   'columns' => array());
-                                  }
+              'fulltext' => ($Qkeys->value('Index_type') == 'FULLTEXT' ? '1' : '0'),
+              'columns' => array());
+          }
 
           $index[$kname]['columns'][] = $Qkeys->value('Column_name');
         }
@@ -113,7 +116,7 @@
 
           if ($kname == 'PRIMARY') {
             $schema .= '  PRIMARY KEY (' . $columns . ')';
-          } elseif ( $info['fulltext'] == '1' ) {
+          } elseif ($info['fulltext'] == '1') {
             $schema .= '  FULLTEXT ' . $kname . ' (' . $columns . ')';
           } elseif ($info['unique']) {
             $schema .= '  UNIQUE ' . $kname . ' (' . $columns . ')';
@@ -127,7 +130,7 @@
         fputs($fp, $schema);
 
 // dump the data
-        if ( ($table != CLICSHOPPING::getConfig('db_table_prefix') . 'sessions' ) && ($table != CLICSHOPPING::getConfig('db_table_prefix') . 'whos_online') ) {
+        if (($table != CLICSHOPPING::getConfig('db_table_prefix') . 'sessions') && ($table != CLICSHOPPING::getConfig('db_table_prefix') . 'whos_online')) {
           $Qrows = $this->app->db->get($table, $table_list, null, null, null, null, ['prefix_tables' => false]);
 
           while ($Qrows->fetch()) {
@@ -138,7 +141,7 @@
                 $schema .= 'NULL, ';
               } elseif (!is_null($Qrows->value($i))) {
                 $row = addslashes($Qrows->value($i));
-                $row = preg_replace("/\n#/", "\n".'\#', $row);
+                $row = preg_replace("/\n#/", "\n" . '\#', $row);
 
                 $schema .= '\'' . $row . '\', ';
               } else {

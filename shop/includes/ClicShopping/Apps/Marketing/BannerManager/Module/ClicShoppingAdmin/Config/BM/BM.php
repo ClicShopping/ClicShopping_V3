@@ -1,31 +1,34 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingAdmin\Config\BM;
 
-  class BM extends \ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingAdmin\Config\ConfigAbstract {
+  class BM extends \ClicShopping\Apps\Marketing\BannerManager\Module\ClicShoppingAdmin\Config\ConfigAbstract
+  {
 
     protected $pm_code = 'banner_manager';
 
     public $is_uninstallable = true;
     public $sort_order = 400;
 
-    protected function init() {
-        $this->title = $this->app->getDef('module_bm_title');
-        $this->short_title = $this->app->getDef('module_bm_short_title');
-        $this->introduction = $this->app->getDef('module_bm_introduction');
-        $this->is_installed = defined('CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS') && (trim(CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS) != '');
+    protected function init()
+    {
+      $this->title = $this->app->getDef('module_bm_title');
+      $this->short_title = $this->app->getDef('module_bm_short_title');
+      $this->introduction = $this->app->getDef('module_bm_introduction');
+      $this->is_installed = defined('CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS') && (trim(CLICSHOPPING_APP_BANNER_MANAGER_BM_STATUS) != '');
     }
 
-    public function install() {
+    public function install()
+    {
       parent::install();
 
       if (defined('MODULE_MODULES_BANNER_MANAGER_INSTALLED')) {
@@ -37,7 +40,8 @@
       $this->app->saveCfgParam('MODULE_MODULES_BANNER_MANAGER_INSTALLED', implode(';', $installed));
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
       parent::uninstall();
 
       $installed = explode(';', MODULE_MODULES_BANNER_MANAGER_INSTALLED);

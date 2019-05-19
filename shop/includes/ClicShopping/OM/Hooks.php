@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\OM;
@@ -16,12 +16,14 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class Hooks {
+  class Hooks
+  {
     protected $site;
     protected $hooks = [];
     protected $watches = [];
 
-    public function __construct($site = null)  {
+    public function __construct($site = null)
+    {
       if (!isset($site)) {
         $site = CLICSHOPPING::getSite();
       }
@@ -29,7 +31,8 @@
       $this->site = basename($site);
     }
 
-    public function call($group, $hook, $parameters = null, $action = null)  {
+    public function call($group, $hook, $parameters = null, $action = null)
+    {
       if (!isset($action)) {
         $action = 'execute';
       }
@@ -63,7 +66,7 @@
           $ref = new \ReflectionFunction($code);
 
           if ($ref->isClosure()) {
-              $bait = $code($parameters);
+            $bait = $code($parameters);
           }
         }
 
@@ -75,15 +78,18 @@
       return $result;
     }
 
-    public function output()  {
+    public function output()
+    {
       return implode('', call_user_func_array([$this, 'call'], func_get_args()));
     }
 
-    public function watch($group, $hook, $action, $code)  {
+    public function watch($group, $hook, $action, $code)
+    {
       $this->watches[$this->site][$group][$hook][$action][] = $code;
     }
 
-    protected function register($group, $hook, $action)  {
+    protected function register($group, $hook, $action)
+    {
       $group = basename($group);
 
       $this->hooks[$this->site][$group][$hook][$action] = [];
@@ -97,7 +103,7 @@
               $class = 'ClicShopping\OM\Module\Hooks\\' . $this->site . '\\' . $group . '\\' . $hook;
 
               if (method_exists($class, $action)) {
-                  $this->hooks[$this->site][$group][$hook][$action][] = $class;
+                $this->hooks[$this->site][$group][$hook][$action][] = $class;
               }
             }
           }
@@ -105,14 +111,14 @@
       }
 
       $filter = [
-                  'site' => $this->site,
-                  'group' => $group,
-                  'hook' => $hook
-                ];
+        'site' => $this->site,
+        'group' => $group,
+        'hook' => $hook
+      ];
 
       foreach (Apps::getModules('Hooks', null, $filter) as $k => $class) {
         if (method_exists($class, $action)) {
-            $this->hooks[$this->site][$group][$hook][$action][] = $k;
+          $this->hooks[$this->site][$group][$hook][$action][] = $k;
         }
       }
     }

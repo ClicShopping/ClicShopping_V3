@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
@@ -15,9 +15,11 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Update extends \ClicShopping\OM\PagesActionsAbstract {
+  class Update extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -27,7 +29,7 @@
       if (isset($_POST['customers_group_name'])) $customers_groups_name = HTML::sanitize($_POST['customers_group_name']);
       if (isset($_POST['customers_group_discount'])) $customers_groups_discount = HTML::sanitize($_POST['customers_group_discount']);
       if (isset($_POST['color_bar'])) $color_bar = HTML::sanitize($_POST['color_bar']);
-      if (isset($_POST['customers_group_quantity_default'])) $customers_group_quantity_default =  HTML::sanitize($_POST['customers_group_quantity_default']);
+      if (isset($_POST['customers_group_quantity_default'])) $customers_group_quantity_default = HTML::sanitize($_POST['customers_group_quantity_default']);
 
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
 
@@ -44,7 +46,7 @@
 
 // Module de paiement autorise
         if (isset($_POST['payment_unallowed'])) {
-          $group_payment_unallowed =  '';
+          $group_payment_unallowed = '';
 
           foreach ($_POST['payment_unallowed'] as $key => $val) {
             if (isset($val)) {
@@ -52,7 +54,7 @@
             }
           }
 
-          $group_payment_unallowed = substr($group_payment_unallowed, 0,strlen($group_payment_unallowed)-1);
+          $group_payment_unallowed = substr($group_payment_unallowed, 0, strlen($group_payment_unallowed) - 1);
         }
 
 // Module de livraison autorise
@@ -65,7 +67,7 @@
             }
           }
 
-          $group_shipping_unallowed = substr($group_shipping_unallowed, 0, strlen($group_shipping_unallowed)-1);
+          $group_shipping_unallowed = substr($group_shipping_unallowed, 0, strlen($group_shipping_unallowed) - 1);
         }
 
 // Assujetti ou non a la TVA
@@ -91,8 +93,8 @@
                                                 where customers_group_id = :customers_group_id
                                               ');
         $Qupdate->bindValue(':customers_group_name', $customers_groups_name);
-        $Qupdate->bindDecimal(':customers_group_discount',$customers_groups_discount);
-        $Qupdate->bindValue(':color_bar',$color_bar);
+        $Qupdate->bindDecimal(':customers_group_discount', $customers_groups_discount);
+        $Qupdate->bindValue(':color_bar', $color_bar);
         $Qupdate->bindInt(':group_order_taxe', $group_order_taxe);
         $Qupdate->bindValue(':group_payment_unallowed', $group_payment_unallowed);
         $Qupdate->bindValue(':group_shipping_unallowed', $group_shipping_unallowed);
@@ -101,7 +103,7 @@
         $Qupdate->bindInt(':customers_group_id', (int)$customers_groups_id);
         $Qupdate->execute();
 
-        $CLICSHOPPING_Hooks->call('CustomersGroup','Update');
+        $CLICSHOPPING_Hooks->call('CustomersGroup', 'Update');
 
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_success'), 'success', 'update');
         $CLICSHOPPING_Groups->redirect('Groups');

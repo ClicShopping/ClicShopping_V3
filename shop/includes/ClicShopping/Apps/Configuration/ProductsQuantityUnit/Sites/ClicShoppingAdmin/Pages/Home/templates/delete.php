@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
@@ -23,7 +23,7 @@
                                                        from :table_products
                                                        where products_quantity_unit_id = :products_quantity_unit_id
                                                       ');
-  $Qstatus->bindValue(':products_quantity_unit_id',(int)$oID );
+  $Qstatus->bindValue(':products_quantity_unit_id', (int)$oID);
   $Qstatus->execute();
 
   $status = $Qstatus->fetch();
@@ -32,7 +32,7 @@
 
   if ($oID == DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID) {
     $remove_status = false;
-    $CLICSHOPPING_MessageStack->add( $CLICSHOPPING_ProductsQuantityUnit->getDef('error_remove_default_products_unit_quantity_status'), 'error');
+    $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_remove_default_products_unit_quantity_status'), 'error');
   } elseif ($status['count'] > 0) {
     $remove_status = false;
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_status_used_in_products_unit_quantity'), 'error');
@@ -60,37 +60,43 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_unit.png', $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/products_unit.png', $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
 
-  <?php echo HTML::form('status_products_quantity_unit',$CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&DeleteConfirm&page=' . $page . '&oID=' . $oInfo->products_quantity_unit_id)); ?>
+  <?php echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&DeleteConfirm&page=' . $page . '&oID=' . $oInfo->products_quantity_unit_id)); ?>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo  $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong>
+  </div>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
-      <div class="col-md-12"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_delete_intro'); ?><br/><br/></div>
+      <div class="col-md-12"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_info_delete_intro'); ?>
+        <br/><br/></div>
       <div class="separator"></div>
-      <div class="col-md-12"><?php echo '<strong>' . $oInfo->products_quantity_unit_title . '</strong>'; ?><br/><br/></div>
+      <div class="col-md-12"><?php echo '<strong>' . $oInfo->products_quantity_unit_title . '</strong>'; ?><br/><br/>
+      </div>
       <div class="col-md-12 text-md-center">
-<?php
-  if ($remove_status) {
-?>
-            <span><br /><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button(CLICSHOPPING::getDef('button_cancel'), null,  $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&page=' . $_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
-<?php
-  } else {
-?>
-            <span><br /><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null,  CLICSHOPPING::link('ProductsQuantityUnit&page=' . $_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
-<?php
-  }
-?>
+        <?php
+          if ($remove_status) {
+            ?>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&page=' . $_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
+            <?php
+          } else {
+            ?>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, CLICSHOPPING::link('ProductsQuantityUnit&page=' . $_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
+            <?php
+          }
+        ?>
       </div>
     </div>
   </div>
-  </div>
+</div>
 </div>

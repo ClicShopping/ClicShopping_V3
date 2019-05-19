@@ -1,31 +1,33 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Manufacturers\Classes\Shop;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  class Manufacturers {
+  class Manufacturers
+  {
     protected $db;
     protected $lang;
     protected $Id;
 
     protected $rewriteUrl;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
 
-      if ( isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id']) && !empty(HTML::sanitize($_GET['manufacturers_id']))) {
+      if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id']) && !empty(HTML::sanitize($_GET['manufacturers_id']))) {
         $this->Id = HTML::sanitize($_GET['manufacturers_id']);
       } elseif (isset($_POST['manufacturers_id']) && is_numeric($_POST['manufacturers_id']) && !empty(HTML::sanitize($_POST['manufacturers_id']))) {
         $this->Id = HTML::sanitize($_POST['manufacturers_id']);
@@ -36,30 +38,33 @@
       $this->rewriteUrl = Registry::get('RewriteUrl');
     }
 
-/**
- * manufacturer id
- * @return int
- */
-     public function getID() {
+    /**
+     * manufacturer id
+     * @return int
+     */
+    public function getID()
+    {
       $id = $this->Id;
 
       return $id;
     }
 
-/**
- * manufacturer url
- * @return bool|mixed
- */
-    public function getManufacturerUrlRewrited() {
+    /**
+     * manufacturer url
+     * @return bool|mixed
+     */
+    public function getManufacturerUrlRewrited()
+    {
       return $this->rewriteUrl;
     }
 
-/**
- * manufacturer name
- * @param $id
- * @return mixed
- */
-    public function getTitle($id) {
+    /**
+     * manufacturer name
+     * @param $id
+     * @return mixed
+     */
+    public function getTitle($id)
+    {
       $Qmanufacturer = $this->db->prepare('select m.manufacturers_name as name
                                       from :table_manufacturers m,
                                            :table_manufacturers_info mi
@@ -79,12 +84,13 @@
       return $name;
     }
 
-/**
- * manufacturer image
- * @param $id
- * @return mixed
- */
-    public function getImage($id) {
+    /**
+     * manufacturer image
+     * @param $id
+     * @return mixed
+     */
+    public function getImage($id)
+    {
       $Qmanufacturer = $this->db->prepare('select manufacturers_image as image
                                       from :table_manufacturers
                                       where manufacturers_id = :manufacturers_id
@@ -100,12 +106,13 @@
       return $image;
     }
 
-/**
- * manufacturer description
- * @param $id
- * @return mixed
- */
-    public function getDescription($id) {
+    /**
+     * manufacturer description
+     * @param $id
+     * @return mixed
+     */
+    public function getDescription($id)
+    {
       $Qmanufacturer = $this->db->prepare('select mi.manufacturer_description as description
                                       from :table_manufacturers m,
                                            :table_manufacturers_info mi
@@ -125,7 +132,8 @@
       return $description;
     }
 
-    public function getUrl($id) {
+    public function getUrl($id)
+    {
       $Qmanufacturer = $this->db->prepare('select mi.manufacturers_url as url
                                     from :table_manufacturers m,
                                          :table_manufacturers_info mi
@@ -145,7 +153,8 @@
       return $url;
     }
 
-    public function getAll($id = null) {
+    public function getAll($id = null)
+    {
       if (!is_null($id)) {
         $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
                                              m.manufacturers_name as name,
@@ -183,7 +192,8 @@
       return $Qmanufacturer->fetchAll();
     }
 
-    public function setManufacturersByCategories() {
+    public function setManufacturersByCategories()
+    {
       $CLICSHOPPING_Category = Registry::get('Category');
 
       $Qmanufacturer = $this->db->prepare('select distinct m.manufacturers_id as id,
@@ -207,15 +217,16 @@
 
       while ($Qmanufacturer->fetch() !== false) {
         $manufacturer_name_array[] = ['id' => $Qmanufacturer->valueInt('id'),
-                                      'text' => $Qmanufacturer->value('name')
-                                     ];
+          'text' => $Qmanufacturer->value('name')
+        ];
       }
 
       return $manufacturer_name_array;
     }
 
 
-    public function getManufacturersByCategories() {
+    public function getManufacturersByCategories()
+    {
       return $this->setManufacturersByCategories();
     }
 

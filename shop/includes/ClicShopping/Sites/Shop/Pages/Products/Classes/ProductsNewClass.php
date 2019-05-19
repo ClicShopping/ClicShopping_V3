@@ -1,49 +1,52 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Products\Classes;
 
   use ClicShopping\OM\Registry;
 
-  class ProductsNewClass {
+  class ProductsNewClass
+  {
 
-    public static function getCountColumnList() {
+    public static function getCountColumnList()
+    {
 // create column list
       $define_list = [
-                      'MODULE_PRODUCTS_NEW_LIST_DATE_ADDED' => MODULE_PRODUCTS_NEW_LIST_DATE_ADDED,
-                      'MODULE_PRODUCTS_NEW_LIST_PRICE' => MODULE_PRODUCTS_NEW_LIST_PRICE,
-                      'MODULE_PRODUCTS_NEW_LIST_MODEL' => MODULE_PRODUCTS_NEW_LIST_MODEL,
-                      'MODULE_PRODUCTS_NEW_LIST_WEIGHT' => MODULE_PRODUCTS_NEW_LIST_WEIGHT,
-                      'MODULE_PRODUCTS_NEW_LIST_QUANTITY' => MODULE_PRODUCTS_NEW_LIST_QUANTITY,
-                     ];
+        'MODULE_PRODUCTS_NEW_LIST_DATE_ADDED' => MODULE_PRODUCTS_NEW_LIST_DATE_ADDED,
+        'MODULE_PRODUCTS_NEW_LIST_PRICE' => MODULE_PRODUCTS_NEW_LIST_PRICE,
+        'MODULE_PRODUCTS_NEW_LIST_MODEL' => MODULE_PRODUCTS_NEW_LIST_MODEL,
+        'MODULE_PRODUCTS_NEW_LIST_WEIGHT' => MODULE_PRODUCTS_NEW_LIST_WEIGHT,
+        'MODULE_PRODUCTS_NEW_LIST_QUANTITY' => MODULE_PRODUCTS_NEW_LIST_QUANTITY,
+      ];
 
       asort($define_list);
 
       $column_list = [];
 
-      foreach($define_list as $key => $value) {
+      foreach ($define_list as $key => $value) {
         if ($value > 0) $column_list[] = $key;
       }
 
       return $column_list;
     }
 
-    private static function Listing() {
+    private static function Listing()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $Qlisting = 'select SQL_CALC_FOUND_ROWS ';
 
       $count_column = static::getCountColumnList();
 
-      for ($i=0, $n = count($count_column); $i<$n; $i++) {
+      for ($i = 0, $n = count($count_column); $i < $n; $i++) {
         switch ($count_column[$i]) {
           case 'MODULE_PRODUCTS_NEW_LIST_DATE_ADDED':
             $Qlisting .= ' p.products_date_added, ';
@@ -59,7 +62,7 @@
             break;
           case 'MODULE_PRODUCTS_NEW_LIST_QUANTITY':
             $Qlisting .= ' p.products_quantity, ';
-          break;
+            break;
         }
       }
 
@@ -97,9 +100,9 @@
                        ';
       }
 
-      if ( (!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($count_column)) ) {
+      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($count_column))) {
 
-        for ($i=0, $n = count($count_column); $i<$n; $i++) {
+        for ($i = 0, $n = count($count_column); $i < $n; $i++) {
           if ($count_column[$i] == 'MODULE_PRODUCTS_NEW_LIST_DATE_ADDED') {
             $_GET['sort'] = $i + 1 . 'a';
             $Qlisting .= ' order by p.products_date_added DESC ';
@@ -108,10 +111,10 @@
         }
       } else {
 
-        $sort_col = substr($_GET['sort'], 0 , 1);
+        $sort_col = substr($_GET['sort'], 0, 1);
         $sort_order = substr($_GET['sort'], 1);
 
-        switch ($count_column[$sort_col-1]) {
+        switch ($count_column[$sort_col - 1]) {
           case 'MODULE_PRODUCTS_NEW_LIST_DATE_ADDED':
             $Qlisting .= ' order by p.products_date_added ' . ($sort_order == 'd' ? 'desc' : ' ');
             break;
@@ -137,7 +140,8 @@
       return $Qlisting;
     }
 
-    public static function getListing() {
+    public static function getListing()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 

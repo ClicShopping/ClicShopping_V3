@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\WhosOnline\Classes\Shop;
 
@@ -16,16 +16,19 @@
 
   use ClicShopping\Sites\Shop\CustomerShop as NewCustomer;
 
-  class WhosOnlineShop {
-    protected  $contents;
+  class WhosOnlineShop
+  {
+    protected $contents;
     protected $total;
     protected $weight;
     protected $db;
 
-	  public function __construct() {
-   }
+    public function __construct()
+    {
+    }
 
-    public static function getUpdateWhosOnline() {
+    public static function getUpdateWhosOnline()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (!Registry::exists('NewCustomer')) {
@@ -60,7 +63,7 @@
 
       $wo_last_page_url = '';
 
-      if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI']) ) {
+      if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
         $wo_last_page_url = $_SERVER['REQUEST_URI'];
       }
 
@@ -83,7 +86,7 @@
       $Qsession->bindValue(':session_id', $wo_session_id);
       $Qsession->execute();
 
-      if(isset($_SERVER['HTTP_REFERER'])) {
+      if (isset($_SERVER['HTTP_REFERER'])) {
         $referer = $_SERVER['HTTP_REFERER'];
       } else {
         $referer = 'localhost or not defined';
@@ -97,34 +100,35 @@
 
       if ($Qsession->fetch() !== false) {
         $sql_array = ['customer_id' => $wo_customer_id,
-                      'full_name' => $wo_full_name,
-                      'ip_address' => $wo_ip_address,
-                      'time_last_click' => $current_time,
-                      'last_page_url' => $wo_last_page_url,
-                      'http_referer' => $referer,
-                      'user_agent' => $user_agent
-                     ];
+          'full_name' => $wo_full_name,
+          'ip_address' => $wo_ip_address,
+          'time_last_click' => $current_time,
+          'last_page_url' => $wo_last_page_url,
+          'http_referer' => $referer,
+          'user_agent' => $user_agent
+        ];
 
         $CLICSHOPPING_Db->save('whos_online', $sql_array, ['session_id' => $wo_session_id]);
       } else {
         $sql_array = ['customer_id' => $wo_customer_id,
-                      'full_name' => $wo_full_name,
-                      'session_id' => $wo_session_id,
-                      'ip_address' => $wo_ip_address,
-                      'time_entry' => $current_time,
-                      'time_last_click' => $current_time,
-                      'last_page_url' => $wo_last_page_url,
-                      'http_referer' => $referer,
-                      'user_agent' => $user_agent
-                     ];
+          'full_name' => $wo_full_name,
+          'session_id' => $wo_session_id,
+          'ip_address' => $wo_ip_address,
+          'time_entry' => $current_time,
+          'time_last_click' => $current_time,
+          'last_page_url' => $wo_last_page_url,
+          'http_referer' => $referer,
+          'user_agent' => $user_agent
+        ];
 
         $CLICSHOPPING_Db->save('whos_online', $sql_array);
       }
     }
 
-    public static function getWhosOnlineUpdateSession_id($old_id, $new_id) {
-     $CLICSHOPPING_Db = Registry::get('Db');
+    public static function getWhosOnlineUpdateSession_id($old_id, $new_id)
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
 
-     $CLICSHOPPING_Db->save('whos_online', ['session_id' => $new_id], ['session_id' => $old_id]);
+      $CLICSHOPPING_Db->save('whos_online', ['session_id' => $new_id], ['session_id' => $old_id]);
     }
   }

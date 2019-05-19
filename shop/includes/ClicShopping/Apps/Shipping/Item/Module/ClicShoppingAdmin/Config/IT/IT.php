@@ -1,31 +1,34 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\IT;
 
-  class IT extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigAbstract {
+  class IT extends \ClicShopping\Apps\Shipping\Item\Module\ClicShoppingAdmin\Config\ConfigAbstract
+  {
 
     protected $pm_code = 'Item';
 
     public $is_uninstallable = true;
     public $sort_order = 400;
 
-    protected function init() {
-        $this->title = $this->app->getDef('module_item_title');
-        $this->short_title = $this->app->getDef('module_item_short_title');
-        $this->introduction = $this->app->getDef('module_item_introduction');
-        $this->is_installed = defined('CLICSHOPPING_APP_ITEM_IT_STATUS') && (trim(CLICSHOPPING_APP_ITEM_IT_STATUS) != '');
+    protected function init()
+    {
+      $this->title = $this->app->getDef('module_item_title');
+      $this->short_title = $this->app->getDef('module_item_short_title');
+      $this->introduction = $this->app->getDef('module_item_introduction');
+      $this->is_installed = defined('CLICSHOPPING_APP_ITEM_IT_STATUS') && (trim(CLICSHOPPING_APP_ITEM_IT_STATUS) != '');
     }
 
-    public function install() {
+    public function install()
+    {
       parent::install();
 
       if (defined('MODULE_SHIPPING_INSTALLED')) {
@@ -37,7 +40,8 @@
       $this->app->saveCfgParam('MODULE_SHIPPING_INSTALLED', implode(';', $installed));
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
       parent::uninstall();
 
       $installed = explode(';', MODULE_SHIPPING_INSTALLED);

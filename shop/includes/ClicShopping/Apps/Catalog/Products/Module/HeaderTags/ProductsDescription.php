@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Products\Module\HeaderTags;
 
@@ -16,13 +16,15 @@
 
   use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
-  class ProductsDescription extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class ProductsDescription extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('Products')) {
         Registry::set('Products', new ProductsApp());
       }
@@ -36,17 +38,19 @@
       $this->title = $this->app->getDef('module_header_tags_products_description_title');
       $this->description = $this->app->getDef('module_header_tags_products_description_description');
 
-      if ( defined('MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_STATUS == 'True');
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -72,7 +76,7 @@
                                               where submit_id = 1
                                               and language_id = :language_id
                                             ');
-          $Qsubmit->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
+          $Qsubmit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $Qsubmit->execute();
 
           $QproductInfo = $this->app->db->prepare('select pd.products_head_title_tag,
@@ -119,17 +123,17 @@
             $title = HTML::sanitize($QproductInfo->value('products_head_title_tag')) . ', ' . $categories_name_clean . $submit_language_products_info_title . STORE_NAME;
           }
 
-          if(empty($QproductInfo->value('products_head_desc_tag'))) {
+          if (empty($QproductInfo->value('products_head_desc_tag'))) {
             if (empty($Qsubmit->value('submit_language_products_info_description'))) {
               $description = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
             } else {
-              $description = $products_name_clean . $products_name_replace . $categories_name_clean .  HTML::sanitize($Qsubmit->value('submit_language_products_info_description'));
+              $description = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_language_products_info_description'));
             }
           } else {
-            $description = $QproductInfo->value('products_head_desc_tag')  . ', ' .  $products_name_clean . $products_name_replace . $categories_name_clean;
+            $description = $QproductInfo->value('products_head_desc_tag') . ', ' . $products_name_clean . $products_name_replace . $categories_name_clean;
           }
 
-          if(empty($QproductInfo->value('products_head_keywords_tag'))) {
+          if (empty($QproductInfo->value('products_head_keywords_tag'))) {
             if (empty($Qsubmit->value('submit_language_products_info_keywords'))) {
               $keywords = $products_name_clean . $products_name_replace . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
             } else {
@@ -143,10 +147,10 @@
           $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
           $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
 
-         $title = $CLICSHOPPING_Template->setTitle($title);
+          $title = $CLICSHOPPING_Template->setTitle($title);
 
           $output =
-<<<EOD
+            <<<EOD
 {$title}
 {$description}
 {$keywords}
@@ -158,7 +162,8 @@ EOD;
       }
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_STATUS',
@@ -185,9 +190,10 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_STATUS',
-              'MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_SORT_ORDER'
-             ];
+        'MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_DESCRIPTION_SORT_ORDER'
+      ];
     }
   }

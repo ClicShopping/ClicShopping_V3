@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -21,12 +21,16 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_back'), null,  $CLICSHOPPING_Newsletter->link('Newsletter'), 'primary'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_back'), null, $CLICSHOPPING_Newsletter->link('Newsletter'), 'primary'); ?></span>
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
-  <span class="text-md-center"><p style="color:#ff0000"><strong><?php echo $CLICSHOPPING_Newsletter->getDef('text_finished_sending_email'); ?></strong></p></span>
+  <span class="text-md-center"><p
+      style="color:#ff0000"><strong><?php echo $CLICSHOPPING_Newsletter->getDef('text_finished_sending_email'); ?></strong></p></span>

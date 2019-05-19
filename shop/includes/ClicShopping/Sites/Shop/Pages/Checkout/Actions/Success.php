@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 
@@ -16,9 +16,11 @@
 
   use ClicShopping\Sites\Shop\Pages\Checkout\Classes\CheckoutSuccess;
 
-  class Success extends \ClicShopping\OM\PagesActionsAbstract {
+  class Success extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -33,33 +35,33 @@
 //verify the order is make
       CheckoutSuccess::getCheckoutSuccessOrderCheck();
 
-      if (isset($_GET['Checkout']) &&  isset($_GET['Success']) && (isset($_GET['action']) && $_GET['action'] == 'update')) {
+      if (isset($_GET['Checkout']) && isset($_GET['Success']) && (isset($_GET['action']) && $_GET['action'] == 'update')) {
         $QglobalNotifications = $CLICSHOPPING_Db->prepare('select global_product_notifications
                                                     from :table_customers_info
                                                     where customers_info_id = :customers_info_id
                                                   ');
-        $QglobalNotifications->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID() );
+        $QglobalNotifications->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID());
         $QglobalNotifications->execute();
 
         if ($QglobalNotifications->valueInt('global_product_notifications') != 1) {
-          if ( isset($_POST['notify']) && is_array($_POST['notify']) && !empty($_POST['notify']) ) {
+          if (isset($_POST['notify']) && is_array($_POST['notify']) && !empty($_POST['notify'])) {
             $notify = array_unique($_POST['notify']);
 
             foreach ($notify as $n) {
               if (is_numeric($n) && ($n > 0)) {
                 $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['products_id' => (int)$n,
-                                                                                           'customers_id' => (int)$CLICSHOPPING_Customer->getID()
-                                                                                         ],
-                                                                                         null,
-                                                                                         1
-                                               );
+                  'customers_id' => (int)$CLICSHOPPING_Customer->getID()
+                ],
+                  null,
+                  1
+                );
 
-                if ( $Qcheck->fetch() === false ) {
+                if ($Qcheck->fetch() === false) {
                   $CLICSHOPPING_Db->save('products_notifications', ['products_id' => (int)$n,
-                                                                     'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                                                     'date_added' => 'now()'
-                                                                    ]
-                                        );
+                      'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+                      'date_added' => 'now()'
+                    ]
+                  );
                 }
               }
             }

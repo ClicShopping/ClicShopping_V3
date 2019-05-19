@@ -1,38 +1,39 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
-/*
-* File: SimpleImage.php
-* Author: Simon Jarvis
-* Modified by: Miguel Fermin
-* Based in: http://www.white-hat-web-design.co.uk/articles/php-image-resizing.php
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details:
-* http://www.gnu.org/licenses/gpl.html
-* https://gist.github.com/908143
-*/
+  /*
+  * File: SimpleImage.php
+  * Author: Simon Jarvis
+  * Modified by: Miguel Fermin
+  * Based in: http://www.white-hat-web-design.co.uk/articles/php-image-resizing.php
+  *
+  * This program is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU General Public License
+  * as published by the Free Software Foundation; either version 2
+  * of the License, or (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  * GNU General Public License for more details:
+  * http://www.gnu.org/licenses/gpl.html
+  * https://gist.github.com/908143
+  */
 
   namespace ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\CLICSHOPPING;
 
-  class ImageResample {
+  class ImageResample
+  {
 
     protected $image;
     protected $image_type;
@@ -44,22 +45,24 @@
     protected $x;
     protected $y;
 
-    public function __construct($filename = null){
-      if(!empty($filename)){
+    public function __construct($filename = null)
+    {
+      if (!empty($filename)) {
         $this->load($filename);
       }
     }
 
-    public function load($filename) {
+    public function load($filename)
+    {
       $image_info = getimagesize($filename);
       $this->image_type = $image_info[2];
-      if( $this->image_type == IMAGETYPE_JPEG ) {
+      if ($this->image_type == IMAGETYPE_JPEG) {
         $this->image = imagecreatefromjpeg($filename);
-      } elseif( $this->image_type == IMAGETYPE_GIF ) {
+      } elseif ($this->image_type == IMAGETYPE_GIF) {
         $this->image = imagecreatefromgif($filename);
-      } elseif( $this->image_type == IMAGETYPE_PNG ) {
+      } elseif ($this->image_type == IMAGETYPE_PNG) {
         $this->image = imagecreatefrompng($filename);
-      } elseif( $this->image_type == IMAGETYPE_WEBP ) {
+      } elseif ($this->image_type == IMAGETYPE_WEBP) {
         $this->image = imagecreatefromwebp($filename);
       } else {
         if (isset($_GET['ProductsAttributes'])) {
@@ -73,62 +76,69 @@
 
     }
 
-    public function save($filename, $image_type = IMAGETYPE_PNG, $compression= 100, $permissions = null) {
-      if( $image_type == IMAGETYPE_JPEG ) {
+    public function save($filename, $image_type = IMAGETYPE_PNG, $compression = 100, $permissions = null)
+    {
+      if ($image_type == IMAGETYPE_JPEG) {
         imagejpeg($this->image, $filename, $compression);
-      } elseif( $image_type == IMAGETYPE_GIF ) {
+      } elseif ($image_type == IMAGETYPE_GIF) {
         imagegif($this->image, $filename);
-      } elseif( $image_type == IMAGETYPE_PNG ) {
+      } elseif ($image_type == IMAGETYPE_PNG) {
         imagepng($this->image, $filename);
-      }elseif( $image_type == IMAGETYPE_WEBP ) {
+      } elseif ($image_type == IMAGETYPE_WEBP) {
         imagewebp($this->image, $filename);
       }
 
-      if( !is_null($permissions)) {
-        chmod($filename,$permissions);
+      if (!is_null($permissions)) {
+        chmod($filename, $permissions);
       }
     }
 
-    public function output($image_type=IMAGETYPE_JPEG, $quality = 80) {
-      if( $image_type == IMAGETYPE_JPEG ) {
+    public function output($image_type = IMAGETYPE_JPEG, $quality = 80)
+    {
+      if ($image_type == IMAGETYPE_JPEG) {
         header("Content-type: image/jpeg");
         imagejpeg($this->image, null, $quality);
-      } elseif( $image_type == IMAGETYPE_GIF ) {
+      } elseif ($image_type == IMAGETYPE_GIF) {
         header("Content-type: image/gif");
         imagegif($this->image);
-      } elseif( $image_type == IMAGETYPE_PNG ) {
+      } elseif ($image_type == IMAGETYPE_PNG) {
         header("Content-type: image/png");
         imagepng($this->image);
-      } elseif( $image_type == IMAGETYPE_WEBP ) {
+      } elseif ($image_type == IMAGETYPE_WEBP) {
         header("Content-type: image/webp");
         imagepng($this->image);
       }
     }
 
-    public function getWidth() {
+    public function getWidth()
+    {
       return imagesx($this->image);
     }
 
-    public function getHeight() {
+    public function getHeight()
+    {
       return imagesy($this->image);
     }
 
-    public function resizeToHeight($height) {
-  		$ratio = $height / $this->getHeight();
-  		$width = round($this->getWidth() * $ratio);
-  		$this->resize($width,$height);
-  	}
-
-  	public function resizeToWidth($width) {
-  		$ratio = $width / $this->getWidth();
-  		$height = round($this->getHeight() * $ratio);
-  		$this->resize($width,$height);
+    public function resizeToHeight($height)
+    {
+      $ratio = $height / $this->getHeight();
+      $width = round($this->getWidth() * $ratio);
+      $this->resize($width, $height);
     }
 
-    public function square($size){
+    public function resizeToWidth($width)
+    {
+      $ratio = $width / $this->getWidth();
+      $height = round($this->getHeight() * $ratio);
+      $this->resize($width, $height);
+    }
+
+    public function square($size)
+    {
       $new_image = imagecreatetruecolor($size, $size);
 
-      if($this->getWidth() > $this->getHeight()){
+      if ($this->getWidth() > $this->getHeight()) {
         $this->resizeToHeight($size);
 
         imagecolortransparent($new_image, imagecolorallocate($new_image, 0, 0, 0));
@@ -147,13 +157,15 @@
       $this->image = $new_image;
     }
 
-    public function scale($scale) {
-      $width = $this->getWidth() * $scale/100;
-      $height = $this->getHeight() * $scale/100;
-      $this->resize($width,$height);
+    public function scale($scale)
+    {
+      $width = $this->getWidth() * $scale / 100;
+      $height = $this->getHeight() * $scale / 100;
+      $this->resize($width, $height);
     }
 
-    public function resize($width,$height) {
+    public function resize($width, $height)
+    {
       $new_image = imagecreatetruecolor($width, $height);
 
       imagecolortransparent($new_image, imagecolorallocate($new_image, 0, 0, 0));
@@ -164,7 +176,8 @@
       $this->image = $new_image;
     }
 
-    public function cut($x, $y, $width, $height){
+    public function cut($x, $y, $width, $height)
+    {
       $new_image = imagecreatetruecolor($width, $height);
 
       imagecolortransparent($new_image, imagecolorallocate($new_image, 0, 0, 0));
@@ -176,34 +189,37 @@
       $this->image = $new_image;
     }
 
-    public function maxarea($width, $height = null){
+    public function maxarea($width, $height = null)
+    {
       $height = $height ? $height : $width;
 
-      if($this->getWidth() > $width){
+      if ($this->getWidth() > $width) {
         $this->resizeToWidth($width);
       }
-      if($this->getHeight() > $height){
+      if ($this->getHeight() > $height) {
         $this->resizeToheight($height);
       }
     }
 
-	public function minarea($width, $height = null)	{
-		$height = $height ? $height : $width;
+    public function minarea($width, $height = null)
+    {
+      $height = $height ? $height : $width;
 
-		if ($this->getWidth() < $width) {
-			$this->resizeToWidth($width);
-		}
-		if ($this->getHeight() < $height) {
-			$this->resizeToheight($height);
-		}
-	}
-
-    public function cutFromCenter($width, $height){
-
-      if($width < $this->getWidth() && $width > $height){
+      if ($this->getWidth() < $width) {
         $this->resizeToWidth($width);
       }
-      if($height < $this->getHeight() && $width < $height){
+      if ($this->getHeight() < $height) {
+        $this->resizeToheight($height);
+      }
+    }
+
+    public function cutFromCenter($width, $height)
+    {
+
+      if ($width < $this->getWidth() && $width > $height) {
+        $this->resizeToWidth($width);
+      }
+      if ($height < $this->getHeight() && $width < $height) {
         $this->resizeToHeight($height);
       }
 
@@ -213,22 +229,23 @@
       return $this->cut($x, $y, $width, $height);
     }
 
-    public function maxareafill($width, $height, $red = 0, $green = 0, $blue = 0){
-        $this->maxarea($width, $height);
-        $new_image = imagecreatetruecolor($width, $height);
-        $color_fill = imagecolorallocate($new_image, $red, $green, $blue);
-        imagefill($new_image, 0, 0, $color_fill);
-  	    imagecopyresampled(	$new_image,
-  	    					$this->image,
-  	    					floor(($width - $this->getWidth())/2),
-  	    					floor(($height-$this->getHeight())/2),
-  	    					0, 0,
-  	    					$this->getWidth(),
-  	    					$this->getHeight(),
-  	    					$this->getWidth(),
-  	    					$this->getHeight()
-  	    				);
-        $this->image = $new_image;
+    public function maxareafill($width, $height, $red = 0, $green = 0, $blue = 0)
+    {
+      $this->maxarea($width, $height);
+      $new_image = imagecreatetruecolor($width, $height);
+      $color_fill = imagecolorallocate($new_image, $red, $green, $blue);
+      imagefill($new_image, 0, 0, $color_fill);
+      imagecopyresampled($new_image,
+        $this->image,
+        floor(($width - $this->getWidth()) / 2),
+        floor(($height - $this->getHeight()) / 2),
+        0, 0,
+        $this->getWidth(),
+        $this->getHeight(),
+        $this->getWidth(),
+        $this->getHeight()
+      );
+      $this->image = $new_image;
     }
 
   }

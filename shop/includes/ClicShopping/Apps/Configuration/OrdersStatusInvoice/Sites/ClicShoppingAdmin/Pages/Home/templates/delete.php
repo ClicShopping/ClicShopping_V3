@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -23,11 +23,11 @@
 
   if ($Qstatus->value('configuration_value') == $oID) {
     $CLICSHOPPING_OrdersStatusInvoice->db->save('configuration', [
-                                                            'configuration_value' => ''
-                                                            ], [
-                                                              'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
-                                                            ]
-                                        );
+      'configuration_value' => ''
+    ], [
+        'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
+      ]
+    );
   }
 
 
@@ -73,33 +73,39 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_26.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_26.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
   </div>
   <?php echo HTML::form('status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&DeleteConfirm&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id)); ?>
   <div class="separator"></div>
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong>
+  </div>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
-      <div class="col-md-12"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_delete_info'); ?><br/><br/></div>
+      <div class="col-md-12"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_delete_info'); ?><br/><br/>
+      </div>
       <div class="separator"></div>
-      <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_invoice_name . '</strong>'; ?><br/><br/></div>
+      <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_invoice_name . '</strong>'; ?><br/><br/>
+      </div>
       <div class="col-md-12 text-md-center">
-<?php
-  if ($remove_status) {
-?>
-            <span><br /><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . $_GET['page']), 'warning', null, 'sm'); ?></span>
-<?php
-  } else {
-?>
-            <span><br /><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id), 'warning', null, 'sm'); ?></span>
-<?php
-  }
-?>
+        <?php
+          if ($remove_status) {
+            ?>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . $_GET['page']), 'warning', null, 'sm'); ?></span>
+            <?php
+          } else {
+            ?>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id), 'warning', null, 'sm'); ?></span>
+            <?php
+          }
+        ?>
       </div>
     </div>
   </div>

@@ -1,26 +1,28 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Products\Actions;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class TellAFriend extends \ClicShopping\OM\PagesActionsAbstract {
+  class TellAFriend extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_Breadcrumb= Registry::get('Breadcrumb');
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -29,8 +31,8 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      if ( isset($_GET['products_id']) && !empty($_GET['products_id']) ) {
-        if ( empty($CLICSHOPPING_ProductsCommon->getProductsName() )) {
+      if (isset($_GET['products_id']) && !empty($_GET['products_id'])) {
+        if (empty($CLICSHOPPING_ProductsCommon->getProductsName())) {
           CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
         }
       }

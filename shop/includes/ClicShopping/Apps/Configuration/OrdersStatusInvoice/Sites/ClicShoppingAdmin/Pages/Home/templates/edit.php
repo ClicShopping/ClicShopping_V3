@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
@@ -42,8 +42,10 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_26.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'), '40', '40'); ?></span>
-          <span class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_26.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
   echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Update&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id));
@@ -57,45 +59,50 @@
   </div>
   <div class="separator"></div>
 
-  <div class="col-md-12 mainTitle"><strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_edit_orders_status'); ?></strong></div>
+  <div class="col-md-12 mainTitle">
+    <strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_edit_orders_status'); ?></strong>
+  </div>
   <div class="adminformTitle">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?></label>
+          <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_edit_intro'); ?></label>
         </div>
       </div>
     </div>
-<?php
-  for ($i=0, $n=count($languages); $i<$n; $i++) {
-?>
-    <div class="row">
-      <div class="col-md-5">
-        <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('lang'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+    <?php
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        ?>
+        <div class="row">
           <div class="col-md-5">
-            <?php echo HTML::inputField('orders_status_invoice_name[' . $languages[$i]['id'] . ']', Status::getOrdersStatusInvoiceName($oInfo->orders_status_invoice_id, $languages[$i]['id'])); ?>
+            <div class="form-group row">
+              <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('lang'); ?>"
+                     class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+              <div class="col-md-5">
+                <?php echo HTML::inputField('orders_status_invoice_name[' . $languages[$i]['id'] . ']', Status::getOrdersStatusInvoiceName($oInfo->orders_status_invoice_id, $languages[$i]['id'])); ?>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-<?php
-  }
-  if (DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID != $oInfo->orders_status_invoice_id) {
-?>
-    <div class="row">
-      <div class="col-md-5">
-        <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?>" class="col-5 col-form-label"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?></label>
+        <?php
+      }
+      if (DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID != $oInfo->orders_status_invoice_id) {
+        ?>
+        <div class="row">
           <div class="col-md-5">
-            <?php echo HTML::checkboxField('default'); ?>
+            <div class="form-group row">
+              <label for="<?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?>"
+                     class="col-5 col-form-label"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?></label>
+              <div class="col-md-5">
+                <?php echo HTML::checkboxField('default'); ?>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-<?php
-  }
-?>
+        <?php
+      }
+    ?>
   </div>
   </form>
 </div>

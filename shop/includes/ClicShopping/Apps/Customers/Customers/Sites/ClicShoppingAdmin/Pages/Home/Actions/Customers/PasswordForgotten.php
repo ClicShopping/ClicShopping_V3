@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
@@ -17,9 +17,11 @@
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
 
-  class PasswordForgotten extends \ClicShopping\OM\PagesActionsAbstract {
+  class PasswordForgotten extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_Customer = Registry::get('Customers');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -37,7 +39,7 @@
                                                                from :table_customers
                                                                where customers_id = :customers_id
                                                              ');
-      $QcheckCustomer->bindInt(':customers_id', (int)$_GET['cID'] );
+      $QcheckCustomer->bindInt(':customers_id', (int)$_GET['cID']);
       $QcheckCustomer->execute();
 
       if (!empty($QcheckCustomer->value('customers_email_address'))) {
@@ -54,15 +56,15 @@
         $Qupdate->execute();
 
         $text_password_body = $CLICSHOPPING_Customer->getDef('email_password_reminder_body', ['username' => $QcheckCustomer->value('customers_email_address'),
-                                                                                               'store_name' => STORE_NAME,
-                                                                                               'password' => $newpass,
-                                                                                               'store_name_address' => STORE_NAME_ADDRESS,
-                                                                                               'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS
-                                                                                              ]
-                                                              );
+            'store_name' => STORE_NAME,
+            'password' => $newpass,
+            'store_name_address' => STORE_NAME_ADDRESS,
+            'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS
+          ]
+        );
 
-        $text_password_body .=  TemplateEmailAdmin::getTemplateEmailSignature();
-        $text_password_body .=  TemplateEmailAdmin::getTemplateEmailTextFooter();
+        $text_password_body .= TemplateEmailAdmin::getTemplateEmailSignature();
+        $text_password_body .= TemplateEmailAdmin::getTemplateEmailTextFooter();
 
 
         $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');

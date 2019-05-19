@@ -1,20 +1,21 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
 
-  class ar_admin_login {
+  class ar_admin_login
+  {
     public $code;
     public $title;
     public $description;
@@ -23,7 +24,8 @@
     public $attempts = 3;
     public $identifier;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
@@ -38,11 +40,13 @@
       }
     }
 
-    public function setIdentifier() {
+    public function setIdentifier()
+    {
       $this->identifier = HTTP::GetIpAddress();
     }
 
-    public function canPerform($user_id, $user_name) {
+    public function canPerform($user_id, $user_name)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $sql_query = 'select id
@@ -81,7 +85,8 @@
       return true;
     }
 
-    public function expireEntries() {
+    public function expireEntries()
+    {
       $Qdel = Registry::get('Db')->prepare('delete
                                             from :table_action_recorder
                                             where module = :module
@@ -95,41 +100,45 @@
       return $Qdel->rowCount();
     }
 
-    public function check() {
+    public function check()
+    {
       return defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-                                        'configuration_title' => 'Allowed Minutes',
-                                        'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES',
-                                        'configuration_value' => '5',
-                                        'configuration_description' => 'Number of minutes to allow login attempts to occur.',
-                                        'configuration_group_id' => '6',
-                                        'sort_order' => '0',
-                                        'date_added' => 'now()'
-                                      ]
-                    );
+          'configuration_title' => 'Allowed Minutes',
+          'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES',
+          'configuration_value' => '5',
+          'configuration_description' => 'Number of minutes to allow login attempts to occur.',
+          'configuration_group_id' => '6',
+          'sort_order' => '0',
+          'date_added' => 'now()'
+        ]
+      );
 
       $CLICSHOPPING_Db->save('configuration', [
-                                        'configuration_title' => 'Allowed Attempts',
-                                        'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS',
-                                        'configuration_value' => '3',
-                                        'configuration_description' => 'Number of login attempts to allow within the specified period.',
-                                        'configuration_group_id' => '6',
-                                        'sort_order' => '0',
-                                        'date_added' => 'now()'
-                                      ]
-                     );
+          'configuration_title' => 'Allowed Attempts',
+          'configuration_key' => 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS',
+          'configuration_value' => '3',
+          'configuration_description' => 'Number of login attempts to allow within the specified period.',
+          'configuration_group_id' => '6',
+          'sort_order' => '0',
+          'date_added' => 'now()'
+        ]
+      );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES', 'MODULE_ACTION_RECORDER_ADMIN_LOGIN_ATTEMPTS');
     }
   }

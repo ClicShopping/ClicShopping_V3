@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin;
 
@@ -15,19 +15,22 @@
   use ClicShopping\Sites\ClicShoppingAdmin\Tax;
   use ClicShopping\Sites\ClicShoppingAdmin\ShopppingCartAdmin;
 
-  class ShoppingCartAdmin {
-    protected  $contents;
+  class ShoppingCartAdmin
+  {
+    protected $contents;
     protected $total;
     protected $weight;
     protected $db;
 
-	  public function __construct() {
-     $this->db = Registry::get('Db');
-     $this->contents = [];
-     $this->total = 0;
+    public function __construct()
+    {
+      $this->db = Registry::get('Db');
+      $this->contents = [];
+      $this->total = 0;
     }
 
-	  public function addCart($products_id, $qty = '', $attributes = '') {
+    public function addCart($products_id, $qty = '', $attributes = '')
+    {
       $products_id = $this->getUprid($products_id, $attributes);
 
       if ($this->inCart($products_id)) {
@@ -38,7 +41,7 @@
         $this->contents[$products_id] = ['qty' => $qty];
 
         if (is_array($attributes)) {
-          foreach( $attributes as $option => $value ) {
+          foreach ($attributes as $option => $value) {
             $this->contents[$products_id]['attributes'][$option] = $value;
           }
         }
@@ -46,28 +49,31 @@
       $this->cleanup();
     }
 
-	  public function updateQuantity($products_id, $quantity = '', $attributes = '') {
+    public function updateQuantity($products_id, $quantity = '', $attributes = '')
+    {
 
       if ($quantity == '') return true; // nothing needs to be updated if theres no quantity, so we return true..
 
       $this->contents[$products_id] = ['qty' => $quantity];
 
       if (is_array($attributes)) {
-        foreach( $attributes as $option => $value ) {
+        foreach ($attributes as $option => $value) {
           $this->contents[$products_id]['attributes'][$option] = $value;
         }
       }
     }
 
-	  public function cleanup() {
-      foreach( array_keys($this->contents) as $key ) {
+    public function cleanup()
+    {
+      foreach (array_keys($this->contents) as $key) {
         if ($this->contents[$key]['qty'] < 1) {
           unset($this->contents[$key]);
         }
       }
     }
 
-    public function inCart($products_id) {
+    public function inCart($products_id)
+    {
       if (isset($this->contents[$products_id])) {
         return true;
       } else {
@@ -75,24 +81,25 @@
       }
     }
 
-	  public function calculate() {
+    public function calculate()
+    {
       $this->total = 0;
       $this->weight = 0;
       if (!is_array($this->contents)) return 0;
 
-      foreach ( array_keys($this->contents) as $products_id ) {
+      foreach (array_keys($this->contents) as $products_id) {
         $qty = $this->contents[$products_id]['qty'];
 
 // products price
         $Qproduct = $this->db->get('products', [
-                                                'products_id',
-                                                'products_price',
-                                                'products_tax_class_id',
-                                                'products_weight'
-                                              ], [
-                                                'products_id' => (int)$this->getPrid($products_id)
-                                              ]
-                                  );
+          'products_id',
+          'products_price',
+          'products_tax_class_id',
+          'products_weight'
+        ], [
+            'products_id' => (int)$this->getPrid($products_id)
+          ]
+        );
 
         if ($Qproduct->fetch() !== false) {
 
@@ -112,17 +119,17 @@
           $this->weight += ($qty * $products_weight);
 
 // attributes price
-        if (isset($this->contents[$products_id]['attributes'])) {
-          foreach ( $this->contents[$products_id]['attributes'] as $option => $value ) {
+          if (isset($this->contents[$products_id]['attributes'])) {
+            foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
               $Qattribute = $this->db->get('products_attributes', [
-                                                                    'options_values_price',
-                                                                    'price_prefix'
-                                                                  ], [
-                                                                    'products_id' => $prid,
-                                                                    'options_id' => (int)$option,
-                                                                    'options_values_id' => (int)$value
-                                                                  ]
-                                          );
+                'options_values_price',
+                'price_prefix'
+              ], [
+                  'products_id' => $prid,
+                  'options_id' => (int)$option,
+                  'options_values_id' => (int)$value
+                ]
+              );
 
               if ($Qattribute->value('price_prefix') == '+') {
                 $this->total += $qty * Tax::addTax($Qattribute->value('options_values_price'), $products_tax);
@@ -135,22 +142,24 @@
       }
     }
 
-	  public function show_total() {
-    $this->calculate();
+    public function show_total()
+    {
+      $this->calculate();
 
-    return $this->total;
-   }
+      return $this->total;
+    }
 
 
-/**
- * @param string $prid, $params
- * @return string $uprid,
- * @access public
- */
-    public function getUprid($prid, $params) {
+    /**
+     * @param string $prid , $params
+     * @return string $uprid,
+     * @access public
+     */
+    public function getUprid($prid, $params)
+    {
       $uprid = $prid;
-      if ( (is_array($params)) && (!strstr($prid, '{')) ) {
-        foreach ( $params as $option => $value ) {
+      if ((is_array($params)) && (!strstr($prid, '{'))) {
+        foreach ($params as $option => $value) {
           $uprid = $uprid . '{' . $option . '}' . $value;
         }
       }
@@ -158,13 +167,14 @@
       return $uprid;
     }
 
-/**
- *
- * @param string $uprid
- * @return string $pieces,
- * @access public
- */
-    public function getPrid($uprid) {
+    /**
+     *
+     * @param string $uprid
+     * @return string $pieces,
+     * @access public
+     */
+    public function getPrid($uprid)
+    {
       $pieces = explode('{', $uprid);
 
       return $pieces[0];

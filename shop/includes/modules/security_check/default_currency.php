@@ -1,31 +1,35 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class securityCheck_default_currency {
+  class securityCheck_default_currency
+  {
     public $type = 'error';
 
-    public function __construct() {
+    public function __construct()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/default_currency',null, null, 'Shop');
+      $CLICSHOPPING_Language->loadDefinitions('modules/security_check/default_currency', null, null, 'Shop');
     }
 
-    public function pass() {
+    public function pass()
+    {
       return defined('DEFAULT_CURRENCY');
     }
 
-    public function getMessage() {
+    public function getMessage()
+    {
       return CLICSHOPPING::getDef('error_no_default_currency_defined');
     }
   }

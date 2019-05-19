@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Marketing\BannerManager\Classes\Shop;
@@ -16,47 +16,50 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class Banner {
+  class Banner
+  {
 
-/**
- * Sets the status of a banner
- *
- * @param int $id The $banners_id of the banner to set the status to
- * @param boolean $active_flag A flag that enables or disables the banner
- * @access private
- * @return boolean
- */
+    /**
+     * Sets the status of a banner
+     *
+     * @param int $id The $banners_id of the banner to set the status to
+     * @param boolean $active_flag A flag that enables or disables the banner
+     * @access private
+     * @return boolean
+     */
 
-    private static function setBannerStatus($banners_id, $status) {
+    private static function setBannerStatus($banners_id, $status)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-        if ($status == '1') {
+      if ($status == '1') {
 
-          return $CLICSHOPPING_Db->save('banners', ['status' => 1,
-                                                   'date_status_change' => 'now()',
-                                                   'date_scheduled' => 'null'],
-                                                   ['banners_id' => (int)$banners_id]
-                                       );
+        return $CLICSHOPPING_Db->save('banners', ['status' => 1,
+          'date_status_change' => 'now()',
+          'date_scheduled' => 'null'],
+          ['banners_id' => (int)$banners_id]
+        );
 
 
       } elseif ($status == '0') {
-          return $CLICSHOPPING_Db->save('banners', ['status' => 0,
-                                                    'date_status_change' => 'now()'],
-                                                   ['banners_id' => (int)$banners_id]
-                                        );
+        return $CLICSHOPPING_Db->save('banners', ['status' => 0,
+          'date_status_change' => 'now()'],
+          ['banners_id' => (int)$banners_id]
+        );
       } else {
-          return -1;
+        return -1;
       }
     }
 
-/**
- * Activate a banner that has been on schedule
- *
- * @param int $id The ID of the banner to activate
- * @access public
- * @return boolean
- */
-    public static function activateBanners() {
+    /**
+     * Activate a banner that has been on schedule
+     *
+     * @param int $id The ID of the banner to activate
+     * @access public
+     * @return boolean
+     */
+    public static function activateBanners()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qbanners = $CLICSHOPPING_Db->query('select banners_id
@@ -69,20 +72,21 @@
       $Qbanners->execute();
 
       if ($Qbanners->fetch() !== false) {
-          do {
-            static::setBannerStatus($Qbanners->valueInt('banners_id'), 1);
-          } while ($Qbanners->fetch());
+        do {
+          static::setBannerStatus($Qbanners->valueInt('banners_id'), 1);
+        } while ($Qbanners->fetch());
       }
     }
 
-/**
- * Deactivate a banner
- *
- * @param int $id The ID of the banner to deactivate
- * @access public
- * @return boolean
- */
-    public static function expireBanners() {
+    /**
+     * Deactivate a banner
+     *
+     * @param int $id The ID of the banner to deactivate
+     * @access public
+     * @return boolean
+     */
+    public static function expireBanners()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qbanners = $CLICSHOPPING_Db->query('select b.banners_id,
@@ -107,16 +111,17 @@
       }
     }
 
-/**
- * Display a banner. If no ID is passed, the value defined in $_exists_id is
- * used.
- *
- * @param int $action of the banner (dynamic or static)
- * @param The $identifier of the banner to show
- * @access public
- * @return string
- */
-    public static function displayBanner($action, $identifier) {
+    /**
+     * Display a banner. If no ID is passed, the value defined in $_exists_id is
+     * used.
+     *
+     * @param int $action of the banner (dynamic or static)
+     * @param The $identifier of the banner to show
+     * @access public
+     * @return string
+     */
+    public static function displayBanner($action, $identifier)
+    {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -136,7 +141,7 @@
         $Qcheck->bindInt(':status', 1);
         $Qcheck->execute();
 
-        if ( $Qcheck !== false ) {
+        if ($Qcheck !== false) {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != '0') { // Clients en mode B2B
             $Qbanner = $CLICSHOPPING_Db->prepare('select  banners_id,
                                                           banners_title,
@@ -156,7 +161,7 @@
                                               ');
 
             $Qbanner->bindValue(':banners_group', $identifier);
-            $Qbanner->bindInt(':customers_group_id',  (int)$CLICSHOPPING_Customer->getCustomersGroupID() );
+            $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
             $Qbanner->execute();
 
@@ -209,7 +214,7 @@
                                                  limit 1
                                                ');
             $Qbanner->bindValue(':banners_group', $identifier);
-            $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID() );
+            $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
             $Qbanner->execute();
 
@@ -244,7 +249,7 @@
         if (!empty($banner['banners_html_text'])) {
           $output = $banner['banners_html_text'];
         } else {
-          $output = HTML::link(CLICSHOPPING::link('redirect.php',  'action=banner&goto=' . $banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
+          $output = HTML::link(CLICSHOPPING::link('redirect.php', 'action=banner&goto=' . $banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
         }
 
         static::updateBannerDisplayCount($banner['banners_id']);
@@ -255,15 +260,16 @@
     }
 
 
-/**
- * Check if an existing banner is active
- *
- * @param int $id The ID of the banner to check
- * @access public
- * @return boolean
- */
+    /**
+     * Check if an existing banner is active
+     *
+     * @param int $id The ID of the banner to check
+     * @access public
+     * @return boolean
+     */
 
-    public static function bannerExists($action, $identifier) {
+    public static function bannerExists($action, $identifier)
+    {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -329,7 +335,7 @@
 
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
 
-          $Qbanners= $CLICSHOPPING_Db->prepare('select banners_id,
+          $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                        banners_title,
                                                        banners_image,
                                                        banners_target,
@@ -344,9 +350,9 @@
                                               ');
 
 
-          $Qbanners->bindValue(':banners_group', $identifier );
-          $Qbanners->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID() );
-          $Qbanners->bindInt(':languages_id',(int)$CLICSHOPPING_Language->getId() );
+          $Qbanners->bindValue(':banners_group', $identifier);
+          $Qbanners->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
+          $Qbanners->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
 
           $Qbanners->execute();
 
@@ -355,7 +361,7 @@
           return $result;
         } else {
 
-          $Qbanners= $CLICSHOPPING_Db->prepare('select banners_id,
+          $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                        banners_title,
                                                        banners_image,
                                                        banners_target,
@@ -369,8 +375,8 @@
                                                   and (languages_id = :languages_id or languages_id = 0)
                                                 ');
 
-          $Qbanners->bindValue(':banners_group', $identifier );
-          $Qbanners->bindInt(':languages_id',(int)$CLICSHOPPING_Language->getId() );
+          $Qbanners->bindValue(':banners_group', $identifier);
+          $Qbanners->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
 
           $Qbanners->execute();
 
@@ -379,16 +385,17 @@
           return $result;
         }
       }
-  }
+    }
 
 
-/**
- * Increment the display count of the banner
- *
- * @param int $id The ID of the banner
- * @access private
- */
-    private static function updateBannerDisplayCount($banner_id) {
+    /**
+     * Increment the display count of the banner
+     *
+     * @param int $id The ID of the banner
+     * @access private
+     */
+    private static function updateBannerDisplayCount($banner_id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (is_numeric($banner_id)) {
@@ -405,7 +412,7 @@
         $count = $Qcheck->rowCount();
         $result = $Qcheck->fetch();
 
-        if ( ($result !== false) && ($count > 0) ) {
+        if (($result !== false) && ($count > 0)) {
           $Qview = $CLICSHOPPING_Db->prepare('update :table_banners_history
                                               set banners_shown = banners_shown + 1
                                               where banners_id = :banners_id
@@ -428,14 +435,15 @@
     }
 
 
-/**
- * Increment the click count of the banner
- *
- * @param int $banner_id The ID of the banner
- * @access private
- */
+    /**
+     * Increment the click count of the banner
+     *
+     * @param int $banner_id The ID of the banner
+     * @access private
+     */
 
-    public static function updateBannerClickCount($banner_id) {
+    public static function updateBannerClickCount($banner_id)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select count(*) as count
@@ -445,7 +453,7 @@
       $Qcheck->bindInt(':banners_id', $banner_id);
       $Qcheck->execute();
 
-      if ( ( $Qcheck->fetch() !== false) && ( $Qcheck->value('count') > 0) ) {
+      if (($Qcheck->fetch() !== false) && ($Qcheck->value('count') > 0)) {
 
         $Qbanner = $CLICSHOPPING_Db->prepare('update :table_banners_history
                                               set banners_clicked = banners_clicked + 1

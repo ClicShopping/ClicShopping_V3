@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\OrderTotal\Total\Module\Total;
 
@@ -18,7 +18,8 @@
   use ClicShopping\Apps\OrderTotal\Total\Total as TotalApp;
 
 
-  class TO implements \ClicShopping\OM\Modules\OrderTotalInterface  {
+  class TO implements \ClicShopping\OM\Modules\OrderTotalInterface
+  {
 
     public $code;
     public $title;
@@ -28,7 +29,8 @@
     public $sort_order = 0;
     public $app;
 
-    public function __construct() {
+    public function __construct()
+    {
 
       if (!Registry::exists('Total')) {
         Registry::set('Total', new TotalApp());
@@ -51,32 +53,36 @@
       $this->output = [];
     }
 
-    public function process() {
+    public function process()
+    {
 
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Order = Registry::get('Order');
 
       $this->output[] = ['title' => $this->title,
-                          'text' => ' ' . $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . ' ',
-                          'value' => $CLICSHOPPING_Order->info['total']
-                        ];
+        'text' => ' ' . $CLICSHOPPING_Currencies->format($CLICSHOPPING_Order->info['total'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . ' ',
+        'value' => $CLICSHOPPING_Order->info['total']
+      ];
     }
 
 
-
-    public function check() {
+    public function check()
+    {
       return defined('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_STATUS) != '');
     }
 
-    public function install() {
+    public function install()
+    {
       $this->app->redirect('Configure&Install&module=TO');
     }
 
-    public function remove() {
+    public function remove()
+    {
       $this->app->redirect('Configure&Uninstall&module=TO');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('CLICSHOPPING_APP_ORDER_TOTAL_TOTAL_TO_SORT_ORDER');
     }
   }

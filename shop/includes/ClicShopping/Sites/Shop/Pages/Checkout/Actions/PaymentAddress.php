@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Sites\Shop\Pages\Checkout\Actions;
 
@@ -16,9 +16,11 @@
 
   use ClicShopping\Sites\Shop\AddressBook;
 
-  class PaymentAddress extends \ClicShopping\OM\PagesActionsAbstract {
+  class PaymentAddress extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
@@ -42,7 +44,7 @@
       if ((AddressBook::countCustomersModifyAddressDefault() == 0)) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_modify_default'), 'danger', 'header');
 
-        CLICSHOPPING::redirect(null,'Checkout&Billing');
+        CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
 // if no billing destination address was selected, use their own address as default
@@ -57,7 +59,7 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('checkout_payment_address');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null,'Checkout&Billing'));
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null,'Checkout&PaymentAddress'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_1'), CLICSHOPPING::link(null, 'Checkout&Billing'));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title_2'), CLICSHOPPING::link(null, 'Checkout&PaymentAddress'));
     }
   }

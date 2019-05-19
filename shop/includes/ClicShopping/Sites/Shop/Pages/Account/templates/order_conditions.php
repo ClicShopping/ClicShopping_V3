@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   use ClicShopping\OM\Registry;
 
@@ -31,13 +31,13 @@
 ?>
 
 <html dir="ltr" lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo 'Conditions of sales'; ?></title>
-  </head>
-  <body onload="resize();">
-    <?php echo $QconditionGeneralOfSales->value('page_manager_general_condition'); ?>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?php echo 'Conditions of sales'; ?></title>
+</head>
+<body onload="resize();">
+<?php echo $QconditionGeneralOfSales->value('page_manager_general_condition'); ?>
+</body>
 </html>
 

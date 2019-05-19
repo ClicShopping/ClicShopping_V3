@@ -1,19 +1,19 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
-    use ClicShopping\OM\HTML;
-    use ClicShopping\OM\Registry;
-    use ClicShopping\OM\DateTime;
-    use ClicShopping\OM\ObjectInfo;
-    use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Registry;
+  use ClicShopping\OM\DateTime;
+  use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -34,29 +34,32 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-          <div class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/archive.gif', $CLICSHOPPING_Archive->getDef('heading_title'), '40', '40'); ?></div>
-          <div class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Archive->getDef('heading_title'); ?></div>
+          <div
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/archive.gif', $CLICSHOPPING_Archive->getDef('heading_title'), '40', '40'); ?></div>
+          <div
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Archive->getDef('heading_title'); ?></div>
           <div class="col-md-2">
             <div class="form-group">
               <div class="controls">
-<?php
-  echo HTML::form('search',  $CLICSHOPPING_Archive->link('Archive'), 'post', 'role="form" class="form-inline"', ['session_id' => true]);
-  echo HTML::inputField('search', null, 'id="inputKeywords" placeholder=" ' . $CLICSHOPPING_Archive->getDef('heading_title_search') . ' "');
-?>
+                <?php
+                  echo HTML::form('search', $CLICSHOPPING_Archive->link('Archive'), 'post', 'role="form" class="form-inline"', ['session_id' => true]);
+                  echo HTML::inputField('search', null, 'id="inputKeywords" placeholder=" ' . $CLICSHOPPING_Archive->getDef('heading_title_search') . ' "');
+                ?>
                 </form>
               </div>
             </div>
           </div>
           <div class="col-md-1">
-<?php
-  if (isset($_POST['search']) && !is_null($_POST['search'])) {
-    echo HTML::button($CLICSHOPPING_Archive->getDef('button_reset'), null, $CLICSHOPPING_Archive->link('Archive&page=' . $page), 'warning');
-  }
-?>
+            <?php
+              if (isset($_POST['search']) && !is_null($_POST['search'])) {
+                echo HTML::button($CLICSHOPPING_Archive->getDef('button_reset'), null, $CLICSHOPPING_Archive->link('Archive&page=' . $page), 'warning');
+              }
+            ?>
           </div>
           <span class="col-md-3 text-md-right">
               <?php echo HTML::form('delete_all', $CLICSHOPPING_Archive->link('Archive&DeleteAll&page=' . $page)); ?>
-            <a onclick="$('delete').prop('action', ''); $('form').submit();" class="button"><?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_unpack'), null, null, 'info'); ?></a>&nbsp;
+            <a onclick="$('delete').prop('action', ''); $('form').submit();"
+               class="button"><?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_unpack'), null, null, 'info'); ?></a>&nbsp;
            </span>
         </div>
       </div>
@@ -71,7 +74,9 @@
       <table class="table table-sm table-hover table-striped">
         <thead>
         <tr class="dataTableHeadingRow">
-          <th width="1" class="text-md-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
+          <th width="1" class="text-md-center"><input type="checkbox"
+                                                      onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"/>
+          </th>
           <th>&nbsp;</th>
           <th><?php echo $CLICSHOPPING_Archive->getDef('table_heading_model_archives'); ?></th>
           <th><?php echo $CLICSHOPPING_Archive->getDef('table_heading_products_archives'); ?></th>
@@ -81,14 +86,14 @@
         </tr>
         </thead>
         <tbody>
-<?php
-  // Recherche
-  $search = '';
+        <?php
+          // Recherche
+          $search = '';
 
-  if (isset($_POST['search']) && !is_null($_POST['search'])) {
-    $keywords = HTML::sanitize($_POST['search']);
+          if (isset($_POST['search']) && !is_null($_POST['search'])) {
+            $keywords = HTML::sanitize($_POST['search']);
 
-    $Qproducts = $CLICSHOPPING_Archive->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
+            $Qproducts = $CLICSHOPPING_Archive->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
                                                                                 p.products_model,
                                                                                 p.products_image,
                                                                                 p.products_price,
@@ -109,13 +114,13 @@
                                                         :page_set_max_results
                                                   ');
 
-    $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
-    $Qproducts->bindValue(':search', '%' . $keywords . '%');
-    $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-    $Qproducts->execute();
+            $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+            $Qproducts->bindValue(':search', '%' . $keywords . '%');
+            $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+            $Qproducts->execute();
 
-  } else {
-    $Qproducts = $CLICSHOPPING_Archive->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
+          } else {
+            $Qproducts = $CLICSHOPPING_Archive->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
                                                                                 p.products_model,
                                                                                 p.products_image,
                                                                                 p.products_price,
@@ -134,94 +139,97 @@
                                                           :page_set_max_results
                                                     ');
 
-    $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId() );
-    $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-    $Qproducts->execute();
-  }
+            $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+            $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+            $Qproducts->execute();
+          }
 
 
-  $listingTotalRow = $Qproducts->getPageSetTotalRows();
+          $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
-  if ($listingTotalRow > 0) {
+          if ($listingTotalRow > 0) {
 
-  while ($products = $Qproducts->fetch()) {
+          while ($products = $Qproducts->fetch()) {
 
-    if ((!isset($_GET['aID']) || (isset($_GET['aID']) && ((int)$_GET['aID'] ===  $Qproducts->valueInt('products_id')))) && !isset($mInfo)) {
+          if ((!isset($_GET['aID']) || (isset($_GET['aID']) && ((int)$_GET['aID'] === $Qproducts->valueInt('products_id')))) && !isset($mInfo)) {
 
-      $QproductArvhice = $CLICSHOPPING_Archive->db->prepare('select count(*) as products_count
+            $QproductArvhice = $CLICSHOPPING_Archive->db->prepare('select count(*) as products_count
                                                       from :table_products
                                                       where products_id = :products_id
                                                       and products_archive = 1
                                                     ');
 
-      $QproductArvhice->bindInt(':products_id', $Qproducts->valueInt('products_id') );
-      $Qproducts->execute();
+            $QproductArvhice->bindInt(':products_id', $Qproducts->valueInt('products_id'));
+            $Qproducts->execute();
 
-      $products_archive = $Qproducts->fetch();
+            $products_archive = $Qproducts->fetch();
 
-      $mInfo_array = array_merge($products, $products_archive);
-      $mInfo = new ObjectInfo($mInfo_array);
-    }
-?>
-            <th scope="row">
-<?php
-    if ($products['selected']) {
-?>
-              <input type="checkbox" name="selected[]" value="<?php echo  $Qproducts->valueInt('products_id'); ?>" checked="checked" />
-<?php
-    } else {
-?>
-              <input type="checkbox" name="selected[]" value="<?php echo  $Qproducts->valueInt('products_id'); ?>" />
-<?php
-    }
-?>
-            </th>
-            <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
-            <td><?php echo $Qproducts->value('products_model'); ?></td>
-            <td><?php echo $Qproducts->value('products_name'); ?></td>
-<?php
-      if (!is_null($Qproducts->value('last_modified'))) {
-        echo '<td class="text-md-center">' . DateTime::toShort($Qproducts->value('last_modified')) .'</td>';
-      } else {
-        echo '<td class="text-md-center"></td>';
-      }
-?>
-            <td class="text-md-center">
-<?php
-      if ($Qproducts->valueInt('products_status') == 1) {
-        echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=0&aID=' .  $Qproducts->valueInt('products_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
-      } else {
-        echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=1&aID=' .  $Qproducts->valueInt('products_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
-      }
-?>
-            </td>
-            <td class="text-md-right">
-<?php
-      echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $page . '&aID=' .  $Qproducts->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Archive->getDef('icon_unpack')) . '</a>' ;
-      echo '&nbsp;';
-?>
-            </td>
-          </tbody>
+            $mInfo_array = array_merge($products, $products_archive);
+            $mInfo = new ObjectInfo($mInfo_array);
+          }
+        ?>
+        <th scope="row">
+          <?php
+            if ($products['selected']) {
+              ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $Qproducts->valueInt('products_id'); ?>"
+                     checked="checked"/>
+              <?php
+            } else {
+              ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $Qproducts->valueInt('products_id'); ?>"/>
+              <?php
+            }
+          ?>
+        </th>
+        <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+        <td><?php echo $Qproducts->value('products_model'); ?></td>
+        <td><?php echo $Qproducts->value('products_name'); ?></td>
+        <?php
+          if (!is_null($Qproducts->value('last_modified'))) {
+            echo '<td class="text-md-center">' . DateTime::toShort($Qproducts->value('last_modified')) . '</td>';
+          } else {
+            echo '<td class="text-md-center"></td>';
+          }
+        ?>
+        <td class="text-md-center">
+          <?php
+            if ($Qproducts->valueInt('products_status') == 1) {
+              echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=0&aID=' . $Qproducts->valueInt('products_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+            } else {
+              echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=1&aID=' . $Qproducts->valueInt('products_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+            }
+          ?>
+        </td>
+        <td class="text-md-right">
+          <?php
+            echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $page . '&aID=' . $Qproducts->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Archive->getDef('icon_unpack')) . '</a>';
+            echo '&nbsp;';
+          ?>
+        </td>
+        </tbody>
         </tr>
-<?php
-    } // end while
-  } // end $listingTotalRow
-?>
+        <?php
+          } // end while
+          } // end $listingTotalRow
+        ?>
       </table>
     </td>
     </form>
   </table>
 
-<?php
-  if ($listingTotalRow > 0) {
-?>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Archive->getDef('text_display_number_of_link')); ?></div>
-        <div class="float-md-right text-md-right"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+  <?php
+    if ($listingTotalRow > 0) {
+      ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Archive->getDef('text_display_number_of_link')); ?></div>
+          <div
+            class="float-md-right text-md-right"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+        </div>
       </div>
-    </div>
-<?php
-  }
-?>
+      <?php
+    }
+  ?>
 </div>

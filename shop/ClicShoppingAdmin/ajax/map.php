@@ -1,4 +1,5 @@
 <?php
+
   use ClicShopping\OM\Registry;
 
   require_once('../includes/application_top.php');
@@ -27,10 +28,10 @@
 
   if (is_array($results)) {
     foreach ($results as $result) {
-      $json[strtolower($result['countries_iso_code_2'])] = ['total'  => $result['total'],
-                                                              'amount' => $result['amount'],
+      $json[strtolower($result['countries_iso_code_2'])] = ['total' => $result['total'],
+        'amount' => $result['amount'],
 
-                                                             ];
+      ];
     }
   }
 

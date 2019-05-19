@@ -1,27 +1,30 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\ProductsAttributes\Sites\ClicShoppingAdmin\Pages\Home\Actions\ProductsAttributes;
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  class UpdateOptionName extends \ClicShopping\OM\PagesActionsAbstract {
+  class UpdateOptionName extends \ClicShopping\OM\PagesActionsAbstract
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->app = Registry::get('ProductsAttributes');
     }
 
-    public function execute() {
+    public function execute()
+    {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
       $languages = $CLICSHOPPING_Language->getLanguages();
@@ -37,7 +40,7 @@
       $products_options_type = HTML::sanitize($_POST['products_options_type']);
       $option_id = HTML::sanitize($_POST['option_id']);
 
-      for ($i=0, $n=count($languages); $i<$n; $i ++) {
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $option_name = HTML::sanitize($option_name_array[$languages[$i]['id']]);
 
         $Qupdate = $this->app->db->prepare('update :table_products_options
@@ -49,14 +52,14 @@
                                       ');
         $Qupdate->bindValue(':products_options_name', $option_name);
         $Qupdate->bindInt(':products_options_sort_order', $option_sort_order);
-        $Qupdate->bindInt(':products_options_id', $option_id );
-        $Qupdate->bindValue(':products_options_type', $products_options_type );
+        $Qupdate->bindInt(':products_options_id', $option_id);
+        $Qupdate->bindValue(':products_options_type', $products_options_type);
         $Qupdate->bindInt(':language_id', $languages[$i]['id']);
         $Qupdate->execute();
 
       }
 
-      $CLICSHOPPING_Hooks->call('UpdateOptionName','Save');
+      $CLICSHOPPING_Hooks->call('UpdateOptionName', 'Save');
 
       $this->app->redirect('ProductsAttributes&' . $page_info);
     }

@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Communication\Newsletter\Module\Hooks\ClicShoppingAdmin\Stats;
 
@@ -15,10 +15,12 @@
 
   use ClicShopping\Apps\Communication\Newsletter\Newsletter as NewslettersApp;
 
-  class StatsCustomersNewsletterB2bBySex implements \ClicShopping\OM\Modules\HooksInterface {
+  class StatsCustomersNewsletterB2bBySex implements \ClicShopping\OM\Modules\HooksInterface
+  {
     protected $app;
 
-    public function __construct() {
+    public function __construct()
+    {
 
       if (!Registry::exists('Newsletters')) {
         Registry::set('Newsletters', new NewslettersApp());
@@ -28,7 +30,8 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersNewsletterB2bBySex');
     }
 
-    private function statsNewsletterCustomersMen() {
+    private function statsNewsletterCustomersMen()
+    {
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS avgage
                                                            from :table_customers
                                                            where customers_gender = :customers_gender
@@ -40,14 +43,15 @@
       $QstatAnalyseCustomersMan->execute();
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
-        $statAnalyseCustomersMan =  $QstatAnalyseCustomersMan->valueDecimal('avgage');
+        $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
       }
 
       return $statAnalyseCustomersMan;
     }
 
 
-    private function statsNewsletterCustomersWomen() {
+    private function statsNewsletterCustomersWomen()
+    {
       $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS avgage
                                                               from :table_customers
                                                               where customers_gender = :customers_gender
@@ -59,14 +63,15 @@
       $QstatAnalyseCustomersWomen->execute();
 
       if (!is_null($QstatAnalyseCustomersWomen->valueDecimal('avgage'))) {
-        $statAnalyseCustomersWomen =  $QstatAnalyseCustomersWomen->valueDecimal('avgage');
+        $statAnalyseCustomersWomen = $QstatAnalyseCustomersWomen->valueDecimal('avgage');
       }
 
       return $statAnalyseCustomersWomen;
     }
 
 
-    public function execute() {
+    public function execute()
+    {
       if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;
       }

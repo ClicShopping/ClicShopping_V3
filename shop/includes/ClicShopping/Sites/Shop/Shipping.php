@@ -1,13 +1,13 @@
 <?php
   /**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Sites\Shop;
@@ -16,13 +16,15 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class Shipping {
+  class Shipping
+  {
     public $modules;
     public $selected_module;
     protected $lang;
 
 // class constructor
-    public function __construct($module = null) {
+    public function __construct($module = null)
+    {
       $this->lang = Registry::get('Language');
 
       if (defined('MODULE_SHIPPING_INSTALLED') && !is_null(MODULE_SHIPPING_INSTALLED)) {
@@ -40,13 +42,13 @@
           }
         }
 
-        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.')+1)), $this->modules) || in_array($code, $this->modules))) {
+        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($code, $this->modules))) {
           if (strpos($code, '\\') !== false) {
             $class = Apps::getModuleClass($code, 'Shipping');
 
             $include_modules[] = ['class' => $code,
-                                  'file' => $class
-                                 ];
+              'file' => $class
+            ];
           }
         } else {
           foreach ($this->modules as $value) {
@@ -54,13 +56,13 @@
               $class = Apps::getModuleClass($value, 'Shipping');
 
               $include_modules[] = ['class' => $value,
-                                    'file' => $class
-                                   ];
+                'file' => $class
+              ];
             }
           }
         }
 
-        for ($i=0, $n=count($include_modules); $i<$n; $i++) {
+        for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
           if (strpos($include_modules[$i]['class'], '\\') !== false) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
           }
@@ -68,12 +70,13 @@
       }
     }
 
-/**
- * get the weight
- * @param int $shipping_num_boxes
- * @return float
- */
-    public function getShippingWeight() {
+    /**
+     * get the weight
+     * @param int $shipping_num_boxes
+     * @return float
+     */
+    public function getShippingWeight()
+    {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
       if (is_array($this->modules)) {
@@ -94,24 +97,25 @@
       return $shipping_weight;
     }
 
-/**
- * get shipping module elements id, title ...
- * @param null $method
- * @param null $module
- * @return array
- */
-    public function getQuote($method = null, $module = null) {
+    /**
+     * get shipping module elements id, title ...
+     * @param null $method
+     * @param null $module
+     * @return array
+     */
+    public function getQuote($method = null, $module = null)
+    {
       $quotes_array = [];
 
       if (is_array($this->modules)) {
-         $include_quotes = [];
+        $include_quotes = [];
 
-        foreach($this->modules as $value) {
+        foreach ($this->modules as $value) {
           if (strpos($value, '\\') !== false) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
 
             if (!is_null($module)) {
-              if ( ($module == $value) && ($obj->enabled) ) {
+              if (($module == $value) && ($obj->enabled)) {
                 $include_quotes[] = $value;
               }
             } elseif ($obj->enabled) {
@@ -122,7 +126,7 @@
 
         $size = count($include_quotes);
 
-        for ($i=0; $i<$size; $i++) {
+        for ($i = 0; $i < $size; $i++) {
           if (strpos($include_quotes[$i], '\\') !== false) {
             $quotes = Registry::get('Shipping_' . str_replace('\\', '_', $include_quotes[$i]))->quote($method);
           }
@@ -138,36 +142,38 @@
 
 // function not include in shipping.php
 // can put pb with module like post canada online 94
-    public function getFirst() {
-      foreach ( $this->modules as $value ) {
+    public function getFirst()
+    {
+      foreach ($this->modules as $value) {
         if (strpos($value, '\\') !== false) {
           $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
         }
-        if ( $obj->enabled ) {
-          foreach ( $obj->quotes['methods'] as $method ) {
-            if ( isset($method['cost']) && !is_null($method['cost']) ) {
+        if ($obj->enabled) {
+          foreach ($obj->quotes['methods'] as $method) {
+            if (isset($method['cost']) && !is_null($method['cost'])) {
               return [
-                      'id' => $obj->quotes['id'] . '_' . $method['id'],
-                      'title' => $obj->quotes['module'] . (isset($method['title']) && !empty($method['title']) ? ' (' . $method['title'] . ')' : ''),
-                      'info' => $obj->quotes['info'] . (isset($method['info']) && !empty($method['info']) ? ' (' . $method['info'] . ')' : ''),
-                      'cost' => $method['cost']
-                     ];
+                'id' => $obj->quotes['id'] . '_' . $method['id'],
+                'title' => $obj->quotes['module'] . (isset($method['title']) && !empty($method['title']) ? ' (' . $method['title'] . ')' : ''),
+                'info' => $obj->quotes['info'] . (isset($method['info']) && !empty($method['info']) ? ' (' . $method['info'] . ')' : ''),
+                'cost' => $method['cost']
+              ];
             }
           }
         }
       }
     }
 
-/**
- * get the cheapest shipping
- * @return bool|mixed
- */
-    public function getCheapest() {
+    /**
+     * get the cheapest shipping
+     * @return bool|mixed
+     */
+    public function getCheapest()
+    {
       if (is_array($this->modules)) {
         $rates = [];
-        $obj =  [];
+        $obj = [];
 
-        foreach($this->modules as $value) {
+        foreach ($this->modules as $value) {
           if (strpos($value, '\\') !== false) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
           }
@@ -176,13 +182,13 @@
             if ($obj->enabled) {
               $quotes = $obj->quotes;
 
-              for ($i=0, $n=count( $quotes['methods'] ? : []); $i<$n; $i++) {
+              for ($i = 0, $n = count($quotes['methods'] ?: []); $i < $n; $i++) {
                 if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
                   $rates[] = ['id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
-                             'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
-                             'info' => $quotes['info'] . (isset($quotes['methods'][$i]['info']) && !empty($quotes['methods'][$i]['info']) ? ' (' . $quotes['methods'][$i]['info'] . ')' : ''),
-                             'cost' => $quotes['methods'][$i]['cost']
-                            ];
+                    'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
+                    'info' => $quotes['info'] . (isset($quotes['methods'][$i]['info']) && !empty($quotes['methods'][$i]['info']) ? ' (' . $quotes['methods'][$i]['info'] . ')' : ''),
+                    'cost' => $quotes['methods'][$i]['cost']
+                  ];
                 }
               }
             }
@@ -191,7 +197,7 @@
 
         $cheapest = false;
 
-        for ($i=0, $n=count($rates); $i<$n; $i++) {
+        for ($i = 0, $n = count($rates); $i < $n; $i++) {
           if (is_array($cheapest)) {
             if ($rates[$i]['cost'] < $cheapest['cost']) {
               $cheapest = $rates[$i];
@@ -205,16 +211,17 @@
       }
     }
 
-/**
- * Count shipping modules
- * @return int
- */
-    public function geCountShippingModules() {
+    /**
+     * Count shipping modules
+     * @return int
+     */
+    public function geCountShippingModules()
+    {
       $count = 0;
 
       $modules_array = explode(';', MODULE_SHIPPING_INSTALLED);
 
-      for ($i=0, $n=count($modules_array); $i<$n; $i++) {
+      for ($i = 0, $n = count($modules_array); $i < $n; $i++) {
         $m = $modules_array[$i];
 
         $CLICSHOPPING_SM = null;

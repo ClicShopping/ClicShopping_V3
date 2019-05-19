@@ -1,55 +1,58 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\OM;
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  class Apps {
+  class Apps
+  {
 
-/**
- * @return array
- */
-    public static function getAll() {
-        $result = [];
+    /**
+     * @return array
+     */
+    public static function getAll()
+    {
+      $result = [];
 
-        $apps_directory = CLICSHOPPING::BASE_DIR . 'Apps';
+      $apps_directory = CLICSHOPPING::BASE_DIR . 'Apps';
 
-        if ($vdir = new \DirectoryIterator($apps_directory)) {
-            foreach ($vdir as $vendor) {
-                if (!$vendor->isDot() && $vendor->isDir()) {
-                    if ($adir = new \DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
-                        foreach ($adir as $app) {
-                            if (!$app->isDot() && $app->isDir() && static::exists($vendor->getFilename() . '\\' . $app->getFilename())) {
-                                if (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false) {
-                                    $result[] = $json;
-                                }
-                            }
-                        }
-                    }
+      if ($vdir = new \DirectoryIterator($apps_directory)) {
+        foreach ($vdir as $vendor) {
+          if (!$vendor->isDot() && $vendor->isDir()) {
+            if ($adir = new \DirectoryIterator($vendor->getPath() . '/' . $vendor->getFilename())) {
+              foreach ($adir as $app) {
+                if (!$app->isDot() && $app->isDir() && static::exists($vendor->getFilename() . '\\' . $app->getFilename())) {
+                  if (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false) {
+                    $result[] = $json;
+                  }
                 }
+              }
             }
+          }
         }
+      }
 
-        return $result;
+      return $result;
     }
 
-/**
- * @param $type
- * @param null $filter_vendor_app
- * @param null $filter
- * @return array
- */
-    public static function getModules($type, $filter_vendor_app = null, $filter = null) {
+    /**
+     * @param $type
+     * @param null $filter_vendor_app
+     * @param null $filter
+     * @return array
+     */
+    public static function getModules($type, $filter_vendor_app = null, $filter = null)
+    {
 
       $result = [];
 
@@ -70,9 +73,9 @@
 
       if (isset($filter_vendor_app)) {
         if (strpos($filter_vendor_app, '\\') !== false) {
-            list($filter_vendor, $filter_app) = explode('\\', $filter_vendor_app, 2);
+          list($filter_vendor, $filter_app) = explode('\\', $filter_vendor_app, 2);
         } else {
-            $filter_vendor = $filter_vendor_app;
+          $filter_vendor = $filter_vendor_app;
         }
       }
 
@@ -89,11 +92,11 @@
                       $modules = $json['modules'][$type];
 
                       if (isset($filter)) {
-                          $modules = $CLICSHOPPING_Type->filter($modules, $filter);
+                        $modules = $CLICSHOPPING_Type->filter($modules, $filter);
                       }
 
                       foreach ($modules as $key => $data) {
-                          $result = array_merge($result, $CLICSHOPPING_Type->getInfo($vendor->getFilename() . '\\' . $app->getFilename(), $key, $data));
+                        $result = array_merge($result, $CLICSHOPPING_Type->getInfo($vendor->getFilename() . '\\' . $app->getFilename(), $key, $data));
                       }
                     }
                   }
@@ -107,19 +110,20 @@
       return $result;
     }
 
-/**
- * @param $app
- * @return bool
- */
-    public static function exists($app) {
+    /**
+     * @param $app
+     * @return bool
+     */
+    public static function exists($app)
+    {
       if (strpos($app, '\\') !== false) {
         list($vendor, $app) = explode('\\', $app, 2);
 
         if (class_exists('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $app)) {
           if (is_subclass_of('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $app, 'ClicShopping\OM\AppAbstract')) {
-              return true;
+            return true;
           } else {
-              trigger_error('ClicShopping\OM\Apps::exists(): ' . $vendor . '\\' . $app . ' - App is not a subclass of ClicShopping\OM\AppAbstract and cannot be loaded.');
+            trigger_error('ClicShopping\OM\Apps::exists(): ' . $vendor . '\\' . $app . ' - App is not a subclass of ClicShopping\OM\AppAbstract and cannot be loaded.');
           }
         }
       } else {
@@ -130,12 +134,13 @@
 
     }
 
-/**
- * @param $module
- * @param $type
- * @return bool
- */
-    public static function getModuleClass($module, $type) {
+    /**
+     * @param $module
+     * @param $type
+     * @return bool
+     */
+    public static function getModuleClass($module, $type)
+    {
       if (!Registry::exists('ModuleType' . $type)) {
         $class = 'ClicShopping\OM\Modules\\' . $type;
 
@@ -153,11 +158,12 @@
       return $CLICSHOPPING_Type->getClass($module);
     }
 
-/**
- * @param $app
- * @return bool|mixed
- */
-    public static function getInfo($app) {
+    /**
+     * @param $app
+     * @return bool|mixed
+     */
+    public static function getInfo($app)
+    {
       if (strpos($app, '\\') !== false) {
         list($vendor, $app) = explode('\\', $app, 2);
 
@@ -175,12 +181,13 @@
       return false;
     }
 
-/**
- * Remove specific double request with ? inside url
- * @param $route
- * @return mixed
- */
-    public static function getRouteValue($route) {
+    /**
+     * Remove specific double request with ? inside url
+     * @param $route
+     * @return mixed
+     */
+    public static function getRouteValue($route)
+    {
       $query = $route; //$_GET
 
 // replace parameter(s)
@@ -195,7 +202,7 @@
       foreach ($split_parameters as $value) {
         $final_split = explode('=', $value);
 
-        if ( ! isset($final_split[1])) {
+        if (!isset($final_split[1])) {
           $final_split[1] = null;
         }
 
@@ -207,12 +214,13 @@
       return $result;
     }
 
-/**
- * @param null $route
- * @param null $filter_vendor_app
- * @return array|mixed
- */
-    public static function getRouteDestination($route = null, $filter_vendor_app = null) {
+    /**
+     * @param null $route
+     * @param null $filter_vendor_app
+     * @return array|mixed
+     */
+    public static function getRouteDestination($route = null, $filter_vendor_app = null)
+    {
       if (empty($route)) {
 
         $route = array_keys(static::getRouteValue($_GET));
@@ -221,7 +229,7 @@
       $result = $routes = [];
 
       if (empty($route)) {
-          return $result;
+        return $result;
       }
 
       $filter_vendor = $filter_app = null;
@@ -245,7 +253,7 @@
                 foreach ($adir as $app) {
                   if (!$app->isDot() && $app->isDir() && (!isset($filter_app) || ($app->getFilename() == $filter_app)) && static::exists($vendor->getFilename() . '\\' . $app->getFilename()) && (($json = static::getInfo($vendor->getFilename() . '\\' . $app->getFilename())) !== false)) {
                     if (isset($json['routes'][CLICSHOPPING::getSite()])) {
-                        $routes[$json['vendor'] . '\\' . $json['app']] = $json['routes'][CLICSHOPPING::getSite()];
+                      $routes[$json['vendor'] . '\\' . $json['app']] = $json['routes'][CLICSHOPPING::getSite()];
                     }
                   }
                 }
@@ -256,9 +264,9 @@
       }
 
       return call_user_func(['ClicShopping\Sites\\' . CLICSHOPPING::getSite() . '\\' . CLICSHOPPING::getSite(),
-                            'resolveRoute'
-                            ],
-                            $route, $routes
-                           );
+        'resolveRoute'
+      ],
+        $route, $routes
+      );
     }
   }

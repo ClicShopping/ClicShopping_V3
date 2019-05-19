@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Dashboard;
 
@@ -17,12 +17,14 @@
 
   use ClicShopping\Apps\Orders\Orders\Orders as OrdersApp;
 
-  class TotalRevenue extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class TotalRevenue extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('Orders')) {
         Registry::set('Orders', new OrdersApp());
@@ -36,17 +38,18 @@
       $this->title = $this->app->getDef('module_admin_dashboard_total_revenue_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_total_revenue_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
 
       $days = [];
-      for($i = 0; $i < 30; $i++) {
-        $days[date('Y-m-d', strtotime('-'. $i .' days'))] = 0;
+      for ($i = 0; $i < 30; $i++) {
+        $days[date('Y-m-d', strtotime('-' . $i . ' days'))] = 0;
       }
 
       $Qorder = $this->app->db->query('select date_format(o.date_purchased, "%Y-%m-%d") as dateday,
@@ -68,7 +71,7 @@
 
       $js_array = '';
       foreach ($days as $date => $total) {
-        $js_array .= '[' . (mktime(0, 0, 0, substr($date, 5, 2), substr($date, 8, 2), substr($date, 0, 4))*1000) . ', ' . $total . '],';
+        $js_array .= '[' . (mktime(0, 0, 0, substr($date, 5, 2), substr($date, 8, 2), substr($date, 0, 4)) * 1000) . ', ' . $total . '],';
       }
 
       if (!empty($js_array)) {
@@ -172,7 +175,8 @@ EOD;
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
 
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want to enable this Module ?',
@@ -186,7 +190,7 @@ EOD;
         ]
       );
 
-       $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Select the width to display',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_CONTENT_WIDTH',
           'configuration_value' => '6',
@@ -198,7 +202,7 @@ EOD;
         ]
       );
 
-       $this->app->db->save('configuration', [
+      $this->app->db->save('configuration', [
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_SORT_ORDER',
           'configuration_value' => '40',
@@ -211,10 +215,11 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_STATUS',
-              'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_CONTENT_WIDTH',
-              'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_SORT_ORDER'
-             ];
+        'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_SORT_ORDER'
+      ];
     }
   }

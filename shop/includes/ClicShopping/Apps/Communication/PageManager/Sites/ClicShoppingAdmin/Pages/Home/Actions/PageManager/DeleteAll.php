@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Apps\Communication\PageManager\Sites\ClicShoppingAdmin\Pages\Home\Actions\PageManager;
@@ -15,13 +15,15 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Cache;
 
-  class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract  {
+  class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
+  {
 
-    public function execute() {
+    public function execute()
+    {
 
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  
+
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       if (!is_null($_POST['selected'])) {
@@ -31,12 +33,12 @@
               $CLICSHOPPING_PageManager->db->delete('pages_manager', ['pages_id' => (int)$id]);
               $CLICSHOPPING_PageManager->db->delete('pages_manager_description', ['pages_id' => (int)$id]);
 
-              $CLICSHOPPING_Hooks->call('PageManager','DeleteAll');
+              $CLICSHOPPING_Hooks->call('PageManager', 'DeleteAll');
             }
           }
         }
       }
-      
+
       Cache::clear('boxe_page_manager_primary-');
       Cache::clear('boxe_page_manager_secondary-');
       Cache::clear('page_manager_display_header_menu-');

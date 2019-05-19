@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   namespace ClicShopping\Sites\Shop;
@@ -16,84 +16,93 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class CustomerShop {
+  class CustomerShop
+  {
     protected $_is_logged_on = false;
     protected $_data = [];
     protected $db;
 
-    public function __construct() {
-      if ( isset($_SESSION['customer']) ) {
+    public function __construct()
+    {
+      if (isset($_SESSION['customer'])) {
         $this->_data =& $_SESSION['customer'];
       }
 
-      if ( isset($_SESSION['customer_group_id']) ) {
+      if (isset($_SESSION['customer_group_id'])) {
         $this->_data1 =& $_SESSION['customer_group_id'];
       }
 
-      if ( isset($this->_data['id']) && is_numeric($this->_data['id']) && ($this->_data['id'] > 0) ) {
+      if (isset($this->_data['id']) && is_numeric($this->_data['id']) && ($this->_data['id'] > 0)) {
         $this->setIsLoggedOn(true);
       }
 
       $this->db = Registry::get('Db');
     }
 
-    public function setIsLoggedOn($state) {
-      if ( $state === true ) {
+    public function setIsLoggedOn($state)
+    {
+      if ($state === true) {
         $this->_is_logged_on = true;
       } else {
         $this->_is_logged_on = false;
       }
     }
 
-    public function isLoggedOn() {
-      if ( $this->_is_logged_on === true ) {
+    public function isLoggedOn()
+    {
+      if ($this->_is_logged_on === true) {
         return true;
       }
 
       return false;
     }
 
-    public function get($key = null) {
-      if ( isset($key) ) {
+    public function get($key = null)
+    {
+      if (isset($key)) {
         return $this->_data[$key];
       } else {
         return $this->_data;
       }
     }
 
-    public function getID() {
-      if ( isset($this->_data['id']) && is_numeric($this->_data['id']) ) {
+    public function getID()
+    {
+      if (isset($this->_data['id']) && is_numeric($this->_data['id'])) {
         return (int)$this->_data['id'];
       }
 
       return 0;
     }
 
-    public function getFirstName() {
-      if ( isset($this->_data['first_name']) ) {
+    public function getFirstName()
+    {
+      if (isset($this->_data['first_name'])) {
         return $this->_data['first_name'];
       }
 
       return false;
     }
 
-    public function getLastName() {
-      if ( isset($this->_data['last_name']) ) {
+    public function getLastName()
+    {
+      if (isset($this->_data['last_name'])) {
         return $this->_data['last_name'];
       }
 
       return false;
     }
 
-    public function getName() {
+    public function getName()
+    {
       $name = '';
 
-      if ( isset($this->_data['first_name']) ) {
+      if (isset($this->_data['first_name'])) {
         $name .= $this->_data['first_name'];
       }
 
-      if ( isset($this->_data['last_name']) ) {
-        if ( !empty($name) ) {
+      if (isset($this->_data['last_name'])) {
+        if (!empty($name)) {
           $name .= ' ';
         }
 
@@ -103,43 +112,49 @@
       return $name;
     }
 
-    public function getGender() {
-      if ( isset($this->_data['gender']) ) {
+    public function getGender()
+    {
+      if (isset($this->_data['gender'])) {
         return $this->_data['gender'];
       }
 
       return false;
     }
 
-    public function hasEmailAddress() {
+    public function hasEmailAddress()
+    {
       return isset($this->_data['email_address']);
     }
 
-    public function getEmailAddress() {
-      if ( isset($this->_data['email_address']) ) {
+    public function getEmailAddress()
+    {
+      if (isset($this->_data['email_address'])) {
         return $this->_data['email_address'];
       }
 
       return false;
     }
 
-    public function setTelephone($telephone) {
+    public function setTelephone($telephone)
+    {
       $this->_data['telephone'] = $telephone;
     }
-    
-    public function getTelephone() {
-      if ( isset($this->_data['telephone']) ) {
+
+    public function getTelephone()
+    {
+      if (isset($this->_data['telephone'])) {
         return $this->_data['telephone'];
       }
 
       return false;
     }
 
-    public function getCountryID() {
+    public function getCountryID()
+    {
       static $country_id = null;
 
-      if ( is_null($country_id) ) {
-        if ( isset($this->_data['country_id']) ) {
+      if (is_null($country_id)) {
+        if (isset($this->_data['country_id'])) {
           $country_id = $this->_data['country_id'];
         }
       }
@@ -147,11 +162,12 @@
       return $country_id;
     }
 
-    public function getZoneID() {
+    public function getZoneID()
+    {
       static $zone_id = null;
 
-      if ( is_null($zone_id) ) {
-        if ( isset($this->_data['zone_id']) ) {
+      if (is_null($zone_id)) {
+        if (isset($this->_data['zone_id'])) {
           $zone_id = $this->_data['zone_id'];
         }
       }
@@ -159,11 +175,12 @@
       return $zone_id;
     }
 
-    public function getDefaultAddressID() {
+    public function getDefaultAddressID()
+    {
       static $id = null;
 
-      if ( is_null($id) ) {
-        if ( isset($this->_data['default_address_id']) ) {
+      if (is_null($id)) {
+        if (isset($this->_data['default_address_id'])) {
           $id = $this->_data['default_address_id'];
         }
       }
@@ -172,7 +189,8 @@
     }
 
 // B2B
-    public function getCustomersGroupID() {
+    public function getCustomersGroupID()
+    {
       $customersgroupid = 0;
 
       if (isset($this->_data1['customers_group_id'])) {
@@ -182,14 +200,15 @@
       return $customersgroupid;
     }
 
-/**
- * @param $id, customer id
- * @return bool
- */
-    public function setData($id) {
+    /**
+     * @param $id , customer id
+     * @return bool
+     */
+    public function setData($id)
+    {
       $this->_data = [];
 
-      if ( is_numeric($id) && ($id > 0) ) {
+      if (is_numeric($id) && ($id > 0)) {
         $Qcustomer = $this->db->prepare('select customers_gender,
                                                  customers_firstname,
                                                  customers_lastname,
@@ -207,16 +226,16 @@
                                                from :table_customers
                                                where customers_id = :customers_id
                                               ');
-        $QcustomerGroup->bindInt(':customers_id',  $id );
+        $QcustomerGroup->bindInt(':customers_id', $id);
         $Qcustomer->bindInt(':customers_id', $id);
         $QcustomerGroup->execute();
 
-        if ( $QcustomerGroup->fetch() !== false ) {
+        if ($QcustomerGroup->fetch() !== false) {
           $this->setCustomersGroupID($QcustomerGroup->value('customers_group_id'));
           $_SESSION['customer_group_id'] = $this->_data1;
         }
 
-        if ( $Qcustomer->fetch() !== false ) {
+        if ($Qcustomer->fetch() !== false) {
           $this->setIsLoggedOn(true);
           $this->setID($id);
           $this->setGender($Qcustomer->value('customers_gender'));
@@ -225,7 +244,7 @@
           $this->setEmailAddress($Qcustomer->value('customers_email_address'));
           $this->setTelephone($Qcustomer->value('customers_telephone'));
 
-          if ( $Qcustomer->valueInt('customers_default_address_id') > 0 ) {
+          if ($Qcustomer->valueInt('customers_default_address_id') > 0) {
             $Qab = $this->db->prepare('select entry_country_id,
                                                entry_zone_id
                                         from :table_address_book
@@ -236,7 +255,7 @@
             $Qab->bindInt(':customers_id', $id);
             $Qab->execute();
 
-            if ( $Qab->fetch() !== false ) {
+            if ($Qab->fetch() !== false) {
               $this->setCountryID($Qab->valueInt('entry_country_id'));
               $this->setZoneID($Qab->valueInt('entry_zone_id'));
               $this->setDefaultAddressID($Qcustomer->valueInt('customers_default_address_id'));
@@ -250,23 +269,25 @@
       return !empty($this->_data);
     }
 
-    public function setID($id) {
-      if ( is_numeric($id) && ($id > 0) ) {
+    public function setID($id)
+    {
+      if (is_numeric($id) && ($id > 0)) {
         $this->_data['id'] = $id;
       } else {
         $this->_data['id'] = false;
       }
     }
 
-    public function setDefaultAddressID($id) {
-      if ( is_numeric($id) && ($id > 0) ) {
+    public function setDefaultAddressID($id)
+    {
+      if (is_numeric($id) && ($id > 0)) {
 
-        if ( !isset($this->_data['default_address_id']) || ($this->_data['default_address_id'] != $id) ) {
+        if (!isset($this->_data['default_address_id']) || ($this->_data['default_address_id'] != $id)) {
 
           $Qupdate = $this->db->prepare('update :table_customers
                                           set customers_default_address_id = :customers_default_address_id
                                           where customers_id = :customers_id'
-                                        );
+          );
           $Qupdate->bindInt(':customers_default_address_id', $id);
           $Qupdate->bindInt(':customers_id', $this->getID());
           $Qupdate->execute();
@@ -278,35 +299,41 @@
       }
     }
 
-    public function hasDefaultAddress() {
-      if ( isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id']) ) {
+    public function hasDefaultAddress()
+    {
+      if (isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id'])) {
         return true;
       }
 
       return false;
     }
 
-    public function setGender($gender) {
-      if ( (strtolower($gender) == 'm') || (strtolower($gender) == 'f') ) {
+    public function setGender($gender)
+    {
+      if ((strtolower($gender) == 'm') || (strtolower($gender) == 'f')) {
         $this->_data['gender'] = strtolower($gender);
       } else {
         $this->_data['gender'] = false;
       }
     }
 
-    public function setFirstName($first_name) {
+    public function setFirstName($first_name)
+    {
       $this->_data['first_name'] = $first_name;
     }
 
-    public function setLastName($last_name) {
+    public function setLastName($last_name)
+    {
       $this->_data['last_name'] = $last_name;
     }
 
-    public function setEmailAddress($email_address) {
+    public function setEmailAddress($email_address)
+    {
       $this->_data['email_address'] = $email_address;
     }
 
-    public function getCustomerGuestAccount($id) {
+    public function getCustomerGuestAccount($id)
+    {
       $Qcustomer = $this->db->prepare('select customer_guest_account
                                         from :table_customers
                                         where customers_id = :customers_id
@@ -317,67 +344,73 @@
       return $Qcustomer->valueInt('customer_guest_account');
     }
 
-    public function setCountryID($id) {
+    public function setCountryID($id)
+    {
       $this->_data['country_id'] = $id;
     }
 
-    public function setZoneID($id) {
+    public function setZoneID($id)
+    {
       $this->_data['zone_id'] = $id;
     }
 
 // B2B
-    public function setCustomersgroupID($id) {
+    public function setCustomersgroupID($id)
+    {
       $this->_data1['customers_group_id'] = $id;
     }
 
 
-    public function reset() {
+    public function reset()
+    {
       $this->_is_logged_on = false;
       $this->_data = [];
 
-      if ( isset($_SESSION['customer']) ) {
+      if (isset($_SESSION['customer'])) {
         unset($_SESSION['customer']);
       }
 
 // B2B
-      if ( isset($_SESSION['customer_group_id']) ) {
+      if (isset($_SESSION['customer_group_id'])) {
         unset($_SESSION['customer_group_id']);
       }
     }
 
 
-/**
- * Customers Greeting
- * @return string $greeting_string
- * @access public
- */
+    /**
+     * Customers Greeting
+     * @return string $greeting_string
+     * @access public
+     */
 
-    public function customerGreeting() {
+    public function customerGreeting()
+    {
       if ($this->isLoggedOn()) {
-        $greeting_string = CLICSHOPPING::getDef('text_greeting_personal',['first_name' => HTML::outputProtected($this->getFirstName()),
-                                                                            'url_products_new' => CLICSHOPPING::link(null,'Products&ProductsNew'),
-                                                                            'url_logoff' => CLICSHOPPING::link(null,'Account&LogOff')
-                                                                          ]
-                                                );
+        $greeting_string = CLICSHOPPING::getDef('text_greeting_personal', ['first_name' => HTML::outputProtected($this->getFirstName()),
+            'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew'),
+            'url_logoff' => CLICSHOPPING::link(null, 'Account&LogOff')
+          ]
+        );
       } else {
-        if (MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B' || MODE_MANAGEMENT_B2C_B2B =='B2B') {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest',['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
-                                                                          'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
-                                                                          'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
-                                                                         ]
-                                                  );
+        if (MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B' || MODE_MANAGEMENT_B2C_B2B == 'B2B') {
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', ['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+              'url_create_account' => CLICSHOPPING::link(null, 'Account&Create'),
+              'url_create_account_pro' => CLICSHOPPING::link('Account.php', 'Account&CreatePro')
+            ]
+          );
         } else {
-          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest',['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
-                                                                          'url_products_new' => CLICSHOPPING::link(null,'Products&ProductsNew')
-                                                                          ]
-                                                 );
+          $greeting_string = CLICSHOPPING::getDef('text_greeting_guest', ['url_login' => CLICSHOPPING::redirect(null, 'Account&LogIn'),
+              'url_products_new' => CLICSHOPPING::link(null, 'Products&ProductsNew')
+            ]
+          );
         }
       }
 
       return $greeting_string;
     }
 
-    public function hasProductNotifications() {
+    public function hasProductNotifications()
+    {
       $Qcheck = $this->db->prepare('select products_id
                                     from :table_products_notifications
                                     where customers_id = :customers_id
@@ -386,10 +419,11 @@
       $Qcheck->bindInt(':customers_id', $this->_data['id']);
       $Qcheck->execute();
 
-      return ( $Qcheck->fetch() !== false );
+      return ($Qcheck->fetch() !== false);
     }
 
-    public function getProductNotifications() {
+    public function getProductNotifications()
+    {
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $Qproducts = $this->db->prepare('select pd.products_id,

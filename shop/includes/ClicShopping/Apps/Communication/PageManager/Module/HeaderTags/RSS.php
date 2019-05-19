@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Communication\PageManager\Module\HeaderTags;
 
@@ -16,13 +16,15 @@
 
   use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 
-  class RSS extends \ClicShopping\OM\Modules\HeaderTagsAbstract {
+  class RSS extends \ClicShopping\OM\Modules\HeaderTagsAbstract
+  {
 
     protected $lang;
     protected $app;
     protected $group;
 
-    protected function init() {
+    protected function init()
+    {
       if (!Registry::exists('PageManager')) {
         Registry::set('PageManager', new PageManagerApp());
       }
@@ -36,34 +38,37 @@
       $this->title = $this->app->getDef('module_header_tags_rss_title');
       $this->description = $this->app->getDef('module_header_tags_rss_description');
 
-      if ( defined('MODULE_HEADER_TAGS_RSS_STATUS') ) {
+      if (defined('MODULE_HEADER_TAGS_RSS_STATUS')) {
         $this->sort_order = (int)MODULE_HEADER_TAGS_RSS_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_TAGS_RSS_STATUS == 'True');
       }
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
       return $this->enabled;
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (!defined('CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS') || CLICSHOPPING_APP_PAGE_MANAGER_PM_STATUS == 'False') {
         return false;
       }
 
-      $xml = $CLICSHOPPING_Template->addBlock('<link rel="alternate" type="application/rss+xml" title="' . STORE_NAME . '" href="'. HTTP::getShopUrlDomain() . 'index.php?Info&RSS'.'">', $this->group);
+      $xml = $CLICSHOPPING_Template->addBlock('<link rel="alternate" type="application/rss+xml" title="' . STORE_NAME . '" href="' . HTTP::getShopUrlDomain() . 'index.php?Info&RSS' . '">', $this->group);
 
       $output =
-<<<EOD
+        <<<EOD
 {$xml}
 EOD;
 
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_RSS_STATUS',
@@ -90,9 +95,10 @@ EOD;
       );
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_HEADER_TAGS_RSS_STATUS',
-               'MODULE_HEADER_TAGS_RSS_SORT_ORDER'
-              ];
+        'MODULE_HEADER_TAGS_RSS_SORT_ORDER'
+      ];
     }
   }

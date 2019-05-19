@@ -1,20 +1,21 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
 
-  class ar_create_account_pro {
+  class ar_create_account_pro
+  {
     public $code;
     public $title;
     public $description;
@@ -23,7 +24,8 @@
     public $attempts = 6;
     public $identifier;
 
-    public function __construct() {
+    public function __construct()
+    {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
@@ -38,11 +40,13 @@
       }
     }
 
-    public function setIdentifier() {
+    public function setIdentifier()
+    {
       $this->identifier = HTTP::GetIpAddress();
     }
 
-    public function canPerform($user_id, $user_name) {
+    public function canPerform($user_id, $user_name)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $sql_query = 'select id
@@ -80,7 +84,8 @@
       return true;
     }
 
-    public function expireEntries() {
+    public function expireEntries()
+    {
       $Qdel = Registry::get('Db')->prepare('delete
                                             from :table_action_recorder
                                             where module = :module
@@ -94,30 +99,34 @@
       return $Qdel->rowCount();
     }
 
-    public function check() {
+    public function check()
+    {
       return defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES');
     }
 
-    public function install() {
+    public function install()
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-                                        'configuration_title' => 'What do you want for the minimum minutes per e-mail for one person for create professional account?',
-                                        'configuration_key' => 'MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES',
-                                        'configuration_value' => '90',
-                                        'configuration_description' => 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)',
-                                        'configuration_group_id' => '6',
-                                        'sort_order' => '0',
-                                        'date_added' => 'now()'
-                                      ]
-                      );
+          'configuration_title' => 'What do you want for the minimum minutes per e-mail for one person for create professional account?',
+          'configuration_key' => 'MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES',
+          'configuration_value' => '90',
+          'configuration_description' => 'Minimum number of minutes to allow 1 e-mail to be sent (eg, 15 for 1 e-mail every 15 minutes)',
+          'configuration_group_id' => '6',
+          'sort_order' => '0',
+          'date_added' => 'now()'
+        ]
+      );
     }
 
-    public function remove() {
+    public function remove()
+    {
       return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
-    public function keys() {
+    public function keys()
+    {
       return array('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES');
     }
   }
