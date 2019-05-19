@@ -33,7 +33,7 @@
 
     <link rel="stylesheet" media="screen, print" href="<?php echo $CLICSHOPPING_Template->getTemplategraphism();?>" />
 
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <?php echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n"; ?>
   </head>

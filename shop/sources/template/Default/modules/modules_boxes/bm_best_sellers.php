@@ -170,12 +170,13 @@
 
           foreach ($best_sellers as $b) {
             $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($b['products_id']);
-            $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</li>';
+            $bestsellers_list .= '<div class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</div>';
 
             $position++;
           }
 
           $bestsellers_list .= '</ol>';
+          $best_sellers_banner = '';
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_BEST_SELLERS_BANNER_GROUP)) {
@@ -239,7 +240,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please indicate the banner group for the image',
           'configuration_key' => 'MODULE_BOXES_BEST_SELLERS_BANNER_GROUP',
-          'configuration_value' => SITE_THEMA.'_boxe__bestsellers',
+          'configuration_value' => SITE_THEMA.'_boxe_bestsellers',
           'configuration_description' => 'Indicate the banner group<br /><br /><strong>Note :</strong><br /><i>The group must be created or selected whtn you create a banner in Marketing / banner</i>',
           'configuration_group_id' => '6',
           'sort_order' => '3',
@@ -277,7 +278,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_BOXES_BEST_SELLERS_SORT_ORDER',
-          'configuration_value' => '120',
+          'configuration_value' => '125',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '6',
@@ -297,11 +298,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                              );
-
     }
 
     public function  remove() {

@@ -45,6 +45,7 @@
 
       if (!isset($_GET['Checkout'])) {
         $languages_string = $CLICSHOPPING_Language->getFlag();
+        $languages_banner = '';
 
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_LANGUAGES_BANNER_GROUP)) {

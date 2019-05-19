@@ -42,8 +42,7 @@
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
 
-      if (substr(CLICSHOPPING::getBaseNameIndex(), 0, 8) != 'Checkout') {
-
+      if (!isset($_GET['Checkout'])) {
         $currencies_banner = '';
 
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
