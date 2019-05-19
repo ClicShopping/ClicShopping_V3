@@ -58,8 +58,7 @@
 
 
     /*
-     * Function to return the canonical URL
-    
+     * Function to return the canonical URL    
      * @version 1.0
      * public function
      * @param string $canonical_link

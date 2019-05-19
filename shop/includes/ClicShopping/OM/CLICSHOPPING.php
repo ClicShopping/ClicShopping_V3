@@ -19,10 +19,12 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Service\Shop\SEFU;
+  use phpDocumentor\Reflection\Types\Mixed_;
 
   class CLICSHOPPING
   {
     const BASE_DIR = CLICSHOPPING_BASE_DIR;
+    const VALID_CLASS_NAME_REGEXP = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/'; // https://php.net/manual/en/language.oop5.basic.php
 
     protected static $version;
     protected static $site = 'Shop';
@@ -51,7 +53,7 @@
      * @retunr : version of the site
      * @access public
      */
-    public static function getVersion()
+    public static function getVersion(): ?string
     {
       if (!isset(static::$version)) {
         $file = static::BASE_DIR . 'version.json';
@@ -69,26 +71,21 @@
       return static::$version;
     }
 
-    public static function siteExists($site, $strict = true)
+    /**
+     * @param $site
+     * @param bool $strict
+     * @return bool
+     */
+    public static function siteExists(string $site): bool
     {
-      $class = 'ClicShopping\Sites\\' . $site . '\\' . $site;
-
-      if (class_exists($class)) {
-        if (is_subclass_of($class, 'ClicShopping\OM\SitesInterface')) {
-          return true;
-        } else {
-          trigger_error('ClicShopping\OM\CLICSHOPPING::siteExists() - ' . $site . ': Site does not implement ClicShopping\OM\SitesInterface and cannot be loaded.');
-        }
-      } elseif ($strict === true) {
-        trigger_error('ClicShopping\OM\CLICSHOPPING::siteExists() - ' . $site . ': Site does not exist.');
-      }
-
-      return false;
+      return static::isValidClassName($site) && class_exists('ClicShopping\Sites\\' . $site . '\\' . $site);
     }
 
-    public static function loadSite($site = null)
+    /**
+     * @param null $site
+     */
+    public static function loadSite(string $site = null)
     {
-
       if (!isset($site)) {
         $site = static::$site;
       }
@@ -96,7 +93,10 @@
       static::setSite($site);
     }
 
-    public static function setSite($site)
+    /**
+     * @param $site
+     */
+    public static function setSite(string $site)
     {
 
       if (!static::siteExists($site)) {
@@ -113,27 +113,42 @@
       $CLICSHOPPING_Site->setPage();
     }
 
-    public static function getSite()
+    /**
+     * @return string
+     */
+    public static function getSite(): string
     {
       return static::$site;
     }
 
-    public static function hasSitePage()
+    /**
+     * @return mixed
+     */
+    public static function hasSitePage(): ?string
     {
       return Registry::get('Site')->hasPage();
     }
 
-    public static function getSitePageFile()
+    /**
+     * @return mixed
+     */
+    public static function getSitePageFile(): ?string
     {
       return Registry::get('Site')->getPage()->getFile();
     }
 
-    public static function useSiteTemplateWithPageFile()
+    /**
+     * @return mixed
+     */
+    public static function useSiteTemplateWithPageFile(): ?string
     {
       return Registry::get('Site')->getPage()->useSiteTemplate();
     }
 
-    public static function isRPC()
+    /**
+     * @return bool
+     */
+    public static function isRPC(): bool
     {
       $CLICSHOPPING_Site = Registry::get('Site');
 
@@ -160,7 +175,7 @@
 
       $site = $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
+      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -193,7 +208,7 @@
           '{', // product attributes
           '}' // product attributes
         ], [
-          $replace_backslash,
+          $replace_backslash, //%5C backoffice - problem
           '%7B',
           '%7D'
         ], $p);
@@ -224,6 +239,7 @@
       }
 
       if ($search_engine_safe === true && defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
+//$link = str_replace(['?', '&', '='], '/', $link);
         $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
       }
 
@@ -247,7 +263,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
+      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -284,7 +300,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1], false)) {
+      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -330,11 +346,18 @@
       return call_user_func_array([$CLICSHOPPING_Language, 'getDef'], func_get_args());
     }
 
-    public static function hasRoute(array $path)
+    /**
+     * @param array $path
+     * @return bool
+     */
+    public static function hasRoute(array $path): bool
     {
       return array_slice(array_keys($_GET), 0, count($path)) == $path;
     }
 
+    /**
+     *
+     */
     public static function loadConfig()
     {
       static::loadConfigFile(static::BASE_DIR . 'Conf/global.php', 'global');
@@ -346,7 +369,7 @@
       foreach (glob(static::BASE_DIR . 'Sites/*', GLOB_ONLYDIR) as $s) {
         $s = basename($s);
 
-        if (static::siteExists($s, false) && is_file(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php')) {
+        if (static::siteExists($s) && is_file(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php')) {
           static::loadConfigFile(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php', $s);
 
           if (is_file(static::BASE_DIR . 'Custom/Sites/' . $s . '/site_conf.php')) {
@@ -356,15 +379,19 @@
       }
     }
 
-    public static function loadConfigFile($file, $group)
-    {
+    /**
+     * @param string $file
+     * @param string $group
+     */
 
+    public static function loadConfigFile(string $file, string $group)
+    {
       $cfg = [];
 
       if (is_file($file)) {
         include($file);
 
-        if (isset($ini)) {
+        if (isset($ini)) { //@todo
           $cfg = parse_ini_string($ini);
         }
       }
@@ -374,7 +401,12 @@
       }
     }
 
-    public static function getConfig($key, $group = null)
+    /**
+     * @param string $key
+     * @param string|null $group
+     * @return mixed
+     */
+    public static function getConfig(string $key, string $group = null)
     {
       if (!isset($group)) {
         $group = static::getSite();
@@ -387,7 +419,12 @@
       return static::$cfg['global'][$key];
     }
 
-    public static function configExists($key, $group = null)
+    /**
+     * @param string $key
+     * @param string|null $group
+     * @return bool
+     */
+    public static function configExists(string $key, string $group = null): bool
     {
       if (!isset($group)) {
         $group = static::getSite();
@@ -400,7 +437,12 @@
       return isset(static::$cfg['global'][$key]);
     }
 
-    public static function setConfig($key, $value, $group = null)
+    /**
+     * @param string $key
+     * @param $value
+     * @param string|null $group
+     */
+    public static function setConfig(string $key, $value, string $group = null)
     {
       if (!isset($group)) {
         $group = 'global';
@@ -409,7 +451,11 @@
       static::$cfg[$group][$key] = $value;
     }
 
-    public static function autoload($class)
+    /**
+     * @param string $class
+     *
+     */
+    public static function autoload(string $class)
     {
       $prefix = 'ClicShopping\\';
 
@@ -438,7 +484,7 @@
      * return $data, array og php.ini information
      * @access public
      */
-    public static function getSystemInformation()
+    public static function getSystemInformation(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -486,17 +532,25 @@
       return $data;
     }
 
-    protected static function siteApplicationExists($application)
+    /**
+     * @param string $application
+     * @return string
+     */
+    protected static function siteApplicationExists(string $application)
     {
-      $class = 'ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application;
+      $class = static::isValidClassName($application) && class_exists('ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application);
 
       return $class;
     }
 
-    protected static function setSiteApplication($application = null)
+    /**
+     * @param string|null $application
+     */
+    protected static function setSiteApplication(string $application = null)
     {
       if (isset($application)) {
         if (!static::siteApplicationExists($application)) {
+//          trigger_error('Application \'' . $application . '\' does not exist for Site \'' . static::getSite() . '\', using default \'' . static::getDefaultSiteApplication() . '\'', E_USER_ERROR);
           trigger_error('Application \'' . $application . '\' does not exist for Site \'' . static::getSite());
 
           $application = null;
@@ -514,22 +568,36 @@
           }
         }
       }
+      /*
+            if ( empty($application) ) {
+              $application = static::getDefaultSiteApplication();
+            }
+      */
       static::$_application = $application;
     }
 
-    public static function getSiteApplication()
+    /**
+     * @return mixed
+     */
+    public static function getSiteApplication(): ?string
     {
       return static::$_application;
     }
 
+    /*
+        public static function getDefaultSiteApplication() {
+          return call_user_func(array('ClicShopping\\Site\\' . static::getSite() . '\\Pages' . $application . '\\' . $application, 'getDefaultApplication'));
+        }
+    */
 
     /**
      * Get all parameters in the GET scope
      *
      * @param array $exclude A list of parameters to exclude
      * @return string
+     * osc_get_all_get_params
      */
-    public static function getAllGET($exclude = null)
+    public static function getAllGET($exclude = null): string
     {
       if (!is_array($exclude)) {
         if (!empty($exclude)) {
@@ -566,7 +634,7 @@
     /*  the global scope
     *   @return String : element of url like ClicShoppingAdmin/index.php or Shop/index.php
     */
-    public static function getIndex()
+    public static function getIndex(): string
     {
       $req = parse_url($_SERVER['SCRIPT_NAME']);
       $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
@@ -574,16 +642,26 @@
       return $result;
     }
 
-    /*  Take only index.php
-    *   @return String : element of url like index.php
-    */
-    public static function getBaseNameIndex()
+
+    /**
+     *
+     * @return string
+     */
+    public static function getBaseNameIndex(): string
     {
       return basename(static::getIndex());
     }
 
 
-    public static function ArrayToString($array, $exclude = '', $equals = '=', $separator = '&')
+    /**
+     * @param $array
+     * @param string $exclude
+     * @param string $equals
+     * @param string $separator
+     * @return bool|string
+     * osc_array_to_string
+     */
+    public static function ArrayToString($array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
     {
       if (!is_array($exclude)) $exclude = [];
 
@@ -595,10 +673,20 @@
             $get_string .= $key . $equals . $value . $separator;
           }
         }
+
         $remove_chars = strlen($separator);
         $get_string = substr($get_string, 0, -$remove_chars);
       }
 
       return $get_string;
+    }
+
+    /**
+     * @param string $classname
+     * @return bool
+     */
+    public static function isValidClassName(string $classname): bool
+    {
+      return preg_match(static::VALID_CLASS_NAME_REGEXP, $classname) === 1;
     }
   }

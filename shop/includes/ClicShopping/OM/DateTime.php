@@ -85,7 +85,7 @@
      * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
      */
 
-    public function getShort($with_time = false)
+    public function getShort($with_time = false): string
     {
       $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short') : CLICSHOPPING::getDef('date_time_format');
       return strftime($pattern, $this->getTimestamp());
@@ -116,7 +116,7 @@
       * $date needs to be in this format: Saturday february 2015
      */
 
-    public function getLong()
+    public function getLong(): string
     {
       return strftime(CLICSHOPPING::getDef('date_format_long'), $this->getTimestamp());
     }
@@ -160,7 +160,7 @@
     * @return
     * ex : 1430965442
     */
-    public function getTimestamp()
+    public function getTimestamp(): int
     {
       return $this->datetime->getTimestamp();
     }
@@ -171,7 +171,7 @@
      * @return array
      */
 
-    public static function getTimeZones()
+    public static function getTimeZones(): array
     {
       $time_zones_array = [];
 
@@ -206,7 +206,7 @@
      * @return boolean
      */
 
-    public static function setTimeZone($time_zone = null)
+    public static function setTimeZone($time_zone = null): bool
     {
 
       if (!isset($time_zone)) {
@@ -225,7 +225,7 @@
      * @param null $format date format
      * @return false|string
      */
-    public static function getNow($format = null)
+    public static function getNow($format = null): string
     {
 
       if (!isset($format)) {
@@ -250,7 +250,7 @@
      * @param bool $strict
      * @return string
      */
-    public static function toDateReferenceShort($raw_datetime, $strict = true)
+    public static function toDateReferenceShort($raw_datetime, $strict = true): string
     {
 
       $result = '';
@@ -270,7 +270,7 @@
      * @param null $format
      * @return false|string
      */
-    public static function fromUnixTimestamp($timestamp, $format = null)
+    public static function fromUnixTimestamp($timestamp, $format = null): string
     {
       if (!isset($format)) {
         $format = CLICSHOPPING::getDef('date_format_long');
@@ -284,7 +284,7 @@
      * @param null $year
      * @return bool
      */
-    public static function isLeapYear($year = null)
+    public static function isLeapYear($year = null): bool
     {
 
       if (!isset($year)) {
@@ -312,7 +312,7 @@
      * @return bool
      * $date needs to be in this format: YYYY-MM-DD HH:MM:SS
      */
-    public static function validate($date_to_check, $format_string, &$date_array)
+    public static function validate($date_to_check, $format_string, &$date_array): bool
     {
       $separator_idx = -1;
 
@@ -431,9 +431,8 @@
      * @param string $differenceFormat
      * @return string
      */
-    public static function getIntervalDate($dateStart, $dateEnd, $differenceFormat = '%r%a')
+    public static function getIntervalDate($dateStart, $dateEnd, $differenceFormat = '%r%a'): string
     {
-
       $start = date_create($dateStart);
       $end = date_create($dateEnd);
       $interval = date_diff($start, $end);
