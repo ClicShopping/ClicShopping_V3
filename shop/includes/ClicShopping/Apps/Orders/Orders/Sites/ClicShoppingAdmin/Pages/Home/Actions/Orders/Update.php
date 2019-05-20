@@ -38,7 +38,7 @@
       $this->lang = Registry::get('Language');
       $this->db = Registry::get('Db');
 
-      if (isset($_POST['oID'])) $this->oID = HTML::sanitize($_GET['oID']);
+      if (isset($_GET['oID'])) $this->oID = HTML::sanitize($_GET['oID']);
       if (isset($_POST['status'])) $this->status = HTML::sanitize($_POST['status']);
 
       if (isset($_POST['status_invoice'])) $this->statusInvoice = HTML::sanitize($_POST['status_invoice']);

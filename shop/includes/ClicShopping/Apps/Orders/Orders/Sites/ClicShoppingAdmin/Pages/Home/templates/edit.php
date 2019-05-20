@@ -460,16 +460,16 @@
               <tbody>
               <?php
                 $QordersHistory = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
-                                                             orders_status_invoice_id,
-                                                             admin_user_name,
-                                                             date_added,
-                                                             customer_notified,
-                                                             comments,
-                                                             evidence
-                                                      from :table_orders_status_history
-                                                      where orders_id = :orders_id
-                                                      order by date_added
-                                                     ');
+                                                                             orders_status_invoice_id,
+                                                                             admin_user_name,
+                                                                             date_added,
+                                                                             customer_notified,
+                                                                             comments,
+                                                                             evidence
+                                                                      from :table_orders_status_history
+                                                                      where orders_id = :orders_id
+                                                                      order by date_added
+                                                                     ');
                 $QordersHistory->bindInt(':orders_id', $oID);
                 $QordersHistory->execute();
 
