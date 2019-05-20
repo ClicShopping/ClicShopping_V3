@@ -47,7 +47,8 @@
           foreach ($res as $r) {
             $p = explode(':', $r, 2);
 
-            $this->page->data['log_response'][$p[0]] = $p[1];
+//            $this->page->data['log_response'][$p[0]] = $p[1];
+            $this->page->data['log_response'][$p[0]] = $p[0];
           }
 
           $this->page->setFile('log_view.php');

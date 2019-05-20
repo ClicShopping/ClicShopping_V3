@@ -1057,7 +1057,7 @@
       $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
       $email_order .= TemplateEmail::getTemplateEmailTextFooter() . "\n\n";
 
-      $CLICSHOPPING_Mail->clicMail($CLICSHOPPING_Order->customer['name'], $CLICSHOPPING_Order->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+      $CLICSHOPPING_Mail->clicMail($CLICSHOPPING_Order->customer['lastname'], $CLICSHOPPING_Order->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
 
 // send emails to other people
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
@@ -1179,7 +1179,9 @@
             'Address Status: ' . HTML::outputProtected($pptx_params['address_status']) . "\n" .
             'Payment Status: ' . HTML::outputProtected($pptx_params['payment_status']) . "\n" .
             'Payment Type: ' . HTML::outputProtected($pptx_params['payment_type']) . "\n" .
-            'Pending Reason: ' . HTML::outputProtected($pptx_params['pending_reason']);
+            'Pending Reason: ' . HTML::outputProtected($pptx_params['pending_reason']
+            );
+
 
           if ($pptx_params['mc_gross'] != $this->app->formatCurrencyRaw($Qtotal->value('value'), $Qorder->value('currency'), $Qorder->value('currency_value'))) {
             $comment_status .= "\n" . 'CLICSHOPPING Error Total Mismatch: PayPal transaction value (' . HTML::outputProtected($pptx_params['mc_gross']) . ') does not match order value (' . $this->app->formatCurrencyRaw($Qtotal->value('value'), $Qorder->value('currency'), $Qorder->value('currency_value')) . ')';

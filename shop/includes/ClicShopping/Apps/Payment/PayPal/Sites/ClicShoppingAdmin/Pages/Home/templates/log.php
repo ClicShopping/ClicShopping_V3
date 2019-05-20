@@ -61,7 +61,7 @@
               $customers_name = '- ? -';
             }
           }
-          ?>
+?>
 
           <tr>
             <td class="text-md-center" style="width: 30px;"><span
@@ -77,18 +77,18 @@
             </td>
           </tr>
 
-          <?php
+<?php
         }
       } else {
-        ?>
+?>
 
         <tr>
           <td colspan="6"><?php echo $CLICSHOPPING_PayPal->getDef('no_entries'); ?></td>
         </tr>
 
-        <?php
+<?php
       }
-    ?>
+?>
 
     </tbody>
   </table>
