@@ -25,7 +25,7 @@
      * @param string $session_id The ID of the session
      */
 
-    abstract public function exists($session_id);
+    abstract public function exists(string $session_id);
 
     /**
      * Verify an existing session ID and create or resume the session if the existing session ID is valid

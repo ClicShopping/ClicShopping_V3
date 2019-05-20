@@ -130,7 +130,7 @@
      * @param $hash
      * @return string
      */
-    public static function getType($hash)
+    public static function getType(string $hash): ?string
     {
       $info = password_get_info($hash);
 

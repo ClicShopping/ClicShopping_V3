@@ -19,7 +19,6 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Service\Shop\SEFU;
-  use phpDocumentor\Reflection\Types\Mixed_;
 
   class CLICSHOPPING
   {
@@ -208,7 +207,7 @@
           '{', // product attributes
           '}' // product attributes
         ], [
-          $replace_backslash, //%5C backoffice - problem
+          $replace_backslash,
           '%7B',
           '%7D'
         ], $p);
@@ -239,7 +238,6 @@
       }
 
       if ($search_engine_safe === true && defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start() && static::getSite() != 'ClicShoppingAdmin') {
-//$link = str_replace(['?', '&', '='], '/', $link);
         $link = str_replace(['?', '&', '='], ['/', '/', '-'], $link);
       }
 
@@ -391,7 +389,7 @@
       if (is_file($file)) {
         include($file);
 
-        if (isset($ini)) { //@todo
+        if (isset($ini)) {
           $cfg = parse_ini_string($ini);
         }
       }
@@ -550,7 +548,6 @@
     {
       if (isset($application)) {
         if (!static::siteApplicationExists($application)) {
-//          trigger_error('Application \'' . $application . '\' does not exist for Site \'' . static::getSite() . '\', using default \'' . static::getDefaultSiteApplication() . '\'', E_USER_ERROR);
           trigger_error('Application \'' . $application . '\' does not exist for Site \'' . static::getSite());
 
           $application = null;
@@ -568,11 +565,6 @@
           }
         }
       }
-      /*
-            if ( empty($application) ) {
-              $application = static::getDefaultSiteApplication();
-            }
-      */
       static::$_application = $application;
     }
 
@@ -584,18 +576,12 @@
       return static::$_application;
     }
 
-    /*
-        public static function getDefaultSiteApplication() {
-          return call_user_func(array('ClicShopping\\Site\\' . static::getSite() . '\\Pages' . $application . '\\' . $application, 'getDefaultApplication'));
-        }
-    */
 
     /**
      * Get all parameters in the GET scope
      *
      * @param array $exclude A list of parameters to exclude
      * @return string
-     * osc_get_all_get_params
      */
     public static function getAllGET($exclude = null): string
     {
@@ -659,7 +645,7 @@
      * @param string $equals
      * @param string $separator
      * @return bool|string
-     * osc_array_to_string
+     * 
      */
     public static function ArrayToString($array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
     {

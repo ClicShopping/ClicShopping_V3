@@ -14,7 +14,11 @@
 
   class FileSystem
   {
-    public static function getDirectoryContents($base)
+    /**
+     * @param $base
+     * @return array
+     */
+    public static function getDirectoryContents(string $base): array
     {
       $base = str_replace('\\', '/', $base); // Unix style directory separator "/"
 
@@ -29,7 +33,12 @@
       return $result;
     }
 
-    public static function isWritable($location, $recursive_check = false)
+    /**
+     * @param $location
+     * @param bool $recursive_check
+     * @return bool
+     */
+    public static function isWritable(string $location, bool $recursive_check = false): bool
     {
       if ($recursive_check === true) {
         if (!file_exists($location)) {
@@ -46,7 +55,12 @@
       return is_writable($location);
     }
 
-    public static function rmdir($dir, $dry_run = false)
+    /**
+     * @param $dir
+     * @param bool $dry_run
+     * @return array
+     */
+    public static function rmdir(string $dir, bool $dry_run = false): array
     {
       $result = [];
 
@@ -75,7 +89,22 @@
       return $result;
     }
 
-    public static function displayPath($pathname)
+    /**
+     * @param string $directory
+     * @return bool
+     */
+    public static function isDirectoryEmpty(string $directory): bool
+    {
+      $dir = new \FilesystemIterator($directory, \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_SELF | \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS);
+
+      return ($dir->valid() === false);
+    }
+
+    /**
+     * @param $pathname
+     * @return mixed
+     */
+    public static function displayPath(string $pathname): string
     {
       return str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $pathname);
     }
@@ -119,10 +148,9 @@
     }
 
     /**
-     * @access public
      * Parse file permissions to a human readable layout
-     *
-     * @param int $mode The file permission to parse
+     * @param $mode
+     * @return string
      */
     public function getFilePermissions($mode)
     {

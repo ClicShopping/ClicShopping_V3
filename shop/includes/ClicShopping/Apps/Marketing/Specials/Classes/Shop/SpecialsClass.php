@@ -143,12 +143,8 @@
                         :table_specials s,
                         :table_products_to_categories p2c,
                         :table_categories c
-                   where (p.products_status = 1
-                           and g.price_group_view = 1
-                          )
-                          or (p.products_status = 1
-                            and g.price_group_view <> 1
-                          )
+                   where p.products_status = 1
+                   and g.price_group_view = 1
                    and g.customers_group_id = :customers_group_id
                    and g.products_group_view = 1
                    and s.products_id = p.products_id
