@@ -281,7 +281,7 @@
           }
 
           $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-            'customers_group_id' => (int)$CLICSHOPPING_Order->customer['group_id'],
+            'customers_group_id' => (int)$CLICSHOPPING_Order->customer['customers_group_id'],
             'customers_name' => $CLICSHOPPING_Order->customer['firstname'] . ' ' . $CLICSHOPPING_Order->customer['lastname'],
             'customers_company' => $CLICSHOPPING_Order->customer['company'],
             'customers_street_address' => $CLICSHOPPING_Order->customer['street_address'],
@@ -360,7 +360,6 @@
           }
 
           for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
-
 // search the good model
             if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
               $QproductsModuleCustomersGroup = $this->app->db->prepare('select products_model_group
@@ -368,16 +367,15 @@
                                                                          where products_id = :products_id
                                                                          and customers_group_id =  :customers_group_id
                                                                         ');
-              $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($this->products[$i]['id']));
+              $QproductsModuleCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
               $QproductsModuleCustomersGroup->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
               $QproductsModuleCustomersGroup->execute();
 
               $products_model = $QproductsModuleCustomersGroup->value('products_model_group');
 
-              if (empty($products_model)) $products_model = $this->products[$i]['model'];
-
+              if (empty($products_model)) $products_model = $CLICSHOPPING_Order->products[$i]['model'];
             } else {
-              $products_model = $this->products[$i]['model'];
+              $products_model = $CLICSHOPPING_Order->products[$i]['model'];
             }
 
 // save data
@@ -539,7 +537,7 @@
 
         foreach ($order_totals as $value) {
           if (!is_null($value['title']) && !is_null($value['title'])) {
-            if (!in_array($value['CODE'], array('ot_subtotal', 'ot_shipping', 'ot_tax', 'ot_total', 'ST', 'SH', 'TX'))) {
+            if (!in_array($value['code'], array('ot_subtotal', 'ot_shipping', 'ot_tax', 'ot_total', 'ST', 'SH', 'TX'))) {
               $item_params['item_name_' . $line_item_no] = $value['title'];
               $item_params['amount_' . $line_item_no] = $this->app->formatCurrencyRaw($value['value']);
 
@@ -634,6 +632,8 @@
           $process_button_string .= HTML::hiddenField($key, $value);
         }
       }
+
+      $process_button_string .= '<div class="text-md-right">' . HTML::button($this->app->getDef('text_button_paypal'), null, null, 'primary',  ['type' => 'submit', 'params' => 'onclick="submitButtonClick(event)" data-button="payNow"']) . '</div>';
 
       return $process_button_string;
     }
@@ -773,7 +773,7 @@
             'admin_user_name' => '',
             'date_added' => 'now()',
             'customer_notified' => '0',
-            'comments' => $_SESSION['comments']
+            'comments' => HTML::sanitize($_SESSION['comments'])
           ];
           $this->app->db->save('orders_status_history', $sql_data_array);
         }

@@ -29,18 +29,18 @@
     </thead>
     <tbody>
 
-    <?php
+<?php
       foreach ($CLICSHOPPING_Page->data['log_request'] as $key => $value) {
-        ?>
+?>
 
         <tr>
           <td width="25%"><?php echo HTML::outputProtected($key); ?></td>
           <td><?php echo HTML::outputProtected($value); ?></td>
         </tr>
 
-        <?php
+<?php
       }
-    ?>
+?>
 
     </tbody>
   </table>
@@ -53,18 +53,18 @@
     </thead>
     <tbody>
 
-    <?php
+<?php
       foreach ($CLICSHOPPING_Page->data['log_response'] as $key => $value) {
-        ?>
+?>
 
         <tr>
           <td width="25%"><?php echo HTML::outputProtected($key); ?></td>
           <td><?php echo HTML::outputProtected($value); ?></td>
         </tr>
 
-        <?php
+<?php
       }
-    ?>
+?>
 
     </tbody>
   </table>

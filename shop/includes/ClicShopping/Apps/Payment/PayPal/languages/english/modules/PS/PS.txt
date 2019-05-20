@@ -26,3 +26,6 @@ button_save = Save
 button_dialog_uninstall = Uninstall
 button_uninstall =  Uninstall
 button_cancel = Cancel
+
+
+text_button_paypal = Paid via Paypal

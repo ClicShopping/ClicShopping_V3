@@ -27,7 +27,8 @@
                                                                   order by l.date_added desc
                                                                   limit :page_set_offset,
                                                                         :page_set_max_results
-                                    ');
+                                              ');
+
   $Qlog->setPageSet(MAX_DISPLAY_SEARCH_RESULTS);
   $Qlog->execute();
 ?>
@@ -48,7 +49,7 @@
     </thead>
     <tbody>
 
-    <?php
+<?php
       if ($Qlog->getPageSetTotalRows() > 0) {
         while ($Qlog->fetch()) {
           $customers_name = null;
