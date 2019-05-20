@@ -121,15 +121,15 @@
 
       $template_email_footer = $QtextTemplateEmailFooter->value('template_email_description');
 
-      $keywords = array('/{{store_name}}/',
+      $keywords = ['/{{store_name}}/',
         '/{{store_owner_email_address}}/',
         '/{{http_shop}}/'
-      );
+      ];
 
-      $replaces = array(STORE_NAME,
+      $replaces = [STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
-      );
+      ];
 
 
       $template_email_footer = preg_replace($keywords, $replaces, $template_email_footer);
@@ -160,20 +160,20 @@
                                                       ');
 
       $QtextTemplateEmailSignature->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_SIGNATURE');
-      $QtextTemplateEmailSignature->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+      $QtextTemplateEmailSignature->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $QtextTemplateEmailSignature->execute();
 
       $template_email_signature = $QtextTemplateEmailSignature->value('template_email_description');
 
-      $keywords = array('/{{store_name}}/',
+      $keywords = ['/{{store_name}}/',
         '/{{store_owner_email_address}}/',
         '/{{http_shop}}/'
-      );
+      ];
 
-      $replaces = array(STORE_NAME,
+      $replaces = [STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
-      );
+      ];
 
       $template_email_signature = preg_replace($keywords, $replaces, $template_email_signature);
 
@@ -208,15 +208,15 @@
 
       $template_email_welcome_catalog = $QtextTemplateEmailWelcomeCatalog->value('template_email_description');
 
-      $keywords = array('/{{store_name}}/',
+      $keywords = ['/{{store_name}}/',
         '/{{store_owner_email_address}}/',
         '/{{http_shop}}/'
-      );
+      ];
 
-      $replaces = array(STORE_NAME,
+      $replaces = [STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
-      );
+      ];
 
       $template_email_welcome_catalog = preg_replace($keywords, $replaces, $template_email_welcome_catalog);
 
@@ -251,15 +251,15 @@
 
       $template_email_coupon_catalog = $QtextTemplateEmailCouponCatalog->value('template_email_description');
 
-      $keywords = array('/{{store_name}}/',
+      $keywords = ['/{{store_name}}/',
         '/{{store_owner_email_address}}/',
         '/{{http_shop}}/'
-      );
+      ];
 
-      $replaces = array(STORE_NAME,
+      $replaces = [STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
-      );
+      ];
 
       $template_email_coupon_catalog = preg_replace($keywords, $replaces, $template_email_coupon_catalog);
 
@@ -293,15 +293,15 @@
 
       $template_email_intro_command = $QtextTemplateEmailIntroCommand->value('template_email_description');
 
-      $keywords = array('/{{store_name}}/',
+      $keywords = ['/{{store_name}}/',
         '/{{store_owner_email_address}}/',
         '/{{http_shop}}/'
-      );
+      ];
 
-      $replaces = array(STORE_NAME,
+      $replaces = [STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
-      );
+      ];
 
       $template_email_intro_command = preg_replace($keywords, $replaces, $template_email_intro_command);
 
@@ -313,17 +313,20 @@
      * bug with SEND_EXTRA_ORDER_EMAILS_TO
      *
      * @param string : email
-     * @return string $emails, email
+     * @return array $emails, email
      * @access public
      */
-    public static function getExtractEmailAddress($string)
+     public static function getExtractEmailAddress($string)
     {
+
+      $emails = [];
       foreach (preg_split('/\s/', $string) as $token) {
         $email = filter_var(filter_var($token, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
         if ($email !== false) {
           $emails[] = $email;
         }
       }
+
       return $emails;
     }
   }
