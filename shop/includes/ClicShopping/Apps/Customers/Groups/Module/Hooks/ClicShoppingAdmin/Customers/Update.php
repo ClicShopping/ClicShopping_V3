@@ -41,13 +41,6 @@
           if (empty($customers_group_id)) $customers_group_id = 0;
 
           if (isset($_POST['customers_id'])) $customers_id = HTML::sanitize($_POST['customers_id']);
-          /*
-                    if (isset($_POST['customers_options_order_taxe'])) {
-                      $customers_options_order_taxe = HTML::sanitize($_POST['customers_options_order_taxe']);
-                    } else {
-                      $customers_options_order_taxe = 0;
-                    }
-          */
 
           $QmultipleGroups = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
                                                                    from :table_products_groups

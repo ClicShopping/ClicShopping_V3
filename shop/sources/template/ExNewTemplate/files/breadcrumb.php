@@ -14,6 +14,7 @@
 
   $CLICSHOPPING_Service = Registry::get('Service');
   $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
+  $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 ?>
 
   <div class="clearfix"></div>
@@ -37,7 +38,7 @@
         </ol>
       </div>
 <?php
-      if (!CLICSHOPPING::getBaseNameIndex() && isset($_GET['products']) ) {
+      if (!CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_ProductsCommon->getID()) {
 ?>
       <div class="page-header">
         <h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
@@ -60,7 +61,7 @@
         </ol>
       </div>
 <?php
-    if (!CLICSHOPPING::getBaseNameIndex() && isset($_GET['products']) ) {
+    if (!CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_ProductsCommon->getID()) {
 ?>
       <div class="page-header">
         <h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
