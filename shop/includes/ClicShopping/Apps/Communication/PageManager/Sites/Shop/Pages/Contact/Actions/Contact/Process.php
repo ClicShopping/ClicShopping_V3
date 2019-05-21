@@ -50,8 +50,13 @@
         } else {
           $order_id = '0';
         }
-	
-        $send_to = HTML::sanitize($_POST['send_to']);
+
+        if (isset($_POST['send_to'])) {
+          $send_to = HTML::sanitize($_POST['send_to']);
+        } else {
+          $send_to = [];
+        }
+
         $customer_id = HTML::sanitize($_POST['customer_id']);
         $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);

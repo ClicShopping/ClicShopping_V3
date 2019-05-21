@@ -43,7 +43,7 @@ text_newsletter_date_sent = Date d'envoi :
 text_info_delete_intro = Etes vous sur de vouloir supprimer ce bulletin d'informations ?
 
 text_please_wait = Veuillez patienter et ne pas interrompre ce traitement !<br /><br />Envois en cours...<br /><br />Le traitement peut être plus ou moins long en fonction du nombre de mail à traiter
-text_finished_sending_emails = Fini.. Tous les courriers électroniques sont envoyés !
+text_finished_sending_email = Fini.. Tous les courriers électroniques sont envoyés !
 
 text_help_wysiwyg = Wysiwyg
 

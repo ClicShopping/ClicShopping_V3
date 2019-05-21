@@ -76,6 +76,8 @@
       $Qdelete = $this->app->db->prepare('delete from :table_newsletters_customers_temp');
       $Qdelete->execute();
 
+      $file_name = '';
+
 // ----------------------
 // customer with an account
 // ----------------------
@@ -105,7 +107,6 @@
 
         $Qmail->execute();
       }
-
 
       if ($this->createFile == 1) {
 // newsletter file inserted in the pub directory
@@ -153,6 +154,8 @@
 // ----------------------
       if (SEND_EMAILS == 'true' && $Qmail->valueInt('count') > 0) {
         $send_button = '<span class="float-md-right">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . $_GET['page'] . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
+      } else {
+        $send_button = '';
       }
 
       $confirm_string = '';
@@ -181,6 +184,7 @@
       $confirm_string .= '<div class="text-md-center alert alert-info" id="newsletterAlert">';
       $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('count') . '<strong></div>';
       $confirm_string .= '</div>' . "\n";
+
       $confirm_string .= $file_name . "\n";
       $confirm_string .= '<div class="separator"></div>' . "\n";
       $confirm_string .= '<div><strong>' . $this->title . '</strong></div>' . "\n";
@@ -382,7 +386,6 @@
 // ------------------------------------------
 // copy customers account in temp newsletter
 // ------------------------------------------
-
         while ($Qmail->fetch()) {
           $time_end = explode(' ', microtime());
           $timer_total = number_format(($time_end[1] + $time_end[0] - ($time_start[1] + $time_start[0])), 3);

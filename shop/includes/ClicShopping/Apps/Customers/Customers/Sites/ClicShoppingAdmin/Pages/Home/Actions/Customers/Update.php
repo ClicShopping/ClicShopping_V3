@@ -42,7 +42,12 @@
       if (isset($_POST['customers_newsletter'])) $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
       if (isset($_POST['languages_id'])) $language_id = HTML::sanitize($_POST['languages_id']);
       if (isset($_POST['customers_gender'])) $customers_gender = HTML::sanitize($_POST['customers_gender']);
-      if (isset($_POST['customers_dob'])) $customers_dob = HTML::sanitize($_POST['customers_dob']);
+      
+      if (isset($_POST['customers_dob'])) {
+        $customers_dob = HTML::sanitize($_POST['customers_dob']);
+      } else {
+        $customers_dob = null;
+      }
 
       if (isset($_POST['customers_cellular_phone'])) $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
       if (isset($_POST['customers_notes'])) $customers_notes = $_POST['customers_notes'];
@@ -106,8 +111,11 @@
         if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
       }
 
-      $dobDateTime = new DateTime($customers_dob, false);
-
+      if (!is_null($customers_dob)) {
+        $dobDateTime = new DateTime($customers_dob, false);
+      } else {
+        $dobDateTime = null;
+      }
 // Contrôle des saisies faites sur les champs TVA Intracom
       if ((strlen($customers_tva_intracom_code_iso) > 0) || (strlen($customers_tva_intracom) > 0)) {
 
@@ -244,8 +252,11 @@
           'customers_cellular_phone' => $customers_cellular_phone,
         ];
 
-        //       $customers_dob = str_replace('/', '-', $customers_dob);
-        $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob); //@todo
+        if (!is_null($customers_dob)) {
+          $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob); //@todo
+        } else {
+          $sql_data_array['customers_dob'] = null;
+        }
 
         if (ACCOUNT_GENDER == 'true') $sql_data_array['customers_gender'] = $customers_gender;
 

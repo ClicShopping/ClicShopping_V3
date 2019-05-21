@@ -56,18 +56,18 @@
           <div
             class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/mail.gif', $CLICSHOPPING_EMail->getDef('heading_title'), '40', '40'); ?></div>
           <div class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_EMail->getDef('heading_title'); ?></div>
-          <?php
-            if (SEND_EMAILS == 'true') {
-              ?>
+<?php
+   if (SEND_EMAILS == 'true') {
+?>
               <div class="col-md-6 text-md-right">
-                <?php
+<?php
                   echo HTML::form('mail', $CLICSHOPPING_EMail->link('SendEmailToUser&Process'));
                   echo HTML::button($CLICSHOPPING_EMail->getDef('button_send'), null, null, 'success');
-                ?>
+?>
               </div>
-              <?php
-            }
-          ?>
+<?php
+   }
+?>
         </div>
       </div>
     </div>
