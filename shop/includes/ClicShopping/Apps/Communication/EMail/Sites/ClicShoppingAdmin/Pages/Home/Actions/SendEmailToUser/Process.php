@@ -149,7 +149,6 @@
               $CLICSHOPPING_MessageStack->add($this->app->getDef('error_email_sent'), 'error', 'email');
             }
 
-
             break;
         }
 

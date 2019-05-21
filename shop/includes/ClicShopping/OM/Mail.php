@@ -27,7 +27,7 @@
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-    protected $debugOutput = 'phpmail_error.log';
+    protected $debugFileOutput = 'Work/Log/phpmail_error.log';
     protected $phpMail;
 
     public function __construct()
@@ -37,7 +37,9 @@
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
       $this->phpMail->SMTPDebug = $this->debug;
-      $this->phpMail->debugOutput = CLICSHOPPING::BASE_DIR . 'Work/Log/phpmail_error.log';
+// test with exit
+//      $this->phpMail->Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};
+      $this->phpMail->debugOutput = CLICSHOPPING::BASE_DIR . $this->debugFileOutput;
       $this->phpMail->CharSet = CLICSHOPPING::getDef('charset');
       $this->phpMail->WordWrap = 998;
       $this->phpMail->Encoding = 'quoted-printable';
@@ -106,8 +108,7 @@
      * Adds a html part to the mail.
      * Also replaces image names with
      * content-id's.
-     */
-
+   */
     public function addHtml($html, $text = NULL, $images_dir = NULL)
     {
       $this->phpMail->IsHTML(true);
@@ -202,7 +203,7 @@
      */
     public function getMailer()
     {
-      return $this->phpmailer;
+      return $this->phpMail;
     }
 
     /**
@@ -259,7 +260,6 @@
       }
 
 //Set who the message is to be sent from
-
       $this->phpMail->setFrom($from_addr, $from_addr);
 
 //Set who the message is to be sent to
