@@ -29,7 +29,6 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['categories_id'])) $categories_id = HTML::sanitize($_POST['cID']);
       if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
 
       $sort_order = HTML::sanitize($_POST['sort_order']);
@@ -52,7 +51,6 @@
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-
         $categories_name_array = $_POST['categories_name'];
 
         $language_id = $languages[$i]['id'];

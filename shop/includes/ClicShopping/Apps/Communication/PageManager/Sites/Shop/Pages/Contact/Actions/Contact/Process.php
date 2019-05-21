@@ -44,7 +44,13 @@
         $email_address = HTML::sanitize($_POST['email']);
         $enquiry = HTML::sanitize($_POST['enquiry']);
         $email_subject = HTML::sanitize($_POST['email_subject']);
-        $order_id = HTML::sanitize($_POST['order_id']);
+
+        if (isset($_POST['order_id'])) {
+          $order_id = HTML::sanitize($_POST['order_id']);
+        } else {
+          $order_id = '0';
+        }
+	
         $send_to = HTML::sanitize($_POST['send_to']);
         $customer_id = HTML::sanitize($_POST['customer_id']);
         $customers_telephone = HTML::sanitize($_POST['customers_telephone']);

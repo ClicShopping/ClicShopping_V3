@@ -47,13 +47,13 @@
 
         $CLICSHOPPING_Payment = Registry::get('Payment');
 
-        if (is_array($CLICSHOPPING_Payment->modules)) {
-          $confirmation = $CLICSHOPPING_Payment->confirmation();
-        }
-
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PAYMENT_INFORMATION_CONTENT_WIDTH;
 
+        $data = '';
+
         if (is_array($CLICSHOPPING_Payment->modules)) {
+          $confirmation = $CLICSHOPPING_Payment->confirmation();
+
           if ($confirmation) {
             $display = '  <!-- checkout_confirmation_payment_information -->' . "\n";
 
@@ -63,7 +63,7 @@
               $display .= ' </div>';
             } else {
               if (isset($confirmation['title'])) {
-                $data  = '<div class="col-sm-12">';
+                $data  .= '<div class="col-sm-12">';
                 $data .=  '  <div class="">';
                 $data .=  $confirmation['title'];
                 $data .=  '  </div>';

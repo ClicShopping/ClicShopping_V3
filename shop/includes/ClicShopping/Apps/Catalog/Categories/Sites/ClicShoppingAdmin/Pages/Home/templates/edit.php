@@ -65,6 +65,7 @@
   $form_action = (isset($_GET['cID'])) ? 'update_category' : 'insert_category';
 
   $current_category_id = HTML::sanitize($_GET['cID']);
+  $cPath = HTML::sanitize($_GET['cPath']);
 
   echo HTML::form('new_category', $CLICSHOPPING_Categories->link('Categories&Update&cPath=' . $_GET['cPath'] . '&cID=' . $_GET['cID']), 'post', 'enctype="multipart/form-data"');
 
@@ -143,7 +144,7 @@
                 <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id) . HTML::hiddenField('current_category_id', $current_category_id); ?>
+                  <?php echo HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cPath) . HTML::hiddenField('current_category_id', $current_category_id); ?>
                 </div>
               </div>
             </div>
