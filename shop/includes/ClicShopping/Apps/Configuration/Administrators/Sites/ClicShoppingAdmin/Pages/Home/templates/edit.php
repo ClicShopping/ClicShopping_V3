@@ -104,7 +104,7 @@
           <label for="code"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Administrators->getDef('text_info_password'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('password', null, 'autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"', 'password'); ?>
+            <?php echo HTML::inputField('password', null, 'required aria-required="true" autocomplete="off" placeholder="' . $CLICSHOPPING_Administrators->getDef('text_info_password') . '"', 'password'); ?>
           </div>
         </div>
       </div>

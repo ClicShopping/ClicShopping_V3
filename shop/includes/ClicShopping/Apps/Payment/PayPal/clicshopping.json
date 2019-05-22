@@ -24,10 +24,6 @@
      "PS":	"Module\\Payment\\PS"
 		},
 		"Hooks": {
-			"ClicShoppingAdmin/Orders": {
-				"Action":	"Module\\Hooks\\ClicShoppingAdmin\\Orders\\Action",
-				"PageContentTab":		"Module\\Hooks\\ClicShoppingAdmin\\Orders\\PageContentTab"
-			},
 			"Shop/Account": {
 				"Logout":	"Module\\Hooks\\Shop\\Account\\Logout"
 			}

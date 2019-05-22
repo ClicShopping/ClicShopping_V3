@@ -38,8 +38,8 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['AdvancedSearch'])) {
-
         $advanced_search_price = '<!-- Start advanced search price -->' . "\n";
+        $content_width = (int)MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH;
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/advanced_search_price'));
@@ -75,6 +75,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Please select the width of the module',
+          'configuration_key' => 'MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH',
+          'configuration_value' => '12',
+          'configuration_description' => 'Select a number between 1 and 12',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_content_module_width_pull_down',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_ADVANCED_SEARCH_PRICE_SORT_ORDER',
           'configuration_value' => '40',
@@ -85,10 +97,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-      );
     }
 
     public function remove() {
@@ -98,6 +106,7 @@
     public function keys() {
       return array (
         'MODULE_ADVANCED_SEARCH_PRICE_STATUS',
+        'MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH',
         'MODULE_ADVANCED_SEARCH_PRICE_SORT_ORDER'
       );
     }

@@ -85,7 +85,7 @@
         $customer_id = (int)$_POST['custom'];
 
         $Qorder = $this->pm->app->db->get('orders', 'orders_status', ['orders_id' => (int)$order_id,
-            'customers_id' => (int)$customer_id
+            'customers_id' => (int)$customer_id,
           ]
         );
 
@@ -106,7 +106,7 @@
 
             $sql_data_array = ['orders_id' => (int)$order_id,
               'orders_status_id' => (int)$new_order_status,
-              'orders_status_invoice_id' => (int)$Qorder->valueInt('order_status_invoice'),
+              'orders_status_invoice_id' => 1,
               'admin_user_name' => '',
               'date_added' => 'now()',
               'customer_notified' => (SEND_EMAILS == 'true') ? '1' : '0',

@@ -84,13 +84,13 @@
     }
 
 // Average newlstter subcribers vs total customers
-    private function statAverageCustomersNewsletterB2B()
+    public function statAverageCustomersNewsletterB2B()
     {
+
       if ($this->statCountCustomersB2B() > 0 && $this->statsCountCustomersNewsletter() > 0) {
         $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2B()) * 100, 2) . ' %';
+        return $Average;
       }
-
-      return $Average;
     }
 
     public function display()

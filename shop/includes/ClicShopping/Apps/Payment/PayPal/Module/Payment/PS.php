@@ -735,6 +735,7 @@
         }
       } else {
         $pptx_params = $_POST;
+
         $pptx_params['cmd'] = '_notify-validate';
 
         foreach ($_GET as $key => $value) {
@@ -1176,11 +1177,24 @@
 
           $comment_status = 'Transaction ID: ' . HTML::outputProtected($pptx_params['txn_id']) . "\n" .
             'Payer Status: ' . HTML::outputProtected($pptx_params['payer_status']) . "\n" .
-            'Address Status: ' . HTML::outputProtected($pptx_params['address_status']) . "\n" .
             'Payment Status: ' . HTML::outputProtected($pptx_params['payment_status']) . "\n" .
-            'Payment Type: ' . HTML::outputProtected($pptx_params['payment_type']) . "\n" .
-            'Pending Reason: ' . HTML::outputProtected($pptx_params['pending_reason']
-            );
+            'Payment Type: ' . HTML::outputProtected($pptx_params['payment_type']);
+
+          if (!empty($pptx_params['payment_date'])) {
+            $comment_status .=  "\n"  . 'Payment_date: ' . HTML::outputProtected($pptx_params['payment_date']) . "\n";
+          }
+
+          if (!empty($pptx_params['invoice'])) {
+            $comment_status .= 'Invoice: ' . HTML::outputProtected($pptx_params['invoice']) . "\n";
+          }
+
+          if (!empty($pptx_params['address_status'])) {
+            $comment_status .= 'Address Status: ' . HTML::outputProtected($pptx_params['address_status']) . "\n";
+          }
+
+          if (!empty($pptx_params['pending_reason'])) {
+            $comment_status .= 'Pending Reason: ' . HTML::outputProtected($pptx_params['pending_reason']);
+          }
 
 
           if ($pptx_params['mc_gross'] != $this->app->formatCurrencyRaw($Qtotal->value('value'), $Qorder->value('currency'), $Qorder->value('currency_value'))) {
