@@ -57,9 +57,23 @@
           $send_to = [];
         }
 
-        $customer_id = HTML::sanitize($_POST['customer_id']);
-        $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
-        $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
+        if (isset($_POST['customer_id'])) {
+          $customer_id = HTML::sanitize($_POST['customer_id']);
+        } else {
+          $customer_id = null;
+        }
+
+        if (isset($_POST['customers_telephone'])) {
+          $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
+        } else {
+          $customers_telephone = '';
+        }
+
+        if (isset($_POST['customer_agree_privacy'])) {
+          $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
+        } else {
+          $customer_agree_privacy = null;
+        }
 
         if (defined('DISPLAY_PRIVACY_CONDITIONS') && DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
