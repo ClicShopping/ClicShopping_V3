@@ -482,7 +482,7 @@
      * return $data, array og php.ini information
      * @access public
      */
-    public static function getSystemInformation(): string
+    public static function getSystemInformation()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
