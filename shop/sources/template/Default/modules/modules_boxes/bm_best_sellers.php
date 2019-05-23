@@ -189,7 +189,7 @@
           $data ='<!-- Boxe best sellers start -->' . "\n";
 
           ob_start();
-          require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/best_sellers'));
+          require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/best_sellers'));
 
           $data .= ob_get_clean();
 

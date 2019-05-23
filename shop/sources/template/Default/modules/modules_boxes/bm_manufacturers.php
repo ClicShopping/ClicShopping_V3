@@ -112,7 +112,7 @@
 
       if (!empty($output)) {
         ob_start();
-        require_once($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/manufacturers'));
+        require($CLICSHOPPING_Template->getTemplateModules('/modules_boxes/content/manufacturers'));
         $data = ob_get_clean();
 
         $CLICSHOPPING_Template->addBlock($data, $this->group);
