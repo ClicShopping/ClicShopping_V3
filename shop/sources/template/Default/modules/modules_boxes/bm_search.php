@@ -44,6 +44,8 @@
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
 
+      $search_banner = '';
+	
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SEARCH_BANNER_GROUP)) {
           $search_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';

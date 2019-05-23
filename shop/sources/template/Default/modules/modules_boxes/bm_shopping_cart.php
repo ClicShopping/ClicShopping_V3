@@ -89,12 +89,8 @@
                                  '<div class="boxeShowTotalShoppingCart">' . $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total()) . '</div>' .
                                  '<div class="boxeShowTextShoppingCart">' . HTML::link(CLICSHOPPING::link(null, 'Cart'), CLICSHOPPING::getDef('header_title_cart_contents')) . '</div>' .
                                  '';
-/*
-      } else {
-        $cart_contents_string .= '<div class="boxContentsShoppingCart">' . CLICSHOPPING::getDef('module_boxes_shopping_cart_box_cart_empty') . '</div>';
-      }
-*/
         if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0 || MODULE_BOXES_SHOPPING_CART_DISPLAY == 'True') {
+          $shopping_cart_banner = '';
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SHOPPING_CART_BANNER_GROUP)) {

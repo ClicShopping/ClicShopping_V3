@@ -48,7 +48,6 @@
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-
           $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id
                                                     from :table_specials s,
                                                           :table_products p left join :table_products_groups g on p.products_id = g.products_id,
@@ -105,12 +104,12 @@
           $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
           $Qproducts->bindInt(':limit', (int)MODULE_BOXES_SPECIALS_MAX_DISPLAY_LIMIT);
           $Qproducts->execute();
-
         }
 
         $col = 0;
 
         if ($Qproducts->rowCount() > 0) {
+          $specials_banner = '';
 
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SPECIALS_BANNER_GROUP)) {

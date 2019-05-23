@@ -37,7 +37,6 @@
     }
 
     public function  execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
@@ -57,6 +56,7 @@
 
       if ( $Qpages->valueInt('count') > 0) {
         $page_manager_banner = '';
+
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PAGE_MANAGER_BANNER_GROUP)) {
             $page_manager_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';

@@ -97,6 +97,8 @@
             $customer_orders_string .= '<li class="boxeContentsHistory">'. HTML::link($products_name_url, $Qproducts->value('products_name')) . '</li>';
           }
 
+          $order_history_banner = '';
+
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_ORDER_HISTORY_BANNER_GROUP)) {
               $order_history_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';

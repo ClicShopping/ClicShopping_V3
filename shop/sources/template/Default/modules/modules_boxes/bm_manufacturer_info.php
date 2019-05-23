@@ -69,6 +69,8 @@
 
         if ($Qmanufacturers->fetch()) {
           $manufacturer_info_string = '';
+	  $manufacturer_infos_banner = '';
+	  
           $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'));
 
           if (!empty($Qmanufacturers->value('manufacturers_image'))) {

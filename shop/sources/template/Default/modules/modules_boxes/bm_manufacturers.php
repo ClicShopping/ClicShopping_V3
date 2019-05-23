@@ -98,6 +98,8 @@
       $CLICSHOPPING_Service = Registry::get('Service');
       $CLICSHOPPING_Banner = Registry::get('Banner');
 
+      $manufacturer_banner = '';
+	
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic', SITE_THEMA . '_manufacturer')) {
           $manufacturer_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';

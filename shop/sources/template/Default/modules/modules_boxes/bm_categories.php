@@ -46,6 +46,8 @@
       $cPath = $CLICSHOPPING_Category->getPath();
 
       if ($CLICSHOPPING_CategoryTree->getCountCategories() != 0) {
+        $categories_banner = '';
+	
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CATEGORIES_BANNER_GROUP)) {
             $categories_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';

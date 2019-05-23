@@ -107,6 +107,7 @@
       $col = 0;
 
       if ($Qproducts->rowCount() > 0  ) {
+        $featured_banner = '';
 
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PRODUCTS_FEATURED_BANNER_GROUP)) {
