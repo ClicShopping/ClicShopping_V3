@@ -99,20 +99,21 @@
 
 // send an email if someone try to connect on admin panel without authorization
 // get ip and infos
-
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $host = @gethostbyaddr($ip);
-            $referer = $_SERVER['HTTP_REFERER'];
+            if (SEND_EMAILS == 'true') {
+              $ip = $_SERVER['REMOTE_ADDR'];
+              $host = @gethostbyaddr($ip);
+              $referer = $_SERVER['HTTP_REFERER'];
 
 // build report
-            $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login');
-            $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' . $ip;
-            $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name') . $host;
-            $report .= "\n" . CLICSHOPPING::getDef('report_sender_username') . $username;
-            $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
-            $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
+              $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login');
+              $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' . $ip;
+              $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name') . $host;
+              $report .= "\n" . CLICSHOPPING::getDef('report_sender_username') . $username;
+              $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
+              $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
 // mail report
-            $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+              $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+            }
           }
         } else {
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
@@ -230,7 +231,7 @@
   }
 
   if ($action != 'password') {
-    ?>
+?>
 
     <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
       <div class="modal-dialog">
@@ -291,9 +292,9 @@
         </div>
       </div>
     </div>
-    <?php
+<?php
   } else {
-    ?>
+?>
     <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -328,7 +329,7 @@
       </div>
     </div>
 
-    <?php
+<?php
   }
 ?>
   <div class="clearfix"></div>
