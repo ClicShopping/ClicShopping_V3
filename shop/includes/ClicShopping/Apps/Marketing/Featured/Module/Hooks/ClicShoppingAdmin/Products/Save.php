@@ -50,7 +50,9 @@
 
     public function execute()
     {
-      $id = HTML::sanitize($_GET['pID']);
-      $this->save($id);
+      if (isset($_GET['pID'])) {
+        $id = HTML::sanitize($_GET['pID']);
+        $this->save($id);
+      }
     }
   }

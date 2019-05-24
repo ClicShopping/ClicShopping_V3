@@ -171,8 +171,10 @@
               } else {
                 if (isset($_POST['cPath'])) {
                   $cPath = HTML::sanitize($_POST['cPath']);
-                } else {
+                } elseif (isset($_GET['cPath'])) {
                   $cPath = HTML::sanitize($_GET['cPath']);
+                } else {
+                  $cPath = '';
                 }
               }
 

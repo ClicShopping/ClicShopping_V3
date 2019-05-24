@@ -31,7 +31,12 @@
       }
 
       $current_category = HTML::sanitize($_POST['cPath']);
-      $move_to_category_id = HTML::sanitize($_POST['move_to_category_id'][0]);
+
+      if (isset($_POST['move_to_category_id'][0])) {
+        $move_to_category_id = HTML::sanitize($_POST['move_to_category_id'][0]);
+      } else {
+        $move_to_category_id = '';
+      }
 
       if ($current_category != $move_to_category_id) {
         $this->currentCategoryId = $move_to_category_id;

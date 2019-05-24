@@ -131,9 +131,8 @@
 
           if (isset($_POST['pages_title_' . $languages[$i]['id']])) {
             $pages_title = HTML::sanitize($_POST['pages_title_' . $languages[$i]['id']]);
-          } else {
-            $error = true;
           }
+
           if (isset($_POST['pages_html_text_' . $languages[$i]['id']])) {
             $pages_html_text = $_POST['pages_html_text_' . $languages[$i]['id']];
           } else {

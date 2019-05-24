@@ -36,6 +36,8 @@
 
       if (isset($_POST['current_category_id'])) {
         $this->currentCategoryId = HTML::sanitize($_POST['current_category_id']);
+      } else {
+        $this->currentCategoryId = 0;
       }
     }
 

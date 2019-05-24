@@ -39,8 +39,6 @@
                                               ');
         $Qproducts->execute();
 
-        $_POST['cPath'] = $this->currentCategoryId;
-
         $id = $Qproducts->valueInt('products_id');
 
         $sql_data_array = ['manufacturers_id' => (int)HTML::sanitize($_POST['manufacturers_id'])];

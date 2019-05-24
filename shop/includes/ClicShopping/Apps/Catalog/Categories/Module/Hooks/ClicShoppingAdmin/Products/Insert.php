@@ -66,8 +66,10 @@
         return false;
       }
 
-      $current_category_id = HTML::sanitize($_POST['move_to_category_id']);
+      if (isset($_POST['move_to_category_id'])) {
+        $current_category_id = HTML::sanitize($_POST['move_to_category_id']);
 
-      $this->saveProductCategory($current_category_id);
+        $this->saveProductCategory($current_category_id);
+      }
     }
   }

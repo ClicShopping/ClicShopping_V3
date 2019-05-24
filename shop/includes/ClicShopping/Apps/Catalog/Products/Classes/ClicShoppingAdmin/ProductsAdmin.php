@@ -222,6 +222,10 @@
         $product_update_image = $Qimages->value('products_image');
         $product_update_image_zoom = $Qimages->value('products_image_zoom');
         $product_update_image_medium = $Qimages->value('products_image_medium');
+      } else {
+        $product_update_image = '';
+        $product_update_image_zoom = '';
+        $product_update_image_medium = '';
       }
 
       $rand_image = $this->getGenerateRandomString();

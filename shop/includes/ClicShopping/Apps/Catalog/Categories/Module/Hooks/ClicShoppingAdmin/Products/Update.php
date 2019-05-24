@@ -34,7 +34,12 @@
 
       $this->app = Registry::get('Categories');
 
-      $this->productsLink = HTML::sanitize($_POST['copy_as']);
+      if (isset($_POST['copy_as'])) {
+        $this->productsLink = HTML::sanitize($_POST['copy_as']);
+      } else {
+        $this->productsLink = 'none';
+      }
+
       $this->currentCategoryId = HTML::sanitize($_POST['cPath']);
 
       $this->productsAdmin = new ProductsAdmin();
@@ -69,8 +74,6 @@
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $new_category = HTML::sanitize($_POST['move_to_category_id']);
-
       if (isset($_GET['Update'])) {
         if (empty($this->productsLink) || $this->productsLink == 'move') {
           $new_category = HTML::sanitize($_POST['move_to_category_id']);
@@ -78,6 +81,8 @@
 
           $this->moveCategory($move_new_category, $id);
         } elseif ($this->productsLink != 'none') {
+          $new_category = '';
+
           if ($this->productsLink != 'move') {
 //link the category
             if (is_array($new_category) && isset($new_category)) {

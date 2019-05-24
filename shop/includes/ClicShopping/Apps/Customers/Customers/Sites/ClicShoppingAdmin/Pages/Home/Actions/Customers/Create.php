@@ -352,18 +352,17 @@
       $template_email_signature = TemplateEmailAdmin::getTemplateEmailSignature();
       $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
 
-      $email_welcome = html_entity_decode(CLICSHOPPING::getDef('email_welcome', ['store_name' => STORE_NAME]));
       $email_subject = html_entity_decode(CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]));
 
 
       if (ACCOUNT_GENDER == 'true') {
         if ($customers_gender == 'm') {
-          $email_gender = CLICSHOPPING::getDef('email_greet_mr', ['greet_mr' => $_POST['customers_firstname'] . ' ' . $_POST['customers_lastname']]);
+          $email_gender = CLICSHOPPING::getDef('email_greet_mr', ['greet_mr' => $_POST['customers_firstname'] . ' ' . HTML::sanitize($_POST['customers_lastname'])]);
         } else {
-          $email_gender = CLICSHOPPING::getDef('email_greet_ms', ['greet_ms' => $_POST['customers_firstname'] . ' ' . $_POST['customers_lastname']]);
+          $email_gender = CLICSHOPPING::getDef('email_greet_ms', ['greet_ms' => $_POST['customers_firstname'] . ' ' . HTML::sanitize($_POST['customers_lastname'])]);
         }
       } else {
-        $email_gender = CLICSHOPPING::getDef('email_greet_none', ['greet_none' => $_POST['customers_firstname'] . ' ' . $_POST['customers_lastname']]);
+        $email_gender = CLICSHOPPING::getDef('email_greet_none', ['greet_none' => $_POST['customers_firstname'] . ' ' . HTML::sanitize($_POST['customers_lastname'])]);
       }
 
       $email_text = $email_gender . '<br /><br />' . $template_email_welcome_admin . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;

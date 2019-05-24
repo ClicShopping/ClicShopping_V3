@@ -51,7 +51,11 @@
         return false;
       }
 
-      $products_weight_class_id = $this->getProductsWeightId();
+      if (isset($_GET['pID'])) {
+        $products_weight_class_id = $this->getProductsWeightId();
+      } else {
+        $products_weight_class_id = 0;
+      }
 
       if ($products_weight_class_id == 0) {
         $weight_class_id = SHIPPING_WEIGHT_UNIT;

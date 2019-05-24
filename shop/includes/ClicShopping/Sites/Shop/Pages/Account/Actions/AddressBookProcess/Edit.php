@@ -188,7 +188,7 @@
                                                and zone_status = 0
                                                limit 1
                                                ');
-          $Qcheck->bindInt(':zone_country_id', (int)$country);
+          $Qcheck->bindInt(':zone_country_id', $country);
           $Qcheck->execute();
 
           $entry_state_has_zones = ($Qcheck->fetch() !== false);
@@ -281,7 +281,7 @@
               $CLICSHOPPING_Customer->setCountryID($country);
               $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
 
-              $CLICSHOPPING_Customer->setDefaultAddressID($_GET['edit']);
+              $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($_GET['edit']));
             }
 
             if ($_POST['shopping'] != 1) {
@@ -312,12 +312,12 @@
               }
             }
 
-            $CLICSHOPPING_Db->save('customers', $sql_data_array, array('customers_id' => (int)$CLICSHOPPING_Customer->getID()));
+            $CLICSHOPPING_Db->save('customers', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]);
 
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Edit');
           } // end $Qcheck->fetch
 
-          if ($_POST['shopping'] == 1) {
+          if (HTML::sanitize($_POST['shopping']) == 1) {
             CLICSHOPPING::redirect(null, 'Cart');
           } else {
             CLICSHOPPING::redirect(null, 'Account&AddressBook');

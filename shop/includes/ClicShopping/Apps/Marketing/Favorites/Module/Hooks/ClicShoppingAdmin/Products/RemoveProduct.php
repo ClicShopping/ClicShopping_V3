@@ -29,7 +29,7 @@
       $this->app = Registry::get('Favorites');
     }
 
-    private function removeMarketing($id)
+    private function removeProducts($id)
     {
       if (!empty($_POST['products_favorites'])) {
         $this->app->db->delete('products_favorites', ['products_id' => (int)$id]);
@@ -39,12 +39,16 @@
 
     public function execute()
     {
-      if (isset($_POST['remove_id'])) $pID = $_POST['remove_id'];
-      if (isset($_POST['pID'])) $pID = $_POST['pID'];
+      if (isset($_POST['remove_id'])) {
+        $pID = HTML::sanitize($_POST['remove_id']);
+      } elseif (isset($_POST['pID'])) {
+        $pID = HTML::sanitize($_POST['pID']);
+      } else {
+        $pID = false;
+      }
 
-      if (isset($pID)) {
-        $id = HTML::sanitize($_POST['pID']);
-        $this->removeMarketing($id);
+      if ($pID !==false) {
+        $this->removeProducts($pID);
       }
     }
   }
