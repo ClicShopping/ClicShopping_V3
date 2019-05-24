@@ -20,7 +20,7 @@ text_number_products_stock_warning = Alerte stock produits
 text_number_products_out_of_stock = Produits hors stock
 text_number_products_expected = Produits en attente
 text_number_members_b2b = Clients à valider B2B
-text_number_of_reviews = Comentaires en attente
+text_number_of_reviews = Commentaires en attente
 text_number_support = Commande support
 text_view = Plus d'informations
 

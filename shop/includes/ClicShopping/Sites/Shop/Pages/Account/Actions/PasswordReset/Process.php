@@ -63,7 +63,6 @@
         }
 
         if ($error === false) {
-
           $CLICSHOPPING_Db->save('customers', ['customers_password' => Hash::encrypt($password_new)],
             ['customers_id' => (int)$Qcheck->valueInt('customers_id')]
           );

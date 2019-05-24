@@ -25,6 +25,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+        $parameters = '';
 
         if (isset($_POST['products_id']) && is_numeric($_POST['products_id'])) {
           $attributes = isset($_POST['id']) ? $_POST['id'] : '';
