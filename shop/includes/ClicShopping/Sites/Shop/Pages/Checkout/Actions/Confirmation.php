@@ -59,6 +59,7 @@
 
       if (isset($_POST['comments'])) {
         $_SESSION['comments'] = null;
+
         if (!is_null($_POST['comments'])) {
           $_SESSION['comments'] = HTML::sanitize($_POST['comments']);
         }
@@ -152,7 +153,7 @@
       }
 
       if (is_array($CLICSHOPPING_Payment->modules)) {
-        $confirmation = $CLICSHOPPING_Payment->confirmation();
+        $CLICSHOPPING_Payment->confirmation();
       }
 
 // templates
