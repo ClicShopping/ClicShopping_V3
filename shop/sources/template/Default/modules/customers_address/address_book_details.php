@@ -40,7 +40,7 @@
 // Clients B2C et B2B
 // Nouvelle adresse : Affichage du nom societe par defaut si il existe dans la table customers.
 // Edition adresse :  Affiche le nom de la societe present dans le carnet d'adresse table address_book.
-  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true')) {
+  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ACCOUNT_COMPANY_PRO == 'true')) {
      $QaccountGroup = $CLICSHOPPING_Db->prepare('select customers_company
                                                  from :table_customers
                                                  where customers_id = :customers_id
@@ -55,12 +55,12 @@
                 <div class="col-sm-6 col-md-4">
 <?php
   if (isset($_GET['Edit']) && is_numeric($_GET['edit'])) {
-    echo HTML::inputField('company', (isset($entry['company']) ? $entry['company'] : ''), 'id="InputCompany" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
+    echo HTML::inputField('company', $entry['company'] ?? '', 'id="InputCompany" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
   } else {
     echo HTML::inputField('company', $QaccountGroup->value('customers_company'), 'id="InputCompany" aria-describedby="' . CLICSHOPPING::getDef('entry_company') . '" placeholder="' . CLICSHOPPING::getDef('entry_company') . '"');
   }
 
-  if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_COMPANY_MIN_LENGTH > 0 || $CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_COMPANY_PRO_MIN_LENGTH > 0) {
+  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_COMPANY_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_COMPANY_PRO_MIN_LENGTH > 0)) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_company_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_company_text') . '</span>': '');
   }
 ?>
@@ -358,7 +358,7 @@
 
   if (isset($_GET['newcustomer']) != 1) {
 //   Allow or not to customer change this address ou to change the default address if oddo is activated.
-    if ((isset($_GET['edit']) && ($CLICSHOPPING_Customer->getDefaultAddressID() != $_GET['edit']) && (AddressBook::countCustomersModifyAddressDefault() == 1)) || (isset($_GET['edit']) === false) && (AddressBook::countCustomersModifyAddressDefault() == 1)) {
+    if ((isset($_GET['edit']) && $CLICSHOPPING_Customer->getDefaultAddressID() != HTML::sanitize($_GET['edit']) && AddressBook::countCustomersModifyAddressDefault() == 1) || (isset($_GET['edit']) === false && (AddressBook::countCustomersModifyAddressDefault() == 1))) {
 ?>
             <div class="row">
               <div class="col-md-12">
