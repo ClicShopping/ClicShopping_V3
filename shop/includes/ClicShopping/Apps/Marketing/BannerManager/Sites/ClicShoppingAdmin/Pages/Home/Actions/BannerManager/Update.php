@@ -21,10 +21,11 @@
 
     public function execute()
     {
-
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       if (isset($_POST['banners_id'])) $banners_id = HTML::sanitize($_POST['banners_id']);
 
@@ -68,7 +69,7 @@
         }
       }
 
-      if ($_POST['delete_image'] == 'yes') {
+      if (isset($_POST['delete_image']) && $_POST['delete_image'] == 'yes') {
         $banners_image_local = '';
       }
 
@@ -130,7 +131,7 @@
 
         $CLICSHOPPING_Hooks->call('Update', 'BannerManager');
 
-        $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $_GET['page']);
+        $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $page);
       }
     }
   }

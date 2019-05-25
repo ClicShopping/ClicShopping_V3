@@ -11,7 +11,7 @@
 
   namespace ClicShopping\Apps\Marketing\BannerManager\Sites\ClicShoppingAdmin\Pages\Home\Actions\BannerManager;
 
-  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\Registry;
 
@@ -25,7 +25,8 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $banners_id = $_GET['bID'];
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $banners_id = HTML::sanitize($_GET['bID']);
 
       if (isset($_POST['delete_image']) && ($_POST['delete_image'] == 'on')) {
 
@@ -50,6 +51,6 @@
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_BannerManager->getDef('success_banner_removed'), 'success');
 
-      $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . (int)$_GET['page']);
+      $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $page);
     }
   }

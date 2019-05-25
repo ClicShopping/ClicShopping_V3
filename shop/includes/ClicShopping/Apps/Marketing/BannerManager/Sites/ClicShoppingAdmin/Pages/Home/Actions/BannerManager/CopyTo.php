@@ -22,6 +22,8 @@
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       if (isset($_GET['bID'])) {
 
         $QbannersCopy = $CLICSHOPPING_BannerManager->db->prepare('select banners_title,
@@ -68,6 +70,6 @@
 
       $CLICSHOPPING_Hooks->call('CopyTo', 'BannerManager');
 
-      $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $_GET['page']);
+      $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $page);
     }
   }

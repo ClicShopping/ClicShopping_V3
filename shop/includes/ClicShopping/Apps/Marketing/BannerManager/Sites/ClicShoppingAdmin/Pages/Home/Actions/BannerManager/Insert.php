@@ -26,6 +26,8 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $banners_title = HTML::sanitize($_POST['banners_title']);
       $banners_title_admin = HTML::sanitize($_POST['banners_title_admin']);
 
@@ -138,7 +140,7 @@
 
         $CLICSHOPPING_Hooks->call('Insert', 'BannerManager');
 
-        $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $_GET['page']);
+        $CLICSHOPPING_BannerManager->redirect('BannerManager&page=' . $page);
       }
     }
   }
