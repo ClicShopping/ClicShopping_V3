@@ -33,8 +33,8 @@
     {
       if (isset($_GET['Update'])) {
         if (isset($_POST['banners_id'])) {
-          if (isset($_POST['customers_group'])) {
-            $customers_group_id = HTML::sanitize($_POST['customers_group']);
+          if (isset($_POST['customers_group_id'])) {
+            $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
             if (isset($_POST['banners_id'])) {
               $banners_id = HTML::sanitize($_POST['banners_id']);
@@ -42,7 +42,7 @@
 
             $sql_data_array = ['customers_group_id' => (int)$customers_group_id];
 
-            $this->app->db->save('products_favorites', $sql_data_array, ['banners_id' => (int)$banners_id]);
+            $this->app->db->save('banners', $sql_data_array, ['banners_id' => (int)$banners_id]);
           }
         }
       }
