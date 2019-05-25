@@ -31,6 +31,9 @@
       if (isset($_POST['color_bar'])) $color_bar = HTML::sanitize($_POST['color_bar']);
       if (isset($_POST['customers_group_quantity_default'])) $customers_group_quantity_default = HTML::sanitize($_POST['customers_group_quantity_default']);
 
+      $group_payment_unallowed = '';
+      $group_shipping_unallowed = '';
+
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
 
       if (empty($customers_groups_name)) {

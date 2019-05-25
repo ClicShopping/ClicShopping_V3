@@ -149,6 +149,7 @@
 
             if ($attributes = $Qattributes->fetch()) {
               $content .= HTML::inputField('price' . $QcustomersGroup->valueInt('customers_group_id'), $Qattributes->valueDecimal('customers_group_price'), 'onchange="updateGross()" placeholder="' . $this->app->getDef('tax_excluded') . '"') . '<strong>' . $this->app->getDef('tax_included') . '</strong>';
+              $attributes['customers_group_price'] = $Qattributes->valueDecimal('customers_group_price');
             } else {
               $content .= HTML::inputField('price' . $QcustomersGroup->valueInt('customers_group_id'), '0', 'onchange="updateGross()" size="7" placeholder="' . $this->app->getDef('tax_included') . '"') . '<strong>' . $this->app->getDef('tax_included') . '</strong>';
 // Permet de cocher par defaut la case Afficher Prix Public, Afficher Produit et Autoriser commande
@@ -158,6 +159,7 @@
               $attributes['products_quantity_unit_id_group'] = 0;
               $attributes['products_model_group'] = '';
               $attributes['products_quantity_fixed_group'] = 1;
+              $attributes['customers_group_price'] = 0;
             }
 
             $content .= '<div class="separator"></div>';
