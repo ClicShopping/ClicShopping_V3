@@ -23,7 +23,6 @@
 
   $CLICSHOPPING_Github = new Github();
 
-
   $current_version = CLICSHOPPING::getVersion();
 ?>
 <div class="contentBody">
@@ -31,9 +30,7 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row col-md-12">
-          <?php
-            echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]);
-          ?>
+          <?php echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]); ?>
           <div class="col-md-12 form-group row">
             <div class="col-md-3">
               <span
