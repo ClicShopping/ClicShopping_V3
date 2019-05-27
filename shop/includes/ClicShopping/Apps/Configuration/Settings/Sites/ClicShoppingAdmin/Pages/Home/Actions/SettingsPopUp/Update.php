@@ -37,11 +37,13 @@
       }
 
       $cID = HTML::sanitize($_GET['cID']);
+      $gID = HTML::sanitize($_GET['gID']);
 
       if (isset($_POST['configuration_value'])) {
         $configuration_value = $_POST['configuration_value'];
       }
 
+      if (!empty($configuration_value)) {
       $this->app->db->save('configuration', [
         'configuration_value' => $configuration_value,
         'last_modified' => 'now()'
@@ -50,8 +52,10 @@
         ]
       );
 
+      }
+
       Cache::clear('configuration');
 
-      $this->app->redirect('Settings&gID=' . (int)$_GET['gID'] . '&cID=' . $cID);
+      $this->app->redirect('Settings&gID=' . $gID . '&cID=' . $cID);
     }
   }

@@ -42,9 +42,9 @@
             </div>
 
             <div
-              class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory(), $_POST['template_directory']); ?></div>
+              class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory()); ?></div>
             <div
-              class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $_POST['template_directory']); ?></div>
+              class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory()); ?></div>
             <div
               class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
             <div class="col-md-3 text-md-right">
@@ -71,37 +71,37 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (isset($_POST['module_search'])) {
-      $module_directory = HTML::sanitize($_POST['module_search']);
-    } elseif (isset($_GET['template_directory'])) {
-      $module_directory = HTML::sanitize($_POST['template_directory']);
+    if (isset($_POST['addons_apps'])) {
+      $module_directory = HTML::sanitize($_POST['addons_apps']);
+    } else {
+      $module_directory = false;
     }
 
-    if (isset($_POST['install_module_template_directory'])) {
-      $module_directory = HTML::sanitize($_POST['install_module_template_directory']);
-    } elseif (isset($_POST['install_module_directory'])) {
+
+    if (isset($_POST['install_module_directory'])) {
       $module_directory = HTML::sanitize($_POST['install_module_directory']);
+    } else {
+      $module_directory = false;
     }
+
 
     if (isset($module_directory)) {
-    $file_cache_temp_array = $CLICSHOPPING_Template->getSpecificFiles($CLICSHOPPING_Github->cacheGithubTemp, $module_directory . '*', 'json');
+      if (!empty($file_cache_temp_array[0])) {
+        $count_file = count($file_cache_temp_array);
 
-    if (is_array($file_cache_temp_array)) {
-      foreach ($file_cache_temp_array as $value) {
-      
-        if (is_file($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json')) {
-         $result[] = $CLICSHOPPING_Github->getSearchInsideRepo($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json');
+        if (is_array($file_cache_temp_array)) {
+          foreach ($file_cache_temp_array as $value) {
+            if (is_file($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json')) {
+              $result[] = $CLICSHOPPING_Github->getSearchInsideRepo($CLICSHOPPING_Github->cacheGithubTemp . $value['name'] . '.json');
+            }
+          }
         }
+      } else {
+        $result = $CLICSHOPPING_Github->getSearchInsideRepo();
+        $count_file = $CLICSHOPPING_Github->getSearchTotalCount();
       }
 
-      $count_file = count($file_cache_temp_array);
-
-    } else {
-      $result = $CLICSHOPPING_Github->getSearchInsideRepo();
-      $count_file = $CLICSHOPPING_Github->getSearchTotalCount();
-    }
-
-    if ($count_file == 0) {
+      if ($count_file == 0) {
 ?>
       <div class="alert alert-warning" role="alert">
 <?php
@@ -110,12 +110,12 @@
 ?>
       </div>
 <?php
-    } else {
+      } else {
 ?>
       <div class="alert alert-warning"
            role="alert"><?php echo $CLICSHOPPING_Upgrade->getDef('text_count_search') . ' ' . $count_file; ?></div>
 <?php
-    }
+      }
 ?>
   <div class="d-flex flex-wrap">
 
@@ -152,19 +152,27 @@
           $installed_check = true;
         } else {
           $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
+
           $file_cache_information = $CLICSHOPPING_Upgrade->getDef('text_local_version') . ' <span class="badge badge-info">  - Temp Cached</span>';
 
           $item = $result_module_real_name;
-          $content_module_name = $item->title . '.json';
-          $local_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
-          $description = $item->description;
-          $temp_check = true;
+
+          if ($item !== false) {
+            $content_module_name = $item->title . '.json';
+            $local_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+            $description = $item->description;
+            $temp_check = true;
+          } else {
+            $content_module_name = '';
+            $description = '';
+          }
         }
 
-
-        if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) === true) {
-          $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
-          $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+        if (!empty($module_real_name)) {
+          if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) === true) {
+            $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
+            $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+          }
         }
 
         if ($content_module_name == $module_real_name . '.json') {
@@ -214,7 +222,8 @@
                         <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_more_infos') . '<a href="' . $link_html . '" target="_blank" rel="noreferrer">Github</a>'; ?></p>
                         <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_download') . '<a href="' . $link_html . '/archive/master.zip">' . $module_real_name . '</a>'; ?></p>
 <?php
-          if (!is_null($item->image) || !empty($item->image)) {
+
+          if (!empty($item->image)) {
             if ($directory == 'ClicShoppingOfficialModulesV3') {
 ?>
                               <p><img
@@ -359,24 +368,24 @@
                                           <p><?php echo $CLICSHOPPING_Upgrade->getDef('text_more_infos') . '<a href="' . $link_html . '" target="_blank" rel="noreferrer">Github</a>'; ?></p>
                                           <p>
 <?php
-                                              if (strtolower($result_content_module->is_free) != 'no') {
-                                                echo $CLICSHOPPING_Upgrade->getDef('text_download') . '<a href="' . $link_html . '/archive/master.zip">' . $module_real_name . '</a>';
-                                              }
+              if (strtolower($result_content_module->is_free) != 'no') {
+                echo $CLICSHOPPING_Upgrade->getDef('text_download') . '<a href="' . $link_html . '/archive/master.zip">' . $module_real_name . '</a>';
+              }
 ?>
                                           </p>
 <?php
-              if (!is_null($result_content_module->image) || !empty($result_content_module->image)) {
+              if (!empty($result_content_module->image)) {
                 if ($directory == 'ClicShoppingOfficialModulesV3') {
 ?>
-                                                <p><img
-                                                    src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>"
-                                                    alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+                                          <p><img
+                                              src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>"
+                                              alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
 <?php
                 } else {
 ?>
-                                                <p><img
-                                                    src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>"
-                                                    alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
+                                          <p><img
+                                              src="https://raw.github.com/<?php echo $directory . '/' . $module_real_name; ?>/master/<?php echo $result_content_module->image; ?>"
+                                              alt="<?php echo $module_real_name; ?>" class="img-fluid"></img></p>
 <?php
                 }
               }

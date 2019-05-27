@@ -59,8 +59,10 @@
 
       $core_info = $CLICSHOPPING_Github->getJsonCoreInformation();
 
-      if ($current_version < $core_info->version) {
-        $new_version = true;
+      if ($core_info->version) {
+        if ($current_version < $core_info->version) {
+          $new_version = true;
+        }
       }
 
       if ($new_version === true) {

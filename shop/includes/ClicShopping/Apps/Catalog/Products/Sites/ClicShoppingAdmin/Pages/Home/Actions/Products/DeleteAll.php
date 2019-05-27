@@ -36,7 +36,7 @@
       $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (!is_null($this->selected)) {
+      if (isset($this->selected) && !is_null($this->selected)) {
         foreach ($this->selected as $items) {
           if (isset($items)) {
             $Qcheck = $this->app->db->prepare('select count(*)

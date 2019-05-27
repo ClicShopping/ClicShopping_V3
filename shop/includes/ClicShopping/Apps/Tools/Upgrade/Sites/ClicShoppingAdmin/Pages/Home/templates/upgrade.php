@@ -24,6 +24,12 @@
   $CLICSHOPPING_Github = new Github();
 
   $current_version = CLICSHOPPING::getVersion();
+
+  if (isset($_POST['template_directory'])) {
+    $template_directory = HTML::sanitize($_POST['template_directory']);
+  } else {
+    $template_directory = '';
+  }
 ?>
 <div class="contentBody">
   <div class="row">
@@ -32,24 +38,25 @@
         <div class="row col-md-12">
           <?php echo HTML::form('upgrade', $CLICSHOPPING_Upgrade->link('ModuleInstall'), 'post', null, ['session_id' => true]); ?>
           <div class="col-md-12 form-group row">
-            <div class="col-md-3">
+            <div class="row">
+              <span class="col-md-3">
+                <span
+                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></span>
+                <span
+                  class="col-md-11 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></span>
+              </span>
               <span
-                class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/apps.png', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></span>
+                class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory(), $template_directory); ?></span>
               <span
-                class="col-md-11 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></span>
-            </div>
-
-            <div
-              class="col-md-2"><?php echo HTML::selectMenu('install_module_directory', $CLICSHOPPING_Github->getModuleDirectory(), $_POST['template_directory']); ?></div>
-            <div
-              class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $_POST['template_directory']); ?></div>
-            <div
-              class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
-            <div class="col-md-3 text-md-right">
-              <?php
-                echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
-                echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_temp'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCacheTemp'), 'warning', null, 'sm') . '&nbsp;';
-              ?>
+                class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $template_directory); ?></span>
+              <span
+                class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></span>
+              <span class="col-md-3 text-md-right">
+<?php
+  echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
+  echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_temp'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCacheTemp'), 'warning', null, 'sm') . '&nbsp;';
+?>
+              </span>
             </div>
           </div>
           <div class="row col-md-12">
@@ -57,7 +64,8 @@
               <span class="col-md-4"></span>
               <span
                 class="col-md-4 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
-              <span class="col-md-4"><?php echo HTML::button('text_search', null, null, 'primary'); ?></span>
+              <span
+                class="col-md-4"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('text_search'), null, null, 'primary'); ?></span>
             </div>
           </div>
           </form>
@@ -72,8 +80,8 @@
     <?php
       $core_online_info = $CLICSHOPPING_Github->getJsonCoreInformation();
 
-      if ($current_version < $core_online_info->version) {
-    ?>
+     if (is_array($core_online_info) && ($current_version < $core_online_info->version)) {
+?>
     <div class="row">
       <span class="col-md-12 text-md-right">
 <?php

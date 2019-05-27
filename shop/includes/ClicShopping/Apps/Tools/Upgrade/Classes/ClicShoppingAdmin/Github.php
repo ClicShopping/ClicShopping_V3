@@ -297,7 +297,6 @@
     public function getCheckCacheFile($module_name)
     {
       if (!empty($module_name)) {
-
         $this->getCheckDateCache($module_name);
 
         if (is_file($this->cacheGithub . $module_name)) {
@@ -313,20 +312,24 @@
           $content_json_file = @file_get_contents($this->getGithubRepo() . $filename . '/contents/' . $this->ModuleInfosJson . '/' . $module_name . '?ref=master', true, $this->context);
           $content_download_file = json_decode($content_json_file);
 
-          $file_link = $content_download_file->download_url;
+          if (!empty($content_download_file->download_url)) {
+            $file_link = $content_download_file->download_url;
 
-          $file_json_content = @file_get_contents($file_link, true, $this->context);
+            $file_json_content = @file_get_contents($file_link, true, $this->context);
 
-          if (!empty($file_link)) {
-            $headers = get_headers($file_link, true);
+            if (!empty($file_link)) {
+              $headers = get_headers($file_link, true);
 
-            if (isset($headers['Content-Length'])) {
-              @file_put_contents($this->cacheGithubTemp . '/' . $module_name, $file_json_content);
+              if (isset($headers['Content-Length'])) {
+                @file_put_contents($this->cacheGithubTemp . '/' . $module_name, $file_json_content);
+              }
+
+              $result = false;
+            } else {
+              $result = true;
             }
-
-            $result = false;
           } else {
-            $result = true;
+            $result = false;
           }
         }
 
@@ -347,9 +350,11 @@
       if ($check == 'cacheGithubTemp') {
         $file = @file_get_contents($this->cacheGithubTemp . $module_name, true, $this->context);
         $file = json_decode($file);
-      }
 
-      return $file;
+        return $file;
+      } else {
+        return false;
+      }
     }
 
     /*
@@ -365,11 +370,12 @@
       if ($check == 'cacheGithub') {
         $file = @file_get_contents($this->cacheGithub . $module_name, true, $this->context);
         $file = json_decode($file);
+
+        return $file;
+      } else {
+        return null;
       }
-
-      return $file;
     }
-
 
 //*************************************************************
 // Limit
@@ -621,10 +627,16 @@
 
     public function getDropDownMenuSearchOption()
     {
+      if (isset($_POST['addons_apps'])) {
+        $addons_apps = HTML::sanitize($_POST['addons_apps']);
+      } else {
+        $addons_apps = '';
+      }
+
       $array = array(array('id' => 'official', 'text' => $this->app->getDef('text_official')),
         array('id' => 'community', 'text' => $this->app->getDef('text_community'))
       );
 
-      return HTML::selectMenu('addons_apps', $array, HTML::sanitize($_POST['addons_apps']));
+      return HTML::selectMenu('addons_apps', $array, $addons_apps);
     }
   }
