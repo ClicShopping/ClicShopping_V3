@@ -107,7 +107,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_name'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_name'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_name', $mInfo->suppliers_name, 'required aria-required="true" id="suppliers_name"'); ?>
+                    <?php echo HTML::inputField('suppliers_name', $mInfo->suppliers_name ?? null, 'required aria-required="true" id="suppliers_name"'); ?>
                   </div>
                 </div>
               </div>
@@ -116,7 +116,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_manager'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_manager'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_manager', $mInfo->suppliers_manager); ?>
+                    <?php echo HTML::inputField('suppliers_manager', $mInfo->suppliers_manager ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -128,7 +128,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_phone'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_phone'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_phone', $mInfo->suppliers_phone); ?>
+                    <?php echo HTML::inputField('suppliers_phone', $mInfo->suppliers_phone ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_fax'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_fax'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_fax', $mInfo->suppliers_fax); ?>
+                    <?php echo HTML::inputField('suppliers_fax', $mInfo->suppliers_fax ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -149,7 +149,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_email_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_email_address'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_email_address', $mInfo->suppliers_email_address); ?>
+                    <?php echo HTML::inputField('suppliers_email_address', $mInfo->suppliers_email_address ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -161,7 +161,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_address'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_address', $mInfo->suppliers_address); ?>
+                    <?php echo HTML::inputField('suppliers_address', $mInfo->suppliers_address ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -170,7 +170,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_suburb'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_suburb'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_suburb', $mInfo->suppliers_suburb); ?>
+                    <?php echo HTML::inputField('suppliers_suburb', $mInfo->suppliers_suburb ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -182,7 +182,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_postcode'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_postcode'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_postcode', $mInfo->suppliers_postcode); ?>
+                    <?php echo HTML::inputField('suppliers_postcode', $mInfo->suppliers_postcode ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -191,7 +191,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_city'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_city'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('text_suppliers_city', $mInfo->suppliers_city); ?>
+                    <?php echo HTML::inputField('text_suppliers_city', $mInfo->suppliers_city ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -203,7 +203,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_country'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_country'); ?></label>
                   <div
-                    class="col-md-5"><?php echo HTML::selectMenuCountryList('suppliers_country_id', $mInfo->suppliers_country_id); ?></div>
+                    class="col-md-5"><?php echo HTML::selectMenuCountryList('suppliers_country_id', $mInfo->suppliers_country_id ?? null); ?></div>
                 </div>
               </div>
               <div class="col-md-5">
@@ -211,7 +211,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_states'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_states'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_states', $mInfo->suppliers_states); ?>
+                    <?php echo HTML::inputField('suppliers_states', $mInfo->suppliers_states ?? null); ?>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@
                   <label for="code"
                          class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('suppliers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_SupplierAdmin->getSupplierUrl($mInfo->suppliers_id, $languages[$i]['id'])) ?>
+                    <?php echo HTML::inputField('suppliers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_SupplierAdmin->getSupplierUrl($mInfo->suppliers_id ?? null, $languages[$i]['id'])) ?>
                   </div>
                 </div>
                 <?php

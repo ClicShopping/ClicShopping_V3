@@ -1,3 +1,3 @@
-modulemodule_tx_title = TotalTax
-modulemodule_tx_short_title = TotalTax
-modulemodule_tx_public_title = TotalTax
+module_tx_title = TotalTax
+module_tx_short_title = TotalTax
+module_tx_public_title = TotalTax

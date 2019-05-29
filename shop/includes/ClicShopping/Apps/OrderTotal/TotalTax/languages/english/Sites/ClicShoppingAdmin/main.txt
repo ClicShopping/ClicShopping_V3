@@ -1,11 +1,11 @@
 heading_title = Tax
-modulemodule_tx_title = Configuration
+module_tx_title = Configuration
 
 text_tax =  Tax
 text_configure =  Configure App Tax
 
 text_intro =  This app allow you to include a TAX on the order
-modulemodule_tx_introduction = This app allow you to include a TAX on the order
+module_tx_introduction = This app allow you to include a TAX on the order
 
 button_sort_order = Sort order
 button_install_title = Install
