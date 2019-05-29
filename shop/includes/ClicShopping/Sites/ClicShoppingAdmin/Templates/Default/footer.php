@@ -23,7 +23,7 @@
           <span class="navbar navbar-fixed-bottom navbar-light bg-faded">
             <div class="col-md-12 navbar-collapse text-md-left" id="footer-body">
               <span class="col-md-3 navbar-text">
-                <?php echo 'ClicShopping™ - V. ' . CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date("Y"); ?><br/>
+                <?php echo 'ClicShopping™ - V. ' . CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date('Y'); ?><br/>
                 <small>based on osCommerce™</small>
           </span>
 <?php
@@ -82,10 +82,6 @@
 
 <!-- Tab bootstrap -->
 <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/tab/bootstrap_tab.js'); ?>"></script>
-
-<!-- date picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-<?php include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/datepicker.php'); ?>
 
 <!--fixe footer -->
 <script

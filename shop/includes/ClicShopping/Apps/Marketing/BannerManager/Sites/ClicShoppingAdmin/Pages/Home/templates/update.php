@@ -12,6 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\DateTime;
 
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
@@ -48,8 +49,8 @@
       'banners_target',
       'banners_html_text',
       'status',
-      'date_format(date_scheduled, "%Y/%m/%d") as date_scheduled',
-      'date_format(expires_date, "%Y/%m/%d") as expires_date',
+      'date_scheduled',
+      'expires_date',
       'expires_impressions',
       'date_status_change',
       'customers_group_id',
@@ -85,6 +86,18 @@
       'id' => $Qgroups->value('banners_group'),
       'text' => $Qgroups->value('banners_group')
     ];
+  }
+
+  if (!empty($bInfo->date_scheduled)) {
+    $date_scheduled = DateTime::toShortWithoutFormat($bInfo->date_scheduled);
+  } else {
+    $date_scheduled = '';
+  }
+
+  if (!empty($bInfo->date_scheduled)) {
+    $expires_date = DateTime::toShortWithoutFormat($bInfo->expires_date);
+  } else {
+    $expires_date = '';
   }
 
   // reactions au niveau du clique
@@ -235,7 +248,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_scheduled_at'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_scheduled_at'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('date_scheduled', $bInfo->date_scheduled, 'id="schdate"'); ?>
+                    <?php echo HTML::inputField('date_scheduled', $date_scheduled, null, 'date'); ?>
                   </div>
                   <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
@@ -248,7 +261,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_expires_on'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_expires_on'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('expires_date', $bInfo->expires_date, 'id="expdate"'); ?>
+                    <?php echo HTML::inputField('expires_date', $expires_date, null, 'date'); ?>
                   </div>
                   <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>

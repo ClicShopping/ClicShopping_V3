@@ -91,8 +91,13 @@
       return strftime($pattern, $this->getTimestamp());
     }
 
-
-    public static function toShort($raw_datetime, $with_time = false, $strict = true)
+    /**
+     * @param $raw_datetime
+     * @param bool $with_time
+     * @param bool $strict
+     * @return string
+     */
+    public static function toShort($raw_datetime, $with_time = false, $strict = true) :string
     {
       $result = '';
 
@@ -104,6 +109,31 @@
 
           $result = strftime($pattern, $date->getTimestamp());
         }
+      }
+      return $result;
+    }
+
+    /**
+     * Display short date sql format
+     * @param $raw_datetime
+     * @param bool $with_time
+     * @param bool $strict
+     * @return string
+     */
+    public static function toShortWithoutFormat($raw_datetime, $with_time = false, $strict = true) :string
+    {
+      $result = '';
+
+      if (!empty($raw_datetime)) {
+        $date = new DateTime($raw_datetime, true, $strict);
+
+        if ($date->isValid()) {
+
+          $pattern = ($with_time === false) ? CLICSHOPPING::getDef('date_format_short_sql') : CLICSHOPPING::getDef('date_time_format');
+
+          $result = strftime($pattern, $date->getTimestamp());
+        }
+
       }
       return $result;
     }

@@ -46,7 +46,7 @@
         $firstname = HTML::sanitize($_POST['firstname']);
         $lastname = HTML::sanitize($_POST['lastname']);
 
-        if (ACCOUNT_DOB == 'true') $dob = HTML::sanitize($_POST['dob']);
+        if (ACCOUNT_DOB == 'true') $dob = DateTime::toShortWithoutFormat(HTML::sanitize($_POST['dob']));
 
         $email_address = HTML::sanitize($_POST['email_address']);
         $email_address_confirm = HTML::sanitize($_POST['email_address_confirm']);

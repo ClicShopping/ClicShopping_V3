@@ -242,9 +242,9 @@
           <?php echo HTML::form('login', CLICSHOPPING::link('login.php', 'action=' . $form_action)); ?>
           <div class="modal-body">
             <div class="col-md-12 center-block">
-              <?php
-                if ($form_action == 'create') {
-                  ?>
+<?php
+    if ($form_action == 'create') {
+?>
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
                     <?php echo HTML::inputField('first_name', '', 'placeholder="' . CLICSHOPPING::getDef('text_firstname') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
@@ -255,9 +255,9 @@
                     <?php echo HTML::inputField('name', '', 'placeholder="' . CLICSHOPPING::getDef('text_name') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>
                   </div>
                   <div class="separator"></div>
-                  <?php
-                }
-              ?>
+<?php
+    }
+?>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"></span>
                 <?php echo HTML::inputField('username', '', 'placeholder="' . CLICSHOPPING::getDef('text_username') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>

@@ -12,6 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\DateTime;
 
   use ClicShopping\Apps\Communication\PageManager\Classes\ClicShoppingAdmin\PageManagerAdmin;
 
@@ -48,6 +49,8 @@
   }
 
   $bID = null;
+  $page_date_start = '';
+  $page_date_closed = '';
 
   if (isset($_GET['bID'])) {
     $bID = HTML::sanitize($_GET['bID']);
@@ -63,8 +66,8 @@
                                                             p.externallink,
                                                             s.page_time,
                                                             p.language_id,
-                                                            date_format(s.page_date_start, "%d/%m/%Y") as page_date_start,
-                                                            date_format(s.page_date_closed, "%d/%m/%Y") as page_date_closed,
+                                                            s.page_date_start,
+                                                            s.page_date_closed,
                                                             s.page_general_condition,
                                                             p.page_manager_head_title_tag,
                                                             p.page_manager_head_keywords_tag,
@@ -84,8 +87,19 @@
       $page_box = $Qpage->value('page_box');
       $sort_order = $Qpage->valueInt('sort_order');
       $page_time = $Qpage->value('page_time');
-      $page_date_start = $Qpage->value('page_date_start');
-      $page_date_closed = $Qpage->value('page_date_closed');
+
+      if (!empty($Qpage->value('page_date_start'))) {
+        $page_date_start = DateTime::toShortWithoutFormat($Qpage->value('page_date_start'));
+      } else {
+        $page_date_start = '';
+      }
+
+      if (!empty($Qpage->value('page_date_closed'))) {
+        $page_date_closed = DateTime::toShortWithoutFormat($Qpage->value('page_date_closed'));
+      } else {
+        $page_date_closed = '';
+      }
+
       $page_general_condition = $Qpage->value('page_general_condition');
 
       $pagetitle[$languageid] = $Qpage->value('pages_title');
@@ -276,21 +290,21 @@
   </div>
   <div class="separator"></div>
 
-  <?php
-    if ($page_error === true) {
-      ?>
+<?php
+  if ($page_error === true) {
+?>
 
       <div class="alert alert-danger" role="alert">
         <span><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/warning.gif', $CLICSHOPPING_PageManager->getDef('icon_warning')); ?></span>
         <span><?php echo $CLICSHOPPING_PageManager->getDef('warning_edit_customers'); ?></span>
       </div>
-      <?php
-    }
-  ?>
+<?php
+  }
+?>
   <div id="pageManagerTabs" style="overflow: auto;">
-    <?php
-      if ($page_type == 4) {
-        ?>
+<?php
+  if ($page_type == 4) {
+?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
             class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
@@ -301,9 +315,9 @@
           <li
             class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_meta_tag'); ?></a></li>
         </ul>
-        <?php
-      } elseif ($page_type == 3) {
-        ?>
+<?php
+  } elseif ($page_type == 3) {
+?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
             class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
@@ -312,27 +326,27 @@
           <li
             class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_meta_tag'); ?></a></li>
         </ul>
-        <?php
-      } elseif ($page_type == 5 || $page_type == 6) {
-        ?>
+<?php
+  } elseif ($page_type == 5 || $page_type == 6) {
+?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
             class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
           <li
             class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_link'); ?></a></li>
         </ul>
-        <?php
-      } else {
-        ?>
+<?php
+  } else {
+?>
         <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
           <li
             class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_PageManager->getDef('tab_general') . '</a>'; ?></li>
           <li
             class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_PageManager->getDef('tab_page_description'); ?></a></li>
         </ul>
-        <?php
-      }
-    ?>
+<?php
+  }
+?>
     <div class="tabsClicShopping">
       <div class="tab-content">
         <!-- ############################################################ //-->
@@ -341,11 +355,11 @@
         <div class="tab-pane active" id="tab1">
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_name_page'); ?></div>
           <div class="adminformTitle">
-            <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                if ($page_error === true) {
-                  if ($languages_title_error == $languages[$i]['id']) {
-                    ?>
+<?php
+  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+    if ($page_error === true) {
+      if ($languages_title_error == $languages[$i]['id']) {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
@@ -358,9 +372,9 @@
                         </div>
                       </div>
                     </div>
-                    <?php
-                  } else {
-                    ?>
+<?php
+  } else {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
@@ -372,10 +386,10 @@
                         </div>
                       </div>
                     </div>
-                    <?php
-                  }
-                } else {
-                  ?>
+<?php
+    }
+  } else {
+?>
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group row">
@@ -387,10 +401,10 @@
                       </div>
                     </div>
                   </div>
-                  <?php
-                }
-              }
-            ?>
+<?php
+    }
+  }
+?>
           </div>
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_pages_type'); ?></div>
@@ -408,11 +422,11 @@
               </div>
             </div>
           </div>
-          <?php
-            echo $CLICSHOPPING_Hooks->output('PageManager', 'CustomerGroup', null, 'display');
+<?php
+  echo $CLICSHOPPING_Hooks->output('PageManager', 'CustomerGroup', null, 'display');
 
-            if ($page_type == 4 || $page_type == 3) {
-              ?>
+  if ($page_type == 4 || $page_type == 3) {
+?>
               <div class="separator"></div>
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_box'); ?></div>
               <div class="adminformTitle">
@@ -428,12 +442,12 @@
                   </div>
                 </div>
               </div>
-              <?php
-            }
+<?php
+  }
 
-            if ($page_type == 4) {
-              if (empty($page_general_condition)) $page_general_condition = 0;
-              ?>
+  if ($page_type == 4) {
+    if (empty($page_general_condition)) $page_general_condition = 0;
+?>
               <div class="separator"></div>
               <div
                 class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_general_conditions'); ?></div>
@@ -450,9 +464,9 @@
                   </div>
                 </div>
               </div>
-              <?php
-            }
-          ?>
+<?php
+    }
+?>
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_pages_date'); ?></div>
           <div class="adminformTitle">
@@ -462,7 +476,7 @@
                   <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_pages_date_start'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_date_start'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('page_date_start', $page_date_start ?? '', 'id="schdate"'); ?>
+                    <?php echo HTML::inputField('page_date_start', $page_date_start, null, 'date'); ?>
                   </div>
                   <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
@@ -474,7 +488,7 @@
                   <label for="<?php echo $CLICSHOPPING_PageManager->getDef('text_pages_date_closed'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_date_closed'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('page_date_closed', $page_date_closed ?? '', 'id="expdate"'); ?>
+                    <?php echo HTML::inputField('page_date_closed', $page_date_closed, null, 'date'); ?>
                   </div>
                   <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
@@ -485,9 +499,9 @@
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_divers'); ?></div>
           <div class="adminformTitle">
-            <?php
-              if ($page_type == 1) {
-                ?>
+<?php
+  if ($page_type == 1) {
+?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -499,9 +513,9 @@
                     </div>
                   </div>
                 </div>
-                <?php
-              }
-            ?>
+<?php
+  }
+?>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -513,36 +527,36 @@
                 </div>
               </div>
             </div>
-            <?php
-              if ($page_type == 1) {
-                ?>
+<?php
+  if ($page_type == 1) {
+?>
                 <div class="separator"></div>
                 <div class="alert alert-info" role="alert">
                   <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_PageManager->getDef('title_help_page_manager')) . ' ' . $CLICSHOPPING_PageManager->getDef('title_help_page_manager') ?></div>
                   <div class="separator"></div>
                   <div><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_type_information'); ?></div>
                 </div>
-                <?php
-              }
-            ?>
+<?php
+  }
+?>
           </div>
         </div>
-        <!-- ############################################################ //-->
-        <!--               ONGLET Type de lien sur la page		          //-->
-        <!-- ############################################################ //-->
+<!-- ############################################################ //-->
+<!--               ONGLET Type de lien sur la page		          //-->
+<!-- ############################################################ //-->
 
-        <?php
-          if ($page_type == 4 || $page_type == 5 || $page_type == 6) {
-            if ($page_type == 6 || $page_type == 5) {
-              echo HTML::hiddenField('page_box', 3);
-            }
-            ?>
+<?php
+  if ($page_type == 4 || $page_type == 5 || $page_type == 6) {
+    if ($page_type == 6 || $page_type == 5) {
+      echo HTML::hiddenField('page_box', 3);
+    }
+?>
             <div class="tab-pane" id="tab2">
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_link'); ?></div>
               <div class="adminformTitle">
-                <?php
-                  for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                    ?>
+<?php
+  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
@@ -554,10 +568,9 @@
                         </div>
                       </div>
                     </div>
-
-                    <?php
-                  }
-                ?>
+<?php
+  }
+?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -571,25 +584,24 @@
                 </div>
               </div>
             </div>
-            <?php
-          }
-        ?>
-        <!-- //################################################################################################################ -->
-        <!--               ONGLET Information description		          //-->
-        <!-- //################################################################################################################ -->
+<?php
+  }
+?>
+<!-- //################################################################################################################ -->
+<!--               ONGLET Information description		          //-->
+<!-- //################################################################################################################ -->
         <div class="tab-pane" id="tab3">
           <div
             class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_information_description'); ?></div>
           <div class="adminformTitle">
-            <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
-
-                if (isset($pages_html_text[$languages[$i]['id']])) {
-                  $text_description = $pages_html_text[$languages[$i]['id']];
-                } else {
-                  $text_description = null;
-                }
-                ?>
+<?php
+  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+    if (isset($pages_html_text[$languages[$i]['id']])) {
+      $text_description = $pages_html_text[$languages[$i]['id']];
+    } else {
+      $text_description = null;
+    }
+?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -601,9 +613,9 @@
                     </div>
                   </div>
                 </div>
-                <?php
-              }
-            ?>
+<?php
+  }
+?>
           </div>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
@@ -635,12 +647,12 @@
             </div>
           </div>
         </div>
-        <!-- //################################################################################################################ -->
-        <!--               ONGLET Information seo		          //-->
-        <!-- //################################################################################################################ -->
-        <?php
-          if ($page_type == 1 || $page_type == 3 || $page_type == 4) {
-            ?>
+<!-- //################################################################################################################ -->
+<!--               ONGLET Information seo		          //-->
+<!-- //################################################################################################################ -->
+<?php
+  if ($page_type == 1 || $page_type == 3 || $page_type == 4) {
+?>
             <div class="tab-pane" id="tab4">
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_products_page_seo'); ?></div>
               <div class="adminformTitle">
@@ -693,18 +705,18 @@
                   });
               </script>
               <div class="adminformTitle">
-                <?php
-                  for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                    if (isset($bID)) {
-                      $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
-                      $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);
-                      $keywords_tag = PageManagerAdmin::getPageManagerHeadKeywordsTag($bID, $languages[$i]['id']);
-                    } else {
-                      $title_tag = null;
-                      $descrition_tag = null;
-                      $keywords_tag = null;
-                    }
-                    ?>
+<?php
+    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      if (isset($bID)) {
+        $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
+        $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);
+        $keywords_tag = PageManagerAdmin::getPageManagerHeadKeywordsTag($bID, $languages[$i]['id']);
+      } else {
+        $title_tag = null;
+        $descrition_tag = null;
+        $keywords_tag = null;
+      }
+?>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group row">
@@ -742,9 +754,9 @@
                         </div>
                       </div>
                     </div>
-                    <?php
-                  }
-                ?>
+<?php
+    }
+?>
               </div>
               <div class="separator"></div>
               <div class="alert alert-info" role="alert">
@@ -753,17 +765,17 @@
                 <div><?php echo $CLICSHOPPING_PageManager->getDef('help_submit'); ?></div>
               </div>
             </div>
-            <?php
-          }
-        ?>
+<?php
+  }
+?>
       </div>
       <div class="separator"></div>
-      <?php
-        //***********************************
-        // extension
-        //***********************************
-        echo $CLICSHOPPING_Hooks->output('PageManager', 'PageTab', null, 'display');
-      ?>
+<?php
+  //***********************************
+  // extension
+  //***********************************
+  echo $CLICSHOPPING_Hooks->output('PageManager', 'PageTab', null, 'display');
+?>
     </div>
   </div>
 </div>

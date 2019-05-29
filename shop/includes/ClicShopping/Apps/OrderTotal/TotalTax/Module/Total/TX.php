@@ -75,6 +75,8 @@
         //If we get only one tax result, we assume we are handling only GST or HST (same scenario)
         // take also the shipping taxe
 
+        $compound_tax = false;
+
         $QtaxPriority = $CLICSHOPPING_Db->prepare('select tax_priority
                                            from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
                                                                     left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
@@ -101,6 +103,8 @@
         $Qtax->execute();
 
         if ($QtaxPriority->fetch() !== false) {
+
+          $hst_total = 0;
 
           if ($QtaxPriority->rowCount() == 2) { //Show taxes on two lines
             $i = 0;
@@ -138,7 +142,7 @@
               $subtotal = $CLICSHOPPING_Order->info['subtotal'] + $CLICSHOPPING_Order->info['shipping_cost'];
 
 // Si l'ordre d'affichage du shipping < sort order on additionne les frais d'envoi au sous total
-              if (MODULE_ORDER_TOTAL_SHIPPING_SORT_ORDER < MODULE_ORDER_TOTAL_TAX_SORT_ORDER) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
+              if (defined(CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER) && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER)) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
 
               $gst_total = round($subtotal * $gst_rate, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
               $pst_total = ($subtotal + $gst_total) * $pst_rate;
@@ -171,7 +175,7 @@
               $subtotal = $CLICSHOPPING_Order->info['subtotal'];
 
 // Si l'ordre d'affichage du shipping < sort order on additionne les frais d'envoi au sous total
-              if (MODULE_ORDER_TOTAL_SHIPPING_SORT_ORDER < MODULE_ORDER_TOTAL_TAX_SORT_ORDER) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
+              if (defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && (CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER)) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
 
               $gst_total = round($subtotal * $gst_rate, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
               $pst_total = $subtotal * $pst_rate;
@@ -191,18 +195,14 @@
 // Only one taxe
 // -----------------------------
 //
-
           } elseif ($QtaxPriority->rowCount() == 1) { //Only GST or HST applies
-
             while ($Qtax->fetch()) {
-
               $subtotal = $CLICSHOPPING_Order->info['subtotal'];
 
 // Si l'ordre d'affichage du shipping < sort order on additionne les frais d'envoi au sous total
-              if (MODULE_ORDER_TOTAL_SHIPPING_SORT_ORDER < MODULE_ORDER_TOTAL_TAX_SORT_ORDER) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
+              if (defined('CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER') && CLICSHOPPING_APP_ORDER_TOTAL_SHIPPING_SH_SORT_ORDER < CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_SORT_ORDER) $subtotal += $CLICSHOPPING_Order->info['shipping_cost'];
 
               $hst_total = $subtotal * ($Qtax->valueDecimal('tax_rate') / 100);
-
 
               foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
                 if ($value > 0) {

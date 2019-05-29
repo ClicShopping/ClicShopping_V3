@@ -288,7 +288,7 @@
         ];
 
         if (!is_null($customers_dob)) {
-          $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob); //@todo
+          $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob);
         } else {
           $sql_data_array['customers_dob'] = null;
         }

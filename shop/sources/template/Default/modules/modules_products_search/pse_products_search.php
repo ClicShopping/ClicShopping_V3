@@ -158,8 +158,6 @@
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
               $_POST['products_id'] = $products_id;
-
-              $in_stock = $Qlisting->valueInt('in_stock');
 //rewriting
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
@@ -285,7 +283,7 @@
 
               if (is_file($filename)) {
                 ob_start();
-                require_once($filename);
+                require($filename);
                 $new_prods_content .= ob_get_clean();
               } else {
                 echo CLICSHOPPING::getDef('template_does_not_exist') . '<br /> ' . $filename;

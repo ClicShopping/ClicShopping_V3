@@ -513,7 +513,7 @@
               </div>
               <?php
                 if ($pInfo->products_date_available != '') {
-                  $products_date_available = DateTime::toShort($pInfo->products_date_available);
+                  $products_date_available = DateTime::toShortWithoutFormat($pInfo->products_date_available);
                 } else {
                   $products_date_available = $pInfo->products_date_available;
                 }
@@ -523,7 +523,7 @@
                   <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_date_available'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_date_available'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('products_date_available', $products_date_available, 'id="products_date_available"'); ?>
+                    <?php echo HTML::inputField('products_date_available', $products_date_available, null, 'date'); ?>
                   </div>
                   <div class="input-group-addon"><span class="fas fa-calendar"></span></div>
                 </div>

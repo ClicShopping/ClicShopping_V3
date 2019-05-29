@@ -211,28 +211,28 @@
         <div><?php echo $CLICSHOPPING_Categories->getDef('title_help_description'); ?></div>
         <div class="separator"></div>
         <div class="row">
-                <span class="col-md-12">
-                 <?php echo $CLICSHOPPING_Categories->getDef('help_options'); ?>
-                  <blockquote><i><a data-toggle="modal"
-                                    data-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_Categories->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
-                 <div class="modal fade" id="myModalWysiwyg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"><span
-                             aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title"
-                             id="myModalLabel"><?php echo $CLICSHOPPING_Categories->getDef('text_help_wysiwyg'); ?></h4>
-                       </div>
-                       <div class="modal-body text-md-center">
-                         <img class="img-fluid"
-                              src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
-                       </div>
-                     </div>
-                   </div>
+          <span class="col-md-12">
+           <?php echo $CLICSHOPPING_Categories->getDef('help_options'); ?>
+            <blockquote><i><a data-toggle="modal"
+                              data-target="#myModalWysiwyg2"><?php echo $CLICSHOPPING_Categories->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
+           <div class="modal fade" id="myModalWysiwyg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+             <div class="modal-dialog">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"><span
+                       aria-hidden="true">&times;</span></button>
+                   <h4 class="modal-title"
+                       id="myModalLabel"><?php echo $CLICSHOPPING_Categories->getDef('text_help_wysiwyg'); ?></h4>
                  </div>
-                </span>
+                 <div class="modal-body text-md-center">
+                   <img class="img-fluid"
+                        src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
+                 </div>
+               </div>
+             </div>
+           </div>
+          </span>
         </div>
       </div>
     </div>

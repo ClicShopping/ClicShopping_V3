@@ -58,7 +58,7 @@
         }
         if (isset($_POST['street_address'])) $street_address = HTML::sanitize($_POST['street_address']);
 
-        if (isset($_POST['dob']) && ACCOUNT_DOB_PRO == 'true') $dob = HTML::sanitize($_POST['dob']);
+        if (isset($_POST['dob']) && ACCOUNT_DOB_PRO == 'true') $dob = DateTime::toShortWithoutFormat(HTML::sanitize($_POST['dob']));
         if (isset($_POST['gender']) && ACCOUNT_GENDER_PRO == 'true') $gender = HTML::sanitize($_POST['gender']);
         if (isset($_POST['company']) && ACCOUNT_COMPANY_PRO == 'true') $company = HTML::sanitize($_POST['company']);
         if (isset($_POST['siret']) && ACCOUNT_SIRET_PRO == 'true') $siret = HTML::sanitize($_POST['siret']);

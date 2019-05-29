@@ -42,13 +42,6 @@
     if (isset($_GET['Account'] ) && isset($_GET['Create']) && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH;
 
-      $header_tag ='<link rel="stylesheet" type="text/css" href="ext/javascript/datepicker/less/datepicker.less">';
-      $CLICSHOPPING_Template->addBlock($header_tag, $this->group);
-
-      $footer_tag ='<script src="ext/javascript/datepicker/js/bootstrap-datepicker.js"></script>';
-      $footer_tag .='<script src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/Shop/datepicker.js')) . '"></script>';
-      $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
-
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
       $form =  HTML::form('create_account', CLICSHOPPING::link(null, 'Account&Create&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);

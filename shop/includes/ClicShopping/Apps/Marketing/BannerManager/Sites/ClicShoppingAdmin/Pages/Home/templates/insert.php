@@ -23,22 +23,6 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-  $parameters = ['expires_date' => '',
-    'date_scheduled' => '',
-    'banners_title' => '',
-    'banners_url' => '',
-    'banners_group' => '',
-    'banners_target' => '',
-    'banners_image' => '',
-    'banners_html_text' => '',
-    'expires_impressions' => '',
-    'banners_title_admin' => ''
-  ];
-
-  $bInfo = new ObjectInfo($parameters);
-
-  $bInfo->ObjectInfo($_POST);
-
   $languages = $CLICSHOPPING_Language->getLanguages();
 
   $values_languages_id[0] = ['id' => '0',
@@ -115,7 +99,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_title'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_title'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('banners_title', $bInfo->banners_title, 'required aria-required="true" placeholder="' . $CLICSHOPPING_BannerManager->getDef('text_banners_title') . '"'); ?>
+                    <?php echo HTML::inputField('banners_title', null, 'required aria-required="true" placeholder="' . $CLICSHOPPING_BannerManager->getDef('text_banners_title') . '"'); ?>
                   </div>
                 </div>
               </div>
@@ -127,7 +111,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_title_admin'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_title_admin'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('banners_title_admin', $bInfo->banners_title_admin, 'required aria-required="true" placeholder="' . $CLICSHOPPING_BannerManager->getDef('text_banners_title') . '"'); ?>
+                    <?php echo HTML::inputField('banners_title_admin', null, 'required aria-required="true" placeholder="' . $CLICSHOPPING_BannerManager->getDef('text_banners_title') . '"'); ?>
                   </div>
                 </div>
               </div>
@@ -139,7 +123,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_url'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_url'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('banners_url', $bInfo->banners_url); ?>
+                    <?php echo HTML::inputField('banners_url'); ?>
                   </div>
                 </div>
               </div>
@@ -151,7 +135,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_target'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_target'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::selectMenu('banners_target', $banners_target_array, $bInfo->banners_target); ?>
+                    <?php echo HTML::selectMenu('banners_target', $banners_target_array, null); ?>
                   </div>
                 </div>
               </div>
@@ -169,7 +153,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_language'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_language'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::selectMenu('languages_id', $values_languages_id, $bInfo->languages_id); ?>
+                    <?php echo HTML::selectMenu('languages_id', $values_languages_id); ?>
                   </div>
                 </div>
               </div>
@@ -181,7 +165,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_group'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_group'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::selectMenu('banners_group', $groups_array, $bInfo->banners_group); ?>
+                    <?php echo HTML::selectMenu('banners_group', $groups_array); ?>
                   </div>
                 </div>
               </div>
@@ -209,7 +193,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_scheduled_at'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_scheduled_at'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('date_scheduled', $bInfo->date_scheduled, 'id="schdate"'); ?>
+                    <?php echo HTML::inputField('date_scheduled', null, null, 'date'); ?>
                   </div>
                   <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
@@ -222,7 +206,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_expires_on'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_expires_on'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('expires_date', $bInfo->expires_date, 'id="expdate"'); ?>
+                    <?php echo HTML::inputField('expires_date', null, null, 'date'); ?>
                   </div>
                   <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                 </div>
@@ -235,7 +219,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_impressions'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_or_at') . ' ' . $CLICSHOPPING_BannerManager->getDef('text_banners_impressions'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('expires_impressions', $bInfo->expires_impressions, 'maxlength="7" size="7"'); ?>
+                    <?php echo HTML::inputField('expires_impressions', null, 'maxlength="7" size="7"'); ?>
                   </div>
                 </div>
               </div>
@@ -273,7 +257,7 @@
                       class="col-md-4 text-md-center float-md-left"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('banners_image_local', null, '300', '300'); ?></span>
                     <span class="col-md-8 text-md-center float-md-right">
                       <div class="col-md-12">
-                        <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($bInfo->banners_image, $CLICSHOPPING_BannerManager->getDef('text_banners_image')) . HTML::hiddenField('banners_image_show', $bInfo->banners_image); ?>
+                        <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage(null, $CLICSHOPPING_BannerManager->getDef('text_banners_image')) . HTML::hiddenField('banners_image_show'); ?>
                        </div>
                       <div class="col-md-12 text-md-right">
                         <?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_image_delete') . HTML::checkboxField('delete_image', 'yes', false); ?>
@@ -303,7 +287,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_html_text'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_html_text'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::textAreaField('banners_html_text', $bInfo->banners_html_text, '150', '5'); ?>
+                    <?php echo HTML::textAreaField('banners_html_text', null, '150', '5'); ?>
                   </div>
                 </div>
               </div>

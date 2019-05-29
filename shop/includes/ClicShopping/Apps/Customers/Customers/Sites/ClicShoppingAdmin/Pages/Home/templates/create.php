@@ -138,7 +138,7 @@
                           echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
                         }
                       } else {
-                        echo HTML::inputField('customers_dob', null, 'minlength="' . ENTRY_DOB_MIN_LENGTH . '" id="customers_dob" required aria-required="true"');
+                        echo HTML::inputField('customers_dob', null, 'minlength="' . ENTRY_DOB_MIN_LENGTH . '"', 'date');
                       }
                     ?>
                     <span class="input-group-addon"><span class="fas fa-calendar"></span></span>

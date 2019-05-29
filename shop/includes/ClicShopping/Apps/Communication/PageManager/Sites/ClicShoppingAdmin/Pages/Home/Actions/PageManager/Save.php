@@ -105,20 +105,14 @@
         }
 
         if (!empty($page_date_start)) {
-
-          $page_date_start = substr($page_date_start, 0, 4) . substr($page_date_start, 5, 2) . substr($page_date_start, 8, 2);
-
           $sql_array = ['page_date_start' => $page_date_start];
           $CLICSHOPPING_PageManager->db->save('pages_manager', $sql_array, ['pages_id' => (int)$pages_id]);
-
         } else {
           $sql_array = ['page_date_start' => null];
           $CLICSHOPPING_PageManager->db->save('pages_manager', $sql_array, ['pages_id' => (int)$pages_id]);
         }
 
         if (!empty($page_date_closed)) {
-          $page_date_closed = substr($page_date_closed, 0, 4) . substr($page_date_closed, 5, 2) . substr($page_date_closed, 8, 2);
-
           $sql_array = ['page_date_closed' => $page_date_closed];
           $CLICSHOPPING_PageManager->db->save('pages_manager', $sql_array, ['pages_id' => (int)$pages_id]);
         } else {

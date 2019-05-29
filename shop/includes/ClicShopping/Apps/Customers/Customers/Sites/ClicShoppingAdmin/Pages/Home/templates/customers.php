@@ -48,22 +48,22 @@
             </div>
           </div>
           <div class="col-md-2 text-md-right">
-            <?php
-              if (isset($_POST['search']) && !is_null($_POST['search'])) {
-                echo HTML::button($CLICSHOPPING_Customers->getDef('button_reset'), null, $CLICSHOPPING_Customers->link('Customers&page=' . $page), 'warning');
-              }
-            ?>
+<?php
+  if (isset($_POST['search']) && !is_null($_POST['search'])) {
+    echo HTML::button($CLICSHOPPING_Customers->getDef('button_reset'), null, $CLICSHOPPING_Customers->link('Customers&page=' . $page), 'warning');
+  }
+?>
           </div>
           </form>
 
           <div class="col-md-3 text-md-right">
-            <?php
-              if ((MODE_B2B_B2C == 'true')) {
-                echo HTML::button($CLICSHOPPING_Customers->getDef('button_create_account'), null, $CLICSHOPPING_Customers->link('Create'), 'success');
-              }
+<?php
+  if ((MODE_B2B_B2C == 'true')) {
+    echo HTML::button($CLICSHOPPING_Customers->getDef('button_create_account'), null, $CLICSHOPPING_Customers->link('Create'), 'success');
+  }
 
-              echo HTML::form('delete_all', $CLICSHOPPING_Customers->link('Customers&DeleteAll&page=' . $page));
-            ?>
+  echo HTML::form('delete_all', $CLICSHOPPING_Customers->link('Customers&DeleteAll&page=' . $page));
+?>
             <a onclick="$('delete').prop('action', ''); $('form').submit();"
                class="button"><?php echo HTML::button($CLICSHOPPING_Customers->getDef('button_delete'), null, null, 'danger'); ?></a>&nbsp;
           </div>

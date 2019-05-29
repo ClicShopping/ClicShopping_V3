@@ -1,5 +1,6 @@
 
 date_format_short = %m/%d/%Y
+date_format_short_sql = %Y-%m-%d
 date_format_long = %A %d %B, %Y
 date_format = m/d/Y
 php_date_time_format = m/d/Y H:i:s
@@ -46,7 +47,7 @@ box_taxes_countries = Countries
 box_taxes_geo_zones = Tax Zones
 box_localization_currencies = Currencies
 box_localization_languages = Languages
-box_newsletter = Bulletin d'information
+box_newsletter = Newsletter
 box_heading_help = Support
 
 
@@ -455,6 +456,7 @@ visitor_name = Normal customer
 
 text_error_upload_file = Error : file upload failed
 
+text_number_support = Order support
 text_number_of_item = Item number
 text_success_import = Success Import
 button_continue = Continue

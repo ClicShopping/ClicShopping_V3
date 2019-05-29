@@ -27,10 +27,20 @@
 
       $products_id = HTML::sanitize($_POST['products_id']);
       $specials_price = HTML::sanitize($_POST['specials_price']);
-      $expdate = HTML::sanitize($_POST['expdate']);
-      $schdate = HTML::sanitize($_POST['schdate']);
 
-      if (HTML::sanitize($_POST['flash_discount']) == 1) {
+      if (!empty($_POST['expdate'])) {
+        $expdate = HTML::sanitize($_POST['expdate']);
+      } else {
+        $expdate = null;
+      }
+
+      if (!empty($_POST['schdate'])) {
+        $schdate = HTML::sanitize($_POST['schdate']);
+      } else {
+        $schdate = null;
+      }
+
+      if (isset($_POST['flash_discount'])) {
         $flash_discount = 1;
       } else {
         $flash_discount = 0;
@@ -44,21 +54,11 @@
         $specials_price = $products_price - $discount;
       }
 
-      $expires_date = '';
-      if (!empty($expdate)) {
-        $expires_date = substr($expdate, 0, 4) . substr($expdate, 5, 2) . substr($expdate, 8, 2);
-      }
-
-      $scheduled_date = '';
-      if (!empty($schdate)) {
-        $schedule_date = substr($schdate, 0, 4) . substr($schdate, 5, 2) . substr($schdate, 8, 2);
-      }
-
-      $CLICSHOPPING_Specials->db->save('specials', ['products_id' => (int)$products_id,
+       $CLICSHOPPING_Specials->db->save('specials', ['products_id' => (int)$products_id,
           'specials_new_products_price' => (float)$specials_price,
           'specials_date_added' => 'now()',
-          'scheduled_date' => !empty($schedule_date) ? $schedule_date : 'null',
-          'expires_date' => !empty($expires_date) ? $expires_date : 'null',
+          'scheduled_date' => $schdate,
+          'expires_date' => $expdate,
           'status' => 1,
           'flash_discount' => (int)$flash_discount
         ]

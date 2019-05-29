@@ -197,9 +197,9 @@
     </div>
   </div>
   <div class="separator"></div>
-  <?php
+<?php
     if ($error === true) {
-      ?>
+?>
       <table border="0" width="100%" cellspacing="3" cellpadding="0" class="messageStackError">
         <tr>
           <td class="messageStackError" height="20" colspan="2">
@@ -219,9 +219,9 @@
         </tr>
       </table>
       <div class="row">&nbsp;</div>
-      <?php
+<?php
     }
-  ?>
+?>
   <!-- //################################################################################################################ -->
   <!--          ONGLET NOM & ADRESSE          //-->
   <!-- //################################################################################################################ -->
@@ -245,51 +245,51 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('category_personal'); ?></div>
           <div class="adminformTitle">
 
-            <?php
-              if (ACCOUNT_GENDER == 'true') {
-                ?>
+<?php
+  if (ACCOUNT_GENDER == 'true') {
+?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_gender'); ?></label>
                       <div class="col-md-5">
-                        <?php
-                          if ($error === true) {
-                            if ($entry_gender_error === true) {
-                              echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_gender_error');
-                            } else {
-                              echo ($cInfo->customers_gender == 'm') ? $CLICSHOPPING_Customers->getDef('male') : $CLICSHOPPING_Customers->getDef('female');
-                              echo HTML::hiddenField('customers_gender');
-                            }
-                          } else {
-                            echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
-                          }
-                        ?>
+<?php
+    if ($error === true) {
+      if ($entry_gender_error === true) {
+        echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_gender_error');
+      } else {
+        echo ($cInfo->customers_gender == 'm') ? $CLICSHOPPING_Customers->getDef('male') : $CLICSHOPPING_Customers->getDef('female');
+        echo HTML::hiddenField('customers_gender');
+      }
+    } else {
+      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
+    }
+?>
                       </div>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
-            ?>
+<?php
+  }
+?>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_first_name'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_first_name'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_firstname_error === true) {
-                          echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]);
-                        } else {
-                          echo $cInfo->customers_firstname . HTML::hiddenField('customers_firstname');
-                        }
-                      } else {
-                        echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '"', true);
-                      }
-                    ?>
+<?php
+  if ($error === true) {
+    if ($entry_firstname_error === true) {
+      echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]);
+    } else {
+      echo $cInfo->customers_firstname . HTML::hiddenField('customers_firstname');
+    }
+  } else {
+    echo HTML::inputField('customers_firstname', $cInfo->customers_firstname, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '"', true);
+  }
+?>
                   </div>
                 </div>
               </div>
@@ -298,17 +298,17 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_last_name'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_last_name'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_lastname_error === true) {
-                          echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]);
-                        } else {
-                          echo $cInfo->customers_lastname . HTML::hiddenField('customers_lastname');
-                        }
-                      } else {
-                        echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '"', true);
-                      }
-                    ?>
+<?php
+  if ($error === true) {
+    if ($entry_lastname_error === true) {
+      echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]);
+    } else {
+      echo $cInfo->customers_lastname . HTML::hiddenField('customers_lastname');
+    }
+  } else {
+    echo HTML::inputField('customers_lastname', $cInfo->customers_lastname, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '"', true);
+  }
+?>
                   </div>
                 </div>
               </div>
@@ -319,28 +319,25 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_date_of_birth'); ?></label>
                   <div class="col-md-5 input-group">
-                    <?php
-                      if (!empty($cInfo->customers_dob)) {
-                        $date_dob = DateTime::toShort($cInfo->customers_dob);
-                      } else {
-                        $date_dob = $cInfo->customers_dob;
-                      }
+<?php
+  if (!empty($cInfo->customers_dob)) {
+    $date_dob = DateTime::toShortWithoutFormat($cInfo->customers_dob);
+  } else {
+    $date_dob = $cInfo->customers_dob;
+  }
 
-                      if ($error === true) {
-                        if ($entry_date_of_birth_error === true) {
-                          if (!empty($date_dob)) {
-                            echo HTML::inputField('customers_dob', $date_dob, 'id="customers_dob" maxlength="10" style="border: 2px solid #FF0000" required aria-required="true"', 'date') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
-                          }
-                        } else {
-                          echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
-                        }
-                      } else {
-                        if (!empty($date_dob)) {
-                          echo HTML::inputField('customers_dob', $date_dob, 'id="customers_dob" required aria-required="true"');
-                        }
-                      }
-                    ?>
-
+  if ($error === true) {
+    if ($entry_date_of_birth_error === true) {
+      if (!empty($date_dob)) {
+        echo HTML::inputField('customers_dob', $date_dob, 'maxlength="10" style="border: 2px solid #FF0000" required aria-required="true"', 'date') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_date_of_birth_error');
+      }
+    } else {
+      echo $cInfo->customers_dob . HTML::hiddenField('customers_dob');
+    }
+  } else {
+     echo HTML::inputField('customers_dob', $date_dob, null, 'date');
+  }
+?>
                     <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                   </div>
                 </div>
@@ -351,21 +348,21 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_email_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_email_address'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_email_address_error === true) {
-                          echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_email_address_error', ['min_length' => ENTRY_EMAIL_ADDRESS_MIN_LENGTH]);
-                        } elseif ($entry_email_address_check_error === true) {
-                          echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_email_address_check_error');
-                        } elseif ($entry_email_address_exists === true) {
-                          echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_email_address_error_exists');
-                        } else {
-                          echo $customers_email_address . HTML::hiddenField('customers_email_address');
-                        }
-                      } else {
-                        echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', true);
-                      }
-                    ?>
+<?php
+  if ($error === true) {
+    if ($entry_email_address_error === true) {
+      echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_email_address_error', ['min_length' => ENTRY_EMAIL_ADDRESS_MIN_LENGTH]);
+    } elseif ($entry_email_address_check_error === true) {
+      echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_email_address_check_error');
+    } elseif ($entry_email_address_exists === true) {
+      echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_email_address_error_exists');
+    } else {
+      echo $customers_email_address . HTML::hiddenField('customers_email_address');
+    }
+  } else {
+    echo HTML::inputField('customers_email_address', $cInfo->customers_email_address, 'maxlength="96" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', true);
+  }
+?>
                   </div>
                 </div>
               </div>
@@ -438,46 +435,46 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_street_address'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_street_address_error === true) {
-                          echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]);
-                        } else {
-                          echo $cInfo->entry_street_address . HTML::hiddenField('entry_street_address');
-                        }
-                      } else {
-                        echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_street_address') . '"');
-                      }
-                    ?>
+<?php
+  if ($error === true) {
+    if ($entry_street_address_error === true) {
+      echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]);
+    } else {
+      echo $cInfo->entry_street_address . HTML::hiddenField('entry_street_address');
+    }
+  } else {
+    echo HTML::inputField('entry_street_address', $cInfo->entry_street_address, 'maxlength="64" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_street_address') . '"');
+  }
+?>
                   </div>
                 </div>
               </div>
 
-              <?php
-                if (ACCOUNT_SUBURB == 'true') {
-                  ?>
+<?php
+  if (ACCOUNT_SUBURB == 'true') {
+?>
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_suburb'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_suburb'); ?></label>
                       <div class="col-md-5">
-                        <?php
-                          if ($error === true) {
-                            if ($entry_suburb_error === true) {
-                              echo HTML::inputField('suburb', $cInfo->entry_suburb, 'maxlength="32"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_suburb_error');
-                            } else {
-                              echo $cInfo->entry_suburb . HTML::hiddenField('entry_suburb');
-                            }
-                          } else {
-                            echo HTML::inputField('entry_suburb', $cInfo->entry_suburb, 'maxlength="32"');
-                          }
-                        ?>
+<?php
+    if ($error === true) {
+      if ($entry_suburb_error === true) {
+        echo HTML::inputField('suburb', $cInfo->entry_suburb, 'maxlength="32"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_suburb_error');
+      } else {
+        echo $cInfo->entry_suburb . HTML::hiddenField('entry_suburb');
+      }
+    } else {
+      echo HTML::inputField('entry_suburb', $cInfo->entry_suburb, 'maxlength="32"');
+    }
+?>
                       </div>
                     </div>
                   </div>
-                  <?php
-                }
-              ?>
+<?php
+  }
+?>
             </div>
 
             <div class="row">
@@ -486,17 +483,17 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_post_code'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_post_code'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_post_code_error === true) {
-                          echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_post_code_error', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]);
-                        } else {
-                          echo $cInfo->entry_postcode . HTML::hiddenField('entry_postcode');
-                        }
-                      } else {
-                        echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_post_code') . '"');
-                      }
-                    ?>
+<?php
+  if ($error === true) {
+    if ($entry_post_code_error === true) {
+      echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_post_code_error', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]);
+    } else {
+      echo $cInfo->entry_postcode . HTML::hiddenField('entry_postcode');
+    }
+  } else {
+    echo HTML::inputField('entry_postcode', $cInfo->entry_postcode, 'maxlength="8" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_post_code') . '"');
+  }
+?>
                   </div>
                 </div>
               </div>
@@ -505,83 +502,83 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_city'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_city'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_city_error === true) {
-                          echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]);
-                        } else {
-                          echo $cInfo->entry_city . HTML::hiddenField('entry_city');
-                        }
-                      } else {
-                        echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_city') . '"');
-                      }
-                    ?>
+<?php
+  if ($error === true) {
+    if ($entry_city_error === true) {
+      echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]);
+    } else {
+      echo $cInfo->entry_city . HTML::hiddenField('entry_city');
+    }
+  } else {
+    echo HTML::inputField('entry_city', $cInfo->entry_city, 'maxlength="32" required aria-required="true" placeholder="' . CLICSHOPPING::getDef('entry_city') . '"');
+  }
+?>
                   </div>
                 </div>
               </div>
             </div>
-            <?php
-              if (ACCOUNT_STATE == 'true') {
-                ?>
+<?php
+  if (ACCOUNT_STATE == 'true') {
+?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_state'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_state'); ?></label>
                       <div class="col-md-5">
-                        <?php
-                          $entry_state = $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state);
+<?php
+    $entry_state = $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state);
 
-                          if ($error === true) {
-                            if ($entry_state_error === true) {
-                              if ($entry_state_has_zones === true) {
-                                $zones_array = [];
+    if ($error === true) {
+      if ($entry_state_error === true) {
+        if ($entry_state_has_zones === true) {
+          $zones_array = [];
 
-                                $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
+          $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
 
-                                while ($Qzones->fetch()) {
-                                  $zones_array[] = [
-                                    'id' => $Qzones->value('zone_name'),
-                                    'text' => $Qzones->value('zone_name')
-                                  ];
-                                }
+          while ($Qzones->fetch()) {
+            $zones_array[] = [
+              'id' => $Qzones->value('zone_name'),
+              'text' => $Qzones->value('zone_name')
+            ];
+          }
 
-                                echo HTML::selectMenu('entry_state', $zones_array) . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]);
-                              } else {
-                                echo HTML::inputField('entry_state', $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state)) . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]);
-                              }
-                            } else {
-                              echo $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state) . HTML::hiddenField('entry_zone_id') . HTML::hiddenField('entry_state');
-                            }
-                          } else {
-                            echo HTML::inputField('entry_state', $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state));
-                          }
-                        ?>
+          echo HTML::selectMenu('entry_state', $zones_array) . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]);
+        } else {
+          echo HTML::inputField('entry_state', $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state)) . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]);
+        }
+      } else {
+        echo $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state) . HTML::hiddenField('entry_zone_id') . HTML::hiddenField('entry_state');
+      }
+    } else {
+      echo HTML::inputField('entry_state', $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state));
+    }
+?>
                       </div>
                     </div>
                   </div>
                 </div>
-                <?php
-              }
-            ?>
+<?php
+  }
+?>
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_country'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_country'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($error === true) {
-                        if ($entry_country_error === true) {
-                          echo HTML::selectMenuCountryList('entry_country_id', $cInfo->entry_country_id) . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_country_error');
+<?php
+  if ($error === true) {
+    if ($entry_country_error === true) {
+      echo HTML::selectMenuCountryList('entry_country_id', $cInfo->entry_country_id) . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_country_error');
 
-                        } else {
-                          echo $CLICSHOPPING_Address->getCountryName($cInfo->entry_country_id) . HTML::hiddenField('entry_country_id');
-                        }
-                      } else {
-                        echo HTML::selectMenuCountryList('entry_country_id', $cInfo->entry_country_id);
-                      }
-                    ?>
+    } else {
+      echo $CLICSHOPPING_Address->getCountryName($cInfo->entry_country_id) . HTML::hiddenField('entry_country_id');
+    }
+  } else {
+    echo HTML::selectMenuCountryList('entry_country_id', $cInfo->entry_country_id);
+  }
+?>
                   </div>
                 </div>
               </div>
@@ -597,19 +594,19 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if ($processed === true) {
-                        if ($cInfo->customers_newsletter == 1) {
-                          echo $CLICSHOPPING_Customers->getDef('entry_newsletter_yes');
-                        } else {
-                          echo $CLICSHOPPING_Customers->getDef('entry_newsletter_no');
-                        }
+<?php
+  if ($processed === true) {
+    if ($cInfo->customers_newsletter == 1) {
+      echo $CLICSHOPPING_Customers->getDef('entry_newsletter_yes');
+    } else {
+      echo $CLICSHOPPING_Customers->getDef('entry_newsletter_no');
+    }
 
-                        echo HTML::hiddenField('customers_newsletter');
-                      } else {
-                        echo HTML::selectMenu('customers_newsletter', $newsletter_array, (($cInfo->customers_newsletter == 1) ? 1 : 0));
-                      }
-                    ?>
+    echo HTML::hiddenField('customers_newsletter');
+  } else {
+    echo HTML::selectMenu('customers_newsletter', $newsletter_array, (($cInfo->customers_newsletter == 1) ? 1 : 0));
+  }
+?>
                   </div>
                 </div>
               </div>
@@ -618,13 +615,13 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_newsletter_language'); ?></label>
                   <div class="col-md-5">
-                    <?php
-                      if (is_null($values_languages_id)) {
-                        $values_languages_id = DEFAULT_LANGUAGES;
-                      }
+<?php
+  if (is_null($values_languages_id)) {
+    $values_languages_id = DEFAULT_LANGUAGES;
+  }
 
-                      echo HTML::selectMenu('languages_id', $values_languages_id, $cInfo->languages_id);
-                    ?>
+  echo HTML::selectMenu('languages_id', $values_languages_id, $cInfo->languages_id);
+?>
                   </div>
                 </div>
               </div>
@@ -661,10 +658,10 @@
         <!-- //################################################################################################################ -->
         <!--          ONGLET Infos Société          //-->
         <!-- //################################################################################################################ -->
-        <?php
-          // Insertion du numéro de Siret, code APE et TVA Intracom
-          if ((ACCOUNT_COMPANY == 'true') || (ACCOUNT_COMPANY_PRO == 'true') || (ACCOUNT_SIRET_PRO == 'true') || (ACCOUNT_APE_PRO == 'true') || (ACCOUNT_TVA_INTRACOM_PRO == 'true')) {
-            ?>
+<?php
+  // Insertion du numéro de Siret, code APE et TVA Intracom
+  if ((ACCOUNT_COMPANY == 'true') || (ACCOUNT_COMPANY_PRO == 'true') || (ACCOUNT_SIRET_PRO == 'true') || (ACCOUNT_APE_PRO == 'true') || (ACCOUNT_TVA_INTRACOM_PRO == 'true')) {
+?>
             <div class="tab-pane" id="tab2">
               <div class="mainTitle">
                 <span class="col-md-2"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></span>
@@ -672,121 +669,121 @@
                 <span
                   class="col-md-11 text-md-right"><?php echo $CLICSHOPPING_Customers->getDef('entry_customers_modify_company'); ?></span>
 <?php
-  if ($error === true) {
-    ?>
+    if ($error === true) {
+?>
     <span class="col-md-5 text-md-right">
 <?php
-  if ($cInfo->customers_modify_company != '1') echo ':&nbsp;' . $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
-  if ($cInfo->customers_modify_company == '1') echo ':&nbsp;' . $CLICSHOPPING_Customers->getDef('error_entry_customers_modifiy_yes');
-  echo HTML::hiddenField('customers_modify_company');
+      if ($cInfo->customers_modify_company != '1') echo ':&nbsp;' . $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
+      if ($cInfo->customers_modify_company == '1') echo ':&nbsp;' . $CLICSHOPPING_Customers->getDef('error_entry_customers_modifiy_yes');
+      echo HTML::hiddenField('customers_modify_company');
 ?>
                 </span>
-    <?php
-  } else {
-    ?>
+<?php
+    } else {
+?>
     <span
       class="col-md-1"><?php echo HTML::checkboxField('customers_modify_company', '1', $cInfo->customers_modify_company); ?></span>
-    <?php
-  }
+<?php
+    }
 ?>
               </span>
               </div>
 
               <div class="adminformTitle">
-                <?php
-                  // Insertion du numéro de Siret, code APE et TVA Intracom
-                  if (ACCOUNT_COMPANY_PRO == 'true') {
-                    ?>
+<?php
+// Insertion du numéro de Siret, code APE et TVA Intracom
+  if (ACCOUNT_COMPANY_PRO == 'true') {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
                           <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_company'); ?>"
                                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_company'); ?></label>
                           <div class="col-md-5">
-                            <?php
-                              if ($error === true) {
-                                if ($entry_company_error === true) {
-                                  echo HTML::inputField('customers_company', $cInfo->customers_company, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_company_error', ['min_length' => ENTRY_COMPANY_MIN_LENGTH]);
-                                } else {
-                                  echo $cInfo->customers_company . HTML::hiddenField('customers_company');
-                                }
-                              } else {
-                                echo HTML::inputField('customers_company', $cInfo->customers_company, 'maxlength="32"') . $CLICSHOPPING_Customers->getDef('text_field_required');
-                              }
-                            ?>
+<?php
+    if ($error === true) {
+      if ($entry_company_error === true) {
+        echo HTML::inputField('customers_company', $cInfo->customers_company, 'maxlength="32" style="border: 2px solid #FF0000"') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_company_error', ['min_length' => ENTRY_COMPANY_MIN_LENGTH]);
+      } else {
+        echo $cInfo->customers_company . HTML::hiddenField('customers_company');
+      }
+    } else {
+      echo HTML::inputField('customers_company', $cInfo->customers_company, 'maxlength="32"') . $CLICSHOPPING_Customers->getDef('text_field_required');
+    }
+?>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <?php
-                  }
+<?php
+  }
 
-                  if (ACCOUNT_SIRET_PRO == 'true') {
-                    ?>
+  if (ACCOUNT_SIRET_PRO == 'true') {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
                           <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?>"
                                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_siret'); ?></label>
                           <div class="col-md-5">
-                            <?php
-                              if ($error === true) {
-                                echo $cInfo->customers_siret . HTML::hiddenField('customers_siret');
-                              } else {
-                                echo HTML::inputField('customers_siret', $cInfo->customers_siret, 'maxlength="14"');
-                              }
-                              echo '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_siret_exemple') . '</span>';
-                            ?>
+<?php
+    if ($error === true) {
+      echo $cInfo->customers_siret . HTML::hiddenField('customers_siret');
+    } else {
+      echo HTML::inputField('customers_siret', $cInfo->customers_siret, 'maxlength="14"');
+    }
+    echo '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_siret_exemple') . '</span>';
+?>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <?php
-                  }
+<?php
+  }
 
-                  if (ACCOUNT_APE_PRO == 'true') {
-                    ?>
+  if (ACCOUNT_APE_PRO == 'true') {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
                           <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?>"
                                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_ape'); ?></label>
                           <div class="col-md-5">
-                            <?php
-                              if ($error === true) {
-                                echo $cInfo->customers_ape . HTML::hiddenField('customers_ape');
-                              } else {
-                                echo HTML::inputField('customers_ape', $cInfo->customers_ape, 'maxlength="4"');
-                              }
-                              echo '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_ape_exemple') . '</span>';
-                            ?>
+<?php
+    if ($error === true) {
+      echo $cInfo->customers_ape . HTML::hiddenField('customers_ape');
+    } else {
+      echo HTML::inputField('customers_ape', $cInfo->customers_ape, 'maxlength="4"');
+    }
+    echo '&nbsp;<span class="fieldRequired">' . $CLICSHOPPING_Customers->getDef('entry_ape_exemple') . '</span>';
+?>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <?php
-                  }
+<?php
+  }
 
-                  if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-                    ?>
+  if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+?>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group row">
                           <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?>"
                                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_tva'); ?></label>
                           <div class="col-md-5">
-                            <?php
-                              if ($error === true) {
-                                if ($customers_tva_intracom_code_iso_error === true) {
-                                  echo $CLICSHOPPING_Customers->getDef('entry_company') . HTML::inputField('customers_tva_intracom_code_iso', $cInfo->customers_tva_intracom_code_iso, 'maxlength="2" size="2" style="border: 2px solid #FF0000"') . '&nbsp;' . $cInfo->customers_tva_intracom . HTML::hiddenField('customers_tva_intracom') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_tva_iso_error');
-                                } else {
-                                  echo $CLICSHOPPING_Customers->getDef('entry_tva') . ' ' . $cInfo->customers_tva_intracom . HTML::hiddenField('customers_tva_intracom_code_iso') . HTML::hiddenField('customers_tva_intracom');
-                                }
-                              } else {
-                                echo $CLICSHOPPING_Customers->getDef('entry_company') . HTML::inputField('customers_tva_intracom_code_iso', $cInfo->customers_tva_intracom_code_iso, 'maxlength="2" size="2"');
-                                echo '<br />' . $CLICSHOPPING_Customers->getDef('entry_tva') . ' ' . HTML::inputField('customers_tva_intracom', $cInfo->customers_tva_intracom, 'maxlength="14"');
-                              }
-                            ?>
+<?php
+    if ($error === true) {
+      if ($customers_tva_intracom_code_iso_error === true) {
+        echo $CLICSHOPPING_Customers->getDef('entry_company') . HTML::inputField('customers_tva_intracom_code_iso', $cInfo->customers_tva_intracom_code_iso, 'maxlength="2" size="2" style="border: 2px solid #FF0000"') . '&nbsp;' . $cInfo->customers_tva_intracom . HTML::hiddenField('customers_tva_intracom') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_tva_iso_error');
+      } else {
+        echo $CLICSHOPPING_Customers->getDef('entry_tva') . ' ' . $cInfo->customers_tva_intracom . HTML::hiddenField('customers_tva_intracom_code_iso') . HTML::hiddenField('customers_tva_intracom');
+      }
+    } else {
+      echo $CLICSHOPPING_Customers->getDef('entry_company') . HTML::inputField('customers_tva_intracom_code_iso', $cInfo->customers_tva_intracom_code_iso, 'maxlength="2" size="2"');
+      echo '<br />' . $CLICSHOPPING_Customers->getDef('entry_tva') . ' ' . HTML::inputField('customers_tva_intracom', $cInfo->customers_tva_intracom, 'maxlength="14"');
+    }
+?>
                             <!-- lien pointant sur le site de vérification -->
                             <a
                               href="<?php echo 'http://ec.europa.eu/taxation_customs/vies/vieshome.do?ms=' . $cInfo->customers_tva_intracom_code_iso . '&iso=' . $cInfo->customers_tva_intracom_code_iso . '&vat=' . $cInfo->customers_tva_intracom; ?>"
@@ -796,9 +793,9 @@
                         </div>
                       </div>
                     </div>
-                    <?php
-                  }
-                ?>
+<?php
+  }
+?>
               </div>
               <div id="tab2Content"></div>
               <div class="separator"></div>
@@ -808,12 +805,12 @@
                 <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_tva_customers'); ?></div>
               </div>
             </div>
-            <?php
-          }
-        ?>
-        <!-- //################################################################################################################ -->
-        <!--          ONGLET Carnet d'adresses          //-->
-        <!-- //################################################################################################################ -->
+<?php
+  }
+?>
+<!-- //################################################################################################################ -->
+<!--          ONGLET Carnet d'adresses          //-->
+<!-- //################################################################################################################ -->
         <div class="tab-pane" id="tab3">
           <div class="mainTitle"><span class="col-md-3">&nbsp;</span></div>
           <div class="adminformTitle">
@@ -830,65 +827,65 @@
             </div>
           </div>
           <div class="separator"></div>
-          <?php
-            $number_address = '1';
+<?php
+  $number_address = '1';
 
-            $QaddressesBook = AddressAdmin::getListingAdmin($_GET['cID']);
+  $QaddressesBook = AddressAdmin::getListingAdmin($_GET['cID']);
 
-            // only display addresses if more than 1
-            if ($QaddressesBook->rowCount() >= 1) {
-              while ($QaddressesBook->fetch()) {
+  // only display addresses if more than 1
+  if ($QaddressesBook->rowCount() >= 1) {
+    while ($QaddressesBook->fetch()) {
 
-                $QcountryAddressesBook = $CLICSHOPPING_Customers->db->prepare('select countries_name
-                                                                       from :table_countries
-                                                                       where countries_id = :countries_id
-                                                                      ');
-                $QcountryAddressesBook->bindInt(':countries_id', (int)$QaddressesBook->valueInt('country_id'));
-                $QcountryAddressesBook->execute();
-                ?>
+      $QcountryAddressesBook = $CLICSHOPPING_Customers->db->prepare('select countries_name
+                                                             from :table_countries
+                                                             where countries_id = :countries_id
+                                                            ');
+      $QcountryAddressesBook->bindInt(':countries_id', (int)$QaddressesBook->valueInt('country_id'));
+      $QcountryAddressesBook->execute();
+?>
                 <div class="mainTitle">
-                  <?php
-                    if ($QaddressesBook->valueInt('address_book_id') == $cInfo->customers_default_address_id) {
-                  ?>
+<?php
+      if ($QaddressesBook->valueInt('address_book_id') == $cInfo->customers_default_address_id) {
+?>
                   <span
                     class="col-md-3"><?php echo $CLICSHOPPING_Customers->getDef('entry_address_number') . $number_address . '&nbsp;<i>' . $CLICSHOPPING_Customers->getDef('entry_address_default') . '</i>'; ?></span>
-                  <?php
-                    if ($error === true) {
-                  ?>
-                  <span class="float-md-right col-md-9">
-                  <span class="col-md-11 text-md-right">
 <?php
-  echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('category_company') . ' ' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
-  if ($cInfo->customers_modify_address_default != '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
-  if ($cInfo->customers_modify_address_default == '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_yes');
-  echo HTML::hiddenField('customers_modify_address_default');
-?>
-                </span>
-<?php
-  echo HTML::hiddenField('customers_modify_address_default');
-  } else {
+        if ($error === true) {
 ?>
                   <span class="float-md-right col-md-9">
                   <span class="col-md-11 text-md-right">
 <?php
-  echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
-  echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->customers_modify_address_default);
+          echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('category_company') . ' ' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
+          if ($cInfo->customers_modify_address_default != '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_no');
+          if ($cInfo->customers_modify_address_default == '1') echo $CLICSHOPPING_Customers->getDef('error_entry_customers_modify_yes');
+          echo HTML::hiddenField('customers_modify_address_default');
 ?>
                 </span>
 <?php
-  }
-  } else {
-  ?>
+          echo HTML::hiddenField('customers_modify_address_default');
+        } else {
+?>
+                  <span class="float-md-right col-md-9">
+                  <span class="col-md-11 text-md-right">
+<?php
+          echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_customers_modify_address_default') . '&nbsp;:&nbsp;';
+          echo HTML::checkboxField('customers_modify_address_default', '1', $cInfo->customers_modify_address_default);
+?>
+                </span>
+<?php
+        }
+      } else {
+?>
   <span
     class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('entry_address_number') . $number_address; ?></span>
-  <?php
-}
+<?php
+      }
 ?>
                 </div>
                 <div class="adminformTitle">
-                  <?php
-                    if ((strlen($QaddressesBook->value('company')) > '0')) {
-                      ?>
+<?php
+      if ((strlen($QaddressesBook->value('company')) > '0')) {
+?>
 
                       <div class="row">
                         <div class="col-md-7">
@@ -901,9 +898,9 @@
                           </div>
                         </div>
                       </div>
-                      <?php
-                    }
-                  ?>
+<?php
+      }
+?>
                   <div class="row">
                     <div class="col-md-5">
                       <div class="form-group row">
@@ -1014,11 +1011,11 @@
                   </div>
                 </div>
                 <div class="separator"></div>
-                <?php
-                $number_address = $number_address + 1;
-              }
-            }
-          ?>
+<?php
+      $number_address = $number_address + 1;
+    }
+  }
+?>
           <div id="tab3Content"></div>
           <div class="alert alert-info">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Customers->getDef('title_help_customers_image')) . ' ' . $CLICSHOPPING_Customers->getDef('title_help_customers_image') ?></div>
@@ -1026,12 +1023,12 @@
             <div><?php echo $CLICSHOPPING_Customers->getDef('title_help_customers_default_address'); ?></div>
           </div>
         </div>
-        <?php
-          //################################################################################################################ -->
-          //          ONGLET customers notes     //-->
-          //################################################################################################################ -->
-          echo HTMLOverrideAdmin::getCkeditor();
-        ?>
+<?php
+  //################################################################################################################ -->
+  //          ONGLET customers notes     //-->
+  //################################################################################################################ -->
+  echo HTMLOverrideAdmin::getCkeditor();
+?>
         <div class="tab-pane" id="tab6">
           <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('customers_note'); ?></div>
           <div class="adminformTitle">
@@ -1045,21 +1042,21 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_Customers->getDef('customers_note_summary'); ?></div>
           <div class="adminformTitle">
             <div class="row">
-              <?php
-                $QcustomersNotes = $CLICSHOPPING_Customers->db->prepare('select customers_notes_id,
-                                                                     customers_id,
-                                                                     customers_notes,
-                                                                     customers_notes_date,
-                                                                     user_administrator
-                                                              from :table_customers_notes
-                                                              where customers_id = :customers_id
-                                                              order by customers_notes_date desc
-                                                    ');
-                $QcustomersNotes->bindInt(':customers_id', $_GET['cID']);
-                $QcustomersNotes->execute();
+<?php
+  $QcustomersNotes = $CLICSHOPPING_Customers->db->prepare('select customers_notes_id,
+                                                       customers_id,
+                                                       customers_notes,
+                                                       customers_notes_date,
+                                                       user_administrator
+                                                from :table_customers_notes
+                                                where customers_id = :customers_id
+                                                order by customers_notes_date desc
+                                      ');
+  $QcustomersNotes->bindInt(':customers_id', $_GET['cID']);
+  $QcustomersNotes->execute();
 
-                while ($QcustomersNotes->fetch()) {
-                  ?>
+  while ($QcustomersNotes->fetch()) {
+?>
                   <div class="col-md-12">
                     <span><strong><?php echo DateTime::toShort($QcustomersNotes->value('customers_notes_date')) . '</strong> : ' . $QcustomersNotes->value('user_administrator'); ?></span>
                   </div>
@@ -1067,9 +1064,9 @@
                     <span><blockquote><?php echo $QcustomersNotes->value('customers_notes'); ?></blockquote></span>
                   </div>
                   <div class="separator"></div>
-                  <?php
-                }
-              ?>
+<?php
+  }
+?>
             </div>
           </div>
           <div id="tab4Content">

@@ -1400,7 +1400,6 @@
     public function save($id = null, $action)
     {
       $products_date_available = HTML::sanitize($_POST['products_date_available']);
-
       $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
 
 // Definir la position 0 ou 1 pour --> products_view : Affichage Produit Grand public - orders_view : Autorisation Commande

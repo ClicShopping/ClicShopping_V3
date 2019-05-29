@@ -41,7 +41,7 @@
         if (isset($_POST['country'])) $country = HTML::sanitize($_POST['country']);
 
         if (isset($_POST['dob']) && ((ACCOUNT_DOB == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
-          $dob = HTML::sanitize($_POST['dob']);
+          $dob = DateTime::toShortWithoutFormat(HTML::sanitize($_POST['dob']));
         } else {
           $dob = null;
         }

@@ -19,35 +19,36 @@
   {
     public function execute()
     {
-
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $products_id = HTML::sanitize($_POST['products_id']);
-      $expdate = HTML::sanitize($_POST['expdate']);
-      $schdate = HTML::sanitize($_POST['schdate']);
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $expires_date = '';
-      if (!empty($expdate)) {
-        $expires_date = substr($expdate, 0, 4) . substr($expdate, 5, 2) . substr($expdate, 8, 2);
+      $products_id = HTML::sanitize($_POST['products_id']);
+
+      if (!empty($_POST['expdate'])) {
+        $expdate = HTML::sanitize($_POST['expdate']);
+      } else {
+        $expdate = null;
       }
 
-      $scheduled_date = '';
-      if (!empty($schdate)) {
-        $schedule_date = substr($schdate, 0, 4) . substr($schdate, 5, 2) . substr($schdate, 8, 2);
+      if (!empty($_POST['schdate'])) {
+        $schdate = HTML::sanitize($_POST['schdate']);
+      } else {
+        $schdate = null;
       }
 
       $CLICSHOPPING_Favorites->db->save('products_favorites', [
           'products_id' => (int)$products_id,
           'products_favorites_date_added' => 'now()',
-          'scheduled_date' => !empty($schedule_date) ? $schedule_date : 'null',
-          'expires_date' => !empty($expires_date) ? $expires_date : 'null',
+          'scheduled_date' => $schdate,
+          'expires_date' => $expdate,
           'status' => 1
         ]
       );
 
       $CLICSHOPPING_Hooks->call('Favorites', 'Insert');
 
-      $CLICSHOPPING_Favorites->redirect('Favorites');
+      $CLICSHOPPING_Favorites->redirect('Favorites', 'page=' . $page);
     }
   }

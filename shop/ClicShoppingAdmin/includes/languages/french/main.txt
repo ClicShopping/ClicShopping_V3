@@ -1,5 +1,6 @@
 
 date_format_short = %d/%m/%Y
+date_format_short_sql = %Y-%m-%d
 date_format_long = %A %d %B, %Y
 date_format = d/m/Y
 php_date_time_format = d/m/Y H:i:s
@@ -449,6 +450,7 @@ visitor_name = Client normal
 
 text_error_upload_file = Erreur lors du téléchargement du fichier
 
+text_number_support = Commande support
 text_number_of_item = Nombre d'items
 text_success_import = Succès Importation
 button_continue = Continuer

@@ -12,8 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
-
-  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
+  use ClicShopping\OM\DateTime;
 
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
@@ -85,13 +84,25 @@
       $product = $Qproducts->fetch();
 
       $sInfo = new ObjectInfo($Qproducts->toArray());
+
+      if (!empty($sInfo->scheduled_date)) {
+        $scheduled_date = DateTime::toShortWithoutFormat($sInfo->scheduled_date);
+      } else {
+        $scheduled_date = null;
+      }
+
+      if (!empty($sInfo->expires_date)) {
+        $expires_date = DateTime::toShortWithoutFormat($sInfo->expires_date);
+      } else {
+        $expires_date = null;
+      }
     } else {
 
       $sInfo = new ObjectInfo(array());
 
       $sInfo->products_name = null;
-      $sInfo->scheduled_date = null;
-      $sInfo->expires_date = null;
+      $scheduled_date = null;
+      $expires_date = null;
 
 // create an array of products on special, which will be excluded from the pull down menu of products
 // (when creating a new product on special)
@@ -185,7 +196,7 @@
                 <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::inputField('schdate', (!is_null($sInfo->scheduled_date) ? substr($sInfo->scheduled_date, 0, 4) . '-' . substr($sInfo->scheduled_date, 5, 2) . '-' . substr($sInfo->scheduled_date, 8, 2) : ''), 'id="schdate" placeholder="' . $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date') . '"'); ?>
+                  <?php echo HTML::inputField('schdate', $scheduled_date, 'placeholder="' . $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date') . '"', 'date'); ?>
                 </div>
                 <div class="input-group-addon"><span class="fas fa-calendar"></span></div>
               </div>
@@ -198,7 +209,7 @@
                 <label for="<?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::inputField('expdate', (!is_null($sInfo->expires_date) ? substr($sInfo->expires_date, 0, 4) . '-' . substr($sInfo->expires_date, 5, 2) . '-' . substr($sInfo->expires_date, 8, 2) : ''), 'id="expdate" placeholder="' . $CLICSHOPPING_Favorites->getDef('text_products_favorites_scheduled_date') . '"'); ?>
+                  <?php echo HTML::inputField('expdate', $expires_date, 'placeholder="' . $CLICSHOPPING_Favorites->getDef('text_products_favorites_expires_date') . '"', 'date'); ?>
                 </div>
                 <div class="input-group-addon"><span class="fas fa-calendar"></span></div>
               </div>

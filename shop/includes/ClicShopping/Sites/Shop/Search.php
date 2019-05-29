@@ -418,6 +418,9 @@
       $dtoDateTime = new DateTime($this->getDateTo(), false);
       $dfromDateTime = new DateTime($this->getDateFrom(), false);
 
+      $dtoDateTime1 = $this->getDateTo();
+      $dfromDateTime1 = $this->getDateFrom();
+
       if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
         $max_display = MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
       } else {
@@ -545,13 +548,13 @@
         }
       }
 
-      if ($this->hasDateFrom()) {
+      if ($this->hasDateFrom() === true) {
         if (isset($dfromDateTime) && $dfromDateTime->isValid()) {
           $listing_sql .= ' and p.products_date_added >= :products_date_added_from';
         }
       }
 
-      if ($this->hasDateTo()) {
+      if ($this->hasDateTo() === true) {
         if (isset($dtoDateTime) && $dtoDateTime->isValid()) {
           $listing_sql .= ' and p.products_date_added <= :products_date_added_to';
         }
@@ -656,7 +659,6 @@
 
       if ($this->hasKeywords()) {
         $array = explode(' ', $this->_keywords);
-        $keyword = $this->_keywords;
 
         foreach ($array as $keyword) {
           $Qlisting->bindValue(':products_name_keywords', '%' . $keyword . '%');
@@ -672,13 +674,13 @@
 
       if ($this->hasDateFrom()) {
         if (isset($dfromDateTime) && $dfromDateTime->isValid()) {
-          $Qlisting->bindValue(':products_date_added_from', $dfromDateTime->getRaw());
+          $Qlisting->bindValue(':products_date_added_from', $dfromDateTime1);
         }
       }
 
       if ($this->hasDateTo()) {
         if (isset($dtoDateTime) && $dtoDateTime->isValid()) {
-          $Qlisting->bindValue(':products_date_added_to', $dfromDateTime->getRaw());
+          $Qlisting->bindValue(':products_date_added_to', $dtoDateTime1);
         }
       }
 
