@@ -1330,58 +1330,20 @@
             </div>
           </div>
           <div class="separator"></div>
-
-          <?php
-            // ---------------------------------
-            // Product clone to categories
-            // ---------------------------------
-            if (!empty($_GET['pID']) && $Qcategories->rowCount() > 0) {
-          ?>
-          <div class="col-md-12 mainTitle">
-            <span><?php echo $CLICSHOPPING_Products->getDef('text_products_categories_copy'); ?></span>
-          </div>
-          <div class="adminformTitle">
+          <div class="alert alert-info" role="alert">
+            <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
             <div class="separator"></div>
-            <div class="row">
-              <div class="col-md-12">
-                <span class="col-sm-1"></span>
-                <span class="col-sm-4 float-md-left" style="padding-top:50px;">
-              <?php echo $CLICSHOPPING_Products->getDef('clone_products_from'); ?>&nbsp;
-              <select name="clone_products_id_from">
-                <?php echo '<option name="' . $Qproducts->value('products_name') . '" value="' . $Qproducts->valueInt('products_id') . '">' . $Qproducts->value('products_model') . ' - ' . $Qproducts->value('products_name') . '</option>'; ?>
-              </select>
-            </span>
-                <span class="col-md-2 float-md-left"
-                      style="padding-top:50px;"> <?php echo $CLICSHOPPING_Products->getDef('clone_products_to'); ?></span>
-                <span class="col-md-4 float-md-left">
-              <select name="clone_categories_id_to[]" multiple="multiple" size="10">
-<?php
-  while ($Qcategories->fetch()) {
-    echo '<option name="' . $Qcategories->value('categories_name') . '" value="' . $Qcategories->valueInt('categories_id') . '">' . $Qcategories->value('categories_name') . '</option>';
-  }
-?>
-              </select>
-            </span>
-              </div>
-            </div>
-            <?php
-              } // end empty
-            ?>
-            <div class="separator"></div>
-            <div class="alert alert-info" role="alert">
-              <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Products->getDef('title_help_general')) . ' ' . $CLICSHOPPING_Products->getDef('title_help_general') ?></div>
-              <div class="separator"></div>
-              <div><?php echo $CLICSHOPPING_Products->getDef('help_general_tab8') . ' ' . $CLICSHOPPING_Products->getDef('help_general_tab8_1') . ' ' . (int)(ini_get('upload_max_filesize')) . ' Mb'; ?></div>
-            </div>
+            <div><?php echo $CLICSHOPPING_Products->getDef('help_general_tab8') . ' ' . $CLICSHOPPING_Products->getDef('help_general_tab8_1') . ' ' . (int)(ini_get('upload_max_filesize')) . ' Mb'; ?></div>
           </div>
-          <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab9', null, 'display'); ?>
         </div>
-        <?php
-          //***********************************
-          // extension
-          //***********************************
-          echo $CLICSHOPPING_Hooks->output('Products', 'PageTab', null, 'display');
-        ?>
+        <?php echo $CLICSHOPPING_Hooks->output('Products', 'ProductsContentTab9', null, 'display'); ?>
+      </div>
+<?php
+  //***********************************
+  // extension
+  //***********************************
+  echo $CLICSHOPPING_Hooks->output('Products', 'PageTab', null, 'display');
+?>
       </div>
     </div>
     </form>
