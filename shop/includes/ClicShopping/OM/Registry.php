@@ -13,38 +13,137 @@
 
   class Registry
   {
-    private static $data = [];
+    protected static $aliases = [];
+    protected static $data = [];
 
-    public static function get($key)
+    /**
+     * @param string $key
+     * @return mixed|null
+     */
+    public static function get(string $key)
     {
-      if (!static::exists($key)) {
-        trigger_error('ClicShopping\OM\Registry::get - ' . $key . ' is not registered');
+      if (static::exists($key)) {
+        $value = static::$data[$key];
+      } else {
+        $registry_class = null;
 
-        return false;
+        if (array_key_exists($key, static::$aliases)) {
+          $registry_class = 'ClicShopping\\OM\\' . static::$aliases[$key];
+        } else {
+          $bt = debug_backtrace(0, 2);
+          $class = $bt[1]['class'];
+          $ns_array = explode('\\', $class);
+
+          if (count($ns_array) > 5) {
+            if (implode('\\', array_slice($ns_array, 0, 4)) === 'ClicShopping\\OM\\Site') {
+              $registry_class = implode('\\', array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
+            }
+          }
+        }
+
+        if (!isset($registry_class)) {
+          $site = CLICSHOPPING::getSite();
+          if (isset($site)) {
+            $registry_class = 'ClicShopping\\OM\\Site\\' . $site . '\\Registry\\' . $key;
+          }
+        }
+
+        if (isset($registry_class)) {
+          while (!isset($value)) {
+            if (is_a($registry_class, '\\ClicShopping\\OM\\RegistryAbstract', true)) {
+              $RegistryObject = new $registry_class();
+
+              if ($RegistryObject->hasAlias()) {
+                $registry_class = 'ClicShopping\\OM\\' . $RegistryObject->getAlias();
+                continue;
+              } else {
+                $value = static::$data[$key] = $RegistryObject->getValue();
+              }
+            } else {
+              break;
+            }
+          }
+        }
       }
 
-      return static::$data[$key];
+      if (!isset($value)) {
+        trigger_error('ClicShopping\Registry::get(): "' . $key . '" is not registered');
+      }
+      return $value ?? null;
     }
 
-    public static function set($key, $value, $force = false)
+    /**
+     * @param string $key
+     * @param $value
+     * @param bool $force
+     * @return bool
+     */
+    public static function set(string $key, $value, bool $force = false): bool
     {
-      if (!is_object($value)) {
-        trigger_error('ClicShopping\OM\Registry::set - ' . $key . ' is not an object and cannot be set in the registry');
-
-        return false;
-      }
-
       if (static::exists($key) && ($force !== true)) {
-        trigger_error('ClicShopping\OM\Registry::set - ' . $key . ' already registered and is not forced to be replaced');
-
+        trigger_error('ClicShopping\Registry::set(): "' . $key . '" is already registered and is not forced to be replaced');
         return false;
       }
-
       static::$data[$key] = $value;
+      return true;
     }
 
-    public static function exists($key)
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public static function exists(string $key): bool
     {
       return array_key_exists($key, static::$data);
+    }
+
+    /**
+     * @param string $key
+     */
+    public static function remove(string $key)
+    {
+      unset(static::$data[$key]);
+    }
+
+    /**
+     * @param string $key
+     * @param string $class
+     * @return bool
+     */
+    public static function addAlias(string $key, string $class): bool
+    {
+      if (static::aliasExists($key)) {
+        trigger_error('ClicShopping\Registry::addAlias(): "' . $key . '" is already registered to "' . static::$aliases[$key] . '" and cannot be replaced by "' . $class . '"');
+        return false;
+      }
+      static::$aliases[$key] = $class;
+      return true;
+    }
+
+    /**
+     * @param array $keys
+     */
+    public static function addAliases(array $keys)
+    {
+      foreach ($keys as $key => $class) {
+        static::addAlias($key, $class);
+      }
+    }
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public static function aliasExists(string $key): bool
+    {
+      return array_key_exists($key, static::$aliases);
+    }
+
+    /**
+     * @param string $key
+     */
+    public static function removeAlias(string $key)
+    {
+      unset(static::$aliases[$key]);
     }
   }

@@ -23,8 +23,6 @@
 
   CLICSHOPPING::loadSite('Shop');
 
-  $CLICSHOPPING_Template = Registry::get('Template');
-
   if (CLICSHOPPING::hasSitePage()) {
     if (CLICSHOPPING::isRPC() === false) {
       $page_file = CLICSHOPPING::getSitePageFile();
@@ -34,13 +32,13 @@
       }
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
-        include_once($CLICSHOPPING_Template->getFile('header.php', 'Default'));
+        include_once(Registry::get('Template')->getFile('header.php', 'Default'));
       }
 
       include_once($page_file);
 
       if (CLICSHOPPING::useSiteTemplateWithPageFile()) {
-        require_once($CLICSHOPPING_Template->getFile('footer.php', 'Default'));
+        require_once(Registry::get('Template')->getFile('footer.php', 'Default'));
       }
     }
 
