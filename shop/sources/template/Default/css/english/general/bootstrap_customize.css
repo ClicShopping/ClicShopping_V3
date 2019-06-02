@@ -282,6 +282,9 @@ blockquote {
   background-color: #e5e5e5;
 }
 
+.form-group-center {
+  text-align: center;
+}
 /***********************************************/
 /* flexbox  */
 /**********************************************/
