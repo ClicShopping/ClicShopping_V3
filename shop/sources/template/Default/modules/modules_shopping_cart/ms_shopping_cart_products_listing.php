@@ -58,7 +58,7 @@
         $shopping_cart = '<!-- ms_shopping_cart_products_listing -->'. "\n";
         $shopping_cart .= $form;
         $shopping_cart .= '<div>';
-        $shopping_cart .= '<table id="cart" class="table table-hover table-condensed table-striped ModulesShoppingCartProductsListingTableHeading">';
+        $shopping_cart .= '<table id="cart" class="table table-hover table-condensed ModulesShoppingCartProductsListingTableHeading">';
         $shopping_cart .= '<thead>';
         $shopping_cart .= '<tr>';
         $shopping_cart .= '<th style="width:60%">' . CLICSHOPPING::getDef('table_heading_products') . '</th>';
