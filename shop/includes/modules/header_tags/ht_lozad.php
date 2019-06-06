@@ -43,7 +43,7 @@
       $footer_lozad .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
 
       $footer_lozad .= '<script>';
-      $footer_lozad .= 'const observer = lozad(); observer.observe();s';
+      $footer_lozad .= 'const observer = lozad(); observer.observe();';
       $footer_lozad .= '</script>' . "\n";
 
       $footer_lozad .= '<!--End Lazyload Script-->' . "\n";
