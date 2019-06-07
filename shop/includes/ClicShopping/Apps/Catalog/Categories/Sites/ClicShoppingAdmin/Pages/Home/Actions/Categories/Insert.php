@@ -73,7 +73,7 @@
       }
 
 // Ajoute ou efface l'image dans la base de donees
-      if ($_POST['delete_image'] == 'yes') {
+      if (isset($_POST['delete_image'])) {
         $categories_image = '';
 
         $this->app->db->save('categories', ['categories_image' => $categories_image],
