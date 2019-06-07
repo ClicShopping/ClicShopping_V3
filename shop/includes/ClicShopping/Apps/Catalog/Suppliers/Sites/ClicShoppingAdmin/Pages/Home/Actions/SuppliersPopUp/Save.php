@@ -45,7 +45,7 @@
         $suppliers_image = HTML::sanitize($_POST['suppliers_image']);
 
         // Insertion images des fabricants via l'editeur FCKeditor (fonctionne sur les nouvelles et editions des fabricants)
-        if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && ($_POST['delete_image'] != 'yes')) {
+        if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $suppliers_image = htmlspecialchars($suppliers_image);
           $suppliers_image = strstr($suppliers_image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
           $suppliers_image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $suppliers_image);

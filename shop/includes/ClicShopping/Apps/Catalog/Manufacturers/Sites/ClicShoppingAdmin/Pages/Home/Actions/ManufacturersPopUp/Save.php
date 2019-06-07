@@ -37,7 +37,7 @@
         $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
         $manufacturers_image = HTML::sanitize($_POST['manufacturers_image']);
 
-        if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && ($_POST['delete_image'] != 'yes')) {
+        if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $manufacturers_image = htmlspecialchars($manufacturers_image);
           $manufacturers_image = strstr($manufacturers_image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
           $manufacturers_image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $manufacturers_image);

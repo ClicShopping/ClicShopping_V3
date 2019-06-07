@@ -76,15 +76,15 @@
         foreach (array_keys($products_delete) as $key) {
           $CLICSHOPPING_Hooks->call('Products', 'RemoveProduct');
         }
+
+        $CLICSHOPPING_Hooks->call('Categories', 'DeleteConfirm');
+
+        Cache::clear('category_tree-');
+        Cache::clear('also_purchased');
+        Cache::clear('products_related');
+        Cache::clear('products_cross_sell');
+        Cache::clear('upcoming');
       }
-
-      $CLICSHOPPING_Hooks->call('Categories', 'DeleteConfirm');
-
-      Cache::clear('category_tree-');
-      Cache::clear('also_purchased');
-      Cache::clear('products_related');
-      Cache::clear('products_cross_sell');
-      Cache::clear('upcoming');
 
       $this->app->redirect('Categories&cPath=' . $cPath);
     }

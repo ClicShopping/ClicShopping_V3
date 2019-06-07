@@ -47,7 +47,7 @@
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
 // Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
-      if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && ($_POST['delete_image'] != 'yes')) {
+      if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && (!isset($_POST['delete_image']))) {
         $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
       } else {
         $suppliers_image = 'null';

@@ -40,7 +40,7 @@
       $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
 
 // Insertion images des fabricants via l'éditeur FCKeditor (fonctionne sur les nouvelles et éditions des fabricants)
-      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && ($_POST['delete_image'] != 'yes')) {
+      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
         $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
       } else {
         $manufacturers_image = null;

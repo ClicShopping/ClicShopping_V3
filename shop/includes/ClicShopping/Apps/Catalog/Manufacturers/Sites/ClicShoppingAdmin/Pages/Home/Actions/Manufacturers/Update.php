@@ -50,7 +50,7 @@
       $this->app->db->save('manufacturers', $sql_data_array, ['manufacturers_id' => (int)$manufacturers_id]);
 
 // Insertion images des fabricants via l'editeur FCKeditor (fonctionne sur les nouvelles et editions des fabricants)
-      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && !empty($_POST['manufacturers_image']) && (isset($_POST['delete_image']) && $_POST['delete_image'] != 'yes')) {
+      if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && !empty($_POST['manufacturers_image']) && (!isset($_POST['delete_image']))) {
         $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
 
         $sql_data_array = ['manufacturers_image' => $manufacturers_image];
