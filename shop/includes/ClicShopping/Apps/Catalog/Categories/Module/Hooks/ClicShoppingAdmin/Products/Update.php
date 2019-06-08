@@ -75,49 +75,49 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if (isset($_GET['Update'])) {
+        $new_category = HTML::sanitize($_POST['move_to_category_id']);
+
         if (empty($this->productsLink) || $this->productsLink == 'move') {
-          $new_category = HTML::sanitize($_POST['move_to_category_id']);
           $move_new_category = $new_category[0];
 
           $this->moveCategory($move_new_category, $id);
-        } elseif ($this->productsLink != 'none') {
-          $new_category = '';
+        } elseif ($this->productsLink != 'move') {
 
-          if ($this->productsLink != 'move') {
+
+//          $new_category = '';
 //link the category
-            if (is_array($new_category) && isset($new_category)) {
-              foreach ($new_category as $value_id) {
-                $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
-                    'categories_id' => (int)$value_id
-                  ]
-                );
+          if (is_array($new_category) && isset($new_category)) {
+            foreach ($new_category as $value_id) {
+              $Qcheck = $this->app->db->get('products_to_categories', 'categories_id', ['products_id' => (int)$id,
+                  'categories_id' => (int)$value_id
+                ]
+              );
 
-                if ($Qcheck->fetch() === false) {
-
-
+              if ($Qcheck->fetch() === false) {
 //if the product does not exist inside the category
-                  if ($value_id != $this->currentCategoryId) {
-                    $count = $this->productsAdmin->getCountProductsToCategory($id, $value_id);
+                if ($value_id != $this->currentCategoryId) {
+                  $count = $this->productsAdmin->getCountProductsToCategory($id, $value_id);
 
-                    if ($count < 1) {
+                  if ($count < 1) {
 // just link the product another category
-                      if ($this->productsLink == 'link') {
-                        if ($this->currentCategoryId != $value_id) {
-                          $sql_array = ['products_id' => (int)$id,
-                            'categories_id' => (int)$value_id
-                          ];
+                    if ($this->productsLink == 'link') {
+                      if ($this->currentCategoryId != $value_id) {
+                        $sql_array = ['products_id' => (int)$id,
+                          'categories_id' => (int)$value_id
+                        ];
 
-                          $this->app->db->save('products_to_categories', $sql_array);
-                        } else {
-                          $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'danger');
-                        }
+                        $this->app->db->save('products_to_categories', $sql_array);
+                      } else {
+                        $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'danger');
                       }
                     }
                   }
+                }
 
-                  if ($this->productsLink == 'duplicate') {
-                    $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
-                  }
+
+
+                if ($this->productsLink == 'duplicate') {
+                  $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);
                 }
               }
             }

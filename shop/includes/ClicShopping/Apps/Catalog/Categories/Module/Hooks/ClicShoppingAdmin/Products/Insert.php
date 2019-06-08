@@ -59,7 +59,6 @@
       Cache::clear('upcoming');
     }
 
-
     public function execute()
     {
       if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
