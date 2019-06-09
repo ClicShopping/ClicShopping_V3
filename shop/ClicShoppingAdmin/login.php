@@ -40,7 +40,6 @@
     switch ($action) {
       case 'process':
         if (isset($_SESSION['redirect_origin']) && isset($_SESSION['redirect_origin']['auth_user']) && !isset($_POST['username'])) {
-
           $username = HTML::sanitize($_SESSION['redirect_origin']['auth_user']);
           $password = HTML::sanitize($_SESSION['redirect_origin']['auth_pw']);
         } else {
@@ -48,79 +47,81 @@
           $password = HTML::sanitize($_POST['password']);
         }
 
-        Registry::set('ActionRecorderAdmin', new ActionRecorderAdmin('ar_admin_login', null, $username));
-        $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorderAdmin');
+        if (!empty($username)) {
+          Registry::set('ActionRecorderAdmin', new ActionRecorderAdmin('ar_admin_login', null, $username));
+          $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorderAdmin');
 
-        if ($CLICSHOPPING_ActionRecorder->canPerform()) {
+          if ($CLICSHOPPING_ActionRecorder->canPerform()) {
 
-          $Qadmin = $CLICSHOPPING_Db->get('administrators', ['id',
-            'user_name',
-            'user_password',
-            'name',
-            'first_name',
-            'access'
-          ],
-            ['user_name' => $username]
-          );
+            $sql_array = ['id',
+              'user_name',
+              'user_password',
+              'name',
+              'first_name',
+              'access'
+            ];
 
-          if ($Qadmin->fetch() !== false) {
-            if (Hash::verify($password, $Qadmin->value('user_password'))) {
-// migrate old hashed password to new php password_hash
-              if (Hash::needsRehash($Qadmin->value('user_password'))) {
-                $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
-                  ['id' => $Qadmin->valueInt('id')]
-                );
-              }
+            $Qadmin = $CLICSHOPPING_Db->get('administrators', $sql_array, ['user_name' => $username]);
 
-              $_SESSION['admin'] = ['id' => $Qadmin->valueInt('id'),
-                'username' => $Qadmin->value('user_name'),
-                'access' => $Qadmin->value('access')
-              ];
+            if ($Qadmin->fetch() !== false) {
+              if (Hash::verify($password, $Qadmin->value('user_password'))) {
+  // migrate old hashed password to new php password_hash
+                if (Hash::needsRehash($Qadmin->value('user_password'))) {
+                  $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
+                    ['id' => $Qadmin->valueInt('id')]
+                  );
+                }
 
-              $CLICSHOPPING_ActionRecorder->_user_id = $_SESSION['admin']['id'];
-              $CLICSHOPPING_ActionRecorder->record();
+                $_SESSION['admin'] = ['id' => $Qadmin->valueInt('id'),
+                  'username' => $Qadmin->value('user_name'),
+                  'access' => $Qadmin->value('access')
+                ];
 
-              if (isset($_SESSION['redirect_origin'])) {
-                $page = $_SESSION['redirect_origin']['page'];
+                $CLICSHOPPING_ActionRecorder->_user_id = $_SESSION['admin']['id'];
+                $CLICSHOPPING_ActionRecorder->record();
 
-                $get_string = http_build_query($_SESSION['redirect_origin']['get']);
+                if (isset($_SESSION['redirect_origin'])) {
+                  $page = $_SESSION['redirect_origin']['page'];
 
-                unset($_SESSION['redirect_origin']);
+                  $get_string = http_build_query($_SESSION['redirect_origin']['get']);
 
-                CLICSHOPPING::redirect($page, $get_string);
-              } else {
-                CLICSHOPPING::redirect();
+                  unset($_SESSION['redirect_origin']);
+
+                  CLICSHOPPING::redirect($page, $get_string);
+                } else {
+                  CLICSHOPPING::redirect();
+                }
               }
             }
+
+            if (isset($_POST['username'])) {
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
+
+  // send an email if someone try to connect on admin panel without authorization
+  // get ip and infos
+              if (SEND_EMAILS == 'true') {
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $host = @gethostbyaddr($ip);
+                $referer = $_SERVER['HTTP_REFERER'];
+
+  // build report
+                $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login');
+                $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' . $ip;
+                $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name') . $host;
+                $report .= "\n" . CLICSHOPPING::getDef('report_sender_username') . $username;
+                $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
+                $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
+  // mail report
+                $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+              }
+            }
+          } else {
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
           }
 
           if (isset($_POST['username'])) {
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
-
-// send an email if someone try to connect on admin panel without authorization
-// get ip and infos
-            if (SEND_EMAILS == 'true') {
-              $ip = $_SERVER['REMOTE_ADDR'];
-              $host = @gethostbyaddr($ip);
-              $referer = $_SERVER['HTTP_REFERER'];
-
-// build report
-              $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login');
-              $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address') . ' ' . 'https://whatismyipaddress.com/ip/' . $ip;
-              $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name') . $host;
-              $report .= "\n" . CLICSHOPPING::getDef('report_sender_username') . $username;
-              $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
-              $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
-// mail report
-              $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
-            }
+            $CLICSHOPPING_ActionRecorder->record(false);
           }
-        } else {
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
-        }
-
-        if (isset($_POST['username'])) {
-          $CLICSHOPPING_ActionRecorder->record(false);
         }
 
         break;

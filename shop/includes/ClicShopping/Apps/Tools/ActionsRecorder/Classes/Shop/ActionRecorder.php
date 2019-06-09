@@ -93,14 +93,15 @@
           $success = 0;
         }
 
-        $CLICSHOPPING_Db->save('action_recorder', ['module' => $this->_module,
-            'user_id' => (int)$this->_user_id,
-            'user_name' => $this->_user_name,
-            'identifier' => $this->getIdentifier(),
-            'success' => $success,
-            'date_added' => 'now()'
-          ]
-        );
+        $sql_array = ['module' => $this->_module,
+          'user_id' => (int)$this->_user_id,
+          'user_name' => $this->_user_name,
+          'identifier' => $this->getIdentifier(),
+          'success' => $success,
+          'date_added' => 'now()'
+        ];
+
+        $CLICSHOPPING_Db->save('action_recorder', $sql_array);
       }
     }
 
