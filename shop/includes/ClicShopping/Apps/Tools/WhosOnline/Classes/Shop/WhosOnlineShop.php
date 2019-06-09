@@ -13,7 +13,8 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
-
+  use ClicShopping\OM\HTML;
+  
   use ClicShopping\Sites\Shop\CustomerShop as NewCustomer;
 
   class WhosOnlineShop
@@ -87,13 +88,13 @@
       $Qsession->execute();
 
       if (isset($_SERVER['HTTP_REFERER'])) {
-        $referer = $_SERVER['HTTP_REFERER'];
+        $referer = HTML::sanitize($_SERVER['HTTP_REFERER']);
       } else {
         $referer = 'localhost or not defined';
       }
 
       if (isset($_SERVER['HTTP_USER_AGENT'])) {
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $user_agent = HTML::sanitize($_SERVER['HTTP_USER_AGENT']);
       } else {
         $user_agent = 'user aget or not defined';
       }
