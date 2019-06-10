@@ -1,5 +1,6 @@
 date_format_short = %m/%d/%Y
 date_format_long = %A %d %B, %Y
+date_format_short_sql = %Y-%m-%d
 date_format = m/d/Y
 date_time_format = %m/%d/%Y %H:%M:%S
 js_date_format = mm/dd/yyyy

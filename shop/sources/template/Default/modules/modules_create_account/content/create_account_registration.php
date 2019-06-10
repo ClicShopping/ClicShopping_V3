@@ -63,7 +63,7 @@
               <div class="form-group row">
                 <label for="dob" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_date_of_birth'); ?></label>
                 <div class="col-sm-6 col-md-6">
-                  <?php echo HTML::inputField('dob', null, 'rel="txtTooltipDob" title="' . CLICSHOPPING::getDef('text_create_account_dob_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" aria-describedby="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" placeholder="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" minlength="'. ENTRY_DOB_MIN_LENGTH .'"'); ?>
+                  <?php echo HTML::inputField('dob', null, 'rel="txtTooltipDob" title="' . CLICSHOPPING::getDef('text_create_account_dob_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" aria-describedby="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" placeholder="' . CLICSHOPPING::getDef('entry_date_of_birth') . '" minlength="'. ENTRY_DOB_MIN_LENGTH .'"', 'date'); ?>
                 </div>
               </div>
             </div>
