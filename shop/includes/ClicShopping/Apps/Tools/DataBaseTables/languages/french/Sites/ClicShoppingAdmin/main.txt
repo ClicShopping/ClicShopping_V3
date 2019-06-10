@@ -49,7 +49,7 @@ action_check_tables = Vérification des Tables
 action_analyze_tables = Analyser les Tables
 action_optimize_tables = Optimiser les Tables
 action_repair_tables = Repairer les Tables
-action_utf8_conversion = Convertir en UTF8
+action_utf8_conversion = Convertir en utf8mb4
 
 action_utf8_conversion_from_autodetect = Auto-Detect
 action_utf8_conversion_from = de {{char_set}}

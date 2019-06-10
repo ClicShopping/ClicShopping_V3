@@ -150,11 +150,11 @@
               $old_charset = $_POST['from_charset'];
             }
 
-            $queries[] = 'update ' . $table . ' set ' . $Qcols->value('Field') . ' = convert(binary convert(' . $Qcols->value('Field') . ' using ' . $old_charset . ') using utf8) where char_length(' . $Qcols->value('Field') . ') = length(convert(binary convert(' . $Qcols->value('Field') . ' using ' . $old_charset . ') using utf8))';
+            $queries[] = 'update ' . $table . ' set ' . $Qcols->value('Field') . ' = convert(binary convert(' . $Qcols->value('Field') . ' using ' . $old_charset . ') using utf8mb4) where char_length(' . $Qcols->value('Field') . ') = length(convert(binary convert(' . $Qcols->value('Field') . ' using ' . $old_charset . ') using utf8mb4))';
           }
         }
 
-        $query = 'alter table ' . $table . ' convert to character set utf8 collate utf8_unicode_ci';
+        $query = 'alter table ' . $table . ' convert to character set utf8mb4 collate utf8mb4_unicode_ci';
 
         if (isset($_POST['dryrun'])) {
           $table_data[] = array($query);

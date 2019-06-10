@@ -6,5 +6,5 @@ products_attributes_maxcount int(2) default(0)
 primary products_attributes_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

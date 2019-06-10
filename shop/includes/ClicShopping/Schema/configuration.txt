@@ -13,5 +13,5 @@ set_function varchar(255)
 primary configuration_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

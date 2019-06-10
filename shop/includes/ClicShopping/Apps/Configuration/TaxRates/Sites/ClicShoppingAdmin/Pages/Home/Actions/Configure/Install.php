@@ -107,7 +107,7 @@ CREATE TABLE :table_tax_rates (
   date_added datetime not_null,
   code_tax_erp varchar(15) null
   PRIMARY KEY tax_rates_id
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

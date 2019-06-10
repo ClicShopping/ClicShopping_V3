@@ -108,7 +108,7 @@ CREATE TABLE :table_specials (
   flash_discount int(1) NOT NULL  default(0)
   PRIMARY KEY (specials_id),
   KEY idx_specials_products_id (products_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

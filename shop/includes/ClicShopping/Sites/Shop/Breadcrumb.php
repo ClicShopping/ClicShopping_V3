@@ -179,7 +179,7 @@
     }
 
     /**
-     * get manufacturer (brand) inside the catgories
+     * get manufacturer (brand) inside the categories
      * @return mixed
      */
     public function getCategoriesManufacturer()

@@ -9,5 +9,5 @@ access tinyint(1) not null default (0)
 primary id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

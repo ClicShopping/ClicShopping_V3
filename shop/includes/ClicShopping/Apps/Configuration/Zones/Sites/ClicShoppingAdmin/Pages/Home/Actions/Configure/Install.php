@@ -102,7 +102,7 @@ CREATE TABLE :table_zones (
   zone_name varchar(255) not_null,
   zone_status tinyint(1) default(0) not_null
   PRIMARY KEY idx_zones_country_id (zone_country_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

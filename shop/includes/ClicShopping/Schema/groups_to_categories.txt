@@ -5,5 +5,5 @@ discount decimal(11,2) default(0.00) not_null
 primary customers_group_id categories_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

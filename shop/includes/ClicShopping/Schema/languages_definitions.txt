@@ -9,5 +9,5 @@ idx_languages_definitions_languages_id languages_id
 idx_languages_definitions_groups content_group
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

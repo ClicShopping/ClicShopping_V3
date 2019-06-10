@@ -12,5 +12,5 @@ user_agent mediumtext
 idx_whos_online_session_id session_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

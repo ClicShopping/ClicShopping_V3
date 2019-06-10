@@ -108,7 +108,7 @@ CREATE TABLE :table_currencies (
   last_updated datetime,
   PRIMARY KEY currencies_id,
   KEY idx_currencies_id(code code)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

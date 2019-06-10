@@ -5,5 +5,5 @@ reviews_text text not_null
 primary reviews_id languages_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

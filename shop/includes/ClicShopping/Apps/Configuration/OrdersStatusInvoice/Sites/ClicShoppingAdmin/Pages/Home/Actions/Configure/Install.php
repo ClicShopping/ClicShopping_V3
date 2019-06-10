@@ -101,7 +101,7 @@ CREATE TABLE :table_orders_status_invoice (
   orders_status_invoice_name varchar(32) not_null
   PRIMARY KEY (orders_status_invoice_id) language_id,
   KEY idx_orders_status_invoice_name (orders_status_invoice_name)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

@@ -104,7 +104,7 @@ CREATE TABLE :table_countries (
   status tinyint(1) default(1)
   PRIMARY KEY countries_id,
   KEY idx_countries_name (countries_name)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

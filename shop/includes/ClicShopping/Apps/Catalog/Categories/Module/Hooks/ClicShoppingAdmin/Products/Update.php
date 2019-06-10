@@ -82,9 +82,6 @@
 
           $this->moveCategory($move_new_category, $id);
         } elseif ($this->productsLink != 'move') {
-
-
-//          $new_category = '';
 //link the category
           if (is_array($new_category) && isset($new_category)) {
             foreach ($new_category as $value_id) {
@@ -113,8 +110,6 @@
                     }
                   }
                 }
-
-
 
                 if ($this->productsLink == 'duplicate') {
                   $this->productsAdmin->cloneProductsInOtherCategory($id, $value_id);

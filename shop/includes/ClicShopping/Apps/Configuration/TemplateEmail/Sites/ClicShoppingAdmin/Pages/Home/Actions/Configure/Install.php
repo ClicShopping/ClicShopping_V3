@@ -102,7 +102,7 @@ CREATE TABLE :table_template_email (
   template_email_type smallint(1) default(0) not_null
   PRIMARY KEY (template_email_id),
   KEY idx_template_email_id (template_email_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }
@@ -119,7 +119,7 @@ CREATE TABLE :table_template_email_description (
   template_email_description longtext
   PRIMARY KEY (template_email_id) (language_id),
   KEY idx_template_email_name (idx_template_email_name)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

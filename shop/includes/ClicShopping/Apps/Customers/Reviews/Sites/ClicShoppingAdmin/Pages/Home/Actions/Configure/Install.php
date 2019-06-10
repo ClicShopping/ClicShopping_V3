@@ -97,7 +97,7 @@ CREATE TABLE :table_reviews (
   reviews_id int(11) NOT NULL auto_increment,
   products_id int(11) NOT NULL,
   customers_id int(11) DEFAULT NULL,
-  customers_name varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  customers_name varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   reviews_rating int(1) DEFAULT NULL,
   date_added datetime DEFAULT NULL,
   last_modified datetime DEFAULT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE :table_reviews (
   PRIMARY KEY (reviews_id),
   KEY idx_reviews_products_id (products_id)
       idx_reviews_customers_id (customers_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Reviews->db->exec($sql);
 
@@ -118,9 +118,9 @@ EOD;
 CREATE TABLE :table_reviews_description (
   reviews_id int(11) NOT NULL,
   languages_id int(11) NOT NULL,
-  reviews_text text COLLATE utf8_unicode_ci NOT NULL
+  reviews_text text COLLATE utf8mb4_unicode_ci NOT NULL
   PRIMARY KEY (reviews_id, languages_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
           $CLICSHOPPING_Reviews->db->exec($sql);
         }

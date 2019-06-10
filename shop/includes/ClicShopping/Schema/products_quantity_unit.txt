@@ -6,5 +6,5 @@ primary products_quantity_unit_id language_id
 idx_products_quantity_unit_title products_quantity_unit_title
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

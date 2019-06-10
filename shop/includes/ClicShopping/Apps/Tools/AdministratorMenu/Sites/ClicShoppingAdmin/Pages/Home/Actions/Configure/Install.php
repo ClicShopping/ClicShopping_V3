@@ -102,7 +102,7 @@ CREATE TABLE :table_administrator_menu (
   administrator_menu_type smallint(1) default(0) not_null
   PRIMARY KEY (administrator_menu_id),
   KEY idx_administrator_menu_id (administrator_menu_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }
@@ -119,7 +119,7 @@ CREATE TABLE :table_administrator_menu_description (
   administrator_menu_description longtext
   PRIMARY KEY (administrator_menu_id) (language_id),
   KEY idx_administrator_menu_name (idx_administrator_menu_name)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

@@ -76,7 +76,7 @@
             try {
               $CLICSHOPPING_Db = Db::initialize($_POST['server'], $_POST['username'], $_POST['password'], '', null, null, ['log_errors' => false]);
 
-              $CLICSHOPPING_Db->exec('create database ' . Db::prepareIdentifier($_POST['name']) . ' character set utf8 collate utf8_unicode_ci');
+              $CLICSHOPPING_Db->exec('create database ' . Db::prepareIdentifier($_POST['name']) . ' character set utf8mb4 collate utf8mb4_unicode_ci');
 
               $result['status'] = '1';
               $result['message'] = 'success';

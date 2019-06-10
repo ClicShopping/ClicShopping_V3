@@ -249,14 +249,17 @@
         if (!empty($banner['banners_html_text'])) {
           $output = $banner['banners_html_text'];
         } else {
-          $output = HTML::link(CLICSHOPPING::link('redirect.php', 'action=banner&goto=' . $banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
+          if (is_numeric($banner['banners_id'])) {
+            $output = HTML::link(CLICSHOPPING::link('redirect.php', 'action=banner&goto=' . (int)$banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
+          }
         }
 
-        static::updateBannerDisplayCount($banner['banners_id']);
+        if (is_numeric($banner['banners_id'])) {
+          static::updateBannerDisplayCount($banner['banners_id']);
+        }
       }
 
       return $output;
-
     }
 
 
@@ -410,26 +413,27 @@
         $Qcheck->execute();
 
         $count = $Qcheck->rowCount();
-        $result = $Qcheck->fetch();
 
-        if (($result !== false) && ($count > 0)) {
-          $Qview = $CLICSHOPPING_Db->prepare('update :table_banners_history
-                                              set banners_shown = banners_shown + 1
-                                              where banners_id = :banners_id
-                                              and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
-                                              ');
-          $Qview->bindInt(':banners_id', $banner_id);
-          $Qview->execute();
-        } else {
-          $Qbanner = $CLICSHOPPING_Db->prepare('insert into :table_banners_history (banners_id,
-                                                                              banners_shown,
-                                                                              banners_history_date)
-                                                values (:banners_id,
-                                                        1, now()
-                                                        )
-                                              ');
-          $Qbanner->bindInt(':banners_id', $banner_id);
-          $Qbanner->execute();
+        if ($Qcheck->fetch() !== false) {
+          if ($count > 0) {
+            $Qview = $CLICSHOPPING_Db->prepare('update :table_banners_history
+                                                set banners_shown = banners_shown + 1
+                                                where banners_id = :banners_id
+                                                and date_format(banners_history_date, "%Y%m%d") = date_format(now(), "%Y%m%d")
+                                                ');
+            $Qview->bindInt(':banners_id', $banner_id);
+            $Qview->execute();
+          } else {
+            $Qbanner = $CLICSHOPPING_Db->prepare('insert into :table_banners_history (banners_id,
+                                                                                      banners_shown,
+                                                                                      banners_history_date)
+                                                  values (:banners_id,
+                                                          1, now()
+                                                          )
+                                                ');
+            $Qbanner->bindInt(':banners_id', $banner_id);
+            $Qbanner->execute();
+          }
         }
       }
     }

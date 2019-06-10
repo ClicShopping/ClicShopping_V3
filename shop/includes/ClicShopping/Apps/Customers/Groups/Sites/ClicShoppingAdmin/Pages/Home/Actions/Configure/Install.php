@@ -104,7 +104,7 @@ group_tax varchar(5) default('false') NOT NULL,
 customers_group_quantity_default int(4) default(0) NOT NULL
 PRIMARY KEY customers_group_id,
 KEY idx_customers_group_name (customers_group_name)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }
@@ -118,7 +118,7 @@ customers_group_id int default(0) NOT NULL,
 categories_id int default(0) NOT NULL,
 discount decimal(11,2) default(0.00) NOT NULL
 PRIMARY KEY customers_group_id (categories_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }
@@ -139,7 +139,7 @@ orders_group_view char(1) default(1) NOT NULL,
 products_quantity_unit_id_group int(5) default(0) NOT NULL,
 products_model_group varchar(255),
 products_quantity_fixed_group int default(1) NOT NULL
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

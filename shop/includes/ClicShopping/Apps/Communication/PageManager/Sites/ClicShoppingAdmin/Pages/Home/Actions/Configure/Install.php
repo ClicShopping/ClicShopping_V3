@@ -110,7 +110,7 @@
     customers_group_id int DEFAULT 0 NOT NULL,
     page_general_condition int(1) DEFAULT 0 NOT NULL
   PRIMARY KEY (pages_id)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }
@@ -130,7 +130,7 @@ EOD;
     page_manager_head_keywords_tag varchar(255),
   PRIMARY KEY pages_id (language_id),
   ADD KEY idx_pages_title (pages_title)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

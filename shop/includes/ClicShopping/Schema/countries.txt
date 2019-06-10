@@ -9,5 +9,5 @@ primary countries_id
 IDX_COUNTRIES_NAME countries_name
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

@@ -104,7 +104,7 @@ CREATE TABLE :table_orders_status (
   support_orders_flag int(1) default(0)
   PRIMARY KEY (orders_status_id) language_id,
   KEY idx_orders_status_name (orders_status_name)
-) CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
       }

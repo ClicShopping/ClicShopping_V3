@@ -11,5 +11,5 @@ code_tax_erp varchar(255) null
 primary tax_rates_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

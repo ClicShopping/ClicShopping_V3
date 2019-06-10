@@ -138,7 +138,7 @@ CREATE TABLE :table_products_favorites (
   date_status_change datetime,
   status tinyint(1) not_null default(1),
   customers_group_id int not_null default(0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE :table_products_favorites ADD PRIMARY KEY (products_favorites_id),  ADD KEY idx_products_favorites_id (products_id);
 ALTER TABLE :table_products_favorites MODIFY products_favorites_id int(11) NOT NULL AUTO_INCREMENT;

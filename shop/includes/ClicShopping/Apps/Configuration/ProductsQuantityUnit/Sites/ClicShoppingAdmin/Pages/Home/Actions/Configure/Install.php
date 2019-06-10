@@ -97,8 +97,8 @@
 CREATE TABLE :table_products_quantity_unit (
   products_quantity_unit_id int(11) NOT NULL,
   language_id int(11) NOT NULL,
-  products_quantity_unit_title varchar(32) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  products_quantity_unit_title varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE :table_products_quantity_unit
   ADD PRIMARY KEY (products_quantity_unit_id, language_id),

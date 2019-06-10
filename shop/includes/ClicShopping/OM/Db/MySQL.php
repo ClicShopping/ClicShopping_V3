@@ -53,7 +53,7 @@
         }
       }
 
-      $dsn_array[] = 'charset=utf8';
+      $dsn_array[] = 'charset=utf8mb4';
 
       $dsn = 'mysql:' . implode(';', $dsn_array);
 

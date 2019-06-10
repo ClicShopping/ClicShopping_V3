@@ -6,5 +6,5 @@ primary orders_status_invoice_id language_id
 idx_orders_status_invoice_name orders_status_invoice_name
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

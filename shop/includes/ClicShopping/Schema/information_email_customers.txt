@@ -8,5 +8,5 @@ information_email_customers_delay_7 tinyint(1) default(0) not_null
 primary information_email_customers_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci

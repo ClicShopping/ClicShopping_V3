@@ -12,5 +12,5 @@ primary products_featured_id
 idx_products_featured_id products_id
 ##
 engine innodb
-character_set utf8
-collate utf8_unicode_ci
+character_set utf8mb4
+collate utf8mb4_unicode_ci
