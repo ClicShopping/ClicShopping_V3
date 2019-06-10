@@ -70,7 +70,7 @@
           <label for="<?php echo $CLICSHOPPING_Countries->getDef('text_info_country_code_2'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Countries->getDef('text_info_country_code_2'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('countries_iso_code_2'); ?>
+            <?php echo HTML::inputField('countries_iso_code_2', null, 'maxlength="2" size="2"'); ?>
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@
           <label for="<?php echo $CLICSHOPPING_Countries->getDef('text_info_country_code_3'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Countries->getDef('text_info_country_code_3'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('countries_iso_code_3'); ?>
+            <?php echo HTML::inputField('countries_iso_code_3', null, 'maxlength="3" size="3"'); ?>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">
-                    <?php echo '<div class="col-md-12 radio">' . '<label for="addressLabel' . $value['address_format_id'] . '">' . HTML::radioField('address_format_id', $value['address_format_id'], ($value['address_format_id'] == $cInfo->address_format_id), 'id="addressLabel' . $value['address_format_id'] . '"') . ' ' . $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id'] . '</div>'; ?></h4>
+                    <?php echo '<div class="col-md-12 radio">' . '<label for="addressLabel' . $value['address_format_id'] . '">' . HTML::radioField('address_format_id', $value['address_format_id'], null, 'id="addressLabel' . $value['address_format_id'] . '"') . ' ' . $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id'] . '</div>'; ?></h4>
                   <p class="card-text">
                     <strong><?php echo '<div class="col-md-12">&nbsp;' . $CLICSHOPPING_Address->getAddressFormatRadio($value['address_format_id']) . '</label></div>'; ?></strong>
                   </p>

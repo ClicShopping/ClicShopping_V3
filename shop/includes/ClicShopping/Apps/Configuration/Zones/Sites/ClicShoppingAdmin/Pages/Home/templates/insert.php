@@ -84,7 +84,7 @@
           <label for="<?php echo $CLICSHOPPING_Zones->getDef('text_info_country_name'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_Zones->getDef('text_info_country_name'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::selectMenuCountryList('zone_country_id', $cInfo->countries_id); ?>
+            <?php echo HTML::selectMenuCountryList('zone_country_id', null); ?>
           </div>
         </div>
       </div>

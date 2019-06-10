@@ -13,7 +13,7 @@
 
   use ClicShopping\OM\Registry;
 
-  use ClicShopping\Sites\Shop\Tax as TaxClass;
+  use ClicShopping\Sites\ClicShoppingAdmin\Tax as TaxClass;
 
   class Tax implements \ClicShopping\OM\ServiceInterface
   {
