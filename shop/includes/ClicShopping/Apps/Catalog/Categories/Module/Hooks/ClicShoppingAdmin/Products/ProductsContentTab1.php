@@ -41,10 +41,14 @@
         return false;
       }
 
+      var_dump($_GET['cPath']);
+      
       if (isset($_GET['cPath'])) {
         $current_category_id = HTML::sanitize($_GET['cPath']);
+        $category_tree = $CLICSHOPPING_CategoriesAdmin->getCategoryTree();
       } else {
         $current_category_id = 0;
+        $category_tree = 0;
       }
 
       $content = '<!-- Categories -->';
@@ -55,7 +59,7 @@
         $content .= '<div class="col-md-5">';
         $content .= '<label for="' . $this->app->getDef('text_products_categories') . '" class="col-5 col-form-label"></label>';
         $content .= '<div id="myAjax">';
-        $content .= HTML::selectMenu('move_to_category_id[]', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id);
+        $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id);
         $content .= '</div>';
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
         $content .= '<a href="' . $this->app->link('CategoriesPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
@@ -70,7 +74,7 @@
         $content .= '</div>';
       } else {
         $content .= '<div class="col-md-5">';
-        $content .= HTML::selectMenu('move_to_category_id[]', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'multiple="multiple" size="10"');
+        $content .= HTML::selectMenu('move_to_category_id[]', $category_tree, $current_category_id, 'multiple="multiple" size="10"');
         $content .= HTML::hiddenField('current_category_id', $current_category_id);
         $content .= '</div>';
         $content .= '<div class="col-md-5">';

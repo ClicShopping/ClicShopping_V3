@@ -204,27 +204,47 @@
 // L'Affichage des produits, autorisation de commander et affichage des prix mis par defaut en valeur 1 dans la cas de la B2B desactive.
 
             if (MODE_B2B_B2C == 'true') {
-              if (HTML::sanitize($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
-                $price_group_view = 1;
-              } else {
-                $price_group_view = 0;
+              $price_group_view = 0;
+              
+              if (isset($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')])) {
+                if (HTML::sanitize($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
+                  $price_group_view = 1;
+                } else {
+                  $price_group_view = 0;
+                }
+              }
+            
+              $products_group_view = 0;
+              
+              if (isset($_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')])) {
+                if (HTML::sanitize($_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
+                  $products_group_view = 1;
+                } else {
+                  $products_group_view = 0;
+                }
+              }
+            
+              $orders_group_view = 0;
+              
+              if (isset($_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')])) {
+                if (HTML::sanitize($_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
+                  $orders_group_view = 1;
+                } else {
+                  $orders_group_view = 0;
+                }
               }
 
-              if (HTML::sanitize($_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
-                $products_group_view = 1;
+              if (isset($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')])) $products_quantity_unit_id_group = $_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')];
+              
+              if (isset($_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
+                $products_model_group = $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')];
               } else {
-                $products_group_view = 0;
+                $products_model_group = '';
               }
-
-              if (HTML::sanitize($_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')]) == 1) {
-                $orders_group_view = 1;
-              } else {
-                $orders_group_view = 0;
-              }
-
-              $products_quantity_unit_id_group = $_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')];
-              $products_model_group = $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')];
-              $products_quantity_fixed_group = $_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')];
+              
+              $products_quantity_fixed_group = 1;
+              
+              if (isset($_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')])) $products_quantity_fixed_group = $_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')];
 
             } else {
               $price_group_view = 1;
@@ -233,7 +253,6 @@
               $products_quantity_unit_id_group = 0;
               $products_model_group = '';
               $products_quantity_fixed_group = 1;
-
             } //end MODE_B2B_B2C
 
             $Qupdate = $this->app->db->prepare('update :table_products_groups
