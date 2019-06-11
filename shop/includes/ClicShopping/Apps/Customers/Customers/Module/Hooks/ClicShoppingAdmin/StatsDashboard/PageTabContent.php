@@ -50,7 +50,7 @@
       $Qcustomer->execute();
 
       $customers_total = $Qcustomer->valueInt('count');
-      
+
       return $customers_total;
     }
 
