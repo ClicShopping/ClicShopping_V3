@@ -15,6 +15,7 @@
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\FileSystem;
 
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
@@ -42,10 +43,17 @@
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   if (isset($_GET['error']) && $_GET['error'] == 'fileNotSupported') {
-    ?>
+?>
     <div class="alert alert-warning"
          role="alert"><?php echo $CLICSHOPPING_Products->getDef('error_file_not_supported'); ?></div>
-    <?php
+<?php
+  }
+
+  if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
+?>
+<div class="alert alert-warning"
+     role="alert"><?php echo $CLICSHOPPING_Products->getDef('error_catalog_image_directory_not_writeable'); ?></div>
+<?php
   }
 ?>
 <div class="contentBody">
