@@ -50,6 +50,7 @@
       $Qcustomer->execute();
 
       $customers_total = $Qcustomer->valueInt('count');
+      
       return $customers_total;
     }
 
@@ -70,9 +71,10 @@
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $avgage = $QstatAnalyseCustomersMan->valueDecimal('avgage');
+        $stat_analyse_customers_man = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
+      } else {
+        $stat_analyse_customers_man = 0;
       }
-
-      $stat_analyse_customers_man = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
 
       return $stat_analyse_customers_man;
     }
@@ -97,9 +99,10 @@
 
       if (!is_null($stat_analyse_customers_woman['avgage'])) {
         $avgage = $stat_analyse_customers_woman['avgage'];
+        $stat_analyse_customers_woman = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
+      } else {
+        $stat_analyse_customers_woman = 0;
       }
-
-      $stat_analyse_customers_woman = $numberByGenderPerCent . '% <br />' . $avgage . ' ' . $this->app->getDef('text_year');
 
       return $stat_analyse_customers_woman;
     }
