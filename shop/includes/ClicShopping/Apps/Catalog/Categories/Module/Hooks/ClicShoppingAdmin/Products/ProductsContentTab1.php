@@ -41,8 +41,6 @@
         return false;
       }
 
-      var_dump($_GET['cPath']);
-      
       if (isset($_GET['cPath'])) {
         $current_category_id = HTML::sanitize($_GET['cPath']);
         $category_tree = $CLICSHOPPING_CategoriesAdmin->getCategoryTree();
