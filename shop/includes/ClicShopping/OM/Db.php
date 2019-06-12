@@ -56,6 +56,12 @@
         $driver_options = [];
       }
 
+      if (!isset($driver_options[\PDO::ATTR_PERSISTENT]) && CLICSHOPPING::configExists('db_server_persistent_connections')) {
+        if (CLICSHOPPING::getConfig('db_server_persistent_connections') === 'true') {
+          $driver_options[\PDO::ATTR_PERSISTENT] = true;
+        }
+      }
+
       if (!isset($driver_options[\PDO::ATTR_ERRMODE])) {
         $driver_options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
       }

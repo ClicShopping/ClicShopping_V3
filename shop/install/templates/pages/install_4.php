@@ -138,6 +138,7 @@ db_database = "{$dbDatabase}"
 db_table_prefix = "{$dbTablePrefix}"
 store_sessions = "MySQL"
 time_zone = "{$timezone}"
+db_server_persistent_connections = "false"
 EOD;
 
 ENDCFG;
