@@ -24,8 +24,7 @@
             <div class="col-md-12 navbar-collapse text-md-left" id="footer-body">
               <span class="col-md-3 navbar-text">
                 <?php echo 'ClicShopping™ - V. ' . CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date('Y'); ?><br/>
-                <small>based on osCommerce™</small>
-          </span>
+              </span>
 <?php
   if (isset($_SESSION['admin'])) {
     ?>
