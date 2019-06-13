@@ -102,11 +102,19 @@
     {
       if (CLICSHOPPING::getSite() == 'Shop') {
         if ($this->isStarted($service)) {
-          call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
+          if (class_exists('ClicShopping\\Custom\\Service\\Shop\\' . $service)) {
+             call_user_func(array('ClicShopping\\Custom\\Service\\Shop\\' . $service, 'stop'));
+          } else {
+             call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
+          }
         }
       } else {
         if ($this->isStarted($service)) {
-          call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
+          if (class_exists('ClicShopping\\Custom\\Service\\ClicShoppingAdmin\\' . $service)) {
+            call_user_func(array('ClicShopping\\Custom\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
+          } else {
+            call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
+          }
         }
       }
     }
