@@ -74,7 +74,7 @@
               <label for="<?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?>"
                      class="col-5 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_name'); ?></label>
               <div class="col-md-5">
-                <?php echo HTML::inputField('manufacturers_name', $mInfo->manufacturers_name, 'required aria-required="true" id="manufacturers_name"'); ?>
+                <?php echo HTML::inputField('manufacturers_name', null, 'required aria-required="true" id="manufacturers_name"'); ?>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
                   <label for="lang"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ManufacturersAdmin->getManufacturerUrl($mInfo->manufacturers_id, $languages[$i]['id'])); ?>
+                    <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']'); ?>
                   </div>
                 </div>
               </div>
