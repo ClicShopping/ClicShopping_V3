@@ -102,7 +102,7 @@
 
               if (($column_list[$col] != 'PRODUCT_LIST_BUY_NOW') && ($column_list[$col] != 'PRODUCT_LIST_IMAGE')) {
                 if (isset($_GET['sort'])) {
-                  $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort']), $col + 1, $lc_text);
+                  $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort'] ?? '1a'), $col + 1, $lc_text);
                   $new_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
                 }
               }

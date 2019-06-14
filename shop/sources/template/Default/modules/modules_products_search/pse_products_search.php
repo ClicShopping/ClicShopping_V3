@@ -61,7 +61,6 @@
           $new_prods_content .= '<div class="ModulesProductsSearchContainer">';
 
           if ($listingTotalRow > 0) {
-
             $new_prods_content .= '<div class="col-md-5 float-md-left">';
             $new_prods_content .= '<div class="page-header ModulesProductsSearchHeadingTitle">';
             $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') .'</h1>';
@@ -104,7 +103,7 @@
                 break;
               }
 
-              $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort']), $col+1, $lc_text);
+              $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort'] ?? '1a'), $col + 1, $lc_text);
 
               $new_prods_content .= '<li>' . $lc_text . '</li>';
             }
@@ -157,6 +156,7 @@
 
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
+
               $_POST['products_id'] = $products_id;
 //rewriting
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
@@ -198,10 +198,8 @@
                   }
                 }
               }
-
 // Quantity type
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
-
 
 // **************************************************
 // Button Free - Must be above getProductsExhausted
@@ -246,9 +244,9 @@
 // products model
               $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-                $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-                $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
                 $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
