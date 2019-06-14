@@ -35,7 +35,9 @@
           $ns_array = explode('\\', $class);
 
           if (count($ns_array) > 5) {
-            if (implode('\\', array_slice($ns_array, 0, 4)) === 'ClicShopping\\OM\\Site') {
+            if (implode('\\', array_slice($ns_array, 0, 4)) === 'ClicShopping\\Custom\\Sites') {
+              $registry_class = implode('\\', array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
+            } elseif (implode('\\', array_slice($ns_array, 0, 4)) === 'ClicShopping\\Sites') {
               $registry_class = implode('\\', array_slice($ns_array, 0, 5)) . '\\Registry\\' . $key;
             }
           }
@@ -43,8 +45,13 @@
 
         if (!isset($registry_class)) {
           $site = CLICSHOPPING::getSite();
+
           if (isset($site)) {
-            $registry_class = 'ClicShopping\\OM\\Site\\' . $site . '\\Registry\\' . $key;
+            if (class_exists('ClicShopping\\Custom\\Sites\\' . $site . '\\' . $key)) {
+              $registry_class = 'ClicShopping\\Custom\\Sites\\' . $site . '\\' . $key;
+            } else {
+              $registry_class = 'ClicShopping\\Sites\\' . $site . '\\' . $key;
+            }
           }
         }
 

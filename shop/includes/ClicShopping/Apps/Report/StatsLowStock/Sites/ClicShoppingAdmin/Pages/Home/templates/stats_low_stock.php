@@ -85,7 +85,7 @@
                                                                                       pd.products_name,
                                                                                       p.products_image,
                                                                                       p.products_warehouse_time_replenishment,
-                                                                                      p.products_warehouse,
+                                                                                      p.products_warehouse,                                                                                     
                                                                                       p.products_warehouse_row,
                                                                                       p.products_warehouse_level_location,
                                                                                       p.products_packaging

@@ -72,11 +72,7 @@
     public function startService($service)
     {
       if (CLICSHOPPING::getSite() == 'Shop') {
-        if (class_exists('ClicShopping\\Custom\\Service\\Shop\\' . $service)) {
-          if (call_user_func(array('ClicShopping\\Custom\Service\\Shop\\' . $service, 'start'))) {
-            $this->_started_services[] = $service;
-          }
-        } elseif (class_exists('ClicShopping\\Service\\Shop\\' . $service)) {
+        if (class_exists('ClicShopping\\Service\\Shop\\' . $service)) {
           if (call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'start'))) {
             $this->_started_services[] = $service;
           }
@@ -84,11 +80,7 @@
           trigger_error('\'ClicShopping\\Service\\Shop\\' . $service . '\' does not exist', E_USER_ERROR);
         }
       } else {
-        if (class_exists('ClicShopping\\Custom\\Service\\ClicShoppingAdmin\\' . $service)) {
-          if (call_user_func(array('ClicShopping\\Custom\\Service\\ClicShoppingAdmin\\' . $service, 'start'))) {
-            $this->_started_services[] = $service;
-          }
-        } elseif (class_exists('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service)) {
+        if (class_exists('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service)) {
           if (call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'start'))) {
             $this->_started_services[] = $service;
           }
@@ -102,19 +94,11 @@
     {
       if (CLICSHOPPING::getSite() == 'Shop') {
         if ($this->isStarted($service)) {
-          if (class_exists('ClicShopping\\Custom\\Service\\Shop\\' . $service)) {
-             call_user_func(array('ClicShopping\\Custom\\Service\\Shop\\' . $service, 'stop'));
-          } else {
-             call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
-          }
+          call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
         }
       } else {
         if ($this->isStarted($service)) {
-          if (class_exists('ClicShopping\\Custom\\Service\\ClicShoppingAdmin\\' . $service)) {
-            call_user_func(array('ClicShopping\\Custom\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
-          } else {
-            call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
-          }
+          call_user_func(array('ClicShopping\\Service\\ClicShoppingAdmin\\' . $service, 'stop'));
         }
       }
     }
@@ -147,7 +131,6 @@
     public function getCallBeforePageContent()
     {
       return $this->_call_before_page_content;
-      exit;
     }
 
     public function getCallAfterPageContent()
