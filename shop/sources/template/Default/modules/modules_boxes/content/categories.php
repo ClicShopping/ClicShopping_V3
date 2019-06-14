@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_CategoryTree->setCategoryPath($cPath, '<span class="boxeCategoriesNavigation">', '</span>');
   $CLICSHOPPING_CategoryTree->setSpacerString('&nbsp;&nbsp;', 1);

@@ -25,7 +25,7 @@
   if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages())) {
 ?>
     <div class="alert alert-warning"
-         role="alert"><?php echo $CLICSHOPPING_Products->getDef('error_catalog_image_directory_not_writeable'); ?></div>
+         role="alert"><?php echo $CLICSHOPPING_Categories->getDef('error_catalog_image_directory_not_writeable'); ?></div>
 <?php
   }
 ?>
