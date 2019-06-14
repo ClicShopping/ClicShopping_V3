@@ -156,7 +156,6 @@
 
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
-
               $_POST['products_id'] = $products_id;
 //rewriting
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
@@ -373,9 +372,9 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Please indicate the number of column that you want to display  ?',
+          'configuration_title' => 'Please indicate the number of column that you want to display ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_COLUMNS',
-          'configuration_value' => '6',
+          'configuration_value' => '4',
           'configuration_description' => 'Choose a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '3',

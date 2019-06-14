@@ -190,7 +190,7 @@
     {
       $cPath_array = $this->getPathArray();
 
-      if ($current_category_id == '') {
+      if (empty($current_category_id)) {
         $cPath_new = $this->getPathArray($cPath_array);
       } else {
         if (count($cPath_array) == 0) {
@@ -214,11 +214,11 @@
             }
           } else {
             for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
-              $cPath_new .= '_' . $cPath_array[$i];
+              $cPath_new .= $cPath_array[$i];
             }
           }
 
-          $cPath_new .= '' . $current_category_id;
+          $cPath_new .= '_' . $current_category_id;
 
           if (substr($cPath_new, 0, 1) == '_') {
             $cPath_new = substr($cPath_new, 1);
