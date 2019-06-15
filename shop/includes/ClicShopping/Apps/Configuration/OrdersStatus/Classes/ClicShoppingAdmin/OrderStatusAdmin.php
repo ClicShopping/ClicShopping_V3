@@ -62,7 +62,7 @@
       $QordersStatus->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
       $QordersStatus->execute();
 
-      if ($displays_all_orders_status == 'yes') {
+      if (isset($displays_all_orders_status)) {
         $orders_statuses[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_all_orders')];
       } else {
         $orders_statuses[] = ['id' => '0', 'text' => CLICSHOPPING::getDef('text_select')];

@@ -31,6 +31,7 @@
       static::removeProductsModulesDb();
 
       Cache::clear('menu-administrator');
+      Cache::clear('configuration');
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Modules->getDef('alert_module_uninstall_success'), 'success', 'Modules');
 

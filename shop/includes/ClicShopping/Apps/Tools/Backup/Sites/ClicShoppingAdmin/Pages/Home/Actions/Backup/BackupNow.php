@@ -157,7 +157,7 @@
 
       fclose($fp);
 
-      if (isset($_POST['download']) && ($_POST['download'] == 'yes')) {
+      if (isset($_POST['download'])) {
         switch ($_POST['compress']) {
           case 'gzip':
             exec(LOCAL_EXE_GZIP . ' ' . $backup_directory . $backup_file);
