@@ -324,7 +324,7 @@
       }
 
 // Ajoute ou efface l'image dans la base de donnees
-      if (isset($_POST['delete_image']) && $_POST['delete_image'] == 'yes') {
+      if (isset($_POST['delete_image'])) {
         $this->products_image = $sql_data_array['products_image'] = null;
         $this->products_image_zoom = $sql_data_array['products_image_zoom'] = null;
         $this->products_image_medium = $sql_data_array['products_image_medium'] = null;

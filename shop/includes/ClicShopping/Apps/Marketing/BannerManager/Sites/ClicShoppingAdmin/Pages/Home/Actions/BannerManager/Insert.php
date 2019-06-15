@@ -68,7 +68,7 @@
         }
       }
 
-      if ($_POST['delete_image'] == 'yes') {
+      if (isset($_POST['delete_image'])) {
         $banners_image_local = '';
       }
 

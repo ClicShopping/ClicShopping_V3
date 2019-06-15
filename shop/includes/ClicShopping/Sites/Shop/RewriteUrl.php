@@ -153,10 +153,10 @@
 
           $categories_url_rewrited = $link_title . '&' . $categories_id;
         } else {
-          $categories_url_rewrited = 'cPath=' . $categories_id;
+          $categories_url_rewrited = $categories_id;
         }
       } else {
-        $categories_url_rewrited = 'cPath=' . $categories_id;
+        $categories_url_rewrited = $categories_id;
       }
 
       $url = CLICSHOPPING::link(null, $categories_url_rewrited . $parameters);

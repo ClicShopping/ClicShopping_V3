@@ -62,7 +62,6 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 
-
       $column_list = $this->getColumnList();
 
       $search_query = 'select SQL_CALC_FOUND_ROWS ';

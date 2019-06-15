@@ -59,7 +59,7 @@
       }
 
 // Suppression de l'image
-      if ($_POST['delete_image'] == 'yes') {
+      if (isset($_POST['delete_image'])) {
         $sql_data_array = ['manufacturers_image' => ''];
         $this->app->db->save('suppliers', $sql_data_array, ['manufacturers_id' => (int)$manufacturers_id]);
       }

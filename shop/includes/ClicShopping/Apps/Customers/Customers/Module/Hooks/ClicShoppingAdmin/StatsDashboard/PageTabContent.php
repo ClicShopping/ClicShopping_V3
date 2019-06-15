@@ -42,11 +42,11 @@
         }
       }
 
-      $Qcustomer = $this->app->db->prepare("select count(customers_id) as count
+      $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                              from :table_customers
                                              $condition
                                              limit 1
-                                          ");
+                                          ');
       $Qcustomer->execute();
 
       $customers_total = $Qcustomer->valueInt('count');

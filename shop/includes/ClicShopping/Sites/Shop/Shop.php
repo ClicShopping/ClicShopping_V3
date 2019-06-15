@@ -66,7 +66,7 @@
                                                 configuration_value as v
                                         from :table_configuration
                                        ');
-      $Qcfg->setCache('configuration');
+//      $Qcfg->setCache('configuration');
 
       $Qcfg->execute();
 
