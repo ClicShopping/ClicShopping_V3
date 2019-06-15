@@ -14,6 +14,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\Cache;
 
   class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -26,8 +27,9 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $oID = HTML::sanitize($_GET['oID']);
-
+      
       $Qstatus = $this->app->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID']);
 
       if ($Qstatus->value('configuration_value') == $oID) {
@@ -41,6 +43,8 @@
 
       $this->app->db->delete('orders_status_invoice', ['orders_status_invoice_id' => (int)$oID]);
 
-      $this->app->redirect('OrdersStatusInvoice&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      Cache::clear('configuration');
+
+      $this->app->redirect('OrdersStatusInvoice&page=' . $page);
     }
   }

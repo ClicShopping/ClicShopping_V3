@@ -14,6 +14,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Upload;
+  use ClicShopping\OM\Cache;
 
   class RestoreLocalNow extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -119,6 +120,8 @@
 
         $CLICSHOPPING_MessageStack->add($this->app->getDef('success_database_restored'), 'success');
       }
+
+      Cache::clear('configuration');
 
       $this->app->redirect('Backup');
     }

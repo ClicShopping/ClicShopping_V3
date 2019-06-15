@@ -47,7 +47,7 @@
       );
 
 
-      if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
+      if (isset($_POST['default'])) {
         $this->app->db->save('configuration', ['configuration_value' => $code],
           ['configuration_key' => 'DEFAULT_LANGUAGE']
         );

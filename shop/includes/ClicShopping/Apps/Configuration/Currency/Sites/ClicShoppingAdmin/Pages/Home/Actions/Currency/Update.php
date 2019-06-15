@@ -50,8 +50,7 @@
       $this->app->db->save('currencies', $sql_data_array, ['currencies_id' => (int)$currencies_id]);
 
 
-      if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
-
+      if (isset($_POST['default'])) {
         $this->app->db->save('configuration', [
           'configuration_value' => $code
         ], [

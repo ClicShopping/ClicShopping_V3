@@ -28,6 +28,8 @@
     public function execute()
     {
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $products_length_class_from_id = HTML::sanitize($_GET['wID']);
       $products_length_class_to_id = HTML::sanitize($_GET['tID']);
 
@@ -41,6 +43,6 @@
       Cache::clear('products_length-classes');
       Cache::clear('products_length-rules');
 
-      $this->app->redirect('ProductsLength&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('ProductsLength&page=' . $page);
     }
   }

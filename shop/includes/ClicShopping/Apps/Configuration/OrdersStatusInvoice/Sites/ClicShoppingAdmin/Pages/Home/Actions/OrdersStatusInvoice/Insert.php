@@ -14,6 +14,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\Cache;
 
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -28,6 +29,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
@@ -52,7 +54,7 @@
         $this->app->db->save('orders_status_invoice', $sql_data_array);
       }
 
-      if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
+      if (isset($_POST['default'])) {
         $this->app->db->save('configuration', [
           'configuration_value' => $orders_status_invoice_id
         ], [
@@ -61,6 +63,8 @@
         );
       }
 
-      $this->app->redirect('OrdersStatusInvoice&page=' . $_GET['page'] . '&oID=' . $orders_status_invoice_id);
+      Cache::clear('configuration');
+
+      $this->app->redirect('OrdersStatusInvoice&page=' . $page . '&oID=' . $orders_status_invoice_id);
     }
   }

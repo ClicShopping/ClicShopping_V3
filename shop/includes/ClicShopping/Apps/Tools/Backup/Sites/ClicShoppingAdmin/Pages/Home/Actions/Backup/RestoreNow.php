@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\Cache;
 
   class RestoreNow extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -22,7 +23,6 @@
     {
       $this->app = Registry::get('Backup');
     }
-
 
     public function execute()
     {
@@ -146,6 +146,8 @@
 
         $CLICSHOPPING_MessageStack->add($this->app->getDef('success_database_restored'), 'success');
       }
+
+      Cache::clear('configuration');
 
       $this->app->redirect('Backup');
     }

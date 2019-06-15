@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\Cache;
 
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -29,6 +30,7 @@
 
       if (isset($_GET['oID'])) $orders_status_id = HTML::sanitize($_GET['oID']);
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
@@ -48,7 +50,7 @@
       }
 
 
-      if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
+      if (isset($_POST['default'])) {
         $this->app->db->save('configuration', [
           'configuration_value' => $orders_status_id
         ], [
@@ -57,6 +59,8 @@
         );
       }
 
-      $this->app->redirect('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $orders_status_id);
+      Cache::clear('configuration');
+
+      $this->app->redirect('OrdersStatus&page=' . $page . '&oID=' . $orders_status_id);
     }
   }

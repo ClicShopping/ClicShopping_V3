@@ -14,6 +14,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\Cache;
 
   class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -27,21 +28,26 @@
     public function execute()
     {
 
-      $oID = HTML::sanitize($_GET['oID']);
+      if (isset($_GET['oID'])) {
+        $oID = HTML::sanitize($_GET['oID']);
+        $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $Qstatus = $this->app->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_ORDERS_STATUS_ID']);
+        $Qstatus = $this->app->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_ORDERS_STATUS_ID']);
 
-      if ($Qstatus->value('configuration_value') == $oID) {
-        $this->app->db->save('configuration', [
-          'configuration_value' => ''
-        ], [
-            'configuration_key' => 'DEFAULT_ORDERS_STATUS_ID'
-          ]
-        );
+        if ($Qstatus->value('configuration_value') == $oID) {
+          $this->app->db->save('configuration', [
+            'configuration_value' => ''
+          ], [
+              'configuration_key' => 'DEFAULT_ORDERS_STATUS_ID'
+            ]
+          );
+        }
+
+        $this->app->db->delete('orders_status', ['orders_status_id' => (int)$oID]);
+
+        Cache::clear('configuration');
+
+        $this->app->redirect('OrdersStatus&page=' . $page);
       }
-
-      $this->app->db->delete('orders_status', ['orders_status_id' => (int)$oID]);
-
-      $this->app->redirect('OrdersStatus&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
     }
   }

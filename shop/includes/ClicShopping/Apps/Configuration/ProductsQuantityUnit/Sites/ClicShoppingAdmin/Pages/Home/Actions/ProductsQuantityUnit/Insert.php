@@ -14,6 +14,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\Cache;
 
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -29,6 +30,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $languages = $CLICSHOPPING_Language->getLanguages();
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $products_quantity_unit_title_array = HTML::sanitize($_POST['products_quantity_unit_title']);
@@ -50,7 +52,7 @@
         $this->app->db->save('products_quantity_unit', $sql_data_array);
       }
 
-      if (isset($_POST['default']) && ($_POST['default'] == 'on')) {
+      if (isset($_POST['default'])) {
         $this->app->db->save('configuration', [
           'configuration_value' => $products_quantity_unit_id
         ], [
@@ -59,6 +61,8 @@
         );
       }
 
-      $this->app->redirect('ProductsQuantityUnit&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'oID=' . $products_quantity_unit_id);
+      Cache::clear('configuration');
+
+      $this->app->redirect('ProductsQuantityUnit&page=' . $page . '&oID=' . $products_quantity_unit_id);
     }
   }
