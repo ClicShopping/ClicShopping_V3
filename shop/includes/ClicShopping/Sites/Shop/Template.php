@@ -247,10 +247,10 @@
 
     /**
      * scan directory to create a dropdown
-     * @param string $template_selected
      * @return string
      */
-    public function getDropDownSelectedTemplateByCustomer($template_selected = 'Default')
+
+    public function getDropDownSelectedTemplateByCustomer()
     {
       $template_directory = CLICSHOPPING::getConfig('dir_root') . $this->_directoryTemplateSources . '/' . $this->_directoryTemplate;
       $weeds = ['.', '..', '_notes', 'index.php', 'ExNewTemplate', '.htaccess', 'README'];

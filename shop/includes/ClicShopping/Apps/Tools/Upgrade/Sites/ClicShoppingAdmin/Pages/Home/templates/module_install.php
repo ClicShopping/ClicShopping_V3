@@ -106,10 +106,10 @@
       <div class="alert alert-warning" role="alert">
 <?php
           echo $CLICSHOPPING_Upgrade->getDef('warning_no_module');
-          exit;
 ?>
       </div>
 <?php
+        exit;
       } else {
 ?>
       <div class="alert alert-warning"
