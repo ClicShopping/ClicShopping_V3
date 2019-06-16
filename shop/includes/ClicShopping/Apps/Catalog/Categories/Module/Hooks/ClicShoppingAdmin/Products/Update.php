@@ -75,7 +75,11 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if (isset($_GET['Update'])) {
+        if (isset($_POST['move_to_category_id'])) {
         $new_category = HTML::sanitize($_POST['move_to_category_id']);
+        } else {
+          $new_category = null;
+        }
 
         if (empty($this->productsLink) || $this->productsLink == 'move') {
           $move_new_category = $new_category[0];
