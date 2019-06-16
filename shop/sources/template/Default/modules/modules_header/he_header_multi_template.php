@@ -312,11 +312,8 @@
         return $this->_buildCategorytree($this->root_category_id);
       }
 
-      public function buildCategorytree($class='') {
+      public function buildCategorytree($class = '') {
         $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
-        $CLICSHOPPING_Category = Registry::get('Category');
-
-        $cPath = $CLICSHOPPING_Category->getPath();
 
         if (empty($class)) $class = 'nav navbar-nav';
 
@@ -325,10 +322,3 @@
         return $data;
       }
     }
-
-  /* end explode_category_tree */
-
-
-
-
-
