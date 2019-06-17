@@ -104,7 +104,6 @@
           <th><?php echo $CLICSHOPPING_Specials->getDef('table_heading_model'); ?></th>
           <th><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products'); ?></th>
           <?php
-            // Permettre le changement de groupe en mode B2B
             if (MODE_B2B_B2C == 'true') {
               ?>
               <th><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products_group'); ?></th>
@@ -127,7 +126,6 @@
         <tbody>
         <?php
           if (isset($_POST['customers_group_id']) && $_POST['customers_group_id'] != 0) {
-
             $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
             $Qspecials = $CLICSHOPPING_Specials->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
@@ -152,7 +150,7 @@
                                                                 where p.products_id = pd.products_id
                                                                 and p.products_id = s.products_id
                                                                 and pd.language_id = :language_id
-                                                                and s.customers_group_id = :customers_group_id
+                                                                and s.customers_group_id = :customers_group_id 
                                                                 order by pd.products_name
                                                                 limit :page_set_offset, :page_set_max_results
                                                                 ');
@@ -162,7 +160,6 @@
             $Qspecials->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
             $Qspecials->execute();
           } else {
-
             $Qspecials = $CLICSHOPPING_Specials->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
                                                                                   p.products_model,
                                                                                   pd.products_name,
@@ -185,6 +182,7 @@
                                                               where p.products_id = pd.products_id
                                                               and pd.language_id = :language_id
                                                               and p.products_id = s.products_id
+                                                              and (s.customers_group_id = 0 or s.customers_group_id = 99)
                                                               order by pd.products_name
                                                               limit :page_set_offset, :page_set_max_results
                                                               ');

@@ -33,7 +33,7 @@
     {
       if (!empty($_POST['products_specials'])) {
         if (isset($_POST['percentage_products_specials'])) {
-          if (substr($_POST['percentage_products_specials'], -1) == '%') {
+          if (substr($_POST['percentage_products_specials'], -1) == '%' || substr($_POST['percentage_products_specials'], -1) == '-') {
             $specials_price = ($_POST['products_price'] - (($_POST['percentage_products_specials'] / 100) * $_POST['products_price']));
           } else {
             $specials_price = $_POST['products_price'] - $_POST['percentage_products_specials'];
