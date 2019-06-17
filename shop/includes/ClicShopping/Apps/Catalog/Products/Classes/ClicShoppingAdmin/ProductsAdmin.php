@@ -1061,7 +1061,10 @@
       for ($i = 0; $i < count($multi_clone_categories_id_to); $i++) {
         $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
-        $sql_array = ['products_quantity' => (int)$Qproducts->valueInt('products_quantity'),
+        $sql_array = [
+          'parent_id' => (int)$Qproducts->valueInt('parent_id'),
+          'has_children' => (int)$Qproducts->valueInt('has_children'),
+          'products_quantity' => (int)$Qproducts->valueInt('products_quantity'),
           'products_model' => $Qproducts->value('products_model'),
           'products_ean' => $Qproducts->value('products_ean'),
           'products_sku' => $Qproducts->value('products_sku'),
