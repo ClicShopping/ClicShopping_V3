@@ -255,11 +255,16 @@
                 <?php
               } // end mode b2B_B2C
               ?>
-              <td
-                class="text-md-left"><?php echo number_format(100 - (($Qspecials->valueDecimal('specials_new_products_price') / $Qspecials->value('products_price')) * 100)) . '%'; ?></td>
+              <td class="text-md-left">
+                <?php
+                  if ($Qspecials->valueDecimal('products_price') != 0) {
+                    echo number_format(100 - (($Qspecials->valueDecimal('specials_new_products_price') / $Qspecials->valueDecimal('products_price')) * 100)) . '%';
+                  }
+                ?>
+              </td>
               <td class="text-md-left"><span
                   class="oldPrice"><?php echo $CLICSHOPPING_Currencies->format($Qspecials->valueDecimal('products_price')); ?></span><span
-                  class="specialPrice"><?php echo $CLICSHOPPING_Currencies->format($Qspecials->value('specials_new_products_price')); ?></span>
+                  class="specialPrice"><?php echo $CLICSHOPPING_Currencies->format($Qspecials->valueDecimal('specials_new_products_price')); ?></span>
               </td>
               <?php
               if (!is_null($Qspecials->value('scheduled_date'))) {

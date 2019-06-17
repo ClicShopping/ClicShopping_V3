@@ -27,6 +27,7 @@
 
       $products_id = HTML::sanitize($_POST['products_id']);
       $specials_price = HTML::sanitize($_POST['specials_price']);
+      $status = 1;
 
       if (!empty($_POST['expdate'])) {
         $expdate = HTML::sanitize($_POST['expdate']);
@@ -36,6 +37,13 @@
 
       if (!empty($_POST['schdate'])) {
         $schdate = HTML::sanitize($_POST['schdate']);
+
+        $date1 = new \DateTime(date('Y-m-d'));
+        $date2 = new \DateTime($schdate);
+
+        if ($date1 < $date2) {
+          $status = 0;
+        }
       } else {
         $schdate = null;
       }
@@ -47,6 +55,8 @@
       }
 
       if (substr($specials_price, -1) == '%') {
+        $specials_price = str_replace('%', '', $specials_price);
+
         $Qproduct = $CLICSHOPPING_Specials->db->get('products', 'products_price', ['products_id' => (int)$products_id]);
 
         $products_price = $Qproduct->valueDecimal('products_price');
@@ -59,7 +69,7 @@
           'specials_date_added' => 'now()',
           'scheduled_date' => $schdate,
           'expires_date' => $expdate,
-          'status' => 1,
+          'status' => $status,
           'flash_discount' => (int)$flash_discount
         ]
       );
