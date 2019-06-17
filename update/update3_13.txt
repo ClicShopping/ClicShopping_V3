@@ -1,0 +1,9 @@
+Some refactoring code
+Reformat code
+Convert db utf8mb4
+Some fix du strict php mode
+
+
+
+#Update DB
+ALTER TABLE `clic_products` ADD `parent_id` INT UNSIGNED NOT NULL AFTER `products_id`, ADD `has_children` INT NOT NULL DEFAULT '0' AFTER `parent_id`, ADD INDEX `products_parent_id` (`parent_id`);
