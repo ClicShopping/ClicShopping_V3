@@ -87,8 +87,6 @@
 
           } elseif (isset($_POST['products_percentage'])) {
             if ($_POST['products_percentage'] == 1) {
-
-
               if ($products_price > 0) {
                 if (B2B == 'true') {
                   if ($group_discount > 0) $newprice = $products_price + ($products_price / 100) * $group_discount;
@@ -156,7 +154,6 @@
             $group_discount = $Qdiscount->value('discount');
           }
 
-
           $group_customer_price = @$_POST['price' . $QcustomersGroup->valueInt('customers_group_id')];
 
           if (MODE_B2B_B2C == 'false' && !isset($_POST['products_percentage'])) {
@@ -184,7 +181,6 @@
           }
 
 // Gets all of the customers groups
-
           $Qattributes = $this->app->db->prepare('select g.customers_group_id,
                                                          g.customers_group_price,
                                                          p.products_price
@@ -234,7 +230,11 @@
                 }
               }
 
-              if (isset($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')])) $products_quantity_unit_id_group = $_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')];
+              if (isset($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
+                $products_quantity_unit_id_group = $_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')];
+              } else {
+                $products_quantity_unit_id_group = 0;
+              }
               
               if (isset($_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
                 $products_model_group = $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')];
