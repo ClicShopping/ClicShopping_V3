@@ -50,8 +50,6 @@
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_LANGUAGES_BANNER_GROUP)) {
             $languages_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-          } else {
-            $languages_banner = '';
           }
         }
 

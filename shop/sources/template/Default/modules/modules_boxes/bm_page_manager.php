@@ -60,8 +60,6 @@
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PAGE_MANAGER_BANNER_GROUP)) {
             $page_manager_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-          } else {
-            $page_manager_banner = '';
           }
         }
 

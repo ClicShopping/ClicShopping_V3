@@ -51,8 +51,6 @@
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CATEGORIES_BANNER_GROUP)) {
             $categories_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-          } else {
-            $categories_banner = '';
           }
         }
 

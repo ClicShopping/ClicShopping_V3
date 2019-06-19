@@ -12,8 +12,9 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_information" id="boxe_information">
+  <div class="separator"></div>
+  <div class="boxeBannerContentsPageManager"><?php echo $page_manager_banner; ?></div>
   <div class="card boxeContainerPageManager">
-    <div class="card-img-top boxeBannerContentsPageManager"><?php echo $page_manager_banner; ?></div>
     <div class="card-header boxeHeadingPageManager">
       <span class="card-title boxeTitlePageManager"><?php echo CLICSHOPPING::getDef('module_boxes_page_manager_box_title'); ?></span>
     </div>

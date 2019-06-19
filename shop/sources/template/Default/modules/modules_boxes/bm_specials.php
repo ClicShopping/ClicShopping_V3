@@ -114,16 +114,14 @@
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SPECIALS_BANNER_GROUP)) {
               $specials_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-            } else {
-              $specials_banner = '';
             }
           }
 
           $data = '<!-- Boxe specials start-->' . "\n";
-          $data .= '<div class="clearfix"></div>';
           $data .= '<section class="boxe_specials" id="boxe_specials">';
+          $data .= '<div class="separator"></div>';
+          $data .= '<div class="boxeBannerContentsSpecials">' . $specials_banner . '</div>';
           $data .= '<div class="card boxeContainerSpecials">';
-          $data .= '<div class="card-img-top boxeBannerContentsSpecials">' . $specials_banner .'</div>' ;
           $data .= '<div class="card-header boxeHeadingSpecials"><span class="card-title boxeTitleSpecials">' . HTML::link(CLICSHOPPING::link(null,'Products&Specials'), CLICSHOPPING::getDef('module_boxes_specials_box_title')) . '</span></div>';
           $data .= '<div class="card-block text-sm-center boxeContentArroundSpecials">';
           $data .= ' <div class="separator"></div>';

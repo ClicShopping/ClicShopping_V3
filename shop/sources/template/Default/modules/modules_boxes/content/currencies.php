@@ -12,8 +12,9 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_currencies" id="boxe_currencies">
+  <div class="separator"></div>
+  <div class="boxeBannerContentsCurrencies"><?php echo $categories_banner; ?></div>
   <div class="card boxeContainerCurrencies">
-    <div class="card-img-top boxeBannerContentsCurrencies"><?php echo $currencies_banner; ?></div>
     <div class="card-header boxeHeadingCurrencies">
       <span class="card-title boxeTitleCurrencies"><?php echo CLICSHOPPING::getDef('module_boxes_currencies_box_title'); ?></span>
     </div>

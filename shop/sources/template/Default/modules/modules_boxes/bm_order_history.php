@@ -102,8 +102,6 @@
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_ORDER_HISTORY_BANNER_GROUP)) {
               $order_history_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-            } else {
-              $order_history_banner = '';
             }
           }
 

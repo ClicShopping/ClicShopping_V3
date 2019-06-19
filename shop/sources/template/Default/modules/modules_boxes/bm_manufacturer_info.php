@@ -83,11 +83,11 @@
 
           $manufacturer_info_string .= '<div class="col-md-12">-&nbsp;' . HTML::link($manufacturer_url, CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_other_products')) . '</div>';
 
+          $manufacturer_infos_banner = '';
+
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_MANUFACTURER_INFO_BANNER_GROUP)) {
               $manufacturer_infos_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-            } else {
-              $manufacturer_infos_banner = '';
             }
           }
 

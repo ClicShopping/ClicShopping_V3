@@ -17,8 +17,9 @@
   $CLICSHOPPING_CategoryTree->setChildString('<li class="boxeCategoriesNavigation">', '</li>');
 ?>
 <section class="boxe_categories" id="boxe_categories">
-  <div class="card boxeContainerCategories">
-    <div class="card-img-top boxeBannerContentsCategories"><?php echo $categories_banner; ?></div>
+  <div class="separator"></div>
+  <div class="boxeContainerCategories"><?php echo $categories_banner; ?></div>
+  <div class="card">
     <div class="card-header boxeHeadingCategories">
       <span class="card-title boxeTitleCategories"><?php echo CLICSHOPPING::getDef('module_boxes_categories_box_title'); ?></span>
     </div>

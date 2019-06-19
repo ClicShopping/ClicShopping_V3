@@ -12,8 +12,9 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_languages" id="boxe_languages">
+  <div class="separator"></div>
+  <div class="boxeBannerContentsLanguages"><?php echo $languages_banner; ?></div>
   <div class="card boxeContainerLanguages">
-    <div class="card-img-top boxeBannerContentsLanguages"><?php echo $languages_banner; ?></div>
     <div class="card-header boxeHeadingLanguages">
       <span class="card-title boxeTitleLanguages"><?php echo CLICSHOPPING::getDef('module_boxes_languages_box_title'); ?></span>
     </div>

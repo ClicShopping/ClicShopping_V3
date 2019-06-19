@@ -13,8 +13,9 @@ use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
 ?>
 <section class="boxe_search" id="boxe_search">
+  <div class="separator"></div>
+  <div class="boxeBannerContentsSearch"><?php echo $search_banner; ?></div>
   <div class="card boxeContainerSearch">
-    <div class="card-img-top boxeBannerContentsSearch"><?php echo $search_banner; ?></div>
     <div class="card-header boxeHeadingSearch">
       <span class="card-title boxeTitleSearch"><?php echo CLICSHOPPING::getDef('module_boxes_search_box_title'); ?></span>
     </div>

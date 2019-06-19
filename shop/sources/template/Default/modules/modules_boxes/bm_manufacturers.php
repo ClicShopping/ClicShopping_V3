@@ -103,8 +103,6 @@
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic', SITE_THEMA . '_manufacturer')) {
           $manufacturer_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-        } else {
-          $manufacturer_banner = '';
         }
       }
 

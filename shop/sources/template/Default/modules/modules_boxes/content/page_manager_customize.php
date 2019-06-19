@@ -12,8 +12,9 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_information_customize" id="boxe_information_customize">
+  <div class="separator"></div>
+  <div class="boxeBannerContentsPageManagerCustomize"><?php echo $pm_customomize_banner; ?></div>
   <div class="card boxeContainerPageManagerCustomize">
-    <div class="card-img-top boxeBannerContentsPageManagerCustomize"><?php echo $pm_customomize_banner; ?></div>
     <div class="card-header boxeHeadingPageManagerCustomize">
       <span class="card-title boxeTitlePageManagerCustomize"><?php echo CLICSHOPPING::getDef('module_boxes_page_manager_customize_box_title'); ?></span>
     </div>

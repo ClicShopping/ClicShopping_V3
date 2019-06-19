@@ -12,8 +12,9 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_manufacturer_info" id="boxe_manufacturer_info">
+  <div class="separator"></div>
+  <div class="boxeBannerContentsManufacturerInfo"><?php echo $manufacturer_infos_banner; ?></div>
   <div class="card boxeContainerManufacturerInfo">
-    <div class="card-img-top boxeBannerContentsManufacturerInfo"><?php echo $manufacturer_infos_banner; ?></div>
     <div class="card-header boxeHeadingManufacturerInfo">
       <span class="card-title boxeTitleManufacturerInfo"><?php echo CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_title'); ?></span>
     </div>

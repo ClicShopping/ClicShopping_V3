@@ -55,15 +55,12 @@
 
       $QpagesSecondary->execute();
 
-
        if ( $QpagesSecondary->valueInt('count') > 0) {
          $pm_customomize_banner = '';
 
          if ($CLICSHOPPING_Service->isStarted('Banner') ) {
            if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PAGE_MANAGER_CUSTOMIZE_BANNER_GROUP)) {
              $pm_customomize_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-           } else {
-             $pm_customomize_banner = '';
            }
          }
 

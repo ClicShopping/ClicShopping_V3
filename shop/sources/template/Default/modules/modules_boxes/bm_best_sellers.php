@@ -181,8 +181,6 @@
           if ($CLICSHOPPING_Service->isStarted('Banner') ) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_BEST_SELLERS_BANNER_GROUP)) {
               $best_sellers_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-            } else {
-              $best_sellers_banner = '';
             }
           }
 

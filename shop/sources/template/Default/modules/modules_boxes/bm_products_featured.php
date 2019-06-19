@@ -112,16 +112,15 @@
         if ($CLICSHOPPING_Service->isStarted('Banner') ) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PRODUCTS_FEATURED_BANNER_GROUP)) {
             $featured_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
-          } else {
-            $featured_banner = '';
           }
         }
 
-        $data ='<!-- Boxe Products featured start -->' . "\n";
+        $data = '<!-- Boxe Products featured start -->' . "\n";
         $data .='<section class="boxe_featured" id="boxe_featured">' . "\n";
+        $data .= '<div class="separator"></div>';
+        $data .= '<div class="boxeBannerContentsFeatured">' . $featured_banner . '</div>';
         $data .= '<div class="clearfix"></div>';
         $data .= '<div class="card boxeContainerFeatured">';
-        $data .= '<div class="card-img-top boxeBannerContentsFeatured">' . $featured_banner . '</div>';
         $data .= '<div class="card-header boxeHeadingFeatured"><span class="card-title boxeTitleFeatured">'. HTML::link(CLICSHOPPING::link(null,'Products&Featured'), CLICSHOPPING::getDef('module_boxes_products_featured_box_title')) . '</span></div>';
         $data .= '<div class="card-block  text-md-center boxeContentArroundFeatured">';
         $data .= '<div class="separator"></div>';
