@@ -121,7 +121,6 @@
         $data .= '<section class="boxe_favorites" id="boxe_favorites">';
         $data .= '<div class="separator"></div>';
         $data .= '<div class="boxeBannerContentsFavorites">' . $favorites_banner . '</div>';
-        $data .= '<div class="clearfix"></div>';
         $data .= '<div class="card boxeContainerFavorites">';
         $data .= '<div class="card-header boxeHeadingFavorites"><span class="card-title boxeTitleFavorites">' . HTML::link(CLICSHOPPING::link(null,'Products&Favorites'), CLICSHOPPING::getDef('module_boxes_products_favorites_box_title')) . '</span></div>';
         $data .= '<div class="card-block  text-md-center boxeContentArroundFavorites">';
