@@ -2861,7 +2861,7 @@
       $savemoney = '';
 
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
-        $savemoney = (round((($this->setPrice($id) - $this->setSpecialPriceGroup($id))), 2));
+        $savemoney = (round((($this->setPrice($id) - $this->setSpecialPriceGroup($id))), 4));
       }
 
       return $savemoney;
@@ -2915,14 +2915,11 @@
       for ($i; $i > -1; $i--) {
         if ($qty >= $discount_quantity[$i]) {
           $new_discount_price = ($products_price - ($products_price * ($discount_customer[$i] / 100)));
-
           $_SESSION['ProductsID'] = $id;
           $this->infoPriceDiscountByQuantity = 1;
 
           $discount = ($products_price - $new_discount_price) * $qty;
-
           $this->saveMoney = $discount;
-
           break;
         }
       }

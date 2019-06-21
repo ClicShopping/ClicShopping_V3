@@ -95,8 +95,7 @@
                                                  :table_banners_history bh
                                             where b.status = 1
                                             and b.banners_id = bh.banners_id
-                                            and ((b.expires_date is not null
-                                                 and now() >= b.expires_date)
+                                            and ((b.expires_date is not null and now() >= b.expires_date)
                                                  or (b.expires_impressions >= banners_shown)
                                                 )
                                             group by b.banners_id
@@ -134,11 +133,10 @@
         $Qcheck = $CLICSHOPPING_Db->prepare('select banners_id
                                              from :table_banners
                                              where banners_group = :banners_group
-                                             and status = :status
+                                             and status = 1
                                              limit 1
                                              ');
         $Qcheck->bindValue(':banners_group', $identifier);
-        $Qcheck->bindInt(':status', 1);
         $Qcheck->execute();
 
         if ($Qcheck !== false) {

@@ -122,7 +122,7 @@
     }
 
 
-    private function getProductModel()
+    public function getProductModel()
     {
       if (empty($_POST['products_model'])) {
         $rand = rand();
@@ -134,7 +134,7 @@
       return $products_model;
     }
 
-    private function getProductSKU()
+    public function getProductSKU()
     {
       if (empty($_POST['products_sku'])) {
         $products_sku = $this->getProductModel();
@@ -147,7 +147,7 @@
       return $products_sku;
     }
 
-    private function getProductEAN()
+    public function getProductEAN()
     {
       if (empty($_POST['products_ean'])) {
         $products_ean = $this->getProductSKU();

@@ -249,7 +249,6 @@
      * scan directory to create a dropdown
      * @return string
      */
-
     public function getDropDownSelectedTemplateByCustomer()
     {
       $template_directory = CLICSHOPPING::getConfig('dir_root') . $this->_directoryTemplateSources . '/' . $this->_directoryTemplate;

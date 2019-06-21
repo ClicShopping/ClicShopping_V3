@@ -716,6 +716,7 @@
       $Qlisting->execute();
 
       $result['entries'] = $Qlisting->fetchAll();
+
       $result['total'] = $Qlisting->getPageSetTotalRows();
 
       $this->listing = $Qlisting;

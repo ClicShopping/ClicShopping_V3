@@ -11,9 +11,6 @@
 
   namespace ClicShopping\OM;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-
   class Db extends \PDO
   {
     protected $connected = false;
