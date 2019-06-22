@@ -2879,16 +2879,63 @@
       return $this->setProductsSaveMoneyCustomer($id);
     }
 
-    /*
-    * display new price in functionProducts Discount Quantity
-    *
-    * @param string $id, id of the product
-    * @param string  $qty, quantity of the product
-    * $products_price , price of the product
-    * @return string $new_discount_price,  the new price of the product
-    * @access public
-    */
+    /**
+     *  Calcul the new price in function the products Discount Quantity for shopping cart class
+     * @param null $id
+     * @param null $qty
+     * @param null $products_price
+     * @return bool|float|int|null
+     */
     public function getProductsNewPriceByDiscountByQuantity($id = null, $qty = null, $products_price = null)
+    {
+
+      $QprodutsQuantityDiscount = $this->db->prepare('select discount_quantity,
+                                                            discount_customer
+                                                      from :table_products_discount_quantity
+                                                      where products_id = :products_id
+                                                      and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                                      and discount_quantity <> 0
+                                                    ');
+      $QprodutsQuantityDiscount->bindInt(':products_id', $id);
+      $QprodutsQuantityDiscount->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+
+      $QprodutsQuantityDiscount->execute();
+
+      while ($QprodutsQuantityDiscount->fetch()) {
+        $discount_quantity[] = $QprodutsQuantityDiscount->valueInt('discount_quantity');
+        $discount_customer[] = $QprodutsQuantityDiscount->valueDecimal('discount_customer');
+      }
+
+      $nb_discount = $QprodutsQuantityDiscount->rowCount(); // dans ton exemple 3 discounts
+
+      $new_discount_price = null;
+
+      $i = $nb_discount - 1; // 0,1,2 pour les indices des tableaux de ton exemple
+
+      for ($i; $i > -1; $i--) {
+        if ($qty >= $discount_quantity[$i]) {
+          $new_discount_price = ($products_price - ($products_price * ($discount_customer[$i] / 100)));
+          $_SESSION['ProductsID'] = $id;
+        }
+      }
+
+      if (!is_null($new_discount_price) || !empty($new_discount_price)) {
+        return $new_discount_price;
+      } else {
+        return false;
+      }
+    }
+
+
+    /**
+     * Get the price by quantity discount for the shopping cart
+     * @param null $id
+     * @param null $qty
+     * @param null $products_price
+     * @return float|int
+     *
+     */
+    public function getInfoPriceDiscountByQuantityShoppingCart($id = null, $qty = null, $products_price = null)
     {
       $QprodutsQuantityDiscount = $this->db->prepare('select discount_quantity,
                                                             discount_customer
@@ -2908,45 +2955,31 @@
       }
 
       $nb_discount = $QprodutsQuantityDiscount->rowCount(); // dans ton exemple 3 discounts
-      $new_discount_price = '';
+      $discount = 0;
 
       $i = $nb_discount - 1; // 0,1,2 pour les indices des tableaux de ton exemple
 
       for ($i; $i > -1; $i--) {
         if ($qty >= $discount_quantity[$i]) {
           $new_discount_price = ($products_price - ($products_price * ($discount_customer[$i] / 100)));
+
           $_SESSION['ProductsID'] = $id;
           $this->infoPriceDiscountByQuantity = 1;
 
           $discount = ($products_price - $new_discount_price) * $qty;
-          $this->saveMoney = $discount;
-          break;
         }
       }
 
-      if (!is_null($new_discount_price) || !empty($new_discount_price)) {
-        return $new_discount_price;
-      } else {
-        return false;
-      }
+      return $discount;
     }
 
     /**
      * get info proce discount by quantity
      * @return int
      */
-    public function getInfoPriceDiscountbyQuantity()
+    public function getInfoPriceDiscountByQuantity()
     {
       return $this->infoPriceDiscountByQuantity;
-    }
-
-    /**
-     * get save money by the customer
-     * @return Decimal
-     */
-    public function getSaveMoney()
-    {
-      return $this->saveMoney;
     }
 
     /*
