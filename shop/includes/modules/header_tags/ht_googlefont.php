@@ -25,7 +25,7 @@
     public function __construct()
     {
       $this->code = get_class($this);
-      $this->group = 'footer_scripts';
+      $this->group = 'header_tags';
       $this->title = CLICSHOPPING::getDef('module_header_tags_google_font_title');
       $this->description = CLICSHOPPING::getDef('module_header_tags_google_font_description');
 
@@ -38,8 +38,7 @@
     public function execute()
     {
       $CLICSHOPPING_Template = Registry::get('Template');
-      $google = '<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>';
-      $google .= '<script>WebFont.load({google: {families: [\'Roboto:300,300i,400,400i,700,700i\']}});</script>';
+      $google = '<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>';
 
       $CLICSHOPPING_Template->addBlock($google . "\n", $this->group);
     }
