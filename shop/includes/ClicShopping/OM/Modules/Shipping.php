@@ -31,7 +31,7 @@
 
     public function getClass($module)
     {
-      list($vendor, $app, $code) = explode('\\', $module, 3);
+      [$vendor, $app, $code] = explode('\\', $module, 3);
 
       $info = Apps::getInfo($vendor . '\\' . $app);
 

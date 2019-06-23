@@ -488,7 +488,7 @@
 
       $Qdate = $CLICSHOPPING_Db->query('select now() as datetime');
 
-      @list($system, $host, $kernel) = preg_split('/[\s,]+/', @exec('uname -a'), 5);
+      [$system, $host, $kernel] = preg_split('/[\s,]+/', @exec('uname -a'), 5);
 
       $data = [];
 

@@ -73,7 +73,7 @@
 
       if (isset($filter_vendor_app)) {
         if (strpos($filter_vendor_app, '\\') !== false) {
-          list($filter_vendor, $filter_app) = explode('\\', $filter_vendor_app, 2);
+          [$filter_vendor, $filter_app] = explode('\\', $filter_vendor_app, 2);
         } else {
           $filter_vendor = $filter_vendor_app;
         }
@@ -117,7 +117,7 @@
     public static function exists($app)
     {
       if (strpos($app, '\\') !== false) {
-        list($vendor, $app) = explode('\\', $app, 2);
+        [$vendor, $app] = explode('\\', $app, 2);
 
         if (class_exists('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $app)) {
           if (is_subclass_of('ClicShopping\Apps\\' . $vendor . '\\' . $app . '\\' . $app, 'ClicShopping\OM\AppAbstract')) {
@@ -165,7 +165,7 @@
     public static function getInfo($app)
     {
       if (strpos($app, '\\') !== false) {
-        list($vendor, $app) = explode('\\', $app, 2);
+        [$vendor, $app] = explode('\\', $app, 2);
 
         $metafile = CLICSHOPPING::BASE_DIR . 'Apps/' . basename($vendor) . '/' . basename($app) . '/clicshopping.json';
 
@@ -236,7 +236,7 @@
 
       if (isset($filter_vendor_app)) {
         if (strpos($filter_vendor_app, '\\') !== false) {
-          list($filter_vendor, $filter_app) = explode('\\', $filter_vendor_app, 2);
+          [$filter_vendor, $filter_app] = explode('\\', $filter_vendor_app, 2);
         } else {
           $filter_vendor = $filter_vendor_app;
         }

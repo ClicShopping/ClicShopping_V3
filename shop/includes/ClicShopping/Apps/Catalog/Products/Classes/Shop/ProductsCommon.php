@@ -2964,7 +2964,6 @@
           $new_discount_price = ($products_price - ($products_price * ($discount_customer[$i] / 100)));
 
           $_SESSION['ProductsID'] = $id;
-          $this->infoPriceDiscountByQuantity = 1;
 
           $discount = ($products_price - $new_discount_price) * $qty;
         }
@@ -2973,14 +2972,6 @@
       return $discount;
     }
 
-    /**
-     * get info proce discount by quantity
-     * @return int
-     */
-    public function getInfoPriceDiscountByQuantity()
-    {
-      return $this->infoPriceDiscountByQuantity;
-    }
 
     /*
     * Return table heading with sorting capabilities

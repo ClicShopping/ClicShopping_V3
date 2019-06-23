@@ -374,7 +374,7 @@
       }
 // Validate the domain exists with a DNS check
 // if the checks cannot be made (soft fail over to true)
-      list($user, $domain) = explode('@', $email);
+      [$user, $domain] = explode('@', $email);
 
       if (function_exists('checkdnsrr')) {
         if (!checkdnsrr($domain, "MX")) { // Linux: PHP 4.3.0 and higher & Windows: PHP 5.3.0 and higher

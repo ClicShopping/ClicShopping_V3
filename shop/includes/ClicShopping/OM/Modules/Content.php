@@ -33,8 +33,8 @@
 
     public function getClass($module)
     {
-      list($group, $code) = explode('/', $module, 2);
-      list($vendor, $app, $code) = explode('\\', $code, 3);
+      [$group, $code] = explode('/', $module, 2);
+      [$vendor, $app, $code] = explode('\\', $code, 3);
 
       $info = Apps::getInfo($vendor . '\\' . $app);
 

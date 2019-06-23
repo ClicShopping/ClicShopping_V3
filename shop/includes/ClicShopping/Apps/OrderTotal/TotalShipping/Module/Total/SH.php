@@ -89,8 +89,8 @@
       }
 
       if (isset($_SESSION['shipping']) && strpos($_SESSION['shipping']['id'], '\\') !== false) {
-        list($vendor, $app, $module) = explode('\\', $_SESSION['shipping']['id']);
-        list($module, $method) = explode('_', $module);
+        [$vendor, $app, $module] = explode('\\', $_SESSION['shipping']['id']);
+        [$module, $method] = explode('_', $module);
 
         $module = $vendor . '\\' . $app . '\\' . $module;
 

@@ -37,7 +37,7 @@
         return $module;
       }
 
-      list($vendor, $app, $group, $code) = explode('\\', $module, 4);
+      [$vendor, $app, $group, $code] = explode('\\', $module, 4);
 
       $info = Apps::getInfo($vendor . '\\' . $app);
 

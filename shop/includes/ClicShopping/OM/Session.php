@@ -33,8 +33,8 @@
 
       if (!class_exists(__NAMESPACE__ . '\\Session\\' . static::$driver)) {
         trigger_error('ClicShopping\OM\Session::load(): Driver "' . static::$driver . '" does not exist, using default "' . static::$default_driver . '"', E_USER_ERROR);
-        
-	      static::$driver = static::$default_driver;
+
+        static::$driver = static::$default_driver;
       }
 
       $class_name = __NAMESPACE__ . '\\Session\\' . static::$driver;
