@@ -36,6 +36,12 @@
   $Qproducts->execute();
 
   $pInfo = new ObjectInfo($Qproducts->toArray());
+
+  if (isset($_GET['cPath'])) {
+    $cPath = HTML::sanitize($_GET['cPath']);
+  } else {
+    $cPath = 0;
+  }
 ?>
 <div class="contentBody">
   <div class="row">
