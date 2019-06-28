@@ -181,7 +181,7 @@
           $Qcheck->bindValue(':user_name', $username);
           $Qcheck->execute();
 
-          if ($Qcheck->rowCount() == 1 && Is::email($username)) {
+          if ($Qcheck->rowCount() == 1 && Is::EmailAddress($username)) {
 
             $new_password = Hash::getRandomString(ENTRY_PASSWORD_MIN_LENGTH);
             $crypted_password = Hash::encrypt($new_password);

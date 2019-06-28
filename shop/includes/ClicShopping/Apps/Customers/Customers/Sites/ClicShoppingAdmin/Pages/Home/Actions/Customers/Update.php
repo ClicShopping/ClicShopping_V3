@@ -188,7 +188,7 @@
 
       $entry_email_address_error = false;
 
-      if (!Is::email($customers_email_address)) {
+      if (!Is::EmailAddress($customers_email_address)) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error', 'header');
       } else {

@@ -42,7 +42,7 @@
      * @param string $string The string to strictly parse and output
      * @return string
      */
-    public static function outputProtected($string)
+    public static function outputProtected(?string $string): string
     {
       return htmlspecialchars(trim($string));
     }
@@ -54,7 +54,7 @@
      * @return string
      */
 
-    public static function sanitize($string)
+    public static function sanitize(?string $string): string
     {
       $patterns = [
         '/ +/',
@@ -88,7 +88,7 @@
      * @return string
      */
 
-    public static function link($url, $element, $parameters = null)
+    public static function link(string $url, string $element, ?string $parameters = null): string
     {
       return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }

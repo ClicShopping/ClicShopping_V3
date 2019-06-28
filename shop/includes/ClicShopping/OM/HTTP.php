@@ -231,7 +231,7 @@
       $ip = '0.0.0.0';
 
       foreach ($ips as $req_ip) {
-        if (Is::ip_address($req_ip)) {
+        if (Is::IpAddress($req_ip)) {
           $ip = $req_ip;
           break;
         }

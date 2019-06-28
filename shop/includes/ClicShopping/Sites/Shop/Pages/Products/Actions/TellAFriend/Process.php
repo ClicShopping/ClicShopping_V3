@@ -59,7 +59,7 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_from_name'), 'error', 'friend');
         }
 
-        if (!Is::email($from_email_address)) {
+        if (!Is::EmailAddress($from_email_address)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_from_address'), 'error', 'friend');
@@ -71,7 +71,7 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_to_name'), 'error', 'friend');
         }
 
-        if (!Is::email($to_email_address)) {
+        if (!Is::EmailAddress($to_email_address)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_to_address'), 'error', 'friend');
@@ -95,7 +95,7 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_tell_a_friend_email_minutes' => (defined('MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_TELL_A_FRIEND_EMAIL_MINUTES : 15)]), 'danger', 'friend');
         }
 
-        if (!Is::email($to_email_address)) {
+        if (!Is::EmailAddress($to_email_address)) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_to_address'), 'error', 'friend');
         }

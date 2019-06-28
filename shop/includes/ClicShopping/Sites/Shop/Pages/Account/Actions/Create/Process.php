@@ -95,7 +95,7 @@
         }
 
 // Clients B2C : Controle entree adresse e-mail
-        if (Is::email($email_address) === false) {
+        if (Is::EmailAddress($email_address) === false) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error', ['min_length' => ENTRY_EMAIL_ADDRESS_MIN_LENGTH]), 'error', 'create_account');

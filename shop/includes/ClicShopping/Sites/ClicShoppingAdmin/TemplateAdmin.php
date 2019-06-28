@@ -293,6 +293,7 @@
         'Info&Content',
         'Info&SiteMap',
         'Info&SSLcheck',
+        'FlashSelling&ProductsFlashSelling',
         'Products&Description',
         'Products&Favorites',
         'Products&Featured',
@@ -387,7 +388,12 @@
       return HTML::selectMenu($this->key, $filename_array, $filename_value);
     }
 
-
+    /**
+     * @param string $source_folder
+     * @param string $filename
+     * @param string $ext
+     * @return array|bool
+     */
     public function getSpecificFiles($source_folder, $filename, $ext = 'php')
     {
       $result = parent::getSpecificFiles($source_folder, $filename, $ext);

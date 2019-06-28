@@ -41,7 +41,7 @@
         $email_address = HTML::sanitize($_GET['account']);
         $password_key = HTML::sanitize($_GET['key']);
 
-        if ((Is::email($email_address) === false)) {
+        if ((Is::EmailAddress($email_address) === false)) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'danger', 'header');

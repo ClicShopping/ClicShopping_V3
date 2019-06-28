@@ -82,7 +82,7 @@
           }
         }
 
-        if (!Is::email($email_address)) {
+        if (!Is::EmailAddress($email_address)) {
           $error = true;
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error'), 'warning', 'contact');
         }

@@ -10,16 +10,34 @@
    */
 
   namespace ClicShopping\OM;
+  
   class Is
   {
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, array $arguments): bool
     {
-      if (class_exists(__NAMESPACE__ . '\\Is\\' . $name)) {
-        return (bool)call_user_func_array([
-          __NAMESPACE__ . '\\Is\\' . $name,
-          'execute'
-        ], $arguments);
-      }
-      return false;
+        $class = __NAMESPACE__ . '\\Is\\' . $name;
+
+        try {
+            if (!class_exists($class)) {
+                throw new \Exception('ClicShopping\Is module class does not exist: ' . $class);
+            }
+
+            if (!is_subclass_of($class, 'ClicShopping\\OM\\IsInterface')) {
+                throw new \Exception('ClicShopping\Is module class does not implement ClicShopping\OM\IsInterface: ' . $class);
+            }
+
+            $callable = [
+                $class,
+                'execute'
+            ];
+
+            if (is_callable($callable)) {
+                return call_user_func_array($callable, $arguments);
+            }
+        } catch (\Exception $e) {
+            trigger_error($e->getMessage());
+        }
+
+        return false;
     }
   }
