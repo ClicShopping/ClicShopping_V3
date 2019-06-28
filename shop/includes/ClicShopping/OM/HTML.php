@@ -88,7 +88,7 @@
      * @return string
      */
 
-    public static function link(string $url, string $element, ?string $parameters = null): string
+    public static function link($url,  $element, $parameters = null)
     {
       return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }
