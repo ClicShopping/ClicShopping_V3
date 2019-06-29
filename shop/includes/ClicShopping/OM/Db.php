@@ -426,12 +426,20 @@
      */
     public function importSQL($sql_file, $table_prefix = null)
     {
-      if (is_file($sql_file)) {
-        $import_queries = file_get_contents($sql_file);
-      } else {
-        trigger_error('CLICSHOPPING\OM\Db::importSQL(): SQL file does not exist: ' . $sql_file);
+      try {
+        if (is_file($sql_file)) {
+          $import_queries = file_get_contents($sql_file);
 
-        return false;
+          if ($import_queries === false) {
+            throw new \Exception('CLICSHOPPING\Db::importSQL(): Cannot read SQL import file: ' . $sql_file);
+          }
+        } else {
+          throw new \Exception('CLICSHOPPING\Db::importSQL(): SQL import file does not exist: ' . $sql_file);
+        }
+      } catch (\Exception $e) {
+         trigger_error($e->getMessage());
+
+         return false;
       }
 
       set_time_limit(0);

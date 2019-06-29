@@ -17,7 +17,7 @@
   class Cache
   {
     protected static $path;
-
+    protected const SAFE_KEY_NAME_REGEX = 'a-zA-Z0-9-_';
     protected $key;
     protected $data;
 
@@ -31,8 +31,8 @@
 
     public function setKey($key)
     {
-      if (!$this->hasSafeName($key)) {
-        trigger_error('ClicShopping\\OM\\Cache: Invalid key name (\'' . $key . '\'). Valid characters are a-zA-Z0-9-_');
+      if (!static::hasSafeName($key)) {
+        trigger_error('ClicShopping\\OM\\Cache: Invalid key name ("' . $key . '"). Valid characters are ' . static::SAFE_KEY_NAME_REGEX);
 
         return false;
       }
@@ -45,7 +45,7 @@
       return $this->key;
     }
 
-    public function save($data)
+    public function save($data): bool
     {
 
       if (FileSystem::isWritable(static::getPath())) {
@@ -55,15 +55,17 @@
       return false;
     }
 
-    public function exists($expire = null)
+    public function exists($expire = null): bool
     {
 
       $filename = static::getPath() . $this->key . '.cache';
 
       if (is_file($filename)) {
+      
         if (!isset($expire)) {
           return true;
         }
+	
         $difference = floor((time() - filemtime($filename)) / 60);
 
         if (is_numeric($expire) && ($difference < $expire)) {
@@ -85,6 +87,7 @@
     {
 
       $filename = static::getPath() . $this->key . '.cache';
+      
       if (is_file($filename)) {
         $this->data = unserialize(file_get_contents($filename));
       }
@@ -92,12 +95,12 @@
       return $this->data;
     }
 
-    public static function hasSafeName($key)
+    public static function hasSafeName(string $key): bool
     {
-      return preg_match('/^[a-zA-Z0-9-_]+$/', $key) === 1;
+      return preg_match('/^[' . static::SAFE_KEY_NAME_REGEX . ']+$/', $key) === 1;
     }
 
-    public function getTime()
+    public function getTime(): bool
     {
       $filename = static::getPath() . $this->key . '.cache';
       if (is_file($filename)) {
@@ -107,7 +110,7 @@
       return false;
     }
 
-    public static function find($key, $strict = true)
+    public static function find($key, $strict = true): bool
     {
 
       if (!static::hasSafeName($key)) {
@@ -157,17 +160,26 @@
      * @param string $key The key ID of the cached files to delete
      * @access public
      */
-    public static function clear($key)
+    public static function clear(string $key)
     {
+      $key = basename($key);
+
       if (!static::hasSafeName($key)) {
-        trigger_error('ClicShopping\\OM\\Cache::clear(): Invalid key name (\'' . $key . '\'). Valid characters are a-zA-Z0-9-_');
+        trigger_error('ClicShopping\\Cache::clear(): Invalid key name ("' . $key . '"). Valid characters are ' . static::SAFE_KEY_NAME_REGEX);
 
         return false;
       }
 
       if (FileSystem::isWritable(static::getPath())) {
-        foreach (glob(static::getPath() . $key . '*.cache') as $c) {
-          unlink($c);
+        $key_length = strlen($key);
+
+        $DLcache = new DirectoryListing(static::getPath());
+        $DLcache->setIncludeDirectories(false);
+
+        foreach ($DLcache->getFiles() as $file) {
+          if ((strlen($file['name']) >= $key_length) && (substr($file['name'], 0, $key_length) == $key)) {
+            unlink(static::getPath() . $file['name']);
+          }
         }
       }
     }

@@ -25,6 +25,12 @@
   $languages = $CLICSHOPPING_Language->getLanguages();
 
   echo HTML::form('ajaxform', $CLICSHOPPING_Categories->link('CategoriesPopUp&Save'), 'post', 'id="ajaxform"');
+
+    if (isset($_GET['cPath'])) {
+      $current_category_id = HTML::sanitize($_GET['cPath']);
+    } else {
+      $current_category_id = 0;
+    }
 ?>
 
 

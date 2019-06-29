@@ -47,10 +47,7 @@
 
     /**
      * Get the installed version number
-     *
-     * @param string $v get the clicshopping_verion
-     * @retunr : version of the site
-     * @access public
+     * @return string|null
      */
     public static function getVersion(): ?string
     {
@@ -121,6 +118,14 @@
     }
 
     /**
+     * @return bool
+     */
+    public static function hasSite(): bool
+    {
+      return isset(static::$site);
+    }
+
+    /**
      * @return mixed
      */
     public static function hasSitePage(): ?string
@@ -163,7 +168,7 @@
      * @param bool $search_engine_safe Use search engine safe URLs. Default: True.
      * @return string The URL address.
      */
-    public static function link($page = null, $parameters = null, $add_session_id = true, $search_engine_safe = true)
+    public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
     {
 
       if (is_null($page)) {
@@ -244,7 +249,7 @@
       return $link;
     }
 
-    public static function linkImage()
+    public static function linkImage(): string
     {
       $args = func_get_args();
 
@@ -281,7 +286,7 @@
      * @param string $site Get a public link from a specific Site
      * @return string The URL address.
      */
-    public static function linkPublic()
+    public static function linkPublic(): string
     {
       $args = func_get_args();
 
@@ -317,7 +322,7 @@
      * @return string $url, url to redirect
      * @access public
      */
-    public static function redirect()
+    public static function redirect(): string
     {
       $args = func_get_args();
 
@@ -337,7 +342,7 @@
      * @param array $values Replace keywords with values
      * @return string The language definition
      */
-    public static function getDef()
+    public static function getDef():string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -482,7 +487,7 @@
      * return $data, array og php.ini information
      * @access public
      */
-    public static function getSystemInformation()
+    public static function getSystemInformation(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -534,7 +539,7 @@
      * @param string $application
      * @return string
      */
-    protected static function siteApplicationExists(string $application)
+    protected static function siteApplicationExists(string $application): bool
     {
       $class = static::isValidClassName($application) && class_exists('ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application);
 
@@ -554,14 +559,23 @@
         }
       } else {
         if (!empty($_GET)) {
-          $requested_application = HTML::sanitize(basename(key(array_slice($_GET, 0, 1, true))));
+          $key = key(array_slice($_GET, 0, 1, true));
 
-          if ($requested_application == static::getSite()) {
-            $requested_application = HTML::sanitize(basename(key(array_slice($_GET, 1, 1, true))));
-          }
+          if (isset($key)) {
+            $requested_application = HTML::sanitize(basename($key));
 
-          if (!empty($requested_application) && static::siteApplicationExists($requested_application)) {
-            $application = $requested_application;
+            if ($requested_application == static::getSite()) {
+              $key = key(array_slice($_GET, 1, 1, true));
+
+              if (isset($key)) {
+
+                $requested_application = HTML::sanitize(basename($key));
+              }
+            }
+
+            if ((preg_match('/^[A-Za-z0-9-_]+$/', $requested_application) === 1) && static::siteApplicationExists($requested_application)) {
+              $application = $requested_application;
+            }
           }
         }
       }

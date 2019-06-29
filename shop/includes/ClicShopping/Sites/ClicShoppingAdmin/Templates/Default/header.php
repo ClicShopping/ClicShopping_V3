@@ -72,7 +72,7 @@
   if (isset($_SESSION['admin'])) {
     if ($_SESSION['admin']['access'] == 1 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt')) > 0) {
 ?>
-      <span><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogError', null, null, ['params' => 'data-dismiss="modal"']), '<i class="fas fa-exclamation-circle text-warning"></i>'); ?></span>
+      <span><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogError'), '<i class="fas fa-exclamation-circle text-warning"></i>'); ?></span>
  <?php
   }
 ?>

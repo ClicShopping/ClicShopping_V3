@@ -26,11 +26,17 @@
      * @return string
      */
 
-    public static function output($string, $translate = null)
+    public static function output(?string $string, array $translate = null): string
     {
+
+      if (is_null($string) || empty($string)) {
+        return '';
+      }
+
       if (!isset($translate)) {
-//        $translate = ['"' => '&quot;'];
-        $translate = ['"' => '\''];
+          $translate = [
+            '"' => '\''
+          ];
       }
 
       return strtr(trim($string), $translate);
@@ -44,6 +50,10 @@
      */
     public static function outputProtected(?string $string): string
     {
+      if (is_null($string) || empty($string)) {
+        return '';
+      }
+
       return htmlspecialchars(trim($string));
     }
 
@@ -56,26 +66,26 @@
 
     public static function sanitize(?string $string): string
     {
-      $patterns = [
-        '/ +/',
-        '/[<>]/',
-        '/&lt;/',
-        '/&gt;/',
-        '/%3c/',
-        '/%2f/'
-      ];
+    $patterns = [
+      '/ +/',
+      '/[<>]/',
+      '/&lt;/',
+      '/&gt;/',
+      '/%3c/',
+      '/%2f/'
+    ];
 
-      $replace = [
-        ' ',
-        '_',
-        '_',
-        '_',
-        '_',
-        '_'
-      ];
+    $replace = [
+      ' ',
+      '_',
+      '_',
+      '_',
+      '_',
+      '_'
+    ];
 
-      return preg_replace($patterns, $replace, $string);
-//      return preg_replace($patterns, $replace, trim($string));
+    return preg_replace($patterns, $replace, trim($string)) ?? '';
+//      return preg_replace($patterns, $replace, $string);
     }
 
 
@@ -88,8 +98,9 @@
      * @return string
      */
 
-    public static function link($url,  $element, $parameters = null)
+    public static function link($url, $element, $parameters = null)
     {
+
       return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }
 
@@ -99,11 +110,12 @@
     * @param string $url url of image
     * @return string
     */
-    public static function getUrlFileExists($url)
+    public static function getUrlFileExists($url) :bool
     {
       if (@file_get_contents($url, false, NULL, 0, 1)) {
         return true;
       }
+
       return false;
     }
 
@@ -127,7 +139,7 @@
       if (CLICSHOPPING::getSite() == 'Shop') {
         $CLICSHOPPING_Template = Registry::get('Template');
 
-        if (empty($src) || is_null($src) || static::getUrlFileExists($src) === false && IMAGE_REQUIRED == 'true') {
+        if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
           $image = $CLICSHOPPING_Template->getDirectoryTemplateImages() . '/default/nophoto.png';
 
           if (!is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $image)) {
@@ -137,7 +149,7 @@
           }
         }
       } else {
-        if ((empty($src) || is_null($src)) || static::getUrlFileExists($src) === false && IMAGE_REQUIRED == 'true') {
+        if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
           $src = CLICSHOPPING::getConfig('http_path', 'Shop') . 'images/nophoto.png';
         }
       }

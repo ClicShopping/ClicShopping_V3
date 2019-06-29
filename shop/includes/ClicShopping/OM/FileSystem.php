@@ -18,11 +18,19 @@
      * @param $base
      * @return array
      */
-    public static function getDirectoryContents(string $base): array
+    public static function getDirectoryContents(string $base, bool $recursive = true): array
     {
       $base = str_replace('\\', '/', $base); // Unix style directory separator "/"
 
-      $dir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($base, \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_SELF | \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS));
+
+      $flags = \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_SELF | \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS;
+
+
+      if ($recursive === true) {
+        $dir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($base, $flags));
+      } else {
+        $dir = new \FilesystemIterator($base, $flags);
+      }
 
       $result = [];
 
@@ -65,17 +73,15 @@
       $result = [];
 
       if (is_dir($dir)) {
-        foreach (scandir($dir) as $file) {
-          if (!in_array($file, ['.', '..'])) {
-            if (is_dir($dir . '/' . $file)) {
-              $result = array_merge($result, static::rmdir($dir . '/' . $file, $dry_run));
-            } else {
-              $result[] = [
+        foreach (static::getDirectoryContents($dir, false) as $file) {
+          if (is_dir($file)) {
+             $result = array_merge($result, static::rmdir($file, $dry_run));
+          } else {
+            $result[] = [
                 'type' => 'file',
-                'source' => $dir . '/' . $file,
-                'result' => ($dry_run === false) ? unlink($dir . '/' . $file) : static::isWritable($dir . '/' . $file)
-              ];
-            }
+                'source' => $file,
+                'result' => ($dry_run === false) ? unlink($file) : static::isWritable($file)
+            ];
           }
         }
 

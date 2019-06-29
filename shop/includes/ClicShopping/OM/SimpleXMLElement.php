@@ -19,10 +19,12 @@
       $child->addCData($value);
     }
 
-    private function addCData($value)
+    protected function addCData($value)
     {
       $node = dom_import_simplexml($this);
-      $no = $node->ownerDocument;
-      $node->appendChild($no->createCDATASection($value));
+      if ($node !== false) {
+        $no = $node->ownerDocument;
+        $node->appendChild($no->createCDATASection($value));
+      }
     }
   }

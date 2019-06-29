@@ -63,11 +63,12 @@
     }
 
     /**
-     * @param $plain
-     * @param $hash
+     * @param string $plain
+     * @param string $hash
+     * @param string|null $driver
      * @return bool
      */
-    public static function verify($plain, $hash)
+    public static function verify(string $plain, string $hash): bool
     {
       $result = false;
 
@@ -127,8 +128,8 @@
     }
 
     /**
-     * @param $hash
-     * @return string
+     * @param string $hash
+     * @return string|null
      */
     public static function getType(string $hash): ?string
     {

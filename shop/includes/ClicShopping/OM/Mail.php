@@ -260,10 +260,10 @@
       }
 
 //Set who the message is to be sent from
-      $this->phpMail->setFrom($from_addr, $from_addr);
+      $this->phpMail->setFrom($from_addr, $from_addr ?? '');
 
 //Set who the message is to be sent to
-      $this->phpMail->AddAddress($to_addr, $to_name);
+      $this->phpMail->AddAddress($to_addr, $to_name ?? '');
 
 //Set an alternative reply-to address
       if ($reply_to) {

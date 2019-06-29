@@ -45,6 +45,7 @@
                                                                                                  'store_name_address' => STORE_NAME_ADDRESS,
                                                                                                 ]
                                               );
+          $contact = '';
         } else {
           $guest_account = 0;
           $text_info =  sprintf(CLICSHOPPING::getDef('module_checkout_success_text_see_orders', ['store_name' => STORE_NAME, 'store_name_address' => STORE_NAME_ADDRESS,
