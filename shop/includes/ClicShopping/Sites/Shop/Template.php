@@ -525,7 +525,7 @@
                   if (!empty( $mb->pages)) {
                     $page = explode(';', $mb->pages);
                   }
-                  
+
                   if (($mb->isEnabled() && $mb->pages == 'all')) {
                     $mb->execute();
                   } else {
