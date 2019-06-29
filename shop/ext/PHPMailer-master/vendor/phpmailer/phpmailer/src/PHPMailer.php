@@ -341,19 +341,6 @@ class PHPMailer
     public $Timeout = 300;
 
     /**
-     * Comma separated list of DSN notifications
-     * 'NEVER' under no circumstances a DSN must be returned to the sender.
-     *         If you use NEVER all other notifications will be ignored.
-     * 'SUCCESS' will notify you when your mail has arrived at its destination.
-     * 'FAILURE' will arrive if an error occurred during delivery.
-     * 'DELAY'   will notify you if there is an unusual delay in delivery, but the actual
-     *           delivery's outcome (success or failure) is not yet decided.
-     *
-     * @see https://tools.ietf.org/html/rfc3461 See section 4.1 for more information about NOTIFY
-     */
-    public $dsn = '';
-
-    /**
      * SMTP class debug output mode.
      * Debug output level.
      * Options:
@@ -940,8 +927,6 @@ class PHPMailer
      * @param string $address The email address to send to
      * @param string $name
      *
-     * @throws Exception
-     *
      * @return bool true on success, false if address already used or invalid in some way
      */
     public function addAddress($address, $name = '')
@@ -954,8 +939,6 @@ class PHPMailer
      *
      * @param string $address The email address to send to
      * @param string $name
-     *
-     * @throws Exception
      *
      * @return bool true on success, false if address already used or invalid in some way
      */
@@ -970,8 +953,6 @@ class PHPMailer
      * @param string $address The email address to send to
      * @param string $name
      *
-     * @throws Exception
-     *
      * @return bool true on success, false if address already used or invalid in some way
      */
     public function addBCC($address, $name = '')
@@ -984,8 +965,6 @@ class PHPMailer
      *
      * @param string $address The email address to reply to
      * @param string $name
-     *
-     * @throws Exception
      *
      * @return bool true on success, false if address already used or invalid in some way
      */
@@ -1015,12 +994,10 @@ class PHPMailer
         $pos = strrpos($address, '@');
         if (false === $pos) {
             // At-sign is missing.
-            $error_message = sprintf(
-                '%s (%s): %s',
+            $error_message = sprintf('%s (%s): %s',
                 $this->lang('invalid_address'),
                 $kind,
-                $address
-            );
+                $address);
             $this->setError($error_message);
             $this->edebug($error_message);
             if ($this->exceptions) {
@@ -1812,7 +1789,7 @@ class PHPMailer
         // Attempt to send to all recipients
         foreach ([$this->to, $this->cc, $this->bcc] as $togroup) {
             foreach ($togroup as $to) {
-                if (!$this->smtp->recipient($to[0], $this->dsn)) {
+                if (!$this->smtp->recipient($to[0])) {
                     $error = $this->smtp->getError();
                     $bad_rcpt[] = ['to' => $to[0], 'error' => $error['detail']];
                     $isSent = false;
@@ -2423,19 +2400,19 @@ class PHPMailer
         switch ($this->message_type) {
             case 'inline':
                 $result .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_RELATED . ';');
-                $result .= $this->textLine(' boundary="' . $this->boundary[1] . '"');
+                $result .= $this->textLine("\tboundary=\"" . $this->boundary[1] . '"');
                 break;
             case 'attach':
             case 'inline_attach':
             case 'alt_attach':
             case 'alt_inline_attach':
                 $result .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_MIXED . ';');
-                $result .= $this->textLine(' boundary="' . $this->boundary[1] . '"');
+                $result .= $this->textLine("\tboundary=\"" . $this->boundary[1] . '"');
                 break;
             case 'alt':
             case 'alt_inline':
                 $result .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_ALTERNATIVE . ';');
-                $result .= $this->textLine(' boundary="' . $this->boundary[1] . '"');
+                $result .= $this->textLine("\tboundary=\"" . $this->boundary[1] . '"');
                 break;
             default:
                 // Catches case 'plain': and case '':
@@ -2569,8 +2546,7 @@ class PHPMailer
                 $body .= $mimepre;
                 $body .= $this->textLine('--' . $this->boundary[1]);
                 $body .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_RELATED . ';');
-                $body .= $this->textLine(' boundary="' . $this->boundary[2] . '";');
-                $body .= $this->textLine(' type="' . static::CONTENT_TYPE_TEXT_HTML . '"');
+                $body .= $this->textLine("\tboundary=\"" . $this->boundary[2] . '"');
                 $body .= static::$LE;
                 $body .= $this->getBoundary($this->boundary[2], $bodyCharSet, '', $bodyEncoding);
                 $body .= $this->encodeString($this->Body, $bodyEncoding);
@@ -2601,8 +2577,7 @@ class PHPMailer
                 $body .= static::$LE;
                 $body .= $this->textLine('--' . $this->boundary[1]);
                 $body .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_RELATED . ';');
-                $body .= $this->textLine(' boundary="' . $this->boundary[2] . '";');
-                $body .= $this->textLine(' type="' . static::CONTENT_TYPE_TEXT_HTML . '"');
+                $body .= $this->textLine("\tboundary=\"" . $this->boundary[2] . '"');
                 $body .= static::$LE;
                 $body .= $this->getBoundary($this->boundary[2], $bodyCharSet, static::CONTENT_TYPE_TEXT_HTML, $bodyEncoding);
                 $body .= $this->encodeString($this->Body, $bodyEncoding);
@@ -2615,7 +2590,7 @@ class PHPMailer
                 $body .= $mimepre;
                 $body .= $this->textLine('--' . $this->boundary[1]);
                 $body .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_ALTERNATIVE . ';');
-                $body .= $this->textLine(' boundary="' . $this->boundary[2] . '"');
+                $body .= $this->textLine("\tboundary=\"" . $this->boundary[2] . '"');
                 $body .= static::$LE;
                 $body .= $this->getBoundary($this->boundary[2], $altBodyCharSet, static::CONTENT_TYPE_PLAINTEXT, $altBodyEncoding);
                 $body .= $this->encodeString($this->AltBody, $altBodyEncoding);
@@ -2635,15 +2610,14 @@ class PHPMailer
                 $body .= $mimepre;
                 $body .= $this->textLine('--' . $this->boundary[1]);
                 $body .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_ALTERNATIVE . ';');
-                $body .= $this->textLine(' boundary="' . $this->boundary[2] . '"');
+                $body .= $this->textLine("\tboundary=\"" . $this->boundary[2] . '"');
                 $body .= static::$LE;
                 $body .= $this->getBoundary($this->boundary[2], $altBodyCharSet, static::CONTENT_TYPE_PLAINTEXT, $altBodyEncoding);
                 $body .= $this->encodeString($this->AltBody, $altBodyEncoding);
                 $body .= static::$LE;
                 $body .= $this->textLine('--' . $this->boundary[2]);
                 $body .= $this->headerLine('Content-Type', static::CONTENT_TYPE_MULTIPART_RELATED . ';');
-                $body .= $this->textLine(' boundary="' . $this->boundary[3] . '";');
-                $body .= $this->textLine(' type="' . static::CONTENT_TYPE_TEXT_HTML . '"');
+                $body .= $this->textLine("\tboundary=\"" . $this->boundary[3] . '"');
                 $body .= static::$LE;
                 $body .= $this->getBoundary($this->boundary[3], $bodyCharSet, static::CONTENT_TYPE_TEXT_HTML, $bodyEncoding);
                 $body .= $this->encodeString($this->Body, $bodyEncoding);
@@ -2672,10 +2646,12 @@ class PHPMailer
                 if (!defined('PKCS7_TEXT')) {
                     throw new Exception($this->lang('extension_missing') . 'openssl');
                 }
-                $file = fopen('php://temp', 'rb+');
-                $signed = fopen('php://temp', 'rb+');
-                fwrite($file, $body);
-
+                // @TODO would be nice to use php://temp streams here
+                $file = tempnam(sys_get_temp_dir(), 'mail');
+                if (false === file_put_contents($file, $body)) {
+                    throw new Exception($this->lang('signing') . ' Could not write temp file');
+                }
+                $signed = tempnam(sys_get_temp_dir(), 'signed');
                 //Workaround for PHP bug https://bugs.php.net/bug.php?id=69197
                 if (empty($this->sign_extracerts_file)) {
                     $sign = @openssl_pkcs7_sign(
@@ -2696,16 +2672,16 @@ class PHPMailer
                         $this->sign_extracerts_file
                     );
                 }
-                fclose($file);
+                @unlink($file);
                 if ($sign) {
                     $body = file_get_contents($signed);
-                    fclose($signed);
+                    @unlink($signed);
                     //The message returned by openssl contains both headers and body, so need to split them up
                     $parts = explode("\n\n", $body, 2);
                     $this->MIMEHeader .= $parts[0] . static::$LE . static::$LE;
                     $body = $parts[1];
                 } else {
-                    fclose($signed);
+                    @unlink($signed);
                     throw new Exception($this->lang('signing') . openssl_error_string());
                 }
             } catch (Exception $exc) {
@@ -2947,18 +2923,14 @@ class PHPMailer
                 }
 
                 if (!empty($cid)) {
-                    $mime[] = sprintf(
-                        'Content-ID: <%s>%s',
-                        $this->encodeHeader($this->secureHeader($cid)),
-                        static::$LE
-                    );
+                    $mime[] = sprintf('Content-ID: <%s>%s', $cid, static::$LE);
                 }
 
                 // If a filename contains any of these chars, it should be quoted,
                 // but not otherwise: RFC2183 & RFC2045 5.1
                 // Fixes a warning in IETF's msglint MIME checker
                 // Allow for bypassing the Content-Disposition header totally
-                if (!empty($disposition)) {
+                if (!(empty($disposition))) {
                     $encoded_name = $this->encodeHeader($this->secureHeader($name));
                     if (preg_match('/[ \(\)<>@,;:\\"\/\[\]\?=]/', $encoded_name)) {
                         $mime[] = sprintf(
@@ -4374,7 +4346,7 @@ class PHPMailer
             $extraHeaderKeys .= ':' . $key;
             $extraHeaderValues .= $value . "\r\n";
             if ($this->DKIM_copyHeaderFields) {
-                $extraCopyHeaderFields .= ' |' . str_replace('|', '=7C', $this->DKIM_QP($value)) . ";\r\n";
+                $extraCopyHeaderFields .= "\t|" . str_replace('|', '=7C', $this->DKIM_QP($value)) . ";\r\n";
             }
         }
         if ($this->DKIM_copyHeaderFields) {
@@ -4382,10 +4354,10 @@ class PHPMailer
             $to = str_replace('|', '=7C', $this->DKIM_QP($to_header));
             $date = str_replace('|', '=7C', $this->DKIM_QP($date_header));
             $subject = str_replace('|', '=7C', $this->DKIM_QP($subject_header));
-            $copiedHeaderFields = " z=$from\r\n" .
-                                  " |$to\r\n" .
-                                  " |$date\r\n" .
-                                  " |$subject;\r\n" .
+            $copiedHeaderFields = "\tz=$from\r\n" .
+                                  "\t|$to\r\n" .
+                                  "\t|$date\r\n" .
+                                  "\t|$subject;\r\n" .
                                   $extraCopyHeaderFields;
         }
         $body = $this->DKIM_BodyC($body);
@@ -4402,12 +4374,12 @@ class PHPMailer
             $DKIMlen . '; s=' .
             $this->DKIM_selector .
             ";\r\n" .
-            ' t=' . $DKIMtime . '; c=' . $DKIMcanonicalization . ";\r\n" .
-            ' h=From:To:Date:Subject' . $extraHeaderKeys . ";\r\n" .
-            ' d=' . $this->DKIM_domain . ';' . $ident . "\r\n" .
+            "\tt=" . $DKIMtime . '; c=' . $DKIMcanonicalization . ";\r\n" .
+            "\th=From:To:Date:Subject" . $extraHeaderKeys . ";\r\n" .
+            "\td=" . $this->DKIM_domain . ';' . $ident . "\r\n" .
             $copiedHeaderFields .
-            ' bh=' . $DKIMb64 . ";\r\n" .
-            ' b=';
+            "\tbh=" . $DKIMb64 . ";\r\n" .
+            "\tb=";
         $toSign = $this->DKIM_HeaderC(
             $from_header . "\r\n" .
             $to_header . "\r\n" .

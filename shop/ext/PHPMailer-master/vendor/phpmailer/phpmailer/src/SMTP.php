@@ -853,37 +853,16 @@ class SMTP
      * Implements from RFC 821: RCPT <SP> TO:<forward-path> <CRLF>.
      *
      * @param string $address The address the message is being sent to
-     * @param string $dsn     Comma separated list of DSN notifications. NEVER, SUCCESS, FAILURE
-     *                        or DELAY. If you specify NEVER all other notifications are ignored.
      *
      * @return bool
      */
-    public function recipient($address, $dsn = '')
+    public function recipient($address)
     {
-        if (empty($dsn)) {
-            $rcpt = 'RCPT TO:<' . $address . '>';
-        } else {
-            $dsn = strtoupper($dsn);
-            $notify = [];
-
-            if (strpos($dsn, 'NEVER') !== false) {
-                $notify[] = 'NEVER';
-            } else {
-                foreach (['SUCCESS', 'FAILURE', 'DELAY'] as $value) {
-                    if (strpos($dsn, $value) !== false) {
-                        $notify[] = $value;
-                    }
-                }
-            }
-
-            $rcpt = 'RCPT TO:<' . $address . '> NOTIFY=' . implode(',', $notify);
-        }
-
         return $this->sendCommand(
-           'RCPT TO',
-           $rcpt,
-           [250, 251]
-       );
+            'RCPT TO',
+            'RCPT TO:<' . $address . '>',
+            [250, 251]
+        );
     }
 
     /**
@@ -925,7 +904,7 @@ class SMTP
         $this->last_reply = $this->get_lines();
         // Fetch SMTP code and possible error code explanation
         $matches = [];
-        if (preg_match('/^([0-9]{3})[ -](?:([0-9]\\.[0-9]\\.[0-9]{1,2}) )?/', $this->last_reply, $matches)) {
+        if (preg_match('/^([0-9]{3})[ -](?:([0-9]\\.[0-9]\\.[0-9]) )?/', $this->last_reply, $matches)) {
             $code = $matches[1];
             $code_ex = (count($matches) > 2 ? $matches[2] : null);
             // Cut off error code from each response line
