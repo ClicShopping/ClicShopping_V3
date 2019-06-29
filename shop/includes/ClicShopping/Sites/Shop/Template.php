@@ -522,8 +522,10 @@
                 } else {
 
 // hide or display the box left / right
-                  $page = explode(';', $mb->pages);
-
+                  if (!empty( $mb->pages)) {
+                    $page = explode(';', $mb->pages);
+                  }
+                  
                   if (($mb->isEnabled() && $mb->pages == 'all')) {
                     $mb->execute();
                   } else {

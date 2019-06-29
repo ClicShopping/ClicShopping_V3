@@ -64,8 +64,11 @@
      * @return string
      */
 
-    public static function sanitize(?string $string): string
+    public static function sanitize($string)
     {
+      if (is_null($string) || empty($string)) {
+        return '';
+      }
     $patterns = [
       '/ +/',
       '/[<>]/',
