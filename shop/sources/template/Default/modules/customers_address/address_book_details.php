@@ -146,7 +146,7 @@
             </div>
           </div>
 <?php
-  if ($_SESSION['newcustomer'] === true) {
+  if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === true) {
 ?>
           <div class="row">
             <div class="col-md-12">
@@ -368,7 +368,7 @@
     }
   }
 
-  if ($_SESSION['newcustomer'] === false) {
+  if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === false) {
 //   Allow or not to customer change this address ou to change the default address if oddo is activated.
     if ((isset($_GET['edit']) && $CLICSHOPPING_Customer->getDefaultAddressID() != HTML::sanitize($_GET['edit']) && AddressBook::countCustomersModifyAddressDefault() == 1) || (isset($_GET['edit']) === false && (AddressBook::countCustomersModifyAddressDefault() == 1))) {
 ?>

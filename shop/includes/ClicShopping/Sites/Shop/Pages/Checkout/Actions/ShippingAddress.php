@@ -47,7 +47,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
-      if ($_SESSION['newcustomer'] === true) {
+      if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === true) {
         $QaddresseDefault = $CLICSHOPPING_Db->prepare('select customers_default_address_id
                                                        from :table_customers
                                                        where customers_id = :customers_id

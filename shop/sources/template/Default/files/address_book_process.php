@@ -76,7 +76,7 @@
 ?>
       <div class="contentText">
 <?php
-     if ($_SESSION['newcustomer'] === false) {
+     if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === false) {
 ?>
         <div class="col-md-6"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
 <?php
@@ -87,7 +87,7 @@
     <div class="clearfix"></div>
 <?php
     } else {
-      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && ($_SESSION['newcustomer'] === false)) {
+      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === false)) {
         $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], session_name()), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
       } else {
         $back_link = CLICSHOPPING::link(null,'Account&AddressBook');

@@ -15,7 +15,9 @@
 
   class History
   {
-
+    /**
+     * @return mixed
+     */
     public static function getOrderHistory()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -52,7 +54,10 @@
       return $Qorders;
     }
 
-    public static function getOrderTotalRows()
+    /**
+     * @return int
+     */
+    public static function getOrderTotalRows(): int
     {
       $orders = static::getOrderHistory();
 

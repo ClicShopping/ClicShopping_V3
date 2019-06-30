@@ -313,7 +313,7 @@
           }// end isset($_POST['primary']
         }// end $error
 
-        if ($_SESSION['shopping'] === true) {
+        if (isset($_SESSION['shopping']) && $_SESSION['shopping'] === true) {
           CLICSHOPPING::redirect(null, 'Cart');
         } else {
           CLICSHOPPING::redirect(null, 'Account&AddressBook');

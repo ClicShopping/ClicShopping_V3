@@ -24,7 +24,7 @@
       $this->customer = Registry::get('Customer');
     }
 
-    public static function getAccountEdit()
+    public static function getAccountEdit(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -53,7 +53,7 @@
       return $account;
     }
 
-    public static function getCountEmail($email_address)
+    public static function getCountEmail(string $email_address): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -72,16 +72,17 @@
       return $check_email;
     }
 
-    public static function getCustomerAddressEmail($email_address)
+    public static function getCustomerAddressEmail(string $email_address): bool
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id
-                                      from :table_customers
-                                      where customers_email_address = :customers_email_address
-                                      and customers_id != :customers_id
-                                      limit 1');
+                                            from :table_customers
+                                            where customers_email_address = :customers_email_address
+                                            and customers_id != :customers_id
+                                            limit 1
+                                            ');
       $Qcheck->bindValue(':customers_email_address', $email_address);
       $Qcheck->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qcheck->execute();
@@ -91,15 +92,15 @@
       return $check;
     }
 
-    public static function getCheckCountryIsoCode2($country)
+    public static function getCheckCountryIsoCode2(string $country): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $Qcheck = $CLICSHOPPING_Db->prepare('select countries_id
-                                    from :table_countries
-                                    where countries_iso_code_2 = :countries_iso_code_2
-                                    limit 1
-                                    ');
+                                          from :table_countries
+                                          where countries_iso_code_2 = :countries_iso_code_2
+                                          limit 1
+                                          ');
       $Qcheck->bindValue(':countries_iso_code_2', $country);
       $Qcheck->execute();
 

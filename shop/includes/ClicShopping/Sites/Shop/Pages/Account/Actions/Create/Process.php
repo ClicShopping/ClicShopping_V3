@@ -240,7 +240,7 @@
 
           $CLICSHOPPING_Hooks->call('Create', 'Process');
 
-          if ($_SESSION['newcustomer'] === false) {
+          if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === false) {
             CLICSHOPPING::redirect(null, 'Account&Main');
           } else {
             CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress');

@@ -162,6 +162,7 @@
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'danger', 'account_edit');
           }
+
         } else if ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
 
           $dobDateTime = new DateTime($dob, false);
@@ -254,7 +255,6 @@
           $sql_data_array = ['customers_firstname' => $firstname,
             'customers_lastname' => $lastname
           ];
-
 
           $CLICSHOPPING_Db->save('customers', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()],
             ['address_book_id' => (int)$CLICSHOPPING_Customer->getDefaultAddressID()]

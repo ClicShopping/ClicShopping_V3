@@ -37,7 +37,7 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      if ($_SESSION['newcustomer'] === true) {
+      if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === true) {
         $new_customer = $_SESSION['newcustomer'];
       } else {
         $new_customer = false;

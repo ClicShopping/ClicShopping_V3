@@ -15,8 +15,10 @@
 
   class Notifications
   {
-
-    public static function getGlobalNotificationCustomer()
+    /**
+     * @return int
+     */
+    public static function getGlobalNotificationCustomer(): int
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -31,7 +33,10 @@
       return $Qnotification->valueInt('global_product_notifications');
     }
 
-    public static function getGlobalProductNotificationsCheckRowCount()
+    /**
+     * @return int
+     */
+    public static function getGlobalProductNotificationsCheckRowCount(): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -48,7 +53,11 @@
       return $number;
     }
 
-    public static function getGlobalProductNotificationsProduct($products_id = null)
+    /**
+     * @param null $products_id
+     * @return string
+     */
+    public static function getGlobalProductNotificationsProduct(int $products_id = null): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');

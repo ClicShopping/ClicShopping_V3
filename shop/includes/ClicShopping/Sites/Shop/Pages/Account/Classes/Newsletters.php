@@ -15,7 +15,9 @@
 
   class Newsletters
   {
-
+    /**
+     * @return mixed
+     */
     public static function getCustomerNewsletter()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');

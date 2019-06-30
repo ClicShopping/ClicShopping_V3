@@ -285,7 +285,7 @@
               $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($_GET['edit']));
             }
 
-            if ($_SESSION['shopping'] === false) {
+            if (isset($_SESSION['shopping']) && $_SESSION['shopping'] === false) {
               $sql_data_array = ['customers_firstname' => $firstname,
                 'customers_lastname' => $lastname
               ];
@@ -318,7 +318,7 @@
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Edit');
           } // end $Qcheck->fetch
 
-          if ($_SESSION['shopping'] === true) {
+          if (isset($_SESSION['shopping']) && $_SESSION['shopping'] === true) {
             CLICSHOPPING::redirect(null, 'Cart');
           } else {
             CLICSHOPPING::redirect(null, 'Account&AddressBook');

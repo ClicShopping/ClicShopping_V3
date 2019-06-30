@@ -16,7 +16,9 @@
 
   class HistoryInfo
   {
-
+    /**
+     * @return mixed
+     */
     public static function getHistoryInfoCheck()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -40,7 +42,10 @@
       return $check;
     }
 
-    public static function getHistoryInfoCount()
+    /**
+     * @return int
+     */
+    public static function getHistoryInfoCount(): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -57,6 +62,9 @@
       return $count;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getDisplayHistoryInfoSupport()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -74,7 +82,10 @@
       return $support;
     }
 
-    public static function getHistoryInfoDisplay()
+    /**
+     * @return array
+     */
+    public static function getHistoryInfoDisplay(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -102,6 +113,9 @@
       return $statuse;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getHistoryInfoDownloadFiles()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -134,7 +148,11 @@
       return $download;
     }
 
-    public static function getHistoryInfoSupportCustomer($orders_status_support_id)
+    /**
+     * @param int $orders_status_support_id
+     * @return mixed
+     */
+    public static function getHistoryInfoSupportCustomer(int $orders_status_support_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -166,7 +184,7 @@
      * @return string tracking_url, the url of the tracking
      * @access public
      */
-    public static function getTrackingLink()
+    public static function getTrackingLink(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -191,7 +209,9 @@
       return $tracking_url;
     }
 
-
+    /**
+     * @return mixed
+     */
     public static function getDownloadFilesPurchased()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
