@@ -11,7 +11,7 @@
 
   namespace ClicShopping\OM\Is;
 
-  class email implements \ClicShopping\OM\IsInterface
+  class EmailAddress implements \ClicShopping\OM\IsInterface
   {
     public static function execute($value, bool $check_dns = false): bool
     {
