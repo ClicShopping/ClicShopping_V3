@@ -71,40 +71,40 @@
       $this->_code = $_codeSail;
     }
 
-    public function getCodeSail()
+    public function getCodeSail(): string
     {
       return $this->_codeSail;
     }
 
-    public function getCode()
+    public function getCode(): string
     {
       return $this->_template;
     }
 
-    public function getTemplateSource()
+    public function getTemplateSource(): string
     {
       return CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->_directoryTemplateSources; //sources
     }
 
-    public function getTemplateDirectory()
+    public function getTemplateDirectory(): string
     {
       return $this->_directoryTemplateSources . '/' . $this->_directoryTemplate; //sources/template
     }
 
 //sources/template/Default
-    public function getDefaultTemplateDirectory()
+    public function getDefaultTemplateDirectory(): string
     {
       return $this->_directoryTemplateSources . '/' . $this->_directoryTemplate . '/' . $this->_directoryTemplateDefault; // 'sources/template/Default
     }
 
 //sources/template/templatename
-    public function getDynamicTemplateDirectory()
+    public function getDynamicTemplateDirectory(): string
     {
       return $this->_directoryTemplateSources . '/' . $this->_directoryTemplate . '/' . $this->_dynamicTemplate; // 'sources/template/SITE_THEMA
     }
 
 // sources/images/
-    public function getDirectoryTemplateImages()
+    public function getDirectoryTemplateImages(): string
     {
       return $this->_directoryTemplateSources . '/' . $this->_directoryTemplateImages . '/'; //sources/images/
     }
@@ -139,42 +139,42 @@
       return $width;
     }
 
-    public function setTitle($title)
+    public function setTitle(string $title): string
     {
       $this->_title = $title;
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
       return $this->_title;
     }
 
-    public function setDescription($description)
+    public function setDescription(string $description): string
     {
       $this->_description = $description;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
       return $this->_description;
     }
 
-    public function setKeywords($keywords)
+    public function setKeywords(string $keywords): string
     {
       $this->_keywords = $keywords;
     }
 
-    public function getKeywords()
+    public function getKeywords(): string
     {
       return $this->_keywords;
     }
 
-    public function setNewsKeywords($Newskeywords)
+    public function setNewsKeywords(string $Newskeywords): string
     {
       $this->_Newskeywords = $Newskeywords;
     }
 
-    public function getNewsKeywords()
+    public function getNewsKeywords(): string
     {
       return $this->_Newskeywords;
     }
@@ -184,7 +184,7 @@
       $this->_blocks[$group][] = $block;
     }
 
-    public function hasBlocks($group)
+    public function hasBlocks(string $group): bool
     {
       return (isset($this->_blocks[$group]) && !empty($this->_blocks[$group]));
     }
@@ -208,7 +208,7 @@
       }
     }
 
-    public function getBlocks($group)
+    public function getBlocks(string $group): string
     {
       if ($this->hasBlocks($group)) {
         return implode("\n", $this->_blocks[$group]);
@@ -221,7 +221,7 @@
      * @param : $template : template directory
      * /www/
      */
-    public function getFile($file, $template = null)
+    public function getFile(string $file, string $template = null): string
     {
       if (!isset($template)) {
         $template = $this->getCode();
@@ -236,7 +236,7 @@
      * @param : $template : template directory
      * /www/
      */
-    public function getPublicFile($file, $template = null)
+    public function getPublicFile(string $file, string $template = null): string
     {
       if (!isset($template)) {
         $template = $this->getCode();
@@ -249,6 +249,7 @@
      * scan directory to create a dropdown
      * @return string
      */
+
     public function getDropDownSelectedTemplateByCustomer()
     {
       $template_directory = CLICSHOPPING::getConfig('dir_root') . $this->_directoryTemplateSources . '/' . $this->_directoryTemplate;
@@ -281,7 +282,7 @@
      * @param string $thema
      * @access public
      */
-    public function setSiteThema($thema_directory = null)
+    public function setSiteThema(string $thema_directory = null): string
     {
 
       if (is_null($thema_directory)) {
@@ -311,7 +312,7 @@
      * @access public
      */
 
-    public function getSiteTemplateLanguageDirectory()
+    public function getSiteTemplateLanguageDirectory(): string
     {
       return $this->_directoryTemplateSources . '/' . $this->_directoryTemplateLanguages; // sources/languages
     }
@@ -337,7 +338,7 @@
      * define('DIR_FS_DOWNLOAD_PUBLIC', CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/');
      * @return string
      */
-    public function getPathDownloadShopDirectory($directory = null)
+    public function getPathDownloadShopDirectory(string $directory = null): string
     {
 
       if (!is_null($directory)) {
@@ -358,7 +359,7 @@
      * @access public
      */
 
-    public function getSiteTemplateModuleDirectory()
+    public function getSiteTemplateModuleDirectory(): string
     {
       return $this->_directoryTemplateSources . '/' . $this->_directoryTemplate . '/' . $this->_dynamicTemplate . '/' . $this->_directoryModules; // sources/template/SITE_THEMA/modules
     }
@@ -370,7 +371,7 @@
      * @access public
      */
 
-    public function getPathDirectoryTemplateThema()
+    public function getPathDirectoryTemplateThema(): string
     {
 
       if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . static::setSiteThema() . '/' . $this->_directoryTemplateFiles . '/' . 'index.php')) {
@@ -401,7 +402,7 @@
      * @return bool true / false
      * @access public
      */
-    public static function match($needles, $haystack)
+    public static function match(array $needles, string $haystack): bool
     {
       foreach ($needles as $needle) {
         if (!empty($needle) && strpos($haystack, $needle) !== false) {
@@ -417,7 +418,7 @@
      * @return array
      */
 
-    public function getReadModulesDefaultDirectories($source_folder = 'modules_')
+    public function getReadModulesDefaultDirectories(string $source_folder = 'modules_'): array
     {
       $dir = $this->_directoryTemplateSources . '/' . $this->_template . '/' . $this->_codeSail . '/' . $this->_directoryModules;
 
@@ -566,7 +567,7 @@
      * @param string $string
      * @return mixed
      */
-    public function getUrlWithoutSEFU($string = '/')
+    public function getUrlWithoutSEFU(string $string = '/'): string
     {
       if (empty($_SERVER['QUERY_STRING'])) {
         $url = $_SERVER['REQUEST_URI'];
@@ -600,7 +601,7 @@
      * @param string $name , header or footer of the template
      * @access public
      */
-    public function getTemplateHeaderFooter($name)
+    public function getTemplateHeaderFooter(string $name): string
     {
 
       if (file_exists(static::getPathDirectoryTemplateThema() . '/' . $name . '.php')) {
@@ -618,7 +619,7 @@
      * @param string $themaGraphism , css directory in the template
      * @access public
      */
-    public function getTemplategraphism()
+    public function getTemplategraphism(): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
@@ -642,7 +643,7 @@
      * @param string $themaGraphism , file in this directory Files
      * @access public
      */
-    public function getTemplateFiles($name)
+    public function getTemplateFiles(string $name): string
     {
       if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateFiles . '/' . $name . '.php')) {
         $themaFiles = static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateFiles . '/' . $name . '.php';
@@ -659,7 +660,7 @@
      * @param string $themaGraphism , file in this directory module
      * @access public
      */
-    public function getTemplateModules($name)
+    public function getTemplateModules(string $name): string
     {
 
       if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $name . '.php')) {
@@ -677,7 +678,7 @@
      * @param string $themaFilename , filename in this module
      * @access public
      */
-    public function getTemplateModulesFilename($name)
+    public function getTemplateModulesFilename(string $name): string
     {
 
       if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $name)) {
@@ -696,7 +697,7 @@
      * @access public
      */
 
-    public function GetPathDirectoryTemplatetLanguageFiles($name)
+    public function GetPathDirectoryTemplatetLanguageFiles(string $name): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -718,7 +719,7 @@
      * @param $name $name of the js
      * @return string $javascript, directory of javascript in the template directory
      */
-    public function getTemplateDefaultJavaScript($name)
+    public function getTemplateDefaultJavaScript(string $name): string
     {
       $javascript = CLICSHOPPING::getSite('Shop') . '/' . $this->_directoryTemplateSources . '/javascript/' . $name;
 
@@ -731,7 +732,7 @@
      * @param $name $name of the js string
      * @return string $javascript, directory of javascript in the template directory
      */
-    public function getTemplateThemaJavaScript($name)
+    public function getTemplateThemaJavaScript(string $name): string
     {
       if (is_file(static::getPathDirectoryTemplateThema() . '/javascript/' . $name)) {
         $javascript = static::getPathDirectoryTemplateThema() . '/javascript/' . $name;
@@ -750,7 +751,7 @@
      * @return array|bool
      * @access public
      */
-    public function getSpecificFiles($source_folder, $filename, $ext = 'php')
+    public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php'): array
     {
       if (is_dir($source_folder)) {
         $FILES = glob($source_folder . $filename . '.' . $ext);

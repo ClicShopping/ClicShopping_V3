@@ -40,7 +40,7 @@
      * @access public
      * @return string
      */
-    public function getDirectoryPathShopDefaultTemplateHtml()
+    public function getDirectoryPathShopDefaultTemplateHtml(): string
     {
       return CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDefaultTemplateDirectory(); // /sources/template/default
     }
@@ -53,7 +53,7 @@
      *  define('CLICSHOPPING::getConfig('dir_root', 'Shop') 'sources/languages/');
      * @return string
      */
-    public function getPathLanguageShopDirectory()
+    public function getPathLanguageShopDirectory(): string
     {
       $path_shop_languages_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/' . $this->_directoryAdminLanguages;
 
@@ -68,7 +68,7 @@
      * define('DIR_FS_DOWNLOAD_PUBLIC', CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/download/');
      * @return string
      */
-    public function getPathDownloadShopDirectory($directory = null)
+    public function getPathDownloadShopDirectory($directory = null): string
     {
       $path_shop_public_download_directory = parent::getPathDownloadShopDirectory($directory);
 
@@ -83,7 +83,7 @@
      * @return string
      */
 
-    public function getDirectoryPathModuleShopTemplateHtml($name)
+    public function getDirectoryPathModuleShopTemplateHtml(string $name): string
     {
 
       if (file_exists(CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/')) {
@@ -103,7 +103,7 @@
      * @return string
      */
 
-    public function getDirectoryPathTemplateShopImages()
+    public function getDirectoryPathTemplateShopImages(): string
     {
       return CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDirectoryTemplateImages(); // CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/
     }
@@ -115,7 +115,7 @@
      * @access public
      * @return string
      */
-    public function getDirectoryPathModuleShop()
+    public function getDirectoryPathModuleShop(): string
     {
       $modules_catalog_directory = $this->getModulesDirectory() . '/modules';
 
@@ -133,7 +133,7 @@
      * @param : $template : template directory
      * /www/
      */
-    public function getTemplateHeaderFooterAdmin($file, $template = 'Default')
+    public function getTemplateHeaderFooterAdmin(string $file, string $template = 'Default'): string
     {
 
       if (isset($template)) {
@@ -151,7 +151,7 @@
      * /sources/template
      * @return string
      */
-    public function getTemplateDirectory()
+    public function getTemplateDirectory(): string
     {
       return parent::getTemplateDirectory(); //sources/template
     }
@@ -164,7 +164,7 @@
     * //sources/template/SITE_THEMA
     * @return string
     */
-    public function getDynamicTemplateDirectory()
+    public function getDynamicTemplateDirectory(): string
     {
       return parent::getDynamicTemplateDirectory(); //sources/template/SITE_THEMA
     }
@@ -176,7 +176,7 @@
     * @access public
     * @return string
     */
-    public function getImageDirectory()
+    public function getImageDirectory(): string
     {
       return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->_directoryAdminImages . '/' . $this->_directoryAdmin . '/';
     }
@@ -189,7 +189,7 @@
      * define('DIR_WS_BOXES', 'includes/boxes/');
      * @return string
      */
-    public function getBoxeDirectory()
+    public function getBoxeDirectory(): string
     {
       $directory = $this->_directoryAdminIncludes . '/' . $this->_directoryAdminBoxes; //'includes/boxes/'
 
@@ -204,7 +204,7 @@
      * define('DIR_WS_LANGUAGES', 'includes/languages/');
      * @return string
      */
-    public function getLanguageDirectory()
+    public function getLanguageDirectory(): string
     {
       $directory = $this->_directoryAdminIncludes . '/' . $this->_directoryAdminLanguages; //'includes/languages/'
 
@@ -219,7 +219,7 @@
      *   define('DIR_WS_MODULES', 'includes/modules/');
      * @return string
      */
-    public function getModulesDirectory()
+    public function getModulesDirectory(): string
     {
       $directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->_directoryAdminIncludes;
 
@@ -233,9 +233,10 @@
      * @access public
      * @return string
      */
-    public function getDirectoryShopTemplateImages()
+    public function getDirectoryShopTemplateImages(): string
     {
       $directory = CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . parent::getDirectoryTemplateImages(); //'CLICSHOPPING::getConfig('https_path', 'Shop')  . 'sources/images/'
+
       return $directory;
     }
 
@@ -246,7 +247,7 @@
      * @access public
      * @return string
      */
-    public function getDirectoryShopSources()
+    public function getDirectoryShopSources(): string
     {
       $directory = parent::getTemplateSource(); //' CLICSHOPPING::getConfig('dir_root') . 'sources/'
 
@@ -260,7 +261,7 @@
      * @access public
      * @return array, file list
      */
-    public static function getCatalogFiles($catalog_files = null)
+    public static function getCatalogFiles(string $catalog_files = null): array
     {
       $file_array = ['Account&AddressBook',
         'Account&Create',
@@ -316,7 +317,7 @@
      * Return an array of the catalog directory. mechanism for reading this.
      */
 
-    public static function getListCatalogFilesNotIncluded($boostrap_file = null)
+    public static function getListCatalogFilesNotIncluded(string $boostrap_file = null): array
     {
 
       if (is_null($boostrap_file)) $boostrap_file = CLICSHOPPING::getConfig('bootstrap_file');
@@ -340,7 +341,7 @@
      * @params : module, module about the template
      * $@return = return an array
      */
-    public function getMultiTemplatePullDown($filename, $module)
+    public function getMultiTemplatePullDown(string $filename, string $module): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -394,7 +395,7 @@
      * @param string $ext
      * @return array|bool
      */
-    public function getSpecificFiles($source_folder, $filename, $ext = 'php')
+    public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php'): array
     {
       $result = parent::getSpecificFiles($source_folder, $filename, $ext);
 
