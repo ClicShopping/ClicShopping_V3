@@ -89,6 +89,7 @@
           } else {
             $zone_id = false;
           }
+
           $state = HTML::sanitize($_POST['state']);
         }
 
@@ -284,7 +285,7 @@
               $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($_GET['edit']));
             }
 
-            if ($_POST['shopping'] != 1) {
+            if ($_SESSION['shopping'] === false) {
               $sql_data_array = ['customers_firstname' => $firstname,
                 'customers_lastname' => $lastname
               ];
@@ -317,7 +318,7 @@
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Edit');
           } // end $Qcheck->fetch
 
-          if (HTML::sanitize($_POST['shopping']) == 1) {
+          if ($_SESSION['shopping'] === true) {
             CLICSHOPPING::redirect(null, 'Cart');
           } else {
             CLICSHOPPING::redirect(null, 'Account&AddressBook');

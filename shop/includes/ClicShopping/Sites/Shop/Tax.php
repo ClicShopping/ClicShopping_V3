@@ -20,7 +20,7 @@
     protected $tax_rates = [];
     public static $tag;
 
-    public function getTaxRate(int $class_id, int $country_id = -1, int $zone_id = -1): string
+    public function getTaxRate($class_id, $country_id = -1, $zone_id = -1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -74,7 +74,7 @@
     }
 
 // Return the tax description for a zone / class
-    public function getTaxRateDescription(int $class_id, int $country_id, int $zone_id): string
+    public function getTaxRateDescription($class_id, $country_id, $zone_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -175,7 +175,7 @@
      * @param $tax
      * @return float
      */
-    public static function addTax(float $price, float $tax)
+    public static function addTax($price, $tax)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');

@@ -106,7 +106,7 @@ text_categories_name_title = Category Name
 text_categories_image = Category Image:
 text_sort_order = Sort Order:
 
-text_user_name = Created / Modified by :
+text_user_name = By :
 text_help_wysiwyg = Wysiwyg
 
 text_categories_image_title = Categorie main image

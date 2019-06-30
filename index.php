@@ -22,7 +22,7 @@
 
   define('CLICSHOPPING_BASE_DIR', __DIR__ . '/shop/includes/ClicShopping/');
 
-  require(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
 
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
@@ -63,7 +63,7 @@
    if (empty($Qsubmit->value('submit_defaut_language_description'))) {
      $tags_array['desc'] = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
    } else {
-     $tags_array['desc'] =HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+     $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
    }
 
    if (empty($Qsubmit->value('submit_defaut_language_keywords'))) {
@@ -122,7 +122,7 @@ html, body {height: 100%;}
     <div class="PageintroductionAccessCatalog footerIntroduction"><a href="<?php echo HTTP::getShopUrlDomain(); ?>"><?php echo CLICSHOPPING::getDef('access_catalog', ['store_name' => STORE_NAME]); ?></a></div>
 
 <?php
-    require('includes/ClicShopping/Sites/Shop/Templates/Default/footer.php');
+    require_once('includes/ClicShopping/Sites/Shop/Templates/Default/footer.php');
     ob_end_flush();
   } else {
     HTTP::redirect(CLICSHOPPING::link('index.php'));

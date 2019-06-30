@@ -107,7 +107,7 @@ text_categories_name_title = Nom de la catégorie
 text_categories_image = Image de la catégorie :
 text_sort_order = Ordre de tri :
 
-text_user_name = Créé / Modifié par :
+text_user_name = Par :
 
 text_categories_image_title = Image principale de la catégorie
 text_categories_image_vignette = Image vignette de la catégorie

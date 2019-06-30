@@ -16,7 +16,7 @@
   class Tax extends \ClicShopping\Sites\Shop\Tax
   {
 
-    public function getTaxRate(int $class_id, int $country_id = null, int $zone_id = null): string
+    public function getTaxRate($class_id, $country_id = null, $zone_id = null)
     {
       if (!isset($country_id) && !isset($zone_id)) {
         $country_id = STORE_COUNTRY;
@@ -41,7 +41,7 @@
     }
 
 // Add tax to a products price
-    public static function addTax(float $price, float $tax, bool $override = false): float
+    public static function addTax($price, $tax, $override = false)
     {
       if (((DISPLAY_PRICE_WITH_TAX == 'true') || ($override === true)) && ($tax > 0)) {
         return $price + parent::calculate($price, $tax);

@@ -27,7 +27,7 @@
      * get_submit_footer
      */
 
-    public static function geFooterTag()
+    public static function geFooterTag(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -44,12 +44,12 @@
 
         $delimiter = ',';
         $footer = trim(preg_replace('|\\s*(?:' . preg_quote($delimiter) . ')\\s*|', $delimiter, $footer));
-        $footer1 = explode(",", $footer);
+        $footer1 = explode(',', $footer);
 
         $footer_content = '';
 
         foreach ($footer1 as $value) {
-          $footer_content .= '#<a href="' . CLICSHOPPING::link(null, 'Search&Q&keywords=' . $value . '&search_in_description=1', 'rel="nofollow"') . '">' . $value . '</a> ';
+          $footer_content .=  '#' . HTML::link(CLICSHOPPING::link(null, 'Search&Q&keywords=' . $value . '&search_in_description=1', 'rel="nofollow"'), $value);
         }
 
         return $footer_content;
@@ -64,7 +64,7 @@
      * @param string $canonical_link
      * @return string url of the website
      */
-    public static function getCanonicalUrl()
+    public static function getCanonicalUrl(): string
     {
 
       $domain = HTTP::typeUrlDomain(); // gets the base URL minus the trailing slash
@@ -89,6 +89,7 @@
       } else {
         $canonical_link = $domain . preg_replace('#' . $search . '#', $replace, $string);   // merges the variables and echoing them
       }
+
       return $canonical_link;
     }
   }

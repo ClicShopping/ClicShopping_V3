@@ -47,19 +47,35 @@
         $country = HTML::sanitize($_POST['country']);
 
         if (((ACCOUNT_SUBURB == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_SUBURB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
-          $suburb = HTML::sanitize($_POST['suburb']);
+          if (isset($_POST['suburb'])) {
+            $suburb = HTML::sanitize($_POST['suburb']);
+          } else {
+            $suburb = '';
+          }
         }
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_TELEPHONE_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_TELEPHONE_PRO_MIN_LENGTH > 0))) {
-          $telephone = HTML::sanitize($_POST['telephone']);
+          if (isset($_POST['telephone'])) {
+            $telephone = HTML::sanitize($_POST['telephone']);
+          } else {
+            $telephone = '';
+          }
         }
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_CELLULAR_PHONE == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_CELLULAR_PHONE_PRO == 'true'))) {
-          $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
+          if (isset($_POST['cellular_phone'])) {
+            $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
+          } else {
+            $cellular_phone = '';
+          }
         }
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_FAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_FAX_PRO == 'true'))) {
-          $fax = HTML::sanitize($_POST['fax']);
+          if (isset($_POST['fax'])) {
+            $fax = HTML::sanitize($_POST['fax']);
+          } else {
+            $fax = '';
+          }
         }
 
         if (((ACCOUNT_STATE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_STATE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -68,6 +84,7 @@
           } else {
             $zone_id = false;
           }
+
           $state = HTML::sanitize($_POST['state']);
         }
 
@@ -296,7 +313,7 @@
           }// end isset($_POST['primary']
         }// end $error
 
-        if (HTML::sanitize($_POST['shopping']) == 1) {
+        if ($_SESSION['shopping'] === true) {
           CLICSHOPPING::redirect(null, 'Cart');
         } else {
           CLICSHOPPING::redirect(null, 'Account&AddressBook');

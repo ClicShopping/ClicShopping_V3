@@ -39,7 +39,7 @@
       $this->db = Registry::get('Db');
     }
 
-    public function setIsLoggedOn($state)
+    public function setIsLoggedOn(bool $state)
     {
       if ($state === true) {
         $this->_is_logged_on = true;
@@ -48,7 +48,7 @@
       }
     }
 
-    public function isLoggedOn()
+    public function isLoggedOn(): bool
     {
       if ($this->_is_logged_on === true) {
         return true;
@@ -57,7 +57,7 @@
       return false;
     }
 
-    public function get($key = null)
+       public function get(string $key = null)
     {
       if (isset($key)) {
         return $this->_data[$key];
@@ -66,7 +66,7 @@
       }
     }
 
-    public function getID()
+    public function getID(): int
     {
       if (isset($this->_data['id']) && is_numeric($this->_data['id'])) {
         return (int)$this->_data['id'];
@@ -75,7 +75,7 @@
       return 0;
     }
 
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
       if (isset($this->_data['first_name'])) {
         return $this->_data['first_name'];
@@ -84,7 +84,7 @@
       return false;
     }
 
-    public function getLastName()
+    public function getLastName(): ?string
     {
       if (isset($this->_data['last_name'])) {
         return $this->_data['last_name'];
@@ -93,7 +93,7 @@
       return false;
     }
 
-    public function getName()
+    public function getName(): string
     {
       $name = '';
 
@@ -112,7 +112,7 @@
       return $name;
     }
 
-    public function getGender()
+    public function getGender(): ?string
     {
       if (isset($this->_data['gender'])) {
         return $this->_data['gender'];
@@ -121,12 +121,12 @@
       return false;
     }
 
-    public function hasEmailAddress()
+    public function hasEmailAddress(): bool
     {
       return isset($this->_data['email_address']);
     }
 
-    public function getEmailAddress()
+    public function getEmailAddress(): ?string
     {
       if (isset($this->_data['email_address'])) {
         return $this->_data['email_address'];
@@ -135,12 +135,12 @@
       return false;
     }
 
-    public function setTelephone($telephone)
+    public function setTelephone(?string $telephone)
     {
       $this->_data['telephone'] = $telephone;
     }
 
-    public function getTelephone()
+    public function getTelephone(): ?string
     {
       if (isset($this->_data['telephone'])) {
         return $this->_data['telephone'];
@@ -149,7 +149,7 @@
       return false;
     }
 
-    public function getCountryID()
+    public function getCountryID(): ?int
     {
       static $country_id = null;
 
@@ -162,7 +162,7 @@
       return $country_id;
     }
 
-    public function getZoneID()
+    public function getZoneID(): ?int
     {
       static $zone_id = null;
 
@@ -175,7 +175,7 @@
       return $zone_id;
     }
 
-    public function getDefaultAddressID()
+    public function getDefaultAddressID(): ?int
     {
       static $id = null;
 
@@ -189,7 +189,7 @@
     }
 
 // B2B
-    public function getCustomersGroupID()
+    public function getCustomersGroupID(): int
     {
       $customersgroupid = 0;
 
@@ -204,7 +204,7 @@
      * @param $id , customer id
      * @return bool
      */
-    public function setData($id)
+    public function setData(int $id): bool
     {
       $this->_data = [];
 
@@ -269,7 +269,7 @@
       return !empty($this->_data);
     }
 
-    public function setID($id)
+    public function setID(int $id)
     {
       if (is_numeric($id) && ($id > 0)) {
         $this->_data['id'] = $id;
@@ -278,7 +278,7 @@
       }
     }
 
-    public function setDefaultAddressID($id)
+    public function setDefaultAddressID(int $id)
     {
       if (is_numeric($id) && ($id > 0)) {
 
@@ -301,6 +301,7 @@
 
     public function hasDefaultAddress()
     {
+
       if (isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id'])) {
         return true;
       }
@@ -308,7 +309,7 @@
       return false;
     }
 
-    public function setGender($gender)
+    public function setGender(?string $gender)
     {
       if ((strtolower($gender) == 'm') || (strtolower($gender) == 'f')) {
         $this->_data['gender'] = strtolower($gender);
@@ -317,22 +318,22 @@
       }
     }
 
-    public function setFirstName($first_name)
+    public function setFirstName(?string $first_name)
     {
       $this->_data['first_name'] = $first_name;
     }
 
-    public function setLastName($last_name)
+    public function setLastName(?string $last_name)
     {
       $this->_data['last_name'] = $last_name;
     }
 
-    public function setEmailAddress($email_address)
+    public function setEmailAddress(string $email_address)
     {
       $this->_data['email_address'] = $email_address;
     }
 
-    public function getCustomerGuestAccount($id)
+    public function getCustomerGuestAccount(int $id): int
     {
       $Qcustomer = $this->db->prepare('select customer_guest_account
                                         from :table_customers
@@ -344,18 +345,18 @@
       return $Qcustomer->valueInt('customer_guest_account');
     }
 
-    public function setCountryID($id)
+    public function setCountryID(int $id)
     {
       $this->_data['country_id'] = $id;
     }
 
-    public function setZoneID($id)
+    public function setZoneID(int $id)
     {
       $this->_data['zone_id'] = $id;
     }
 
 // B2B
-    public function setCustomersgroupID($id)
+    public function setCustomersgroupID(int $id)
     {
       $this->_data1['customers_group_id'] = $id;
     }
@@ -383,7 +384,7 @@
      * @access public
      */
 
-    public function customerGreeting()
+    public function customerGreeting(): string
     {
       if ($this->isLoggedOn()) {
         $greeting_string = CLICSHOPPING::getDef('text_greeting_personal', ['first_name' => HTML::outputProtected($this->getFirstName()),
@@ -409,7 +410,7 @@
       return $greeting_string;
     }
 
-    public function hasProductNotifications()
+    public function hasProductNotifications(): bool
     {
       $Qcheck = $this->db->prepare('select products_id
                                     from :table_products_notifications

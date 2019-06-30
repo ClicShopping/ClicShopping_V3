@@ -28,7 +28,7 @@
      * Get column listing
      * @return array
      */
-    public function getColumnList()
+    public function getColumnList(): array
     {
       $define_list = ['PRODUCT_LIST_MODEL' => CLICSHOPPING::getDef('product_list_model'),
         'PRODUCT_LIST_NAME' => CLICSHOPPING::getDef('product_list_name'),
@@ -429,7 +429,7 @@
       return $Qlisting;
     }
 
-    public function getTotalRow()
+    public function getTotalRow(): int
     {
       $listingTotalRow = $this->getData()->getPageSetTotalRows();
 

@@ -47,17 +47,17 @@
     }
 
 
-    public function getMinYear()
+    public function getMinYear(): string
     {
       return $this->_period_min_year;
     }
 
-    public function getMaxYear()
+    public function getMaxYear(): string
     {
       return $this->_period_max_year;
     }
 
-    public function getDateFrom()
+    public function getDateFrom(): string
     {
       if (isset($_POST['dfrom']) && !empty($_POST['dfrom'])) {
         $this->_date_from = HTML::sanitize($_POST['dfrom']);
@@ -71,7 +71,7 @@
     }
 
 
-    public function hasDateFrom()
+    public function hasDateFrom(): bool
     {
       $dfromDateTime = new DateTime($this->getDateFrom(), false);
 
@@ -84,7 +84,7 @@
       return $datefrom;
     }
 
-    public function getDateTo()
+    public function getDateTo(): string
     {
       if (isset($_POST['dto']) && !empty($_POST['dto'])) {
         $this->_date_to = HTML::sanitize($_POST['dto']);
@@ -98,7 +98,7 @@
     }
 
 
-    public function hasDateTo()
+    public function hasDateTo(): bool
     {
       $dtoDateTime = new DateTime($this->getDateTo(), false);
 
@@ -111,7 +111,7 @@
       return $dateto;
     }
 
-    public function setDateFrom($timestamp)
+    public function setDateFrom(string $timestamp): string
     {
       $this->_date_from = $timestamp;
     }
@@ -122,7 +122,7 @@
     }
 
 
-    public function getPriceFrom()
+    public function getPriceFrom(): string
     {
 
       if (isset($_POST['pfrom']) && !empty($_POST['pfrom']) && is_numeric($_POST['pfrom'])) {
@@ -137,17 +137,18 @@
     }
 
 
-    public function hasPriceFrom()
+    public function hasPriceFrom(): bool
     {
       if (empty($this->getPriceFrom())) {
         $pricefrom = false;
       } else {
         $pricefrom = true;
       }
+
       return $pricefrom;
     }
 
-    public function getPriceTo()
+    public function getPriceTo(): string
     {
       if (isset($_POST['pto']) && !empty($_POST['pto']) && is_numeric($_POST['pto'])) {
         $this->_price_to = HTML::sanitize((float)$_POST['pto']);
@@ -160,7 +161,7 @@
       return $this->_price_to;
     }
 
-    public function hasPriceTo()
+    public function hasPriceTo(): bool
     {
       if (empty($this->getPriceTo())) {
         $priceto = false;
@@ -177,7 +178,7 @@
       * @return $this->_result['total'], total of products
       * @access public
     */
-    public function getNumberOfResults()
+    public function getNumberOfResults(): int
     {
       return $this->_result['total'];
     }
@@ -189,7 +190,7 @@
      * @access public
     */
 
-    public function getKeywords()
+    public function getKeywords(): string
     {
       if (isset($_POST['keywords'])) {
         $this->_keywords = HTML::sanitize($_POST['keywords']);
@@ -207,10 +208,12 @@
      * @return true or False
      * @access public
     */
-    public function hasKeywords()
+    public function hasKeywords(): bool
     {
       if (!empty($this->getKeywords())) {
         return true;
+      } else {
+        return false;
       }
     }
 
@@ -220,7 +223,7 @@
      * @return keywords under an array
      * @access public
     */
-    public function setKeywords($keywords)
+    public function setKeywords(string $keywords)
     {
 
       if (isset($keywords)) {
@@ -253,7 +256,7 @@
      * @return $this->_description, the keywords
      * @access public
     */
-    private function getDescription()
+    private function getDescription(): bool
     {
       if (isset($_POST['search_in_description']) == 1) {
         $this->_description = true;
@@ -270,9 +273,10 @@
      * Description
      * Boolean true False
      * @return true or False
-     * @access public
+     * @access private
     */
-    private function hasDescription()
+
+    private function hasDescription() :bool
     {
       return $this->getDescription();
     }
@@ -283,7 +287,7 @@
      * @return $this->_category, the categorie
      * @access public
     */
-    private function getCategory()
+    private function getCategory(): bool
     {
       if (isset($_POST['categories_id']) && !empty($_POST['categories_id']) && is_numeric($_POST['categories_id'])) {
         $this->_category = true;
@@ -302,7 +306,7 @@
      * @return true or False
      * @access public
     */
-    private function hasCategory()
+    private function hasCategory(): bool
     {
       return $this->getCategory();
     }
@@ -313,7 +317,7 @@
      * @return $this->_recursive, id fo categories
      * @access public
     */
-    private function isRecursive()
+    private function isRecursive(): bool
     {
       if (isset($_POST['inc_subcat']) && ($_POST['inc_subcat'] == '1')) {
         $this->_recursive = true;
@@ -331,7 +335,7 @@
      * @return $category_id, id fo category
      * @access public
     */
-    private function getCategoryID()
+    private function getCategoryID(): int
     {
       if (isset($_POST['categories_id']) && !empty($_POST['categories_id'])) {
         $category_id = HTML::sanitize($_POST['categories_id']);
@@ -347,7 +351,7 @@
     * @return $this->_manufacturer, the manufacturer
     * @access public
     */
-    private function getManufacturer()
+    private function getManufacturer(): bool
     {
       if (isset($_POST['manufacturers_id']) && !empty($_POST['manufacturers_id']) && is_numeric($_POST['manufacturers_id'])) {
         $this->_manufacturer = true;
@@ -364,9 +368,9 @@
      * manufacturer
      * Boolean true False
      * @return true or False
-     * @access public
+     * @access private
     */
-    private function hasManufacturer()
+    private function hasManufacturer(): bool
     {
       return $this->getManufacturer();
     }
@@ -378,7 +382,7 @@
     * @access public
     */
 
-    public function sortListSearch()
+    public function sortListSearch(): array
     {
       if (defined('MODULE_PRODUCTS_SEARCH_LIST_NAME')) {
         $define_list = ['MODULE_PRODUCTS_SEARCH_LIST_NAME' => MODULE_PRODUCTS_SEARCH_LIST_NAME,
@@ -724,11 +728,17 @@
       $this->_result = $result;
     }
 
+    /**
+     * @return mixed
+     */
     public function getListing()
     {
       return $this->listing;
     }
 
+    /**
+     * @return mixed
+     */
     public function getResult()
     {
       if (!isset($this->_result)) {

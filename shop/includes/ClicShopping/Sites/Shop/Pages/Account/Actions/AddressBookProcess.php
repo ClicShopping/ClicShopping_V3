@@ -37,17 +37,26 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      $new_customer = HTML::sanitize($_GET['newcustomer']);
+      if ($_SESSION['newcustomer'] === true) {
+        $new_customer = $_SESSION['newcustomer'];
+      } else {
+        $new_customer = false;
+      }
 
-      if ($new_customer == 1) {
+      if ($new_customer === true) {
         if (!empty($CLICSHOPPING_Customer->getDefaultAddressID())) {
           $_GET['edit'] = $CLICSHOPPING_Customer->getDefaultAddressID();
+          $entry = AddressBook::getEntry((int)$_GET['edit']);
+        }
+      } else {
+        if (isset($_GET['edit'])) {
+          $entry = AddressBook::getEntry((int)$_GET['edit']);
+        } else {
+          $entry = false;
         }
       }
 
       $exists = false;
-
-      $entry = AddressBook::getEntry((int)$_GET['edit']);
 
       if ($entry !== false) {
         $exists = true;

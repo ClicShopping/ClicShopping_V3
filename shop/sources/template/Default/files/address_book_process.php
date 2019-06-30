@@ -25,14 +25,9 @@
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   if (!isset($_GET['delete']) && isset($_GET['edit'])) {
-
-    if (isset($_GET['newcustomer'])) {
-     $newcustomer = '&newcustomer=' . 1;
-    }
-
     $entry = AddressBook::getEntry((int)$_GET['edit']);
 
-    echo HTML::form('addressbook', CLICSHOPPING::link(null, 'Account&AddressBookProcess' . (isset($_GET['edit']) ? '&Edit&edit=' . $_GET['edit'] : '') . $newcustomer), 'post', 'id="addressbook"',  ['tokenize' => true]);
+    echo HTML::form('addressbook', CLICSHOPPING::link(null, 'Account&AddressBookProcess' . (isset($_GET['edit']) ? '&Edit&edit=' . HTML::sanitize($_GET['edit']) : '')), 'post', 'id="addressbook"',  ['tokenize' => true]);
   } else if (!isset($_GET['delete']) && !isset($_POST['edit'])) {
     echo HTML::form('addressbook', CLICSHOPPING::link(null, 'Account&AddressBookProcess&Create&action=process'), 'post', 'id="addressbook"',  ['tokenize' => true]);
   }
@@ -68,7 +63,7 @@
       <div class="separator"></div>
       <div class="buttonSet">
         <div class="col-md-6 float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
-        <div class="col-md-6 float-md-right"><span class="buttonAction"><?php echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . $_GET['delete'] . '&action=deleteconfirm&formid=' . md5($_SESSION['sessiontoken'])), 'success'); ?></span></div>
+        <div class="col-md-6 float-md-right"><span class="buttonAction"><?php echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . HTML::sanitize($_GET['delete']) . '&action=deleteconfirm&formid=' . md5($_SESSION['sessiontoken'])), 'success'); ?></span></div>
       </div>
 <?php
   } else {
@@ -81,19 +76,19 @@
 ?>
       <div class="contentText">
 <?php
-     if (!isset($_GET['newcustomer'])) {
+     if ($_SESSION['newcustomer'] === false) {
 ?>
         <div class="col-md-6"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
 <?php
      }
 ?>
-       <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) .  HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
+       <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_SESSION['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
     </div>
     <div class="clearfix"></div>
 <?php
     } else {
-      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0) {
-        $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['page'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], array(session_name())), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
+      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && ($_SESSION['newcustomer'] === false)) {
+        $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], session_name()), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
       } else {
         $back_link = CLICSHOPPING::link(null,'Account&AddressBook');
       }

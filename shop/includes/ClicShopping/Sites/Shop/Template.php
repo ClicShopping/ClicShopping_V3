@@ -139,42 +139,42 @@
       return $width;
     }
 
-    public function setTitle(string $title): string
+    public function setTitle($title)
     {
       $this->_title = $title;
     }
 
-    public function getTitle(): string
+    public function getTitle()
     {
       return $this->_title;
     }
 
-    public function setDescription(string $description): string
+    public function setDescription($description)
     {
       $this->_description = $description;
     }
 
-    public function getDescription(): string
+    public function getDescription()
     {
       return $this->_description;
     }
 
-    public function setKeywords(string $keywords): string
+    public function setKeywords($keywords)
     {
       $this->_keywords = $keywords;
     }
 
-    public function getKeywords(): string
+    public function getKeywords()
     {
       return $this->_keywords;
     }
 
-    public function setNewsKeywords(string $Newskeywords): string
+    public function setNewsKeywords($Newskeywords)
     {
       $this->_Newskeywords = $Newskeywords;
     }
 
-    public function getNewsKeywords(): string
+    public function getNewsKeywords()
     {
       return $this->_Newskeywords;
     }

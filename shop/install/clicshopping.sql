@@ -1425,7 +1425,7 @@ INSERT INTO configuration VALUES(1472, 'Statut', 'CLICSHOPPING_APP_PROUCTS_LENGT
 INSERT INTO configuration VALUES(1473, 'Ordre de tri', 'CLICSHOPPING_APP_PROUCTS_LENGTH_PL_SORT_ORDER', '30', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 0, NULL, '2019-04-14 08:46:32', NULL, NULL);
 INSERT INTO configuration VALUES(1474, 'Parameter [ProductsLength App]', 'MODULE_MODULES_PROUCTS_LENGTH_INSTALLED', 'Configuration\\ProductsLength\\PL', 'Parameter [ProductsLength App]', 6, 0, NULL, '2019-04-14 08:46:32', NULL, NULL);
 INSERT INTO configuration VALUES(1475, 'Veuillez indiquer la largeur du contenu', 'MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH', '12', 'Veuillez indiquer une largeur d\'affichage', 6, 2, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_content_module_width_pull_down');
-
+INSERT INTO configuration VALUES(1476, 'Nombre minimum de caractères pour l\'adresse E-Mail', 'ENTRY_EMAIL_ADDRESS_MIN_LENGTH', '6', 'Nombre minimum de caractères pour l\'adresse email', '16', '4', NULL, '2019-06-30 10:06:56', NULL, NULL);
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

@@ -256,6 +256,7 @@
         $x = $i - 1;
         $n = $i - 2;
         $isp_provider_client = $str[$n] . "." . $str[$x];
+
         return $isp_provider_client;
       } else {
         return 'Unkown or localhost';
