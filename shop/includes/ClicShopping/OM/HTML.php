@@ -87,8 +87,7 @@
       '_'
     ];
 
-    return preg_replace($patterns, $replace, trim($string)) ?? '';
-//      return preg_replace($patterns, $replace, $string);
+      return preg_replace($patterns, $replace, $string) ?? '';
     }
 
 

@@ -208,7 +208,7 @@
       }
     }
 
-    public function getBlocks(string $group): string
+    public function getBlocks($group)
     {
       if ($this->hasBlocks($group)) {
         return implode("\n", $this->_blocks[$group]);
