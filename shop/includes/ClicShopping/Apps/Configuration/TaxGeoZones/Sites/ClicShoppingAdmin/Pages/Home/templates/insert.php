@@ -16,6 +16,7 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+  $spage = (isset($_GET['spage']) && is_numeric($_GET['spage'])) ? $_GET['spage'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -30,9 +31,9 @@
           <span class="col-md-7 text-md-right">
 <?php
 
-  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&InsertZone&zpage=' . $page . '&zID=' . $_GET['zID']));
+  echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&InsertZone&zpage=' . $page));
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, null, 'primary') . ' ';
-  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&zpage=' . $page . '&zID=' . $_GET['zID'] . '&action=list&spage=' . $_GET['spage'] . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
+  echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&zpage=' . $page . '&action=list&spage=' . $spage . '&' . (isset($_GET['sID']) ? 'sID=' . $_GET['sID'] : '')), 'warning');
 ?>
 
           </span>

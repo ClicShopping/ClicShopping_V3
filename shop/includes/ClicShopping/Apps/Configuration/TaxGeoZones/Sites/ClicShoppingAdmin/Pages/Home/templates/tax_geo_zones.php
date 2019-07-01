@@ -81,7 +81,7 @@
           <th
             scope="row"><?php echo HTML::link($CLICSHOPPING_TaxGeoZones->link('List&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), $Qzones->value('geo_zone_name')) . '&nbsp;'; ?></th>
           <td><?php echo $Qzones->value('geo_zone_description'); ?></td>
-          <td><?php echo $zInfo->num_zones; ?></td>
+          <td><?php echo $zInfo->num_zones ?? null; ?></td>
 
           <td class="text-md-right">
             <?php

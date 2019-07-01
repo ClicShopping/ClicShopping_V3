@@ -29,24 +29,26 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      if (!empty($_POST['selected'])) {
+
+       if (!empty($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
-          if (isset($zone['zone_id'])) {
-            $Qzones = $this->app->db->prepare('select zone_status
-                                              from :table_zones
-                                              where zone_id = :zone_id
-                                             ');
 
-            $Qzones->bindInt(':zone_id', $id);
-            $Qzones->execute();
+          $Qzones = $this->app->db->prepare('select zone_status
+                                            from :table_zones
+                                            where zone_id = :zone_id
+                                           ');
 
-            if ($Qzones->valueInt('zone_status') == 1) {
-              Status::getZonesStatus($id, 0);
-            } else {
-              Status::getZonesStatus($id, 1);
-            }
+          $Qzones->bindInt(':zone_id', $id);
+          $Qzones->execute();
+
+
+          if ($Qzones->valueInt('zone_status') == 1) {
+            Status::getZonesStatus($id, 0);
+          } else {
+            Status::getZonesStatus($id, 1);
           }
         }
+
       }
 
       $this->app->redirect('Zones&page=' . $page);
