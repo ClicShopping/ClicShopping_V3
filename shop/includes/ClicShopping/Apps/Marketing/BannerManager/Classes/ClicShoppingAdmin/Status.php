@@ -27,7 +27,7 @@
      * @access public
      *
      */
-    public static function setBannerStatus($banners_id, $status)
+    public static function setBannerStatus(int $banners_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

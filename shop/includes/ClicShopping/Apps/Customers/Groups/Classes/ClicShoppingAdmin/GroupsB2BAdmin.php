@@ -23,7 +23,7 @@
     protected $piva;
 
 
-    public static function getCustomersGroupName($id)
+    public static function getCustomersGroupName(int $id): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -45,7 +45,7 @@
      * @param string $default
      * @return array
      */
-    public static function getCustomersGroup($default = '')
+    public static function getCustomersGroup(string $default = ''): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -75,7 +75,7 @@
     }
 
 // Returns an array with all customers_groups
-    public static function getAllGroups()
+    public static function getAllGroups(): array
     {
 
       $customers_group = static::getCustomersGroup();
@@ -103,7 +103,7 @@
      * @param string $iso , $piva, number of the company vat
      * @access public
      */
-    public function isoCheck($iso, $piva)
+    public function isoCheck(string $iso, string $piva): string
     {
 
       $fp1 = fsockopen("europa.eu.int", 80, $errno1, $errstr1, 30);
@@ -122,6 +122,7 @@
         }
         fclose($fp1);
       }
+
       return $iso;
     }
 

@@ -199,7 +199,7 @@
      * @return
      * @access public
      */
-    public static function removeOrder($order_id, $restock = false)
+    public static function removeOrder(int $order_id, bool $restock = false)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -246,7 +246,7 @@
      * @access public
      */
 
-    public static function getOrdersStatus()
+    public static function getOrdersStatus(): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -274,7 +274,7 @@
      * pdf logo
      * return string or bool
      */
-    public static function getOrderPdfInvoiceLogo()
+    public static function getOrderPdfInvoiceLogo(): string
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 

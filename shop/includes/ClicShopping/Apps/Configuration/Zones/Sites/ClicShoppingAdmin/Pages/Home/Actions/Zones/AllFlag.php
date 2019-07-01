@@ -48,7 +48,6 @@
             Status::getZonesStatus($id, 1);
           }
         }
-
       }
 
       $this->app->redirect('Zones&page=' . $page);

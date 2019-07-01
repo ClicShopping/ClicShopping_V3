@@ -23,7 +23,7 @@
      * @access public
      */
 
-    Public static function getReviewsStatus($id, $status)
+    Public static function getReviewsStatus(int $id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
