@@ -26,12 +26,12 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
       $zID = HTML::sanitize($_GET['zID']);
 
       $this->app->db->delete('geo_zones', ['geo_zone_id' => (int)$zID]);
       $this->app->db->delete('zones_to_geo_zones', ['geo_zone_id' => (int)$zID]);
 
-      $this->app->redirect('TaxGeoZones&zpage=' . $_GET['zpage']);
+      $this->app->redirect('TaxGeoZones&zpage=' . $page);
     }
   }

@@ -27,7 +27,7 @@
      * @access public
      */
 
-    Public static function getManufacturersStatus($manufacturers_id, $status)
+    Public static function getManufacturersStatus(int $manufacturers_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

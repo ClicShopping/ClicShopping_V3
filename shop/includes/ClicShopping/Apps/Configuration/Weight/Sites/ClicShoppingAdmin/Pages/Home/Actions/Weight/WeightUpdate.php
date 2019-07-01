@@ -29,6 +29,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $languages = $CLICSHOPPING_Language->getLanguages();
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $weight_class_key = HTML::sanitize($_POST['weight_class_key']);
       $weight_class_id = HTMl::sanitize($_POST['weight_class_id']);
 
@@ -51,6 +52,6 @@
       Cache::clear('weight-classes');
       Cache::clear('weight-rules');
 
-      $this->app->redirect('Weight&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('Weight&page=' . $page);
     }
   }

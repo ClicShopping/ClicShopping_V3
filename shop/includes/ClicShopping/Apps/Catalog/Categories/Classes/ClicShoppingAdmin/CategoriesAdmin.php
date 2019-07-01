@@ -36,7 +36,7 @@
      * @param null $keywords
      * @return mixed
      */
-    public function getSearch($keywords = null)
+    public function getSearch(string $keywords = null)
     {
       $current_category_id = 0;
       if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
@@ -100,9 +100,9 @@
      * Return the breadcrumb path of the assigned category
      *
      * @access public
-     * @return string
+     * @return array
      */
-    public function getPathArray($id = null)
+    public function getPathArray(int $id = null): array
     {
       $CLICSHOPPING_CategoryCommon = Registry::get('CategoryCommon');
 
@@ -134,7 +134,7 @@
      * @return string $category['categories_name'],  name of the categorie
      * @access public
      */
-    public function getCategoryName($category_id, $language_id)
+    public function getCategoryName(int $category_id, int $language_id): string
     {
 
       if (!$language_id) $language_id = $this->lang->getId();
@@ -151,7 +151,7 @@
      * @return string $category['blog_categories_name'],  description of the blog categorie
      * @access public
      */
-    public function getCategoryDescription($category_id, $language_id)
+    public function getCategoryDescription(int $category_id, int $language_id) :string
     {
 
       if (!$language_id) $language_id = $this->lang->getId();
@@ -176,7 +176,7 @@
      */
 // pb avec static function
 
-    public function getChildsInCategoryCount($categories_id)
+    public function getChildsInCategoryCount(int $categories_id): int
     {
       $categories_count = 0;
 
@@ -198,7 +198,7 @@
      * @param bool $include_deactivated
      * @return mixed
      */
-    public function getCatalogInCategoryCount($categories_id, $include_deactivated = false)
+    public function getCatalogInCategoryCount(int $categories_id, bool $include_deactivated = false): int
     {
       if ($include_deactivated) {
         $Qproducts = $this->db->get([
@@ -246,7 +246,7 @@
      * @param string $from
      * @return bool|string
      */
-    public function getGeneratedCategoryPathIds($id, $from = 'category')
+    public function getGeneratedCategoryPathIds(int $id, string $from = 'category'): path
     {
       $calculated_category_path_string = '';
       $calculated_category_path = $this->getGenerateCategoryPath($id, $from);
@@ -271,7 +271,7 @@
      * @return string
      * @access public
      */
-    public function removeCategory($category_id)
+    public function removeCategory(int $category_id)
     {
       $QcategoriesImage = $this->db->prepare('select categories_image
                                                from :table_categories
@@ -398,11 +398,12 @@
     }
 
     /**
-     * category tree
-     *
-     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
-     * @return string $category_tree_array, the tree of category
-     * @access public
+     * @param string $parent_id
+     * @param string $spacing
+     * @param string $exclude
+     * @param string $category_tree_array
+     * @param bool $include_itself
+     * @return array|string
      */
     public function getCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
     {
@@ -576,7 +577,7 @@
      * @param string $from
      * @return bool|string
      */
-    public function getOutputGeneratedCategoryPath($id, $from = 'category')
+    public function getOutputGeneratedCategoryPath(int $id, string $from = 'category')
     {
       $calculated_category_path_string = '';
 
@@ -589,6 +590,7 @@
 
         $calculated_category_path_string = substr($calculated_category_path_string, 0, -16) . '<br />';
       }
+
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
       if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = CLICSHOPPING::getDef('text_top');

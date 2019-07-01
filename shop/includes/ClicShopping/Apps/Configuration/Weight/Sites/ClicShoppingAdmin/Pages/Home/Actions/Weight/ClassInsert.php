@@ -27,6 +27,7 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $weight_class_id = HTML::sanitize($_POST['weight_class_id']);
       $weight_class_to_id = HTML::sanitize($_POST['weight_class_to_id']);
       $weight_class_rule = $_POST['weight_class_rule'];
@@ -46,6 +47,6 @@
         Cache::clear('weight-rules');
       }
 
-      $this->app->redirect('Weight&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('Weight&page=' . $page);
     }
   }

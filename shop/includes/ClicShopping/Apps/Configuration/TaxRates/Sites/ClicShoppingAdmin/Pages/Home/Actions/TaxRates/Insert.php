@@ -26,9 +26,10 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       if (!is_numeric($_POST['tax_rate'])) {
-        $this->app->redirect('TaxRates&page=' . $_GET['page']);
+        $this->app->redirect('TaxRates&page=' . $page);
       }
 
       $tax_zone_id = HTML::sanitize($_POST['tax_zone_id']);
@@ -49,6 +50,6 @@
         ]
       );
 
-      $this->app->redirect('TaxRates&page=' . $_GET['page']);
+      $this->app->redirect('TaxRates&page=' . $page);
     }
   }

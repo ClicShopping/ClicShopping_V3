@@ -26,7 +26,7 @@
      * @return string status on or off
      * @access public
      */
-    Public static function getPageManagerStatus($pages_id, $status)
+    Public static function getPageManagerStatus(int $pages_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

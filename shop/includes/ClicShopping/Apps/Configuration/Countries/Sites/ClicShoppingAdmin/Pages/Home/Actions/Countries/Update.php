@@ -26,6 +26,8 @@
     public function execute()
     {
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $countries_id = HTML::sanitize($_GET['cID']);
       $countries_name = HTML::sanitize($_POST['countries_name']);
       $countries_iso_code_2 = HTML::sanitize($_POST['countries_iso_code_2']);
@@ -42,6 +44,6 @@
 
       $this->app->db->save('countries', $sql_array, ['countries_id' => (int)$countries_id]);
 
-      $this->app->redirect('Countries&page=' . $_GET['page'] . '&cID=' . $countries_id);
+      $this->app->redirect('Countries&page=' . $page . '&cID=' . $countries_id);
     }
   }

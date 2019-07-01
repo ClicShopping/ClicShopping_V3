@@ -28,9 +28,10 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       Status::getCurrencyStatus($_GET['cID'], $_GET['flag']);
 
-      $this->app->redirect('Currency&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'cID=' . $_GET['id']);
+      $this->app->redirect('Currency&' . $page . '&cID=' . $_GET['cID']);
     }
   }

@@ -27,10 +27,12 @@
     public function execute()
     {
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $countries_id = HTML::sanitize($_GET['cID']);
 
       $this->app->db->delete('countries', ['countries_id' => (int)$countries_id]);
 
-      $this->app->redirect('Countries&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('Countries&page=' . $page);
     }
   }

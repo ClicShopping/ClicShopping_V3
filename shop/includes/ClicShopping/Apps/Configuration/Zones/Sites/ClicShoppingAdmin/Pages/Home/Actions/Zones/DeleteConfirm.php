@@ -26,11 +26,11 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $zone_id = HTML::sanitize($_GET['cID']);
 
       $this->app->db->delete('zones', ['zone_id' => (int)$zone_id]);
 
-      $this->app->redirect('Zones&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('Zones&page=' . $page);
     }
   }

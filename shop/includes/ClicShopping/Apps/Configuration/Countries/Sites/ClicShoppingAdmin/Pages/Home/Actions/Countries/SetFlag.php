@@ -29,8 +29,12 @@
     public function execute()
     {
 
-      Status::getCountriesStatus($_GET['cID'], $_GET['flag']);
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $this->app->redirect('Countries&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'cID=' . $_GET['id']);
+      if (isset($_GET['cID']) && isset($_GET['flag'])) {
+        Status::getCountriesStatus($_GET['cID'], $_GET['flag']);
+
+        $this->app->redirect('Countries&page=' . $page . '&cID=' . $_GET['cID']);
+      }
     }
   }

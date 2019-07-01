@@ -26,7 +26,7 @@
      * @return string product['products_head_title_tag'], description name
      * @access public
      */
-    public static function getPageManagerHeadTitleTag($pages_id, $language_id)
+    public static function getPageManagerHeadTitleTag(int $pages_id, int $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -53,7 +53,7 @@
      * @return string $page_manager['products_head_desc_tag'], description name
      * @access public
      */
-    public static function getPageManagerHeadDescTag($pages_id, $language_id)
+    public static function getPageManagerHeadDescTag(int $pages_id, int $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -80,7 +80,7 @@
      * @return string $page_manager['products_head_keywords_tag'], keywords name
      * @access public
      */
-    public static function getPageManagerHeadKeywordsTag($pages_id, $language_id)
+    public static function getPageManagerHeadKeywordsTag(int $pages_id, int $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

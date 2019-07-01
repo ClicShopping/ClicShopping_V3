@@ -25,7 +25,7 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $tax_rates_id = HTML::sanitize($_GET['tID']);
       $tax_zone_id = HTML::sanitize($_POST['tax_zone_id']);
       $tax_class_id = HTML::sanitize($_POST['tax_class_id']);
@@ -50,6 +50,6 @@
 
       $this->app->db->save('tax_rates', $sql_array, ['tax_rates_id' => (int)$tax_rates_id]);
 
-      $this->app->redirect('TaxRates&page=' . $_GET['page'] . '&tID=' . $tax_rates_id);
+      $this->app->redirect('TaxRates&page=' . $page . '&tID=' . $tax_rates_id);
     }
   }

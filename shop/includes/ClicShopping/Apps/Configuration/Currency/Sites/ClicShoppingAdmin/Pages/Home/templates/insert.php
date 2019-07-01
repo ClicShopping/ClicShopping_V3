@@ -22,7 +22,7 @@
 
   $cInfo = new ObjectInfo($Qcurrency->toArray());
 
-  $currency_select = json_decode(file_get_contents(BASE_DIR . 'External/CommonCurrencies.json'), true);
+  $currency_select = json_decode(file_get_contents(CLICSHOPPING::BASE_DIR. 'External/CommonCurrencies.json'), true);
   $currency_select_array = array(array('id' => '', 'text' => $CLICSHOPPING_Currency->getDef('text_info_common_currency')));
 
   foreach ($currency_select as $cs) {

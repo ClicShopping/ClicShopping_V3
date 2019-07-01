@@ -30,7 +30,7 @@
     * @access public
     */
 
-    Public static function getLanguageStatus($languages_id, $status)
+    Public static function getLanguageStatus(int $languages_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

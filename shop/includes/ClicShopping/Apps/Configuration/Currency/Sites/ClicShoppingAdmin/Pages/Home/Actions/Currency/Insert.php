@@ -26,6 +26,7 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
       $title = HTML::sanitize($_POST['title']);
       $code = HTML::sanitize($_POST['code']);
@@ -58,6 +59,6 @@
         );
       }
 
-      $this->app->redirect('Currency&page=' . $_GET['page'] . '&cID=' . $currencies_id);
+      $this->app->redirect('Currency&page=' . $page . '&cID=' . $currencies_id);
     }
   }

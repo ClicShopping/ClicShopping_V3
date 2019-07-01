@@ -29,6 +29,7 @@
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $lID = HTML::sanitize($_GET['lID']);
 
       $Qlng = $this->app->db->get('languages', 'languages_id', ['code' => DEFAULT_LANGUAGE]);
@@ -51,6 +52,6 @@
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');
 
-      $this->app->redirect('Langues&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('Langues&page=' . $page);
     }
   }

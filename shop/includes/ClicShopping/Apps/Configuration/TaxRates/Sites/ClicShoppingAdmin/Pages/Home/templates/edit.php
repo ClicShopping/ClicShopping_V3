@@ -71,7 +71,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_class_title'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_class_title'); ?></label>
           <div class="col-md-5">
-            <?php echo $CLICSHOPPING_Tax->getTaxClassesPullDown('tax_class_id', $trInfo->tax_class_id); ?>
+            <?php echo $CLICSHOPPING_Tax->getTaxClassesPullDown('tax_class_id', $trInfo->tax_class_id ?? null); ?>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_zone_name'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_zone_name'); ?></label>
           <div class="col-md-5">
-            <?php echo AddressAdmin::getGeoZonesPullDown('tax_zone_id', $trInfo->geo_zone_id); ?>
+            <?php echo AddressAdmin::getGeoZonesPullDown('tax_zone_id', $trInfo->geo_zone_id ?? null); ?>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_rate_description'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_rate_description'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('tax_description', $trInfo->tax_description); ?>
+            <?php echo HTML::inputField('tax_description', $trInfo->tax_description ?? null); ?>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('tax_rate', $trInfo->tax_rate, 'required aria-required="true"'); ?>
+            <?php echo HTML::inputField('tax_rate', $trInfo->tax_rate ?? null, 'required aria-required="true"'); ?>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_erp'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_erp'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('code_tax_erp', $trInfo->code_tax_erp); ?>
+            <?php echo HTML::inputField('code_tax_erp', $trInfo->code_tax_erp ?? null); ?>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate_priority'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate_priority'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('tax_priority', $trInfo->tax_priority); ?>
+            <?php echo HTML::inputField('tax_priority', $trInfo->tax_priority ?? null); ?>
           </div>
         </div>
       </div>

@@ -24,7 +24,7 @@
      * @access public
      */
 
-    public static function getStatus($products_attributes_id, $status)
+    public static function getStatus(int $products_attributes_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

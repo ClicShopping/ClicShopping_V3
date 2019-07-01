@@ -29,7 +29,7 @@
      * @return string $orders_invoice_status['orders_status_invoice_name'],  name of the  status invoice
      * @access public
      */
-    Public static function getOrdersStatusInvoiceName($orders_status_invoice_id, $language_id = '')
+    Public static function getOrdersStatusInvoiceName(int $orders_status_invoice_id, int  $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -57,7 +57,7 @@
      * @return string orders_invoice_status_array,  array if the name status invoice
      * @access public
      */
-    Public static function getOrdersInvoiceStatus()
+    Public static function getOrdersInvoiceStatus(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

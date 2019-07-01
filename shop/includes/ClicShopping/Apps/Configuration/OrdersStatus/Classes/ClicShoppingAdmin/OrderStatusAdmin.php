@@ -28,7 +28,7 @@
      * @return string $orders_status['orders_status_name'],  name of the status
      * @access public
      */
-    Public Static function getOrdersStatusName($orders_status_id, $language_id = '')
+    Public Static function getOrdersStatusName(int $orders_status_id, int $language_id): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -47,7 +47,7 @@
      * @return string status order
      * @access public
      */
-    Public Static function getDropDownOrderStatus($name = 'dropdown_status', $id = null, $displays_all_orders_status = 'yes')
+    Public Static function getDropDownOrderStatus(string $name = 'dropdown_status', int $id = null, string $displays_all_orders_status = 'yes')
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

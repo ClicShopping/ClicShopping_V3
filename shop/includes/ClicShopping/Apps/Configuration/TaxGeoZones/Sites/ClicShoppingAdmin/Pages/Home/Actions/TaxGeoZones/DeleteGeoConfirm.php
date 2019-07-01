@@ -26,11 +26,14 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['spage']) && is_numeric($_GET['spage'])) ? $_GET['spage'] : 1;
       $sID = HTML::sanitize($_GET['sID']);
+      $zpage = HTML::sanitize($_GET['zpage']);
+      $zID = HTML::sanitize($_GET['zID']);
+
 
       $this->app->db->delete('zones_to_geo_zones', ['association_id' => (int)$sID]);
 
-      $this->app->redirect('ListGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage']);
+      $this->app->redirect('ListGeo&zpage=' . $zpage . '&zID=' . $zID . '&spage=' .$page);
     }
   }

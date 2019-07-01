@@ -23,7 +23,7 @@
      * @param string $user_administrator
      */
 
-    public static function getUserAdmin()
+    public static function getUserAdmin(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -56,7 +56,7 @@
      * @return string $administrator_right_array ,  right selected
      */
 
-    public static function getAdministratorRight($default = '')
+    public static function getAdministratorRight(string $default = ''): array
     {
 
       $administrator_right_array = [];
@@ -80,7 +80,7 @@
      * @return string $administrator_right_array , menu right selected
      */
 
-    public static function getAdministratorMenuRight($default = '')
+    public static function getAdministratorMenuRight(string $default = ''): array
     {
 
       $administrator_right_array = [];

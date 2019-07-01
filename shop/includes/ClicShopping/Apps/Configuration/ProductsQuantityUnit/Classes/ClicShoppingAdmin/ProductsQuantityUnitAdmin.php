@@ -30,7 +30,7 @@
      * @access public
      */
 
-    public function productsQuantityUnitDropDown()
+    public function productsQuantityUnitDropDown(): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -56,7 +56,7 @@
       return $products_quantity_unit_array;
     }
 
-    public function getProductsQuantityUnitTitle()
+    public function getProductsQuantityUnitTitle(): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $QproductQtyUnit = $this->app->db->prepare('select p.products_quantity_unit_id,
@@ -67,8 +67,8 @@
                                                  and pqt.language_id = :language_id
                                                  and pqt.products_quantity_unit_id = p.products_quantity_unit_id
                                                 ');
-      $QproductQtyUnit->bindInt(':products_id', (int)$_GET['pID']);
-      $QproductQtyUnit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+      $QproductQtyUnit->bindInt(':products_id', $_GET['pID']);
+      $QproductQtyUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $QproductQtyUnit->execute();
 
       return $QproductQtyUnit->value('products_quantity_unit_title');

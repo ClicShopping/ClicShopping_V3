@@ -30,6 +30,8 @@
     public function execute()
     {
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       Status::getLanguageStatus($_GET['lid'], $_GET['flag']);
 
 // Verifie si les status ne sont pas tous en off
@@ -44,13 +46,13 @@
                                             set status = 1
                                             where languages_id = :languages_id
                                           ');
-        $Qupdate->bindInt(':languages_id', (int)$_GET['lid']);
+        $Qupdate->bindInt(':languages_id', $_GET['lid']);
         $Qupdate->execute();
       }
 
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');
 
-      $this->app->redirect('Langues&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'lID=' . $_GET['lID']);
+      $this->app->redirect('Langues&page' . $page . '&lID=' . $_GET['lid']);
     }
   }

@@ -20,7 +20,7 @@
     * @int, $cPath, value of cpath
     * return @ string array $tmp_array
     */
-    public function getParseCategoryPath($cPath)
+    public function getParseCategoryPath(string $cPath): array
     {
 // make sure the category IDs are integers
       $cPath_array = array_map(function ($string) {

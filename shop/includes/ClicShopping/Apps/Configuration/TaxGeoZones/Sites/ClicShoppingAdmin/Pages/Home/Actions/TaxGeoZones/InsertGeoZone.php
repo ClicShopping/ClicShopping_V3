@@ -26,6 +26,8 @@
 
     public function execute()
     {
+      $page = (isset($_GET['spage']) && is_numeric($_GET['spage'])) ? $_GET['spage'] : 1;
+      $zpage = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
 
       $zID = HTML::sanitize($_GET['zID']);
       $zone_country_id = HTML::sanitize($_POST['country']);
@@ -41,6 +43,6 @@
 
       $new_subzone_id = $this->app->db->lastInsertId();
 
-      $this->app->redirect('ListGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $new_subzone_id);
+      $this->app->redirect('ListGeo&zpage=' . $zpage . '&zID=' . $zID . '&spage=' . $page . '&sID=' . $new_subzone_id);
     }
   }

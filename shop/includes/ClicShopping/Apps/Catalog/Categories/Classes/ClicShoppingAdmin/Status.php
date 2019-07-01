@@ -29,7 +29,7 @@
      * @access public
      */
 
-    public static function getCategoriesStatus($categories_id, $status)
+    public static function getCategoriesStatus(int $categories_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

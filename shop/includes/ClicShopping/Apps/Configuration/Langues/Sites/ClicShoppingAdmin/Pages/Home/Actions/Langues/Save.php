@@ -27,6 +27,7 @@
     public function execute()
     {
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $lID = HTML::sanitize($_GET['lID']);
       $name = HTML::sanitize($_POST['name']);
       $code = HTML::sanitize(substr($_POST['code'], 0, 2));
@@ -56,6 +57,6 @@
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');
 
-      $this->app->redirect('Langues&page=' . $_GET['page'] . '&lID=' . $_GET['lID']);
+      $this->app->redirect('Langues&page=' . $page . '&lID=' . $_GET['lID']);
     }
   }

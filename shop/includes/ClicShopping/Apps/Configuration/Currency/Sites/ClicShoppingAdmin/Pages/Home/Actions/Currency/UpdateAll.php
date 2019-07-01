@@ -23,8 +23,9 @@
       $this->app = Registry::get('Currency');
     }
 
-    public function getConvertCurrency()
+    public function getConvertCurrency(): array
     {
+
       $api_id = CLICSHOPPING_APP_CURRENCY_CR_API_KEY;
 
       $url = 'https://openexchangerates.org/api/latest.json?app_id=' . $api_id;
@@ -65,6 +66,8 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $Qcurrency = $this->app->db->prepare('select currencies_id,
                                                    code,
                                                    title
@@ -103,6 +106,6 @@
         }
       }
 
-      $this->app->redirect('Currency&page=' . $_GET['page'] . '&cID=' . $Qcurrency->valueInt('currencies_id'));
+      $this->app->redirect('Currency&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id'));
     }
   }

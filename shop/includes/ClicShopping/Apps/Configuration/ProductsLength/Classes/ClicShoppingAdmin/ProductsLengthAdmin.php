@@ -47,7 +47,7 @@
      * @access public
      *
      */
-    public static function getClassesPullDown()
+    public static function getClassesPullDown(): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -77,7 +77,7 @@
      * @param string $result length title
      * @access public
      */
-    public static function getLengthProductsTitle($id = null)
+    public static function getLengthProductsTitle(int $id = null): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -94,8 +94,8 @@
         $Qlength->execute();
 
         $result = $Qlength->value('products_length_class_title');
-      }
 
-      return $result;
+        return $result;
+      }
     }
   }

@@ -26,7 +26,7 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $zone_country_id = HTML::sanitize($_POST['zone_country_id']);
       $zone_code = HTML::sanitize($_POST['zone_code']);
       $zone_name = HTML::sanitize($_POST['zone_name']);
@@ -39,6 +39,6 @@
         ]
       );
 
-      $this->app->redirect('Zones&page=' . $_GET['page']);
+      $this->app->redirect('Zones&page=' . $page);
     }
   }

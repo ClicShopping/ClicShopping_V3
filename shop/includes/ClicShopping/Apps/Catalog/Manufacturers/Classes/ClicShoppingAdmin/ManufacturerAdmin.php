@@ -32,7 +32,8 @@
      * @return string $manufacturer['manufacturer_description'],  description of the manufacturer
      * @access public
      */
-    public function getManufacturerDescription($manufacturers_id, $language_id)
+
+    public function getManufacturerDescription(int $manufacturers_id, int $language_id)
     {
 
       $Qmanufacturers = $this->db->prepare('select manufacturer_description
@@ -41,8 +42,8 @@
                                               and languages_id = :language_id
                                             ');
 
-      $Qmanufacturers->bindInt(':manufacturers_id', (int)$manufacturers_id);
-      $Qmanufacturers->bindInt(':language_id', (int)$language_id);
+      $Qmanufacturers->bindInt(':manufacturers_id', $manufacturers_id);
+      $Qmanufacturers->bindInt(':language_id', $language_id);
       $Qmanufacturers->execute();
 
       return $Qmanufacturers->value('manufacturer_description');

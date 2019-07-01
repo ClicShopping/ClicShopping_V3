@@ -26,11 +26,11 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $tax_class_id = HTML::sanitize($_GET['tID']);
 
       $this->app->db->delete('tax_class', ['tax_class_id' => (int)$tax_class_id]);
 
-      $this->app->redirect('TaxClass&' . (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : ''));
+      $this->app->redirect('TaxClass&page=' . $page);
     }
   }

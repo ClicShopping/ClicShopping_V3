@@ -47,7 +47,7 @@
      * @access public
      *
      */
-    public static function getClassesPullDown()
+    public static function getClassesPullDown(): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -78,7 +78,7 @@
      * @access public
      */
 
-    public static function getWeightTitle($id = null)
+    public static function getWeightTitle($id = null): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -95,8 +95,8 @@
         $Qweight->execute();
 
         $result = $Qweight->value('weight_class_title');
-      }
 
-      return $result;
+        return $result;
+      }
     }
   }

@@ -33,7 +33,7 @@
      * @return string $supplier['supplier_description'],  description of the supplier
      * @access public
      */
-    public function getSupplierUrl($supplier_id, $language_id)
+    public function getSupplierUrl(int $supplier_id, int $language_id)
     {
 
       $Qsuppliers = $this->db->prepare('select suppliers_url

@@ -27,7 +27,7 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
       $geo_zone_name = HTML::sanitize($_POST['geo_zone_name']);
       $geo_zone_description = HTML::sanitize($_POST['geo_zone_description']);
 
@@ -40,6 +40,6 @@
 
       $new_zone_id = $this->app->db->lastInsertId();
 
-      $this->app->redirect('TaxGeoZones&zpage=' . $_GET['zpage'] . '&zID=' . $new_zone_id);
+      $this->app->redirect('TaxGeoZones&zpage=' . $page . '&zID=' . $new_zone_id);
     }
   }

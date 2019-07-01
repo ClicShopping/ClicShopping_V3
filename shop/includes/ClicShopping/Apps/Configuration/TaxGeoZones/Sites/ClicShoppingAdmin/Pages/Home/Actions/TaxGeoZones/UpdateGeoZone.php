@@ -26,6 +26,8 @@
 
     public function execute()
     {
+      $zpage = (isset($_GET['zpage']) && is_numeric($_GET['zpage'])) ? $_GET['zpage'] : 1;
+      $spage = (isset($_GET['spage']) && is_numeric($_GET['spage'])) ? $_GET['spage'] : 1;
 
       $sID = HTML::sanitize($_GET['sID']);
       $zID = HTML::sanitize($_GET['zID']);
@@ -42,6 +44,6 @@
         ]
       );
 
-      $this->app->redirect('ListGeo&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $_GET['sID']);
+      $this->app->redirect('ListGeo&zpage=' . $zpage . '&zID=' . $zID . '&spage=' . $spage . '&sID=' . $sID);
     }
   }

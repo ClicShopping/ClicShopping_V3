@@ -26,6 +26,8 @@
 
     public function execute()
     {
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
       $currencies_id = HTML::sanitize($_GET['cID']);
 
       $Qcurrency = $this->app->db->get('currencies', 'currencies_id', ['code' => DEFAULT_CURRENCY]);
@@ -36,6 +38,6 @@
 
       $this->app->db->delete('currencies', ['currencies_id' => (int)$currencies_id]);
 
-      $this->app->redirect('Currency&&page=' . $_GET['page']);
+      $this->app->redirect('Currency&&page=' . $page);
     }
   }

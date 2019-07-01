@@ -26,9 +26,9 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       Status::getZonesStatus($_GET['id'], $_GET['flag']);
 
-      $this->app->redirect('Zones&' . $_GET['page'] . 'page=' . $_GET['page'] . '&cID=' . $_GET['id']);
+      $this->app->redirect('Zones&' . $_GET['page'] . 'page=' . $page . '&cID=' . $_GET['id']);
     }
   }

@@ -21,7 +21,7 @@
     protected $countries_id;
     protected $status;
 
-    Public static function getCountriesStatus($countries_id, $status)
+    Public static function getCountriesStatus(int $countries_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

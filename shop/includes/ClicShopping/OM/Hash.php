@@ -35,7 +35,7 @@
 
       if ($algo == 'phpass') {
         if (!class_exists('PasswordHash', false)) {
-          include_once(BASE_DIR . 'External/PasswordHash.php');
+          include_once(CLICSHOPPING::BASE_DIR . 'External/PasswordHash.php');
         }
 
         $hasher = new \PasswordHash(10, true);

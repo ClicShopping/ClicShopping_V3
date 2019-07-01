@@ -36,6 +36,7 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $name = HTML::sanitize($_POST['name']);
       $code = HTML::sanitize(substr($_POST['code'], 0, 2));
       $image = HTML::sanitize($_POST['image']);
@@ -183,7 +184,7 @@
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');
 
-      $this->app->redirect('languages.php', 'page=' . $_GET['page'] . '&lID=' . $insert_id);
+      $this->app->redirect('languages.php', 'page=' . $page . '&lID=' . $insert_id);
 
     }
   }

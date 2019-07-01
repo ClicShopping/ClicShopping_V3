@@ -25,7 +25,7 @@
 
     public function execute()
     {
-
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       $tax_class_id = HTML::sanitize($_GET['tID']);
       $tax_class_title = HTML::sanitize($_POST['tax_class_title']);
       $tax_class_description = HTML::sanitize($_POST['tax_class_description']);
@@ -41,6 +41,6 @@
       );
 
 
-      $this->app->redirect('TaxClass&page=' . $_GET['page'] . '&tID=' . $tax_class_id);
+      $this->app->redirect('TaxClass&page=' . $page . '&tID=' . $tax_class_id);
     }
   }

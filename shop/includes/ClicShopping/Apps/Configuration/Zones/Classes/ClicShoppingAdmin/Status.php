@@ -28,7 +28,7 @@
      * @return string status on or off
      * @access public
      */
-    public static function getZonesStatus($zones_id, $status)
+    public static function getZonesStatus(int $zones_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
