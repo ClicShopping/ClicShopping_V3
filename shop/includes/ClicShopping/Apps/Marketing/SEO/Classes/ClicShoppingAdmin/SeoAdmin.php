@@ -28,7 +28,7 @@
      * @return string $manufacturer['manufacturers_seo_description'],  seo description of the manufacturer
      * @access public
      */
-    public static function getManufacturerSeoDescription(int $manufacturers_id, int $language_id): string
+    public static function getManufacturerSeoDescription($manufacturers_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -53,7 +53,7 @@
      * @return string $manufacturer['manufacturers_seo_title'],  seo title of the manufacturer
      * @access public
      */
-    public static function getManufacturerSeoTitle(int $manufacturers_id, int $language_id):string
+    public static function getManufacturerSeoTitle($manufacturers_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -78,7 +78,7 @@
      * @return string $manufacturer['manufacturers_seo_keyword'],  seo keyword of the manufacturer
      * @access public
      */
-    public static function getManufacturerSeoKeyword(int $manufacturers_id, int $language_id)
+    public static function getManufacturerSeoKeyword($manufacturers_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -103,7 +103,7 @@
      * @return string product['products_head_title_tag'], description name
      * @access public
      */
-    public static function getProductsSeoTitle(int $product_id, int $language_id)
+    public static function getProductsSeoTitle($product_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -127,7 +127,7 @@
      * @return string $product['products_head_desc_tag'], description name
      * @access public
      */
-    public static function getProductsSeoDescription(int $product_id, int $language_id)
+    public static function getProductsSeoDescription($product_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -151,7 +151,7 @@
      * @return string $product['products_head_keywords_tag'], keywords name
      * @access public
      */
-    public static function getProductsSeoKeywords(int $product_id, int $language_id)
+    public static function getProductsSeoKeywords($product_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -176,7 +176,7 @@
      * @return string $product['products_head_tag'], keywords name
      * @access public
      */
-    public static function getProductsSeoTag(int $product_id, int $language_id)
+    public static function getProductsSeoTag($product_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -193,7 +193,7 @@
       return $Qproduct->value('products_head_tag');
     }
 
-    public static function getCategoriesSeoTitle(int $category_id, int $language_id)
+    public static function getCategoriesSeoTitle($category_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -213,7 +213,7 @@
       return $Qcategory->value('categories_head_title_tag');
     }
 
-    public static function getCategoriesSeoDescription(int $category_id, int $language_id)
+    public static function getCategoriesSeoDescription($category_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -233,7 +233,7 @@
       return $Qcategory->value('categories_head_desc_tag');
     }
 
-    public static function getCategoriesSeoKeywords(int $category_id, int $language_id)
+    public static function getCategoriesSeoKeywords($category_id, $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

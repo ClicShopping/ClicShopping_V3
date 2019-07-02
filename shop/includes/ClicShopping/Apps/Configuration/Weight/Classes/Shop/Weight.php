@@ -102,7 +102,7 @@
       }
     }
 
-    public function convert($value, $unit_from, $unit_to)
+    public function convert(string $value, string $unit_from, string $unit_to): string
     {
       if (!is_null($value)) {
         if ($unit_from == $unit_to) {

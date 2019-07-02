@@ -24,19 +24,43 @@
     {
     }
 
+    /**
+     * @param $id
+     * @param null $language_id
+     * @return mixed
+     */
     public static function getTitle($id, $language_id = null)
     {
       return parent::getTitle($id, $language_id);
     }
 
+    /**
+     * @return array
+     */
     public static function getClasses()
     {
       return parent::getClasses();
     }
 
+    /**
+     * @param $value
+     * @param $class
+     * @return string
+     */
     public function display($value, $class)
     {
       return parent::display($value, $class);
+    }
+
+    /**
+     * @param $value
+     * @param $unit_from
+     * @param $unit_to
+     * @return string|void
+     */
+    public function convert(string $value, string $unit_from, string $unit_to): string
+    {
+      parent::convert($value, $unit_from, $unit_to);
     }
 
     /**
