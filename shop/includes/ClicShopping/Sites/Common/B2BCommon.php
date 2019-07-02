@@ -24,8 +24,9 @@
      * @access public
      */
 
-    public static function getPaymentUnallowed($pay_check)
+    public static function getPaymentUnallowed($pay_check): bool
     {
+
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -53,6 +54,7 @@
           $clearance = false;
         }
 
+        return $clearance;
       } else {
 
         $Qpayments = $CLICSHOPPING_Db->prepare('select group_payment_unallowed
@@ -64,9 +66,9 @@
         $payments_not_allowed = $Qpayments->fetch();
         $payments_unallowed = explode(",", $payments_not_allowed['group_payment_unallowed']);
         $clearance = (!in_array($pay_check, $payments_unallowed)) ? true : false;
-      }
 
-      return $clearance;
+        return $clearance;
+      }
     }
 
     /**
@@ -74,7 +76,7 @@
      * @param string $customer_group_id , the group of the customer
      * @access public
      **/
-    public static function getPaymentNotDisplayPayment()
+    public static function getPaymentNotDisplayPayment(): int
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $customer_group_id = $CLICSHOPPING_Customer->getID();
@@ -88,7 +90,7 @@
      * @param string $product_price_d , the price of the product or not
      * @access public
      */
-    public static function getShippingUnallowed($shipping_check)
+    public static function getShippingUnallowed($shipping_check): bool
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -115,6 +117,9 @@
         } else {
           $shipping_clearance = false;
         }
+
+        return $shipping_clearance;
+
       } else {
         $Qshipping = $CLICSHOPPING_Db->prepare('select group_shipping_unallowed
                                                 from :table_customers_groups
@@ -131,9 +136,9 @@
         } else {
           $shipping_clearance = false;
         }
-      }
 
-      return $shipping_clearance;
+        return $shipping_clearance;
+      }
     }
 
 
@@ -144,7 +149,7 @@
      * @access public
      * $tax_check no variable
      */
-    public static function getTaxUnallowed()
+    public static function getTaxUnallowed(): bool
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -170,10 +175,13 @@
         } else {
           $tax_clearance = true;
         }
+
+        return $tax_clearance;
       } else {
         $tax_clearance = true;
+
+        return $tax_clearance;
       }
 
-      return $tax_clearance;
     }
   }

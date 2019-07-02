@@ -25,7 +25,7 @@
      * @return a text replaced
      */
 
-    static public function stripHtmlTags($str)
+    static public function stripHtmlTags(string $str): string
     {
 
       $search = ["'<script[^>]*?>.*?</script>'",  // Strip out javascript
@@ -62,7 +62,7 @@
     }
 
 // fonction de nettoyage des donnees si presence d'un editeur html
-    public static function cleanHtml($CatList, $length = '')
+    public static function cleanHtml(string $CatList, string$length = ''): string
     {
 
       $clean = strip_tags($CatList);
@@ -93,7 +93,7 @@
       return $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
     }
 
-    public static function starTagRateYo($rating = null, $color = null, $readonly = true, $size = '20')
+    public static function starTagRateYo(int $rating = null, string $color = null, bool $readonly = true, int $size = 20): string
     {
 
       $star_rating = '<!--   Rate Yo start -->' . "\n";
