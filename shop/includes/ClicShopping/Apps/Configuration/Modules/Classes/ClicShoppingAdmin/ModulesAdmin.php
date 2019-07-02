@@ -16,8 +16,11 @@
   class ModulesAdmin
   {
 
-
-    public function getSwitchModules($module_type)
+    /**
+     * @param $module_type
+     * @return string|null
+     */
+    public function getSwitchModules(?string $module_type): ?string
     {
 
       $appModuleType = null;

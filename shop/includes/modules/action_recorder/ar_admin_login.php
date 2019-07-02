@@ -23,6 +23,7 @@
     public $minutes = 5;
     public $attempts = 3;
     public $identifier;
+    public $enabled = true;
 
     public function __construct()
     {
