@@ -57,7 +57,7 @@
      * @param null $products_id
      * @return string
      */
-    public static function getGlobalProductNotificationsProduct(int $products_id = null): string
+    public static function getGlobalProductNotificationsProduct($products_id = null)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');

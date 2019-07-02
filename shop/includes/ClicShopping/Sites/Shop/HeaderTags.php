@@ -80,7 +80,7 @@
         }
 
         if ($value[2] !== null) {
-          $newstring = $newstring . "&" . $value[2];
+          $newstring = $newstring . '&' . $value[2];
         }
       }
 

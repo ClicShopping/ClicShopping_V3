@@ -21,7 +21,7 @@
     public $path = [];
     public $snapshot = [];
 
-    public function __construct($add_current_page = false)
+    public function __construct(bool $add_current_page = false)
     {
       if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'])) {
         $this->path =& $_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'];
@@ -94,7 +94,7 @@
     }
 
 
-    public function hasPath($back = 1)
+    public function hasPath(int $back = 1): bool
     {
       if ((is_numeric($back) === false) || (is_numeric($back) && ($back < 1))) {
         $back = 1;
@@ -104,7 +104,7 @@
     }
 
 
-    public function getPathURL($back = 1)
+    public function getPathURL(int $back = 1): string
     {
       if ((is_numeric($back) === false) || (is_numeric($back) && ($back < 1))) {
         $back = 1;
@@ -148,7 +148,7 @@
     }
 
 
-    public function getSnapshotURL()
+    public function getSnapshotURL(): string
     {
       if ($this->hasSnapshot()) {
         $target = CLICSHOPPING::redirect(null, $this->snapshot['application'] . '&' . $this->snapshot['action'] . '&' . $this->parseParameters($this->snapshot['get']));
@@ -159,7 +159,7 @@
       return $target;
     }
 
-    public function redirectToSnapshot()
+    public function redirectToSnapshot(): string
     {
       $target = $this->getSnapshotURL();
 
@@ -220,7 +220,7 @@
       return $string;
     }
 
-    protected function siteApplicationActionExists($action)
+    protected function siteApplicationActionExists(string $action): string
     {
       return class_exists('ClicShopping\\OM\\Site\\Shop\\Pages\\' . CLICSHOPPING::getSiteApplication() . '\\Actions\\' . $action);
     }

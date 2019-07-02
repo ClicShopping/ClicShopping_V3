@@ -77,7 +77,7 @@
      * @return string
      */
 
-    public function get($separator = null)
+    public function get(string $separator = null): string
     {
       if (is_null($separator)) {
         $separator = $this->_separator;
@@ -93,7 +93,7 @@
      * @return array
      */
 
-    public function getArray()
+    public function getArray(): array
     {
       return $this->_path;
     }
@@ -105,7 +105,7 @@
      * @return string
      */
 
-    public function getSeparator()
+    public function getSeparator(): string
     {
       return $this->_separator;
     }
@@ -140,7 +140,7 @@
      * @access public
      */
 
-    public function current()
+    public function current(): string
     {
       return current($this->_path);
     }
@@ -151,7 +151,7 @@
      * @access public
      */
 
-    public function key()
+    public function key(): string
     {
       return key($this->_path);
     }
@@ -162,7 +162,7 @@
      * @access public
      */
 
-    public function next()
+    public function next(): string
     {
       return next($this->_path);
     }
@@ -173,7 +173,7 @@
      * @access public
      */
 
-    public function valid()
+    public function valid(): string
     {
       return (current($this->_path) !== false);
     }
@@ -182,7 +182,7 @@
      * get manufacturer (brand) inside the categories
      * @return mixed
      */
-    public function getCategoriesManufacturer()
+    public function getCategoriesManufacturer(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
