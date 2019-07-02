@@ -58,7 +58,7 @@
       return $this->_modules;
     }
 
-    public function get($code, $key)
+    public function get(string $code, string $key)
     {
       if (is_array($this->_modules)) {
         foreach ($this->_modules as $m) {
@@ -69,7 +69,7 @@
       }
     }
 
-    public function exists($code)
+    public function exists($code): bool
     {
       if (is_array($this->_modules)) {
         foreach ($this->_modules as $m) {
@@ -83,7 +83,7 @@
     }
 
 
-    public function countModules($modules = '')
+    public function countModules(string $modules = ''): int
     {
       $count = 0;
 

@@ -15,7 +15,7 @@
 
   class Database
   {
-    public static function getDtTables()
+    public static function getDtTables(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $result = [];

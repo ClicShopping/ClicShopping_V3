@@ -24,7 +24,7 @@
      * @return string $values_values['products_options_values_name'], the value of the option name
      * @access public
      */
-    public static function getOptionsName($options_id)
+    public static function getOptionsName(int $options_id): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -45,7 +45,7 @@
      * @return string $values_values['products_options_values_name'], the name value of the option name
      * @access public
      */
-    public static function getValuesName($values_id)
+    public static function getValuesName(int $values_id): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $Qvalues = Registry::get('Db')->get('products_options_values', 'products_options_values_name', ['products_options_values_id' => (int)$values_id,
@@ -59,7 +59,7 @@
 ////
 // Alias function for module configuration keys
 //atributes
-    public static function getModSelectOption($select_array, $key_name, $key_value)
+    public static function getModSelectOption(string $select_array, string $key_name, string $key_value): string
     {
       $string = '';
 

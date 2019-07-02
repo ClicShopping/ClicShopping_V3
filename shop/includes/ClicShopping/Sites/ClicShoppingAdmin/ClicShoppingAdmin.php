@@ -191,7 +191,7 @@
       }
     }
 
-    public static function resolveRoute(array $route, array $routes)
+    public static function resolveRoute(array $route, array $routes): string
     {
       return array_values($routes)[0];
     }

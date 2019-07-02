@@ -27,7 +27,7 @@
      * @param string $system 'si' for SI, 'bi' for binary prefixes
      * @param string $retstring return string format
      */
-    Public Static function getSizeReadable($size, $max = null, $system = 'si', $retstring = '%01.2f %s')
+    Public Static function getSizeReadable(int $size, int $max = null, string $system = 'si', string $retstring = '%01.2f %s'): string
     {
       // Pick units
       $systems['si']['prefix'] = array('B', 'K', 'MB', 'GB', 'TB', 'PB');
@@ -58,7 +58,7 @@
      * @Access public
      * @Return size if the directory
      */
-    Public Static function getDirSize()
+    Public Static function getDirSize(): string
     {
 
       $path = CLICSHOPPING::getConfig('dir_root', 'Shop');

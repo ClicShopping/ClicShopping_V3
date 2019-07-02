@@ -40,7 +40,7 @@
      * @access public
      */
 
-    public static function getAddressFormats()
+    public static function getAddressFormats(): array
     {
       $address_format_array = [];
 
@@ -63,7 +63,7 @@
      * @access public
      *
      */
-    public static function setAddressFormatArrayAdmin()
+    public static function setAddressFormatArrayAdmin(): array
     {
       $address_format_array = ['company' => CLICSHOPPING::getDef('text_address_company'),
         'firstname' => CLICSHOPPING::getDef('text_address_first_name'),
@@ -75,6 +75,7 @@
         'postcode' => CLICSHOPPING::getDef('text_address_postcode'),
         'country' => CLICSHOPPING::getDef('text_address_country')
       ];
+
       return $address_format_array;
     }
 
@@ -98,7 +99,7 @@
      * @return string $geo_zone_name the drop down of the zone name
      * @access public
      */
-    public static function getGeoZoneName($geo_zone_id)
+    public static function getGeoZoneName(int $geo_zone_id): ?int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -126,7 +127,7 @@
      * @access public
      *
      */
-    public static function getGeoZonesPullDown($parameters, $selected = '')
+    public static function getGeoZonesPullDown(array $parameters, string $selected = ''): string
     {
 
       $select_string = '<select ' . $parameters . '>';
@@ -160,7 +161,7 @@
      * @return array $QaddressesBook, list of address_format_id's
      * @access public
      */
-    public static function getListingAdmin($id)
+    public static function getListingAdmin(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

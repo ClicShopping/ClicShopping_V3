@@ -21,7 +21,7 @@
 
     protected $lang;
 
-    public function __construct($module, $user_id = null, $user_name = null)
+    public function __construct(string $module, string $user_id = null, string $user_name = null)
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 

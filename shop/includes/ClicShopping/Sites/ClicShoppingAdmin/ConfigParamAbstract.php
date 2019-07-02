@@ -34,7 +34,7 @@
       $this->init();
     }
 
-    protected function getInputValue()
+    protected function getInputValue(): string
     {
       $key = strtoupper($this->key);
       $value = defined($key) ? constant($key) : null;
@@ -46,14 +46,14 @@
       return $value;
     }
 
-    public function getInputField()
+    public function getInputField(): string
     {
       $input = HTML::inputField($this->key, $this->getInputValue());
 
       return $input;
     }
 
-    public function getSetField()
+    public function getSetField(): string
     {
       $input = $this->getInputField();
 

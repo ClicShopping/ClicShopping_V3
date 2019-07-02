@@ -28,7 +28,7 @@
      * @return string $cPath_new,
      * @access public
      */
-    public static function getPath($current_category_id = '')
+    public static function getPath($current_category_id = ''): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Category = Registry::get('Category');
@@ -75,7 +75,7 @@
      * @return string $category['categories_name'],  name of the categorie
      * @access public
      */
-    public static function getActionsRecorderLabel($id, $language_id)
+    public static function getActionsRecorderLabel(int $id, int $language_id): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -92,7 +92,7 @@
      * @return string
      * @access public
      */
-    public static function removeCategory($id)
+    public static function removeCategory(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -168,7 +168,7 @@
      * @access public
      */
 
-    public static function getGeneratedActionsRecorderPathIds($id)
+    public static function getGeneratedActionsRecorderPathIds(int $id)
     {
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
@@ -181,6 +181,7 @@
         }
         $calculated_category_path_string = substr($calculated_category_path_string, 0, -1) . '<br />';
       }
+
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
       if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = $CLICSHOPPING_ActionsRecorder->getDef('text_top');
@@ -189,7 +190,7 @@
     }
 
 
-    public static function getGenerateCategoryPath($id, $categories_array = '', $index = 0)
+    public static function getGenerateCategoryPath($id, $categories_array = '', $index = 0): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -228,7 +229,7 @@
      * @return string
      * @access public
      */
-    public static function getRemoveActionsRecorderCategory($id)
+    public static function getRemoveActionsRecorderCategory(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -277,7 +278,6 @@
                                     ');
       $Qdelete->bindInt(':id', (int)$id);
       $Qdelete->execute();
-
     }
 
 
@@ -338,7 +338,7 @@
     }
 
 // Count how many subcategories exist in a category
-    public static function getChildsInMenuCount($id)
+    public static function getChildsInMenuCount(int $id): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

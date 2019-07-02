@@ -35,7 +35,7 @@
      * @access public
      */
 
-    public static function sanitizeReplace($string)
+    public static function sanitizeReplace(string $string): string
     {
       $string = preg_replace("/ /", "+", $string);
       return preg_replace("/[<>]/", '_', $string);
@@ -49,7 +49,7 @@
      * @access public
      *
      */
-    public static function getCkeditor()
+    public static function getCkeditor(): string
     {
       $script = '<script src="' . CLICSHOPPING::link('Shop/ext/ckeditor/ckeditor.js') . '"></script>';
 
@@ -126,6 +126,7 @@
         filebrowserBrowseUrl : "' . CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.html') . '",
      });
             </script>';
+
       return $field;
     }
 
@@ -136,7 +137,7 @@
      * @return string $image, without html
      * @access public
      */
-    public static function getCkeditorImageAlone($image)
+    public static function getCkeditorImageAlone(string $image): string
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -300,13 +301,16 @@
         $Qzone->execute();
 
         $num_state = 1;
+
         while ($states = $Qzone->fetch()) {
           if ($num_state == '1') $output_string .= '    ' . $form . '.' . $field . '.options[0] = new Option("' . CLICSHOPPING::getDef('text_selected') . '", "");' . "\n";
           $output_string .= '    ' . $form . '.' . $field . '.options[' . $num_state . '] = new Option("' . $states['zone_name'] . '", "' . $states['zone_id'] . '");' . "\n";
           $num_state++;
         }
+
         $num_country++;
       }
+
       $output_string .= '  } else {' . "\n" .
         '    ' . $form . '.' . $field . '.options[0] = new Option("' . CLICSHOPPING::getDef('text_select') . '", "");' . "\n" .
         '  }' . "\n";

@@ -23,7 +23,7 @@
     public $attempts = 1;
     public $identifier;
     public $enabled = true;
-    
+
     public function __construct()
     {
       $this->code = get_class($this);

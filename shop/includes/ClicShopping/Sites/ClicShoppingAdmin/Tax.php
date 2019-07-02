@@ -58,7 +58,7 @@
      * @return string $select_string, the drop down f the title class
      *
      */
-    public static function getTaxClassesPullDown(string $parameters, string $selected = ''): array
+    public static function getTaxClassesPullDown($parameters, $selected = '')
     {
       $select_string = '<select ' . $parameters . '>';
 
