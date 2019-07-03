@@ -204,7 +204,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if ($restock == 'on') {
+      if (isset($restock)) {
         $Qproducts = $CLICSHOPPING_Db->get('orders_products', ['products_id',
           'products_quantity'
         ], [

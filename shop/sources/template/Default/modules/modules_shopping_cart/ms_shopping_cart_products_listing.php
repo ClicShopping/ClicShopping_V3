@@ -126,13 +126,15 @@
 
           if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
             foreach($products[$i]['attributes'] as $option => $value) {
-              if (!is_null($products[$i][$option]['products_attributes_image'])) {
-                $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_name'] . '   ', 30, 30);
-              } else {
-                $products_attributes_image = '';
-              }
+              if (array($products[$i][$option]) && isset($products[$i][$option])) {
+                if (!is_null($products[$i][$option]['products_attributes_image'])) {
+                  $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_values_name'] . '   ', 30, 30);
+                } else {
+                  $products_attributes_image = '';
+                }
 
-              $products_option .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . '  '  . $products[$i][$option]['products_attributes_name'] . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->display_price($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') .'</p>';
+                $products_option .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->display_price($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') .'</p>';
+              }
             }
           }
 
