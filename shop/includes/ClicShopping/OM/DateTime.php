@@ -110,6 +110,7 @@
           $result = strftime($pattern, $date->getTimestamp());
         }
       }
+      
       return $result;
     }
 
