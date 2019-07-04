@@ -42,7 +42,7 @@
         if (isset($_POST['gender']) && ((ACCOUNT_GENDER == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_GENDER_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $gender = HTML::sanitize($_POST['gender']);
         } else {
-          $gender = null;
+          $gender = 'm';
         }
 
         if (isset($_POST['company']) && ((ACCOUNT_COMPANY == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_COMPANY_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -107,7 +107,6 @@
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error', 'addressbook');
           }
         }
-
 
 // Clients B2C et B2B : Controle entree du prenom
         if ((strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
@@ -239,7 +238,6 @@
         }
 
         if ($error === false) {
-
           $sql_data_array = ['entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_street_address' => $street_address,
@@ -285,7 +283,7 @@
               $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($_GET['edit']));
             }
 
-            if (isset($_SESSION['shopping']) && $_SESSION['shopping'] === false) {
+            if (HTML::sanitize($_POST['shopping']) != 1) {
               $sql_data_array = ['customers_firstname' => $firstname,
                 'customers_lastname' => $lastname
               ];
@@ -318,7 +316,7 @@
             $CLICSHOPPING_Hooks->call('AddressBookProcess', 'Edit');
           } // end $Qcheck->fetch
 
-          if (isset($_SESSION['shopping']) && $_SESSION['shopping'] === true) {
+          if (HTML::sanitize($_POST['shopping']) == 1) {
             CLICSHOPPING::redirect(null, 'Cart');
           } else {
             CLICSHOPPING::redirect(null, 'Account&AddressBook');

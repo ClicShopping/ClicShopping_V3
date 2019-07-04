@@ -38,6 +38,7 @@
             'LogIn',
             'Process'
           ]);
+
           CLICSHOPPING::redirect(null, 'Account&LogIn&' . $all_get . (empty($all_get) ? '' : '&') . 'cookie_test=1');
         }
 

@@ -54,14 +54,6 @@
         unset($_SESSION['login_customer_id']);
       }
 
-      if (isset($_SESSION['newcustomer'])) {
-        unset($_SESSION['newcustomer']);
-      }
-
-      if (isset($_SESSION['shopping'])) {
-        unset($_SESSION['shopping']);
-      }
-
       $CLICSHOPPING_ShoppingCart->reset();
 
       Registry::get('Hooks')->call('Account', 'Logout');

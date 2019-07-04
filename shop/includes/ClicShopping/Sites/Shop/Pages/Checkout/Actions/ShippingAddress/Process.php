@@ -27,21 +27,41 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-
         $error = false;
 // process a new shipping address
         if (!$CLICSHOPPING_Customer->hasDefaultAddress() || (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['street_address']) && !empty($_POST['street_address']))) {
 
-          if (ACCOUNT_GENDER == 'true') $gender = HTML::sanitize($_POST['gender']);
-          if (ACCOUNT_COMPANY == 'true') $company = HTML::sanitize($_POST['company']);
+          if (ACCOUNT_GENDER == 'true') {
+            $gender = HTML::sanitize($_POST['gender']);
+          } else {
+            $gender = '';
+          }
+
+          if (ACCOUNT_COMPANY == 'true') {
+            $company = HTML::sanitize($_POST['company']);
+          } else {
+            $company = '';
+          }
+
           $firstname = HTML::sanitize($_POST['firstname']);
           $lastname = HTML::sanitize($_POST['lastname']);
           $street_address = HTML::sanitize($_POST['street_address']);
-          if (ACCOUNT_SUBURB == 'true') $suburb = HTML::sanitize($_POST['suburb']);
+
+          if (ACCOUNT_SUBURB == 'true') {
+            $suburb = HTML::sanitize($_POST['suburb']);
+          } else {
+            $suburb = '';
+          }
+
           $postcode = HTML::sanitize($_POST['postcode']);
           $city = HTML::sanitize($_POST['city']);
           $country = HTML::sanitize($_POST['country']);
-          $entry_telephone = HTML::sanitize($_POST['entry_telephone']);
+
+          if (isset($_POST['telephone'])) {
+            $entry_telephone = HTML::sanitize($_POST['telephone']);
+          } else {
+            $entry_telephone = '';
+          }
 
           if (ACCOUNT_STATE == 'true') {
             if (isset($_POST['zone_id'])) {
@@ -49,6 +69,7 @@
             } else {
               $zone_id = false;
             }
+
             $state = HTML::sanitize($_POST['state']);
           }
 

@@ -1,9 +1,26 @@
-Some refactoring code
-Reformat code
-Convert db utf8mb4
-Some fix du strict php mode
+Latest Boostrap
+Latest Jquery
+Latest FontAwesome
+Lastest Phpmailer
 
+Some refactoring code
+Convert database utf8mb4
+Some fix strict php mode and bugs
+Improve the capacities to override the shop by the custom directory
+Some script updated
 
 
 #Update DB
 ALTER TABLE `clic_products` ADD `parent_id` INT UNSIGNED NOT NULL AFTER `products_id`, ADD `has_children` INT NOT NULL DEFAULT '0' AFTER `parent_id`, ADD INDEX `products_parent_id` (`parent_id`);
+
+DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_TYPE`;
+DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_SIZE`;
+DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_COLOR`;
+DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_EXTENSION`;
+
+Update db in function your language
+//english
+INSERT INTO clic_configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Minimum number of characters for E-Mail Address', 'ENTRY_EMAIL_ADDRESS_MIN_LENGTH', '6', 'Minimum length of e-mail address', '16', '4', now());
+
+french
+INSERT INTO clic_configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Nombre minimum de caractères pour l\'adresse E-Mail', 'ENTRY_EMAIL_ADDRESS_MIN_LENGTH', '6', 'Nombre minimum de caractères pour l\'addresse email', '16', '4', now());

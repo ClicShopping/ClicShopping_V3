@@ -52,13 +52,14 @@
       $QaddressCustomer->bindInt(':address_book_id', (int)$CLICSHOPPING_Customer->getDefaultAddressID());
       $QaddressCustomer->execute();
 
+//check if we need to continue the address creation
+      if (is_null($QaddressCustomer->value('entry_street_address'))) {
+        CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress&newcustomer=1');
+      }
+
 //check if address id exist else go shipping_address for new default address
-      if (!$CLICSHOPPING_Customer->getDefaultAddressID() || is_null($QaddressCustomer->value('entry_street_address'))) {
-        $_SESSION['newcustomer'] = true;
-        CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress');
-      } else {
-        $_SESSION['shopping'] = false;
-        $_SESSION['newcustomer'] = false;
+      if (!$CLICSHOPPING_Customer->getDefaultAddressID()) {
+        CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress&newcustomer=1');
       }
 
 // if no shipping destination address was selected, use the customers own address as default

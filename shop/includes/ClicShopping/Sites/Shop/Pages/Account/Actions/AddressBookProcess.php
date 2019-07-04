@@ -37,13 +37,13 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === true) {
-        $new_customer = $_SESSION['newcustomer'];
+      if (isset($_GET['newcustomer'])) {
+        $new_customer = HTML::sanitize($_GET['newcustomer']);
       } else {
-        $new_customer = false;
+        $new_customer = null;
       }
 
-      if ($new_customer === true) {
+      if ($new_customer == 1) {
         if (!empty($CLICSHOPPING_Customer->getDefaultAddressID())) {
           $_GET['edit'] = $CLICSHOPPING_Customer->getDefaultAddressID();
           $entry = AddressBook::getEntry((int)$_GET['edit']);

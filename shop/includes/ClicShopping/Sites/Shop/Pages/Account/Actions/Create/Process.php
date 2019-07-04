@@ -84,7 +84,6 @@
 
 // Clients B2C : Controle entree date de naissance
         if (ACCOUNT_DOB == 'true') {
-
           $dobDateTime = new DateTime($dob);
 
           if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
@@ -239,12 +238,8 @@
           $CLICSHOPPING_ActionRecorder->record();
 
           $CLICSHOPPING_Hooks->call('Create', 'Process');
-
-          if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === false) {
-            CLICSHOPPING::redirect(null, 'Account&Main');
-          } else {
-            CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress');
-          }
+	  
+          CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&edit=' . $CLICSHOPPING_Customer->getID() . '&newcustomer=1');
         }
       }
     }

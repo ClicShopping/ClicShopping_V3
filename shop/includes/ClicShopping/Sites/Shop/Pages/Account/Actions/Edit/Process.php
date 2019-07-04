@@ -162,7 +162,6 @@
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'danger', 'account_edit');
           }
-
         } else if ((ACCOUNT_DOB_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
 
           $dobDateTime = new DateTime($dob, false);

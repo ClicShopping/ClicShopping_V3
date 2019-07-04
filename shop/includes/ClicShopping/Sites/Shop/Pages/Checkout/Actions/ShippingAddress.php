@@ -47,7 +47,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }
 
-      if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === true) {
+      if (isset($_GET['newcustomer'])) {
         $QaddresseDefault = $CLICSHOPPING_Db->prepare('select customers_default_address_id
                                                        from :table_customers
                                                        where customers_id = :customers_id
@@ -56,10 +56,7 @@
         $QaddresseDefault->execute();
 
         if ($QaddresseDefault->rowCount() == 1) {
-          $_SESSION['shopping'] = true;
-          CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&edit=' . $QaddresseDefault->valueInt('customers_default_address_id'));
-        } else {
-          $_SESSION['shopping'] = false;
+          CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&newcustomer=1&shopping=1&edit=' . $QaddresseDefault->valueInt('customers_default_address_id'));
         }
       }
 
