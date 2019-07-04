@@ -89,6 +89,7 @@
       $female = !$male;
     }
 ?>
+          <div class="separator"></div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row">
@@ -146,7 +147,7 @@
             </div>
           </div>
 <?php
-  if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === true) {
+  if (isset($_GET['newcustomer']) == 1) {
 ?>
           <div class="row">
             <div class="col-md-12">
@@ -188,7 +189,7 @@
           </div>
 <?php
     }
-  } // end $_SESSION['newcustomer']
+  } // end $_GET['newcustomer']
 ?>
         </div>
       </div>
@@ -201,7 +202,7 @@
         </div>
         <div class="card-block">
           <div class="card-text">
-
+            <div class="separator"></div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
@@ -368,16 +369,16 @@
     }
   }
 
-  if (isset($_SESSION['newcustomer']) && $_SESSION['newcustomer'] === false) {
+  if (isset($_GET['newcustomer']) === false) {
 //   Allow or not to customer change this address ou to change the default address if oddo is activated.
-    if ((isset($_GET['edit']) && $CLICSHOPPING_Customer->getDefaultAddressID() != HTML::sanitize($_GET['edit']) && AddressBook::countCustomersModifyAddressDefault() == 1) || (isset($_GET['edit']) === false && (AddressBook::countCustomersModifyAddressDefault() == 1))) {
+    if ((isset($_GET['edit']) && ($CLICSHOPPING_Customer->getDefaultAddressID() != HTML::sanitize($_GET['edit']) && AddressBook::countCustomersModifyAddressDefault() == 1)) || ((isset($_GET['edit']) === false && (AddressBook::countCustomersModifyAddressDefault() == 1)))) {
 ?>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputNewsletter" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_newsletter'); ?></label>
-                  <div class="col-sm-6 col-md-4">
-                    <?php echo HTML::checkboxField('primary', 'on', false, 'id="InputNewsletter" aria-label="' . CLICSHOPPING::getDef('entry_newsletter') . '"') . ' ' . CLICSHOPPING::getDef('set_as_primary');  ?>
+                  <label for="InputNewsletter" class="col-sm-6 col-md-6 col-form-label"><?php echo CLICSHOPPING::getDef('set_as_primary'); ?></label>
+                  <div class="col-sm-6 col-md-6">
+                    <?php echo HTML::checkboxField('primary', 'on', false, 'id="InputNewsletter" aria-label="' . CLICSHOPPING::getDef('set_as_primary') . '"');  ?>
                   </div>
                 </div>
               </div>
@@ -385,7 +386,7 @@
 <?php
     }
   } else {
-    echo  HTML::hiddenField('primary', 'on', true, 'id="primary"');
+    echo HTML::hiddenField('primary', 'on', true, 'id="primary"');
   }
 ?>
           </div>

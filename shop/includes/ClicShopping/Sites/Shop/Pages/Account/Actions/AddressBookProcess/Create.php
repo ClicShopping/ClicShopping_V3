@@ -284,7 +284,13 @@
           if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $CLICSHOPPING_Customer->getDefaultAddressID())) {
             $CLICSHOPPING_Customer->setCountryID($country);
             $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
-            $CLICSHOPPING_Customer->setDefaultAddressID($_GET['id']);
+
+            if (isset($_GET['id'])) {;
+              $CLICSHOPPING_Customer->setDefaultAddressID($_GET['id']);
+            } else {
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error'), 'error', 'addressbook');
+              CLICSHOPPING::redirect(null, 'Account&Main');
+            }
 
             $sql_data_array = ['customers_firstname' => $firstname,
               'customers_lastname' => $lastname,

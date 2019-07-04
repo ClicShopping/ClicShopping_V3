@@ -62,7 +62,7 @@
 ?>
 
       <div class="col-md-6">
-        <div class="card panel-<?php echo ($Qaddresses->valueInt('address_book_id') == $customer_default_address_id) ? 'primary' : 'default'; ?>">
+        <div class="card panel-<?php echo ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID()) ? 'primary' : 'default'; ?>">
 <?php
   // Controle autorisation au client de modifier son adresse par defaut
   if ((AddressBook::countCustomersModifyAddressDefault() == 0) && ($Qaddresses->valueInt('address_book_id') == $CLICSHOPPING_Customer->getDefaultAddressID())) {

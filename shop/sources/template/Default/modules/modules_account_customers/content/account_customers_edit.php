@@ -114,7 +114,7 @@
         <div class="form-group row">
           <label for="dob" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_date_of_birth'); ?></label>
           <div class="col-md-8 date">
-             <?php echo HTML::inputField('dob', $customers_dob, null, 'date'); ?>
+            <?php echo HTML::inputField('dob', $customers_dob, 'required aria-required="true"', 'date'); ?>
           </div>
         </div>
       </div>
