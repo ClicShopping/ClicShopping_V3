@@ -35,7 +35,7 @@
 
       if ($Qcheck->fetch() !== false) {
         do {
-          if ($Qcheck->hasValue('Collation') && ($Qcheck->value('Collation') != 'utf8_unicode_ci')) {
+          if ($Qcheck->hasValue('Collation') && ($Qcheck->value('Collation') != 'utf8mb4_unicode_ci')) {
             return false;
           }
         } while ($Qcheck->fetch());

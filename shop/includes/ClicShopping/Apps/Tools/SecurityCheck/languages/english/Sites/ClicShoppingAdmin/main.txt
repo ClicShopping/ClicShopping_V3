@@ -34,5 +34,5 @@ alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
 table_heading_title = Title
-table_heading_module = Module
 table_heading_info = Info
+table_heading_module = Modules
