@@ -27,6 +27,7 @@ use ClicShopping\OM\HTML;
             <div class="controls">
               <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_retailers'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'primary'); ?></div>
             </div>
+            <div class="separator"></div>
           </div>
         </div>
       </div>

@@ -38,15 +38,7 @@
 
       $Qmodules = $this->app->db->get('action_recorder', 'distinct module', null, 'module');
 
-
-//      var_dump($_GET);
-
-
-
       while ($Qmodules->fetch()) {
-
-//        var_dump($Qmodules->value('module'));
-
         $modules_array[] = $Qmodules->value('module');
 
         if (isset($GLOBALS[$Qmodules->value('module')]) && is_object($GLOBALS[$Qmodules->value('module')])) {
@@ -70,7 +62,6 @@
           $expired_entries = $this->app->db->delete('action_recorder', ['module' => $_GET['module']]);
         }
       } else {
-
         foreach ($modules_array as $module) {
           if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
             $expired_entries += $GLOBALS[$module]->expireEntries();

@@ -29,7 +29,8 @@
 
   $Qcustomers = $CLICSHOPPING_Members->db->prepare('select customers_id,
                                                           customers_lastname,
-                                                          customers_firstname
+                                                          customers_firstname,
+                                                          customers_group_id
                                                     from :table_customers
                                                     where customers_id = :customers_id
                                                    ');
@@ -71,11 +72,11 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_Members->getDef('text_accept_intro'); ?><br/><br/></div>
       <div class="separator"></div>
       <div
-        class="col-md-5"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Members->getDef('visitor_name')), $cInfo->customers_group_id); ?>
+        class="col-md-5"><?php echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getCustomersGroup($CLICSHOPPING_Members->getDef('visitor_name')), $cInfo->customers_group_id ?? null); ?>
         <br/><br/></div>
       <div class="separator"></div>
       <div
-        class="col-md-12"><?php echo HTML::checkboxField('delete_reviews', 'on', true) . ' ' . $CLICSHOPPING_Members->getDef('text_delete_reviews', ['delete_number' => $cInfo->number_of_reviews]); ?>
+        class="col-md-12"><?php echo HTML::checkboxField('delete_reviews', 'on', true) . ' ' . $CLICSHOPPING_Members->getDef('text_delete_reviews', ['delete_number' => $cInfo->number_of_reviews ?? null]); ?>
         <br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12 text-md-center">
