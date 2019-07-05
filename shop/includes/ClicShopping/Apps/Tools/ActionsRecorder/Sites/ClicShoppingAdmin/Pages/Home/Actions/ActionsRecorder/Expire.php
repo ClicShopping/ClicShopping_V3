@@ -33,16 +33,30 @@
       $modules_array = [];
       $modules_list_array = array(array('id' => '',
         'text' => $this->app->getDef('txt_all_modules')
-      )
+        )
       );
 
       $Qmodules = $this->app->db->get('action_recorder', 'distinct module', null, 'module');
 
+
+//      var_dump($_GET);
+
+
+
       while ($Qmodules->fetch()) {
+
+//        var_dump($Qmodules->value('module'));
+
         $modules_array[] = $Qmodules->value('module');
 
+        if (isset($GLOBALS[$Qmodules->value('module')]) && is_object($GLOBALS[$Qmodules->value('module')])) {
+          $module_title = $GLOBALS[$Qmodules->value('module')]->title;
+        } else {
+          $module_title = $Qmodules->value('module');
+        }
+
         $modules_list_array[] = ['id' => $Qmodules->value('module'),
-          'text' => (is_object($GLOBALS[$Qmodules->value('module')]) ? $GLOBALS[$Qmodules->value('module')]->title : $Qmodules->value('module'))
+          'text' => $module_title
         ];
       }
 
@@ -58,7 +72,7 @@
       } else {
 
         foreach ($modules_array as $module) {
-          if (is_object($GLOBALS[$module])) {
+          if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
             $expired_entries += $GLOBALS[$module]->expireEntries();
           }
         }
