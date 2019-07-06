@@ -49,7 +49,7 @@
   $modules_array = [];
   $modules_list_array = array(array('id' => '',
     'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_all_modules')
-  )
+    )
   );
 
   $Qmodules = $CLICSHOPPING_Db->get('action_recorder', 'distinct module', null, 'module');

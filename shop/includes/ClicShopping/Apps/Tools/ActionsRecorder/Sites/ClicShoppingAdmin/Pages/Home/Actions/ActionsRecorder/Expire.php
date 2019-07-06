@@ -29,6 +29,36 @@
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+
+      $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
+      $directory_array = [];
+
+      if ($dir = @dir(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/')) {
+        while ($file = $dir->read()) {
+          if (!is_dir(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/' . $file)) {
+            if (substr($file, strrpos($file, '.')) == $file_extension) {
+              $directory_array[] = $file;
+            }
+          }
+        }
+        sort($directory_array);
+        $dir->close();
+      }
+
+      for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+        $file = $directory_array[$i];
+
+//    $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/action_recorder'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
+
+        include($CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/action_recorder/' . $file);
+
+        $class = substr($file, 0, strrpos($file, '.'));
+        if (class_exists($class)) {
+          $GLOBALS[$class] = new $class;
+        }
+      }
+
 
       $modules_array = [];
       $modules_list_array = array(array('id' => '',
@@ -54,7 +84,6 @@
 
       $expired_entries = 0;
 
-
       if (isset($_GET['module']) && in_array($_GET['module'], $modules_array)) {
         if (is_object($GLOBALS[$_GET['module']])) {
           $expired_entries += $GLOBALS[$_GET['module']]->expireEntries();
@@ -62,9 +91,11 @@
           $expired_entries = $this->app->db->delete('action_recorder', ['module' => $_GET['module']]);
         }
       } else {
-        foreach ($modules_array as $module) {
-          if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
-            $expired_entries += $GLOBALS[$module]->expireEntries();
+        if (is_array($modules_array)) {
+          foreach ($modules_array as $module) {
+            if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
+              $expired_entries += $GLOBALS[$module]->expireEntries();
+            }
           }
         }
       }
