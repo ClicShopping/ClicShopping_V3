@@ -24,7 +24,7 @@ customers_add_address tinyint(1) default(1) not_null
 customers_cellular_phone varchar(255) null
 customers_email_validation int(1) default(0) not_null
 customer_discount decimal(4,2) default(0.00) not_null
-client_computer_ip varchar(15) null
+client_computer_ip varchar(45) null
 provider_name_client varchar(64)  null
 customer_website_company varchar(64) null
 customer_guest_account tinyint(1) default(0) not_null

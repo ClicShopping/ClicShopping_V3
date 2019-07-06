@@ -47,7 +47,7 @@ orders_date_finished datetime
 currency char(3)
 currency_value decimal(14,6)
 customers_group_id int default(0) not_null
-client_computer_ip varchar(255)
+client_computer_ip varchar(45)
 provider_name_client varchar(255)
 customers_cellular_phone varchar(255)
 orders_archive int(1) default(0) not_null
