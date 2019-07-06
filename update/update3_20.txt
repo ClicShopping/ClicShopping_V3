@@ -6,8 +6,10 @@ Lastest Phpmailer
 Some refactoring code
 Convert database utf8mb4
 Some fix strict php mode and bugs
+Started for typage function
 Improve the capacities to override the shop by the custom directory
 Some script updated
+IPV6
 
 
 #Update DB
