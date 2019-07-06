@@ -87,9 +87,24 @@
         if (isset($_POST['cellular_phone']) && ACCOUNT_CELLULAR_PHONE_PRO == 'true') $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
         if (isset($_POST['fax']) && ACCOUNT_FAX_PRO == 'true') $fax = HTML::sanitize($_POST['fax']);
 
-        $newsletter = HTML::sanitize($_POST['newsletter']);
-        $password = HTML::sanitize($_POST['password']);
-        $confirmation = HTML::sanitize($_POST['confirmation']);
+        if (isset($_POST['newsletter'])) {
+          $newsletter = HTML::sanitize($_POST['newsletter']);
+        } else {
+          $newsletter = 0;
+        }
+
+        if (isset($_POST['password'])) {
+          $password = HTML::sanitize($_POST['password']);
+        } else {
+          $password = '';
+        }
+
+        if (isset($_POST['confirmation'])) {
+          $confirmation = HTML::sanitize($_POST['confirmation']);
+        } else {
+          $confirmation = '';
+        }
+
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
