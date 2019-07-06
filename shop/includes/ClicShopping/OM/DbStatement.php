@@ -462,7 +462,7 @@
       }
 
       $output = '<nav aria-label="pagination">';
-      $output .= '<ul class="pagination pagination-md">';
+      $output .= '<ul class="pagination pagination-sm">';
 
       if (is_null($site)) {
         if ($number_of_pages > 1) {
