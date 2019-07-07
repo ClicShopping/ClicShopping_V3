@@ -28,7 +28,7 @@
     if (isset($_GET['newcustomer'])) {
       $newcustomer = '&newcustomer=' . 1;
     } else {
-      $newcustomer = null;
+      $newcustomer = '';
     }
 
 
@@ -89,13 +89,13 @@
         <div class="controls">
           <div class="buttonSet">
 <?php
-     if ($newcustomer != 1) {
+     if (empty($newcustomer)) {
 ?>
             <div class="col-md-6 float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
 <?php
      }
 ?>
-             <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_SESSION['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
+             <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
            </div>
          </div>
        </div>
@@ -103,7 +103,7 @@
     <div class="clearfix"></div>
 <?php
     } else {
-      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && $newcustomer != 1) {
+      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && empty($newcustomer)) {
         $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], session_name()), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
       } else {
         $back_link = CLICSHOPPING::link(null,'Account&AddressBook');

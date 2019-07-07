@@ -126,7 +126,7 @@
 
           if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
             foreach($products[$i]['attributes'] as $option => $value) {
-              if (array($products[$i][$option]) && isset($products[$i][$option])) {
+              if (is_array($products[$i][$option]) && isset($products[$i][$option])) {
                 if (!is_null($products[$i][$option]['products_attributes_image'])) {
                   $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_values_name'] . '   ', 30, 30);
                 } else {

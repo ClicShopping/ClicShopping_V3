@@ -21,7 +21,7 @@
     public $path = [];
     public $snapshot = [];
 
-    public function __construct(bool $add_current_page = false)
+    public function __construct($add_current_page = false)
     {
       if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'])) {
         $this->path =& $_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'];
@@ -37,7 +37,6 @@
     }
 
 
-    /* add_current_page */
     public function addCurrentPage()
     {
       $action_counter = 0;
@@ -93,8 +92,11 @@
       }
     }
 
-
-    public function hasPath(int $back = 1): bool
+    /**
+     * @param int $back
+     * @return bool
+     */
+    public function hasPath($back = 1)
     {
       if ((is_numeric($back) === false) || (is_numeric($back) && ($back < 1))) {
         $back = 1;
@@ -103,8 +105,12 @@
       return isset($this->path[count($this->path) - $back]);
     }
 
-
-    public function getPathURL(int $back = 1): string
+    /**
+     * @param int $back
+     * @param array $exclude
+     * @return string
+     */
+    public function getPathURL($back = 1)
     {
       if ((is_numeric($back) === false) || (is_numeric($back) && ($back < 1))) {
         $back = 1;
@@ -115,8 +121,6 @@
       return CLICSHOPPING::link(null, $this->path[$back]['application'] . '&' . $this->path[$back]['action'] . '&' . $this->parseParameters($this->path[$back]['get']));
     }
 
-
-    /*setsnapshot*/
     public function setSnapshot($page = null)
     {
       if (isset($page) && is_array($page)) {
@@ -135,11 +139,18 @@
       }
     }
 
+    /**
+     * @return bool
+     */
     public function hasSnapshot()
     {
       return !empty($this->snapshot);
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function getSnapshot($key)
     {
       if (isset($this->snapshot[$key])) {
@@ -147,8 +158,10 @@
       }
     }
 
-
-    public function getSnapshotURL(): string
+    /**
+     * @return string
+     */
+    public function getSnapshotURL()
     {
       if ($this->hasSnapshot()) {
         $target = CLICSHOPPING::redirect(null, $this->snapshot['application'] . '&' . $this->snapshot['action'] . '&' . $this->parseParameters($this->snapshot['get']));
@@ -159,7 +172,10 @@
       return $target;
     }
 
-    public function redirectToSnapshot(): string
+    /**
+     * @return string
+     */
+    public function redirectToSnapshot()
     {
       $target = $this->getSnapshotURL();
 
@@ -197,6 +213,11 @@
       }
     }
 
+    /**
+     * @param $array
+     * @param array $additional_exclude
+     * @return bool|string
+     */
     protected function parseParameters($array, $additional_exclude = array())
     {
       $exclude = array('x', 'y', Registry::get('Session')->getName());
@@ -220,9 +241,12 @@
       return $string;
     }
 
-    protected function siteApplicationActionExists(string $action): string
+    /**
+     * @param string $action
+     * @return string
+     */
+    protected function siteApplicationActionExists($action)
     {
       return class_exists('ClicShopping\\OM\\Site\\Shop\\Pages\\' . CLICSHOPPING::getSiteApplication() . '\\Actions\\' . $action);
     }
-
   }

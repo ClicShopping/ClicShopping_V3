@@ -49,7 +49,7 @@
         $footer_content = '';
 
         foreach ($footer1 as $value) {
-          $footer_content .=  '#' . HTML::link(CLICSHOPPING::link(null, 'Search&Q&keywords=' . $value . '&search_in_description=1', 'rel="nofollow"'), $value);
+          $footer_content .=  '#' . HTML::link(CLICSHOPPING::link(null, 'Search&Q&keywords=' . $HTML::sanitize($value) . '&search_in_description=1', 'rel="nofollow"'), $value);
         }
 
         return $footer_content;

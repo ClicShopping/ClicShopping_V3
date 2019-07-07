@@ -238,8 +238,8 @@
           $CLICSHOPPING_ActionRecorder->record();
 
           $CLICSHOPPING_Hooks->call('Create', 'Process');
-	  
-          CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&edit=' . $CLICSHOPPING_Customer->getID() . '&newcustomer=1');
+
+	  CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&edit=' . $CLICSHOPPING_Customer->getID() . '&newcustomer=1');
         }
       }
     }
