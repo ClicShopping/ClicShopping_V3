@@ -1,5 +1,5 @@
 {
- "version": "3.12",
- "description": "bug fix, security fix jquery 1.3.4, script update version",
- "date": "April 2019"
+ "version": "3.20",
+ "description": "Pre release - Strict php, some fix, refactoring, reformat code, function type. Please look the script update file for sql update<br />. The next release will be focus on php 7.4 compatibility",
+ "date": "June 2019"
 }

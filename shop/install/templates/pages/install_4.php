@@ -263,7 +263,6 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
   <div class="col-xs-12 col-sm-push-3 col-sm-9">
     <h1></h1>
 
-    <div class="alert alert-success" role="alert"><?php echo TEXT_END_INSTALLATION_SUCCESS; ?></div>
     <div class="alert alert-info" role="alert">
       <p>
         <?php echo TEXT_END_INSTALLATION_2; ?><br />
@@ -275,6 +274,8 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
         <?php echo TEXT_END_INSTALLATION_8; ?><br />
       </p>
     </div>
+    <br />
+    <div class="alert alert-success" role="alert"><?php echo TEXT_END_INSTALLATION_SUCCESS; ?></div>
     <br />
 
     <div class="row">
