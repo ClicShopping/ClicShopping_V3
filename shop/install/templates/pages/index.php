@@ -37,8 +37,8 @@
   }
     $warning_array = [];
 
-if (PHP_VERSION < 6) {
-    $warning_array[] = 'The minimum required PHP version is v6 - please ask your host or server administrator to upgrade the PHP version to continue installation.';
+if (PHP_VERSION < 7.3) {
+    $warning_array[] = 'The minimum required PHP version is v7.3 - please ask your host or server administrator to upgrade the PHP version to continue installation.';
 }
 
 if (!extension_loaded('pdo') || !extension_loaded('pdo_mysql')) {
