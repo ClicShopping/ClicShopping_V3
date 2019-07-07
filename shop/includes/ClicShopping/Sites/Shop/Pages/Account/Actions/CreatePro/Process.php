@@ -51,6 +51,7 @@
         if (isset($_POST['email_address_confirm'])) $email_address_confirmation = HTML::sanitize($_POST['email_address_confirm']);
         if (isset($_POST['postcode'])) $postcode = HTML::sanitize($_POST['postcode']);
         if (isset($_POST['city'])) $city = HTML::sanitize($_POST['city']);
+
         if (isset($_POST['customer_website_company'])) {
           $customer_website_company = HTML::sanitize($_POST['customer_website_company']);
         } else {
@@ -58,15 +59,53 @@
         }
         if (isset($_POST['street_address'])) $street_address = HTML::sanitize($_POST['street_address']);
 
-        if (isset($_POST['dob']) && ACCOUNT_DOB_PRO == 'true') $dob = DateTime::toShortWithoutFormat(HTML::sanitize($_POST['dob']));
-        if (isset($_POST['gender']) && ACCOUNT_GENDER_PRO == 'true') $gender = HTML::sanitize($_POST['gender']);
-        if (isset($_POST['company']) && ACCOUNT_COMPANY_PRO == 'true') $company = HTML::sanitize($_POST['company']);
-        if (isset($_POST['siret']) && ACCOUNT_SIRET_PRO == 'true') $siret = HTML::sanitize($_POST['siret']);
-        if (isset($_POST['ape']) && ACCOUNT_APE_PRO == 'true') $ape = HTML::sanitize($_POST['ape']);
-        if (isset($_POST['tva_intracom']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
-        if (isset($_POST['ISO']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') $iso = HTML::sanitize($_POST['ISO']);
+        if (isset($_POST['dob']) && ACCOUNT_DOB_PRO == 'true') {
+          $dob = DateTime::toShortWithoutFormat(HTML::sanitize($_POST['dob']));
+        } else {
+          $dob = null;
+        }
 
-        if (ACCOUNT_SUBURB_PRO == 'true') $suburb = HTML::sanitize($_POST['suburb']);
+        if (isset($_POST['gender']) && ACCOUNT_GENDER_PRO == 'true') {
+          $gender = HTML::sanitize($_POST['gender']);
+        } else {
+          $gender = null;
+        }
+
+        if (isset($_POST['company']) && ACCOUNT_COMPANY_PRO == 'true') {
+          $company = HTML::sanitize($_POST['company']);
+        } else {
+          $company = null;
+        }
+
+        if (isset($_POST['siret']) && ACCOUNT_SIRET_PRO == 'true') {
+          $siret = HTML::sanitize($_POST['siret']);
+        } else {
+          $siret = null;
+        }
+
+        if (isset($_POST['ape']) && ACCOUNT_APE_PRO == 'true') {
+          $ape = HTML::sanitize($_POST['ape']);
+        } else {
+          $ape =  null;
+        }
+
+        if (isset($_POST['tva_intracom']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+          $tva_intracom = HTML::sanitize($_POST['tva_intracom']);
+        } else {
+          $tva_intracom = null;
+        }
+
+        if (isset($_POST['ISO']) && ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+          $iso = HTML::sanitize($_POST['ISO']);
+        } else {
+          $iso = null;
+        }
+
+        if (ACCOUNT_SUBURB_PRO == 'true') {
+          $suburb = HTML::sanitize($_POST['suburb']);
+        } else {
+          $suburb = null;
+        }
 
         if (ACCOUNT_STATE_PRO == 'true') {
           if (isset($_POST['state'])) {
@@ -84,8 +123,16 @@
 
         if (isset($_POST['telephone'])) $telephone = HTML::sanitize($_POST['telephone']);
 
-        if (isset($_POST['cellular_phone']) && ACCOUNT_CELLULAR_PHONE_PRO == 'true') $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
-        if (isset($_POST['fax']) && ACCOUNT_FAX_PRO == 'true') $fax = HTML::sanitize($_POST['fax']);
+        if (isset($_POST['cellular_phone']) && ACCOUNT_CELLULAR_PHONE_PRO == 'true') {
+          $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
+        } else {
+          $cellular_phone = null;
+        }
+        if (isset($_POST['fax']) && ACCOUNT_FAX_PRO == 'true') {
+          $fax = HTML::sanitize($_POST['fax']);
+        } else {
+          $fax = null;
+        }
 
         if (isset($_POST['newsletter'])) {
           $newsletter = HTML::sanitize($_POST['newsletter']);
