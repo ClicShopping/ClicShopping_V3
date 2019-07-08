@@ -183,8 +183,8 @@ define('TEXT_END_INSTALLATION_1','
 <p>Félicitation, vous avez réussi à configurer correctement votre boutique ClicShopping !</p>
 <p>Nous vous souhaitons un excellent succés dans votre projet de commerce électronique.</p>
 <br />
-<p>Si vous appréciez le travail que nous réalisons, alors n\'hésitez pas é communiquer le projet à vos amis et à votre entourage.
-Si vous souhaitez nous aider et à péréniser et développer ce projet, nous vous invitons à souscrire à l\'un de nos abonnements, support, aide forum, hébergement locatif ecommerce mais aussi é nous faire part des retours
+<p>Si vous appréciez le travail que nous réalisons, alors n\'hésitez pas à communiquer le projet à vos amis et à votre entourage.
+Si vous souhaitez nous aiderà péréniser et développer ce projet, nous vous invitons à souscrire à l\'un de nos abonnements, support, aide forum, hébergement locatif e-commerce mais aussi à nous faire part des retours
  sur vos besoins, vos problémes de gestion au quotidien de ClicShopping, les bugs que vous voyez ou encore les fonctionnalités que vous souhaiteriez voir incluses dans ClicShopping. </p>
 <p><br /><strong>
 Vos avis et sugestions</strong> nous importent beaucoup dans le cadre du développement de ce projet car nous souhaitons proposer un des meilleures outils de ventes en ligne existant. </p>
