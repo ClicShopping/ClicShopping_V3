@@ -65,18 +65,21 @@
 
       $action_get = http_build_query($action);
 
-      for ($i = 0, $n = count($this->path); $i < $n; $i++) {
-        if (($this->path[$i]['application'] == CLICSHOPPING::getSiteApplication()) && ($this->path[$i]['action'] == $action_get)) {
-          array_splice($this->path, $i);
-          break;
+      if (is_array($this->path)) {
+        for ($i = 0, $n = count($this->path); $i < $n; $i++) {
+          if (($this->path[$i]['application'] == CLICSHOPPING::getSiteApplication()) && ($this->path[$i]['action'] == $action_get)) {
+            array_splice($this->path, $i);
+            break;
+          }
         }
       }
 
-      $this->path[] = array('application' => CLICSHOPPING::getSiteApplication(),
+      $this->path[] = ['application' => CLICSHOPPING::getSiteApplication(),
         'action' => $action_get,
         'mode' => HTTP::getRequestType(),
         'get' => array_slice($_GET, $action_counter),
-        'post' => $_POST);
+        'post' => $_POST
+      ];
 
       if (!isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'])) {
         $_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'] = $this->path;
