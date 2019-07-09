@@ -24,6 +24,7 @@
   $CLICSHOPPING_Github = new Github();
 
   $current_version = CLICSHOPPING::getVersion();
+  preg_match('/^(\d+\.)?(\d+\.)?(\d+)$/', $current_version, $version);
 
   if (isset($_POST['template_directory'])) {
     $template_directory = HTML::sanitize($_POST['template_directory']);
@@ -78,9 +79,16 @@
     <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Upgrade->getDef('title_help')) . ' ' . $CLICSHOPPING_Upgrade->getDef('title_help') ?></div>
     <div class="separator"></div>
     <?php
-      $core_online_info = $CLICSHOPPING_Github->getJsonCoreInformation();
+    $new_version = false;
+    $core_online_info = $CLICSHOPPING_Github->getJsonCoreInformation();
 
-     if (is_array($core_online_info) && ($current_version < $core_online_info->version)) {
+    if (is_object($core_online_info) && $core_online_info->version) {
+      if ($current_version < $core_online_info->version) {
+        $new_version = true;
+      }
+    }
+
+    if ($new_version === true) {
 ?>
     <div class="row">
       <span class="col-md-12 text-md-right">
@@ -93,14 +101,14 @@
     </div>
     <div class="row">
       <div
-        class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_version') . CLICSHOPPING::getVersion(); ?></div>
+        class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_version') . $current_version; ?></div>
       <div class="col-md-12">
         <?php echo $core_online_info->description; ?><br/>
 
       </div>
-      <?php
-        if ($current_version < $core_online_info->version) {
-        ?>
+<?php
+      if ($current_version < $core_online_info->version) {
+?>
         <div class="col-md-12" style="color: #0000CC;">
           <strong>
             <?php
@@ -108,45 +116,43 @@
               echo 'Date : ' . $core_online_info->date . '<br />';
               echo 'Description : ' . $core_online_info->description . '<br />';
               echo 'Github : <a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('test_download') . '</a><br />';
-            ?>
+?>
           </strong>
         </div>
-        <?php
+<?php
       } else {
-      ?>
+?>
       <div class="col-md-12">
-              <span class="col-md-1">
+        <span class="col-md-1"><?php echo HTML::link($CLICSHOPPING_Upgrade->link('Upgrade'), HTML::button($CLICSHOPPING_Upgrade->getDef('test_download'), null, null, 'warning', null, 'sm')) . ' '; ?></span>
+        <span class="col-md-11"><?php  echo ' <a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="nofollow" >' . HTML::button('ClicShopping', null, null, 'primary', null, 'sm') . '</a>'; ?></span>
 <?php
-  echo HTML::link($CLICSHOPPING_Upgrade->link('Upgrade'), HTML::button($CLICSHOPPING_Upgrade->getDef('test_download'), null, null, 'warning', null, 'sm')) . ' ';
+      }
 ?>
-              </span>
-        <span class="col-md-11">
-<?php
-  echo ' <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank">' . HTML::button('ClicShopping', null, null, 'primary', null, 'sm') . '</a>';
-?>
-            </span>
-        <?php
-          }
-        ?>
         <div class="separator"></div>
         <div>
-          <?php
-            echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site');
-            echo '-  <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank" rel="noreferrer">ClicShopping</a><br />';
-            echo '-  <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '<br />';
-            echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '<br />';
-          ?>
+      <?php
+        echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site');
+        echo '-  <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank" rel="noreferrer">ClicShopping</a><br />';
+        echo '-  <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '<br />';
+        echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '<br />';
+      ?>
         </div>
-        <?php
-          } else {
-          ?>
+<?php
+      } else {
+?>
           <div class="row">
-            <span
-              class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_up_to_date') . CLICSHOPPING::getVersion(); ?></span>
+            <span class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_up_to_date') . CLICSHOPPING::getVersion(); ?></span>
           </div>
-          <?php
-        }
-        ?>
+<?php
+      }
+?>
+
+        <div class="text-md-right">
+<?php
+        echo HTML::form('reset', $CLICSHOPPING_Upgrade->link('CoreReset'));
+        echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_cache_core'), null, null, 'danger', null, 'sm');
+        echo '</form>';
+?>
+        </div>
       </div>
     </div>
-

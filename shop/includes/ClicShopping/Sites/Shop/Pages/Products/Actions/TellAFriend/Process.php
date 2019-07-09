@@ -77,7 +77,6 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_to_address'), 'error', 'friend');
         }
 
-
         Registry::set('ActionRecorder', new ActionRecorder('ar_tell_a_friend', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $from_name));
         $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorder');
 
