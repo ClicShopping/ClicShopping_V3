@@ -43,7 +43,7 @@
 
  MYSQL 7 / MariaDb
 
- PHP 7 +
+ PHP 7.2, 7.3 (reccommended) and +
 
  License GPL2 - MIT
 
