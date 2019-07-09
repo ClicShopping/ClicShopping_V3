@@ -77,12 +77,6 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_to_address'), 'error', 'friend');
         }
 
-// Recaptcha
-        if (defined('MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_TELL_FRIEND')) {
-          if (MODULES_HEADER_TAGS_GOOGLE_RECAPTCHA_TELL_FRIEND == 'True') {
-            $google_recaptcha = $CLICSHOPPING_Hooks->output('AllShop', 'GoogleRecaptchaProcess');
-          }
-        }
 
         Registry::set('ActionRecorder', new ActionRecorder('ar_tell_a_friend', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $from_name));
         $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorder');
