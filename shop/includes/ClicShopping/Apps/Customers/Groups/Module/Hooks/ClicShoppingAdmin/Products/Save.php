@@ -107,6 +107,12 @@
             }
           }
 
+          if (isset($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
+            $products_quantity_unit_id_group = HTMl::sanitize($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')]);
+          } else {
+            $products_quantity_unit_id_group = 0;
+          }
+
           $sql_array = [ 'products_id' => (int)$this->id,
             'products_price' => (float)$products_price,
             'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
@@ -114,7 +120,7 @@
             'price_group_view' => (int)$_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
             'products_group_view' => (int)$_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
             'orders_group_view' => (int)$_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_quantity_unit_id_group' => (int)$_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')],
+            'products_quantity_unit_id_group' => (int)$products_quantity_unit_id_group,
             'products_model_group' => $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')],
             'products_quantity_fixed_group' => (int)$_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')]
           ];
