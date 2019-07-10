@@ -58,7 +58,7 @@
      * @param $unit_to
      * @return string|void
      */
-    public function convert(string $value, string $unit_from, string $unit_to): string
+    public function convert($value, $unit_from, $unit_to)
     {
       parent::convert($value, $unit_from, $unit_to);
     }
