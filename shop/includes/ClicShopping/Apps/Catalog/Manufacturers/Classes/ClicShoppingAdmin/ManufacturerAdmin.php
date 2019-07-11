@@ -33,7 +33,7 @@
      * @access public
      */
 
-    public function getManufacturerDescription(int $manufacturers_id, int $language_id)
+    public function getManufacturerDescription($manufacturers_id, $language_id)
     {
 
       $Qmanufacturers = $this->db->prepare('select manufacturer_description
