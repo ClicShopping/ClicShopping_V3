@@ -3,6 +3,10 @@
   # Portable PHP password hashing framework.
   #
   # Version 0.5 / genuine.
+  # Version 0.5 / ClicShopping:
+  #   * Added stream_set_read_buffer() when reading from /dev/urandom 
+  #   * Added openssl_random_pseudo_bytes() and random_bytes() to
+  #     get_random_bytes()
   #
   # Written by Solar Designer <solar at openwall.com> in 2004-2006 and placed in
   # the public domain.  Revised in subsequent years, still public domain.
@@ -55,10 +59,22 @@
     public function get_random_bytes($count)
     {
       $output = '';
-      if (@is_readable('/dev/urandom') &&
-        ($fh = @fopen('/dev/urandom', 'rb'))) {
+
+      if (is_callable('random_bytes')) {
+        $output = random_bytes($count);
+      } elseif (@is_readable('/dev/urandom') && ($fh = @fopen('/dev/urandom', 'rb'))) {
+        if (function_exists('stream_set_read_buffer')) {
+          stream_set_read_buffer($fh, 0);
+        }
+       
         $output = fread($fh, $count);
         fclose($fh);
+      } elseif ( function_exists('openssl_random_pseudo_bytes') ) {
+        $output = openssl_random_pseudo_bytes($count, $orpb_secure);
+
+        if ( $orpb_secure != true ) {
+          $output = '';
+        }
       }
 
       if (strlen($output) < $count) {
