@@ -32,6 +32,7 @@
       <div class="form-group">
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_shipping'); ?>
       </div>
+      <div class="separator"></div>
     </div>
   </div>
 </section>

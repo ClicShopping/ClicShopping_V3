@@ -59,6 +59,7 @@
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_payment'); ?>
       </div>
     </div>
+    <div class="separator"></div>
   </div>
 </section>
 </form>

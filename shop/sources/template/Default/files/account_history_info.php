@@ -18,5 +18,6 @@
       <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_history_information'); ?></h1></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_account_customers'); ?>
     </div>
+    <div class="separator"></div>
   </div>
 </section>

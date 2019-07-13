@@ -31,7 +31,7 @@
 // ----------------------
 ?>
 <section class="address_book" id="address_book">
-  <div class="contentContainer">
+  <div class="contentContainer col-md-12">
     <div class="contentText">
       <div class="separator"></div>
       <h3><?php echo CLICSHOPPING::getDef('primary_address_title'); ?></h3>

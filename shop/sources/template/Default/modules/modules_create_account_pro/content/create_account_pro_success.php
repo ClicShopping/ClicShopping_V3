@@ -12,7 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $content_width; ?>">
+<div class="col-md-<?php echo $content_width; ?>" id="AccountProSuccess">
 <?php
   if (MEMBER == 'false') {
 ?>
@@ -32,4 +32,5 @@
       </div>
     </div>
   </div>
+  <div class="separator"></div>
 </div>

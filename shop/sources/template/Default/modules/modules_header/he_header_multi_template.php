@@ -61,6 +61,10 @@
       $form = HTML::form('loginForm',  CLICSHOPPING::link(null, 'Account&LogIn&Process'), 'post', 'id="loginForm"', ['tokenize' => true]);
       $endform = '</form>';
 
+      $categories_dropdown = HTML::form('categoriesDropdown', null, null, 'id="categoriesDropdown"', ['tokenize' => true]);
+      $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_Category->getCategories(), $cPath, 'onchange="this.form.submit();"');
+      $categories_dropdown .= '</form>';
+
       $banner_header = '';
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_LOGO_BANNER_GROUP)) {

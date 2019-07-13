@@ -18,7 +18,8 @@
 <section class="account_gdpr" id="account_gdpr">
   <div class="contentContainer">
     <div class="contentText">
-    <?php echo $CLICSHOPPING_Template->getBlocks('modules_account_customers'); ?>
+      <?php echo $CLICSHOPPING_Template->getBlocks('modules_account_customers'); ?>
+      <div class="separator"></div>
     </div>
   </div>
 </section>

@@ -23,6 +23,7 @@
   <div class="contentContainer">
     <div class="contentText">
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_contact_us'); ?>
+      <div class="separator"></div>
     </div>
   </div>
 </section>

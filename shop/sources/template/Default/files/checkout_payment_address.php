@@ -149,6 +149,7 @@
   }
 ?>
     </div>
+    <div class="separator"></div>
   </div>
   <div class="separator"></div>
 </section>

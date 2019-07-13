@@ -26,7 +26,8 @@
       <div class="form-group">
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_confirmation'); ?>
       </div>
-      </div>
     </div>
+    <div class="separator"></div>
+  </div>
 </section>
 </form>

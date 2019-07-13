@@ -24,10 +24,8 @@
 <section class="checkout_success" id="checkout_success">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="clearfix"></div>
       <div class="separator"></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_success'); ?>
-
       <div class="control-group">
         <div class="controls">
           <div class="buttonSet">
@@ -35,6 +33,7 @@
           </div>
         </div>
       </div>
+      <div class="separator"></div>
     </div>
   </div>
 </section>

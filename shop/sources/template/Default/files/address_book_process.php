@@ -103,7 +103,7 @@
     <div class="clearfix"></div>
 <?php
     } else {
-      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && empty($newcustomer)) {
+      if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && !empty($newcustomer)) {
         $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], session_name()), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
       } else {
         $back_link = CLICSHOPPING::link(null,'Account&AddressBook');
@@ -117,10 +117,10 @@
           <div class="buttonSet">
             <span class="col-md-6"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, $back_link, 'primary'); ?></span>
             <span class="col-md-6 text-md-right">
-	      <span class="buttonAction">
-	        <?php echo  HTML::hiddenField('action', 'process') . HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?>
+              <span class="buttonAction">
+                <?php echo  HTML::hiddenField('action', 'process') . HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?>
               </span>
-	   </span>   
+            </span>
           </div>
         </div>
       </div>

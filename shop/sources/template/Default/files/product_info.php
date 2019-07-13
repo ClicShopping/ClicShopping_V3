@@ -53,7 +53,7 @@
 <section class="product" id="product">
   <div class="contentContainer">
     <div class="contentText">
-      <div itemscope itemtype="https://schema.org/Product">
+      <div class="productsInfoContent" itemscope itemtype="https://schema.org/Product">
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_products_info'); ?>
       </div>
     </div>
