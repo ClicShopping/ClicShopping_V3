@@ -64,6 +64,12 @@
           $customers_ape = $account['customers_ape'];
           $customers_tva_intracom_code_iso = $account['customers_tva_intracom_code_iso'];
           $customers_tva_intracom = $account['customers_tva_intracom'];
+        } else {
+          $customers_gender = '';
+          $customers_firstname = '';
+          $customers_lastname = '';
+          $customers_email_address = '';
+          $customers_telephone = '';
         }
 
         $account_edit = '<!-- Start account_customers_edit --> ' . "\n";
