@@ -1427,6 +1427,8 @@ INSERT INTO configuration VALUES(1474, 'Parameter [ProductsLength App]', 'MODULE
 INSERT INTO configuration VALUES(1475, 'Veuillez indiquer la largeur du contenu', 'MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH', '12', 'Veuillez indiquer une largeur d\'affichage', 6, 2, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1476, 'Nombre minimum de caractères pour l\'adresse E-Mail', 'ENTRY_EMAIL_ADDRESS_MIN_LENGTH', '6', 'Nombre minimum de caractères pour l\'adresse email', '16', '4', NULL, '2019-06-30 10:06:56', NULL, NULL);
 
+INSERT INTO configuration VALUES(1477, 'Information Email Connexion sécurité', 'CONFIGURATION_EMAIL_SECURITY', 'false', 'Si une personne essaye de se connecter et réaliser une erreur, vous serez informez par email.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 12, 12, '2008-09-16 10:52:38', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Gestion de la carte de crédit', 'Valeur minimum pour : fonctions / données', 2, 1);

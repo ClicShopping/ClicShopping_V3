@@ -190,7 +190,6 @@ INSERT INTO administrator_menu VALUES(774, 'index.php?A&Marketing\\Featured&Feat
 INSERT INTO administrator_menu VALUES(775, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(776, 'index.php?A&Configuration\\ProductsLength&ProductsLength', 20, 4, 1, 'products_length.png', 0, 'app_configuration_products_length', NULL);
 
-
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
 INSERT INTO administrator_menu_description VALUES(0, '', 2);
 INSERT INTO administrator_menu_description VALUES(1, 'Home', 1);
@@ -1427,6 +1426,7 @@ INSERT INTO configuration VALUES(1474, 'Parameter [ProductsLength App]', 'MODULE
 INSERT INTO configuration VALUES(1475, 'Please select the width of the module', 'MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 2, NULL, '2019-01-16 19:07:19', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO configuration VALUES(1476, 'Minimum length of e-mail address', 'ENTRY_EMAIL_ADDRESS_MIN_LENGTH', '6', 'Minimum length of e-mail address', 16, 4, NULL, '2019-06-30 10:06:56', NULL, NULL);
 
+INSERT INTO configuration VALUES(1477, 'Information Email Securioty login', 'CONFIGURATION_EMAIL_SECURITY', 'false', 'If someone try to connect inside the administration and make a mistake, you will received an email.', 12, 12, '2008-09-16 10:52:38', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
 INSERT INTO configuration_group VALUES(2, 'Setup credit card', 'Minimum value: functions / data', 2, 1);

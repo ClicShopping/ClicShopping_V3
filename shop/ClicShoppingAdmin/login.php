@@ -99,7 +99,7 @@
 
   // send an email if someone try to connect on admin panel without authorization
   // get ip and infos
-              if (SEND_EMAILS == 'true') {
+              if (SEND_EMAILS == 'true' && CONFIGURATION_EMAIL_SECURITY == 'true') {
                 $ip = $_SERVER['REMOTE_ADDR'];
                 $host = @gethostbyaddr($ip);
                 $referer = $_SERVER['HTTP_REFERER'];

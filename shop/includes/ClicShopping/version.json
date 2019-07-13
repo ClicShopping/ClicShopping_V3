@@ -1,5 +1,5 @@
 {
- "version": "3.20",
- "description": "Strict php, some fix, refactoring, reformat code, function type. Please look the script update file for sql update<br />. The next release will be focus on php 7.4 compatibility",
- "date": "June 2019"
+ "version": "3.201",
+ "description": "Small update<br />. Look the update file to update your SQL. The next release will be focus on php 7.4 compatibility",
+ "date": "July 2019"
 }
