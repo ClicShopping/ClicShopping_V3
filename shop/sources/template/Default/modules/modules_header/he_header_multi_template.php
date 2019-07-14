@@ -47,12 +47,15 @@
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Tax = Registry::get('Tax');
+      $CLICSHOPPING_Category = Registry::get('Category');
 
       $CLICSHOPPING_CategoryTree->reset();
       $CLICSHOPPING_CategoryTree->setMaximumLevel(1);
       $CLICSHOPPING_CategoryTree->setParentGroupString('<ul class="TemplateHeaderCategoriesNavigation">', '</ul>', true);
       $CLICSHOPPING_CategoryTree->setChildString('<li class="TemplateHeaderCategoriesNavigation">', '</li>');
 
+      $cPath = $CLICSHOPPING_Category->getPath();
+      
       $languages_string = $CLICSHOPPING_Language->getFlag();
       $content_width = (int)MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_CONTENT_WIDTH;
       $login = HTML::button(CLICSHOPPING::getDef('modules_header_multi_template_account_login'), null, null, 'primary', null, 'sm');
