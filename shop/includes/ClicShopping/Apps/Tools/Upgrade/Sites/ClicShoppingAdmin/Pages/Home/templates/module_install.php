@@ -123,25 +123,26 @@
       $count = $CLICSHOPPING_Github->getSearchTotalCount();
 
       for ($i = 0, $n = $count_file;$i < $n;  $i++) {
-      if (is_null($result->items[$i])) {
-        $item = $result[$i];
-        $module_real_name = $item->title;
-        $link_html = 'https://github.com/ClicShoppingOfficialModulesV3/' . $item->title;
-      } else {
-        $item = $result->items[$i];
-        $module_real_name = $item->name;
-        $link_html = $item->html_url;
-      }
 
-      $directory = $item->owner->login;
+        if (is_null($result->items[$i])) {
+          $item = $result[$i];
+          $module_real_name = $item->title;
+          $link_html = 'https://github.com/ClicShoppingOfficialModulesV3/' . $item->title;
+        } else {
+          $item = $result->items[$i];
+          $module_real_name = $item->name;
+          $link_html = $item->html_url;
+        }
 
-      $local_version = '';
-      $temp_version = '';
-      $temp_check = false;
-      $installed_check = false;
+        $directory = $item->owner->login;
 
-      if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) === true || !is_null($CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json'))) {
-        if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) === true) {
+        $local_version = '';
+        $temp_version = '';
+        $temp_check = false;
+        $installed_check = false;
+
+      if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true || !is_null($CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json'))) {
+        if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
           $result_module_real_name = $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json');
           $file_cache_information = '<span class="badge badge-primary"> - File Installed Cached</span>';
 
@@ -169,7 +170,7 @@
         }
 
         if (!empty($module_real_name)) {
-          if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) === true) {
+          if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) || $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
             $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
             $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
           }

@@ -19,6 +19,7 @@
 <section class="boxe_categories" id="boxe_categories">
   <div class="separator"></div>
   <div class="boxeContainerCategories"><?php echo $categories_banner; ?></div>
+  <div class="separator"></div>
   <div class="card">
     <div class="card-header boxeHeadingCategories">
       <span class="card-title boxeTitleCategories"><?php echo CLICSHOPPING::getDef('module_boxes_categories_box_title'); ?></span>

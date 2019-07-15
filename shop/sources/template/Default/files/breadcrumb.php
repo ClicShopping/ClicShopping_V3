@@ -17,7 +17,7 @@
   $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 ?>
 
-  <div class="clearfix"></div>
+  <div class="separator"></div>
   <div class="contentContainer">
     <div class="contentText">
 

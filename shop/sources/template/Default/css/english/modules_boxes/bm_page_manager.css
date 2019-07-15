@@ -18,8 +18,6 @@
 }
 
 .card-header.boxeHeadingPageManager {
-
-
   padding-left: 3px;
   overflow: hidden;
   text-transform: uppercase;
@@ -41,7 +39,6 @@
   padding-bottom: 0.625rem;
   padding-top: 0.625rem;
   padding-right:0.1rem;
-
 }
 
 .card-footer.boxeBottomPageManager {
@@ -85,7 +82,5 @@ li.boxeListManagerPageManager a {
 }
 
 
-
 div.boxeListManagerPageManager  {
 }
-

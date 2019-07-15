@@ -23,11 +23,13 @@
      */
     public static function encrypt($plain, $algo = null)
     {
-      if (!isset($algo) || ($algo == 'default') || ($algo == 'bcrypt')) {
+      if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         if (!isset($algo) || ($algo == 'default')) {
           $algo = PASSWORD_DEFAULT;
-        } else {
+        } elseif ($algo == 'bcrypt') {
           $algo = PASSWORD_BCRYPT;
+        } elseif ($algo == 'argon2id') {
+          $algo = PASSWORD_ARGON2ID;
         }
 
         return password_hash($plain, $algo);
@@ -114,10 +116,12 @@
      */
     public static function needsRehash($hash, $algo = null)
     {
-      if (!isset($algo) || ($algo == 'default')) {
+      if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         $algo = PASSWORD_DEFAULT;
       } elseif ($algo == 'bcrypt') {
         $algo = PASSWORD_BCRYPT;
+      } elseif ($algo == 'argon2id') {
+        $algo = PASSWORD_ARGON2ID;
       }
 
       if (!is_int($algo)) {

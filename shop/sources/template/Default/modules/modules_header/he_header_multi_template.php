@@ -55,7 +55,7 @@
       $CLICSHOPPING_CategoryTree->setChildString('<li class="TemplateHeaderCategoriesNavigation">', '</li>');
 
       $cPath = $CLICSHOPPING_Category->getPath();
-      
+
       $languages_string = $CLICSHOPPING_Language->getFlag();
       $content_width = (int)MODULES_HEADER_MULTI_TEMPLATE_TEMPLATE_CONTENT_WIDTH;
       $login = HTML::button(CLICSHOPPING::getDef('modules_header_multi_template_account_login'), null, null, 'primary', null, 'sm');
@@ -68,14 +68,17 @@
       $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_Category->getCategories(), $cPath, 'onchange="this.form.submit();"');
       $categories_dropdown .= '</form>';
 
-      $banner_header = '';
       if ($CLICSHOPPING_Service->isStarted('Banner') ) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_LOGO_BANNER_GROUP)) {
           $logo_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
+        } else {
+          $logo_header = '';
         }
 
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_BANNER_2_GROUP)) {
           $banner_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
+        } else {
+          $banner_header = '';
         }
       }
 

@@ -1,0 +1,8 @@
+#Put email admin security in ON / off
+
+//english
+INSERT INTO clic_configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Information Email Security login', 'CONFIGURATION_EMAIL_SECURITY', 'false', 'If someone try to connect inside the administration and make a mistake, you will received an email.', 12, 12, '2008-09-16 10:52:38');
+//french
+INSERT INTO clic_configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) VALUES ('Information connexion email sécurité', 'CONFIGURATION_EMAIL_SECURITY', 'false', 'Si une personne essaye de se connecter et réaliser une erreur, vous serez informez par email.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 12, 12, '2008-09-16 10:52:38');
+
+
