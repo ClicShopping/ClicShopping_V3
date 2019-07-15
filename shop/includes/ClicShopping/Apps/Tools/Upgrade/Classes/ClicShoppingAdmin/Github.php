@@ -439,7 +439,12 @@
     public function getSearchTotalCount()
     {
       $result = $this->getSearchInsideRepo();
-      $count = $result->total_count;
+
+      if(is_object($result)) {
+        $count = $result->total_count;
+      } else {
+        $count = 0;
+      }
 
       return $count;
     }

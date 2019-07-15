@@ -102,22 +102,17 @@
     <div class="row">
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_version') . $current_version; ?></div>
-      <div class="col-md-12">
-        <?php echo $core_online_info->description; ?><br/>
-
-      </div>
+      <div class="separator"></div>
 <?php
       if ($current_version < $core_online_info->version) {
 ?>
         <div class="col-md-12" style="color: #0000CC;">
-          <strong>
-            <?php
+<?php
               echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_new_version') . ' ' . $core_online_info->version . '<br />';
               echo 'Date : ' . $core_online_info->date . '<br />';
               echo 'Description : ' . $core_online_info->description . '<br />';
               echo 'Github : <a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('test_download') . '</a><br />';
 ?>
-          </strong>
         </div>
 <?php
       } else {
@@ -130,12 +125,12 @@
 ?>
         <div class="separator"></div>
         <div>
-      <?php
+<?php
         echo $CLICSHOPPING_Upgrade->getDef('text_upgrade_site');
         echo '-  <a href="https://github.com/ClicShopping/ClicShopping_V3/" target="_blank" rel="noreferrer">ClicShopping</a><br />';
         echo '-  <a href="https://github.com/ClicShoppingOfficialModulesV3" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_official') . '<br />';
         echo '- <a href="https://github.com/ClicShoppingV3Community" target="_blank" rel="noreferrer">' . $CLICSHOPPING_Upgrade->getDef('text_community') . '<br />';
-      ?>
+?>
         </div>
 <?php
       } else {
@@ -146,13 +141,5 @@
 <?php
       }
 ?>
-
-        <div class="text-md-right">
-<?php
-        echo HTML::form('reset', $CLICSHOPPING_Upgrade->link('CoreReset'));
-        echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_cache_core'), null, null, 'danger', null, 'sm');
-        echo '</form>';
-?>
-        </div>
       </div>
     </div>

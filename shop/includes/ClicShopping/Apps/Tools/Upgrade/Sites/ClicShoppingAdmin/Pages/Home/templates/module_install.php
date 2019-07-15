@@ -172,7 +172,12 @@
         if (!empty($module_real_name)) {
           if (!is_null($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json')) || $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
             $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
-            $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+
+            if ($item !== false && is_object($item->version)) {
+              $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+            } else {
+              $temp_version = 'Unkown';
+            }
           }
         }
 
