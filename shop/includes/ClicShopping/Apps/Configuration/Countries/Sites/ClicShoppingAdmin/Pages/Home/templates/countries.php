@@ -49,7 +49,7 @@
       <table class="table table-sm table-hover table-striped">
         <thead>
         <tr class="dataTableHeadingRow">
-          <td width="1" clas="text-md-center"><input type="checkbox"
+          <td width="1" class="text-md-center"><input type="checkbox"
                                                      onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"/>
           </td>
           <td><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_name'); ?></td>

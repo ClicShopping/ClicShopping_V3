@@ -36,7 +36,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      $logo = '<img width="24" height="24" alt="clicshopping, E-commerce Open Source Solution B2B - B2C for everybody" src="images/clicshopping.gif">';
+      $logo = '<img width="24" height="24" alt="ClicShopping, Free E-commerce Open Source Solution B2B - B2C for everybody" src="images/clicshopping.gif">';
       $clicshopping_copyright = date('Y');
       $shop_owner_copyright = date('Y') . ' - ' . STORE_NAME;
 

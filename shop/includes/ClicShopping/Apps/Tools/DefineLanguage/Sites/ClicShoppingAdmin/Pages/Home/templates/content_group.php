@@ -65,7 +65,7 @@
       <?php
         for ($i = 0, $n = count($languages); $i < $n; $i++) {
           ?>
-          <div clas="row adminformTitle" id="section_general_content_<?php echo $languages[$i]['directory']; ?>"
+          <div class="row adminformTitle" id="section_general_content_<?php echo $languages[$i]['directory']; ?>"
                class="tab-pane <?php echo($i === 0 ? 'active' : ''); ?>">
             <table class="table table-hover">
               <thead>

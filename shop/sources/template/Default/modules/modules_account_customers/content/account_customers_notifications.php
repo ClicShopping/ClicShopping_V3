@@ -26,7 +26,7 @@ use ClicShopping\OM\HTML;
         <span class="checkbox col-md-1 text-md-right">
           <label><?php echo $checkbox_notifications; ?> </label>
         </span>
-        <span clas="col-md-6"><strong><?php echo CLICSHOPPING::getDef('global_notifications_title'); ?></strong></span>
+        <span class="col-md-6"><strong><?php echo CLICSHOPPING::getDef('global_notifications_title'); ?></strong></span>
       </div>
 <?php
 // ----------------------

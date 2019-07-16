@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
-  <div clas="page-header moduleAccountCustomersHistoryInfoHeadingHorderHistory"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_heading_order_history'); ?></h3></div>
+  <div class="page-header moduleAccountCustomersHistoryInfoHeadingHorderHistory"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_heading_order_history'); ?></h3></div>
   <div class="separator"></div>
   <div class="d-flex flex-wrap">
 <?php

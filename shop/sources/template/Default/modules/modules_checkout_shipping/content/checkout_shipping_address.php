@@ -14,7 +14,7 @@ use ClicShopping\OM\CLICSHOPPING;
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
   <span class="col-md-6 float-md-left">
-    <div clas="moduleCheckoutShippingAddressDestination"><?php echo CLICSHOPPING::getDef('module_checkout_shipping_address_text_choose_shipping_destination'); ?></div>
+    <div class="moduleCheckoutShippingAddressDestination"><?php echo CLICSHOPPING::getDef('module_checkout_shipping_address_text_choose_shipping_destination'); ?></div>
     <div class="separator"></div>
     <div class="moduleCheckoutShippingAddressButton"><?php echo $address_button ?></div>
     <div class="separator"></div>
