@@ -31,20 +31,70 @@
 
       if (!empty($_POST['suppliers_name'])) {
         $suppliers_name = HTML::sanitize($_POST['suppliers_name']);
-        $suppliers_manager = HTML::sanitize($_POST['suppliers_manager']);
-        $suppliers_phone = HTML::sanitize($_POST['suppliers_phone']);
-        $suppliers_email_address = HTML::sanitize($_POST['suppliers_email_address']);
-        $suppliers_fax = HTML::sanitize($_POST['suppliers_fax']);
-        $suppliers_address = HTML::sanitize($_POST['suppliers_address']);
-        $suppliers_suburb = HTML::sanitize($_POST['suppliers_suburb']);
-        $suppliers_postcode = HTML::sanitize($_POST['suppliers_postcode']);
-        $suppliers_city = HTML::sanitize($_POST['suppliers_city']);
+
+        if (isset($_POST['suppliers_manager'])) {
+          $suppliers_manager = HTML::sanitize($_POST['suppliers_manager']);
+        } else {
+          $suppliers_manager = '';
+        }
+
+        if (isset($_POST['suppliers_phone'])) {
+          $suppliers_phone = HTML::sanitize($_POST['suppliers_phone']);
+        } else {
+          $suppliers_phone = '';
+        }
+
+        if (isset($_POST['suppliers_email_address'])) {
+          $suppliers_email_address = HTML::sanitize($_POST['suppliers_email_address']);
+        } else {
+          $suppliers_email_address = '';
+        }
+
+        if (isset($_POST['suppliers_fax'])) {
+          $suppliers_fax = HTML::sanitize($_POST['suppliers_fax']);
+        } else {
+          $suppliers_fax = '';
+        }
+
+        if (isset($_POST['suppliers_address'])) {
+          $suppliers_address = HTML::sanitize($_POST['suppliers_address']);
+        } else {
+          $suppliers_address = '';
+        }
+
+        if (isset($_POST['suppliers_suburb'])) {
+          $suppliers_suburb = HTML::sanitize($_POST['suppliers_suburb']);
+        } else {
+          $suppliers_suburb = '';
+        }
+
+        if (isset($_POST['suppliers_postcode'])) {
+          $suppliers_postcode = HTML::sanitize($_POST['suppliers_postcode']);
+        } else {
+          $suppliers_postcode = '';
+        }
+
+        if (isset($_POST['suppliers_city'])) {
+          $suppliers_city = HTML::sanitize($_POST['suppliers_city']);
+        } else {
+          $suppliers_city = '';
+        }
+
         $suppliers_states = HTML::sanitize($_POST['suppliers_states']);
         $suppliers_country_id = HTML::sanitize($_POST['suppliers_country_id']);
-        $suppliers_notes = HTML::sanitize($_POST['suppliers_notes']);
-        $suppliers_image = HTML::sanitize($_POST['suppliers_image']);
 
-        // Insertion images des fabricants via l'editeur FCKeditor (fonctionne sur les nouvelles et editions des fabricants)
+        if (isset($_POST['suppliers_image'])) {
+          $suppliers_image = HTML::sanitize($_POST['suppliers_image']);
+        } else {
+          $suppliers_image = '';
+        }
+
+        if (isset($_POST['suppliers_notes'])) {
+          $suppliers_notes = HTML::sanitize($_POST['suppliers_notes']);
+        } else {
+          $suppliers_notes = '';
+        }
+
         if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && (!isset($_POST['delete_image']))) {
           $suppliers_image = htmlspecialchars($suppliers_image);
           $suppliers_image = strstr($suppliers_image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
