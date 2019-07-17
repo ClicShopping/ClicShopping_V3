@@ -94,7 +94,6 @@
 
       $header_template = '<!-- header template start -->' . "\n";
 
-      $filename = '';
       $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group . '/template_html/' . MODULES_HEADER_MULTI_TEMPLATE_FILES);
 
       if (is_file($filename)) {

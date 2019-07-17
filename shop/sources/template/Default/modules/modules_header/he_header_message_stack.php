@@ -46,13 +46,13 @@
         $data ='<!-- Start header Message Stack -->' . "\n";
 
         if (isset($_GET['error_message'])) {
-          $error_message = htmlspecialchars(urldecode($_GET['error_message']));
+          $error_message = htmlspecialchars(urldecode(HTML::sanitize($_GET['error_message'])), ENT_QUOTES | ENT_HTML5);
         } else {
           $error_message = '';
         }
 
         if (isset($_GET['info_message'])) {
-          $info_message = htmlspecialchars(urldecode($_GET['info_message']));
+          $info_message = htmlspecialchars(urldecode(HTML::sanitize($_GET['info_message'])), ENT_QUOTES | ENT_HTML5);
         } else {
           $info_message = '';
         }

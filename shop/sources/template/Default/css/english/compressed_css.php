@@ -53,7 +53,7 @@
     $ignore_dirs = ['.', '..'];
 
 // run through content of root directory
-   $dir_content = scandir($root_dir);
+   $dir_content = scandir($root_dir, SCANDIR_SORT_ASCENDING);
 
    foreach($dir_content as $key => $content) {
       $path = $root_dir.'/'.$content;

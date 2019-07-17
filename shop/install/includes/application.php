@@ -21,7 +21,7 @@
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 
   if (isset($_GET['language'])) {
-    setcookie('Lor_Language', HTML::sanitize($_GET['language']));
+    setcookie('Lor_Language', HTML::sanitize($_GET['language']), ini_get('session.cookie_lifetime'), ini_get('session.cookie_path'), ini_get('session.cookie_domain'), ini_get('session.cookie_secure'), ini_get('session.cookie_httponly'));
 
     $language = $_GET['language'];
   } elseif (isset($_COOKIE['Lor_Language'])) {

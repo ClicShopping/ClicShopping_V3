@@ -157,7 +157,6 @@
             $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-            $filename= '';
             $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group .'/template_html/' . MODULE_FRONT_PAGE_NEW_PRODUCTS_TEMPLATE);
 
             $new_prods_content = '<!-- New Products start -->' . "\n";

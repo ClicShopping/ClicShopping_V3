@@ -78,10 +78,8 @@
 
         $social_footer = '<!-- footer social footer -->' . "\n";
 
-
         $footer_template = '<!-- footer multi template start -->' . "\n";
 
-        $filename = '';
         $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group . '/template_html/' . MODULE_FOOTER_MULTI_TEMPLATE);
 
         $facebook = MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL;

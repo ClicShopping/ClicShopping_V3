@@ -156,7 +156,6 @@
             $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-            $filename= '';
             $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group .'/template_html/' . MODULE_PRODUCTS_NEW_TEMPLATE);
 
             while($Qlisting->fetch()) {
