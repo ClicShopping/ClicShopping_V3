@@ -51,7 +51,7 @@
       <span class="col-md-2"><strong><?php echo $order_type; ?></strong><?php echo HTML::outputProtected($order_name); ?></span>
       <span class="col-md-2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_order_cost'); ?></strong><?php echo strip_tags($order['order_total']); ?></span>
       <span class="col-md-2">
-        <p class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
+        <p class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_view'), null, CLICSHOPPING::link(null, (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'Account&HistoryInfo&order_id=' . (int)$order['orders_id']), 'info', null,'sm'); ?></p>
       </span>
     </div>
     <div class="separator"></div>

@@ -9,11 +9,6 @@
  *
  */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTTP;
-
-
   require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>

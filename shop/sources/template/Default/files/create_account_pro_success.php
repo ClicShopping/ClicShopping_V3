@@ -8,7 +8,6 @@
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
-  use ClicShopping\OM\HTML;
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 ?>

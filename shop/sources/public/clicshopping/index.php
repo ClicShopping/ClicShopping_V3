@@ -14,8 +14,6 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Download / Téléchargement clicShopping</title>
-
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <base href="https://www.clicshopping.org/marketplace/">
@@ -41,13 +39,13 @@
   </style>
 </head>
 <body>
-<p align="center"><a href="<?php echo 'https://'.$_SERVER['HTTP_HOST']; ?>"><img src="<?php echo 'https://'.$_SERVER['HTTP_HOST']; ?>/shop/images/logo_clicshopping_1.png"></a></p>
-<h2 align="center">Download / Téléchargement clicShopping OpenSource</h2>
+<p class="text-md-center"><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>"><img src="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>/shop/images/logo_clicshopping_1.png" alt="ClicShopping" title="ClicShopping"></a></p>
+<h2 class="text-md-center">Download / Téléchargement clicShopping OpenSource</h2>
 <div style="padding-top: 100px;">
-  <blockquote><a href="<?php echo 'https://'.$_SERVER['HTTP_HOST']; ?>">Accueil / home Page</a></blockquote>
+  <blockquote><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>">Accueil / home Page</a></blockquote>
 <?php
 
-  $url = 'http://'.$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
   $iter = new DirectoryIterator(__DIR__ );
   $i = 0;

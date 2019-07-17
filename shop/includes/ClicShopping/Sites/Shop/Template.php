@@ -599,6 +599,7 @@
      * Select the header or footer of the template
      *
      * @param string $name , header or footer of the template
+     * sources/template/Default/header.php
      * @access public
      */
     public function getTemplateHeaderFooter(string $name): string
@@ -641,6 +642,7 @@
      * Select the the file in this directory Files
      *
      * @param string $themaGraphism , file in this directory Files
+     * sources/template/Default/modules/index_listing
      * @access public
      */
     public function getTemplateFiles(string $name): string
@@ -658,6 +660,7 @@
      * Select the the file in this directory module
      *
      * @param string $themaGraphism , file in this directory module
+     * sources/template/Default/modules/modules_header/content/header_page_manager_header_menu"
      * @access public
      */
     public function getTemplateModules(string $name): string
@@ -676,6 +679,7 @@
      * Select the the filename in this directory Modules
      *
      * @param string $themaFilename , filename in this module
+     * ex: sources/template/Default/modules/modules_header/template_html/multi_template_test.php
      * @access public
      */
     public function getTemplateModulesFilename(string $name): string

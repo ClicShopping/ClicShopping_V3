@@ -9,7 +9,6 @@
  *
  */
 
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
   if ( $CLICSHOPPING_MessageStack->exists('password_forgotten') ) {

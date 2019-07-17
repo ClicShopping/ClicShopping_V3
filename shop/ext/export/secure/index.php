@@ -9,14 +9,13 @@
  *
  */
 
-  use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
 
   chdir('../../../');
+  
   require('includes/application_top.php');
-// Demarrage de la bufferisation de sortie
-   ob_start();
-
+  
+  ob_start();
 
   CLICSHOPPING::redirect();
 

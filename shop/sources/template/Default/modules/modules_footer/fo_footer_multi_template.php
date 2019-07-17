@@ -9,10 +9,8 @@
  *
  */
 
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\Sites\ClicShoppingAdmin\TemplateAdmin;
 
   class fo_footer_multi_template {
     public $code;

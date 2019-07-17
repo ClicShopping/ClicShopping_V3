@@ -15,7 +15,7 @@ use ClicShopping\OM\HTML;
 <div class="col-md-<?php echo $content_width . ' ' . MODULE_LOGIN_MODE_B2B_POSITION; ?>">
   <div class="card">
     <div class="card-header">
-      <span><h2><?php echo CLICSHOPPING::getDef('heading_title_b2b'); ?></h2></span>
+      <h2><span><?php echo CLICSHOPPING::getDef('heading_title_b2b'); ?></span></h2>
     </div>
     <div class="card-block">
       <div class="separator"></div>

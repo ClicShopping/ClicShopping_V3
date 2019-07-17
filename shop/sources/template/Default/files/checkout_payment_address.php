@@ -108,7 +108,7 @@
       <div class="card">
         <div class="card-header">
           <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
-          <span><h3><?php echo CLICSHOPPING::getDef('table_heading_new_payment_address'); ?></h3></span>
+          <h3><span><?php echo CLICSHOPPING::getDef('table_heading_new_payment_address'); ?></span></h3>
         </div>
 
         <div class="card-block">

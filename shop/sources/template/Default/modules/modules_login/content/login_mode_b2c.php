@@ -15,13 +15,13 @@ use ClicShopping\OM\HTML;
 <div class="col-md-<?php echo $content_width . ' ' . MODULE_LOGIN_MODE_B2C_POSITION; ?>">
   <div class="card">
     <div class="card-header">
-      <span><h2><?php echo CLICSHOPPING::getDef('heading_title_b2c'); ?></h2></span>
+      <h2><span><?php echo CLICSHOPPING::getDef('heading_title_b2c'); ?></span></h2>
     </div>
     <div class="card-block">
       <div class="separator"></div>
       <div class="card-text">
         <div><?php echo CLICSHOPPING::getDef('text_intro_b2c'); ?></div>
-        <div class="text-rmd-ight">
+        <div class="text-md-right">
           <div class="control-group">
             <div class="separator"></div>
             <div class="controls">

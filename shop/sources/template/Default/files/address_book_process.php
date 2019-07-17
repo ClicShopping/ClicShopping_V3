@@ -52,16 +52,17 @@
   if (isset($_GET['delete'])) {
 ?>
       <div class="separator"></div>
-      <span class="col-md-9"> <strong><?php echo CLICSHOPPING::getDef('delete_address_description'); ?></strong></span>
-      <span class="col-md-3">
+      <span class="col-md-9"><strong><?php echo CLICSHOPPING::getDef('delete_address_description'); ?></strong></span>
+      <div class="col-md-3">
+        <div class="separator"></div>
         <div>
-          <p><strong><?php echo CLICSHOPPING::getDef('selected_address'); ?></strong></p>
+          <strong><?php echo CLICSHOPPING::getDef('selected_address'); ?></strong>
         </div>
         <div class="separator"></div>
         <div>
           <?php echo AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_GET['delete'], true, ' ', '<br />'); ?>
         </div>
-      </span>
+      </div>
 <?php
 // ----------------------
 // --- Button   -----
@@ -95,7 +96,7 @@
 <?php
      }
 ?>
-             <div class="col-md-6 float-md-right" align="right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
+             <div class="col-md-6 float-md-right text-md-right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
            </div>
          </div>
        </div>

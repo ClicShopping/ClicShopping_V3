@@ -9,7 +9,6 @@
  *
  */
 
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));

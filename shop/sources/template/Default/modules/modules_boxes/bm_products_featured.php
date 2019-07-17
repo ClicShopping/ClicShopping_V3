@@ -12,7 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\Apps\Marketing\BannerManager\Classes\Shop\Banner;
+
   class bm_products_featured {
     public $code;
     public $group;

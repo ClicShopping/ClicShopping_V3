@@ -27,7 +27,7 @@
 <?php
   if (!empty($products_short_description)) {
 ?>
-            <div class="ModulesProductsNewBoostrapColumn5ShortDescription"><span itemprop="description"><h3><?php echo $products_short_description; ?></h3></span></div>
+            <div class="ModulesProductsNewBoostrapColumn5ShortDescription"><h3><span itemprop="description"><?php echo $products_short_description; ?></span></h3></div>
 <?php
   }
 ?>

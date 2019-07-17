@@ -36,9 +36,9 @@
      $QaccountGroup->execute();
 ?>
       <div class="card">
-          <div class="card-header">
-          <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
-          <span><h3><?php echo CLICSHOPPING::getDef('entry_company'); ?></h3></span>
+        <div class="card-header">
+        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
+        <h3><span><?php echo CLICSHOPPING::getDef('entry_company'); ?></span></h3>
       </div>
       <div class="card-block">
         <div class="card-text">
@@ -72,7 +72,7 @@
     <div class="card">
       <div class="card-header">
         <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
-        <span><h3><?php echo CLICSHOPPING::getDef('category_personnal'); ?></h3></span>
+        <h3><span><?php echo CLICSHOPPING::getDef('category_personnal'); ?></span></h3>
       </div>
       <div class="card-block">
         <div class="card-text">
@@ -198,7 +198,7 @@
       <div class="card">
         <div class="card-header">
           <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
-          <span><h3><?php echo CLICSHOPPING::getDef('new_address_title'); ?></h3></span>
+          <h3><span><?php echo CLICSHOPPING::getDef('new_address_title'); ?></span></h3>
         </div>
         <div class="card-block">
           <div class="card-text">

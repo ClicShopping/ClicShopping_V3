@@ -12,8 +12,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Apps\Communication\PageManager\Classes\Shop\PageManagerShop;
-
   class fo_footer_page_manager {
     public $code;
     public $group;
@@ -153,4 +151,3 @@
                   );
     }
   }
-?>

@@ -1,3 +1,5 @@
 Little fix in template
 e-stric php
 ADD PASSWORD_ARGON2ID check next standard
+Remove not use statement
+fix HTML error

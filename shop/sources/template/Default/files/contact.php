@@ -9,10 +9,6 @@
  *
  */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Registry;
-
   if ( $CLICSHOPPING_MessageStack->exists('contact') ) {
      echo $CLICSHOPPING_MessageStack->get('contact');
   }
