@@ -10,7 +10,6 @@
  */
 
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\DateTime;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -69,7 +68,7 @@
             $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
             $column_list = FeaturedClass::getCountColumnList();
@@ -95,13 +94,12 @@
 
               $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort'] ?? '1a'), $col+1, $lc_text);
 
-              $new_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
+              $new_prods_content .= '<li>' . $lc_text . '</li>';
             }
 
             $new_prods_content .= '</ul>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
-
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
 
@@ -208,6 +206,8 @@
 // **************************
               if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
                 $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+                $form = '';
+                $endform = '';
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';
@@ -229,9 +229,9 @@
 // products model
               $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-                $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-                $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
                 $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
@@ -263,7 +263,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);

@@ -71,7 +71,7 @@
             $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
             $column_list = SpecialsClass::getCountColumnList();
@@ -223,6 +223,8 @@
 // **************************
               if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
                 $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+                $form = '';
+                $endform = '';
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';

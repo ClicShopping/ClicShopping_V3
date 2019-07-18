@@ -192,7 +192,6 @@
 // Quantity type
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
 
-
 // **************************************************
 // Button Free - Must be above getProductsExhausted
 // **************************************************
@@ -267,7 +266,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);

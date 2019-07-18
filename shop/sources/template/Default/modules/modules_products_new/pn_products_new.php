@@ -98,7 +98,7 @@
 
               $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort'] ?? '1a'), $col+1, $lc_text);
 
-              $new_prods_content .= '<li><a href="#">' . $lc_text . '</a></li>';
+              $new_prods_content .= '<li>' . $lc_text . '</li>';
             }
 
             $new_prods_content .= '</ul>';
@@ -162,8 +162,6 @@
               $products_id = $Qlisting->valueInt('products_id');
               $_POST['products_id'] = $products_id;
 
-              $in_stock = $Qlisting->valueInt('in_stock');
-
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
@@ -224,6 +222,8 @@
 // **************************
               if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
                 $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+                $form = '';
+                $endform = '';
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';
@@ -245,9 +245,9 @@
 // products model
               $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-                $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-                $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
                 $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
@@ -279,7 +279,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);

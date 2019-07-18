@@ -74,11 +74,11 @@
             $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
 
             $column_list = $CLICSHOPPING_Search->sortListSearch();
 
-            for ($col=0, $n=count($column_list); $col<$n; $col++) {
+            for ($col = 0, $n = count($column_list); $col < $n; $col++) {
               switch ($column_list[$col]) {
                 case 'MODULE_PRODUCTS_SEARCH_LIST_DATE_ADDED':
                   $lc_text = CLICSHOPPING::getDef('table_heading_date');
@@ -103,7 +103,7 @@
                 break;
               }
 
-              $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort'] ?? '1a'), $col + 1, $lc_text);
+              $lc_text = $CLICSHOPPING_ProductsCommon->createSortHeading(HTML::sanitize($_GET['sort'] ?? '1a'), $col+1, $lc_text);
 
               $new_prods_content .= '<li>' . $lc_text . '</li>';
             }
@@ -196,6 +196,7 @@
                   }
                 }
               }
+
 // Quantity type
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
 
@@ -216,6 +217,8 @@
 // **************************
               if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
                 $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+                $form = '';
+                $endform = '';
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';
@@ -223,10 +226,8 @@
 
 // See the button more view details
               $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_PRODUCTS_SEARCH_DELETE_BUY_BUTTON, $products_id);
-
 // Display the image
               $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_PRODUCTS_SEARCH_IMAGE_MEDIUM, $products_id);
-
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_SEARCH_TICKER, $products_id, 'ModulesProductsSearchBootstrapTickerSpecial', 'ModulesProductsSearchBootstrapTickerFavorite', 'ModulesProductsSearchBootstrapTickerFeatured', 'ModulesProductsSearchBootstrapTickerNew');
 
@@ -276,7 +277,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);
