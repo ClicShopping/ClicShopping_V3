@@ -142,14 +142,11 @@
             $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-            $filename= '';
             $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_PRODUCTS_FAVORITES_TEMPLATE);
 
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
               $_POST['products_id'] = $products_id;
-
-              $in_stock = $Qlisting->valueInt('in_stock');
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
 
@@ -202,6 +199,8 @@
               if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView($products_id) != 1 && NOT_DISPLAY_PRICE_ZERO == 'false') {
                 $submit_button = HTML::button(CLICSHOPPING::getDef('text_products_free'), '', $products_name_url, 'danger');
                 $min_quantity = 0;
+                $form = '';
+                $endform = '';
                 $input_quantity ='';
                 $min_order_quantity_products_display = '';
               }
@@ -281,7 +280,7 @@
 
             $new_prods_content .= '</div>';  // flex
           } else {
-            $new_prods_content .= '<div class="text-md-center alert alert-info">'. CLICSHOPPING::getDef('text_no_products') .'</div>';
+            $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
           }
 
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {

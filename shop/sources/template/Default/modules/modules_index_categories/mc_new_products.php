@@ -172,7 +172,6 @@
             $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-              $filename= '';
               $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TEMPLATE);
 
               $new_prods_content = '<!-- New Products start -->' . "\n";
@@ -187,8 +186,6 @@
             while ($Qproduct->fetch() ) {
               $products_id = $Qproduct->valueInt('products_id');
               $_POST['products_id'] = $products_id;
-
-              $in_stock = $Qproduct->valueInt('in_stock');
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 

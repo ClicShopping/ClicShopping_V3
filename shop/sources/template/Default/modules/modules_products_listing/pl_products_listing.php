@@ -131,14 +131,12 @@
               $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-              $filename= '';
               $filename = $CLICSHOPPING_Template->getTemplateModulesFilename($this->group . '/template_html/' . MODULE_PRODUCTS_LISTING_TEMPLATE);
 
               while($Qlisting->fetch()) {
                 $products_id = $Qlisting->valueInt('products_id');
                 $_POST['products_id'] = $products_id;
 
-                $in_stock = $Qlisting->valueInt('in_stock');
                 $products_image = $Qlisting->value('products_image');
 
                 $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);

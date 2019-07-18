@@ -155,14 +155,11 @@
             $size_button = $CLICSHOPPING_ProductsCommon->getSizeButton('md');
 
 // Template define
-            $filename= '';
             $filename = $CLICSHOPPING_Template-> getTemplateModulesFilename($this->group .'/template_html/' . MODULE_PRODUCTS_SPECIAL_TEMPLATE);
 
             while($Qlisting->fetch()) {
               $products_id = $Qlisting->valueInt('products_id');
               $_POST['products_id'] = $products_id;
-
-              $in_stock = $Qlisting->valueInt('in_stock');
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 
@@ -294,13 +291,13 @@
 
             $new_prods_content .= '</div>';  // flex
           } else {
-            $new_prods_content .= '<div class="text-md-center alert alert-info">'. CLICSHOPPING::getDef('text_no_products') .'</div>';
+            $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
           }
 
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
             if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
               $new_prods_content .= '<div class="clearfix"></div>';
-              $new_prods_content .= '<div style="padding-top:10px;"></div>';
+              $new_prods_content .= '<div class="separator"></div>';
               $new_prods_content .= '<div>';
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
@@ -316,7 +313,7 @@
 
           $new_prods_content .= '</div>';
         } else {
-          $new_prods_content .= '<div class="text-md-center alert alert-info">'. CLICSHOPPING::getDef('text_no_products') .'</div>';
+          $new_prods_content = '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
         } // max display product
 
         $new_prods_content .= '</div>' . "\n";
