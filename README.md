@@ -23,6 +23,7 @@
  - All informations about the ClicShopping(tm)
 
  Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
+ 
  Access demo Administration : https://www.clicshopping.org
   
  Community : https://www.clicshopping.org
