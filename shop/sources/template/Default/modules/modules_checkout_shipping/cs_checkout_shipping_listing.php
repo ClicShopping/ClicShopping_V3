@@ -120,7 +120,7 @@
                       $data .= '&nbsp;';
                     } else {
                       $data .=  '<span class="moduleCheckoutShippingListingCurrencies">'. $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], (isset($quote['tax']) ? $quote['tax'] : 0))) . '</span>&nbsp;&nbsp';
-                      $data .=  '<span class="moduleCheckoutShippingListingRadio">'  . HTML::radioField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id'], $checked, 'required aria-required="true"') .'</span>';
+                      $data .=  '<span class="moduleCheckoutShippingListingRadio">'  . HTML::radioField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id'], $checked, 'required aria-required="true"') . '</span>';
                     }
 
                     $data .= '</td>';

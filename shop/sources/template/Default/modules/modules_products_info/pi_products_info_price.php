@@ -66,7 +66,7 @@
 
 // Minimum quantity to take an order
            if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
-             $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') .' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
+             $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
            } else {
              $min_order_quantity_products_display = '';
            }
@@ -144,7 +144,7 @@
             $products_price_content =  '<!-- Start products_archives -->' . "\n";
             $products_price_content .= '<div class="separator"></div>';
             $products_price_content .= '<h3 class="text-md-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
-            $products_price_content .= '<div class="buttonSet"><span class="buttonAction">'. HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link(), 'primary') .'</span></div>' . "\n";
+            $products_price_content .= '<div class="buttonSet"><span class="buttonAction">'. HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link(), 'primary') . '</span></div>' . "\n";
             $products_price_content .= '<!-- products_archives end -->' . "\n";
           }
 

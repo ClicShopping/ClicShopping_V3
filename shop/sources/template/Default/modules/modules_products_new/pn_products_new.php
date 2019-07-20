@@ -61,7 +61,7 @@
 
             $new_prods_content .= '<div class="col-md-5 float-md-left">';
             $new_prods_content .= '<div class="page-header ModulesProductsNewHeadingTitle">';
-            $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') .'</h1>';
+            $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') . '</h1>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
 
@@ -129,8 +129,8 @@
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<div class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') .'</div>';
-              $new_prods_content .= '<div class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') .'</div>';
+              $new_prods_content .= '<div class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
+              $new_prods_content .= '<div class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div style="padding-top:10px;"></div>';
@@ -291,7 +291,7 @@
 
             $new_prods_content .= '</div>';  // flex
           } else {
-            $new_prods_content .= '<div class="text-md-center alert alert-info">'. CLICSHOPPING::getDef('text_no_products') .'</div>';
+            $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
           }
 
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
@@ -303,8 +303,8 @@
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<span class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') .'</span>';
-              $new_prods_content .= '<span class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') .'</span>';
+              $new_prods_content .= '<span class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
+              $new_prods_content .= '<span class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div class="clearfix"></div>';
@@ -313,7 +313,7 @@
 
           $new_prods_content .= '</div>';
         } else {
-          $new_prods_content .= '<div class="text-md-center alert alert-info">'. CLICSHOPPING::getDef('text_no_products') .'</div>';
+          $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
         } // max display product
 
         $new_prods_content .= '</div>' . "\n";

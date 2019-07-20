@@ -82,7 +82,7 @@
           $account_customers_title_content .= '<div class="card">
                                                 <div class="card-header">
                                                   <div class="row">
-                                                    <div class="col-md-11 ModuleAccountCustomersListOrderTitle"><h3>'. CLICSHOPPING::getDef('module_account_customers_list_order_order') .'</h3></div>
+                                                    <div class="col-md-11 ModuleAccountCustomersListOrderTitle"><h3>' . CLICSHOPPING::getDef('module_account_customers_list_order_order') . '</h3></div>
                                                       <div class="col-md-1 text-md-right">
                                                         <i class="fas fa-history fa-4x moduleAccountCustomersNotificationsIcon"></i>
                                                       </div>
@@ -96,7 +96,7 @@
           if (AddressBook::countCustomerOrders() > 0) {
             $account_customers_title_content .= '<div class="ModuleAccountCustomersListOrderCustomer">';
             $account_customers_title_content .= '<div class="col-md-2">';
-            $account_customers_title_content .= '<strong>' . CLICSHOPPING::getDef('overview_title') .'</strong>';
+            $account_customers_title_content .= '<strong>' . CLICSHOPPING::getDef('overview_title') . '</strong>';
             $account_customers_title_content .= '</div>';
             $account_customers_title_content .= '<div class="separator"></div>';
             $account_customers_title_content .= '<div class="col-md-8">';
@@ -132,7 +132,7 @@
             } // end while
 
             $account_customers_title_content .= '<div class="col-md-12">';
-            $account_customers_title_content .= '<div>'. CLICSHOPPING::getDef('module_account_customers_list_order_order_text') .'</div>';
+            $account_customers_title_content .= '<div>' . CLICSHOPPING::getDef('module_account_customers_list_order_order_text') . '</div>';
             $account_customers_title_content .= '<div class="separator"></div>';
             $account_customers_title_content .= '</div>';
             $account_customers_title_content .= '</div>';

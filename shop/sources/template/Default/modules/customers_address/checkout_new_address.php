@@ -257,7 +257,7 @@
       }
 
       if ( (!is_null(CLICSHOPPING::getDef('entry_state_text')) && ENTRY_STATE_MIN_LENGTH > 0 && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (!is_null(CLICSHOPPING::getDef('entry_state_text')) && ENTRY_STATE_PRO_MIN_LENGTH > 0 && $CLICSHOPPING_Customer->getCustomersGroupID() != 0) ) {
-        echo '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') .'</span>';
+        echo '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>';
       }
 ?>
             </div>

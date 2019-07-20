@@ -169,7 +169,7 @@
 
         foreach ($best_sellers as $b) {
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($b['products_id']);
-          $bestsellers_list .= '<div class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') .'</div>';
+          $bestsellers_list .= '<div class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') . '</div>';
 
           $position++;
         }
