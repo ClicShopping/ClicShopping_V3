@@ -333,12 +333,14 @@
       $this->_data['email_address'] = $email_address;
     }
 
-    public function getCustomerGuestAccount(int $id): int
+    public function getCustomerGuestAccount(int $id): ?int
     {
+
       $Qcustomer = $this->db->prepare('select customer_guest_account
                                         from :table_customers
                                         where customers_id = :customers_id
                                       ');
+
       $Qcustomer->bindInt(':customers_id', $id);
       $Qcustomer->execute();
 
