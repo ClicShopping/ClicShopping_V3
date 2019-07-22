@@ -72,7 +72,7 @@
       } elseif ( function_exists('openssl_random_pseudo_bytes') ) {
         $output = openssl_random_pseudo_bytes($count, $orpb_secure);
 
-        if ( $orpb_secure != true ) {
+        if ( $orpb_secure !== true ) {
           $output = '';
         }
       }
