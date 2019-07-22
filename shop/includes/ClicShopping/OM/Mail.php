@@ -11,8 +11,6 @@
 
   namespace ClicShopping\OM;
 
-  require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/PHPMailer-master/vendor/autoload.php');
-
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
 
