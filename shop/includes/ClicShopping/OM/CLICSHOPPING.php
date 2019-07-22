@@ -511,8 +511,11 @@
       } elseif (is_file($file)) {
         require_once($file);
       }
-    }
 
+      if (is_file(CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php')) {
+        require_once(CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php');
+      }
+    }
 
     /**
      * Retrieve web server and database server information
