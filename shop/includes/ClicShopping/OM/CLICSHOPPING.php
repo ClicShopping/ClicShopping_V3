@@ -463,6 +463,38 @@
       $prefix = 'ClicShopping\\';
 
       if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
+
+        $class_path = str_replace('\\', '/', $class);
+
+        $file = '/' . 'External' . '/' . $class_path . '.php';
+
+        if (is_file($file)) {
+          require($file);
+
+          return true;
+        }
+
+        $site_dirs = [
+          'Sites',
+          'Custom'
+        ];
+
+        foreach ($site_dirs as $site_dir) {
+          $dir = new \DirectoryIterator(CLICSHOPPING_BASE_DIR . $site_dir);
+
+          foreach ($dir as $f) {
+            if (!$f->isDot() && $f->isDir()) {
+              $file = $f->getPath() . '/' . $f->getFilename() . '/' . 'External' . '/' . $class_path . '.php';
+
+              if (is_file($file)) {
+                require($file);
+
+                return true;
+              }
+            }
+          }
+        }
+
         return false;
       }
 
