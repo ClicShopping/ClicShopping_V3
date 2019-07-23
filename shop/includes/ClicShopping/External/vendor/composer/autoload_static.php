@@ -17,6 +17,7 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
+            'PhpXmlRpc\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'G' => 
@@ -31,6 +32,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'PhpXmlRpc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpxmlrpc/phpxmlrpc/src',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
@@ -50,11 +55,16 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         ),
     );
 
+    public static $classMap = array (
+        'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit13b019cca6d94a59efef8057566200eb::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit13b019cca6d94a59efef8057566200eb::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit13b019cca6d94a59efef8057566200eb::$classMap;
 
         }, null, ClassLoader::class);
     }
