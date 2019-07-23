@@ -28,7 +28,6 @@
       $m = Registry::get('PayPalAdminConfig' . $current_module);
       $m->install();
 
-// install menu
       $this->installDb();
       static::installDbMenuAdministration();
 
@@ -80,7 +79,7 @@ EOD;
           'app_code' => 'app_payment_paypal'
         ];
 
-        $insert_sql_data = array('parent_id' => 186);
+        $insert_sql_data = ['parent_id' => 186];
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
@@ -94,7 +93,7 @@ EOD;
 
           $language_id = $languages[$i]['id'];
 
-          $sql_data_array = ['label' => 'Paypal'];
+          $sql_data_array = ['label' => 'PayPal'];
 
           $insert_sql_data = ['id' => (int)$id,
             'language_id' => (int)$language_id

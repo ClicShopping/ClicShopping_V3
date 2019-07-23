@@ -73,7 +73,8 @@
         $response_string = $response;
       }
 
-      $this->db->save('clicshopping_app_paypal_log', ['customers_id' => isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0,
+      $this->db->save('clicshopping_app_paypal_log', [
+          'customers_id' => isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0,
           'module' => $module,
           'action' => $action . (($is_ipn === true) ? ' [IPN]' : ''),
           'result' => $result,
@@ -176,7 +177,7 @@
 
       $server = constant('CLICSHOPPING_APP_PAYPAL_' . $module . '_STATUS');
 
-      if (!in_array($server, array('1', '0'))) {
+      if (!in_array($server, array('1', '2'))) {
         return false;
       }
 
@@ -186,11 +187,12 @@
         $creds = array('CLICSHOPPING_APP_PAYPAL_' . $server . '_SELLER_EMAIL');
       } elseif (substr($type, 0, 7) == 'payflow') {
         if (strlen($type) > 7) {
-          $creds = array('CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_' . strtoupper(substr($type, 8)));
+          $creds = ['CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_' . strtoupper(substr($type, 8))];
         } else {
-          $creds = array('CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_VENDOR',
+          $creds = ['CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_VENDOR',
             'CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_PASSWORD',
-            'CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_PARTNER');
+            'CLICSHOPPING_APP_PAYPAL_PF_' . $server . '_PARTNER'
+          ];
         }
       } else {
         $creds = array('CLICSHOPPING_APP_PAYPAL_' . $server . '_API_USERNAME',

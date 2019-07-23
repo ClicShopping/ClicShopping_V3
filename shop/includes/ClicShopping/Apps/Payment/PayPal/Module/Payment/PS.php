@@ -65,7 +65,8 @@
       if (defined('CLICSHOPPING_APP_PAYPAL_PS_STATUS')) {
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (B2BCommon::getPaymentUnallowed($this->code)) {
-            if (CLICSHOPPING_APP_PAYPAL_PS_STATUS == '0' || CLICSHOPPING_APP_PAYPAL_PS_STATUS == '1') {
+
+            if (CLICSHOPPING_APP_PAYPAL_PS_STATUS == '2' || CLICSHOPPING_APP_PAYPAL_PS_STATUS == '1') {
               $this->enabled = true;
             } else {
               $this->enabled = false;
@@ -75,7 +76,7 @@
           if (defined('CLICSHOPPING_APP_PAYPAL_PS_NO_AUTHORIZE') && CLICSHOPPING_APP_PAYPAL_PS_NO_AUTHORIZE == 'True' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
             if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
 
-              if (CLICSHOPPING_APP_PAYPAL_PS_STATUS == '0' || CLICSHOPPING_APP_PAYPAL_PS_STATUS == '1') {
+              if (CLICSHOPPING_APP_PAYPAL_PS_STATUS == '2' || CLICSHOPPING_APP_PAYPAL_PS_STATUS == '1') {
                 $this->enabled = true;
               } else {
                 $this->enabled = false;
@@ -90,7 +91,7 @@
       $this->order_status = defined('CLICSHOPPING_APP_PAYPAL_PS_PREPARE_ORDER_STATUS_ID') && ((int)CLICSHOPPING_APP_PAYPAL_PS_PREPARE_ORDER_STATUS_ID > 0) ? (int)CLICSHOPPING_APP_PAYPAL_PS_PREPARE_ORDER_STATUS_ID : 0;
 
       if (defined('CLICSHOPPING_APP_PAYPAL_PS_STATUS')) {
-        if (CLICSHOPPING_APP_PAYPAL_PS_STATUS == '0') {
+        if (CLICSHOPPING_APP_PAYPAL_PS_STATUS == '2') {
           $this->title .= ' [Sandbox]';
           $this->public_title .= ' (' . $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code . '; Sandbox)';
         }

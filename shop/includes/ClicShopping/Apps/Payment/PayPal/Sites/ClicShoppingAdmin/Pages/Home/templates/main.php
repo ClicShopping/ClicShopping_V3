@@ -9,7 +9,10 @@
    *
    */
 
+  use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+
+  $CLICSHOPPING_PayPal = Registry::get('PayPal');
 
   require_once(__DIR__ . '/template_top.php');
 ?>

@@ -11,8 +11,8 @@
 
   namespace ClicShopping\Apps\Payment\PayPal\Module\ClicShoppingAdmin\Config;
 
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
   abstract class ConfigAbstract
   {
