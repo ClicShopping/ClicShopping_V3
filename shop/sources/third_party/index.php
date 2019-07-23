@@ -16,4 +16,3 @@
 
   header('Location: ../');
   exit;
-?>
