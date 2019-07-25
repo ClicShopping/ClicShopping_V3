@@ -27,8 +27,8 @@
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Address = Registry::get('Address');
 
-  define('FPDF_FONTPATH', CLICSHOPPING::BASE_DIR . 'external/vendor/setasign/fpdf/font/');
-  require_once(CLICSHOPPING::BASE_DIR . 'external/vendor/setasign/fpdf/fpdf.php');
+  define('FPDF_FONTPATH', CLICSHOPPING::BASE_DIR . 'External/vendor/setasign/fpdf/font/');
+  require_once(CLICSHOPPING::BASE_DIR . 'External/vendor/setasign/fpdf/fpdf.php');
 
   Registry::set('PDF', new PDF());
   $PDF = Registry::get('PDF');
