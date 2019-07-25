@@ -66,10 +66,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez vous activer ce module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULES_HEADER_TAGS_LOZAD_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Souhaitez vous activer ce module ?',
+          'configuration_description' => 'Do you want to enable this module ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -78,10 +78,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Ordre de tri d\'affichage',
+          'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULES_HEADER_TAGS_LOZAD_SORT_ORDER',
           'configuration_value' => '80',
-          'configuration_description' => 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)',
+          'configuration_description' => 'Sort order. Lowest is first',
           'configuration_group_id' => '6',
           'sort_order' => '60',
           'set_function' => '',
@@ -102,5 +102,3 @@
       ];
     }
   }
-
-?>

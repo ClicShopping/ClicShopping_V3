@@ -77,14 +77,6 @@
       $module_directory = false;
     }
 
-
-    if (isset($_POST['install_module_directory'])) {
-      $module_directory = HTML::sanitize($_POST['install_module_directory']);
-    } else {
-      $module_directory = false;
-    }
-
-
     if (isset($module_directory)) {
       if (!empty($file_cache_temp_array[0])) {
         $count_file = count($file_cache_temp_array);
@@ -123,8 +115,7 @@
       $count = $CLICSHOPPING_Github->getSearchTotalCount();
 
       for ($i = 0, $n = $count_file;$i < $n;  $i++) {
-
-        if (is_null($result->items[$i])) {
+        if ($result->items[$i] === null) {
           $item = $result[$i];
           $module_real_name = $item->title;
           $link_html = 'https://github.com/ClicShoppingOfficialModulesV3/' . $item->title;
@@ -195,8 +186,8 @@
           <div class="row">
             <div class="card-text">
               <div class="col-md-12"><?php echo $description; ?></div>
-              <div class="col-md-12" style="color: #FF0000;"><?php echo $local_version; ?></div>
-              <div class="col-md-12" style="color: #312eff;"><?php echo $temp_version; ?></div>
+              <div class="col-md-12 text-danger"><?php echo $local_version; ?></div>
+              <div class="col-md-12 text-primary"><?php echo $temp_version; ?></div>
 
               <div class="col-md-6 float-md-left">
                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
@@ -302,7 +293,7 @@
 
           if ($local_version != -1) {
             if ($installed_check === true) {
-              echo '<span class="text-align-right">' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_setting'), null, $module, 'success', null, 'sm') . '</span>';
+              echo '<span class="text-md-right">' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_setting'), null, $module, 'success', null, 'sm') . '</span>';
             }
           }
 ?>

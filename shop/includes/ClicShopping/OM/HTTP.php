@@ -129,7 +129,7 @@
         }
 
         if (!isset($parameters['cafile'])) {
-          $parameters['cafile'] = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/ClicShopping/External/cacert.pem';
+          $parameters['cafile'] = CLICSHOPPING::BASE_DIR . 'External/cacert.pem';
         }
 
         if (is_file($parameters['cafile'])) {
@@ -236,9 +236,11 @@
           break;
         }
       }
+      
       if ($to_int === true) {
         $ip = sprintf('%u', ip2long($ip));
       }
+      
       return $ip;
     }
 
