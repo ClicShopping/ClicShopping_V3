@@ -390,15 +390,13 @@
     */
     public function getSearchModule()
     {
-      $result_search = '';
-      if (isset($_POST['module_search']) && (!empty($_POST['module_search']))) {
-        $result_search = HTML::sanitize($_POST['module_search']);
-      }
 
-      if (isset($_POST['install_module_template_directory']) && $_POST['install_module_template_directory'] != '0') {
+      if (isset($_POST['install_module_template_directory']) && $_POST['install_module_template_directory'] != '0 '&& !empty($_POST['install_module_template_directory'])) {
         $result = HTML::sanitize($_POST['install_module_template_directory']);
-      } else if (isset($_POST['install_module_directory']) && $_POST['install_module_directory'] != '0') {
+      } elseif (isset($_POST['install_module_directory']) && $_POST['install_module_directory'] != '0 '&& !empty($_POST['install_module_directory'])) {
         $result = HTML::sanitize($_POST['install_module_directory']);
+      } else {
+        $result = HTML::sanitize($_POST['module_search']);
       }
 
       return $result;
