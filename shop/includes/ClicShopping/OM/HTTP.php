@@ -66,138 +66,90 @@
     /**
      * @param array $parameters url, headers, parameters, method, verify_ssl, cafile, certificate, proxy
      */
-    public static function getResponse(array $parameters)
+    public static function getResponse(array $data)
     {
 
-      $parameters['server'] = parse_url($parameters['url']);
-
-      if (!isset($parameters['server']['port'])) {
-        $parameters['server']['port'] = ($parameters['server']['scheme'] == 'https') ? 443 : 80;
+      if (!isset($data['header']) || !is_array($data['header'])) {
+        $data['header'] = [];
       }
 
-      if (!isset($parameters['server']['path'])) {
-        $parameters['server']['path'] = '/';
+      if (!isset($data['parameters'])) {
+        $data['parameters'] = '';
       }
 
-      if (isset($parameters['server']['user']) && isset($parameters['server']['pass'])) {
-        $parameters['headers'][] = 'Authorization: Basic ' . base64_encode($parameters['server']['user'] . ':' . $parameters['server']['pass']);
+      if (!isset($data['method'])) {
+        $data['method'] = !empty($data['parameters']) ? 'post' : 'get';
       }
 
-      unset($parameters['url']);
-
-      if (!isset($parameters['headers']) || !is_array($parameters['headers'])) {
-        $parameters['headers'] = [];
+      if (!isset($data['cafile'])) {
+        $data['cafile'] = CLICSHOPPING::BASE_DIR . 'External/cacert.pem';
       }
 
-      if (!isset($parameters['method'])) {
-        if (isset($parameters['parameters'])) {
-          $parameters['method'] = 'post';
-        } else {
-          $parameters['method'] = 'get';
+      if (isset($data['format']) && !in_array($data['format'], ['json'])) {
+        trigger_error('HttpRequest::getResponse(): Unknown "format": ' . $data['format']);
+
+        unset($data['format']);
+      }
+
+      $options = [];
+
+      if (!empty($data['header'])) {
+        foreach ($data['header'] as $h) {
+          [$key, $value] = explode(':', $h, 2);
+
+          $options['headers'][$key] = $value;
+
+          unset($key);
+          unset($value);
         }
       }
 
-      $curl = curl_init($parameters['server']['scheme'] . '://' . $parameters['server']['host'] . $parameters['server']['path'] . (isset($parameters['server']['query']) ? '?' . $parameters['server']['query'] : ''));
-
-      $curl_options = [
-        CURLOPT_PORT => $parameters['server']['port'],
-        CURLOPT_HEADER => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_FORBID_REUSE => true,
-        CURLOPT_FRESH_CONNECT => true,
-        CURLOPT_ENCODING => '', // disable gzip
-        CURLOPT_FOLLOWLOCATION => false // does not work with open_basedir so a workaround is implemented below
-      ];
-
-      if (!empty($parameters['headers'])) {
-        $curl_options[CURLOPT_HTTPHEADER] = $parameters['headers'];
-      }
-
-      if ($parameters['server']['scheme'] == 'https') {
-        $verify_ssl = (defined('CLICSHOPPING_HTTP_VERIFY_SSL') && (CLICSHOPPING_HTTP_VERIFY_SSL === 'True')) ? true : false;
-
-        if (isset($parameters['verify_ssl']) && is_bool($parameters['verify_ssl'])) {
-          $verify_ssl = $parameters['verify_ssl'];
-        }
-
-        if ($verify_ssl === true) {
-          $curl_options[CURLOPT_SSL_VERIFYPEER] = 1;
-          $curl_options[CURLOPT_SSL_VERIFYHOST] = 2;
-        } else {
-          $curl_options[CURLOPT_SSL_VERIFYPEER] = false;
-          $curl_options[CURLOPT_SSL_VERIFYHOST] = false;
-        }
-
-        if (!isset($parameters['cafile'])) {
-          $parameters['cafile'] = CLICSHOPPING::BASE_DIR . 'External/cacert.pem';
-        }
-
-        if (is_file($parameters['cafile'])) {
-          $curl_options[CURLOPT_CAINFO] = $parameters['cafile'];
-        }
-
-        if (isset($parameters['certificate'])) {
-          $curl_options[CURLOPT_SSLCERT] = $parameters['certificate'];
-        }
-      }
-
-      if ($parameters['method'] == 'post') {
-        if (!isset($parameters['parameters'])) {
-          $parameters['parameters'] = '';
-        }
-        $curl_options[CURLOPT_POST] = true;
-        $curl_options[CURLOPT_POSTFIELDS] = $parameters['parameters'];
-      }
-
-      $proxy = defined('CLICSHOPPING_HTTP_PROXY') ? CLICSHOPPING_HTTP_PROXY : '';
-
-      if (isset($parameters['proxy'])) {
-        $proxy = $parameters['proxy'];
-      }
-
-      if (!empty($proxy)) {
-        $curl_options[CURLOPT_HTTPPROXYTUNNEL] = true;
-        $curl_options[CURLOPT_PROXY] = $proxy;
-      }
-
-      curl_setopt_array($curl, $curl_options);
-
-      $result = curl_exec($curl);
-
-      if ($result === false) {
-        trigger_error(curl_error($curl));
-        curl_close($curl);
-        return false;
-      }
-
-      $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-      $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-      $headers = trim(substr($result, 0, $header_size));
-      $body = substr($result, $header_size);
-
-      curl_close($curl);
-
-      if (($http_code == 301) || ($http_code == 302)) {
-        if (!isset($parameters['redir_counter']) || ($parameters['redir_counter'] < 6)) {
-          if (!isset($parameters['redir_counter'])) {
-            $parameters['redir_counter'] = 0;
+      if (isset($data['format']) && ($data['format'] === 'json')) {
+        $options['json'] = $data['parameters'];
+      } else {
+        if (($data['method'] === 'post') && !empty($data['parameters'])) {
+          if (!isset($options['headers']) || !isset($options['headers']['Content-Type'])) {
+            $options['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
           }
-          $matches = [];
-          preg_match('/(Location:|URI:)(.*?)\n/i', $headers, $matches);
-          $redir_url = trim(array_pop($matches));
-          $parameters['redir_counter']++;
 
-          $redir_params = ['url' => $redir_url,
-            'method' => $parameters['method'],
-            'redir_counter', $parameters['redir_counter']
-          ];
-
-          $body = static::getResponse($redir_params);
+          $options['body'] = $data['parameters'];
         }
       }
 
-      return $body;
+      if (isset($data['cafile']) && is_file($data['cafile'])) {
+        $options['verify'] = $data['cafile'];
+      }
+
+      if (isset($data['certificate']) && is_file($data['certificate'])) {
+        $options['cert'] = $data['certificate'];
+      }
+
+      $result = false;
+
+      try {
+        $client = new GuzzleClient();
+        $response = $client->request($data['method'], $data['url'], $options);
+
+        $result = $response->getBody()->getContents();
+
+        if (isset($data['format']) && ($data['format'] === 'json')) {
+          $result = json_decode($result, true);
+        }
+      } catch (\Exception $e) {
+        $json = json_encode([
+          'method' => $data['method'],
+          'url' => $data['url'],
+          'options' => $options
+        ], \JSON_PRETTY_PRINT);
+
+        if ($json !== false) {
+          trigger_error($json);
+        }
+
+        trigger_error($e->getMessage());
+      }
+
+      return $result;
     }
 
     /**
@@ -257,7 +209,7 @@
         $i = count($str);
         $x = $i - 1;
         $n = $i - 2;
-        $isp_provider_client = $str[$n] . "." . $str[$x];
+        $isp_provider_client = $str[$n] . '.' . $str[$x²];
 
         return $isp_provider_client;
       } else {
