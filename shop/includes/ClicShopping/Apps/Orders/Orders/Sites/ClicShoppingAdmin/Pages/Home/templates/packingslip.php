@@ -13,6 +13,7 @@
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin;
 
@@ -26,6 +27,8 @@
 
   define('FPDF_FONTPATH', CLICSHOPPING::BASE_DIR . 'External/vendor/setasign/fpdf/font/');
   require_once(CLICSHOPPING::BASE_DIR . 'External/vendor/setasign/fpdf/fpdf.php');
+
+  $pdf = new \FPDF();
 
   Registry::set('PDF', new PDF());
   $PDF = Registry::get('PDF');

@@ -37,7 +37,10 @@
  * @author Laurent PASSEBECQ
  * @copyright 2003 Laurent PASSEBECQ
 **/
-  require_once('../ext/fpdf/fpdf.php');
+
+  use ClicShopping\OM\CLICSHOPPING;
+
+  require_once(CLICSHOPPING::BASE_DIR . 'External/vendor/setasign/fpdf/label/PDF_Label.php');
 
   class PDF_Label extends FPDF {
 
