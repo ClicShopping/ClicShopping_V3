@@ -13,6 +13,8 @@
 
   use ClicShopping\OM\Is;
 
+  use GuzzleHttp\Client as GuzzleClient;
+
   class HTTP
   {
     protected static $request_type;
@@ -209,7 +211,7 @@
         $i = count($str);
         $x = $i - 1;
         $n = $i - 2;
-        $isp_provider_client = $str[$n] . '.' . $str[$x²];
+        $isp_provider_client = $str[$n] . '.' . $str[$x];
 
         return $isp_provider_client;
       } else {
