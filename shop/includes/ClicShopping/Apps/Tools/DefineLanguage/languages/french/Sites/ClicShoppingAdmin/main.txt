@@ -58,12 +58,13 @@ text_language_definition_confirm_delete = Confirmer la suppression de cette vari
 Edit_translation = Editer
 
 icon_add_new = Ajouter une nouvelle définition
+icon_delete = Delete
+
 image_filtered_edit = Trier
 placeholder_new_definition_value = Ajouter une nouvelle définition
 text_pattern = Seulement des caractères en miniscule sans accents, numéros et underscore sont permis.
 
 text_search = Rechercher
-
 
 image_edit = Editer
 image_filter = Filtrer

@@ -77,24 +77,23 @@
               <tbody>
               <?php
                 if (isset($search)) {
-                  $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare("select definition_key,
-                                                                         definition_value
-                                                                  from :table_languages_definitions
-                                                                  where content_group = :content_group
-                                                                  and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
-                                                                  and languages_id = :languages_id
-                                                                  order by definition_key
-                                                                ");
+                  $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select definition_key,
+                                                                                    definition_value
+                                                                            from :table_languages_definitions
+                                                                            where content_group = :content_group
+                                                                            and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
+                                                                            and languages_id = :languages_id
+                                                                            order by definition_key
+                                                                          ');
                 } else {
-
                   $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select  id,
-                                                                        definition_key,
-                                                                        definition_value
-                                                                  from :table_languages_definitions
-                                                                  where content_group = :content_group
-                                                                  and languages_id = :languages_id
-                                                                  order by definition_key
-                                                                ');
+                                                                                     definition_key,
+                                                                                     definition_value
+                                                                             from :table_languages_definitions
+                                                                             where content_group = :content_group
+                                                                             and languages_id = :languages_id
+                                                                             order by definition_key
+                                                                            ');
                 }
 
                 $Qdefinitions->bindValue(':content_group', $_GET['ContentGroup']);
@@ -105,7 +104,7 @@
                   ?>
                   <tr>
                     <td style="word-break: break-all;"><?php echo $Qdefinitions->value('definition_key'); ?></td>
-                    <td><?php echo htmlentities($Qdefinitions->value('definition_value')); ?></td>
+                    <td><?php echo htmlentities($Qdefinitions->value('definition_value'), ENT_QUOTES | ENT_HTML5); ?></td>
                   </tr>
                   <?php
                 }
@@ -117,7 +116,7 @@
         }
       ?>
       <script>
-          var definition_key = "";
+          var definition_key = '';
 
           $('#rowDelConfirm').on('hidden.bs.modal', function (e) {
           });
@@ -158,12 +157,12 @@
           <tbody>
           <?php
             if (isset($search)) {
-              $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare("select distinct definition_key
-                                                                  from :table_languages_definitions
-                                                                  where content_group = :content_group
-                                                                  and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
-                                                                  order by definition_key
-                                                                 ");
+              $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select distinct definition_key
+                                                                          from :table_languages_definitions
+                                                                          where content_group = :content_group
+                                                                          and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
+                                                                          order by definition_key
+                                                                         ');
             } else {
               $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select distinct definition_key
                                                                   from :table_languages_definitions
@@ -203,7 +202,7 @@
                         do {
                           ?>
                           <textarea class="form-control"
-                                    name="definition_value[<?php echo $Tdefinitions->value('definition_key'); ?>][<?php echo $languages[$i]['id']; ?>]"><?php echo htmlentities($Tdefinitions->value('definition_value')); ?></textarea>
+                                    name="definition_value[<?php echo $Tdefinitions->value('definition_key'); ?>][<?php echo $languages[$i]['id']; ?>]"><?php echo htmlentities($Tdefinitions->value('definition_value'), ENT_QUOTES | ENT_HTML5); ?></textarea>
                           <?php
                         } while ($Tdefinitions->fetch());
                       } else {

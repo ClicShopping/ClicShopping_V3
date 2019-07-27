@@ -59,6 +59,8 @@ text_language_definition_delete_title = Delete
 Edit_translation = Edit
 
 icon_add_new = Add new
+icon_delete = Delete
+
 image_filtered_edit = Filtered edition
 placeholder_new_definition_value = Add new definition key
 text_pattern = Only lower cases, digits and underscore characters are allowed.
