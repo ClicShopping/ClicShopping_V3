@@ -30,13 +30,14 @@
 
     public function getClass($module)
     {
-
       [$vendor, $app, $code] = explode('\\', $module, 3);
 
       $info = Apps::getInfo($vendor . '\\' . $app);
 
       if (isset($info['modules'][$this->code][$code])) {
         return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$code];
+      } else {
+        return false;
       }
     }
   }

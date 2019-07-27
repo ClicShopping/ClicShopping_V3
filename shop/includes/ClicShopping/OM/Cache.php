@@ -187,7 +187,7 @@
     public static function clearAll()
     {
       if (FileSystem::isWritable(static::getPath())) {
-        foreach (glob(static::getPath() . '*.cache') as $c) {
+        foreach (glob(static::getPath() . '*.cache', GLOB_NOSORT) as $c) {
           unlink($c);
         }
       }

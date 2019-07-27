@@ -99,7 +99,7 @@
 
     public function gc($maxlifetime)
     {
-      foreach (glob($this->path . '/sess_*') as $file) {
+      foreach (glob($this->path . '/sess_*', GLOB_NOSORT) as $file) {
         if (filemtime($file) + $maxlifetime < time()) {
           unlink($file);
         }

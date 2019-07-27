@@ -38,7 +38,6 @@
     }
 
     public function execute() {
-      $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -53,41 +52,6 @@
         $form = HTML::form('order', CLICSHOPPING::link(null, 'Checkout&Success&action=update'), 'post');
         $endform = '</form>';
 
-/*
-        $QglobalNotifications = $CLICSHOPPING_Db->prepare('select global_product_notifications
-                                                    from :table_customers_info
-                                                    where customers_info_id = :customers_info_id
-                                                  ');
-        $QglobalNotifications->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID() );
-
-        $QglobalNotifications->execute();
-
-        if ($QglobalNotifications->valueInt('global_product_notifications') != 1) {
-          if (isset($_GET['action']) && ($_GET['action'] == 'update')) {
-              if ( isset($_POST['notify']) && is_array($_POST['notify']) && !empty($_POST['notify']) ) {
-                $notify = array_unique($_POST['notify']);
-
-                foreach ( $notify as $n ) {
-                  if ( is_numeric($n) && ($n > 0) ) {
-                   $Qcheck = $CLICSHOPPING_Db->get('products_notifications', 'products_id', ['products_id' => (int)$n,
-                                                                                       'customers_id' => (int)$CLICSHOPPING_Customer->getID()],
-                                                                                       null,
-                                                                                       1
-                                           );
-
-                     if ( $Qcheck->fetch() === false ) {
-                       $CLICSHOPPING_Db->save('products_notifications', ['products_id' => (int)$n,
-                                                                  'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
-                                                                  'date_added' => 'now()'
-                                                                 ]
-                                      );
-
-                     }
-                  }
-                }
-              }
-            }
-*/
 
           $products_displayed = [];
 
@@ -129,7 +93,6 @@
             $notification .= '<!-- Product notification end -->' . "\n";
 
             $CLICSHOPPING_Template->addBlock($notification, $this->group);
-//          }
         }
       }
 

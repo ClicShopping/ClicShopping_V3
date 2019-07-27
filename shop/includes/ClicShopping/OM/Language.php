@@ -535,6 +535,8 @@
         $_SESSION['language'] = $this->get('code');
 
         return $_SESSION['language'];
+      } else {
+        return false;
       }
     }
 
@@ -667,7 +669,6 @@
           'image' => $Qlanguages->value('image'),
           'directory' => $Qlanguages->value('directory')
         ];
-
       }
 
       return $languages_array;

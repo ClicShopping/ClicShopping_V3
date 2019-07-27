@@ -30,7 +30,7 @@
 
       if (is_array($xml)) {
         if (count($xml) == 0) {
-          return (string)$x; // for CDATA
+          return (string)$x->__toString(); // for CDATA
         }
 
         foreach ($xml as $key => $value) {

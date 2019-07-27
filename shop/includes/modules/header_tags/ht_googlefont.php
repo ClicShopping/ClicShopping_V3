@@ -43,7 +43,6 @@
       $CLICSHOPPING_Template->addBlock($google . "\n", $this->group);
     }
 
-
     public function isEnabled()
     {
       return $this->enabled;

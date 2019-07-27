@@ -43,6 +43,8 @@
 
       if (isset($info['modules'][$this->code][$group][$code])) {
         return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$group][$code];
+      } else {
+        return false;
       }
     }
 

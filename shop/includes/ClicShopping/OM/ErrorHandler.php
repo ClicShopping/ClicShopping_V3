@@ -24,7 +24,9 @@
 
       if (FileSystem::isWritable(static::getDirectory(), true)) {
         if (!is_dir(static::getDirectory())) {
-          mkdir(static::getDirectory(), 0777, true);
+          if (!mkdir($concurrentDirectory = static::getDirectory(), 0777, true) && !is_dir($concurrentDirectory)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+          }
         }
       }
 

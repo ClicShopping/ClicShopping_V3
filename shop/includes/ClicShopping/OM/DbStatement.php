@@ -288,6 +288,8 @@
             return $this->result[$column];
           }
       }
+
+      return false;
     }
 
     /**
@@ -391,6 +393,8 @@
     {
       if (isset($this->page_set_total_rows)) {
         return $this->page_set_total_rows;
+      } else {
+        return 0;
       }
     }
 

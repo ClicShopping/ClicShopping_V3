@@ -38,6 +38,8 @@
 
       if (isset($info['modules'][$this->code][$code])) {
         return $this->ns . $vendor . '\\' . $app . '\\' . $info['modules'][$this->code][$code];
+      } else {
+        return false;
       }
     }
   }

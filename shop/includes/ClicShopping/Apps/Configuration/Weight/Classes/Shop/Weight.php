@@ -108,7 +108,11 @@
         if ($unit_from == $unit_to) {
           $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
         } else {
-          $convert = number_format($value * $this->weight_classes[(int)$unit_from][(int)$unit_to], $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
+          if ($unit_from !== false && $unit_to !== false && $value !== false) {
+            $convert = number_format($value * $this->weight_classes[(int)$unit_from][(int)$unit_to], $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
+          } else {
+            $convert = false;
+          }
         }
 
         return $convert;

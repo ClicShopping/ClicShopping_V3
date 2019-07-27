@@ -54,7 +54,7 @@
         return '';
       }
 
-      return htmlspecialchars(trim($string));
+      return htmlspecialchars(trim($string), ENT_QUOTES | ENT_HTML5);
     }
 
     /**
@@ -102,7 +102,6 @@
 
     public static function link($url, $element, $parameters = null)
     {
-
       return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }
 
@@ -586,12 +585,12 @@
      *
      * @return string session_name(), session_name()
      */
-    public static function hideSessionId()
+    public static function hideSessionId(string $session_started, string $SID)
     {
-      global $session_started, $SID;
-
       if (($session_started === true) && (!empty($SID) || !is_null($SID))) {
         return static::hiddenField(session_name(), session_name());
+      } else {
+        return false;
       }
     }
 

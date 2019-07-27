@@ -159,7 +159,7 @@
 
         if (!is_file($language_dir . $path_name)) {
           if (!is_dir($language_dir . $path_to_file)) {
-            if (!mkdir($language_dir . $path_to_file, 0777, true)) {
+            if (!mkdir($concurrentDirectory = $language_dir . $path_to_file, 0777, true) && !is_dir($concurrentDirectory)) {
               $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_create', ['pathname' => $language_dir . $path_to_file]), 'error');
             }
           }

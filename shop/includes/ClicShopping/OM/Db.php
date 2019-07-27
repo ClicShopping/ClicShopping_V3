@@ -376,8 +376,6 @@
           return $this->exec($statement);
         }
       }
-
-      return false;
     }
 
     /**

@@ -251,7 +251,10 @@
 // create directory for image resample
       if (!empty($new_dir_products_image) && !is_dir($new_dir_products_image)) {
 // depend server configuration
-        mkdir($root_images_dir . $new_dir_products_image, 0755, true);
+        if (!mkdir($concurrentDirectory = $root_images_dir . $new_dir_products_image, 0755, true) && !is_dir($concurrentDirectory)) {
+          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+
         chmod($root_images_dir . $new_dir_products_image, 0755);
       }
 
@@ -410,7 +413,10 @@
 
       if (!empty($new_dir) && !is_dir($new_dir)) {
 // depend server configuration
-        mkdir($root_images_dir . $new_dir, 0755, true);
+        if (!mkdir($concurrentDirectory = $root_images_dir . $new_dir, 0755, true) && !is_dir($concurrentDirectory)) {
+          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+
         chmod($root_images_dir . $new_dir, 0755);
         $separator = '/';
       }
