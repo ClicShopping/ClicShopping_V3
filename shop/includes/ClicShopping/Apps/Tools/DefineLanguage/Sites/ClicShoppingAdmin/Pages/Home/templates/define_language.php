@@ -11,6 +11,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\FileSystem;
 
   $CLICSHOPPING_DefineLanguage = Registry::get('DefineLanguage');
   $CLICSHOPPING_Language = Registry::get('Language');
@@ -26,6 +27,13 @@
 
   if ($CLICSHOPPING_MessageStack->exists('define_language')) {
     echo $CLICSHOPPING_MessageStack->get('define_language');
+  }
+
+  if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathLanguage())) {
+?>
+    <div class="alert alert-warning"
+         role="alert"><?php echo $CLICSHOPPING_DefineLanguage->getDef('error_language_directory_not_writeable'); ?></div>
+<?php
   }
 ?>
 <!-- body //-->

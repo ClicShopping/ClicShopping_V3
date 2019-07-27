@@ -70,3 +70,5 @@ text_search = Search
 image_edit = Edit
 image_filter = Filter
 
+error_language_directory_not_writeable = The language directory is not writeable
+

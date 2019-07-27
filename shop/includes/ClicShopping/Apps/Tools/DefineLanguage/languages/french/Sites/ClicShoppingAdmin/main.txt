@@ -68,3 +68,5 @@ text_search = Rechercher
 
 image_edit = Editer
 image_filter = Filtrer
+
+error_language_directory_not_writeable = Le répertoire de langue n'est pas en mode écriture

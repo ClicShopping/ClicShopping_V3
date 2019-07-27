@@ -109,6 +109,16 @@
     }
 
     /**
+     * Verify if the language direcotry exist in shop
+     * @return string
+     */
+
+    public function getDirectoryPathLanguage(): string
+    {
+      return CLICSHOPPING::getConfig('dir_root', 'Shop') . static::getDirectoryShopSources() . '/languages/';
+    }
+
+    /**
      * get the catalog modules directory
      *
      * @param string $language_directory ,directory of the language
