@@ -65,8 +65,8 @@
     } else {
       $CLICSHOPPING_Db->save('administrators', ['user_name' => $_POST['CFG_ADMINISTRATOR_USERNAME'],
                                                'user_password' => Hash::encrypt(trim($_POST['CFG_ADMINISTRATOR_PASSWORD'])),
-                                               'name' => $_POST['CFG_ADMINISTRATOR_NAME'],
-                                               'first_name' => $_POST['CFG_ADMINISTRATOR_FIRSTNAME'],
+                                               'name' => HTML::sanitize($_POST['CFG_ADMINISTRATOR_NAME']),
+                                               'first_name' => HTMl::sanitize($_POST['CFG_ADMINISTRATOR_FIRSTNAME']),
                                                'access' => '1'
                                               ]
                            );
