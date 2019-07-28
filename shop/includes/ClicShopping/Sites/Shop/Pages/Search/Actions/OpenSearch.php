@@ -22,8 +22,6 @@
 
     public function execute()
     {
-      global $output;
-
       if (!defined('MODULE_HEADER_TAGS_OPENSEARCH_STATUS') || (MODULE_HEADER_TAGS_OPENSEARCH_STATUS != 'True')) {
         exit;
       }
@@ -66,7 +64,6 @@
      ';
 
 // templates
-      $this->page->setFile('open_search.php');
-
+      return $output;
     }
   }
