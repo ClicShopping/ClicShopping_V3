@@ -75,11 +75,15 @@
 
   if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work')) {
     if (!is_dir(Cache::getPath())) {
-      mkdir(Cache::getPath(), 0777);
+      if (!mkdir($concurrentDirectory = Cache::getPath(), 0777) && !is_dir($concurrentDirectory)) {
+        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+      }
     }
 
     if (!is_dir(CLICSHOPPING::BASE_DIR . 'Work/Session')) {
-        mkdir(CLICSHOPPING::BASE_DIR . 'Work/Session', 0777);
+      if (!mkdir($concurrentDirectory = CLICSHOPPING::BASE_DIR . 'Work/Session', 0777) && !is_dir($concurrentDirectory)) {
+        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+      }
     }
   }
 
@@ -144,7 +148,7 @@ EOD;
 ENDCFG;
     // last empty line needed
 
-    file_put_contents(CLICSHOPPING::BASE_DIR . 'Conf/global.php', $file_contents);
+    file_put_contents(CLICSHOPPING::BASE_DIR . 'Conf/global.php', $file_contents, LOCK_EX);
 
     @chmod(CLICSHOPPING::BASE_DIR . 'Conf/global.php', 0444);
 
@@ -162,7 +166,7 @@ EOD;
 ENDCFG;
   // last empty line needed
 
-  file_put_contents(CLICSHOPPING::BASE_DIR . 'Sites/Shop/site_conf.php', $file_contents);
+  file_put_contents(CLICSHOPPING::BASE_DIR . 'Sites/Shop/site_conf.php', $file_contents, LOCK_EX);
 
   @chmod(CLICSHOPPING::BASE_DIR . 'Sites/Shop/site_conf.php', 0444);
 
@@ -175,7 +179,7 @@ define('DIR_WS_CATALOG_IMAGES', '{$http_catalog}sources/images/'); // URL to fil
 ENDCFG;
   // last empty line needed
 
-  file_put_contents(CLICSHOPPING::BASE_DIR . 'Conf/ElFinderConfig.php', $file_contents);
+  file_put_contents(CLICSHOPPING::BASE_DIR . 'Conf/ElFinderConfig.php', $file_contents, LOCK_EX);
 
   @chmod(CLICSHOPPING::BASE_DIR . 'Conf/ElFinderConfig.php', 0444);
 
@@ -197,7 +201,7 @@ EOD;
 ENDCFG;
 // last empty line needed
 
-  file_put_contents(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', $file_contents);
+  file_put_contents(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', $file_contents, LOCK_EX);
 
   @chmod(CLICSHOPPING::BASE_DIR . 'Sites/ClicShoppingAdmin/site_conf.php', 0444);
   $modules = ''; // must be under array
