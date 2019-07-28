@@ -27,7 +27,15 @@
       return $pdf;
     }
 
-    public function roundedRect($x, $y, $w, $h, $r, $style = '')
+    /**
+     * @param $x
+     * @param $y
+     * @param $w
+     * @param $h
+     * @param $r
+     * @param string $style
+     */
+    public function roundedRect(float $x, float $y, float $w, float $h, float $r, string $style = '')
     {
       $k = $this->k;
       $hp = $this->h;
@@ -61,13 +69,24 @@
       $this->_out($op);
     }
 
-    public function _Arc($x1, $y1, $x2, $y2, $x3, $y3)
+    /**
+     * @param $x1
+     * @param $y1
+     * @param $x2
+     * @param $y2
+     * @param $x3
+     * @param $y3
+     */
+    public function _Arc(float $x1, float $y1, float $x2, float $y2, float $x3, float $y3)
     {
       $h = $this->h;
       $this->_out(sprintf('%.2f %.2f %.2f %.2f %.2f %.2f c ', $x1 * $this->k, ($h - $y1) * $this->k,
         $x2 * $this->k, ($h - $y2) * $this->k, $x3 * $this->k, ($h - $y3) * $this->k));
     }
 
+    /**
+     *  invoice header
+     */
     public function Header()
     {
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -115,6 +134,9 @@
 
     }
 
+    /**
+     *  footer invoice
+     */
     public function Footer()
     {
 // Remerciement
@@ -161,12 +183,11 @@
      * Catalog
      ****************************************************/
 
-
-// Création entête du tableau des produits pour les factures
-    /*
+    /**
      * output_table_heading
+     * @param float $Y_Fields_Name_position
      */
-    public static function outputTableHeadingPdf($Y_Fields_Name_position)
+    public static function outputTableHeadingPdf(float $Y_Fields_Name_position)
     {
       $pdf = static::getGlobalPdf();
 
@@ -214,8 +235,11 @@
       $pdf->Ln();
     }
 
-// output_table_suppliers
-    public function outputTableSuppliers($Y_Fields_Name_position)
+    /**
+     * output_table_suppliers
+     * @param float $Y_Fields_Name_position
+     */
+    public function outputTableSuppliers(float $Y_Fields_Name_position)
     {
       $pdf = $this->pdf;
 
@@ -236,9 +260,11 @@
       $pdf->Ln();
     }
 
-//output_table_customers_suppliers
-//
-    public static function outputTableCustomersSuppliers($Y_Fields_Name_position)
+    /**
+     * output_table_customers_suppliers
+     * @param float $Y_Fields_Name_position
+     */
+    public static function outputTableCustomersSuppliers(float $Y_Fields_Name_position)
     {
       $pdf = static::getGlobalPdf();
 

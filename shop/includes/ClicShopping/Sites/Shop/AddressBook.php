@@ -24,7 +24,7 @@
     * @return array $Qaddresses
     * public
     */
-    public static function getAddressCustomer($id = null, $address_book_id)
+    public static function getAddressCustomer($id = null, int $address_book_id) :array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -70,7 +70,7 @@
      * @return mixed
      */
 
-    public static function addressLabel($customers_id, $address_id = 1, $html = false, $boln = '', $eoln = "\n")
+    public static function addressLabel(int $customers_id, int $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n") :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Address = Registry::get('Address');
@@ -108,7 +108,7 @@
      * Controle autorisation au client de modifier son adresse par defaut
      */
 
-    public static function countCustomersModifyAddressDefault($id = '', $check_session = true)
+    public static function countCustomersModifyAddressDefault($id = '', bool $check_session = true) :string
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -148,7 +148,7 @@
      * Controle autorisation d'ajouter une adresse selon la fiche client
      */
 
-    public static function countCustomersAddAddress($id = null, $check_session = true)
+    public static function countCustomersAddAddress($id = null, bool $check_session = true) :?string
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -186,7 +186,7 @@
      * Controle autorisation au client B2B de modifier ses informations sur la societe
      */
 
-    public static function countCustomersModifyCompany($id = '', $check_session = true)
+    public static function countCustomersModifyCompany($id = '', bool $check_session = true) :string
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -210,7 +210,7 @@
                                                             from :table_customers
                                                             where customers_id = :customers_id
                                                           ');
-      $QcustomersModifyCompany->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
+      $QcustomersModifyCompany->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
 
       $QcustomersModifyCompany->execute();
       $customers_modify_company = $QcustomersModifyCompany->fetch();
@@ -226,7 +226,7 @@
      * @return boolean
      */
 
-    public static function checkEntry($id)
+    public static function checkEntry(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -252,7 +252,7 @@
      * @return boolean
      */
 
-    public static function deleteEntry($id)
+    public static function deleteEntry(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -275,7 +275,7 @@
      * @param string $addresses ['total'], number of the address
      * @access public
      */
-    public static function countCustomerAddressBookEntries($id = '', $check_session = true)
+    public static function countCustomerAddressBookEntries($id = '', bool $check_session = true)
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -407,7 +407,7 @@
      * @return array
      */
 
-    public static function getEntry($id)
+    public static function getEntry(int $id) :array
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -444,7 +444,7 @@
      * @return integer
      */
 
-    public static function numberOfEntries($total_entries)
+    public static function numberOfEntries($total_entries) :int
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -474,7 +474,7 @@
      * @return boolean
      */
 
-    public static function setPrimaryAddress($id)
+    public static function setPrimaryAddress(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');

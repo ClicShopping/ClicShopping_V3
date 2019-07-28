@@ -56,7 +56,6 @@
         CLICSHOPPING::redirect(null, 'Account&Main');
       }
 
-// Recuperations du numero de client
       $QordersInfo = $CLICSHOPPING_Db->prepare('select orders_id,
                                                  customers_id
                                           from :table_orders
@@ -64,8 +63,6 @@
                                          ');
       $QordersInfo->bindInt(':orders_id', (int)$oID);
       $QordersInfo->execute();
-
-// Recuperations de la date de la facture (Voir aussi french.php & invoice.php)
 
       $QordersHistory = $CLICSHOPPING_Db->prepare('select orders_status_id,
                                                          date_added,

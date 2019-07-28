@@ -24,7 +24,7 @@
      * @return array $zones_array, zone of the country
      * @access public
      */
-    public static function getCountryZones($country_id)
+    public static function getCountryZones(int $country_id) :array
     {
       $zones_array = parent::getCountryZones($country_id);
 
@@ -87,7 +87,7 @@
      * @access public
      *
      */
-    public static function getAddressFormatRadio($address_format_id)
+    public static function getAddressFormatRadio(int $address_format_id)
     {
       return parent::addressFormat($address_format_id, AddressAdmin::setAddressFormatArrayAdmin(), true, '', '<br />');
     }

@@ -60,7 +60,7 @@
      * @access public
      */
 
-    public function add($title, $link = null)
+    public function add(string $title, $link = null)
     {
       if (!empty($link)) {
         $title = '<span class="BreadcrumbCustomize" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="' . HTML::outputProtected($link) . '" itemprop="item"><span itemprop="name">' . $title . '</span></a></span>';
@@ -118,7 +118,7 @@
      * @return string
      */
 
-    public function setSeparator($separator)
+    public function setSeparator(string $separator)
     {
       $this->_separator = $separator;
     }

@@ -118,7 +118,7 @@
      * @return int
      */
 
-    public static function getAddressFormatId($country_id)
+    public static function getAddressFormatId(int $country_id) :int
     {
 
       $format_id = 1;
@@ -141,7 +141,7 @@
      * @return string
      */
 
-    public static function getZoneCode($country_id, $zone_id, $default_zone)
+    public static function getZoneCode(int $country_id, int $zone_id, string $default_zone) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -173,7 +173,7 @@
      * @return string
      */
 
-    public static function getZoneName($country_id, $zone_id, $default_zone)
+    public static function getZoneName(int $country_id, int $zone_id, string $default_zone) :string
     {
       $Qzone = Registry::get('Db')->get('zones', 'zone_name', ['zone_country_id' => (int)$country_id,
           'zone_id' => (int)$zone_id,
@@ -195,7 +195,7 @@
      * @access public
      */
 
-    public static function getCountries($countries_id = null, $with_iso_codes = false)
+    public static function getCountries($countries_id = null, bool $with_iso_codes = false) :array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -211,7 +211,7 @@
                                                    and status = 1
                                                    order by countries_name
                                                   ');
-          $Qcountries->bindInt(':countries_id', (int)$countries_id);
+          $Qcountries->bindInt(':countries_id', $countries_id);
           $Qcountries->execute();
 
           $countries_array = $Qcountries->toArray();
@@ -222,7 +222,7 @@
                                                    where countries_id = :countries_id
                                                    and status = 1
                                                   ');
-          $Qcountries->bindInt(':countries_id', (int)$countries_id);
+          $Qcountries->bindInt(':countries_id', $countries_id);
           $Qcountries->execute();
 
           $countries_array = $Qcountries->toArray();
@@ -245,7 +245,7 @@
      * @param $country_id
      * @access public
      */
-    public static function getCountryName($country_id)
+    public static function getCountryName(int $country_id) :string
     {
 
       $country_array = self::getCountries($country_id);
@@ -259,7 +259,7 @@
      * @param string $countries_id
      * @access public
      */
-    public function getCountriesWithIsoCodes($countries_id)
+    public function getCountriesWithIsoCodes(int $countries_id)
     {
       return static::getCountries($countries_id, true);
     }
@@ -272,7 +272,7 @@
      * @return array
      */
 
-    public static function getZones($id = null)
+    public static function getZones($id = null) :array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -325,7 +325,7 @@
      * @access public
      * Shop and Admin
      */
-    public static function getCountryZones($country_id)
+    public static function getCountryZones(int $country_id) :array
     {
 
       $zones_array = [];
@@ -358,7 +358,7 @@
      * @access public
      * Shop and Admin
      */
-    public static function getPrepareCountryZonesPullDown($country_id = '')
+    public static function getPrepareCountryZonesPullDown($country_id = '') :array
     {
 
       $zones = self::getCountryZones($country_id);
