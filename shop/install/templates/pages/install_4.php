@@ -213,8 +213,8 @@ if (!isset($_POST['DB_SKIP_IMPORT'])) {
 
       foreach ($m['modules'] as $module) {
           $file = $module['file'];
-          $class = isset($module['class']) ? $module['class'] : basename($file, '.php');
-          $code = isset($module['code']) ? $module['code'] : $file;
+          $class = $module['class'] ?? basename($file, '.php');
+          $code = $module['code'] ?? $file;
 
           include_once($m['dir'] . $file);
 
