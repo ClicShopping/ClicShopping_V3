@@ -89,7 +89,6 @@
             require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/product_notifications'));
             $notification .= ob_get_clean();
 
-
             $notification .= '<!-- Product notification end -->' . "\n";
 
             $CLICSHOPPING_Template->addBlock($notification, $this->group);

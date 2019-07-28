@@ -41,8 +41,8 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      define('FPDF_FONTPATH', 'ext/fpdf/font/');
-      require_once('ext/fpdf/fpdf.php');
+      define('FPDF_FONTPATH', CLICSHOPPING::BASE_DIR . 'External/vendor//setasign/fpdf/font/');
+      require_once(CLICSHOPPING::BASE_DIR . 'External/vendor//setasign/fpdf/fpdf.php');
 
       require_once('includes/ClicShopping/Sites/Common/pdfInvoice.php');
       $pdf = new \pdfInvoice();

@@ -15,6 +15,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Hash;
+  use ClicShopping\OM\Is;
 
   use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
@@ -24,8 +25,6 @@
 
     public function execute()
     {
-      global $password_reset_initiated;
-
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Mail = Registry::get('Mail');
@@ -33,11 +32,10 @@
 
       if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $password_reset_initiated = false;
-        $error = false;
 
         $email_address = HTML::sanitize($_POST['email_address']);
 
-        if (!empty($email_address) && $error === false) {
+        if (Is::EmailAddress($email_address) && !empty($email_address)) {
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id,
                                                       customers_firstname,
@@ -98,7 +96,7 @@
 
               $CLICSHOPPING_Hooks->call('PasswordForgotten', 'Process');
 
-              CLICSHOPPING::redirect(null, 'Account&PasswordForgotten&Success');
+              CLICSHOPPING::redirect(null, 'Account&PasswordForgotten&Success&reset=' . $password_reset_initiated);
 
             } else {
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error', 'password_forgotten');

@@ -18,7 +18,7 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  if ($password_reset_initiated === true) {
+  if (isset($_GET['Success']) && $_GET['reset'] == 1 && isset($_GET['PasswordForgotten'])) {
 ?>
 <section class="password_forgotten" id="password_forgotten">
   <div class="contentContainer">
@@ -38,6 +38,7 @@
     </div>
   </div>
 </section>
+
 <?php
   } else {
     CLICSHOPPING::redirect();
