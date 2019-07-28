@@ -73,19 +73,37 @@
     }
   }
 
-  if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work')) {
-    if (!is_dir(Cache::getPath())) {
-      if (!mkdir($concurrentDirectory = Cache::getPath(), 0777) && !is_dir($concurrentDirectory)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+    if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work')) {
+      if (!is_dir(Cache::getPath())) {
+        if (!mkdir($concurrentDirectory = Cache::getPath(), 0777) && !is_dir($concurrentDirectory)) {
+          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
       }
     }
 
-    if (!is_dir(CLICSHOPPING::BASE_DIR . 'Work/Session')) {
-      if (!mkdir($concurrentDirectory = CLICSHOPPING::BASE_DIR . 'Work/Session', 0777) && !is_dir($concurrentDirectory)) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+    if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Temp')) {
+      if (!is_dir(CLICSHOPPING::BASE_DIR . 'Work/Temp')) {
+        if (!mkdir($concurrentDirectory = CLICSHOPPING::BASE_DIR . 'Work/Temp', 0777) && !is_dir($concurrentDirectory)) {
+          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
       }
     }
-  }
+
+    if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Log')) {
+      if (!is_dir(CLICSHOPPING::BASE_DIR . 'Work/Log')) {
+        if (!mkdir($concurrentDirectory = CLICSHOPPING::BASE_DIR . 'Work/Log', 0777) && !is_dir($concurrentDirectory)) {
+          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+      }
+    }
+
+    if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Session')) {
+      if (!is_dir(CLICSHOPPING::BASE_DIR . 'Work/Session')) {
+        if (!mkdir($concurrentDirectory = CLICSHOPPING::BASE_DIR . 'Work/Session', 0777) && !is_dir($concurrentDirectory)) {
+          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+      }
+    }
 
   foreach (glob(Cache::getPath() . '*.cache') as $c) {
     unlink($c);
