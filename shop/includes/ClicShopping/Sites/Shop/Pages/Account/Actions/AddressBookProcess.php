@@ -13,16 +13,12 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
-  use ClicShopping\Sites\Shop\AddressBook;
 
   class AddressBookProcess extends \ClicShopping\OM\PagesActionsAbstract
   {
 
     public function execute()
     {
-      global $exists;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
@@ -36,32 +32,7 @@
         $CLICSHOPPING_NavigationHistory->setSnapshot();
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
-
-      if (isset($_GET['newcustomer'])) {
-        $new_customer = HTML::sanitize($_GET['newcustomer']);
-      } else {
-        $new_customer = null;
-      }
-
-      if ($new_customer == 1) {
-        if (!empty($CLICSHOPPING_Customer->getDefaultAddressID())) {
-          $_GET['edit'] = $CLICSHOPPING_Customer->getDefaultAddressID();
-          $entry = AddressBook::getEntry((int)$_GET['edit']);
-        }
-      } else {
-        if (isset($_GET['edit'])) {
-          $entry = AddressBook::getEntry((int)$_GET['edit']);
-        } else {
-          $entry = false;
-        }
-      }
-
-      $exists = false;
-
-      if ($entry !== false) {
-        $exists = true;
-      }
-
+      
 // templates
       $this->page->setFile('address_book_process.php');
 //Content

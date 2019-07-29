@@ -22,7 +22,7 @@
 
     public function execute()
     {
-      global $exists, $entry_state_has_zones, $process, $country;
+      global $entry_state_has_zones, $process, $country;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -30,7 +30,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
 // error checking when updating or adding an entry
-      if ($exists === false) {
+      if (AddressBook::checkNewCustomer() === false) {
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'addressbook');
 
         CLICSHOPPING::redirect(null, 'Account&AddressBook');

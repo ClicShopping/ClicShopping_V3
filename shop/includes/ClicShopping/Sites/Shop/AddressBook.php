@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Sites\Shop;
 
   use ClicShopping\OM\Registry;
@@ -407,7 +406,7 @@
      * @return array
      */
 
-    public static function getEntry(int $id) :array
+    public static function getEntry(int $id)
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -492,5 +491,40 @@
       }
 
       return false;
+    }
+
+    /**
+     * Check if it's new customer or not
+     * @return bool
+     */
+    public static function checkNewCustomer() :bool
+    {
+      $CLICSHOPPING_Customer = Registry::get('Customer');
+
+      if (isset($_GET['newcustomer'])) {
+        $new_customer = HTML::sanitize($_GET['newcustomer']);
+      } else {
+        $new_customer = null;
+      }
+
+      if ($new_customer == 1) {
+        if (!empty($CLICSHOPPING_Customer->getDefaultAddressID())) {
+          $entry = AddressBook::getEntry($CLICSHOPPING_Customer->getDefaultAddressID());
+        }
+      } else {
+        if (isset($_GET['edit'])) {
+          $entry = AddressBook::getEntry((int)$_GET['edit']);
+        } else {
+          $entry = false;
+        }
+      }
+
+      $exists = false;
+
+      if ($entry !== false) {
+        $exists = true;
+      }
+
+      return $exists;
     }
   }
