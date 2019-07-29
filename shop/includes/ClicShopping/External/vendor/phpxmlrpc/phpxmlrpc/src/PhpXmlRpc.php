@@ -61,25 +61,24 @@ class PhpXmlRpc
         'server_decompress_fail' => 'Received from client invalid compressed HTTP request',
     );
 
-    // The charset encoding used by the server for received requests and
-    // by the client for received responses when received charset cannot be determined
-    // and mbstring extension is not enabled
+    // The charset encoding used by the server for received requests and by the client for received responses when
+    // received charset cannot be determined and mbstring extension is not enabled
     public static $xmlrpc_defencoding = "UTF-8";
 
-    // The list of encodings used by the server for requests and by the client for responses
-    // to detect the charset of the received payload when
+    // The list of encodings used by the server for requests and by the client for responses to detect the charset of
+    // the received payload when
     // - the charset cannot be determined by looking at http headers, xml declaration or BOM
     // - mbstring extension is enabled
     public static $xmlrpc_detectencodings = array();
 
     // The encoding used internally by PHP.
-    // String values received as xml will be converted to this, and php strings will be converted to xml
-    // as if having been coded with this.
+    // String values received as xml will be converted to this, and php strings will be converted to xml as if
+    // having been coded with this.
     // Valid also when defining names of xmlrpc methods
     public static $xmlrpc_internalencoding = "UTF-8";
 
     public static $xmlrpcName = "XML-RPC for PHP";
-    public static $xmlrpcVersion = "4.3.2";
+    public static $xmlrpcVersion = "4.4.0";
 
     // let user errors start at 800
     public static $xmlrpcerruser = 800;
@@ -105,8 +104,8 @@ class PhpXmlRpc
             $GLOBALS[$name] = $value;
         }
 
-        // NB: all the variables exported into the global namespace below here do NOT guarantee 100%
-        // compatibility, as they are NOT reimported back during calls to importGlobals()
+        // NB: all the variables exported into the global namespace below here do NOT guarantee 100% compatibility,
+        // as they are NOT reimported back during calls to importGlobals()
 
         $reflection = new \ReflectionClass('PhpXmlRpc\Value');
         foreach ($reflection->getStaticProperties() as $name => $value) {

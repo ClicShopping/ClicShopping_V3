@@ -2,6 +2,7 @@
 
 namespace PhpXmlRpc;
 
+use PhpXmlRpc\Helper\Logger;
 use PhpXmlRpc\Helper\XMLParser;
 
 /**
@@ -15,20 +16,19 @@ class Encoder
      *
      * Works with xmlrpc requests objects as input, too.
      *
-     * Given proper options parameter, can rebuild generic php object instances
-     * (provided those have been encoded to xmlrpc format using a corresponding
-     * option in php_xmlrpc_encode())
+     * Given proper options parameter, can rebuild generic php object instances (provided those have been encoded to
+     * xmlrpc format using a corresponding option in php_xmlrpc_encode())
      * PLEASE NOTE that rebuilding php objects involves calling their constructor function.
-     * This means that the remote communication end can decide which php code will
-     * get executed on your server, leaving the door possibly open to 'php-injection'
-     * style of attacks (provided you have some classes defined on your server that
-     * might wreak havoc if instances are built outside an appropriate context).
+     * This means that the remote communication end can decide which php code will get executed on your server, leaving
+     * the door possibly open to 'php-injection' style of attacks (provided you have some classes defined on your server
+     * that might wreak havoc if instances are built outside an appropriate context).
      * Make sure you trust the remote server/client before eanbling this!
      *
      * @author Dan Libby (dan@libby.com)
      *
      * @param Value|Request $xmlrpcVal
-     * @param array $options if 'decode_php_objs' is set in the options array, xmlrpc structs can be decoded into php objects; if 'dates_as_objects' is set xmlrpc datetimes are decoded as php DateTime objects (standard is
+     * @param array $options if 'decode_php_objs' is set in the options array, xmlrpc structs can be decoded into php
+     *                       objects; if 'dates_as_objects' is set xmlrpc datetimes are decoded as php DateTime objects
      *
      * @return mixed
      */
@@ -56,9 +56,8 @@ class Encoder
                     }
                 }
                 if (in_array('dates_as_objects', $options) && $xmlrpcVal->scalartyp() == 'dateTime.iso8601') {
-                    // we return a Datetime object instead of a string
-                    // since now the constructor of xmlrpc value accepts safely strings, ints and datetimes,
-                    // we cater to all 3 cases here
+                    // we return a Datetime object instead of a string since now the constructor of xmlrpc value accepts
+                    // safely strings, ints and datetimes, we cater to all 3 cases here
                     $out = $xmlrpcVal->scalarval();
                     if (is_string($out)) {
                         $out = strtotime($out);
@@ -84,8 +83,8 @@ class Encoder
             case 'struct':
                 // If user said so, try to rebuild php objects for specific struct vals.
                 /// @todo should we raise a warning for class not found?
-                // shall we check for proper subclass of xmlrpc value instead of
-                // presence of _php_class to detect what we can do?
+                // shall we check for proper subclass of xmlrpc value instead of presence of _php_class to detect
+                // what we can do?
                 if (in_array('decode_php_objs', $options) && $xmlrpcVal->_php_class != ''
                     && class_exists($xmlrpcVal->_php_class)
                 ) {
@@ -121,9 +120,8 @@ class Encoder
      * Feature creep -- could support more types via optional type argument
      * (string => datetime support has been added, ??? => base64 not yet)
      *
-     * If given a proper options parameter, php object instances will be encoded
-     * into 'special' xmlrpc values, that can later be decoded into php objects
-     * by calling php_xmlrpc_decode() with a corresponding option
+     * If given a proper options parameter, php object instances will be encoded into 'special' xmlrpc values, that can
+     * later be decoded into php objects by calling php_xmlrpc_decode() with a corresponding option
      *
      * @author Dan Libby (dan@libby.com)
      *
@@ -149,15 +147,13 @@ class Encoder
             case 'double':
                 $xmlrpcVal = new Value($phpVal, Value::$xmlrpcDouble);
                 break;
-            // <G_Giunta_2001-02-29>
             // Add support for encoding/decoding of booleans, since they are supported in PHP
             case 'boolean':
                 $xmlrpcVal = new Value($phpVal, Value::$xmlrpcBoolean);
                 break;
-            // </G_Giunta_2001-02-29>
             case 'array':
-                // PHP arrays can be encoded to either xmlrpc structs or arrays,
-                // depending on whether they are hashes or plain 0..n integer indexed
+                // PHP arrays can be encoded to either xmlrpc structs or arrays, depending on whether they are hashes
+                // or plain 0..n integer indexed
                 // A shorter one-liner would be
                 // $tmp = array_diff(array_keys($phpVal), range(0, count($phpVal)-1));
                 // but execution time skyrockets!
@@ -226,7 +222,8 @@ class Encoder
      * Convert the xml representation of a method response, method request or single
      * xmlrpc value into the appropriate object (a.k.a. deserialize).
      *
-     * Q: is this a good name for this method? It does something quite different from 'decode' after all (returning objects vs returns plain php values)...
+     * Q: is this a good name for this method? It does something quite different from 'decode' after all
+     * (returning objects vs returns plain php values)...
      *
      * @param string $xmlVal
      * @param array $options
@@ -241,8 +238,7 @@ class Encoder
 
             // Since parsing will fail if charset is not specified in the xml prologue,
             // the encoding is not UTF8 and there are non-ascii chars in the text, we try to work round that...
-            // The following code might be better for mb_string enabled installs, but
-            // makes the lib about 200% slower...
+            // The following code might be better for mb_string enabled installs, but makes the lib about 200% slower...
             //if (!is_valid_charset($valEncoding, array('UTF-8'))
             if (!in_array($valEncoding, array('UTF-8', 'US-ASCII')) && !XMLParser::hasEncoding($xmlVal)) {
                 if ($valEncoding == 'ISO-8859-1') {
@@ -251,45 +247,30 @@ class Encoder
                     if (extension_loaded('mbstring')) {
                         $xmlVal = mb_convert_encoding($xmlVal, 'UTF-8', $valEncoding);
                     } else {
-                        error_log('XML-RPC: ' . __METHOD__ . ': invalid charset encoding of xml text: ' . $valEncoding);
+                        Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid charset encoding of xml text: ' . $valEncoding);
                     }
                 }
             }
         }
 
-        $parser = xml_parser_create();
-        xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, true);
-        // What if internal encoding is not in one of the 3 allowed?
-        // we use the broadest one, ie. utf8!
+        // What if internal encoding is not in one of the 3 allowed? We use the broadest one, ie. utf8!
         if (!in_array(PhpXmlRpc::$xmlrpc_internalencoding, array('UTF-8', 'ISO-8859-1', 'US-ASCII'))) {
-            xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
+            $options = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
         } else {
-            xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, PhpXmlRpc::$xmlrpc_internalencoding);
+            $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
         }
 
-        $xmlRpcParser = new XMLParser();
-        xml_set_object($parser, $xmlRpcParser);
+        $xmlRpcParser = new XMLParser($options);
+        $xmlRpcParser->parse($xmlVal, XMLParser::RETURN_XMLRPCVALS, XMLParser::ACCEPT_REQUEST | XMLParser::ACCEPT_RESPONSE | XMLParser::ACCEPT_VALUE);
 
-        xml_set_element_handler($parser, 'xmlrpc_se_any', 'xmlrpc_ee');
-        xml_set_character_data_handler($parser, 'xmlrpc_cd');
-        xml_set_default_handler($parser, 'xmlrpc_dh');
-        if (!xml_parse($parser, $xmlVal, 1)) {
-            $errstr = sprintf('XML error: %s at line %d, column %d',
-                xml_error_string(xml_get_error_code($parser)),
-                xml_get_current_line_number($parser), xml_get_current_column_number($parser));
-            error_log($errstr);
-            xml_parser_free($parser);
-
-            return false;
-        }
-        xml_parser_free($parser);
         if ($xmlRpcParser->_xh['isf'] > 1) {
             // test that $xmlrpc->_xh['value'] is an obj, too???
 
-            error_log($xmlRpcParser->_xh['isf_reason']);
+            Logger::instance()->errorLog($xmlRpcParser->_xh['isf_reason']);
 
             return false;
         }
+
         switch ($xmlRpcParser->_xh['rt']) {
             case 'methodresponse':
                 $v = $xmlRpcParser->_xh['value'];

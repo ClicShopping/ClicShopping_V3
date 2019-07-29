@@ -10,27 +10,34 @@ use PhpXmlRpc\Value;
  */
 class XMLParser
 {
-    // used to store state during parsing
-    // quick explanation of components:
+    const RETURN_XMLRPCVALS = 'xmlrpcvals';
+    const RETURN_PHP = 'phpvals';
+
+    const ACCEPT_REQUEST = 1;
+    const ACCEPT_RESPONSE = 2;
+    const ACCEPT_VALUE = 4;
+
+    // Used to store state during parsing.
+    // Quick explanation of components:
+    //  private:
     //   ac - used to accumulate values
-    //   stack - array with genealogy of xml elements names:
-    //           used to validate nesting of xmlrpc elements
+    //   stack - array with genealogy of xml elements names used to validate nesting of xmlrpc elements
     //   valuestack - array used for parsing arrays and structs
-    //   lv - used to indicate "looking for a value": implements
-    //        the logic to allow values with no types to be strings
-    //   isf - used to indicate a parsing fault (2) or xmlrpc response fault (1)
+    //   lv - used to indicate "looking for a value": implements the logic to allow values with no types to be strings
+    //  public:
+    //   isf - used to indicate an xml parsing fault (3), invalid xmlrpc fault (2) or xmlrpc response fault (1)
     //   isf_reason - used for storing xmlrpc response fault string
     //   method - used to store method name
     //   params - used to store parameters in method calls
     //   pt - used to store the type of each received parameter. Useful if parameters are automatically decoded to php values
-    //   rt  - 'methodcall or 'methodresponse'
+    //   rt  - 'methodcall', 'methodresponse' or 'value'
     public $_xh = array(
         'ac' => '',
         'stack' => array(),
         'valuestack' => array(),
         'isf' => 0,
         'isf_reason' => '',
-        'method' => false, // so we can check later if we got a methodname or not
+        'method' => false,
         'params' => array(),
         'pt' => array(),
         'rt' => '',
@@ -60,27 +67,121 @@ class XMLParser
         'EX:NIL' => array('VALUE'), // only used when extension activated
     );
 
+    /** @var array $parsing_options */
+    protected $parsing_options = array();
+    /** @var int $accept self::ACCEPT_REQUEST | self::ACCEPT_RESPONSE by default */
+    protected $accept = 3;
+    /** @var int $maxChunkLength 4 MB by default. Any value below 10MB should be good */
+    protected $maxChunkLength = 4194304;
+
+    /**
+     * @param array $options passed to the xml parser
+     */
+    public function __construct(array $options = array())
+    {
+        $this->parsing_options = $options;
+    }
+
+    /**
+     * @param string $data
+     * @param string $returnType
+     * @param int $accept a bit-combination of self::ACCEPT_REQUEST, self::ACCEPT_RESPONSE, self::ACCEPT_VALUE
+     * @return string
+     */
+    public function parse($data, $returnType = self::RETURN_XMLRPCVALS, $accept = 3)
+    {
+        $this->_xh = array(
+            'ac' => '',
+            'stack' => array(),
+            'valuestack' => array(),
+            'isf' => 0,
+            'isf_reason' => '',
+            'method' => false, // so we can check later if we got a methodname or not
+            'params' => array(),
+            'pt' => array(),
+            'rt' => '',
+        );
+
+        $len = strlen($data);
+
+        // we test for empty documents here to save on resource allocation and simply the chunked-parsing loop below
+        if ($len == 0) {
+            $this->_xh['isf'] = 3;
+            $this->_xh['isf_reason'] = 'XML error 5: empty document';
+            return;
+        }
+
+        $parser = xml_parser_create();
+
+        foreach ($this->parsing_options as $key => $val) {
+            xml_parser_set_option($parser, $key, $val);
+        }
+        // always set this, in case someone tries to disable it via options...
+        xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 1);
+
+        xml_set_object($parser, $this);
+
+        if ($returnType == self::RETURN_PHP) {
+            xml_set_element_handler($parser, 'xmlrpc_se', 'xmlrpc_ee_fast');
+        } else {
+            xml_set_element_handler($parser, 'xmlrpc_se', 'xmlrpc_ee');
+        }
+
+        xml_set_character_data_handler($parser, 'xmlrpc_cd');
+        xml_set_default_handler($parser, 'xmlrpc_dh');
+
+        $this->accept = $accept;
+
+        // @see ticket #70 - we have to parse big xml docks in chunks to avoid errors
+        for ($offset = 0; $offset < $len; $offset += $this->maxChunkLength) {
+            $chunk = substr($data, $offset, $this->maxChunkLength);
+            // error handling: xml not well formed
+            if (!xml_parse($parser, $chunk, $offset + $this->maxChunkLength >= $len)) {
+                $errCode = xml_get_error_code($parser);
+                $errStr = sprintf('XML error %s: %s at line %d, column %d', $errCode, xml_error_string($errCode),
+                    xml_get_current_line_number($parser), xml_get_current_column_number($parser));
+
+                $this->_xh['isf'] = 3;
+                $this->_xh['isf_reason'] = $errStr;
+                break;
+            }
+        }
+
+        xml_parser_free($parser);
+    }
+
     /**
      * xml parser handler function for opening element tags.
+     * @param resource $parser
+     * @param string $name
+     * @param $attrs
+     * @param bool $acceptSingleVals DEPRECATED use the $accept parameter instead
      */
     public function xmlrpc_se($parser, $name, $attrs, $acceptSingleVals = false)
     {
         // if invalid xmlrpc already detected, skip all processing
         if ($this->_xh['isf'] < 2) {
+
             // check for correct element nesting
-            // top level element can only be of 2 types
-            /// @todo optimization creep: save this check into a bool variable, instead of using count() every time:
-            ///       there is only a single top level element in xml anyway
             if (count($this->_xh['stack']) == 0) {
-                if ($name != 'METHODRESPONSE' && $name != 'METHODCALL' && (
-                        $name != 'VALUE' && !$acceptSingleVals)
-                ) {
+                // top level element can only be of 2 types
+                /// @todo optimization creep: save this check into a bool variable, instead of using count() every time:
+                ///       there is only a single top level element in xml anyway
+                // BC
+                if ($acceptSingleVals === false) {
+                    $accept = $this->accept;
+                } else {
+                    $accept = self::ACCEPT_REQUEST | self::ACCEPT_RESPONSE | self::ACCEPT_VALUE;
+                }
+                if (($name == 'METHODCALL' && ($accept & self::ACCEPT_REQUEST)) ||
+                    ($name == 'METHODRESPONSE' && ($accept & self::ACCEPT_RESPONSE)) ||
+                    ($name == 'VALUE' && ($accept & self::ACCEPT_VALUE))) {
+                    $this->_xh['rt'] = strtolower($name);
+                } else {
                     $this->_xh['isf'] = 2;
-                    $this->_xh['isf_reason'] = 'missing top level xmlrpc element';
+                    $this->_xh['isf_reason'] = 'missing top level xmlrpc element. Found: ' . $name;
 
                     return;
-                } else {
-                    $this->_xh['rt'] = strtolower($name);
                 }
             } else {
                 // not top level element: see if parent is OK
@@ -105,7 +206,7 @@ class XMLParser
                 case 'I8':
                 case 'EX:I8':
                     if (PHP_INT_SIZE === 4) {
-                        /// INVALID ELEMENT: RAISE ISF so that it is later recognized!!!
+                        // INVALID ELEMENT: RAISE ISF so that it is later recognized!!!
                         $this->_xh['isf'] = 2;
                         $this->_xh['isf_reason'] = "Received i8 element but php is compiled in 32 bit mode";
 
@@ -131,7 +232,7 @@ class XMLParser
                 case 'STRUCT':
                 case 'ARRAY':
                     if ($this->_xh['vt'] != 'value') {
-                        //two data elements inside a value: an error occurred!
+                        // two data elements inside a value: an error occurred!
                         $this->_xh['isf'] = 2;
                         $this->_xh['isf_reason'] = "$name element following a {$this->_xh['vt']} element inside a single value";
 
@@ -151,7 +252,7 @@ class XMLParser
                     break;
                 case 'DATA':
                     if ($this->_xh['vt'] != 'data') {
-                        //two data elements inside a value: an error occurred!
+                        // two data elements inside a value: an error occurred!
                         $this->_xh['isf'] = 2;
                         $this->_xh['isf_reason'] = "found two data elements inside an array element";
 
@@ -171,7 +272,8 @@ class XMLParser
                     $this->_xh['isf'] = 1;
                     break;
                 case 'MEMBER':
-                    $this->_xh['valuestack'][count($this->_xh['valuestack']) - 1]['name'] = ''; // set member name to null, in case we do not find in the xml later on
+                    // set member name to null, in case we do not find in the xml later on
+                    $this->_xh['valuestack'][count($this->_xh['valuestack']) - 1]['name'] = '';
                     //$this->_xh['ac']='';
                 // Drop trough intentionally
                 case 'PARAM':
@@ -182,7 +284,7 @@ class XMLParser
                 case 'EX:NIL':
                     if (PhpXmlRpc::$xmlrpc_null_extension) {
                         if ($this->_xh['vt'] != 'value') {
-                            //two data elements inside a value: an error occurred!
+                            // two data elements inside a value: an error occurred!
                             $this->_xh['isf'] = 2;
                             $this->_xh['isf_reason'] = "$name element following a {$this->_xh['vt']} element inside a single value";
 
@@ -194,7 +296,7 @@ class XMLParser
                 // we do not support the <NIL/> extension, so
                 // drop through intentionally
                 default:
-                    /// INVALID ELEMENT: RAISE ISF so that it is later recognized!!!
+                    // INVALID ELEMENT: RAISE ISF so that it is later recognized!!!
                     $this->_xh['isf'] = 2;
                     $this->_xh['isf_reason'] = "found not-xmlrpc xml element $name";
                     break;
@@ -211,7 +313,12 @@ class XMLParser
     }
 
     /**
-     * Used in decoding xml chunks that might represent single xmlrpc values.
+     * xml parser handler function for opening element tags.
+     * Used in decoding xml chunks that might represent single xmlrpc values as well as requests, responses.
+     * @deprecated
+     * @param resource $parser
+     * @param $name
+     * @param $attrs
      */
     public function xmlrpc_se_any($parser, $name, $attrs)
     {
@@ -220,6 +327,9 @@ class XMLParser
 
     /**
      * xml parser handler function for close element tags.
+     * @param resource $parser
+     * @param string $name
+     * @param bool $rebuildXmlrpcvals
      */
     public function xmlrpc_ee($parser, $name, $rebuildXmlrpcvals = true)
     {
@@ -285,7 +395,7 @@ class XMLParser
                         $this->_xh['value'] = $this->_xh['ac'];
                     } elseif ($name == 'DATETIME.ISO8601') {
                         if (!preg_match('/^[0-9]{8}T[0-9]{2}:[0-9]{2}:[0-9]{2}$/', $this->_xh['ac'])) {
-                            error_log('XML-RPC: ' . __METHOD__ . ': invalid value received in DATETIME: ' . $this->_xh['ac']);
+                            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid value received in DATETIME: ' . $this->_xh['ac']);
                         }
                         $this->_xh['vt'] = Value::$xmlrpcDateTime;
                         $this->_xh['value'] = $this->_xh['ac'];
@@ -304,7 +414,7 @@ class XMLParser
                         } else {
                             // log if receiving something strange, even though we set the value to false anyway
                             if ($this->_xh['ac'] != '0' && strcasecmp($this->_xh['ac'], 'false') != 0) {
-                                error_log('XML-RPC: ' . __METHOD__ . ': invalid value received in BOOLEAN: ' . $this->_xh['ac']);
+                                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': invalid value received in BOOLEAN: ' . $this->_xh['ac']);
                             }
                             $this->_xh['value'] = false;
                         }
@@ -314,7 +424,7 @@ class XMLParser
                         // NOTE: regexp could be much stricter than this...
                         if (!preg_match('/^[+-eE0123456789 \t.]+$/', $this->_xh['ac'])) {
                             /// @todo: find a better way of throwing an error than this!
-                            error_log('XML-RPC: ' . __METHOD__ . ': non numeric value received in DOUBLE: ' . $this->_xh['ac']);
+                            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': non numeric value received in DOUBLE: ' . $this->_xh['ac']);
                             $this->_xh['value'] = 'ERROR_NON_NUMERIC_FOUND';
                         } else {
                             // it's ok, add it on
@@ -325,7 +435,7 @@ class XMLParser
                         // we must check that only 0123456789-<space> are characters here
                         if (!preg_match('/^[+-]?[0123456789 \t]+$/', $this->_xh['ac'])) {
                             /// @todo find a better way of throwing an error than this!
-                            error_log('XML-RPC: ' . __METHOD__ . ': non numeric value received in INT: ' . $this->_xh['ac']);
+                            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': non numeric value received in INT: ' . $this->_xh['ac']);
                             $this->_xh['value'] = 'ERROR_NON_NUMERIC_FOUND';
                         } else {
                             // it's ok, add it on
@@ -344,7 +454,7 @@ class XMLParser
                         $vscount = count($this->_xh['valuestack']);
                         $this->_xh['valuestack'][$vscount - 1]['values'][$this->_xh['valuestack'][$vscount - 1]['name']] = $this->_xh['value'];
                     } else {
-                        error_log('XML-RPC: ' . __METHOD__ . ': missing VALUE inside STRUCT in received xml');
+                        Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': missing VALUE inside STRUCT in received xml');
                     }
                     break;
                 case 'DATA':
@@ -367,7 +477,7 @@ class XMLParser
                         $this->_xh['params'][] = $this->_xh['value'];
                         $this->_xh['pt'][] = $this->_xh['vt'];
                     } else {
-                        error_log('XML-RPC: ' . __METHOD__ . ': missing VALUE inside PARAM in received xml');
+                        Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': missing VALUE inside PARAM in received xml');
                     }
                     break;
                 case 'METHODNAME':
@@ -397,6 +507,8 @@ class XMLParser
 
     /**
      * Used in decoding xmlrpc requests/responses without rebuilding xmlrpc Values.
+     * @param resource $parser
+     * @param string $name
      */
     public function xmlrpc_ee_fast($parser, $name)
     {
@@ -405,6 +517,8 @@ class XMLParser
 
     /**
      * xml parser handler function for character data.
+     * @param resource $parser
+     * @param string $data
      */
     public function xmlrpc_cd($parser, $data)
     {
@@ -421,6 +535,8 @@ class XMLParser
     /**
      * xml parser handler function for 'other stuff', ie. not char data or
      * element start/end tag. In fact it only gets called on unknown entities...
+     * @param $parser
+     * @param string data
      */
     public function xmlrpc_dh($parser, $data)
     {
@@ -431,7 +547,7 @@ class XMLParser
             }
         }
 
-        return true;
+        //return true;
     }
 
     /**

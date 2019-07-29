@@ -261,16 +261,16 @@
         },
         {
             "name": "phpxmlrpc/phpxmlrpc",
-            "version": "4.3.2",
+            "version": "4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gggeek/phpxmlrpc.git",
-                "reference": "7fbd194478e080d624bab075d189bf3ba215325d"
+                "reference": "3ba5608040e61564cf5e9a1ede98a9b0cf9d060e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/7fbd194478e080d624bab075d189bf3ba215325d",
-                "reference": "7fbd194478e080d624bab075d189bf3ba215325d",
+                "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/3ba5608040e61564cf5e9a1ede98a9b0cf9d060e",
+                "reference": "3ba5608040e61564cf5e9a1ede98a9b0cf9d060e",
                 "shasum": ""
             },
             "require": {
@@ -308,7 +308,7 @@
                 "webservices",
                 "xmlrpc"
             ],
-            "time": "2019-05-27T08:04:00+00:00"
+            "time": "2019-07-29T14:20:48+00:00"
         },
         {
             "name": "psr/http-message",

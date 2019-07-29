@@ -115,7 +115,7 @@
 
     public function getDirectoryPathLanguage(): string
     {
-      return CLICSHOPPING::getConfig('dir_root', 'Shop') . static::getDirectoryShopSources() . '/languages/';
+      return parent::getTemplateSource() . '/languages/';
     }
 
     /**

@@ -8,11 +8,10 @@ The following requirements should be met prior to using 'XMLRPC for PHP':
 
 * PHP 5.3.0 or later
 
-* the php "curl" extension is needed if you wish to use SSL or HTTP 1.1 to
-  communicate with remote servers
+* the php "curl" extension is needed if you wish to use SSL or HTTP 1.1 to communicate with remote servers
 
-The php "xmlrpc" native extension is not required, but if it is installed,
-there will be no interference with the operation of this library.
+The php "xmlrpc" native extension is not required, but if it is installed, there will be no interference with the
+operation of this library.
 
 
 Installation instructions
@@ -30,7 +29,7 @@ Installation of the library is quite easy:
 
     3.  Open a terminal and use Composer to grab the library.
 
-            $ composer require phpxmlrpc/phpxmlrpc:4.0
+            $ composer require phpxmlrpc/phpxmlrpc:4
 
     4.  Write your code.
         Once Composer has downloaded the component(s), all you need to do is include the vendor/autoload.php file that

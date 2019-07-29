@@ -61,9 +61,8 @@ class Client
      * List of http compression methods accepted by the client for responses.
      * NB: PHP supports deflate, gzip compressions out of the box if compiled w. zlib.
      *
-     * NNB: you can set it to any non-empty array for HTTP11 and HTTPS, since
-     * in those cases it will be up to CURL to decide the compression methods
-     * it supports. You might check for the presence of 'zlib' in the output of
+     * NNB: you can set it to any non-empty array for HTTP11 and HTTPS, since in those cases it will be up to CURL to
+     * decide the compression methods it supports. You might check for the presence of 'zlib' in the output of
      * curl_version() to determine whether compression is supported or not
      */
     public $accepted_compression = array();
@@ -670,7 +669,7 @@ class Client
         if ($username != '') {
             $credentials = 'Authorization: Basic ' . base64_encode($username . ':' . $password) . "\r\n";
             if ($authType != 1) {
-                error_log('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported with HTTP 1.0');
+                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported with HTTP 1.0');
             }
         }
 
@@ -690,7 +689,7 @@ class Client
             $uri = 'http://' . $server . ':' . $port . $this->path;
             if ($proxyUsername != '') {
                 if ($proxyAuthType != 1) {
-                    error_log('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported with HTTP 1.0');
+                    Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported with HTTP 1.0');
                 }
                 $proxyCredentials = 'Proxy-Authorization: Basic ' . base64_encode($proxyUsername . ':' . $proxyPassword) . "\r\n";
             }
@@ -701,8 +700,7 @@ class Client
             $uri = $this->path;
         }
 
-        // Cookie generation, as per rfc2965 (version 1 cookies) or
-        // netscape's rules (version 0 cookies)
+        // Cookie generation, as per rfc2965 (version 1 cookies) or netscape's rules (version 0 cookies)
         $cookieHeader = '';
         if (count($this->cookies)) {
             $version = '';
@@ -806,8 +804,8 @@ class Client
             return $r;
         }
 
-        // G. Giunta 2005/10/24: close socket before parsing.
-        // should yield slightly better execution times, and make easier recursive calls (e.g. to follow http redirects)
+        // Close socket before parsing.
+        // It should yield slightly better execution times, and make easier recursive calls (e.g. to follow http redirects)
         $ipd = '';
         do {
             // shall we check for $data === FALSE?
@@ -935,8 +933,7 @@ class Client
         curl_setopt($curl, CURLOPT_HEADER, 1);
 
         // NB: if we set an empty string, CURL will add http header indicating
-        // ALL methods it is supporting. This is possibly a better option than
-        // letting the user tell what curl can / cannot do...
+        // ALL methods it is supporting. This is possibly a better option than letting the user tell what curl can / cannot do...
         if (is_array($this->accepted_compression) && count($this->accepted_compression)) {
             //curl_setopt($curl, CURLOPT_ENCODING, implode(',', $this->accepted_compression));
             // empty string means 'any supported by CURL' (shall we catch errors in case CURLOPT_SSLKEY undefined ?)
@@ -978,7 +975,7 @@ class Client
             if (defined('CURLOPT_HTTPAUTH')) {
                 curl_setopt($curl, CURLOPT_HTTPAUTH, $authType);
             } elseif ($authType != 1) {
-                error_log('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported by the current PHP/curl install');
+                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth is supported by the current PHP/curl install');
             }
         }
 
@@ -1008,7 +1005,8 @@ class Client
             if ($keyPass) {
                 curl_setopt($curl, CURLOPT_SSLKEYPASSWD, $keyPass);
             }
-            // whether to verify cert's common name (CN); 0 for no, 1 to verify that it exists, and 2 to verify that it matches the hostname used
+            // whether to verify cert's common name (CN); 0 for no, 1 to verify that it exists, and 2 to verify that
+            // it matches the hostname used
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $this->verifyhost);
             // allow usage of different SSL versions
             curl_setopt($curl, CURLOPT_SSLVERSION, $sslVersion);
@@ -1025,14 +1023,13 @@ class Client
                 if (defined('CURLOPT_PROXYAUTH')) {
                     curl_setopt($curl, CURLOPT_PROXYAUTH, $proxyAuthType);
                 } elseif ($proxyAuthType != 1) {
-                    error_log('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported by the current PHP/curl install');
+                    Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': warning. Only Basic auth to proxy is supported by the current PHP/curl install');
                 }
             }
         }
 
         // NB: should we build cookie http headers by hand rather than let CURL do it?
-        // the following code does not honour 'expires', 'path' and 'domain' cookie attributes
-        // set to client obj the the user...
+        // the following code does not honour 'expires', 'path' and 'domain' cookie attributes set to client obj the the user...
         if (count($this->cookies)) {
             $cookieHeader = '';
             foreach ($this->cookies as $name => $cookie) {

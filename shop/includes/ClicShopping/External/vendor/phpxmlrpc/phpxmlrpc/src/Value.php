@@ -3,6 +3,7 @@
 namespace PhpXmlRpc;
 
 use PhpXmlRpc\Helper\Charset;
+use PhpXmlRpc\Helper\Logger;
 
 /**
  * This class enables the creation of values for XML-RPC, by encapsulating plain php values.
@@ -83,7 +84,7 @@ class Value implements \Countable, \IteratorAggregate, \ArrayAccess
                     $this->me['struct'] = $val;
                     break;
                 default:
-                    error_log("XML-RPC: " . __METHOD__ . ": not a known type ($type)");
+                    Logger::instance()->errorLog("XML-RPC: " . __METHOD__ . ": not a known type ($type)");
             }
         }
     }
@@ -108,7 +109,7 @@ class Value implements \Countable, \IteratorAggregate, \ArrayAccess
         }
 
         if ($typeOf !== 1) {
-            error_log("XML-RPC: " . __METHOD__ . ": not a scalar type ($type)");
+            Logger::instance()->errorLog("XML-RPC: " . __METHOD__ . ": not a scalar type ($type)");
             return 0;
         }
 
@@ -125,10 +126,10 @@ class Value implements \Countable, \IteratorAggregate, \ArrayAccess
 
         switch ($this->mytype) {
             case 1:
-                error_log('XML-RPC: ' . __METHOD__ . ': scalar xmlrpc value can have only one value');
+                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': scalar xmlrpc value can have only one value');
                 return 0;
             case 3:
-                error_log('XML-RPC: ' . __METHOD__ . ': cannot add anonymous scalar to struct xmlrpc value');
+                Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': cannot add anonymous scalar to struct xmlrpc value');
                 return 0;
             case 2:
                 // we're adding a scalar value to an array here
@@ -170,7 +171,7 @@ class Value implements \Countable, \IteratorAggregate, \ArrayAccess
 
             return 1;
         } else {
-            error_log('XML-RPC: ' . __METHOD__ . ': already initialized as a [' . $this->kindOf() . ']');
+            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': already initialized as a [' . $this->kindOf() . ']');
             return 0;
         }
     }
@@ -201,7 +202,7 @@ class Value implements \Countable, \IteratorAggregate, \ArrayAccess
 
             return 1;
         } else {
-            error_log('XML-RPC: ' . __METHOD__ . ': already initialized as a [' . $this->kindOf() . ']');
+            Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': already initialized as a [' . $this->kindOf() . ']');
             return 0;
         }
     }
@@ -246,8 +247,7 @@ class Value implements \Countable, \IteratorAggregate, \ArrayAccess
                         $rs .= "<${typ}>" . ($val ? '1' : '0') . "</${typ}>";
                         break;
                     case static::$xmlrpcString:
-                        // G. Giunta 2005/2/13: do NOT use htmlentities, since
-                        // it will produce named html entities, which are invalid xml
+                        // Do NOT use htmlentities, since it will produce named html entities, which are invalid xml
                         $rs .= "<${typ}>" . Charset::instance()->encodeEntities($val, PhpXmlRpc::$xmlrpc_internalencoding, $charsetEncoding) . "</${typ}>";
                         break;
                     case static::$xmlrpcInt:
