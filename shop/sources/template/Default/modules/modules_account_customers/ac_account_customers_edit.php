@@ -38,14 +38,11 @@
     }
 
     public function execute() {
-      global $entry_state_has_zones, $process, $country;
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if (isset($_GET['Account']) && isset($_GET['Edit']) ) {
-
         $account = Edit::getAccountEdit();
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_EDIT_CONTENT_WIDTH;

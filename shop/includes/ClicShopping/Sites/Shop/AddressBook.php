@@ -12,7 +12,8 @@
   namespace ClicShopping\Sites\Shop;
 
   use ClicShopping\OM\Registry;
-
+  use ClicShopping\OM\HTML;
+  
   class AddressBook
   {
 

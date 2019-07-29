@@ -48,11 +48,12 @@
   <div class="separator"></div>
 <?php
   if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
-    if (isset($gender)) {
-      $male = ($gender == 'm') ? true : false;
+    if (isset($customers_gender)) {
+      $male = ($customers_gender == 'm') ? true : false;
     } else {
       $male = ($customers_gender == 'm') ? true : false;
     }
+    
     $female = !$male;
 ?>
     <div class="row">
