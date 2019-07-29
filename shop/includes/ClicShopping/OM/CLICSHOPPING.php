@@ -466,10 +466,10 @@
 
         $class_path = str_replace('\\', '/', $class);
 
-        $file = '/' . 'External' . '/' . $class_path . '.php';
+        $file = CLICSHOPPING_BASE_DIR . '/' . 'External' . '/' . $class_path . '.php';
 
         if (is_file($file)) {
-          require($file);
+          require_once($file);
 
           return true;
         }
