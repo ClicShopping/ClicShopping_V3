@@ -28,7 +28,7 @@
       $this->db = Registry::get('Db');
       $this->currencies = [];
 
-      $Qcurrencies = $this->db->query('select code,
+      $Qcurrencies = $this->db->prepare('select code,
                                               title,
                                               symbol_left,
                                               symbol_right,
@@ -41,6 +41,7 @@
                                       ');
 
       $Qcurrencies->execute();
+      $Qcurrencies->setCache('currencies');
 
       while ($Qcurrencies->fetch()) {
         $this->currencies[$Qcurrencies->value('code')] = ['title' => $Qcurrencies->value('title'),
