@@ -13,7 +13,8 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-
+  use ClicShopping\OM\Cache;
+  
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;
@@ -60,6 +61,8 @@
         );
       }
 
+      Cache::clear('currencies');
+      
       $this->app->redirect('Currency&page=' . $page . '&cID=' . $currencies_id);
     }
   }

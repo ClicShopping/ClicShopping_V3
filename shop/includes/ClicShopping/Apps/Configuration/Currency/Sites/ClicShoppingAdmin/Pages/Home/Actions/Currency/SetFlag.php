@@ -13,7 +13,8 @@
   namespace ClicShopping\Apps\Configuration\Currency\Sites\ClicShoppingAdmin\Pages\Home\Actions\Currency;
 
   use ClicShopping\OM\Registry;
-
+  use ClicShopping\OM\Cache;
+  
   use ClicShopping\Apps\Configuration\Currency\Classes\ClicShoppingAdmin\Status;
 
 
@@ -32,6 +33,8 @@
 
       Status::getCurrencyStatus($_GET['cID'], $_GET['flag']);
 
+      Cache::clear('currencies');
+      
       $this->app->redirect('Currency&' . $page . '&cID=' . $_GET['cID']);
     }
   }

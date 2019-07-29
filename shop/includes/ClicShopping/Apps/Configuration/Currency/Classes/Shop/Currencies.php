@@ -54,6 +54,13 @@
       }
     }
 
+    /**
+     * @param $number
+     * @param bool $calculate_currency_value
+     * @param string $currency_type
+     * @param null $currency_value
+     * @return string
+     */
     public function format($number, $calculate_currency_value = true, $currency_type = '', $currency_value = null)
     {
       if (empty($currency_type) && CLICSHOPPING::getSite() == 'Shop') {
@@ -75,11 +82,21 @@
       return $format_string;
     }
 
+    /**
+     * @param $products_price
+     * @param $products_tax
+     * @param int $quantity
+     * @return float|int
+     */
     public function calculate_price($products_price, $products_tax, $quantity = 1)
     {
       return round(Tax::addTax($products_price, $products_tax), $this->currencies[$_SESSION['currency']]['decimal_places']) * $quantity;
     }
 
+    /**
+     * @param $code
+     * @return bool
+     */
     public function is_set($code)
     {
       if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
@@ -89,11 +106,19 @@
       }
     }
 
+    /**
+     * @param $code
+     * @return mixed
+     */
     public function get_value($code)
     {
       return $this->currencies[$code]['value'];
     }
 
+    /**
+     * @param $code
+     * @return mixed
+     */
     public function get_decimal_places($code)
     {
       return $this->currencies[$code]['decimal_places'];
@@ -109,11 +134,17 @@
         }
     */
 
+    /**
+     * @return array
+     */
     public function getData()
     {
       return $this->currencies;
     }
 
+    /**
+     * @return mixed
+     */
     private function priceTag()
     {
       $CLICSHOPPING_Tax = Registry::get('Tax');
@@ -129,10 +160,13 @@
       return $pricetag;
     }
 
-
-
-// Formatage du prix du produit
-// Add a tag after the price ex 100 euros HT or TTC
+    /**
+     * Add a tag after the price ex 100 euros HT or TTC
+     * @param $products_price
+     * @param $products_tax
+     * @param int $quantity
+     * @return string
+     */
     public function display_price($products_price, $products_tax, $quantity = 1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -166,8 +200,15 @@
       }
     }
 
-// Product Price per kilo calculation
-// Calcul du prix du produit au kilo
+    /**
+     * Product Price per kilo calculation
+     * @param $products_price
+     * @param $products_weight
+     * @param $value
+     * @param $products_tax
+     * @param int $quantity
+     * @return bool|string
+     */
     public function displayPriceKilo($products_price, $products_weight, $value, $products_tax, $quantity = 1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -187,6 +228,7 @@
 
     /**
      * Dispaly a Currencies DropDown
+     * @param string $class
      * @return string
      */
     public function getCurrenciesDropDown($class = '')

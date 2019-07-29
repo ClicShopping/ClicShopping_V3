@@ -11,101 +11,74 @@
 
   namespace ClicShopping\Apps\Configuration\Currency\Sites\ClicShoppingAdmin\Pages\Home\Actions\Currency;
 
-  use ClicShopping\Apps\Configuration\Currency\Lib\PHPXurrency;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTTP;
+  use ClicShopping\OM\Cache;
+
+  use ClicShopping\Apps\Configuration\Currency\Classes\ClicShoppingAdmin\CurrenciesAdmin;
 
   class UpdateAll extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;
+    protected $db;
 
     public function __construct()
     {
       $this->app = Registry::get('Currency');
+      $this->db = Registry::get('Db');
     }
 
-    public function getConvertCurrency(): array
+    public function getConvertCurrency()
     {
 
-      $api_id = CLICSHOPPING_APP_CURRENCY_CR_API_KEY;
+      $CLICSHOPPING_CurrenciesAdmin = new CurrenciesAdmin();
 
-      $url = 'https://openexchangerates.org/api/latest.json?app_id=' . $api_id;
-      $useragent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:37.0) Gecko/20100101 Firefox/37.0';
-      $rawdata = '';
+      $XML = HTTP::getResponse([
+        'url' => 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+      ]);
 
-      if (function_exists('curl_exec')) {
-        $conn = curl_init($url);
-        curl_setopt($conn, CURLOPT_USERAGENT, $useragent);
-        curl_setopt($conn, CURLOPT_FRESH_CONNECT, true);
-        curl_setopt($conn, CURLOPT_RETURNTRANSFER, true);
-        $rawdata = curl_exec($conn);
-        curl_close($conn);
-      } else {
-        $options = array('http' => array('user_agent' => $useragent));
-        $context = stream_context_create($options);
-        if (function_exists('file_get_contents')) {
-          $rawdata = file_get_contents($url, false, $context);
-        } else if (function_exists('fopen') && function_exists('stream_get_contents')) {
-          $handle = fopen($url, "r", false, $context);
-          if ($handle) {
-            $rawdata = stream_get_contents($handle);
-            fclose($handle);
+      if (empty($XML)) {
+        throw new \Exception('Can not load currency rates from the European Central Bank website');
+      }
+
+      $currencies = [];
+
+      foreach ($CLICSHOPPING_CurrenciesAdmin->getAll() as $c) {
+        $currencies[$c['code']] = null;
+      }
+
+      $XML = new \SimpleXMLElement($XML);
+
+      foreach ($XML->Cube->Cube->Cube as $rate) {
+        if (array_key_exists((string)$rate['currency'], $currencies)) {
+          $currencies[(string)$rate['currency']] = (float)$rate['rate'];
+        }
+      }
+
+      foreach ($currencies as $code => $value) {
+        if (!is_null($value)) {
+          try {
+            $this->db->save('currencies', [
+              'value' => $value,
+              'last_updated' => 'now()'
+            ], [
+              'code' => $code
+            ]);
+          } catch (\PDOException $e) {
+            trigger_error($e->getMessage());
           }
         }
       }
 
-      $open_exchange = json_decode($rawdata);
-
-      if ($open_exchange->error === false) {
-        $all_rates = $open_exchange->rates;
-
-        return $all_rates;
-      } else {
-        return false;
-      }
+      Cache::clear('currencies');
     }
 
     public function execute()
     {
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
-      $Qcurrency = $this->app->db->prepare('select currencies_id,
-                                                   code,
-                                                   title
-                                            from :table_currencies
-                                          ');
-      $Qcurrency->bindInt(':currencies_id', $_GET['cID']);
-      $Qcurrency->execute();
+      $this->getConvertCurrency();
 
-      while ($Qcurrency->fetch()) {
-        $code = $Qcurrency->value('code');
-
-        $rate = $this->getConvertCurrency();
-
-        if ($rate !== false) {
-          if (DEFAULT_CURRENCY == 'USD') {
-            $toCurrency = $rate->USD;
-            $fromCurrency = $rate->$code;
-            $rate = $toCurrency * (1 / $fromCurrency);
-          } else if (DEFAULT_CURRENCY != 'USD') {
-            $default = DEFAULT_CURRENCY;
-            $toCurrency = $rate->$default;
-            $fromCurrency = $rate->$code;
-
-            $rate = $toCurrency * (1 / $fromCurrency);
-          }
-
-          if ($rate == 0) $rate = 1;
-
-          $this->app->db->save('currencies', [
-            'value' => $rate,
-            'last_updated' => 'now()'
-          ], [
-              'currencies_id' => $Qcurrency->valueInt('currencies_id')
-            ]
-          );
-        }
-      }
-
-      $this->app->redirect('Currency&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id'));
+      $this->app->redirect('Currency&page=' . $page);
     }
   }

@@ -1,2 +1,0 @@
-cfg_products_currency_api_key_title = Veuillez insérer la clef API de OpenxExchangeRates
-cfg_products_currency_api_key_description = Vous devez ouvrir un compte (gratuit) sur openexchangerates.org pour vous permettre de bénéficier d'une conversation de taux de change (manuel).

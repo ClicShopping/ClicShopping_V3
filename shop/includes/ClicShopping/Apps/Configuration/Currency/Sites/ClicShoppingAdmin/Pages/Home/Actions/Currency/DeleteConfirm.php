@@ -14,7 +14,8 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-
+  use ClicShopping\OM\Cache;
+  
   class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;
@@ -37,7 +38,9 @@
       }
 
       $this->app->db->delete('currencies', ['currencies_id' => (int)$currencies_id]);
-
+      
+      Cache::clear('currencies');
+      
       $this->app->redirect('Currency&&page=' . $page);
     }
   }

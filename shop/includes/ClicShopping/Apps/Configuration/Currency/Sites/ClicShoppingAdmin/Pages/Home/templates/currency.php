@@ -33,12 +33,8 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::button($CLICSHOPPING_Currency->getDef('button_configure_api'), null, $CLICSHOPPING_Currency->link('Configure'), 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, $CLICSHOPPING_Currency->link('Insert'), 'success') . ' ';
-
-  if (defined('CLICSHOPPING_APP_CURRENCY_CR_API_KEY') && !empty(CLICSHOPPING_APP_CURRENCY_CR_API_KEY)) {
-    echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $page . '&cID=' . $cInfo->currencies_id), 'info');
-  }
+  echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $page), 'info');
 ?>
           </span>
         </div>
