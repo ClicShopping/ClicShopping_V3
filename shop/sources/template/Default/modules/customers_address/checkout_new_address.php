@@ -217,7 +217,7 @@
           <div class="form-group row">
             <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
             <div class="col-sm-6 col-md-4">
-              <?php echo HTML::selectMenuCountryList('country', (isset($entry['country_id']) ? $entry['country_id'] : STORE_COUNTRY), 'aria-required="true"'); ?>
+              <?php echo HTML::selectMenuCountryList('country', ($entry['country_id'] ?? STORE_COUNTRY), 'aria-required="true"'); ?>
               <?php echo (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
             </div>
           </div>

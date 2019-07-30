@@ -53,7 +53,7 @@
     } else {
       $male = ($customers_gender == 'm') ? true : false;
     }
-    
+
     $female = !$male;
 ?>
     <div class="row">

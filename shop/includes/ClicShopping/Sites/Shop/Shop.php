@@ -32,7 +32,7 @@
     protected function init()
     {
 
-      defined('E_DEPRECATED') ? error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED) : error_reporting(E_ALL & ~E_NOTICE);
+      error_reporting(E_ALL & ~E_NOTICE);
 
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);

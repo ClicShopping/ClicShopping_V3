@@ -13,7 +13,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
-  
+
   class AddressBook
   {
 
@@ -70,7 +70,7 @@
      * @return mixed
      */
 
-    public static function addressLabel(int $customers_id, int $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n") :string
+    public static function addressLabel(int $customers_id, ?int $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n")
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Address = Registry::get('Address');
@@ -409,31 +409,52 @@
 
     public static function getEntry(int $id)
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qentry = $CLICSHOPPING_Db->prepare('select entry_gender as gender,
-                                                   entry_company as company,
-                                                   entry_firstname as firstname,
-                                                   entry_lastname as lastname,
-                                                   entry_street_address as street_address,
-                                                   entry_suburb as suburb,
-                                                   entry_postcode as postcode,
-                                                   entry_city as city,
-                                                   entry_state as state,
-                                                   entry_zone_id as zone_id,
-                                                   entry_country_id as country_id,
-                                                   entry_telephone as telephone
-                                           from :table_address_book
-                                           where address_book_id = :address_book_id
-                                           and customers_id = :customers_id
-                                           ');
-      $Qentry->bindInt(':address_book_id', $id);
-      $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qentry->execute();
+      if (isset($_GET['newcustomer']) && $_GET['newcustomer'] == 1) {
+        $Qentry = $CLICSHOPPING_Db->prepare('select entry_gender as gender,
+                                                     entry_company as company,
+                                                     entry_firstname as firstname,
+                                                     entry_lastname as lastname,
+                                                     entry_street_address as street_address,
+                                                     entry_suburb as suburb,
+                                                     entry_postcode as postcode,
+                                                     entry_city as city,
+                                                     entry_state as state,
+                                                     entry_zone_id as zone_id,
+                                                     entry_country_id as country_id,
+                                                     entry_telephone as telephone
+                                             from :table_address_book
+                                             where customers_id = :customers_id
+                                             ');
+        $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qentry->execute();
 
-      return $Qentry->toArray();
+        return $Qentry->toArray();
+      } else{
+        $Qentry = $CLICSHOPPING_Db->prepare('select entry_gender as gender,
+                                                     entry_company as company,
+                                                     entry_firstname as firstname,
+                                                     entry_lastname as lastname,
+                                                     entry_street_address as street_address,
+                                                     entry_suburb as suburb,
+                                                     entry_postcode as postcode,
+                                                     entry_city as city,
+                                                     entry_state as state,
+                                                     entry_zone_id as zone_id,
+                                                     entry_country_id as country_id,
+                                                     entry_telephone as telephone
+                                             from :table_address_book
+                                             where address_book_id = :address_book_id
+                                             and customers_id = :customers_id
+                                             ');
+        $Qentry->bindInt(':address_book_id', $id);
+        $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qentry->execute();
+
+        return $Qentry->toArray();
+      }
     }
 
 

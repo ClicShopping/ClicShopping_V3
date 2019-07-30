@@ -166,6 +166,7 @@
           $CLICSHOPPING_Db->save('customers', $sql_data_array);
 
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
+
 // save element in address book
           $sql_data_array = ['customers_id' => (int)$customer_id,
             'entry_firstname' => $firstname,
@@ -180,7 +181,7 @@
           $sql_data_array = ['customers_default_address_id' => (int)$address_id];
           $insert_array = ['customers_id' => (int)$customer_id];
 
-          $CLICSHOPPING_Db->save('customers',$sql_data_array, $insert_array );
+          $CLICSHOPPING_Db->save('customers',$sql_data_array, $insert_array);
 
           $sql_array = ['customers_info_id' => (int)$customer_id,
             'customers_info_number_of_logons' => 0,
@@ -188,7 +189,6 @@
           ];
 
           $CLICSHOPPING_Db->save('customers_info', $sql_array);
-
 
           $CLICSHOPPING_Customer->setData($customer_id);
 
@@ -248,7 +248,7 @@
 
           $CLICSHOPPING_Hooks->call('Create', 'Process');
 
-	  CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&edit=' . $CLICSHOPPING_Customer->getID() . '&newcustomer=1');
+          CLICSHOPPING::redirect(null, 'Account&AddressBookProcess&edit=' . $CLICSHOPPING_Customer->getID() . '&newcustomer=1');
         }
       }
     }

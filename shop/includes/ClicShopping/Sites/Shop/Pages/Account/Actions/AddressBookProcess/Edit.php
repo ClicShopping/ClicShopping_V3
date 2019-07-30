@@ -22,7 +22,6 @@
 
     public function execute()
     {
-      global $entry_state_has_zones, $process, $country;
 
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');

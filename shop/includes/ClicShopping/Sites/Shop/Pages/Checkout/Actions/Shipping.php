@@ -43,7 +43,8 @@
       }
 
 // Verify if a street address exist concernant the customer
-      $QaddressCustomer = $CLICSHOPPING_Db->prepare('select entry_street_address
+      $QaddressCustomer = $CLICSHOPPING_Db->prepare('select entry_street_address,
+                                                            entry_postcode
                                                       from :table_address_book
                                                       where customers_id = :customers_id
                                                       and address_book_id = :address_book_id
@@ -53,7 +54,7 @@
       $QaddressCustomer->execute();
 
 //check if we need to continue the address creation
-      if (is_null($QaddressCustomer->value('entry_street_address'))) {
+      if ($QaddressCustomer->value('entry_street_address') === false || $QaddressCustomer->value('entry_postcode') === false) {
         CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress&newcustomer=1');
       }
 

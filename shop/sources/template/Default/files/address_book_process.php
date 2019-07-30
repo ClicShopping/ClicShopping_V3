@@ -24,13 +24,11 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-
-    if (isset($_GET['newcustomer'])) {
-      $newcustomer = '&newcustomer=' . 1;
-    } else {
-      $newcustomer = '';
-    }
-
+  if (isset($_GET['newcustomer'])) {
+    $newcustomer = '&newcustomer=' . 1;
+  } else {
+    $newcustomer = '';
+  }
 
   if (!isset($_GET['delete']) && isset($_GET['edit'])) {
     $entry = AddressBook::getEntry((int)$_GET['edit']);

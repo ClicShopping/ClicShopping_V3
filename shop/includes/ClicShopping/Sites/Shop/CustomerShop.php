@@ -285,9 +285,9 @@
         if (!isset($this->_data['default_address_id']) || ($this->_data['default_address_id'] != $id)) {
 
           $Qupdate = $this->db->prepare('update :table_customers
-                                          set customers_default_address_id = :customers_default_address_id
-                                          where customers_id = :customers_id'
-          );
+                                         set customers_default_address_id = :customers_default_address_id
+                                         where customers_id = :customers_id'
+                                       );
           $Qupdate->bindInt(':customers_default_address_id', $id);
           $Qupdate->bindInt(':customers_id', $this->getID());
           $Qupdate->execute();
@@ -299,7 +299,7 @@
       }
     }
 
-    public function hasDefaultAddress()
+    public function hasDefaultAddress() :bool
     {
 
       if (isset($this->_data['default_address_id']) && is_numeric($this->_data['default_address_id'])) {
