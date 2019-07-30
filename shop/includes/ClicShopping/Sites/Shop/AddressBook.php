@@ -231,14 +231,25 @@
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      $Qentry = $CLICSHOPPING_Db->prepare('select address_book_id
+      $count = static::countCustomerAddressBookEntries($CLICSHOPPING_Customer->getID());
+
+      if (isset($_GET['newcustomer']) && $count == 1) {
+        $Qentry = $CLICSHOPPING_Db->prepare('select address_book_id
+                                            from :table_address_book
+                                            where customers_id = :customers_id
+                                          ');
+        $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qentry->execute();
+      } else {
+        $Qentry = $CLICSHOPPING_Db->prepare('select address_book_id
                                             from :table_address_book
                                             where address_book_id = :address_book_id
                                             and customers_id = :customers_id
                                           ');
-      $Qentry->bindInt(':address_book_id', $id);
-      $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-      $Qentry->execute();
+        $Qentry->bindInt(':address_book_id', $id);
+        $Qentry->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+        $Qentry->execute();
+      }
 
       return ($Qentry->fetch() !== false);
     }
@@ -345,11 +356,10 @@
                                             where o.customers_id = :customers_id
                                             and o.orders_status = s.orders_status_id
                                             and s.language_id = :language_id
-                                            and s.public_flag = :public_flag
+                                            and s.public_flag = 1
                                           ');
       $Qorders->bindInt(':customers_id', (int)$id);
       $Qorders->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-      $Qorders->bindValue(':public_flag', '1');
 
       $Qorders->execute();
 

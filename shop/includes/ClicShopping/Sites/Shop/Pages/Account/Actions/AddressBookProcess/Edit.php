@@ -269,17 +269,31 @@
           }
 
           if (AddressBook::checkEntry($_GET['edit']) !== false) {
-            $CLICSHOPPING_Db->save('address_book', $sql_data_array, ['address_book_id' => $_GET['edit'],
-                'customers_id' => (int)$CLICSHOPPING_Customer->getID()
-              ]
-            );
-
+            if (isset($_GET['newcustomer']) && $_GET['newcustomer'] == 1 && AddressBook::countCustomerAddressBookEntries($CLICSHOPPING_Customer->getID()) == 1) {
+              $CLICSHOPPING_Db->save('address_book', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]);
+            } else {
+              $CLICSHOPPING_Db->save('address_book', $sql_data_array, ['address_book_id' => $_GET['edit'],
+                  'customers_id' => (int)$CLICSHOPPING_Customer->getID()
+                ]
+              );
+            }
 // register session variables
             if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $CLICSHOPPING_Customer->getDefaultAddressID())) {
               $CLICSHOPPING_Customer->setCountryID($country);
               $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
 
-              $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($_GET['edit']));
+              if (isset($_GET['newcustomer']) && $_GET['newcustomer'] == 1) {
+                $QAddressBook = $CLICSHOPPING_Db->prepare('select address_book_id
+                                                            from :table_address_book
+                                                            where customers_id = :customers_id
+                                                          ');
+                $QAddressBook->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+                $QAddressBook->execute();
+
+                $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($QAddressBook->valueInt('address_book_id')));
+              } else {
+                $CLICSHOPPING_Customer->setDefaultAddressID(HTML::sanitize($_GET['edit']));
+              }
             }
 
             if (HTML::sanitize($_POST['shopping']) != 1) {
