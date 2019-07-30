@@ -77,7 +77,5 @@
     ?>
     </tbody>
   </table>
-  <div
-    class="smalltext"><?php echo $CLICSHOPPING_Cache->getDef('text_cache_directory') . ' ' . FileSystem::displayPath(Cache::getPath()); ?></div>
 </div>
 
