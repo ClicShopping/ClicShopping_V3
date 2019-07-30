@@ -19,13 +19,9 @@
 
     public function execute()
     {
-      global $password_reset_initiated;
-
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
-
-      $password_reset_initiated = false;
 
 // templates
       $this->page->setFile('password_forgotten.php');

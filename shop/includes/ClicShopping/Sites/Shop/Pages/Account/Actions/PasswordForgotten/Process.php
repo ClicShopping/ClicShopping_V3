@@ -88,6 +88,7 @@
                 $password_reset_initiated = true;
 
               } else {
+                $password_reset_initiated = false;
 
                 $CLICSHOPPING_ActionRecorder->record(false);
 
