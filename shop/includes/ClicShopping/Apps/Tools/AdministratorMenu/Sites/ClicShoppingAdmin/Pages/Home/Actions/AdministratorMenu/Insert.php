@@ -73,7 +73,7 @@
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
 
-        $label_array = $_POST['label'];
+        $label_array = HTML::sanitize($_POST['label']);
 
         $language_id = $languages[$i]['id'];
 

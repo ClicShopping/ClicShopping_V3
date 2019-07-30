@@ -48,16 +48,22 @@
     $cInfo = new ObjectInfo(array());
   }
 
-  if (isset($_POST['cPath'])) {
+  if (isset($_GET['cPath'])) {
     $cPath = HTML::sanitize($_GET['cPath']);
   } else {
     $cPath = 0;
   }
 
+  if (isset($_GET['cID'])) {
+    $cID = HTML::sanitize($_GET['cID']);
+  } else {
+    $cID = 0;
+  }
+
   $languages = $CLICSHOPPING_Language->getLanguages();
   $form_action = (isset($_GET['cID'])) ? 'Update' : 'Insert';
 
-  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath), 'post');
+  echo HTML::form('category', $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . $form_action . '&cPath=' . $cPath . '&cID=' . $cID), 'post');
 
 ?>
 <!-- body //-->

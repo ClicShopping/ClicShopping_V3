@@ -29,7 +29,9 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_POST['current_category_id'])) $id = HTML::sanitize($_POST['current_category_id']);
+      if (isset($_GET['cID'])) $id = HTML::sanitize($_GET['cID']);
+      if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+
       if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
       if (isset($_POST['link'])) $link = HTML::sanitize($_POST['link']);
       if (isset($_POST['image'])) $image = HTML::sanitize($_POST['image']);
@@ -42,12 +44,6 @@
 
       if (isset($_POST['access_administrator'])) $access = $_POST['access_administrator'];
       if (isset($_POST['move_to_category_id'])) $move_to_category_id = $_POST['move_to_category_id'];
-
-      if (isset($_GET['cPath'])) {
-        $cPath = HTML::sanitize($_GET['cPath']);
-      } else {
-        $cPath = '';
-      }
 
       if (isset($_POST['label'])) {
         $label_array = HTML::sanitize($_POST['label']);

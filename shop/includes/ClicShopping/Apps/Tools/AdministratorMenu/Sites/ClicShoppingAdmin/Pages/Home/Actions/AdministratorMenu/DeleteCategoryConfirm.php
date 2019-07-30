@@ -27,7 +27,7 @@
       $this->app = Registry::get('AdministratorMenu');
 
       $this->ID = HTML::sanitize($_GET['id']);
-      $this->cPath = $_GET['cPath'];
+      $this->cPath = HTML::sanitize($_GET['cPath']);
     }
 
     public function execute()
