@@ -33,6 +33,7 @@
     protected $prod;
     protected $tax;
     protected $productsAttributes;
+    protected $productsId;
     public $cartID;
 
     public function __construct()
@@ -81,10 +82,8 @@
      *  string $qty
     */
 
-    private function getRestoreQty()
+    private function getRestoreQty(int $qty, $products_id) :int
     {
-      global $qty, $products_id;
-
       $qty = $this->getCheckGoodQty($products_id, $qty);
 
       return $qty;
@@ -105,7 +104,9 @@
 
 // B2B / B2C Choose the good qty
           $qty = $this->contents[$products_id]['qty'];
-          $qty1 = $this->getRestoreQty();
+          $this->productsId = $products_id;
+          $qty1 = $this->getRestoreQty($qty, $products_id);
+
 
           if ($qty < $qty1) $qty = $this->getRestoreQty();
           if ($qty > $qty1) $qty = $this->contents[$products_id]['qty'];
@@ -114,7 +115,7 @@
                                          from :table_customers_basket
                                          where customers_id = :customers_id
                                          and products_id = :products_id'
-          );
+                                      );
 
           $Qcheck->bindInt(':customers_id', $this->customer->getID());
           $Qcheck->bindValue(':products_id', $products_id);
@@ -191,7 +192,7 @@
      * remove all items
      * @param bool $reset_database
      */
-    public function reset($reset_database = false)
+    public function reset(bool $reset_database = false)
     {
       if ($this->customer->isLoggedOn() && ($reset_database === true)) {
         $this->db->delete('customers_basket', ['customers_id' => (int)$this->customer->getID()]);
@@ -521,7 +522,7 @@
     }
 
 
-    public function inCart($products_id)
+    public function inCart($products_id) :bool
     {
       if (isset($this->contents[$products_id])) {
         return true;
@@ -730,7 +731,7 @@
     }
 
 
-    public function get_products()
+    public function get_products() :?array
     {
       if (!is_array($this->contents)) return false;
 
@@ -874,14 +875,14 @@
       return $products_array;
     }
 
-    public function show_total()
+    public function show_total() :float
     {
       $this->calculate();
 
       return $this->total;
     }
 
-    public function show_weight()
+    public function show_weight() :float
     {
       $this->calculate();
 
@@ -1040,7 +1041,7 @@
     }
 
 
-    public function getCheckGoodQty($products_id, $qty)
+    public function getCheckGoodQty($products_id, int $qty) :int
     {
       if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {
         $qty = (int)MAX_QTY_IN_CART;
@@ -1065,7 +1066,7 @@
      * @return $min_order_qty_values, nimum order quantity
      * @access public
      */
-    public function getProductsMinOrderQtyShoppingCart($products_id)
+    public function getProductsMinOrderQtyShoppingCart($products_id) :int
     {
       $products_id = $this->prod->getProductID($products_id);
 
