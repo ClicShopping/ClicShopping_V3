@@ -89,12 +89,9 @@
               ?>
               <tr>
                 <td><?php echo $rows; ?>.</td>
-                <td><?php echo HTML::link(CLICSHOPPING::link(null, '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?>
-                  '
-                </td>
+                <td><?php echo HTML::link(CLICSHOPPING::link(null, '?A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
                 <td
-                  class="text-md-right"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>
-                  &nbsp;
+                  class="text-md-right"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;
                 </td>
                 <?php
                   if ($Qcustomers->valueInt('customers_group_id') > 0) {
