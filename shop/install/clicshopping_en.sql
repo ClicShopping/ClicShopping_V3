@@ -125,7 +125,6 @@ INSERT INTO administrator_menu VALUES(463, 'index.php?A&OrderTotal\\Total&Config
 INSERT INTO administrator_menu VALUES(464, 'index.php?A&OrderTotal\\TotalTax&Configure&module=TX', 451, 5, 1, 'modules_order_total.gif', 0, 'app_order_total_tax', 1);
 INSERT INTO administrator_menu VALUES(465, 'index.php?A&OrderTotal\\SubTotal&Configure', 451, 1, 1, 'modules_order_total.gif', 0, 'app_order_total_subtotal', 1);
 INSERT INTO administrator_menu VALUES(504, '', 163, 11, 1, 'configuration_44.png', 0, NULL, 1);
-INSERT INTO administrator_menu VALUES(568, 'index.php?A&Marketing\\Specials&Specials', 5, 1, 0, 'specials.gif', 0, 'app_marketing_specials', 1);
 INSERT INTO administrator_menu VALUES(581, 'index.php?A&Communication\\Newsletter&Newsletter', 6, 6, 0, 'newsletters.gif', 0, 'app_communication_newsletter', 1);
 INSERT INTO administrator_menu VALUES(583, 'index.php?A&Customers\\Customers&Customers', 4, 1, 0, 'client.gif', 0, 'app_customers_customers', 1);
 INSERT INTO administrator_menu VALUES(586, 'index.php?A&Communication\\EMail&EMail', 6, 6, 0, 'email.gif', 0, 'app_communication_email', 1);
@@ -189,6 +188,7 @@ INSERT INTO administrator_menu VALUES(773, 'index.php?A&Configuration\\Modules&M
 INSERT INTO administrator_menu VALUES(774, 'index.php?A&Marketing\\Featured&Featured', 5, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(775, 'index.php?A&Configuration\\Modules&Modules&set=modules_products_featured', 117, 1, 0, 'products_featured.png', 0, 'app_marketing_featured', 1);
 INSERT INTO administrator_menu VALUES(776, 'index.php?A&Configuration\\ProductsLength&ProductsLength', 20, 4, 1, 'products_length.png', 0, 'app_configuration_products_length', NULL);
+INSERT INTO administrator_menu VALUES(777, 'index.php?A&Marketing\\Specials&Specials', 5, 1, 0, 'specials.gif', 0, 'app_marketing_specials', 1);
 
 INSERT INTO administrator_menu_description VALUES(0, '', 1);
 INSERT INTO administrator_menu_description VALUES(0, '', 2);
@@ -510,7 +510,8 @@ INSERT INTO administrator_menu_description VALUES(774, 'Featured', 1);
 INSERT INTO administrator_menu_description VALUES(774, 'Produits sélectionnés', 2);
 INSERT INTO administrator_menu_description VALUES(776, 'Products Length', 1);
 INSERT INTO administrator_menu_description VALUES(776, 'Dimension produits', 2);
-
+INSERT INTO `administrator_menu_description` VALUES(777, 'Specials', 1);
+INSERT INTO `administrator_menu_description` VALUES(777, 'Promotions', 2);
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
 
