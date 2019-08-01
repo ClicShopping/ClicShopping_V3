@@ -15,6 +15,7 @@
   <div class="contentContainer">
     <div class="contentText">
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_sitemap'); ?>
+      <div class="separator"></div>
     </div>
   </div>
 </section>

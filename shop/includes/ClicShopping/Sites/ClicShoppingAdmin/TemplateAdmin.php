@@ -19,15 +19,15 @@
   class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   {
 
-    protected $_default_template_directory = 'Default';
+    protected $default_template_directory = 'Default';
     protected $thema;
     protected $name;
-    protected $_directoryAdminLanguages = 'languages';
-    protected $_directoryAdminmodules = 'modules';
-    protected $_directoryAdmin = 'ClicShoppingAdmin';
-    protected $_directoryAdminBoxes = 'boxes';
-    protected $_directoryAdminImages = 'images';
-    protected $_directoryAdminIncludes = 'includes';
+    protected $directoryAdminLanguages = 'languages';
+    protected $directoryAdminmodules = 'modules';
+    protected $directoryAdmin = 'ClicShoppingAdmin';
+    protected $directoryAdminBoxes = 'boxes';
+    protected $directoryAdminImages = 'images';
+    protected $directoryAdminIncludes = 'includes';
 
     /**********************************************
      * Path
@@ -42,7 +42,7 @@
      */
     public function getDirectoryPathShopDefaultTemplateHtml(): string
     {
-      return CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDefaultTemplateDirectory(); // /sources/template/default
+      return parent::getPathRoot() . parent::getDefaultTemplateDirectory(); // /sources/template/default
     }
 
     /**
@@ -50,12 +50,12 @@
      *
      * @param string $language_directory ,directory of the language
      * @access public
-     *  define('CLICSHOPPING::getConfig('dir_root', 'Shop') 'sources/languages/');
+     *  define('parent::getPathRoot() 'sources/languages/');
      * @return string
      */
     public function getPathLanguageShopDirectory(): string
     {
-      $path_shop_languages_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/' . $this->_directoryAdminLanguages;
+      $path_shop_languages_directory = parent::getPathRoot() . 'sources/' . $this->directoryAdminLanguages;
 
       return $path_shop_languages_directory;
     }
@@ -65,7 +65,7 @@
      *
      * @param string $modules_directory ,directory of the module
      * @access public
-     * define('DIR_FS_DOWNLOAD_PUBLIC', CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/download/');
+     * define('DIR_FS_DOWNLOAD_PUBLIC', parent::getPathRoot() . 'sources/download/');
      * @return string
      */
     public function getPathDownloadShopDirectory($directory = null): string
@@ -85,11 +85,10 @@
 
     public function getDirectoryPathModuleShopTemplateHtml(string $name): string
     {
-
-      if (file_exists(CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/')) {
-        $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/';
+      if (file_exists(parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/')) {
+        $template_directory = parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/';
       } else {
-        $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . static::getDefaultTemplateDirectory() . '/modules/' . $name . '/template_html/';
+        $template_directory = parent::getPathRoot() . static::getDefaultTemplateDirectory() . '/modules/' . $name . '/template_html/';
       }
 
       return $template_directory;
@@ -105,7 +104,7 @@
 
     public function getDirectoryPathTemplateShopImages(): string
     {
-      return CLICSHOPPING::getConfig('dir_root', 'Shop') . parent::getDirectoryTemplateImages(); // CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/
+      return parent::getPathRoot() . parent::getDirectoryTemplateImages(); // CLICSHOPPING::getConfig('dir_root', 'Shop1') . 'sources/images/
     }
 
     /**
@@ -188,7 +187,7 @@
     */
     public function getImageDirectory(): string
     {
-      return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->_directoryAdminImages . '/' . $this->_directoryAdmin . '/';
+      return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminImages . '/' . $this->directoryAdmin . '/';
     }
 
     /**
@@ -201,7 +200,7 @@
      */
     public function getBoxeDirectory(): string
     {
-      $directory = $this->_directoryAdminIncludes . '/' . $this->_directoryAdminBoxes; //'includes/boxes/'
+      $directory = $this->directoryAdminIncludes . '/' . $this->directoryAdminBoxes; //'includes/boxes/'
 
       return $directory;
     }
@@ -216,7 +215,7 @@
      */
     public function getLanguageDirectory(): string
     {
-      $directory = $this->_directoryAdminIncludes . '/' . $this->_directoryAdminLanguages; //'includes/languages/'
+      $directory = $this->directoryAdminIncludes . '/' . $this->directoryAdminLanguages; //'includes/languages/'
 
       return $directory;
     }
@@ -231,7 +230,7 @@
      */
     public function getModulesDirectory(): string
     {
-      $directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->_directoryAdminIncludes;
+      $directory = parent::getPathRoot() . $this->directoryAdminIncludes;
 
       return $directory;
     }

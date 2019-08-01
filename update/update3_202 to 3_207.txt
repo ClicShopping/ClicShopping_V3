@@ -1,7 +1,0 @@
-Little fix in template
-e-stric php
-ADD PASSWORD_ARGON2ID check next standard
-Remove not use statement
-fix HTML error & paypal
-Composer install and librairie
-Ckeditor 4.12.1

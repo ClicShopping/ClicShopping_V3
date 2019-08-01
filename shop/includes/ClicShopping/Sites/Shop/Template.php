@@ -81,9 +81,16 @@
       return $this->_template;
     }
 
+    public function getPathRoot() :string
+    {
+       $path_root = CLICSHOPPING::getConfig('dir_root', 'Shop');
+
+       return $path_root;
+    }
+
     public function getTemplateSource(): string
     {
-      return CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->_directoryTemplateSources; //sources
+      return $this->getPathRoot() . $this->_directoryTemplateSources; //sources
     }
 
     public function getTemplateDirectory(): string
@@ -335,7 +342,7 @@
      *
      * @param string $modules_directory ,directory of the module
      * @access public
-     * define('DIR_FS_DOWNLOAD_PUBLIC', CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/');
+     * define('DIR_FS_DOWNLOAD_PUBLIC', $this->getPathRoot() . 'sources/public/');
      * @return string
      */
     public function getPathDownloadShopDirectory(string $directory = null): string
@@ -374,9 +381,9 @@
     public function getPathDirectoryTemplateThema(): string
     {
 
-      if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . static::setSiteThema() . '/' . $this->_directoryTemplateFiles . '/' . 'index.php')) {
+      if (is_file($this->getPathRoot() . static::setSiteThema() . '/' . $this->_directoryTemplateFiles . '/' . 'index.php')) {
         $thema = static::setSiteThema();
-      } elseif (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . static::getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . '/' . 'index.php')) {
+      } elseif (is_file($this->getPathRoot() . static::getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . '/' . 'index.php')) {
         $thema = static::getDefaultTemplateDirectory();
       } else {
         HTTP::redirect(HTTP::getShopUrlDomain() . 'includes/error_documents/error_template.php');
@@ -623,14 +630,14 @@
     public function getTemplategraphism(): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
-      if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
+      if (is_file($this->getPathRoot() . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
         $themaCSS = CLICSHOPPING::link(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
       } else {
         $themaCSS = CLICSHOPPING::link(static::getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
       }
 
 // if current does'nt exist take default
-      if (!is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
+      if (!is_file($this->getPathRoot() . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/' . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
         $themaCSS = CLICSHOPPING::link(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . '/english/' . 'compressed_css.php');
       }
 
@@ -705,9 +712,9 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . static::getPathDirectoryTemplateThema() . '/' . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
+      if (is_file($this->getPathRoot() . static::getPathDirectoryTemplateThema() . '/' . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
         $languagefiles = static::getPathDirectoryTemplateThema() . '/' . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
-        if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
+        if (is_file($this->getPathRoot() . $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
           $languagefiles = $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
         }
       } else {

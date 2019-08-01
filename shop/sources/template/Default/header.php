@@ -46,5 +46,5 @@
   }
 ?>
         </header>
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap FrameWork">
           <div id="bodyContent" class="col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> order-xs-1 order-lg-2">
