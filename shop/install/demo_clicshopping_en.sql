@@ -510,8 +510,8 @@ INSERT INTO administrator_menu_description VALUES(774, 'Featured', 1);
 INSERT INTO administrator_menu_description VALUES(774, 'Produits sélectionnés', 2);
 INSERT INTO administrator_menu_description VALUES(776, 'Products Length', 1);
 INSERT INTO administrator_menu_description VALUES(776, 'Dimension produits', 2);
-INSERT INTO `administrator_menu_description` VALUES(777, 'Specials', 1);
-INSERT INTO `administrator_menu_description` VALUES(777, 'Promotions', 2);
+INSERT INTO administrator_menu_description VALUES(777, 'Specials', 1);
+INSERT INTO administrator_menu_description VALUES(777, 'Promotions', 2);
 
 INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', NULL, NULL, NULL, '2018-07-26 11:47:52', NULL, 1, 0, 99, 'Logo');
 INSERT INTO banners VALUES(2, 'Hotline', '', '', 'Default_multi_template_banner', '_self', '<div class=\"alert alert-success\">Hotline :\r\n+1 800 55 55 55</div>', 0, NULL, NULL, '2018-11-23 21:52:02', NULL, 1, 0, 0, 'Hotline');
