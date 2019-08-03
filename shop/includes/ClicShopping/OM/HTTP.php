@@ -64,7 +64,6 @@
       exit;
     }
 
-
     /**
      * @param array $parameters url, headers, parameters, method, verify_ssl, cafile, certificate, proxy
      */
@@ -152,6 +151,26 @@
       }
 
       return $result;
+    }
+
+    /**
+     * Set the HTTP status code
+     *
+     * @param int $code The HTTP status code to set
+     * @return boolean
+     */
+
+    public static function setResponseCode(int $code): bool
+    {
+      if (headers_sent()) {
+        trigger_error('HTTP::setResponseCode() - headers already sent, cannot set response code.', E_USER_ERROR);
+
+        return false;
+      }
+
+      http_response_code($code);
+
+      return true;
     }
 
     /**
