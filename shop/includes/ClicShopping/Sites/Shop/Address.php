@@ -325,7 +325,7 @@
      * @access public
      * Shop and Admin
      */
-    public static function getCountryZones(int $country_id) :array
+    public static function getCountryZones($country_id)
     {
 
       $zones_array = [];
@@ -346,7 +346,6 @@
         ];
       }
 
-
       return $zones_array;
     }
 
@@ -364,9 +363,9 @@
       $zones = self::getCountryZones($country_id);
 
       if (count($zones) > 0) {
-        $zones_select = array(array('id' => '',
-          'text' => CLICSHOPPING::getDef('text_selected')
-        )
+        $zones_select = array(['id' => '',
+            'text' => CLICSHOPPING::getDef('text_selected')
+          ]
         );
         $zones = array_merge($zones_select, $zones);
 

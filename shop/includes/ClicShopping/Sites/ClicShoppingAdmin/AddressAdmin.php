@@ -24,7 +24,7 @@
      * @return array $zones_array, zone of the country
      * @access public
      */
-    public static function getCountryZones(int $country_id) :array
+    public static function getCountryZones($country_id)
     {
       $zones_array = parent::getCountryZones($country_id);
 
