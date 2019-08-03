@@ -7,4 +7,3 @@
  text_product_not_found = Product not found !
 
  success_notifications_updated = Products Notification added in your account
-

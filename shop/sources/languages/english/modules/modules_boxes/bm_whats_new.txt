@@ -8,5 +8,3 @@
 text_flash_discount = Flash Discount
 
 button_detail = details
-
-

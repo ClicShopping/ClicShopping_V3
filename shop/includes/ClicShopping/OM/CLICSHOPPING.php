@@ -632,7 +632,7 @@
      * @param array $exclude A list of parameters to exclude
      * @return string
      */
-    public static function getAllGET($exclude = null): string
+    public static function getAllGET($exclude = null)
     {
       if (!is_array($exclude)) {
         if (!empty($exclude)) {

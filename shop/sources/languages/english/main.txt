@@ -41,7 +41,6 @@ entry_customers_phone_number_text = *
 entry_post_code = Postal Code
 entry_post_code_text = *
 
-
 entry_company = Company
 category_personnal = Personal informations
 entry_gender = Gender
@@ -60,7 +59,6 @@ entry_country_text = *
 entry_state = State / Department
 entry_state_text = *
 
-
 entry_email_address = Email
 entry_email_address_text = *
 entry_last_name = Last Name
@@ -68,24 +66,22 @@ entry_last_name_text = *
 entry_first_name = First Name
 entry_first_name_text = *
 
-
-
-entry_company_error = Your Company Name must contain a minimum of ' . {{min_length}} . ' characters.
-entry_company_error_pro = Your Company Name must contain a minimum of ' . {{min_length}} . ' characters.
-entry_siret_error = The number of registration of your company must contain a minimum of ' . {{min_length}} .' characters.
-entry_tva_intracom_error = The number of VAT Intracom of your company must contain a minimum of ' . {{min_length}} .' characters.
-entry_code_ape_error = The nomenclature number your company must contain a minimum of ' . {{min_length}} .' characters.
+entry_company_error = Your Company Name must contain a minimum of {{min_length}}characters.
+entry_company_error_pro = Your Company Name must contain a minimum of {{min_length}} characters.
+entry_siret_error = The number of registration of your company must contain a minimum of {{min_length}} characters.
+entry_tva_intracom_error = The number of VAT Intracom of your company must contain a minimum of {{min_length}} characters.
+entry_code_ape_error = The nomenclature number your company must contain a minimum of {{min_length}} characters.
 entry_taxe_provinciale = Provincial Tax number :
-entry_code_taxe_provinciale_error = Le provincial tax code of your company must contain a minimum of  ' . {{min_length}} .' characters.
+entry_code_taxe_provinciale_error = Le provincial tax code of your company must contain a minimum of {{min_length}} characters.
 entry_code_taxe_provinciale_text = *
 entry_taxe_federale = Federal Tax :
-entry_code_taxe_federale_error = the federal tax code of your company must contain a minimum of  ' . {{min_length}} .' characters.
+entry_code_taxe_federale_error = the federal tax code of your company must contain a minimum of  {{min_length}} characters.
 entry_code_taxe_federale_text = *
 
 entry_gender_error = Please select your Gender.
 entry_gender_error_pro = Please select your Gender.
 entry_first_name_error = Your First Name must contain a minimum of {{min_length}} characters.
-entry_first_name_error_pro = Your First Name must contain a minimum of ' . {{min_length}} . ' characters.
+entry_first_name_error_pro = Your First Name must contain a minimum of {{min_length}} characters.
 entry_last_name_error = Your Last Name must contain a minimum of {{min_length}} characters.
 entry_last_name_error_pro = Your Last Name must contain a minimum of ' . {{min_length}} . ' characters.
 entry_date_of_birth_error = Your Date of Birth must be in this format: MM/DD/YYYY (eg 05/21/1970)
@@ -102,24 +98,24 @@ entry_email_address_error_exists_pro = Your E-Mail Address already exists in our
 entry_email_address_confirmation_check_error = You did not seize an identical address email at the time of the confirmation.
 entry_email_address_confirmation_check_error_pro = You did not seize an identical address email at the time of the confirmation.
 entry_street_address_error = Your Street Address must contain a minimum of {{min_length}} characters.
-entry_street_address_error_pro = Your Street Address must contain a minimum of ' . {{min_length}} . ' characters.
+entry_street_address_error_pro = Your Street Address must contain a minimum of {{min_length}} characters.
 entry_suburb_error =
 entry_suburb_text =
 entry_post_code_error = Your Post Code must contain a minimum of {{min_length}} characters.
-entry_post_code_error_pro = Your Post Code must contain a minimum of ' . {{min_length}} . ' characters.
+entry_post_code_error_pro = Your Post Code must contain a minimum of {{min_length}} characters.
 entry_city_error = Your City must contain a minimum of {{min_length}} characters.
-entry_city_error_pro = Your City must contain a minimum of ' . {{min_length}} . ' characters.
+entry_city_error_pro = Your City must contain a minimum of {{min_length}} characters.
 entry_state_error = Your State must contain a minimum of {{min_length}} characters.
 entry_state_error_select = Please select a state from the States pull down menu.
-entry_state_error_pro = Your State must contain a minimum of ' . {{min_length}} . ' characters.
+entry_state_error_pro = Your State must contain a minimum of {{min_length}} characters.
 entry_state_error_select_pro = Please select a state from the States pull down menu.
 
 entry_country_error = You must select a country from the Countries pull down menu.
 entry_country_error_pro = You must select a country from the Countries pull down menu.
 entry_telephone_number_error = Your Telephone Number must contain a minimum of {{min_length}} characters.
-entry_telephone_number_error_pro = Your Telephone Number must contain a minimum of ' . {{min_length}} . ' characters.
-entry_cellular_phone_number_error = Your Cellular phone Number must contain a minimum of ' . {{min_length}} . ' characters.
-entry_cellular_phone_number_error_pro = Your Cellular phone Number must contain a minimum of ' . {{min_length}} . ' characters.
+entry_telephone_number_error_pro = Your Telephone Number must contain a minimum of {{min_length}} characters.
+entry_cellular_phone_number_error = Your Cellular phone Number must contain a minimum of {{min_length}} characters.
+entry_cellular_phone_number_error_pro = Your Cellular phone Number must contain a minimum of {{min_length}} characters.
 entry_phone_dgrp = Your phone number is important to contact you (payment, shipping problem ...)
 
 entry_fax_number_error =
@@ -131,10 +127,10 @@ entry_password_error_not_matching = The Password Confirmation must match your Pa
 entry_password_error_pro = Your Password must contain a minimum of ' . {{min_length}} . ' characters.
 entry_password_error_not_matching_pro = The Password Confirmation must match your Password.
 entry_password_confirmation_text = * Confirm your password.
-entry_password_current_error = Your Password must contain a minimum of ' . {{min_length}} . ' characters.
+entry_password_current_error = Your Password must contain a minimum of {{min_length}} characters.
 entry_password_new_error = Your new Password must contain a minimum of {{min_length}} characters.
 entry_password_new_error_not_matching = The Password Confirmation must match your new Password.
-entry_password_new_error_pro = Your new Password must contain a minimum of ' . {{min_length}} . ' characters.
+entry_password_new_error_pro = Your new Password must contain a minimum of {{min_length}} characters.
 entry_password_new_error_not_matching_pro = The Password Confirmation must match your new Password.
 
 entry_text_order_number = Order N°

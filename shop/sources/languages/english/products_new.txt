@@ -1,4 +1,3 @@
-
  navbar_title = New Products
  heading_title = New Products
 

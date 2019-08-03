@@ -1,4 +1,3 @@
-
  navbar_title = Tell A Friend
  heading_title_friends = Tell A Friend
 
