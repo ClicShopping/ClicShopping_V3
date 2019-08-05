@@ -16,10 +16,12 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
+  use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
 
   class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
+    protected $manufacturerAdmin;
 
     public function __construct()
     {
@@ -28,32 +30,8 @@
       }
 
       $this->app = Registry::get('Manufacturers');
+
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
-    }
-
-    private function getManufacturer()
-    {
-      if (isset($_GET['pID'])) {
-        $Qproducts = $this->app->db->prepare('select manufacturers_id
-                                              from :table_products
-                                              where products_id = :products_id
-                                            ');
-        $Qproducts->bindInt(':products_id', HTML::sanitize($_GET['pID']));
-
-        $Qproducts->execute();
-
-        $Qmanufacturers = $this->app->db->prepare('select manufacturers_id,
-                                                           manufacturers_name
-                                                    from :table_manufacturers
-                                                    where manufacturers_id = :manufacturers_id
-                                                  ');
-        $Qmanufacturers->bindInt(':manufacturers_id', $Qproducts->valueInt('manufacturers_id'));
-        $Qmanufacturers->execute();
-
-        $result = $Qmanufacturers->fetchAll();
-
-        return $result;
-      }
     }
 
     public function display()
@@ -64,7 +42,13 @@
         return false;
       }
 
-      $manufacturer = $this->getManufacturer();
+      if (isset($_GET['pID'])) {
+        $pId = HTML::sanitize($_GET['pID']);
+      } else {
+        $pId = null;
+      }
+
+      $manufacturer = ManufacturerAdmin::getManufacturerName($pId);
 
       if (is_array($manufacturer) && count($manufacturer) > 0) {
         $manufacturers_id = $manufacturer[0]['manufacturers_id'];
@@ -93,7 +77,6 @@
       $content .= '</div>';
 
       $smanufacturers_ajax = CLICSHOPPING::link('ajax/manufacturers.php');
-
 
       $output = <<<EOD
 <!-- ######################## -->
@@ -140,7 +123,7 @@ $('#tab1ContentRow2').append(
 <!-- ######################## -->
 
 EOD;
-      return $output;
 
+      return $output;
     }
   }

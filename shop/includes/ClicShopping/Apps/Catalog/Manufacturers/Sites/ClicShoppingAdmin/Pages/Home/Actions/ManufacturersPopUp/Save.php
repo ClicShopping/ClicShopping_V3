@@ -9,12 +9,13 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Catalog\Manufacturers\Sites\ClicShoppingAdmin\Pages\Home\Actions\ManufacturersPopUp;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Cache;
+
+  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   class Save extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -30,20 +31,14 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       if (!empty($_POST['manufacturers_name'])) {
-
         $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
-        $manufacturers_image = HTML::sanitize($_POST['manufacturers_image']);
 
         if (isset($_POST['manufacturers_image']) && !is_null($_POST['manufacturers_image']) && ($_POST['manufacturers_image'] != 'none') && (!isset($_POST['delete_image']))) {
-          $manufacturers_image = htmlspecialchars($manufacturers_image);
-          $manufacturers_image = strstr($manufacturers_image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
-          $manufacturers_image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $manufacturers_image);
-          $manufacturers_image_end = strstr($manufacturers_image, '&quot;');
-          $manufacturers_image = str_replace($manufacturers_image_end, '', $manufacturers_image);
-          $manufacturers_image = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $manufacturers_image);
+          $manufacturers_image = $_POST['manufacturers_image'];
+
+          $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($manufacturers_image);
         } else {
           $manufacturers_image = 'null';
         }

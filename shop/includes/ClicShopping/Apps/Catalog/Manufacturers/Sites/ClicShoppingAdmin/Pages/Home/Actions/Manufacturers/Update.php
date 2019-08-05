@@ -37,11 +37,8 @@
 
       $manufacturers_image = $_POST['manufacturers_image'];
       $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
-      $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
 
-      $sql_data_array = ['manufacturers_name' => $manufacturers_name,
-        'suppliers_id' => $suppliers_id
-      ];
+      $sql_data_array = ['manufacturers_name' => $manufacturers_name];
 
       $update_sql_data = ['last_modified' => 'now()'];
 
@@ -87,7 +84,7 @@
         );
       }
 
-      $CLICSHOPPING_Hooks->call('Manufacturers', 'Update');
+      $CLICSHOPPING_Hooks->call('Manufacturers', 'Save');
 
       $this->app->redirect('Manufacturers&page=' . $page . '&mID=' . $manufacturers_id);
     }

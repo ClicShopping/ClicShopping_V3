@@ -13,6 +13,9 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
+  use ClicShopping\OM\Cache;
+
+  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
   class Save extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -96,12 +99,9 @@
         }
 
         if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && (!isset($_POST['delete_image']))) {
-          $suppliers_image = htmlspecialchars($suppliers_image);
-          $suppliers_image = strstr($suppliers_image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
-          $suppliers_image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $suppliers_image);
-          $suppliers_image_end = strstr($suppliers_image, '&quot;');
-          $suppliers_image = str_replace($suppliers_image_end, '', $suppliers_image);
-          $suppliers_image = str_replace($CLICSHOPPING_Template->getDirectoryShopSources(), '', $suppliers_image);
+          $suppliers_image = $_POST['suppliers_image'];
+
+          $manufacturers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
         } else {
           $suppliers_image = 'null';
         }
@@ -150,9 +150,10 @@
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
           $this->app->db->save('suppliers_info', $sql_data_array);
+          $CLICSHOPPING_Hooks->call('SuppliersPopUp', 'Insert');
         }
 
-        $CLICSHOPPING_Hooks->call('SuppliersPopUp', 'Insert');
+        Cache::clear('suppliers');
 
         echo 'Success';
         //    echo "From Server : ".json_encode($_POST)."<br>";

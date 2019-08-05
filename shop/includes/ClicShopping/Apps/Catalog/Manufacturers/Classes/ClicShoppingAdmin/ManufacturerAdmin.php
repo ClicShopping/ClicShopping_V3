@@ -16,36 +16,57 @@
   class ManufacturerAdmin
   {
 
-    protected $manufacturers_id;
-    protected $language_id;
-    protected $db;
-
-    public function __construct()
-    {
-      $this->db = Registry::get('Db');
-    }
-
     /**
      * the manufacturer_description
-     *
-     * @param string $manufacturer_id , $language_id
-     * @return string $manufacturer['manufacturer_description'],  description of the manufacturer
-     * @access public
+     * @param int|null $manufacturers_id
+     * @param int $language_id
+     * @return string
      */
-
-    public function getManufacturerDescription($manufacturers_id, $language_id)
+    public static function getManufacturerDescription(?int $manufacturers_id, int $language_id): string
     {
+      $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qmanufacturers = $this->db->prepare('select manufacturer_description
-                                              from :table_manufacturers_info
-                                              where manufacturers_id = :manufacturers_id
-                                              and languages_id = :language_id
-                                            ');
+      $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturer_description
+                                                    from :table_manufacturers_info
+                                                    where manufacturers_id = :manufacturers_id
+                                                    and languages_id = :language_id
+                                                  ');
 
       $Qmanufacturers->bindInt(':manufacturers_id', $manufacturers_id);
       $Qmanufacturers->bindInt(':language_id', $language_id);
       $Qmanufacturers->execute();
 
       return $Qmanufacturers->value('manufacturer_description');
+    }
+
+    /**
+     * @param int|null $id
+     * @return mixed
+     */
+    public static function getManufacturerName(?int $id = null)
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      if (!is_null($id)) {
+        $Qproducts = $CLICSHOPPING_Db->prepare('select manufacturers_id
+                                                from :table_products
+                                                where products_id = :products_id
+                                              ');
+        $Qproducts->bindInt(':products_id', $id);
+
+        $Qproducts->execute();
+
+        $Qmanufacturers = $CLICSHOPPING_Db->prepare('select manufacturers_id,
+                                                           manufacturers_name
+                                                    from :table_manufacturers
+                                                    where manufacturers_id = :manufacturers_id
+                                                  ');
+        $Qmanufacturers->bindInt(':manufacturers_id', $Qproducts->valueInt('manufacturers_id'));
+        $Qmanufacturers->execute();
+
+        $result = $Qmanufacturers->fetchAll();
+
+        return $result;
+      }
     }
   }

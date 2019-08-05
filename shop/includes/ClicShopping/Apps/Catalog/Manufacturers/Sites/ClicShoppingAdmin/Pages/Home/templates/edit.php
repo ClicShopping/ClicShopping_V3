@@ -23,20 +23,18 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
 
-  Registry::set('ManufacturerAdmin', new ManufacturerAdmin());
-  $CLICSHOPPING_ManufacturerAdmin = Registry::get('ManufacturerAdmin');
-
   $form_action = 'Insert';
   $variable = '';
 
   if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
     $form_action = 'Update';
-    $variable = '&mID=' . $_GET['mID'];
+    $variable = '&mID=' . HTML::sanitize($_GET['mID']);
   }
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
 
   echo HTMLOverrideAdmin::getCkeditor();
+  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
 ?>
 
 <div class="contentBody">
@@ -50,8 +48,7 @@
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
 <?php
-  echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));
-  if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', $_GET['mID']);
+  if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
 
   echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_cancel'), null, $CLICSHOPPING_Manufacturers->link('Manufacturers&page=' . $page . $variable), 'warning') . '&nbsp;';
   echo(($form_action == 'Insert') ? HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success') : HTML::button($CLICSHOPPING_Manufacturers->getDef('button_update'), null, null, 'success'));
@@ -64,7 +61,6 @@
   <div class="separator"></div>
   <?php
     if ((isset($_GET['Edit']) && isset($_GET['mID']) && !empty($_GET['mID']))) {
-
       $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select m.manufacturers_id,
                                                                          m.manufacturers_name,
                                                                          m.manufacturers_image,
@@ -84,12 +80,10 @@
                                                                   and m.manufacturers_id = :manufacturers_id
                                                                 ');
       $Qmanufacturers->bindValue(':languages_id', (int)$CLICSHOPPING_Language->getId());
-      $Qmanufacturers->bindValue(':manufacturers_id', (int)$_GET['mID']);
+      $Qmanufacturers->bindValue(':manufacturers_id', $_GET['mID']);
       $Qmanufacturers->execute();
 
-
       $mInfo = new ObjectInfo($Qmanufacturers->toArray());
-
     } else {
       $mInfo = new ObjectInfo(array());
     }
@@ -133,63 +127,31 @@
             </div>
 
             <div class="separator"></div>
-            <div class="row">
+            <div class="row" id="manufacturersUrl">
               <div class="col-md-12">
                 <span
                   class="col-md-2"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_url'); ?></span>
               </div>
             </div>
-            <?php
-              $languages = $CLICSHOPPING_Language->getLanguages();
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                ?>
-                <div class="form-group row">
-                  <label for="code"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ProductsAdmin->getManufacturerUrl($mInfo->manufacturers_id ?? null, $languages[$i]['id'])); ?>
+
+            <div id="manufacturersLanguage">
+              <?php
+                $languages = $CLICSHOPPING_Language->getLanguages();
+                for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                  ?>
+                  <div class="form-group row">
+                    <label for="code"
+                           class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                    <div class="col-md-5">
+                      <?php echo HTML::inputField('manufacturers_url[' . $languages[$i]['id'] . ']', $CLICSHOPPING_ProductsAdmin->getManufacturerUrl($mInfo->manufacturers_id ?? null, $languages[$i]['id'])); ?>
+                    </div>
                   </div>
-                </div>
-                <?php
-              }
-
-              $Qsuppliers = $CLICSHOPPING_Manufacturers->db->prepare('select suppliers_id,
-                                                                 suppliers_name
-                                                           from :table_suppliers
-                                                           order by suppliers_name
-                                                          ');
-
-              $Qsuppliers->execute();
-
-              if ($Qsuppliers->rowCount() > 0) {
-                ?>
-
-                <div class="separator"></div>
-                <div class="row" id="supplierName">
-                  <label for="code"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_suppliers_suppliers_name'); ?></label>
-                  <div class="col-md-5">
-                    <?php
-                      $suppliers_name_array[] = ['id' => 0,
-                        'text' => CLICSHOPPING::getDef('text_select')
-                      ];
-
-
-                      while ($Qsuppliers->fetch()) {
-                        $suppliers_name_array[] = ['id' => $Qsuppliers->valueInt('suppliers_id'),
-                          'text' => $Qsuppliers->value('suppliers_name')
-                        ];
-                      }
-
-
-                      echo HTML::selectField('suppliers_id', $suppliers_name_array, $mInfo->suppliers_id ?? null);
-                    ?>
-                  </div>
-                </div>
-                <?php
-              }
-            ?>
+                  <?php
+                }
+              ?>
+            </div>
           </div>
+          <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab1', null, 'display'); ?>
         </div>
         <!-- //################################################################################################################ -->
         <!--          ONGLET Information description       //-->
@@ -217,7 +179,7 @@
                   <div class="col-md-12">
                     <div class="form-group row">
                       <div class="col-md-8">
-                        <?php echo HTMLOverrideAdmin::textAreaCkeditor('manufacturer_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : $CLICSHOPPING_ManufacturerAdmin->getManufacturerDescription($mInfo->manufacturers_id ?? null, $languages[$i]['id']))); ?>
+                        <?php echo HTMLOverrideAdmin::textAreaCkeditor('manufacturer_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($manufacturer_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($manufacturer_description[$languages[$i]['id']])) : ManufacturerAdmin::getManufacturerDescription($mInfo->manufacturers_id ?? null, $languages[$i]['id']))); ?>
                       </div>
                     </div>
                   </div>
@@ -257,6 +219,7 @@
                 </span>
             </div>
           </div>
+          <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab2', null, 'display'); ?>
         </div>
 
         <!-- //################################################################################################################ -->
@@ -293,6 +256,7 @@
               </div>
             </div>
           </div>
+          <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ProductsContentTab3', null, 'display'); ?>
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Manufacturers->getDef('title_help_image')) . ' ' . $CLICSHOPPING_Manufacturers->getDef('title_help_image') ?></div>
@@ -305,38 +269,6 @@
         <!-- //################################################################################################################ -->
         <!-- decompte caracteres -->
         <!--<script type="text/javascript" src="../ext/javascript/charcount/charCount.js'; ?>" ></script>-->
-        <script type="text/javascript">
-            $(document).ready(function () {
-              <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
-              ?>
-                //default title
-                $("#default_title_<?php echo $i?>").charCount({
-                    allowed: 70,
-                    warning: 20,
-                    counterText: ' Max : '
-                });
-
-                //default_description
-                $("#default_description_<?php echo $i?>").charCount({
-                    allowed: 150,
-                    warning: 20,
-                    counterText: 'Max : '
-                });
-
-                //default tag
-                $("#default_tag_<?php echo $i?>").charCount({
-                    allowed: 70,
-                    warning: 20,
-                    counterText: ' Max : '
-                });
-
-              <?php
-              }
-              ?>
-            });
-        </script>
-
         <div class="tab-pane" id="tab4">
           <div class="col-md-12 mainTitle">
             <div
@@ -415,11 +347,42 @@
           </div>
         </div>
         <div class="separator"></div>
-        <?php echo $CLICSHOPPING_Hooks->output('Catalog', 'ManufacturersTab4', null, 'display'); ?>
+        <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab4', null, 'display'); ?>
       </div>
     </div>
+    <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab5', null, 'display'); ?>
   </div>
-  </form>
-
 </div>
+</form>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+      <?php
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      ?>
+        //default title
+        $("#default_title_<?php echo $i?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+        //default_description
+        $("#default_description_<?php echo $i?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+        //default tag
+        $("#default_tag_<?php echo $i?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+      <?php
+      }
+      ?>
+    });
+</script>

@@ -25,6 +25,10 @@
     "Insert":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\Insert",
     "CopyConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CopyConfirm",
     "CloneProducts":	"Module\\Hooks\\ClicShoppingAdmin\\Products\\CloneProducts"
+   },
+   "ClicShoppingAdmin/Manufacturers": {
+    "ProductsContentTab1":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\ProductsContentTab1",
+    "Save":	"Module\\Hooks\\ClicShoppingAdmin\\Manufacturers\\Save"
    }
   }
  },
