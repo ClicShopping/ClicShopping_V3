@@ -48,8 +48,6 @@
   <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/stylesheet_responsive.css'); ?>">
 
   <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/general.js'); ?>"></script>
-
-  <script src="https://kit.fontawesome.com/89fdf54890.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body onload="SetFocus();">
@@ -70,7 +68,7 @@
       <span class="infoHeader">
 <?php
   if (isset($_SESSION['admin'])) {
-    if ($_SESSION['admin']['access'] == 1 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt')) > 0) {
+    if ($_SESSION['admin']['access'] == 1 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt', GLOB_NOSORT)) > 0) {
 ?>
       <span><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Tools\EditLogError&LogError'), '<i class="fas fa-exclamation-circle text-warning"></i>'); ?></span>
  <?php

@@ -94,7 +94,7 @@
                 $rows = '0' . $rows;
               }
               ?>
-              <tr onMouseOver="rowOverEffect(this)" onMouseOut="rowOutEffect(this)">
+              <tr>
                 <td scope="row"
                     width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsViewed->getDef('icon_preview'))); ?></td>
                 <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>

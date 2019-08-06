@@ -64,6 +64,8 @@
         }
     });
 </script>
+<script
+  src="https://kit.fontawesome.com/89fdf54890.js"></script>
 
 <!--smartmenu -->
 <script

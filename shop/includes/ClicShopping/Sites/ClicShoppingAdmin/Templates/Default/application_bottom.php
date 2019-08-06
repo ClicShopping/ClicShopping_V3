@@ -11,16 +11,14 @@
 
   use ClicShopping\OM\Registry;
 
-  if (STORE_PAGE_PARSE_TIME == 'true') {
+  if (DISPLAY_PAGE_PARSE_TIME == 'true') {
     if (!is_object($CLICSHOPPING_LoggerAdmin)) {
       $CLICSHOPPING_LoggerAdmin = Registry::get('LoggerAdmin');
     }
 
     echo '<div class="row">';
-    echo '<div class="col-md-12">';
     echo '<div class="col-md-12 alert alert-info">';
     echo $CLICSHOPPING_LoggerAdmin->timerStop(DISPLAY_PAGE_PARSE_TIME);
-    echo '</div>';
     echo '</div>';
     echo '</div>';
   }

@@ -12,8 +12,19 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  require_once('includes/application_top.php');
+  error_reporting(E_ALL & ~E_NOTICE);
 
+// Start the clock for the page parse time log
+  define('PAGE_PARSE_START_TIME', microtime());
+
+  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../includes/ClicShopping/') . '/');
+
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+
+  CLICSHOPPING::initialize();
+
+  CLICSHOPPING::loadSite('ClicShoppingAdmin');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   if (CLICSHOPPING::hasSitePage()) {
@@ -35,6 +46,7 @@
         require_once($CLICSHOPPING_Template->getTemplateHeaderFooterAdmin('footer.php'));
       }
     }
+
     goto main_sub3;
   }
 

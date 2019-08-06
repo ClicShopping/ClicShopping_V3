@@ -55,7 +55,13 @@
 
     public static function write($message, $type)
     {
-      error_log(strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' [' . $type . '] ' . $message . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
+      if ( STORE_PAGE_PARSE_TIME == 'True') {
+        if (is_file(STORE_PAGE_PARSE_TIME_LOG)) {
+          error_log(strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' [' . $type . '] ' . $message . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
+        } else {
+          echo '<div class="alert alert-warning text-md-center">The time log directory or file is not found</div>';
+        }
+      }
     }
   }
 
