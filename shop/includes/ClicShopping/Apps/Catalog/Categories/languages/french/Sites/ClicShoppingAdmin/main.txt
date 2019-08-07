@@ -5,7 +5,7 @@ module_ct_short_title = Catégories
 text_products_categories = Catégories
 text_configure =  Configurer App Module
 
-text_intro = Cette app vous permet d'installer unsystème de gestion d'categories des produits. <br /><br />
+text_intro = Cette app vous permet d'installer un système de gestion d'categories des produits. <br /><br />
 - Activer ce module. Pour y accéder, veuillez aller dans le Menus Produits/Catégoriess
 
 module_ct_introduction = Le processus d'installation installe le menu

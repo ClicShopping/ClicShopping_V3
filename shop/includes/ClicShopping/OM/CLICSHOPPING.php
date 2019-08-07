@@ -588,7 +588,7 @@
     {
       if (isset($application)) {
         if (!static::siteApplicationExists($application)) {
-          trigger_error('Application \'' . $application . '\' does not exist for Site \'' . static::getSite());
+          trigger_error('Apps \'' . $application . '\' does not exist for Site \'' . static::getSite());
 
           $application = null;
         }
@@ -614,6 +614,7 @@
           }
         }
       }
+
       static::$_application = $application;
     }
 
