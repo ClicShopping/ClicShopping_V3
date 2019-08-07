@@ -73,7 +73,10 @@
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
+            <button type="button" class="btn btn-link"><a href="https://www.clicshopping.org/forum/files/" target="_blank" rel="noreferrer"><?php echo $CLICSHOPPING_Modules->getDef('button_marketplace'); ?></a></button>
+            <?php echo HTML::button($CLICSHOPPING_Modules->getDef('button_extension'), null, CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), 'primary') ?>
 <?php
+
   if (isset($_GET['action']) && $_GET['action'] == 'edit') {
     echo '<span class="cols-xs-3 float-right">';
     echo HTML::button($CLICSHOPPING_Modules->getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') . '&nbsp;';

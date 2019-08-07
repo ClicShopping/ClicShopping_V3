@@ -175,14 +175,14 @@
         if ($content_module_name == $module_real_name . '.json') {
 ?>
     <div class="col-md-4">
-      <div class="card">
-        <div class="card-header">
+      <div class="card ">
+        <div class="card-header" style="height:70px;">
           <span class="col-md-12">
             <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/logo_clicshopping.png', '50', '50'); ?>
             <?php echo $module_real_name; ?></span><?php echo $file_cache_information; ?>
           </span>
         </div>
-        <div class="card-block">
+        <div class="card-block" style="height:130px;">
           <div class="row">
             <div class="card-text">
               <div class="col-md-12"><?php echo $description; ?></div>
@@ -253,7 +253,7 @@
 
             if (strtolower($item->is_free) == 'no') {
               if (!empty($item->website_link_to_sell)) {
-                if (strpos("https://www.clicshopping.org/forum/files/file/", "https://www.clicshopping.org")) {
+                if (strpos('https://www.clicshopping.org/forum/files/file/', 'https://www.clicshopping.org')) {
                   $message = $CLICSHOPPING_Upgrade->getDef('error_link_not_allowed');
                   $error = true;
                 } else {
