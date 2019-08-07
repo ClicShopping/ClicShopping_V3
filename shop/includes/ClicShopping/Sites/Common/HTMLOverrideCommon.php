@@ -24,7 +24,6 @@
      * @param string $string , $str of the text
      * @return a text replaced
      */
-
     static public function stripHtmlTags(string $str): string
     {
 
@@ -61,10 +60,13 @@
       return preg_replace($search, $replace, $str);
     }
 
-// fonction de nettoyage des donnees si presence d'un editeur html
-    public static function cleanHtml(string $CatList, string$length = ''): string
+    /**
+     * @param $CatList
+     * @param string $length
+     * @return mixed|string|string[]|null
+     */
+    public static function cleanHtml($CatList, $length = '')
     {
-
       $clean = strip_tags($CatList);
       $clean = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $clean);
       $clean = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $clean);
@@ -77,9 +79,13 @@
           $clean = substr($clean, 0, $length - 3) . "...";
         }
       }
+
       return $clean;
     }
 
+    /**
+     * @return mixed
+     */
     public static function starHeaderTagRateYo()
     {
       $CLICSHOPPING_Template = Registry::get('Template');
