@@ -96,14 +96,14 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_categories (
-  categories_id int not_null auto_increment,
+  categories_id int NOT NULL auto_increment,
   categories_image varchar(255),
-  parent_id int UNSIGNED default(0) not_null,
+  parent_id int UNSIGNED default(0) NOT NULL,
   sort_order int(3),
   date_added datetime,
   last_modified datetime,
-  virtual_categories tinyint(1) default(0) not_null,
-  status tinyint(0) default(0) not_null,
+  virtual_categories tinyint(1) default(0) NOT NULL,
+  status tinyint(0) default(0) NOT NULL,
   customers_group_id int default (99) not null
   PRIMARY KEY (categories_id),
   KEY idx_categories_parent_id parent_id)
@@ -117,9 +117,9 @@ EOD;
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_categories_description (
-  categories_id int default(0) not_null,
-  language_id int default(1) not_null,
-  categories_name varchar(255) not_null,
+  categories_id int default(0) NOT NULL,
+  language_id int default(1) NOT NULL,
+  categories_name varchar(255) NOT NULL,
   categories_description text,
   categories_head_title_tag varchar(255),
   categories_head_desc_tag varchar(255),

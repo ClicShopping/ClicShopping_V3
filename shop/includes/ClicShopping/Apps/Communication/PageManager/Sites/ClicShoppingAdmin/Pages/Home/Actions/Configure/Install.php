@@ -95,7 +95,7 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
   CREATE TABLE :table_pages_manager (
-    pages_id int(11) not_null auto_increment,
+    pages_id int(11) NOT NULL auto_increment,
     links_target varchar(6) default('_self') not null,
     sort_order int(3),
     status int(1) default(1) NOT NULL,

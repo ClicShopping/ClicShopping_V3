@@ -98,7 +98,7 @@
 CREATE TABLE :table_specials (
   specials_id int(11) NOT NULL,
   products_id int NOT NULL,
-  specials_new_products_price not_null decimal(15,4),
+  specials_new_products_price NOT NULL decimal(15,4),
   specials_date_added datetime,
   specials_last_modified datetime,
   expires_date datetime,

@@ -97,14 +97,14 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_tax_rates (
-  tax_rates_id int not_null auto_increment,
-  tax_zone_id int not_null,
-  tax_class_id int not_null,
-  tax_priority int(5) default(1)
-  tax_rate decimal(7,4) not_null,
-  tax_description varchar(255) not_null,
+  tax_rates_id int NOT NULL auto_increment,
+  tax_zone_id int NOT NULL,
+  tax_class_id int NOT NULL,
+  tax_priority int(5) default(1),
+  tax_rate decimal(7,4) NOT NULL,
+  tax_description varchar(255) NOT NULL,
   last_modified datetime,
-  date_added datetime not_null,
+  date_added datetime NOT NULL,
   code_tax_erp varchar(15) null
   PRIMARY KEY tax_rates_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

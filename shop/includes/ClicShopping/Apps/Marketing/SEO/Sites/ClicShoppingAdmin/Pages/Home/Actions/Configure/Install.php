@@ -96,8 +96,8 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_submit_description (
-submit_id int not_null defautl(1),
-language_id int not_null defautl(1),
+submit_id int NOT NULL defautl(1),
+language_id int NOT NULL defautl(1),
 submit_defaut_language_title varchar(255),
 submit_defaut_language_keywords text,
 submit_defaut_language_description varchar(255),

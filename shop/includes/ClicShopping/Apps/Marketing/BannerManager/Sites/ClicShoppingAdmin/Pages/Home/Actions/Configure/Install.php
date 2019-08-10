@@ -97,12 +97,12 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_banners (
-  banners_id int not_null auto_increment,
+  banners_id int NOT NULL auto_increment,
   banners_title varchar(255) null,
   banners_url varchar(255) null,
   banners_image varchar(255) null,
   banners_group varchar(255) null,
-  banners_target varchar(6) not_null,
+  banners_target varchar(6) NOT NULL,
   banners_html_text text,
   expires_impressions int(7) default(0),
   expires_date datetime,
@@ -125,12 +125,12 @@ EOD;
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_banners_history (
-  banners_history_id int not_null auto_increment,
-  banners_id int not_null,
-  banners_shown int(5) default(0) not_null,
-  banners_clicked int(5) default(0) not_null,
-  banners_history_date datetime not_null
-  PRIMARY KEY banners_history_id
+  banners_history_id int NOT NULL auto_increment,
+  banners_id int NOT NULL,
+  banners_shown int(5) default(0) NOT NULL,
+  banners_clicked int(5) default(0) NOT NULL,
+  banners_history_date datetime NOT NULL
+  PRIMARY KEY banners_history_id,
   KEY idx_banners_history_banners_id (banners_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;

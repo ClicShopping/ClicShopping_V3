@@ -96,10 +96,10 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_currencies (
-  currencies_id int not_null auto_increment,
-  title varchar(255) not_null,
-  code char(3) not_null,
-  symbol_left varchar(12)
+  currencies_id int NOT NULL auto_increment,
+  title varchar(255) NOT NULL,
+  code char(3) NOT NULL,
+  symbol_left varchar(12),
   symbol_right varchar(12),
   decimal_point char(1),
   thousands_point char(1),

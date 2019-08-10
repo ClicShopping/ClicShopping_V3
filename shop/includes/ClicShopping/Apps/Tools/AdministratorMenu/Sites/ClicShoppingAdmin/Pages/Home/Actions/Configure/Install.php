@@ -96,10 +96,10 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_administrator_menu (
-  administrator_menu_id int not_null auto_increment,
-  administrator_menu_variable varchar(250) not_null,
-  customers_group_id int(2) default(0) not_null,
-  administrator_menu_type smallint(1) default(0) not_null
+  administrator_menu_id int NOT NULL auto_increment,
+  administrator_menu_variable varchar(250) NOT NULL,
+  customers_group_id int(2) default(0) NOT NULL,
+  administrator_menu_type smallint(1) default(0) NOT NULL
   PRIMARY KEY (administrator_menu_id),
   KEY idx_administrator_menu_id (administrator_menu_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -112,8 +112,8 @@ EOD;
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_administrator_menu_description (
-  administrator_menu_id int not_null,
-  language_id int not_null,
+  administrator_menu_id int NOT NULL,
+  language_id int NOT NULL,
   administrator_menu_name varchar(250),
   administrator_menu_short_description varchar(250),
   administrator_menu_description longtext

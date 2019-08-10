@@ -95,7 +95,7 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_suppliers (
-  suppliers_id int not_null auto_increment,
+  suppliers_id int NOT NULL auto_increment,
   suppliers_name varchar(32) NOT NULL,
   suppliers_image varchar(255),
   date_added datetime,
@@ -128,7 +128,7 @@ CREATE TABLE :table_suppliers_info (
   suppliers_id int NOT NULL DEFAULT 0,
   languages_id int NOT NULL DEFAULT 0,
   suppliers_url varchar(255),
-  url_clicked int(5) NOT NULL DEFAULT 0
+  url_clicked int(5) NOT NULL DEFAULT 0,
   date_last_click datetime
   PRIMARY KEY suppliers_id (languages_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

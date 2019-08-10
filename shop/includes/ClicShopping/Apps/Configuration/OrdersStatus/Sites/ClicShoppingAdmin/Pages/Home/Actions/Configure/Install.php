@@ -96,9 +96,9 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_orders_status (
-  orders_status_id int default(0) not_null,
-  language_id int default(1) not_null,
-  orders_status_name varchar(255) not_null,
+  orders_status_id int default(0) NOT NULL,
+  language_id int default(1) NOT NULL,
+  orders_status_name varchar(255) NOT NULL,
   public_flag int default(1),
   downloads_flag int default(0),
   support_orders_flag int(1) default(0)

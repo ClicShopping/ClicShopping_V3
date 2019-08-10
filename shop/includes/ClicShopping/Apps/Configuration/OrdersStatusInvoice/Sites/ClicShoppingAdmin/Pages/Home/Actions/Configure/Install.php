@@ -96,9 +96,9 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_orders_status_invoice (
-  orders_status_invoice_id int default(0) not_null,
-  language_id int default(1) not_null,
-  orders_status_invoice_name varchar(32) not_null
+  orders_status_invoice_id int default(0) NOT NULL,
+  language_id int default(1) NOT NULL,
+  orders_status_invoice_name varchar(32) NOT NULL
   PRIMARY KEY (orders_status_invoice_id) language_id,
   KEY idx_orders_status_invoice_name (orders_status_invoice_name)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

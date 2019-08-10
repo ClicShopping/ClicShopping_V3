@@ -96,11 +96,11 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_zones (
-  zone_id int not_null auto_increment,
-  zone_country_id int not_null,
-  zone_code varchar(255) not_null,
-  zone_name varchar(255) not_null,
-  zone_status tinyint(1) default(0) not_null
+  zone_id int NOT NULL auto_increment,
+  zone_country_id int NOT NULL,
+  zone_code varchar(255) NOT NULL,
+  zone_name varchar(255) NOT NULL,
+  zone_status tinyint(1) default(0) NOT NULL
   PRIMARY KEY idx_zones_country_id (zone_country_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;

@@ -96,11 +96,11 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_geo_zones (
-   geo_zone_id int not_null auto_increment,
-  geo_zone_name varchar(255) not_null,
-  geo_zone_description varchar(255) not_null,
+   geo_zone_id int NOT NULL auto_increment,
+  geo_zone_name varchar(255) NOT NULL,
+  geo_zone_description varchar(255) NOT NULL,
   last_modified datetime,
-  date_added datetime not_null
+  date_added datetime NOT NULL
   PRIMARY KEY geo_zone_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
@@ -113,12 +113,12 @@ EOD;
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_zones_to_geo_zones (
-  association_id int not_null auto_increment,
-  zone_country_id int not_null,
+  association_id int NOT NULL auto_increment,
+  zone_country_id int NOT NULL,
   zone_id int,
   geo_zone_id int,
   last_modified datetime,
-  date_added datetime not_null
+  date_added datetime NOT NULL
   PRIMARY KEY association_id,
   idx_zones_to_geo_zones_country_id (zone_country_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

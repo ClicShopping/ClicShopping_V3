@@ -96,11 +96,11 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_countries (
-  countries_id int not_null auto_increment,
-  countries_name varchar(255) not_null,
-  countries_iso_code_2 char(2) not_null,
-  countries_iso_code_3 char(3) not_null,
-  address_format_id int not_null,
+  countries_id int NOT NULL auto_increment,
+  countries_name varchar(255) NOT NULL,
+  countries_iso_code_2 char(2) NOT NULL,
+  countries_iso_code_3 char(3) NOT NULL,
+  address_format_id int NOT NULL,
   status tinyint(1) default(1)
   PRIMARY KEY countries_id,
   KEY idx_countries_name (countries_name)

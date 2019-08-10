@@ -96,10 +96,10 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_template_email (
-  template_email_id int not_null auto_increment,
-  template_email_variable varchar(250) not_null,
-  customers_group_id int(2) default(0) not_null,
-  template_email_type smallint(1) default(0) not_null
+  template_email_id int NOT NULL auto_increment,
+  template_email_variable varchar(250) NOT NULL,
+  customers_group_id int(2) default(0) NOT NULL,
+  template_email_type smallint(1) default(0) NOT NULL
   PRIMARY KEY (template_email_id),
   KEY idx_template_email_id (template_email_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -112,8 +112,8 @@ EOD;
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_template_email_description (
-  template_email_id int not_null,
-  language_id int not_null,
+  template_email_id int NOT NULL,
+  language_id int NOT NULL,
   template_email_name varchar(250),
   template_email_short_description varchar(250),
   template_email_description longtext

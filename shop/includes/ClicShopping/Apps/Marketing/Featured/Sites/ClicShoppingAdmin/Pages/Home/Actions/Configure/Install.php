@@ -128,15 +128,15 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_products_featured (
-  products_featured_id int(11) not_null,
-  products_id int not_null default(0),
+  products_featured_id int(11) NOT NULL,
+  products_id int NOT NULL default(0),
   products_featured_date_added datetime,
   products_featured_last_modified datetime,
   scheduled_date datetime,
   expires_date datetime,
   date_status_change datetime,
-  status tinyint(1) not_null default(1),
-  customers_group_id int not_null default(0)
+  status tinyint(1) NOT NULL default(1),
+  customers_group_id int NOT NULL default(0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE :table_products_featured ADD PRIMARY KEY (products_featured_id),  ADD KEY idx_products_featured_id (products_id);

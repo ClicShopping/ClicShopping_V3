@@ -96,12 +96,12 @@
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_tax_class (
-  tax_class_id int not_null auto_increment,
-  tax_class_title varchar(32) not_null,
-  tax_class_description varchar(255) not_null,
+  tax_class_id int NOT NULL auto_increment,
+  tax_class_title varchar(32) NOT NULL,
+  tax_class_description varchar(255) NOT NULL,
   last_modified datetime,
-  date_added datetime not_null
-  PRIMARY KEY tax_class_id,
+  date_added datetime NOT NULL
+  PRIMARY KEY tax_class_id
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
         $CLICSHOPPING_Db->exec($sql);
