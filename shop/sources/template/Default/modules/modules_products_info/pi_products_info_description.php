@@ -84,7 +84,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the width of the module',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_DESCRIPTION_CONTENT_WIDTH',
-          'configuration_value' => '12',
+          'configuration_value' => '7',
           'configuration_description' => 'Select a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',
@@ -96,7 +96,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_DESCRIPTION_POSITION',
-          'configuration_value' => 'float-none',
+          'configuration_value' => 'float-md-left',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
@@ -108,7 +108,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_DESCRIPTION_SORT_ORDER',
-          'configuration_value' => '100',
+          'configuration_value' => '30',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '3',
@@ -116,10 +116,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                              ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                            );
     }
 
     public function remove() {

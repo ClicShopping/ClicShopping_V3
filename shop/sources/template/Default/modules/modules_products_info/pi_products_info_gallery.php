@@ -142,7 +142,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do want to display the gallery position ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-md-right',
           'configuration_description' => 'select the good value',
           'configuration_group_id' => '6',
           'sort_order' => '2',
@@ -203,7 +203,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER',
-          'configuration_value' => '100',
+          'configuration_value' => '35',
           'configuration_description' => 'Sort Order(Lowest is displayed in first)',
           'configuration_group_id' => '6',
           'sort_order' => '3',
@@ -211,10 +211,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                              ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                            );
     }
 
     public function remove() {

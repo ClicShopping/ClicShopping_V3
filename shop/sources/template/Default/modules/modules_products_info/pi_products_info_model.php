@@ -106,7 +106,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_MODEL_SORT_ORDER',
-          'configuration_value' => '100',
+          'configuration_value' => '20',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '3',
@@ -114,10 +114,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                              ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                            );
     }
 
     public function remove() {
