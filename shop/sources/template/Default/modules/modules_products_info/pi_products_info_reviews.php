@@ -225,7 +225,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Ordre de tri d\'affichage',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_SORT_ORDER',
-          'configuration_value' => '150',
+          'configuration_value' => '700',
           'configuration_description' => 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)',
           'configuration_group_id' => '6',
           'sort_order' => '4',
