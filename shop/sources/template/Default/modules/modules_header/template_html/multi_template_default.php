@@ -42,7 +42,7 @@
                     <div class="col-md-12">
                       <label for="inputAddressPasswordLogin" class="sr-only"><?php echo CLICSHOPPING::getDef('modules_header_multi_template_account_password'); ?></label>
                       <span class="col-md-3 float-md-left text-md-left headerMultiTemplateDefaultPasswordText" id="inputAddressPasswordLogin"><?php echo CLICSHOPPING::getDef('modules_header_multi_template_account_password'); ?></span>
-                      <span class="col-md-9 float-md-right"><?php echo HTML::inputField('password', null, 'id="inputAddressPassword" aria-describedby="' . CLICSHOPPING::getDef('modules_header_multi_template_account_password') . '" placeholder="' . CLICSHOPPING::getDef('modules_header_multi_template_account_password') . '"', 'password'); ?></span>
+                      <span class="col-md-9 float-md-right"><?php echo HTML::inputField('password', null, 'id="current-password" aria-describedby="' . CLICSHOPPING::getDef('modules_header_multi_template_account_password') . '" placeholder="' . CLICSHOPPING::getDef('modules_header_multi_template_account_password') . '"', 'password'); ?></span>
                     </div>
                   </div>
                   <div class="separator"></div>
