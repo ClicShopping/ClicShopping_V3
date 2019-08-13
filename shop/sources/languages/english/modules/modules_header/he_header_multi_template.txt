@@ -9,7 +9,7 @@ modules_header_multi_template_account_logged_in = Login
 modules_header_multi_template_cart_no_contents = No product
 
 modules_header_multi_template_account_logoff = Log Off
-modules_header_multi_template_account_login = Login
+modules_header_multi_template_account_login = Sign in
 modules_header_multi_template_account_register = Sign up
 
 modules_header_multi_template_create_account = Create an account
