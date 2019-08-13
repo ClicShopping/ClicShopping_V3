@@ -295,7 +295,7 @@
         $Qcheck->execute();
       }
 
-      return $Qcheck->false;
+      return $Qcheck->fetch();
     }
 
     /**
