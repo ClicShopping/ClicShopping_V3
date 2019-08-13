@@ -1,5 +1,0 @@
-Add setrequest function
-Fix address typage error
-fix english language
-Fix popupImage Manufacturer and Supplier
-restructure Manufacturer and with suppliers Hooks
