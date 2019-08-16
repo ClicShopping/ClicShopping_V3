@@ -107,12 +107,12 @@ CREATE TABLE :table_banners (
   expires_impressions int(7) default(0),
   expires_date datetime,
   date_scheduled datetime,
-  date_added datetime not_null,
+  date_added datetime NOT NULL,
   date_status_change datetime,
-  status int(1) default(1) not_null,
-  languages_id int default(0) not_null,
-  customers_group_id int default(0) not_null,
-  banners_title_admin varchar(255) not_null
+  status int(1) default(1) NOT NULL,
+  languages_id int default(0) NOT NULL,
+  customers_group_id int default(0) NOT NULL,
+  banners_title_admin varchar(255) NOT NULL
   PRIMARY KEY banners_id,
   KEY idx_banners_group banners_group
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
