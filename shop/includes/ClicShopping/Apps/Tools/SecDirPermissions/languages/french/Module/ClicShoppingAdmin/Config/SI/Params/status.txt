@@ -1,6 +1,0 @@
-cfg_sec_dir_permissions_status_title = Statut d'affichage du module
-cfg_sec_dir_permissions_status_description = Sélectionner True pour afficher le module
-
-cfg_sec_dir_permissions_status_true = True
-cfg_sec_dir_permissions_status_false = False
-
