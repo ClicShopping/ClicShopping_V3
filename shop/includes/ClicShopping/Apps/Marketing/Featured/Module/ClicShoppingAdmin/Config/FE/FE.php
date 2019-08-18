@@ -37,7 +37,7 @@
 
       $installed[] = $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code;
 
-      $this->app->saveCfgParam('MODULE_MODULES_FEATURED_INSTALLED', implode(';', $installed));
+      $this->app->saveCfgParam('MODULE_MODULES_PRODUCTS_FEATURED_INSTALLED', implode(';', $installed));
     }
 
     public function uninstall()
