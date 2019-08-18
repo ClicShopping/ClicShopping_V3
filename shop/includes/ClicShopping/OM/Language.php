@@ -211,9 +211,11 @@
 
       if (!isset($language_code)) {
         $language_code = $this->language;
-      }
 
-      return $this->languages[$language_code][$data];
+        return $this->languages[$language_code][$data];
+      } else {
+        return $this->languages['en'][$data];
+      }
     }
 
     /**
