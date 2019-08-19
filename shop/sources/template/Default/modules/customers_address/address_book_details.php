@@ -24,9 +24,6 @@
   <div class="separator"></div>
   <div class="hr"></div>
 <?php
-// Clients B2C et B2B
-// Nouvelle adresse : Affichage du nom societe par defaut si il existe dans la table customers.
-// Edition adresse :  Affiche le nom de la societe present dans le carnet d'adresse table address_book.
   if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ACCOUNT_COMPANY == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ACCOUNT_COMPANY_PRO == 'true')) {
      $QaccountGroup = $CLICSHOPPING_Db->prepare('select customers_company
                                                  from :table_customers

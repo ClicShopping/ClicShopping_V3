@@ -184,19 +184,17 @@
 
           $entry_state_has_zones = ($Qcheck->fetch() !== false);
 
-
           if ($entry_state_has_zones === true) {
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                    from :table_zones
                                                    where zone_country_id = :zone_country_id
-                                                   and (zone_name = :zone_name or zone_code = :zone_code)
+                                                   and zone_id = :zone_id
                                                    and zone_status = 0
                                                  ');
 
               $Qzone->bindInt(':zone_country_id', $country);
-              $Qzone->bindValue(':zone_name', $state);
-              $Qzone->bindValue(':zone_code', $state);
+              $Qzone->bindValue(':zone_id', $state);
               $Qzone->execute();
             } else {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
@@ -213,7 +211,7 @@
             }
 
             if (count($Qzone->fetchAll()) === 1) {
-              $zone_id = (int)$Qzone->result[0]['zone_id'];
+              $zone_id = (int)$Qzone->valueInt('zone_id');
             } else {
               $error = true;
 
