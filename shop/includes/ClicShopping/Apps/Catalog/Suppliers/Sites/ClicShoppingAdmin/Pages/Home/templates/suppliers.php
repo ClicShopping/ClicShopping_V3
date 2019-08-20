@@ -50,6 +50,7 @@
           <th width="1" class="text-md-center"><input type="checkbox"
                                                       onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"/>
           </th>
+          <th></th>
           <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_suppliers'); ?></th>
           <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_manager'); ?></th>
           <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_phone'); ?></th>
@@ -61,7 +62,6 @@
         </thead>
         <tbody>
         <?php
-
           $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select  SQL_CALC_FOUND_ROWS  *
                                                 from :table_suppliers
                                                 order by suppliers_name
@@ -100,6 +100,7 @@
                     }
                   ?>
                 </td>
+                <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qsuppliers->value('suppliers_image'), $Qsuppliers->value('suppliers_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
                 <th scope="row"><?php echo $Qsuppliers->value('suppliers_name'); ?></th>
                 <td><?php echo $Qsuppliers->value('suppliers_manager'); ?></td>
                 <td><?php echo $Qsuppliers->value('suppliers_phone'); ?></td>

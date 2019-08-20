@@ -100,7 +100,7 @@
       if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && (!isset($_POST['delete_image']))) {
         $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
       } else {
-        $suppliers_image = 'null';
+        $suppliers_image = null;
       }
 
       $sql_data_array = ['suppliers_name' => $suppliers_name,

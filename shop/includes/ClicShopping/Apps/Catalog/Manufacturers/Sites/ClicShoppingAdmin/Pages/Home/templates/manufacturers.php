@@ -52,6 +52,7 @@
           <td width="1" class="text-md-center"><input type="checkbox"
                                                       onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"/>
           </td>
+          <td></td>
           <td><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_manufacturers'); ?></td>
           <td class="text-md-center"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_status'); ?></td>
           <td class="text-md-right"><?php echo $CLICSHOPPING_Manufacturers->getDef('table_heading_action'); ?>&nbsp;
@@ -60,7 +61,6 @@
         </thead>
         <tbody>
         <?php
-
           $Qmanufacturers = $CLICSHOPPING_Manufacturers->db->prepare('select  SQL_CALC_FOUND_ROWS manufacturers_id,
                                                                                    manufacturers_name,
                                                                                    manufacturers_image,
@@ -104,6 +104,7 @@
                   }
                 ?>
               </td>
+              <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qmanufacturers->value('manufacturers_image'), $Qmanufacturers->value('manufacturers_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
               <th scope="row"><?php echo $Qmanufacturers->value('manufacturers_name'); ?></th>
               <td class="text-md-center">
                 <?php

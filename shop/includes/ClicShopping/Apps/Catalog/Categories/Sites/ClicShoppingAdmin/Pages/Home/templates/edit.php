@@ -372,13 +372,13 @@
                 <span
                   class="col-md-4 text-md-center float-md-left"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('categories_image', null, '300', '300'); ?></span>
                 <span class="col-md-8 text-md-center float-md-right">
-                        <div class="col-md-12">
-                          <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($cInfo->categories_image, $CLICSHOPPING_Categories->getDef('text_categories_image_vignette')); ?>
-                        </div>
-                        <div class="col-md-12 text-md-right">
-                          <?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_delete') . HTML::checkboxField('delete_image', 'yes', false); ?>
-                        </div>
-                      </span>
+                  <div class="col-md-12">
+                    <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($cInfo->categories_image, $CLICSHOPPING_Categories->getDef('text_categories_image_vignette')); ?>
+                  </div>
+                  <div class="col-md-12 text-md-right">
+                    <?php echo $CLICSHOPPING_Categories->getDef('text_categories_image_delete') . HTML::checkboxField('delete_image', 'yes', false); ?>
+                  </div>
+                </span>
               </div>
             </div>
           </div>

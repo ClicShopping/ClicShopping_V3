@@ -121,19 +121,20 @@
 
       $this->app->db->save('suppliers', $sql_data_array, ['suppliers_id' => (int)$suppliers_id]);
 
-      if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && (!empty($_POST['suppliers_image'])) && (!isset($_POST['delete_image']))) {
-        $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
+      if (isset($_POST['delete_image'])) {
+        $sql_data_array = ['suppliers_image' => ''];
+        $this->app->db->save('suppliers', $sql_data_array, ['suppliers_id' => (int)$suppliers_id]);
+
+      } elseif (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && !empty($_POST['suppliers_image'])) {
+        $suppliers_image = $_POST['suppliers_image'];
+
+        if (!empty($suppliers_image) && !is_null($suppliers_image)) {
+          $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
+        }
 
         $sql_data_array = ['suppliers_image' => $suppliers_image];
         $this->app->db->save('suppliers', $sql_data_array, ['suppliers_id' => (int)$suppliers_id]);
       }
-
-// Suppression de l'image
-      if (isset($_POST['delete_image'])) {
-        $sql_data_array = ['suppliers_image' => ''];
-        $this->app->db->save('suppliers', $sql_data_array, ['suppliers_id' => (int)$suppliers_id]);
-      }
-
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
