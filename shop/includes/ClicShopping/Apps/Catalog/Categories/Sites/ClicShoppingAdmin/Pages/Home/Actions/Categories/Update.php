@@ -98,6 +98,6 @@
 
       $CLICSHOPPING_Hooks->call('Categories', 'Update');
 
-      $this->app->redirect('Categories&cPath=&cID=' . $categories_id);
+      $this->app->redirect('Categories&cPath=' . $new_parent_id . '&cID=' . $categories_id);
     }
   }
