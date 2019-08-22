@@ -2577,6 +2577,7 @@ abstract class elFinderVolumeDriver
         if (!$archivers) {
             return false;
         }
+        $file = $mime = '';
         foreach (array('zip', 'tgz') as $ext) {
             $mime = $this->mimetype('file.' . $ext, true);
             if (isset($archivers[$mime])) {
@@ -2590,7 +2591,6 @@ abstract class elFinderVolumeDriver
                 $mime = $this->mimetype('file.' . $ext, true);
             }
         }
-        $file = $mime = '';
         $ext = $cmd['ext'];
         $res = false;
         $mixed = false;
@@ -4628,7 +4628,7 @@ abstract class elFinderVolumeDriver
             $name = $path;
             $nameCheck = true;
         }
-        $ext = (false === $pos = strrpos($name, '.')) ? '' : substr($name, $pos + 1);
+        $ext = (false === $pos = strrpos($name, '.')) ? '' : strtolower(substr($name, $pos + 1));
         if ($size === null) {
             $size = file_exists($path) ? filesize($path) : -1;
         }
@@ -4881,7 +4881,7 @@ abstract class elFinderVolumeDriver
      * @param string $path
      * @param bool   $subdirs
      *
-     * @returnv void
+     * @return void
      */
     protected function updateSubdirsCache($path, $subdirs)
     {
@@ -5074,8 +5074,16 @@ abstract class elFinderVolumeDriver
 
             $dst = $this->decode($testStat['hash']);
 
+            // start time
+            $stime = microtime(true);
             foreach ($this->getScandir($src) as $stat) {
                 if (empty($stat['hidden'])) {
+                    // current time
+                    $ctime = microtime(true);
+                    if (($ctime - $stime) > 2) {
+                        $stime = $ctime;
+                        elFinder::checkAborted();
+                    }
                     $name = $stat['name'];
                     $_src = $this->decode($stat['hash']);
                     if (!$this->copy($_src, $dst, $name)) {

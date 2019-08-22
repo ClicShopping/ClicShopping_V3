@@ -2,7 +2,7 @@
   error_reporting(E_ALL | E_STRICT); // Set E_ALL for debuging
 //error_reporting(0); // Set E_ALL for debuging
 // // To Enable(true) handling of PostScript files by ImageMagick
-// // It is disabled by default as a countermeasure
+// // It is disabled by default as a countermeasure 
 // // of Ghostscript multiple -dSAFER sandbox bypass vulnerabilities
 // // see https://www.kb.cert.org/vuls/id/332928
 // define('ELFINDER_IMAGEMAGICK_PS', true);
