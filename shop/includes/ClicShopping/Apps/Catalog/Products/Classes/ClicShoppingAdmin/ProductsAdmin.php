@@ -18,15 +18,11 @@
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTTP;
 
-  use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
-  use ClicShopping\Apps\Configuration\Weight\Classes\ClicShoppingAdmin\WeightAdmin;
-
   use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   class ProductsAdmin
   {
-
     protected $products_quantity_unit_id;
     protected $language_id;
     protected $product_id;
@@ -324,6 +320,7 @@
       } else {
         $big_image_resized = '';
         $medium_image_resized = '';
+        $small_image_resized = '';
       }
 
 // Ajoute ou efface l'image dans la base de donnees

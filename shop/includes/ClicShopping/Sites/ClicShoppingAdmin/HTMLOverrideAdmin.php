@@ -145,11 +145,11 @@
         $doc = new \DOMDocument();
         $doc->loadHTML($image);
         $xpath = new \DOMXPath($doc);
-        $image = $xpath->evaluate("string(//img/@src)");
 
+        $image = $xpath->evaluate("string(//img/@src)");
         $image = CLICSHOPPING::getConfig('http_server', 'Shop') . $image;
 
-        $image = htmlspecialchars($image);
+        $image = htmlspecialchars($image, ENT_QUOTES | ENT_HTML5);
         $image = strstr($image, $CLICSHOPPING_Template->getDirectoryShopTemplateImages());
         $image = str_replace($CLICSHOPPING_Template->getDirectoryShopTemplateImages(), '', $image);
         $image_end = strstr($image, '&quot;');

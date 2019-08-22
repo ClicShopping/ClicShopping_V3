@@ -71,18 +71,18 @@
         <tbody>
         <?php
           $QwhosOnline = $CLICSHOPPING_WhosOnline->db->prepare('select SQL_CALC_FOUND_ROWS customer_id,
-                                                                            full_name,
-                                                                            ip_address,
-                                                                            time_entry,
-                                                                            time_last_click,
-                                                                            last_page_url,
-                                                                            session_id,
-                                                                            user_agent,
-                                                                            http_referer
-                                                 from :table_whos_online
-                                                 limit :page_set_offset,
-                                                      :page_set_max_results
-                                                 ');
+                                                                                            full_name,
+                                                                                            ip_address,
+                                                                                            time_entry,
+                                                                                            time_last_click,
+                                                                                            last_page_url,
+                                                                                            session_id,
+                                                                                            user_agent,
+                                                                                            http_referer
+                                                                 from :table_whos_online
+                                                                 limit :page_set_offset,
+                                                                      :page_set_max_results
+                                                                 ');
           $QwhosOnline->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
           $QwhosOnline->execute();
 
@@ -164,7 +164,6 @@
 
                           $CLICSHOPPING_ShoppingCartAdmin->addCart($CLICSHOPPING_ShoppingCartAdmin->getPrid($Qproducts->valueInt('products_id')), $Qproducts->valueint('customers_basket_quantity'), $attributes);
                         } while ($Qproducts->fetch());
-
 
                         echo $CLICSHOPPING_WhosOnline->getDef('text_shopping_cart_subtotal') . ' ' . $CLICSHOPPING_ShoppingCartAdmin->show_total();
                       }

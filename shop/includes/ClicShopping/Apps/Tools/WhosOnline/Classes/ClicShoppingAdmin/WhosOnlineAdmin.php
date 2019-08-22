@@ -16,12 +16,11 @@
   class WhosOnlineAdmin
   {
 
-    public static function getCountWhosOnline()
+    public static function getCountWhosOnline() :int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (isset($_SESSION['admin'])) {
-
         $QwhosOnline = $CLICSHOPPING_Db->prepare('select distinct customer_id,
                                                                   full_name,
                                                                   ip_address,

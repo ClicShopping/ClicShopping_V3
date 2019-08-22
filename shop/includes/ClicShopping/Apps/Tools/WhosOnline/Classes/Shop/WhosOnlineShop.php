@@ -126,7 +126,7 @@
       }
     }
 
-    public static function getWhosOnlineUpdateSession_id($old_id, $new_id)
+    public static function getWhosOnlineUpdateSession_id(string $old_id, string $new_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

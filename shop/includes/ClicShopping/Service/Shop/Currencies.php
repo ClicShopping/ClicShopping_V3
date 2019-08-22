@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Configuration\Currency\Classes\Shop\Currencies as CurrenciesClass;
 
@@ -27,7 +28,7 @@
 
         if (!isset($_SESSION['currency']) || isset($_GET['currency']) || ((USE_DEFAULT_LANGUAGE_CURRENCY == 'true') && (CLICSHOPPING::getDef('language_currency') != $_SESSION['currency']))) {
           if (isset($_GET['currency']) && $CLICSHOPPING_Currencies->is_set($_GET['currency'])) {
-            $_SESSION['currency'] = $_GET['currency'];
+            $_SESSION['currency'] = HTML::sanitize($_GET['currency']);
           } else {
             $_SESSION['currency'] = ((USE_DEFAULT_LANGUAGE_CURRENCY == 'true') && $CLICSHOPPING_Currencies->is_set(CLICSHOPPING::getDef('language_currency'))) ? CLICSHOPPING::getDef('language_currency') : DEFAULT_CURRENCY;
           }
