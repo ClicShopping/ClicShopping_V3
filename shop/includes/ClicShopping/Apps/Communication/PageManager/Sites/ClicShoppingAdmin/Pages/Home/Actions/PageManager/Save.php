@@ -40,7 +40,7 @@
         $links_target = '';
       }
 
-      if (isset($_POST['page_time'])) {
+      if (isset($_POST['page_box'])) {
         $page_box = HTML::sanitize($_POST['page_box']);
       } else {
         $page_box = 0;
