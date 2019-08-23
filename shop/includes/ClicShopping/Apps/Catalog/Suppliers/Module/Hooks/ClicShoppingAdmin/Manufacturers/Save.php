@@ -37,6 +37,8 @@
 
       if (isset($_GET['Manufacturers'])) {
         $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
+        if (empty($suppliers_id)) $suppliers_id = 0;
+
         $sql_data_array = ['suppliers_id' => $suppliers_id];
 
         if (isset($_GET['mID'])) {
