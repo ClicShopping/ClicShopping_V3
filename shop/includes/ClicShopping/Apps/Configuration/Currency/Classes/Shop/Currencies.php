@@ -141,14 +141,6 @@
     }
 
     /**
-     * @return array
-     */
-    public function getData() :array
-    {
-      return $this->currencies;
-    }
-
-    /**
      * add a tag like HT (whithout taxes) or TTC (with taxes) example
      * @return mixed
      */
@@ -233,6 +225,55 @@
       }
     }
 
+
+    public function trim(string $number, string $currency_code = null, bool $use_locale = true): string
+    {
+      if (!isset($currency_code)) {
+        $currency_code = $this->getDefault();
+      }
+
+      $dec_point = '.';
+      if (!empty($this->currencies[$_SESSION['currency']]['thousands_point'])) {
+        $dec_point = $this->currencies[$_SESSION['currency']]['thousands_point'];
+      }
+
+      $number = str_replace($dec_point . str_repeat('0', $this->currencies[$currency_code]['decimal_places']), '', $number);
+
+      return $number;
+    }
+
+    /**
+     * @param string|null $key
+     * @param string|null $currency_code
+     * @return mixed  array|string
+     */
+    public function get(string $key = null, string $currency_code = null)
+    {
+      if (!isset($currency_code)) {
+        $currency_code = $this->getDefault();
+      }
+
+      if (isset($key)) {
+        return $this->currencies[$currency_code][$key];
+      }
+
+      return $this->currencies[$currency_code];
+    }
+
+    /**
+     * @param int $id
+     * @return string|null
+     */
+    public function getCode(int $id): ?string
+    {
+      foreach ($this->currencies as $code => $c) {
+        if ($c['id'] === $id) {
+          return $code;
+        }
+      }
+      return null;
+    }
+
     /**
      * Dispaly a Currencies DropDown
      * @param string $class
@@ -240,18 +281,11 @@
      */
     public function getCurrenciesDropDown($class = '')
     {
-      $CLICSHOPPING_Currencies = Registry::get('Currencies');
-
-      if (isset($CLICSHOPPING_Currencies) && is_object($CLICSHOPPING_Currencies) && (count($CLICSHOPPING_Currencies->currencies) > 1)) {
-        reset($CLICSHOPPING_Currencies->currencies);
-        $currencies_array = [];
+      if ((count($this->currencies) > 1)) {
+        reset($this->currencies);
         $currency_header = '';
 
-        foreach ($CLICSHOPPING_Currencies->currencies as $key => $value) {
-          $currencies_array[] = ['id' => $key,
-            'text' => $value['title']
-          ];
-        }
+        $currencies_array = $this->getAll();
 
         $hidden_get_variables = '';
 
@@ -264,7 +298,7 @@
         if (!isset($_GET['Checkout'])) {
           $currency_header .= HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
           $currency_header .= '<label for="CurrencyDropDown" class="sr-only">Currency</label>';
-          $currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
+          $currency_header .= HTML::selectField('currency', $currencies_array, HTML::sanitize($_SESSION['currency']), 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
           $currency_header .= '</form>';
         } else {
           $currency_header = '';
@@ -272,5 +306,83 @@
 
         return $currency_header;
       }
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getAll(): array
+    {
+      $result = [];
+
+      foreach ($this->currencies as $code => $c) {
+        $result[] = [
+          'id' => $code,
+          'text' => $c['title']
+        ];
+      }
+
+      return $result;
+    }
+
+    /**
+     * @param float $number
+     * @param bool $use_trim
+     * @return array
+     */
+    public function showAll(float $number, bool $use_trim = false): array
+    {
+      $result = [];
+
+      foreach (array_keys($this->currencies) as $code) {
+        $value = $this->show($number, $code);
+
+        if ($use_trim === true) {
+          $value = $this->trim($value);
+        }
+        $result[$code] = $value;
+      }
+
+      return $result;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSelected(): ?string
+    {
+      return $this->selected;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSelected(): bool
+    {
+      return isset($this->selected);
+    }
+
+    /**
+     * @param string $code
+     * @return bool
+     */
+    public function setSelected(string $code): bool
+    {
+      if ($this->exists($code)) {
+        $this->selected = $code;
+        return true;
+      }
+      return false;
+    }
+
+
+    /**
+     * @param string $code
+     * @return bool
+     */
+    public function exists(string $code): bool
+    {
+      return array_key_exists($code, $this->currencies);
     }
   }
