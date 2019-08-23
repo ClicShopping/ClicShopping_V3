@@ -25,8 +25,8 @@
       $this->code = get_class($this);
       $this->group = basename(__DIR__);
 
-      $this->title = CLICSHOPPING::getDef('module_products_featured_title');
-      $this->description = CLICSHOPPING::getDef('module_products_featured_title_description');
+      $this->title = CLICSHOPPING::getDef('module_products_featured_title_tilte');
+      $this->description = CLICSHOPPING::getDef('module_products_featured_title_title_description');
 
       if (defined('MODULE_PRODUCTS_FEATURED_TITLE_STATUS')) {
         $this->sort_order = MODULE_PRODUCTS_FEATURED_TITLE_SORT_ORDER;
