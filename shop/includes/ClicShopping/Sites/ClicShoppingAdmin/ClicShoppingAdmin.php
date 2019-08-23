@@ -25,7 +25,7 @@
   class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
   {
 
-    public $default_page = 'Dashboard';
+    protected static $default_application = 'Dashboard';
 
     protected function init()
     {
@@ -143,18 +143,16 @@
     {
 
 //important dans la redirection sinon page blanche
-      $page_code = $this->default_page;
+      $page_code = static::getDefaultApplication();
       $class = 'ClicShopping\Sites\\' . $this->code . '\Pages\\' . $page_code . '\\' . $page_code;
 
       if (!empty($_GET)) {
         $req = basename(array_keys($_GET)[0]);
 
         if (($req == 'A') && (count($_GET) > 1)) {
-
           $app = array_keys($_GET)[1];
 
           if (strpos($app, '\\') !== false) {
-
             list($vendor, $app) = explode('\\', $app);
 
             if (Apps::exists($vendor . '\\' . $app) && ($page = Apps::getRouteDestination(null, $vendor . '\\' . $app)) !== null) {
@@ -172,7 +170,6 @@
             }
           }
         } else {
-
           if (class_exists('ClicShopping\Sites\\' . $this->code . '\Pages\\' . $req . '\\' . $req)) {
             $page_code = $req;
 
@@ -191,8 +188,20 @@
       }
     }
 
+    /**
+     * @param array $route
+     * @param array $routes
+     */
     public static function resolveRoute(array $route, array $routes)
     {
       return array_values($routes)[0];
+    }
+
+    /**
+     * @return string
+     */
+    public static function getDefaultApplication(): string
+    {
+      return static::$default_application;
     }
   }
