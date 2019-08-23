@@ -16,7 +16,16 @@
   $CLICSHOPPING_Currency = Registry::get('Currency');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select *
+  $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select currencies_id,
+                                                          title,
+                                                          code,
+                                                          symbol_left,
+                                                          symbol_right,
+                                                          decimal_point,
+                                                          thousands_point,
+                                                          decimal_places,
+                                                          value,
+                                                          surcharge
                                                   from :table_currencies
                                                   where currencies_id = :currencies_id
                                                 ');
@@ -26,6 +35,8 @@
   $cInfo = new ObjectInfo($Qcurrency->toArray());
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
+  echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $page . '&cID=' . $cInfo->currencies_id));
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -39,7 +50,6 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $page . '&cID=' . $cInfo->currencies_id));
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page . '&cID=' . $cInfo->currencies_id), 'warning');
 ?>
@@ -62,7 +72,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="currencies_symbol_title">
       <div class="col-md-5">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_title'); ?>"
@@ -74,7 +84,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="currencies_symbol_code">
       <div class="col-md-5">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_code'); ?>"
@@ -86,7 +96,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="currencies_symbol_left">
       <div class="col-md-12">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_left'); ?>"
@@ -98,7 +108,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="currencies_symbol_right">
       <div class="col-md-12">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_symbol_right'); ?>"
@@ -110,19 +120,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-5">
-        <div class="form-group row">
-          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?>"
-                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?></label>
-          <div class="col-md-5">
-            <?php echo HTML::inputField('decimal_places', $cInfo->decimal_places); ?>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
+    <div class="row" id="currencies_decimal_point">
       <div class="col-md-5">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_point'); ?>"
@@ -134,7 +132,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="currencies_thousands_point">
       <div class="col-md-5">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_thousands_point'); ?>"
@@ -146,7 +144,21 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="currencies_decimal_places">
+      <div class="col-md-5">
+        <div class="form-group row">
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_decimal_places'); ?></label>
+          <div class="col-md-7">
+            <?php echo HTML::inputField('decimal_places', $cInfo->decimal_places); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row" id="currencies_value">
       <div class="col-md-5">
         <div class="form-group row">
           <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_value'); ?>"
@@ -158,8 +170,19 @@
       </div>
     </div>
 
+    <div class="row" id="currencies_surcharge">
+      <div class="col-md-5">
+        <div class="form-group row">
+          <label for="<?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_surcharge'); ?>"
+                 class="col-5 col-form-label"><?php echo $CLICSHOPPING_Currency->getDef('text_info_currency_surcharge'); ?></label>
+          <div class="col-md-7">
+            <?php echo HTML::inputField('surcharge', $cInfo->surcharge); ?>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div class="row">
+    <div class="row" id="default_currencies">
       <?php
         if (DEFAULT_CURRENCY != $cInfo->code) {
           ?>
@@ -174,5 +197,5 @@
       ?>
     </div>
   </div>
-  </form>
 </div>
+</form>

@@ -50,6 +50,7 @@ table_heading_currency_value = Valeur
 table_heading_action = Action
 table_heading_currency_last_updated = Last updated
 table_heading_currency_status = Statut
+table_heading_currency_surcharge = Surcharge taux
 
 text_info_common_currencies = Monnaies courantes
 text_info_edit_intro = Merci de faire les changements nécessaires
@@ -69,6 +70,9 @@ text_info_heading_new_currency = Nouvelle devise
 text_info_heading_edit_currency = Editer devise
 text_info_heading_delete_currency = Supprimer devise
 text_info_set_as_default = {{text_set_default}} (Requiert une mise à jour manuelle de la valeur de la devise)
-
+text_info_currency_surcharge = Surcharge du taux
 text_info_delete_info =  Supprimer cette devise
+text_info_common_currency = Devises communes
+text_info_currency_choice = Choix de la devise
+
 error_remove_default_currency = Erreur : La devise par défaut ne peut �tre supprimée. Merci de choisir une autre devise par défaut et de réessayer.

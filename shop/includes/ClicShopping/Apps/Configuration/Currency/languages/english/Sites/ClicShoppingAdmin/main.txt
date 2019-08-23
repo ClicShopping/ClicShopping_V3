@@ -49,6 +49,7 @@ table_heading_currency_value = Value
 table_heading_action = Action
 table_heading_currency_last_updated = Latest update
 table_heading_currency_status = Status
+Table_heading_currency_surcharge = Surcharge rate
 
 text_info_common_currencies = Common currencies
 text_info_edit_intro = Please make any necessary changes
@@ -68,7 +69,9 @@ text_info_heading_new_currency = New Currency
 text_info_heading_edit_currency = Edit Currency
 text_info_heading_delete_currency = Delete Currency
 text_info_set_as_default =  {{text_set_default}} (requires a manual update of currency values)
-
+text_info_currency_surcharge = Surcharge rate
 text_info_delete_info =  Delete this currency
+text_info_common_currency = Common currencies
+text_info_currency_choice = Currency choice
 
 error_remove_default_currency = Error: The default currency can not be removed. Please set another currency as default, and try again.

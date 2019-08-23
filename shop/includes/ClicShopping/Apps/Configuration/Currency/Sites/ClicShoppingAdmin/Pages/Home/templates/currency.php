@@ -49,30 +49,31 @@
         <tr class="dataTableHeadingRow">
           <th><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_name'); ?></th>
           <th><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_code'); ?></th>
+          <th class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_surcharge'); ?></th>
           <th class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_value'); ?></th>
-          <th
-            class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_last_updated'); ?></th>
+          <th class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_last_updated'); ?></th>
           <th class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_status'); ?></th>
           <th class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_action'); ?>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <?php
-          $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select  SQL_CALC_FOUND_ROWS currencies_id,
-                                                                              title,
-                                                                              code,
-                                                                              symbol_left,
-                                                                              symbol_right,
-                                                                              decimal_point,
-                                                                              thousands_point,
-                                                                              decimal_places,
-                                                                              last_updated,
-                                                                              value,
-                                                                              status
-                                                from :table_currencies
-                                                order by title
-                                                limit :page_set_offset, :page_set_max_results
-                                              ');
+          $Qcurrency = $CLICSHOPPING_Currency->db->prepare('select SQL_CALC_FOUND_ROWS currencies_id,
+                                                                                        title,
+                                                                                        code,
+                                                                                        symbol_left,
+                                                                                        symbol_right,
+                                                                                        decimal_point,
+                                                                                        thousands_point,
+                                                                                        decimal_places,
+                                                                                        last_updated,
+                                                                                        value,
+                                                                                        status,
+                                                                                        surcharge
+                                                          from :table_currencies
+                                                          order by title
+                                                          limit :page_set_offset, :page_set_max_results
+                                                        ');
 
           $Qcurrency->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
           $Qcurrency->execute();
@@ -93,7 +94,8 @@
               }
               ?>
               <td><?php echo $Qcurrency->value('code'); ?></td>
-              <td class="text-md-right"><?php echo number_format($Qcurrency->value('value'), 8); ?></td>
+              <td class="text-md-right"><?php echo $Qcurrency->valueDecimal('surcharge'); ?></td>
+              <td class="text-md-right"><?php echo number_format($Qcurrency->valueDecimal('value'), 8); ?></td>
               <td class="text-md-center"><?php echo DateTime::toShort($Qcurrency->value('last_updated')); ?></td>
               <td class="text-md-center">
                 <?php

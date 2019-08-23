@@ -28,30 +28,41 @@
       $this->db = Registry::get('Db');
       $this->currencies = [];
 
-      $Qcurrencies = $this->db->prepare('select code,
-                                              title,
-                                              symbol_left,
-                                              symbol_right,
-                                              decimal_point,
-                                              thousands_point,
-                                              decimal_places,
-                                              value
-                                       from :table_currencies
-                                       where status = 1
-                                      ');
+      $Qcurrencies = $this->db->prepare('select currencies_id as id,
+                                                code,
+                                                title,
+                                                symbol_left,
+                                                symbol_right,
+                                                decimal_point,
+                                                thousands_point,
+                                                decimal_places,
+                                                value,
+                                                surcharge
+                                         from :table_currencies
+                                         where status = 1
+                                        ');
 
       $Qcurrencies->execute();
       $Qcurrencies->setCache('currencies');
 
-      while ($Qcurrencies->fetch()) {
-        $this->currencies[$Qcurrencies->value('code')] = ['title' => $Qcurrencies->value('title'),
-          'symbol_left' => $Qcurrencies->value('symbol_left'),
-          'symbol_right' => $Qcurrencies->value('symbol_right'),
-          'decimal_point' => $Qcurrencies->value('decimal_point'),
-          'thousands_point' => $Qcurrencies->value('thousands_point'),
-          'decimal_places' => $Qcurrencies->valueInt('decimal_places'),
-          'value' => $Qcurrencies->valueDecimal('value')
+      $currencies = $Qcurrencies->fetchAll();
+
+      foreach ($currencies as $c) {
+        $this->currencies[$c['code']] = [
+          'id' => (int)$c['id'],
+          'title' => $c['title'],
+          'symbol_left' => $c['symbol_left'],
+          'symbol_right' => $c['symbol_right'],
+          'decimal_point' => $c['decimal_point'],
+          'thousands_point' => $c['thousands_point'],
+          'decimal_places' => (int)$c['decimal_places'],
+          'value' => (float)$c['value'],
+          'surcharge' => (float)$c['surcharge']
         ];
+      }
+
+      if (!isset($this->default) && ((float)$c['value'] === 1.0)) {
+        $this->default = $c['code'];
       }
     }
 
@@ -62,7 +73,7 @@
      * @param null $currency_value
      * @return string
      */
-    public function format($number, $calculate_currency_value = true, $currency_type = '', $currency_value = null)
+    public function format(float $number, $calculate_currency_value = true, string $currency_type = '', $currency_value = null) :string
     {
       if (empty($currency_type) && CLICSHOPPING::getSite() == 'Shop') {
         $currency_type = $_SESSION['currency'];
@@ -74,6 +85,10 @@
 
       if ($calculate_currency_value === true) {
         $rate = (!is_null($currency_value)) ? $currency_value : $this->currencies[$currency_type]['value'];
+
+        if ($this->currencies[$currency_type]['surcharge'] > 0) {
+          $rate += ($rate * $this->currencies[$currency_type]['surcharge']);
+        }
 
         $format_string = '&nbsp;' . $this->currencies[$currency_type]['symbol_left'] . number_format(round($number * $rate, $this->currencies[$currency_type]['decimal_places']), $this->currencies[$currency_type]['decimal_places'], $this->currencies[$currency_type]['decimal_point'], $this->currencies[$currency_type]['thousands_point']) . '&nbsp;' . $this->currencies[$currency_type]['symbol_right'];
       } else {
@@ -89,7 +104,7 @@
      * @param int $quantity
      * @return float|int
      */
-    public function calculate_price($products_price, $products_tax, $quantity = 1)
+    public function calculate_price(float $products_price, float $products_tax, int $quantity = 1) :float
     {
       return round(Tax::addTax($products_price, $products_tax), $this->currencies[$_SESSION['currency']]['decimal_places']) * $quantity;
     }
@@ -98,7 +113,7 @@
      * @param $code
      * @return bool
      */
-    public function is_set($code)
+    public function is_set(string $code) :bool
     {
       if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
         return true;
@@ -111,7 +126,7 @@
      * @param $code
      * @return mixed
      */
-    public function get_value($code)
+    public function get_value(string $code): float
     {
       return $this->currencies[$code]['value'];
     }
@@ -120,33 +135,24 @@
      * @param $code
      * @return mixed
      */
-    public function get_decimal_places($code)
+    public function getDecimalPlaces(string $code) :string
     {
       return $this->currencies[$code]['decimal_places'];
     }
 
-    /*
-        public function value($code) {
-          if ( $this->get_value($code) ) {
-            return $this->currencies[$code]['value'][$code]['value'];
-          }
-    
-          return false;
-        }
-    */
-
     /**
      * @return array
      */
-    public function getData()
+    public function getData() :array
     {
       return $this->currencies;
     }
 
     /**
+     * add a tag like HT (whithout taxes) or TTC (with taxes) example
      * @return mixed
      */
-    private function priceTag()
+    private function priceTag() :string
     {
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
@@ -168,7 +174,7 @@
      * @param int $quantity
      * @return string
      */
-    public function display_price($products_price, $products_tax, $quantity = 1)
+    public function display_price(float $products_price, float $products_tax, int $quantity = 1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -210,7 +216,7 @@
      * @param int $quantity
      * @return bool|string
      */
-    public function displayPriceKilo($products_price, $products_weight, $value, $products_tax, $quantity = 1)
+    public function displayPriceKilo(float $products_price, float $products_weight, float $value, float $products_tax, int $quantity = 1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
@@ -256,7 +262,7 @@
         }
 
         if (!isset($_GET['Checkout'])) {
-          $currency_header = HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
+          $currency_header .= HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
           $currency_header .= '<label for="CurrencyDropDown" class="sr-only">Currency</label>';
           $currency_header .= HTML::selectField('currency', $currencies_array, $_SESSION['currency'], 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
           $currency_header .= '</form>';

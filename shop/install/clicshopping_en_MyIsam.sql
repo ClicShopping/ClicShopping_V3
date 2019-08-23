@@ -1974,16 +1974,17 @@ CREATE TABLE `clic_currencies` (
   `decimal_places` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `value` float(13,8) DEFAULT NULL,
   `last_updated` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT 1
+  `status` tinyint(1) DEFAULT 1,
+  `surcharge` float(15,4) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Contenu de la table `clic_currencies`
 --
 
-INSERT INTO `clic_currencies` VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1);
-INSERT INTO `clic_currencies` VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1);
-INSERT INTO `clic_currencies` VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', 1);
+INSERT INTO `clic_currencies` VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1, 0);
+INSERT INTO `clic_currencies` VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1, 0);
+INSERT INTO `clic_currencies` VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', 1, 0);
 
 -- --------------------------------------------------------
 

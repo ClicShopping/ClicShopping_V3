@@ -37,6 +37,7 @@
       $thousands_point = HTML::sanitize($_POST['thousands_point']);
       $decimal_places = HTML::sanitize($_POST['decimal_places']);
       $value = HTML::sanitize($_POST['value']);
+      $surcharge = HTML::sanitize($_POST['surcharge']);
 
       $sql_data_array = ['title' => $title,
         'code' => strtoupper($code),
@@ -46,16 +47,16 @@
         'thousands_point' => $thousands_point,
         'decimal_places' => $decimal_places,
         'value' => (float)$value,
-        'last_updated' => 'now()'
+        'last_updated' => 'now()',
+        'surcharge' => (float)$surcharge
       ];
 
       $this->app->db->save('currencies', $sql_data_array, ['currencies_id' => (int)$currencies_id]);
 
-
       if (isset($_POST['default'])) {
         $this->app->db->save('configuration', [
           'configuration_value' => $code
-        ], [
+          ], [
             'configuration_key' => 'DEFAULT_CURRENCY'
           ]
         );
