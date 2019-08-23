@@ -348,6 +348,15 @@
     }
 
     /**
+     * @param bool $true_default
+     * @return string|null
+     */
+    public function getDefault(bool $true_default = false): ?string
+    {
+      return (($true_default === false) && $this->hasSelected()) ? $this->selected : $this->default;
+    }
+
+    /**
      * @return string|null
      */
     public function getSelected(): ?string
