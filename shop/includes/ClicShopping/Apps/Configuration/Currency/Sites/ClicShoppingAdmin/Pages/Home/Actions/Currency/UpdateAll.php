@@ -30,8 +30,11 @@
 
     public function getConvertCurrency()
     {
-
       $CLICSHOPPING_CurrenciesAdmin = new CurrenciesAdmin();
+
+      // This is a constant
+      $sourceCurrency = 'EUR';
+      $defaultCurrency = DEFAULT_CURRENCY;
 
       $XML = HTTP::getResponse([
         'url' => 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
@@ -44,15 +47,29 @@
       $currencies = [];
 
       foreach ($CLICSHOPPING_CurrenciesAdmin->getAll() as $c) {
-        $currencies[$c['code']] = null;
+        $currencies[$c['id']] = null;
       }
+
+      // This is a constant
+      $currencies[$sourceCurrency] = 1;
 
       $XML = new \SimpleXMLElement($XML);
 
       foreach ($XML->Cube->Cube->Cube as $rate) {
-        if (array_key_exists((string)$rate['currency'], $currencies)) {
-          $currencies[(string)$rate['currency']] = (float)$rate['rate'];
+        $code = (string)$rate['currency'];
+        if (array_key_exists($code, $currencies)) {
+          $currencies[$code] = (float)$rate['rate'];
         }
+      }
+
+      if ($defaultCurrency !== $sourceCurrency) {
+        // Conversion is required
+        $convertedCurrencies = [];
+        foreach (array_keys($currencies) as $code) {
+          $convertedCurrencies[$code] = $currencies[$code] / $currencies[$defaultCurrency];
+        }
+
+        $currencies = $convertedCurrencies;
       }
 
       foreach ($currencies as $code => $value) {
