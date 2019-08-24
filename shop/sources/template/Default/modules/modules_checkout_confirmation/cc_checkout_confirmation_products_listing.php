@@ -120,7 +120,7 @@
           }
 
          $data .=  '<td  class="text-md-right" valign="top">';
-         $data .= $CLICSHOPPING_Currencies->display_price($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']);
+         $data .= $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']);
          $data .= '</td>' . "\n";
 
           $data .=  '</tr>' . "\n";

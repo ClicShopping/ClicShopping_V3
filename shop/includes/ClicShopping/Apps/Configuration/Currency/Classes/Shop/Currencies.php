@@ -23,7 +23,7 @@
     public $currencies = [];
     protected $db;
 
-    Public function __construct()
+    public function __construct()
     {
       $this->db = Registry::get('Db');
       $this->currencies = [];
@@ -104,7 +104,7 @@
      * @param int $quantity
      * @return float|int
      */
-    public function calculate_price(float $products_price, float $products_tax, int $quantity = 1) :float
+    public function calculatePrice(float $products_price, float $products_tax, int $quantity = 1) :float
     {
       return round(Tax::addTax($products_price, $products_tax), $this->currencies[$_SESSION['currency']]['decimal_places']) * $quantity;
     }
@@ -113,7 +113,7 @@
      * @param $code
      * @return bool
      */
-    public function is_set(string $code) :bool
+    public function isSet(string $code) :bool
     {
       if (isset($this->currencies[$code]) && !is_null($this->currencies[$code])) {
         return true;
@@ -126,7 +126,7 @@
      * @param $code
      * @return mixed
      */
-    public function get_value(string $code): float
+    public function getValue(string $code): float
     {
       return $this->currencies[$code]['value'];
     }
@@ -166,7 +166,7 @@
      * @param int $quantity
      * @return string
      */
-    public function display_price(float $products_price, float $products_tax, int $quantity = 1)
+    public function displayPrice(float $products_price, float $products_tax, int $quantity = 1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -183,18 +183,18 @@
       }
 
       if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX_PRO == 'true'))) {
-        return $this->format($this->calculate_price($products_price, $products_tax, $quantity)) . ' ' . $this->priceTag();
+        return $this->format($this->calculatePrice($products_price, $products_tax, $quantity)) . ' ' . $this->priceTag();
       } else {
 
 // do not display if the price 0
         if (NOT_DISPLAY_PRICE_ZERO == 'false') {
           if ($products_price > 0) {
-            return $this->format($this->calculate_price($products_price, $products_tax, $quantity));
+            return $this->format($this->calculatePrice($products_price, $products_tax, $quantity));
           } else {
             return '';
           }
         } else {
-          return $this->format($this->calculate_price($products_price, $products_tax, $quantity));
+          return $this->format($this->calculatePrice($products_price, $products_tax, $quantity));
         } // END NOT_DISPLAY_PRICE_ZERO
       }
     }
@@ -216,9 +216,9 @@
         $products_price_kilo = round(($products_price / $products_weight), 2);
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (DISPLAY_PRODUCT_PRICE_VALUE_TAX_PRO == 'true'))) {
-          return $this->format($this->calculate_price($products_price_kilo, $products_tax, $quantity)) . ' ' . $this->priceTag() . '';
+          return $this->format($this->calculatePrice($products_price_kilo, $products_tax, $quantity)) . ' ' . $this->priceTag() . '';
         } else {
-          return $this->format($this->calculate_price($products_price_kilo, $products_tax, $quantity));
+          return $this->format($this->calculatePrice($products_price_kilo, $products_tax, $quantity));
         }
       } else {
         return false;
@@ -245,7 +245,7 @@
     /**
      * @param string|null $key
      * @param string|null $currency_code
-     * @return mixed  array|string
+     * @return mixed array|string
      */
     public function get(string $key = null, string $currency_code = null)
     {
@@ -271,6 +271,7 @@
           return $code;
         }
       }
+      
       return null;
     }
 
@@ -341,6 +342,7 @@
         if ($use_trim === true) {
           $value = $this->trim($value);
         }
+
         $result[$code] = $value;
       }
 
@@ -380,11 +382,12 @@
     {
       if ($this->exists($code)) {
         $this->selected = $code;
+
         return true;
       }
+
       return false;
     }
-
 
     /**
      * @param string $code

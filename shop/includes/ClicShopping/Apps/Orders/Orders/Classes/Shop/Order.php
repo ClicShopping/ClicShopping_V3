@@ -1226,7 +1226,7 @@
             $products_model = $Qproducts->value('products_model');
           }
 
-          $email_order .= $Qproducts->valueInt('products_quantity') . ' x ' . $Qproducts->value('products_name') . ' (' . $products_model . ') = ' . html_entity_decode($CLICSHOPPING_Currencies->display_price($Qproducts->value('products_price'), $Qproducts->value('products_tax'), $Qproducts->valueInt('products_quantity'))) . "\n";
+          $email_order .= $Qproducts->valueInt('products_quantity') . ' x ' . $Qproducts->value('products_name') . ' (' . $products_model . ') = ' . html_entity_decode($CLICSHOPPING_Currencies->displayPrice($Qproducts->value('products_price'), $Qproducts->value('products_tax'), $Qproducts->valueInt('products_quantity'))) . "\n";
         }
 
         $email_order .= CLICSHOPPING::getDef('email_separator') . "\n";

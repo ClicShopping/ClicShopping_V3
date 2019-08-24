@@ -133,7 +133,7 @@
                   $products_attributes_image = '';
                 }
 
-                $products_option .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->display_price($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') . '</p>';
+                $products_option .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->displayPrice($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') . '</p>';
               }
             }
           }
@@ -163,7 +163,7 @@
           $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity') . ' ' . $button_update . ' ' . $trash;
           $cart .= HTML::hiddenField('products_id[' . $i . ']', $products[$i]['id'], 'id="products_id' . $products[$i]['id'] . '"');
           $cart .='</td>';
-          $cart .='<td data-th="Subtotal" class="text-sm-right">' . $CLICSHOPPING_Currencies->display_price($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
+          $cart .='<td data-th="Subtotal" class="text-sm-right">' . $CLICSHOPPING_Currencies->displayPrice($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
           $cart .='</tr>';
 
 // display SaveMoney Hook

@@ -27,10 +27,10 @@
         $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
         if (!isset($_SESSION['currency']) || isset($_GET['currency']) || ((USE_DEFAULT_LANGUAGE_CURRENCY == 'true') && (CLICSHOPPING::getDef('language_currency') != $_SESSION['currency']))) {
-          if (isset($_GET['currency']) && $CLICSHOPPING_Currencies->is_set($_GET['currency'])) {
+          if (isset($_GET['currency']) && $CLICSHOPPING_Currencies->isSet($_GET['currency'])) {
             $_SESSION['currency'] = HTML::sanitize($_GET['currency']);
           } else {
-            $_SESSION['currency'] = ((USE_DEFAULT_LANGUAGE_CURRENCY == 'true') && $CLICSHOPPING_Currencies->is_set(CLICSHOPPING::getDef('language_currency'))) ? CLICSHOPPING::getDef('language_currency') : DEFAULT_CURRENCY;
+            $_SESSION['currency'] = ((USE_DEFAULT_LANGUAGE_CURRENCY == 'true') && $CLICSHOPPING_Currencies->isSet(CLICSHOPPING::getDef('language_currency'))) ? CLICSHOPPING::getDef('language_currency') : DEFAULT_CURRENCY;
           }
         }
         return true;

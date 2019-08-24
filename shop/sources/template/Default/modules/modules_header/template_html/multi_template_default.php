@@ -116,7 +116,7 @@
   foreach ($products as $k => $v) {
     echo '<li class="headerMultiTemplateDefaultLi">&nbsp;&nbsp;
             <span class="float-md-left">' . $v['quantity'] . ' - ' . $v['name'] . '</span>
-            <span class="float-md-right">' .  $CLICSHOPPING_Currencies->display_price($v['final_price'], $CLICSHOPPING_Tax->getTaxRate($v['tax_class_id']), $v['quantity']) . '</span>
+            <span class="float-md-right">' .  $CLICSHOPPING_Currencies->displayPrice($v['final_price'], $CLICSHOPPING_Tax->getTaxRate($v['tax_class_id']), $v['quantity']) . '</span>
          </li>
          ';
   }

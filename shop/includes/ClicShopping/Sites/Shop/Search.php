@@ -437,14 +437,14 @@
       $result = [];
 
       if ($this->hasPriceFrom()) {
-        if ($CLICSHOPPING_Currencies->get_value($_SESSION['currency'])) {
-          $this->_price_from = $this->_price_from / $CLICSHOPPING_Currencies->get_value($_SESSION['currency']);
+        if ($CLICSHOPPING_Currencies->getValue($_SESSION['currency'])) {
+          $this->_price_from = $this->_price_from / $CLICSHOPPING_Currencies->getValue($_SESSION['currency']);
         }
       }
 
       if ($this->hasPriceTo()) {
-        if ($CLICSHOPPING_Currencies->get_value($_SESSION['currency'])) {
-          $this->_price_to = $this->_price_to / $CLICSHOPPING_Currencies->get_value($_SESSION['currency']);
+        if ($CLICSHOPPING_Currencies->getValue($_SESSION['currency'])) {
+          $this->_price_to = $this->_price_to / $CLICSHOPPING_Currencies->getValue($_SESSION['currency']);
         }
       }
 

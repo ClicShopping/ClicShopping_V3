@@ -1377,7 +1377,7 @@
       $products_weight = $this->setProductsWeight();
 
       if ($products_price_kilo == 1 && $products_weight != '') {
-        $product_price_kilo_display = $CLICSHOPPING_Currencies->display_price(round($products_price / $products_weight, 2), $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId()));
+        $product_price_kilo_display = $CLICSHOPPING_Currencies->displayPrice(round($products_price / $products_weight, 2), $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId()));
       } else {
         $product_price_kilo_display = '';
       }
@@ -2189,7 +2189,7 @@
         $id = $this->getID();
       }
 
-      $products_price = $CLICSHOPPING_Currencies->display_price($this->setPrice($id), $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId()));
+      $products_price = $CLICSHOPPING_Currencies->displayPrice($this->setPrice($id), $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId()));
 
       return $products_price;
     }
@@ -2255,7 +2255,7 @@
       if ($this->customer->getCustomersGroupID() != 0) {
         if ($new_price = $this->setSpecialPriceGroup($id)) {
           if ($price_group_view == 1) {
-            $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->display_price($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
+            $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
           } else {
             $products_price = '<span itemprop="price">' . $this->setDisplayPriceGroup($id) . '</span>';
           }
@@ -2268,7 +2268,7 @@
 
       if (($this->customer->getCustomersGroupID() == 0) || ($normal_price == 1)) {
         if ($new_price = $this->setSpecialPriceGroup($id)) {
-          $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->display_price($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
+          $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
         } else {
           $products_price = '<span itemprop="price">' . $this->setDisplayPriceGroup($id) . '</span>';
         }
