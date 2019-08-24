@@ -127,7 +127,7 @@
      * @access public
      *
      */
-    public static function getGeoZonesPullDown(array $parameters, string $selected = ''): string
+    public static function getGeoZonesPullDown($parameters, $selected = '') :string
     {
 
       $select_string = '<select ' . $parameters . '>';
