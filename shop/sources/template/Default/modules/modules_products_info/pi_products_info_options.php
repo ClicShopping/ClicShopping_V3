@@ -190,7 +190,11 @@
 
                 foreach ($products_options_array as $value) {
                   if (!is_null($value['image'])) {
+                    if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'])) {
                     $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $value['image'], $value['text']) . '   ';
+                    } else {
+                      $products_attributes_image = '';
+                    }
                   } else {
                     $products_attributes_image = '';
                   }
