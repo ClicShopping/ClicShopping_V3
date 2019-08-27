@@ -93,7 +93,7 @@
       return false;
     }
 
-    public function setForceCookies($force_cookies)
+    public function setForceCookies(bool $force_cookies)
     {
       $this->force_cookies = $force_cookies;
     }
@@ -170,7 +170,7 @@
      * @param string $name The name of the session
      */
 
-    public function setName($name)
+    public function setName(string $name) :string
     {
       return session_name($name);
     }
@@ -181,12 +181,12 @@
      * @param int $time The life time of the session (in seconds)
      */
 
-    public function setLifeTime($time)
+    public function setLifeTime(float $time) :float
     {
       return ini_set('session.gc_maxlifetime', $time);
     }
 
-    public function getName()
+    public function getName() :?sring
     {
       return $this->name;
     }

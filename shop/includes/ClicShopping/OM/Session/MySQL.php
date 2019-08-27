@@ -29,7 +29,7 @@
      *
      * @param string $session_id The ID of the session
      */
-    public function exists($session_id): bool
+    public function exists(string $session_id): bool
     {
       $Qsession = $this->db->prepare('select 1 from :table_sessions where sesskey = :sesskey');
       $Qsession->bindValue(':sesskey', $session_id);
