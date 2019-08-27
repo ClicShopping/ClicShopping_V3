@@ -186,7 +186,7 @@
       return ini_set('session.gc_maxlifetime', $time);
     }
 
-    public function getName() :?sring
+    public function getName() :?string
     {
       return $this->name;
     }
