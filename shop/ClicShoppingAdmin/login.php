@@ -233,7 +233,6 @@
 
   if ($action != 'password') {
 ?>
-
     <div id="loginModal" tabindex="-1" role="document" aria-hidden="true" style="padding-top:10rem">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -329,7 +328,6 @@
         </form>
       </div>
     </div>
-
 <?php
   }
 ?>

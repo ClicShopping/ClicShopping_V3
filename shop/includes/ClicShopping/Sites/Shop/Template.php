@@ -345,7 +345,7 @@
      * define('DIR_FS_DOWNLOAD_PUBLIC', $this->getPathRoot() . 'sources/public/');
      * @return string
      */
-    public function getPathDownloadShopDirectory($directory = null): string
+    public function getPathDownloadShopDirectory($directory = null) :string
     {
 
       if (!is_null($directory)) {

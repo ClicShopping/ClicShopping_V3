@@ -1,11 +1,12 @@
-#Options -Indexes
+Options -Indexes
 
-<FilesMatch "\.(php([0-9]|s)?|s?p?html|cgi|pl|exe)$">
-  <IfModule mod_authz_core.c>
-    Require all denied
-  </IfModule>
+# Only image
+<FilesMatch "\.(php|jpg|jpeg|gif|png|bmp|tiff|svg|pdf|mov|mpeg|mp4|avi|mpg|wma|flv|webm|ico)$">
   <IfModule !mod_authz_core.c>
-    Order deny,allow
-    Deny from all
+    Allow from all
+  </IfModule>
+
+  <IfModule mod_authz_core.c>
+    Require all granted
   </IfModule>
 </FilesMatch>
