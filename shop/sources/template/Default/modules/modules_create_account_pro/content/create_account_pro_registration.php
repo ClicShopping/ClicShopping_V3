@@ -241,7 +241,7 @@
               <div class="form-group row">
                 <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::selectMenuIsoList('country', $default_country_pro) . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
+                  <?php echo HTML::selectMenuIsoList('country', $default_country_pro, 'onchange="update_zone(this.form);" aria-required="true"') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
                 </div>
               </div>
             </div>
@@ -251,65 +251,83 @@
   }
 
   if (ACCOUNT_STATE_PRO == 'true') {
-     if (ACCOUNT_STATE_DROPDOWN == 'true' && ACCOUNT_STATE_PRO != 'true') {
+     if (ACCOUNT_STATE_DROPDOWN == 'true' ) {
 ?>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group row">
-        <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
-        <div class="col-md-8">
-          <?php echo HTML::selectField('state', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown(), null, 'aria-required="true"'); ?>
-          <?php echo(!is_null(CLICSHOPPING::getDef('entry_state_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>' : ''); ?>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group row">
+                <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
+                <div class="col-md-8">
+                  <?php echo HTML::selectField('state', $CLICSHOPPING_Address->getPrepareCountryZonesPullDown(), null, 'aria-required="true"'); ?>
+                  <?php echo(!is_null(CLICSHOPPING::getDef('entry_state_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>' : ''); ?>
+                </div>
+              </div>
+            </div>
+          </div>
 <?php
-       include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
      } else {
+       if (isset($_POST['country']) && !empty($_POST['country'])) {
+         $country = HTML::sanitize($_POST['country']);
+       } else {
+         $country = STORE_COUNTRY;
+       }
 ?>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group row">
-          <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
-          <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label for="InputState" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_state'); ?></label>
+              <div class="col-md-8">
 <?php
     if ($process === true) {
-      if ($entry_state_has_zones === true && is_numeric($country)) {
+      if ($_SESSION['entry_state_has_zones'] === true) {
         $zones_array = [];
 
-        $Qzones = $CLICSHOPPING_Db->prepare('select zone_name
-                                              from :table_zones
-                                              where zone_country_id = :zone_country_id
-                                              and zone_status = 0
-                                              order by zone_name
-                                             ');
-        $Qzones->bindInt(':zone_country_id', (int)$country);
-        $Qzones->execute();
+        $country_id = HTML::sanitize($_POST['country']);
 
-        while ($Qzones->fetch() ) {
-          $zones_array[] = ['id' => $Qzones->value('zone_name'),
-                            'text' => $Qzones->value('zone_name')
-          ];
+        if (!empty($country_id)) {
+          $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name
+                                               from :table_zones
+                                               where zone_country_id = :zone_country_id
+                                               and zone_status = 0
+                                               order by zone_name
+                                              ');
+          $Qcheck->bindInt(':zone_country_id', (int)$country_id);
+          $Qcheck->execute();
+
+
+          while ($Qcheck->fetch() ) {
+            $zones_array[] = ['id' => $Qcheck->value('zone_name'),
+                              'text' => $Qcheck->value('zone_name')
+                             ];
         }
-        echo HTML::selectMenu('state', $zones_array);
+
+          echo HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"', 'aria-required="true"');
+        } else {
+          echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-describedby="atState"');
+        }
       } else {
-        echo HTML::inputField('state');
+        echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-describedby="atState"');
       }
     } else {
-      echo HTML::inputField('state');
+      if (isset($entry['country_id']) && $entry['country_id'] != 0) {
+        $country_id = $CLICSHOPPING_Address->getZoneName($entry['country_id'], $entry['zone_id'], $entry['state']);
+      } else {
+        $country_id = '';
+      }
+
+      echo HTML::inputField('state', $country_id, 'id="atState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-required="true" aria-describedby="atState"');
     }
 
     if ((!is_null(CLICSHOPPING::getDef('entry_state_text'))) && (ENTRY_STATE_PRO_MIN_LENGTH > 0)) echo '&nbsp;<span class="text-warning">' . CLICSHOPPING::getDef('entry_state_text') . '</span>';
 ?>
+                </div>
               </div>
+            </div>
+          </div>
 <?php
     }
   }
 ?>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -534,5 +552,6 @@
     <div class="separator"></div>
 <?php
   }
+  require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
 ?>
  </div>

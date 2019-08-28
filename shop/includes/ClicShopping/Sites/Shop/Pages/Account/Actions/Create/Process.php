@@ -108,7 +108,6 @@
         } elseif ($email_address != $email_address_confirm) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirm_not_matching'), 'danger', 'create_account');
-
         } else {
 
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
@@ -126,7 +125,6 @@
           }
         }
 
-// Clients B2C : Controle  du mot de passe
         if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
 
@@ -206,6 +204,7 @@
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
             $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
           } else {
+  	    $email_coupon_catalog = '';
             $email_coupon = '';
           }
 

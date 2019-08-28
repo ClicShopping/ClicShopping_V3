@@ -59,9 +59,11 @@
         $country = null;
       }
 
-      $default_country_pro = CreateAccount::getCountryPro();
-
-      if (!isset($default_country_pro)) $default_country_pro = HTML::sanitize($_POST['country']);
+      if (isset($_POST['country']))  {
+        $default_country_pro = HTML::sanitize($_POST['country']);
+      } else {
+        $default_country_pro = CreateAccount::getCountryPro();
+      }
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 

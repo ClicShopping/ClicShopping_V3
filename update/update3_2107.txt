@@ -1,0 +1,14 @@
+Add setrequest function
+Fix address typage error
+fix english language
+Fix popupImage Manufacturer and Supplier
+restructure Manufacturer and with suppliers Hooks
+Fix check new customer address ifexist or not
+Fix different php notice index
+fix correct menu DB
+Fix bug members B2B
+fix language constant
+
+Since 3_2106 : update before this version
+ALTER TABLE `clic_currencies` ADD `surcharge` DECIMAL(15,4) NOT NULL DEFAULT '0' AFTER `status`;
+ALTER TABLE `clic_currencies` CHANGE `surcharge` `surcharge` DECIMAL(15,4) NULL DEFAULT NULL;

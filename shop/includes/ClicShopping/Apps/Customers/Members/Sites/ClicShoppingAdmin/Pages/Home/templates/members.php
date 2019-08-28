@@ -82,47 +82,44 @@
             $keywords = HTML::sanitize($_POST['search']);
 
             $Qcustomers = $CLICSHOPPING_Members->db->prepare('select  SQL_CALC_FOUND_ROWS  c.customers_id,
-                                                                             c.customers_lastname,
-                                                                             c.customers_firstname,
-                                                                             a.entry_company,
-                                                                             c.customers_email_address,
-                                                                             a.entry_country_id,
-                                                                             c.customers_group_id
-                                              from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
-                                              where (c.customers_lastname like :keywords
-                                                      or c.customers_firstname like :keywords
-                                                      or c.customers_email_address like :keywords
-                                                    )
-                                              and member_level = 0
-                                              and c.customers_default_address_id = a.address_book_id
-                                              order by c.customers_lastname,
-                                                       c.customers_firstname
-                                              limit :page_set_offset,
-                                                    :page_set_max_results
-                                              ');
+                                                                                           c.customers_lastname,
+                                                                                           c.customers_firstname,
+                                                                                           a.entry_company,
+                                                                                           c.customers_email_address,
+                                                                                           a.entry_country_id,
+                                                                                           c.customers_group_id
+                                                            from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
+                                                            where (c.customers_lastname like :keywords
+                                                                    or c.customers_firstname like :keywords
+                                                                    or c.customers_email_address like :keywords
+                                                                  )
+                                                            and member_level = 0
+                                                            and c.customers_default_address_id = a.address_book_id
+                                                            order by c.customers_lastname,
+                                                                     c.customers_firstname
+                                                            limit :page_set_offset,
+                                                                  :page_set_max_results
+                                                            ');
 
             $Qcustomers->bindvalue(':keywords', '%' . $keywords . '%');
             $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
             $Qcustomers->execute();
-
-
           } else {
-
             $Qcustomers = $CLICSHOPPING_Members->db->prepare('select  SQL_CALC_FOUND_ROWS  c.customers_id,
-                                                                             c.customers_lastname,
-                                                                             c.customers_firstname,
-                                                                             a.entry_company,
-                                                                             c.customers_email_address,
-                                                                             a.entry_country_id,
-                                                                             c.customers_group_id
-                                              from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
-                                              where member_level = 0
-                                              and c.customers_default_address_id = a.address_book_id
-                                              order by c.customers_lastname,
-                                                       c.customers_firstname
-                                              limit :page_set_offset,
-                                                    :page_set_max_results
-                                              ');
+                                                                                         c.customers_lastname,
+                                                                                         c.customers_firstname,
+                                                                                         a.entry_company,
+                                                                                         c.customers_email_address,
+                                                                                         a.entry_country_id,
+                                                                                         c.customers_group_id
+                                                          from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
+                                                          where member_level = 0
+                                                          and c.customers_default_address_id = a.address_book_id
+                                                          order by c.customers_lastname,
+                                                                   c.customers_firstname
+                                                          limit :page_set_offset,
+                                                                :page_set_max_results
+                                                          ');
 
             $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
             $Qcustomers->execute();
@@ -136,12 +133,12 @@
           while ($Qcustomers->fetch()) {
 
             $Qinfo = $CLICSHOPPING_Members->db->prepare('select customers_info_date_account_created as date_account_created,
-                                                 customers_info_date_account_last_modified as date_account_last_modified,
-                                                 customers_info_date_of_last_logon as date_last_logon,
-                                                 customers_info_number_of_logons as number_of_logons
-                                           from :table_customers_info
-                                           where customers_info_id = :customers_info_id
-                                          ');
+                                                               customers_info_date_account_last_modified as date_account_last_modified,
+                                                               customers_info_date_of_last_logon as date_last_logon,
+                                                               customers_info_number_of_logons as number_of_logons
+                                                         from :table_customers_info
+                                                         where customers_info_id = :customers_info_id
+                                                         ');
             $Qinfo->bindInt(':customers_info_id', (int)$Qcustomers->valueInt('customers_id'));
             $Qinfo->execute();
 
@@ -150,16 +147,16 @@
               $lInfo = new ObjectInfo($Qinfo->toArray());
 
               $Qcountry = $CLICSHOPPING_Members->db->prepare('select countries_name
-                                               from :table_countries
-                                               where countries_id = :countries_id
-                                              ');
+                                                               from :table_countries
+                                                               where countries_id = :countries_id
+                                                              ');
               $Qcountry->bindInt(':countries_id', $Qcustomers->valueInt('entry_country_id'));
               $Qcountry->execute();
 
               $Qreviews = $CLICSHOPPING_Members->db->prepare('select count(*) as number_of_reviews
-                                               from :table_reviews
-                                               where customers_id = :customers_id
-                                              ');
+                                                               from :table_reviews
+                                                               where customers_id = :customers_id
+                                                              ');
               $Qreviews->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
               $Qreviews->execute();
 

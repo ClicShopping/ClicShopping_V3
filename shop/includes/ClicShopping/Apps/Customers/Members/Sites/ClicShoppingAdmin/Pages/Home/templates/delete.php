@@ -61,7 +61,7 @@
   <div class="separator"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Members->getDef('text_info_delete_customer'); ?></strong></div>
-  <?php echo HTML::form('customers', CLICSHOPPING::link('Members&DeleteConfirmcID=' . $cInfo->customers_id)); ?>
+  <?php echo HTML::form('customers', $CLICSHOPPING_Members->link('Members&DeleteConfirm&cID=' . $cInfo->customers_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
