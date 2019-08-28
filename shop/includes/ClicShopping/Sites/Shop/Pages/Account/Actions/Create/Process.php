@@ -213,7 +213,7 @@
           $template_email_signature = TemplateEmail::getTemplateEmailSignature();
           $template_email_footer = TemplateEmail::getTemplateEmailTextFooter();
           $email_subject = CLICSHOPPING::getDef('email_subject', ['store_name' => STORE_NAME]);
-          $email_gender = CLICSHOPPING::getDef('female') . ', ' . CLICSHOPPING::getDef('male') . ' ' . $lastname;
+          $email_gender = CLICSHOPPING::getDef('email_greet_ms') . ', ' . CLICSHOPPING::getDef('email_greet_mr') . ' ' . $lastname;
           $email_text = $email_gender . ',<br /><br />' . $template_email_welcome_catalog . '<br /><br />' . $email_coupon . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
 
 // EEmail send

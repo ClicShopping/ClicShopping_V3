@@ -20,6 +20,4 @@ email_network = 'Suivez nous en temps reel sur :<br />
 email_twitter = http://www.twitter.com/
 email_facebook = http://www.facebook.com/
 
-admin_email_subject = Enregistrement nouveau client sur {{store_name}}
-
 error_action_recorder = Erreur: Une demande a été déjà réalisée. Veuillez recommencer dans {{module_action_recorder_create_account_email_minutes}} minutes.

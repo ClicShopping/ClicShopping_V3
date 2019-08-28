@@ -21,6 +21,4 @@ email_network = Follow us in real time on  :<br />
 email_twitter = http://www.twitter.com/
 email_facebook = http://www.facebook.com/
 
-admin_email_subject = New cutomer on {{store_name}}
-
 error_action_recorder = Error: An enquiry has already been sent. Please try again in {{module_action_recorder_create_account_email_minutes}} minutes.

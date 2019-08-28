@@ -15,7 +15,7 @@ you will receive an email notifying the creation of your account, after validati
 you will be able under privileged customer to then profit from exceptional prices on the whole of our articles by connecting you on your space customer of {{store_name}}. <br />
 for any help on our services, do not hesitate with to contact our support: {{store_owner_email_address}}
 
-
+admin_email_subject = New Customer registrer on {{store_name}} - Create account Pro
 admin_email_welcome = hello,'. "\n\n" . '
 admin_email_text = New client (B2B mode) is registered, below user details:<br />
 name : {{customer_name}} <br />
