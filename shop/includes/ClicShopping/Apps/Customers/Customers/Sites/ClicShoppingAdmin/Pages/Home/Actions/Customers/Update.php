@@ -234,8 +234,7 @@
           $Qcheck = $CLICSHOPPING_Customers->db->get('zones', 'zone_country_id', ['zone_country_id' => (int)$entry_country_id]);
           $entry_state_has_zones = $Qcheck->fetch() !== false;
 
-          if ($entry_state_has_zones === true) {
-
+           if ($entry_state_has_zones === true) {
             $Qzone = $CLICSHOPPING_Customers->db->get('zones', 'zone_id', [
                 'zone_country_id' => (int)$entry_country_id,
                 'zone_name' => $entry_state
@@ -249,9 +248,11 @@
               $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_state'), 'error', 'header');
             }
           } else {
-            if (strlen($entry_state) < ENTRY_STATE_MIN_LENGTH) {
-              $error = true;
-              $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_state'), 'error', 'header');
+            if ($Qcheck->valueInt('zone_country_id') === true) {
+              if (strlen($entry_state) < ENTRY_STATE_MIN_LENGTH) {
+                $error = true;
+                $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_state'), 'error', 'header');
+               }
             }
           }
         }

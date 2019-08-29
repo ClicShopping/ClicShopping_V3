@@ -134,6 +134,10 @@
 
 <?php
   if (ACCOUNT_STATE == 'true') {
+      $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
+      $check = $Qzones->fetchAll();
+
+      if (count($result) > 0) {
 ?>
         if (document.customers.elements['entry_state'].type != "hidden") {
             if (document.customers.entry_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
@@ -142,7 +146,8 @@
             }
         }
 <?php
-  }
+     }
+   }
 ?>
 
         if (document.customers.elements['entry_country_id'].type != "hidden") {
