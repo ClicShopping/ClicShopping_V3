@@ -228,13 +228,12 @@
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_state'), 'error', 'header');
 
         } else {
-          $zone_id = 0;
-          $entry_state_error = false;
+          $_SESSION['entry_state_error'] = false;
 
           $Qcheck = $CLICSHOPPING_Customers->db->get('zones', 'zone_country_id', ['zone_country_id' => (int)$entry_country_id]);
-          $entry_state_has_zones = $Qcheck->fetch() !== false;
+          $_SESSION['entry_state_has_zones'] = $Qcheck->fetch() !== false;
 
-           if ($entry_state_has_zones === true) {
+           if ($_SESSION['entry_state_has_zones'] === true) {
             $Qzone = $CLICSHOPPING_Customers->db->get('zones', 'zone_id', [
                 'zone_country_id' => (int)$entry_country_id,
                 'zone_name' => $entry_state

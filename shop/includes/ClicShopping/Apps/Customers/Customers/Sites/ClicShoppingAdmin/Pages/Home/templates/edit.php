@@ -535,8 +535,8 @@
     $entry_state = $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state);
 
     if ($error === true) {
-      if ($entry_state_error === true) {
-        if ($entry_state_has_zones === true) {
+      if ($_SESSION['entry_state_error'] === true) {
+        if ($_SESSION['entry_state_has_zones'] === true) {
           $zones_array = [];
 
           $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
