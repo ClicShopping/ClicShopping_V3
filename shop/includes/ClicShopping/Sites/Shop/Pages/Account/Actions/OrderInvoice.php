@@ -23,8 +23,6 @@
 
     public function execute()
     {
-      global $pdf;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');

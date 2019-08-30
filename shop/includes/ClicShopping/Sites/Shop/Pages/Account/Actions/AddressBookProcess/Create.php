@@ -25,10 +25,10 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $process = false;
+      $_SESSION['process'] = false;
 
       if (isset($_POST['action']) && $_POST['action'] == 'process' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-        $process = true;
+        $_SESSION['process'] = true;
         $error = false;
 
         if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -182,9 +182,9 @@
           $Qcheck->bindInt(':zone_country_id', (int)$country);
           $Qcheck->execute();
 
-          $entry_state_has_zones = ($Qcheck->fetch() !== false);
+          $_SESSION['entry_state_has_zones'] = ($Qcheck->fetch() !== false);
 
-          if ($entry_state_has_zones === true) {
+          if ($_SESSION['entry_state_has_zones'] === true) {
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
               $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                    from :table_zones
@@ -222,7 +222,7 @@
                 $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'addressbook');
               }
             } // end else
-          } // end $entry_state_has_zones
+          } // end $_SESSION['entry_state_has_zones']
 
         } else {
           if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {

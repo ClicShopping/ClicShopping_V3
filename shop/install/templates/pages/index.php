@@ -50,6 +50,11 @@ if (!extension_loaded('curl')) {
     You can bypass this process (not recommended) but you can have error more later if you don\'t install Curl. <a href="install.php">Continue the process</a>';
 }
 
+if (!extension_loaded('zip')) {
+    $warning_array[] = 'The Zip extension (zip) is not installed or enabled in PHP. Please enable it in the PHP configuration to continue installation.<br />
+    You can bypass this process (not recommended) but you can have error more later if you don\'t install Zip. <a href="install.php">Continue the process</a>';
+}
+
 $https_url = 'https://' . $_SERVER['HTTP_HOST'];
 
 if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
@@ -231,7 +236,7 @@ if (function_exists('ini_get')) {
       <table class="table">
         <tbody>
           <tr>
-            <td>PDO MySQL</td>
+            <td>PDO MySQL / Maria Db</td>
             <td class="text-md-right"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>'; ?></td>
           </tr>
           <tr>

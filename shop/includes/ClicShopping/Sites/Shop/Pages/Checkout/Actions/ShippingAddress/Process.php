@@ -151,9 +151,9 @@
             $Qcheck->bindInt(':zone_country_id', $country);
             $Qcheck->execute();
 
-            $entry_state_has_zones = ($Qcheck->fetch() !== false);
+            $_SESSION['entry_state_has_zones'] = ($Qcheck->fetch() !== false);
 
-            if ($entry_state_has_zones === true) {
+            if ($_SESSION['entry_state_has_zones'] === true) {
               if (ACCOUNT_STATE_DROPDOWN == 'true') {
                 $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
                                                      from :table_zones

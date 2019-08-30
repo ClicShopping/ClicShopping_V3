@@ -231,7 +231,7 @@
             <div class="col-sm-6 col-md-4">
 <?php
       if ($process === true) {
-        if ($entry_state_has_zones === true) {
+        if ($_SESSION['entry_state_has_zones'] === true) {
           $zones_array = [];
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name

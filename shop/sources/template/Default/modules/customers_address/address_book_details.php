@@ -19,7 +19,11 @@
   $CLICSHOPPING_Customer = Registry::get('Customer');
   $CLICSHOPPING_Db = Registry::get('Db');
 
-  if (!isset($process)) $process = false;
+  if (!isset($_SESSION['process'])) {
+    $process = false;
+  } else {
+    $process = true;
+  }
 ?>
   <div class="separator"></div>
   <div class="hr"></div>
@@ -74,7 +78,6 @@
       <div class="card-block">
         <div class="card-text">
 <?php
-// Clients B2C et B2B : Informations general - Nom, prenom, date de naissance, email, telephone et fax
   if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
 
     $male = $female = false;
@@ -107,12 +110,11 @@
                 <label for="InputFirstName" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_first_name'); ?></label>
                 <div class="col-sm-6 col-md-4">
 <?php
-    if (empty($entry['firstname'])) {
-      echo HTML::inputField('firstname', ($CLICSHOPPING_Customer->hasDefaultAddress() ? $CLICSHOPPING_Customer->getFirstName() : null), 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
-    } else {
-      echo HTML::inputField('firstname', ($entry['firstname'] ?? null), 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
-    }
-
+  if (empty($entry['firstname'])) {
+    echo HTML::inputField('firstname', ($CLICSHOPPING_Customer->hasDefaultAddress() ? $CLICSHOPPING_Customer->getFirstName() : null), 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
+  } else {
+    echo HTML::inputField('firstname', ($entry['firstname'] ?? null), 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
+  }
 
   if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_FIRST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_FIRST_NAME_PRO_MIN_LENGTH > 0 ) ) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_first_name_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_first_name_text') . '</span>': '');
@@ -319,12 +321,13 @@
                   <div class="col-sm-6 col-md-4">
 <?php
     if ($process === true) {
-      if ($entry_state_has_zones === true) {
+      if ($_SESSION['entry_state_has_zones'] === true) {
         $zones_array = [];
 
         $country_id = HTML::sanitize($_POST['country']);
 
-        $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name
+        $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name,
+                                              zone_id
                                              from :table_zones
                                              where zone_country_id = :zone_country_id
                                              and zone_status = 0
@@ -339,7 +342,18 @@
                            ];
         }
 
+        if (is_array($zones_array) && count($zones_array) > 0) {
         echo HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"');
+        } else {
+          $country_id = $CLICSHOPPING_Address->getZoneName($entry['country_id'], $entry['zone_id'], $entry['state']);
+
+          if (is_numeric($country_id)) {
+            echo HTML::inputField('state', $country_id, 'id="atState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-required="true" aria-describedby="atState"');
+          } else {
+            echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"  aria-describedby="atState"');
+          }
+        }
+
       } else {
         echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-describedby="atState"');
       }
@@ -361,7 +375,6 @@
                 </div>
               </div>
             </div>
-
 <?php
     }
   }
