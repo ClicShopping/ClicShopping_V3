@@ -31,6 +31,8 @@ text_average_age = Moyenne Age
 text_average_newsletter = Newsletter
 text_b2b = B2B
 text_b2c = B2C
+text_customer_no_registred_completly = Compte partiel crée - Vous ne pouvez pas voir les informations concernant ce compte jusqu'à qu'il soit créé complètement.
+text_customer_partial_registred = Compte partiel créé
 
 category_shipping_customer = Shipping allowed
 

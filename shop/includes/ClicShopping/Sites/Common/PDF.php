@@ -22,7 +22,11 @@
 
     private static function getGlobalPdf()
     {
-      global $pdf;
+      if (isset($_SESSION['pdf'])) {
+        return $_SESSION['pdf'];
+      } else {
+        global $pdf;
+      }
 
       return $pdf;
     }

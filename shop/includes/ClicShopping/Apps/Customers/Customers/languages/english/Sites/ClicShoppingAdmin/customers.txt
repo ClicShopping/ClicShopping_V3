@@ -31,6 +31,8 @@ text_average_age = Average Age
 text_average_newsletter = Newsletter
 text_b2b = B2B
 text_b2c = B2C
+text_customer_no_registred_completly = Partial account created - You can not see the information about this customer until he is registred
+text_customer_partial_registred = Partial account created
 
 category_shipping_customer = Shipping allowed
 

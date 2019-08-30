@@ -77,8 +77,8 @@
                   ]
                 );
 
-                $email_password_reminder_body = $message . "\n";
-                $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . "\n";
+                $email_password_reminder_body = $message . '</ br>';
+                $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . '</ br>';
                 $email_password_reminder_body .= TemplateEmail::getTemplateEmailSignature();
 
                 $email_subject = CLICSHOPPING::getDef('email_password_reset_subject', ['store_name' => STORE_NAME]);

@@ -17,7 +17,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Hash;
 
-
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
 
@@ -27,13 +26,13 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Mail = Registry::get('Mail');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+        $error = false;
         $password_current = HTML::sanitize($_POST['password_current']);
         $password_new = HTML::sanitize($_POST['password_new']);
         $password_confirmation = HTML::sanitize($_POST['password_confirmation']);
-
-        $error = false;
 
         if (strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
@@ -47,7 +46,10 @@
         }
 
         if ($error === false) {
-          $QcheckCustomer = $CLICSHOPPING_Db->prepare('select customers_password
+          $QcheckCustomer = $CLICSHOPPING_Db->prepare('select  customers_firstname,
+                                                               customers_lastname,
+                                                               customers_emal_address,
+                                                               customers_password
                                                        from :table_customers
                                                        where customers_id = :customers_id
                                                        and customer_guest_account = 0
@@ -56,15 +58,24 @@
           $QcheckCustomer->execute();
 
           if (Hash::verify($password_current, $QcheckCustomer->value('customers_password'))) {
-
             $CLICSHOPPING_Db->save('customers', ['customers_password' => Hash::encrypt($password_new)], ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]);
 
             $Qupdate = $CLICSHOPPING_Db->prepare('update :table_customers_info
                                                   set customers_info_date_account_last_modified = now()
                                                   where customers_info_id = :customers_info_id
                                                ');
-            $Qupdate->bindInt(':customers_info_id', (int)$CLICSHOPPING_Customer->getID());
+            $Qupdate->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID());
             $Qupdate->execute();
+
+            $message = CLICSHOPPING::getDef('email_new_password', ['new_password' => $password_current, 'store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
+
+            $email_password_reminder_body = $message . "\n";
+            $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . "\n";
+            $email_password_reminder_body .= TemplateEmail::getTemplateEmailSignature();
+
+            $email_subject = CLICSHOPPING::getDef('email_password_subject', ['store_name' => STORE_NAME]);
+
+            $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_updated'), 'success', 'account_password');
 

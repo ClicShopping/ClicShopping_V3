@@ -306,7 +306,15 @@
 
             $QcustomersCountry->execute();
             ?>
-            <td class="dataTableContent" align="left"><?php echo $QcustomersCountry->value('countries_name'); ?></td>
+            <td class="dataTableContent">
+              <?php
+                if (!empty($QcustomersCountry->value('countries_name'))) {
+                  echo $QcustomersCountry->value('countries_name');
+                } else {
+                  echo '<span class="text-warning">' . $CLICSHOPPING_Customers->getDef('text_customer_partial_registred') . '</span>';
+                }
+                ?>
+            </td>
             <?php
             $Qreviews = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_reviews
                                                                from :table_reviews

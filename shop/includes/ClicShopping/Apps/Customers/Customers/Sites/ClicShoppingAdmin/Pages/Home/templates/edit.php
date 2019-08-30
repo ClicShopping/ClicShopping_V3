@@ -14,7 +14,6 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
-  use ClicShopping\OM\Apps;
 
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 
@@ -73,6 +72,14 @@
     $QcustomersGroup->execute();
 
     $cInfo_group = new ObjectInfo($QcustomersGroup->toArray());
+  }
+
+  if ($cInfo->entry_country_id == 0) {
+    echo '<div class="row alert alert-warning ">';
+    echo '<span class="col-md-10">' . $CLICSHOPPING_Customers->getDef('text_customer_no_registred_completly') . '</span>';
+    echo '<span class="col-md-2 text-md-right">'  . HTML::button($CLICSHOPPING_Customers->getDef('button_back'), null, $CLICSHOPPING_Customers->link('Customers'), 'success', null, 'sm') . '</span>';
+    echo '</div>';
+    exit;
   }
 ?>
 
@@ -133,7 +140,7 @@
         }
 
 <?php
-  if (ACCOUNT_STATE == 'true') {
+  if (ACCOUNT_STATE == 'true' ) {
       $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
       $check = $Qzones->fetchAll();
 
@@ -532,6 +539,7 @@
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_state'); ?></label>
                       <div class="col-md-5">
 <?php
+
     $entry_state = $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state);
 
     if ($error === true) {

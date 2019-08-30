@@ -63,9 +63,8 @@
           ]
         );
 
-        $text_password_body .= TemplateEmailAdmin::getTemplateEmailSignature();
-        $text_password_body .= TemplateEmailAdmin::getTemplateEmailTextFooter();
-
+        $text_password_body .= '<br />' . TemplateEmailAdmin::getTemplateEmailSignature();
+        $text_password_body .= '<br />' . TemplateEmailAdmin::getTemplateEmailTextFooter();
 
         $to_name = $QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname');
         $to_email_address = $QcheckCustomer->value('customers_email_address');
