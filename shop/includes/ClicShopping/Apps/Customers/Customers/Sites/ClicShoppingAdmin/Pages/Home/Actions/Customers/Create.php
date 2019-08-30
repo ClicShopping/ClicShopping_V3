@@ -202,9 +202,9 @@
           $entry_state_error = false;
 
           $Qcheck = $CLICSHOPPING_Customers->db->get('zones', 'zone_country_id', ['zone_country_id' => (int)$customers_country_id]);
-          $entry_state_has_zones = $Qcheck->fetch() !== false;
+          $_SESSION['entry_state_has_zones'] = $Qcheck->fetch() !== false;
 
-          if ($entry_state_has_zones === true) {
+          if ($_SESSION['entry_state_has_zones'] === true) {
             $Qzone = $CLICSHOPPING_Customers->db->prepare('select zone_id
                                                              from :table_zones
                                                              where zone_country_id = :zone_country_id

@@ -26,9 +26,9 @@
         return $_SESSION['pdf'];
       } else {
         global $pdf;
-      }
 
-      return $pdf;
+        return $pdf;
+      }
     }
 
     /**
@@ -245,7 +245,7 @@
      */
     public function outputTableSuppliers(float $Y_Fields_Name_position)
     {
-      $pdf = $this->pdf;
+      $pdf = static::getGlobalPdf();
 
       $pdf->SetFillColor(245);
       $pdf->SetFont('Arial', 'B', 8);
