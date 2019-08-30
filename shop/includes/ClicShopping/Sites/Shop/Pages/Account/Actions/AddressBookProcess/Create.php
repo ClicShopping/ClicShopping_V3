@@ -301,7 +301,7 @@
               $sql_data_array['customers_gender'] = $gender;
             }
 
-            if (isset($_POST['primary']) && ($_POST['primary'] == 'on')) $sql_data_array['customers_default_address_id'] = $new_address_book_id;
+            if (isset($_POST['primary']) && (HTML::sanitize($_POST['primary']) == 'on')) $sql_data_array['customers_default_address_id'] = $new_address_book_id;
 
             $CLICSHOPPING_Db->save('customers', $sql_data_array, ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]);
 

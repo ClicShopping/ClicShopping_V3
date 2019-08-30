@@ -193,14 +193,16 @@
                 }
               }
             } else {
-              if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
-                $error = true;
+              if (ACCOUNT_STATE_DROPDOWN == 'false') {
+                if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
+                  $error = true;
 
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'danger', 'checkout_address');
-              } else if ((strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-                $error = true;
+                  $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'danger', 'checkout_address');
+                } else if ((strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
+                  $error = true;
 
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_PRO_MIN_LENGTH]), 'danger', 'checkout_address');
+                  $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_PRO_MIN_LENGTH]), 'danger', 'checkout_address');
+                }
               }
             }
           } //end ACCOUNT_STATE == 'true'
