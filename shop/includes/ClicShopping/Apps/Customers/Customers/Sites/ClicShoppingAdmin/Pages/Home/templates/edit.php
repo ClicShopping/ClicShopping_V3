@@ -144,7 +144,7 @@
       $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
       $check = $Qzones->fetchAll();
 
-      if (count($result) > 0) {
+      if (count($check) > 0) {
 ?>
         if (document.customers.elements['entry_state'].type != "hidden") {
             if (document.customers.entry_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {
