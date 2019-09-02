@@ -67,8 +67,8 @@
         $CLICSHOPPING_Template->addBlock($head, 'header_tags');
 
         $footer_tag = '<!-- magnificPopup start  -->' . "\n";
-        $footer_tag .= '<script src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/jquery.magnific-popup.min.js')) . '"></script>' . "\n";
-        $footer_tag .= '<script src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/ClicShopping/gallery.js')) . '"></script>' . "\n";
+        $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/jquery.magnific-popup.min.js')) . '"></script>' . "\n";
+        $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/ClicShopping/gallery.js')) . '"></script>' . "\n";
 
         $footer_tag .= '<!--magnificPopup  end  -->' . "\n";
 

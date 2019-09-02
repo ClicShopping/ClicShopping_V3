@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" media="screen, print" href="<?php echo $CLICSHOPPING_Template->getTemplategraphism();?>" />
 
-    <script src="https://kit.fontawesome.com/89fdf54890.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <?php echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n"; ?>
