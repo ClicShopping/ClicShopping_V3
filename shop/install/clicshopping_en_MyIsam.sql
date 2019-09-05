@@ -2420,8 +2420,8 @@ CREATE TABLE `clic_orders_status` (
   `orders_status_id` int(11) NOT NULL DEFAULT 0,
   `language_id` int(11) NOT NULL DEFAULT 1,
   `orders_status_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `public_flag` int(11) DEFAULT 1,
-  `downloads_flag` int(11) DEFAULT 0,
+  `public_flag` int(1) DEFAULT 1,
+  `downloads_flag` int(1) DEFAULT 0,
   `support_orders_flag` int(1) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

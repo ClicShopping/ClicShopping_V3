@@ -99,8 +99,8 @@ CREATE TABLE :table_orders_status (
   orders_status_id int default(0) NOT NULL,
   language_id int default(1) NOT NULL,
   orders_status_name varchar(255) NOT NULL,
-  public_flag int default(1),
-  downloads_flag int default(0),
+  public_flag tinyint(1) default(1),
+  downloads_flag tinyint(1) default(0),
   support_orders_flag int(1) default(0)
   PRIMARY KEY (orders_status_id) language_id,
   KEY idx_orders_status_name (orders_status_name)
