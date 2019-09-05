@@ -55,7 +55,7 @@
       $text_order_delivery = $this->app->getDef('text_order_delivery');
 
 
-      $output = '<link type="text/css" href="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/jqvmap.css') . '" rel="stylesheet" media="screen" />';
+      $output = '<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet" media="screen" />';
       $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" />';
 
       $output .= '<div class="' . $content_width . '">';
@@ -65,8 +65,8 @@
       $output .= '</div>';
       $output .= '</div>';
 
-      $output .= '<script type="text/javascript" src="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/jquery.vmap.js') . '"></script>';
-      $output .= '<script type="text/javascript" src="' . CLICSHOPPING::link('Shop/ext/javascript/jqvmap/maps/jquery.vmap.world.js') . '"></script>';
+      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>';
+      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js"></script>';
 
       $output .= '
 <script type="text/javascript"><!--
