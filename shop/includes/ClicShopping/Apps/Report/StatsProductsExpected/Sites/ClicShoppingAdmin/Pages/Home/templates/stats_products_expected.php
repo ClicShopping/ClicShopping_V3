@@ -20,10 +20,10 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $Qupdate = $CLICSHOPPING_Db->prepare('update :table_products
-                                  set products_date_available = :products_date_available
-                                  where to_days(now()) > to_days(products_date_available)
-                                ');
-  $Qupdate->bindValue(':products_date_available', '');
+                                       set products_date_available = :products_date_available
+                                       where to_days(now()) > to_days(products_date_available)
+                                      ');
+  $Qupdate->bindValue(':products_date_available', null);
   $Qupdate->execute();
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
@@ -62,18 +62,18 @@
         <?php
 
           $Qproducts = $CLICSHOPPING_StatsProductsExpected->db->prepare('select  SQL_CALC_FOUND_ROWS  pd.products_id,
-                                                                                        pd.products_name,
-                                                                                        p.products_image,
-                                                                                        p.products_date_available
-                                                           from :table_products_description pd,
-                                                                :table_products p
-                                                           where p.products_id = pd.products_id
-                                                           and (p.products_date_available = :products_date_available
-                                                               or p.products_date_available <> :products_date_available1)
-                                                           and pd.language_id = :language_id
-                                                           order by p.products_date_available DESC
-                                                           limit :page_set_offset, :page_set_max_results
-                                                           ');
+                                                                                                      pd.products_name,
+                                                                                                      p.products_image,
+                                                                                                      p.products_date_available
+                                                                         from :table_products_description pd,
+                                                                              :table_products p
+                                                                         where p.products_id = pd.products_id
+                                                                         and (p.products_date_available = :products_date_available
+                                                                             or p.products_date_available <> :products_date_available1)
+                                                                         and pd.language_id = :language_id
+                                                                         order by p.products_date_available DESC
+                                                                         limit :page_set_offset, :page_set_max_results
+                                                                         ');
 
           $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $Qproducts->bindInt(':products_date_available', '');

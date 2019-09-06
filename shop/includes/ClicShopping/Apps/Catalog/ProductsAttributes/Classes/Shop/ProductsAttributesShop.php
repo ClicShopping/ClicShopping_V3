@@ -298,47 +298,6 @@
       return $Qcheck->fetch();
     }
 
-    /**
-     * get the attributes price
-     * @param in $products_id , the id of the products
-     * @return $attributes_price the price of the attributes
-     * @access public
-     */
-    public function getAttributesPrice($products_id)
-    {
-      $attributes_price = 0;
-
-      if (isset($this->contents[$products_id]['attributes'])) {
-        foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
-
-          $Qattributes = $this->db->prepare('select options_values_price,
-                                                    price_prefix
-                                              from :table_products_attributes
-                                              where products_id = :products_id
-                                              and options_id = :options_id
-                                              and options_values_id = :options_values_id
-                                              and status = 1
-                                             ');
-          $Qattributes->bindInt(':products_id', $products_id);
-          $Qattributes->bindInt(':options_id', $option);
-          $Qattributes->bindInt(':options_values_id', $value);
-
-          $Qattributes->execute();
-
-          if ($Qattributes->fetch() !== false) {
-            if ($Qattributes->value('price_prefix') == '+') {
-              $attributes_price += $Qattributes->valueDecimal('options_values_price');
-            } else {
-              $attributes_price -= $Qattributes->valueDecimal('options_values_price');
-            }
-          }
-        }
-      }
-
-      return $attributes_price;
-    }
-
-
 //******************************************************
 // Download
 ///******************************************************

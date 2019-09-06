@@ -95,7 +95,6 @@
           }
 
           if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0) ) {
-
             for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
               $reference = '';
 
@@ -104,9 +103,13 @@
               }
 
               if (!is_null($CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'])) {
-                $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . '   ', 30, 30);
+                if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'])) {
+                  $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['products_attributes_image'], $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . '   ', 30, 30);
+                } else {
+                  $products_attributes_image = '     ';
+                }
               } else {
-                $products_attributes_image = '';
+                $products_attributes_image = '     ';
               }
 
               $data .=  '<br /><nobr><small>&nbsp;<i> - '. $products_attributes_image . $reference . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ': ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['price'] . '</i></small></nobr>';

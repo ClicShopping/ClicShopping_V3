@@ -633,7 +633,6 @@
       }
 
       for ($i = 0, $n = count($products); $i < $n; $i++) {
-
 // Display an indicator to identify if the product belongs at a customer group or not.
         $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
                                                         from :table_products_groups
@@ -654,13 +653,16 @@
           $model[$i] = $products[$i]['model'];
         }
 
-        $this->products[$index] = ['qty' => $products[$i]['quantity'],
+        $attributes_price = $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']);
+        $final_price = $products[$i]['price'] + $attributes_price;
+
+         $this->products[$index] = ['qty' => $products[$i]['quantity'],
           'name' => $products[$i]['name'],
           'model' => $model[$i],
           'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
           'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
           'price' => $products[$i]['price'],
-          'final_price' => $products[$i]['price'] + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
+          'final_price' => $final_price,
           'weight' => $products[$i]['weight'],
           'id' => $products[$i]['id']
         ];
@@ -697,7 +699,7 @@
               'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
               'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
               'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
-              'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ProductsAttributes->getAttributesPrice($products[$i]['id']),
+              'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']),
               'weight' => $products[$i]['weight'],
               'id' => $products[$i]['id']
             ];

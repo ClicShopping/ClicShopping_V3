@@ -128,9 +128,13 @@
             foreach($products[$i]['attributes'] as $option => $value) {
               if (is_array($products[$i][$option]) && isset($products[$i][$option])) {
                 if (!is_null($products[$i][$option]['products_attributes_image'])) {
-                  $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_values_name'] . '   ', 30, 30);
+                  if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'])) {
+                    $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_values_name'] . '   ', 30, 30);
+                  } else {
+                    $products_attributes_image = '     ';
+                  }
                 } else {
-                  $products_attributes_image = '';
+                  $products_attributes_image = '     ';
                 }
 
                 $products_option .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->displayPrice($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') . '</p>';
@@ -149,21 +153,21 @@
             $ticker = '' ;
            }
 
-          $cart ='<tr class="ModulesShoppingCartProductsListingContent">';
-          $cart .='<td class="ModulesShoppingCartProductsListingContent" data-th="Product">';
+          $cart ='<tr id="ShoppingCartContent" class="ModulesShoppingCartProductsListingContent">';
+          $cart .='<td id="ShoppingCartProducts" class="ModulesShoppingCartProductsListingContent" data-th="Product">';
           $cart .='<div class="row">';
-          $cart .='<div class="col-sm-2 hidden-xs">' . $image . '</div>';
+          $cart .='<div id="ShoppingCartImage" class="col-sm-2 hidden-xs">' . $image . '</div>';
           $cart .='<div class="col-sm-10">';
-          $cart .='<p class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . '</p>';
-          $cart .='<p class="small">' . $products_option . '</p>';
+          $cart .='<p id="ShoppingCartProductsName" class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . '</p>';
+          $cart .='<p id="ShoppingCartProductsOptions" class="small">' . $products_option . '</p>';
           $cart .='</div>';
           $cart .='</div>';
           $cart .='</td>';
-          $cart .='<td data-th="Quantity">';
+          $cart .='<td id="ShoppingCartProductsQuantity"data-th="Quantity">';
           $cart .= HTML::inputField('cart_quantity[' . $i . ']', $products[$i]['quantity'], 'min="0"', 'number', null, 'form-control ModulesShoppingCartProductsListingShoppingCartQuantity') . ' ' . $button_update . ' ' . $trash;
           $cart .= HTML::hiddenField('products_id[' . $i . ']', $products[$i]['id'], 'id="products_id' . $products[$i]['id'] . '"');
           $cart .='</td>';
-          $cart .='<td data-th="Subtotal" class="text-sm-right">' . $CLICSHOPPING_Currencies->displayPrice($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
+          $cart .='<td id="ShoppingCartPrice" data-th="Subtotal" class="text-sm-right">' . $CLICSHOPPING_Currencies->displayPrice($products[$i]['final_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), $products[$i]['quantity']) . '</td>';
           $cart .='</tr>';
 
 // display SaveMoney Hook
