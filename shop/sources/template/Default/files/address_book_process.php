@@ -66,12 +66,11 @@
 // --- Button   -----
 // ----------------------
 ?>
-
       <div class="separator"></div>
       <div class="control-group">
         <div class="buttonSet">
           <div class="col-md-6 float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
-          <div class="col-md-6 float-md-right"><span class="buttonAction"><?php echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . HTML::sanitize($_GET['delete']) . '&action=deleteconfirm&formid=' . md5($_SESSION['sessiontoken'])), 'success'); ?></span></div>
+          <div class="col-md-6 float-md-right"><span class="buttonAction"><?php echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . HTML::sanitize($_GET['delete']) . '&action=deleteconfirm&formid=' . md5($_SESSION['sessiontoken'])), 'danger'); ?></span></div>
         </div>
       </div>
 <?php

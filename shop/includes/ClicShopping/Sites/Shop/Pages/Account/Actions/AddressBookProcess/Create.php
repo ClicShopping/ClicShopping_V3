@@ -17,7 +17,6 @@
 
   class Create extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -33,6 +32,7 @@
 
         if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $gender = HTML::sanitize($_POST['gender']);
+          if (empty($gender)) $gender = 'm';
         } else {
           $gender = 'm';
         }
@@ -82,7 +82,7 @@
           }
         }
 
-        if (((ACCOUNT_STATE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_STATE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if ((ACCOUNT_STATE == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_STATE_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           if (isset($_POST['zone_id'])) {
             $zone_id = HTML::sanitize($_POST['zone_id']);
           } else {
@@ -170,7 +170,7 @@
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error_pro'), 'error', 'addressbook');
         }
 
-        if (((ACCOUNT_STATE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_STATE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if (((ACCOUNT_STATE == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_STATE_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $zone_id = 0;
 
           $Qcheck = $CLICSHOPPING_Db->prepare('select zone_country_id
@@ -186,7 +186,8 @@
 
           if ($_SESSION['entry_state_has_zones'] === true) {
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
-              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
+              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id,
+                                                                  zone_name
                                                    from :table_zones
                                                    where zone_country_id = :zone_country_id
                                                    and zone_id = :zone_id
@@ -194,10 +195,14 @@
                                                  ');
 
               $Qzone->bindInt(':zone_country_id', $country);
-              $Qzone->bindValue(':zone_id', $state);
+              $Qzone->bindInt(':zone_id', $state);
               $Qzone->execute();
+
+              $count = $Qzone->rowCount();
+              if (!empty($Qzone->value('zone_name'))) $state = $Qzone->value('zone_name');
             } else {
-              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
+              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id,
+                                                                  zone_name
                                                    from :table_zones
                                                    where zone_country_id = :zone_country_id
                                                    and (zone_name = :zone_name or zone_code = :zone_code)
@@ -208,9 +213,11 @@
               $Qzone->bindValue(':zone_name', $state);
               $Qzone->bindValue(':zone_code', $state);
               $Qzone->execute();
+              $count = $Qzone->rowCount();
+              if (!empty($Qzone->value('zone_name'))) $state = $Qzone->value('zone_name');
             }
 
-            if (count($Qzone->fetchAll()) === 1) {
+            if ($count == 1) {
               $zone_id = (int)$Qzone->valueInt('zone_id');
             } else {
               $error = true;
@@ -223,20 +230,15 @@
               }
             } // end else
           } // end $_SESSION['entry_state_has_zones']
-
         } else {
           if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
             $error = true;
-
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'addressbook');
-
           } else if ((strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
             $error = true;
 
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro', ['min_length' => entry_state_error_select_pro]), 'error', 'addressbook');
           }
         } // end else
-
 
         if ($error === false) {
           $sql_data_array = ['entry_firstname' => $firstname,
@@ -262,8 +264,8 @@
 
           if (((ACCOUNT_STATE == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_STATE_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
 
-            if ($zone_id > 0) {
-              $sql_data_array['entry_zone_id'] = (int)$zone_id;
+            if ($zone_id > 0 && is_numeric($state)) {
+              $sql_data_array['entry_zone_id'] = $zone_id;
               $sql_data_array['entry_state'] = '';
             } else {
               $sql_data_array['entry_zone_id'] = '0';

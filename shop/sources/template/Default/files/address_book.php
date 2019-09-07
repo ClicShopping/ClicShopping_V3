@@ -86,7 +86,13 @@
             <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
           </div>
           <div class="card-footer text-md-center">
-            <?php echo HTML::button(CLICSHOPPING::getDef('button_edit'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Edit&edit=' . $Qaddresses->valueInt('address_book_id')),'success', null, 'sm') .  ' ' . HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . $Qaddresses->valueInt('address_book_id')),  'danger', null, 'sm'); ?>
+<?php
+              echo HTML::button(CLICSHOPPING::getDef('button_edit'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Edit&edit=' . $Qaddresses->valueInt('address_book_id')),'success', null, 'sm') .  ' ';
+
+              if ($Qaddresses->valueInt('address_book_id') != $CLICSHOPPING_Customer->getDefaultAddressID()) {
+                echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . $Qaddresses->valueInt('address_book_id')),  'danger', null, 'sm');
+              }
+?>
           </div>
 <?php
   }

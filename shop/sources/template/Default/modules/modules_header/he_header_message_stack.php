@@ -11,6 +11,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
 
   class he_header_message_stack {
     public $code;

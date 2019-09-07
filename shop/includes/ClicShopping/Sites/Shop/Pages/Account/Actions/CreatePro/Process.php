@@ -172,7 +172,6 @@
           }
         }
 
-// Clients B2B : Controle entree numero de siret
         if (ACCOUNT_SIRET_PRO == 'true') {
           if (strlen($siret) < ENTRY_SIRET_MIN_LENGTH && strlen($siret) > 14) {
             $error = true;
@@ -181,8 +180,6 @@
           }
         }
 
-
-// Clients B2B : Controle entree code APE
         if (ACCOUNT_APE_PRO == 'true') {
           if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH && strlen($ape) > 4) {
             $error = true;
@@ -191,7 +188,6 @@
           }
         }
 
-// Clients B2B : Controle entree numero de TVA Intracom
         if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
           if (strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH && strlen($tva_intracom) > 14) {
             $error = true;
@@ -200,7 +196,6 @@
           }
         }
 
-// Clients B2C : Controle selection de la civilite
         if (ACCOUNT_GENDER_PRO == 'true') {
           if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
@@ -209,21 +204,18 @@
           }
         }
 
-// Clients B2C : Controle entree du prenom
         if (strlen($firstname) < ENTRY_FIRST_NAME_PRO_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
         }
 
-// Clients B2C : Controle entree du nom de famille
         if (strlen($lastname) < ENTRY_LAST_NAME_PRO_MIN_LENGTH) {
           $error = true;
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
         }
 
-// Clients B2C : Controle entree date de naissance
         if (ACCOUNT_DOB_PRO == 'true') {
           $dobDateTime = new DateTime($dob);
 
@@ -234,7 +226,6 @@
           }
         }
 
-// Clients B2C : Controle entree adresse e-mail
         if (Is::EmailAddress($email_address) === false) {
           $error = true;
 

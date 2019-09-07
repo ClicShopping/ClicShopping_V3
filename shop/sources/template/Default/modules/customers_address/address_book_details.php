@@ -295,11 +295,11 @@
       include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'ext/javascript/clicshopping/ClicShoppingAdmin/state_dropdown.php');
     } else {
         if (isset($entry['country_id']) && !is_null($entry['country_id'])) {
-          $country = $entry['country_id'];
+          $country_id = $entry['country_id'];
         } elseif (isset($_POST['country']) && !empty($_POST['country'])) {
-          $country = HTML::sanitize($_POST['country']);
+          $country_id = HTML::sanitize($_POST['country']);
         } else {
-          $country = STORE_COUNTRY;
+          $country_id = STORE_COUNTRY;
         }
 ?>
             <div class="row">
@@ -307,7 +307,7 @@
                 <div class="form-group row">
                   <label for="InputCountry" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_country'); ?></label>
                   <div class="col-sm-6 col-md-4">
-                    <?php echo HTML::selectMenuCountryList('country', $country, 'aria-required="true"'); ?>
+                    <?php echo HTML::selectMenuCountryList('country', $country_id, 'aria-required="true"'); ?>
                     <?php echo (!is_null(CLICSHOPPING::getDef('entry_country_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_country_text') . '</span>': ''); ?>
                   </div>
                 </div>
@@ -324,38 +324,88 @@
       if ($_SESSION['entry_state_has_zones'] === true) {
         $zones_array = [];
 
-        $country_id = HTML::sanitize($_POST['country']);
+        if (isset($_POST['country'])) {
+          $country_id = HTML::sanitize($_POST['country']);
+        }
 
-        $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name,
-                                              zone_id
-                                             from :table_zones
-                                             where zone_country_id = :zone_country_id
-                                             and zone_status = 0
-                                             order by zone_name
-                                            ');
-        $Qcheck->bindInt(':zone_country_id', (int)$country_id);
-        $Qcheck->execute();
+        if (!empty($entry['zone_id']) && !empty($entry['state'])) {
+          $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name,
+                                                       zone_id
+                                               from :table_zones
+                                               where zone_country_id = :zone_country_id                                                                           
+                                               and zone_status = 0
+                                               order by zone_name
+                                              ');
+          $Qcheck->bindInt(':zone_country_id', $country_id);
+          $Qcheck->execute();
+        } else {
+          $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name,
+                                                       zone_id
+                                               from :table_zones
+                                               where zone_country_id = :zone_country_id
+                                               and zone_id = :zone_id  
+                                               and zone_status = 0
+                                               order by zone_name
+                                              ');
+          $Qcheck->bindInt(':zone_country_id', $country_id);
+          $Qcheck->bindInt(':zone_id', $entry['zone_id']);
+          $Qcheck->execute();
+        }
 
-        while ($Qcheck->fetch() ) {
-          $zones_array[] = ['id' => $Qcheck->value('zone_name'),
-                            'text' => $Qcheck->value('zone_name')
-                           ];
+        if ($Qcheck->rowCount() > 1) {
+          while ($Qcheck->fetch() ) {
+            $zones_array[] = ['id' => $Qcheck->value('zone_name'),
+                'text' => $Qcheck->value('zone_name')
+            ];
+          }
         }
 
         if (is_array($zones_array) && count($zones_array) > 0) {
-        echo HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"');
+          echo HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"');
         } else {
           $country_id = $CLICSHOPPING_Address->getZoneName($entry['country_id'], $entry['zone_id'], $entry['state']);
 
           if (is_numeric($country_id)) {
             echo HTML::inputField('state', $country_id, 'id="atState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-required="true" aria-describedby="atState"');
           } else {
-            echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"  aria-describedby="atState"');
+            if ($Qcheck->value('zone_name') !== false) {
+              $state = $Qcheck->value('zone_name');
+              echo HTML::inputField('state', $state, 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"  aria-describedby="atState"');
+            } else {
+              if (!empty($entry['state'])) {
+                $state = $entry['state'];
+                echo HTML::inputField('state', $state, 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"  aria-describedby="atState"');
+              } else {
+                $country_id = HTML::sanitize($_POST['country']);
+
+                $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name
+                                                   from :table_zones
+                                                   where zone_country_id = :zone_country_id
+                                                   and zone_status = 0
+                                                   order by zone_name
+                                                  ');
+                $Qcheck->bindInt(':zone_country_id', $country_id);
+                $Qcheck->execute();
+
+                if ($Qcheck->rowCount() > 1) {
+                  while ($Qcheck->fetch() ) {
+                    $zones_array[] = ['id' => $Qcheck->value('zone_name'),
+                        'text' => $Qcheck->value('zone_name')
+                    ];
+                  }
+                }
+
+                echo HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"');
+              }
+            }
           }
         }
-
       } else {
-        echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-describedby="atState"');
+        if (!empty($entry['state'])) {
+          echo HTML::inputField('state', $entry['state'], 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-describedby="atState"');
+        } else {
+          echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-describedby="atState"');
+        }
       }
     } else {
       if (isset($entry['country_id']) && $entry['country_id'] != 0) {
