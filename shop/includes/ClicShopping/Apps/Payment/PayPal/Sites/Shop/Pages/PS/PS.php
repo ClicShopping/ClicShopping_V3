@@ -249,7 +249,7 @@
 
 //------insert customer choosen option eof ----
               $products_ordered .= $CLICSHOPPING_Order->products[$i]['qty'] . ' x ' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Order->products[$i]['model'] . ') = ' . $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']) . $products_ordered_attributes . "\n";
-              $products_ordered = html_entity_decode(products_ordered);
+              $products_ordered = html_entity_decode($products_ordered);
             }
 
 //*******************************
