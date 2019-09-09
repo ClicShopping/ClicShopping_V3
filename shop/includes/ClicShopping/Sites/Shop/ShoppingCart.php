@@ -854,6 +854,10 @@
             $model = $Qproducts->value('products_model');
           }
 
+          $attributes_price = $this->getAttributesPrice($products_id);
+
+          $finale_price = $products_price + $attributes_price;
+
           $products_array[] = ['id' => $products_id,
             'name' => $Qproducts->value('products_name'),
             'model' => $model,
@@ -865,7 +869,7 @@
             'products_dimension_width' => $Qproducts->valueDecimal('products_dimension_width'),
             'products_dimension_height' => $Qproducts->valueDecimal('products_dimension_height'),
             'products_dimension_depth' => $Qproducts->valueDecimal('products_dimension_depth'),
-            'final_price' => ($products_price + $this->productsAttributes->getAttributesPrice($products_id)),
+            'final_price' => $finale_price,
             'tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
             'attributes' => (isset($this->contents[$products_id]['attributes']) ? $this->contents[$products_id]['attributes'] : '')
           ];
@@ -1103,8 +1107,8 @@
 
     /**
      * get the attributes price
-     * @param string $products_id , the id of the products
-     * @return float $attributes_price the price of the attributes
+     * @param in $products_id , the id of the products
+     * @return $attributes_price the price of the attributes
      * @access public
      */
     public function getAttributesPrice(string $products_id) :float
