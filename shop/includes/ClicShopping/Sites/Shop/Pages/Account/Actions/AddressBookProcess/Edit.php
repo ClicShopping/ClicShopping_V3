@@ -25,10 +25,11 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_Address = Registry::get('Address');
 
 // error checking when updating or adding an entry
       if (AddressBook::checkNewCustomer() === false) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'addressbook');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'checkout_address');
 
         CLICSHOPPING::redirect(null, 'Account&AddressBook');
       }
@@ -94,13 +95,13 @@
           if ($gender != 'm' && $gender != 'f') {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error'), 'error', 'addressbook');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error'), 'error', 'checkout_address');
           }
         } elseif (ACCOUNT_GENDER_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error', 'addressbook');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error', 'checkout_address');
           }
         }
 
@@ -108,35 +109,35 @@
         if ((strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error', 'checkout_address');
 
         } else if ((strlen($firstname) < ENTRY_FIRST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'error', 'checkout_address');
         }
 
 // Clients B2C et B2B : Controle entree du nom de famille
         if ((strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error', 'checkout_address');
 
         } else if ((strlen($lastname) < ENTRY_LAST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'error', 'checkout_address');
         }
 
 // Clients B2C et B2B : Controle entree adresse
         if ((strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]), 'error', 'checkout_address');
         } else if ((strlen($street_address) < ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'error', 'checkout_address');
         }
 
 // Clients B2C et B2B : Controle entree code postal
@@ -148,118 +149,86 @@
         } else if ((strlen($postcode) < ENTRY_POSTCODE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'error', 'checkout_address');
         }
 
 // Clients B2C et B2B : Controle entree de la ville
         if ((strlen($city) < ENTRY_CITY_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]), 'error', 'checkout_address');
         } else if ((strlen($city) < ENTRY_CITY_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error_pro', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error_pro', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'error', 'checkout_address');
         }
 
 // Clients B2C et B2B : Controle de la selection du pays
         if ((!is_numeric($country_id)) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error'), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error'), 'error', 'checkout_address');
 
         } else if ((!is_numeric($country_id)) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error_pro'), 'error', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error_pro'), 'error', 'checkout_address');
         }
-
-
 
         if (((ACCOUNT_STATE == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_STATE_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $zone_id = 0;
 
-          $Qcheck = $CLICSHOPPING_Db->prepare('select zone_country_id
-                                               from :table_zones
-                                               where zone_country_id = :zone_country_id
-                                               and zone_status = 0
-                                               limit 1
-                                               ');
-          $Qcheck->bindInt(':zone_country_id', $country_id);
-          $Qcheck->execute();
-
-          $_SESSION['entry_state_has_zones'] = ($Qcheck->fetch() !== false);
+          if (!empty($country_id)) {
+            if ($CLICSHOPPING_Address->checkZoneCountry($country_id) !== false) {
+              $_SESSION['entry_state_has_zones'] = true;
+            } else {
+              $_SESSION['entry_state_has_zones'] = false;
+            }
+          } else {
+            $_SESSION['entry_state_has_zones'] = false;
+          }
 
           if ($_SESSION['entry_state_has_zones'] === true) {
             if (ACCOUNT_STATE_DROPDOWN == 'true') {
-              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                                   from :table_zones
-                                                   where zone_country_id = :zone_country_id
-                                                   and (zone_id = :zone_id or zone_name = :zone_name)
-                                                   and zone_status = 0
-                                                 ');
-
-              $Qzone->bindInt(':zone_country_id', $country_id);
-              $Qzone->bindInt(':zone_id', $state);
-              $Qzone->bindValue(':zone_name', $state);
-              $Qzone->execute();
-
-              $count = $Qzone->rowCount();
+              if (!empty($state)) {
+                $zone_id = $CLICSHOPPING_Address->checkZoneByCountryState($country_id, $state);
+              } else {
+                $zone_id = $CLICSHOPPING_Address->checkZoneByCountryState($country_id);
+              }
             } else {
-              $Qzone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                                   from :table_zones
-                                                   where zone_country_id = :zone_country_id
-                                                   and (zone_name = :zone_name or zone_code = :zone_code)
-                                                   and zone_status = 0
-                                                 ');
-
-              $Qzone->bindInt(':zone_country_id', $country_id);
-              $Qzone->bindValue(':zone_name', $state);
-              $Qzone->bindValue(':zone_code', $state);
-              $Qzone->execute();
-
-              $count = $Qzone->rowCount();
+              $zone_id = $CLICSHOPPING_Address->checkZoneByCountryState($country_id, $state);
             }
 
-            if ($count == 1) {
-              $zone_id = $Qzone->valueInt('zone_id');
-            } else {
+            if ($zone_id === false) {
               $error = true;
 
               if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select'), 'error', 'addressbook');
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_not_existing'), 'error', 'checkout_address');
 
               } else if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'addressbook');
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'checkout_address');
               }
-            } // end else
-          } // end $_SESSION['entry_state_has_zones']
-        } else {
-/*
-          $QcheckZone = $CLICSHOPPING_Db->prepare('select distinct zone_id
-                                                   from :table_zones
-                                                   where zone_country_id = :zone_country_id
-                                                   and zone_status = 0
-                                                 ');
-
-          $QcheckZone->bindInt(':zone_country_id', $country_id);
-          $QcheckZone->execute();
-
-          $count = $QcheckZone->rowCount();
-
-          if($count > 0) {
-*/
-            if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
-              $error = true;
-
-              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'addressbook');
-
-            } else if ((strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
-              $error = true;
-
-              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro', ['min_length' => entry_state_error_select_pro]), 'error', 'addressbook');
             }
-//          }
+          } else {
+            if (!empty($state)) {
+              $check_zone = $CLICSHOPPING_Address->checkZoneByCountryState($country_id, $state);
+
+              if ($check_zone === false) {
+                $error = true;
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_not_existing'), 'error', 'checkout_address');
+              }
+            }
+          }
+        } else {
+          if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
+            $error = true;
+
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'checkout_address');
+          } else if ((strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
+            $error = true;
+
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro', ['min_length' => entry_state_error_select_pro]), 'error', 'checkout_address');
+          }
         } // end else
 
         if ($error === true) {

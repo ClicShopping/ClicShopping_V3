@@ -232,23 +232,9 @@
 <?php
       if ($process === true) {
         if ($_SESSION['entry_state_has_zones'] === true) {
-          $zones_array = [];
+          $country_id = HTML::sanitize($_POST['country']);
 
-          $Qcheck = $CLICSHOPPING_Db->prepare('select zone_name
-                                        from :table_zones
-                                         where zone_country_id = :zone_country_id
-                                         and zone_status = 0
-                                         order by zone_name
-                                        ');
-          $Qcheck->bindInt(':zone_country_id', (int)$country );
-          $Qcheck->execute();
-
-          while ($Qcheck->fetch() ) {
-            $zones_array[] = ['id' => $Qcheck->value('zone_name'),
-                              'text' => $Qcheck->value('zone_name')
-                             ];
-          }
-          echo HTML::selectMenu('state', $zones_array);
+          echo $CLICSHOPPING_Address->getZoneDropdown($country_id);
         } else {
           echo HTML::inputField('state', '', 'id="inputState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '"');
         }
@@ -267,4 +253,3 @@
 <?php
     }
   }
-?>

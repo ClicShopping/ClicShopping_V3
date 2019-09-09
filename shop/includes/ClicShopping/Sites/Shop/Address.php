@@ -20,6 +20,12 @@
    */
   class Address
   {
+    protected $db;
+
+    public function __construct()
+    {
+      $this->db = Registry::get('Db');
+    }
 
     /*
     * Return a formatted address
@@ -164,27 +170,42 @@
       }
     }
 
-
     /**
      * Return the zone name
-     *
-     * @param int $id The ID of the zone
-     * @access public
+     * @param int $country_id
+     * @param int $zone_id
+     * @param null $default_zone
      * @return string
      */
-
-    public static function getZoneName(int $country_id, int $zone_id, string $default_zone) :string
+    public static function getZoneName($country_id, $zone_id = null, $default_zone = null)
     {
-      $Qzone = Registry::get('Db')->get('zones', 'zone_name', ['zone_country_id' => (int)$country_id,
-          'zone_id' => (int)$zone_id,
-          'zone_status' => 0
-        ]
-      );
 
-      if ($Qzone->fetch() !== false) {
-        return $Qzone->value('zone_name');
+      if (!is_null($zone_id)) {
+        $Qzone = Registry::get('Db')->get('zones', 'zone_name', ['zone_country_id' => (int)$country_id,
+                'zone_id' => (int)$zone_id,
+                'zone_status' => 0
+            ]
+        );
+
+        if ($Qzone->fetch() !== false) {
+          return $Qzone->value('zone_name');
+        } else {
+          return $default_zone;
+        }
+      } elseif (is_null($default_zone)) {
+        $Qzone = Registry::get('Db')->get('zones', 'zone_name', ['zone_country_id' => (int)$country_id,
+              'zone_name' => $default_zone,
+              'zone_status' => 0
+            ]
+        );
+
+        if ($Qzone->fetch() !== false) {
+          return $Qzone->value('zone_name');
+        } else {
+          return $default_zone;
+        }
       } else {
-        return $default_zone;
+         return $default_zone;
       }
     }
 
@@ -247,7 +268,6 @@
      */
     public static function getCountryName(int $country_id) :string
     {
-
       $country_array = self::getCountries($country_id);
 
       return $country_array['countries_name'];
@@ -313,7 +333,6 @@
         ];
 
         return $zones_array;
-
       }
     }
 
@@ -327,7 +346,6 @@
      */
     public static function getCountryZones($country_id)
     {
-
       $zones_array = [];
 
       $Qzones = Registry::get('Db')->get('zones', [
@@ -359,7 +377,6 @@
      */
     public static function getPrepareCountryZonesPullDown($country_id = '') :array
     {
-
       $zones = self::getCountryZones($country_id);
 
       if (count($zones) > 0) {
@@ -370,13 +387,169 @@
         $zones = array_merge($zones_select, $zones);
 
       } else {
-
-        $zones = array(array('id' => '',
-          'text' => CLICSHOPPING::getDef('text_selected'))
+        $zones = array(['id' => '',
+            'text' => CLICSHOPPING::getDef('text_selected')
+          ]
         );
       }
 
       return $zones;
+    }
+
+    /**
+     * Get all zone for one country
+     * @param int $country_id
+     * @return string
+     */
+    public function getAllZones(int $country_id)
+    {
+      $Qcheck = $this->db->prepare('select zone_name
+                                     from :table_zones
+                                     where zone_country_id = :zone_country_id
+                                     and zone_status = 0
+                                     order by zone_name
+                                    ');
+      $Qcheck->bindInt(':zone_country_id', $country_id);
+      $Qcheck->execute();
+
+      if ($Qcheck->rowCount() > 1) {
+        while ($Qcheck->fetch()) {
+          $zones_array[] = ['id' => $Qcheck->value('zone_name'),
+              'text' => $Qcheck->value('zone_name')
+          ];
+        }
+
+        return $zones_array;
+      }
+
+      return false;
+    }
+
+
+    /**
+     * Display zone states
+     * @param int $country_id
+     * @return string
+     */
+    public function getZoneDropdown($country_id) :string
+    {
+      $zones_array = $this->getAllZones($country_id);
+
+      if ($zones_array !== false) {
+        $result = HTML::selectMenu('state', $zones_array, 'id="inputState" aria-describedby="atState"');
+      } else {
+        $result = HTML::inputField('state', '', 'id="atState" placeholder="' . CLICSHOPPING::getDef('entry_state') . '" aria-required="true" aria-describedby="atState"');
+      }
+
+      return $result;
+    }
+
+    /**
+     * Check if a zone exist
+     * @param int $country
+     * @param null $zone_id
+     * @return bool
+     */
+    public function checkZoneCountry(int $country, $zone_id = null)
+    {
+      if (is_null($zone_id)) {
+        $Qcheck = $this->db->prepare('select zone_id
+                                     from :table_zones
+                                     where zone_country_id = :zone_country_id
+                                     and zone_status = 0
+                                     limit 1
+                                     ');
+        $Qcheck->bindInt(':zone_country_id', $country);
+        $Qcheck->execute();
+      } else {
+        if (is_numeric($zone_id)) {
+          $Qcheck = $this->db->prepare('select zone_id
+                                       from :table_zones
+                                       where zone_country_id = :zone_country_id
+                                       and zone_id = :zone_id
+                                       and zone_status = 0
+                                       limit 1
+                                       ');
+          $Qcheck->bindInt(':zone_country_id', $country);
+          $Qcheck->bindInt(':zone_id', $zone_id);
+          $Qcheck->execute();
+        } else {
+          $Qcheck = $this->db->prepare('select zone_id
+                                       from :table_zones
+                                       where zone_country_id = :zone_country_id
+                                       and (zone_name = :zone_name or zone_code = :zone_code)
+                                       and zone_status = 0
+                                       limit 1
+                                       ');
+          $Qcheck->bindInt(':zone_country_id', $country);
+          $Qcheck->bindValue(':zone_name', $zone_id);
+          $Qcheck->bindValue(':zone_code', $zone_id);
+          $Qcheck->execute();
+        }
+      }
+
+      $result = $Qcheck->valueInt('zone_id');
+
+      return $result;
+    }
+
+    /**
+     * Check the zone by country and State
+     * @param int $country_id
+     * @param $state
+     * @return
+     */
+    public function checkZoneByCountryState(int $country_id, $state = '')
+    {
+
+      $Qzone = $this->db->prepare('select zone_id
+                                   from :table_zones
+                                   where zone_country_id = :zone_country_id
+                                   and zone_status = 0
+                                 ');
+
+      $Qzone->bindInt(':zone_country_id', $country_id);
+      $Qzone->execute();
+      $Qzone->fetch();
+
+      $all_zone = $Qzone->fetchAll();
+      $count = count($all_zone);
+
+      if ($count > 0 && !empty($state) && !is_numeric($state)) {
+        $Qzone = $this->db->prepare('select distinct zone_id
+                                     from :table_zones
+                                     where zone_country_id = :zone_country_id
+                                     and (zone_name = :zone_name or zone_code = :zone_code)
+                                     and zone_status = 0
+                                   ');
+
+        $Qzone->bindInt(':zone_country_id', $country_id);
+        $Qzone->bindValue(':zone_name', $state);
+        $Qzone->bindValue(':zone_code', $state);
+        $Qzone->execute();
+        $Qzone->fetch();
+
+        $zone_id = $Qzone->value('zone_id');
+
+      } elseif (ACCOUNT_STATE_DROPDOWN == 'true' && $state > 0) {
+        $Qzone = $this->db->prepare('select distinct zone_id
+                                     from :table_zones
+                                     where zone_country_id = :zone_country_id
+                                     and zone_id = :zone_id
+                                     and zone_status = 0
+                                   ');
+
+        $Qzone->bindInt(':zone_country_id', $country_id);
+        $Qzone->bindValue(':zone_id', $state);
+        $Qzone->execute();
+        $Qzone->fetch();
+
+        $zone_id = $Qzone->value('zone_id');
+      } else {
+        $zone_id = false;
+      }
+
+      return $zone_id;
     }
   }
 

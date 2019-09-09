@@ -24,13 +24,13 @@
     * @return array $Qaddresses
     * public
     */
-    public static function getAddressCustomer($id = null, int $address_book_id) :array
+    public static function getAddressCustomer($customers_id = null, int $address_book_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (is_null($id)) {
-        $CLICSHOPPING_Customer->getID();
+      if (is_null($customers_id)) {
+        $customers_id = $CLICSHOPPING_Customer->getID();
       }
 
       $Qaddress = $CLICSHOPPING_Db->prepare('select address_book_id,
@@ -50,7 +50,7 @@
                                          order by firstname, lastname
                                         ');
       $Qaddress->bindInt(':address_book_id', $address_book_id);
-      $Qaddress->bindInt(':customers_id', $id);
+      $Qaddress->bindInt(':customers_id', $customers_id);
 
       $Qaddress->execute();
 
@@ -254,7 +254,6 @@
       return ($Qentry->fetch() !== false);
     }
 
-
     /**
      * Delete an address book entry
      *
@@ -269,9 +268,9 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $Qdelete = $CLICSHOPPING_Db->prepare('delete from :table_address_book
-                                      where address_book_id = :address_book_id
-                                      and customers_id = :customers_id
-                                     ');
+                                            where address_book_id = :address_book_id
+                                            and customers_id = :customers_id
+                                           ');
       $Qdelete->bindInt(':address_book_id', $id);
       $Qdelete->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qdelete->execute();
@@ -394,6 +393,7 @@
                                                        ab.entry_zone_id as zone_id,
                                                        ab.entry_country_id as country_id,
                                                        z.zone_code as zone_code,
+                                                       z.zone_name as zone_name,
                                                        c.countries_name as country_title
                                               from :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id),
                                                     :table_countries c

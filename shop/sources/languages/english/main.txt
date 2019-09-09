@@ -109,6 +109,7 @@ entry_state_error = Your State must contain a minimum of {{min_length}} characte
 entry_state_error_select = Please select a state from the States pull down menu.
 entry_state_error_pro = Your State must contain a minimum of {{min_length}} characters.
 entry_state_error_select_pro = Please select a state from the States pull down menu.
+entry_state_error_not_existing = Vous must select an existing state
 
 entry_country_error = You must select a country from the Countries pull down menu.
 entry_country_error_pro = You must select a country from the Countries pull down menu.

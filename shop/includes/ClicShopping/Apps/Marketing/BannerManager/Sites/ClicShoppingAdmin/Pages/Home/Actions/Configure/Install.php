@@ -102,18 +102,18 @@ CREATE TABLE :table_banners (
   banners_url varchar(255) null,
   banners_image varchar(255) null,
   banners_group varchar(255) null,
-  banners_target varchar(6) not_null,
+  banners_target varchar(6) not null,
   banners_html_text text,
   expires_impressions int(7) default(0),
   expires_date datetime,
   date_scheduled datetime,
-  date_added datetime not_null,
+  date_added datetime not null,
   date_status_change datetime,
-  status int(1) default(1) not_null,
-  languages_id int default(0) not_null,
-  customers_group_id int default(0) not_null,
-  banners_title_admin varchar(255) not_null
-  PRIMARY KEY banners_id,
+  status int(1) default(1) not null,
+  languages_id int default(0) not null,
+  customers_group_id int default(0) not null,
+  banners_title_admin varchar(255) not null,
+  PRIMARY KEY banners_id
   KEY idx_banners_group banners_group
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;
@@ -125,12 +125,12 @@ EOD;
       if ($Qcheck->fetch() === false) {
         $sql = <<<EOD
 CREATE TABLE :table_banners_history (
-  banners_history_id int not_null auto_increment,
-  banners_id int not_null,
-  banners_shown int(5) default(0) not_null,
-  banners_clicked int(5) default(0) not_null,
-  banners_history_date datetime not_null
-  PRIMARY KEY banners_history_id,
+  banners_history_id int not null auto_increment,
+  banners_id int not null,
+  banners_shown int(5) default(0) not null,
+  banners_clicked int(5) default(0) not null,
+  banners_history_date datetime not null,
+  PRIMARY KEY banners_history_id
   KEY idx_banners_history_banners_id (banners_id)
 ) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 EOD;

@@ -83,7 +83,7 @@
               <div class="separator"></div>
               <?php echo $CLICSHOPPING_Address->addressFormat($format_id, $addresses, true, ' ', '<br />'); ?>
             </div>
-            <div class="card-footer text-md-center"><?php echo HTML::radioField('address', $Qaddresses->valueInt('address_book_id'), ($Qaddresses->valueInt('address_book_id')== $_SESSION['sendto'])); ?></div>
+            <div class="card-footer text-md-center"><?php echo HTML::radioField('address', $Qaddresses->valueInt('address_book_id'), ($Qaddresses->valueInt('address_book_id') == $_SESSION['sendto'])); ?></div>
           </div>
         </div>
 <?php

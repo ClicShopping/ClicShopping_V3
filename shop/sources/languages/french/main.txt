@@ -109,6 +109,7 @@ entry_state_error = Le departement ou l'Etat doit contenir un minimum de {{min_l
 entry_state_error_select = Veuillez choisir un état à partir de la liste déroulante.
 entry_state_error_pro = Le departement ou état doit contenir un minimum de {{min_length}} caracteres.
 entry_state_error_select_pro = Veuillez choisir un état à partir de la liste déroulante.
+entry_state_error_not_existing = Vous devez insérrer un département existant
 
 entry_country_error = Veuillez choisir un pays à partir de la liste déroulante.
 entry_country_error_pro = Veuillez choisir un pays à partir de la liste déroulante.

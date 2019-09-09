@@ -15,6 +15,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HttpRequest;
   use ClicShopping\Sites\Shop\Shipping as Delivery;
+  use ClicShopping\Sites\Shop\AddressBook;
 
   class Shipping extends \ClicShopping\OM\PagesActionsAbstract
   {
