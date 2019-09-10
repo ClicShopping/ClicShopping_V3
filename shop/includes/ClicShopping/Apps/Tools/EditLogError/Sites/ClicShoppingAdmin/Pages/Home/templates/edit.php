@@ -66,13 +66,13 @@
   </div>
   <div class="separator"></div>
   <div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
     <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/css/css.min.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/css/css.min.js"></script>
     <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/addon/selection/active-line.min.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/addon/selection/active-line.min.js"></script>
     <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.js"></script>
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.js"></script>
 
     <style>.CodeMirror {
         background: #f8f8f8;
