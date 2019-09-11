@@ -11,6 +11,11 @@ fix language constant
 fix administrator table
 fix options products price
 
+restructure Manufacturer and suppliers Hooks
+Update currency class
+Update Customer pro registration
+Minor improvment inside the Db
+
 Since 3_2106 : update before this version
 ALTER TABLE `clic_currencies` ADD `surcharge` DECIMAL(15,4) NOT NULL DEFAULT '0' AFTER `status`;
 ALTER TABLE `clic_currencies` CHANGE `surcharge` `surcharge` DECIMAL(15,4) NULL DEFAULT NULL;
