@@ -24,7 +24,7 @@
       static::$request_type = ((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on')) || (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443))) ? 'SSL' : 'NONSSL';
     }
 
-    public static function getRequestType()
+    public static function getRequestType(): string
     {
       return static::$request_type;
     }
@@ -32,7 +32,7 @@
     /*
      * Use HTTP Strict Transport Security to force client to use secure connections only
      */
-    public static function getHSTS($use_sts = true)
+    public static function getHSTS(bool $use_sts = true)
     {
       if (static::$request_type == 'SSL' && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
         if ($use_sts === true) {
@@ -50,7 +50,7 @@
      * @param null $http_response_code - 301 - 302 - 303 - 307
      */
 
-    public static function redirect($url, $http_response_code = null)
+    public static function redirect(string $url, ?string $http_response_code = null)
     {
 
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
@@ -180,7 +180,7 @@
      *
      */
 
-    public static function getIpAddress($to_int = false)
+    public static function getIpAddress(bool $to_int = false): string
     {
       $ips = [];
       if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -222,7 +222,7 @@
      * $isp_provider_client the provider name
      * @access public
      */
-    public static function getProviderNameCustomer()
+    public static function getProviderNameCustomer(): string
     {
       if (!empty($_SERVER["REMOTE_ADDR"]) && $_SERVER["REMOTE_ADDR"] != '::1') { //check ip from share internet
         $provider_client_ip = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
@@ -246,7 +246,7 @@
      * @return $domain, type of HTTP of domain
      *
      */
-    public static function typeUrlDomain()
+    public static function typeUrlDomain(): string
     {
 
       if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
@@ -254,6 +254,7 @@
       } else {
         $domain = CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop');
       }
+
       return $domain;
     }
 
@@ -264,7 +265,7 @@
      * @return $domain, type of HTTP of domain
      *
      */
-    public static function getShopUrlDomain()
+    public static function getShopUrlDomain(): string
     {
       $domain = CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop');
 

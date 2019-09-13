@@ -24,12 +24,30 @@
       $this->path = CLICSHOPPING::getConfig('http_cookie_path');
     }
 
-    public function set($name, $value = '', $expire = 0, $path = null, $domain = null, $secure = true, $httponly = true)
+    /**
+     * @param string $name
+     * @param string|null $value
+     * @param int $expire
+     * @param string|null $path
+     * @param string|null $domain
+     * @param bool $secure
+     * @param bool $httponly
+     * @return string
+     */
+    public function set(string $name, ?string $value = '', int $expire = 0, ?string $path = null, ?string $domain = null, bool $secure = true, bool $httponly = true): string
     {
       return setcookie($name, $value, $expire, isset($path) ? $path : $this->path, isset($domain) ? $domain : $this->domain, $secure, $httponly);
     }
 
-    public function del($name, $path = null, $domain = null, $secure = true, $httponly = true)
+    /**
+     * @param tring $name
+     * @param string|null $path
+     * @param string|null $domain
+     * @param bool $secure
+     * @param bool $httponly
+     * @return bool
+     */
+    public function del(tring $name, ?string $path = null, ?string $domain = null, bool $secure = true, $httponly = true): bool
     {
       if ($this->set($name, '', time() - 3600, $path, $domain, $secure, $httponly)) {
         if (isset($_COOKIE[$name])) {
@@ -42,22 +60,36 @@
       return false;
     }
 
-    public function getDomain()
+    /**
+     * @return string
+     */
+    public function getDomain(): string
     {
       return $this->domain;
     }
 
-    public function getPath()
+    /**
+     * @return string|null
+     */
+    public function getPath(): ?string
     {
       return $this->path;
     }
 
-    public function setDomain($domain)
+    /**
+     * @param string $domain
+     * @return string|null
+     */
+    public function setDomain(string $domain): ?string
     {
       $this->domain = $domain;
     }
 
-    public function setPath($path)
+    /**
+     * @param string|null $path
+     * @return string|null
+     */
+    public function setPath(?string $path): ?string
     {
       $this->path = $path;
     }

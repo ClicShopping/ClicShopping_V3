@@ -112,7 +112,6 @@
             ]
           );
         }
-
       } else {
         return false;
       }
@@ -123,12 +122,16 @@
       return self::$spider_flag;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }
 
-    public static function whosOnlineUpdateSessionId($old_id, $new_id)
+    /**
+     * @param string $old_id
+     * @param string $new_id
+     */
+    public static function whosOnlineUpdateSessionId(string $old_id, string $new_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

@@ -17,14 +17,14 @@
 
   class Tax implements \ClicShopping\OM\ServiceInterface
   {
-    public static function start()
+    public static function start(): bool
     {
       Registry::set('Tax', new TaxClass());
 
       return true;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

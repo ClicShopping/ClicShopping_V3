@@ -76,6 +76,7 @@
       if (!isset($value)) {
         trigger_error('ClicShopping\Registry::get(): "' . $key . '" is not registered');
       }
+
       return $value ?? null;
     }
 

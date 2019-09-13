@@ -24,7 +24,11 @@
     protected static $driver;
     private static $default_driver = 'File';
 
-    public static function load(string $name = null)
+    /**
+     * @param string|null $name
+     * @return mixed
+     */
+    public static function load(?string $name = null)
     {
 
       if (!isset(static::$driver)) {

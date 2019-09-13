@@ -13,12 +13,18 @@
 
   class ObjectInfo
   {
-
+    /**
+     * ObjectInfo constructor.
+     * @param array $object_array
+     */
     public function __construct(array $object_array)
     {
       $this->objectInfo($object_array);
     }
 
+    /**
+     * @param array $object_array
+     */
     public function objectInfo(array $object_array)
     {
       foreach ($object_array as $key => $value) {

@@ -58,7 +58,7 @@
      * @param string $type The type of message: info, error, warning, success
      *
      */
-    public function add($message, $type = 'error', $group = 'main')
+    public function add(string $message, string $type = 'error', string $group = 'main')
     {
       switch ($type) {
         case 'error':
@@ -76,7 +76,7 @@
       }
     }
 
-    public function reset($group = null)
+    public function reset(?string $group = null)
     {
       if (isset($group)) {
         if ($this->exists($group)) {
@@ -93,7 +93,7 @@
      * @param string $group The name of the group to check
      *
      */
-    public function exists($group = null)
+    public function exists(?string $group = null)
     {
       if (isset($group)) {
         return array_key_exists($group, $this->data);
@@ -119,7 +119,7 @@
      *
      * @param string $group The name of the group to get the messages from
      */
-    public function get($group)
+    public function get(string $group): string
     {
       $result = '';
 
@@ -148,9 +148,10 @@
 
     /**
      * Get the message stack array data set
-     *
+     * @param string|null $group
+     * @return array|mixed
      */
-    public function getAll($group = null)
+    public function getAll(?string $group = null)
     {
       if (isset($group)) {
         if ($this->exists($group)) {
@@ -165,10 +166,10 @@
 
     /**
      * Get the number of messages belonging to a group
-     *
-     * @param string $group The name of the group to check
+     * @param string|null $group
+     * @return int
      */
-    public function size($group = null)
+    public function size(?string $group = null): int
     {
       if (isset($group)) {
         if ($this->exists($group)) {

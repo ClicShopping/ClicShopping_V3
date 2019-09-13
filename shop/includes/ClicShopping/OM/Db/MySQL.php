@@ -35,7 +35,7 @@
       return $this->connect();
     }
 
-    public function connect()
+    public function connect(): ?string
     {
       $dsn_array = [];
 

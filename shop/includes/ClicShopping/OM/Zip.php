@@ -77,7 +77,10 @@
       return substr($path, -1) == '/';
     }
 
-    public function getTree()
+    /**
+     * @return array
+     */
+    public function getTree(): array
     {
       $Tree = array();
       $pathArray = array();
@@ -97,6 +100,7 @@
           }
         }
       }
+
       return $Tree;
     }
 
@@ -107,7 +111,7 @@
      * @param bool $overwrite
      * @return bool
      */
-    public static function Create($files = [], $destination = '', $overwrite = false)
+    public static function Create(array $files = [], string $destination = '', bool $overwrite = false)
     {
       //if the zip file already exists and overwrite is false, return false
       if (file_exists($destination) && !$overwrite) {

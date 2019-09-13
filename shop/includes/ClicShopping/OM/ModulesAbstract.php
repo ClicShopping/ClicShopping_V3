@@ -32,6 +32,11 @@
     {
     }
 
+    /**
+     * @param $modules
+     * @param $filter
+     * @return mixed
+     */
     public function filter($modules, $filter)
     {
       return $modules;

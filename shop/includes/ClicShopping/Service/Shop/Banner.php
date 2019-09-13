@@ -19,7 +19,7 @@
   class Banner implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
 
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/BannerManager/Classes/Shop/Banner.php')) {
@@ -36,7 +36,7 @@
       }
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

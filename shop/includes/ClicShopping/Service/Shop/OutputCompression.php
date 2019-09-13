@@ -14,7 +14,7 @@
   class OutputCompression implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
 // configure gzip compression if it is enabled
       if ((GZIP_COMPRESSION == 'true') && extension_loaded('zlib') && !headers_sent()) {
@@ -28,7 +28,7 @@
       return false;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

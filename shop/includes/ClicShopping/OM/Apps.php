@@ -20,7 +20,7 @@
     /**
      * @return array
      */
-    public static function getAll()
+    public static function getAll() :array
     {
       $result = [];
 
@@ -46,14 +46,13 @@
     }
 
     /**
-     * @param $type
-     * @param null $filter_vendor_app
-     * @param null $filter
+     * @param string $type
+     * @param string|null $filter_vendor_app
+     * @param array|null $filter
      * @return array
      */
-    public static function getModules($type, $filter_vendor_app = null, $filter = null)
+    public static function getModules(string $type, ?string $filter_vendor_app = null, ?array $filter = null) :array
     {
-
       $result = [];
 
       if (!Registry::exists('ModuleType' . $type)) {
@@ -111,10 +110,10 @@
     }
 
     /**
-     * @param $app
+     * @param string $app
      * @return bool
      */
-    public static function exists($app)
+    public static function exists(string $app) :bool
     {
       if (strpos($app, '\\') !== false) {
         [$vendor, $app] = explode('\\', $app, 2);
@@ -131,7 +130,6 @@
       }
 
       return false;
-
     }
 
     /**
@@ -159,10 +157,10 @@
     }
 
     /**
-     * @param $app
+     * @param string $app
      * @return bool|mixed
      */
-    public static function getInfo($app)
+    public static function getInfo(string $app)
     {
       if (strpos($app, '\\') !== false) {
         [$vendor, $app] = explode('\\', $app, 2);
@@ -183,10 +181,10 @@
 
     /**
      * Remove specific double request with ? inside url
-     * @param $route
-     * @return mixed
+     * @param array $route
+     * @return array
      */
-    public static function getRouteValue($route)
+    public static function getRouteValue(array $route) :array
     {
       $query = $route; //$_GET
 

@@ -158,7 +158,7 @@
      * @param $mode
      * @return string
      */
-    public function getFilePermissions($mode)
+    public function getFilePermissions(string $mode)
     {
 // determine type
       if (($mode & 0xC000) == 0xC000) { // unix domain socket

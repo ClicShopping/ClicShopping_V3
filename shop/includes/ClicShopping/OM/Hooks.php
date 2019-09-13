@@ -22,7 +22,7 @@
     protected $hooks = [];
     protected $watches = [];
 
-    public function __construct($site = null)
+    public function __construct(?string $site = null)
     {
       if (!isset($site)) {
         $site = CLICSHOPPING::getSite();
@@ -31,7 +31,7 @@
       $this->site = basename($site);
     }
 
-    public function call($group, $hook, $parameters = null, $action = null)
+    public function call(string $group, string $hook, ?array $parameters = null, ?string $action = null): array
     {
       if (!isset($action)) {
         $action = 'execute';
@@ -78,17 +78,17 @@
       return $result;
     }
 
-    public function output()
+    public function output(): string
     {
       return implode('', call_user_func_array([$this, 'call'], func_get_args()));
     }
 
-    public function watch($group, $hook, $action, $code)
+    public function watch(string $group, string $hook, string $action, $code)
     {
       $this->watches[$this->site][$group][$hook][$action][] = $code;
     }
 
-    protected function register($group, $hook, $action)
+    protected function register(string $group, string $hook, string $action)
     {
       $group = basename($group);
 

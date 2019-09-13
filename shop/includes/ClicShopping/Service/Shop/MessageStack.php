@@ -19,7 +19,7 @@
   class MessageStack implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
 // initialize the message stack for output messages
       $CLICSHOPPING_Service = Registry::get('Service');
@@ -35,7 +35,7 @@
       }
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

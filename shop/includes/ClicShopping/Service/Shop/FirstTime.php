@@ -25,7 +25,7 @@
       }
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

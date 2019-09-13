@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\OM;
 
   use ClicShopping\OM\Cache;
@@ -18,7 +17,6 @@
   use ClicShopping\OM\Language;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-
 
   class DbStatement extends \PDOStatement
   {

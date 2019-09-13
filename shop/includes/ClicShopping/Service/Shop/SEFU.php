@@ -14,7 +14,7 @@
   class SEFU implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
 
       $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '');
@@ -49,7 +49,7 @@
       return true;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

@@ -56,7 +56,6 @@
       return $script;
     }
 
-
     /*
      * Outputs a form textarea field with ckeditor
      *
@@ -68,7 +67,7 @@
      * @param boolean $override Override the default value with the value found in the GET or POST scope
      * @access public
      */
-    public static function textAreaCkeditor($name, $value = null, $width, $height, $text = null, $parameters = null, $override = true)
+    public static function textAreaCkeditor(string $name, ?string $value = null, int $width, int $height, ?string $text = null, ?string $parameters = null, bool $override = true): string
     {
 
       $height = '750';
@@ -107,7 +106,7 @@
      * @access public
      */
 
-    public static function fileFieldImageCkEditor($name, $value = null, $width = null, $height = null)
+    public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
     {
       if (is_null($height)) {
         $height = '250';
@@ -167,13 +166,13 @@
      * @return string $select_string, the pulldown value of products
      * @access public
      */
-    public static function selectMenuProductsPullDown($name, $parameters = '', $exclude = '', $class = 'form-control')
+    public static function selectMenuProductsPullDown(string $name, $parameters = '', $exclude = '', string $class = 'form-control'): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-      if ($exclude == '') {
+      if (empty($exclude)) {
         $exclude = [];
       }
 
@@ -268,7 +267,7 @@
      * javascript to dynamically update the states/provinces list when the country is changed
      * TABLES: zones
      */
-    public static function getJsZoneList($country, $form, $field)
+    public static function getJsZoneList(string $country, string $form, string $field): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

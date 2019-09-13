@@ -18,14 +18,14 @@
   class Currencies implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
       Registry::set('Currencies', new CurrenciesClass());
 
       return true;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

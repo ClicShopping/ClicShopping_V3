@@ -69,7 +69,7 @@
       }
     }
 
-    public function startService($service)
+    public function startService(string $service)
     {
       if (CLICSHOPPING::getSite() == 'Shop') {
         if (class_exists('ClicShopping\\Service\\Shop\\' . $service)) {
@@ -103,16 +103,28 @@
       }
     }
 
-    public function isStarted($service)
+    /**
+     * @param $service
+     * @return bool
+     */
+    public function isStarted(string $service): bool
     {
       return in_array($service, $this->_started_services);
     }
 
+    /**
+     * @param $object
+     * @param $method
+     */
     public function addCallBeforePageContent($object, $method)
     {
       $this->_call_before_page_content[] = [$object, $method];
     }
 
+    /**
+     * @param $object
+     * @param $method
+     */
     public function addCallAfterPageContent($object, $method)
     {
       $this->_call_after_page_content[] = [$object, $method];

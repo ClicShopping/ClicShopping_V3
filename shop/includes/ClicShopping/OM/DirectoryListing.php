@@ -23,18 +23,24 @@
     protected $_add_directory_to_filename = false;
     protected $_listing;
 
-    public function __construct($directory = '', $stats = false)
+    public function __construct(string $directory = '', bool $stats = false)
     {
       $this->setDirectory(realpath($directory));
       $this->setStats($stats);
     }
 
-    public function setDirectory($directory)
+    /**
+     * @param string $directory
+     */
+    public function setDirectory(string $directory)
     {
       $this->_directory = $directory;
     }
 
-    public function setIncludeFiles($boolean)
+    /**
+     * @param bool $boolean
+     */
+    public function setIncludeFiles(bool $boolean)
     {
       if ($boolean === true) {
         $this->_include_files = true;
@@ -43,7 +49,10 @@
       }
     }
 
-    public function setIncludeDirectories($boolean)
+    /**
+     * @param bool $boolean
+     */
+    public function setIncludeDirectories(bool $boolean)
     {
       if ($boolean === true) {
         $this->_include_directories = true;
@@ -52,7 +61,10 @@
       }
     }
 
-    public function setExcludeEntries($entries)
+    /**
+     * @param string $entries
+     */
+    public function setExcludeEntries(string $entries)
     {
       if (is_array($entries)) {
         foreach ($entries as $value) {
@@ -67,7 +79,10 @@
       }
     }
 
-    public function setStats($boolean)
+    /**
+     * @param bool $boolean
+     */
+    public function setStats(bool $boolean)
     {
       if ($boolean === true) {
         $this->_stats = true;
@@ -76,7 +91,10 @@
       }
     }
 
-    public function setRecursive($boolean)
+    /**
+     * @param bool $boolean
+     */
+    public function setRecursive(bool $boolean)
     {
       if ($boolean === true) {
         $this->_recursive = true;
@@ -85,12 +103,18 @@
       }
     }
 
-    public function setCheckExtension($extension)
+    /**
+     * @param string $extension
+     */
+    public function setCheckExtension(string $extension)
     {
       $this->_check_extension[] = strtolower($extension);
     }
 
-    public function setAddDirectoryToFilename($boolean)
+    /**
+     * @param bool $boolean
+     */
+    public function setAddDirectoryToFilename(bool $boolean)
     {
       if ($boolean === true) {
         $this->_add_directory_to_filename = true;
@@ -99,7 +123,10 @@
       }
     }
 
-    public function read($directory = '')
+    /**
+     * @param string $directory
+     */
+    public function read(string $directory = '')
     {
       if (empty($directory)) {
         $directory = $this->_directory;
@@ -161,11 +188,16 @@
         }
 
         $dir->close();
+
         unset($dir);
       }
     }
 
-    public function getFiles($sort_by_directories = true)
+    /**
+     * @param bool $sort_by_directories
+     * @return array
+     */
+    public function getFiles(bool $sort_by_directories = true): array
     {
       if (!is_array($this->_listing)) {
         $this->read();
@@ -182,7 +214,10 @@
       return array();
     }
 
-    public function getSize()
+    /**
+     * @return int
+     */
+    public function getSize(): int
     {
       if (!is_array($this->_listing)) {
         $this->read();
@@ -191,12 +226,20 @@
       return count($this->_listing);
     }
 
-    public function getDirectory()
+    /**
+     * @return string
+     */
+    public function getDirectory():string
     {
       return $this->_directory;
     }
 
-    protected function _sortListing($a, $b)
+    /**
+     * @param string $a
+     * @param string $b
+     * @return string
+     */
+    protected function _sortListing(array $a, array $b): string
     {
       return strcmp((($a['is_directory'] === true) ? 'D' : 'F') . $a['name'], (($b['is_directory'] === true) ? 'D' : 'F') . $b['name']);
     }

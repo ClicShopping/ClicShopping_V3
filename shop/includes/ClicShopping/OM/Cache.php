@@ -29,7 +29,11 @@
       $this->setKey($key);
     }
 
-    public function setKey($key)
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function setKey(string $key)
     {
       if (!static::hasSafeName($key)) {
         trigger_error('ClicShopping\\OM\\Cache: Invalid key name ("' . $key . '"). Valid characters are ' . static::SAFE_KEY_NAME_REGEX);
@@ -40,12 +44,19 @@
       $this->key = $key;
     }
 
-    public function getKey()
+    /**
+     * @return string
+     */
+    public function getKey() :string
     {
       return $this->key;
     }
 
-    public function save($data): bool
+    /**
+     * @param string $data
+     * @return bool
+     */
+    public function save(array $data): bool
     {
 
       if (FileSystem::isWritable(static::getPath())) {
@@ -55,7 +66,11 @@
       return false;
     }
 
-    public function exists($expire = null): bool
+    /**
+     * @param string|null $expire
+     * @return bool
+     */
+    public function exists(?string $expire = null): bool
     {
 
       $filename = static::getPath() . $this->key . '.cache';
@@ -79,13 +94,10 @@
 
     /**
      * Return the cached data
-     *
-     * @access public
-     * @return mixed
+     * @return array
      */
-    public function get()
+    public function get() :array
     {
-
       $filename = static::getPath() . $this->key . '.cache';
       
       if (is_file($filename)) {
@@ -95,11 +107,18 @@
       return $this->data;
     }
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public static function hasSafeName(string $key): bool
     {
       return preg_match('/^[' . static::SAFE_KEY_NAME_REGEX . ']+$/', $key) === 1;
     }
 
+    /**
+     * @return bool
+     */
     public function getTime(): bool
     {
       $filename = static::getPath() . $this->key . '.cache';
@@ -110,7 +129,12 @@
       return false;
     }
 
-    public static function find($key, $strict = true): bool
+    /**
+     * @param string $key
+     * @param bool $strict
+     * @return bool
+     */
+    public static function find(string $key, bool $strict = true): bool
     {
 
       if (!static::hasSafeName($key)) {
@@ -145,7 +169,7 @@
       static::$path = CLICSHOPPING::BASE_DIR . 'Work/Cache/';
     }
 
-    public static function getPath()
+     public static function getPath()
     {
       if (!isset(static::$path)) {
         static::setPath();
@@ -184,6 +208,9 @@
       }
     }
 
+    /**
+     * Clear all cache
+     */
     public static function clearAll()
     {
       if (FileSystem::isWritable(static::getPath())) {

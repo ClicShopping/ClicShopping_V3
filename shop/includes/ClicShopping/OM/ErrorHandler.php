@@ -36,7 +36,7 @@
       }
     }
 
-    public static function getDirectory()
+    public static function getDirectory(): string
     {
       return CLICSHOPPING::BASE_DIR . 'Work/Log/';
     }

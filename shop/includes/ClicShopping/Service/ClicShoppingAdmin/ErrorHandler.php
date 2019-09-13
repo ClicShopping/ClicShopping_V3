@@ -19,7 +19,7 @@
   class ErrorHandler implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
       if (!FileSystem::isWritable(ErrorHandlerClass::getDirectory())) {
         Registry::get('MessageStack')->add('The log directory is not writable. Please allow the web server to write to: ' . FileSystem::displayPath(ErrorHandlerClass::getDirectory()));
@@ -28,7 +28,7 @@
       return true;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

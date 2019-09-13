@@ -19,7 +19,7 @@
   class Order implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Orders/Orders/Classes/Shop/Order.php')) {
         Registry::set('Order', new OrderClass());
@@ -29,7 +29,7 @@
       }
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

@@ -36,7 +36,10 @@
       $this->init();
     }
 
-    final public function link()
+    /**
+     * @return string
+     */
+    final public function link() :string
     {
       $args = func_get_args();
 
@@ -56,7 +59,10 @@
       ], $args);
     }
 
-    final public function redirect()
+    /**
+     * @return string
+     */
+    final public function redirect() :string
     {
       $args = func_get_args();
 
@@ -76,35 +82,58 @@
       ], $args);
     }
 
-    final public function getCode()
+    /**
+     * @return string
+     */
+    final public function getCode() :string
     {
       return $this->code;
     }
 
-    final public function getVendor()
+    /**
+     * @return mixed
+     */
+    final public function getVendor() :string
     {
       return $this->vendor;
     }
 
-    final public function getTitle()
+    /**
+     * @return string
+     */
+    final public function getTitle() :string
     {
       return $this->title;
     }
 
-    final public function getVersion()
+    /**
+     * @return string
+     */
+    final public function getVersion() :string
     {
       return $this->version;
     }
 
-    final public function getModules()
+    /**
+     * @return string
+     */
+    final public function getModules() :string
     {
       return $this->modules;
     }
 
-    final public function hasModule($module, $type)
+    /**
+     * @param string $module
+     * @param string $type
+     */
+    final public function hasModule(string $module, string $type)
     {
     }
 
+    /**
+     * @return bool
+     * @throws \ReflectionException
+     */
     final private function setInfo()
     {
       $r = new \ReflectionClass($this);
@@ -128,7 +157,10 @@
       }
     }
 
-    final public function getDef()
+    /**
+     * @return string
+     */
+    final public function getDef() :string
     {
       $args = func_get_args();
 
@@ -147,7 +179,12 @@
       return call_user_func_array([$this->lang, 'getDef'], $args);
     }
 
-    final public function definitionsExist($group, $language_code = null)
+    /**
+     * @param $group
+     * @param null $language_code
+     * @return bool|mixed
+     */
+    final public function definitionsExist(string $group, ?string $language_code = null)
     {
       $language_code = isset($language_code) && $this->lang->exists($language_code) ? $language_code : $this->lang->get('code');
 
@@ -164,7 +201,11 @@
       return false;
     }
 
-    final public function loadDefinitions($group, $language_code = null)
+    /**
+     * @param string $group
+     * @param string|null $language_code
+     */
+    final public function loadDefinitions(string $group, ?string $language_code = null)
     {
       $language_code = isset($language_code) && $this->lang->exists($language_code) ? $language_code : $this->lang->get('code');
 
@@ -186,7 +227,14 @@
       $this->lang->injectDefinitions($defs, $this->vendor . '-' . $this->code);
     }
 
-    final public function saveCfgParam($key, $value, $title = null, $description = null, $set_func = null)
+    /**
+     * @param string $key
+     * @param string $value
+     * @param string|null $title
+     * @param string|null $description
+     * @param string|null $set_func
+     */
+    final public function saveCfgParam(string $key, string $value, ?string $title = null, ?string $description = null, ?string $set_func = null)
     {
       if (is_null($value)) {
         $value = '';
@@ -227,7 +275,10 @@
       }
     }
 
-    final public function deleteCfgParam($key)
+    /**
+     * @param string $key
+     */
+    final public function deleteCfgParam(string $key)
     {
       $this->db->delete('configuration', [
         'configuration_key' => $key

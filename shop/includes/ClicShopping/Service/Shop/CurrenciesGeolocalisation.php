@@ -16,7 +16,7 @@
   class CurrenciesGeolocalisation implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
 
 // hook has impact in all shop
@@ -25,7 +25,7 @@
       return true;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }

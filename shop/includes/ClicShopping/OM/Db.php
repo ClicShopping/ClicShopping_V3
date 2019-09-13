@@ -418,11 +418,11 @@
     }
 
     /**
-     * @param $sql_file
-     * @param null $table_prefix
+     * @param string $sql_file
+     * @param string|null $table_prefix
      * @return bool
      */
-    public function importSQL($sql_file, $table_prefix = null)
+    public function importSQL(string $sql_file, ?string $table_prefix = null): bool
     {
       try {
         if (is_file($sql_file)) {
@@ -536,10 +536,10 @@
     }
 
     /**
-     * @param $file
+     * @param string $file
      * @return array
      */
-    public static function getSchemaFromFile($file)
+    public static function getSchemaFromFile(string $file): array
     {
       $table = substr(basename($file), 0, strrpos(basename($file), '.'));
 
@@ -675,12 +675,12 @@
       return $schema;
     }
 
-    /***
-     * @param $schema
-     * @param null $prefix
+    /**
+     * @param array $schema
+     * @param string|null $prefix
      * @return string
      */
-    public static function getSqlFromSchema($schema, $prefix = null)
+    public static function getSqlFromSchema(array $schema, ?string $prefix = null)
     {
       $sql = 'CREATE TABLE ' . (isset($prefix) ? $prefix : '') . $schema['name'] . ' (' . "\n";
 
@@ -767,11 +767,12 @@
       return $sql;
     }
 
+
     /**
-     * @param $string
-     * @return array|string
+     * @param string $string
+     * @return string
      */
-    public static function prepareInput($string)
+    public static function prepareInput(string $string): string
     {
       if (is_string($string)) {
         return HTML::sanitize($string);
@@ -787,27 +788,28 @@
     }
 
     /**
-     * @param $string
+     * @param string $string
      * @return string
      */
-    public static function prepareIdentifier($string)
+    public static function prepareIdentifier(string $string): string
     {
       return '`' . str_replace('`', '``', $string) . '`';
     }
 
     /**
-     * @param $prefix
+     * @param string $prefix
      */
-    public function setTablePrefix($prefix)
+    public function setTablePrefix(string $prefix)
     {
       $this->table_prefix = $prefix;
     }
 
+
     /**
-     * @param $statement
-     * @return mixed
+     * @param string $statement
+     * @return string
      */
-    protected function autoPrefixTables($statement)
+    protected function autoPrefixTables(string $statement): string
     {
       $prefix = '';
 
@@ -824,11 +826,9 @@
 
     /**
      * Calculate the size of database
-     * @return  $size_db
-     * @access public
+     * @return float
      */
-
-    public static function sizeDb()
+    public static function sizeDb() :float
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -845,12 +845,12 @@
       return $size_db;
     }
 
+
     /**
      * Calculate the size of all databse
-     * @return  $size_db
-     * @access public
+     * @return float
      */
-    public static function DisplayDbSize()
+    public static function DisplayDbSize() :float
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -863,14 +863,15 @@
       }
 
       $size_db = round(($size / 1024) / 1024, 1);
+
       return $size_db;
     }
 
     /**
      * Update db with new table
-     * @param $filename
+     * @param string $filename
      */
-    public function InstallNewDb($filename)
+    public function InstallNewDb(string $filename)
     {
       $prefix = CLICSHOPPING::getConfig('db_table_prefix');
 

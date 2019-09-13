@@ -20,10 +20,18 @@
     protected $_filename;
     protected $_destination;
     protected $_permissions;
-    protected $_extensions = array();
+    protected $_extensions = [];
     protected $_replace = false;
-    protected $_upload = array();
+    protected $_upload = [];
 
+    /**
+     * Upload constructor.
+     * @param $file
+     * @param $destination
+     * @param null $permissions
+     * @param null $extensions
+     * @param bool $replace
+     */
     public function __construct($file, $destination, $permissions = null, $extensions = null, $replace = false)
     {
 // Remove trailing directory separator
@@ -70,7 +78,6 @@
             'size' => $size,
             'temp_filename' => $temp_filename
           ];
-
         } else {
           $CLICSHOPPING_MessageStack->add('File Upload [PUT]: $_SERVER[\'CONTENT_LENGTH\'] (' . (int)$_SERVER['CONTENT_LENGTH'] . ') not set or not equal to stream size (' . (int)$size . ')', 'warning');
         }
@@ -146,6 +153,9 @@
       return false;
     }
 
+    /**
+     * @param $permissions
+     */
     public function setPermissions($permissions)
     {
       $this->_permissions = octdec($permissions);

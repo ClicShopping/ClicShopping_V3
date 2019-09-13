@@ -27,7 +27,7 @@
   class Core implements \ClicShopping\OM\ServiceInterface
   {
 
-    public static function start()
+    public static function start(): bool
     {
 
       Registry::set('Customer', new CustomerClass());
@@ -47,7 +47,7 @@
       return true;
     }
 
-    public static function stop()
+    public static function stop(): bool
     {
       return true;
     }
