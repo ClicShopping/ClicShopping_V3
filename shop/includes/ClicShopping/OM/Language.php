@@ -28,7 +28,7 @@
     protected $db;
     protected $content;
 
-    public function __construct(?string $code = null)
+    public function __construct($code = null)
     {
 
       $this->db = Registry::get('Db');
@@ -101,7 +101,7 @@
      * Set Code
      * @param $code
      */
-    protected function set(string $code)
+    protected function set($code)
     {
       $this->code = $code;
 
@@ -112,7 +112,7 @@
       }
     }
 
-    public function getCode(): string
+    public function getCode()
     {
       return $this->language;
     }
@@ -121,7 +121,7 @@
      * Check browser
      * @return bool|int|string
      */
-    public function getBrowserSetting(): bool
+    public function getBrowserSetting()
     {
       if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         $browser_languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -203,7 +203,7 @@
      * @param null $language_code
      * @return mixed
      */
-    public function get(?string $data = null, ?string $language_code = null): string
+    public function get($data = null, $language_code = null)
     {
       if (!isset($data)) {
         $data = 'code';
@@ -221,7 +221,7 @@
      * @param null $language_code
      * @return int
      */
-    public function getId(?string $language_code = null): int
+    public function getId($language_code = null)
     {
       return (int)$this->get('id', $language_code);
     }
@@ -230,7 +230,7 @@
      * get all language in array
      * @return array
      */
-    public function getAll(): array
+    public function getAll()
     {
       return $this->languages;
     }
@@ -241,7 +241,7 @@
      * @param return the code of the language
      * @access public
      */
-    public function exists(string $code): bool
+    public function exists($code)
     {
       return isset($this->languages[$code]);
     }
@@ -253,8 +253,9 @@
      * @param null $height
      * @return string
      */
-    public function getImage(string $language_code, ?int $width = null, ?int $height = null): string
+    public function getImage($language_code, $width = null, $height = null)
     {
+
       if (!isset($width) || !is_int($width)) {
         $width = 16;
       }
@@ -266,13 +267,7 @@
       return HTML::image(CLICSHOPPING::link('Shop/sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', null, false), $this->get('name', $language_code), $width, $height);
     }
 
-    /**
-     * @param string $key
-     * @param array|null $values
-     * @param string $scope
-     * @return string
-     */
-    public function getDef(string $key, ?array $values = null, string  $scope = 'global'): string
+    public function getDef($key, $values = null, $scope = 'global')
     {
       if (isset($this->definitions[$scope][$key])) {
         $def = $this->definitions[$scope][$key];
@@ -293,7 +288,7 @@
      * @param $values
      * @return null|string|string[]
      */
-    public static function parseDefinition(string $string,array $values): string
+    public static function parseDefinition($string, $values)
     {
       if (is_array($values) && !empty($values)) {
         $string = preg_replace_callback('/\{\{([A-Za-z0-9-_]+)\}\}/', function ($matches) use ($values) {
@@ -310,7 +305,7 @@
      * @param null $language_code
      * @return bool|mixed
      */
-    public function definitionsExist(string $group, ?string $language_code = null)
+    public function definitionsExist($group, $language_code = null)
     {
       $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
@@ -348,7 +343,7 @@
      * @param null $force_directory_language
      * @return bool
      */
-    public function loadDefinitions(string $group, ?string $language_code = null, ?string $scope = null, ?string $force_directory_language = null)
+    public function loadDefinitions($group, $language_code = null, $scope = null, $force_directory_language = null)
     {
       $language_code = isset($language_code) && $this->exists($language_code) ? $language_code : $this->get('code');
 
@@ -389,8 +384,9 @@
      * @param $pathname
      * @return array|mixed
      */
-    public function getDefinitions(string $group, string $language_code, string $pathname)
+    public function getDefinitions($group, $language_code, $pathname)
     {
+
       $defs = [];
 
       $group_key = str_replace(['/', '\\'], '-', $group);
@@ -442,7 +438,7 @@
      * @param $filename
      * @return array
      */
-    public function getDefinitionsFromFile(string $filename): array
+    public function getDefinitionsFromFile($filename)
     {
       $defs = [];
 
@@ -470,10 +466,10 @@
 
     /**
      * Inject definition
-     * @param array $defs
-     * @param string $scope
+     * @param $defs
+     * @param $scope
      */
-    public function injectDefinitions(array $defs, string $scope)
+    public function injectDefinitions($defs, $scope)
     {
       if (isset($this->definitions[$scope])) {
         $this->definitions[$scope] = array_merge($this->definitions[$scope], $defs);
@@ -484,9 +480,9 @@
 
     /**
      * Set cache is used
-     * @param bool $flag
+     * @param $flag
      */
-    public function setUseCache(bool $flag)
+    public function setUseCache($flag)
     {
       $this->use_cache = ($flag === true);
     }
@@ -495,7 +491,7 @@
      * @param $filename
      * @return bool
      */
-    public function detectFileEncoding(string $filename)
+    public function detectFileEncoding($filename)
     {
       $response_encoding = 'UTF-8';
       $response_bom = ' without BOM';
@@ -513,7 +509,6 @@
         }
       }
       fclose($handle);
-
       return ($response_encoding . $response_bom == 'UTF-8 without BOM');
     }
 
@@ -527,6 +522,7 @@
      */
     public function getLanguageCode()
     {
+
       if (!is_null($this->getUrlValueLanguage())) {
         $_GET['language'] = $this->getUrlValueLanguage();
       }
@@ -538,7 +534,7 @@
 
         $_SESSION['language'] = $this->get('code');
 
-        return HTML::sanitize($_SESSION['language']);
+        return $_SESSION['language'];
       } else {
         return false;
       }
@@ -548,7 +544,6 @@
     /* Get the language value of the URL when Search engine is activate
      * @return $value_language, the value of the language
     */
-
     public function getUrlValueLanguage()
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {
@@ -567,7 +562,7 @@
      * @return string $languages_string, flag language
      * @access public
      */
-    public function getLanguageText(string $tag = ' - '): string
+    public function getLanguageText($tag = ' - ')
     {
       if (!isset($_GET['Checkout'])) {
         $languages_string = '';
@@ -601,7 +596,7 @@
      * @return string $flag, flag language
      * @access public
      */
-    public function getFlag(): string
+    public function getFlag()
     {
       if (!isset($_GET['Checkout'])) {
 
@@ -651,7 +646,7 @@
      * @return string $languages_array,
      * @access public
      */
-    public function getLanguages(): array
+    public function getLanguages()
     {
 
       $languages_array = [];
@@ -686,7 +681,7 @@
      * @return string name, name of the language id
      * @access public
      */
-    public function getLanguagesName(int $id): string
+    public function getLanguagesName($id)
     {
       $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
         'name'
@@ -704,7 +699,7 @@
      * @return array $values_languages_id,, languages
      * @access public
      */
-    public function getAllLanguage(bool $option = false): array
+    public function getAllLanguage($option = false)
     {
       $languages = $this->getLanguages();
 

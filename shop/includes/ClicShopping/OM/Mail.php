@@ -88,7 +88,7 @@
      * @param $string
      * @return mixed
      */
-    private function convertLinefeeds(string $from, string $to, string $string): string
+    private function convertLinefeeds(array $from, string $to, string $string): string
     {
       return str_replace($from, $to, $string);
     }
