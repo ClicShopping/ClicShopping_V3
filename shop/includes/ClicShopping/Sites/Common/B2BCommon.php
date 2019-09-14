@@ -24,7 +24,7 @@
      * @access public
      */
 
-    public static function getPaymentUnallowed($pay_check): bool
+    public static function getPaymentUnallowed(string $pay_check): bool
     {
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -37,9 +37,9 @@
         if (($CLICSHOPPING_Customer->isLoggedOn()) && ($customer_group_id != 0)) {
 
           $QpaymentsNotAllowed = $CLICSHOPPING_Db->prepare('select group_payment_unallowed
-                                                    from :table_customers_groups
-                                                    where customers_group_id = :customers_group_id
-                                                  ');
+                                                            from :table_customers_groups
+                                                            where customers_group_id = :customers_group_id
+                                                          ');
           $QpaymentsNotAllowed->bindInt(':customers_group_id', (int)$customer_group_id);
           $QpaymentsNotAllowed->execute();
 
@@ -90,7 +90,7 @@
      * @param string $product_price_d , the price of the product or not
      * @access public
      */
-    public static function getShippingUnallowed($shipping_check): bool
+    public static function getShippingUnallowed(string $shipping_check): bool
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -102,9 +102,9 @@
         if (($CLICSHOPPING_Customer->isLoggedOn()) && ($customer_group_id != 0)) {
 
           $QshippingNotAllowed = $CLICSHOPPING_Db->prepare('select group_shipping_unallowed
-                                                    from :table_customers_groups
-                                                    where customers_group_id = :customers_group_id
-                                                  ');
+                                                            from :table_customers_groups
+                                                            where customers_group_id = :customers_group_id
+                                                          ');
           $QshippingNotAllowed->bindInt(':customers_group_id', $customer_group_id);
           $QshippingNotAllowed->execute();
 
@@ -182,6 +182,5 @@
 
         return $tax_clearance;
       }
-
     }
   }

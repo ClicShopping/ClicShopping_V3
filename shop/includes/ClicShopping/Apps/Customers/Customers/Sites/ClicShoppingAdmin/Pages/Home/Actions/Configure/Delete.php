@@ -46,9 +46,9 @@
       if ($Qcheck->fetch()) {
 
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
-                                        from :table_administrator_menu
-                                        where app_code = :app_code
-                                      ');
+                                              from :table_administrator_menu
+                                              where app_code = :app_code
+                                              ');
 
         $QMenuId->bindValue(':app_code', 'app_customers_customers');
         $QMenuId->execute();
@@ -62,6 +62,29 @@
         }
 
         $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_customers_customers']);
+      }
+
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_customers']);
+
+      if ($Qcheck->fetch()) {
+
+        $QMenuId = $CLICSHOPPING_Db->prepare('select id
+                                              from :table_administrator_menu
+                                              where app_code = :app_code
+                                              ');
+
+        $QMenuId->bindValue(':app_code', 'app_report_stats_customers');
+        $QMenuId->execute();
+
+        $menu = $QMenuId->fetchAll();
+
+        $menu1 = count($menu);
+
+        for ($i = 0, $n = $menu1; $i < $n; $i++) {
+          $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
+        }
+
+        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_report_stats_customers']);
       }
     }
 

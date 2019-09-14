@@ -162,6 +162,8 @@
 
           if (isset($_POST['search'])) {
             $search = HTML::sanitize($_POST['search']);
+          } elseif (isset($_GET['search'])) {
+             $search = HTML::sanitize($_GET['search']);
           }
 
           $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($search);

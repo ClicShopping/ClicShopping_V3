@@ -25,7 +25,6 @@
   if (isset($_GET['search'])) {
     $_POST['search'] = HTML::sanitize($_GET['search']);
   }
-
 ?>
 <div class="contentBody">
   <div class="row">

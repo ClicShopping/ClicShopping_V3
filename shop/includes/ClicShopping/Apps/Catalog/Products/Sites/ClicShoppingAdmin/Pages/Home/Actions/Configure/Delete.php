@@ -42,7 +42,6 @@
       $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_catalog_products']);
 
       if ($Qcheck->fetch()) {
-
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
                                               from :table_administrator_menu
                                               where app_code = :app_code
@@ -61,6 +60,99 @@
 
         $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_catalog_products']);
       }
+
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_viewed']);
+
+      if ($Qcheck->fetch()) {
+        $QMenuId = $CLICSHOPPING_Db->prepare('select id
+                                              from :table_administrator_menu
+                                              where app_code = :app_code
+                                            ');
+
+        $QMenuId->bindValue(':app_code', 'app_report_stats_products_viewed');
+        $QMenuId->execute();
+
+        $menu = $QMenuId->fetchAll();
+
+        $menu1 = count($menu);
+
+        for ($i = 0, $n = $menu1; $i < $n; $i++) {
+          $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
+        }
+
+        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_report_stats_products_viewed']);
+      }
+
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_low_stock']);
+
+      if ($Qcheck->fetch()) {
+
+        $QMenuId = $CLICSHOPPING_Db->prepare('select id
+                                        from :table_administrator_menu
+                                        where app_code = :app_code
+                                      ');
+
+        $QMenuId->bindValue(':app_code', 'app_report_stats_low_stock');
+        $QMenuId->execute();
+
+        $menu = $QMenuId->fetchAll();
+
+        $menu1 = count($menu);
+
+        for ($i = 0, $n = $menu1; $i < $n; $i++) {
+          $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
+        }
+
+        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_report_stats_low_stock']);
+      }
+
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_expected']);
+
+      if ($Qcheck->fetch()) {
+
+        $QMenuId = $CLICSHOPPING_Db->prepare('select id
+                                              from :table_administrator_menu
+                                              where app_code = :app_code
+                                            ');
+
+        $QMenuId->bindValue(':app_code', 'app_report_stats_products_expected');
+        $QMenuId->execute();
+
+        $menu = $QMenuId->fetchAll();
+
+        $menu1 = count($menu);
+
+        for ($i = 0, $n = $menu1; $i < $n; $i++) {
+          $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
+        }
+
+        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_report_stats_products_expected']);
+      }
+
+      $Qcheck = $CLICSHOPPING_Db->get('administrator_menu', 'app_code', ['app_code' => 'app_report_stats_products_purchased']);
+
+      if ($Qcheck->fetch()) {
+        $QMenuId = $CLICSHOPPING_Db->prepare('select id
+                                              from :table_administrator_menu
+                                              where app_code = :app_code
+                                            ');
+
+        $QMenuId->bindValue(':app_code', 'app_report_stats_products_purchased');
+        $QMenuId->execute();
+
+        $menu = $QMenuId->fetchAll();
+
+        $menu1 = count($menu);
+
+        for ($i = 0, $n = $menu1; $i < $n; $i++) {
+          $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
+        }
+
+        $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_report_stats_products_purchased']);
+      }
+
+
+      Cache::clear('menu-administrator');
     }
 
     private static function removeDb()

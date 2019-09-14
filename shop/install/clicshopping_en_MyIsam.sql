@@ -237,12 +237,12 @@ INSERT INTO `clic_administrator_menu` VALUES(593, 'index.php?A&Customers\\Member
 INSERT INTO `clic_administrator_menu` VALUES(594, 'index.php?A&Marketing\\SEO&SEO', 5, 8, 0, 'referencement.gif', 0, 'app_marketing_seo', 1);
 INSERT INTO `clic_administrator_menu` VALUES(595, 'index.php?A&Communication\\PageManager&PageManager', 6, 0, 0, 'page_manager.gif', 0, 'app_communication_page_manager', 1);
 INSERT INTO `clic_administrator_menu` VALUES(596, 'index.php?A&Marketing\\BannerManager&BannerManager', 5, 6, 0, 'banner_manager.gif', 0, 'app_marketing_banner_manager', 1);
-INSERT INTO `clic_administrator_menu` VALUES(598, 'index.php?A&Report\\StatsCustomers&StatsCustomers', 103, 0, 0, 'stats_customers.gif', 0, 'app_report_stats_customers', 1);
-INSERT INTO `clic_administrator_menu` VALUES(605, 'index.php?A&Report\\StatsLowStock&StatsLowStock', 107, 5, 0, 'stats_customers.gif', 0, 'app_report_stats_low_stock', 1);
-INSERT INTO `clic_administrator_menu` VALUES(608, 'index.php?A&Report\\StatsProductsPurchased&StatsProductsPurchased', 98, 5, 0, 'stats_products_purchased.gif', 0, 'app_report_stats_products_purchased', 1);
-INSERT INTO `clic_administrator_menu` VALUES(609, 'index.php?A&Report\\StatsProductsViewed&StatsProductsViewed', 98, 5, 0, 'stats_products_viewed.gif', 0, 'app_report_stats_products_viewed', 1);
+INSERT INTO `clic_administrator_menu` VALUES(598, 'index.php?A&Customers\Customers&StatsCustomers', 103, 0, 0, 'stats_customers.gif', 0, 'app_report_stats_customers', 1);
+INSERT INTO `clic_administrator_menu` VALUES(605, 'index.php?A&Catalog\\Products&StatsProductsLowStock', 107, 5, 0, 'stats_customers.gif', 0, 'app_report_stats_low_stock', 1);
+INSERT INTO `clic_administrator_menu` VALUES(608, 'index.php?A&Catalog\\Products&StatsProductsPurchased', 98, 5, 0, 'stats_products_purchased.gif', 0, 'app_report_stats_products_purchased', 1);
+INSERT INTO `clic_administrator_menu` VALUES(609, 'index.php?A&Catalog\\Products&StatsProductsViewed', 98, 5, 0, 'stats_products_viewed.gif', 0, 'app_report_stats_products_viewed', 1);
 INSERT INTO `clic_administrator_menu` VALUES(616, 'index.php?A&Report\\StatsProductsNotification&StatsProductsNotification', 107, 5, 0, 'client.gif', 0, 'app_report_stats_products_notification', 1);
-INSERT INTO `clic_administrator_menu` VALUES(617, 'index.php?A&Report\\StatsProductsExpected&StatsProductsExpected', 107, 5, 0, 'products_expected.gif', 0, 'app_report_stats_products_expected', 1);
+INSERT INTO `clic_administrator_menu` VALUES(617, 'index.php?A&Catalog\\Products&StatsProductsExpected', 107, 5, 0, 'products_expected.gif', 0, 'app_report_stats_products_expected', 1);
 INSERT INTO `clic_administrator_menu` VALUES(626, 'index.php?A&Catalog\\Suppliers&Suppliers', 3, 7, 0, 'suppliers.gif', 0, 'app_catalog_suppliers', 1);
 INSERT INTO `clic_administrator_menu` VALUES(627, 'index.php?A&Catalog\\Manufacturers&Manufacturers', 3, 6, 0, 'manufacturers.gif', 0, 'app_catalog_manufacturers', 1);
 INSERT INTO `clic_administrator_menu` VALUES(632, 'index.php?A&Configuration\\TemplateEmail&TemplateEmail', 20, 3, 0, 'mail.gif', 0, 'app_configuration_template_email', 1);

@@ -12,9 +12,10 @@ fix administrator table
 fix options products price
 
 restructure Manufacturer and suppliers Hooks
+Remove some Report Apps to include in good Apps
 Update currency class
 Update Customer pro registration
-Minor improvment inside the Db
+Minor improvment inside the Db in consequence
 
 Since 3_2106 : update before this version
 ALTER TABLE `clic_currencies` ADD `surcharge` DECIMAL(15,4) NOT NULL DEFAULT '0' AFTER `status`;
@@ -22,3 +23,9 @@ ALTER TABLE `clic_currencies` CHANGE `surcharge` `surcharge` DECIMAL(15,4) NULL 
 
 All version
 ALTER TABLE `clic_administrators` CHANGE `user_name` `user_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+
+UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Customers\\Customers&StatsCustomers' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_customers';
+UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsViewed' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_products_viewed';
+UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsLowStock' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_low_stock';
+UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsExpected' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_products_expected';
+UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsPurchased' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_products_purchased';

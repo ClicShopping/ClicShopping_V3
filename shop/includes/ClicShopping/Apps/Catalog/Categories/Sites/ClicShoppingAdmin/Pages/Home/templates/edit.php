@@ -91,8 +91,6 @@
       </div>
     </div>
   </div>
-</div>
-
 <div class="separator"></div>
 
 <div id="categoriesTabs" style="overflow: auto;">
@@ -120,7 +118,7 @@
           <div
             class="float-md-right"><?php echo $CLICSHOPPING_Categories->getDef('text_user_name') . AdministratorAdmin::getUserAdmin(); ?></div>
         </div>
-        <div class="adminformTitle">
+        <div class="adminformTitle" id="categoriesLanguage">
           <?php
             for ($i = 0, $n = count($languages); $i < $n; $i++) {
               ?>
@@ -138,7 +136,7 @@
               <?php
             }
           ?>
-          <div class="row">
+          <div class="row" id="categoriesName">
             <div class="col-md-5">
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_Categories->getDef('text_categories_name'); ?>"
@@ -153,7 +151,7 @@
 
         <div class="separator"></div>
         <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_Categories->getDef('text_divers_title'); ?></div>
-        <div class="adminformTitle">
+        <div class="adminformTitle" id="categoriesSortOrder">
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
@@ -166,10 +164,11 @@
             </div>
           </div>
         </div>
+        <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab1', null, 'display'); ?>
       </div>
       <?php
         // ----------------------------------------------------------- //-->
-        //          ONGLET sur la designation de la categorie          //-->
+          //          categories description                              //-->
         // ----------------------------------------------------------- //-->
       ?>
       <div class="tab-pane" id="tab2">
@@ -204,8 +203,7 @@
           ?>
         </div>
         <div class="separator"></div>
-        <div class="alert alert-info role=" alert
-        "">
+          <div class="alert alert-info" role="alert">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Categories->getDef('title_help_description')) . ' ' . $CLICSHOPPING_Categories->getDef('title_help_description'); ?></div>
         <div class="separator"></div>
         <div><?php echo $CLICSHOPPING_Categories->getDef('title_help_description'); ?></div>
@@ -235,10 +233,11 @@
           </span>
         </div>
       </div>
+      <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab2', null, 'display'); ?>
     </div>
     <?php
       // -----------------------------------------------------//-->
-      //          ONGLET sur le référencement categories      //-->
+      //          categories SEO      //-->
       // ---------------------------------------------------- //-->
     ?>
     <!-- decompte caracteres -->
@@ -337,13 +336,14 @@
             <?php
           }
         ?>
-      </div>
       <div class="separator"></div>
       <div class="alert alert-info" role="alert">
         <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Categories->getDef('title_help_submit')) . ' ' . $CLICSHOPPING_Categories->getDef('title_help_submit') ?></div>
         <div class="separator"></div>
         <div><?php echo $CLICSHOPPING_Categories->getDef('help_submit'); ?></div>
       </div>
+     </div>
+      <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab3', null, 'display'); ?>
     </div>
     <?php
       // -----------------------------------------------------//-->
@@ -390,14 +390,16 @@
         <div class="separator"></div>
         <div><?php echo $CLICSHOPPING_Categories->getDef('help_image_categories'); ?></div>
       </div>
+     <?php echo $CLICSHOPPING_Hooks->output('Categories', 'CategoriesContentTab4', null, 'display'); ?>
     </div>
     <?php
       //***********************************
       // extension
       //***********************************
-      echo $CLICSHOPPING_Hooks->output('Categories', 'PageTabContent', null, 'display');
+      echo $CLICSHOPPING_Hooks->output('Categories', 'Page', null, 'display');
     ?>
   </div>
+</div>
 </div>
 </form>
 </div>
