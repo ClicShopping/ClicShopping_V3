@@ -47,7 +47,7 @@
      * @return string status order
      * @access public
      */
-    Public Static function getDropDownOrderStatus(string $name = 'dropdown_status', int $id = null, string $displays_all_orders_status = 'yes')
+    Public Static function getDropDownOrderStatus(string $name = 'dropdown_status', $id = null, string $displays_all_orders_status = 'yes'): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
