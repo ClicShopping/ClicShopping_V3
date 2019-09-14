@@ -1244,7 +1244,8 @@
         $Qtotals->execute();
 
         while ($Qtotals->fetch()) {
-          $email_order .= strip_tags($Qtotals->value('title') . ' ' . $Qtotals->value('text')) . "\n";
+          $email_order .= strip_tags($Qtotals->value('title') . ' ' . $Qtotals->value('text'));
+          $email_order .= str_replace('&nbsp;', ' ', $email_order) . "\n";
         }
 
 
@@ -1284,19 +1285,18 @@
             $email_order .= $this->info['payment_method'] . "\n\n";
 
             if (isset($payment_class->email_footer)) {
-              $email_order .= $payment_class->email_footer;
+              $email_order .= $payment_class->email_footer . "\n";
             }
           }
         } // end $GLOBALS[$_SESSION['payment']]
 
         $email_order .= TemplateEmail::getTemplateEmailSignature() . "\n\n";
-        $email_order .= TemplateEmail::getTemplateEmailTextFooter();
+        $email_order .= TemplateEmail::getTemplateEmailTextFooter(). "\n";
 
         $this->mail->clicMail($this->customer['firstname'] . ' ' . $this->customer['lastname'], $this->customer['email_address'], CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]), $email_order, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
-
 // SEND_EXTRA_ORDER_EMAILS_TO does'nt work like this, test<test@test.com>, just with test@test.com
-        if (SEND_EXTRA_ORDER_EMAILS_TO != '') {
+        if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
           $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
           $email_text_subject = html_entity_decode($email_text_subject);
 
@@ -1312,10 +1312,9 @@
 // Alert by mail product exhausted if a product is 0 or < 0
     public function sendEmailAlertProductsExhausted($insert_id)
     {
-      $CLICSHOPPING_Prod = Registry::get('Db');
+      $CLICSHOPPING_Prod = Registry::get('Prod');
 
       if (STOCK_ALERT_PRODUCT_EXHAUSTED == 'true') {
-
         $Qproducts = $this->db->prepare('select orders_products_id,
                                                  products_id
                                                  products_model,
@@ -1328,11 +1327,8 @@
         $Qproducts->bindInt(':orders_id', $insert_id);
         $Qproducts->execute();
 
-
         if ($Qproducts->fetch() !== false) {
-
           while ($Qproducts->fetch()) {
-
             $Qstock = $this->db->prepare('select products_quantity_alert,
                                                   products_stock
                                             from :table_products
@@ -1376,9 +1372,7 @@
           $Qproducts->execute();
 
           if ($Qproducts->fetch() !== false) {
-
             while ($Qproducts->fetch()) {
-
               $Qstock = $this->db->prepare('select products_quantity_alert,
                                                     products_stock
                                             from :table_products
