@@ -1245,9 +1245,8 @@
 
         while ($Qtotals->fetch()) {
           $email_order .= strip_tags($Qtotals->value('title') . ' ' . $Qtotals->value('text'));
-          $email_order .= str_replace('&nbsp;', ' ', $email_order) . "\n";
+          $email_order = str_replace('&nbsp;', ' ', $email_order) . "\n";
         }
-
 
         if ($this->content_type != 'virtual') {
           $message_order = stripslashes(CLICSHOPPING::getDef('email_text_delivery_address'));
