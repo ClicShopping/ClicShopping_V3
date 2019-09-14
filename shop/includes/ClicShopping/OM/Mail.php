@@ -88,7 +88,7 @@
      * @param $string
      * @return mixed
      */
-    private function convertLinefeeds(array $from, string $to, string $string): string
+    private function convertLinefeeds($from, $to, $string): string
     {
       return str_replace($from, $to, $string);
     }
@@ -106,8 +106,11 @@
      * Adds a html part to the mail.
      * Also replaces image names with
      * content-id's.
-   */
-    public function addHtml(string $html, ?string $text = NULL, ?string $images_dir = NULL)
+     * @param string $html
+     * @param null $text
+     * @param string|null $images_dir
+     */
+    public function addHtml(string $html, $text = NULL, $images_dir = NULL)
     {
       $this->phpMail->IsHTML(true);
       $this->html = $this->convertLinefeeds(array("\r\n", "\n", "\r"), '<br />', $html);
@@ -122,7 +125,7 @@
      * content-id's.
      */
 
-    public function addHtmlCkeditor(string $html, ?string $text = NULL, ?string $images_dir = NULL)
+    public function addHtmlCkeditor(string $html, $text = NULL, $images_dir = NULL)
     {
       $this->phpMail->IsHTML(true);
 
@@ -146,7 +149,7 @@
      * @return bool
      * @throws Exception
      */
-    public function addCC(string $email_address, ?string $name = null)
+    public function addCC($email_address, $name = null)
     {
       return $this->phpMail->addCC($email_address, $name);
     }
@@ -157,7 +160,7 @@
      * @return bool
      * @throws Exception
      */
-    public function addBCC(string $email_address, ?string $name = null)
+    public function addBCC($email_address, $name = null)
     {
       return $this->phpMail->addBCC($email_address, $name);
     }
@@ -212,7 +215,7 @@
      * @param string $disposition
      * @throws Exception
      */
-    public function addAttachment(string $path, string $name = '', string $encoding = 'base64', string $type = '', string $disposition = 'attachment')
+    public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment')
     {
       $this->phpMail->AddAttachment($path, $name, $encoding, $type, $disposition);
     }
@@ -235,7 +238,7 @@
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send(string $to_name, string $to_addr, string $from_name, string $from_addr, string $subject = '', bool $reply_to = false): bool
+    public function send($to_name, $to_addr, $from_name, $from_addr, $subject = '', bool $reply_to = false): bool
     {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
@@ -330,7 +333,7 @@
      * @param string $from_email_address The email address of the sender
      * @access public
      */
-    public function clicMail(string $to_name, string $to_email_address, string $email_subject, string $email_text, string $from_email_name, string $from_email_address)
+    public function clicMail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address)
     {
       if (SEND_EMAILS != 'true') return false;
 

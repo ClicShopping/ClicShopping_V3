@@ -28,9 +28,12 @@
     protected $db;
     protected $content;
 
+    /**
+     * Language constructor.
+     * @param null $code
+     */
     public function __construct($code = null)
     {
-
       $this->db = Registry::get('Db');
 
       if (CLICSHOPPING::getSite() == 'Shop') {
@@ -386,7 +389,6 @@
      */
     public function getDefinitions($group, $language_code, $pathname)
     {
-
       $defs = [];
 
       $group_key = str_replace(['/', '\\'], '-', $group);
@@ -509,6 +511,7 @@
         }
       }
       fclose($handle);
+
       return ($response_encoding . $response_bom == 'UTF-8 without BOM');
     }
 
@@ -522,7 +525,6 @@
      */
     public function getLanguageCode()
     {
-
       if (!is_null($this->getUrlValueLanguage())) {
         $_GET['language'] = $this->getUrlValueLanguage();
       }
@@ -636,6 +638,8 @@
         }
 
         return $content;
+      } else {
+        return '';
       }
     }
 
