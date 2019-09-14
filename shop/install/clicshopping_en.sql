@@ -136,7 +136,7 @@ INSERT INTO administrator_menu VALUES(593, 'index.php?A&Customers\\Members&Membe
 INSERT INTO administrator_menu VALUES(594, 'index.php?A&Marketing\\SEO&SEO', 5, 8, 0, 'referencement.gif', 0, 'app_marketing_seo', 1);
 INSERT INTO administrator_menu VALUES(595, 'index.php?A&Communication\\PageManager&PageManager', 6, 0, 0, 'page_manager.gif', 0, 'app_communication_page_manager', 1);
 INSERT INTO administrator_menu VALUES(596, 'index.php?A&Marketing\\BannerManager&BannerManager', 5, 6, 0, 'banner_manager.gif', 0, 'app_marketing_banner_manager', 1);
-INSERT INTO administrator_menu VALUES(598, 'index.php?A&Customers\Customers&StatsCustomers', 103, 0, 0, 'stats_customers.gif', 0, 'app_report_stats_customers', 1);
+INSERT INTO administrator_menu VALUES(598, 'index.php?A&Customers\\Customers&StatsCustomers', 103, 0, 0, 'stats_customers.gif', 0, 'app_report_stats_customers', 1);
 INSERT INTO administrator_menu VALUES(605, 'index.php?A&Catalog\\Products&StatsProductsLowStock', 107, 5, 0, 'stats_customers.gif', 0, 'app_report_stats_low_stock', 1);
 INSERT INTO administrator_menu VALUES(608, 'index.php?A&Catalog\\Products&StatsProductsPurchased', 98, 5, 0, 'stats_products_purchased.gif', 0, 'app_report_stats_products_purchased', 1);
 INSERT INTO administrator_menu VALUES(609, 'index.php?A&Catalog\\Products&StatsProductsViewed', 98, 5, 0, 'stats_products_viewed.gif', 0, 'app_report_stats_products_viewed', 1);
