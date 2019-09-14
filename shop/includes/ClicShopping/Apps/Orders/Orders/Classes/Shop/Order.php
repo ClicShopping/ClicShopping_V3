@@ -1233,7 +1233,6 @@
 
         $email_order .= CLICSHOPPING::getDef('email_separator') . "\n";
 
-
         $Qtotals = $this->db->prepare('select title,
                                                text
                                        from :table_orders_total

@@ -23,7 +23,6 @@
 
     public function __construct($key)
     {
-
       $this->setPath();
 
       $this->setKey($key);
@@ -47,7 +46,7 @@
     /**
      * @return string
      */
-    public function getKey() :string
+    public function getKey()
     {
       return $this->key;
     }
@@ -56,9 +55,8 @@
      * @param string $data
      * @return bool
      */
-    public function save(array $data): bool
+    public function save(array $data)
     {
-
       if (FileSystem::isWritable(static::getPath())) {
         return file_put_contents(static::getPath() . $this->key . '.cache', serialize($data), LOCK_EX) !== false;
       }
@@ -84,7 +82,6 @@
         $difference = floor((time() - filemtime($filename)) / 60);
 
         if (is_numeric($expire) && ($difference < $expire)) {
-
           return true;
         }
       }
@@ -96,7 +93,7 @@
      * Return the cached data
      * @return array
      */
-    public function get() :array
+    public function get()
     {
       $filename = static::getPath() . $this->key . '.cache';
       
@@ -119,7 +116,7 @@
     /**
      * @return bool
      */
-    public function getTime(): bool
+    public function getTime()
     {
       $filename = static::getPath() . $this->key . '.cache';
       if (is_file($filename)) {
@@ -164,11 +161,17 @@
       return false;
     }
 
+    /**
+     *
+     */
     public static function setPath()
     {
       static::$path = CLICSHOPPING::BASE_DIR . 'Work/Cache/';
     }
 
+    /**
+     * @return mixed
+     */
      public static function getPath()
     {
       if (!isset(static::$path)) {
