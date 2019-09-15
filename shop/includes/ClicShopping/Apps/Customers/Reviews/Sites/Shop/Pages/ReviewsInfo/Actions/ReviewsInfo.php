@@ -39,24 +39,12 @@
       $reviews_text = $review['reviews_text'];
       $products_name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '" itemprop="url" class="productTitle"', '<span itemprop="name">' . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()) . '</span>');
 
-// *************************
-// display the differents prices before button
-// **************************
       $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
-// *************************
-// See the button more view details
-// *************************
       $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info', null, 'sm');
-// *************************
-// Gestion de l'affichage des images et des zooms
-// *************************
+
       if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
         $products_image = '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"') . '</h1>';
       }
-
-// *************************
-// End of this file
-// *************************
 
       if ($CLICSHOPPING_ProductsCommon->getProductsArchive() === 1 && is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
         $product_price = '';

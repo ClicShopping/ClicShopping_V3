@@ -51,7 +51,6 @@
         if (isset($_POST['email_address_confirm'])) $email_address_confirmation = HTML::sanitize($_POST['email_address_confirm']);
         if (isset($_POST['postcode'])) $postcode = HTML::sanitize($_POST['postcode']);
         if (isset($_POST['city'])) $city = HTML::sanitize($_POST['city']);
-        if (isset($_POST['entry_telephone'])) $entry_telephone = HTML::sanitize($_POST['entry_telephone']);
 
         if (isset($_POST['customer_website_company'])) {
           $customer_website_company = HTML::sanitize($_POST['customer_website_company']);

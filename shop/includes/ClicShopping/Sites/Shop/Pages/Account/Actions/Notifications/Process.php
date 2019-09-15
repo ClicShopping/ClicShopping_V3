@@ -65,11 +65,6 @@
           }
 
           if (count($products_parsed) > 0) {
-
-            $products_id_in = array_map(function ($k) {
-              return ':products_id_' . $k;
-            }, array_keys($products_parsed));
-
             $Qcheck = $CLICSHOPPING_Db->prepare('select products_id
                                                  from :table_products_notifications
                                                  where customers_id = :customers_id
