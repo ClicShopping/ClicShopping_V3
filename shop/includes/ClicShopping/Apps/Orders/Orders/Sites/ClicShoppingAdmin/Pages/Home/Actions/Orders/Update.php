@@ -31,6 +31,7 @@
     protected $comments;
     protected $notifyComments;
     protected $notify;
+    protected $hooks;
 
     public function __construct()
     {
@@ -46,6 +47,8 @@
 
       if (isset($_POST['notify_comments'])) $this->notifyComments = HTML::sanitize($_POST['notify_comments']);
       if (isset($_POST['notify'])) $this->notify = HTML::sanitize($_POST['notify']);
+
+      $this->hooks = Registry::get('Hooks');
     }
 
     private function getCheckStatus()
@@ -67,9 +70,6 @@
 
     private function getMail()
     {
-      global $tracking_id;
-
-      $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
       if ($this->oID != 0) {
@@ -90,8 +90,7 @@
 
       $email_subject = $this->app->getDef('email_text_subject', ['store_name' => STORE_NAME]);
 
-      $email_text = $template_email_intro_command . '<br />' . $status_order . '<br />' . $this->app->getDef('email_separator') . '<br /><br />' . $this->app->getDef('email_text_order_number') . ' ' . $this->oID . '<br /><br />' . $this->app->getDef('email_text_invoice_url') . '<br />' . CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $tracking_id . '<br />' . $notify_comments . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
-
+      $email_text = $template_email_intro_command . '<br />' . $status_order . '<br />' . $this->app->getDef('email_separator') . '<br /><br />' . $this->app->getDef('email_text_order_number') . ' ' . $this->oID . '<br /><br />' . $this->app->getDef('email_text_invoice_url') . '<br />' . CLICSHOPPING::link('Shop/index.php', 'Account&HistoryInfo&order_id=' . $this->oID) . '<br /><br />' . $this->app->getDef('email_text_date_ordered') . ' ' . DateTime::toShort($check['date_purchased']) . '<br />' . $notify_comments . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
 
 // Envoie du mail avec gestion des images pour Fckeditor et Imanager.
       $message = html_entity_decode($email_text);
@@ -101,13 +100,12 @@
       $from = STORE_OWNER_EMAIL_ADDRESS;
       $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], '', $from, $email_subject);
 
-      $CLICSHOPPING_Hooks->call('Orders', 'OrderEmail');
+      $this->hooks->call('Orders', 'OrderEmail');
     }
 
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_GET['Update'])) {
         $order_updated = false;
@@ -153,7 +151,7 @@
           $CLICSHOPPING_MessageStack->add($this->app->getDef('warning_order_not_updated'), 'warning');
         }
 
-        $CLICSHOPPING_Hooks->call('Orders', 'Update');
+        $this->hooks->call('Orders', 'Update');
 
         if (isset($this->notify)) {
           $this->getMail();

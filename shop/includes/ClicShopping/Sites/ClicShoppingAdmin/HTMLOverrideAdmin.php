@@ -69,13 +69,13 @@
      */
     public static function textAreaCkeditor(string $name, ?string $value = null, int $width, int $height, ?string $text = null, ?string $parameters = null, bool $override = true): string
     {
-
       $height = '750';
 
       $field = '<textarea name="' . HTML::output($name) . '"';
 
       if (!is_null($parameters)) $field .= ' ' . $parameters;
       $field .= ' />';
+      
       if (($override === true) && ((isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])))) {
         if (isset($_GET[$name]) && is_string($_GET[$name])) {
           $field .= HTML::outputProtected($_GET[$name]);
@@ -85,7 +85,9 @@
       } elseif (!is_null($text)) {
         $field .= HTML::outputProtected($text);
       }
+      
       $field .= '</textarea>';
+      
       $field .= '<script>
 
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
