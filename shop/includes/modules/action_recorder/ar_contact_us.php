@@ -45,7 +45,7 @@
       $this->identifier = HTTP::GetIpAddress();
     }
 
-    public function canPerform($user_id, $user_name)
+    public function canPerform($user_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
