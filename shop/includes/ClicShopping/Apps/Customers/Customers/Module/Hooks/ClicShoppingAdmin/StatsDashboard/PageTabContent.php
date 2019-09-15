@@ -44,7 +44,7 @@
 
       $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                              from :table_customers
-                                             $condition
+                                             ' . $condition . '
                                              limit 1
                                           ');
       $Qcustomer->execute();
