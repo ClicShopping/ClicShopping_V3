@@ -65,9 +65,12 @@
 
       $result = curl_exec($curl);
 
-      $info = curl_getinfo($curl);
-
-      curl_close($curl);
+      if (empty($result)) {
+        $info = curl_getinfo($curl);
+        curl_close($curl);
+      } else {
+        $info = 'error';
+      }
 
       return $info;
     }

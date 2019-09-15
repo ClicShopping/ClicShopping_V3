@@ -22,7 +22,7 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $CLICSHOPPING_Language->loadDefinitions('modules/security_check/extended/admin_includes_directory_listing', null, null, 'Shop');
-      $this->title = CLICSHOPPING::getDef('module_security_check_extended_admin_includes_directory_listing_title');
+      $this->title = CLICSHOPPING::getDef('module_security_check_extended_admin_includes_directory_listing_http_200');
     }
 
     public function pass()
@@ -34,7 +34,7 @@
 
     public function getMessage()
     {
-      return CLICSHOPPING::getDef('c');
+      return CLICSHOPPING::getDef('module_security_check_extended_admin_includes_directory_listing_http_200');
     }
 
     public function getHttpRequest($url)
@@ -60,9 +60,12 @@
 
       $result = curl_exec($curl);
 
-      $info = curl_getinfo($curl);
-
-      curl_close($curl);
+      if (empty($result)) {
+        $info = curl_getinfo($curl);
+        curl_close($curl);
+      } else {
+        $info = 'error';
+      }
 
       return $info;
     }

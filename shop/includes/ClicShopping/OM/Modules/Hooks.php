@@ -33,7 +33,7 @@
 
     public function getClass($module)
     {
-      if (strpos($module, '/') === false) { // TODO core hook compatibility; to remove
+      if (strpos($module, '/') === false) {
         return $module;
       }
 

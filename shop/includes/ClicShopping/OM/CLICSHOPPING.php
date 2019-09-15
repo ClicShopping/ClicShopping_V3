@@ -535,6 +535,8 @@
       $data['clicshopping'] = ['version' => static::getVersion()];
 
       $data['system'] = ['date' => date('Y-m-d H:i:s O T'),
+        'system' => $system,
+        'host' => $host,
         'os' => PHP_OS,
         'kernel' => $kernel,
         'uptime' => @exec('uptime'),

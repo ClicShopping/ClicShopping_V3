@@ -323,7 +323,6 @@
         $small_image_resized = '';
       }
 
-// Ajoute ou efface l'image dans la base de donnees
       if (isset($_POST['delete_image'])) {
         $this->products_image = $sql_data_array['products_image'] = null;
         $this->products_image_zoom = $sql_data_array['products_image_zoom'] = null;
@@ -331,9 +330,8 @@
       } else {
         if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || $small_image_resized != '') {
 
-// Insertion images des produits via l'editeur FCKeditor (fonctionne sur les nouveaux produits et editions produits)
           $products_image_name = HTML::sanitize($_POST['products_image']);
-          $products_image_name = htmlspecialchars($products_image_name);
+          $products_image_name = htmlspecialchars($products_image_name, ENT_QUOTES | ENT_HTML5);
           $products_image_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_name);
           $products_image_name_end = strstr($products_image_name, '&quot;');
           $products_image_name = str_replace($products_image_name_end, '', $products_image_name);
@@ -350,10 +348,9 @@
         }
 
 // big image
-
         if (!empty($big_image_resized)) {
           $products_image_zoom_name = HTML::sanitize($big_image_resized);
-          $products_image_zoom_name = htmlspecialchars($products_image_zoom_name);
+          $products_image_zoom_name = htmlspecialchars($products_image_zoom_name, ENT_QUOTES | ENT_HTML5);
           $products_image_zoom_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_zoom_name);
           $products_image_zoom_name_end = strstr($products_image_zoom_name, '&quot;');
           $products_image_zoom_name = str_replace($products_image_zoom_name_end, '', $products_image_zoom_name);
@@ -371,7 +368,7 @@
 // medium image
         if (!empty($medium_image_resized)) {
           $products_image_medium_name = HTML::sanitize($medium_image_resized);
-          $products_image_medium_name = htmlspecialchars($products_image_medium_name);
+          $products_image_medium_name = htmlspecialchars($products_image_medium_name, ENT_QUOTES | ENT_HTML5);
           $products_image_medium_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_medium_name);
           $products_image_medium_name_end = strstr($products_image_medium_name, '&quot;');
           $products_image_medium_name = str_replace($products_image_medium_name_end, '', $products_image_medium_name);
