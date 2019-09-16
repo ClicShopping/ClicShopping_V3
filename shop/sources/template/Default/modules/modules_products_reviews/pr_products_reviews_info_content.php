@@ -72,7 +72,6 @@
 
           $customer_name  = '*** ' . HTML::outputProtected(substr($reviews['customers_name'], 4, -4)) . ' ***';
           $date_added  = DateTime::toLong($reviews['date_added']);
-          var_dump($date_added);
           $customer_text = HTML::breakString(nl2br(HTML::outputProtected($reviews_text)), 60, '-<br />');
           $customer_rating = '<span class="productsInfoReviewsContentRating" itemprop="ratingValue">' . HTML::stars($reviews_rating) . '</span>';
 
