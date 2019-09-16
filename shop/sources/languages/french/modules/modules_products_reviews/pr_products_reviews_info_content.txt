@@ -1,7 +1,7 @@
 modules_products_reviews_info_content_title = Lecture Commentaire : Souhaitez vous permettre au client de lire un commentaire ?
 modules_products_reviews_info_content_description = Permettre au client lire un commentaire
 
-modules_products_reviews_info_content_text_review_date_added = Date
+modules_products_reviews_info_content_text_review_date_added = Date : {{date_added}}
 modules_products_reviews_info_content_text_review_text_review_by = {{customer_name}}
 
 modules_products_reviews_info_content_text_no_review = Aucun commentaire

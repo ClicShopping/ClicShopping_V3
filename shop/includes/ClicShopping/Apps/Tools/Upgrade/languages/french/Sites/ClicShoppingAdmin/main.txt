@@ -65,6 +65,7 @@ text_reload = re-test
 test_download = Télécharger ClicShopping
 
 text_install_files = <strong>Veuillez lire ces informations avant de continuer.</strong><br /><br />
+- Module expérimentale, il peut y avoir des bogues qui peuvent apparaitre
 - Github fixe une limite de connexion à son API et un délai. Si cette limite apparait veuillez attendre et recommencer plus tard.
 - Le fichier d'information Json est téléchargé dans le répertoire Cache.<br />
 - La décompression / installation ne peut fonctionner que si le serveur l'autorise, à défaut il vous faudra adapter le chmod des répertoires à 777.<br />

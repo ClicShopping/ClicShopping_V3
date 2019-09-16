@@ -1,4 +1,4 @@
-<div class="col-md-<?php echo $content_width; ?>">
+<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="control-group">
     <div class="controls">
       <div class="buttonSet">

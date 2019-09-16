@@ -11,7 +11,8 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
-  <div class="col-md-<?php echo $content_width; ?>">
+
+<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
     <div class="separator"></div>
     <div class="row">
       <div class="col-md-12">
@@ -33,6 +34,9 @@ use ClicShopping\OM\CLICSHOPPING;
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-12">
         <div class="alert alert-info" role="alert" role="alert">
 <?php

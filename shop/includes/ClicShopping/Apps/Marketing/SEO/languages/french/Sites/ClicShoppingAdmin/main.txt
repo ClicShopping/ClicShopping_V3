@@ -55,7 +55,7 @@ display_default = Afficher les mots clefs par défaut
 display_description_default = Afficher la description par défaut
 text_submit_default_language_title = Titre
 text_submit_default_language_keywords = Mots clefs
-text_submit_default_language_description = Desription
+text_submit_default_language_description = Description
 text_submit_default_language_footer = Pied de page
 
 text_pages_submit_information_categories = Gestion des Métadonnées du site par défaut de la section catégories

@@ -41,6 +41,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_CONTENT_WIDTH;
+      $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
         $comment = HTML::textAreaField('review', null, 80, 10, 'required aria-required="true" id="inputReview"');
@@ -87,7 +88,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the width of the module',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_CONTENT_WIDTH',
-          'configuration_value' => '5',
+          'configuration_value' => '8',
           'configuration_description' => 'Select a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',
@@ -97,19 +98,27 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Where do you want display the module ?',
+          'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION',
+          'configuration_value' => 'float-md-left',
+          'configuration_description' => 'Select where you want display the module',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_SORT_ORDER',
-          'configuration_value' => '200',
+          'configuration_value' => '00',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 
@@ -120,6 +129,7 @@
     public function keys() {
       return array('MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_STATUS',
                    'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_CONTENT_WIDTH',
+                   'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_SORT_ORDER'
                   );
     }

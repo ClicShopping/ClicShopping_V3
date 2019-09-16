@@ -11,13 +11,9 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $content_width; ?> float-md-right">
-  <div class="separator"></div>
-  <div class="float-md-right">
-    <div class="text-md-center"><?php echo $reviews_image; ?></div>
-    <div class="text-md-center">
-      <div><?php echo $products_name; ?></div>
-      <div><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $products_price; ?></div>
-    </div>
-  </div>
+<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
+    <div class="separator"></div>
+    <div class="textReviewsProductsImage text-md-right"><?php echo $reviews_image; ?></div>
+    <div class="text-md-right textReviewsProductsName"><?php echo $products_name; ?></div>
+    <div class="text-md-right textReviewsProductsPrice"><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $products_price; ?></div>
 </div>

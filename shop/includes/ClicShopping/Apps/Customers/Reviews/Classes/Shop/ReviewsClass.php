@@ -51,7 +51,7 @@
      * @return bool the numbeer of the review
      * @access public
      */
-    public function getTotalReviews()
+    public function getTotalReviews(): int
     {
       if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
         $Qcheck = $this->db->prepare('select count(r.reviews_id) as total
@@ -85,16 +85,12 @@
       return $Qcheck->valueInt('total');
     }
 
-
     /**
      * get all review about a product id
-     *
-     * @return array : $Qreviews reviews data
-     * @access public
+     * @return mixed
      */
     public function getData()
     {
-
       if ($this->customer->getCustomersGroupID() == 0) {
         $Qreviews = $this->db->prepare('select r.reviews_id,
                                                  left(rd.reviews_text, :limitText) as reviews_text,
@@ -175,15 +171,15 @@
 
       if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
         $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                              from :table_orders o,
-                                                   :table_orders_products op,
-                                                   :table_products p
-                                              where o.customers_id = :customers_id
-                                              and o.orders_id = op.orders_id
-                                              and op.products_id = p.products_id
-                                              and op.products_id = :products_id
-                                              and o.customers_group_id = 0
-                                              ');
+                                                    from :table_orders o,
+                                                         :table_orders_products op,
+                                                         :table_products p
+                                                    where o.customers_id = :customers_id
+                                                    and o.orders_id = op.orders_id
+                                                    and op.products_id = p.products_id
+                                                    and op.products_id = :products_id
+                                                    and o.customers_group_id = 0
+                                                    ');
         $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
         $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qhaspurchased->execute();
@@ -191,15 +187,15 @@
       } else {
 
         $Qhaspurchased = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                              from :table_orders o,
-                                                   :table_orders_products op,
-                                                   :table_products p
-                                              where o.customers_id = :customers_id
-                                              and o.orders_id = op.orders_id
-                                              and op.products_id = p.products_id
-                                              and op.products_id = :products_id
-                                              and o.customers_group_id > 0
-                                              ');
+                                                    from :table_orders o,
+                                                         :table_orders_products op,
+                                                         :table_products p
+                                                    where o.customers_id = :customers_id
+                                                    and o.orders_id = op.orders_id
+                                                    and op.products_id = p.products_id
+                                                    and op.products_id = :products_id
+                                                    and o.customers_group_id > 0
+                                                    ');
         $Qhaspurchased->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
         $Qhaspurchased->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $Qhaspurchased->execute();
@@ -214,49 +210,50 @@
      * @return array : $Qreviews : review informations
      * @access public
      */
-    public function getDataReviews($id = null)
+    public function getDataReviews($id = null): array
     {
       $reviews_id = HTML::sanitize($id);
-
-      if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
-        $Qreviews = $this->db->prepare('select r.reviews_id,
-                                              rd.reviews_text,
-                                              r.reviews_rating,
-                                              r.date_added,
-                                              r.customers_name,
-                                              r.customers_id
-                                        from :table_reviews r,
-                                             :table_reviews_description rd
-                                        where r.reviews_id = :reviews_id
-                                        and r.reviews_id = rd.reviews_id
-                                        and rd.languages_id = :languages_id
-                                        and r.status = 1
-                                        and r.customers_group_id = 0
-                                        ');
-        $Qreviews->bindInt(':reviews_id', $reviews_id);
-        $Qreviews->bindInt(':languages_id', $this->lang->getId());
-        $Qreviews->execute();
-      } else {
-        $Qreviews = $this->db->prepare('select r.reviews_id,
+      if (!is_null($reviews_id)) {
+        if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
+          $Qreviews = $this->db->prepare('select r.reviews_id,
                                                 rd.reviews_text,
                                                 r.reviews_rating,
                                                 r.date_added,
                                                 r.customers_name,
                                                 r.customers_id
-                                        from :table_reviews r,
-                                             :table_reviews_description rd
-                                        where r.reviews_id = :reviews_id
-                                        and r.reviews_id = rd.reviews_id
-                                        and rd.languages_id = :languages_id
-                                        and r.status = 1
-                                        and r.customers_group_id > 0
-                                        ');
-        $Qreviews->bindInt(':reviews_id', $reviews_id);
-        $Qreviews->bindInt(':languages_id', $this->lang->getId());
-        $Qreviews->execute();
-      }
+                                          from :table_reviews r,
+                                               :table_reviews_description rd
+                                          where r.reviews_id = :reviews_id
+                                          and r.reviews_id = rd.reviews_id
+                                          and rd.languages_id = :languages_id
+                                          and r.status = 1
+                                          and r.customers_group_id = 0
+                                          ');
+          $Qreviews->bindInt(':reviews_id', $reviews_id);
+          $Qreviews->bindInt(':languages_id', $this->lang->getId());
+          $Qreviews->execute();
+        } else {
+          $Qreviews = $this->db->prepare('select r.reviews_id,
+                                                  rd.reviews_text,
+                                                  r.reviews_rating,
+                                                  r.date_added,
+                                                  r.customers_name,
+                                                  r.customers_id
+                                          from :table_reviews r,
+                                               :table_reviews_description rd
+                                          where r.reviews_id = :reviews_id
+                                          and r.reviews_id = rd.reviews_id
+                                          and rd.languages_id = :languages_id
+                                          and r.status = 1
+                                          and r.customers_group_id > 0
+                                          ');
+          $Qreviews->bindInt(':reviews_id', $reviews_id);
+          $Qreviews->bindInt(':languages_id', $this->lang->getId());
+          $Qreviews->execute();
+        }
 
-      return $Qreviews->fetch();
+        return $Qreviews->fetch();
+      }
     }
 
     /**
@@ -292,6 +289,7 @@
           'status' => 0,
           'customers_group_id' => (int)$this->customer->getCustomersGroupID()
         ];
+
         $this->db->save('reviews', $array_sql);
       }
 
@@ -329,7 +327,7 @@
     }
 
 
-    public function deleteReviews($review_id)
+    public function deleteReviews(int $review_id)
     {
       $Odelete = $this->db->prepare('delete
                                     from :table_reviews
@@ -345,5 +343,4 @@
       $Odelete->bindInt(':reviews_id', $review_id);
       $Odelete->execute();
     }
-
   }

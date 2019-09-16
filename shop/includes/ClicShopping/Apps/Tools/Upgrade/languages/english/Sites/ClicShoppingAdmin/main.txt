@@ -67,6 +67,7 @@ text_reload = re-test
 test_download = Download ClicShopping
 
 text_install_files = <strong>Please read these informations before to proceed</strong>.<br /><br />
+    - Experimentale Apps, it can have some bugs can be appear
     - Github display a rate limit about the connexion and a delay. If you see a message, please wait and restart your research more later<br />
     - The Json information is uploaded in the Cache directory.<br />
     - The decompression can depends of your server configuration to work or not and you must adpat the chmod directory at 777 in function.<br />

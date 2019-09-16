@@ -43,9 +43,9 @@
       $Qreviews = $CLICSHOPPING_Reviews->getData();
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_WIDTH;
+      $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['Reviews'])) {
-
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
         $data = '<!-- pr_products_reviews_listing_content start -->' . "\n";
@@ -73,11 +73,13 @@
 
         $data .= '<div class= "d-flex flex-wrap ">';
         $delete_reviews = '';
+        $delete_comment = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT;
 
         while ($Qreviews->fetch() ) {
           $date_reviews = CLICSHOPPING::getDef('text_review_date_added') . ' ' . DateTime::toLong($Qreviews->value('date_added'));
           $customer_name =  CLICSHOPPING::getDef('text_review_by',  ['customer_name' => '*** ' . HTML::outputProtected(substr($Qreviews->value('customers_name'), 4, -4)) . ' ***']);
           $customer_review = '<a href="' . CLICSHOPPING::link(null, 'Products&ReviewsInfo&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')) . '">' . $customer_name . '</a>';
+          $delete_reviews = '';
 
           if ($Qreviews->valueInt('customers_id') == $CLICSHOPPING_Customer->getID()) {
             $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&Reviews&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
@@ -158,6 +160,30 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Where do you want display the module ?',
+          'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION',
+          'configuration_value' => 'float-md-none',
+          'configuration_description' => 'Select where you want display the module',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Allow the customer to delete the comment ?',
+          'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT',
+          'configuration_value' => 'True',
+          'configuration_description' => 'The regulation allow the customer to decide to have access at his information',
+          'configuration_group_id' => '6',
+          'sort_order' => '1',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
+          'date_added' => 'now()'
+        ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SORT_ORDER',
           'configuration_value' => '30',
@@ -168,10 +194,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-      );
     }
 
     public function remove() {
@@ -181,6 +203,8 @@
     public function keys() {
       return array('MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_STATUS',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_WIDTH',
+                   'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION',
+                   'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SORT_ORDER'
                   );
     }

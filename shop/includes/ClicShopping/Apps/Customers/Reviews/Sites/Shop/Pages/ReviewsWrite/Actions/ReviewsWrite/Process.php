@@ -32,7 +32,7 @@
         $review = HTML::sanitize($_POST['review']);
         $customer_agree_privacy = HTML::sanitize($_POST['customer_agree_privacy']);
 
-        if ($customer_agree_privacy != 'on') {
+        if ($customer_agree_privacy != 'on' && defined('MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS')) {
           $error = true;
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error'), 'error', 'review_write');
         }
@@ -45,7 +45,7 @@
         if (($rating < 1) || ($rating > 5)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('js_review_rating'), 'error', 'review_write');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('js_review_rating'), 'error', 'header');
         }
 
         if ($error === false) {

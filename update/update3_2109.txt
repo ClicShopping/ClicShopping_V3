@@ -16,6 +16,8 @@ Remove some Report Apps to include in good Apps
 Update currency class
 Update Customer pro registration
 Minor improvment inside the Db in consequence
+Improv review modularity (after update delete and re-install the reviews template module (Design/Customer/Reviews)
+
 
 Since 3_2106 : update before this version
 ALTER TABLE `clic_currencies` ADD `surcharge` DECIMAL(15,4) NOT NULL DEFAULT '0' AFTER `status`;

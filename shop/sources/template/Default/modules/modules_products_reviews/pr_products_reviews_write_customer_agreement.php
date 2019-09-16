@@ -38,9 +38,9 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_CONTENT_WIDTH;
+      $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
-
         $data = '<!-- pr_modules_products_reviews_write_customer_agreement start -->' . "\n";
 
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
@@ -95,6 +95,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+              'configuration_title' => 'Where do you want display the module ?',
+              'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION',
+              'configuration_value' => 'float-md-left',
+              'configuration_description' => 'Select where you want display the module',
+              'configuration_group_id' => '6',
+              'sort_order' => '2',
+              'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+              'date_added' => 'now()'
+          ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_SORT_ORDER',
           'configuration_value' => '600',
@@ -118,6 +130,7 @@
     public function keys() {
       return array('MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS',
                    'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_CONTENT_WIDTH',
+                   'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_SORT_ORDER'
                   );
     }

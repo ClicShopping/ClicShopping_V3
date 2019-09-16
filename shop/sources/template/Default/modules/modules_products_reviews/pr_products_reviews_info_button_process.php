@@ -35,21 +35,16 @@ class pr_products_reviews_info_button_process {
   }
 
   public function execute() {
-
     $CLICSHOPPING_Template = Registry::get('Template');
-    $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
+
     $content_width = (int)MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_CONTENT_WIDTH;
+    $text_position = MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION;
 
     if (isset($_GET['Products']) && isset($_GET['ReviewsInfo'])) {
-
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      $back = count($CLICSHOPPING_NavigationHistory->path)-2;
-
-      if (isset($CLICSHOPPING_NavigationHistory->path[$back])) {
-        $button_back =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['page'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'primary');
-        $button_process = HTML::button(CLICSHOPPING::getDef('button_write'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
-      }
+      $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Products&Reviews&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'primary');
+      $button_process = HTML::button(CLICSHOPPING::getDef('button_write'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
 
       $data = '<!-- pr_products_reviews_info_button_process start -->' . "\n";
 
@@ -100,6 +95,18 @@ class pr_products_reviews_info_button_process {
     );
 
     $CLICSHOPPING_Db->save('configuration', [
+        'configuration_title' => 'Where do you want display the module ?',
+        'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION',
+        'configuration_value' => 'float-md-none',
+        'configuration_description' => 'Select where you want display the module',
+        'configuration_group_id' => '6',
+        'sort_order' => '2',
+        'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+        'date_added' => 'now()'
+      ]
+    );
+
+    $CLICSHOPPING_Db->save('configuration', [
         'configuration_title' => 'Sort order',
         'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_SORT_ORDER',
         'configuration_value' => '60',
@@ -110,10 +117,6 @@ class pr_products_reviews_info_button_process {
         'date_added' => 'now()'
       ]
     );
-
-    return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-      ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-    );
   }
 
   public function remove() {
@@ -123,6 +126,7 @@ class pr_products_reviews_info_button_process {
   public function keys() {
     return array('MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_STATUS',
                   'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_CONTENT_WIDTH',
+                  'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION',
                   'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_SORT_ORDER'
     );
   }

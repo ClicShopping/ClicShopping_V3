@@ -3,8 +3,9 @@ module_products_info_reviews_description = Affiche les commentaires des clients 
 
 module_products_info_reviews_all_reviews = Voir tous les commentaires
 module_products_info_reviews_write_review = Ecrire un commentaire
- heading_rewiews = Commentaires clients
- text_review_date_added = Date d'ajout :
- text_review_by = {{customer_name}}
- button_all_reviews =  Afficher tous les commentaires
- button_write_review = Ecrire un commentaire
+heading_rewiews = Commentaires clients
+text_review_date_added = Date d'ajout :
+text_review_by = {{customer_name}}
+button_all_reviews =  Afficher tous les commentaires
+button_write_review = Ecrire un commentaire
+text_info_no_reviews = Actuellement, il n'y a aucun commentaire sur ce produit, veuillez cliquez sur bouton écrire pour créer un nouveau commentaire
