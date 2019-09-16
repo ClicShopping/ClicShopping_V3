@@ -48,7 +48,7 @@ text_newsletter = Newsletter
 text_customer_ip = Adresse IP Enregistrement client
 text_customer_provider = Provider enregistrement client
 
-table_entry_validate = Aprouvé
+table_entry_validate = Approuvé
 approved_client = Client B2B Non validé
 
 icon_email = E-mail

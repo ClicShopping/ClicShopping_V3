@@ -890,11 +890,10 @@
      */
     public static function stars($rating = 0, $meta = true)
     {
-      $stars = str_repeat('<span class="fas fa-star"></span>', (int)$rating) .
-        str_repeat('<span class="fas fa-star"></span>', 5 - (int)$rating);
+      $stars = str_repeat('<span class="fas fa-star"></span>', $rating);
 
       if ($meta !== false) {
-        $stars .= '<meta itemprop="rating" content="' . (int)$rating . '" />';
+        $stars .= '<meta itemprop="rating" content="' . $rating . '" />';
       }
 
       return $stars;

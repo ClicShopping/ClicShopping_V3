@@ -70,6 +70,8 @@
 
   echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
+
 <!-- body //-->
 <div class="contentBody">
   <div class="row">
@@ -193,11 +195,7 @@
             <div class="col-md-12">
               <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_rating'); ?></span>
               <span class="col-md-10">
-
-                  <link rel="stylesheet"
-                        href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
-
-                <?php echo '--------------' . $rInfo->reviews_rating; ?>
+                <?php echo $rInfo->reviews_rating; ?>
 <script>
   $(function () {
       $("#rateYo").rateYo({

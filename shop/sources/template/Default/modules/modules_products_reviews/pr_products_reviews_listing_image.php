@@ -35,13 +35,12 @@
     }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_CONTENT_WIDTH;
+      $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_POSITION;
 
-      if (isset($_GET['Products']) && isset($_GET['Review'])) {
-
+      if (isset($_GET['Products']) && isset($_GET['Reviews'])) {
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
@@ -100,6 +99,18 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+              'configuration_title' => 'Where do you want display the module ?',
+              'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_POSITION',
+              'configuration_value' => 'float-md-right',
+              'configuration_description' => 'Select where you want display the module',
+              'configuration_group_id' => '6',
+              'sort_order' => '2',
+              'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+              'date_added' => 'now()'
+          ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_SORT_ORDER',
           'configuration_value' => '20',
@@ -110,10 +121,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-      );
     }
 
     public function remove() {
@@ -123,6 +130,7 @@
     public function keys() {
       return array('MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_STATUS',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_CONTENT_WIDTH',
+                   'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_SORT_ORDER'
                   );
     }

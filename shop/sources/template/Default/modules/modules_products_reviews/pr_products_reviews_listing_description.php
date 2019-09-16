@@ -34,13 +34,12 @@
     }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_CONTENT_WIDTH;
+      $text_position = MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['Review'])) {
-
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
@@ -96,6 +95,17 @@
           'date_added' => 'now()'
         ]
       );
+      $CLICSHOPPING_Db->save('configuration', [
+          'configuration_title' => 'Where do you want display the module ?',
+          'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION',
+          'configuration_value' => 'float-md-left',
+          'configuration_description' => 'Select where you want display the module',
+          'configuration_group_id' => '6',
+          'sort_order' => '2',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'date_added' => 'now()'
+        ]
+      );
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
@@ -121,6 +131,7 @@
     public function keys() {
       return array('MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_STATUS',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_CONTENT_WIDTH',
+                   'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_SORT_ORDER'
                   );
     }

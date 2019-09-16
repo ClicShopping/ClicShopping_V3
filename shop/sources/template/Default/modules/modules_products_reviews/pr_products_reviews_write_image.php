@@ -38,9 +38,9 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_CONTENT_WIDTH;
+      $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
-
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
@@ -89,7 +89,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Please select the width of the module',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_CONTENT_WIDTH',
-          'configuration_value' => '7',
+          'configuration_value' => '3',
           'configuration_description' => 'Select a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',
@@ -99,9 +99,21 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
+              'configuration_title' => 'Where do you want display the module ?',
+              'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION',
+              'configuration_value' => 'float-md-right',
+              'configuration_description' => 'Select where you want display the module',
+              'configuration_group_id' => '6',
+              'sort_order' => '2',
+              'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+              'date_added' => 'now()'
+          ]
+      );
+
+      $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_SORT_ORDER',
-          'configuration_value' => '300',
+          'configuration_value' => '200',
           'configuration_description' => 'Sort order of display. Lowest is displayed first',
           'configuration_group_id' => '6',
           'sort_order' => '4',
@@ -122,6 +134,7 @@
     public function keys() {
       return array('MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_STATUS',
                    'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_CONTENT_WIDTH',
+                   'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION',
                    'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_SORT_ORDER'
                   );
     }

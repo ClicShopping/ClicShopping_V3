@@ -50,7 +50,7 @@
         $products_reviews_content = HTMLOverrideCommon::starHeaderTagRateYo();
 
 //*******************************************
-// products review<
+// products review
 //********************************************
         $Qreviews = $CLICSHOPPING_Db->prepare('select r.reviews_id,
                                                        left(rd.reviews_text, :limitText ) as reviews_text,
@@ -137,21 +137,24 @@
 //*******************************************
 // customers_feedback
 //********************************************
-           if ($count_review != 0) {
-
+           if ($count_review !== 0) {
              $details_button = HTML::button(CLICSHOPPING::getDef('button_all_reviews'), null, CLICSHOPPING::link(null, 'Products&Reviews&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info');
              $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
 
              $products_reviews_content .= '<div class="clearfix"></div>';
-
-             $products_reviews_content .= '<span class="col-md-2">' . $details_button . '</span>';
-             $products_reviews_content .= '<span class="col-md-10 text-md-right">' . $write_button . '</span>';
+             $products_reviews_content .= '<div class="separator"></div>';
+             $products_reviews_content .= '<span class="col-md-6">' . $details_button . '</span>';
+             $products_reviews_content .= '<span class="col-md-6 text-md-right">' . $write_button . '</span>';
            }
          }
 
-        if( $count_review == 0) {
-          $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
+        if($count_review === 0) {
+          $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info');
+          $products_reviews_content .= '<div class="separato"></div>';
+          $products_reviews_content .= '<div class="col-md-12">';
+          $products_reviews_content .= '<div class="moduleProductsInfoNoReview">' . CLICSHOPPING::getDef('text_info_no_reviews') . '</div>';
           $products_reviews_content .= '<div class="text-md-right">' . $write_button . '</div>';
+          $products_reviews_content .= '<div>';
         }
 
         $products_reviews_content .= '</div>' . "\n";

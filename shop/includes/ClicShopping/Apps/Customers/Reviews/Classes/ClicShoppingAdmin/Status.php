@@ -36,7 +36,6 @@
         );
 
       } elseif ($status == 0) {
-
         return $CLICSHOPPING_Db->save('reviews', ['status' => 0,
           'last_modified' => 'now()'
         ],

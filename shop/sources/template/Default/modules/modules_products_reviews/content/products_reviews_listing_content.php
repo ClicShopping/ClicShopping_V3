@@ -1,4 +1,4 @@
-<div class ="col-md-12" style="padding-top:10px;">
+<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
   <div class="row">
     <span class="col-md-8"><?php echo $date_reviews . '<br />' . $customer_review; ?></span>
@@ -7,7 +7,13 @@
   <div class="separator"></div>
   <div class="row">
     <span class="col-md-10"><?php echo $review_text; ?></span>
+    <?php
+      if ($delete_comment == 'True') {
+    ?>
     <span class="col-md-2 text-md-right"><?php echo $delete_reviews ?></span>
+    <?php
+      }
+    ?>
   </div>
   <div class="separator"></div>
   <div class="hr"></div>

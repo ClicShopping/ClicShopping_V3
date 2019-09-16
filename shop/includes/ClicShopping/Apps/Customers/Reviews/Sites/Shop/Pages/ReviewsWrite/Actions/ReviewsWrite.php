@@ -39,13 +39,13 @@
       }
 
       $Qproducts = $CLICSHOPPING_Db->prepare('select products_id,
-                                                products_quantity as in_stock,
-                                                products_image
-                                          from :table_products
-                                          where products_id = :products_id
-                                          and products_status = 1
-                                          and products_view = 1
-                                        ');
+                                                      products_quantity as in_stock,
+                                                      products_image
+                                                from :table_products
+                                                where products_id = :products_id
+                                                and products_status = 1
+                                                and products_view = 1
+                                              ');
       $Qproducts->bindInt(':products_id', $CLICSHOPPING_ProductsCommon->getID());
 
       $Qproducts->execute();

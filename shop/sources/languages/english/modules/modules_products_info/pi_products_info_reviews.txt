@@ -9,3 +9,4 @@
  text_review_by = {{customer_name}}
  button_all_reviews =  Display all reviews
  button_write_review = Write a review
+ text_info_no_reviews = Currently no reviews for this product. Click on write button to create a new reviews
