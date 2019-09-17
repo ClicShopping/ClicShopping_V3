@@ -25,8 +25,8 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_POST['delete_customers_birth'])) {
-        $Qdelete = $CLICSHOPPING_Db->prepare('select customers_dob
-                                              from :table_customers
+        $Qdelete = $CLICSHOPPING_Db->prepare('update :table_customers
+                                              set customers_dob = null
                                               where customers_id = :customers_id
                                              ');
         $Qdelete->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
