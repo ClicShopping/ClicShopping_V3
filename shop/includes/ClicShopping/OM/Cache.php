@@ -23,7 +23,7 @@
 
     public function __construct($key)
     {
-      $this->setPath();
+      static::setPath();
 
       $this->setKey($key);
     }
@@ -55,7 +55,7 @@
      * @param string $data
      * @return bool
      */
-    public function save(array $data)
+    public function save($data)
     {
       if (FileSystem::isWritable(static::getPath())) {
         return file_put_contents(static::getPath() . $this->key . '.cache', serialize($data), LOCK_EX) !== false;

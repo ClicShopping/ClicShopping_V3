@@ -55,4 +55,17 @@
       $Qdelete->bindValue(':time_last_click', $xx_mins_ago);
       $Qdelete->execute();
     }
+
+    public static function removeWhoOnline() {
+      $CLICSHOPPING_Db = Registry::get('Db');
+
+      $xx_mins_ago = (time() - 900);
+
+      $Qclean = $CLICSHOPPING_Db->prepare('delete
+                                           from :table_whos_online
+                                           where time_last_click = :time_last_click
+                                          ');
+      $Qclean->bindValue(':time_last_click', $xx_mins_ago);
+      $Qclean->execute();
+    }
   }

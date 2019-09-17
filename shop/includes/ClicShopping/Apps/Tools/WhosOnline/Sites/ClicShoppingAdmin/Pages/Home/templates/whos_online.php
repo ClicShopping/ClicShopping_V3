@@ -14,28 +14,23 @@
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
-  $xx_mins_ago = (time() - 900);
+  use ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin\WhosOnlineAdmin;
 
   $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_ShoppingCartAdmin = Registry::get('ShoppingCartAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  // remove entries that have expired
-  $Qclean = $CLICSHOPPING_WhosOnline->db->prepare('delete
-                                            from :table_whos_online
-                                            where time_last_click = :time_last_click
-                                            ');
-  $Qclean->bindValue(':time_last_click', $xx_mins_ago);
-  $Qclean->execute();
+// remove entries that have expired
+  WhosOnlineAdmin::removeWhoOnline();
 
   if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
     $_GET['page'] = 1;
   }
 
-  // more standard use of get vars on refresh
+// more standard use of get vars on refresh
   if (isset($_GET['refresh']) && is_numeric($_GET['refresh'])) {
-    echo '<meta http-equiv="refresh" content="' . htmlspecialchars($_GET['refresh']) . ';URL=' . 'whos_online.php' . '?' . htmlspecialchars($_SERVER['QUERY_STRING']) . '">';
+    echo '<meta http-equiv="refresh" content="' . htmlspecialchars($_GET['refresh'], ENT_QUOTES | ENT_HTML5) . ';URL=' . 'whos_online.php' . '?' . htmlspecialchars($_SERVER['QUERY_STRING']) . '">';
   }
 ?>
 <div class="contentBody">
@@ -87,7 +82,6 @@
           $QwhosOnline->execute();
 
           while ($QwhosOnline->fetch()) {
-
             $time_online = (time() - $QwhosOnline->value('time_entry'));
 
             if ((!isset($_GET['info']) || (isset($_GET['info']) && ($_GET['info'] === $QwhosOnline->value('session_id')))) && !isset($info)) {
@@ -95,7 +89,7 @@
             }
 
             $ip_address = $QwhosOnline->value('ip_address');
-            ?>
+          ?>
             <th scope="row"><?php echo gmdate('H:i:s', $time_online); ?></th>
             <td><?php echo $QwhosOnline->value('customer_id'); ?></td>
             <td><?php echo $QwhosOnline->value('full_name'); ?></td>
@@ -121,7 +115,6 @@
                 <?php
                   if (isset($info)) {
                     if ($info->customer_id > 0 && $QwhosOnline->value('customer_id') > 0) {
-
                       echo '<strong>' . $CLICSHOPPING_WhosOnline->getDef('table_heading_shopping_cart') . '</strong><br />';
 
                       $Qproducts = $CLICSHOPPING_WhosOnline->db->get([
@@ -140,9 +133,7 @@
                         ]
                       );
 
-
                       if ($Qproducts->fetch() !== false) {
-
                         do {
                           $contents[] = [
                             'text' => $Qproducts->valueInt('customers_basket_quantity') . ' x ' . $Qproducts->value('products_name')
