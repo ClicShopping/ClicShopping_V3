@@ -22,7 +22,7 @@
       $output = '
           <div class="alert alert-danger" role="alert">
             <div class="form-group">
-              <label><strong>' . CLICSHOPPING::getDef('module_account_customers_gdpr_title') . '</strong></label><br />
+              <label><strong>' . CLICSHOPPING::getDef('module_account_customers_gdpr_account_delete_title') . '</strong></label><br />
               <label><strong>' . CLICSHOPPING::getDef('module_account_customers_gdpr_account_intro_delete') . '</strong></label>
               <blockquote>' . CLICSHOPPING::getDef('module_account_customers_gdpr_checkbox') . '
                 <label class="checkbox-inline">

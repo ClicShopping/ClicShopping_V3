@@ -12,7 +12,6 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\Apps;
 ?>
 <!DOCTYPE html>
 <html <?php echo CLICSHOPPING::getDef('html_params'); ?>>
