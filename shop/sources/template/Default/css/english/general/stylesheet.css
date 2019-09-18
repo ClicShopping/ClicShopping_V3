@@ -254,3 +254,9 @@ span.ModulesTickerBootstrapTickerStockDanger {
 .fa-search {
   height: 1.3rem;
 }
+
+span.ModulesReviews {
+  color: #f0a42a;
+  font-size: medium;
+  text-align:center;
+}

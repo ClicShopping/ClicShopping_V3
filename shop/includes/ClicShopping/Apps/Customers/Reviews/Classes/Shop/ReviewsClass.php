@@ -343,4 +343,80 @@
       $Odelete->bindInt(':reviews_id', $review_id);
       $Odelete->execute();
     }
+
+    /**
+     * @param int $products_id
+     * @param bool $all_language
+     * @return float
+     */
+    public function getoverallReviewsbyProducts(int $products_id, bool $all_language = false): ?float
+    {
+      if ($all_language === false) {
+        if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                                sum(r.reviews_rating) as sum_reviews
+                                        from :table_reviews r,
+                                             :table_reviews_description rd
+                                        where r.products_id = :products_id
+                                        and r.reviews_id = rd.reviews_id
+                                        and r.status = 1
+                                        and r.customers_group_id = 0
+                                        ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->execute();
+
+        } else {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                               sum(r.reviews_rating) as sum_reviews
+                                      from :table_reviews r,
+                                           :table_reviews_description rd
+                                      where r.products_id = :products_id
+                                      and r.reviews_id = rd.reviews_id
+                                      and r.status = 1
+                                      and r.customers_group_id > 0
+                                      ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->execute();
+        }
+
+      } else {
+        if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                               sum(r.reviews_rating) as sum_reviews
+                                      from :table_reviews r,
+                                           :table_reviews_description rd
+                                      where r.products_id = :products_id
+                                      and rd.languages_id = :languages_id
+                                      and r.reviews_id = rd.reviews_id
+                                      and r.status = 1
+                                      and r.customers_group_id = 0
+                                      ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->bindInt(':languages_id', $this->lang->getId());
+          $Qcheck->execute();
+        } else {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                               sum(r.reviews_rating) as sum_reviews
+                                      from :table_reviews r,
+                                           :table_reviews_description rd
+                                      where r.products_id = :products_id
+                                      and rd.languages_id = :languages_id
+                                      and r.reviews_id = rd.reviews_id
+                                      and r.status = 1
+                                      and r.customers_group_id > 0
+                                      ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->bindInt(':languages_id', $this->lang->getId());
+          $Qcheck->execute();
+        }
+      }
+
+      if ($Qcheck->valueInt('reviews_total') > 0) {
+        $overall = $Qcheck->valueInt('sum_reviews') / $Qcheck->valueInt('reviews_total');
+      } else {
+        $overall = 0;
+      }
+
+      return $overall;
+    }
   }

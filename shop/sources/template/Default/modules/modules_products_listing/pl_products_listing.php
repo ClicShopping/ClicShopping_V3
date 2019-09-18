@@ -43,6 +43,7 @@
       $CLICSHOPPING_Category = Registry::get('Category');
       $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
+      $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if ($CLICSHOPPING_Category->getPath() || $CLICSHOPPING_Manufacturers->getID() || !isset($_GET['Search'])) {
 //productsListing (index & search)
@@ -257,6 +258,8 @@
             $products_volume = $CLICSHOPPING_ProductsFunctionTemplate->getProductsVolume($products_id);
 // display products weight
             $products_weight = $CLICSHOPPING_ProductsFunctionTemplate->getProductsWeight($products_id);
+// Reviews
+                $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css

@@ -89,8 +89,10 @@
         $QorderProducts->bindValue(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $QorderProducts->execute();
 
-        $products_reviews_content .= '<!-- Start products_REVIEWS -->' . "\n";
+        $products_reviews_content = '<!-- Start products_REVIEWS -->' . "\n";
+        $products_reviews_content .= '<div class="separator"></div>';
         $products_reviews_content .= '<div class="' . $content_width . '">';
+        $products_reviews_content .= '<hr>';
         $products_reviews_content .= '<div class="separator"></div>';
 
          if ($count_review >= 1 || $QorderProducts->rowCount() >= 1) {

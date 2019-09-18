@@ -42,7 +42,7 @@
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
       $CLICSHOPPING_Category = Registry::get('Category');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
-
+      $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
 // needed for the new products module shown below
       $new_products_category_id =  $CLICSHOPPING_Category->getID();
@@ -51,7 +51,7 @@
       if (CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_Category->getPath()) {
         if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY != 0) {
 
-          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
             if ( $CLICSHOPPING_Category->getParent() == 0) {
 //Depth = products
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
@@ -294,6 +294,8 @@
             $products_volume = $CLICSHOPPING_ProductsFunctionTemplate->getProductsVolume($products_id);
 // display products weight
             $products_weight = $CLICSHOPPING_ProductsFunctionTemplate->getProductsWeight($products_id);
+// Reviews
+              $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css

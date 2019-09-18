@@ -59,7 +59,7 @@
           $button_navigation_history = '';
         }
 
-        $button_continue =  HTML::button(CLICSHOPPING::getDef('button_order'), null, CLICSHOPPING::link(null, 'Checkout&Shipping'), 'success');
+        $button_continue =  HTML::button(CLICSHOPPING::getDef('button_order'), null, CLICSHOPPING::link(null, 'Checkout&Shipping'), 'success', null, 'lg');
 
         $content_width = (int)MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_CONTENT_WIDTH;
 

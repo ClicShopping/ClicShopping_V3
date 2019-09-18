@@ -14,6 +14,7 @@
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\Apps\Customers\Reviews\Classes\Shop\Reviews;
+
   class pr_products_reviews_info_content {
     public $code;
     public $group;

@@ -1538,7 +1538,7 @@
 
       $date_format = 'Y-m-d H:i:s';
 
-      if ($this->customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+      if ($this->customer->getCustomersGroupID() != 0) {
         $QflashDiscount = $this->db->prepare('select specials_id,
                                                       products_id,
                                                       scheduled_date,

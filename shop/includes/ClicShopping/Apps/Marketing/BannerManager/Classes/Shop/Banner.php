@@ -140,7 +140,7 @@
         $Qcheck->execute();
 
         if ($Qcheck !== false) {
-          if ($CLICSHOPPING_Customer->getCustomersGroupID() != '0') { // Clients en mode B2B
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() != '0') {
             $Qbanner = $CLICSHOPPING_Db->prepare('select  banners_id,
                                                           banners_title,
                                                           banners_image,
@@ -195,7 +195,7 @@
         if (is_array($identifier)) {
           $banner = $identifier;
         } else {
-          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 
             $Qbanner = $CLICSHOPPING_Db->prepare('select banners_id,
                                                          banners_title,
@@ -278,7 +278,7 @@
 
       if ($action == 'dynamic') {
 
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                         banners_title,
                                                         banners_image,
@@ -334,7 +334,7 @@
         }
       } elseif ($action == 'static') {
 
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                        banners_title,

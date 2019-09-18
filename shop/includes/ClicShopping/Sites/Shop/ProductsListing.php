@@ -351,7 +351,7 @@
 
       $Qlisting = $this->db->prepare($search_query);
 
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         if (isset($manufacturers_id) && is_numeric($manufacturers_id) && !empty($manufacturers_id)) {
           if (isset($filter_id) && !is_null($filter_id)) {
 // Affichage des produits en mode B2B sur la selection d'une marque depuis la boxe manufacturer avec filtrage de la categorie

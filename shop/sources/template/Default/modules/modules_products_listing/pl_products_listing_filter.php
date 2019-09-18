@@ -51,7 +51,7 @@
 // optional Product List Filter
             if (MODULE_PRODUCTS_LISTING_FILTER_DISPLAY_FILTER > 0) {
 
-              if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) { // Clients en mode B2B
+              if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
                 if ($CLICSHOPPING_Manufacturers->getID() && !empty($CLICSHOPPING_Manufacturers->getID())) {
 
                   $Qfilter = $CLICSHOPPING_Db->prepare('select SQL_CALC_FOUND_ROWS distinct c.categories_id as id,
