@@ -62,7 +62,7 @@
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_COMPOSER_VULNERABILITIES_APP_CONTENT_WIDTH;
       $output = '';
 
-      if ($count == 0) {
+      if ($count > 0) {
         $output = '<span class="' . $content_width . '">';
         $output .= '<div class="separator"></div>';
         $output .= '<div class="alert alert-danger">';
