@@ -1,0 +1,3 @@
+module_admin_dashboard_composer_vulnerabilities_app_title = Do you want to check the composer vulnerabilities library ?
+module_admin_dashboard_composer_vulnerabilities_app_description = Check if a library has a specific vulnerability
+module_admin_dashboard_composer_vulnerabilities_app_title_info = libraryies vulnerabilities : please update with this command in you Shop directory: php composer update

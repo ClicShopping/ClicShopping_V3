@@ -7,4 +7,5 @@ $baseDir = dirname(dirname(dirname(dirname($vendorDir))));
 
 return array(
     'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
+    'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
 );

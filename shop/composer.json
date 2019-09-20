@@ -6,6 +6,7 @@
         "phpmailer/phpmailer": "^6.0",
         "guzzlehttp/guzzle": "^6.3",
         "setasign/fpdf": "1.8.1",
-        "phpxmlrpc/phpxmlrpc": "^4.0"
+        "phpxmlrpc/phpxmlrpc": "^4.0",
+        "sensiolabs/security-checker": "^6.0"
     }
 }

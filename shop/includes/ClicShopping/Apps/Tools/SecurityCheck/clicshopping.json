@@ -15,7 +15,8 @@
  ],
  "modules": {
    "AdminDashboard": {
-   "SecurityCheck":	"Module\\ClicShoppingAdmin\\Dashboard\\SecurityCheck"
+   "SecurityCheck":	"Module\\ClicShoppingAdmin\\Dashboard\\SecurityCheck",
+   "ComposerVulnerabilities":	"Module\\ClicShoppingAdmin\\Dashboard\\ComposerVulnerabilities"
    }
   },
  "routes": {
