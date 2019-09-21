@@ -1,3 +1,3 @@
 module_admin_dashboard_composer_vulnerabilities_app_title = Suhaitez vous vérifier si une librairie de Composer à une spécifique vulnérabilité
-module_admin_dashboard_composer_vulnerabilities_app_description =  Vérifier si une librairie à une spécifique vulnérabilité
+module_admin_dashboard_composer_vulnerabilities_app_description =  Vérifier si une librairie à une spécifique vulnérabilité.<br />Un message apparaitra uniquement s'il y a une vulnérabilité détectée
 module_admin_dashboard_composer_vulnerabilities_app_title_info = Librairies vulnérables : Veuillez éxecuter cette ligne de commande dans votre répertoire Shop : php composer update
