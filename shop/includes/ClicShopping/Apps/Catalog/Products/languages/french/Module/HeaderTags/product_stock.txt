@@ -1,2 +1,0 @@
-module_header_tags_product_stock_title = Souhaitez-vous afficher à l'intérieur du code des informations sur le stock en json (ltd) ?
-module_header_tags_product_stock_description = Afficher à l'intérieur du code des informations sur le stock en json (ltd)
