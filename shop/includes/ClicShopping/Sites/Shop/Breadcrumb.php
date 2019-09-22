@@ -60,13 +60,45 @@
      * @access public
      */
 
-    public function add(string $title, $link = null)
+    public function add(string $title, string $link = '')
     {
       if (!empty($link)) {
-        $title = '<span class="BreadcrumbCustomize" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="' . HTML::outputProtected($link) . '" itemprop="item"><span itemprop="name">' . $title . '</span></a></span>';
+        $title = '<span class="breadcrumb-item breadcrumbCustomize">'. HTML::link(HTML::outputProtected($link), $title) . '</span>';
+      }
+      $this->_path[] = $title;
+      $this->_patharray[] = [
+        'link' => HTML::outputProtected($link),
+        'title' => $title
+      ];
+    }
+
+    /**
+     * return navigation path
+     * @param string|null $separator
+     * @return string
+     */
+    public function getJsonBreadcrumb(): string
+    {
+      $itemlistelement = [];
+
+      $array = $this->_patharray;
+
+      foreach($array as $k => $v) {
+        $itemlistelement[] = array('@type' => 'ListItem',
+            'position' => $k,
+            'item' => array('@id' => $v['link'],
+            'name' => strip_tags($v['title'])));
       }
 
-      $this->_path[] = $title;
+      $schema_breadcrumb = array('@context' => 'https://schema.org',
+          '@type' => 'BreadcrumbList',
+          'itemListElement' => $itemlistelement);
+
+      $data = json_encode($schema_breadcrumb);
+
+      $data = '<script type="application/ld+json">' . $data . '</script>';
+
+      return $data;
     }
 
     /**
