@@ -9,11 +9,10 @@
    *
    */
 
-
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  class ht_googlefont
+  class ht_breadcrumb
   {
     public $code;
     public $group;
@@ -25,22 +24,28 @@
     public function __construct()
     {
       $this->code = get_class($this);
-      $this->group = 'header_tags';
-      $this->title = CLICSHOPPING::getDef('module_header_tags_google_font_title');
-      $this->description = CLICSHOPPING::getDef('module_header_tags_google_font_description');
+      $this->group = basename(__DIR__);
 
-      if (defined('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS')) {
-        $this->sort_order = MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER;
-        $this->enabled = (MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS == 'True');
+      $this->title = CLICSHOPPING::getDef('module_header_tags_breadcrumb_title');
+      $this->description = CLICSHOPPING::getDef('module_header_tags_breadcrump_description');
+
+      if (defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS')) {
+        $this->sort_order = MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER;
+        $this->enabled = (MODULE_HEADER_TAGS_BREADCRUMB_STATUS == 'True');
       }
     }
 
     public function execute()
     {
       $CLICSHOPPING_Template = Registry::get('Template');
-      $google = '<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>';
+      $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
+      $CLICSHOPPING_Service = Registry::get('Service');
 
-      $CLICSHOPPING_Template->addBlock($google . "\n", $this->group);
+      if ($CLICSHOPPING_Service->isStarted('Breadcrumb')) {
+        $footer = $CLICSHOPPING_Breadcrumb->getJsonBreadcrumb();
+      }
+
+      $CLICSHOPPING_Template->addBlock($footer, 'footer_scripts');
     }
 
     public function isEnabled()
@@ -50,7 +55,7 @@
 
     public function check()
     {
-      return defined('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS');
+      return defined('MODULE_HEADER_TAGS_BREADCRUMB_STATUS');
     }
 
     public function install()
@@ -58,10 +63,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want to install this module ?',
-          'configuration_key' => 'MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS',
+          'configuration_title' => 'Do you want to display this module ?',
+          'configuration_key' => 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want to install this module ?',
+          'configuration_description' => 'Do you want to display this module ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -71,16 +76,15 @@
 
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort Order',
-          'configuration_key' => 'MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER',
-          'configuration_value' => '50',
+          'configuration_key' => 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER',
+          'configuration_value' => '555',
           'configuration_description' => 'Sort order. Lowest is displayed in first',
           'configuration_group_id' => '6',
-          'sort_order' => '25',
+          'sort_order' => '10',
           'set_function' => '',
           'date_added' => 'now()'
         ]
       );
-
     }
 
     public function remove()
@@ -90,8 +94,8 @@
 
     public function keys()
     {
-      return array('MODULE_HEADER_TAGS_GOOGLE_FONT_STATUS',
-        'MODULE_HEADER_TAGS_GOOGLE_FONT_SORT_ORDER');
+      return ['MODULE_HEADER_TAGS_BREADCRUMB_STATUS',
+              'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER'
+             ];
     }
   }
-

@@ -27,15 +27,17 @@
 ?>
       <div class="separator"></div>
       <div class="col-md-12 breadcrumb">
-        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-          <li>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li>
 <?php
       if ($CLICSHOPPING_Service->isStarted('Breadcrumb')) {
         echo $CLICSHOPPING_Breadcrumb->get(' &raquo; ');
       }
 ?>
-          </li>
-        </ol>
+            </li>
+          </ol>
+	</nav>
       </div>
 <?php
       if (!CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_ProductsCommon->getID()) {

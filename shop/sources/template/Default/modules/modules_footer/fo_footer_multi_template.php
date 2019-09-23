@@ -54,22 +54,24 @@
   "@type" : "Organization",
   "name" : "' . STORE_NAME . '",
   "url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '",
-  "sameAs" : {
 ';
-
-        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL )) {
-          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL . '", ';
+        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
+          $footer_tag .= '
+  "sameAs" : [
+';
+          if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL)) {
+            $footer_tag .= ' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL . '", ';
+          }
+          if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL)) {
+            $footer_tag .= '  "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '", ';
+          }
+          if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
+            $footer_tag .= ' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '" ';
+          }
         }
-        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL )) {
-          $footer_tag .='  "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL . '", ';
-        }
-        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL )) {
-          $footer_tag .=' "' . MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL . '", ';
-        }
-
-        $footer_tag .='
-  }
-}
+        $footer_tag .= '
+      ]
+   }
 </script>' . "\n";
 
         $footer_tag .= '<!-- footer social footer -->' . "\n";

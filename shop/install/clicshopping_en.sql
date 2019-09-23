@@ -1496,6 +1496,8 @@ INSERT INTO configuration VALUES(1534, 'Please select the width of the module', 
 INSERT INTO configuration VALUES(1535, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO configuration VALUES(1536, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1537, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_CONTENT_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:24', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO configuration VALUES(1538, 'Do you want to display this module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Do you want to display this module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO configuration VALUES(1539, 'Sort Order', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Sort order. Lowest is displayed in first', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);

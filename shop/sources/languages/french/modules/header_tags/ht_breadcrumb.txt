@@ -1,0 +1,2 @@
+module_header_tags_breadcrumb_title = Souhaitez-vous insérer le code de pour affiche les metas données du Breadcrumb
+module_header_tags_breadcrump_description = affiche les metas données du Breadcrumb
