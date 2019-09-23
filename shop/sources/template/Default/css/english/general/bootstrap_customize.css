@@ -288,6 +288,10 @@ blockquote {
 
 .breadcrumb {}
 
+.breadcrumb-item+.breadcrumb-item::before {
+  padding-right: 0rem;
+  content: "";
+}
 /***********************************************/
 /* flexbox  */
 /**********************************************/
