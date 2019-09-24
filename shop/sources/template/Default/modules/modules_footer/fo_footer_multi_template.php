@@ -56,8 +56,14 @@
   "@context" : "https://schema.org",
   "@type" : "Organization",
   "name" : "' . STORE_NAME . '",
-  "url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '",
 ';
+
+        if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
+          $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '",';
+        } else {
+          $footer_tag .= '"url" : "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '"';
+        }
+
         if (!empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_FACEBOOK_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_TWITTER_URL) || !empty(MODULE_FOOTER_MULTI_TEMPLATE_CONTENTS_PINTEREST_URL)) {
           $footer_tag .= '
   "sameAs" : [
