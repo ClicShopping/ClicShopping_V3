@@ -1,3 +1,5 @@
+Update from 3.2106 to 3.3109
+
 Add setrequest function
 Fix address typage error
 fix english language
@@ -10,6 +12,7 @@ Fix bug members B2B
 fix language constant
 fix administrator table
 fix options products price
+update all latest script
 
 restructure Manufacturer and suppliers Hooks
 Remove some Report Apps to include in good Apps
