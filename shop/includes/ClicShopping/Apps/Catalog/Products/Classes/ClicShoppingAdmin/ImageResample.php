@@ -69,8 +69,16 @@
           CLICSHOPPING::redirect(null, 'A&Catalog\ProductsAttributes&ProductsAttributes&error=fileNotSupported');
         }
 
-        if (isset($_GET['Porducts'])) {
+        if (isset($_GET['Products'])) {
           CLICSHOPPING::redirect(null, 'A&Catalog\Products&Products&error=fileNotSupported');
+        }
+
+        if (isset($_GET['Manufacturers'])) {
+          CLICSHOPPING::redirect(null, 'A&Catalog\Products&Manufacturers&error=fileNotSupported');
+        }
+
+        if (isset($_GET['Suppliers'])) {
+          CLICSHOPPING::redirect(null, 'A&Catalog\Products&Suppliers&error=fileNotSupported');
         }
       }
 
@@ -110,11 +118,17 @@
       }
     }
 
+    /**
+     * @return false|int
+     */
     public function getWidth()
     {
       return imagesx($this->image);
     }
 
+    /**
+     * @return false|int
+     */
     public function getHeight()
     {
       return imagesy($this->image);
@@ -235,6 +249,7 @@
       $new_image = imagecreatetruecolor($width, $height);
       $color_fill = imagecolorallocate($new_image, $red, $green, $blue);
       imagefill($new_image, 0, 0, $color_fill);
+
       imagecopyresampled($new_image,
         $this->image,
         floor(($width - $this->getWidth()) / 2),
@@ -245,6 +260,7 @@
         $this->getWidth(),
         $this->getHeight()
       );
+
       $this->image = $new_image;
     }
 

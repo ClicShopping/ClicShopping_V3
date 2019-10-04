@@ -66,7 +66,7 @@
         $title = '<span class="breadcrumb-item breadcrumbCustomize">'. HTML::link(HTML::outputProtected($link), $title) . '</span>';
       }
       $this->_path[] = $title;
-      $this->_patharray[] = [
+      $this->_pathArray[] = [
         'link' => HTML::outputProtected($link),
         'title' => $title
       ];
@@ -81,7 +81,7 @@
     {
       $itemlistelement = [];
 
-      $array = $this->_patharray;
+      $array = $this->_pathArray;
 
       foreach($array as $k => $v) {
         $itemlistelement[] = array('@type' => 'ListItem',

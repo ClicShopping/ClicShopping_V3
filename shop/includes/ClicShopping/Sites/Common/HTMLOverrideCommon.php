@@ -91,12 +91,14 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $header_tag = '<!--   Rate Yo start -->' . "\n";
-      $header_tag .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">';
-      $header_tag .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>';
+      $header_tag .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">' . "\n";
       $header_tag .= '<!--   Rate Yo  end -->' . "\n";
       $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
 
-      return $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
+      $footer_tag = '<!--   Rate Yo start -->' . "\n";
+      $footer_tag .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>' . "\n";
+      $footer_tag .= '<!--   Rate Yo  end -->' . "\n";
+      $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
     }
 
     public static function starTagRateYo(int $rating = null, string $color = null, bool $readonly = true, int $size = 20): string

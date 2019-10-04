@@ -18,7 +18,6 @@
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTTP;
 
-  use ClicShopping\Apps\Catalog\Products\Classes\ClicShoppingAdmin\ImageResample;
   use ClicShopping\Apps\Configuration\Administrators\Classes\ClicShoppingAdmin\AdministratorAdmin;
 
   class ProductsAdmin
@@ -41,6 +40,7 @@
       $this->template = Registry::get('TemplateAdmin');
       $this->hooks = Registry::get('Hooks');
       $this->lang = Registry::get('Language');
+      $this->image = Registry::get('Image');
     }
 
     /**
@@ -108,7 +108,6 @@
 
 //update products
         } else {
-
           $this->db->save('products_description', $sql_data_array, ['products_id' => (int)$id,
               'language_id' => (int)$language_id
             ]
@@ -117,8 +116,10 @@
       } //end for
     }
 
-
-    public function getProductModel()
+    /**
+     * @return string
+     */
+    public function getProductModel(): string
     {
       if (empty($_POST['products_model'])) {
         $rand = rand();
@@ -130,7 +131,7 @@
       return $products_model;
     }
 
-    public function getProductSKU()
+    public function getProductSKU(): string
     {
       if (empty($_POST['products_sku'])) {
         $products_sku = $this->getProductModel();
@@ -143,7 +144,7 @@
       return $products_sku;
     }
 
-    public function getProductEAN()
+    public function getProductEAN(): string
     {
       if (empty($_POST['products_ean'])) {
         $products_ean = $this->getProductSKU();
@@ -156,6 +157,9 @@
       return $products_ean;
     }
 
+    /**
+     * @return mixed|string
+     */
     private function saveFileUpload()
     {
       if (isset($_POST['products_download_filename']) && !is_null($_POST['products_download_filename'])) {
@@ -180,332 +184,6 @@
       }
     }
 
-    /**
-     * generate a radom string
-     * @param int length of the random
-     * @return $randomString
-     */
-    public function getGenerateRandomString($length = 10)
-    {
-      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $charactersLength = strlen($characters);
-      $randomString = '';
-      for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-      }
-      return $randomString;
-    }
-
-    /**
-     * Normal,medium or big image
-     *
-     */
-    private function getImage()
-    {
-      Registry::set('ImageResample', new ImageResample());
-      $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
-
-      if (isset($_GET['pID'])) {
-        $Qimages = $this->db->prepare('select products_image,
-                                                products_image_zoom,
-                                                products_image_medium
-                                         from :table_products
-                                         where products_id = :products_id
-                                        ');
-        $Qimages->bindInt(':products_id', $_GET['pID']);
-        $Qimages->execute();
-
-        $product_update_image = $Qimages->value('products_image');
-        $product_update_image_zoom = $Qimages->value('products_image_zoom');
-        $product_update_image_medium = $Qimages->value('products_image_medium');
-      } else {
-        $product_update_image = '';
-        $product_update_image_zoom = '';
-        $product_update_image_medium = '';
-      }
-
-      $rand_image = $this->getGenerateRandomString();
-
-      $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
-
-      $error = true;
-
-// image resample
-      if (isset($_POST['new_directory_products_image'])) {
-        $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
-        $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
-      } else {
-        $new_dir_products_image = '';
-      }
-
-      if (empty($new_dir_products_image)) {
-        $dir_products_image = 'products/';
-      } else {
-        $dir_products_image = 'products/' . $new_dir_products_image . '/';
-      }
-
-// create directory for image resample
-      if (!empty($new_dir_products_image) && !is_dir($new_dir_products_image)) {
-// depend server configuration
-        if (!mkdir($concurrentDirectory = $root_images_dir . $new_dir_products_image, 0755, true) && !is_dir($concurrentDirectory)) {
-          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-        }
-
-        chmod($root_images_dir . $new_dir_products_image, 0755);
-      }
-
-
-// load originale image
-      $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
-
-      if ($image->check() && $image->save()) {
-        $error = false;
-      }
-
-      if ($error === false) {
-        $sql_data_array['image'] = $dir_products_image . $image->getFilename();
-      } else {
-        $sql_data_array['image'] = '';
-      }
-
-      if ($image->check()) {
-        $image_name = $image->getFilename();
-        $CLICSHOPPING_ImageResample->load($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
-
-// Zoom image
-        $CLICSHOPPING_ImageResample->resizeToWidth(BIG_IMAGE_WIDTH);
-
-        if (empty(BIG_IMAGE_WIDTH)) {
-          $big_image_width = 'big';
-        } else {
-          $big_image_width = BIG_IMAGE_WIDTH;
-        }
-
-        $big_image_width = str_replace(' ', '', $big_image_width);
-        $big_image_resized = $dir_products_image . $big_image_width . '_' . $rand_image . '_' . $image_name;
-
-        $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $big_image_resized);
-
-// medium image
-        $CLICSHOPPING_ImageResample->resizeToWidth(MEDIUM_IMAGE_WIDTH);
-
-        if (empty(MEDIUM_IMAGE_WIDTH)) {
-          $medium_image_width = 'medium';
-        } else {
-          $medium_image_width = MEDIUM_IMAGE_WIDTH;
-        }
-
-        $medium_image_width = str_replace(' ', '', $medium_image_width);
-        $medium_image_resized = $dir_products_image . $medium_image_width . '_' . $rand_image . '_' . $image_name;
-        $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized);
-
-// small image
-        $CLICSHOPPING_ImageResample->resizeToWidth((int)SMALL_IMAGE_WIDTH);
-
-        if (empty((int)SMALL_IMAGE_WIDTH)) {
-          $small_image_width = 'small';
-        } else {
-          $small_image_width = (int)SMALL_IMAGE_WIDTH;
-        }
-
-        $small_image_width = str_replace(' ', '', $small_image_width);
-        $small_image_resized = $dir_products_image . $small_image_width . '_' . $rand_image . '_' . $image_name;
-
-        $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_resized);
-
-// delete the orginal files
-        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name)) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
-        }
-      } else {
-        $big_image_resized = '';
-        $medium_image_resized = '';
-        $small_image_resized = '';
-      }
-
-      if (isset($_POST['delete_image'])) {
-        $this->products_image = $sql_data_array['products_image'] = null;
-        $this->products_image_zoom = $sql_data_array['products_image_zoom'] = null;
-        $this->products_image_medium = $sql_data_array['products_image_medium'] = null;
-      } else {
-        if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || $small_image_resized != '') {
-
-          $products_image_name = HTML::sanitize($_POST['products_image']);
-          $products_image_name = htmlspecialchars($products_image_name, ENT_QUOTES | ENT_HTML5);
-          $products_image_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_name);
-          $products_image_name_end = strstr($products_image_name, '&quot;');
-          $products_image_name = str_replace($products_image_name_end, '', $products_image_name);
-          $products_image_name = str_replace($this->template->getDirectoryShopSources(), '', $products_image_name);
-
-// small image
-          if (!empty($small_image_resized)) {
-            $this->products_image = $small_image_resized;
-          } else {
-            $this->products_image = $products_image_name;
-          }
-        } else {
-          $this->products_image = $product_update_image;
-        }
-
-// big image
-        if (!empty($big_image_resized)) {
-          $products_image_zoom_name = HTML::sanitize($big_image_resized);
-          $products_image_zoom_name = htmlspecialchars($products_image_zoom_name, ENT_QUOTES | ENT_HTML5);
-          $products_image_zoom_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_zoom_name);
-          $products_image_zoom_name_end = strstr($products_image_zoom_name, '&quot;');
-          $products_image_zoom_name = str_replace($products_image_zoom_name_end, '', $products_image_zoom_name);
-          $products_image_zoom_name = str_replace($this->template->getDirectoryShopSources(), '', $products_image_zoom_name);
-
-          if (!empty($big_image_resized)) {
-            $this->products_image_zoom = $big_image_resized;
-          } else {
-            $this->products_image_zoom = $products_image_zoom_name;
-          }
-        } else {
-          $this->products_image_zoom = $product_update_image_zoom;
-        }
-
-// medium image
-        if (!empty($medium_image_resized)) {
-          $products_image_medium_name = HTML::sanitize($medium_image_resized);
-          $products_image_medium_name = htmlspecialchars($products_image_medium_name, ENT_QUOTES | ENT_HTML5);
-          $products_image_medium_name = str_replace($this->template->getDirectoryShopTemplateImages(), '', $products_image_medium_name);
-          $products_image_medium_name_end = strstr($products_image_medium_name, '&quot;');
-          $products_image_medium_name = str_replace($products_image_medium_name_end, '', $products_image_medium_name);
-          $products_image_medium_name = str_replace($this->template->getDirectoryShopSources(), '', $products_image_medium_name);
-
-          if (!empty($medium_image_resized)) {
-            $this->products_image_medium = $medium_image_resized;
-          } else {
-            $this->products_image_medium = $products_image_medium_name;
-          }
-        } else {
-          $this->products_image_medium = $product_update_image_medium;
-        }
-      }
-    }
-
-    /**
-     * Save gallery image
-     * @param $id int products_id
-     */
-    public function saveGalleryImage($id)
-    {
-      $root_images_dir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
-
-      $error = true;
-
-// gallery
-      if (isset($_POST['new_directory'])) {
-        $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);
-        $new_dir = strtolower($new_dir_without_accents);
-        $dir = 'products/' . (!empty($new_dir) ? $new_dir : $_POST['directory']);
-      } else {
-        $dir = '';
-      }
-
-
-      if (!empty($new_dir) && !is_dir($new_dir)) {
-// depend server configuration
-        if (!mkdir($concurrentDirectory = $root_images_dir . $new_dir, 0755, true) && !is_dir($concurrentDirectory)) {
-          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-        }
-
-        chmod($root_images_dir . $new_dir, 0755);
-        $separator = '/';
-      }
-
-      if (isset($_POST['directory']) && !is_null($_POST['directory'])) {
-        $separator = '/';
-      }
-
-      $pi_sort_order = 0;
-      $piArray = [0];
-
-      foreach ($_FILES as $key => $value) {
-// Update existing large product images
-
-        if (preg_match('/^products_image_large_([0-9]+)$/', $key, $matches)) {
-          $pi_sort_order++;
-
-          $sql_data_array = ['htmlcontent' => $_POST['products_image_htmlcontent_' . $matches[1]],
-            'sort_order' => (int)$pi_sort_order
-          ];
-
-          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages() . $dir, null, ['gif', 'jpg', 'png', 'webp']);
-
-          if ($image->check() && $image->save()) {
-            $error = false;
-          }
-
-          if ($error === false) {
-            $sql_data_array['image'] = $dir . $separator . $image->getFilename();
-          }
-
-          $this->db->save('products_images', $sql_data_array, ['products_id' => (int)$id,
-              'id' => (int)$matches[1]
-            ]
-          );
-
-          $piArray[] = (int)$matches[1];
-
-        } elseif (preg_match('/^products_image_large_new_([0-9]+)$/', $key, $matches)) {
-          // Insert new large product images
-          $sql_data_array = ['products_id' => (int)$id,
-            'htmlcontent' => $_POST['products_image_htmlcontent_new_' . $matches[1]]
-          ];
-
-          $image = new Upload($key, $this->template->getDirectoryPathTemplateShopImages() . $dir, null, ['gif', 'jpg', 'png', 'webp']);
-
-          if ($image->check() && $image->save()) {
-            $error = false;
-          }
-
-          $pi_sort_order++;
-
-          if ($error === false) {
-            $sql_data_array['image'] = $dir . $separator . $image->getFilename();
-          }
-
-          $sql_data_array['sort_order'] = (int)$pi_sort_order;
-          $this->db->save('products_images', $sql_data_array);
-          $piArray[] = $this->db->lastInsertId();
-        } // end preg_match
-      } // end foreach
-
-
-//=======================================================================================
-// bug supprimer products_image automatiquement
-//
-//========================================================================================
-
-      $Qimages = $this->db->prepare('select image
-                                     from :table_products_images
-                                     where products_id = :products_id
-                                     and id not in (' . implode(', ', $piArray) . ')
-                                    ');
-      $Qimages->bindInt(':products_id', $id);
-      $Qimages->execute();
-
-      if ($Qimages->fetch() !== false) {
-        do {
-          $Qcheck = $this->db->get('products_images', 'count(*) as total', ['image' => $Qimages->value('image')]);
-
-          if ($Qcheck->valueInt('total') < 2) {
-            if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'))) {
-              unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
-            }
-          }
-        } while ($Qimages->fetch());
-
-        $Qdel = $this->db->prepare('delete from :table_products_images
-                                    where products_id = :products_id
-                                    and id not in (' . implode(', ', $piArray) . ')
-                                   ');
-        $Qdel->bindInt(':products_id', $id);
-        $Qdel->execute();
-      }
-    }
 
     /**
      * getInfoImage
@@ -547,7 +225,6 @@
 
         $packaging = $QproductAdmin->valueInt('products_packaging');
       } else {
-
         $QproductAdmin = $this->db->prepare('select products_packaging
                                              from :table_products
                                              where products_id = :products_id
@@ -587,8 +264,8 @@
                                                         and language_id = :language_id
                                                       ');
 
-      $QproductsQuantityUnitTitle->bindInt(':products_quantity_unit_id', (int)$products_quantity_unit_id);
-      $QproductsQuantityUnitTitle->bindInt(':language_id', (int)$language_id);
+      $QproductsQuantityUnitTitle->bindInt(':products_quantity_unit_id', $products_quantity_unit_id);
+      $QproductsQuantityUnitTitle->bindInt(':language_id', $language_id);
 
       $QproductsQuantityUnitTitle->execute();
 
@@ -632,7 +309,7 @@
                                      and language_id = :language_id
                                    ');
       $Qproduct->bindInt(':products_id', $id);
-      $Qproduct->bindInt(':language_id', (int)$language_id);
+      $Qproduct->bindInt(':language_id', $language_id);
 
       $Qproduct->execute();
 
@@ -656,8 +333,8 @@
                                      where products_id = :products_id
                                      and language_id = :language_id
                                   ');
-      $Qproduct->bindInt(':products_id', (int)$product_id);
-      $Qproduct->bindInt(':language_id', (int)$language_id);
+      $Qproduct->bindInt(':products_id', $product_id);
+      $Qproduct->bindInt(':language_id', $language_id);
 
       $Qproduct->execute();
 
@@ -675,6 +352,7 @@
     public function getProductsImage($product_id)
     {
       $Qproduct = Registry::get('Db')->get('products', 'products_image', ['products_id' => (int)$product_id]);
+
       return $Qproduct->value('products_image');
     }
 
@@ -711,7 +389,7 @@
     /**
      * Name of the products
      *
-     * @param string $product_id , $language_id
+     * @param $product_id , int $language_id
      * @return string $product['products_name'], name of the product
      * @access public
      */
@@ -1058,7 +736,7 @@
 
       $Qproducts->execute();
 
-      for ($i = 0; $i < count($multi_clone_categories_id_to); $i++) {
+      for ($i = 0, $iMax = count($multi_clone_categories_id_to); $i < $iMax; $i++) {
         $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
         $sql_array = [
@@ -1101,7 +779,7 @@
                                               from :table_products_images
                                               where products_id = :products_id
                                             ');
-        $QproductImage->bindInt(':products_id', (int)$id);
+        $QproductImage->bindInt(':products_id', $id);
 
         $QproductImage->execute();
 
@@ -1464,7 +1142,6 @@
       $products_sku = $this->getProductSKU();
       $products_ean = $this->getProductEAN();
 
-
       if (is_numeric($_POST['products_status'])) {
         $products_status = HTML::sanitize($_POST['products_status']);
       } else {
@@ -1500,11 +1177,11 @@
 // Download file
       $this->saveFileUpload();
 // image
-      $this->getImage($id);
+      $this->image->getImage();
 
-      $sql_data_array['products_image_medium'] = $this->products_image_medium;
-      $sql_data_array['products_image_zoom'] = $this->products_image_zoom;
-      $sql_data_array['products_image'] = $this->products_image;
+      $sql_data_array['products_image_medium'] = $this->image->productsImageMedium();
+      $sql_data_array['products_image_zoom'] = $this->image->productsImageZoom();
+      $sql_data_array['products_image'] = $this->image->productsImage();
 
 //---------------------------------------------------------------------------------------------
 //  Save Data
@@ -1529,7 +1206,7 @@
         $_POST['insertId'] = $id; // take the new id of the product
       }
 
-      $this->saveGalleryImage($id);
+      $this->image->saveGalleryImage($id);
       $this->saveProductsDescription($id, $action);
 
       if (isset($_POST['clone_categories_id_to'])) {
@@ -1545,7 +1222,7 @@
      * Count how many products exist in a category
      * TABLES: products, products_to_products, products
      */
-    public function getProductsInCategoryCount($products_id, $include_deactivated = false)
+    public function getProductsInCategoryCount(int $products_id, bool $include_deactivated = false): int
     {
 
       if ($include_deactivated) {

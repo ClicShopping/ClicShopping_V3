@@ -9,6 +9,10 @@
  *
  */
    use ClicShopping\OM\CLICSHOPPING;
+   use ClicShopping\OM\Registry;
+
+   $CLICSHOPPING_Hooks = Registry::get('Hooks');
+   $CLICSHOPPING_Template = Registry::get('Template');
 ?>
       </div><!-- end bodyContent -->
 
@@ -33,17 +37,34 @@
 
       <div class="separator"></div>
 <?php //important before block ?>
-      <footer>
+      <footer class="page-footer" id="footer">
         <div class="hr footerHr"></div>
         <div class="footer"><?php echo $CLICSHOPPING_Template->getBlocks('modules_footer'); ?></div>
         <div class="footerSuffix"><?php echo $CLICSHOPPING_Template->getBlocks('modules_footer_suffix'); ?></div>
       </footer>
     </div> <!-- BodyWrapper -->
   </div> <!-- container //-->
-    <script defer src="https://kit.fontawesome.com/89fdf54890.js"></script>
-    <script defer src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/footer.js')); ?>"></script>
-    <?php echo $CLICSHOPPING_Template->getBlocks('footer_scripts'); ?>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<?php
+    echo $CLICSHOPPING_Template->getBlocks('footer_scripts');
+
+    $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Footer/';
+
+    if (is_dir($source_folder)) {
+      $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterOutput*');
+      $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterCall*');
+
+      foreach ($files_get_output as $value) {
+        if (!empty($value['name'])) {
+          echo $CLICSHOPPING_Hooks->output('Footer', $value['name'], null, 'display');
+        }
+      }
+
+      foreach ($files_get_call as $value) {
+        if (!empty($value['name'])) {
+          echo $CLICSHOPPING_Hooks->call('Footer', $value['name']);
+        }
+      }
+    }
+?>
   </body>
 </html>

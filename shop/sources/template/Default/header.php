@@ -12,6 +12,10 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Registry;
+
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  $CLICSHOPPING_Template = Registry::get('Template');
 ?>
 <!DOCTYPE html>
 <html <?php echo CLICSHOPPING::getDef('html_params'); ?>>
@@ -26,23 +30,38 @@
     <meta name="news_keywords" content="<?php echo HTML::outputProtected($CLICSHOPPING_Template->getNewsKeywords());?>" />
     <meta name="no-email-collection" content="<?php echo HTTP::typeUrlDomain(); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php
+     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Header/';
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" media="screen, print" href="<?php echo $CLICSHOPPING_Template->getTemplategraphism();?>" />
+     if (is_dir($source_folder)) {
+       $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderOutput*');
+       $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderCall*');
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+       foreach ($files_get_output as $value) {
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->output('Header', $value['name'], null, 'display');
+         }
+       }
 
-    <?php echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n"; ?>
+       foreach ($files_get_call as $value) {
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->call('Header', $value['name']);
+         }
+       }
+     }
+
+      echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n";
+?>
   </head>
   <body>
-    <div class="<?php echo BOOTSTRAP_CONTAINER;?>">
+    <div class="<?php echo BOOTSTRAP_CONTAINER;?>" id="<?php echo BOOTSTRAP_CONTAINER;?>">
       <div class="bodyWrapper" id="bodyWrapper">
-        <header>
+        <header class="page-header" id="banner">
 <?php
   if  ( MODE_VENTE_PRIVEE == 'false' || (MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn() )) {
     echo $CLICSHOPPING_Template->getBlocks('modules_header');
   }
 ?>
         </header>
-        <div class="d-flex flex-wrap FrameWork">
+        <div class="d-flex flex-wrap frameWork" id="frameWork">
           <div id="bodyContent" class="col-lg-<?php echo $CLICSHOPPING_Template->getGridContentWidth(); ?> order-xs-1 order-lg-2">

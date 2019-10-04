@@ -23,7 +23,7 @@ body {
 }
 
 #bodyContent {
-   background-color:#ffffff;
+/*   background-color:#ffffff;*/
    padding-bottom: 0.625rem;
 }
 
@@ -132,7 +132,7 @@ div.Pageintroduction {
 }
 
 div.PageintroductionAccessCatalog {
-  background-color: #fff;
+/*  background-color: #fff;*/
   text-align:center;
   padding-top: 0.625rem;
 }
@@ -146,7 +146,7 @@ div.PageintroductionAccessCatalog A {
   height: auto !important;
   height: 100%;
   margin: 0 auto -2.5rem; /* the bottom margin is the negative value of the footer's height */
-  background-color: #fff;
+/*  background-color: #fff;*/
 }
 
 .footerIntroduction, .push {

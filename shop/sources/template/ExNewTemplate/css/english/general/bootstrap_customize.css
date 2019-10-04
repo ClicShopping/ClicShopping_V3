@@ -82,13 +82,13 @@ h5 {
 .container {
    padding-left: 0rem;
    padding-right: 0rem;
-   background-color: #fff;
+/*   background-color: #fff;*/
 }
 
 .container-fluid {
   padding-left: 0rem;
   padding-right: 0rem;
-  background-color: #fff;
+/*  background-color: #fff;*/
 }
 
 
@@ -282,6 +282,16 @@ blockquote {
   background-color: #e5e5e5;
 }
 
+.form-group-center {
+  text-align: center;
+}
+
+.breadcrumb {}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  padding-right: 0rem;
+  content: "";
+}
 /***********************************************/
 /* flexbox  */
 /**********************************************/
