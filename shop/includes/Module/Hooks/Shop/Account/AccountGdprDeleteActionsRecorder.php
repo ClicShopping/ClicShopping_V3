@@ -18,8 +18,10 @@
 
   class AccountGdprDeleteActionsRecorder
   {
-
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       $output = '';
       $output .= '<div>';

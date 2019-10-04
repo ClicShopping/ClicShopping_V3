@@ -22,6 +22,9 @@
     protected $countMyFeedback;
     protected $deleteMyFeedback;
 
+    /**
+     * @return mixed
+     */
     public function getCheck()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -39,7 +42,10 @@
       return $QReviews->fetch();
     }
 
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       if ($this->getCheck() === true) {
         $output = '<div>';

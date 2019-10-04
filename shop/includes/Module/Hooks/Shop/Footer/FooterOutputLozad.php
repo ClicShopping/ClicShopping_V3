@@ -13,7 +13,10 @@
 
   class FooterOutputLozad
   {
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       $output = '<!--Lazyload Script start-->' . "\n";
       $output .= '<script>';

@@ -13,7 +13,10 @@
 
   class FooterOutputFontAwesome
   {
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       $output = '<!--FontAwesome Script start-->' . "\n";
       $output .= '<script defer src="https://kit.fontawesome.com/89fdf54890.js"></script>' . "\n";

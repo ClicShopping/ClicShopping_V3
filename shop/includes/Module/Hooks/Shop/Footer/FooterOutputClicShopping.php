@@ -16,7 +16,10 @@
 
   class FooterOutputClicShopping
   {
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       $CLICSHOPPING_Template = Registry::get('Template');
 

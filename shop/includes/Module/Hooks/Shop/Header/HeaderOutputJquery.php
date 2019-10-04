@@ -13,7 +13,10 @@
 
   class HeaderOutputJquery
   {
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
      $output = '<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>' . "\n";
 

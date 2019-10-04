@@ -16,7 +16,10 @@
 
   class AccountGdprDeleteCustomerBirth
   {
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
         $output = '<div>';
         $output .= '<label class="checkbox-inline">';

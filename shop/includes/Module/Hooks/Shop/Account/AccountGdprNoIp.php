@@ -18,10 +18,10 @@
 
   class AccountGdprNoIp
   {
-
-    protected $IpAddress;
-
-    public function getIpAddress()
+    /**
+     * @return string
+     */
+    public function getIpAddress(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -38,7 +38,10 @@
       return $ip_address;
     }
 
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       $output = '<div>';
       $output .= '<label class="checkbox-inline">';
