@@ -1,0 +1,5 @@
+Update from 3.2110
+
+refactoring image
+new ckeditor
+Add hooks for header and Footer
