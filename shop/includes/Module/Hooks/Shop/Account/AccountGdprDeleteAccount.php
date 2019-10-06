@@ -16,8 +16,10 @@
 
   class AccountGdprDeleteAccount
   {
-
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
       $output = '
           <div class="alert alert-danger" role="alert">
