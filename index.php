@@ -5,13 +5,13 @@
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
  *  @Licence GPL 2 & MIT
  *  @licence MIT - Portion of osCommerce 2.4
- *
+ *  @Info : https://www.clicshopping.org/forum/trademark/
  *
  */
 
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
 // Absolute path
@@ -34,7 +34,8 @@
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
-
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  
   $Qsubmit = $CLICSHOPPING_Db->prepare('select submit_id,
                                                language_id,
                                                submit_defaut_language_title,
@@ -91,18 +92,28 @@
     <meta name="news_keywords" content="<?php echo HTML::outputProtected($keywords);?>" />
     <meta name="no-email-collection" content="<?php echo HTTP::typeUrlDomain(); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php
+     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Header/';
 
-    <link rel="icon" type="image/png" href="<?php echo CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path') . 'images/logo_clicshopping.png' ?>" />
+     if (is_dir($source_folder)) {
+       $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderOutput*');
+       $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderCall*');
 
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" media="screen, print, projection" href="<?php echo $CLICSHOPPING_Template->getTemplategraphism();?>" />
+       foreach ($files_get_output as $value) {
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->output('Header', $value['name'], null, 'display');
+         }
+       }
 
-    <script src="https://kit.fontawesome.com/89fdf54890.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+       foreach ($files_get_call as $value) {
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->call('Header', $value['name']);
+         }
+       }
+     }
 
-    <?php
-      echo $CLICSHOPPING_Template->getBlocks('header_tags');
+      echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n";
+      
       if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayPageIntroTime() )) {
 ?>
 <meta http-equiv="refresh" content="<?php echo $CLICSHOPPING_PageManagerShop->pageManagerDisplayPageIntroTime(); ?> ;url=<?php echo  HTTP::getShopUrlDomain(); ?>">
@@ -115,11 +126,11 @@ html, body {height: 100%;}
   </style>
 </head>
 <body>
-    <div class="wrapperIntroduction">
-      <div class="Pageintroduction"><?php echo $CLICSHOPPING_PageManagerShop->pageManagerDisplayPageIntro(); ?></div>
-      <div class="push"></div>
+    <div class="wrapperIntroduction" id="wrapperIntroduction">
+      <div class="Pageintroduction" id="Pageintroduction"><?php echo $CLICSHOPPING_PageManagerShop->pageManagerDisplayPageIntro(); ?></div>
+      <div class="push" id="push"></div>
     </div>
-    <div class="PageintroductionAccessCatalog footerIntroduction"><a href="<?php echo HTTP::getShopUrlDomain(); ?>"><?php echo CLICSHOPPING::getDef('access_catalog', ['store_name' => STORE_NAME]); ?></a></div>
+    <div class="PageintroductionAccessCatalog footerIntroduction" id="PageintroductionAccessCatalog"><a href="<?php echo HTTP::getShopUrlDomain(); ?>"><?php echo CLICSHOPPING::getDef('access_catalog', ['store_name' => STORE_NAME]); ?></a></div>
 
 <?php
     require_once('includes/ClicShopping/Sites/Shop/Templates/Default/footer.php');
@@ -128,8 +139,27 @@ html, body {height: 100%;}
     HTTP::redirect(CLICSHOPPING::link('index.php'));
   }
 ?>
+<?php
+    echo $CLICSHOPPING_Template->getBlocks('footer_scripts');
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </html>
-</body>
+    $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Footer/';
+
+    if (is_dir($source_folder)) {
+      $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterOutput*');
+      $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterCall*');
+
+      foreach ($files_get_output as $value) {
+        if (!empty($value['name'])) {
+          echo $CLICSHOPPING_Hooks->output('Footer', $value['name'], null, 'display');
+        }
+      }
+
+      foreach ($files_get_call as $value) {
+        if (!empty($value['name'])) {
+          echo $CLICSHOPPING_Hooks->call('Footer', $value['name']);
+        }
+      }
+    }
+?>
+  </body>
+</html>
