@@ -52,10 +52,14 @@
       }
     }
 
-    public function load($filename)
+    /**
+     * @param string $filename
+     */
+    public function load(string $filename)
     {
       $image_info = getimagesize($filename);
       $this->image_type = $image_info[2];
+
       if ($this->image_type == IMAGETYPE_JPEG) {
         $this->image = imagecreatefromjpeg($filename);
       } elseif ($this->image_type == IMAGETYPE_GIF) {
@@ -84,7 +88,7 @@
 
     }
 
-    public function save($filename, $image_type = IMAGETYPE_PNG, $compression = 100, $permissions = null)
+    public function save(string $filename, string $image_type = IMAGETYPE_PNG, int $compression = 100, $permissions = null)
     {
       if ($image_type == IMAGETYPE_JPEG) {
         imagejpeg($this->image, $filename, $compression);
@@ -101,7 +105,7 @@
       }
     }
 
-    public function output($image_type = IMAGETYPE_JPEG, $quality = 80)
+    public function output(string $image_type = IMAGETYPE_JPEG, int $quality = 80)
     {
       if ($image_type == IMAGETYPE_JPEG) {
         header("Content-type: image/jpeg");
@@ -134,21 +138,32 @@
       return imagesy($this->image);
     }
 
-    public function resizeToHeight($height)
+    /**
+     * @param $height
+     */
+    public function resizeToHeight(int $height)
     {
       $ratio = $height / $this->getHeight();
       $width = round($this->getWidth() * $ratio);
+
       $this->resize($width, $height);
     }
 
-    public function resizeToWidth($width)
+    /**
+     * @param $width3
+     */
+    public function resizeToWidth(int $width)
     {
       $ratio = $width / $this->getWidth();
       $height = round($this->getHeight() * $ratio);
+
       $this->resize($width, $height);
     }
 
-    public function square($size)
+    /**
+     * @param $size
+     */
+    public function square(int $size)
     {
       $new_image = imagecreatetruecolor($size, $size);
 
@@ -171,14 +186,21 @@
       $this->image = $new_image;
     }
 
-    public function scale($scale)
+    /**
+     * @param $scale
+     */
+    public function scale(float $scale)
     {
       $width = $this->getWidth() * $scale / 100;
       $height = $this->getHeight() * $scale / 100;
       $this->resize($width, $height);
     }
 
-    public function resize($width, $height)
+    /**
+     * @param $width
+     * @param $height
+     */
+    public function resize(int $width, int $height)
     {
       $new_image = imagecreatetruecolor($width, $height);
 
@@ -187,10 +209,17 @@
       imagesavealpha($new_image, true);
 
       imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+
       $this->image = $new_image;
     }
 
-    public function cut($x, $y, $width, $height)
+    /**
+     * @param $x
+     * @param $y
+     * @param $width
+     * @param $height
+     */
+    public function cut(int $x, int $y, int $width, int $height)
     {
       $new_image = imagecreatetruecolor($width, $height);
 
@@ -203,7 +232,11 @@
       $this->image = $new_image;
     }
 
-    public function maxarea($width, $height = null)
+    /**
+     * @param $width
+     * @param null $height
+     */
+    public function maxarea(int $width, int $height = null)
     {
       $height = $height ? $height : $width;
 
@@ -215,7 +248,11 @@
       }
     }
 
-    public function minarea($width, $height = null)
+    /**
+     * @param $width
+     * @param null $height
+     */
+    public function minarea(int $width, $height = null)
     {
       $height = $height ? $height : $width;
 
@@ -227,7 +264,11 @@
       }
     }
 
-    public function cutFromCenter($width, $height)
+    /**
+     * @param $width
+     * @param $height
+     */
+    public function cutFromCenter(int $width, int $height)
     {
 
       if ($width < $this->getWidth() && $width > $height) {
@@ -243,7 +284,14 @@
       return $this->cut($x, $y, $width, $height);
     }
 
-    public function maxareafill($width, $height, $red = 0, $green = 0, $blue = 0)
+    /**
+     * @param $width
+     * @param $height
+     * @param int $red
+     * @param int $green
+     * @param int $blue
+     */
+    public function maxareafill(int $width, int $height, int $red = 0, int $green = 0, int $blue = 0)
     {
       $this->maxarea($width, $height);
       $new_image = imagecreatetruecolor($width, $height);

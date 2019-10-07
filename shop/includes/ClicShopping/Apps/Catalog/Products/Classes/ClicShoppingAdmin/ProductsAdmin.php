@@ -22,13 +22,7 @@
 
   class ProductsAdmin
   {
-    protected $products_quantity_unit_id;
-    protected $language_id;
-    protected $product_id;
     protected $id;
-    protected $action;
-    protected $text;
-    protected $price;
     protected $db;
     protected $template;
     protected $hooks;
@@ -49,7 +43,7 @@
      * @return array, table data
      * @access public
      */
-    public function get($id)
+    public function get(int $id): array
     {
       $Qproducts = $this->db->prepare('select p.*,
                                               date_format(p.products_date_available, \'%Y-%m-%d\') as products_date_available,
@@ -59,7 +53,7 @@
                                       where p.products_id = :products_id
                                       and p.products_id = pd.products_id
                                       and pd.language_id = :language_id'
-      );
+                                      );
 
       $Qproducts->bindInt(':products_id', $id);
       $Qproducts->bindInt(':language_id', $this->lang->getId());
