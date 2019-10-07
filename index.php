@@ -14,6 +14,11 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
+//
+//Directory to change
+//
+  $directory = '/shop/';
+
 // Absolute path
   $cwd = getcwd();
 
@@ -133,7 +138,7 @@ html, body {height: 100%;}
     <div class="PageintroductionAccessCatalog footerIntroduction" id="PageintroductionAccessCatalog"><a href="<?php echo HTTP::getShopUrlDomain(); ?>"><?php echo CLICSHOPPING::getDef('access_catalog', ['store_name' => STORE_NAME]); ?></a></div>
 
 <?php
-    require_once('includes/ClicShopping/Sites/Shop/Templates/Default/footer.php');
+    require_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/ClicShopping/Sites/Shop/Templates/Default/footer.php');
     ob_end_flush();
   } else {
     HTTP::redirect(CLICSHOPPING::link('index.php'));
