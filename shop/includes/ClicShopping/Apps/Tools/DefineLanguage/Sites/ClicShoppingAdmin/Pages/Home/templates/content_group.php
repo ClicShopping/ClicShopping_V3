@@ -28,6 +28,8 @@
   if ($CLICSHOPPING_MessageStack->exists('content_group')) {
     echo $CLICSHOPPING_MessageStack->get('content_group');
   }
+
+  echo HTML::form('define_language', $CLICSHOPPING_DefineLanguage->link('DefineLanguage&Save&ContentGroup=' . $_GET['ContentGroup'], 'post', 'enctype="multipart/form-data"'));
 ?>
 <div class="contentBody">
   <div class="row">
@@ -40,7 +42,6 @@
             class="col-md-6 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_DefineLanguage->getDef('heading_title'); ?></span>
           <span class="col-md-5 text-md-right">
 <?php
-  echo HTML::form('define_language', $CLICSHOPPING_DefineLanguage->link('DefineLanguage&Save&ContentGroup=' . $_GET['ContentGroup'], 'post', 'enctype="multipart/form-data"'));
   echo '&nbsp;';
   echo HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_back'), null, $CLICSHOPPING_DefineLanguage->link('DefineLanguage'), 'primary') . ' ' . HTML::button($CLICSHOPPING_DefineLanguage->getDef('button_save'), null, null, 'success') . ' ';
 ?>
@@ -50,23 +51,25 @@
     </div>
   </div>
   <div class="separator"></div>
-  <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
+    <div class="alert alert-info" role="alert" id="alert">
+      <?php echo $CLICSHOPPING_DefineLanguage->getDef('alert_info_language'); ?>
+    </div>
+    <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
     <?php
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
         echo '<li class="nav-item " ' . ($i === 0 ? 'active"' : '') . '><a href="#tab' . $i . '" data-target="#section_general_content_' . $languages[$i]['directory'] . '" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Language->getImage($languages[$i]['code']) . '&nbsp;' . $languages[$i]['name'] . '</a></li>';
       }
 
-      echo '<li class="nav-item"><a data-target="#section_general_content_translation_tab" role="tab" data-toggle="tab" class="nav-link">' . HTML::button($CLICSHOPPING_DefineLanguage->getDef('section_heading_translations'), null, null, 'primary', null, 'sm') . '</a></li>';
+       echo '<li class="nav-item"><a data-target="#section_general_content_translation_tab" role="tab" data-toggle="tab" class="nav-link">' . HTML::button($CLICSHOPPING_DefineLanguage->getDef('section_heading_translations'), null, null, 'primary', null, 'sm') . '</a></li>';
     ?>
-  </ul>
+    </ul>
 
   <div class="tabsClicShopping">
     <div class="tab-content">
       <?php
         for ($i = 0, $n = count($languages); $i < $n; $i++) {
           ?>
-          <div class="row adminformTitle" id="section_general_content_<?php echo $languages[$i]['directory']; ?>"
-               class="tab-pane <?php echo($i === 0 ? 'active' : ''); ?>">
+        <div class="adminformTitle tab-pane <?php echo($i === 0 ? 'active' : ''); ?>" id="section_general_content_<?php echo $languages[$i]['directory']; ?>">
             <table class="table table-hover">
               <thead>
               <tr class="dataTableHeadingRow">
@@ -81,10 +84,11 @@
                                                                                     definition_value
                                                                             from :table_languages_definitions
                                                                             where content_group = :content_group
-                                                                            and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
+                                                                            and (definition_key like ' . $search . ' or definition_value like ' . $search . ')
                                                                             and languages_id = :languages_id
                                                                             order by definition_key
                                                                           ');
+                  $Qdefinitions->bindValue(':search', '%"' . $search . '"%');
                 } else {
                   $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select  id,
                                                                                      definition_key,
@@ -115,30 +119,6 @@
           <?php
         }
       ?>
-      <script>
-          var definition_key = '';
-
-          $('#rowDelConfirm').on('hidden.bs.modal', function (e) {
-          });
-
-          function NewDef(defVar, place) {
-              $(place).replaceWith('<textarea class="form-control" name="' + defVar + '"></textarea>');
-          }
-
-          function DeleteDef(defVar) {
-              definition_key = defVar;
-              $('#modalDefinitionKey').html(definition_key);
-              $('#rowDelConfirm').modal('show');
-          }
-
-          $(function () {
-              $('#rowDelConfirmButtonDelete').on('click', function () {
-                  $('#rowDelConfirm').modal('hide');
-                  $("." + definition_key).remove();
-                  $('form[name="define_language"]').append('<input type="hidden" name="delete[' + definition_key + ']" value="">');
-              });
-          });
-      </script>
       <style>
         .table-hover > tbody > tr.new_definition_row:hover > td,
         .new_definition_row > td {
@@ -160,15 +140,16 @@
               $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select distinct definition_key
                                                                           from :table_languages_definitions
                                                                           where content_group = :content_group
-                                                                          and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
+                                                                          and (definition_key like :search or definition_value like :search)
                                                                           order by definition_key
                                                                          ');
+              $Qdefinitions->bindValue(':search', '%"' . $search . '"%');
             } else {
               $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select distinct definition_key
-                                                                  from :table_languages_definitions
-                                                                  where content_group = :content_group
-                                                                  order by definition_key
-                                                                 ');
+                                                                          from :table_languages_definitions
+                                                                          where content_group = :content_group
+                                                                          order by definition_key
+                                                                         ');
             }
 
             $Qdefinitions->bindValue(':content_group', $_GET['ContentGroup']);
@@ -185,13 +166,13 @@
                   <?php
                     for ($i = 0, $n = count($languages); $i < $n; $i++) {
                       $Tdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select definition_key,
-                                                                           definition_value
-                                                                    from :table_languages_definitions
-                                                                    where content_group = :content_group
-                                                                    and languages_id = :languages_id
-                                                                    and definition_key = :definition_key
-                                                                    order by languages_id
-                                                                  ');
+                                                                                        definition_value
+                                                                                from :table_languages_definitions
+                                                                                where content_group = :content_group
+                                                                                and languages_id = :languages_id
+                                                                                and definition_key = :definition_key
+                                                                                order by languages_id
+                                                                              ');
                       $Tdefinitions->bindValue(':content_group', $_GET['ContentGroup']);
                       $Tdefinitions->bindValue(':definition_key', $Qdefinitions->value('definition_key'));
                       $Tdefinitions->bindInt(':languages_id', $languages[$i]['id']);
@@ -248,7 +229,6 @@
           </tbody>
         </table>
       </div>
-      </form>
 
       <div class="modal fade" id="rowDelConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
            aria-hidden="true">
@@ -279,4 +259,29 @@
       </div><!-- /.modal -->
     </div>
   </div>
+    <script>
+        var definition_key = '';
+
+        $('#rowDelConfirm').on('hidden.bs.modal', function (e) {
+        });
+
+        function NewDef(defVar, place) {
+            $(place).replaceWith('<textarea class="form-control" name="' + defVar + '"></textarea>');
+        }
+
+        function DeleteDef(defVar) {
+            definition_key = defVar;
+            $('#modalDefinitionKey').html(definition_key);
+            $('#rowDelConfirm').modal('show');
+        }
+
+        $(function () {
+            $('#rowDelConfirmButtonDelete').on('click', function () {
+                $('#rowDelConfirm').modal('hide');
+                $("." + definition_key).remove();
+                $('form[name="define_language"]').append('<input type="hidden" name="delete[' + definition_key + ']" value="">');
+            });
+        });
+    </script>
 </div>
+</form>

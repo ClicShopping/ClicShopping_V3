@@ -68,3 +68,4 @@ text_note_create_language = <br /><strong>Notes :</strong><br /> La création de
 
 text_info_delete_info = Supprimer cette langue
 error_remove_default_language = Erreur : La langue par défaut ne peut être supprimée. Merci de choisir une nouvelle langue par défaut et réessayer.
+error_language_directory_not_writeable = Attention : le répertoire Languages n'est pas en mode écriture. Veuillez soit créer un nouveau répertoire dans langage ou mettre le répertoires langages en mode écriture

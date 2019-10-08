@@ -63,12 +63,10 @@ text_set_default = Default
 
 text_info_create_language = Do you wat create the directory ?
 
-
-
 title_help = Help
 
 text_note_create_language = <br /><strong>Notes :</strong><br /> The directories creation will be the default language directory. <br /><strong>Depends of the servers caracteristics, this operation can not work fine.</strong> Please, realise this operation manually.<br /><br />The creation directories and files are : <br />- In administration<br />- In catalog languages default directory<br /><br />- In catalog template default directory.<br />- In graphism template default directory.<br /><br />Please connect you on the market place to upload  your new language  and to install il with the module installaton.
 
 text_info_delete_info = Delete Language
 error_remove_default_language = Error: The default language can not be removed. Please set another language as default, and try again.
-
+error_language_directory_not_writeable = Warning: The directory languages is not writeable. Please creae a new directory or make in 777 the languages directory and these sub-directories

@@ -70,3 +70,5 @@ image_edit = Editer
 image_filter = Filtrer
 
 error_language_directory_not_writeable = Le répertoire de langue n'est pas en mode écriture
+
+alert_info_language = Si vous ne voyez pas tous les langages, veuillez cliquez sur les differents langages dans le catalogue afin de créer le cache

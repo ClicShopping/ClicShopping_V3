@@ -29,7 +29,6 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-      $CLICSHOPPING_Language = Registry::get('Language');
 
       if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = HTML::sanitize($_GET['search']);
@@ -79,7 +78,7 @@
           }
         }
 
-// add new_definition_key
+  // add new_definition_key
         if (isset($new_definition_key)) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
             $sql_data_array = ['content_group' => $content_group,
@@ -111,7 +110,7 @@
             if (!isset($definition_values[$new_definition_key][$key])) {
               $new_definition_values[$new_definition_key][$key] = $value;
             } else {
-              $CLICSHOPPING_MessageStack->add($this->app > getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
+              $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
               $new_definition_key_error = true;
             }
           }
@@ -126,7 +125,6 @@
 
         $this->app->db->delete(':table_languages_definitions', $where_array);
 
-
         foreach ($definition_values as $definition_key => $language_definition) {
           foreach ($language_definition as $language_id => $definition_value) {
             $sql_data_array = ['content_group' => $content_group,
@@ -136,7 +134,6 @@
             ];
 
             $this->app->db->save(':table_languages_definitions', $sql_data_array);
-
           }
         }
       }
@@ -154,12 +151,11 @@
       $path_name = str_replace("-", "/", substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . ".txt";
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-
-        $language_dir = CLICSHOPPING::getConfig('dir_root', ($groups[0] == 'Apps' ? 'Shop' : $groups[0])) . ($groups[0] == 'Apps' ? 'includes/OSC/Apps/' . $groups[1] . '/' . $groups[2] . '/' : 'includes/') . 'languages/' . $languages[$i]['directory'];
+        $language_dir = CLICSHOPPING::getConfig('dir_root', ($groups[0] == 'Apps' ? 'Shop' : $groups[0])) . ($groups[0] == 'Apps' ? 'includes/ClicShopping/Apps/' . $groups[1] . '/' . $groups[2] . '/' : 'includes/') . 'languages/' . $languages[$i]['directory'];
 
         if (!is_file($language_dir . $path_name)) {
           if (!is_dir($language_dir . $path_to_file)) {
-            if (!mkdir($concurrentDirectory = $language_dir . $path_to_file, 0777, true) && !is_dir($concurrentDirectory)) {
+            if (@!mkdir($concurrentDirectory = $language_dir . $path_to_file, 0777, true) && !is_dir($concurrentDirectory)) {
               $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_create', ['pathname' => $language_dir . $path_to_file]), 'error');
             }
           }
@@ -182,10 +178,11 @@
         if ($Qdefinitions->fetch() !== false) {
           do {
             $data = $Qdefinitions->value('definition_key') . ' = ' . $Qdefinitions->value('definition_value');
-            file_put_contents($language_dir . $path_name, $data . PHP_EOL, FILE_APPEND | LOCK_EX);
 
+            if (is_file($language_dir . $path_name)) {
+              @file_put_contents($language_dir . $path_name, $data . PHP_EOL, FILE_APPEND | LOCK_EX);
+            }
           } while ($Qdefinitions->fetch());
-
         }
       }
 

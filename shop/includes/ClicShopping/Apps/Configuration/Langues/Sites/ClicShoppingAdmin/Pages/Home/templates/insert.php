@@ -12,6 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\FileSystem;
 
   $CLICSHOPPING_Langues = Registry::get('Langues');
 
@@ -71,6 +72,14 @@
     </div>
   </div>
   <div class="separator"></div>
+<?php
+    if (FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathLanguage())) {
+    ?>
+    <div class="alert alert-warning"
+         role="alert"><?php echo $CLICSHOPPING_Langues->getDef('error_language_directory_not_writeable'); ?></div>
+    <?php
+  }
+?>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Langues->getDef('text_info_heading_new_language'); ?></strong></div>
   <?php echo HTML::form('languages', $CLICSHOPPING_Langues->link('Langues&Insert')); ?>

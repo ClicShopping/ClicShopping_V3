@@ -1,5 +1,6 @@
 Update from 3.2110
-
+Inscrease theme system flexibility
 refactoring image
 new ckeditor
 Add hooks for header and Footer
+fix bug define languages
