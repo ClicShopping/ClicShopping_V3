@@ -14,7 +14,7 @@
   use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 ?>
 </div>
 <footer>
@@ -51,51 +51,24 @@
   </div>
   <div class="footerCadre separator"></div>
 </footer>
+<?php
+    $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Footer/';
 
-<!-- if the page request contains a link to a tab, open that tab on page load -->
-<script>
-    $(function () {
-        var url = document.location.toString();
+    if (is_dir($source_folder)) {
+      $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterOutput*');
+      $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterCall*');
 
-        if (url.match('#')) {
-            if ($('.nav-tabs a[data-target="#' + url.split('#')[1] + '"]').length === 1) {
-                $('.nav-tabs a[data-target="#' + url.split('#')[1] + '"]').tab('show');
-            }
+      foreach ($files_get_output as $value) {
+        if (!empty($value['name'])) {
+          echo $CLICSHOPPING_Hooks->output('Footer', $value['name'], null, 'display');
         }
-    });
-</script>
-<script defer
-        src="https://kit.fontawesome.com/89fdf54890.js"></script>
+      }
 
-<!--smartmenu -->
-<script defer
-        src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/smartmenus_config.js'); ?>"></script>
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.smartmenus/1.1.0/jquery.smartmenus.min.js"></script>
-
-<!-- autocompletion -->
-<script defer src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/tokeninput/jquery.tokeninput.min.js'); ?>"></script>
-<!-- seo count words -->
-<script defer src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.js'); ?>"></script>
-
-<!-- Modal with remote url -->
-<script
-  src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/ajax_form/bootstrap_modal_remote_url.js'); ?>"></script>
-
-<!-- Tab bootstrap -->
-<script defer src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/bootstrap/tab/bootstrap_tab.js'); ?>"></script>
-
-<!--fixe footer -->
-<script
-  src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/footer.js'); ?>"></script>
-
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.3/mustache.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.9.0/Sortable.min.js"></script>
-
-
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+      foreach ($files_get_call as $value) {
+        if (!empty($value['name'])) {
+          echo $CLICSHOPPING_Hooks->call('Footer', $value['name']);
+        }
+      }
+    }
+?>
 </html>

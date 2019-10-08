@@ -37,18 +37,28 @@
 
   <link rel="icon" type="image/png"  href="<?php echo CLICSHOPPING::link('Shop/images/logo_clicshopping.png'); ?>" />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.smartmenus/1.0.1/css/sm-core-css.css">
-  <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/smartmenus.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/smartmenus_customize.css'); ?>">
-  <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/smartmenus_customize_responsive.css'); ?>">
+  <?php
+     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Header/';
 
-  <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/stylesheet.css'); ?>">
-  <link rel="stylesheet" href="<?php echo CLICSHOPPING::link('css/stylesheet_responsive.css'); ?>">
+     if (is_dir($source_folder)) {
+       $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderOutput*');
+       $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderCall*');
 
+       foreach ($files_get_output as $value) {
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->output('Header', $value['name'], null, 'display');
+         }
+       }
+
+       foreach ($files_get_call as $value) {
+         if (!empty($value['name'])) {
+           echo $CLICSHOPPING_Hooks->call('Header', $value['name']);
+         }
+       }
+     }
+?>
   <script src="<?php echo CLICSHOPPING::link('Shop/ext/javascript/clicshopping/ClicShoppingAdmin/general.js'); ?>"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </head>
 <body onload="SetFocus();">
 
