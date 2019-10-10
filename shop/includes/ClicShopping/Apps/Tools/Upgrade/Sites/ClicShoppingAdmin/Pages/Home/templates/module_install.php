@@ -182,7 +182,7 @@
             <?php echo $module_real_name; ?></span><?php echo $file_cache_information; ?>
           </span>
         </div>
-        <div class="card-block" style="height:130px;">
+        <div class="card-block" style="height:140px;">
           <div class="row">
             <div class="card-text">
               <div class="col-md-12"><?php echo $description; ?></div>

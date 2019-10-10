@@ -4,3 +4,4 @@ refactoring image
 new ckeditor
 Add hooks for header and Footer
 fix bug define languages
+add composer class
