@@ -32,10 +32,29 @@
      * Check if exec is enabled
      * @return bool
      */
-    public function checkExecEnabled(): bool
+    public static function checkExecEnabled(): bool
     {
       $disabled = explode(', ', ini_get('disable_functions'));
       return !in_array('exec', $disabled);
+    }
+
+
+    /**
+     * check if composer is installed
+     * @return bool
+     */
+    public static function checkComposerInstalled(): bool
+    {
+      $cmd = 'cd ' . self::$root . ' && composer show';
+      exec($cmd, $output, $return); // update dependencies
+
+      if ($return === 0) {
+        $result = true;
+      } else {
+        return false;
+      }
+
+      return $result;
     }
 
     /**
@@ -63,25 +82,6 @@
       return $result;
     }
 
-
-    /**
-     * check if composer is installed
-     * @return bool
-     */
-    public static function checkComposerInstalled(): bool
-    {
-      $cmd = 'cd ' . self::$root . ' && composer show';
-      exec($cmd, $output, $return); // update dependencies
-
-      if ($return === 0) {
-        $result = true;
-      } else {
-        return false;
-      }
-
-      return $result;
-    }
-
     /**
      * check if online version
      * @param null $library
@@ -89,16 +89,19 @@
      */
     public static function checkOnlineVersion($library = null)
     {
-      if (!is_null($library)) {
-        $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
-        exec($cmd, $output, $return);
+      if (self::checkExecute() == true) {
+          if (!is_null($library)) {
+          $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
+          exec($cmd, $output, $return);
 
-        if($return === 0) {
-          $result = $output[3];
-          return $result;
+          if($return === 0) {
+            $result = $output[3];
+
+            return $result;
+          }
+        } else {
+          return false;
         }
-      } else {
-        return false;
       }
     }
 
@@ -126,21 +129,21 @@
      */
     public function update($library = null): string
     {
-      self::checkExecute();
+      if (self::checkExecute() == true) {
+        if (is_null($library)) {
+          $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
+          exec($cmd, $output, $return); // update dependencies
 
-      if (is_null($library)) {
-        $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
-        exec($cmd, $output, $return); // update dependencies
+          $result = $output[2];
+        } else {
+          $cmd = 'cd ' . self::$root . ' && composer update  ' . $library . ' 2>&1';
+          exec($cmd, $output, $return); // update dependencies
 
-        $result = $output[2];
-      } else {
-        $cmd = 'cd ' . self::$root . ' && composer update  ' . $library . ' 2>&1';
-        exec($cmd, $output, $return); // update dependencies
+          $result = $output[2];
+        }
 
-        $result = $output[2];
+        return $result;
       }
-
-      return $result;
     }
 
 
@@ -151,22 +154,18 @@
      */
     public static function install($library = null)
     {
-      self::checkExecute();
+      if (self::checkExecute() == true) {
+        if (is_null($library)) {
+          $result = false;
+        } else {
+          $cmd = 'cd ' . self::$root . ' && composer require  ' . $library . ' 2>&1';
+          exec($cmd, $output, $return); // update dependencies
 
-      if ($library == self::getLibrary()) {
-        return false;
+          $result = $output[2];
+        }
+
+        return $result;
       }
-
-      if (is_null($library)) {
-        $result = false;
-      } else {
-        $cmd = 'cd ' . self::$root . ' && composer require  ' . $library . ' 2>&1';
-        exec($cmd, $output, $return); // update dependencies
-
-        $result = $output[2];
-      }
-
-      return $result;
     }
 
     /**
@@ -176,16 +175,14 @@
      */
     public static function remove($library = null): string
     {
-      self::checkExecute();
+      if (self::checkExecute() == true) {
+        $cmd = 'cd ' . self::$root . ' && composer remove ' . $library . ' 2>&1';
+        exec($cmd, $output, $return); // update dependencies
 
-      if (self::checkComposerInstalled() === false || self::checkExecEnabled()) return false;
+        $result = $output[2];
 
-      $cmd = 'cd ' . self::$root . ' && composer remove  ' . $library . ' 2>&1';
-      exec($cmd, $output, $return); // update dependencies
-
-      $result = $output[2];
-
-      return $result;
+        return $result;
+      }
     }
 
     /**
@@ -194,13 +191,13 @@
      */
     public static function clearCache(): string
     {
-      self::checkExecute();
+      if (self::checkExecute() == true) {
+        $cmd = 'cd ' . self::$root . ' && composer clearcache 2>&1';
+        exec($cmd, $output, $return);
 
-      $cmd = 'cd ' . self::$root . ' && composer clearcache 2>&1';
-      exec($cmd, $output, $return);
+        $result = $output[2];
 
-      $result = $output[2];
-
-      return $result;
+        return $result;
+      }
     }
   }
