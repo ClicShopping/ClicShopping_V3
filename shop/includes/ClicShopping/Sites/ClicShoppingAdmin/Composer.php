@@ -39,6 +39,19 @@
     }
 
     /**
+     * Check if exec or composer is authorise or installed
+     * @return bool
+     */
+    private static function checkExecute(): bool
+    {
+      if (self::checkComposerInstalled() === false || self::checkExecEnabled() === false) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    /**
      * To add inside a function with exit to see the result
      * @param $output
      * @param $return
@@ -74,7 +87,7 @@
      * @param null $library
      * @return string|null
      */
-    public static function checkOnlineVersion($library = null): ?string
+    public static function checkOnlineVersion($library = null)
     {
       if (!is_null($library)) {
         $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
@@ -84,6 +97,8 @@
           $result = $output[3];
           return $result;
         }
+      } else {
+        return false;
       }
     }
 
@@ -111,6 +126,8 @@
      */
     public function update($library = null): string
     {
+      self::checkExecute();
+
       if (is_null($library)) {
         $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
         exec($cmd, $output, $return); // update dependencies
@@ -134,6 +151,8 @@
      */
     public static function install($library = null)
     {
+      self::checkExecute();
+
       if ($library == self::getLibrary()) {
         return false;
       }
@@ -155,18 +174,18 @@
      * @param null $library
      * @return bool|mixed
      */
-    public static function remove($library = null)
+    public static function remove($library = null): string
     {
-      if ($library == self::getLibrary()) {
-        $cmd = 'cd ' . self::$root . ' && composer remove  ' . $library . ' 2>&1';
-        exec($cmd, $output, $return); // update dependencies
+      self::checkExecute();
 
-        $result = $output[2];
+      if (self::checkComposerInstalled() === false || self::checkExecEnabled()) return false;
 
-        return $result;
-      } else {
-        return false;
-      }
+      $cmd = 'cd ' . self::$root . ' && composer remove  ' . $library . ' 2>&1';
+      exec($cmd, $output, $return); // update dependencies
+
+      $result = $output[2];
+
+      return $result;
     }
 
     /**
@@ -175,6 +194,8 @@
      */
     public static function clearCache(): string
     {
+      self::checkExecute();
+
       $cmd = 'cd ' . self::$root . ' && composer clearcache 2>&1';
       exec($cmd, $output, $return);
 
