@@ -234,7 +234,7 @@
      * @param string|null $description
      * @param string|null $set_func
      */
-    final public function saveCfgParam(string $key, string $value, ?string $title = null, ?string $description = null, ?string $set_func = null)
+    final public function saveCfgParam($key, $value, $title = null, $description = null, $set_func = null)
     {
       if (is_null($value)) {
         $value = '';
