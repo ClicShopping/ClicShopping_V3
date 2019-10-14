@@ -58,6 +58,26 @@
     }
 
     /**
+     * check if a libray is installed
+     * @return bool
+     */
+    public static function checkLibrayInstalled($libray = null): bool
+    {
+      if (!is_null($libray)) {
+        $cmd = 'cd ' . self::$root . ' && composer show' . $libray;
+        exec($cmd, $output, $return); // update dependencies
+
+        if ($return === 0) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    }
+
+    /**
      * Check if exec or composer is authorise or installed
      * @return bool
      */
