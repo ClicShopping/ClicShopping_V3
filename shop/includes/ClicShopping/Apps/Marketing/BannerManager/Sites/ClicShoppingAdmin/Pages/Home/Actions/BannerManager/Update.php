@@ -89,7 +89,7 @@
           'expires_impressions' => 0,
           'date_scheduled' => null,
           'banners_title_admin' => $banners_title_admin,
-          'customers_group_id' => $customers_group_id
+          'customers_group_id' => (int)$customers_group_id
         ];
 
         $insert_image_sql_data = ['banners_image' => $banners_image_local];
