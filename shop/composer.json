@@ -1,7 +1,7 @@
 {
     "config": {
         "vendor-dir": "includes/ClicShopping/External/vendor",
-        "htaccess-protect" : "false"
+        "htaccess-protect" : false
     },
     "require": {
         "phpmailer/phpmailer": "^6.0",
