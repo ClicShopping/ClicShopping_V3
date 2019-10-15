@@ -46,16 +46,20 @@
      */
     public static function checkComposerInstalled(): bool
     {
-      $cmd = 'cd ' . self::$root . ' && composer show';
-      exec($cmd, $output, $return); // update dependencies
+      if (self::checkExecEnabled() === true) {
+        $cmd = 'cd ' . self::$root . ' && composer show';
+        exec($cmd, $output, $return); // update dependencies
 
-      if ($return === 0) {
-        $result = true;
+        if ($return === 0) {
+          $result = true;
+        } else {
+          $return = false;
+        }
+
+        return $result;
       } else {
         return false;
       }
-
-      return $result;
     }
 
     /**
