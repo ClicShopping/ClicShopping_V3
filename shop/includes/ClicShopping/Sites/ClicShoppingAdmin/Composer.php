@@ -36,9 +36,9 @@
     public static function checkExecEnabled(): bool
     {
       $disabled = explode(', ', ini_get('disable_functions'));
+
       return !in_array('exec', $disabled);
     }
-
 
     /**
      * check if composer is installed
@@ -68,7 +68,7 @@
      */
     public static function checkLibrayInstalled($libray = null): bool
     {
-      if (!is_null($libray)) {
+      if (!is_null($libray) && self::checkExecute() === true) {
         $cmd = 'cd ' . self::$root . ' && composer show' . $libray;
         exec($cmd, $output, $return); // update dependencies
 
@@ -152,7 +152,7 @@
      * @param null $library
      * @return string
      */
-    public function update($library = null): string
+    public function update($library = null)
     {
       if (self::checkExecute() === true) {
         if (is_null($library)) {
