@@ -606,6 +606,7 @@
 // copy json in cache
           $json_source = $this->saveFileFromGithub . '/' . $file . '-master/' . $this->ModuleInfosJson . '/';
           $json_destination = $this->cacheGithub;
+
           @ModuleDownload::smartCopy($json_source, $json_destination);
 
 // copy files their directories
@@ -626,7 +627,7 @@
         $this->getCloseOpenStore('false');
       }
 
-      $this->app->redirect('ModuleInstall');
+      $this->app->redirect('ModuleInstallResult&file=' . $file);
     }
 
     public function getDropDownMenuSearchOption()

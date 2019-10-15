@@ -127,3 +127,12 @@ error_curl_error_transfert_failed = Erreur de transfert
 error_fopen_file = Erreur ouverture fichier
 error_project_not_writable_on_server =  Le projet ne peut pas être sauvegarder sur le serveur
 error_link_not_allowed = Lien non accepté
+
+text_result_install = Résultat Installation
+error_result = Nou n'avouspas trouvé le fichier json. Veuillez vérifier le cache et l'installation
+text_info_result =
+- Close shop<br />
+            - Module Installed<br />
+            - Shop opened<br /><br />
+            - File name : {{file}} <br /><br />
+            - Info Json<br />

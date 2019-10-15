@@ -79,7 +79,6 @@
         </div>
         <div class="adminformTitle">
           <div class="card-block">
-
             <p class="card-text">
               <?php
                 foreach ($CLICSHOPPING_Upgrade_Config->getInputParameters() as $cfg) {

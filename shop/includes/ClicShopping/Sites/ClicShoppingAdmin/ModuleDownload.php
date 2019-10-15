@@ -63,7 +63,9 @@
 
       if (FileSystem::isWritable($dest, true)) {
         if (!is_dir($dest)) {
-          mkdir($dest, 0777, true);
+          if (!mkdir($dest, 0777, true) && !is_dir($dest)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $dest));
+          }
         }
       }
 
@@ -74,11 +76,13 @@
         ) as $item
       ) {
         if ($item->isDir()) {
-          @mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+          if (!mkdir($concurrentDirectory = $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName()) && !is_dir($concurrentDirectory)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+          }
         } else {
 
-          if ($item != $source . '/README.md' && $item != $source . '/LICENSE') {
-            copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+          if ($item != $source . '/README.md' && $item != $source . '/LICENSE' && $item != 'ModuleInfosJson') {
+             copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
           }
         }
       }
