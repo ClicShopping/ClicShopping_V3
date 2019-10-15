@@ -26,6 +26,7 @@
 //define  composer environment
       putenv('COMPOSER_HOME=' . self::$root);
       putenv('COMPOSER_CACHE_DIR=' . CLICSHOPPING::BASE_DIR . '/Work/Cache/Composer/');
+      putenv('COMPOSER_HTACCESS_PROTECT=0');
     }
 
     /**
@@ -109,7 +110,7 @@
      */
     public static function checkOnlineVersion($library = null)
     {
-      if (self::checkExecute() == true) {
+      if (self::checkExecute() === true) {
           if (!is_null($library)) {
           $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
           exec($cmd, $output, $return);
@@ -149,7 +150,7 @@
      */
     public function update($library = null): string
     {
-      if (self::checkExecute() == true) {
+      if (self::checkExecute() === true) {
         if (is_null($library)) {
           $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
           exec($cmd, $output, $return); // update dependencies
@@ -174,7 +175,7 @@
      */
     public static function install($library = null)
     {
-      if (self::checkExecute() == true) {
+      if (self::checkExecute() === true) {
         if (is_null($library)) {
           $result = false;
         } else {
@@ -195,7 +196,7 @@
      */
     public static function remove($library = null): string
     {
-      if (self::checkExecute() == true) {
+      if (self::checkExecute() === true) {
         $cmd = 'cd ' . self::$root . ' && composer remove ' . $library . ' 2>&1';
         exec($cmd, $output, $return); // update dependencies
 
@@ -211,7 +212,7 @@
      */
     public static function clearCache(): string
     {
-      if (self::checkExecute() == true) {
+      if (self::checkExecute() === true) {
         $cmd = 'cd ' . self::$root . ' && composer clearcache 2>&1';
         exec($cmd, $output, $return);
 
