@@ -76,7 +76,7 @@
           <div class="card-text">
        <?php
         if (is_file(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . $_GET['file'] . '.json')) {
-          $json = file_get_contents(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . $_GET['file'] . '.json', true,);
+          $json = file_get_contents(CLICSHOPPING::BASE_DIR . 'Work/Cache/Github/' . $_GET['file'] . '.json', true);
           $result = json_decode($json);
         ?>
         <blockquote>
