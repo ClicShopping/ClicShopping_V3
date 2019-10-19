@@ -31,7 +31,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/zones.gif', $CLICSHOPPING_Zones->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Zones->getDef('heading_title'); ?></span>
-          <span class="col-md-5">
+          <span class="col-md-3">
            <div class="form-group">
              <div class="controls">
 <?php
@@ -41,16 +41,18 @@
   if (isset($_POST['search'])) {
     echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
     $search = HTML::sanitize($_POST['search']);
-  } else {
+  } elseif(isset($_GETT['search'])) {
     echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
     $search = HTML::sanitize($_GET['search']);
+  } else {
+    $search = '';
   }
 ?>
                </form>
              </div>
             </div>
           </span>
-          <span class="col-md-3 text-md-right">
+          <span class="col-md-5 text-md-right">
             <?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_new'), null, $CLICSHOPPING_Zones->link('Insert&page=' . $page), 'success'); ?>
             <?php echo HTML::form('flag_all', $CLICSHOPPING_Zones->link('Zones&AllFlag', 'page=' . $page)); ?>
             <a onclick="$('flag_all').prop('action', ''); $('form').submit();"
