@@ -38,8 +38,12 @@
   echo HTML::form('search', $CLICSHOPPING_Zones->link('Zones'), 'post', null, ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Zones->getDef('heading_title_search') . '"');
 
-  if (isset($_GET['search'])) {
+  if (isset($_POST['search'])) {
     echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
+    $search = HTML::sanitize($_POST['search']);
+  } else {
+    echo HTML::button($CLICSHOPPING_Zones->getDef('button_reset'), null, $CLICSHOPPING_Zones->link('Zones'), 'warning') . '&nbsp;';
+    $search = HTML::sanitize($_GET['search']);
   }
 ?>
                </form>
@@ -74,44 +78,43 @@
         </thead>
         <tbody>
         <?php
-          // Recherche des produits
-          if (isset($_POST['search'])) {
+          if (isset($search)) {
             $Qzones = $CLICSHOPPING_Zones->db->prepare('select  SQL_CALC_FOUND_ROWS  z.zone_id,
-                                                                            c.countries_id,
-                                                                            c.countries_name,
-                                                                            z.zone_name,
-                                                                            z.zone_code,
-                                                                            z.zone_country_id,
-                                                                            z.zone_status
-                                                  from :table_zones z,
-                                                       :table_countries c
-                                                  where z.zone_country_id = c.countries_id
-                                                  and c.countries_name like :search
-                                                  order by c.countries_name,
-                                                           z.zone_name
-                                                  limit :page_set_offset,
-                                                        :page_set_max_results
-                                                  ');
+                                                                                    c.countries_id,
+                                                                                    c.countries_name,
+                                                                                    z.zone_name,
+                                                                                    z.zone_code,
+                                                                                    z.zone_country_id,
+                                                                                    z.zone_status
+                                                          from :table_zones z,
+                                                               :table_countries c
+                                                          where z.zone_country_id = c.countries_id
+                                                          and c.countries_name like :search
+                                                          order by c.countries_name,
+                                                                   z.zone_name
+                                                          limit :page_set_offset,
+                                                                :page_set_max_results
+                                                          ');
 
-            $Qzones->bindValue(':search', '%' . $_POST['search'] . '%');
+            $Qzones->bindValue(':search', '%' . $search . '%');
             $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
             $Qzones->execute();
           } else {
             $Qzones = $CLICSHOPPING_Zones->db->prepare('select  SQL_CALC_FOUND_ROWS  z.zone_id,
-                                                                            c.countries_id,
-                                                                            c.countries_name,
-                                                                            z.zone_name,
-                                                                            z.zone_code,
-                                                                            z.zone_country_id,
-                                                                            z.zone_status
-                                                  from :table_zones z,
-                                                       :table_countries c
-                                                  where z.zone_country_id = c.countries_id
-                                                  order by c.countries_name,
-                                                           z.zone_name
-                                                  limit :page_set_offset,
-                                                        :page_set_max_results
-                                                  ');
+                                                                                    c.countries_id,
+                                                                                    c.countries_name,
+                                                                                    z.zone_name,
+                                                                                    z.zone_code,
+                                                                                    z.zone_country_id,
+                                                                                    z.zone_status
+                                                          from :table_zones z,
+                                                               :table_countries c
+                                                          where z.zone_country_id = c.countries_id
+                                                          order by c.countries_name,
+                                                                   z.zone_name
+                                                          limit :page_set_offset,
+                                                                :page_set_max_results
+                                                          ');
             $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
             $Qzones->execute();
           }
@@ -146,9 +149,9 @@
             <td class="text-md-center">
               <?php
                 if ($Qzones->valueInt('zone_status') == 0) {
-                  echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=1&id=' . $Qzones->valueInt('zone_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+                  echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=1&id=' . $Qzones->valueInt('zone_id') . '&search=' . $search) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
                 } else {
-                  echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=0&id=' . $Qzones->valueInt('zone_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+                  echo '<a href="' . $CLICSHOPPING_Zones->link('Zones&SetFlag&page=' . $page . '&flag=0&id=' . $Qzones->valueInt('zone_id')) . '&search=' . $search . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
                 }
               ?>
             </td>

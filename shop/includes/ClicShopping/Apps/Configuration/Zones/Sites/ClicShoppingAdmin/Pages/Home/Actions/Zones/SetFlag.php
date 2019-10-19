@@ -12,6 +12,7 @@
   namespace ClicShopping\Apps\Configuration\Zones\Sites\ClicShoppingAdmin\Pages\Home\Actions\Zones;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Configuration\Zones\Classes\ClicShoppingAdmin\Status;
 
@@ -26,9 +27,15 @@
 
     public function execute()
     {
+      $search = '';
+
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
       Status::getZonesStatus($_GET['id'], $_GET['flag']);
 
-      $this->app->redirect('Zones&' . $_GET['page'] . 'page=' . $page . '&cID=' . $_GET['id']);
+      if (isset($_GET['search'])) {
+        $search = '&search=' . HTML::sanitize($_GET['search']);
+      }
+
+      $this->app->redirect('Zones&page=' . $page . '&cID=' . $_GET['id'] . $search);
     }
   }
