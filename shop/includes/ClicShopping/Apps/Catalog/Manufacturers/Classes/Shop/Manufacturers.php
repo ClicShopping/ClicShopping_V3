@@ -74,7 +74,7 @@
                                       and m.manufacturers_status = 0
                                       ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->bindInt(':languages_id', $this->lang->getID());
+      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
       $Qmanufacturer->execute();
 
       if ($Qmanufacturer->fetch()) {
@@ -122,7 +122,7 @@
                                       and m.manufacturers_status = 0
                                       ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->bindInt(':languages_id', $this->lang->getID());
+      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
       $Qmanufacturer->execute();
 
       if ($Qmanufacturer->fetch()) {
@@ -143,7 +143,7 @@
                                     and m.manufacturers_status = 0
                                     ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
-      $Qmanufacturer->bindInt(':languages_id', $this->lang->getID());
+      $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
       $Qmanufacturer->execute();
 
       if ($Qmanufacturer->fetch()) {
@@ -170,7 +170,7 @@
                                       and m.manufacturers_status = 0
                                       ');
         $Qmanufacturer->bindInt(':manufacturers_id', $id);
-        $Qmanufacturer->bindInt(':languages_id', $this->lang->getID());
+        $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
         $Qmanufacturer->execute();
       } else {
         $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
@@ -185,7 +185,7 @@
                                       and mi.languages_id = :languages_id
                                       and m.manufacturers_status = 0
                                       ');
-        $Qmanufacturer->bindInt(':languages_id', $this->lang->getID());
+        $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
         $Qmanufacturer->execute();
       }
 
