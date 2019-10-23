@@ -23,7 +23,7 @@
 ?>
         <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Main'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_account')); ?></li>
         <li><?php echo HTML::link(CLICSHOPPING::link(null,'Account&AddressBook'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
-        <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&History'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
+        <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&History'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_order_history')); ?></li>
 <br />
           <a class="btn btn-danger btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&Logoff') ?>"><i class="fas fa-sign-out-alt"></i><?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_logoff') ?></a>
 <?php
