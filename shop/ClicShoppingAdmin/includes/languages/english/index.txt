@@ -31,6 +31,8 @@ title_twitter = Tweet ClicShopping
 
 title_db_index = Size of Data Base
 title_web_site_size = Taille du site internet
+title_system_memory = System Memory (get usage)
+title_core_memory = Bootstrap Core Memory Usage
 title_customer_information = Informations sur le compte client
 title_index_order = Order situation
 

@@ -60,7 +60,7 @@
                   <div class="form-group row">
                     <label for="' . CLICSHOPPING::getDef('title_db_index') . '" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_db_index') . '</label>
                     <div class="col-md-3">
-                      ' . DB::sizeDb() . ' MB' . '
+                      ' . DB::sizeDb() . ' MB
                     </div>
                   </div>
                 </div>
@@ -68,9 +68,9 @@
               <div class="row">
                 <div class="col-md-11 mainTable">
                   <div class="form-group row">
-                    <label for="System Memory" class="col-9 col-form-label">System Memory (get usage)</label>
+                    <label for="System Memory" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_system_memory') . '</label>
                     <div class="col-md-3">
-                      use : ' . $memory . ' Megabytes
+                      ' . $memory . ' MB
                     </div>
                   </div>
                 </div>
@@ -78,9 +78,14 @@
               <div class="row">
                 <div class="col-md-11 mainTable">
                   <div class="form-group row">
-                    <label for="Bootstrap Core Memory Usage" class="col-9 col-form-label">Bootstrap Core Memory Usage</label>
+                    <label for="Bootstrap Core Memory Usage" class="col-9 col-form-label">' . CLICSHOPPING::getDef('title_core_memory') . '</label>
                     <div class="col-md-3">
-                      ' . $valuenow . ' %
+                      <div class="separator"></div>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="' . $valuenow . '" aria-valuemin="0" aria-valuemax="100" style="width: '.  $valuenow . '%;">
+                           ' . $valuenow . '%
+                        </div>
+                      </div> 
                     </div>
                   </div>
                 </div>
