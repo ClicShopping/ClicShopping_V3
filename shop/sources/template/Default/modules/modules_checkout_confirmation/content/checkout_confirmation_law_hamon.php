@@ -9,21 +9,12 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTML;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="col-md-12">
     <div class="separator"></div>
-<script>
-  function checkCheckBox(f){
-    if (f.agree.checked === false )
-    {
-      alert('<?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_error_agreement'); ?>');
-      return false;
-    }else
-      return true;
-  }
-</script>
     <div class="card">
       <div class="card-header">
         <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></span>
@@ -32,10 +23,28 @@ use ClicShopping\OM\CLICSHOPPING;
       <div class="card-block">
         <div class="separator"></div>
         <div class="card-text">
-          <div class="checkoutConfirmationLawHamon"><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_conditions'); ?>&nbsp;</div>
-          <div class="text-md-right"><?php echo $agree_checkbox; ?></div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="separator"></div>
+              <div class="checkoutConfirmationLawHamon"><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_conditions'); ?></div>
+              <label class="switch">
+                <?php echo HTML::checkboxField('agree','1', false, 'id="agree" required aria-required="true" class="success"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  function checkCheckBox(f){
+    if (f.agree.checked === false )
+    {
+        alert('<?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_error_agreement'); ?>');
+        return false;
+    }else
+        return true;
+  }
+</script>

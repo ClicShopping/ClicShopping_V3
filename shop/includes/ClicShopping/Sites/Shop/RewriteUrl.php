@@ -25,12 +25,19 @@
 
     /**
      * Remove url accent
+     * @info : https://userguide.icu-project.org/transforms/general
+     * @info : https://hotexamples.com/examples/-/Transliterator/-/php-transliterator-class-examples.html
      * @param $str
      * @param string $charset
-     * @return null|string|string[]
+     * @return string
      */
     protected function getSkipAccents(string $str, string $charset = 'utf-8'): string
     {
+      if (extension_loaded('intl')) {
+        $transliterator = \Transliterator::create('Any-Latin; Latin-ASCII');
+        $str = $transliterator->transliterate(mb_convert_encoding(htmlspecialchars_decode($str), $charset, 'auto'));
+      }
+
       $str = htmlentities($str, ENT_NOQUOTES, $charset);
 
       $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);

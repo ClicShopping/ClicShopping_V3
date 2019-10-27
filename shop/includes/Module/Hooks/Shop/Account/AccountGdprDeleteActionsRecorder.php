@@ -24,12 +24,19 @@
     public function display(): string
     {
       $output = '';
-      $output .= '<div>';
-      $output .= '<label class="checkbox-inline">';
-      $output .= HTML::checkboxField('action_recorder');
-      $output .= '</label>';
-      $output .= CLICSHOPPING::getDef('module_account_customers_gdpr_delete_action_recorder');
-      $output .= '</div>';
+      $output .= '<div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <div class="separator"></div>
+                           ' . CLICSHOPPING::getDef('module_account_customers_gdpr_delete_action_recorder') . '
+                          <label class="switch">
+                            ' . HTML::checkboxField('action_recorder', null, null, 'class="success"') . '
+                            <span class="slider"></span>
+                          </label>
+                      </li>
+                    </ul>
+                  </div>
+                 ';
 
       return $output;
     }

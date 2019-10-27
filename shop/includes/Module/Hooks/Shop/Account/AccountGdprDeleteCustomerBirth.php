@@ -21,12 +21,19 @@
      */
     public function display(): string
     {
-        $output = '<div>';
-        $output .= '<label class="checkbox-inline">';
-        $output .= HTML::checkboxField('delete_customers_birth');
-        $output .= '</label>';
-        $output .= CLICSHOPPING::getDef('module_account_customers_gdpr_customer_bidth');
-        $output .= '</div>';
+      $output = '<div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <div class="separator"></div>
+                           ' . CLICSHOPPING::getDef('module_account_customers_gdpr_customer_bidth') . '
+                          <label class="switch">
+                            ' . HTML::checkboxField('delete_customers_birth', null, null, 'class="success"') . '
+                            <span class="slider"></span>
+                          </label>
+                      </li>
+                    </ul>
+                  </div>
+                 ';
 
         return $output;
     }
