@@ -6,6 +6,3 @@
 
  modules_products_reviews_info_content_text_no_review = no review
  modules_products_reviews_info_content_text_no_review = Delete your comment
-
-
-

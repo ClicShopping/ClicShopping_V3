@@ -1,4 +1,3 @@
-
 modules_tell_a_friend_customer_title = Do you want to display the form for the customer with your details
 modules_tell_a_friend_customer_description = Display the for for the customer with your details
 

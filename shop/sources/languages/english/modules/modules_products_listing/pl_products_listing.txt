@@ -1,5 +1,4 @@
 
-
 module_products_listing_title = Do you want to display products listing (search result et categories) ?
 module_products_listing_description = Display a listing of produtcs
 

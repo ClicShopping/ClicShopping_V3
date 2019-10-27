@@ -1,4 +1,3 @@
-
  module_shopping_cart_out_of_stock_message_title = Do you want to display a message when the product is not available  ?
  module_shopping_cart_out_of_stock_message_description = Display a message when the product is not available
 

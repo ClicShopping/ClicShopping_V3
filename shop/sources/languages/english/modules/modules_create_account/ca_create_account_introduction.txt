@@ -1,5 +1,3 @@
-
-
 module_create_account_introduction_title = Do you want to display an introduction for the account creation ?
 module_create_account_introduction_description = Display an introduction for the account creation
 

@@ -1,4 +1,3 @@
-
 module_login_mode_b2b = Do you want to display the B2B buttons for customers subscriptions ?
 module_login_mode_b2b_description = Display the B2B buttons for the customers subscriptions <br />Note : becarefull, this mododule is in relation with general configuration : Customer management B2B/ configuration
 

@@ -1,4 +1,3 @@
-
  modules_tell_a_friend_send_friend_title = Do you want to display the form customer friend
  modules_tell_a_friend_send_friend_description = display the form customer friend
 

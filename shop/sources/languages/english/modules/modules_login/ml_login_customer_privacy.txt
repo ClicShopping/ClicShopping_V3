@@ -1,4 +1,3 @@
-
 module_login_customer_privacy = Do you want to display a privacy information ?
 module_login_customer_privacy_description = Display a text about a privacy privacy information for the customer
 
@@ -11,4 +10,3 @@ In application of the law of 6 January 1978 relating to computers, files and fre
 You can also manage your personal data and preferences at any time in your account
 
 heading_title_b2b = Privacy information
-

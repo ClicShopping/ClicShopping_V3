@@ -1,6 +1,5 @@
-
- module_login_connexion = Souhaitez-vous afficher le formulaire de connexion au compte client ?
- module_login_connexion_description = Affiche le formulaire de connexion au compte client.
+  module_login_connexion = Do you want to display the login form to the customer account?
+  module_login_connexion_description = Displays the login form to the customer account.
  module_login_connexion_heading_new_customer = I am customer
 
  module_login_connexion_heading_returning_customer = I am Customer

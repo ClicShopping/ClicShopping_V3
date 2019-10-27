@@ -52,5 +52,3 @@ entry_country_text = *
 
 button_continue = Continue
 button_back = Back
-
-

@@ -3,4 +3,3 @@
 
  button_write = Write a comment
  button_back = Back
-

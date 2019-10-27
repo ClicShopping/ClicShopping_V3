@@ -36,4 +36,3 @@ entry_password_confirmation_text = * Password confirmation
 
 text_create_account_dgrp = We must use your email to create your account and allow you to access it. At any time you can change this information.
 text_create_account_dob_dgrp = Your birth date helps us identify your age and allow you to place an order. We do not display your date of birth without your explicit consent
-
