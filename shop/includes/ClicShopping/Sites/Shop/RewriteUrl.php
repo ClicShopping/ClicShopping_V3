@@ -828,11 +828,31 @@
       if (extension_loaded('intl')) {
         $transliterator = \Transliterator::create('Any-Latin; Latin-ASCII');
         $str = $transliterator->transliterate(mb_convert_encoding(htmlspecialchars_decode($str), $charset, 'auto'));
+        $str = static::getRemoveAccents($str);
       } else {
         $str = static::getRemoveAccents($str);
       }
 
+      $str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+      $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+      $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str);
+      $str = preg_replace('#&[^;]+;#', '', $str);
+      $str = preg_replace('/[^A-Za-z0-9\-]/', '', $str); // Removes special chars
+
       return strtolower($str);
+    }
+
+    /**
+     * @param string $str
+     * @return string
+     */
+    protected function replaceString(string $str): string
+    {
+      $string = str_replace(' ', '-', $str);
+      $string = $this->getSkipAccents($string);
+
+      return $string;
     }
 
     /**
@@ -848,8 +868,7 @@
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
-          $products_name = str_replace(' ', '-', $products_name);
-          $products_name = $this->getSkipAccents($products_name);
+          $products_name = $this->replaceString($products_name);
           $products_url_rewrited = 'Products&Description&' . $products_name . '&products_id=' . (int)$products_id;
         } else {
           $products_url_rewrited = 'Products&Description&products_id=' . (int)$products_id;
@@ -877,8 +896,7 @@
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($page_id);
-          $page_title = str_replace(' ', '-', $page_title);
-          $page_title = $this->getSkipAccents($page_title);
+          $page_title = $this->replaceString($page_title);
           $content_url_rewrited = 'Info&Content&' . $page_title . '&pages_id=' . (int)$page_id;
         } else {
           $content_url_rewrited = 'Info&Content&pages_id=' . (int)$page_id;
@@ -916,9 +934,7 @@
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $link_title = $this->title;
-          $link_title = str_replace(' ', '-', $link_title);
-          $link_title = $this->getSkipAccents($link_title);
-
+          $link_title = $this->replaceString($link_title);
           $categories_url_rewrited = $link_title . '&cPath=' . $categories_id;
         } else {
           $categories_url_rewrited = 'cPath=' . $categories_id;
@@ -943,17 +959,13 @@
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $link_title = $this->title;
-          $link_title = str_replace(' ', '-', $link_title);
-          $link_title = $this->getSkipAccents($link_title);
-
+          $link_title = $this->replaceString($link_title);
           $categories_url_rewrited = $link_title . '&' . $categories_id;
         } else {
           $categories_url_rewrited = $categories_id;
-//          $categories_url_rewrited = 'cPath=' . $categories_id;	  
         }
       } else {
         $categories_url_rewrited = $categories_id;
-//        $categories_url_rewrited = 'cPath=' . $categories_id;	
       }
 
       $url = CLICSHOPPING::link(null, $categories_url_rewrited . $parameters);
@@ -975,8 +987,7 @@
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $manufacturer_title = $CLICSHOPPING_Manufacturers->getTitle($manufacturer_id);
-          $manufacturer_title = str_replace(' ', '-', $manufacturer_title);
-          $manufacturer_title = $this->getSkipAccents($manufacturer_title);
+          $manufacturer_title = $this->replaceString($manufacturer_title);
 
           $manufacturer_url_rewrited = $manufacturer_title . '&manufacturers_id=' . (int)$manufacturer_id;
         } else {
@@ -991,67 +1002,4 @@
       return $url;
     }
 
-    /**
-     * Blog url
-     * @param $manufactuer_id , manufacturer id
-     * @param string $parameters , url parameters
-     * @return string
-     */
-
-    public function getBlogContentUrl(int $blog_content_id, string $parameters = ''): string
-    {
-      /*
-            if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true'  && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-              if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
-      //CLICSHOPPING::link(null, 'Blog&Content&blog_content_id =' . (int)$_GET['blog_content_id']
-                $blog_title = $CLICSHOPPING_BlogContent->getBlogContentName($manufacturer_id);
-                $blog_title = str_replace(' ', '-', $blog_title);
-                $blog_title = $this->getSkipAccents($blog_title);
-
-                $blog_url_rewrited = $blog_title . '&blog_content_id=' . (int)$blog_content_id;
-              } else {
-                $blog_url_rewrited = 'Blog&Content&blog_content_id=' . (int)$blog_content_id;
-              }
-            } else {
-              $blog_url_rewrited = 'Blog&Content&blog_content_id=' . (int)$blog_content_id;
-            }
-
-            $url = CLICSHOPPING::link(null, $blog_url_rewrited . $parameters);
-
-            return $url;
-            }
-      */
-    }
-
-    /**
-     * Blog categories url
-     * @param $manufactuer_id , manufacturer id
-     * @param string $parameters , url parameters
-     * @return string
-     */
-
-    public function getBlogCategoriesUrl($id, $parameters = '')
-    {
-      /*
-            if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true'  && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-              if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
-
-            //CLICSHOPPING::link(null, 'Blog&Categories&cPath= =' . (int)$_GET['$id']
-                $blog_title = $CLICSHOPPING_BlogContent->getBlogContentName($id);
-                $blog_title = str_replace(' ', '-', $blog_title);
-                $blog_title = $this->getSkipAccents($blog_title);
-
-                $blog_url_rewrited = $blog_title . '&blog_content_id=' . (int)$id;
-              } else {
-                $blog_url_rewrited = 'Blog&Categories&cPath=' . (int)$id;
-              }
-            } else {
-              $blog_url_rewrited = 'Blog&Categories&cPath=' . (int)$id;
-            }
-
-             $url = CLICSHOPPING::link(null, $blog_url_rewrited . $parameters);
-             return $url;
-            }
-      */
-    }
   }
