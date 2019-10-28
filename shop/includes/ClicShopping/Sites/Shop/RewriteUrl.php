@@ -30,7 +30,7 @@
      *       has Bytes Sequences with a maximum length of 4.
      *
      * @author bmorel at ssi dot fr (modified)
-     * @since 1.2.1
+     * @since 3.2111
      *
      * @param string $str The string to be checked
      * @return bool True if $str fits a UTF-8 model, false otherwise.
@@ -43,8 +43,6 @@
         return false;
       }
     }
-
-
 
     /**
      * Converts all accent characters to ASCII characters.
