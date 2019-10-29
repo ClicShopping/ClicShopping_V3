@@ -44,9 +44,9 @@
       if ($Qcheck->fetch()) {
 
         $QMenuId = $CLICSHOPPING_Db->prepare('select id
-                                        from :table_administrator_menu
-                                        where app_code = :app_code
-                                      ');
+                                                from :table_administrator_menu
+                                                where app_code = :app_code
+                                              ');
 
         $QMenuId->bindValue(':app_code', 'app_catalog_categories');
         $QMenuId->execute();

@@ -12,7 +12,6 @@
   namespace ClicShopping\Apps\Tools\ActionsRecorder\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
   class ActionsRecorder

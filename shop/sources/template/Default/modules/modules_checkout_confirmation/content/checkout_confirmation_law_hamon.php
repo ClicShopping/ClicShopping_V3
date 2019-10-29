@@ -24,7 +24,7 @@
         <div class="separator"></div>
         <div class="card-text">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+            <li class="list-group-item-slider">
               <div class="separator"></div>
               <div class="checkoutConfirmationLawHamon"><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_law_hamon_text_conditions'); ?></div>
               <label class="switch">

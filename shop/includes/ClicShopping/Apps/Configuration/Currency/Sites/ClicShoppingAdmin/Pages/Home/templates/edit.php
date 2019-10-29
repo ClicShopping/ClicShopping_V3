@@ -189,8 +189,15 @@
           <div class="separator"></div>
           <div class="col-md-12 text-md-center">
             <span class="col-md-3"></span>
-            <span
-              class="col-md-3"><br/><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
+            <ul class="list-group-slider list-group-flush">
+              <span class="text-slider"><?php echo $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>
+              <li class="list-group-item-slider">
+                <label class="switch">
+                  <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
+                  <span class="slider"></span>
+                </label>
+              </li>
+            </ul>
           </div>
           <?php
         }

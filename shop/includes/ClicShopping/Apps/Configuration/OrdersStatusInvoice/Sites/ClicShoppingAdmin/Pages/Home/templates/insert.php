@@ -78,8 +78,15 @@
     <div class="separator"></div>
     <div class="col-md-12">
       <span class="col-md-3"></span>
-      <span
-        class="col-md-3"><br/><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?></span>
+      <ul class="list-group-slider list-group-flush">
+        <li class="list-group-item-slider">
+          <label class="switch">
+            <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
+            <span class="slider"></span>
+          </label>
+        </li>
+        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_set_default'); ?></span>
+      </ul>
     </div>
   </div>
 

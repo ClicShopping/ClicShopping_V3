@@ -12,8 +12,6 @@
   namespace ClicShopping\Apps\Catalog\Preview\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\Cache;
-  use ClicShopping\OM\CLICSHOPPING;
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
   {

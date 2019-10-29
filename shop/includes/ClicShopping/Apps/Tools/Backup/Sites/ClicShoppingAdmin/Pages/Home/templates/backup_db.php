@@ -64,27 +64,59 @@
         ?>
       </div>
       <div class="separator"></div>
-      <div
-        class="col-md-12"><?php echo HTML::radioField('compress', 'no', true) . ' ' . $CLICSHOPPING_Backup->getDef('text_info_use_no_compression'); ?>
-        <br/></div>
+      <div class="col-md-12">
+        <ul class="list-group-slider list-group-flush">
+          <li class="list-group-item-slider">
+            <label class="switch">
+              <?php echo HTML::checkboxField('compress', 'no', true, 'class="success"'); ?>
+              <span class="slider"></span>
+            </label>
+          </li>
+          <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_use_no_compression'); ?></span>
+        </ul>
+      </div>
       <div class="separator"></div>
-      <div
-        class="col-md-12"><?php echo HTML::radioField('compress', 'zip') . ' ' . $CLICSHOPPING_Backup->getDef('text_info_use_zip'); ?>
-        <br/></div>
+      <div class="col-md-12">
+        <ul class="list-group-slider list-group-flush">
+          <li class="list-group-item-slider">
+            <label class="switch">
+              <?php echo HTML::checkboxField('compress', 'zip', null, 'class="success"'); ?>
+              <span class="slider"></span>
+            </label>
+          </li>
+          <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_use_zip'); ?></span>
+        </ul>
+       </div>
       <?php
         if ($dir_ok === true) {
           ?>
           <div class="separator"></div>
-          <div
-            class="col-md-12"><?php echo HTML::checkboxField('download', 'yes') . ' ' . $CLICSHOPPING_Backup->getDef('text_info_download_only') . '*<br /><br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?>
-            <br/></div>
+          <div class="col-md-12">
+            <ul class="list-group-slider list-group-flush">
+              <li class="list-group-item-slider">
+                <label class="switch">
+                  <?php echo HTML::checkboxField('download', 'yes', null, 'class="success"'); ?>
+                  <span class="slider"></span>
+                </label>
+              </li>
+              <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_download_only') . '<br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?></span>
+            </ul>
+           </div>
           <?php
         } else {
           ?>
           <div class="separator"></div>
-          <div
-            class="col-md-12"><?php echo HTML::radioField('download', 'yes', true) . ' ' . $CLICSHOPPING_Backup->getDef('text_info_download_only') . '*<br /><br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?>
-            <br/></div>
+          <div class="col-md-12">
+            <ul class="list-group-slider list-group-flush">
+              <li class="list-group-item-slider">
+                <label class="switch">
+                  <?php echo HTML::checkboxField('download', 'yes', true, 'class="success"'); ?>
+                  <span class="slider"></span>
+                </label>
+              </li>
+              <span class="text-slider"><?php echo $CLICSHOPPING_Backup->getDef('text_info_download_only') . '<br />*' . $CLICSHOPPING_Backup->getDef('text_info_best_through_https'); ?></span>
+            </ul>
+          </div>
           <?php
         }
       ?>

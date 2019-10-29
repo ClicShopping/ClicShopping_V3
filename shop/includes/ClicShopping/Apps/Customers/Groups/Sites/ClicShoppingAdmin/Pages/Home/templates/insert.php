@@ -222,11 +222,18 @@
                   $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
                   ?>
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-12">
-                          <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, 1); ?>
-                          <?php echo $module->title; ?>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, 1, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $module->title; ?></span>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -257,9 +264,9 @@
               $module_key = 'MODULE_SHIPPING_INSTALLED';
 
               $Qconfiguration_shipping = $CLICSHOPPING_Groups->db->prepare('select configuration_value
-                                                          from :table_configuration
-                                                          where configuration_key = :configuration_key
-                                                        ');
+                                                                            from :table_configuration
+                                                                            where configuration_key = :configuration_key
+                                                                          ');
               $Qconfiguration_shipping->bindValue(':configuration_key', $module_key);
               $Qconfiguration_shipping->execute();
 
@@ -287,8 +294,15 @@
                     <div class="col-md-5">
                       <div class="form-group row">
                         <div class="col-md-12">
-                          <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, 1); ?>
-                          <?php echo $module->title; ?>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, 1, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $module->title; ?></span>
+                          </ul>
                         </div>
                       </div>
                     </div>

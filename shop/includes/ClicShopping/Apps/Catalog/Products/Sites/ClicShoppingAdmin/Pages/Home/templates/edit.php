@@ -766,15 +766,49 @@
                   <div class="form-group row">
                     <label for="<?php echo $CLICSHOPPING_Products->getDef('products_view'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('products_view'); ?></label>
-                    <div class="col-md-5">
+                    <div class="col-md-7">
                       <?php
                         if (isset($_GET['pID'])) {
                           ?>
-                          <span><?php echo HTML::checkboxField('products_view', '1', $pInfo->products_view) . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/last.png', $CLICSHOPPING_Products->getDef('text_products_view')) . '&nbsp;&nbsp;' . HTML::checkboxField('orders_view', '1', $pInfo->orders_view) . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/orders-up.gif', $CLICSHOPPING_Products->getDef('tab_orders_view')); ?>&nbsp;</span>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('products_view', '1', $pInfo->products_view, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_view'); ?></span>
+                          </ul>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('orders_view', '1', $pInfo->orders_view, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('tab_orders_view'); ?></span>
+                          </ul>
                           <?php
                         } else {
                           ?>
-                          <span><?php echo HTML::checkboxField('products_view', '1', true) . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/last.png', $CLICSHOPPING_Products->getDef('text_products_view')) . '&nbsp;&nbsp;' . HTML::checkboxField('orders_view', '1', true) . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/orders-up.gif', $CLICSHOPPING_Products->getDef('tab_orders_view')); ?>&nbsp;</span>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('products_view', '1', true, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_view'); ?></span>
+                          </ul>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('orders_view', '1', true, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('tab_orders_view'); ?></span>
+                          </ul>
                           <?php
                         }
                       ?>
@@ -789,7 +823,14 @@
                     <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_price_kilo'); ?>"
                            class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_price_kilo'); ?></label>
                     <div class="col-md-5">
-                      <?php echo HTML::checkboxField('products_price_kilo', '1', $pInfo->products_price_kilo); ?>
+                      <ul class="list-group-slider list-group-flush">
+                        <li class="list-group-item-slider">
+                          <label class="switch">
+                            <?php echo HTML::checkboxField('products_price_kilo', '1', $pInfo->products_price_kilo, 'class="success"'); ?>
+                            <span class="slider"></span>
+                          </label>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -1306,7 +1347,14 @@
                   <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_file_download_public'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_file_download_public'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::checkboxField('products_download_public', '1', $pInfo->products_download_public); ?>
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          <?php echo HTML::checkboxField('products_featured', '1', $pInfo->products_download_public, 'class="success"'); ?>
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

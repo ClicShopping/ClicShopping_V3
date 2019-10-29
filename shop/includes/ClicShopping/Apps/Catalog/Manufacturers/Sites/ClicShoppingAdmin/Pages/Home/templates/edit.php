@@ -268,7 +268,6 @@
         <!--          ONGLET SEO          //-->
         <!-- //################################################################################################################ -->
         <!-- decompte caracteres -->
-        <!--<script type="text/javascript" src="../ext/javascript/charcount/charCount.js'; ?>" ></script>-->
         <div class="tab-pane" id="tab4">
           <div class="col-md-12 mainTitle">
             <div

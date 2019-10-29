@@ -73,7 +73,6 @@
       Registry::set('ImageResample', new ImageResample());
       $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
 
-      $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
       $CLICSHOPPING_Image = Registry::get('Image');
 
       $dir_products_image = 'attributes_options/';

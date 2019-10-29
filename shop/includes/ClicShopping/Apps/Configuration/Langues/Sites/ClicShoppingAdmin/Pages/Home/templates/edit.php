@@ -204,9 +204,16 @@
         if (DEFAULT_LANGUAGE != $lInfo->code) {
           ?>
           <div class="col-md-12">
-            <span class="col-md-3"></span>
-            <span
-              class="col-md-4"><br/><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_Langues->getDef('text_set_default'); ?></span>
+            <span class="col-md-5"></span>
+            <ul class="list-group-slider list-group-flush">
+              <span class="text-slider"><?php echo $CLICSHOPPING_Langues->getDef('text_set_default'); ?></span>
+              <li class="list-group-item-slider">
+                <label class="switch">
+                  <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
+                  <span class="slider"></span>
+                </label>
+              </li>
+            </ul>
           </div>
           <?php
         }

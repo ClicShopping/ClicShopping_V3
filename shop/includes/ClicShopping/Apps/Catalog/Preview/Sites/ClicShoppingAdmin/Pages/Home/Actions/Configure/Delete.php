@@ -12,7 +12,6 @@
   namespace ClicShopping\Apps\Catalog\Preview\Sites\ClicShoppingAdmin\Pages\Home\Actions\Configure;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\Cache;
 
   class Delete extends \ClicShopping\OM\PagesActionsAbstract
   {

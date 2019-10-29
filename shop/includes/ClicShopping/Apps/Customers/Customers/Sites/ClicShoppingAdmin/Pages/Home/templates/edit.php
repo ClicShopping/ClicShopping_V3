@@ -833,7 +833,14 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('text_allow_customer_add_address'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('text_allow_customer_add_address'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::checkboxField('customers_add_address', '1', $cInfo->customers_add_address); ?>
+                    <ul class="list-group-slider list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          <?php echo HTML::checkboxField('customers_add_address', '1', $cInfo->customers_add_address, 'class="success"'); ?>
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

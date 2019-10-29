@@ -253,7 +253,7 @@
                   <?php
                     if ($module->check() > 0) {
                       echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Modules->getDef('icon_edit'))) . '&nbsp;';
-                      echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', $CLICSHOPPING_Modules->getDef('icon_remove')));
+                      echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', $CLICSHOPPING_Modules->getDef('icon_delete')));
                     } else {
                       echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/install.gif', $CLICSHOPPING_Modules->getDef('icon_install')));
                     }

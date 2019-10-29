@@ -43,7 +43,14 @@
       $content .= '<div class="form-group row">';
       $content .= '<label for="' . $this->app->getDef('text_products_featured') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_featured') . '</label>';
       $content .= '<div class="col-md-5">';
-      $content .= HTML::checkboxField('products_featured', 'yes', false);
+      $content .= '<ul class="list-group-slider list-group-flush">';
+      $content .= '<li class="list-group-item-slider">';
+      $content .= '<label class="switch">';
+      $content .=  HTML::checkboxField('products_featured', 'yes', false, 'class="success"');
+      $content .= '<span class="slider"></span>';
+      $content .= '</label>';
+      $content .= '</li>';
+      $content .= '</ul>';
       $content .= '</div>';
       $content .= '</div>';
       $content .= '</div>';

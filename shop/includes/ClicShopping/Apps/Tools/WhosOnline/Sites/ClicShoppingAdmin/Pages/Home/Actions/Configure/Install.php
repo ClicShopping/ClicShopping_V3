@@ -14,7 +14,6 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\OM\Cache;
-  use ClicShopping\OM\CLICSHOPPING;
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
   {

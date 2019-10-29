@@ -374,6 +374,26 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.list-group-item-slider {
+  position: relative;
+  display: block;
+  padding: .75rem 1.25rem;
+  margin-bottom: -1px;
+  border: none;
+}
+
+.list-group-slider {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: unset;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.text-slider {
+  padding-top: 0.5rem
+}
 /***********************************************/
 /* Media Quey  */
 /**********************************************/

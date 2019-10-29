@@ -238,7 +238,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="form-group row">
-                  <div class="col-md-5">
+                  <div class="col-md-7">
                     <?php
                       if ($error === true) {
                         if ($cInfo->group_order_taxe == '0') echo $CLICSHOPPING_Groups->getDef('options_order_taxe');
@@ -288,11 +288,18 @@
                   $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
                   ?>
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-12">
-                          <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, (in_array($module->code, $payments_unallowed)) ? true : false); ?>
-                          <?php echo $module->title; ?>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('payment_unallowed[' . $i . ']', $module->code, (in_array($module->code, $payments_unallowed)) ? true : false, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $module->title; ?></span>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -352,11 +359,18 @@
                   $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
                   ?>
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                       <div class="form-group row">
                         <div class="col-md-12">
-                          <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, (in_array($module->code, $shipping_unallowed)) ? true : false); ?>
-                          <?php echo $module->title; ?>
+                          <ul class="list-group-slider list-group-flush">
+                            <li class="list-group-item-slider">
+                              <label class="switch">
+                                <?php echo HTML::checkboxField('shipping_unallowed[' . $i . ']', $module->code, (in_array($module->code, $shipping_unallowed)) ? true : false, 'class="success"'); ?>
+                                <span class="slider"></span>
+                              </label>
+                            </li>
+                            <span class="text-slider"><?php echo $module->title; ?></span>
+                          </ul>
                         </div>
                       </div>
                     </div>

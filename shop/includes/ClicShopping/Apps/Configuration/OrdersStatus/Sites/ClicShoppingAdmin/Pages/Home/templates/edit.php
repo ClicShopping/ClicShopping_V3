@@ -92,31 +92,57 @@
         <?php
       }
     ?>
-
-
     <div class="separator"></div>
     <div class="col-md-12">
       <span class="col-md-3"></span>
-      <span
-        class="col-md-7"><br/><?php echo HTML::checkboxField('public_flag', '1', $oInfo->public_flag) . ' ' . $CLICSHOPPING_OrdersStatus->getDef('text_set_public_status'); ?></span>
+      <ul class="list-group-slider list-group-flush">
+        <li class="list-group-item-slider">
+          <label class="switch">
+            <?php echo HTML::checkboxField('public_flag', '1', $oInfo->public_flag, 'class="success"'); ?>
+            <span class="slider"></span>
+          </label>
+        </li>
+        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_public_status'); ?></span>
+      </ul>
     </div>
     <div class="col-md-12">
       <span class="col-md-3"></span>
-      <span
-        class="col-md-7"><br/><?php echo HTML::checkboxField('downloads_flag', '1', $oInfo->downloads_flag) . ' ' . $CLICSHOPPING_OrdersStatus->getDef('text_set_downloads_status'); ?></span>
+      <ul class="list-group-slider list-group-flush">
+        <li class="list-group-item-slider">
+          <label class="switch">
+            <?php echo HTML::checkboxField('downloads_flag', '1', $oInfo->downloads_flag, 'class="success"'); ?>
+            <span class="slider"></span>
+          </label>
+        </li>
+        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_downloads_status'); ?></span>
+      </ul>
     </div>
     <div class="col-md-12">
       <span class="col-md-3"></span>
-      <span
-        class="col-md-7"><br/><?php echo HTML::checkboxField('support_orders_flag', '1', $oInfo->support_orders_flag) . ' ' . $CLICSHOPPING_OrdersStatus->getDef('text_set_support_orders_flag'); ?></span>
+      <ul class="list-group-slider list-group-flush">
+        <li class="list-group-item-slider">
+          <label class="switch">
+            <?php echo HTML::checkboxField('support_orders_flag', '1', $oInfo->support_orders_flag, 'class="success"'); ?>
+            <span class="slider"></span>
+          </label>
+        </li>
+        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_support_orders_flag'); ?></span>
+      </ul>
     </div>
     <?php
       if (DEFAULT_ORDERS_STATUS_ID != $oInfo->orders_status_id) {
         ?>
         <div class="col-md-12">
           <span class="col-md-3"></span>
-          <span
-            class="col-md-7"><br/><?php echo HTML::checkboxField('default') . ' ' . $CLICSHOPPING_OrdersStatus->getDef('text_set_default'); ?></span>
+          <ul class="list-group-slider list-group-flush">
+            <li class="list-group-item-slider">
+              <label class="switch">
+                <?php echo HTML::checkboxField('default', null, null, 'class="success"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+            <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_default'); ?></span>
+          </ul>
         </div>
         <?php
       }

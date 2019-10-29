@@ -23,7 +23,7 @@
     'size' => number_format(filesize($backup_directory . $file)) . ' bytes'
   ];
 
-  switch (substr($file, -3)) {
+  switch (substr($info['file'], -3)) {
     case 'zip':
       $info['compression'] = 'ZIP';
       break;

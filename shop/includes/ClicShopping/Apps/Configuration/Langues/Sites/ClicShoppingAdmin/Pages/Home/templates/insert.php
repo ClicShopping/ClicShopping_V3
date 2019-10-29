@@ -175,8 +175,15 @@
       <div class="separator"></div>
       <div class="col-md-12">
         <span class="col-md-3"></span>
-        <span
-          class="col-md-4"><?php echo HTML::checkboxField('create_language') . '  ' . $CLICSHOPPING_Langues->getDef('text_create_language') . '<br />'; ?></span>
+        <ul class="list-group-slider list-group-flush">
+          <span class="text-slider"><?php echo $CLICSHOPPING_Langues->getDef('text_create_language'); ?></span>
+          <li class="list-group-item-slider">
+            <label class="switch">
+              <?php echo HTML::checkboxField('create_language', null, null, 'class="success"'); ?>
+              <span class="slider"></span>
+            </label>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="separator"></div>
