@@ -23,7 +23,7 @@
   }
 // Do not touch the script below
 ?>
-<script type="text/javascript" src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/review_write.js.php')); ?>"></script>
+<script src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/review_write.js.php')); ?>"></script>
 
 <?php
   if ( $CLICSHOPPING_MessageStack->exists('review_write') ) {

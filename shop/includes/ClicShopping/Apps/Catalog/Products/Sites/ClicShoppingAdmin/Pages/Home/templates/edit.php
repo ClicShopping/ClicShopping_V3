@@ -282,33 +282,29 @@
                 </div>
               </div>
             </div>
-
             <div class="row" id="tab1ContentRow6"></div>
-
             <div class="row" id="tab1ContentRow8">
               <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?></label>
-                  <div class="col-md-5">
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                      <span
-                        class="col-md-1"><?php echo HTML::checkboxField('products_only_shop', '1', $pInfo->products_only_shop); ?></span>
+                <ul class="list-group-slider list-group-flush">
+                  <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_shop'); ?></span>
+                  <li class="list-group-item-slider">
+                    <label class="switch">
+                      <?php echo HTML::checkboxField('products_only_shop', '1', $pInfo->products_only_shop, 'class="success"'); ?>
+                      <span class="slider"></span>
                     </label>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
               <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'); ?></label>
-                  <div class="col-md-5">
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                      <span
-                        class="col-md-1"><?php echo HTML::checkboxField('products_only_online', '1', $pInfo->products_only_online); ?></span>
+                <ul class="list-group-slider list-group-flush">
+                  <span class="text-slider"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'); ?></span>
+                  <li class="list-group-item-slider">
+                    <label class="switch">
+                      <?php echo HTML::checkboxField('products_only_online', '1', $pInfo->products_only_online, 'class="success"'); ?>
+                      <span class="slider"></span>
                     </label>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -415,15 +411,17 @@
             <div class="row" id="tab2ContentRow1">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?>"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?></label>
+                  <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?>" class="col-2 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_status'); ?></label>
                   <div class="col-md-7">
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                      <span
-                        class="col-md-12"><?php echo HTML::radioField('products_status', '1', $in_status) . '&nbsp;' . $CLICSHOPPING_Products->getDef('text_products_available'); ?></span>
-                      <span
-                        class="col-md-10"><?php echo HTML::radioField('products_status', '0', $out_status) . '&nbsp;' . $CLICSHOPPING_Products->getDef('text_products_not_available'); ?></span>
-                    </label>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <?php echo HTML::radioField('products_status', '1', $in_status, 'class="custom-control-input" id="status_on" name="products_status"'); ?>
+                      <label class="custom-control-label" for="status_on"><?php echo $CLICSHOPPING_Products->getDef('text_products_available'); ?></label>
+                    </div>
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <?php echo HTML::radioField('products_status', '0', $out_status, 'class="custom-control-input" id="status_off" name="products_status"'); ?>
+                      <label class="custom-control-label" for="status_off"><?php echo $CLICSHOPPING_Products->getDef('text_products_not_available'); ?></label>
+                    </div>
                   </div>
                 </div>
               </div>

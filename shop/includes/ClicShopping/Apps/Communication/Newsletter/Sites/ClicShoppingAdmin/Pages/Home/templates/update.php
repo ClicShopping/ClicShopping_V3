@@ -210,7 +210,6 @@
                 </div>
               </div>
             </div>
-
             <div class="row" id="newsletterTitle">
               <div class="col-md-5">
                 <div class="form-group row">
@@ -222,19 +221,24 @@
                 </div>
               </div>
             </div>
-
             <div class="row" id="newsletterFile">
-              <div class="col-md-9">
+              <div class="col-md-5">
                 <div class="form-group row">
                   <label for="<?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_create_file_html'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Newsletter->getDef('text_newsletter_create_file_html'); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::radioField('newsletters_accept_file', '1', $in_accept_file) . '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('text_yes') . '&nbsp;' . HTML::radioField('newsletters_accept_file', '0', $out_accept_file) . '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('text_no'); ?>
+                   <div class="col-md-5">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <?php echo HTML::radioField('newsletters_accept_file', '1', $in_accept_file, 'class="custom-control-input" id="newsletters_accept_file_yes" name="newsletters_accept_file_yes"'); ?>
+                      <label class="custom-control-label" for="newsletters_accept_file_yes"><?php echo $CLICSHOPPING_Newsletter->getDef('text_yes'); ?></label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <?php echo HTML::radioField('newsletters_accept_file', '0', $out_accept_file, 'class="custom-control-input" id="newsletters_accept_file_no" name="newsletters_accept_file_no"'); ?>
+                      <label class="custom-control-label" for="newsletters_accept_file_no"><?php echo $CLICSHOPPING_Newsletter->getDef('text_no'); ?></label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <?php echo $CLICSHOPPING_Hooks->output('Newsletter', 'NewsletterContentTab1', null, 'display'); ?>
           </div>
         </div>

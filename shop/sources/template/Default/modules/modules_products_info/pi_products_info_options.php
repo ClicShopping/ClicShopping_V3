@@ -201,7 +201,10 @@
 
                   $products_options_content_display .= '<div class="col-md-12">';
                   $products_options_content_display .= '<span class="ModuleProductsInfoOptionsPullDownMenu">';
-                  $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'required aria-required="true"  id="' . $value['text'] .'"') . ' ' . $products_attributes_image . $value['text'] . ' ' .'</span>';
+                  $products_options_content_display .= '<div class="custom-control custom-radio">';
+                  $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'required aria-required="true" id="' . $value['text'] .'" class="custom-control-input" name="' . $value['text'] .'"');
+                  $products_options_content_display .= '<label class="custom-control-label" for="' . $value['text'] .'">' . $products_attributes_image . $value['text']  . '</label>';
+                  $products_options_content_display .= '</div>';
                   $products_options_content_display .= '<label for="' . $value['text'] .'" class="sr-only">' . $value['text'] . '</label>';
                   $products_options_content_display .= '</div>';
                 }

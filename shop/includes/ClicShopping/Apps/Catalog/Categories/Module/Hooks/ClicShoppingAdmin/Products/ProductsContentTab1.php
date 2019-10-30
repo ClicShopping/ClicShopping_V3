@@ -77,10 +77,22 @@
         $content .= '</div>';
         $content .= '<div class="col-md-5">';
         $content .= $this->app->getDef('text_select_category_action') . ' <br />';
-        $content .= HTML::radioField('copy_as', 'none', true) . ' ' . $this->app->getDef('text_copy_as_none') . '<br />';
-        $content .= HTML::radioField('copy_as', 'link') . ' ' . $this->app->getDef('text_copy_as_link') . '<br />';
-        $content .= HTML::radioField('copy_as', 'duplicate') . ' ' . $this->app->getDef('text_copy_as_duplicate') . '<br />';
-        $content .= HTML::radioField('copy_as', 'move') . ' ' . $this->app->getDef('text_copy_as_move') . '<br />';
+        $content .= '<div class="custom-control custom-radio">';
+        $content .= HTML::radioField('copy_as', 'none', true, 'class="custom-control-input" id="copy_as_none" name="copy_categories"');
+        $content .= '<label class="custom-control-label" for="copy_as_none">' . $this->app->getDef('text_copy_as_none') . '</label>';
+        $content .= '</div>';
+        $content .= '<div class="custom-control custom-radio">';
+        $content .= HTML::radioField('copy_as', 'link', null, 'class="custom-control-input" id="copy_as_link" name="copy_categories"');
+        $content .= '<label class="custom-control-label" for="copy_as_link">' . $this->app->getDef('text_copy_as_link') . '</label>';
+        $content .= '</div>';
+        $content .= '<div class="custom-control custom-radio">';
+        $content .= HTML::radioField('copy_as', 'duplicate', null, 'class="custom-control-input" id="copy_as_duplicate" name="copy_categories"');
+        $content .= '<label class="custom-control-label" for="copy_as_duplicate">' . $this->app->getDef('text_copy_as_duplicate') . '</label>';
+        $content .= '</div>';
+        $content .= '<div class="custom-control custom-radio">';
+        $content .= HTML::radioField('copy_as', 'move', null, 'class="custom-control-input" id="copy_as_move" name="copy_categories"');
+        $content .= '<label class="custom-control-label" for="copy_as_move">' . $this->app->getDef('text_copy_as_move') . '</label>';
+        $content .= '</div>';
         $content .= '</div>';
       }
 

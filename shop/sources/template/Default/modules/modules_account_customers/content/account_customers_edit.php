@@ -61,7 +61,15 @@
         <div class="form-group row">
           <label for="gender" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_gender'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::radioField('gender', 'm', $male) . ' ' . CLICSHOPPING::getDef('male') . '&nbsp;&nbsp;' .  HTML::radioField('gender', 'f', $female) . ' ' . CLICSHOPPING::getDef('female'); ?>
+            <div class="custom-control custom-radio custom-control-inline">
+              <?php echo HTML::radioField('gender', 'm', $male, 'class="custom-control-input" id="male" name="male"'); ?>
+              <label class="custom-control-label" for="male"><?php echo CLICSHOPPING::getDef('male'); ?></label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <?php echo HTML::radioField('gender', 'f', $female, 'class="custom-control-input" id="female" name="female"'); ?>
+              <label class="custom-control-label" for="female"><?php echo CLICSHOPPING::getDef('female'); ?></label>
+            </div>
+            <?php echo (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
           </div>
         </div>
       </div>

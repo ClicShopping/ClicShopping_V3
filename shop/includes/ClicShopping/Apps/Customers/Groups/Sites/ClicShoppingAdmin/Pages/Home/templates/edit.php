@@ -202,14 +202,15 @@
           <div class="adminformTitle">
             <div class="row">
               <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax'); ?></label>
-                  <div class="col-md-12">
-                    <?php echo HTML::radioField('group_tax', 'true', $group_tax_inc) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('text_group_tax_inc') . '&nbsp;' . HTML::radioField('group_tax', 'false', $group_tax_ex) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('text_group_tax_ex'); ?>
-                    <?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax_note'); ?>
-                  </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <?php echo HTML::radioField('group_tax', 'true', $group_tax_inc, 'class="custom-control-input" id="text_group_tax_inc" name="text_group_tax_inc"'); ?>
+                  <label class="custom-control-label" for="text_group_tax_inc"><?php echo $CLICSHOPPING_Groups->getDef('text_group_tax_inc'); ?></label>
                 </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <?php echo HTML::radioField('group_tax', 'false', $group_tax_ex, 'class="custom-control-input" id="text_group_tax_ex" name="text_group_tax_ex"'); ?>
+                  <label class="custom-control-label" for="text_group_tax_ex"><?php echo $CLICSHOPPING_Groups->getDef('text_group_tax_ex'); ?></label>
+                </div>
+                <?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax_note'); ?>
               </div>
             </div>
           </div>
@@ -236,16 +237,26 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_order_customer_default'); ?></div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-12">
                 <div class="form-group row">
-                  <div class="col-md-7">
+                  <div class="col-md-12">
                     <?php
                       if ($error === true) {
                         if ($cInfo->group_order_taxe == '0') echo $CLICSHOPPING_Groups->getDef('options_order_taxe');
                         if ($cInfo->group_order_taxe == '1') echo $CLICSHOPPING_Groups->getDef('options_order_no_taxe');
                         echo HTML::hiddenField('group_order_taxe');
                       } else {
-                        echo HTML::radioField('group_order_taxe', '0', $status_order_taxe) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('options_order_taxe') . '<br />' . HTML::radioField('group_order_taxe', '1', $status_order_no_taxe) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('options_order_no_taxe') . ' ' . $CLICSHOPPING_Groups->getDef('entry_group_tax_note');
+                      ?>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <?php echo HTML::radioField('group_order_taxe', '0', $status_order_taxe, 'class="custom-control-input" id="options_order_taxe" name="options_order_taxe"'); ?>
+                          <label class="custom-control-label" for="options_order_taxe"><?php echo $CLICSHOPPING_Groups->getDef('options_order_taxe'); ?></label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <?php echo HTML::radioField('group_order_taxe', '1', $status_order_no_taxe, 'class="custom-control-input" id="options_order_no_taxe" name="options_order_no_taxe"'); ?>
+                          <label class="custom-control-label" for="options_order_no_taxe"><?php echo $CLICSHOPPING_Groups->getDef('options_order_no_taxe'); ?></label>
+                        </div>
+                        <?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax_note'); ?>
+                        <?php
                       }
                     ?>
                   </div>
@@ -311,10 +322,9 @@
                 }
               } // end for
             ?>
-
           </div>
           <div class="separator"></div>
-          <div class="alert alert-info">
+          <div class="alert alert-info" role="alert">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation')) . ' ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_facturation') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_order_tax'); ?></div>

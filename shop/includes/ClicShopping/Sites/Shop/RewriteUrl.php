@@ -823,7 +823,7 @@
      * @param string $charset
      * @return string
      */
-    protected function getSkipAccents(string $str, string $charset = 'utf-8'): string
+    private function getSkipAccents(string $str, string $charset = 'utf-8'): string
     {
       if (extension_loaded('intl')) {
         $transliterator = \Transliterator::create('Any-Latin; Latin-ASCII');
@@ -844,7 +844,7 @@
      * @param string $str
      * @return string
      */
-    protected function replaceString($str): string
+    private function replaceString($str): string
     {
       $string = str_replace(' ', '-', $str);
       $string = $this->getSkipAccents($string);

@@ -95,7 +95,15 @@
               <div class="form-group row">
                 <label for="gender" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_gender'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::radioField('gender', 'm', $male) . ' ' . CLICSHOPPING::getDef('male') . '&nbsp;&nbsp;' .  HTML::radioField('gender', 'f', $female) . ' ' . CLICSHOPPING::getDef('female') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <?php echo HTML::radioField('gender', 'm', $male, 'class="custom-control-input" id="male" name="male"'); ?>
+                    <label class="custom-control-label" for="male"><?php echo CLICSHOPPING::getDef('male'); ?></label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <?php echo HTML::radioField('gender', 'f', $female, 'class="custom-control-input" id="female" name="female"'); ?>
+                    <label class="custom-control-label" for="female"><?php echo CLICSHOPPING::getDef('female'); ?></label>
+                  </div>
+                  <?php echo (!is_null(CLICSHOPPING::getDef('entry_gender_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_gender_text') . '</span>': ''); ?>
                 </div>
               </div>
             </div>
@@ -423,9 +431,16 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group row">
-                  <label for="InputNewsletter" class="col-sm-6 col-md-6 col-form-label"><?php echo CLICSHOPPING::getDef('set_as_primary'); ?></label>
-                  <div class="col-sm-6 col-md-6">
-                    <?php echo HTML::checkboxField('primary', 'on', false, 'id="InputNewsletter" aria-label="' . CLICSHOPPING::getDef('set_as_primary') . '"');  ?>
+                  <label for="InputNewsletter" class="col-sm-3 col-md-3 col-form-label"><?php echo CLICSHOPPING::getDef('set_as_primary'); ?></label>
+                  <div class="col-sm-2 col-md-2">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item-slider">
+                        <label class="switch">
+                          <?php echo HTML::checkboxField('primary', 'on', false, 'class="success" id="InputNewsletter" aria-label="' . CLICSHOPPING::getDef('set_as_primary') . '"'); ?>
+                          <span class="slider"></span>
+                        </label>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

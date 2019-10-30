@@ -153,14 +153,20 @@
             <div class="row">
               <div class="col-md-12">
                 <span class="col-md-2 main"><?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax'); ?></span>
-                <span
-                  class="col-md-1 main"><?php echo HTML::radioField('group_tax', 'true', true) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('text_group_tax_inc') . '&nbsp;' . HTML::radioField('group_tax', 'false') . '&nbsp;' . $CLICSHOPPING_Groups->getDef('text_group_tax_ex'); ?></span>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <?php echo HTML::radioField('group_tax', 'true', true, 'class="custom-control-input" id="text_group_tax_inc" name="text_group_tax_inc"'); ?>
+                  <label class="custom-control-label" for="text_group_tax_inc"><?php echo $CLICSHOPPING_Groups->getDef('text_group_tax_inc'); ?></label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <?php echo HTML::radioField('group_tax', 'false', null, 'class="custom-control-input" id="text_group_tax_ex" name="text_group_tax_ex"'); ?>
+                  <label class="custom-control-label" for="text_group_tax_ex"><?php echo $CLICSHOPPING_Groups->getDef('text_group_tax_ex'); ?></label>
+                </div>
                 <span class="col-md-5 main"><?php echo $CLICSHOPPING_Groups->getDef('entry_group_tax_note'); ?></span>
               </div>
             </div>
           </div>
           <div class="separator"></div>
-          <div class="alert alert-info">
+          <div class="alert alert-info" role="alert">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_Groups->getDef('help_title_onglet_general')) . ' ' . $CLICSHOPPING_Groups->getDef('help_title_onglet_general') ?></div>
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_Groups->getDef('help_group_tax'); ?></div>
@@ -176,7 +182,14 @@
               <div class="col-md-5">
                 <div class="form-group row">
                   <div class="col-md-5">
-                    <?php echo HTML::radioField('group_order_taxe', '0', true) . '&nbsp;' . $CLICSHOPPING_Groups->getDef('options_order_taxe') . '<br />' . HTML::radioField('group_order_taxe', '1') . '&nbsp;' . $CLICSHOPPING_Groups->getDef('options_order_no_taxe'); ?>
+                    <div class="custom-control custom-radio">
+                      <?php echo HTML::radioField('group_order_taxe', '0', true, 'class="custom-control-input" id="options_order_taxe" name="options_order_taxe"'); ?>
+                      <label class="custom-control-label" for="options_order_taxe"><?php echo $CLICSHOPPING_Groups->getDef('options_order_taxe'); ?></label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <?php echo HTML::radioField('group_order_taxe', '1', null, 'class="custom-control-input" id="options_order_no_taxe" name="options_order_no_taxe"'); ?>
+                      <label class="custom-control-label" for="options_order_no_taxe"><?php echo $CLICSHOPPING_Groups->getDef('options_order_no_taxe'); ?></label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -185,7 +198,6 @@
           <div class="separator"></div>
           <div class="mainTitle"><?php echo $CLICSHOPPING_Groups->getDef('title_group_paiement_default'); ?></div>
           <div class="adminformTitle">
-
             <?php
               $module_key = 'MODULE_PAYMENT_INSTALLED';
 

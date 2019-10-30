@@ -104,7 +104,11 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">
-                    <?php echo '<div class="col-md-12 radio">' . '<label for="addressLabel' . $value['address_format_id'] . '">' . HTML::radioField('address_format_id', $value['address_format_id'], null, 'id="addressLabel' . $value['address_format_id'] . '"') . ' ' . $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id'] . '</div>'; ?></h4>
+                    <div class="col-md-12 custom-control custom-radio">
+                      <?php echo HTML::radioField('address_format_id', $value['address_format_id'], null, 'class="custom-control-input" id="addressLabel' . $value['address_format_id'] . '" name="addressLabel' . $value['address_format_id'] . '"'); ?>
+                      <label class="custom-control-label" for="addressLabel<?php echo $value['address_format_id']; ?>"><?php echo  $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id']; ?></label>
+                    </div>
+                  </h4>
                   <p class="card-text">
                     <strong><?php echo '<div class="col-md-12">&nbsp;' . $CLICSHOPPING_Address->getAddressFormatRadio($value['address_format_id']) . '</label></div>'; ?></strong>
                   </p>

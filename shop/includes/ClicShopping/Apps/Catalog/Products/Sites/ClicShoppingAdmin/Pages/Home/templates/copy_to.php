@@ -76,10 +76,14 @@
       </div>
       <div class="col-md-12">
         <span class="col-sm-2"><?php echo $CLICSHOPPING_Products->getDef('text_how_to_copy'); ?></span>
-        <span
-          class="col-sm-4"><br/><?php echo HTML::radioField('copy_as', 'link', true) . ' ' . $CLICSHOPPING_Products->getDef('text_copy_as_link'); ?></span>
-        <span
-          class="col-sm-4"><br/><?php echo HTML::radioField('copy_as', 'duplicate') . ' ' . $CLICSHOPPING_Products->getDef('text_copy_as_duplicate'); ?></span>
+        <div class="col-sm-4 custom-control custom-radio">
+          <?php echo HTML::radioField('copy_as', 'link', true, 'class="custom-control-input" id="link" name="copy_to"'); ?>
+          <label class="custom-control-label" for="link"><?php echo $CLICSHOPPING_Products->getDef('text_how_to_copy'); ?></label>
+        </div>
+        <div class="col-sm-4 custom-control custom-radio">
+          <?php echo HTML::radioField('copy_as', 'duplicate', $out_status, 'class="custom-control-input" id="duplicate" name="copy_to"'); ?>
+          <label class="custom-control-label" for="duplicate"><?php echo $CLICSHOPPING_Products->getDef('text_products_not_available'); ?></label>
+        </div>
       </div>
       <div class="separator"></div>
       <div class="col-md-12 text-md-center">

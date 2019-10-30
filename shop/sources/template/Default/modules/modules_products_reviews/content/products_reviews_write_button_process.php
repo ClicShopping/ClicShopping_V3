@@ -1,3 +1,4 @@
+<div class="clearfix"></div>
 <div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
   <div class="control-group">
