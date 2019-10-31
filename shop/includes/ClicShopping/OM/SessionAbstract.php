@@ -62,7 +62,16 @@
         'can_start' => &$session_can_start
       ]);
 
-      session_set_cookie_params(0, $CLICSHOPPING_Cookies->getPath(), $CLICSHOPPING_Cookies->getDomain(), (bool)ini_get('session.cookie_secure'), (bool)ini_get('session.cookie_httponly'));
+      $options = [
+                'lifetime' => 0,             // The lifetime of the cookie in seconds.
+                'path' => $CLICSHOPPING_Cookies->getPath(),               // The path where information is stored.
+                'domain' => $CLICSHOPPING_Cookies->getDomain(),   // The domain of the cookie.
+                'secure' => (bool)ini_get('session.cookie_secure'),            // The cookie should only be sent over secure connections.
+                'httponly' => (bool)ini_get('session.cookie_httponly'),          // The cookie can only be accessed through the HTTP protocol.
+                'samesite' => $CLICSHOPPING_Cookies->getSameSite() //"Lax/Strict"  // The cookie can only be accessed if it was initiated from the same registrable domain or LAx
+              ];
+
+        session_set_cookie_params ($options);
 
       if (isset($_GET[$this->name]) && ($this->force_cookies || !(bool)preg_match('/^[a-zA-Z0-9,-]+$/', $_GET[$this->name]) || !$this->exists($_GET[$this->name]))) {
         unset($_GET[$this->name]);
@@ -125,7 +134,7 @@
       $result = true;
 
       if (isset($_COOKIE[$this->name])) {
-        $CLICSHOPPING_Cookies->del($this->name, $CLICSHOPPING_Cookies->getPath(), $CLICSHOPPING_Cookies->getDomain(), (bool)ini_get('session.cookie_secure'), (bool)ini_get('session.cookie_httponly'));
+        $CLICSHOPPING_Cookies->del($this->name, $CLICSHOPPING_Cookies->getPath(), $CLICSHOPPING_Cookies->getDomain(), (bool)ini_get('session.cookie_secure'), (bool)ini_get('session.cookie_httponly'), $CLICSHOPPING_Cookies->getSameSite('Lax'));
       }
 
       if ($this->hasStarted()) {
@@ -186,8 +195,21 @@
       return ini_set('session.gc_maxlifetime', $time);
     }
 
+    /**
+     * @return string|null
+     */
     public function getName() :?string
     {
       return $this->name;
+    }
+
+    /**
+     * Gets the SameSite attribute.
+     *
+     * @return string|null
+     */
+    public function getSameSite(): ?string
+    {
+      return $this->sameSite;
     }
   }
