@@ -25,8 +25,10 @@ button_create_administrator = Create Administrator
 error_action_recorder = Error: The maximum number of login attempts has been reached. Please try again in {{module_action_recorder_admin_login_minutes}} minutes. An email has been sent to the administrator with your contact information (geolocation). You can try to connect again one time after the administration panel before being permanently blocked
 
 report_email_subject = Intempestive connexion on ClicShopping
-report_access_login = Someone try to connect at your admin, below the information. You can also see in you administration panel the details in tool section :
-report_sender_ip_address = Senders ip address
-report_sender_host_name = Senders host name :
+report_access_login = Someone try to connect at your admin, below the information. <br />
+More information can be found there : https://ipinfo.io/ (copy IP : {{IP}})
+
+report_sender_ip_address = Senders ip address : {{IP}}
+report_sender_host_name = Senders host name : {{HOST}}
 report_subject_email = [Report] Admin-Login connexion error
-report_sender_username = Username :
+report_sender_username = Username : {{USERNAME}}

@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\HTML;
+  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
@@ -28,8 +28,16 @@ use ClicShopping\OM\HTML;
     <div class="col-md-7">
       <div class="form-group row">
         <label for="InputCategory" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('modules_advanced_search_category_entry_include_subcategories'); ?></label>
-        <div class="col-md-8">
-          <?php echo HTML::checkboxField('inc_subcat', 1, true, 'id="inc_subcat" aria-label="' . CLICSHOPPING::getDef('modules_advanced_search_category_entry_include_subcategories') . '"'); ?>
+        <div class="col-md-2">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item-slider">
+              <div class="separator"></div>
+              <label class="switch">
+                <?php echo HTML::checkboxField('inc_subcat', 1, true, ' class="success" id="inc_subcat" aria-label="' . CLICSHOPPING::getDef('modules_advanced_search_category_entry_include_subcategories') . '"'); ?>
+                <span class="slider"></span>
+              </label>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
