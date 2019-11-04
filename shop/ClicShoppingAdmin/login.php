@@ -14,6 +14,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Is;
   use ClicShopping\OM\Hash;
+  use ClicShopping\OM\HTTP;
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
 
@@ -34,6 +35,32 @@
 // prepare to logout an active administrator if the login page is accessed again
   if (isset($_SESSION['admin'])) {
     $action = 'logoff';
+  }
+
+  $ip = HTTP::getIpAddress();
+
+  if ($ip !== '::1') {
+    $host = @gethostbyaddr($ip);
+    $referer = $_SERVER['HTTP_REFERER'];
+    $details = @file_get_contents("https://ipinfo.io/{$ip}/geo");
+
+    if ($details !== false) {
+      $details = json_decode($details);
+
+      $country = $details->country;
+      $city = $details->city;
+      $region =$details->region;
+      $localisation = $details->loc;
+    } else {
+      $city = '';
+      $country = '';
+      $localisation = '';
+      $new_info_ip = CLICSHOPPING::getDef('report_sender_ip_address', ['IP' => $ip]) . ' <a href="https://whatismyipaddress.com/ip/' . $ip . '">https://whatismyipaddress.com/ip/' . $ip . '</a>';
+    }
+  } else {
+    $city = '';
+    $country = '';
+    $localisation = '';
   }
 
   if (!is_null($action)) {
@@ -100,26 +127,20 @@
 // send an email if someone try to connect on admin panel without authorization
 // get ip and infos
               if (SEND_EMAILS == 'true' && CONFIGURATION_EMAIL_SECURITY == 'true') {
-                $ip = $_SERVER['REMOTE_ADDR'];
-                $host = @gethostbyaddr($ip);
-                $referer = $_SERVER['HTTP_REFERER'];
-
                 if ($ip !== '::1') {
-                  $details = json_decode(file_get_contents("https://ipinfo.io/{$ip}/json"));
-
 // build report
                   $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login', ['IP' => $ip]);
-//              $report .= CLICSHOPPING::getDef('report_sender_ip_address') . ' <a href="https://whatismyipaddress.com/ip/' . $ip . '">https://whatismyipaddress.com/ip/' . $ip . '</a>';
                   $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name', ['HOST' => $host]);
                   $report .= "\n" . CLICSHOPPING::getDef('report_sender_username', ['USERNAME' => $username]);
-                  $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address', ['IP' => $ip]) . ' : https://www.google.com/maps/place/' . $details->loc;
-                  $report .= "\n" .'City : '. $details->city;
-                  $report .= "\n" .'Country : '. $details->country;
-                  $report .= "\n" .'Region : '. $details->region;
+                  $report .= "\n" .'City : '. $city;
+                  $report .= "\n" .'Country : '. $country;
+                  $report .= "\n" .'Region : '. $region;
+                  $report .= "\n\n" . CLICSHOPPING::getDef('report_sender_ip_address', ['IP' => $ip]) . ' : https://www.google.com/maps/place/' . $localisation;
+                  $report .= "\n" . $new_info_ip;
                   $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
                   $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
   // mail report
-                $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
+                  $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
                 }
               }
             }
@@ -419,17 +440,7 @@
       <path data-country-code="ZW" fill="#eeeeee" d="M498.91, 341.09l-1.11, -0.22l-0.92, 0.28l-2.09, -0.44l-1.5, -1.11l-1.89, -0.43l-0.62, -1.4l-0.01, -0.84l-0.3, -0.38l-0.97, -0.25l-2.71, -2.74l-1.92, -3.32l3.83, 0.45l3.73, -3.82l1.08, -0.44l0.26, -0.77l1.25, -0.9l1.41, -0.26l0.5, 0.89l1.99, -0.05l1.72, 1.17l1.11, 0.17l1.05, 0.66l0.01, 2.99l-0.59, 3.76l0.38, 0.86l-0.23, 1.23l-0.39, 0.35l-0.63, 1.81l-2.43, 2.75Z"></path>
     </g>
   </svg>
-<?php
-  $ip = $_SERVER['REMOTE_ADDR'];
 
-  if ($ip !== '::1') {
-    $host = @gethostbyaddr($ip);
-    $details = json_decode(file_get_contents("https://ipinfo.io/{$ip}/json"));
-    $country = $details->country;
-  } else {
-    $country = '';
-  }
-?>
   <script>
     <!--/*--><![CDATA[/*><!--*/
     $('svg path[data-country-code="<?php echo $country ?>"]').attr('fill', '#3BA5C6').attr('fill-opacity', '0.15');
