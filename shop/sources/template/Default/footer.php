@@ -61,7 +61,7 @@
 
       foreach ($files_get_call as $value) {
         if (!empty($value['name'])) {
-          echo $CLICSHOPPING_Hooks->call('Footer', $value['name']);
+          $CLICSHOPPING_Hooks->call('Footer', $value['name']);
         }
       }
     }

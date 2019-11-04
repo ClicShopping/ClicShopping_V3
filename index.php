@@ -112,7 +112,7 @@
 
        foreach ($files_get_call as $value) {
          if (!empty($value['name'])) {
-           echo $CLICSHOPPING_Hooks->call('Header', $value['name']);
+           $CLICSHOPPING_Hooks->call('Header', $value['name']);
          }
        }
      }
@@ -161,7 +161,7 @@ html, body {height: 100%;}
 
       foreach ($files_get_call as $value) {
         if (!empty($value['name'])) {
-          echo $CLICSHOPPING_Hooks->call('Footer', $value['name']);
+          $CLICSHOPPING_Hooks->call('Footer', $value['name']);
         }
       }
     }
