@@ -87,14 +87,15 @@
       }
       
       $field .= '</textarea>';
+
+      $url  = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
       
       $field .= '<script>
-
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
     {
         width : ' . $height . ',
         toolbar : "Full",
-        filebrowserBrowseUrl :"' . CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.html') . '",
+        filebrowserBrowseUrl :"' . $url . '",
     });
             </script>';
 
@@ -119,12 +120,15 @@
       }
 
       $field = '<textarea name="' . HTML::output($name) . '" /></textarea>';
+
+      $url  = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
+
       $field .= '<script>
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
       {
         width : ' . $width . ',
         height : ' . $height . ',
-        filebrowserBrowseUrl : "' . CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.html') . '",
+        filebrowserBrowseUrl : "' . $url . '",
      });
             </script>';
 

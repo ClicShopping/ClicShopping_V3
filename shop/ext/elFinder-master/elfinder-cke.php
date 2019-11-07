@@ -1,3 +1,8 @@
+<?php
+if (!isset($_GET['Admin']) || $_GET['Admin'] !== 'ClicShoppingAdmin') {
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
