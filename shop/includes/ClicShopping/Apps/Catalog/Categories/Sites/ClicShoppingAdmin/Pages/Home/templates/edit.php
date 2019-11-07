@@ -398,8 +398,8 @@
       //***********************************
       echo $CLICSHOPPING_Hooks->output('Categories', 'Page', null, 'display');
     ?>
+      </div>
+    </div>
   </div>
 </div>
-</div>
 </form>
-</div>

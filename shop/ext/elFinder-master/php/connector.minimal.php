@@ -122,7 +122,7 @@ elFinder::$netDrivers['ftp'] = 'FTP';
 // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
 
 $opts = array(
-  'debug' => true,  //see a new menu in filefinder with all informations
+  'debug' => false,  //see a new menu in filefinder with all informations
   'roots' => array(
   array(
      'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
