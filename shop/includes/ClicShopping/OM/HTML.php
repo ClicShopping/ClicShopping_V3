@@ -888,9 +888,9 @@
      * @param $empty The default value
      * @return string
      */
-    public static function stars($rating = 0, $meta = true)
+    public static function stars(int $rating = 0, bool $meta = true, string $style = 'text-warning'): string
     {
-      $stars = str_repeat('<span class="fas fa-star"></span>', $rating);
+      $stars = str_repeat('<i class="fas fa-star ' . $style . '"></i>', $rating);
 
       if ($meta !== false) {
         $stars .= '<meta itemprop="rating" content="' . $rating . '" />';
@@ -907,7 +907,7 @@
      * @param $display :display or not
      * @return string
      */
-    public static function tickerImage($name = null, $css = null, $display = false)
+    public static function tickerImage(?string $name = null, ?string $css = null, bool $display = false): string
     {
       $ticker = '';
 
@@ -951,7 +951,7 @@
      * @return string $its_cleaned  in the meta language
      * clean_html_comments
      */
-    public static function cleanHtmlComments($clean_html)
+    public static function cleanHtmlComments(string $clean_html): string
     {
       $its_cleaned = '';
 
