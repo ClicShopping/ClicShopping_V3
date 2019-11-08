@@ -22,7 +22,7 @@
 <section class="checkout_confirmation" id="checkout_confirmation">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_Confirmation'); ?></h1></div>
+      <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_Confirmation'); ?></h1></div>
       <div class="form-group">
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_confirmation'); ?>
       </div>

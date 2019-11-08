@@ -60,7 +60,7 @@
           if ($listingTotalRow > 0) {
 
             $new_prods_content .= '<div class="col-md-5 float-md-left">';
-            $new_prods_content .= '<div class="page-header ModulesProductsSpecialsHeadingTitle">';
+            $new_prods_content .= '<div class="page-title ModulesProductsSpecialsHeadingTitle">';
             $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') . '</h1>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
@@ -247,9 +247,9 @@
 // products model
               $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-                $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-                $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
                 $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
@@ -274,7 +274,7 @@
 // display products weight
             $products_weight = $CLICSHOPPING_ProductsFunctionTemplate->getProductsWeight($products_id);
 // Reviews
-              $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
+            $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css
@@ -283,7 +283,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);

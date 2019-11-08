@@ -18,7 +18,7 @@
 <section class="cookies" id="cookies">
   <div class="contentContainer">
     <div class="contentText">
-        <div class="page-header cookieUsageHeader"><h1><?php echo CLICSHOPPING::getDef('box_information_heading'); ?></h1></div>
+        <div class="page-title cookieUsageHeader"><h1><?php echo CLICSHOPPING::getDef('box_information_heading'); ?></h1></div>
         <div class="separator"></div>
         <div><?php echo CLICSHOPPING::getDef('box_information'); ?></div>
 

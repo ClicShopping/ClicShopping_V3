@@ -53,7 +53,7 @@
 
         $confirmation .= '<div class="col-md-' . $content_width . '">';
         $confirmation .= '<div class="separator"></div>';
-        $confirmation .= '<div class="page-header moduleCheckoutConfirmationProductsListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_information') . '</h3></div>';
+        $confirmation .= '<div class="page-title moduleCheckoutConfirmationProductsListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_information') . '</h3></div>';
 
         $confirmation .= '<div style="padding-left:15px; padding-right:15px;">';
 

@@ -42,7 +42,7 @@
 <?php
       if (!CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_ProductsCommon->getID()) {
 ?>
-      <div class="page-header">
+      <div class="page-title">
         <h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
       </div>
 <?php
@@ -68,7 +68,7 @@
 <?php
     if (!CLICSHOPPING::getBaseNameIndex() && $CLICSHOPPING_ProductsCommon->getID()) {
 ?>
-      <div class="page-header">
+      <div class="page-title">
         <h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
       </div>
 <?php

@@ -15,7 +15,7 @@
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
     <div class="separator"></div>
-    <div class="page-header"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_heading_title'); ?></h3></div>
+    <div class="page-title"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_heading_title'); ?></h3></div>
     <div class="separator"></div>
     <div class="col-md-12"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_heading_description'); ?></strong></div>
     <div class="separator"></div>

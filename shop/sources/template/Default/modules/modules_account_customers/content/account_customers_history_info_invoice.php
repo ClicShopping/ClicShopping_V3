@@ -15,7 +15,7 @@
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
-  <div class="page-header AccountCustomersHistoryInfo"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_heading_billing_information'); ?></h3></div>
+  <div class="page-title AccountCustomersHistoryInfo"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_heading_billing_information'); ?></h3></div>
   <div class="card">
     <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_number', ['order_id' => $_GET['order_id']]) . ' <span class="badge float-md-right">' . $CLICSHOPPING_Order->info['orders_status'] . '</span>'; ?></strong></div>
     <div class="card-block">

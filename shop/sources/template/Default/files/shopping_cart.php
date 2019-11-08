@@ -20,7 +20,7 @@
 <section class="cart" id="cart">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header">
+      <div class="page-title">
         <h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1>
       </div>
       <div class="d-flex flex-wrap">

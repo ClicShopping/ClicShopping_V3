@@ -16,7 +16,7 @@
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
-  <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_password'); ?></h1></div>
+  <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_password'); ?></h1></div>
   <div class="separator"></div>
 
   <div class="row">

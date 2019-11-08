@@ -173,8 +173,6 @@
               $products_id = $Qproduct->valueInt('products_id');
               $_POST['products_id'] = $products_id;
 
-              $in_stock = $Qproduct->valueInt('in_stock');
-
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
@@ -289,7 +287,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);

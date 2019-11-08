@@ -27,7 +27,7 @@
 <section class="product_reviews_write_success" id="product_reviews_write_success">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_reviews_success'); ?></h1></div>
+      <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_reviews_success'); ?></h1></div>
         <?php echo CLICSHOPPING::getDef('text_product_reviews_write_success', ['store_owner' => STORE_OWNER]); ?>
     </div>
     <div class="separator"></div>

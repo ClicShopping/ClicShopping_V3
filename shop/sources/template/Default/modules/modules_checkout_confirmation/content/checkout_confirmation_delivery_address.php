@@ -13,7 +13,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
   <div class="separator"></div>
-  <div class="page-header moduleCheckoutConfirmationDeliveryAddressPageHeader"><h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_heading_delivery'); ?></h3></div>
+  <div class="page-title moduleCheckoutConfirmationDeliveryAddressPageHeader"><h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_heading_delivery'); ?></h3></div>
 <?php
     if ($_SESSION['sendto'] !== false) {
 ?>

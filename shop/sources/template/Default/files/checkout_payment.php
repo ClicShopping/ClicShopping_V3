@@ -54,7 +54,7 @@
 <?php
     }
 ?>
-      <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_Payment'); ?></h1></div>
+      <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_Payment'); ?></h1></div>
       <div class="form-group">
         <?php echo $CLICSHOPPING_Template->getBlocks('modules_checkout_payment'); ?>
       </div>

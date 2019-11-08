@@ -2,6 +2,6 @@
   <div class="separator"></div>
   <div class="modulesIndexCategoriesName" itemscope itemtype="https://schema.org/ItemList">
      <meta itemprop="name" content="<?php echo $categorie_name; ?>" />
-    <span class="page-header modulesIndexCategoriesName" itemprop="itemListElement"><h1><?php echo $categorie_name; ?></h1></span>
+    <span class="page-title modulesIndexCategoriesName" itemprop="itemListElement"><h1><?php echo $categorie_name; ?></h1></span>
   </div>
 </div>

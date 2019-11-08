@@ -61,7 +61,7 @@
           if ($listingTotalRow > 0) {
 
             $new_prods_content .= '<div class="col-md-5 float-md-left">';
-            $new_prods_content .= '<div class="page-header ModulesProductsNewHeadingTitle">';
+            $new_prods_content .= '<div class="page-title ModulesProductsNewHeadingTitle">';
             $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') . '</h1>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
@@ -73,7 +73,7 @@
             $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
             $column_list = ProductsNewClass::getCountColumnList();

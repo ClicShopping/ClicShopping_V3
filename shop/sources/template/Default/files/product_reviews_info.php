@@ -18,7 +18,7 @@
 <section class="product_reviews_info" id="product_reviews_info">
     <div class="contentContainer">
       <div class="contentText">
-        <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_review_info'); ?></h1></div>
+        <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_review_info'); ?></h1></div>
       </div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_products_reviews'); ?>
     </div>

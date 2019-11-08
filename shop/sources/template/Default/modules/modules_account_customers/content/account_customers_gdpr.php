@@ -16,7 +16,7 @@ use ClicShopping\OM\HTML;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
 
-  <div class="page-header AccountCustomersGdrp"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_gdpr_title'); ?></h3></div>
+  <div class="page-title AccountCustomersGdrp"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_gdpr_title'); ?></h3></div>
 
   <div class="separator"></div>
   <div><?php echo CLICSHOPPING::getDef('module_account_customers_gdpr_account_intro'); ?></div>

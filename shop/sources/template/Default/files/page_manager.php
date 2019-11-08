@@ -24,7 +24,7 @@
 <section class="information" id="information">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header pageManagerHeader">
+      <div class="page-title pageManagerHeader">
         <h1><?php echo $page_title; ?></h1>
       </div>
       <div class="pageManager"><?php echo $page; ?></div>

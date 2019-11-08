@@ -14,7 +14,7 @@
 
 ?>
 <div class="col-md-<?php echo $content_width; ?>" id="AccountSuccess">
-  <div class="page-header modulesCreateAccountSuccess"><h3><?php echo CLICSHOPPING::getDef('module_create_account_success_text_account_created'); ?></h3></div>
+  <div class="page-title modulesCreateAccountSuccess"><h3><?php echo CLICSHOPPING::getDef('module_create_account_success_text_account_created'); ?></h3></div>
   <div class="separator"></div>
   <div class="controls">
     <div class="control-group">

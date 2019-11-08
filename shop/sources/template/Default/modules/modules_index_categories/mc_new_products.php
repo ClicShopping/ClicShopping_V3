@@ -178,12 +178,12 @@
               $new_prods_content .= '<div class="clearfix"></div>';
 
               if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_FRONT_TITLE != 'false') {
-                $new_prods_content .= '<div class="page-header ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), strftime('%B')) . '</h2></div>';
+                $new_prods_content .= '<div class="page-title ModuleIndexCategoriesProductsNewHeading"><h2>' . sprintf(CLICSHOPPING::getDef('module_index_categories_products_heading_title'), strftime('%B')) . '</h2></div>';
               }
 
               $new_prods_content .= '<div class="d-flex flex-wrap ModuleIndexCategoriesboxContainerNewProducts">';
 
-            while ($Qproduct->fetch() ) {
+            while ($Qproduct->fetch()) {
               $products_id = $Qproduct->valueInt('products_id');
               $_POST['products_id'] = $products_id;
 
@@ -268,9 +268,9 @@
 // products model
               $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-                $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-                $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
                 $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
@@ -295,7 +295,7 @@
 // display products weight
             $products_weight = $CLICSHOPPING_ProductsFunctionTemplate->getProductsWeight($products_id);
 // Reviews
-              $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
+            $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css
@@ -304,7 +304,6 @@
 // *************************
 //      Template call
 // **************************
-
               if (is_file($filename)) {
                 ob_start();
                 require($filename);
@@ -320,7 +319,6 @@
             $new_prods_content .= '<!-- New Products End -->' . "\n";
 
             $CLICSHOPPING_Template->addBlock($new_prods_content, $this->group);
-
             }
           }
         }

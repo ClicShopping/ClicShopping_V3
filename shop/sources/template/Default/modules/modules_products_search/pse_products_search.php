@@ -62,7 +62,7 @@
 
           if ($listingTotalRow > 0) {
             $new_prods_content .= '<div class="col-md-5 float-md-left">';
-            $new_prods_content .= '<div class="page-header ModulesProductsSearchHeadingTitle">';
+            $new_prods_content .= '<div class="page-title ModulesProductsSearchHeadingTitle">';
             $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') . '</h1>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';

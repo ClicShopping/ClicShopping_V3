@@ -29,7 +29,7 @@
   <div class="contentContainer">
     <div class="contenttext">
       <div class="col-md-12">
-        <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_title_friends'); ?></h1></div>
+        <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_friends'); ?></h1></div>
         <div class="inputRequirement float-md-right"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></div>
       </div>
       <div class="separator"></div>

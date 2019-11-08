@@ -99,7 +99,7 @@
 
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsRow" itemprop="review" itemscope itemtype="https://schema.org/Review">';
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsTitle">';
-          $products_reviews_content .= '<span class="page-header moduleProductsInfoReviewsTitle"  itemprop="name"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
+          $products_reviews_content .= '<span class="page-title moduleProductsInfoReviewsTitle"  itemprop="name"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
           $products_reviews_content .= '</div>';
           $products_reviews_content .= '<div class="float-md-right">';
           $products_reviews_content .= '';

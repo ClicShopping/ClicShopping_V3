@@ -24,7 +24,7 @@
 <section class="advanced_search" id="advanced_search">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header"><h1><?php echo CLICSHOPPING::getDef('heading_search_criteria'); ?></h1></div>
+      <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_search_criteria'); ?></h1></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_advanced_search'); ?>
       <div class="separator"></div>
         <div class="control-group">

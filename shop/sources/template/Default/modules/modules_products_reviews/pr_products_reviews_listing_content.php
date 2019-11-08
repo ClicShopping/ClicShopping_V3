@@ -53,7 +53,7 @@
         $data .= '<div class="col-md-' . $content_width . '">';
         $data .= '<div class="contentText">';
         $data .= '<div class="separator"></div>';
-        $data .=  '<div class="page-header"><h3>' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_comment') . '</h3></div>';
+        $data .=  '<div class="page-title"><h3>' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_comment') . '</h3></div>';
 
         if ($CLICSHOPPING_Reviews->getPageSetTotalRows() > 0) {
           if ((PREV_NEXT_BAR_LOCATION == '1') || (PREV_NEXT_BAR_LOCATION == '3')) {

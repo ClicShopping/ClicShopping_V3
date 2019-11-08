@@ -184,6 +184,9 @@ blockquote {
   font-size: 1rem;
 }
 
+.card {
+}
+
 .card-block {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
@@ -254,12 +257,16 @@ blockquote {
   color: #000;
 }
 
+.page-title {
+}
 
 .page-header {
   color: #000;
   margin: 0.625rem;
 }
 
+.page-footer {
+}
 
 .thumbnail:hover  {
  background-color:#eee;

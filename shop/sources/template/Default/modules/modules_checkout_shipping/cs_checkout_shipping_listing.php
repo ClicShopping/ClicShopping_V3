@@ -56,7 +56,7 @@
 
         if ($CLICSHOPPING_Shipping->geCountShippingModules() > 0) {
           $data = '<div class="separator"></div>';
-          $data .= '<span class="page-header moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
+          $data .= '<span class="page-title moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
 
 
           if (count($quotes) > 1 && count($quotes[0]) > 1) {

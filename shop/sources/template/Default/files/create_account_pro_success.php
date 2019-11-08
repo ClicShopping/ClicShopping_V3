@@ -14,7 +14,7 @@
 <section class="create_account_pro_success" id="create_account_pro_success">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header">
+      <div class="page-title">
         <h1>
 <?php
   if (MEMBER == 'false') {

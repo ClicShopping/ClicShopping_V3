@@ -17,7 +17,7 @@
 <section class="login" id="login">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header loginText"><h1><?php echo CLICSHOPPING::getDef('heading_title_login'); ?></h1></div>
+      <div class="page-title loginText"><h1><?php echo CLICSHOPPING::getDef('heading_title_login'); ?></h1></div>
       <div class="separator"></div>
       <div class="col-md-12 mainLogin"><?php echo CLICSHOPPING::getDef('text_new_customer_introduction', ['store_name' => HTML::outputProtected(STORE_NAME)]); ?></div>
       <div class="separator"></div>

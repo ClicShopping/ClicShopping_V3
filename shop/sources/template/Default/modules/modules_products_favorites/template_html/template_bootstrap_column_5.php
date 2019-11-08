@@ -12,7 +12,7 @@
   use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?>">
-  <div style="padding-top:1rem;"></div>
+  <div class="separator"></div>
   <div class="card-deck-wrapper" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Product">
     <div class="card-deck">
       <div class="card">

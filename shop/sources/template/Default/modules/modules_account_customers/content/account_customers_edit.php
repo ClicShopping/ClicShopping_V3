@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-warning text-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
-        <div class="page-header AccountCustomersEdit"><h1><?php echo CLICSHOPPING::getDef('module_account_customers_edit_title_account'); ?></h1></div>
+        <div class="page-title AccountCustomersEdit"><h1><?php echo CLICSHOPPING::getDef('module_account_customers_edit_title_account'); ?></h1></div>
       </div>
     </div>
 <?php

@@ -20,7 +20,7 @@
 <section class="password_forgotten" id="password_forgotten">
   <div class="contentContainer">
     <div class="contentText">
-      <div class="page-header modulesAccountCustomersPasswordForgottenPageHeader"><h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1></div>
+      <div class="page-title modulesAccountCustomersPasswordForgottenPageHeader"><h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1></div>
 
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_login'); ?>
     </div>

@@ -53,7 +53,7 @@
         $payment_process = '<!-- start cp_checkout_payment_listing -->'. "\n";
 
         $data = '<div class="separator"></div>';
-        $data .= '<span class="page-header moduleCheckoutPaymentListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_payment_listing_table_heading_payment_method') . '</h3></span>';
+        $data .= '<span class="page-title moduleCheckoutPaymentListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_payment_listing_table_heading_payment_method') . '</h3></span>';
         $data .= '<div class="separator"></div>';
 
         if (count($selection) > 1) {
