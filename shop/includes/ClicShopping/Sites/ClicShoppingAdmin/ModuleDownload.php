@@ -37,11 +37,13 @@
       $directories = array_diff(scandir($template_directory), $weeds);
       $filename_array = [];
 
-      foreach ($directories as $value) {
-        if (is_dir($template_directory . $value)) {
-          $filename_array[] = ['id' => $value,
-            'text' => $value
-          ];
+      if (is_array($directories)) {
+        foreach ($directories as $value) {
+          if (is_dir($template_directory . $value)) {
+            $filename_array[] = ['id' => $value,
+              'text' => $value
+            ];
+          }
         }
       }
 
@@ -60,12 +62,9 @@
      */
     public static function smartCopy($source, $dest)
     {
-
       if (FileSystem::isWritable($dest, true)) {
         if (!is_dir($dest)) {
-          if (!mkdir($dest, 0777, true) && !is_dir($dest)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $dest));
-          }
+          @mkdir($dest, 0777, true);
         }
       }
 
@@ -76,11 +75,8 @@
         ) as $item
       ) {
         if ($item->isDir()) {
-          if (!mkdir($concurrentDirectory = $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName()) && !is_dir($concurrentDirectory)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-          }
+          @mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
         } else {
-
           if ($item != $source . '/README.md' && $item != $source . '/LICENSE' && $item != 'ModuleInfosJson') {
              copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
           }
