@@ -69,12 +69,6 @@
        
         $output = fread($fh, $count);
         fclose($fh);
-      } elseif ( function_exists('openssl_random_pseudo_bytes') ) {
-        $output = openssl_random_pseudo_bytes($count, $orpb_secure);
-
-        if ( $orpb_secure !== true ) {
-          $output = '';
-        }
       }
 
       if (strlen($output) < $count) {

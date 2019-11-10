@@ -19,7 +19,6 @@
 
     public function __construct()
     {
-
       static::$root = CLICSHOPPING::getConfig('dir_root', 'Shop');
       static::$composerJson = static::$root . 'composer.json';
 
@@ -152,7 +151,7 @@
      * @param null $library
      * @return string
      */
-    public function update($library = null)
+    public static function update($library = null)
     {
       if (self::checkExecute() === true) {
         if (is_null($library)) {
