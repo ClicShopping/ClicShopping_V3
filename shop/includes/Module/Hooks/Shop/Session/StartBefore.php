@@ -25,15 +25,19 @@
         }
 
         if (!empty($user_agent)) {
-          foreach (file(CLICSHOPPING::getConfig('dir_root') . 'ClicShopping/Sites' . CLICSHOPPING::getSite() . '/Assets/spiders.txt') as $spider) {
-            if ((substr($spider, strlen($spider) - 1, 1) == ' ') || (substr($spider, strlen($spider) - 1, 1) == "\n")) {
-              $spider = substr($spider, 0, strlen($spider) - 1);
-            }
+          $file_array = file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');
 
-            if (!empty($spider)) {
-              if (strpos($user_agent, $spider) !== false) {
-                $parameters['can_start'] = false;
-                break;
+          if (is_array($file_array)) {
+            foreach ($file_array as $spider) {
+              if ((substr($spider, strlen($spider) - 1, 1) == ' ') || (substr($spider, strlen($spider) - 1, 1) == "\n")) {
+                $spider = substr($spider, 0, strlen($spider) - 1);
+              }
+
+              if (!empty($spider)) {
+                if (strpos($user_agent, $spider) !== false) {
+                  $parameters['can_start'] = false;
+                  break;
+                }
               }
             }
           }

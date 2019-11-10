@@ -53,13 +53,17 @@
             $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
             if (!empty($user_agent)) {
-              foreach (file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt') as $spider) {
-                if (!empty($spider)) {
-                  if (strpos($user_agent, $spider) !== false) {
-                    $wo_full_name = $spider;
-                    self::$spider_flag = true;
+              $file_array = file(CLICSHOPPING::BASE_DIR . 'Sites/' . CLICSHOPPING::getSite() . '/Assets/spiders.txt');
 
-                    break;
+              if (is_array($file_array)) {
+                foreach ($file_array as $spider) {
+                  if (!empty($spider)) {
+                    if (strpos($user_agent, $spider) !== false) {
+                      $wo_full_name = $spider;
+                      self::$spider_flag = true;
+
+                      break;
+                    }
                   }
                 }
               }

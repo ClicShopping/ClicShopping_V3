@@ -366,6 +366,7 @@ searchprocess
 seeker
 seek.
 seekbot
+SemrushBot
 senrigan
 seochat::bot
 seventwentyfour
