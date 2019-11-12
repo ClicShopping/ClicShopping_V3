@@ -404,11 +404,9 @@ span.infoHeader {
 }
 
 .navbar {
-    display: block;
     min-height: 0.3125rem;
     padding-left: 0.625rem;
     font-size: x-small;
-    padding: .0rem 0rem;
 }
 
 span.pageManager A {
