@@ -61,7 +61,6 @@
 
 </head>
 <body onload="SetFocus();">
-
 <div class="container-fluid">
   <div class="col-md-12">
     <noscript>
@@ -71,11 +70,11 @@
     </noscript>
   </div>
 
-  <div class="wrapper" id="wrapper"></div>
-  <div id="content">
-    <div class="headerFond">
-      <span class="headerLogo"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/logo_clicshopping.png', 'ClicShopping', '166', '55'); ?></span>
-      <span class="infoHeader">
+  <div class="wrapper" id="wrapper">
+    <div class="content" id="content">
+      <div class="headerFond">
+        <span class="headerLogo"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/logo_clicshopping.png', 'ClicShopping', '166', '55'); ?></span>
+        <span class="infoHeader">
 <?php
   if (isset($_SESSION['admin'])) {
     if ($_SESSION['admin']['access'] == 1 && count(glob(ErrorHandler::getDirectory() . 'errors-*.txt', GLOB_NOSORT)) > 0) {
