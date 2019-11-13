@@ -72,6 +72,31 @@ abstract class HttpClientTestCase extends TestCase
         $response->getContent();
     }
 
+    public function testHeadRequest()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+        $response = $client->request('HEAD', 'http://localhost:8057/head', [
+            'headers' => ['Foo' => 'baR'],
+            'user_data' => $data = new \stdClass(),
+            'buffer' => false,
+        ]);
+
+        $this->assertSame([], $response->getInfo('response_headers'));
+        $this->assertSame(200, $response->getStatusCode());
+
+        $info = $response->getInfo();
+        $this->assertSame('HTTP/1.1 200 OK', $info['response_headers'][0]);
+        $this->assertSame('Host: localhost:8057', $info['response_headers'][1]);
+
+        $headers = $response->getHeaders();
+
+        $this->assertSame('localhost:8057', $headers['host'][0]);
+        $this->assertSame(['application/json'], $headers['content-type']);
+        $this->assertTrue(0 < $headers['content-length'][0]);
+
+        $this->assertSame('', $response->getContent());
+    }
+
     public function testNonBufferedGetRequest()
     {
         $client = $this->getHttpClient(__FUNCTION__);
@@ -84,6 +109,70 @@ abstract class HttpClientTestCase extends TestCase
         $this->assertSame('baR', $body['HTTP_FOO']);
 
         $this->expectException(TransportExceptionInterface::class);
+        $response->getContent();
+    }
+
+    public function testBufferSink()
+    {
+        $sink = fopen('php://temp', 'w+');
+        $client = $this->getHttpClient(__FUNCTION__);
+        $response = $client->request('GET', 'http://localhost:8057', [
+            'buffer' => $sink,
+            'headers' => ['Foo' => 'baR'],
+        ]);
+
+        $body = $response->toArray();
+        $this->assertSame('baR', $body['HTTP_FOO']);
+
+        rewind($sink);
+        $sink = stream_get_contents($sink);
+        $this->assertSame($sink, $response->getContent());
+    }
+
+    public function testConditionalBuffering()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+        $response = $client->request('GET', 'http://localhost:8057');
+        $firstContent = $response->getContent();
+        $secondContent = $response->getContent();
+
+        $this->assertSame($firstContent, $secondContent);
+
+        $response = $client->request('GET', 'http://localhost:8057', ['buffer' => function () { return false; }]);
+        $response->getContent();
+
+        $this->expectException(TransportExceptionInterface::class);
+        $response->getContent();
+    }
+
+    public function testReentrantBufferCallback()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+
+        $response = $client->request('GET', 'http://localhost:8057', ['buffer' => function () use (&$response) {
+            $response->cancel();
+
+            return true;
+        }]);
+
+        $this->assertSame(200, $response->getStatusCode());
+
+        $this->expectException(TransportExceptionInterface::class);
+        $response->getContent();
+    }
+
+    public function testThrowingBufferCallback()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+
+        $response = $client->request('GET', 'http://localhost:8057', ['buffer' => function () {
+            throw new \Exception('Boo');
+        }]);
+
+        $this->assertSame(200, $response->getStatusCode());
+
+        $this->expectException(TransportExceptionInterface::class);
+        $this->expectExceptionMessage('Boo');
         $response->getContent();
     }
 
@@ -152,6 +241,16 @@ abstract class HttpClientTestCase extends TestCase
         $this->assertSame(404, $response->getStatusCode());
         $this->assertSame(['application/json'], $response->getHeaders(false)['content-type']);
         $this->assertNotEmpty($response->getContent(false));
+
+        $response = $client->request('GET', 'http://localhost:8057/404');
+
+        try {
+            foreach ($client->stream($response) as $chunk) {
+                $this->assertTrue($chunk->isFirst());
+            }
+            $this->fail(ClientExceptionInterface::class.' expected');
+        } catch (ClientExceptionInterface $e) {
+        }
     }
 
     public function testIgnoreErrors()
@@ -221,6 +320,18 @@ abstract class HttpClientTestCase extends TestCase
         ]);
 
         $response->getStatusCode();
+    }
+
+    public function test304()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+        $response = $client->request('GET', 'http://localhost:8057/304', [
+            'headers' => ['If-Match' => '"abc"'],
+            'buffer' => false,
+        ]);
+
+        $this->assertSame(304, $response->getStatusCode());
+        $this->assertSame('', $response->getContent(false));
     }
 
     public function testRedirects()
@@ -505,6 +616,17 @@ abstract class HttpClientTestCase extends TestCase
         $response->getHeaders();
     }
 
+    public function testInfoOnCanceledResponse()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+
+        $response = $client->request('GET', 'http://localhost:8057/timeout-header');
+
+        $this->assertFalse($response->getInfo('canceled'));
+        $response->cancel();
+        $this->assertTrue($response->getInfo('canceled'));
+    }
+
     public function testCancelInStream()
     {
         $client = $this->getHttpClient(__FUNCTION__);
@@ -587,9 +709,9 @@ abstract class HttpClientTestCase extends TestCase
     {
         $client = $this->getHttpClient(__FUNCTION__);
         $response = $client->request('GET', 'http://localhost:8057/timeout-header', [
-            'timeout' => 0.5,
+            'timeout' => 0.9,
         ]);
-        usleep(510000);
+        sleep(1);
         $this->assertSame(200, $response->getStatusCode());
     }
 
@@ -659,7 +781,7 @@ abstract class HttpClientTestCase extends TestCase
         $duration = microtime(true) - $start;
 
         $this->assertGreaterThan(1, $duration);
-        $this->assertLessThan(3, $duration);
+        $this->assertLessThan(4, $duration);
     }
 
     public function testProxy()
@@ -752,6 +874,27 @@ abstract class HttpClientTestCase extends TestCase
 
         $this->assertSame('Here the body', $response->getContent());
         $this->assertSame(200, $response->getStatusCode());
+    }
+
+    public function testInformationalResponseStream()
+    {
+        $client = $this->getHttpClient(__FUNCTION__);
+        $response = $client->request('GET', 'http://localhost:8057/103');
+
+        $chunks = [];
+        foreach ($client->stream($response) as $chunk) {
+            $chunks[] = $chunk;
+        }
+
+        $this->assertSame(103, $chunks[0]->getInformationalStatus()[0]);
+        $this->assertSame(['</style.css>; rel=preload; as=style', '</script.js>; rel=preload; as=script'], $chunks[0]->getInformationalStatus()[1]['link']);
+        $this->assertTrue($chunks[1]->isFirst());
+        $this->assertSame('Here the body', $chunks[2]->getContent());
+        $this->assertTrue($chunks[3]->isLast());
+        $this->assertNull($chunks[3]->getInformationalStatus());
+
+        $this->assertSame(['date', 'content-length'], array_keys($response->getHeaders()));
+        $this->assertContains('Link: </style.css>; rel=preload; as=style', $response->getInfo('response_headers'));
     }
 
     /**

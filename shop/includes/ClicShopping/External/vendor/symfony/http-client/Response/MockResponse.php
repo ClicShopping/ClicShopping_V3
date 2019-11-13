@@ -45,7 +45,7 @@ class MockResponse implements ResponseInterface
     public function __construct($body = '', array $info = [])
     {
         $this->body = is_iterable($body) ? $body : (string) $body;
-        $this->info = $info + $this->info;
+        $this->info = $info + ['http_code' => 200] + $this->info;
 
         if (!isset($info['response_headers'])) {
             return;
@@ -59,7 +59,8 @@ class MockResponse implements ResponseInterface
             }
         }
 
-        $this->info['response_headers'] = $responseHeaders;
+        $this->info['response_headers'] = [];
+        self::addResponseHeaders($responseHeaders, $this->info, $this->headers);
     }
 
     /**
@@ -175,7 +176,7 @@ class MockResponse implements ResponseInterface
                 try {
                     $offset = 0;
                     $chunk[1]->getStatusCode();
-                    $response->headers = $chunk[1]->getHeaders(false);
+                    $chunk[1]->getHeaders(false);
                     self::readResponse($response, $chunk[0], $chunk[1], $offset);
                     $multi->handlesActivity[$id][] = new FirstChunk();
                 } catch (\Throwable $e) {
@@ -256,7 +257,7 @@ class MockResponse implements ResponseInterface
         $info = $mock->getInfo() ?: [];
         $response->info['http_code'] = ($info['http_code'] ?? 0) ?: $mock->getStatusCode() ?: 200;
         $response->addResponseHeaders($info['response_headers'] ?? [], $response->info, $response->headers);
-        $dlSize = isset($response->headers['content-encoding']) ? 0 : (int) ($response->headers['content-length'][0] ?? 0);
+        $dlSize = isset($response->headers['content-encoding']) || 'HEAD' === $response->info['http_method'] || \in_array($response->info['http_code'], [204, 304], true) ? 0 : (int) ($response->headers['content-length'][0] ?? 0);
 
         $response->info = [
             'start_time' => $response->info['start_time'],
@@ -278,7 +279,7 @@ class MockResponse implements ResponseInterface
             foreach ($body as $chunk) {
                 if ('' === $chunk = (string) $chunk) {
                     // simulate an idle timeout
-                    $response->body[] = new ErrorChunk($offset);
+                    $response->body[] = new ErrorChunk($offset, sprintf('Idle timeout reached for "%s".', $response->info['url']));
                 } else {
                     $response->body[] = $chunk;
                     $offset += \strlen($chunk);

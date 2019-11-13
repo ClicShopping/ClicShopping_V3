@@ -65,7 +65,11 @@ final class NativeResponse implements ResponseInterface
             }
 
             if (null === $response->remaining) {
-                self::stream([$response])->current();
+                foreach (self::stream([$response]) as $chunk) {
+                    if ($chunk->isFirst()) {
+                        break;
+                    }
+                }
             }
         };
     }
@@ -76,8 +80,6 @@ final class NativeResponse implements ResponseInterface
     public function getInfo(string $type = null)
     {
         if (!$info = $this->finalInfo) {
-            self::perform($this->multi);
-
             $info = $this->info;
             $info['url'] = implode('', $info['url']);
             unset($info['size_body'], $info['request_header']);
@@ -170,8 +172,16 @@ final class NativeResponse implements ResponseInterface
             $this->inflate = null;
         }
 
-        $this->multi->openHandles[$this->id] = [$h, $this->buffer, $this->inflate, $this->content, $this->onProgress, &$this->remaining, &$this->info];
         $this->multi->handlesActivity[$this->id] = [new FirstChunk()];
+
+        if ('HEAD' === $context['http']['method'] || \in_array($this->info['http_code'], [204, 304], true)) {
+            $this->multi->handlesActivity[$this->id][] = null;
+            $this->multi->handlesActivity[$this->id][] = null;
+
+            return;
+        }
+
+        $this->multi->openHandles[$this->id] = [$h, $this->buffer, $this->inflate, $this->content, $this->onProgress, &$this->remaining, &$this->info];
     }
 
     /**

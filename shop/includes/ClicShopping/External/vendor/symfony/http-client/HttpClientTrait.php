@@ -56,6 +56,10 @@ trait HttpClientTrait
             }
         }
 
+        if (!isset($options['normalized_headers']['accept'])) {
+            $options['normalized_headers']['accept'] = [$options['headers'][] = 'Accept: */*'];
+        }
+
         if (isset($options['body'])) {
             $options['body'] = self::normalizeBody($options['body']);
         }
@@ -192,10 +196,21 @@ trait HttpClientTrait
         $normalizedHeaders = [];
 
         foreach ($headers as $name => $values) {
+            if (\is_object($values) && method_exists($values, '__toString')) {
+                $values = (string) $values;
+            }
+
             if (\is_int($name)) {
+                if (!\is_string($values)) {
+                    throw new InvalidArgumentException(sprintf('Invalid value for header "%s": expected string, %s given.', $name, \gettype($values)));
+                }
                 [$name, $values] = explode(':', $values, 2);
                 $values = [ltrim($values)];
             } elseif (!is_iterable($values)) {
+                if (\is_object($values)) {
+                    throw new InvalidArgumentException(sprintf('Invalid value for header "%s": expected string, %s given.', $name, \get_class($values)));
+                }
+
                 $values = (array) $values;
             }
 

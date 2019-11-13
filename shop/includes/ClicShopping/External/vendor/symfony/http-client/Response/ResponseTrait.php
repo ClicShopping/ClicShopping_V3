@@ -104,7 +104,6 @@ trait ResponseTrait
 
         if (null === $this->content) {
             $content = null;
-            $chunk = null;
 
             foreach (self::stream([$this]) as $chunk) {
                 if (!$chunk->isLast()) {
@@ -112,11 +111,15 @@ trait ResponseTrait
                 }
             }
 
-            if (null === $content) {
-                throw new TransportException('Cannot get the content of the response twice: the request was issued with option "buffer" set to false.');
+            if (null !== $content) {
+                return $content;
             }
 
-            return $content;
+            if ('HEAD' === $this->info['http_method'] || \in_array($this->info['http_code'], [204, 304], true)) {
+                return '';
+            }
+
+            throw new TransportException('Cannot get the content of the response twice: the request was issued with option "buffer" set to false.');
         }
 
         foreach (self::stream([$this]) as $chunk) {
@@ -286,7 +289,7 @@ trait ResponseTrait
                         unset($responses[$j]);
                         continue;
                     } elseif ($isTimeout) {
-                        $multi->handlesActivity[$j] = [new ErrorChunk($response->offset)];
+                        $multi->handlesActivity[$j] = [new ErrorChunk($response->offset, sprintf('Idle timeout reached for "%s".', $response->getInfo('url')))];
                     } else {
                         continue;
                     }
@@ -317,9 +320,20 @@ trait ResponseTrait
                         } elseif ($chunk instanceof ErrorChunk) {
                             unset($responses[$j]);
                             $isTimeout = true;
-                        } elseif ($chunk instanceof FirstChunk && $response->logger) {
-                            $info = $response->getInfo();
-                            $response->logger->info(sprintf('Response: "%s %s"', $info['http_code'], $info['url']));
+                        } elseif ($chunk instanceof FirstChunk) {
+                            if ($response->logger) {
+                                $info = $response->getInfo();
+                                $response->logger->info(sprintf('Response: "%s %s"', $info['http_code'], $info['url']));
+                            }
+
+                            yield $response => $chunk;
+
+                            if ($response->initializer && null === $response->info['error']) {
+                                // Ensure the HTTP status code is always checked
+                                $response->getHeaders(true);
+                            }
+
+                            continue;
                         }
 
                         yield $response => $chunk;
@@ -327,10 +341,7 @@ trait ResponseTrait
 
                     unset($multi->handlesActivity[$j]);
 
-                    if ($chunk instanceof FirstChunk && null === $response->initializer && null === $response->info['error']) {
-                        // Ensure the HTTP status code is always checked
-                        $response->getHeaders(true);
-                    } elseif ($chunk instanceof ErrorChunk && !$chunk->didThrow()) {
+                    if ($chunk instanceof ErrorChunk && !$chunk->didThrow()) {
                         // Ensure transport exceptions are always thrown
                         $chunk->getContent();
                     }
