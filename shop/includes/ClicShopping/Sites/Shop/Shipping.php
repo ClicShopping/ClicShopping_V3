@@ -80,7 +80,7 @@
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
       if (is_array($this->modules)) {
-        $shipping_weight = $CLICSHOPPING_ShoppingCart->show_weight();
+        $shipping_weight = $CLICSHOPPING_ShoppingCart->getWeight();
 
         if (SHIPPING_BOX_WEIGHT >= ($shipping_weight * (SHIPPING_BOX_PADDING / 100))) {
           $shipping_weight = $shipping_weight + SHIPPING_BOX_WEIGHT;

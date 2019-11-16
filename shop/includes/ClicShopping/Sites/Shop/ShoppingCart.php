@@ -71,8 +71,10 @@
       $this->weight =& $_SESSION['ClicShoppingCart']['total_weight'];
     }
 
-
-    public function shoppingCart()
+    /**
+     * Remove All Items
+     */
+    public function removeAll()
     {
       $this->reset();
     }
@@ -82,7 +84,7 @@
      *  string $qty
     */
 
-    private function getRestoreQty(int $qty, $products_id) :int
+    private function getRestoreQty(int $qty, string $products_id) :int
     {
       $qty = $this->getCheckGoodQty($products_id, $qty);
 
@@ -99,17 +101,15 @@
 
 // insert current cart contents in database
       if (is_array($this->contents)) {
-
-        foreach (array_keys($this->contents) as $products_id) {
-
+        foreach ($this->contents as $item_id => $data) {
 // B2B / B2C Choose the good qty
-          $qty = $this->contents[$products_id]['qty'];
-          $this->productsId = $products_id;
-          $qty1 = $this->getRestoreQty($qty, $products_id);
+          $qty = $data['qty'];
+          $this->productsId = $item_id;
+          $qty1 = $this->getRestoreQty($qty, $item_id);
 
 
           if ($qty < $qty1) $qty = $this->getRestoreQty();
-          if ($qty > $qty1) $qty = $this->contents[$products_id]['qty'];
+          if ($qty > $qty1) $qty = $data['qty'];
 
           $Qcheck = $this->db->prepare('select products_id
                                          from :table_customers_basket
@@ -118,21 +118,21 @@
                                       );
 
           $Qcheck->bindInt(':customers_id', $this->customer->getID());
-          $Qcheck->bindValue(':products_id', $products_id);
+          $Qcheck->bindValue(':products_id', $item_id);
           $Qcheck->execute();
 
           if ($Qcheck->fetch() === false) {
             $this->db->save('customers_basket', ['customers_id' => (int)$this->customer->getID(),
-                'products_id' => $products_id,
+                'products_id' => $item_id,
                 'customers_basket_quantity' => (int)$qty,
                 'customers_basket_date_added' => date('Ymd')
               ]
             );
 
-            if (isset($this->contents[$products_id]['attributes'])) {
-              foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
+            if (isset($data['attributes'])) {
+              foreach ($data['attributes'] as $option => $value) {
                 $this->db->save('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID(),
-                    'products_id' => $products_id,
+                    'products_id' => $item_id,
                     'products_options_id' => (int)$option,
                     'products_options_value_id' => (int)$value
                   ]
@@ -142,7 +142,7 @@
           } else {
             $this->db->save('customers_basket', ['customers_basket_quantity' => (int)$qty],
               ['customers_id' => (int)$this->customer->getID(),
-                'products_id' => $products_id
+                'products_id' => $item_id
               ]
             );
           }
@@ -182,7 +182,7 @@
         }
       }
 
-      $this->cleanup();
+      $this->cleanUp();
 
 // assign a temporary unique ID to the order contents to prevent hack attempts during the checkout procedure
       $this->cartID = $this->generate_cart_id();
@@ -220,7 +220,7 @@
      * @param string $attributes
      * @param bool $notify
      */
-    public function add($products_id, $qty = '1', $attributes = '', $notify = true)
+    public function add(string $products_id, int $qty = 1, $attributes = '', bool $notify = true)
     {
       $products_id_string = $this->getUprid($products_id, $attributes);
       $products_id = $this->getPrid($products_id_string);
@@ -303,7 +303,7 @@
             }
           }
 
-          $this->cleanup();
+          $this->cleanUp();
 
 // assign a temporary unique ID to the order contents to prevent hack attempts during the checkout procedure
           $this->cartID = $this->generate_cart_id();
@@ -312,7 +312,7 @@
     }
 
 
-    public function addCart($products_id, $qty = '1', $attributes = '', $notify = true)
+    public function addCart(string $products_id,int $qty = 1, $attributes = '', bool $notify = true)
     {
       $products_id_string = $this->getUprid($products_id, $attributes);
       $products_id = $this->getPrid($products_id_string);
@@ -364,7 +364,6 @@
             $this->updateQuantity($products_id_string, $qty, $attributes);
           } else {
             $this->contents[$products_id_string] = ['qty' => (int)$qty];
-
 // insert into database
             if ($this->customer->isLoggedOn()) {
               $this->db->save('customers_basket', ['customers_id' => (int)$this->customer->getID(),
@@ -391,7 +390,7 @@
             }
           }
 
-          $this->cleanup();
+          $this->cleanUp();
 
 // assign a temporary unique ID to the order contents to prevent hack attempts during the checkout procedure
           $this->cartID = $this->generate_cart_id();
@@ -408,7 +407,7 @@
      * @param string $quantity int
      * @param string $attributes string
      */
-    public function updateQuantity($products_id, $quantity = '', $attributes = '')
+    public function updateQuantity(string $products_id, int $quantity, $attributes = '')
     {
       $products_id_string = $this->getUprid($products_id, $attributes);
       $products_id = $this->getPrid($products_id_string);
@@ -468,23 +467,21 @@
     }
 
     /**
-     * items cleanup
+     * items cleanUp
      */
-    public function cleanup()
+    private function cleanUp()
     {
-      foreach (array_keys($this->contents) as $key) {
-        if ($this->contents[$key]['qty'] < 1) {
-          unset($this->contents[$key]);
+      foreach ($this->contents as $item_id => $data) {
+        if ( $data['qty'] < 1 ) {
+          unset($this->contents[$item_id]);
 // remove from database
           if ($this->customer->isLoggedOn()) {
-            $this->db->delete('customers_basket', ['customers_id' => $this->customer->getID(),
-                'products_id' => $key
-              ]
-            );
-            $this->db->delete('customers_basket_attributes', ['customers_id' => $this->customer->getID(),
-                'products_id' => $key
-              ]
-            );
+            $array = ['customers_id' => $this->customer->getID(),
+              'products_id' => $item_id
+            ];
+
+            $this->db->delete('customers_basket', $array);
+            $this->db->delete('customers_basket_attributes', $array);
           }
         }
       }
@@ -499,8 +496,8 @@
       $total_items = 0;
 
       if (is_array($this->contents)) {
-        foreach (array_keys($this->contents) as $products_id) {
-          $total_items += $this->getQuantity($products_id);
+        foreach ($this->contents as $item_id => $data) {
+          $total_items += $this->getQuantity($item_id);
         }
       }
 
@@ -512,7 +509,7 @@
      * @param : int $products_id, id of the product
      * @return : int qty
      */
-    public function getQuantity($products_id)
+    public function getQuantity(string $products_id) :int
     {
       if (isset($this->contents[$products_id])) {
         return $this->contents[$products_id]['qty'];
@@ -522,7 +519,7 @@
     }
 
 
-    public function inCart($products_id) :bool
+    public function inCart(string $products_id) :bool
     {
       if (isset($this->contents[$products_id])) {
         return true;
@@ -535,7 +532,7 @@
      * Remove item
      * @param $products_id
      */
-    public function remove($products_id)
+    public function remove(string $products_id)
     {
       unset($this->contents[$products_id]);
 
@@ -560,25 +557,25 @@
     }
 
     /**
-     * Remove All Items
+     * @return false|string
      */
-    public function remove_all()
-    {
-      $this->reset();
-    }
-
-    public function get_product_id_list()
+    public function getProductIdList()
     {
       $product_id_list = '';
+
       if (is_array($this->contents)) {
-        foreach (array_keys($this->contents) as $products_id) {
-          $product_id_list .= ', ' . $products_id;
+        foreach ($this->contents as $item_id => $data) {
+          $product_id_list .= ', ' . $item_id;
         }
       }
 
       return substr($product_id_list, 2);
     }
 
+    /**
+     *
+     * @return int
+     */
     public function calculate()
     {
       $CLICSHOPPING_Weight = Registry::get('Weight');
@@ -587,8 +584,8 @@
       $this->weight = 0;
       if (!is_array($this->contents)) return 0;
 
-      foreach (array_keys($this->contents) as $products_id) {
-        $qty = $this->contents[$products_id]['qty'];
+      foreach ($this->contents as $item_id => $data) {
+        $qty = $data['qty'];
 
 // Requete SQL pour avoir le prix du produit
         if ($this->customer->getCustomersGroupID() != 0) {
@@ -614,7 +611,7 @@
                                          ');
 
           $Qproduct->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
-          $Qproduct->bindInt(':products_id', $products_id);
+          $Qproduct->bindInt(':products_id', $item_id);
           $Qproduct->execute();
 
         } else {
@@ -635,7 +632,7 @@
                                           and c.status = 1
                                          ');
 
-          $Qproduct->bindInt(':products_id', $products_id);
+          $Qproduct->bindInt(':products_id', $item_id);
           $Qproduct->execute();
         }
 
@@ -679,13 +676,13 @@
             $products_price = $Qspecial->valueDecimal('specials_new_products_price');
           }
 
-          $min_quantity = $this->productsCommon->getProductsMinimumQuantity($products_id);
+          $min_quantity = $this->productsCommon->getProductsMinimumQuantity($item_id);
 
 // Total calculation
           if ($qty < (int)$min_quantity) $qty = (int)$min_quantity;
 
 // product discount on quantity
-          $new_price_with_discount_quantity = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($products_id, $qty, $products_price);
+          $new_price_with_discount_quantity = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($item_id, $qty, $products_price);
 
           if ($new_price_with_discount_quantity > 0) {
             $products_price = $new_price_with_discount_quantity;
@@ -697,9 +694,8 @@
         }
 
 // attributes price
-        if (isset($this->contents[$products_id]['attributes'])) {
-          foreach ($this->contents[$products_id]['attributes'] as $option => $value) {
-
+        if (isset($data['attributes'])) {
+          foreach ($data['attributes'] as $option => $value) {
             $Qattributes = $this->db->prepare('select options_values_price,
                                                       price_prefix
                                                 from :table_products_attributes
@@ -730,14 +726,16 @@
       }
     }
 
-
+    /**
+     * @return array|null
+     */
     public function get_products() :?array
     {
       if (!is_array($this->contents)) return false;
 
       $products_array = [];
 
-      foreach (array_keys($this->contents) as $products_id) {
+      foreach ($this->contents as $item_id => $data) {
 // Requete SQL pour avoir le prix du produit
         if ($this->customer->getCustomersGroupID() != 0) {
           $Qproducts = $this->db->prepare('select p.products_id,
@@ -769,13 +767,11 @@
                                           and c.status = 1
                                     ');
 
-          $Qproducts->bindInt(':products_id', $products_id);
+          $Qproducts->bindInt(':products_id', $item_id);
           $Qproducts->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
           $Qproducts->bindInt(':language_id', $this->lang->getId());
           $Qproducts->execute();
-
         } else {
-
           $Qproducts = $this->db->prepare('select p.products_id,
                                                  pd.products_name,
                                                  p.products_model,
@@ -799,7 +795,7 @@
                                           and p2c.categories_id = c.categories_id
                                           and c.status = 1
                                        ');
-          $Qproducts->bindInt(':products_id', $products_id);
+          $Qproducts->bindInt(':products_id', $item_id);
           $Qproducts->bindInt(':language_id', (int)$this->lang->getId());
           $Qproducts->execute();
         }
@@ -826,7 +822,6 @@
             $Qspecial->bindInt(':products_id', $prid);
             $Qspecial->execute();
           } else {
-
             $Qspecial = $this->db->prepare('select specials_new_products_price
                                               from :table_specials
                                               where products_id = :products_id
@@ -842,7 +837,7 @@
           }
 
 // product discount on quantity
-          $new_price_with_discount_quantity = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($products_id, $this->contents[$products_id]['qty'], $products_price);
+          $new_price_with_discount_quantity = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($item_id, $data['qty'], $products_price);
 
           if ($new_price_with_discount_quantity > 0) {
             $products_price = $new_price_with_discount_quantity;
@@ -854,16 +849,16 @@
             $model = $Qproducts->value('products_model');
           }
 
-          $attributes_price = $this->getAttributesPrice($products_id);
+          $attributes_price = $this->getAttributesPrice($item_id);
 
           $finale_price = $products_price + $attributes_price;
 
-          $products_array[] = ['id' => $products_id,
+          $products_array[] = ['id' => $item_id,
             'name' => $Qproducts->value('products_name'),
             'model' => $model,
             'image' => $Qproducts->value('products_image'),
             'price' => $products_price,
-            'quantity' => (int)$this->contents[$products_id]['qty'],
+            'quantity' => (int)$data['qty'],
             'weight' => $Qproducts->valueDecimal('products_weight'),
             'products_weight_class_id' => (int)$Qproducts->valueint('products_weight_class_id'),
             'products_dimension_width' => $Qproducts->valueDecimal('products_dimension_width'),
@@ -871,7 +866,7 @@
             'products_dimension_depth' => $Qproducts->valueDecimal('products_dimension_depth'),
             'final_price' => $finale_price,
             'tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
-            'attributes' => (isset($this->contents[$products_id]['attributes']) ? $this->contents[$products_id]['attributes'] : '')
+            'attributes' => (isset($data['attributes']) ? $data['attributes'] : '')
           ];
         }
       }
@@ -879,6 +874,9 @@
       return $products_array;
     }
 
+    /**
+     * @return float
+     */
     public function show_total() :float
     {
       $this->calculate();
@@ -886,28 +884,39 @@
       return $this->total;
     }
 
-    public function show_weight() :float
+    /**
+     * @return float
+     */
+    public function getWeight() :float
     {
       $this->calculate();
 
       return $this->weight;
     }
 
-    public function generate_cart_id($length = 5)
+    /**
+     * @param int $length
+     * @return bool|string
+     * @throws \Exception
+     */
+    public function generate_cart_id(int $length = 5)
     {
       return Hash::getRandomString($length, 'digits');
     }
 
+    /**
+     * @return bool|string
+     */
     public function get_content_type()
     {
-
       $this->content_type = false;
 
       if ((DOWNLOAD_ENABLED == 'true') && ($this->getCountContents() > 0)) {
-        foreach (array_keys($this->contents) as $products_id) {
-          if (isset($this->contents[$products_id]['attributes'])) {
-            foreach ($this->contents[$products_id]['attributes'] as $value) {
-              $check = $this->productsAttributes->getCheckProductsDownload($products_id, $value);
+
+        foreach ($this->contents as $item_id => $data) {
+          if (isset($data['attributes'])) {
+            foreach ($data['attributes'] as $value) {
+              $check = $this->productsAttributes->getCheckProductsDownload($item_id, $value);
 
               if ($check > 0) {
                 switch ($this->content_type) {
@@ -952,7 +961,10 @@
       return $this->content_type;
     }
 
-    public function unserialize($broken)
+    /**
+     * @param $broken
+     */
+    public function unserialize(array $broken)
     {
       foreach ($broken as $k => $v) {
         $kv = [$k, $v];
@@ -992,7 +1004,6 @@
           }
         }
       } else {
-
         $uprid = $this->getPrid($prid);
 
         if (is_numeric($uprid)) {
@@ -1045,7 +1056,7 @@
     }
 
 
-    public function getCheckGoodQty($products_id, int $qty) :int
+    public function getCheckGoodQty(string $products_id, int $qty) :int
     {
       if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {
         $qty = (int)MAX_QTY_IN_CART;
@@ -1070,7 +1081,7 @@
      * @return $min_order_qty_values, nimum order quantity
      * @access public
      */
-    public function getProductsMinOrderQtyShoppingCart($products_id) :int
+    public function getProductsMinOrderQtyShoppingCart(string $products_id) :int
     {
       $products_id = $this->prod->getProductID($products_id);
 
@@ -1090,7 +1101,6 @@
         $min_order_qty_values = $QminOrderQty->valueInt('products_min_qty_order');
 
       } else {
-
         $QcustomersGroupMinOrder = $this->db->prepare('select customers_group_quantity_default
                                                        from :table_customers_groups
                                                        where customers_group_id = :customers_group_id
