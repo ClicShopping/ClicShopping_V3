@@ -632,151 +632,150 @@
         $group_tax = false;
       }
 
-      for ($i = 0, $n = count($products); $i < $n; $i++) {
-// Display an indicator to identify if the product belongs at a customer group or not.
-        $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
-                                                        from :table_products_groups
-                                                        where products_id = :products_id
-                                                        and customers_group_id =  :customers_group_id
-                                                       ');
+      if (is_array($products)) {
+        for ($i = 0, $n = count($products); $i < $n; $i++) {
+  // Display an indicator to identify if the product belongs at a customer group or not.
+          $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
+                                                          from :table_products_groups
+                                                          where products_id = :products_id
+                                                          and customers_group_id =  :customers_group_id
+                                                         ');
 
-        $QproductsQuantityUnitId->bindInt(':products_id', $products[$i]['id']);
-        $QproductsQuantityUnitId->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
+          $QproductsQuantityUnitId->bindInt(':products_id', $products[$i]['id']);
+          $QproductsQuantityUnitId->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID());
 
-        $QproductsQuantityUnitId->execute();
+          $QproductsQuantityUnitId->execute();
 
-        $products_quantity_unit_id = $QproductsQuantityUnitId->valueInt('products_quantity_unit_id_group');
+          $products_quantity_unit_id = $QproductsQuantityUnitId->valueInt('products_quantity_unit_id_group');
 
-        if ($products_quantity_unit_id['products_quantity_unit_id_group'] > 0) {
-          $model[$i] = CONFIGURATION_PREFIX_MODEL . $products[$i]['model'];
-        } else {
-          $model[$i] = $products[$i]['model'];
-        }
+          if ($products_quantity_unit_id['products_quantity_unit_id_group'] > 0) {
+            $model[$i] = CONFIGURATION_PREFIX_MODEL . $products[$i]['model'];
+          } else {
+            $model[$i] = $products[$i]['model'];
+          }
 
-        $attributes_price = $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']);
-        $final_price = $products[$i]['price'] + $attributes_price;
+          $attributes_price = $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']);
+          $final_price = $products[$i]['price'] + $attributes_price;
 
-         $this->products[$index] = ['qty' => $products[$i]['quantity'],
-          'name' => $products[$i]['name'],
-          'model' => $model[$i],
-          'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-          'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-          'price' => $products[$i]['price'],
-          'final_price' => $final_price,
-          'weight' => $products[$i]['weight'],
-          'id' => $products[$i]['id']
-        ];
+           $this->products[$index] = ['qty' => $products[$i]['quantity'],
+            'name' => $products[$i]['name'],
+            'model' => $model[$i],
+            'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+            'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+            'price' => $products[$i]['price'],
+            'final_price' => $final_price,
+            'weight' => $products[$i]['weight'],
+            'id' => $products[$i]['id']
+          ];
 
-// Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-// order customers price
-          $QordersCustomersPrice = $this->db->prepare('select customers_group_price
-                                                        from :table_products_groups
-                                                        where customers_group_id = :customers_group_id
-                                                        and products_id = :products_id
-                                                        ');
-          $QordersCustomersPrice->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-          $QordersCustomersPrice->bindInt(':products_id', (int)$products[$i]['id']);
-          $QordersCustomersPrice->execute();
+  // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+  // order customers price
+            $QordersCustomersPrice = $this->db->prepare('select customers_group_price
+                                                          from :table_products_groups
+                                                          where customers_group_id = :customers_group_id
+                                                          and products_id = :products_id
+                                                          ');
+            $QordersCustomersPrice->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+            $QordersCustomersPrice->bindInt(':products_id', (int)$products[$i]['id']);
+            $QordersCustomersPrice->execute();
 
-          if ($QordersCustomersPrice->fetch()) {
+            if ($QordersCustomersPrice->fetch()) {
 
-// Marketing : price is update by discount of the quantity and in function the product
-//Display only in shoppingCart
-            $products_price = $QordersCustomersPrice->valueDecimal('customers_group_price');
-            $quantity = $products[$i]['quantity'];
+  // Marketing : price is update by discount of the quantity and in function the product
+  //Display only in shoppingCart
+              $products_price = $QordersCustomersPrice->valueDecimal('customers_group_price');
+              $quantity = $products[$i]['quantity'];
 
-            $new_price_with_discount_quantity = $CLICSHOPPING_ProductsCommon->getProductsNewPriceByDiscountByQuantity($products[$i]['id'], $quantity, $products_price);
+              $new_price_with_discount_quantity = $CLICSHOPPING_ProductsCommon->getProductsNewPriceByDiscountByQuantity($products[$i]['id'], $quantity, $products_price);
 
-            if ($new_price_with_discount_quantity > 0) {
-              $products_price = $CLICSHOPPING_ProductsCommon->getProductsNewPriceByDiscountByQuantity($_SESSION['ProductsID'], $quantity, $products_price);
-              unset($_SESSION['ProductsID']);
+              if ($new_price_with_discount_quantity > 0) {
+                $products_price = $CLICSHOPPING_ProductsCommon->getProductsNewPriceByDiscountByQuantity($_SESSION['ProductsID'], $quantity, $products_price);
+                unset($_SESSION['ProductsID']);
+              }
+
+              $this->products[$index] = ['qty' => $products[$i]['quantity'],
+                'name' => $products[$i]['name'],
+                'model' => $model[$i],
+                'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+                'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+                'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
+                'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']),
+                'weight' => $products[$i]['weight'],
+                'id' => $products[$i]['id']
+              ];
+
+            }
+          }
+
+          if ($products[$i]['attributes']) {
+            $subindex = 0;
+
+            foreach ($products[$i]['attributes'] as $option => $value) {
+
+              $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
+
+              $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options_name'),
+                'value' => $Qattributes->value('products_options_values_name'),
+                'option_id' => $option,
+                'value_id' => $value, //products_options_values_id
+                'prefix' => $Qattributes->value('price_prefix'),
+                'price' => $Qattributes->value('options_values_price'),
+                'reference' => $Qattributes->value('products_attributes_reference'),
+                'products_attributes_image' => $Qattributes->value('products_attributes_image')
+              ];
+
+              $subindex++;
+            }
+          }
+
+  // discount coupons
+          if (is_object($this->coupon)) {
+            $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
+
+            if ($discount['applied_discount'] > 0) $valid_products_count++;
+
+            $shown_price = $this->coupon->getCalculateShownPrice($discount, $this->products[$index]);
+
+            $this->info['subtotal'] += $shown_price['shown_price'];
+
+            $shown_price = $shown_price['actual_shown_price'];
+
+          } else {
+            $shown_price = Tax::addTax($this->products[$index]['final_price'], $this->products[$index]['tax']) * $this->products[$index]['qty'];
+            $this->info['subtotal'] += $shown_price;
+          }
+
+          $products_tax = $this->products[$index]['tax'];
+          $products_tax_description = $this->products[$index]['tax_description'];
+
+  // Controle pour calculer la taxe selon configuration du groupe B2B
+          if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] == 'true'))) {
+
+            $this->info['tax'] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
+
+            if (isset($this->info['tax_groups']["$products_tax_description"])) {
+              $this->info['tax_groups']["$products_tax_description"] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
+
+            } else {
+              $this->info['tax_groups']["$products_tax_description"] = $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
             }
 
-            $this->products[$index] = ['qty' => $products[$i]['quantity'],
-              'name' => $products[$i]['name'],
-              'model' => $model[$i],
-              'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-              'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-              'price' => $QordersCustomersPrice->valueDecimal('customers_group_price'),
-              'final_price' => $QordersCustomersPrice->valueDecimal('customers_group_price') + $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']),
-              'weight' => $products[$i]['weight'],
-              'id' => $products[$i]['id']
-            ];
-
-          }
-        }
-
-        if ($products[$i]['attributes']) {
-          $subindex = 0;
-
-          foreach ($products[$i]['attributes'] as $option => $value) {
-
-            $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
-
-            $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options_name'),
-              'value' => $Qattributes->value('products_options_values_name'),
-              'option_id' => $option,
-              'value_id' => $value, //products_options_values_id
-              'prefix' => $Qattributes->value('price_prefix'),
-              'price' => $Qattributes->value('options_values_price'),
-              'reference' => $Qattributes->value('products_attributes_reference'),
-              'products_attributes_image' => $Qattributes->value('products_attributes_image')
-            ];
-
-            $subindex++;
-          }
-        }
-
-// discount coupons
-        if (is_object($this->coupon)) {
-          $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
-
-          if ($discount['applied_discount'] > 0) $valid_products_count++;
-
-          $shown_price = $this->coupon->getCalculateShownPrice($discount, $this->products[$index]);
-
-          $this->info['subtotal'] += $shown_price['shown_price'];
-
-          $shown_price = $shown_price['actual_shown_price'];
-
-        } else {
-          $shown_price = Tax::addTax($this->products[$index]['final_price'], $this->products[$index]['tax']) * $this->products[$index]['qty'];
-          $this->info['subtotal'] += $shown_price;
-        }
-
-        $products_tax = $this->products[$index]['tax'];
-        $products_tax_description = $this->products[$index]['tax_description'];
-
-// Controle pour calculer la taxe selon configuration du groupe B2B
-        if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] == 'true'))) {
-
-          $this->info['tax'] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
-
-          if (isset($this->info['tax_groups']["$products_tax_description"])) {
-            $this->info['tax_groups']["$products_tax_description"] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
-
           } else {
-            $this->info['tax_groups']["$products_tax_description"] = $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
+
+            $this->info['tax'] += ($products_tax / 100) * $shown_price;
+
+            if (isset($this->info['tax_groups']["$products_tax_description"])) {
+              $this->info['tax_groups']["$products_tax_description"] += ($products_tax / 100) * $shown_price;
+            } else {
+              $this->info['tax_groups']["$products_tax_description"] = ($products_tax / 100) * $shown_price;
+            }
           }
 
-        } else {
-
-          $this->info['tax'] += ($products_tax / 100) * $shown_price;
-
-          if (isset($this->info['tax_groups']["$products_tax_description"])) {
-            $this->info['tax_groups']["$products_tax_description"] += ($products_tax / 100) * $shown_price;
-          } else {
-            $this->info['tax_groups']["$products_tax_description"] = ($products_tax / 100) * $shown_price;
-          }
+          $index++;
         }
-
-        $index++;
       }
 
-// Calcul de la TVA sur le montant total de la facture.
-// Client B2C : Prix TOTAL toujours affiche en TTC meme si la boutique est en mode affichage prix en HT (Prix TTC selon la class TVA mise sur les produits)
-// Clients B2B : Prix TOTAL afffiche en HT ou en TTC selon si l'assujetti de la TVA est active dans les groupes
       if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != '0') && ($group_tax['group_tax'] == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_order_taxe'] == 1))) {
         $this->info['total'] = $this->info['subtotal'] + $this->info['shipping_cost'];
       } else {

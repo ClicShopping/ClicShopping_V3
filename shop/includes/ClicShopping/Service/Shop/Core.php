@@ -16,7 +16,7 @@
   use ClicShopping\Sites\Shop\CustomerShop as CustomerClass;
   use ClicShopping\Sites\Shop\Tax as TaxClass;
   use ClicShopping\Sites\Shop\NavigationHistory as NavigationHistoryClass;
-  use ClicShopping\Sites\Shop\ShoppingCart as ShoppingCartClass;
+  use ClicShopping\Sites\Shop\ShoppingCartOld1 as ShoppingCartClass;
   use ClicShopping\Sites\Shop\OrderTotal as OrderTotalClass;
 
   use ClicShopping\Apps\Catalog\Products\Classes\Shop\Prod as ProdClass;
