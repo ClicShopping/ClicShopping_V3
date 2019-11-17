@@ -34,7 +34,7 @@
     protected $tax;
     protected $productsAttributes;
     protected $productsId;
-    protected $_products_in_stock = true;
+    protected $products_in_stock = true;
 
     public function __construct()
     {

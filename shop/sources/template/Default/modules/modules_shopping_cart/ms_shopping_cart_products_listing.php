@@ -124,20 +124,33 @@
             }
           }
 
-          if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
-            foreach($products[$i]['attributes'] as $option => $value) {
-              if (is_array($products[$i][$option]) && isset($products[$i][$option])) {
-                if (!is_null($products[$i][$option]['products_attributes_image'])) {
-                  if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'])) {
-                    $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i][$option]['products_attributes_image'], $products[$i][$option]['products_attributes_values_name'] . '   ', 30, 30);
+          $products_attributes = '';
+
+          if (isset($products[$i]['attributes'])) {
+            if  (is_array($products[$i]['attributes'])) {
+              foreach($products[$i]['attributes'] as $option => $value) {
+                $products_attributes_values_name = '';
+                $products_attributes_reference = '';
+                $products_attributes_image = '';
+
+                if (is_array($products[$i][$option]) && isset($products[$i][$option])) {
+                  $products_attributes_values_name = $products[$i][$option]['products_attributes_values_name'];
+                  $products_attributes_reference = $products[$i][$option]['products_attributes_reference'];
+                  $products_attributes_image = $products[$i][$option]['products_attributes_image'];
+
+                  if (!is_null($products[$i][$option]['products_attributes_image'])) {
+
+                    if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_attributes_image)) {
+                      $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_attributes_image, $products_attributes_values_name . '   ', 30, 30);
+                    } else {
+                      $products_attributes_image = '     ';
+                    }
                   } else {
                     $products_attributes_image = '     ';
                   }
-                } else {
-                  $products_attributes_image = '     ';
-                }
 
-                $products_option .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . ' :  ' . $products[$i][$option]['products_attributes_values_name'] .  ' ('. $products[$i][$option]['products_attributes_reference'] .') ' . ' - ' .  $CLICSHOPPING_Currencies->displayPrice($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') . '</p>';
+                  $products_attributes .= '<p class="ModulesShoppingCartproductsListingOption"> - ' . $products_attributes_image . ' :  ' . $products_attributes_values_name .  ' (' . $products_attributes_reference . ') ' . ' - ' .  $CLICSHOPPING_Currencies->displayPrice($products[$i][$option]['attributes_values_price'], $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id']), '1') . '</p>';
+                }
               }
             }
           }
@@ -159,7 +172,7 @@
           $cart .='<div id="ShoppingCartImage" class="col-sm-2 hidden-xs">' . $image . '</div>';
           $cart .='<div class="col-sm-10">';
           $cart .='<p id="ShoppingCartProductsName" class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . '</p>';
-          $cart .='<p id="ShoppingCartProductsOptions" class="small">' . $products_option . '</p>';
+          $cart .='<p id="ShoppingCartProductsOptions" class="small">' . $products_attributes . '</p>';
           $cart .='</div>';
           $cart .='</div>';
           $cart .='</td>';
