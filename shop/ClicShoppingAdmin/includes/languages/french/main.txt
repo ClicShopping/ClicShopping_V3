@@ -316,6 +316,7 @@ text_image_preview = Prévisualiser
 text_other = Autres
 text_legend = Légende
 text_all_groups = Tous les groupes clients
+text_all_languages = Tous les langages
 
 text_cache_categories = Boite catégories
 text_cache_manufacturers = Boite marques

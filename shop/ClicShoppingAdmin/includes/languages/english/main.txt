@@ -318,6 +318,7 @@ text_image_preview = Preview
 text_other = Others
 text_legend = Legend :
 text_all_groups = All customers groups
+text_all_languages = All Languages
 
 text_cache_categories = Categories Box
 text_cache_manufacturers = Brands Box
