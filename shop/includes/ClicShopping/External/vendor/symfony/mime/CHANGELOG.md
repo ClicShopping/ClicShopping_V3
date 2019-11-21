@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+4.4.0
+-----
+
+ * [BC BREAK] Removed `NamedAddress` (`Address` now supports a name)
+ * Added PHPUnit constraints
+ * Added `AbstractPart::asDebugString()`
+ * Added `Address::fromString()`
+
 4.3.3
 -----
 

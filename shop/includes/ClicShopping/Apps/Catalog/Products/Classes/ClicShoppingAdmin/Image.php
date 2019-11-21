@@ -73,33 +73,57 @@
     private function createDirectory(): string
     {
 
-      if (isset($_POST['new_directory_products_image'])) {
+      if (isset($_POST['new_directory_products_image']) && !empty($_POST['new_directory_products_image'])) {
         $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
         $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
         $new_dir_products_image = HTML::replaceString(' ', '_', $new_dir_products_image);
+
+        if (!is_dir($new_dir_products_image)) {
+          @mkdir($this->rootImagesDir . $new_dir_products_image, 0755, true);
+          @chmod($this->rootImagesDir . $new_dir_products_image, 0755);
+        }
+        if (isset($_POST['directory_products_image']) && !empty($_POST['directory_products_image'])) {
+          $new_dir_products_image = $new_dir_products_image . '/' . HTML::sanitize($_POST['directory_products_image']);
+        }
+
       } else {
-        $new_dir_products_image = '';
+        $new_dir_products_image = HTML::sanitize($_POST['directory_products_image']);
       }
 
       if (empty($new_dir_products_image)) {
-        $dir_products_image = 'products/';
+        $dir_products_image = 'products/' . $new_dir_products_image;
       } else {
         $dir_products_image = 'products/' . $new_dir_products_image . '/';
-      }
-
-// create directory for image resample
-      if (!empty($new_dir_products_image) && !is_dir($new_dir_products_image)) {
-// depend server configuration
-        if (!mkdir($concurrentDirectory = $this->rootImagesDir . $new_dir_products_image, 0755, true) && !is_dir($concurrentDirectory)) {
-          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-        }
-
-        chmod($this->rootImagesDir . $new_dir_products_image, 0755);
       }
 
       return $dir_products_image;
     }
 
+    /**
+     * @param string $image
+     * @return string
+     */
+    protected function getImageExtensionWebp(string $image) :string
+    {
+      Registry::set('ImageResample', new ImageResample());
+      $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
+
+      $p = pathinfo($this->template->getDirectoryPathTemplateShopImages() . $image);
+      $ext = strtolower($p['extension']);
+
+      $big_image_resized_path = $this->template->getDirectoryPathTemplateShopImages() . $image;
+
+      if ($ext != 'webp') {
+        if ($img = imagecreatefromstring(file_get_contents($big_image_resized_path))) {
+          $image = $image . '.webp';
+
+          $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image);
+          imagedestroy($img);
+        }
+      }
+
+      return $image;
+    }
 
     /**
      * Normal,medium or big image
@@ -177,6 +201,7 @@
 
         $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $big_image_resized);
 
+        $big_image_resized = $this->getImageExtensionWebp($big_image_resized);
 //
 // medium image
 //
@@ -197,6 +222,7 @@
         $medium_image_resized = $dir_products_image . $medium_image_width . '_' . $rand_image . '_' . $image_name;
         $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized);
 
+        $medium_image_resized = $this->getImageExtensionWebp($medium_image_resized);
 //
 // small image
 //
@@ -218,7 +244,8 @@
 
         $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_resized);
 
-
+        $small_image_resized = $this->getImageExtensionWebp($small_image_resized);
+	
 // delete the orginal files
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name)) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);

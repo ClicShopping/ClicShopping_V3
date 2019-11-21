@@ -1,0 +1,5 @@
+Update for 3.21112
+Livrairies updated
+fix new image directory creation
+add webp in image extension by default
+

@@ -29,8 +29,6 @@ use Symfony\Contracts\HttpClient\ResponseStreamInterface;
  * but each request is opened synchronously.
  *
  * @author Nicolas Grekas <p@tchwork.com>
- *
- * @experimental in 4.3
  */
 final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterface
 {
@@ -50,8 +48,10 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
      */
     public function __construct(array $defaultOptions = [], int $maxHostConnections = 6)
     {
+        $this->defaultOptions['buffer'] = $this->defaultOptions['buffer'] ?? \Closure::fromCallable([__CLASS__, 'shouldBuffer']);
+
         if ($defaultOptions) {
-            [, $this->defaultOptions] = self::prepareRequest(null, null, $defaultOptions, self::OPTIONS_DEFAULTS);
+            [, $this->defaultOptions] = self::prepareRequest(null, null, $defaultOptions, $this->defaultOptions);
         }
 
         $this->multi = new NativeClientState();
@@ -94,6 +94,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
             'response_headers' => [],
             'url' => $url,
             'error' => null,
+            'canceled' => false,
             'http_method' => $method,
             'http_code' => 0,
             'redirect_count' => 0,
@@ -115,7 +116,12 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
         if ($onProgress = $options['on_progress']) {
             // Memoize the last progress to ease calling the callback periodically when no network transfer happens
             $lastProgress = [0, 0];
-            $onProgress = static function (...$progress) use ($onProgress, &$lastProgress, &$info) {
+            $maxDuration = 0 < $options['max_duration'] ? $options['max_duration'] : INF;
+            $onProgress = static function (...$progress) use ($onProgress, &$lastProgress, &$info, $maxDuration) {
+                if ($info['total_time'] >= $maxDuration) {
+                    throw new TransportException(sprintf('Max duration was reached for "%s".', implode('', $info['url'])));
+                }
+
                 $progressInfo = $info;
                 $progressInfo['url'] = implode('', $info['url']);
                 unset($progressInfo['size_body']);
@@ -128,6 +134,13 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
                 }
 
                 $onProgress($lastProgress[0], $lastProgress[1], $progressInfo);
+            };
+        } elseif (0 < $options['max_duration']) {
+            $maxDuration = $options['max_duration'];
+            $onProgress = static function () use (&$info, $maxDuration): void {
+                if ($info['total_time'] >= $maxDuration) {
+                    throw new TransportException(sprintf('Max duration was reached for "%s".', implode('', $info['url'])));
+                }
             };
         }
 
@@ -166,6 +179,10 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
 
         if (!isset($options['normalized_headers']['user-agent'])) {
             $options['headers'][] = 'User-Agent: Symfony HttpClient/Native';
+        }
+
+        if (0 < $options['max_duration']) {
+            $options['timeout'] = min($options['max_duration'], $options['timeout']);
         }
 
         $context = [
@@ -401,7 +418,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
         };
     }
 
-    private static function configureHeadersAndProxy($context, string $host, array $requestHeaders, ?array $proxy, array $noProxy)
+    private static function configureHeadersAndProxy($context, string $host, array $requestHeaders, ?array $proxy, array $noProxy): bool
     {
         if (null === $proxy) {
             return stream_context_set_option($context, 'http', 'header', $requestHeaders);

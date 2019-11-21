@@ -35,6 +35,7 @@ final class NativeResponse implements ResponseInterface
     private $inflate;
     private $multi;
     private $debugBuffer;
+    private $shouldBuffer;
 
     /**
      * @internal
@@ -50,7 +51,8 @@ final class NativeResponse implements ResponseInterface
         $this->info = &$info;
         $this->resolveRedirect = $resolveRedirect;
         $this->onProgress = $onProgress;
-        $this->content = $options['buffer'] ? fopen('php://temp', 'w+') : null;
+        $this->content = true === $options['buffer'] ? fopen('php://temp', 'w+') : (\is_resource($options['buffer']) ? $options['buffer'] : null);
+        $this->shouldBuffer = $options['buffer'] instanceof \Closure ? $options['buffer'] : null;
 
         // Temporary resources to dechunk/inflate the response stream
         $this->buffer = fopen('php://temp', 'w+');
@@ -94,6 +96,8 @@ final class NativeResponse implements ResponseInterface
 
     public function __destruct()
     {
+        $this->shouldBuffer = null;
+
         try {
             $this->doDestruct();
         } finally {
@@ -170,6 +174,23 @@ final class NativeResponse implements ResponseInterface
 
         if ($this->inflate && 'gzip' !== ($this->headers['content-encoding'][0] ?? null)) {
             $this->inflate = null;
+        }
+
+        try {
+            if (null !== $this->shouldBuffer && null === $this->content && $this->content = ($this->shouldBuffer)($this->headers) ?: null) {
+                $this->content = \is_resource($this->content) ? $this->content : fopen('php://temp', 'w+');
+            }
+
+            if (null !== $this->info['error']) {
+                throw new TransportException($this->info['error']);
+            }
+        } catch (\Throwable $e) {
+            $this->close();
+            $this->multi->handlesActivity[$this->id] = [new FirstChunk()];
+            $this->multi->handlesActivity[$this->id][] = null;
+            $this->multi->handlesActivity[$this->id][] = $e;
+
+            return;
         }
 
         $this->multi->handlesActivity[$this->id] = [new FirstChunk()];

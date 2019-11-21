@@ -31,15 +31,16 @@ use Symfony\Contracts\HttpClient\ResponseStreamInterface;
  * HTTP/2 push when a curl version that supports it is installed.
  *
  * @author Nicolas Grekas <p@tchwork.com>
- *
- * @experimental in 4.3
  */
 final class CurlHttpClient implements HttpClientInterface, LoggerAwareInterface
 {
     use HttpClientTrait;
     use LoggerAwareTrait;
 
-    private $defaultOptions = self::OPTIONS_DEFAULTS;
+    private $defaultOptions = self::OPTIONS_DEFAULTS + [
+        'auth_ntlm' => null, // array|string - an array containing the username as first value, and optionally the
+                             //   password as the second one; or string like username:password - enabling NTLM auth
+    ];
 
     /**
      * An internal object to share state between the client and its responses.
@@ -63,8 +64,10 @@ final class CurlHttpClient implements HttpClientInterface, LoggerAwareInterface
             throw new \LogicException('You cannot use the "Symfony\Component\HttpClient\CurlHttpClient" as the "curl" extension is not installed.');
         }
 
+        $this->defaultOptions['buffer'] = $this->defaultOptions['buffer'] ?? \Closure::fromCallable([__CLASS__, 'shouldBuffer']);
+
         if ($defaultOptions) {
-            [, $this->defaultOptions] = self::prepareRequest(null, null, $defaultOptions, self::OPTIONS_DEFAULTS);
+            [, $this->defaultOptions] = self::prepareRequest(null, null, $defaultOptions, $this->defaultOptions);
         }
 
         $this->multi = $multi = new CurlClientState();
@@ -153,6 +156,25 @@ final class CurlHttpClient implements HttpClientInterface, LoggerAwareInterface
             CURLOPT_KEYPASSWD => $options['passphrase'],
             CURLOPT_CERTINFO => $options['capture_peer_cert_chain'],
         ];
+
+        if (isset($options['auth_ntlm'])) {
+            $curlopts[CURLOPT_HTTPAUTH] = CURLAUTH_NTLM;
+
+            if (\is_array($options['auth_ntlm'])) {
+                $count = \count($options['auth_ntlm']);
+                if ($count <= 0 || $count > 2) {
+                    throw new InvalidArgumentException(sprintf('Option "auth_ntlm" must contain 1 or 2 elements, %s given.', $count));
+                }
+
+                $options['auth_ntlm'] = implode(':', $options['auth_ntlm']);
+            }
+
+            if (!\is_string($options['auth_ntlm'])) {
+                throw new InvalidArgumentException(sprintf('Option "auth_ntlm" must be a string or an array, %s given.', \gettype($options['auth_ntlm'])));
+            }
+
+            $curlopts[CURLOPT_USERPWD] = $options['auth_ntlm'];
+        }
 
         if (!ZEND_THREAD_SAFE) {
             $curlopts[CURLOPT_DNS_USE_GLOBAL_CACHE] = false;
@@ -264,6 +286,10 @@ final class CurlHttpClient implements HttpClientInterface, LoggerAwareInterface
 
         if ($options['bindto']) {
             $curlopts[file_exists($options['bindto']) ? CURLOPT_UNIX_SOCKET_PATH : CURLOPT_INTERFACE] = $options['bindto'];
+        }
+
+        if (0 < $options['max_duration']) {
+            $curlopts[CURLOPT_TIMEOUT_MS] = 1000 * $options['max_duration'];
         }
 
         $ch = curl_init();

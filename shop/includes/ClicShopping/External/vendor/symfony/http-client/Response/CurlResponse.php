@@ -66,18 +66,38 @@ final class CurlResponse implements ResponseInterface
         }
 
         if (null === $content = &$this->content) {
-            $content = ($options['buffer'] ?? true) ? fopen('php://temp', 'w+') : null;
+            $content = null === $options || true === $options['buffer'] ? fopen('php://temp', 'w+') : (\is_resource($options['buffer']) ? $options['buffer'] : null);
         } else {
             // Move the pushed response to the activity list
-            if (ftell($content)) {
-                rewind($content);
-                $multi->handlesActivity[$id][] = stream_get_contents($content);
+            $buffer = $options['buffer'];
+
+            if ('H' !== curl_getinfo($ch, CURLINFO_PRIVATE)[0]) {
+                if ($options['buffer'] instanceof \Closure) {
+                    try {
+                        [$content, $buffer] = [null, $content];
+                        [$content, $buffer] = [$buffer, $options['buffer']($headers)];
+                    } catch (\Throwable $e) {
+                        $multi->handlesActivity[$id][] = null;
+                        $multi->handlesActivity[$id][] = $e;
+                        [$content, $buffer] = [$buffer, false];
+                    }
+                }
+
+                if (ftell($content)) {
+                    rewind($content);
+                    $multi->handlesActivity[$id][] = stream_get_contents($content);
+                }
             }
-            $content = ($options['buffer'] ?? true) ? $content : null;
+
+            if (\is_resource($buffer)) {
+                $content = $buffer;
+            } elseif (true !== $buffer) {
+                $content = null;
+            }
         }
 
-        curl_setopt($ch, CURLOPT_HEADERFUNCTION, static function ($ch, string $data) use (&$info, &$headers, $options, $multi, $id, &$location, $resolveRedirect, $logger): int {
-            return self::parseHeaderLine($ch, $data, $info, $headers, $options, $multi, $id, $location, $resolveRedirect, $logger);
+        curl_setopt($ch, CURLOPT_HEADERFUNCTION, static function ($ch, string $data) use (&$info, &$headers, $options, $multi, $id, &$location, $resolveRedirect, $logger, &$content): int {
+            return self::parseHeaderLine($ch, $data, $info, $headers, $options, $multi, $id, $location, $resolveRedirect, $logger, $content);
         });
 
         if (null === $options) {
@@ -230,9 +250,14 @@ final class CurlResponse implements ResponseInterface
     private function close(): void
     {
         unset($this->multi->openHandles[$this->id], $this->multi->handlesActivity[$this->id]);
+        curl_setopt($this->handle, CURLOPT_PRIVATE, '_0');
+
+        if (self::$performing) {
+            return;
+        }
+
         curl_multi_remove_handle($this->multi->handle, $this->handle);
         curl_setopt_array($this->handle, [
-            CURLOPT_PRIVATE => '_0',
             CURLOPT_NOPROGRESS => true,
             CURLOPT_PROGRESSFUNCTION => null,
             CURLOPT_HEADERFUNCTION => null,
@@ -266,6 +291,12 @@ final class CurlResponse implements ResponseInterface
     private static function perform(CurlClientState $multi, array &$responses = null): void
     {
         if (self::$performing) {
+            if ($responses) {
+                $response = current($responses);
+                $multi->handlesActivity[(int) $response->handle][] = null;
+                $multi->handlesActivity[(int) $response->handle][] = new TransportException(sprintf('Userland callback cannot use the client nor the response while processing "%s".', curl_getinfo($response->handle, CURLINFO_EFFECTIVE_URL)));
+            }
+
             return;
         }
 
@@ -317,7 +348,7 @@ final class CurlResponse implements ResponseInterface
     /**
      * Parses header lines as curl yields them to us.
      */
-    private static function parseHeaderLine($ch, string $data, array &$info, array &$headers, ?array $options, CurlClientState $multi, int $id, ?string &$location, ?callable $resolveRedirect, ?LoggerInterface $logger): int
+    private static function parseHeaderLine($ch, string $data, array &$info, array &$headers, ?array $options, CurlClientState $multi, int $id, ?string &$location, ?callable $resolveRedirect, ?LoggerInterface $logger, &$content = null): int
     {
         $waitFor = @curl_getinfo($ch, CURLINFO_PRIVATE) ?: '_0';
 
@@ -381,7 +412,9 @@ final class CurlResponse implements ResponseInterface
             }
         }
 
-        if ($statusCode < 300 || 400 <= $statusCode || null === $location || curl_getinfo($ch, CURLINFO_REDIRECT_COUNT) === $options['max_redirects']) {
+        if (401 === $statusCode && isset($options['auth_ntlm']) && 0 === strncasecmp($headers['www-authenticate'][0] ?? '', 'NTLM ', 5)) {
+            // Continue with NTLM auth
+        } elseif ($statusCode < 300 || 400 <= $statusCode || null === $location || curl_getinfo($ch, CURLINFO_REDIRECT_COUNT) === $options['max_redirects']) {
             // Headers and redirects completed, time to get the response's content
             $multi->handlesActivity[$id][] = new FirstChunk();
 
@@ -394,6 +427,22 @@ final class CurlResponse implements ResponseInterface
             }
 
             curl_setopt($ch, CURLOPT_PRIVATE, $waitFor);
+
+            try {
+                if (!$content && $options['buffer'] instanceof \Closure && $content = $options['buffer']($headers) ?: null) {
+                    $content = \is_resource($content) ? $content : fopen('php://temp', 'w+');
+                }
+
+                if (null !== $info['error']) {
+                    throw new TransportException($info['error']);
+                }
+            } catch (\Throwable $e) {
+                $multi->handlesActivity[$id] = $multi->handlesActivity[$id] ?? [new FirstChunk()];
+                $multi->handlesActivity[$id][] = null;
+                $multi->handlesActivity[$id][] = $e;
+
+                return 0;
+            }
         } elseif (null !== $info['redirect_url'] && $logger) {
             $logger->info(sprintf('Redirecting: "%s %s"', $info['http_code'], $info['redirect_url']));
         }

@@ -19,8 +19,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  * @see HttpClientInterface for a description of each options.
  *
  * @author Nicolas Grekas <p@tchwork.com>
- *
- * @experimental in 4.3
  */
 class HttpOptions
 {
@@ -88,7 +86,7 @@ class HttpOptions
     }
 
     /**
-     * @param array|\JsonSerializable $json
+     * @param mixed $json
      *
      * @return $this
      */

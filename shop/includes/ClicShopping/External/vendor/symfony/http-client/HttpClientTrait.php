@@ -19,8 +19,6 @@ use Symfony\Component\HttpClient\Exception\InvalidArgumentException;
  * All methods are static to prevent implementers from creating memory leaks via circular references.
  *
  * @author Nicolas Grekas <p@tchwork.com>
- *
- * @experimental in 4.3
  */
 trait HttpClientTrait
 {
@@ -43,6 +41,32 @@ trait HttpClientTrait
         }
 
         $options = self::mergeDefaultOptions($options, $defaultOptions, $allowExtraOptions);
+
+        $buffer = $options['buffer'] ?? true;
+
+        if ($buffer instanceof \Closure) {
+            $options['buffer'] = static function (array $headers) use ($buffer) {
+                if (!\is_bool($buffer = $buffer($headers))) {
+                    if (!\is_array($bufferInfo = @stream_get_meta_data($buffer))) {
+                        throw new \LogicException(sprintf('The closure passed as option "buffer" must return bool or stream resource, got %s.', \is_resource($buffer) ? get_resource_type($buffer).' resource' : \gettype($buffer)));
+                    }
+
+                    if (false === strpbrk($bufferInfo['mode'], 'acew+')) {
+                        throw new \LogicException(sprintf('The stream returned by the closure passed as option "buffer" must be writeable, got mode "%s".', $bufferInfo['mode']));
+                    }
+                }
+
+                return $buffer;
+            };
+        } elseif (!\is_bool($buffer)) {
+            if (!\is_array($bufferInfo = @stream_get_meta_data($buffer))) {
+                throw new InvalidArgumentException(sprintf('Option "buffer" must be bool, stream resource or Closure, %s given.', \is_resource($buffer) ? get_resource_type($buffer).' resource' : \gettype($buffer)));
+            }
+
+            if (false === strpbrk($bufferInfo['mode'], 'acew+')) {
+                throw new InvalidArgumentException(sprintf('The stream in option "buffer" must be writeable, mode "%s" given.', $bufferInfo['mode']));
+            }
+        }
 
         if (isset($options['json'])) {
             if (isset($options['body']) && '' !== $options['body']) {
@@ -119,6 +143,7 @@ trait HttpClientTrait
         // Finalize normalization of options
         $options['http_version'] = (string) ($options['http_version'] ?? '') ?: null;
         $options['timeout'] = (float) ($options['timeout'] ?? ini_get('default_socket_timeout'));
+        $options['max_duration'] = isset($options['max_duration']) ? (float) $options['max_duration'] : 0;
 
         return [$url, $options];
     }
@@ -178,6 +203,10 @@ trait HttpClientTrait
                 if (levenshtein($name, $key) <= \strlen($name) / 3 || false !== strpos($key, $name)) {
                     $alternatives[] = $key;
                 }
+            }
+
+            if ('auth_ntlm' === $name) {
+                throw new InvalidArgumentException(sprintf('Option "auth_ntlm" is not supported by %s, try using CurlHttpClient instead.', __CLASS__));
             }
 
             throw new InvalidArgumentException(sprintf('Unsupported option "%s" passed to %s, did you mean "%s"?', $name, __CLASS__, implode('", "', $alternatives ?: array_keys($defaultOptions))));
@@ -303,17 +332,13 @@ trait HttpClientTrait
     }
 
     /**
-     * @param array|\JsonSerializable $value
+     * @param mixed $value
      *
      * @throws InvalidArgumentException When the value cannot be json-encoded
      */
     private static function jsonEncode($value, int $flags = null, int $maxDepth = 512): string
     {
         $flags = $flags ?? (JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_PRESERVE_ZERO_FRACTION);
-
-        if (!\is_array($value) && !$value instanceof \JsonSerializable) {
-            throw new InvalidArgumentException(sprintf('Option "json" must be array or JsonSerializable, %s given.', \is_object($value) ? \get_class($value) : \gettype($value)));
-        }
 
         try {
             $value = json_encode($value, $flags | (\PHP_VERSION_ID >= 70300 ? \JSON_THROW_ON_ERROR : 0), $maxDepth);
@@ -514,5 +539,18 @@ trait HttpClientTrait
         }
 
         return implode('&', $replace ? array_replace($query, $queryArray) : ($query + $queryArray));
+    }
+
+    private static function shouldBuffer(array $headers): bool
+    {
+        if (null === $contentType = $headers['content-type'][0] ?? null) {
+            return false;
+        }
+
+        if (false !== $i = strpos($contentType, ';')) {
+            $contentType = substr($contentType, 0, $i);
+        }
+
+        return $contentType && preg_match('#^(?:text/|application/(?:.+\+)?(?:json|xml)$)#i', $contentType);
     }
 }

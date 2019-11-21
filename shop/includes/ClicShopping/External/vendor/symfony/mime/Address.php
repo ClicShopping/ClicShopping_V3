@@ -20,17 +20,25 @@ use Symfony\Component\Mime\Exception\RfcComplianceException;
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
- *
- * @experimental in 4.3
  */
-class Address
+final class Address
 {
+    /**
+     * A regex that matches a structure like 'Name <email@address.com>'.
+     * It matches anything between the first < and last > as email address.
+     * This allows to use a single string to construct an Address, which can be convenient to use in
+     * config, and allows to have more readable config.
+     * This does not try to cover all edge cases for address.
+     */
+    private const FROM_STRING_PATTERN = '~(?<displayName>[^<]*)<(?<addrSpec>.*)>[^>]*~';
+
     private static $validator;
     private static $encoder;
 
     private $address;
+    private $name;
 
-    public function __construct(string $address)
+    public function __construct(string $address, string $name = '')
     {
         if (!class_exists(EmailValidator::class)) {
             throw new LogicException(sprintf('The "%s" class cannot be used as it needs "%s"; try running "composer require egulias/email-validator".', __CLASS__, EmailValidator::class));
@@ -41,6 +49,7 @@ class Address
         }
 
         $this->address = trim($address);
+        $this->name = trim(str_replace(["\n", "\r"], '', $name));
 
         if (!self::$validator->isValid($this->address, new RFCValidation())) {
             throw new RfcComplianceException(sprintf('Email "%s" does not comply with addr-spec of RFC 2822.', $address));
@@ -50,6 +59,11 @@ class Address
     public function getAddress(): string
     {
         return $this->address;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     public function getEncodedAddress(): string
@@ -63,7 +77,7 @@ class Address
 
     public function toString(): string
     {
-        return $this->getEncodedAddress();
+        return ($n = $this->getName()) ? $n.' <'.$this->getEncodedAddress().'>' : $this->getEncodedAddress();
     }
 
     /**
@@ -94,5 +108,18 @@ class Address
         }
 
         return $addrs;
+    }
+
+    public static function fromString(string $string): self
+    {
+        if (false === strpos($string, '<')) {
+            return new self($string, '');
+        }
+
+        if (!preg_match(self::FROM_STRING_PATTERN, $string, $matches)) {
+            throw new InvalidArgumentException(sprintf('Could not parse "%s" to a "%s" instance.', $string, static::class));
+        }
+
+        return new self($matches['addrSpec'], trim($matches['displayName'], ' \'"'));
     }
 }

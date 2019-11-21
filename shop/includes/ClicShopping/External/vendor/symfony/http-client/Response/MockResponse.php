@@ -84,6 +84,7 @@ class MockResponse implements ResponseInterface
      */
     public function cancel(): void
     {
+        $this->info['canceled'] = true;
         $this->info['error'] = 'Response has been canceled.';
         $this->body = null;
     }
@@ -104,15 +105,21 @@ class MockResponse implements ResponseInterface
         $response = new self([]);
         $response->requestOptions = $options;
         $response->id = ++self::$idSequence;
-        $response->content = ($options['buffer'] ?? true) ? fopen('php://temp', 'w+') : null;
+
+        if (!($options['buffer'] ?? null) instanceof \Closure) {
+            $response->content = true === ($options['buffer'] ?? true) ? fopen('php://temp', 'w+') : (\is_resource($options['buffer']) ? $options['buffer'] : null);
+        }
         $response->initializer = static function (self $response) {
             if (null !== $response->info['error']) {
                 throw new TransportException($response->info['error']);
             }
 
             if (\is_array($response->body[0] ?? null)) {
-                // Consume the first chunk if it's not yielded yet
-                self::stream([$response])->current();
+                foreach (self::stream([$response]) as $chunk) {
+                    if ($chunk->isFirst()) {
+                        break;
+                    }
+                }
             }
         };
 
@@ -179,6 +186,11 @@ class MockResponse implements ResponseInterface
                     $chunk[1]->getHeaders(false);
                     self::readResponse($response, $chunk[0], $chunk[1], $offset);
                     $multi->handlesActivity[$id][] = new FirstChunk();
+                    $buffer = $response->requestOptions['buffer'] ?? null;
+
+                    if ($buffer instanceof \Closure && $response->content = $buffer($response->headers) ?: null) {
+                        $response->content = \is_resource($response->content) ? $response->content : fopen('php://temp', 'w+');
+                    }
                 } catch (\Throwable $e) {
                     $multi->handlesActivity[$id][] = null;
                     $multi->handlesActivity[$id][] = $e;

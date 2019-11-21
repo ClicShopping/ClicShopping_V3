@@ -71,7 +71,7 @@
      * @param $action , save or insert
      * @access private
      */
-    private function saveProductsDescription($id, $action)
+    private function saveProductsDescription(int $id, string $action)
     {
       $languages = $this->lang->getLanguages();
 
@@ -88,7 +88,6 @@
           'products_shipping_delay' => HTML::sanitize($_POST['products_shipping_delay'][$language_id]),
           'products_description_summary' => HTML::sanitize($_POST['products_description_summary'][$language_id])
         ];
-
 
         if (is_numeric($id) && $action == 'Insert') {
 
@@ -358,7 +357,7 @@
      * @access public
      */
 
-    public function getDirectoryProducts()
+    public function getDirectoryProducts(): array
     {
       $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/products/';
 
@@ -426,7 +425,7 @@
      * @access public
      */
 
-    public function supplierDropDown()
+    public function supplierDropDown(): array
     {
       $supplier = array(array('id' => '',
         'text' => CLICSHOPPING::getDef('text_none'))
@@ -455,9 +454,8 @@
      * @return
      * @access public
      */
-    public function removeProduct($product_id)
+    public function removeProduct(int $product_id)
     {
-
       $Qimage = $this->db->prepare('select products_image,
                                           products_image_zoom,
                                           products_image_medium,
@@ -641,7 +639,6 @@
       Cache::clear('upcoming');
     }
 
-
     /**
      * url of the product
      *
@@ -651,13 +648,11 @@
      */
     public function getProductsUrl($product_id, $language_id)
     {
-
       if ($language_id == 0) $language_id = $this->lang->getId();
-      $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
+        $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
 
       return $Qproduct->value('products_url');
     }
-
 
     /**
      * Return the manufacturers URL in the needed language
@@ -668,7 +663,6 @@
      */
     public function getManufacturerUrl($manufacturer_id, $language_id)
     {
-
       if ($language_id == 0) $language_id = $this->lang->getId();
       $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
 
@@ -681,7 +675,7 @@
      * @param $categories_id - category id
      * @access public
      */
-    public function getCountProductsToCategory($id, $categories_id)
+    public function getCountProductsToCategory(int $id, int $categories_id): int
     {
       $Qcheck = $this->db->prepare('select count(*) as total
                                            from :table_products_to_categories
@@ -700,7 +694,7 @@
      * @param $id - products id of the products
      * @param $categories_id - category id
      */
-    private function prepageCloneProducts($id, $categories_id)
+    private function prepageCloneProducts(int $id, int $categories_id)
     {
       $new_category = $categories_id;
 
@@ -718,7 +712,7 @@
      * @param $categories_id - category id
      * @access public
      */
-    public function cloneProductsInOtherCategory($id, $categories_id)
+    public function cloneProductsInOtherCategory(int $id, int $categories_id)
     {
       $multi_clone_categories_id_to[] = $categories_id;
 
