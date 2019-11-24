@@ -113,14 +113,13 @@
 // insert current cart contents in database
       if (is_array($this->contents)) {
         foreach ($this->contents as $item_id => $data) {
-// B2B / B2C Choose the good qty
           $qty = $data['qty'];
           $this->productsId = $item_id;
-          $qty1 = $this->getRestoreQty($qty, $item_id);
+          $restore_qty = $this->getRestoreQty($qty, $item_id);
 
 
-          if ($qty < $qty1) $qty = $this->getRestoreQty();
-          if ($qty > $qty1) $qty = $data['qty'];
+          if ($qty < $restore_qty) $qty = $this->getRestoreQty();
+          if ($qty > $restore_qty) $qty = $data['qty'];
 
           $Qcheck = $this->db->prepare('select products_id
                                          from :table_customers_basket
@@ -163,38 +162,178 @@
 // reset per-session cart contents, but not the database contents
       $this->reset(false);
 
-      $Qproducts = $this->db->prepare('select products_id,
-                                              customers_basket_quantity
-                                       from :table_customers_basket
-                                       where customers_id = :customers_id
+      $_delete_array = [];
+
+      if ($this->customer->getCustomersGroupID() != 0) {
+        $Qproducts = $this->db->prepare('select cb.products_id as item_id,
+                                              cb.customers_basket_quantity,
+                                              cb.customers_basket_date_added,
+                                              p.products_id as id, 
+                                              p.parent_id,
+                                              p.products_image,  
+                                              p.products_price, 
+                                              p.products_model, 
+                                              p.products_tax_class_id, 
+                                              p.products_weight, 
+                                              p.products_weight_class_id, 
+                                              p.products_status 
+                                       from :table_customers_basket cb,
+                                            :table_products p left join :table_products_groups g on p.products_id = g.products_id,
+                                            :table_products_to_categories p2c,
+                                            :table_categories c 
+                                       where cb.customers_id = :customers_id
+                                       and cb.products_id = p.products_id
+                                       and p.products_archive = 0
+                                       and g.products_group_view = 1
+                                       and p.products_id = p2c.products_id
+                                       and p2c.categories_id = c.categories_id
+                                       and g.customers_group_id = :customers_group_id
+                                       and c.status = 1
+                                       order by cb.customers_basket_date_added desc 
+                                      ');
+        $Qproducts->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+        $Qproducts->bindInt(':customers_id', $this->customer->getID());
+
+        $Qproducts->execute();
+      } else {
+        $Qproducts = $this->db->prepare('select cb.products_id as item_id,
+                                              cb.customers_basket_quantity,
+                                              cb.customers_basket_date_added,
+                                              p.products_id as id, 
+                                              p.parent_id,
+                                              p.products_image,  
+                                              p.products_price, 
+                                              p.products_model, 
+                                              p.products_tax_class_id, 
+                                              p.products_weight, 
+                                              p.products_weight_class_id, 
+                                              p.products_status 
+                                       from :table_customers_basket cb,
+                                              :table_products p,
+                                              :table_products_to_categories p2c,
+                                              :table_categories c 
+                                       where cb.customers_id = :customers_id
+                                       and cb.products_id = p.products_id
+                                       and p.products_status = 1
+                                       and p.products_archive = 0
+                                       and p.products_id = p2c.products_id
+                                       and p2c.categories_id = c.categories_id
+                                       and c.status = 1
+                                       order by cb.customers_basket_date_added desc 
                                       ');
 
-      $Qproducts->bindInt(':customers_id', $this->customer->getID());
+        $Qproducts->bindInt(':customers_id', $this->customer->getID());
 
-      $Qproducts->execute();
+        $Qproducts->execute();
+      }
 
       while ($Qproducts->fetch()) {
-        $this->contents[$Qproducts->value('products_id')] = ['qty' => $Qproducts->valueInt('customers_basket_quantity')];
+        $item_id = $Qproducts->value('item_id');
 
-// attributes
-        $Qattributes = $this->db->prepare('select products_options_id,
-                                                  products_options_value_id
-                                            from :table_customers_basket_attributes
-                                            where customers_id = :customers_id
-                                            and products_id = :products_id
+        if ( $Qproducts->valueInt('products_status') === 1 ) {
+          $products_id = $Qproducts->valueInt('id');
+
+          $Qdesc = $this->db->prepare('select products_name
+                                      from :table_products_description 
+                                      where products_id = :products_id
+                                      and language_id = :language_id
+                                      ');
+          $Qdesc->bindInt(':products_id', $products_id);
+          $Qdesc->bindInt(':language_id', $this->lang->getId());
+          $Qdesc->execute();
+
+          $products_price = $Qproducts->valueDecimal('products_price');
+
+          if (($this->customer->getCustomersGroupID() != 0) && ($Qproducts->valueInt('price_group_view') == 1)) {
+            $Qspecial = $this->db->prepare('select specials_new_products_price
+                                            from :table_specials
+                                            where products_id = :products_id
+                                            and status = 1
+                                            and customers_group_id = :customers_group_id
                                             ');
 
-        $Qattributes->bindInt(':customers_id', $this->customer->getID());
-        $Qattributes->bindValue(':products_id', $Qproducts->value('products_id'));
-        $Qattributes->execute();
+            $Qspecial->bindInt(':products_id', $products_id);
+            $Qspecial->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
-        while ($Qattributes->fetch()) {
-          $this->contents[$Qproducts->value('products_id')]['attributes'][$Qattributes->valueInt('products_options_id')] = $Qattributes->valueInt('products_options_value_id');
+            $Qspecial->execute();
+          } else {
+            $Qspecial = $this->db->prepare('select specials_new_products_price
+                                            from :table_specials
+                                            where products_id = :products_id
+                                            and status = 1
+                                            ');
+
+            $Qspecial->bindInt(':products_id', $products_id);
+
+            $Qspecial->execute();
+          }
+
+          if ($Qspecial->fetch() !== false) {
+            $products_price = $Qspecial->valueDecimal('specials_new_products_price');
+          }
+
+          $min_quantity = $this->productsCommon->getProductsMinimumQuantity($products_id);
+
+// Total calculation
+          if ($qty < (int)$min_quantity) $qty = (int)$min_quantity;
+// product discount on quantity
+          $new_price_with_discount_quantity = $this->productsCommon->getProductsNewPriceByDiscountByQuantity($products_id, $qty, $products_price);
+
+          if ($new_price_with_discount_quantity > 0) {
+            $products_price = $new_price_with_discount_quantity;
+          }
+
+          $this->contents[$Qproducts->valueInt('item_id')] = [
+            'item_id' => $item_id,
+            'qty' => $Qproducts->valueInt('customers_basket_quantity'),
+            'id' => $products_id,
+            'parent_id' => $Qproducts->valueInt('parent_id'),
+            'model' => $Qproducts->value('products_model'),
+            'name' => $Qdesc->value('products_name'),
+            'image' => $Qproducts->value('products_image'),
+            'price' => $products_price,
+            'quantity' => $Qproducts->valueInt('quantity'),
+            'weight' => $Qproducts->value('products_weight'),
+            'tax_class_id' => $Qproducts->valueInt('products_tax_class_id'),
+            // date_added' => DateTime::getShort($Qproducts->value('date_added')),
+            'products_weight_class_id' => $Qproducts->valueInt('products_weight_class_id')
+            ];
+
+// attributes
+          $Qattributes = $this->db->prepare('select products_options_id,
+                                                    products_options_value_id
+                                              from :table_customers_basket_attributes
+                                              where customers_id = :customers_id
+                                              and products_id = :products_id
+                                              ');
+
+          $Qattributes->bindInt(':customers_id', $this->customer->getID());
+          $Qattributes->bindValue(':products_id', $Qproducts->value('item_id'));
+          $Qattributes->execute();
+
+          while ($Qattributes->fetch()) {
+            $this->contents[$Qproducts->value('item_id')]['attributes'][$Qattributes->valueInt('products_options_id')] = $Qattributes->valueInt('products_options_value_id');
+          }
+        } else {
+          $_delete_array[] = $item_id;
         }
       }
 
-      $this->cleanUp();
+      if (!empty($_delete_array)) {
+        foreach ($_delete_array as $id) {
+          unset($this->contents[$id]);
+        }
 
+        $Qdelete = $this->db->prepare('delete from :table_customers_basket
+                                       where customers_id = :customers_id 
+                                       and products_id in ("' . implode('", "', $_delete_array) . '")'
+                                     );
+        $Qdelete->bindInt(':customers_id', $this->customer->getID());
+        $Qdelete->execute();
+      }
+      
+      $this->cleanUp();
+      $this->calculate();
 // assign a temporary unique ID to the order contents to prevent hack attempts during the checkout procedure
       $this->cartID = $this->generate_cart_id();
     }
@@ -417,6 +556,7 @@
      * @param $products_id string
      * @param string $quantity int
      * @param string $attributes string
+     * @throws \Exception
      */
     public function updateQuantity(string $products_id, int $quantity, $attributes = '')
     {
@@ -498,6 +638,19 @@
       }
     }
 
+    /**
+     * @param $product_id
+     * @return int|string
+     */
+    public function getBasketID($product_id)
+    {
+      foreach ( $this->contents as $item_id => $product ) {
+        if ( $product['id'] == $product_id ) {
+          return $item_id;
+        }
+      }
+    }
+    
     /*
      * get total number of items in cart
      * @return : int sum of item number
@@ -589,6 +742,7 @@
     /**
      *
      * @return int
+     * @throws \Exception
      */
     private function calculate()
     {
@@ -605,7 +759,6 @@
         foreach ($this->contents as $item_id => $data) {
           $qty = $data['qty'];
 
-	  
           if ($this->customer->getCustomersGroupID() != 0) {
             $Qproduct = $this->db->prepare('select p.products_id,
                                                    p.products_price,
@@ -626,6 +779,7 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
+					    and p.products_archive = 0
                                            ');
 
             $Qproduct->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
@@ -647,6 +801,8 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
+					    and p.products_archive = 0
+					    and p.products_status = 1
                                            ');
 
             $Qproduct->bindInt(':products_id', $item_id);
@@ -708,7 +864,7 @@
             $this->total += $this->tax->addTax($products_price, $products_tax) * $qty;
           }
 
-  // attributes price
+// attributes price
           if (isset($data['attributes'])) {
             foreach ($data['attributes'] as $option => $value) {
               $Qattributes = $this->db->prepare('select options_values_price,
@@ -780,6 +936,7 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
+					    and p.products_archive = 0
                                       ');
 
             $Qproducts->bindInt(':products_id', $item_id);
@@ -809,6 +966,8 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
+					    and p.products_archive = 0
+					    and p.products_status = 1
                                          ');
             $Qproducts->bindInt(':products_id', $item_id);
             $Qproducts->bindInt(':language_id', (int)$this->lang->getId());

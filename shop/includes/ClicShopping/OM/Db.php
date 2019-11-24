@@ -868,17 +868,17 @@
     }
 
     /**
-     * Update db with new table
+     * install new db
      * @param string $filename
      */
-    public function InstallNewDb(string $filename)
+    public function installNewDb(string $filename)
     {
       $prefix = CLICSHOPPING::getConfig('db_table_prefix');
 
       $this->exec('SET FOREIGN_KEY_CHECKS = 0');
 
       $directory = CLICSHOPPING::BASE_DIR . 'Custom/Schema/';
-      $path_file = $directory . $filename . 'txt';
+      $path_file = $directory . $filename . '.txt';
       $file = $directory . $filename;
 
       if (is_file($path_file)) {
