@@ -4,4 +4,6 @@ fix new image directory creation
 add webp in image extension by default
 Shopping Cart improvment
 Fix Install new Db accross Apps
+Change plot o chartist
+fix incompatibility chartist / font awesome
 

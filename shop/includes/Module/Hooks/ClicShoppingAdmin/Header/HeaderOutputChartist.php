@@ -18,8 +18,9 @@
      */
     public function display(): string
     {
+      $version = '0.11.4';
       $output = '<! -- Start Chartist -->' . "\n";
-      $output .= '<link href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" rel="stylesheet" type="text/css" />' . "\n";
+      $output .= '<link href="https://cdnjs.cloudflare.com/ajax/libs/chartist/' . $version . '/chartist.min.css" rel="stylesheet" type="text/css" />' . "\n";
       $output .= '<!-- End Chartist  -->' . "\n";
 
       return $output;
