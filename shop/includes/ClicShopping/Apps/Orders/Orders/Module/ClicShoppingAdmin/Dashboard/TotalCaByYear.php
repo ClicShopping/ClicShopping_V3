@@ -69,19 +69,12 @@
         $year[$Qorder->value('year')] = $Qorder->value('total');
       }
 
-      $year = array_reverse($year, true);
+      $days = array_reverse($year, true);
 
-      $js_array = '';
-      foreach ($year as $date => $total) {
-        $js_array .= '[' . (mktime(0, 0, 0, substr($date, 5, 2), substr($date, 8, 2), substr($date, 0, 4)) * 1000) . ', ' . $total . '],';
-      }
+      $data_labels = json_encode(array_keys($days));
+      $data = json_encode(array_values($days));
 
-      if (!empty($js_array)) {
-        $js_array = substr($js_array, 0, -1);
-      }
-
-      $chart_label_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Orders');
-      $chart_title = HTML::output($this->app->getDef('module_admin_dashboard_total_ca_by_year_app_chart_link'));
+      $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_ca_by_year_app_chart_link'));
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_CA_BY_YEAR_APP_CONTENT_WIDTH;
 
@@ -90,54 +83,50 @@
   <div class="card-deck mb-3">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title"><i class="fa fa-coins"></i> {$chart_title}</h6>
+        <h6 class="card-title"><i class="fa fa-coins"></i> {$chart_label_link}</h6>
         <p class="card-text"><div id="d_total_ca_by_year" class="col-md-12" style="width:100%; height: 200px;"></div></p>
       </div>
     </div>
   </div>
 </div>
+
+
 <script type="text/javascript">
-$(function () {
-  var plot30 = [$js_array];
-  $.plot($("#d_total_ca_by_year"), [ {
-    label: '',
-    data: plot30,
-    bars: {
-      show: true,
-      fill: true,
-      lineWidth: 20,
-      barWidth: 20,
-      align:  "center"
-    },
-    color: '#2a6ac4'
-    }], {
+$(function() {
+  var data = {
+    labels: $data_labels,
+    series: [ $data ]
+  };
 
-    xaxis: {
-      ticks: 4,
-      mode: 'time'
-    },
-
-    yaxis: {
-      ticks: 5,
-      min: 0
-    },
-
-    grid: {
-      backgroundColor: { colors:  ['#FAFAFA', '#FAFAFA'] }, //gradient ['#d3d3d3', '#fff']
-      hoverable: true,
-      borderWidth: 1
-    },
-
-    legend: {
-      labelFormatter: function(label, series) {
-        return '<a href="$chart_label_link">' + label + '</a>';
+  var options = {
+    fullWidth: true,
+    height: '250px',
+    showPoint: false,
+    showArea: true,
+    axisY: {
+      labelInterpolationFnc: function skipLabels(value, index) {
+        return index % 2  === 0 ? value : null;
       }
+    }
+  }
+
+  var chart = new Chartist.Bar('#d_total_ca_by_year', data, options);
+
+  chart.on('draw', function(context) {
+    if (context.type === 'bar') {
+      context.element.attr({
+        style: 'stroke: #2A6AC4; stroke-width: 50px'
+    
+      });
+    } else if (context.type === 'area') {
+      context.element.attr({
+        style: 'fill: blue;'
+      });
     }
   });
 });
 </script>
 EOD;
-
       return $output;
     }
 

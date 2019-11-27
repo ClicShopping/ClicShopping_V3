@@ -46,29 +46,24 @@
 
     public function getOutput()
     {
-
       $days = [];
-      /*
-            for($i = 0; $i < 30; $i++) {
-              $days[date('Y', strtotime('-'. $i .' days'))] = 0;
-            }
-      */
 
-//year(o.date_purchased) = year(now())
-//date_sub(curdate(), interval 360 day)
+      for ($i = 0; $i <= 12; $i++) {
+        $days[date('M')] = 0;
+      }
 
-      $Qorder = $this->app->db->prepare('select date_format(o.date_purchased, "%Y-%m-%d") as dateday,
+      $Qorder = $this->app->db->prepare('select date_format(o.date_purchased, "%M") as dateday,
                                                  sum(ot.value) as total
                                           from :table_orders o,
                                                :table_orders_total ot
-                                          where date_sub(now(), interval 365 day) <= o.date_purchased
+                                          where date_sub(now(), interval 12 month) <= o.date_purchased
                                           and o.orders_status = 3
                                           and o.orders_id = ot.orders_id
-                                          and (ot.class = :class or ot.class = :class1)
-                                          group by dateday
+                                          and (ot.class = :class)
+                                         group by dateday 
+                                        
                                          ');
-      $Qorder->bindValue(':class', 'ot_subtotal');
-      $Qorder->bindValue(':class1', 'ST');
+      $Qorder->bindValue(':class', 'ST');
       $Qorder->execute();
 
       $total = 0;
@@ -78,19 +73,10 @@
         $total = $days[$orders['dateday']];
       }
 
-      $days = array_reverse($days, true);
+      $data_labels = json_encode(array_keys($days));
+      $data = json_encode(array_values($days));
 
-      $js_array = '';
-      foreach ($days as $date => $total) {
-        $js_array .= '[' . (mktime(0, 0, 0, substr($date, 5, 2), substr($date, 8, 2), substr($date, 0, 4)) * 1000) . ', ' . $total . '],';
-      }
-
-      if (!empty($js_array)) {
-        $js_array = substr($js_array, 0, -1);
-      }
-
-      $chart_label_link = CLICSHOPPING::link(null, 'A&Orders\Orders&Orders');
-      $chart_title = HTML::output($this->app->getDef('module_admin_dashboard_total_month_app_chart_link'));
+      $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_month_app_chart_link'));
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_CONTENT_WIDTH;
 
@@ -99,7 +85,7 @@
   <div class="card-deck mb-3">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title"><i class="fa fa-coins"></i> {$chart_title}</h6>
+        <h6 class="card-title"><i class="fa fa-coins"></i> {$chart_label_link}</h6>
         <p class="card-text"><div id="d_total_month" class="col-md-12" style="width:100%; height: 200px;"></div></p>
       </div>
     </div>
@@ -107,70 +93,37 @@
 </div>
 
 <script type="text/javascript">
-$(function () {
-  var plot30 = [$js_array];
+$(function() {
+  var data = {
+    labels: $data_labels,
+    series: [ $data ]
+  };
 
-
-  $.plot($('#d_total_month'), [ {
-    label: '',
-    data: plot30,
-    lines: { show: true, fill: true },
-    points: { show: true },
-    color: '#f7d16e'
-  }], {
-    xaxis: {
-      ticks: 6,
-      mode: 'time'
-    },
-    yaxis: {
-      ticks: 5,
-      min: 0
-    },
-    grid: {
-      backgroundColor: { colors:  ['#FAFAFA', '#FAFAFA'] }, //gradient ['#d3d3d3', '#fff']
-      hoverable: true,
-      borderWidth: 1
-    },
-    legend: {
-      labelFormatter: function(label, series) {
-        return '<a href="$chart_label_link">' + label + '</a>';
+  var options = {
+    fullWidth: true,
+    height: '250px',
+    showPoint: true,
+    showArea: true,
+    axisY: {
+      labelInterpolationFnc: function skipLabels(value, index) {
+        return index % 2  === 0 ? value : null;
       }
     }
-  });
-});
-
-function showTooltip(x, y, contents) {
-  $('<div id="tooltip">' + contents + '</div>').css( {
-    position: 'absolute',
-    display: 'none',
-    top: y + 5,
-    left: x + 5,
-    border: '1px solid #fdd',
-    padding: '2px',
-    backgroundColor: '#fee',
-    opacity: 0.80
-  }).appendTo('body').fadeIn(200);
-}
-
-var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
-
-var previousPoint = null;
-$('#d_total_month').bind('plothover', function (event, pos, item) {
-  if (item) {
-    if (previousPoint != item.datapoint) {
-      previousPoint = item.datapoint;
-
-      $('#tooltip').remove();
-      var x = item.datapoint[0],
-          y = item.datapoint[1],
-          xdate = new Date(x);
-
-      showTooltip(item.pageX, item.pageY, y + ' for ' + monthNames[xdate.getMonth()] + '-' + xdate.getDate());
-    }
-  } else {
-    $('#tooltip').remove();
-    previousPoint = null;
   }
+
+  var chart = new Chartist.Line('#d_total_month', data, options);
+
+  chart.on('draw', function(context) {
+    if (context.type === 'line') {
+      context.element.attr({
+        style: 'stroke: #ed2121; stroke-width: 2px;'    
+      });
+    } else if (context.type === 'area') {
+      context.element.attr({
+        style: 'fill: #ed2121;'
+      });
+    }
+  });
 });
 </script>
 EOD;
