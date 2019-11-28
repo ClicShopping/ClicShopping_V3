@@ -34,6 +34,12 @@ résolution 1050
     }
 }
 
+@media (max-width: 512px) {
+    span.infoHeader {
+        display: none;
+    }
+}
+
 /*
 // Extra small devices (portrait phones, less than ???px)
 // No media query since this is the default in Bootstrap

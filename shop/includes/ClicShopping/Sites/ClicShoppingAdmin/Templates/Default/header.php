@@ -73,7 +73,7 @@
   <div class="wrapper" id="wrapper">
     <div class="content" id="content">
       <div class="headerFond">
-        <span class="headerLogo"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/logo_clicshopping.png', 'ClicShopping', '166', '55'); ?></span>
+        <span class="headerLogo"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/header/logo_clicshopping.webp', 'ClicShopping', '166', '55'); ?></span>
         <span class="infoHeader">
 <?php
   if (isset($_SESSION['admin'])) {
