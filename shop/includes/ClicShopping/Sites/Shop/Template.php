@@ -785,4 +785,33 @@
         }
       }
     }
+
+    /**
+     * Allow display or call Module Hooks for template
+     * @param string $source_folder
+     * @param string $file_get_output
+     * @param string $files_get_call
+     * @param string $hook_call
+     */
+    public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call)
+    {
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      if (is_dir($source_folder)) {
+        $files_get_output = $this->getSpecificFiles($source_folder, $file_get_output);
+        $files_get_call = $this->getSpecificFiles($source_folder, $files_get_call);
+
+        foreach ($files_get_output as $value) {
+          if (!empty($value['name'])) {
+            echo $CLICSHOPPING_Hooks->output($hook_call, $value['name'], null, 'display');
+          }
+        }
+
+        foreach ($files_get_call as $value) {
+          if (!empty($value['name'])) {
+            $CLICSHOPPING_Hooks->call($hook_call, $value['name']);
+          }
+        }
+      }
+    }
   }

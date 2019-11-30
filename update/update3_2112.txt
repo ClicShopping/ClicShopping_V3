@@ -6,4 +6,5 @@ Shopping Cart improvment
 Fix Install new Db accross Apps
 Change plot o chartist
 fix incompatibility chartist / font awesome
+optimize function to call the hook footer and heade
 

@@ -411,4 +411,17 @@
       return $result;
     }
 
+    /**
+     * Use Modules Hooks to call some element for the header or footer
+     * @param string $source_folder
+     * @param string $file_get_output
+     * @param string $files_get_call
+     * @param string $hook_call
+     */
+    public function useRecursiveModulesHooksForTemplate(string $source_folder, string $file_get_output, string $files_get_call, string $hook_call)
+    {
+      $result = parent::useRecursiveModulesHooksForTemplate($source_folder, $file_get_output, $files_get_call, $hook_call);
+
+      return $result;
+    }
   }

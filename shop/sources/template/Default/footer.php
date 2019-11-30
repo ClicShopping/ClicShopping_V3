@@ -48,23 +48,11 @@
     echo $CLICSHOPPING_Template->getBlocks('footer_scripts');
 
     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Footer/';
+    $file_get_output = 'FooterOutput*';
+    $file_get_call = 'FooterCall*';
+    $hook_call = 'Footer';
 
-    if (is_dir($source_folder)) {
-      $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterOutput*');
-      $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'FooterCall*');
-
-      foreach ($files_get_output as $value) {
-        if (!empty($value['name'])) {
-          echo $CLICSHOPPING_Hooks->output('Footer', $value['name'], null, 'display');
-        }
-      }
-
-      foreach ($files_get_call as $value) {
-        if (!empty($value['name'])) {
-          $CLICSHOPPING_Hooks->call('Footer', $value['name']);
-        }
-      }
-    }
+    $CLICSHOPPING_Template->useRecursiveModulesHooksForTemplate($source_folder,  $file_get_output,  $file_get_call, $hook_call);
 ?>
   </body>
 </html>

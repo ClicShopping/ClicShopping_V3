@@ -32,25 +32,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <?php
      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Header/';
+     $output = 'HeaderOutput*';
+     $call = 'HeaderCall*';
+     $hook_call = 'Header';
 
-     if (is_dir($source_folder)) {
-       $files_get_output = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderOutput*');
-       $files_get_call = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'HeaderCall*');
+     $CLICSHOPPING_Template->useRecursiveModulesHooksForTemplate($source_folder,  $output,  $call, $hook_call);
 
-       foreach ($files_get_output as $value) {
-         if (!empty($value['name'])) {
-           echo $CLICSHOPPING_Hooks->output('Header', $value['name'], null, 'display');
-         }
-       }
-
-       foreach ($files_get_call as $value) {
-         if (!empty($value['name'])) {
-           $CLICSHOPPING_Hooks->call('Header', $value['name']);
-         }
-       }
-     }
-
-      echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n";
+     echo $CLICSHOPPING_Template->getBlocks('header_tags') . "\n";
 ?>
   </head>
   <body>
