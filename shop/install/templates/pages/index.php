@@ -210,7 +210,7 @@ $(function() {
         <tbody>
           <tr>
             <td><?php echo PHP_VERSION; ?></td>
-            <td class="text-md-right" width="25"><?php echo ((PHP_VERSION >= 5.5) ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>'); ?></td>
+            <td class="text-md-right" width="25"><?php echo ((PHP_VERSION >= 7.3) ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>'); ?></td>
           </tr>
         </tbody>
       </table>
