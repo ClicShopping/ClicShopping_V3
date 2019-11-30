@@ -20,8 +20,8 @@
      */
     public function display(): string
     {
-      $output = '<link rel="stylesheet" href="' .  CLICSHOPPING::link('css/stylesheet.css') . '">' . "\n";
-      $output .= '<link rel="stylesheet" href="' .  CLICSHOPPING::link('css/stylesheet_responsive.css') . '">' . "\n";
+      $output = '<link rel="stylesheet" href="' .  CLICSHOPPING::link('css/stylesheet.css') . '" media="screen, print" >' . "\n";
+      $output .= '<link rel="stylesheet" href="' .  CLICSHOPPING::link('css/stylesheet_responsive.css') . '" media="screen, print" >' . "\n";
 
       return $output;
     }

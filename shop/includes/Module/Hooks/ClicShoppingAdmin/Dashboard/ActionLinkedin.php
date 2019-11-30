@@ -20,7 +20,7 @@
     {
       $output = '<div class="separator"></div>
                 <div class="text-md-center">' . CLICSHOPPING::getDef('linkedin_certificate_clicshopping') . '</div>
-                <div class="text-md-center"><a href="https://www.linkedin.com/profile/add?_ed=0_7nTFLiuDkkQkdELSpruCwGpUMNDIZlXEx27EQU-qViHbBgqjFXJtPnC2wRYrmwrBaSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=ClicShopping%20professionnal&pfCertificationUrl=http%3A%2F%2Fwww.clicshopping.org&trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
+                <div class="text-md-center"><a href="https://www.linkedin.com/profile/add?_ed=0_7nTFLiuDkkQkdELSpruCwGpUMNDIZlXEx27EQU-qViHbBgqjFXJtPnC2wRYrmwrBaSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=ClicShopping%20professionnal&pfCertificationUrl=http%3A%2F%2Fwww.clicshopping.org&trk=onsite_html" rel="nofollow" target="_blank"><img src="../images/ClicShoppingAdmin/linkedin.webp" alt="LinkedIn Add to Profile button"></a></div>
                 ';
 
       return $output;

@@ -21,9 +21,9 @@
     public function display(): string
     {
       $output = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.smartmenus/1.0.1/css/sm-core-css.css"> ' . "\n";
-      $output .= '<link rel="stylesheet" href="' . CLICSHOPPING::link('css/smartmenus.min.css') . '">' . "\n";
-      $output .= ' <link rel="stylesheet" href="' . CLICSHOPPING::link('css/smartmenus_customize.css') . '">' . "\n";
-      $output .= ' <link rel="stylesheet" href="' . CLICSHOPPING::link('css/smartmenus_customize_responsive.css') . '">' . "\n";
+      $output .= '<link rel="stylesheet" href="' . CLICSHOPPING::link('css/smartmenus.min.css') . '" media="screen, print"  rel="preload">' . "\n";
+      $output .= ' <link rel="stylesheet" href="' . CLICSHOPPING::link('css/smartmenus_customize.css') . '" media="screen, print"  rel="preload">' . "\n";
+      $output .= ' <link rel="stylesheet" href="' . CLICSHOPPING::link('css/smartmenus_customize_responsive.css') . '" media="screen, print"  rel="preload">' . "\n";
 
       return $output;
     }

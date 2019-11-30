@@ -47,7 +47,7 @@ Header set X-XSS-Protection "1; mode=block"
 Header always set X-FRAME-OPTIONS "DENY"
 </IfModule>
 
-
+##################################
 #Header always append X-Frame-Options SAMEORIGIN
 #CORS
 # Always set these headers.
@@ -56,15 +56,13 @@ Header always set X-FRAME-OPTIONS "DENY"
 #Header always set Access-Control-Max-Age "1000"
 #Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
 
-#### Your config to change URL rewriting ###############
-#Uncomment and adapt
-
+##################################
 #Caching schema
+##################################
 <IfModule mod_headers.c>
-  Header unset ETag
+    Header unset ETag
+    Header unset Last-Modified
 </IfModule>
-
-#Caching schema
 
 ## EXPIRES CACHING ##
 ## https://gtmetrix.com/leverage-browser-caching.html ##
@@ -94,8 +92,9 @@ Header always set X-FRAME-OPTIONS "DENY"
     ExpiresByType application/javascript "access plus 1 year"
 </IfModule>
 
-
+##################################
 #apache 2.4
+##################################
   <IfModule mod_version.c>
       <IfModule mod_filter.c>
         <IfVersion >= 2.4>
