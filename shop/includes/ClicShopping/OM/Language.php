@@ -577,7 +577,7 @@
           }
         }
 
-        $get_params = implode($get_params, '&');
+        $get_params = implode('&', $get_params);
 
         if (!empty($get_params)) {
           $get_params .= '&';
@@ -627,8 +627,7 @@
           }
         }
 
-        $get_params = implode($get_params, '&');
-
+        $get_params = implode('&', $get_params);
         if (!empty($get_params)) {
           $get_params .= '&';
         }
