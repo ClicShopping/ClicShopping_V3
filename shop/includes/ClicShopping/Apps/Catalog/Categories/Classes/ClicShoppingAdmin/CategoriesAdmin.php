@@ -246,7 +246,7 @@
      * @param string $from
      * @return bool|string
      */
-    public function getGeneratedCategoryPathIds(int $id, string $from = 'category'): path
+    public function getGeneratedCategoryPathIds($id, string $from = 'category')
     {
       $calculated_category_path_string = '';
       $calculated_category_path = $this->getGenerateCategoryPath($id, $from);
