@@ -873,3 +873,7 @@ input:checked + .slider:before {
 .text-slider {
     padding-top: 0.5rem
 }
+
+.progress {
+    background-color: orangered;
+}
