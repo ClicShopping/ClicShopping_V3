@@ -44,7 +44,7 @@
 
  MYSQL 7 / MariaDb
 
- PHP 7.2, 7.3 (reccommended) and +
+ PHP 7.3.3, 7.4 
 
  License GPL2 - MIT
 
@@ -65,7 +65,7 @@
 - B2B - B2C  full functionalities
 - WYSIWYG to create your products description, content with CKeditor4.x
 
-- Image Editor management with El-Finder 2.x - drag and drop
+- Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization ad url
 - Payment and Shipping modules included inside the application with Paypal
 - Extension System to install new Applications via the back-office
