@@ -10,7 +10,6 @@ text_intro = Cette app vous permet d'inclure une page contenant les commandes et
 
 module_sp_introduction = Le processus d'installation installe la base de données et le menu
 
-
 button_install_title = Installer
 button_configure = Configurer
 button_save = Sauver
@@ -104,7 +103,6 @@ entry_status_orders_support_name = Support Client
 entry_status_evidence = Preuve Client :
 entry_credit_card_express = Credit card express
 
-
 entry_status_invoice = Edition PDF à générer :
 entry_status_comment_invoice = Edition PDF générée :
 entry_status_invoice_realised = Traité par :
@@ -188,8 +186,8 @@ Veuillez trouver ci-dessous l'ensemble des informations.{{store_name}}
 {{store_name_address}}
 
 email_text_order_number = No de commande :
-email_text_invoice_url = Votre bon de commande ou facture sont disponibles dans votre espace d'administration de la '.STORE_NAME.' :
-email_text_date_ordered = '. "\n\n" . 'Date de commande :
+email_text_invoice_url = Votre bon de commande ou facture sont disponibles dans votre espace d'administration de la :
+email_text_date_ordered = <br /><br /> Date de commande :
 
 email_text_new_order_status = Nouveau statut : {{status}}
 
@@ -200,9 +198,9 @@ error_order_does_not_exist = Erreur : La commande n'existe pas. : N° {{order_id
 success_order_updated = Succès : La commande est mise à jour avec succès.
 warning_order_not_updated = Attention : Aucune modification n'a été effectuée. La commande n'a pas été mis à jour.
 
-entry_order_siret = N&deg; d'immatriculation <i>(ex : No RCS) :
-entry_tva_intracom = N&deg; de TVA intracom :
-entry_order_code_ape = N&deg; de nomenclature <i>(ex : Code APE) :
+entry_order_siret = N° d'immatriculation <i>(ex : No RCS) :
+entry_tva_intracom = N° de TVA intracom :
+entry_order_code_ape = N° de nomenclature <i>(ex : Code APE) :
 
 icon_edit = Editer
 icon_edit_customer = Editer la fiche client
