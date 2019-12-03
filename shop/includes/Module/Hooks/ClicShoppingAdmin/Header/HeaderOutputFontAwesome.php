@@ -9,9 +9,9 @@
    *
    */
 
-namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
+  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
 
-  class FooterOutputFontAwesome
+  class HeaderOutputFontAwesome
   {
     /**
      * @return string
@@ -19,7 +19,7 @@ namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
     public function display(): string
     {
       $output = '<!--FontAwesome Script start-->' . "\n";
-      $output .= '<script defer src="https://kit.fontawesome.com/89fdf54890.js"></script>' . "\n";
+      $output .= '<script src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>' . "\n";
       $output .= '<!--End FontAwesomeScript-->' . "\n";
 
       return $output;
