@@ -21,7 +21,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <base href="<?php echo $_SERVER['HTTP_HOST']; ?>">
 
-  <script src="https://kit.fontawesome.com/89fdf54890.js"></script>
+  <script src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>
   <title>Template problem !</title>
 </head>
 <body>
