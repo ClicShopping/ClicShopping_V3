@@ -116,7 +116,7 @@
      */
     public static function needsRehash($hash, $algo = null)
     {
-      if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
+      if (!isset($algo) || $algo == 'default') {
         $algo = PASSWORD_DEFAULT;
       } elseif ($algo == 'bcrypt') {
         $algo = PASSWORD_BCRYPT;

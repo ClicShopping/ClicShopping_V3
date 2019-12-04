@@ -18,9 +18,13 @@
      */
     public function display(): string
     {
-      $output = '<!-- Sortable Script start-->' . "\n";
-      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.9.0/Sortable.min.js"></script>' . "\n";
-      $output .= '<!--Sortable end -->' . "\n";
+      $output = '';
+
+      if (isset($_GET['Catalog\Products'])) {
+        $output = '<!-- Sortable Script start-->' . "\n";
+        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.9.0/Sortable.min.js"></script>' . "\n";
+        $output .= '<!--Sortable end -->' . "\n";
+      }
 
       return $output;
     }

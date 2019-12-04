@@ -91,10 +91,12 @@
             if ($Qadmin->fetch() !== false) {
               if (Hash::verify($password, $Qadmin->value('user_password'))) {
   // migrate old hashed password to new php password_hash
-                if (Hash::needsRehash($Qadmin->value('user_password'))) {
-                  $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
-                    ['id' => $Qadmin->valueInt('id')]
-                  );
+                if (PHP_VERSION < 7.4) {
+                  if (Hash::needsRehash($Qadmin->value('user_password'))) {
+                    $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
+                      ['id' => $Qadmin->valueInt('id')]
+                    );
+                  }
                 }
 
                 $_SESSION['admin'] = ['id' => $Qadmin->valueInt('id'),

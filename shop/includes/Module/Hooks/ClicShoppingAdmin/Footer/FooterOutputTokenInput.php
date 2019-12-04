@@ -20,9 +20,13 @@
      */
     public function display(): string
     {
-      $output = '<!--TokenInput Script start-->' . "\n";
-      $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/tokeninput/jquery.tokeninput.min.js') . '"></script>' . "\n";
-      $output .= '<!--End TokenInput-->' . "\n";
+      $output = '';
+
+      if (isset($_GET['Catalog\Products'])) {
+        $output = '<!--TokenInput Script start-->' . "\n";
+        $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/tokeninput/jquery.tokeninput.min.js') . '"></script>' . "\n";
+        $output .= '<!--End TokenInput-->' . "\n";
+      }
 
       return $output;
     }
