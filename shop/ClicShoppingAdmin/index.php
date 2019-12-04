@@ -12,8 +12,6 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-  error_reporting(E_ALL & ~E_NOTICE);
-
 // Start the clock for the page parse time log
   define('PAGE_PARSE_START_TIME', microtime());
 

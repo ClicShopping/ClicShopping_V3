@@ -22,7 +22,7 @@
     {
       $output = '';
 
-      if (isset($_GET['Catalog\Products'])) {
+      if (isset($_GET['cPath'])) {
         $output = '<!--TokenInput Script start-->' . "\n";
         $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/tokeninput/jquery.tokeninput.min.js') . '"></script>' . "\n";
         $output .= '<!--End TokenInput-->' . "\n";

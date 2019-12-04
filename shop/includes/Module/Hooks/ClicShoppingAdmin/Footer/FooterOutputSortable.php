@@ -20,7 +20,7 @@
     {
       $output = '';
 
-      if (isset($_GET['Catalog\Products'])) {
+      if (isset($_GET['cPath'])) {
         $output = '<!-- Sortable Script start-->' . "\n";
         $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.9.0/Sortable.min.js"></script>' . "\n";
         $output .= '<!--Sortable end -->' . "\n";
