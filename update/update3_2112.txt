@@ -7,4 +7,6 @@ Fix Install new Db accross Apps
 Change plot o chartist
 fix incompatibility chartist / font awesome
 optimize function to call the hook footer and heade
-language fix deprecated implode php 6.4
+language fix deprecated implode php 7.4
+fix password algo php 7.4
+
