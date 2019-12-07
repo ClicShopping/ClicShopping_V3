@@ -379,8 +379,7 @@ span.infoHeader {
 }
 
 .menuJSCookTexte {
-
-    color: White;
+    color: #fff;
 }
 
 .headerFond {
@@ -400,15 +399,7 @@ span.infoHeader {
     background-color: #F4F4F4;
 }
 
-
-
 #footer {
-
-/*
-    position: absolute;
-    width: 100%;
-    height: 0px;
-*/
 }
 
 .bg-faded {
