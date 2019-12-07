@@ -22,7 +22,7 @@
       $CLICSHOPPING_Specials = Registry::get('Specials');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       $status = 1;
 

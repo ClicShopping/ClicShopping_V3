@@ -23,7 +23,7 @@
 
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
@@ -240,7 +240,7 @@
                     echo '&nbsp;';
                     echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_BannerManager->getDef('icon_copy_to')) . '</a>';
                     echo '&nbsp;';
-                    echo '<a data-banner-id="' . $Qbanner->valueInt('banners_id') . '" data-toggle="modal" data-target="#statsModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/statistics.gif', $CLICSHOPPING_BannerManager->getDef('icon_statistics')) . '</a>';
+                    echo '<a data-banner-id="' . $id . '" data-toggle="modal" data-target="#statsModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/statistics.gif', $CLICSHOPPING_BannerManager->getDef('icon_statistics')) . '</a>';
                     echo '&nbsp;';
                     echo '&nbsp;';
                     echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_BannerManager->getDef('icon_delete')) . '</a>';

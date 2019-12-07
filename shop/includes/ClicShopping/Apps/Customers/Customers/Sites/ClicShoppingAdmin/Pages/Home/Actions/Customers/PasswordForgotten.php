@@ -29,7 +29,7 @@
 
       $CLICSHOPPING_Customer->loadDefinitions('Sites/ClicShoppingAdmin/password_forgotten');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       $QcheckCustomer = $CLICSHOPPING_Customer->db->prepare('select customers_firstname,
                                                                      customers_lastname,

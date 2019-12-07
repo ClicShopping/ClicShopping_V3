@@ -20,7 +20,7 @@
   $CLICSHOPPING_Members = Registry::get('Members');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
   // Permettre l'utilisation de l'approbation des comptes en mode B2B
   if (MODE_B2B_B2C == 'false') CLICSHOPPING::redirect();

@@ -20,7 +20,7 @@
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
   $nID = HTML::sanitize($_GET['nID']);
   $nlID = HTML::sanitize($_GET['nlID']);

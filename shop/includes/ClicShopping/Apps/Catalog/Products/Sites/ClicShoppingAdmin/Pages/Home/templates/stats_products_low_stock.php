@@ -18,7 +18,7 @@
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 ?>
 <div class="contentBody">
   <div class="row">

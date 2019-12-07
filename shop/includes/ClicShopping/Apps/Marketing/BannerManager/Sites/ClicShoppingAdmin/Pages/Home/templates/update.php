@@ -22,7 +22,7 @@
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
   $parameters = ['expires_date' => '',
     'date_scheduled' => '',

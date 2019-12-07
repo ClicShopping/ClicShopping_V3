@@ -26,7 +26,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       if (isset($_GET['id']) && isset($_GET['flag'])) {
         Status::getSuppliersStatus($_GET['id'], $_GET['flag']);

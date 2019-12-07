@@ -26,7 +26,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
       $tax_class_id = HTML::sanitize($_GET['tID']);
 
       $this->app->db->delete('tax_class', ['tax_class_id' => (int)$tax_class_id]);

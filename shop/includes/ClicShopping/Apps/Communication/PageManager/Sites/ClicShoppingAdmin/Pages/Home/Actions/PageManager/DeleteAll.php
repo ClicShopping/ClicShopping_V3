@@ -24,7 +24,7 @@
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       if (!is_null($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {

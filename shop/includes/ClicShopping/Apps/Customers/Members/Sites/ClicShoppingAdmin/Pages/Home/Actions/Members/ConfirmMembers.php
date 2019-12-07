@@ -31,7 +31,7 @@
 // insert by default in the first group
       $customers_group_id = 1;
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       if (isset($_GET['cID'])) $customers_id = HTML::sanitize($_GET['cID']);
 

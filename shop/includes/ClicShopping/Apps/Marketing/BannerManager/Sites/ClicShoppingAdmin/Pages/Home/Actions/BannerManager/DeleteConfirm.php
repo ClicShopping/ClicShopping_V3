@@ -25,7 +25,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
       $banners_id = HTML::sanitize($_GET['bID']);
 
       if (isset($_POST['delete_image']) && ($_POST['delete_image'] == 'on')) {

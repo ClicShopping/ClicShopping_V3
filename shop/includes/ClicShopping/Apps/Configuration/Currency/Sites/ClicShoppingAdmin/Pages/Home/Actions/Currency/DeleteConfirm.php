@@ -27,7 +27,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       $currencies_id = HTML::sanitize($_GET['cID']);
 

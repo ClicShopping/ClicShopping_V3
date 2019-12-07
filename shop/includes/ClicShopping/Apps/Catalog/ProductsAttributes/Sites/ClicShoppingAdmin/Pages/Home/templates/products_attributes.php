@@ -40,7 +40,7 @@
 
   $upload_max_filesize = ini_get('upload_max_filesize');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
   echo HTMLOverrideAdmin::getCkeditor();
 ?>

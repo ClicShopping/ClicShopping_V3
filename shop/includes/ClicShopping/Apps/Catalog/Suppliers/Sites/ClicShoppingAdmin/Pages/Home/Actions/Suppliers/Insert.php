@@ -95,7 +95,7 @@
         $suppliers_notes = '';
       }
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
 
       if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && !empty($_POST['suppliers_image']) && (!isset($_POST['delete_image']))) {
         $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
