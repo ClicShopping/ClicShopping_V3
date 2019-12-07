@@ -60,7 +60,7 @@
       $new_info_ip = CLICSHOPPING::getDef('report_sender_ip_address', ['IP' => $ip]) . ' <a href="https://whatismyipaddress.com/ip/' . $ip . '">https://whatismyipaddress.com/ip/' . $ip . '</a>';
     }
   }
-  
+
   if (!is_null($action)) {
     switch ($action) {
       case 'process':
