@@ -48,7 +48,7 @@
           <div class="error-actions">
             <br/><br/>
             <i class="fas fa-home"></i> <span style="text-decoration:none;"><a
-                href="<?php echo HTTP::redirect(HTTP::getShopUrlDomain() . 'index.php');; ?>">Go to the web store</a></span>
+                href="<?php echo HTTP::redirect(HTTP::getShopUrlDomain() . 'index.php'); ?>">Go to the web store</a></span>
           </div>
         </div>
       </div>

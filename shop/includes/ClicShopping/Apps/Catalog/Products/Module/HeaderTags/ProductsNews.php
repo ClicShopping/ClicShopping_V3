@@ -83,13 +83,13 @@
         if (empty($Qsubmit->value('submit_language_products_new_description'))) {
           $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
         } else {
-          $description = HTML::sanitize($Qsubmit->value('submit_language_products_new_description'));;
+          $description = HTML::sanitize($Qsubmit->value('submit_language_products_new_description'));
         }
 
         if (empty($Qsubmit->value('submit_language_products_new_keywords'))) {
           $keywords = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
         } else {
-          $keywords = HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords'));;
+          $keywords = HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords'));
         }
 
         $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());

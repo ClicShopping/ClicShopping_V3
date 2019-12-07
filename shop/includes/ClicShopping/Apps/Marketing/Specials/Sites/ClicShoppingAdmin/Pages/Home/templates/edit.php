@@ -165,7 +165,7 @@
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_Specials->getDef('text_specials_product'); ?></label>
                 <div class="col-md-5">
                   <?php
-                    echo (isset($sInfo->products_name)) ? $sInfo->products_name . ' <small>(' . $CLICSHOPPING_Currencies->format($sInfo->products_price) . ')</small>' : HTMLOverrideAdmin::selectMenuProductsPullDown('products_id', null, $specials_array);;
+                    echo (isset($sInfo->products_name)) ? $sInfo->products_name . ' <small>(' . $CLICSHOPPING_Currencies->format($sInfo->products_price) . ')</small>' : HTMLOverrideAdmin::selectMenuProductsPullDown('products_id', null, $specials_array);
                     echo HTML::hiddenField('products_price', (isset($sInfo->products_price) ? $sInfo->products_price : ''));
 
                     if (isset($_GET['sID'])) {

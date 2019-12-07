@@ -47,7 +47,7 @@
   </div>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle">
-    <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_delete_products_length');; ?></strong>
+    <strong><?php echo $CLICSHOPPING_ProductsLength->getDef('text_info_heading_delete_products_length'); ?></strong>
   </div>
   <?php echo HTML::form('delete', $CLICSHOPPING_ProductsLength->link('ProductsLength&ClassDeleteConfirm&page=' . $page . '&wID=' . $wInfo->products_length_class_from_id . '&tID=' . $wInfo->products_length_class_to_id)); ?>
   <div class="adminformTitle">
