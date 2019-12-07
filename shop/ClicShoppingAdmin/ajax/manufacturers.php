@@ -10,8 +10,16 @@
    */
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\CLICSHOPPING;
 
-  require_once('../includes/application_top.php');
+  define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
+
+  require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
+  spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
+
+  CLICSHOPPING::initialize();
+
+  CLICSHOPPING::loadSite('ClicShoppingAdmin');
 
   $CLICSHOPPING_Db = Registry::get('Db');
 
