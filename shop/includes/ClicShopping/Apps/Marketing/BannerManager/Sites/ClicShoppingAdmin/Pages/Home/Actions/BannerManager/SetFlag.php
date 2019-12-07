@@ -24,7 +24,7 @@
       $CLICSHOPPING_BannerManager = Registry::get('BannerManager');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (($_GET['flag'] == 0) || ($_GET['flag'] == 1)) {
         Status::setBannerStatus($_GET['bID'], $_GET['flag']);

@@ -25,7 +25,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $tax_rates_id = HTML::sanitize($_GET['tID']);
       $tax_zone_id = HTML::sanitize($_POST['tax_zone_id']);
       $tax_class_id = HTML::sanitize($_POST['tax_class_id']);

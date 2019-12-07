@@ -26,7 +26,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       $products_length_class_from_id_old = HTML::sanitize($_GET['wID']);
       $products_length_class_to_id_old = HTML::sanitize($_GET['tID']);

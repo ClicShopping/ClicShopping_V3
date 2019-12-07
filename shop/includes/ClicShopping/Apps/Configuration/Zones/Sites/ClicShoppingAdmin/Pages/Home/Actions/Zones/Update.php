@@ -25,7 +25,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $zone_id = HTML::sanitize($_GET['cID']);
       $zone_country_id = HTML::sanitize($_POST['zone_country_id']);
       $zone_code = HTML::sanitize($_POST['zone_code']);

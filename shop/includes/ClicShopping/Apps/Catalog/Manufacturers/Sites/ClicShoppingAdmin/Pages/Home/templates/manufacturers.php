@@ -20,7 +20,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <div class="contentBody">
   <div class="row">

@@ -30,7 +30,7 @@
 
   $order_id = HTML::sanitize($_GET['oID']);
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   $orders_statuses = [];
   $orders_status_array = [];

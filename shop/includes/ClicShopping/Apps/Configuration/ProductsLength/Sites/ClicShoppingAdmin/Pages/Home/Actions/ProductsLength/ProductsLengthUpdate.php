@@ -28,7 +28,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       $products_length_class_key = HTML::sanitize($_POST['products_length_class_key']);

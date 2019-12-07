@@ -27,7 +27,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $weight_class_id = HTML::sanitize($_POST['weight_class_id']);
       $weight_class_to_id = HTML::sanitize($_POST['weight_class_to_id']);
       $weight_class_rule = $_POST['weight_class_rule'];

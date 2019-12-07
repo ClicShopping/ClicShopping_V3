@@ -25,7 +25,7 @@
 
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (isset($_GET['id'])) {
         Status::getReviewsStatus(HTML::sanitize($_GET['id']), HTML::sanitize($_GET['flag']));

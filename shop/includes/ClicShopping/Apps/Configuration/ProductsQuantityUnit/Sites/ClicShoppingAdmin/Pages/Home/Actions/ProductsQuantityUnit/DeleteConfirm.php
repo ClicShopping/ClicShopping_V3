@@ -30,7 +30,7 @@
 
       if (isset($_GET['oID'])) {
         $oID = HTML::sanitize($_GET['oID']);
-        $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+        $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
         $Qstatus = $this->app->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID']);
 

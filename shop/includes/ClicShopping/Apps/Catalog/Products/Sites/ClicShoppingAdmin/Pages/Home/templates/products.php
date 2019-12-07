@@ -40,7 +40,7 @@
 
   $cPath_back = (!is_null($cPath_back)) ? 'cPath=' . $cPath_back . '&' : '';
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   if (isset($_GET['error']) && $_GET['error'] == 'fileNotSupported') {
 ?>

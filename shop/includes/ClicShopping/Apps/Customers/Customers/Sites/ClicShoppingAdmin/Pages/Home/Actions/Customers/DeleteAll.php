@@ -22,7 +22,7 @@
 
       $CLICSHOPPING_Customers = Registry::get('Customers');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (!empty($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
