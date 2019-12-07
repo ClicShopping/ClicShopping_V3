@@ -23,7 +23,7 @@
 
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   $action = (isset($_GET['action']) ? $_GET['action'] : '');
 
@@ -290,7 +290,7 @@
 
 <script>
     $(function () {
-        var fetchStatsUrl = '<?= addslashes($CLICSHOPPING_BannerManager->link('BannerManager&FetchStats&banners_id={{id}}')); ?>';
+        var fetchStatsUrl = '<?= addslashes($CLICSHOPPING_BannerManager->link('BannerManager&FetchStats&banners_id={{id}}', false)); ?>';
 
         $('#statsModal').on('shown.bs.modal', function (e) {
             var json = $.getJSON(Mustache.render(fetchStatsUrl, {id: $(e.relatedTarget).data('banner-id')}), function (data) {

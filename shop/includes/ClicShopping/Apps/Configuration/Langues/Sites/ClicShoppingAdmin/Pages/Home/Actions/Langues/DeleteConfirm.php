@@ -29,7 +29,7 @@
     {
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
       $lID = HTML::sanitize($_GET['lID']);
 
       $Qlng = $this->app->db->get('languages', 'languages_id', ['code' => DEFAULT_LANGUAGE]);

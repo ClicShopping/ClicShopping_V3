@@ -64,7 +64,7 @@
   </div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_info_heading_delete_orders_status'); ?></strong></div>
-  <?php echo HTML::form('status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&DeleteConfirm&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id)); ?>
+  <?php echo HTML::form('status', $CLICSHOPPING_OrdersStatus->link('OrdersStatus&DeleteConfirm&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->orders_status_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
@@ -75,11 +75,11 @@
         <?php
           if ($remove_status) {
             ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
             <?php
           } else {
             ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatus->link('OrdersStatus&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->orders_status_id), 'warning', null, 'sm'); ?></span>
             <?php
           }
         ?>

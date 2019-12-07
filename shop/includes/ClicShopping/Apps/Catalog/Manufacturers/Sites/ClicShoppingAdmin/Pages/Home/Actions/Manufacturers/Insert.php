@@ -33,7 +33,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
       $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
       $manufacturers_image = HTML::sanitize($_POST['manufacturers_image']);

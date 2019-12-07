@@ -39,7 +39,7 @@
       $module_directory = HTML::sanitize($_POST['module_directory']);
 
       if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work/Temp/')) {
-        if ($type_module == 'template') {
+        if ($type_module == strtolower('template' ) || $type_module == strtolower('language')) {
           $CLICSHOPPING_Github->getModuleMasterArchive($module_real_name);
           $CLICSHOPPING_Github->getInstallModuleTemplate($module_real_name);
         } else {

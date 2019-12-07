@@ -18,7 +18,7 @@
 ?>
 
   <div class="text-md-right">
-    <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_back'), null, $CLICSHOPPING_PayPal->link('Log&page=' . $_GET['page']), 'primary'); ?>
+    <?php echo HTML::button($CLICSHOPPING_PayPal->getDef('button_back'), null, $CLICSHOPPING_PayPal->link('Log&page=' . HTML::sanitize($_GET['page'])), 'primary'); ?>
   </div>
   <div class="separator"></div>
   <table class="table table-hover">

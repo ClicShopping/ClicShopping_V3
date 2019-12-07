@@ -19,7 +19,7 @@
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   $rows = 0;
   echo HTML::form('stats_products_viewed', $CLICSHOPPING_Products->link('Products&UpdateStatsProductsViewed&resetViewed=0'));

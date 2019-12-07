@@ -34,7 +34,7 @@
 
   $cInfo = new ObjectInfo($Qcurrency->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   echo HTML::form('Currency', $CLICSHOPPING_Currency->link('Currency&Update&page=' . $page . '&cID=' . $cInfo->currencies_id));
 ?>

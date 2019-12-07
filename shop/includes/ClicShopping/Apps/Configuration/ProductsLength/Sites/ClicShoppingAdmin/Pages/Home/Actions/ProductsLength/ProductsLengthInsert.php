@@ -29,7 +29,7 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       $QlastId = $this->app->db->prepare('select products_length_class_id

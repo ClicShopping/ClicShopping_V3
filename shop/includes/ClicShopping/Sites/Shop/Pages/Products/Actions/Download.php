@@ -83,7 +83,7 @@
                                             where orders_products_download_id = :orders_products_download_id
                                             ');
 
-      $Qupdate->bindInt(':orders_products_download_id', (int)$_GET['id']);
+      $Qupdate->bindInt(':orders_products_download_id', $_GET['id']);
       $Qupdate->execute();
 
 // Now send the file with header() magic

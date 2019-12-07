@@ -23,7 +23,7 @@
         <div class="row">
           <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_back'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']), 'primary'); ?></span>
+          <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_back'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID']), 'primary'); ?></span>
         </div>
       </div>
     </div>

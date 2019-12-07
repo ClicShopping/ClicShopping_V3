@@ -20,7 +20,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Db = Registry::get('Db');
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   if (isset($_GET['search'])) {
     $_POST['search'] = HTML::sanitize($_GET['search']);

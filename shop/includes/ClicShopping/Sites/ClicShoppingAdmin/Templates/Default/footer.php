@@ -43,8 +43,8 @@
     <?php
   }
 ?>
-            </div>
-          </nav>
+          </div>
+        </nav>
         <div class="separator"></div>
       </footer>
 <?php

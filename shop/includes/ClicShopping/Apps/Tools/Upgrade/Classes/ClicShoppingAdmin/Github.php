@@ -258,6 +258,7 @@
         array('id' => 'other', 'text' => 'Modules Apps Others'),
         array('id' => 'bookmarks', 'text' => 'Modules Social Bookmarks'),
         array('id' => 'template', 'text' => 'Template Design'),
+        array('id' => 'language', 'text' => 'Language'),
       );
 
       return $module;

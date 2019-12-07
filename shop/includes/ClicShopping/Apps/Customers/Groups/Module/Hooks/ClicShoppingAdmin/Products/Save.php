@@ -108,7 +108,7 @@
           }
 
           if (isset($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
-            $products_quantity_unit_id_group = HTMl::sanitize($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')]);
+            $products_quantity_unit_id_group = HTML::sanitize($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')]);
           } else {
             $products_quantity_unit_id_group = 0;
           }

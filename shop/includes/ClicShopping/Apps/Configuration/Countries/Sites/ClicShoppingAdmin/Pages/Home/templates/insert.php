@@ -31,7 +31,7 @@
           <span class="col-md-7 text-md-right">
 <?php
   echo HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries'), 'warning') . ' ';
-  echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Insert&page=' . $_GET['page']));
+  echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Insert&page=' . HTML::sanitize($_GET['page'])));
   echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, null, 'success')
 ?>
           </span>

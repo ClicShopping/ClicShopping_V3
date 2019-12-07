@@ -27,7 +27,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
       $products_length_class_id = HTML::sanitize($_POST['products_length_class_id']);
       $products_length_class_to_id = HTML::sanitize($_POST['products_length_class_to_id']);
       $products_length_class_rule = $_POST['products_length_class_rule'];

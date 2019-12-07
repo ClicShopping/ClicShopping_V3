@@ -270,7 +270,7 @@
             $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
 
             if (isset($_GET['id'])) {;
-              $CLICSHOPPING_Customer->setDefaultAddressID($_GET['id']);
+              $CLICSHOPPING_Customer->setDefaultAddressID((int)$_GET['id']);
             } else {
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error'), 'error', 'checkout_address');
               CLICSHOPPING::redirect(null, 'Account&Main');

@@ -27,7 +27,7 @@
     public function execute()
     {
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
       $countries_name = HTML::sanitize($_POST['countries_name']);
       $countries_iso_code_2 = HTML::sanitize($_POST['countries_iso_code_2']);

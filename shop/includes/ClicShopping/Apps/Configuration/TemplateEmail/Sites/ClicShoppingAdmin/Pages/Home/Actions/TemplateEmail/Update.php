@@ -50,6 +50,6 @@
 
       $CLICSHOPPING_Hooks->call('TemplateEmail', 'Update');
 
-      $this->app->redirect('TemplateEmail&page=' . $_GET['page']);
+      $this->app->redirect('TemplateEmail&page=' . HTML::sanitize($_GET['page']));
     }
   }

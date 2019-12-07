@@ -40,7 +40,7 @@
         }
       }
 
-      if (isset($_GET['log']) && array_key_exists($_GET['log'], $files)) {
+      if (isset($_GET['log']) && isset($_GET['log'], $files)) {
         if (unlink($files[$_GET['log']]['path'])) {
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_EditLogError->getDef('ms_success_delete', ['log' => $files[$_GET['log']]['key']]), 'success');
         } else {

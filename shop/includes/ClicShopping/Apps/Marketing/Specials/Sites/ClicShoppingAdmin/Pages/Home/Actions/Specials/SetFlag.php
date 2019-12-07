@@ -20,13 +20,13 @@
     {
       $CLICSHOPPING_Specials = Registry::get('Specials');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
       if (isset($_GET['flag']) && isset($_GET['id'])) {
         static::getSpecialsStatus($_GET['id'], $_GET['flag']);
       }
 
-      $CLICSHOPPING_Specials->redirect('Specials&page=' . $page . 'sID=' . $_GET['id']);
+      $CLICSHOPPING_Specials->redirect('Specials&page=' . $page . 'sID=' . (int)$_GET['id']);
     }
 
 

@@ -35,7 +35,7 @@
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('error_remove_default_currency'), 'error');
   }
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -62,7 +62,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->title . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo (($remove_currency) ? HTML::button($CLICSHOPPING_Currency->getDef('button_delete'), null, null, 'primary', null, 'sm') : '') . ' </span><span>' . HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $_GET['page'] . '&cID=' . $cInfo->currencies_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo (($remove_currency) ? HTML::button($CLICSHOPPING_Currency->getDef('button_delete'), null, null, 'primary', null, 'sm') : '') . ' </span><span>' . HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . HTML::sanitize($_GET['page']) . '&cID=' . $cInfo->currencies_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

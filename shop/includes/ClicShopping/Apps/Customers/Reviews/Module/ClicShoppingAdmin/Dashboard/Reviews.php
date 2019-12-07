@@ -101,7 +101,7 @@
           '    <td class="dataTableContent">' . HTML::outputProtected($Qreviews->value('customers_name')) . '</td>' .
           '    <td class="dataTableContent"><i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i></td>' .
           '    <td class="dataTableContent text-md-center">' . $status_icon . '</td>' .
-          '   <td class="dataTableContent text-md-right">' . HTML::link($this->app->link('&Edit&page=' . $_GET['page'] . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('icon_edit'))) . '</td>' .
+          '   <td class="dataTableContent text-md-right">' . HTML::link($this->app->link('&Edit&page=' . HTML::sanitize($_GET['page']) . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('icon_edit'))) . '</td>' .
           '  </tr>';
 
         $content .= ' </tbody>';

@@ -26,7 +26,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
       if (!is_numeric($_POST['tax_rate'])) {
         $this->app->redirect('TaxRates&page=' . $page);

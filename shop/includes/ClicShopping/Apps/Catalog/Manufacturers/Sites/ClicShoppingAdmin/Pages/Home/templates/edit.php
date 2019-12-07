@@ -31,7 +31,7 @@
     $variable = '&mID=' . HTML::sanitize($_GET['mID']);
   }
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   echo HTMLOverrideAdmin::getCkeditor();
   echo HTML::form('manufacturers', $CLICSHOPPING_Manufacturers->link('Manufacturers&' . $form_action . $variable));

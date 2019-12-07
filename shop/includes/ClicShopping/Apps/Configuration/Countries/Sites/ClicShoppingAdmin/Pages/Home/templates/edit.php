@@ -41,7 +41,7 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Countries->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Update&page=' . $_GET['page'] . '&cID=' . $cInfo->countries_id));
+  echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Update&page=' . HTML::sanitize($_GET['page']) . '&cID=' . $cInfo->countries_id));
   echo HTML::button($CLICSHOPPING_Countries->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries'), 'warning');
 ?>

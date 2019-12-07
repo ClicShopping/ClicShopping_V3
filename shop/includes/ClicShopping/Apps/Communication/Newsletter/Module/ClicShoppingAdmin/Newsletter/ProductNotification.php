@@ -109,15 +109,15 @@ function selectAll(FormName, SelectBox) {
 //--></script>';
 
       $global_button = '<script language="javascript"><!--' . "\n" .
-        'document.write(\'<input type="button" value="' . $this->app->getDef('button_global') . '" style="width: 8em;" onclick="document.location=\\\'' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
-        '//--></script><noscript><a href="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm&global=true') . '">[ ' . $this->app->getDef('button_global') . ' ]</a></noscript>';
+        'document.write(\'<input type="button" value="' . $this->app->getDef('button_global') . '" style="width: 8em;" onclick="document.location=\\\'' . $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
+        '//--></script><noscript><a href="' . $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID'] . '&action=confirm&global=true') . '">[ ' . $this->app->getDef('button_global') . ' ]</a></noscript>';
 
       $choose_audience_string .= '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
-        '     <form name="notifications" action="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=confirm') . '" method="post" onSubmit="return selectAll(\'notifications\', \'chosen[]\')">' . "\n" .
+        '     <form name="notifications" action="' . $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID'] . '&action=confirm') . '" method="post" onSubmit="return selectAll(\'notifications\', \'chosen[]\')">' . "\n" .
         '      <tr>' .
         '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_send'), null, null, 'primary') . '</td>' .
         '          <td>&nbsp;</td>' .
-        '          <td class="text-md-right"><a href="' . $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']) . '">' . HTML::button($this->app->getDef('button_cancel'), null, null, 'danger') . '</a></td>' .
+        '          <td class="text-md-right"><a href="' . $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID']) . '">' . HTML::button($this->app->getDef('button_cancel'), null, null, 'danger') . '</a></td>' .
         '        </tr>' .
         '      </table></td>' .
         '    </tr>' .
@@ -205,12 +205,12 @@ function selectAll(FormName, SelectBox) {
       }
 
       $confirm_string = '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
-        '      <tr>' . HTML::form('confirm', $this->app->link('Newsletter&ConfirmSend&page=' . $_GET['page'] . '&nID=' . $_GET['nID'])) .
+        '      <tr>' . HTML::form('confirm', $this->app->link('Newsletter&ConfirmSend&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID'])) .
         '          <td  class="text-md-right">' . $confirm_button_string . '</td>' .
         '          <td>&nbsp;</td>' .
-        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_back'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID'] . '&action=send'), 'primary') . '</a></td>' .
+        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_back'), null, $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID'] . '&action=send'), 'primary') . '</a></td>' .
         '          <td>&nbsp;</td>' .
-        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $_GET['nID']), 'danger') . '</a></td>' .
+        '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID']), 'danger') . '</a></td>' .
         '        </tr>' .
         '      </table></td>' .
         '    </tr>' .

@@ -28,11 +28,11 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       $products_length_class_key = HTML::sanitize($_POST['products_length_class_key']);
-      $products_length_class_id = HTMl::sanitize($_POST['products_length_class_id']);
+      $products_length_class_id = HTML::sanitize($_POST['products_length_class_id']);
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $products_length_class_title_array = HTML::sanitize($_POST['products_length_class_title']);

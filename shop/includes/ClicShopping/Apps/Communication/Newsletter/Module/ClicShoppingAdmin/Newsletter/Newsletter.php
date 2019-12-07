@@ -153,7 +153,7 @@
 // Display a button if subcription is > 0
 // ----------------------
       if (SEND_EMAILS == 'true' && $Qmail->valueInt('count') > 0) {
-        $send_button = '<span class="float-md-right">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . $_GET['page'] . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
+        $send_button = '<span class="float-md-right">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . HTML::sanitize($_GET['page']) . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
       } else {
         $send_button = '';
       }
@@ -169,7 +169,7 @@
                 <span class="col-md-12">
       ';
       $confirm_string .= $send_button;
-      $confirm_string .= '<span class="float-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . $_GET['page'] . '&nID=' . $this->fileId), 'warning') . '&nbsp;</span>';
+      $confirm_string .= '<span class="float-md-right">' . HTML::button($this->app->getDef('button_cancel'), null, $this->app->link('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . $this->fileId), 'warning') . '&nbsp;</span>';
       $confirm_string .= '
                 </span>
               </div>

@@ -37,7 +37,7 @@
 
   $wInfo = new ObjectInfo($Qweight->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   if ($CLICSHOPPING_MessageStack->exists('class_edit')) {
     echo $CLICSHOPPING_MessageStack->get('class_edit');

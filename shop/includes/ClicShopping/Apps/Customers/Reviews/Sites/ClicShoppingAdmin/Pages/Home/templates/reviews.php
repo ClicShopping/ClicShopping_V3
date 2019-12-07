@@ -24,7 +24,7 @@
     echo $CLICSHOPPING_MessageStack->get('reviews');
   }
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 ?>
 
 <!-- body //-->

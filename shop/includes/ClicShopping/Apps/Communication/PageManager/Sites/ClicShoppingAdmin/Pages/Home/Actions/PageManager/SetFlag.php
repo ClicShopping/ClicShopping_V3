@@ -26,7 +26,7 @@
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
       Status::getPageManagerStatus($_GET['id'], $_GET['flag']);
 
@@ -40,6 +40,6 @@
       Cache::clear('boxe_page_manager_display_information-');
       Cache::clear('boxe_page_manager_display_title-');
 
-      $CLICSHOPPING_PageManager->redirect('PageManager&page=' . $page . '&bID=' . $_GET['id']);
+      $CLICSHOPPING_PageManager->redirect('PageManager&page=' . $page . '&bID=' . (int)$_GET['id']);
     }
   }

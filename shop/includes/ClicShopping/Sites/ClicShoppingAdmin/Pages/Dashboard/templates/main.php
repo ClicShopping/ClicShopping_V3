@@ -114,10 +114,12 @@
   }
 </style>
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab" class="nav">
-      <li class="nav-item"><a href="#tab1" role="tab" data-toggle="tab"
-                              class="nav-link active"><?php echo CLICSHOPPING::getDef('tab_statistics'); ?></a></li>
-      <li class="nav-item"><a href="#tab3" role="tab" data-toggle="tab"
-                              class="nav-link"><?php echo CLICSHOPPING::getDef('tab_customer'); ?></a></li>
+      <li class="nav-item">
+        <a href="#tab1" role="tab" data-toggle="tab" class="nav-link active"><?php echo CLICSHOPPING::getDef('tab_statistics'); ?></a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab3" role="tab" data-toggle="tab" class="nav-link"><?php echo CLICSHOPPING::getDef('tab_customer'); ?></a>
+      </li>
     </ul>
 
     <div class="tabsClicShopping">

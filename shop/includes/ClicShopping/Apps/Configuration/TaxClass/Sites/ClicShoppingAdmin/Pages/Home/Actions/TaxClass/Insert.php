@@ -26,7 +26,7 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
       $tax_class_title = HTML::sanitize($_POST['tax_class_title']);
       $tax_class_description = HTML::sanitize($_POST['tax_class_description']);
 

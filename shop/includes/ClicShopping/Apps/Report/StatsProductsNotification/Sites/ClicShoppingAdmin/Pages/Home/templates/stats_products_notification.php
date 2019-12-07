@@ -19,11 +19,11 @@
   $CLICSHOPPING_StatsProductsNotification = Registry::get('StatsProductsNotification');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
   // show customers for a product
   if (isset($_GET['show_customers']) && (int)$_GET['pID']) {
-  $products_id = HTMl::sanitize($_GET['pID']);
+  $products_id = HTML::sanitize($_GET['pID']);
 ?>
 
 <div class="contentBody">

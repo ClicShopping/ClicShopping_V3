@@ -81,7 +81,7 @@
       </div>
     </div>
   </div>
-  <?php echo HTML::form('status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&DeleteConfirm&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id)); ?>
+  <?php echo HTML::form('status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&DeleteConfirm&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->orders_status_invoice_id)); ?>
   <div class="separator"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('text_info_heading_products_unit_quantity_delete'); ?></strong>
@@ -98,11 +98,11 @@
         <?php
           if ($remove_status) {
             ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . $_GET['page']), 'warning', null, 'sm'); ?></span>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . HTML::sanitize($_GET['page'])), 'warning', null, 'sm'); ?></span>
             <?php
           } else {
             ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . $_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id), 'warning', null, 'sm'); ?></span>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->orders_status_invoice_id), 'warning', null, 'sm'); ?></span>
             <?php
           }
         ?>

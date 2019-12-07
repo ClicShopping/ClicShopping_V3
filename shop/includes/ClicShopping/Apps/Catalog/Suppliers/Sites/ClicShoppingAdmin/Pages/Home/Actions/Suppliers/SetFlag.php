@@ -26,12 +26,12 @@
 
     public function execute()
     {
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 
       if (isset($_GET['id']) && isset($_GET['flag'])) {
         Status::getSuppliersStatus($_GET['id'], $_GET['flag']);
 
-        $this->app->redirect('Suppliers&page=' . $page . '&mID=' . $_GET['id']);
+        $this->app->redirect('Suppliers&page=' . $page . '&mID=' . (int)$_GET['id']);
       } else {
         $this->app->redirect('Suppliers&page=' . $page);
       }

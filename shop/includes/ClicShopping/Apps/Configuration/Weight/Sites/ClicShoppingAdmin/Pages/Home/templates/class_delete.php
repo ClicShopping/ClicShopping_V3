@@ -29,7 +29,7 @@
 
   $wInfo = new ObjectInfo($Qweight->toArray());
 
-  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? HTML::sanitize($_GET['page']) : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -58,7 +58,7 @@
         class="col-md-12"><?php echo '<strong>' . $CLICSHOPPING_Weight->getDef('text_weight_rules') . ' ' . $wInfo->weight_class_rule . '</strong>'; ?>
         <br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_Weight->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight&page=' . $_GET['page'] . '&tID=' . $wInfo->weight_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_Weight->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight&page=' . HTML::sanitize($_GET['page']) . '&tID=' . $wInfo->weight_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>
