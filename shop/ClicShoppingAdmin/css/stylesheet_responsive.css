@@ -32,6 +32,10 @@ résolution 1050
     .logoHeading {
         display: none;
     }
+
+    #footer {
+        display: none;
+    }
 }
 
 @media (max-width: 512px) {

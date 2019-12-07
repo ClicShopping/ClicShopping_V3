@@ -16,11 +16,11 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 ?>
-      </div>
-    </div>
-    <footer>
-      <nav class="navbar fixed-bottom navbar-light bg-faded footerCadre" role="navigation">
-        <div class="navbar-collapse text-md-left" id="footer-body">
+          </div>
+        </div>
+        <footer id="footer">
+          <nav class="navbar fixed-bottom navbar-light bg-faded footerCadre" role="navigation">
+            <div class="navbar-collapse text-md-left" id="footer-body">
 <?php
   if (isset($_SESSION['admin'])) {
     ?>
@@ -45,8 +45,8 @@
 ?>
           </div>
         </nav>
-        <div class="separator"></div>
       </footer>
+      div class="separator"></div>
 <?php
     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Footer/';
     $file_get_output = 'FooterOutput*';

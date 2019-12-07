@@ -27,11 +27,12 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="card-title">
-          <div class="row col-md-12" style="padding-top:5px">
-            <span
-              class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/home.gif', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?></span>
-            <span class="col-md-5 pageHeading"><?php echo CLICSHOPPING::getDef('heading_title'); ?></span>
-            <span class="col-md-6 text-md-right">
+          <div class="row col-sm-12">
+            <span class="col-sm-1 logoHeading">
+              <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/home.gif', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?>
+            </span>
+            <span class="col-sm-2 pageHeading"><?php echo CLICSHOPPING::getDef('heading_title'); ?></span>
+            <span class="col-sm-9 text-sm-right">
               <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories'), null, 'class="btn btn-primary btn-sm" role="button"><span class="fas fa-list" title="' . CLICSHOPPING::getDef('heading_short_categories') . '"'); ?>
               <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products'), null, 'class="btn btn-info btn-sm" role="button"><span class="fab fa-product-hunt" title="' . CLICSHOPPING::getDef('heading_short_products') . '"'); ?>
               <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'), null, 'class="btn btn-success btn-sm" role="button"><span class="fas fa-bookmark" title="' . CLICSHOPPING::getDef('heading_short_orders') . '"'); ?>
