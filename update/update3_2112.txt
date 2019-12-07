@@ -9,4 +9,5 @@ fix incompatibility chartist / font awesome
 optimize function to call the hook footer and heade
 language fix deprecated implode php 7.4
 fix password algo php 7.4
+add option boostrap container
 
