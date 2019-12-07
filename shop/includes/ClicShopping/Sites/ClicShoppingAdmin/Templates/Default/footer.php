@@ -46,7 +46,7 @@
           </div>
         </nav>
       </footer>
-      div class="separator"></div>
+      <div class="separator"></div>
 <?php
     $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Footer/';
     $file_get_output = 'FooterOutput*';

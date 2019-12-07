@@ -812,6 +812,7 @@
         $double_chars['out'] = array( 'OE', 'oe', 'AE', 'DH', 'TH', 'ss', 'ae', 'dh', 'th' );
         $string              = str_replace( $double_chars['in'], $double_chars['out'], $string );
       }
+
       return $string;
     }
 
@@ -844,7 +845,7 @@
      * @param string $str
      * @return string
      */
-    private function replaceString($str): string
+    private function replaceString(?string $str): string
     {
       $string = str_replace(' ', '-', $str);
       $string = $this->getSkipAccents($string);
@@ -860,21 +861,22 @@
      * @return string
      */
 
-    public function getProductNameUrl(string $products_id, string $parameters = ''): string
+    public function getProductNameUrl(int $products_id, string $parameters = ''): string
     {
+
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
           $products_name = $this->replaceString($products_name);
-          $products_url_rewrited = 'Products&Description&' . $products_name . '&products_id=' . (int)$products_id;
+          $products_url_rewrited = 'Products&Description&' . $products_name . '&products_id=' . $products_id;
         } else {
-          $products_url_rewrited = 'Products&Description&products_id=' . (int)$products_id;
+          $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
         }
 
       } else {
-        $products_url_rewrited = 'Products&Description&products_id=' . (int)$products_id;
+        $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
       }
 
       $url = CLICSHOPPING::link(null, $products_url_rewrited . $parameters);
@@ -896,12 +898,12 @@
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($page_id);
           $page_title = $this->replaceString($page_title);
-          $content_url_rewrited = 'Info&Content&' . $page_title . '&pages_id=' . (int)$page_id;
+          $content_url_rewrited = 'Info&Content&' . $page_title . '&pages_id=' . $page_id;
         } else {
-          $content_url_rewrited = 'Info&Content&pages_id=' . (int)$page_id;
+          $content_url_rewrited = 'Info&Content&pages_id=' . $page_id;
         }
       } else {
-        $content_url_rewrited = 'Info&Content&pages_id=' . (int)$page_id;
+        $content_url_rewrited = 'Info&Content&pages_id=' . $page_id;
       }
 
       $url = CLICSHOPPING::link(null, $content_url_rewrited . $parameters);
@@ -928,7 +930,7 @@
      * @return string
      */
 
-    public function getCategoryTreeUrl(string $categories_id, string $parameters = ''): string
+    public function getCategoryTreeUrl(int $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -953,7 +955,7 @@
      * @return string
      */
 
-    public function getCategoryImageUrl(string $categories_id, string $parameters = ''): string
+    public function getCategoryImageUrl(int $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
