@@ -495,17 +495,19 @@
           </div>
           </form>
           <div class="modal-footer">
-            <div class="col-md-6">
-              <a href="../index.php">
-                <button class="btn float-left" data-dismiss="modal"
-                        aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
-              </a>
-            </div>
-            <div class="col-md-6">
-              <a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
-                <button class="btn float-right" data-dismiss="modal"
-                        aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
-              </a>
+            <div class="row col-md-12">
+              <div class="col-md-6">
+                <a href="../index.php">
+                  <button class="btn float-left" data-dismiss="modal"
+                          aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
+                  <button class="btn float-right" data-dismiss="modal"
+                          aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
