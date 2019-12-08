@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Marketing\SEO\Module\HeaderTags;
 
   use ClicShopping\OM\Registry;
@@ -19,9 +18,10 @@
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
+  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop;
+
   class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $lang;
     protected $app;
     protected $group;
@@ -57,6 +57,12 @@
     {
       $CLICSHOPPING_Template = Registry::get('Template');
 
+      if (!Registry::exists('SeoShop')) {
+        Registry::set('SeoShop', new SeoShop());
+      }
+      
+      $CLICSHOPPING_seoShop = Registry::get('SeoShop');
+      
       $index = HTTP::getShopUrlDomain() . 'index.php';
       $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['REQUEST_URI'];
 
@@ -65,37 +71,9 @@
       }
 
       if (($index === $url || isset($language)) && !isset($_GET['Products']) && !isset($_GET['Blog']) && !isset($_GET['Info'])) {
-        $Qsubmit = $this->app->db->prepare('select submit_id,
-                                                  language_id,
-                                                  submit_defaut_language_title,
-                                                  submit_defaut_language_keywords,
-                                                  submit_defaut_language_description
-                                              from :table_submit_description
-                                              where submit_id = 1
-                                              and language_id = :language_id
-                                          ');
-
-        $Qsubmit->bindInt(':language_id', $this->lang->getId());
-        $Qsubmit->execute();
-        $submit = $Qsubmit->fetch();
-
-        if (empty($submit['submit_defaut_language_title'])) {
-          $title = HTML::outputProtected(STORE_NAME);
-        } else {
-          $title = HTML::sanitize($submit['submit_defaut_language_title']);
-        }
-
-        if (empty($submit['submit_defaut_language_description'])) {
-          $description = HTML::outputProtected(STORE_NAME);
-        } else {
-          $description = HTML::sanitize($submit['submit_defaut_language_description']);
-        }
-
-        if (empty($submit['submit_defaut_language_keywords'])) {
-          $keywords = HTML::outputProtected(STORE_NAME);
-        } else {
-          $keywords = HTML::sanitize($submit['submit_defaut_language_keywords']);
-        }
+        $title = $CLICSHOPPING_seoShop->getSeoIndexTitle();
+        $description = $CLICSHOPPING_seoShop->getSeoIndexDescription();
+        $keywords = $CLICSHOPPING_seoShop->getSeoIndexKeywords();
 
         $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
         $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
@@ -128,7 +106,6 @@ EOD;
         ]
       );
 
-
       $this->app->db->save('configuration', [
           'configuration_title' => 'Display sort order',
           'configuration_key' => 'MODULE_HEADER_TAGS_INDEX_SORT_ORDER',
@@ -140,6 +117,11 @@ EOD;
           'date_added' => 'now()'
         ]
       );
+    }
+
+    public function remove()
+    {
+      return Registry::get('Db')->exec('delete from :table_configuration where configuration_key in ("' . implode('", "', $this->keys()) . '")');
     }
 
     public function keys()

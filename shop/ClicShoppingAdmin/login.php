@@ -30,7 +30,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  $action = (HTML::sanitize($_GET['action']) ?? '');
+  $action = (isset($_GET['action']) ?? '');
 
 // prepare to logout an active administrator if the login page is accessed again
   if (isset($_SESSION['admin'])) {
