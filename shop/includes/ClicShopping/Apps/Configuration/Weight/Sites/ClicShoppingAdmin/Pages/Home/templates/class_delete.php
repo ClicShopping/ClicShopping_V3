@@ -58,7 +58,7 @@
         class="col-md-12"><?php echo '<strong>' . $CLICSHOPPING_Weight->getDef('text_weight_rules') . ' ' . $wInfo->weight_class_rule . '</strong>'; ?>
         <br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_Weight->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight&page=' . HTML::sanitize($_GET['page']) . '&tID=' . $wInfo->weight_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_Weight->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Weight->getDef('button_cancel'), null, $CLICSHOPPING_Weight->link('Weight&page=' . (int)$_GET['page'] . '&tID=' . $wInfo->weight_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

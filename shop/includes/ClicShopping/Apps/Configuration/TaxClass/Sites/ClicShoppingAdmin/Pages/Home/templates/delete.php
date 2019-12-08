@@ -52,7 +52,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $tcInfo->tax_class_title . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSHOPPING_TaxClass->link('TaxClass&page=' . HTML::sanitize($_GET['page']) . '&tID=' . $tcInfo->tax_class_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxClass->getDef('button_cancel'), null, $CLICSHOPPING_TaxClass->link('TaxClass&page=' . (int)$_GET['page'] . '&tID=' . $tcInfo->tax_class_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

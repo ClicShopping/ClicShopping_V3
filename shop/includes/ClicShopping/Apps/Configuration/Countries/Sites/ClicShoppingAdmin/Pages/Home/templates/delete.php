@@ -44,7 +44,7 @@
   <div class="separator"></div>
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Countries->getDef('text_info_delete_country'); ?></strong></div>
-  <?php echo HTML::form('countries', $CLICSHOPPING_Countries->link('Countries&DeleteConfirm&page=' . HTML::sanitize($_GET['page']) . '&cID=' . $cInfo->countries_id)); ?>
+  <?php echo HTML::form('countries', $CLICSHOPPING_Countries->link('Countries&DeleteConfirm&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->countries_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
@@ -54,7 +54,7 @@
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_Countries->getDef('text_info_address_format') . '<br />' . $CLICSHOPPING_Address->getAddressFormatRadio($cInfo->address_format_id); ?></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_Countries->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries&page=' . HTML::sanitize($_GET['page']) . '&cID=' . $cInfo->countries_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_Countries->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->countries_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

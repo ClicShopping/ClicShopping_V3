@@ -35,7 +35,7 @@
       $code_tax_erp = HTML::sanitize($_POST['code_tax_erp']);
 
       if (!is_numeric($tax_rate)) {
-        $this->app->redirect('TaxRates&page=' . HTML::sanitize($_GET['page']) . '&tID=' . $tax_rates_id);
+        $this->app->redirect('TaxRates&page=' . (int)$_GET['page'] . '&tID=' . $tax_rates_id);
       }
 
       $sql_array = [

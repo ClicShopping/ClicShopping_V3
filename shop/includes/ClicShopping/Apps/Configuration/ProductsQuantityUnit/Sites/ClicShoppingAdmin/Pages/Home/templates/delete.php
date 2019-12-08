@@ -87,11 +87,11 @@
         <?php
           if ($remove_status) {
             ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
             <?php
           } else {
             ?>
-            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, CLICSHOPPING::link('ProductsQuantityUnit&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
+            <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_cancel'), null, CLICSHOPPING::link('ProductsQuantityUnit&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->products_quantity_unit_id), 'warning', null, 'sm'); ?></span>
             <?php
           }
         ?>

@@ -34,7 +34,7 @@
 
           $CLICSHOPPING_MessageStack->add($error, 'error');
 
-          $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . HTML::sanitize($_GET['page']) . '&nID=' . (int)$_GET['nID']);
+          $CLICSHOPPING_Newsletter->redirect('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID']);
         }
       }
 

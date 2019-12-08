@@ -55,7 +55,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->zone_name . '</strong>'; ?><br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones&page=' . HTML::sanitize($_GET['page']) . '&cID=' . $cInfo->zone_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->zone_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

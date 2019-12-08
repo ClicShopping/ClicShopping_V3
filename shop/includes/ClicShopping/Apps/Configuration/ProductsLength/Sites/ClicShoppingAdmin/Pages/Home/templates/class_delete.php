@@ -60,7 +60,7 @@
         class="col-md-12"><?php echo '<strong>' . $CLICSHOPPING_ProductsLength->getDef('text_products_length_rules') . ' ' . $wInfo->products_length_class_rule . '</strong>'; ?>
         <br/><br/></div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength&page=' . HTML::sanitize($_GET['page']) . '&tID=' . $wInfo->products_length_id), 'warning', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_ProductsLength->getDef('button_cancel'), null, $CLICSHOPPING_ProductsLength->link('ProductsLength&page=' . (int)$_GET['page'] . '&tID=' . $wInfo->products_length_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

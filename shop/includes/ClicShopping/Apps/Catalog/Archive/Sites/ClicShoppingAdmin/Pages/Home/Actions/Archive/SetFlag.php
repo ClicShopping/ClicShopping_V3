@@ -32,7 +32,7 @@
       Cache::clear('products_cross_sell');
       Cache::clear('upcoming');
 
-      $CLICSHOPPING_Archive->redirect('Archive&', (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'aID=' . $products_id);
+      $CLICSHOPPING_Archive->redirect('Archive&', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'aID=' . $products_id);
     }
 
 

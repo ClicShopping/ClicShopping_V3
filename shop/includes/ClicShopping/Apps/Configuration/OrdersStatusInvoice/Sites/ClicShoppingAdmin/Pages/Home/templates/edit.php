@@ -48,7 +48,7 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Update&page=' . HTML::sanitize($_GET['page']) . '&oID=' . $oInfo->orders_status_invoice_id));
+  echo HTML::form('status_orders_status_invoice', $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice&Update&page=' . (int)$_GET['page'] . '&oID=' . $oInfo->orders_status_invoice_id));
   echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_cancel'), null, $CLICSHOPPING_OrdersStatusInvoice->link('OrdersStatusInvoice'), 'warning');
 ?>

@@ -24,7 +24,7 @@
         static::GetFeaturedProductsStatus($_GET['id'], $_GET['flag']);
       }
 
-      $CLICSHOPPING_Featured->redirect('Featured', (isset($_GET['page']) ? 'page=' . $_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
+      $CLICSHOPPING_Featured->redirect('Featured', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
     }
 
 
