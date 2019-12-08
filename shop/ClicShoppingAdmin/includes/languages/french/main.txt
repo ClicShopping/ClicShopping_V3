@@ -413,7 +413,7 @@ select_datas = --- Séléctionner ---
 text_select =  --- Selectionner ---
 text_all_orders = Tous les statuts
 
-no_script_text = <strong>JavaScript ne semble pas activé ou a été désactivé par un bloquer de publicité.</strong><br />Vous devez activer le javascript dans votre navigateur pour utiliser correctement ClicShopping. <a href="https://www.enable-javascript.com/" target="_blank" rel="nofollow noreferrer">Veuillez cliquez-ici pour une aide en ligne</a>.';
+no_script_text = <strong>JavaScript ne semble pas activé ou a été désactivé par un bloquer de publicité.</strong><br />Vous devez activer le javascript dans votre navigateur pour utiliser correctement ClicShopping. <a href="https://www.enable-javascript.com/" target="_blank" rel="noreferrer">Veuillez cliquez-ici pour une aide en ligne</a>.';
 
 title_help_general = Aide
 
