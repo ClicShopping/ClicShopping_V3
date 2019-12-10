@@ -18,13 +18,13 @@
 
   class Preload
   {
-    private static string $work_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/';
-    private static string $base_dir_autoload = CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php';
-    private static string $output_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/preloader.php';
-    private static array $directories;
-    private static array $files;
+    private static $work_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/';
+    private static $base_dir_autoload = CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php';
+    private static $output_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/preloader.php';
+    private static $directories;
+    private static $files;
     private static $ext_filter;
-    private static bool $recursive;
+    private static $recursive;
 
     /**
      * @return bool
