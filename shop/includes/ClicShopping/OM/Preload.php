@@ -53,7 +53,7 @@
           ->whenHits(200000)
           ->overwrite(true)
           ->append(
-            static::getFiles(),
+            static::getFiles()
           )
           ->generate();
       }
@@ -115,8 +115,8 @@
       }
 
       if($path_errors){
-        echo "The following directories do not exists<br />";
-        die(var_dump($path_errors));
+        echo 'The following directories do not exists<br />';
+        die();
       }
     }
 
