@@ -41,7 +41,7 @@
           <li>Database Server</li>
           <li>Web Server</li>
           <li><strong>&gt; Online Store Settings</strong></li>
-          <li>Finished!</li>
+          <li>Last effort and it's Finished !</li>
         </ol>
       </div>
     </div>
@@ -54,102 +54,160 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-push-3 col-sm-9">
-    <h1>Online Store Settings</h1>
+    <h1><?php echo TEXT_TITLE_CONFIGURATION; ?></h1>
 
     <form name="install" id="installForm" action="install.php?step=4" method="post">
+      <div class="p-md-3"></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="h4"><?php echo TEXT_TITLE_SHOP; ?>></div>
+        </div>
+        <div class="card-content">
+          <div class="p-md-1"></div>
+          <div class="col-md-12"><?PHP ECHO TEXT_INTRO_SHOP; ?></div>
+          <div class="p-md-3"></div>
+          <div class="col-md-12">
+            <label for="storeName" class="col-md-6"><strong><?php echo TEXT_STORE_NAME; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_NAME', NULL, 'required aria-required="true" id="storeName" placeholder="' . TEXT_STORE_NAME . '"'); ?></span>
+            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i> <small><?php echo TEXT_STORE_HELP; ?></small></span>
+          </div>
+          <div class="p-md-3"></div>
+          <div class="col-md-12">
+            <label for="StoreOwnerEmail" class=col-md-6"><strong><?php echo TEXT_STORE_OWNER; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_OWNER_NAME', null, 'required aria-required="true" id="StoreOwnerEmail" placeholder="'. TEXT_STORE_OWNER . '"'); ?></span>
+            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_HELP; ?></small></span>
+          </div>
 
-        <div class="form-group has-feedback">
-          <label for="storeName" class="control-label col-md-3"><?php echo TEXT_STORE_NAME; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_STORE_NAME', NULL, 'required aria-required="true" id="storeName" placeholder="Your Store Name"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_HELP; ?></small></span><br /><br />
+          <div class="p-md-3"></div>
+          <div class="col-md-12">
+            <label for="ownerEmail" class="col-md-6"><strong><?php echo TEXT_STORE_OWNER_EMAIL; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_OWNER_EMAIL_ADDRESS', null, 'required aria-required="true" id="ownerEmail" placeholder="' . TEXT_STORE_OWNER_EMAIL . '"', 'email'); ?></span>
+            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_EMAIL_HELP; ?></small></span>
           </div>
         </div>
+        <div class="p-md-1"></div>
+      </div>
 
-        <div class="form-group has-feedback">
-          <label for="StoreOwnerEmail" class="control-label col-md-3"><?php echo TEXT_STORE_OWNER; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_STORE_OWNER_NAME', null, 'required aria-required="true" id="StoreOwnerEmail" placeholder="'.TEXT_STORE_OWNER.'"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_OWNER_HELP; ?></small></span><br /><br />
+
+      <div class="p-md-3"></div>
+      <div class="card">
+        <div class="card-header">
+          <div class="h4"></div>
+        </div>
+        <div class="card-content">
+          <div class="p-md-1"></div>
+          <div class="col-md-12"><?php echo TEXT_TITLE_ACCESS; ?></div>
+          <div class="p-md-3"></div>
+          <div class="col-md-12">
+            <label for="StoreNameAdmin" class="col-md-6"><strong><?php echo TEXT_STORE_NAME_ADMIN; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_NAME', null, 'required aria-required="true" id="StoreNameAdmin" placeholder="' . TEXT_STORE_NAME_ADMIN . '"'); ?></span>
+            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_NAME_ADMIN_HELP; ?></small></span>
+          </div>
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <label for="adminFirstName" class="col-md-6"><strong><?php echo TEXT_STORE_FIRST_NAME; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_FIRSTNAME', null, 'required aria-required="true" id="adminFirstName" placeholder="' . TEXT_STORE_FIRST_NAME . '"'); ?></span>
+              <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_FIRST_NAME_HELP; ?></small></span>
+            </span>
+          </div>
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <label for="adminUsername" class="col-md-6"><strong><?php echo TEXT_STORE_EMAIL_ADMIN; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_USERNAME', NULL, 'required aria-required="true" id="adminUsername" placeholder="' . TEXT_STORE_EMAIL_ADMIN . '"', 'email'); ?></span>
+              <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_EMAIL_ADMIN_HELP; ?></small></span>
+            </span>
+          </div>
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <label for="adminPassword" class="col-md-6"><strong><?php echo TEXT_STORE_PASSWORD; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_ADMINISTRATOR_PASSWORD', NULL, 'required aria-required="true" id="adminPassword" placeholder="' . TEXT_STORE_PASSWORD . '"'); ?></span>
+            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_PASSWORD_HELP; ?></small></span>
           </div>
         </div>
-        <div class="form-group has-feedback">
-          <label for="ownerEmail" class="control-label col-md-3"><?php echo TEXT_STORE_OWNER_EMAIL; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_STORE_OWNER_EMAIL_ADDRESS', null, 'required aria-required="true" id="ownerEmail" placeholder="'.TEXT_STORE_OWNER_EMAIL.'"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_OWNER_EMAIL_HELP; ?></small></span><br /><br />
+        <div class="p-md-1"></div>
+      </div>
+
+
+      <div class="p-md-3"></div>
+      <div class="card">
+        <div class="card-header">
+          <div><strong><?php echo TEXT_TITLE_STMP; ?></strong></div>
+        </div>
+        <div class="card-content">
+          <div class="p-md-1"></div>
+          <div class="col-md-12"><?php echo TEXT_INTRO_SMTP; ?></div>
+          <div class="p-md-3"></div>
+
+          <div class="col-md-12">
+            <label for="smtp_host" class="col-md-6"><strong><?php echo TEXT_SMTP_HOST; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_SMTP_HOST', NULL, 'id="smtp_host" placeholder="ex: smtp.gmail.com"'); ?></span>
+            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_HOST; ?></small></span>
+          </div>
+
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <div><strong><?php echo TEXT_SMTP_EMAIL_TRANSORT; ?></strong></div>
+            <span class="col-md-6">
+              <?php
+              $smtp_transport_array = array(['id' => 'smtp', 'text' => 'smtp'],
+                                            ['id' => 'gmail', 'text' => 'gmail']
+                                          );
+
+              echo HTML::selectField('CFG_SMTP_EMAIL_TRANSORT', $smtp_transport_array);
+              ?>
+              <span class="col-md-12 text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PORT_INFO; ?></small></span>
+            </span>
+          </div>
+
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <div><strong><?php echo TEXT_SMTP_PORT; ?></strong></div>
+            <span class="col-md-6">
+              <?php
+              $smtp_port_array = array(['id' => '25', 'text' => '25'],
+                                       ['id' => '465', 'text' => '465'],
+                                       ['id' => '587', 'text' => '587'],
+                                      );
+
+              echo HTML::selectField('CFG_SMTP_PORT', $smtp_port_array);
+              ?>
+              <span class="col-md-12 text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PORT_INFO; ?></small></span>
+            </span>
+          </div>
+
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <label for="smtp_host" class="control-label col-md-6"><strong><?php echo TEXT_SMTP_USERNAME; ?></strong></label>
+            <span class="col-md-6"><?php echo HTML::inputField('CFG_SMTP_USER_NAME', NULL, 'id="smtp_host" placeholder="' . TEXT_SMTP_USERNAME . '"'); ?></span>
+            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo 'Veuillez indiquer votre user name concernant votre email. Celuyi-ci n\'est pas forcément en relation avec votre compte d\'administration'; ?></small></span><br /><br />
+          </div>
+
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <div class="form-group has-feedback">
+              <label for="smtp_password" class="control-label col-md-6"><strong><?php echo TEXT_SMTP_PASSWORD; ?></strong></label>
+              <span class="col-md-6"><?php echo HTML::inputField('CFG_SMTP_PASSWORD', NULL, 'id="smtp_password" placeholder="' . TEXT_SMTP_PASSWORD . '"'); ?></span>
+                <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_SMTP_PASSWORD_INFO; ?></small></span><br />
+              </span>
+            </div>
           </div>
         </div>
-        <div class="form-group has-feedback">
-          <label for="StoreNameAdmin" class="control-label col-md-3"><?php echo TEXT_STORE_NAME_ADMIN; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_ADMINISTRATOR_NAME', null, 'required aria-required="true" id="StoreNameAdmin" placeholder="'.TEXT_STORE_NAME_ADMIN.'"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_NAME_ADMIN_HELP; ?></small></span><br /><br />
+      </div>
+
+      <div class="p-md-3"></div>
+      <div class="card">
+        <div class="card-header">
+          <div><strong></strong><?php echo TEXT_STORE_TIME_ZONE; ?></strong></div>
+        </div>
+        <div class="card-content">
+          <div class="p-md-1"></div>
+          <div class="col-md-12">
+            <label for="Zulu" class="control-label col-md-6"></label>
+            <span class="col-md-6"><?php echo HTML::selectMenu('TIME_ZONE', DateTime::getTimeZones(), date_default_timezone_get(), 'id="Zulu"'); ?></span>
+            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_TIME_ZONE_HELP; ?></small></span>
           </div>
         </div>
-
-        <div class="form-group has-feedback">
-          <label for="adminFirstName" class="control-label col-md-3"><?php echo TEXT_STORE_FIRST_NAME; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_ADMINISTRATOR_FIRSTNAME', null, 'required aria-required="true" id="adminFirstName" placeholder="'.TEXT_STORE_FIRST_NAME.'"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_FIRST_NAME_HELP; ?></small></span><br /><br />
-          </div>
-        </div>
-
-        <div class="form-group has-feedback">
-          <label for="adminUsername" class="control-label col-md-3"><?php echo TEXT_STORE_EMAIL_ADMIN; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_ADMINISTRATOR_USERNAME', NULL, 'required aria-required="true" id="adminUsername" placeholder="'.TEXT_STORE_EMAIL_ADMIN.'"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_EMAIL_ADMIN_HELP; ?></small></span><br /><br />
-          </div>
-        </div>
-
-        <div class="clearfix"></div>
-        <div class="form-group has-feedback">
-          <label for="adminPassword" class="control-label col-md-3"><?php echo TEXT_STORE_PASSWORD; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::inputField('CFG_ADMINISTRATOR_PASSWORD', NULL, 'required aria-required="true" id="adminPassword" placeholder="'.TEXT_STORE_PASSWORD.'"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_PASSWORD_HELP; ?></small></span><br /><br />
-          </div>
-        </div>
-
-<?php
-  /*
-  if (FileSystem::isWritable($dir_fs_document_root) && FileSystem::isWritable($dir_fs_document_root . 'admin')) {
-?>
-
-                <div class="form-group has-feedback">
-                  <label for="adminDir">Administration Directory Name</label>
-                  <?php echo HTML::inputField('CFG_ADMIN_DIRECTORY', 'admin', 'required aria-required="true" id="adminDir"'); ?>
-                  <span class="form-text">This is the directory where the administration section will be installed. You should change this for security reasons.</span>
-                </div>
-
-<?php
-  }
-*/
-?>
-
-        <div class="form-group has-feedback">
-          <label for="Zulu" class="control-label col-md-3"><?php echo TEXT_STORE_TIME_ZONE; ?></label>
-          <div class="col-md-9">
-            <?php echo HTML::selectMenu('TIME_ZONE', DateTime::getTimeZones(), date_default_timezone_get(), 'id="Zulu"'); ?>
-            <span class="form-control-feedback inputRequirement"><i class="fas fa-asterisk" aria-hidden="true"></i></span>
-            <span class="form-text"><small><?php echo TEXT_STORE_TIME_ZONE_HELP; ?></small></span><br /><br />
-          </div>
-        </div>
-
-
-
-
-
-
+      </div>
 <?php
 foreach ($_POST as $key => $value) {
     if (($key != 'x') && ($key != 'y')) {
@@ -159,7 +217,6 @@ foreach ($_POST as $key => $value) {
 ?>
 
   </div>
-
 
   <div class="col-xs-12 col-sm-pull-9 col-sm-3">
     <br />

@@ -203,5 +203,20 @@ define('TEXT_END_INSTALLATION_7','Veuillez sécuriser votre administration');
 define('TEXT_END_INSTALLATION_8','L\'idéal est de changer le nom du répertoire et d\'y incorper un htacces ou password (tous les serveur n\'acceptent pas forcement cette approche)');
 
 define('TEXT_END_ACCESS_CATALOG','Accéder à votre catalogue');
-  define('TEXT_END_ACCESS_INFO','Cliquez sur le bouton et veuillez patienter, nous allons mettre en place en cache certains fichiers');
+define('TEXT_END_ACCESS_INFO','Cliquez sur le bouton et veuillez patienter, nous allons mettre en place en cache certains fichiers');
 define('TEXT_END_ACCESS_ADMIN','<p style="color:#f29400; text-align:center;">Accéder à l\'administration </p>');
+
+define('TEXT_TITLE_CONFIGURATION', 'Configuration de la boutique');
+define('TEXT_TITLE_SHOP', 'Configuration de votre boutique');
+define('TEXT_INTRO_SHOP', 'Cet espace concerne des informations à insérer concernant votre boutique.');
+define('TEXT_TITLE_ACCESS', 'Configuration de l\'accès à votre administration');
+define('TEXT_TITLE_STMP', 'SMTP Configuration');
+define('TEXT_INTRO_SMTP', 'Cet espace concerne la configuration de l\'envoie de vos emails si vous souhaitez configurer. Certaines sociétés bloquent SendMail pour des raisons de sécurité. Le port SMTP sinon par défaut, ce sera Sendmail qui sera utilisé.<br /><p style="color:red">La configuration n\'est pas obligatoire des champs ci-dessous si vous souhaitez utiliser Sendmail');
+define('TEXT_SMTP_HOST', 'SMTP Host');
+define('TEXT_SMTP_EMAIL_TRANSORT', 'Email transort');
+define('TEXT_SMTP_PORT', 'Port SMTP');
+define('TEXT_SMTP_PORT_INFO', 'Pour gmail vous avez le choix en le port 25, 465 si vous utilisez SSL, 587 si vous utilisez TLS');
+define('TEXT_SMTP_USERNAME', 'Nom Utilisateur (e-mail)');
+define('TEXT_SMTP_USERNAME_INFO', 'Veuillez indiquer votre nom d\'utilisateur concernant votre email. Celui-ci n\'est pas forcément en relation avec votre compte d\'administration');
+define('TEXT_SMTP_PASSWORD', 'Mot de passe');
+define('TEXT_SMTP_PASSWORD_INFO', 'Veuillez indiquer votre mot de passe pour accéder à votre email');

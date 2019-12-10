@@ -195,6 +195,22 @@ define('TEXT_END_INSTALLATION_6',' to 444 (or 644 if this file is still writable
 define('TEXT_END_INSTALLATION_7','Increae the security ');
 define('TEXT_END_INSTALLATION_8','The administration should be protected by enabling htaccess / htpasswd  <br /> All systems do not accept this protection. <br /> You can also change the name of the administration directories');
 
-  define('TEXT_END_ACCESS_CATALOG','Go to your catalog');
-  define('TEXT_END_ACCESS_INFO','Click the button and please wait, we will cache some files');
-  define('TEXT_END_ACCESS_ADMIN','Go to your administration');
+define('TEXT_END_ACCESS_CATALOG','Go to your catalog');
+define('TEXT_END_ACCESS_INFO','Click the button and please wait, we will cache some files');
+define('TEXT_END_ACCESS_ADMIN','Go to your administration');
+
+
+define('TEXT_TITLE_CONFIGURATION', 'Online Store Settings');
+define('TEXT_TITLE_SHOP', 'Configure your store');
+define('TEXT_INTRO_SHOP', 'This space concerns information to insert concerning your shop.');
+define('TEXT_TITLE_ACCESS', 'Setting up access to your administration');
+define('TEXT_TITLE_STMP', 'SMTP Configuration');
+define('TEXT_INTRO_SMTP', 'This space concerns the configuration of sending your emails if you want to configure it. Some companies block SendMail for security reasons. The default SMTP port is Sendmail which will be used. <br /><p style="color:red">It is not mandatory to fill the fields below if you want to use Senmail</p>');
+define('TEXT_SMTP_EMAIL_TRANSORT', 'Email transort');
+define('TEXT_SMTP_HOST', 'SMTP Host');
+define('TEXT_SMTP_PORT', 'SMTP Port');
+define('TEXT_SMTP_PORT_INFO', 'For gmail you have the choice in port 25, 465 if you use SSL, 587 if you use TLS');
+define('TEXT_SMTP_USERNAME', 'User Name (e-mail)');
+define('TEXT_SMTP_USERNAME_INFO', 'Please indicate your user name regarding your email. This is not necessarily related to your admin account');
+define('TEXT_SMTP_PASSWORD', 'Password');
+define('TEXT_SMTP_PASSWORD_INFO', 'Please enter your password to access your email');

@@ -22,6 +22,7 @@
 
   $CLICSHOPPING_Db = Db::initialize($_POST['DB_SERVER'], $_POST['DB_SERVER_USERNAME'], $_POST['DB_SERVER_PASSWORD'], $_POST['DB_DATABASE']);
   Registry::set('Db', $CLICSHOPPING_Db);
+
   $CLICSHOPPING_Db->setTablePrefix($_POST['DB_TABLE_PREFIX']);
 
   $Qcfg = $CLICSHOPPING_Db->get('configuration', [
@@ -37,8 +38,8 @@
   $CLICSHOPPING_Language = new Language();
   Registry::set('Language', $CLICSHOPPING_Language);
 
-  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_NAME']], ['configuration_key' => 'STORE_NAME']);
-  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_OWNER_NAME']], ['configuration_key' => 'STORE_OWNER']);
+  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => HTML::sanitize($_POST['CFG_STORE_NAME'])], ['configuration_key' => 'STORE_NAME']);
+  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => HTML::sanitize($_POST['CFG_STORE_OWNER_NAME'])], ['configuration_key' => 'STORE_OWNER']);
   $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']], ['configuration_key' => 'STORE_OWNER_EMAIL_ADDRESS']);
 
   if (!empty($_POST['CFG_STORE_OWNER_NAME']) && !empty($_POST['CFG_STORE_OWNER_EMAIL_ADDRESS'])) {
@@ -50,7 +51,6 @@
   $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']], ['configuration_key' => 'SEND_EXTRA_ORDER_EMAILS_TO']);
 
   if (!empty($_POST['CFG_ADMINISTRATOR_USERNAME']) ) {
-
     $Qcheck = $CLICSHOPPING_Db->prepare('select user_name
                                          from :table_administrators
                                          where user_name = :user_name
@@ -72,6 +72,37 @@
                            );
     }
   }
+
+    if (!empty($_POST['CFG_SMTP_HOST']) && !empty($_POST['CFG_SMTP_USER_NAME']) && !empty($_POST['CFG_SMTP_PASSWORD'])) {
+      $smtp_port = HTML::sanitize($_POST['CFG_SMTP_PORT']);
+
+      if ($smtp_port == '25') {
+        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'no'], ['configuration_key' => 'EMAIL_SMTP_SECURE']);
+      } elseif ($smtp_port = '465') {
+        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'ssl'], ['configuration_key' => 'EMAIL_SMTP_SECURE']);
+      } else {
+        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'tls'], ['configuration_key' => 'EMAIL_SMTP_SECURE']);
+      }
+
+      $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $smtp_port], ['configuration_key' => 'EMAIL_SMTP_PORT']);
+
+      $email_transport = HTML::sanitize($_POST['CFG_SMTP_EMAIL_TRANSORT']);
+
+
+      if ($smtp_port == 'smtp') {
+        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'smtp'], ['configuration_key' => 'EMAIL_TRANSPORT']);
+      } elseif ($smtp_port = 'gmail') {
+        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'gmail'], ['configuration_key' => 'EMAIL_TRANSPORT']);
+      } else {
+        $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'sendmail'], ['configuration_key' => 'EMAIL_TRANSPORT']);
+      }
+
+
+      $CLICSHOPPING_Db->save('configuration', ['configuration_value' => HTML::sanitize($_POST['CFG_SMTP_HOST'])], ['configuration_key' => 'EMAIL_SMTP_HOSTS']);
+      $CLICSHOPPING_Db->save('configuration', ['configuration_value' => trim($_POST['CFG_SMTP_USER_NAME'])], ['configuration_key' => 'EMAIL_SMTP_USER']);
+      $CLICSHOPPING_Db->save('configuration', ['configuration_value' => trim($_POST['CFG_SMTP_PASSWORD'])], ['configuration_key' => 'EMAIL_SMTP_PASSWORD']);
+   }
+
 
     if (FileSystem::isWritable(CLICSHOPPING::BASE_DIR . 'Work')) {
       if (!is_dir(Cache::getPath())) {

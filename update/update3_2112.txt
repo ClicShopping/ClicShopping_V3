@@ -1,5 +1,5 @@
 Update for 3.21112
-Livrairies updated
+Livraries updated
 fix new image directory creation
 add webp in image extension by default
 Shopping Cart improvment
@@ -11,4 +11,5 @@ language fix deprecated implode php 7.4
 fix password algo php 7.4
 add option boostrap container
 Update Boostrap 4.4.1
+Include in install smtp configuration
 
