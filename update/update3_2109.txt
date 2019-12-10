@@ -1,5 +1,3 @@
-Update from 3.2106 to 3.3109
-
 Add setrequest function
 Fix address typage error
 fix english language
@@ -12,7 +10,6 @@ Fix bug members B2B
 fix language constant
 fix administrator table
 fix options products price
-update all latest script
 
 restructure Manufacturer and suppliers Hooks
 Remove some Report Apps to include in good Apps
@@ -20,17 +17,48 @@ Update currency class
 Update Customer pro registration
 Minor improvment inside the Db in consequence
 Improv review modularity (after update delete and re-install the reviews template module (Design/Customer/Reviews)
+Check composer librairy via module (to activate in admin)
+Improve Breadcrumb microdata
 
 
 Since 3_2106 : update before this version
+
 ALTER TABLE `clic_currencies` ADD `surcharge` DECIMAL(15,4) NOT NULL DEFAULT '0' AFTER `status`;
 ALTER TABLE `clic_currencies` CHANGE `surcharge` `surcharge` DECIMAL(15,4) NULL DEFAULT NULL;
 
+
 All version
 ALTER TABLE `clic_administrators` CHANGE `user_name` `user_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+
+
 
 UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Customers\\Customers&StatsCustomers' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_customers';
 UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsViewed' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_products_viewed';
 UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsLowStock' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_low_stock';
 UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsExpected' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_products_expected';
 UPDATE `clic_administrator_menu` SET `link` = 'index.php?A&Catalog\\Products&StatsProductsPurchased' WHERE `clic_administrator_menu`.`app_code` = 'app_report_stats_products_purchased';
+
+
+
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:27', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:29', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Do you want activate this module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 1, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Please select the width of the module', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Sort order', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_SORT_ORDER', '600', 'Sort order of display. Lowest is displayed first', 6, 4, NULL, '2019-09-15 17:42:34', NULL, '');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:38', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:41', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:55:03', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:56:19', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Sort order', 'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_SORT_ORDER', '40', 'Sort order of display. Lowest is displayed first', 6, 4, NULL, '2019-09-15 18:56:19', NULL, '');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:56:25', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Sort order', 'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_SORT_ORDER', '15', 'Sort order of display. Lowest is displayed first', 6, 4, NULL, '2019-09-15 18:56:25', NULL, '');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 19:06:14', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 19:06:14', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:20', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Please select the width of the module', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_CONTENT_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:24', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Do you want to display this module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Do you want to display this module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(null, 'Sort Order', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Sort order. Lowest is displayed in first', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');

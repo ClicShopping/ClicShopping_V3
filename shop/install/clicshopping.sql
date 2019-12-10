@@ -281,8 +281,8 @@ INSERT INTO administrator_menu_description VALUES(58, 'Social network modules', 
 INSERT INTO administrator_menu_description VALUES(58, 'Modules réseaux sociaux', 2);
 INSERT INTO administrator_menu_description VALUES(59, 'Metas modules', 1);
 INSERT INTO administrator_menu_description VALUES(59, 'Modules metas', 2);
-INSERT INTO administrator_menu_description VALUES(69, 'Gzip compression', 1);
-INSERT INTO administrator_menu_description VALUES(69, 'Compression gzip', 2);
+INSERT INTO administrator_menu_description VALUES(69, 'Website compression & optimization', 1);
+INSERT INTO administrator_menu_description VALUES(69, 'Compression Site Internet & optimisation', 2);
 INSERT INTO administrator_menu_description VALUES(70, 'Logging', 1);
 INSERT INTO administrator_menu_description VALUES(70, 'Logging', 2);
 INSERT INTO administrator_menu_description VALUES(71, 'Sessions', 1);
@@ -1498,6 +1498,7 @@ INSERT INTO configuration VALUES(1536, 'Souhaitez-vous permettre au client de su
 INSERT INTO configuration VALUES(1537, 'A quel endroit souhaitez-vous afficher le module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_CONTENT_POSITION', 'float-md-right', 'Affiche le module à gauche ou à droite<br><br><i>(Valeur Left = Gauche <br>Valeur Right = Droite <br>Valeur None = Aucun)</i>', 6, 2, NULL, '2019-09-15 20:17:24', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO configuration VALUES(1538, 'Souhaitez-vous activer ce module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Souhaitez-vous activer ce module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1539, 'Ordre de tri d\'affichager', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+INSERT INTO configuration VALUES(1540, 'Souhaitez vous activer le Preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Fonctionnalité en beta, you devez avoir accès à votre php.init pour activer cette fonction. Veuillez vous référer à la documentation disponible sur le forum.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);
@@ -1513,7 +1514,7 @@ INSERT INTO configuration_group VALUES(10, 'Gestion des logging', 'Options de co
 INSERT INTO configuration_group VALUES(11, 'Gestion du cache', 'Options de configuration du cache.', 11, 1);
 INSERT INTO configuration_group VALUES(12, 'Gestion des options de mail', 'Configuration générale pour le \'client mail\' et les emails au format HTML.', 12, 1);
 INSERT INTO configuration_group VALUES(13, 'Gestion des téléchargements', 'Options des produits téléchargeable.', 13, 1);
-INSERT INTO configuration_group VALUES(14, 'Gestion de la compression GZip', 'Options de compression GZip.', 14, 1);
+INSERT INTO configuration_group VALUES(14, 'Gestion de la compression & optimisation', 'Options de compression & optimsation du site internet.', 14, 1);
 INSERT INTO configuration_group VALUES(15, 'Gestion des sessions', 'Session options', 15, 1);
 INSERT INTO configuration_group VALUES(16, 'Gestion des valeurs minimum pour les clients B2C', 'Valeur minimum pour les champs des clients B2C', 16, 1);
 INSERT INTO configuration_group VALUES(17, 'Gestion B2B', 'Gestion général de la B2B', 17, 1);

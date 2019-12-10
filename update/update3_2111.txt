@@ -5,4 +5,5 @@ Improve elfinder security
 login new design
 fix bug call spider
 redisign and fix footer
+fix duplication attributes
 add option webp conversion for all image by default

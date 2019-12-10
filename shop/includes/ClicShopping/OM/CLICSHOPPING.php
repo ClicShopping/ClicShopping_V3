@@ -32,7 +32,6 @@
 
     public static function initialize()
     {
-
       static::loadConfig();
 
       DateTime::setTimeZone();

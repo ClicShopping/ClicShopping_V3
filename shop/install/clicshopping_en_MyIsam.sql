@@ -377,7 +377,7 @@ INSERT INTO `clic_administrator_menu_description` VALUES(6, 'Communication', 1);
 INSERT INTO `clic_administrator_menu_description` VALUES(6, 'Communication', 2);
 INSERT INTO `clic_administrator_menu_description` VALUES(122, 'Communication', 1);
 INSERT INTO `clic_administrator_menu_description` VALUES(122, 'Communication', 2);
-INSERT INTO `clic_administrator_menu_description` VALUES(69, 'Compression gzip', 2);
+INSERT INTO `clic_administrator_menu_description` VALUES(69, 'Website Compression & optimisation', 2);
 INSERT INTO `clic_administrator_menu_description` VALUES(119, 'Compte clients', 2);
 INSERT INTO `clic_administrator_menu_description` VALUES(140, 'Compte clients', 2);
 INSERT INTO `clic_administrator_menu_description` VALUES(2, 'Configuration', 1);
@@ -1704,6 +1704,7 @@ INSERT INTO `clic_configuration` VALUES(1494, 'Allow the customer to delete the 
 INSERT INTO `clic_configuration` VALUES(1495, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_CONTENT_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:24', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO `clic_configuration` VALUES(1496, 'Do you want to display this module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Do you want to display this module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO `clic_configuration` VALUES(1497, 'Sort Order', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Sort order. Lowest is displayed in first', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+INSERT INTO `clic_configuration` VALUES(1498, 'Do you want to activate the preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Functionality in beta, you must have access to your php.init to activate this function. Please refer to the documentation available on the forum', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 -- --------------------------------------------------------
 
@@ -1736,7 +1737,7 @@ INSERT INTO `clic_configuration_group` VALUES(10, 'Logging setup', 'Setting Logg
 INSERT INTO `clic_configuration_group` VALUES(11, 'Setup Cache', 'Setting Cache  Options.', 11, 1);
 INSERT INTO `clic_configuration_group` VALUES(12, 'Setup options mail', 'General setting for the mail client and emails in HTML format.', 12, 1);
 INSERT INTO `clic_configuration_group` VALUES(13, 'Download Setup', 'Options downloadable products.', 13, 1);
-INSERT INTO `clic_configuration_group` VALUES(14, 'Setup GZip compression', 'GZip compression options.', 14, 1);
+INSERT INTO `clic_configuration_group` VALUES(14, 'Setup compression & optimization', 'Website compression & optimization options.', 14, 1);
 INSERT INTO `clic_configuration_group` VALUES(15, 'Session Setup', 'Session options', 15, 1);
 INSERT INTO `clic_configuration_group` VALUES(16, 'Setup minimum values ​​for B2C customers', 'Minimum value for the field of B2C customers', 16, 1);
 INSERT INTO `clic_configuration_group` VALUES(17, 'B2B Setup', 'General Setting B2B', 17, 1);

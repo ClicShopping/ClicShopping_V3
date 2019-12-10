@@ -47,6 +47,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'D' => 
+        array (
+            'DarkGhostHunter\\Preloader\\' => 26,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -125,6 +129,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'DarkGhostHunter\\Preloader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/darkghosthunter/preloader/src',
         ),
     );
 

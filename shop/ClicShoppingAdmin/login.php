@@ -547,6 +547,7 @@
           </div>
         </div>
         </form>
+        <div class="separator"></div>
       </div>
     </div>
 <?php
