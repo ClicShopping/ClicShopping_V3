@@ -23,6 +23,7 @@
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Address = Registry::get('Address');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Image = Registry::get('Image');
 
   if ($CLICSHOPPING_MessageStack->exists('Orders')) {
     echo $CLICSHOPPING_MessageStack->get('Orders');
@@ -332,18 +333,10 @@
               for ($i = 0, $n = count($order->products); $i < $n; $i++) {
                 $products_id = $order->products[$i]['products_id'];
 
-                $QproductsImage = $CLICSHOPPING_Orders->db->prepare('select products_image,
-                                                                products_id
-                                                        from :table_products
-                                                        where products_id = :products_id
-                                                       ');
-                $QproductsImage->bindInt(':products_id', $products_id);
-                $QproductsImage->execute();
-
                 echo '    <tr class="dataTableRow">' . "\n" .
                   '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $products_id . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Orders->getDef('icon_preview'))) . '</td>' . "\n" .
                   '      <td class="dataTableContent" valign="top">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&Edit&pID=' . $products_id), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit'))) . '</td>' . "\n" .
-                  '      <td class="dataTableContent" valign="top"><img src=" ' . $CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $QproductsImage->value('products_image') . '" width=" ' . (int)SMALL_IMAGE_WIDTH_ADMIN . '" height="' . (int)SMALL_IMAGE_HEIGHT_ADMIN . '"></td>' . "\n" .
+                  '      <td class="dataTableContent" valign="top">' . $CLICSHOPPING_Image->getSmallImageAdmin($products_id) . '</td>' . "\n" .
                   '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
                   '      <td class="dataTableContent" valign="top">' . $order->products[$i]['name'];
 

@@ -21,6 +21,7 @@
   $CLICSHOPPING_Archive = Registry::get('Archive');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Products = Registry::get('Products');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -182,7 +183,7 @@
             }
           ?>
         </th>
-        <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+        <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
         <td><?php echo $Qproducts->value('products_model'); ?></td>
         <td><?php echo $Qproducts->value('products_name'); ?></td>
         <?php

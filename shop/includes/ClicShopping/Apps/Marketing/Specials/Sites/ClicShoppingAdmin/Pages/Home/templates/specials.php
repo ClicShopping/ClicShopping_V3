@@ -24,6 +24,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Image = Registry::get('Image');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -238,7 +239,7 @@
               </td>
               <td scope="row"
                   width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qspecials->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Specials->getDef('icon_preview'))); ?></td>
-              <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qspecials->value('products_image'), $Qspecials->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+              <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qspecials->valueInt('products_id')); ?></td>
               <td><?php echo $Qspecials->value('products_model'); ?></td>
               <td><?php echo $Qspecials->value('products_name'); ?></td>
               <?php

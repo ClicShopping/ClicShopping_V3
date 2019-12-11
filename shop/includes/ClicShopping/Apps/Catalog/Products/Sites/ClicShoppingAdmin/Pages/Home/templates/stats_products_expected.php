@@ -15,6 +15,7 @@
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Image = Registry::get('Image');
 
   $CLICSHOPPING_Products = Registry::get('Products');
 
@@ -94,7 +95,7 @@
                 <td scope="row"
                     width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?></td>
                 <td
-                  class="dataTableContent"><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+                  class="dataTableContent"><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
                 <td class="dataTableContent"><?php echo $Qproducts->value('products_name'); ?></td>
                 <td
                   class="dataTableContent text-md-center"><?php echo DateTime::toShort($products['products_date_available']); ?></td>

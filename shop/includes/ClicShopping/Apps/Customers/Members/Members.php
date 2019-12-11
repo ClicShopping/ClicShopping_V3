@@ -18,7 +18,7 @@
   {
 
     protected $api_version = 1;
-    protected $identifier = 'ClicShopping_Reviews_V1';
+    protected $identifier = 'ClicShopping_Members_V1';
 
     protected function init()
     {

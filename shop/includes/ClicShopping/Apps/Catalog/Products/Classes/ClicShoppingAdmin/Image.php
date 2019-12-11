@@ -22,12 +22,16 @@
     private $rootImagesDir;
     private $db;
     private $template;
-
+    private $imageResample;
+    
     public function __construct()
     {
       $this->template = Registry::get('TemplateAdmin');
       $this->db = Registry::get('Db');
       $this->rootImagesDir = $this->template->getDirectoryPathTemplateShopImages() . 'products/';
+
+      Registry::set('ImageResample', new ImageResample());
+      $this->imageResample = Registry::get('ImageResample');
     }
 
   /*
@@ -52,7 +56,7 @@
      * @param string $image_name
      * @return string
      */
-    public function CleanImageName(string $image_name): string
+    public function cleanImageName(string $image_name): string
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -72,7 +76,6 @@
      */
     private function createDirectory(): string
     {
-
       if (isset($_POST['new_directory_products_image']) && !empty($_POST['new_directory_products_image'])) {
         $new_dir_products_image_without_accents = HTML::removeFileAccents($_POST['new_directory_products_image']);
         $new_dir_products_image = strtolower($new_dir_products_image_without_accents);
@@ -105,9 +108,6 @@
      */
     protected function getImageExtensionWebp(string $image) :string
     {
-      Registry::set('ImageResample', new ImageResample());
-      $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
-
       $p = pathinfo($this->template->getDirectoryPathTemplateShopImages() . $image);
       $ext = strtolower($p['extension']);
 
@@ -117,10 +117,12 @@
         if ($img = imagecreatefromstring(file_get_contents($big_image_resized_path))) {
           $image = $image . '.webp';
 
-          $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image);
+          $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image);
           imagedestroy($img);
         }
       }
+
+      unlink($big_image_resized_path);
 
       return $image;
     }
@@ -131,13 +133,11 @@
      */
     public function getImage()
     {
-      Registry::set('ImageResample', new ImageResample());
-      $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
-
       if (isset($_GET['pID'])) {
         $Qimages = $this->db->prepare('select products_image,
+                                              products_image_medium,
                                               products_image_zoom,
-                                              products_image_medium
+                                              products_image_small
                                        from :table_products
                                        where products_id = :products_id
                                       ');
@@ -147,10 +147,12 @@
         $product_update_image = $Qimages->value('products_image');
         $product_update_image_zoom = $Qimages->value('products_image_zoom');
         $product_update_image_medium = $Qimages->value('products_image_medium');
+        $product_update_image_small = $Qimages->value('products_image_small');
       } else {
         $product_update_image = '';
         $product_update_image_zoom = '';
         $product_update_image_medium = '';
+        $product_update_image_small= '';
       }
 
       $dir_products_image = $this->createDirectory();
@@ -175,7 +177,7 @@
       if ($image->check()) {
         $filename_image_name = $image->getFilename();
 
-        $CLICSHOPPING_ImageResample->load($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
+        $this->imageResample->load($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
 
         $image_name = HTML::removeFileAccents($filename_image_name);
         $image_name = HTML::replaceString(' ', '', $image_name);
@@ -189,17 +191,17 @@
           $big_catalg_image_with = (int)BIG_IMAGE_WIDTH;
         }
 
-        $CLICSHOPPING_ImageResample->resizeToWidth($big_catalg_image_with);
+        $this->imageResample->resizeToWidth($big_catalg_image_with);
 
         if (empty($big_catalg_image_with)) {
-          $big_image_width = 'big';
+          $big_image_width = '_big';
         } else {
           $big_image_width = $big_catalg_image_with;
         }
 
         $big_image_resized = $dir_products_image . $big_image_width . '_' . $rand_image . '_' . $image_name;
 
-        $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $big_image_resized);
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $big_image_resized);
 
         $big_image_resized = $this->getImageExtensionWebp($big_image_resized);
 //
@@ -211,20 +213,21 @@
           $medium_catalog_image_with = (int)MEDIUM_IMAGE_WIDTH;
         }
 
-        $CLICSHOPPING_ImageResample->resizeToWidth($medium_catalog_image_with);
+        $this->imageResample->resizeToWidth($medium_catalog_image_with);
 
         if (empty($medium_catalog_image_with)) {
-          $medium_image_width = 'medium';
+          $medium_image_width = '_medium';
         } else {
           $medium_image_width = $medium_catalog_image_with;
         }
 
-        $medium_image_resized = $dir_products_image . $medium_image_width . '_' . $rand_image . '_' . $image_name;
-        $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized);
+        $medium_image_resized = $dir_products_image . $medium_catalog_image_with . '_' . $rand_image . '_' . $image_name;
+
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized);
 
         $medium_image_resized = $this->getImageExtensionWebp($medium_image_resized);
 //
-// small image
+// medium image
 //
         if (empty(SMALL_IMAGE_WIDTH)) {
           $small_catalog_image_with = 130;
@@ -232,21 +235,46 @@
           $small_catalog_image_with = (int)SMALL_IMAGE_WIDTH;
         }
 
-        $CLICSHOPPING_ImageResample->resizeToWidth($small_catalog_image_with);
+        $this->imageResample->resizeToWidth($small_catalog_image_with);
 
         if (empty($small_catalog_image_with)) {
-          $small_image_width = 'small';
+          $small_image_width = '_small';
         } else {
           $small_image_width = (int)$small_catalog_image_with;
         }
 
         $small_image_resized = $dir_products_image . $small_image_width . '_' . $rand_image . '_' . $image_name;
 
-        $CLICSHOPPING_ImageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_resized);
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_resized);
 
         $small_image_resized = $this->getImageExtensionWebp($small_image_resized);
-	
+
+//
+// Admin Image
+//
+        if (empty(SMALL_IMAGE_WIDTH_ADMIN)) {
+          $small_admin_image_with = 70;
+        } else {
+          $small_admin_image_with = (int)SMALL_IMAGE_WIDTH_ADMIN;
+        }
+
+        $this->imageResample->resizeToWidth($small_admin_image_with);
+
+        if (empty($small_admin_image_with)) {
+          $small_image_admin_width = '_small_admin';
+        } else {
+          $small_image_admin_width = (int)$small_admin_image_with;
+        }
+
+        $small_image_admin_resized = $dir_products_image . $small_image_admin_width . '_' . $rand_image . '_' . $image_name;
+
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_admin_resized);
+
+        $small_image_admin_resized = $this->getImageExtensionWebp($small_image_admin_resized);
+
+//
 // delete the orginal files
+//
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name)) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
         }
@@ -254,17 +282,20 @@
         $big_image_resized = '';
         $medium_image_resized = '';
         $small_image_resized = '';
+        $small_image_admin_resized = '';
       }
 
       if (isset($_POST['delete_image'])) {
         $this->products_image = $sql_data_array['products_image'] = null;
         $this->products_image_zoom = $sql_data_array['products_image_zoom'] = null;
         $this->products_image_medium = $sql_data_array['products_image_medium'] = null;
+        $this->products_image_small = $sql_data_array['products_image_mall'] = null;
+
       } else {
-        if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || !empty($small_image_resized)) {
-          $products_image_name = $this->CleanImageName($_POST['products_image']);
+        if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || !empty($small_image_resized) || !empty($small_image_admin_resized)) {
+          $products_image_name = $this->cleanImageName($_POST['products_image']);
 //
-// small image
+// small image catalog
 //
           if (!empty($small_image_resized)) {
             $this->products_image = $small_image_resized;
@@ -278,7 +309,7 @@
 // big image
 //
         if (!empty($big_image_resized)) {
-          $products_image_zoom_name = $this->CleanImageName($big_image_resized);
+          $products_image_zoom_name = $this->cleanImageName($big_image_resized);
 
           if (!empty($big_image_resized)) {
             $this->products_image_zoom = $big_image_resized;
@@ -293,7 +324,7 @@
 // medium image
 //
         if (!empty($medium_image_resized)) {
-          $products_image_medium_name = $this->CleanImageName($medium_image_resized);
+          $products_image_medium_name = $this->cleanImageName($medium_image_resized);
 
           if (!empty($medium_image_resized)) {
             $this->products_image_medium = $medium_image_resized;
@@ -304,6 +335,20 @@
           $this->products_image_medium = $product_update_image_medium;
         }
 
+//
+// small admin image
+//
+        if (!empty($small_image_admin_resized)) {
+          $products_image_small_name_name = $this->cleanImageName($small_image_admin_resized);
+
+          if (!empty($small_image_admin_resized)) {
+            $this->products_image_small = $small_image_admin_resized;
+          } else {
+            $this->products_image_small = $products_image_small_name_name;
+          }
+        } else {
+          $this->products_image_small = $product_update_image_small;
+        }
       }
     }
 
@@ -338,7 +383,7 @@
      * Products Image Zoom
      * @return string
      */
-    public function productsImageZoomSmall(): string
+    public function productsSmallImage(): string
     {
       return $this->products_image_small;
     }
@@ -464,5 +509,33 @@
         $Qdel->bindInt(':products_id', $id);
         $Qdel->execute();
       }
+    }
+
+    /**
+     * get image for listing admin use image
+     * @param int $id
+     * @return string
+     */
+    public function getSmallImageAdmin(int $id): string
+    {
+      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+
+      $Qimages = $this->db->prepare('select products_image,
+                                             products_image_small
+                                     from :table_products
+                                     where products_id = :products_id
+                                    ');
+      $Qimages->bindInt(':products_id', $id);
+      $Qimages->execute();
+
+      if (!empty($Qimages->value('products_image_small'))) {
+        $small_image = $Qimages->value('products_image_small');
+      } else {
+        $small_image = $Qimages->value('products_image');
+      }
+
+      $small_image = HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $small_image, $Qimages->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN);
+
+      return $small_image;
     }
   }

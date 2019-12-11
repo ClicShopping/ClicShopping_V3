@@ -24,6 +24,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Image = Registry::get('Image');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -188,11 +189,8 @@
           $listingTotalRow = $Qfavorites->getPageSetTotalRows();
 
           if ($listingTotalRow > 0) {
-
             while ($Qfavorites->fetch()) {
-
               if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ($_GET['sID'] == $Qfavorites->valueInt('products_favorites_id')))) && !isset($sInfo)) {
-
                 $Qproduct = $CLICSHOPPING_Db->get('products', 'products_image', ['products_id' => $Qfavorites->valueInt('products_id')]);
 
                 $sInfo_array = array_merge($Qfavorites->toArray(), $Qproduct->toArray());
@@ -216,7 +214,7 @@
               </td>
               <td scope="row"
                   width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qfavorites->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Favorites->getDef('icon_preview'))); ?></td>
-              <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qfavorites->value('products_image'), $Qfavorites->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+              <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qfavorites->valueInt('products_id')); ?></td>
               <td><?php echo $Qfavorites->value('products_model'); ?></td>
               <td><?php echo $Qfavorites->value('products_name'); ?></td>
               <?php

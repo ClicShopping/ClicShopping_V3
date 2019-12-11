@@ -64,7 +64,6 @@
       return $data;
     }
 
-
     /**
      * Save the product description
      * @param $id , produts_id
@@ -177,16 +176,18 @@
       }
     }
 
-
     /**
      * getInfoImage
      *
      * @param string $image , $alt, $width, $height
+     * @param $alt
+     * @param string $width
+     * @param string $height
      * @return string $image, the image value
      * @access public
      */
 
-    public function getInfoImage($image, $alt, $width = '130', $height = '130')
+    public function getInfoImage($image, $alt, string $width = '130', string $height = '130'): string
     {
       if (!empty($image) && (file_exists($this->template->getDirectoryPathTemplateShopImages() . $image))) {
         $image = HTML::image($this->template->getDirectoryShopTemplateImages() . $image, $alt, $width, $height);
@@ -204,7 +205,7 @@
      * @return $product_packaging, the packaging selected
      * @access public
      */
-    public function getproductPackaging($id)
+    public function getproductPackaging(int $id): string
     {
       if (!is_null($_SESSION['ProductAdminId'])) {
         $id = $_SESSION['ProductAdminId'];
@@ -246,7 +247,7 @@
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
      * @access public
      */
-    public function getProductsQuantityUnitTitle($products_quantity_unit_id, $language_id = '')
+    public function getProductsQuantityUnitTitle($products_quantity_unit_id = '', $language_id = '')
     {
 
       if (!$language_id) $language_id = $this->lang->getId();
@@ -272,9 +273,8 @@
      * @return string $product['products_model'], products model
      * @access public
      */
-    public function getProductsModel($id)
+    public function getProductsModel($id = ''): string
     {
-
       $QproductsModel = $this->db->prepare('select products_model
                                             from :table_products
                                             where products_id = :products_id
@@ -294,7 +294,7 @@
      * @return string $product['products_shipping_delay'], url of the product
      * @access public
      */
-    public function getProductsShippingDelay($id, $language_id)
+    public function getProductsShippingDelay($id = '', int $language_id)
     {
       $Qproduct = $this->db->prepare('select products_shipping_delay
                                      from :table_products_description
@@ -316,9 +316,8 @@
      * @return string $product['products_description'], description name
      * @access public
      */
-    public function getProductsDescriptionSummary($product_id, $language_id)
+    public function getProductsDescriptionSummary($product_id = '', int $language_id): string
     {
-
       if (!$language_id) $language_id = $this->lang->getId();
 
       $Qproduct = $this->db->prepare('select products_description_summary
@@ -342,7 +341,7 @@
      * @access public
      */
 
-    public function getProductsImage($product_id)
+    public function getProductsImage($product_id = ''): string
     {
       $Qproduct = Registry::get('Db')->get('products', 'products_image', ['products_id' => (int)$product_id]);
 
@@ -386,7 +385,7 @@
      * @return string $product['products_name'], name of the product
      * @access public
      */
-    public function getProductsName($product_id, $language_id = 0)
+    public function getProductsName($product_id = '', int $language_id = 0): string
     {
 
       if ($language_id == 0) $language_id = $this->lang->getId();
@@ -404,7 +403,7 @@
      * @return string $product['products_description'], description name
      * @access public
      */
-    public function getProductsDescription($product_id, $language_id)
+    public function getProductsDescription($product_id = '', int $language_id): string
     {
 
       if ($language_id == 0) $language_id = $this->lang->getId();
@@ -415,7 +414,6 @@
 
       return $Qproduct->value('products_description');
     }
-
 
     /**
      * Supplier DropDown
@@ -459,6 +457,7 @@
       $Qimage = $this->db->prepare('select products_image,
                                           products_image_zoom,
                                           products_image_medium,
+                                          products_image_small,
                                           products_model,
                                           products_ean
                                    from :table_products
@@ -473,10 +472,12 @@
                                            where products_image = :products_image
                                            or products_image_zoom = :products_image_zoom
                                            or products_image_medium = :products_image_medium
+                                           or products_image_small = :products_image_small
                                           ');
       $QduplicateImage->bindValue(':products_image', $Qimage->value('products_image'));
       $QduplicateImage->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
       $QduplicateImage->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
+      $QduplicateImage->bindValue(':products_image_small', $Qimage->value('products_image_small'));
 
       $QduplicateImage->execute();
 
@@ -488,15 +489,16 @@
                                                        where categories_image = :products_image
                                                        or categories_image = :products_image_zoom
                                                        or categories_image = :products_image_medium
+                                                       or categories_image = :products_image_small
                                                       ');
       $QduplicateImageCategories->bindValue(':products_image', $Qimage->value('products_image'));
       $QduplicateImageCategories->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
       $QduplicateImageCategories->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
+      $QduplicateImageCategories->bindValue(':products_image_small', $Qimage->value('products_image_small'));
 
       $QduplicateImageCategories->execute();
 
       $duplicate_image_categories = $QduplicateImageCategories->fetch();
-
 
 // Controle si l'image est utiliee sur les descriptions d'un produit
       $QduplicateImageProductDescription = $this->db->prepare('select count(*) as total
@@ -504,10 +506,12 @@
                                                                where products_description like :products_description
                                                                or products_description like :products_description1
                                                                or products_description like :products_description2
+                                                               or products_description like :products_description3
                                                               ');
       $QduplicateImageProductDescription->bindValue(':products_description', '%' . $Qimage->value('products_image') . '%');
       $QduplicateImageProductDescription->bindValue(':products_description1', '%' . $Qimage->value('products_image_zoom') . '%');
       $QduplicateImageProductDescription->bindValue(':products_description2', '%' . $Qimage->value('products_image_medium') . '%');
+      $QduplicateImageProductDescription->bindValue(':products_description3', '%' . $Qimage->value('products_image_small') . '%');
 
       $QduplicateImageProductDescription->execute();
 
@@ -520,10 +524,13 @@
                                                      where banners_image = :products_image
                                                      or banners_image = :products_image_zoom
                                                      or banners_image = :products_image_medium
+                                                     or banners_image = :products_image_small
                                                     ');
+
       $QduplicateImageBanners->bindValue(':products_image', $Qimage->value('products_image'));
       $QduplicateImageBanners->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
       $QduplicateImageBanners->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
+      $QduplicateImageBanners->bindValue(':products_image_small', $Qimage->value('products_image_small'));
 
       $QduplicateImageBanners->execute();
 
@@ -536,10 +543,12 @@
                                                          where manufacturers_image = :products_image
                                                          or manufacturers_image = :products_image_zoom
                                                          or manufacturers_image = :products_image_medium
+                                                         or manufacturers_image = :products_image_small
                                                         ');
       $QduplicateImageManufacturers->bindValue(':products_image', $Qimage->value('products_image'));
       $QduplicateImageManufacturers->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
       $QduplicateImageManufacturers->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
+      $QduplicateImageManufacturers->bindValue(':products_image_small', $Qimage->value('products_image_small'));
 
       $QduplicateImageManufacturers->execute();
 
@@ -552,10 +561,12 @@
                                                      where suppliers_image  = :products_image
                                                      or suppliers_image  = :products_image_zoom
                                                      or suppliers_image  = :products_image_medium
+                                                     or suppliers_image  = :products_image_small
                                                     ');
       $QduplicateImageSuppliers->bindValue(':products_image', $Qimage->value('products_image'));
       $QduplicateImageSuppliers->bindValue(':products_image_zoom', $Qimage->value('products_image_zoom'));
       $QduplicateImageSuppliers->bindValue(':products_image_medium', $Qimage->value('products_image_medium'));
+      $QduplicateImageSuppliers->bindValue(':products_image_small', $Qimage->value('products_image_small'));
 
       $QduplicateImageSuppliers->execute();
 
@@ -571,11 +582,17 @@
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'));
         }
+	
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'));
         }
+	
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'));
+        }
+	
+        if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'))) {
+          @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'));
         }
       }
 
@@ -646,7 +663,7 @@
      * @return string $Qproduct->value('products_url'), url of the product
      * @access public
      */
-    public function getProductsUrl($product_id, $language_id)
+    public function getProductsUrl($product_id = '', int $language_id): string
     {
       if ($language_id == 0) $language_id = $this->lang->getId();
         $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
@@ -661,7 +678,7 @@
      * @return string $Qmanufacturer->value('manufacturers_url'), url of manufacturers
      * @access public
      */
-    public function getManufacturerUrl($manufacturer_id, $language_id)
+    public function getManufacturerUrl($manufacturer_id = '', int $language_id): string
     {
       if ($language_id == 0) $language_id = $this->lang->getId();
       $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
@@ -704,7 +721,6 @@
         }
       }
     }
-
 
     /**
      * cloneProductsInOtherCategory
@@ -754,6 +770,7 @@
           'products_packaging' => (int)$Qproducts->valueInt('products_packaging'),
           'products_sort_order' => (int)$Qproducts->valueInt('products_sort_order'),
           'products_quantity_alert' => (int)$Qproducts->valueInt('products_quantity_alert'),
+          'products_image_small' => $Qproducts->value('products_image_small'),
         ];
 
 // copy du produit
@@ -895,9 +912,7 @@
               $products_quantity_unit_id_group = 0;
               $products_model_group = '';
               $products_quantity_fixed_group = 1;
-
             } //end MODE_B2B_B2C
-
 
             $Qupdate = $this->db->prepare('update :table_products_groups
                                             set price_group_view = :price_group_view,
@@ -919,7 +934,6 @@
             $Qupdate->bindInt(':products_id', (int)$clone_products_id);
 
             $Qupdate->execute();
-
 
 // Prix TTC B2B ----------
             if (($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] <> $Qattributes->valueDecimal('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
@@ -961,7 +975,6 @@
         $this->hooks->call('Products', 'CloneProducts');
       } //End for
     }
-
 
     /**
      * Search products
@@ -1167,10 +1180,10 @@
 // image
       $this->image->getImage();
 
+      $sql_data_array['products_image'] = $this->image->productsImage();
       $sql_data_array['products_image_medium'] = $this->image->productsImageMedium();
       $sql_data_array['products_image_zoom'] = $this->image->productsImageZoom();
-      $sql_data_array['products_image'] = $this->image->productsImage();
-
+      $sql_data_array['products_image_small'] = $this->image->productsSmallImage();
 //---------------------------------------------------------------------------------------------
 //  Save Data
 //---------------------------------------------------------------------------------------------
@@ -1204,7 +1217,6 @@
 
       $this->hooks->call('Products', 'Save');
     }
-
 
     /**
      * Count how many products exist in a category
@@ -1245,7 +1257,6 @@
       $products_count = $Qproducts->valueInt('total');
 
       $Qchildren = $this->products->db->get('products', 'products_id', ['parent_id' => (int)$products_id]);
-
 
       while ($Qchildren->fetch() !== false) {
         $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);

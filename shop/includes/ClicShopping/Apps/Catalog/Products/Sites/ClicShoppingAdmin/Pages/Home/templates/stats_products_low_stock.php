@@ -14,8 +14,10 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
+  $CLICSHOPPING_Image = Registry::get('Image');
   $CLICSHOPPING_Products = Registry::get('Products');
+  $CLICSHOPPING_Image = Registry::get('Image');
+
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -119,7 +121,7 @@
               <tr>
                 <td scope="row"
                     width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?></td>
-                <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qproducts->value('products_image'), $Qproducts->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+                <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
                 <th>&nbsp;<?php echo $Qproducts->value('products_name'); ?></th>
                 <td><?php echo $Qproducts->value('products_model'); ?></td>
                 <td><?php echo $Qproducts->value('products_warehouse_time_replenishment'); ?></td>

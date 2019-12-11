@@ -1,38 +1,16 @@
--- phpMyAdmin SQL Dump
--- version 4.6.6deb5
--- https://www.phpmyadmin.net/
---
--- Client :  localhost:3306
--- Généré le :  Jeu 15 Août 2019 à 12:05
--- Version du serveur :  10.3.17-MariaDB-0ubuntu0.19.04.1
--- Version de PHP :  7.3.2-3
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données :  `clicshopping_prod`
---
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `clic_action_recorder`
 --
 
+DROP TABLE IF EXISTS `clic_action_recorder`;
 CREATE TABLE `clic_action_recorder` (
   `id` int(11) NOT NULL,
-  `module` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `module` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `identifier` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `success` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `identifier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `success` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -42,26 +20,27 @@ CREATE TABLE `clic_action_recorder` (
 -- Structure de la table `clic_address_book`
 --
 
+DROP TABLE IF EXISTS `clic_address_book`;
 CREATE TABLE `clic_address_book` (
   `address_book_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `entry_gender` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_siret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_ape` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_tva_intracom` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_cf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_piva` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `entry_lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `entry_street_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_suburb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_postcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `entry_country_id` int(11) NOT NULL DEFAULT 0,
-  `entry_zone_id` int(11) NOT NULL DEFAULT 0,
-  `entry_telephone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `entry_gender` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_siret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_ape` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_tva_intracom` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_cf` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_piva` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entry_lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entry_street_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_suburb` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_postcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `entry_country_id` int(11) NOT NULL DEFAULT '0',
+  `entry_zone_id` int(11) NOT NULL DEFAULT '0',
+  `entry_telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -70,14 +49,15 @@ CREATE TABLE `clic_address_book` (
 -- Structure de la table `clic_address_format`
 --
 
+DROP TABLE IF EXISTS `clic_address_format`;
 CREATE TABLE `clic_address_format` (
   `address_format_id` int(11) NOT NULL,
-  `address_format` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address_summary` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `address_format` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address_summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_address_format`
+-- Déchargement des données de la table `clic_address_format`
 --
 
 INSERT INTO `clic_address_format` VALUES(1, '$firstname $lastname$cr$streets$cr$city, $postcode$cr$statecomma$country', '$city / $country');
@@ -93,12 +73,13 @@ INSERT INTO `clic_address_format` VALUES(6, '$firstname $lastname$cr$streets$cr$
 -- Structure de la table `clic_administrators`
 --
 
+DROP TABLE IF EXISTS `clic_administrators`;
 CREATE TABLE `clic_administrators` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `user_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `access` tinyint(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -108,20 +89,21 @@ CREATE TABLE `clic_administrators` (
 -- Structure de la table `clic_administrator_menu`
 --
 
+DROP TABLE IF EXISTS `clic_administrator_menu`;
 CREATE TABLE `clic_administrator_menu` (
   `id` int(11) NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
   `sort_order` int(3) DEFAULT NULL,
   `access` tinyint(1) DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `b2b_menu` tinyint(1) NOT NULL DEFAULT 0,
-  `app_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(1) DEFAULT 1
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `b2b_menu` tinyint(1) NOT NULL DEFAULT '0',
+  `app_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_administrator_menu`
+-- Déchargement des données de la table `clic_administrator_menu`
 --
 
 INSERT INTO `clic_administrator_menu` VALUES(1, '', 0, 0, 0, '', 0, NULL, 1);
@@ -297,14 +279,15 @@ INSERT INTO `clic_administrator_menu` VALUES(777, 'index.php?A&Marketing\\Specia
 -- Structure de la table `clic_administrator_menu_description`
 --
 
+DROP TABLE IF EXISTS `clic_administrator_menu_description`;
 CREATE TABLE `clic_administrator_menu_description` (
-  `id` int(11) NOT NULL DEFAULT 0,
-  `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language_id` int(11) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL DEFAULT '0',
+  `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_administrator_menu_description`
+-- Déchargement des données de la table `clic_administrator_menu_description`
 --
 
 INSERT INTO `clic_administrator_menu_description` VALUES(0, '', 1);
@@ -636,27 +619,28 @@ INSERT INTO `clic_administrator_menu_description` VALUES(654, 'Zones', 2);
 -- Structure de la table `clic_banners`
 --
 
+DROP TABLE IF EXISTS `clic_banners`;
 CREATE TABLE `clic_banners` (
   `banners_id` int(11) NOT NULL,
-  `banners_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `banners_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `banners_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `banners_group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `banners_target` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `banners_html_text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `expires_impressions` int(7) DEFAULT 0,
+  `banners_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banners_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banners_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banners_group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banners_target` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `banners_html_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `expires_impressions` int(7) DEFAULT '0',
   `expires_date` datetime DEFAULT NULL,
   `date_scheduled` datetime DEFAULT NULL,
   `date_added` datetime NOT NULL,
   `date_status_change` datetime DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
-  `languages_id` int(11) NOT NULL DEFAULT 0,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `banners_title_admin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` int(1) NOT NULL DEFAULT '1',
+  `languages_id` int(11) NOT NULL DEFAULT '0',
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `banners_title_admin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_banners`
+-- Déchargement des données de la table `clic_banners`
 --
 
 INSERT INTO `clic_banners` VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
@@ -667,11 +651,12 @@ INSERT INTO `clic_banners` VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping
 -- Structure de la table `clic_banners_history`
 --
 
+DROP TABLE IF EXISTS `clic_banners_history`;
 CREATE TABLE `clic_banners_history` (
   `banners_history_id` int(11) NOT NULL,
   `banners_id` int(11) NOT NULL,
-  `banners_shown` int(5) NOT NULL DEFAULT 0,
-  `banners_clicked` int(5) NOT NULL DEFAULT 0,
+  `banners_shown` int(5) NOT NULL DEFAULT '0',
+  `banners_clicked` int(5) NOT NULL DEFAULT '0',
   `banners_history_date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -681,16 +666,17 @@ CREATE TABLE `clic_banners_history` (
 -- Structure de la table `clic_categories`
 --
 
+DROP TABLE IF EXISTS `clic_categories`;
 CREATE TABLE `clic_categories` (
   `categories_id` int(11) NOT NULL,
-  `categories_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `categories_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
   `sort_order` int(3) DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
   `last_modified` datetime DEFAULT NULL,
-  `virtual_categories` tinyint(1) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
-  `customers_group_id` int(11) NOT NULL DEFAULT 99
+  `virtual_categories` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `customers_group_id` int(11) NOT NULL DEFAULT '99'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -699,14 +685,15 @@ CREATE TABLE `clic_categories` (
 -- Structure de la table `clic_categories_description`
 --
 
+DROP TABLE IF EXISTS `clic_categories_description`;
 CREATE TABLE `clic_categories_description` (
-  `categories_id` int(11) NOT NULL DEFAULT 0,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `categories_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categories_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `categories_head_title_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `categories_head_desc_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `categories_head_keywords_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `categories_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `categories_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categories_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `categories_head_title_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `categories_head_desc_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `categories_head_keywords_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -715,22 +702,23 @@ CREATE TABLE `clic_categories_description` (
 -- Structure de la table `clic_configuration`
 --
 
+DROP TABLE IF EXISTS `clic_configuration`;
 CREATE TABLE `clic_configuration` (
   `configuration_id` int(11) NOT NULL,
-  `configuration_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `configuration_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `configuration_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `configuration_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `configuration_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `configuration_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `configuration_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `configuration_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `configuration_group_id` int(11) NOT NULL,
   `sort_order` int(5) DEFAULT NULL,
   `last_modified` datetime DEFAULT NULL,
   `date_added` datetime NOT NULL,
-  `use_function` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `set_function` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `use_function` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `set_function` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_configuration`
+-- Déchargement des données de la table `clic_configuration`
 --
 
 INSERT INTO `clic_configuration` VALUES(1, 'What is your the store Name', 'STORE_NAME', '', 'Please specify the name of your store.<br /><br /><font color=\"#FF0000\"><b>Note :</b> This name will appear in the content of e-mails</font><br>', 1, 1, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
@@ -817,7 +805,7 @@ INSERT INTO `clic_configuration` VALUES(138, 'Check the session ID', 'SESSION_CH
 INSERT INTO `clic_configuration` VALUES(139, 'Check the user', 'SESSION_CHECK_USER_AGENT', 'false', 'Confirm the client browser on each page request.<br />', 15, 4, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(140, 'Check the IP address', 'SESSION_CHECK_IP_ADDRESS', 'false', 'Confirm the IP address of the client on each page request.<br />', 15, 5, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(141, 'Prevent spider sessions', 'SESSION_BLOCK_SPIDERS', 'true', 'Prevent known spiders from starting a session.<br />', 15, 6, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
-INSERT INTO `clic_configuration` VALUES(143, 'Please select the website template', 'SITE_THEMA', 'Default', 'Please select template.<br><br><font color="#FF0000"><b>Note :</b>  To customize your template, you must change the default boostrap template and override by css<br /></font>', 43, 1, '2016-10-15 16:36:55', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_all_template_directory_list_pull_down');
+INSERT INTO `clic_configuration` VALUES(143, 'Please select the website template', 'SITE_THEMA', 'Default', 'Please select template.<br><br><font color=\"#FF0000\"><b>Note :</b>  To customize your template, you must change the default boostrap template and override by css<br /></font>', 43, 1, '2016-10-15 16:36:55', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_all_template_directory_list_pull_down');
 INSERT INTO `clic_configuration` VALUES(144, 'Hide the price for visitors', 'PRICES_LOGGED_IN', 'false', 'Hide the price unregistered visitors.<br />', 17, 3, '2006-04-26 19:36:44', '2001-11-17 11:22:55', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(145, 'Method on price (Discount or Surcharge)', 'B2B', 'false', 'Option <i><b>false</b></i> allows a discount on the price, <i><b>true</b></i> allows a price increase.', 17, 2, '2006-04-11 18:32:13', '2003-10-06 17:24:00', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(146, 'Approval of professional members', 'MEMBER', 'true', 'Option <i><b>true</b></i> allows a control to approve the creation of new professionals accounts <br /><br /><font color=\"FF0000\"><b>Note :</b> The approval takes place from the Clients menu -> Pending clients</font>', 17, 4, '2006-10-20 00:49:26', '2004-02-26 19:30:00', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
@@ -1661,7 +1649,6 @@ INSERT INTO `clic_configuration` VALUES(1495, 'Do you want to install this modul
 INSERT INTO `clic_configuration` VALUES(1496, 'Please select the width of the module', 'MODULE_PRODUCTS_FEATURED_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-08-22 21:06:06', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO `clic_configuration` VALUES(1497, 'Where do you to display this module ?', 'MODULE_PRODUCTS_FEATURED_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-08-22 21:06:06', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO `clic_configuration` VALUES(1498, 'Sort order', 'MODULE_PRODUCTS_FEATURED_TITLE_SORT_ORDER', '10', 'Sort order of display. Lowest is displayed first', 6, 12, NULL, '2019-08-22 21:06:06', NULL, '');
-
 INSERT INTO `clic_configuration` VALUES(1499, 'Do you want activate this module ?', 'MODULE_PRODUCTS_FAVORITES_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 1, NULL, '2019-08-22 21:06:15', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO `clic_configuration` VALUES(1500, 'Please select your template ?', 'MODULE_PRODUCTS_FAVORITES_TEMPLATE', 'template_bootstrap_column_5.php', 'Select your template you want to display', 6, 2, NULL, '2019-08-22 21:06:15', NULL, 'clic_cfg_set_multi_template_pull_down');
 INSERT INTO `clic_configuration` VALUES(1501, 'Indicate the number of product do you want to display ?', 'MODULE_PRODUCTS_FAVORITES_MAX_DISPLAY', '6', 'Please, indicate the number of products do your want to display.', 6, 3, NULL, '2019-08-22 21:06:15', NULL, '');
@@ -1683,28 +1670,27 @@ INSERT INTO `clic_configuration` VALUES(1516, 'Do you want to install this modul
 INSERT INTO `clic_configuration` VALUES(1517, 'Please select the width of the module', 'MODULE_PRODUCTS_FAVORITES_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-08-22 21:06:18', NULL, 'clic_cfg_set_content_module_width_pull_down');
 INSERT INTO `clic_configuration` VALUES(1518, 'Where do you to display this module ?', 'MODULE_PRODUCTS_FAVORITES_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-08-22 21:06:18', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
 INSERT INTO `clic_configuration` VALUES(1519, 'Sort order', 'MODULE_PRODUCTS_FAVORITES_TITLE_SORT_ORDER', '10', 'Sort order of display. Lowest is displayed first', 6, 12, NULL, '2019-08-22 21:06:18', NULL, '');
-
-INSERT INTO `clic_configuration` VALUES(1478, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:27', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1479, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:29', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1480, 'Do you want activate this module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 1, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO `clic_configuration` VALUES(1481, 'Please select the width of the module', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_content_module_width_pull_down');
-INSERT INTO `clic_configuration` VALUES(1482, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1483, 'Sort order', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_SORT_ORDER', '600', 'Sort order of display. Lowest is displayed first', 6, 4, NULL, '2019-09-15 17:42:34', NULL, '');
-INSERT INTO `clic_configuration` VALUES(1484, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:38', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1485, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:41', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1486, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:55:03', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1487, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:56:19', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1488, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:56:25', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1489, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 19:06:14', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1490, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 19:06:14', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO `clic_configuration` VALUES(1491, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:20', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1492, 'Please select the width of the module', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_content_module_width_pull_down');
-INSERT INTO `clic_configuration` VALUES(1493, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1494, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO `clic_configuration` VALUES(1495, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_CONTENT_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:24', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
-INSERT INTO `clic_configuration` VALUES(1496, 'Do you want to display this module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Do you want to display this module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
-INSERT INTO `clic_configuration` VALUES(1497, 'Sort Order', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Sort order. Lowest is displayed in first', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
-INSERT INTO `clic_configuration` VALUES(1498, 'Do you want to activate the preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Functionality in beta, you must have access to your php.init to activate this function. Please refer to the documentation available on the forum', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO `clic_configuration` VALUES(1520, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:27', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1521, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:29', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1522, 'Do you want activate this module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS', 'True', 'Do you want activate this module in your shop ?', 6, 1, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(1523, 'Please select the width of the module', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO `clic_configuration` VALUES(1524, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:34', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1525, 'Sort order', 'MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_SORT_ORDER', '600', 'Sort order of display. Lowest is displayed first', 6, 4, NULL, '2019-09-15 17:42:34', NULL, '');
+INSERT INTO `clic_configuration` VALUES(1526, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:38', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1527, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 17:42:41', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1528, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_IMAGE_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:55:03', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1529, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:56:19', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1530, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_DESCRIPTION_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 18:56:25', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1531, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 19:06:14', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1532, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 19:06:14', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(1533, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION', 'float-md-none', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:20', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1534, 'Please select the width of the module', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_WIDTH', '12', 'Select a number between 1 and 12', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_content_module_width_pull_down');
+INSERT INTO `clic_configuration` VALUES(1535, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_POSITION', 'float-md-left', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1536, 'Allow the customer to delete the comment ?', 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_DELETE_COMMENT', 'True', 'The regulation allow the customer to decide to have access at his information', 6, 1, NULL, '2019-09-15 20:17:22', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(1537, 'Where do you want display the module ?', 'MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_CONTENT_POSITION', 'float-md-right', 'Select where you want display the module', 6, 2, NULL, '2019-09-15 20:17:24', NULL, 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))');
+INSERT INTO `clic_configuration` VALUES(1538, 'Do you want to display this module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Do you want to display this module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
+INSERT INTO `clic_configuration` VALUES(1539, 'Sort Order', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Sort order. Lowest is displayed in first', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+INSERT INTO `clic_configuration` VALUES(1540, 'Do you want to activate the preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Functionality in beta, you must have access to your php.init to activate this function. Please refer to the documentation available on the forum', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 -- --------------------------------------------------------
 
@@ -1712,16 +1698,17 @@ INSERT INTO `clic_configuration` VALUES(1498, 'Do you want to activate the prelo
 -- Structure de la table `clic_configuration_group`
 --
 
+DROP TABLE IF EXISTS `clic_configuration_group`;
 CREATE TABLE `clic_configuration_group` (
   `configuration_group_id` int(11) NOT NULL,
-  `configuration_group_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `configuration_group_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `configuration_group_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `configuration_group_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sort_order` int(5) DEFAULT NULL,
-  `visible` int(1) DEFAULT 1
+  `visible` int(1) DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_configuration_group`
+-- Déchargement des données de la table `clic_configuration_group`
 --
 
 INSERT INTO `clic_configuration_group` VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
@@ -1770,17 +1757,18 @@ INSERT INTO `clic_configuration_group` VALUES(45, 'Configuration HTTP/API', 'Con
 -- Structure de la table `clic_countries`
 --
 
+DROP TABLE IF EXISTS `clic_countries`;
 CREATE TABLE `clic_countries` (
   `countries_id` int(11) NOT NULL,
-  `countries_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `countries_iso_code_2` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `countries_iso_code_3` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `countries_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `countries_iso_code_2` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `countries_iso_code_3` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `address_format_id` int(11) NOT NULL,
-  `status` tinyint(1) DEFAULT 1
+  `status` tinyint(1) DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_countries`
+-- Déchargement des données de la table `clic_countries`
 --
 
 INSERT INTO `clic_countries` VALUES(1, 'Afghanistan', 'AF', 'AFG', 1, 1);
@@ -2028,28 +2016,29 @@ INSERT INTO `clic_countries` VALUES(239, 'Zimbabwe', 'ZW', 'ZWE', 1, 1);
 -- Structure de la table `clic_currencies`
 --
 
+DROP TABLE IF EXISTS `clic_currencies`;
 CREATE TABLE `clic_currencies` (
   `currencies_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `symbol_left` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `symbol_right` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `decimal_point` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `thousands_point` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `decimal_places` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `symbol_left` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `symbol_right` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `decimal_point` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thousands_point` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `decimal_places` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `value` float(13,8) DEFAULT NULL,
   `last_updated` datetime DEFAULT NULL,
-  `status` tinyint(1) DEFAULT 1,
+  `status` tinyint(1) DEFAULT '1',
   `surcharge` float(15,4) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_currencies`
+-- Déchargement des données de la table `clic_currencies`
 --
 
-INSERT INTO `clic_currencies` VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1, 0);
-INSERT INTO `clic_currencies` VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1, 0);
-INSERT INTO `clic_currencies` VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', 1, 0);
+INSERT INTO `clic_currencies` VALUES(1, 'Euro', 'EUR', '', 'EUR', '.', ',', '2', 1.00000000, '2008-09-13 18:02:35', 1, 0.0000);
+INSERT INTO `clic_currencies` VALUES(2, 'Dollard', 'USD', 'USD', '', '.', ',', '2', 1.40750003, '2008-09-13 18:02:36', 1, 0.0000);
+INSERT INTO `clic_currencies` VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2', 1.50580001, '2008-09-13 18:02:36', 1, 0.0000);
 
 -- --------------------------------------------------------
 
@@ -2057,37 +2046,38 @@ INSERT INTO `clic_currencies` VALUES(3, 'Canada', 'CAD', '', 'CAD', '.', '.', '2
 -- Structure de la table `clic_customers`
 --
 
+DROP TABLE IF EXISTS `clic_customers`;
 CREATE TABLE `clic_customers` (
   `customers_id` int(11) NOT NULL,
-  `customers_company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_siret` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_ape` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_tva_intracom` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_tva_intracom_code_iso` char(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_gender` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_siret` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_ape` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_tva_intracom` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_tva_intracom_code_iso` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_gender` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_dob` datetime DEFAULT NULL,
-  `customers_email_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_email_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_default_address_id` int(11) DEFAULT NULL,
-  `customers_telephone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_fax` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_newsletter` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0',
-  `languages_id` int(11) NOT NULL DEFAULT 1,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `member_level` int(1) NOT NULL DEFAULT 0,
-  `customers_options_order_taxe` tinyint(1) NOT NULL DEFAULT 0,
-  `customers_modify_company` tinyint(1) NOT NULL DEFAULT 1,
-  `customers_modify_address_default` tinyint(1) NOT NULL DEFAULT 1,
-  `customers_add_address` tinyint(1) NOT NULL DEFAULT 1,
-  `customers_cellular_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_email_validation` int(1) NOT NULL DEFAULT 0,
-  `customer_discount` decimal(4,2) NOT NULL DEFAULT 0.00,
-  `client_computer_ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider_name_client` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_website_company` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_guest_account` tinyint(1) NOT NULL DEFAULT 0
+  `customers_telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_fax` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_newsletter` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `languages_id` int(11) NOT NULL DEFAULT '1',
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `member_level` int(1) NOT NULL DEFAULT '0',
+  `customers_options_order_taxe` tinyint(1) NOT NULL DEFAULT '0',
+  `customers_modify_company` tinyint(1) NOT NULL DEFAULT '1',
+  `customers_modify_address_default` tinyint(1) NOT NULL DEFAULT '1',
+  `customers_add_address` tinyint(1) NOT NULL DEFAULT '1',
+  `customers_cellular_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_email_validation` int(1) NOT NULL DEFAULT '0',
+  `customer_discount` decimal(4,2) NOT NULL DEFAULT '0.00',
+  `client_computer_ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider_name_client` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_website_company` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_guest_account` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2096,13 +2086,14 @@ CREATE TABLE `clic_customers` (
 -- Structure de la table `clic_customers_basket`
 --
 
+DROP TABLE IF EXISTS `clic_customers_basket`;
 CREATE TABLE `clic_customers_basket` (
   `customers_basket_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `products_id` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_id` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_basket_quantity` int(2) DEFAULT NULL,
   `final_price` decimal(15,4) DEFAULT NULL,
-  `customers_basket_date_added` char(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `customers_basket_date_added` char(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2111,10 +2102,11 @@ CREATE TABLE `clic_customers_basket` (
 -- Structure de la table `clic_customers_basket_attributes`
 --
 
+DROP TABLE IF EXISTS `clic_customers_basket_attributes`;
 CREATE TABLE `clic_customers_basket_attributes` (
   `customers_basket_attributes_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `products_id` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_id` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `products_options_id` int(11) NOT NULL,
   `products_options_value_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2125,10 +2117,11 @@ CREATE TABLE `clic_customers_basket_attributes` (
 -- Structure de la table `clic_customers_gdpr`
 --
 
+DROP TABLE IF EXISTS `clic_customers_gdpr`;
 CREATE TABLE `clic_customers_gdpr` (
   `id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `no_ip_address` tinyint(1) NOT NULL DEFAULT 0
+  `no_ip_address` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2137,20 +2130,21 @@ CREATE TABLE `clic_customers_gdpr` (
 -- Structure de la table `clic_customers_groups`
 --
 
+DROP TABLE IF EXISTS `clic_customers_groups`;
 CREATE TABLE `clic_customers_groups` (
   `customers_group_id` int(11) NOT NULL,
-  `customers_group_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_group_discount` decimal(11,2) NOT NULL DEFAULT 0.00,
-  `color_bar` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#FFFFFF',
-  `group_order_taxe` tinyint(1) NOT NULL DEFAULT 0,
-  `group_payment_unallowed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'cc',
-  `group_shipping_unallowed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `group_tax` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'false',
-  `customers_group_quantity_default` int(4) NOT NULL DEFAULT 0
+  `customers_group_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_group_discount` decimal(11,2) NOT NULL DEFAULT '0.00',
+  `color_bar` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#FFFFFF',
+  `group_order_taxe` tinyint(1) NOT NULL DEFAULT '0',
+  `group_payment_unallowed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'cc',
+  `group_shipping_unallowed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `group_tax` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'false',
+  `customers_group_quantity_default` int(4) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_customers_groups`
+-- Déchargement des données de la table `clic_customers_groups`
 --
 
 INSERT INTO `clic_customers_groups` VALUES(1, 'Tarifs 1', '5.00', 'FF0000', 0, 'CO', 'IT', 'true', 0);
@@ -2161,14 +2155,15 @@ INSERT INTO `clic_customers_groups` VALUES(1, 'Tarifs 1', '5.00', 'FF0000', 0, '
 -- Structure de la table `clic_customers_info`
 --
 
+DROP TABLE IF EXISTS `clic_customers_info`;
 CREATE TABLE `clic_customers_info` (
   `customers_info_id` int(11) NOT NULL,
   `customers_info_date_of_last_logon` datetime DEFAULT NULL,
   `customers_info_number_of_logons` int(5) DEFAULT NULL,
   `customers_info_date_account_created` datetime DEFAULT NULL,
   `customers_info_date_account_last_modified` datetime DEFAULT NULL,
-  `global_product_notifications` int(1) DEFAULT 0,
-  `password_reset_key` char(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `global_product_notifications` int(1) DEFAULT '0',
+  `password_reset_key` char(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password_reset_date` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -2178,12 +2173,13 @@ CREATE TABLE `clic_customers_info` (
 -- Structure de la table `clic_customers_notes`
 --
 
+DROP TABLE IF EXISTS `clic_customers_notes`;
 CREATE TABLE `clic_customers_notes` (
   `customers_notes_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `customers_notes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_notes_date` datetime DEFAULT NULL,
-  `user_administrator` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `user_administrator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2192,16 +2188,17 @@ CREATE TABLE `clic_customers_notes` (
 -- Structure de la table `clic_geo_zones`
 --
 
+DROP TABLE IF EXISTS `clic_geo_zones`;
 CREATE TABLE `clic_geo_zones` (
   `geo_zone_id` int(11) NOT NULL,
-  `geo_zone_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `geo_zone_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `geo_zone_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `geo_zone_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_modified` datetime DEFAULT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_geo_zones`
+-- Déchargement des données de la table `clic_geo_zones`
 --
 
 INSERT INTO `clic_geo_zones` VALUES(1, 'France', 'Etat français avec tous les départements', '2016-12-03 11:34:53', '2006-04-11 18:48:30');
@@ -2222,10 +2219,11 @@ INSERT INTO `clic_geo_zones` VALUES(15, 'Taxe hamonisée Québec', 'Taxe hamonis
 -- Structure de la table `clic_groups_to_categories`
 --
 
+DROP TABLE IF EXISTS `clic_groups_to_categories`;
 CREATE TABLE `clic_groups_to_categories` (
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `categories_id` int(11) NOT NULL DEFAULT 0,
-  `discount` decimal(11,2) NOT NULL DEFAULT 0.00
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `categories_id` int(11) NOT NULL DEFAULT '0',
+  `discount` decimal(11,2) NOT NULL DEFAULT '0.00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2234,13 +2232,14 @@ CREATE TABLE `clic_groups_to_categories` (
 -- Structure de la table `clic_information_email_customers`
 --
 
+DROP TABLE IF EXISTS `clic_information_email_customers`;
 CREATE TABLE `clic_information_email_customers` (
   `information_email_customers_id` int(11) NOT NULL,
-  `information_email_customers_delay_90` tinyint(1) NOT NULL DEFAULT 0,
-  `information_email_customers_delay_60` tinyint(1) NOT NULL DEFAULT 0,
-  `information_email_customers_delay_30` tinyint(1) NOT NULL DEFAULT 0,
-  `information_email_customers_delay_15` tinyint(1) NOT NULL DEFAULT 0,
-  `information_email_customers_delay_7` tinyint(1) NOT NULL DEFAULT 0
+  `information_email_customers_delay_90` tinyint(1) NOT NULL DEFAULT '0',
+  `information_email_customers_delay_60` tinyint(1) NOT NULL DEFAULT '0',
+  `information_email_customers_delay_30` tinyint(1) NOT NULL DEFAULT '0',
+  `information_email_customers_delay_15` tinyint(1) NOT NULL DEFAULT '0',
+  `information_email_customers_delay_7` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2249,19 +2248,20 @@ CREATE TABLE `clic_information_email_customers` (
 -- Structure de la table `clic_languages`
 --
 
+DROP TABLE IF EXISTS `clic_languages`;
 CREATE TABLE `clic_languages` (
   `languages_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `directory` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `directory` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sort_order` int(3) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
-  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `locale` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_languages`
+-- Déchargement des données de la table `clic_languages`
 --
 
 INSERT INTO `clic_languages` VALUES(1, 'Anglais', 'en', 'gb', 'english', 1, 1, 'en_US.UTF-8;en_US.UTF8;enu_usa');
@@ -2273,12 +2273,13 @@ INSERT INTO `clic_languages` VALUES(2, 'Francais', 'fr', 'fr', 'french', 2, 1, '
 -- Structure de la table `clic_languages_definitions`
 --
 
+DROP TABLE IF EXISTS `clic_languages_definitions`;
 CREATE TABLE `clic_languages_definitions` (
   `id` int(10) UNSIGNED NOT NULL,
   `languages_id` int(10) UNSIGNED NOT NULL,
-  `content_group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `definition_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `definition_value` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `content_group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `definition_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `definition_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2287,14 +2288,15 @@ CREATE TABLE `clic_languages_definitions` (
 -- Structure de la table `clic_manufacturers`
 --
 
+DROP TABLE IF EXISTS `clic_manufacturers`;
 CREATE TABLE `clic_manufacturers` (
   `manufacturers_id` int(11) NOT NULL,
-  `manufacturers_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `manufacturers_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `manufacturers_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `manufacturers_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
   `last_modified` datetime DEFAULT NULL,
-  `manufacturers_status` tinyint(1) NOT NULL DEFAULT 0,
-  `suppliers_id` int(11) NOT NULL DEFAULT 0
+  `manufacturers_status` tinyint(1) NOT NULL DEFAULT '0',
+  `suppliers_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2303,16 +2305,17 @@ CREATE TABLE `clic_manufacturers` (
 -- Structure de la table `clic_manufacturers_info`
 --
 
+DROP TABLE IF EXISTS `clic_manufacturers_info`;
 CREATE TABLE `clic_manufacturers_info` (
   `manufacturers_id` int(11) NOT NULL,
   `languages_id` int(11) NOT NULL,
-  `manufacturers_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url_clicked` int(5) NOT NULL DEFAULT 0,
+  `manufacturers_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url_clicked` int(5) NOT NULL DEFAULT '0',
   `date_last_click` datetime DEFAULT NULL,
-  `manufacturer_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `manufacturer_seo_title` varchar(70) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `manufacturer_seo_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `manufacturer_seo_keyword` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `manufacturer_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `manufacturer_seo_title` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `manufacturer_seo_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `manufacturer_seo_keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2321,20 +2324,21 @@ CREATE TABLE `clic_manufacturers_info` (
 -- Structure de la table `clic_newsletters`
 --
 
+DROP TABLE IF EXISTS `clic_newsletters`;
 CREATE TABLE `clic_newsletters` (
   `newsletters_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `module` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `module` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_added` datetime NOT NULL,
   `date_sent` datetime DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
-  `locked` int(1) DEFAULT 0,
-  `languages_id` int(11) NOT NULL DEFAULT 0,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `newsletters_accept_file` int(1) NOT NULL DEFAULT 0,
-  `newsletters_twitter` tinyint(1) NOT NULL DEFAULT 0,
-  `newsletters_customer_no_account` tinyint(1) NOT NULL DEFAULT 0
+  `locked` int(1) DEFAULT '0',
+  `languages_id` int(11) NOT NULL DEFAULT '0',
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `newsletters_accept_file` int(1) NOT NULL DEFAULT '0',
+  `newsletters_twitter` tinyint(1) NOT NULL DEFAULT '0',
+  `newsletters_customer_no_account` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2343,10 +2347,11 @@ CREATE TABLE `clic_newsletters` (
 -- Structure de la table `clic_newsletters_customers_temp`
 --
 
+DROP TABLE IF EXISTS `clic_newsletters_customers_temp`;
 CREATE TABLE `clic_newsletters_customers_temp` (
-  `customers_firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_email_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `customers_firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_email_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2355,61 +2360,62 @@ CREATE TABLE `clic_newsletters_customers_temp` (
 -- Structure de la table `clic_orders`
 --
 
+DROP TABLE IF EXISTS `clic_orders`;
 CREATE TABLE `clic_orders` (
   `orders_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `customers_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_siret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_ape` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_tva_intracom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_street_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_suburb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_postcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_telephone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_email_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_siret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_ape` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_tva_intracom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_street_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_suburb` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_postcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_email_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_address_format_id` int(5) NOT NULL,
-  `delivery_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_street_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_suburb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_postcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `delivery_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_street_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_suburb` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_postcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_address_format_id` int(5) DEFAULT NULL,
-  `billing_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `billing_cf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `billing_piva` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `billing_street_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_suburb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `billing_city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_postcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `billing_country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_cf` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_piva` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_street_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_suburb` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_postcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `billing_address_format_id` int(5) NOT NULL,
-  `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cc_type` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cc_owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cc_number` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cc_expires` varchar(4) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cc_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cc_owner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cc_number` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cc_expires` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_modified` datetime DEFAULT NULL,
   `date_purchased` datetime DEFAULT NULL,
   `orders_status` int(5) NOT NULL,
   `orders_status_invoice` int(5) NOT NULL,
   `orders_date_finished` datetime DEFAULT NULL,
-  `currency` char(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `currency_value` decimal(14,6) DEFAULT NULL,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `client_computer_ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider_name_client` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_cellular_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `orders_archive` int(1) NOT NULL DEFAULT 0,
-  `erp_invoice` int(1) NOT NULL DEFAULT 0
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `client_computer_ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider_name_client` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customers_cellular_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `orders_archive` int(1) NOT NULL DEFAULT '0',
+  `erp_invoice` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2418,11 +2424,12 @@ CREATE TABLE `clic_orders` (
 -- Structure de la table `clic_orders_pages_manager`
 --
 
+DROP TABLE IF EXISTS `clic_orders_pages_manager`;
 CREATE TABLE `clic_orders_pages_manager` (
   `orders_page_manager_id` int(11) NOT NULL,
   `orders_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
-  `page_manager_general_condition` longtext COLLATE utf8mb4_unicode_ci NOT NULL
+  `page_manager_general_condition` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2431,12 +2438,13 @@ CREATE TABLE `clic_orders_pages_manager` (
 -- Structure de la table `clic_orders_products`
 --
 
+DROP TABLE IF EXISTS `clic_orders_products`;
 CREATE TABLE `clic_orders_products` (
   `orders_products_id` int(11) NOT NULL,
   `orders_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
-  `products_model` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `products_price` decimal(15,4) NOT NULL,
   `final_price` decimal(15,4) NOT NULL,
   `products_tax` decimal(7,4) NOT NULL,
@@ -2449,15 +2457,16 @@ CREATE TABLE `clic_orders_products` (
 -- Structure de la table `clic_orders_products_attributes`
 --
 
+DROP TABLE IF EXISTS `clic_orders_products_attributes`;
 CREATE TABLE `clic_orders_products_attributes` (
   `orders_products_attributes_id` int(11) NOT NULL,
   `orders_id` int(11) NOT NULL,
   `orders_products_id` int(11) NOT NULL,
-  `products_options` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `products_options_values` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_options_values` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `options_values_price` decimal(15,4) NOT NULL,
-  `price_prefix` char(1) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `products_attributes_reference` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `price_prefix` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_attributes_reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2466,13 +2475,14 @@ CREATE TABLE `clic_orders_products_attributes` (
 -- Structure de la table `clic_orders_products_download`
 --
 
+DROP TABLE IF EXISTS `clic_orders_products_download`;
 CREATE TABLE `clic_orders_products_download` (
   `orders_products_download_id` int(11) NOT NULL,
-  `orders_id` int(11) NOT NULL DEFAULT 0,
-  `orders_products_id` int(11) NOT NULL DEFAULT 0,
-  `orders_products_filename` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `download_maxdays` int(2) NOT NULL DEFAULT 0,
-  `download_count` int(2) NOT NULL DEFAULT 0
+  `orders_id` int(11) NOT NULL DEFAULT '0',
+  `orders_products_id` int(11) NOT NULL DEFAULT '0',
+  `orders_products_filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `download_maxdays` int(2) NOT NULL DEFAULT '0',
+  `download_count` int(2) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2481,17 +2491,18 @@ CREATE TABLE `clic_orders_products_download` (
 -- Structure de la table `clic_orders_status`
 --
 
+DROP TABLE IF EXISTS `clic_orders_status`;
 CREATE TABLE `clic_orders_status` (
-  `orders_status_id` int(11) NOT NULL DEFAULT 0,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `orders_status_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `public_flag` int(1) DEFAULT 1,
-  `downloads_flag` int(1) DEFAULT 0,
-  `support_orders_flag` int(1) DEFAULT 0
+  `orders_status_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `orders_status_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `public_flag` int(1) DEFAULT '1',
+  `downloads_flag` int(1) DEFAULT '0',
+  `support_orders_flag` int(1) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_orders_status`
+-- Déchargement des données de la table `clic_orders_status`
 --
 
 INSERT INTO `clic_orders_status` VALUES(1, 1, 'Pending', 1, 0, 0);
@@ -2509,19 +2520,20 @@ INSERT INTO `clic_orders_status` VALUES(4, 2, 'Annulé', 1, 0, 0);
 -- Structure de la table `clic_orders_status_history`
 --
 
+DROP TABLE IF EXISTS `clic_orders_status_history`;
 CREATE TABLE `clic_orders_status_history` (
   `orders_status_history_id` int(11) NOT NULL,
   `orders_id` int(11) NOT NULL,
   `orders_status_id` int(5) NOT NULL,
-  `orders_status_invoice_id` int(5) NOT NULL DEFAULT 1,
-  `admin_user_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `orders_status_invoice_id` int(5) NOT NULL DEFAULT '1',
+  `admin_user_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_added` datetime NOT NULL,
-  `customer_notified` int(1) NOT NULL DEFAULT 0,
-  `comments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `orders_status_tracking_id` int(5) NOT NULL DEFAULT 0,
-  `orders_tracking_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `orders_status_support_id` int(2) NOT NULL DEFAULT 0,
-  `evidence` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `customer_notified` int(1) NOT NULL DEFAULT '0',
+  `comments` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `orders_status_tracking_id` int(5) NOT NULL DEFAULT '0',
+  `orders_tracking_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `orders_status_support_id` int(2) NOT NULL DEFAULT '0',
+  `evidence` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2530,14 +2542,15 @@ CREATE TABLE `clic_orders_status_history` (
 -- Structure de la table `clic_orders_status_invoice`
 --
 
+DROP TABLE IF EXISTS `clic_orders_status_invoice`;
 CREATE TABLE `clic_orders_status_invoice` (
-  `orders_status_invoice_id` int(11) NOT NULL DEFAULT 0,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `orders_status_invoice_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
+  `orders_status_invoice_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `orders_status_invoice_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_orders_status_invoice`
+-- Déchargement des données de la table `clic_orders_status_invoice`
 --
 
 INSERT INTO `clic_orders_status_invoice` VALUES(3, 2, 'Annuler');
@@ -2555,14 +2568,15 @@ INSERT INTO `clic_orders_status_invoice` VALUES(1, 1, 'Order');
 -- Structure de la table `clic_orders_status_support`
 --
 
+DROP TABLE IF EXISTS `clic_orders_status_support`;
 CREATE TABLE `clic_orders_status_support` (
-  `orders_status_support_id` int(11) NOT NULL DEFAULT 0,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `orders_status_support_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL
+  `orders_status_support_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `orders_status_support_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_orders_status_support`
+-- Déchargement des données de la table `clic_orders_status_support`
 --
 
 INSERT INTO `clic_orders_status_support` VALUES(1, 2, '-- Aucune demande --');
@@ -2580,13 +2594,14 @@ INSERT INTO `clic_orders_status_support` VALUES(3, 2, 'Traitement du support');
 -- Structure de la table `clic_orders_total`
 --
 
+DROP TABLE IF EXISTS `clic_orders_total`;
 CREATE TABLE `clic_orders_total` (
   `orders_total_id` int(10) UNSIGNED NOT NULL,
   `orders_id` int(11) NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` decimal(15,4) NOT NULL,
-  `class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sort_order` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -2596,25 +2611,26 @@ CREATE TABLE `clic_orders_total` (
 -- Structure de la table `clic_pages_manager`
 --
 
+DROP TABLE IF EXISTS `clic_pages_manager`;
 CREATE TABLE `clic_pages_manager` (
   `pages_id` int(11) NOT NULL,
-  `links_target` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT '_self',
+  `links_target` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '_self',
   `sort_order` int(3) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
-  `page_type` int(1) NOT NULL DEFAULT 0,
-  `page_box` int(1) NOT NULL DEFAULT 0,
-  `page_time` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '1',
+  `page_type` int(1) NOT NULL DEFAULT '0',
+  `page_box` int(1) NOT NULL DEFAULT '0',
+  `page_time` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `page_date_start` datetime DEFAULT NULL,
   `page_date_closed` datetime DEFAULT NULL,
   `date_added` datetime NOT NULL,
   `last_modified` datetime DEFAULT NULL,
   `date_status_change` datetime DEFAULT NULL,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `page_general_condition` int(1) NOT NULL DEFAULT 0
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `page_general_condition` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_pages_manager`
+-- Déchargement des données de la table `clic_pages_manager`
 --
 
 INSERT INTO `clic_pages_manager` VALUES(1, '', 0, 1, 1, 0, '', NULL, NULL, '1000-01-01 00:00:00', '2008-09-08 15:39:50', '2008-09-03 20:38:09', 0, 0);
@@ -2636,19 +2652,20 @@ INSERT INTO `clic_pages_manager` VALUES(15, '_self', 7, 1, 5, 3, '0', NULL, NULL
 -- Structure de la table `clic_pages_manager_description`
 --
 
+DROP TABLE IF EXISTS `clic_pages_manager_description`;
 CREATE TABLE `clic_pages_manager_description` (
-  `pages_id` int(11) NOT NULL DEFAULT 0,
-  `pages_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pages_html_text` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `externallink` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `page_manager_head_title_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `page_manager_head_desc_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `page_manager_head_keywords_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `pages_id` int(11) NOT NULL DEFAULT '0',
+  `pages_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pages_html_text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `externallink` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `page_manager_head_title_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_manager_head_desc_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_manager_head_keywords_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_pages_manager_description`
+-- Déchargement des données de la table `clic_pages_manager_description`
 --
 
 INSERT INTO `clic_pages_manager_description` VALUES(1, 'Intro Page', '', '', 1, NULL, NULL, NULL);
@@ -2682,52 +2699,54 @@ INSERT INTO `clic_pages_manager_description` VALUES(15, 'Index', '', 'index.php'
 -- Structure de la table `clic_products`
 --
 
+DROP TABLE IF EXISTS `clic_products`;
 CREATE TABLE `clic_products` (
   `products_id` int(11) NOT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
   `has_children` int(11) DEFAULT NULL,
   `products_quantity` int(4) NOT NULL,
-  `products_model` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_ean` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_sku` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_image_zoom` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_ean` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_sku` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_image_zoom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `products_price` decimal(15,4) NOT NULL,
   `products_date_added` datetime NOT NULL,
   `products_last_modified` datetime DEFAULT NULL,
   `products_date_available` datetime DEFAULT NULL,
   `products_weight` decimal(15,4) NOT NULL,
-  `products_price_kilo` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `products_price_kilo` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `products_status` tinyint(1) NOT NULL,
   `products_tax_class_id` int(11) NOT NULL,
   `manufacturers_id` int(11) DEFAULT NULL,
-  `products_ordered` int(11) NOT NULL DEFAULT 0,
-  `products_percentage` tinyint(1) NOT NULL DEFAULT 1,
-  `products_view` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
-  `orders_view` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `products_ordered` int(11) NOT NULL DEFAULT '0',
+  `products_percentage` tinyint(1) NOT NULL DEFAULT '1',
+  `products_view` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `orders_view` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `suppliers_id` int(11) DEFAULT NULL,
-  `products_archive` tinyint(1) NOT NULL DEFAULT 0,
-  `products_min_qty_order` int(4) NOT NULL DEFAULT 0,
-  `products_price_comparison` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `products_dimension_width` decimal(5,2) NOT NULL DEFAULT 0.00,
-  `products_dimension_height` decimal(5,2) NOT NULL DEFAULT 0.00,
-  `products_dimension_depth` decimal(5,2) NOT NULL DEFAULT 0.00,
-  `products_length_class_id` int(11) NOT NULL DEFAULT 2,
-  `admin_user_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_volume` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_quantity_unit_id` int(11) NOT NULL DEFAULT 0,
-  `products_only_online` tinyint(1) NOT NULL DEFAULT 0,
-  `products_image_medium` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_weight_class_id` tinyint(2) NOT NULL DEFAULT 2,
+  `products_archive` tinyint(1) NOT NULL DEFAULT '0',
+  `products_min_qty_order` int(4) NOT NULL DEFAULT '0',
+  `products_price_comparison` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `products_dimension_width` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `products_dimension_height` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `products_dimension_depth` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `products_length_class_id` int(11) NOT NULL DEFAULT '2',
+  `admin_user_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_volume` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_quantity_unit_id` int(11) NOT NULL DEFAULT '0',
+  `products_only_online` tinyint(1) NOT NULL DEFAULT '0',
+  `products_image_medium` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_image_small` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_weight_class_id` tinyint(2) NOT NULL DEFAULT '2',
   `products_cost` decimal(15,2) NOT NULL,
-  `products_handling` decimal(15,2) NOT NULL DEFAULT 0.00,
-  `products_packaging` tinyint(1) NOT NULL DEFAULT 0,
-  `products_sort_order` int(11) NOT NULL DEFAULT 0,
-  `products_quantity_alert` int(4) NOT NULL DEFAULT 0,
-  `products_only_shop` tinyint(1) NOT NULL DEFAULT 0,
-  `products_download_filename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_download_public` tinyint(1) NOT NULL DEFAULT 0,
-  `products_type` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `products_handling` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `products_packaging` tinyint(1) NOT NULL DEFAULT '0',
+  `products_sort_order` int(11) NOT NULL DEFAULT '0',
+  `products_quantity_alert` int(4) NOT NULL DEFAULT '0',
+  `products_only_shop` tinyint(1) NOT NULL DEFAULT '0',
+  `products_download_filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_download_public` tinyint(1) NOT NULL DEFAULT '0',
+  `products_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2736,18 +2755,19 @@ CREATE TABLE `clic_products` (
 -- Structure de la table `clic_products_attributes`
 --
 
+DROP TABLE IF EXISTS `clic_products_attributes`;
 CREATE TABLE `clic_products_attributes` (
   `products_attributes_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
   `options_id` int(11) NOT NULL,
   `options_values_id` int(11) NOT NULL,
   `options_values_price` decimal(15,4) NOT NULL,
-  `price_prefix` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '+',
-  `products_options_sort_order` int(3) DEFAULT 1,
-  `products_attributes_reference` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `products_attributes_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1
+  `price_prefix` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '+',
+  `products_options_sort_order` int(3) DEFAULT '1',
+  `products_attributes_reference` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `products_attributes_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2756,11 +2776,12 @@ CREATE TABLE `clic_products_attributes` (
 -- Structure de la table `clic_products_attributes_download`
 --
 
+DROP TABLE IF EXISTS `clic_products_attributes_download`;
 CREATE TABLE `clic_products_attributes_download` (
   `products_attributes_id` int(11) NOT NULL,
-  `products_attributes_filename` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `products_attributes_maxdays` int(2) DEFAULT 0,
-  `products_attributes_maxcount` int(2) DEFAULT 0
+  `products_attributes_filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `products_attributes_maxdays` int(2) DEFAULT '0',
+  `products_attributes_maxcount` int(2) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2769,19 +2790,20 @@ CREATE TABLE `clic_products_attributes_download` (
 -- Structure de la table `clic_products_description`
 --
 
+DROP TABLE IF EXISTS `clic_products_description`;
 CREATE TABLE `clic_products_description` (
   `products_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `products_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `products_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_viewed` int(5) DEFAULT 0,
-  `products_head_title_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_head_desc_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_head_keywords_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_head_tag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_shipping_delay` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_description_summary` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `products_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `products_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `products_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_viewed` int(5) DEFAULT '0',
+  `products_head_title_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_head_desc_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_head_keywords_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_head_tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_shipping_delay` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `products_description_summary` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2790,11 +2812,12 @@ CREATE TABLE `clic_products_description` (
 -- Structure de la table `clic_products_discount_quantity`
 --
 
+DROP TABLE IF EXISTS `clic_products_discount_quantity`;
 CREATE TABLE `clic_products_discount_quantity` (
   `id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
   `suppliers_id` int(11) NOT NULL,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
   `discount_quantity` int(11) NOT NULL,
   `discount_supplier_price` decimal(10,2) NOT NULL,
   `discount_customer` decimal(10,2) NOT NULL
@@ -2806,16 +2829,17 @@ CREATE TABLE `clic_products_discount_quantity` (
 -- Structure de la table `clic_products_favorites`
 --
 
+DROP TABLE IF EXISTS `clic_products_favorites`;
 CREATE TABLE `clic_products_favorites` (
   `products_favorites_id` int(11) NOT NULL,
-  `products_id` int(11) NOT NULL DEFAULT 0,
+  `products_id` int(11) NOT NULL DEFAULT '0',
   `products_favorites_date_added` datetime DEFAULT NULL,
   `products_favorites_last_modified` datetime DEFAULT NULL,
   `scheduled_date` datetime DEFAULT NULL,
   `expires_date` datetime DEFAULT NULL,
   `date_status_change` datetime DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0
+  `status` int(1) NOT NULL DEFAULT '1',
+  `customers_group_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2824,16 +2848,17 @@ CREATE TABLE `clic_products_favorites` (
 -- Structure de la table `clic_products_featured`
 --
 
+DROP TABLE IF EXISTS `clic_products_featured`;
 CREATE TABLE `clic_products_featured` (
   `products_featured_id` int(11) NOT NULL,
-  `products_id` int(11) NOT NULL DEFAULT 0,
+  `products_id` int(11) NOT NULL DEFAULT '0',
   `products_featured_date_added` datetime DEFAULT NULL,
   `products_featured_last_modified` datetime DEFAULT NULL,
   `scheduled_date` datetime DEFAULT NULL,
   `expires_date` datetime DEFAULT NULL,
   `date_status_change` datetime DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0
+  `status` int(1) NOT NULL DEFAULT '1',
+  `customers_group_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2842,17 +2867,18 @@ CREATE TABLE `clic_products_featured` (
 -- Structure de la table `clic_products_groups`
 --
 
+DROP TABLE IF EXISTS `clic_products_groups`;
 CREATE TABLE `clic_products_groups` (
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `customers_group_price` decimal(15,4) NOT NULL DEFAULT 0.0000,
-  `products_id` int(11) NOT NULL DEFAULT 0,
-  `products_price` decimal(15,4) NOT NULL DEFAULT 0.0000,
-  `price_group_view` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
-  `products_group_view` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
-  `orders_group_view` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
-  `products_quantity_unit_id_group` int(5) NOT NULL DEFAULT 0,
-  `products_model_group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `products_quantity_fixed_group` int(11) NOT NULL DEFAULT 1
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `customers_group_price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `products_id` int(11) NOT NULL DEFAULT '0',
+  `products_price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `price_group_view` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `products_group_view` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `orders_group_view` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `products_quantity_unit_id_group` int(5) NOT NULL DEFAULT '0',
+  `products_model_group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `products_quantity_fixed_group` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2861,11 +2887,12 @@ CREATE TABLE `clic_products_groups` (
 -- Structure de la table `clic_products_images`
 --
 
+DROP TABLE IF EXISTS `clic_products_images`;
 CREATE TABLE `clic_products_images` (
   `id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `htmlcontent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `htmlcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `sort_order` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -2875,15 +2902,16 @@ CREATE TABLE `clic_products_images` (
 -- Structure de la table `clic_products_length_classes`
 --
 
+DROP TABLE IF EXISTS `clic_products_length_classes`;
 CREATE TABLE `clic_products_length_classes` (
   `products_length_class_id` int(11) NOT NULL,
-  `products_length_class_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `products_length_class_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `language_id` int(11) NOT NULL,
-  `products_length_class_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `products_length_class_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_products_length_classes`
+-- Déchargement des données de la table `clic_products_length_classes`
 --
 
 INSERT INTO `clic_products_length_classes` VALUES(1, 'mm', 1, 'Millimeter(s)');
@@ -2901,6 +2929,7 @@ INSERT INTO `clic_products_length_classes` VALUES(4, 'in', 2, 'Pouce(s)');
 -- Structure de la table `clic_products_length_classes_rules`
 --
 
+DROP TABLE IF EXISTS `clic_products_length_classes_rules`;
 CREATE TABLE `clic_products_length_classes_rules` (
   `products_length_class_from_id` int(11) NOT NULL,
   `products_length_class_to_id` int(11) NOT NULL,
@@ -2908,7 +2937,7 @@ CREATE TABLE `clic_products_length_classes_rules` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_products_length_classes_rules`
+-- Déchargement des données de la table `clic_products_length_classes_rules`
 --
 
 INSERT INTO `clic_products_length_classes_rules` VALUES(1, 2, '0.10000');
@@ -2930,6 +2959,7 @@ INSERT INTO `clic_products_length_classes_rules` VALUES(4, 3, '0.02540');
 -- Structure de la table `clic_products_notifications`
 --
 
+DROP TABLE IF EXISTS `clic_products_notifications`;
 CREATE TABLE `clic_products_notifications` (
   `products_id` int(11) NOT NULL,
   `customers_id` int(11) NOT NULL,
@@ -2942,12 +2972,13 @@ CREATE TABLE `clic_products_notifications` (
 -- Structure de la table `clic_products_options`
 --
 
+DROP TABLE IF EXISTS `clic_products_options`;
 CREATE TABLE `clic_products_options` (
-  `products_options_id` int(11) NOT NULL DEFAULT 0,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `products_options_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `products_options_sort_order` int(3) NOT NULL DEFAULT 1,
-  `products_options_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `products_options_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `products_options_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `products_options_sort_order` int(3) NOT NULL DEFAULT '1',
+  `products_options_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2956,10 +2987,11 @@ CREATE TABLE `clic_products_options` (
 -- Structure de la table `clic_products_options_values`
 --
 
+DROP TABLE IF EXISTS `clic_products_options_values`;
 CREATE TABLE `clic_products_options_values` (
-  `products_options_values_id` int(11) NOT NULL DEFAULT 0,
-  `language_id` int(11) NOT NULL DEFAULT 1,
-  `products_options_values_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+  `products_options_values_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `products_options_values_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2968,6 +3000,7 @@ CREATE TABLE `clic_products_options_values` (
 -- Structure de la table `clic_products_options_values_to_products_options`
 --
 
+DROP TABLE IF EXISTS `clic_products_options_values_to_products_options`;
 CREATE TABLE `clic_products_options_values_to_products_options` (
   `products_options_values_to_products_options_id` int(11) NOT NULL,
   `products_options_id` int(11) NOT NULL,
@@ -2980,14 +3013,15 @@ CREATE TABLE `clic_products_options_values_to_products_options` (
 -- Structure de la table `clic_products_quantity_unit`
 --
 
+DROP TABLE IF EXISTS `clic_products_quantity_unit`;
 CREATE TABLE `clic_products_quantity_unit` (
   `products_quantity_unit_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `products_quantity_unit_title` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
+  `products_quantity_unit_title` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_products_quantity_unit`
+-- Déchargement des données de la table `clic_products_quantity_unit`
 --
 
 INSERT INTO `clic_products_quantity_unit` VALUES(4, 2, 'douzaine');
@@ -3007,6 +3041,7 @@ INSERT INTO `clic_products_quantity_unit` VALUES(1, 2, 'unité');
 -- Structure de la table `clic_products_to_categories`
 --
 
+DROP TABLE IF EXISTS `clic_products_to_categories`;
 CREATE TABLE `clic_products_to_categories` (
   `products_id` int(11) NOT NULL,
   `categories_id` int(11) NOT NULL
@@ -3018,17 +3053,18 @@ CREATE TABLE `clic_products_to_categories` (
 -- Structure de la table `clic_reviews`
 --
 
+DROP TABLE IF EXISTS `clic_reviews`;
 CREATE TABLE `clic_reviews` (
   `reviews_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
   `customers_id` int(11) DEFAULT NULL,
-  `customers_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reviews_rating` int(1) DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
   `last_modified` datetime DEFAULT NULL,
-  `reviews_read` int(5) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0
+  `reviews_read` int(5) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `customers_group_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3037,10 +3073,11 @@ CREATE TABLE `clic_reviews` (
 -- Structure de la table `clic_reviews_description`
 --
 
+DROP TABLE IF EXISTS `clic_reviews_description`;
 CREATE TABLE `clic_reviews_description` (
   `reviews_id` int(11) NOT NULL,
   `languages_id` int(11) NOT NULL,
-  `reviews_text` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `reviews_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3049,13 +3086,14 @@ CREATE TABLE `clic_reviews_description` (
 -- Structure de la table `clic_sec_directory_whitelist`
 --
 
+DROP TABLE IF EXISTS `clic_sec_directory_whitelist`;
 CREATE TABLE `clic_sec_directory_whitelist` (
   `id` int(11) NOT NULL,
-  `directory` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `directory` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_sec_directory_whitelist`
+-- Déchargement des données de la table `clic_sec_directory_whitelist`
 --
 
 INSERT INTO `clic_sec_directory_whitelist` VALUES(1, 'ClicShoppingAdmin/includes/backups');
@@ -3071,10 +3109,11 @@ INSERT INTO `clic_sec_directory_whitelist` VALUES(7, 'includes/Work');
 -- Structure de la table `clic_sessions`
 --
 
+DROP TABLE IF EXISTS `clic_sessions`;
 CREATE TABLE `clic_sessions` (
   `sesskey` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `expiry` int(11) UNSIGNED NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3083,6 +3122,7 @@ CREATE TABLE `clic_sessions` (
 -- Structure de la table `clic_specials`
 --
 
+DROP TABLE IF EXISTS `clic_specials`;
 CREATE TABLE `clic_specials` (
   `specials_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
@@ -3091,10 +3131,10 @@ CREATE TABLE `clic_specials` (
   `specials_last_modified` datetime DEFAULT NULL,
   `expires_date` datetime DEFAULT NULL,
   `date_status_change` datetime DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT '1',
   `scheduled_date` datetime DEFAULT NULL,
-  `customers_group_id` int(11) NOT NULL DEFAULT 0,
-  `flash_discount` int(1) NOT NULL DEFAULT 0
+  `customers_group_id` int(11) NOT NULL DEFAULT '0',
+  `flash_discount` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3103,29 +3143,30 @@ CREATE TABLE `clic_specials` (
 -- Structure de la table `clic_submit_description`
 --
 
+DROP TABLE IF EXISTS `clic_submit_description`;
 CREATE TABLE `clic_submit_description` (
   `submit_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `submit_defaut_language_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_defaut_language_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_defaut_language_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_defaut_language_footer` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_products_info_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_products_info_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_products_info_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_products_new_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_products_new_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_products_new_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_special_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_special_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_special_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_reviews_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_reviews_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submit_language_reviews_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `submit_defaut_language_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_defaut_language_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `submit_defaut_language_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_defaut_language_footer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `submit_language_products_info_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_products_info_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `submit_language_products_info_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_products_new_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_products_new_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `submit_language_products_new_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_special_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_special_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `submit_language_special_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_reviews_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_reviews_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `submit_language_reviews_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_submit_description`
+-- Déchargement des données de la table `clic_submit_description`
 --
 
 INSERT INTO `clic_submit_description` VALUES(1, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
@@ -3137,24 +3178,25 @@ INSERT INTO `clic_submit_description` VALUES(1, 2, '', '', '', '', '', '', '', '
 -- Structure de la table `clic_suppliers`
 --
 
+DROP TABLE IF EXISTS `clic_suppliers`;
 CREATE TABLE `clic_suppliers` (
   `suppliers_id` int(11) NOT NULL,
-  `suppliers_name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `suppliers_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `suppliers_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_added` datetime DEFAULT NULL,
   `last_modified` datetime DEFAULT NULL,
-  `suppliers_manager` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_phone` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_email_address` varchar(96) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_fax` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_address` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_suburb` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_postcode` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_city` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_states` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_country_id` int(11) NOT NULL DEFAULT 0,
-  `suppliers_notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `suppliers_status` int(1) NOT NULL DEFAULT 0
+  `suppliers_manager` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_phone` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_email_address` varchar(96) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_fax` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_address` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_suburb` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_postcode` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_city` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_states` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `suppliers_country_id` int(11) NOT NULL DEFAULT '0',
+  `suppliers_notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `suppliers_status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3163,11 +3205,12 @@ CREATE TABLE `clic_suppliers` (
 -- Structure de la table `clic_suppliers_info`
 --
 
+DROP TABLE IF EXISTS `clic_suppliers_info`;
 CREATE TABLE `clic_suppliers_info` (
-  `suppliers_id` int(11) NOT NULL DEFAULT 0,
-  `languages_id` int(11) NOT NULL DEFAULT 0,
-  `suppliers_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url_clicked` int(5) DEFAULT 0,
+  `suppliers_id` int(11) NOT NULL DEFAULT '0',
+  `languages_id` int(11) NOT NULL DEFAULT '0',
+  `suppliers_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_clicked` int(5) DEFAULT '0',
   `date_last_click` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -3177,16 +3220,17 @@ CREATE TABLE `clic_suppliers_info` (
 -- Structure de la table `clic_tax_class`
 --
 
+DROP TABLE IF EXISTS `clic_tax_class`;
 CREATE TABLE `clic_tax_class` (
   `tax_class_id` int(11) NOT NULL,
-  `tax_class_title` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tax_class_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tax_class_title` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tax_class_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_modified` datetime DEFAULT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_tax_class`
+-- Déchargement des données de la table `clic_tax_class`
 --
 
 INSERT INTO `clic_tax_class` VALUES(1, 'TVA 20', 'TVA France 20', '2015-02-09 16:13:40', '2006-04-09 16:13:48');
@@ -3200,20 +3244,21 @@ INSERT INTO `clic_tax_class` VALUES(4, 'Taxe hamonisée Québec', 'Taxe hamonis�
 -- Structure de la table `clic_tax_rates`
 --
 
+DROP TABLE IF EXISTS `clic_tax_rates`;
 CREATE TABLE `clic_tax_rates` (
   `tax_rates_id` int(11) NOT NULL,
   `tax_zone_id` int(11) NOT NULL,
   `tax_class_id` int(11) NOT NULL,
-  `tax_priority` int(5) DEFAULT 1,
+  `tax_priority` int(5) DEFAULT '1',
   `tax_rate` decimal(7,4) NOT NULL,
-  `tax_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tax_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_modified` datetime DEFAULT NULL,
   `date_added` datetime NOT NULL,
-  `code_tax_erp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `code_tax_erp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_tax_rates`
+-- Déchargement des données de la table `clic_tax_rates`
 --
 
 INSERT INTO `clic_tax_rates` VALUES(1, 1, 1, 1, '20.0000', 'TVA 20%', '2015-02-09 16:14:24', '2006-04-09 16:13:48', '20.0');
@@ -3231,15 +3276,16 @@ INSERT INTO `clic_tax_rates` VALUES(9, 8, 3, 1, '12.0000', 'Zone Fédérale 12%'
 -- Structure de la table `clic_template_email`
 --
 
+DROP TABLE IF EXISTS `clic_template_email`;
 CREATE TABLE `clic_template_email` (
   `template_email_id` int(11) NOT NULL,
-  `template_email_variable` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customers_group_id` int(2) NOT NULL DEFAULT 0,
-  `template_email_type` smallint(1) NOT NULL DEFAULT 0
+  `template_email_variable` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customers_group_id` int(2) NOT NULL DEFAULT '0',
+  `template_email_type` smallint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_template_email`
+-- Déchargement des données de la table `clic_template_email`
 --
 
 INSERT INTO `clic_template_email` VALUES(1, 'TEMPLATE_EMAIL_WELCOME', 0, 0);
@@ -3256,16 +3302,17 @@ INSERT INTO `clic_template_email` VALUES(7, 'TEMPLATE_EMAIL_NEWSLETTER_TEXT_FOOT
 -- Structure de la table `clic_template_email_description`
 --
 
+DROP TABLE IF EXISTS `clic_template_email_description`;
 CREATE TABLE `clic_template_email_description` (
   `template_email_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `template_email_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `template_email_short_description` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `template_email_description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `template_email_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `template_email_short_description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `template_email_description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_template_email_description`
+-- Déchargement des données de la table `clic_template_email_description`
 --
 
 INSERT INTO `clic_template_email_description` VALUES(1, 1, 'Welcome message on catalogue', 'Catalog - welcome message for a new customer', '<div align=\"justify\"> Thank you for the trust you place in us by registering as a new customer on site {{http_shop}}.</div>\r\n\r\n<div align=\"justify\"> Following your request to open an account on {{store_name}} we confirm its validity. You can now log on {{store_name}}.</div>\r\n\r\n<div align=\"justify\">We are delighted to count you among our new clients and we remain at your service to make shopping easy! !</div>\r\n\r\n<div align=\"justify\"> \'<strong>Your links :</strong>\'</div>\r\n\r\n<div align=\"justify\"> 1) To access your account, change your address, your delivery address and / or billing,  {{http_shop}}index.php?Account&Main</div>\r\n\r\n<div align=\"justify\">2) To go directly to track your orders, {{http_shop}}index.php?Account&History</div>\r\n\r\n<div align=\"justify\">3) Recover lost password : {{http_shop}}index.php?Account&PasswordForgotten</div>\r\n\r\n<div align=\"justify\">To access all the above, you should check before your login..</div>\r\n\r\n<div align=\"justify\"> </div>\r\n\r\n<div align=\"justify\">For assistance on our services, please contact our customer service: {{store_owner_email_address}} :  {{store_owner_email_address}}</div>\r\n');
@@ -3289,15 +3336,16 @@ INSERT INTO `clic_template_email_description` VALUES(7, 2, 'Législation newslet
 -- Structure de la table `clic_weight_classes`
 --
 
+DROP TABLE IF EXISTS `clic_weight_classes`;
 CREATE TABLE `clic_weight_classes` (
   `weight_class_id` int(11) NOT NULL,
-  `weight_class_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `weight_class_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `language_id` int(11) NOT NULL,
-  `weight_class_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `weight_class_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_weight_classes`
+-- Déchargement des données de la table `clic_weight_classes`
 --
 
 INSERT INTO `clic_weight_classes` VALUES(1, 'g', 1, 'Gram(s)');
@@ -3315,6 +3363,7 @@ INSERT INTO `clic_weight_classes` VALUES(4, 'lb', 2, 'Pound(s)');
 -- Structure de la table `clic_weight_classes_rules`
 --
 
+DROP TABLE IF EXISTS `clic_weight_classes_rules`;
 CREATE TABLE `clic_weight_classes_rules` (
   `weight_class_from_id` int(11) NOT NULL,
   `weight_class_to_id` int(11) NOT NULL,
@@ -3322,7 +3371,7 @@ CREATE TABLE `clic_weight_classes_rules` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_weight_classes_rules`
+-- Déchargement des données de la table `clic_weight_classes_rules`
 --
 
 INSERT INTO `clic_weight_classes_rules` VALUES(1, 2, '0.0010');
@@ -3344,17 +3393,18 @@ INSERT INTO `clic_weight_classes_rules` VALUES(4, 3, '16.0000');
 -- Structure de la table `clic_whos_online`
 --
 
+DROP TABLE IF EXISTS `clic_whos_online`;
 CREATE TABLE `clic_whos_online` (
   `customer_id` int(11) DEFAULT NULL,
-  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `session_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hostname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_entry` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `time_last_click` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_page_url` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `http_referer` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `full_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `session_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time_entry` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time_last_click` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_page_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `http_referer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `user_agent` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3363,16 +3413,17 @@ CREATE TABLE `clic_whos_online` (
 -- Structure de la table `clic_zones`
 --
 
+DROP TABLE IF EXISTS `clic_zones`;
 CREATE TABLE `clic_zones` (
   `zone_id` int(11) NOT NULL,
   `zone_country_id` int(11) NOT NULL,
-  `zone_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zone_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zone_status` tinyint(1) NOT NULL DEFAULT 0
+  `zone_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zone_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zone_status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_zones`
+-- Déchargement des données de la table `clic_zones`
 --
 
 INSERT INTO `clic_zones` VALUES(1, 223, 'AL', 'Alabama', 0);
@@ -4023,6 +4074,7 @@ INSERT INTO `clic_zones` VALUES(641, 195, 'Zaragoza', 'Zaragoza', 0);
 -- Structure de la table `clic_zones_to_geo_zones`
 --
 
+DROP TABLE IF EXISTS `clic_zones_to_geo_zones`;
 CREATE TABLE `clic_zones_to_geo_zones` (
   `association_id` int(11) NOT NULL,
   `zone_country_id` int(11) NOT NULL,
@@ -4033,7 +4085,7 @@ CREATE TABLE `clic_zones_to_geo_zones` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Contenu de la table `clic_zones_to_geo_zones`
+-- Déchargement des données de la table `clic_zones_to_geo_zones`
 --
 
 INSERT INTO `clic_zones_to_geo_zones` VALUES(2, 73, 0, 2, NULL, '2006-04-11 18:48:48');
@@ -4078,7 +4130,7 @@ INSERT INTO `clic_zones_to_geo_zones` VALUES(82, 38, 77, 14, NULL, '2015-02-09 1
 INSERT INTO `clic_zones_to_geo_zones` VALUES(83, 38, 76, 9, NULL, '2015-02-09 18:53:27');
 
 --
--- Index pour les tables exportées
+-- Index pour les tables déchargées
 --
 
 --
@@ -4086,9 +4138,9 @@ INSERT INTO `clic_zones_to_geo_zones` VALUES(83, 38, 76, 9, NULL, '2015-02-09 18
 --
 ALTER TABLE `clic_action_recorder`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_action_recorder_module` (`module`),
+  ADD KEY `idx_action_recorder_module` (`module`(250)),
   ADD KEY `idx_action_recorder_user_id` (`user_id`),
-  ADD KEY `idx_action_recorder_identifier` (`identifier`),
+  ADD KEY `idx_action_recorder_identifier` (`identifier`(250)),
   ADD KEY `idx_action_recorder_date_added` (`date_added`);
 
 --
@@ -4122,14 +4174,14 @@ ALTER TABLE `clic_administrator_menu`
 --
 ALTER TABLE `clic_administrator_menu_description`
   ADD PRIMARY KEY (`id`,`language_id`),
-  ADD KEY `idx_label` (`label`);
+  ADD KEY `idx_label` (`label`(250));
 
 --
 -- Index pour la table `clic_banners`
 --
 ALTER TABLE `clic_banners`
   ADD PRIMARY KEY (`banners_id`),
-  ADD KEY `idx_banners_group` (`banners_group`);
+  ADD KEY `idx_banners_group` (`banners_group`(250));
 
 --
 -- Index pour la table `clic_banners_history`
@@ -4150,7 +4202,7 @@ ALTER TABLE `clic_categories`
 --
 ALTER TABLE `clic_categories_description`
   ADD PRIMARY KEY (`categories_id`,`language_id`),
-  ADD KEY `idx_categories_name` (`categories_name`);
+  ADD KEY `idx_categories_name` (`categories_name`(250));
 
 --
 -- Index pour la table `clic_configuration`
@@ -4169,7 +4221,7 @@ ALTER TABLE `clic_configuration_group`
 --
 ALTER TABLE `clic_countries`
   ADD PRIMARY KEY (`countries_id`),
-  ADD KEY `IDX_COUNTRIES_NAME` (`countries_name`);
+  ADD KEY `IDX_COUNTRIES_NAME` (`countries_name`(250));
 
 --
 -- Index pour la table `clic_currencies`
@@ -4183,7 +4235,7 @@ ALTER TABLE `clic_currencies`
 --
 ALTER TABLE `clic_customers`
   ADD PRIMARY KEY (`customers_id`),
-  ADD KEY `idx_customers_email_address` (`customers_email_address`);
+  ADD KEY `idx_customers_email_address` (`customers_email_address`(250));
 
 --
 -- Index pour la table `clic_customers_basket`
@@ -4247,7 +4299,7 @@ ALTER TABLE `clic_information_email_customers`
 --
 ALTER TABLE `clic_languages`
   ADD PRIMARY KEY (`languages_id`),
-  ADD KEY `idx_languages_name` (`name`);
+  ADD KEY `idx_languages_name` (`name`(250));
 
 --
 -- Index pour la table `clic_languages_definitions`
@@ -4255,7 +4307,7 @@ ALTER TABLE `clic_languages`
 ALTER TABLE `clic_languages_definitions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_languages_definitions_languages_id` (`languages_id`),
-  ADD KEY `idx_languages_definitions_groups` (`content_group`);
+  ADD KEY `idx_languages_definitions_groups` (`content_group`(250));
 
 --
 -- Index pour la table `clic_manufacturers`
@@ -4316,7 +4368,7 @@ ALTER TABLE `clic_orders_products_download`
 --
 ALTER TABLE `clic_orders_status`
   ADD PRIMARY KEY (`orders_status_id`,`language_id`),
-  ADD KEY `idx_orders_status_name` (`orders_status_name`);
+  ADD KEY `idx_orders_status_name` (`orders_status_name`(250));
 
 --
 -- Index pour la table `clic_orders_status_history`
@@ -4357,14 +4409,14 @@ ALTER TABLE `clic_pages_manager`
 --
 ALTER TABLE `clic_pages_manager_description`
   ADD PRIMARY KEY (`pages_id`,`language_id`),
-  ADD KEY `idx_pages_title` (`pages_title`);
+  ADD KEY `idx_pages_title` (`pages_title`(250));
 
 --
 -- Index pour la table `clic_products`
 --
 ALTER TABLE `clic_products`
   ADD PRIMARY KEY (`products_id`),
-  ADD KEY `idx_products_model` (`products_model`),
+  ADD KEY `idx_products_model` (`products_model`(250)),
   ADD KEY `idx_products_date_added` (`products_date_added`),
   ADD KEY `idx_products_parent_id` (`parent_id`),
   ADD KEY `idx_products_weight_class_id` (`products_weight_class_id`);
@@ -4387,7 +4439,7 @@ ALTER TABLE `clic_products_attributes_download`
 --
 ALTER TABLE `clic_products_description`
   ADD PRIMARY KEY (`products_id`,`language_id`),
-  ADD KEY `products_name` (`products_name`);
+  ADD KEY `products_name` (`products_name`(250));
 
 --
 -- Index pour la table `clic_products_discount_quantity`
@@ -4565,7 +4617,7 @@ ALTER TABLE `clic_weight_classes_rules`
 -- Index pour la table `clic_whos_online`
 --
 ALTER TABLE `clic_whos_online`
-  ADD KEY `idx_whos_online_session_id` (`session_id`);
+  ADD KEY `idx_whos_online_session_id` (`session_id`(250));
 
 --
 -- Index pour la table `clic_zones`
@@ -4582,7 +4634,7 @@ ALTER TABLE `clic_zones_to_geo_zones`
   ADD KEY `idx_zones_to_geo_zones_country_id` (`zone_country_id`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
@@ -4590,241 +4642,285 @@ ALTER TABLE `clic_zones_to_geo_zones`
 --
 ALTER TABLE `clic_action_recorder`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_address_book`
 --
 ALTER TABLE `clic_address_book`
   MODIFY `address_book_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_address_format`
 --
 ALTER TABLE `clic_address_format`
   MODIFY `address_format_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT pour la table `clic_administrators`
 --
 ALTER TABLE `clic_administrators`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_administrator_menu`
 --
 ALTER TABLE `clic_administrator_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=778;
+
 --
 -- AUTO_INCREMENT pour la table `clic_banners`
 --
 ALTER TABLE `clic_banners`
   MODIFY `banners_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT pour la table `clic_banners_history`
 --
 ALTER TABLE `clic_banners_history`
   MODIFY `banners_history_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_categories`
 --
 ALTER TABLE `clic_categories`
   MODIFY `categories_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_configuration`
 --
 ALTER TABLE `clic_configuration`
-  MODIFY `configuration_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1478;
+  MODIFY `configuration_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1541;
+
 --
 -- AUTO_INCREMENT pour la table `clic_configuration_group`
 --
 ALTER TABLE `clic_configuration_group`
   MODIFY `configuration_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
 --
 -- AUTO_INCREMENT pour la table `clic_countries`
 --
 ALTER TABLE `clic_countries`
   MODIFY `countries_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
+
 --
 -- AUTO_INCREMENT pour la table `clic_currencies`
 --
 ALTER TABLE `clic_currencies`
   MODIFY `currencies_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT pour la table `clic_customers`
 --
 ALTER TABLE `clic_customers`
   MODIFY `customers_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_customers_basket`
 --
 ALTER TABLE `clic_customers_basket`
   MODIFY `customers_basket_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_customers_basket_attributes`
 --
 ALTER TABLE `clic_customers_basket_attributes`
   MODIFY `customers_basket_attributes_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_customers_gdpr`
 --
 ALTER TABLE `clic_customers_gdpr`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_customers_groups`
 --
 ALTER TABLE `clic_customers_groups`
   MODIFY `customers_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT pour la table `clic_customers_notes`
 --
 ALTER TABLE `clic_customers_notes`
   MODIFY `customers_notes_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_geo_zones`
 --
 ALTER TABLE `clic_geo_zones`
   MODIFY `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT pour la table `clic_languages`
 --
 ALTER TABLE `clic_languages`
   MODIFY `languages_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT pour la table `clic_languages_definitions`
 --
 ALTER TABLE `clic_languages_definitions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_manufacturers`
 --
 ALTER TABLE `clic_manufacturers`
   MODIFY `manufacturers_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_newsletters`
 --
 ALTER TABLE `clic_newsletters`
   MODIFY `newsletters_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders`
 --
 ALTER TABLE `clic_orders`
   MODIFY `orders_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders_pages_manager`
 --
 ALTER TABLE `clic_orders_pages_manager`
   MODIFY `orders_page_manager_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders_products`
 --
 ALTER TABLE `clic_orders_products`
   MODIFY `orders_products_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders_products_attributes`
 --
 ALTER TABLE `clic_orders_products_attributes`
   MODIFY `orders_products_attributes_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders_products_download`
 --
 ALTER TABLE `clic_orders_products_download`
   MODIFY `orders_products_download_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders_status_history`
 --
 ALTER TABLE `clic_orders_status_history`
   MODIFY `orders_status_history_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_orders_total`
 --
 ALTER TABLE `clic_orders_total`
   MODIFY `orders_total_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_pages_manager`
 --
 ALTER TABLE `clic_pages_manager`
   MODIFY `pages_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products`
 --
 ALTER TABLE `clic_products`
   MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_attributes`
 --
 ALTER TABLE `clic_products_attributes`
   MODIFY `products_attributes_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_description`
 --
 ALTER TABLE `clic_products_description`
   MODIFY `products_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_discount_quantity`
 --
 ALTER TABLE `clic_products_discount_quantity`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_favorites`
 --
 ALTER TABLE `clic_products_favorites`
   MODIFY `products_favorites_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_featured`
 --
 ALTER TABLE `clic_products_featured`
   MODIFY `products_featured_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_images`
 --
 ALTER TABLE `clic_products_images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_products_options_values_to_products_options`
 --
 ALTER TABLE `clic_products_options_values_to_products_options`
   MODIFY `products_options_values_to_products_options_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_reviews`
 --
 ALTER TABLE `clic_reviews`
   MODIFY `reviews_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_sec_directory_whitelist`
 --
 ALTER TABLE `clic_sec_directory_whitelist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT pour la table `clic_specials`
 --
 ALTER TABLE `clic_specials`
   MODIFY `specials_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_suppliers`
 --
 ALTER TABLE `clic_suppliers`
   MODIFY `suppliers_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT pour la table `clic_tax_class`
 --
 ALTER TABLE `clic_tax_class`
   MODIFY `tax_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT pour la table `clic_tax_rates`
 --
 ALTER TABLE `clic_tax_rates`
   MODIFY `tax_rates_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT pour la table `clic_template_email`
 --
 ALTER TABLE `clic_template_email`
   MODIFY `template_email_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT pour la table `clic_zones`
 --
 ALTER TABLE `clic_zones`
   MODIFY `zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=642;
+
 --
 -- AUTO_INCREMENT pour la table `clic_zones_to_geo_zones`
 --
 ALTER TABLE `clic_zones_to_geo_zones`
   MODIFY `association_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

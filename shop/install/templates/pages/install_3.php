@@ -41,7 +41,7 @@
           <li>Database Server</li>
           <li>Web Server</li>
           <li><strong>&gt; Online Store Settings</strong></li>
-          <li>Last effort and it's Finished !</li>
+          <li>Last effort and it's Finished!</li>
         </ol>
       </div>
     </div>
@@ -75,7 +75,7 @@
           <div class="col-md-12">
             <label for="StoreOwnerEmail" class=col-md-6"><strong><?php echo TEXT_STORE_OWNER; ?></strong></label>
             <span class="col-md-6"><?php echo HTML::inputField('CFG_STORE_OWNER_NAME', null, 'required aria-required="true" id="StoreOwnerEmail" placeholder="'. TEXT_STORE_OWNER . '"'); ?></span>
-            <span class="text-primary"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_HELP; ?></small></span>
+            <span class="text-danger"><i class="fas fa-asterisk" aria-hidden="true"></i><small><?php echo TEXT_STORE_OWNER_HELP; ?></small></span>
           </div>
 
           <div class="p-md-3"></div>
