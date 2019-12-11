@@ -60,7 +60,7 @@
       <div class="p-md-3"></div>
       <div class="card">
         <div class="card-header">
-          <div class="h4"><?php echo TEXT_TITLE_SHOP; ?>></div>
+          <div class="h4"><?php echo TEXT_TITLE_SHOP; ?></div>
         </div>
         <div class="card-content">
           <div class="p-md-1"></div>
