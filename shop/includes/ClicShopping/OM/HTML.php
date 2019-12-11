@@ -155,7 +155,7 @@
         }
       }
 
-      $image = '<img src="' . static::output($src) . '" data-src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
+      $image = '<img data-src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
 
       if (isset($alt) && (strlen($alt) > 0)) {
         $image .= ' title="' . static::output($alt) . '"';
