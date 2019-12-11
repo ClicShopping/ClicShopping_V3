@@ -866,5 +866,5 @@ input:checked + .slider:before {
 }
 
 .progress {
-    background-color: orangered;
+    background-color: limegreen;
 }

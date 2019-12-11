@@ -82,7 +82,7 @@
                     <div class="col-md-3">
                       <div class="separator"></div>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="' . $valuenow . '" aria-valuemin="0" aria-valuemax="100" style="width: '.  $valuenow . '%;">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="' . $valuenow . '" aria-valuemin="0" aria-valuemax="100" style="width: '.  $valuenow . '%;">
                            <strong>' . $valuenow . '%</strong>
                         </div>
                       </div> 
