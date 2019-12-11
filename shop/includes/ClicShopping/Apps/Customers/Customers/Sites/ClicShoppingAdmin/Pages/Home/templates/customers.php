@@ -32,7 +32,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <div
-            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/client.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></div>
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></div>
           <div
             class="col-md-3 pageHeading float-md-left"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></div>
           <div class="col-md-3">

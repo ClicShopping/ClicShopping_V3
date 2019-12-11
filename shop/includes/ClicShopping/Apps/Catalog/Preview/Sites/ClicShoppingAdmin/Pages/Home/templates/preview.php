@@ -74,7 +74,7 @@
         <div class="col-md-12">
           <div class="card card-block headerCard">
             <div class="row">
-              <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/produit.gif', $CLICSHOPPING_Preview->getDef('heading_title'), '40', '40'); ?></span>
+              <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/produit.gif', $CLICSHOPPING_Preview->getDef('heading_title'), '40', '40'); ?></span>
               <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Preview->getDef('heading_title'); ?></span>
               <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_Preview->getDef('button_new_product'), null, CLICSHOPPING::link(null, 'A&Catalog%5CProducts&Edit&Insert&cPath=0'), 'success'); ?>
           </span>

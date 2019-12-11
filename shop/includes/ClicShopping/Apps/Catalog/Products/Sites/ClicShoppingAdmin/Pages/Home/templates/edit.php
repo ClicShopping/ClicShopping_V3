@@ -130,7 +130,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <span
-            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/produit.gif', $CLICSHOPPING_Products->getDef('heading_title'), '40', '40'); ?></span>
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/produit.gif', $CLICSHOPPING_Products->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
@@ -927,7 +927,7 @@
               <div class="col-md-6 float-md-left">
                 <div class="col-md-12">
                   <span
-                    class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                    class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
                   <span
                     class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
                 </div>
@@ -953,7 +953,7 @@
               <div class="col-md-5 float-md-right">
                 <div class="col-md-12">
                   <span
-                    class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_images.gif', $CLICSHOPPING_Products->getDef('text_products_image_visuel'), '40', '40'); ?></span>
+                    class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product_images.gif', $CLICSHOPPING_Products->getDef('text_products_image_visuel'), '40', '40'); ?></span>
                   <span
                     class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_visuel'); ?></span>
                 </div>
@@ -1127,7 +1127,7 @@
                       <div class="col-md-6 float-md-left">
                         <div class="col-md-12">
                           <span
-                            class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                            class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Products->getDef('text_products_image_vignette'), '40', '40'); ?></span>
                           <span
                             class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_insert_big_image_vignette'); ?></span>
                         </div>
@@ -1139,13 +1139,13 @@
                           </div>
                           <div class="col-md-12">
                             <span
-                              class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
+                              class="col-sm-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_medium'), '40', '40'); ?></span>
                             <span
                               class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_medium'); ?></span>
                           </div>
                           <div class="col-md-12">
                             <span
-                              class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
+                              class="col-sm-6"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product_zoom.gif', $CLICSHOPPING_Products->getDef('text_products_image_zoom'), '40', '40'); ?></span>
                             <span
                               class="col-sm-6"><?php echo $CLICSHOPPING_Products->getDef('text_products_image_zoom'); ?></span>
                           </div>

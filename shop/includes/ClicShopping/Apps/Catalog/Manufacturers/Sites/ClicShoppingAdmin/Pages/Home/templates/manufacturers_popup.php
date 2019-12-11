@@ -36,7 +36,7 @@
     <div class="card card-block headerCard">
       <div class="row">
         <span
-          class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
+          class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
         <span
           class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
         <span class="col-md-4 text-md-right">
@@ -120,7 +120,7 @@
                   <span
                     class="col-md-3"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_new_image'); ?></span>
                   <span
-                    class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
+                    class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_product.gif', $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette'), '40', '40'); ?></span>
                   <span
                     class="col-md-4"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette') . '<br /><br />' . HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
                 </div>

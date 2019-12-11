@@ -76,7 +76,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <span
-            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/file_manager.gif', $CLICSHOPPING_SecDirPermissions->getDef('heading_title'), '40', '40'); ?></span>
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/file_manager.gif', $CLICSHOPPING_SecDirPermissions->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('heading_title'); ?></span>
         </div>

@@ -86,7 +86,7 @@
     <div class="card card-block headerCard">
       <div class="row">
         <span
-          class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/configuration_' . $gID . '.gif', '', '40', '40'); ?></span>
+          class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/configuration_' . $gID . '.gif', '', '40', '40'); ?></span>
         <span
           class="pageHeading col-md-7"><?php echo '&nbsp;' . $CLICSHOPPING_Settings->getDef('heading_title'); ?></span>
         <span class="col-md-4 text-md-right">&nbsp;

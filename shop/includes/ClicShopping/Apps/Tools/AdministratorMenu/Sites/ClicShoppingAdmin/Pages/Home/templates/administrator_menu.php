@@ -53,7 +53,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <span
-            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef($CLICSHOPPING_AdministratorMenu->getDef('heading_title')), '40', '40'); ?></span>
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/menu.png', $CLICSHOPPING_AdministratorMenu->getDef($CLICSHOPPING_AdministratorMenu->getDef('heading_title')), '40', '40'); ?></span>
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_AdministratorMenu->getDef('heading_title'); ?></span>
           <span class="col-md-3 text-md-right">

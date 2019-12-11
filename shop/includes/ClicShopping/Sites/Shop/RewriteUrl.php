@@ -861,7 +861,7 @@
      * @return string
      */
 
-    public function getProductNameUrl(int $products_id, string $parameters = ''): string
+    public function getProductNameUrl($products_id, string $parameters = ''): string
     {
 
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -890,7 +890,7 @@
      * @return string
      */
 
-    public function getPageManagerContentUrl(int $page_id, string $parameters = ''): string
+    public function getPageManagerContentUrl($page_id, string $parameters = ''): string
     {
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
@@ -930,7 +930,7 @@
      * @return string
      */
 
-    public function getCategoryTreeUrl(int $categories_id, string $parameters = ''): string
+    public function getCategoryTreeUrl($categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -955,7 +955,7 @@
      * @return string
      */
 
-    public function getCategoryImageUrl(int $categories_id, string $parameters = ''): string
+    public function getCategoryImageUrl($categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -981,7 +981,7 @@
      * @return string
      */
 
-    public function getManufacturerUrl(int $manufacturer_id, string $parameters = ''): string
+    public function getManufacturerUrl($manufacturer_id, string $parameters = ''): string
     {
       $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 

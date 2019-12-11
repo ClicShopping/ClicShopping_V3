@@ -33,7 +33,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <span
-            class="col-md-1 logoHeading""><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/client.gif', $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'), '40', '40'); ?></span>
+            class="col-md-1 logoHeading""><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client.gif', $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'); ?></span>
           <span
@@ -133,7 +133,7 @@
         <div class="card card-block headerCard">
           <div class="row">
             <span
-              class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/categorie_produit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'), '40', '40'); ?></span>
+              class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/categorie_produit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'), '40', '40'); ?></span>
             <span class="col-md-3 pageHeading"
                   width="250"><?php echo '&nbsp;' . $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'); ?></span>
           </div>

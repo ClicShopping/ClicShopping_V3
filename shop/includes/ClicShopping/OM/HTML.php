@@ -171,21 +171,18 @@
 
       $class = [];
 
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      $class[] = 'lozad media-object';
 
-        $class[] = 'lozad media-object';
+      if ($responsive === true) {
+        $class[] = 'img-fluid';
+      }
 
-        if ($responsive === true) {
-          $class[] = 'img-fluid';
-        }
+      if (!empty($bootstrap_css)) {
+        $class[] = $bootstrap_css;
+      }
 
-        if (!empty($bootstrap_css)) {
-          $class[] = $bootstrap_css;
-        }
-
-        if (!empty($class)) {
-          $image .= ' class="' . implode(' ', $class) . '"';
-        }
+      if (!empty($class)) {
+        $image .= ' class="' . implode(' ', $class) . '"';
       }
 
       if (!empty($parameters)) {

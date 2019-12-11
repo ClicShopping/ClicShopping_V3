@@ -58,7 +58,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <span
-            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('heading_title'), '40', '40'); ?></span>
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
           <span class="col-md-6 text-md-right">
@@ -242,11 +242,11 @@
             <div class="row">
               <div class="col-md-12">
                 <span
-                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('text_categories_image_vignette'), '40', '40'); ?></span>
+                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('text_categories_image_vignette'), '40', '40'); ?></span>
                 <span
                   class="col-md-3 main"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_image'); ?></span>
                 <span
-                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/images_categories.gif', $CLICSHOPPING_BannerManager->getDef('text_banners_image_visuel'), '40', '40'); ?></span>
+                  class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'images_categories.gif', $CLICSHOPPING_BannerManager->getDef('text_banners_image_visuel'), '40', '40'); ?></span>
                 <span
                   class="col-md-7 main"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_image_visuel'); ?></span>
               </div>

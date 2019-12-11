@@ -29,7 +29,7 @@
         <div class="card-title">
           <div class="row col-sm-12">
             <span class="col-sm-1 logoHeading">
-              <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/home.gif', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?>
+              <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/home.gif', CLICSHOPPING::getDef('heading_title'), '40', '40'); ?>
             </span>
             <span class="col-sm-2 pageHeading"><?php echo CLICSHOPPING::getDef('heading_title'); ?></span>
             <span class="col-sm-9 text-sm-right">

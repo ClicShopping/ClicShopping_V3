@@ -54,7 +54,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <div
-            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/mail.gif', $CLICSHOPPING_EMail->getDef('heading_title'), '40', '40'); ?></div>
+            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/mail.gif', $CLICSHOPPING_EMail->getDef('heading_title'), '40', '40'); ?></div>
           <div class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_EMail->getDef('heading_title'); ?></div>
 <?php
    if (SEND_EMAILS == 'true') {

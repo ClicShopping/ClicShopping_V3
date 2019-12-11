@@ -73,7 +73,7 @@
 
         <div class="row">
           <span
-            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/modules_action_recorder.gif', $CLICSHOPPING_ActionsRecorder->getDef($CLICSHOPPING_ActionsRecorder->getDef('heading_title')), '40', '40'); ?></span>
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/modules_action_recorder.gif', $CLICSHOPPING_ActionsRecorder->getDef($CLICSHOPPING_ActionsRecorder->getDef('heading_title')), '40', '40'); ?></span>
           <span
             class="col-md-6 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ActionsRecorder->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">

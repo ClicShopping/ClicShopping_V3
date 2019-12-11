@@ -29,7 +29,7 @@
       <div class="card card-block headerCard">
         <div class="row">
           <div
-            class="col-md-1 logiHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/modules_modules_products_featured.gif', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></div>
+            class="col-md-1 logiHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/modules_modules_products_featured.gif', $CLICSHOPPING_Upgrade->getDef('heading_title'), '40', '40'); ?></div>
           <div
             class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Upgrade->getDef('heading_title'); ?></div>
           <div

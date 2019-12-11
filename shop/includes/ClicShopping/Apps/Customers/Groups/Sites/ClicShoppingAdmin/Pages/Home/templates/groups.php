@@ -35,7 +35,7 @@
         <div class="row">
 
           <span
-            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . '/categories/group_client.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
+            class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/group_client.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-7 pageHeading"
                 width="60%"><?php echo '&nbsp;' . $CLICSHOPPING_Groups->getDef('heading_title'); ?></span>
           <span class="col-md-2 text-md-right">
