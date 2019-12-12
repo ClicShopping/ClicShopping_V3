@@ -84,7 +84,7 @@
       }
 
       if (!$CLICSHOPPING_MessageStack->exists('securityCheckModule')) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('module_admin_dashboard_security_checks_app_success'), 'success', 'securityCheckModule');
+        $CLICSHOPPING_MessageStack->add($this->app->getDef('module_admin_dashboard_security_checks_app_success'), 'success', 'securityCheckModule');
       }
 
       $output = '<div class="clearfix"></div>';
