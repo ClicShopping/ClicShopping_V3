@@ -643,7 +643,7 @@ CREATE TABLE `clic_banners` (
 -- Déchargement des données de la table `clic_banners`
 --
 
-INSERT INTO `clic_banners` VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
+INSERT INTO `clic_banners` VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
 
 -- --------------------------------------------------------
 

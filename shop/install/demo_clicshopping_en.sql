@@ -521,7 +521,7 @@ INSERT INTO administrator_menu_description VALUES(781, 'Produits sélectionnés'
 
 
 
-INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', NULL, NULL, NULL, '2018-07-26 11:47:52', NULL, 1, 0, 99, 'Logo');
+INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', NULL, NULL, NULL, '2018-07-26 11:47:52', NULL, 1, 0, 99, 'Logo');
 INSERT INTO banners VALUES(2, 'Hotline', '', '', 'Default_multi_template_banner', '_self', '<div class=\"alert alert-success\">Hotline :\r\n+1 800 55 55 55</div>', 0, NULL, NULL, '2018-11-23 21:52:02', NULL, 1, 0, 0, 'Hotline');
 INSERT INTO banners VALUES(3, 'Hotline Message', '', '', 'Default_multi_template_banner', '_self', '<div class=\"alert alert-success\">We are open 24hr / 24hr. Come to see us !</div>', NULL, NULL, NULL, '2018-11-23 22:36:13', NULL, 1, 0, 0, 'Hotline Message');
 

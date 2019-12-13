@@ -519,7 +519,7 @@ INSERT INTO administrator_menu_description VALUES(780, 'Produits sélectionnés'
 INSERT INTO administrator_menu_description VALUES(781, 'Featured products', 1);
 INSERT INTO administrator_menu_description VALUES(781, 'Produits sélectionnés', 2);
 
-INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.png', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
+INSERT INTO banners VALUES(1, 'Logo', '', 'logos/others/logo_clicshopping.webp', 'Default_multi_template_logo', '_self', '', 0, NULL, NULL, '2018-07-30 18:11:20', NULL, 1, 0, 99, 'Logo');
 
 INSERT INTO configuration VALUES(1, 'Nom de la boutique', 'STORE_NAME', '', 'Veuillez indiquer le nom de votre boutique.<br><br><font color="#FF0000"><b>Note :</b> Ce nom s\'affichera dans le contenu des e-mails</font><br>', 1, 1, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
 INSERT INTO configuration VALUES(2, 'Responsable de la boutique', 'STORE_OWNER', '', 'Veuillez indiquer le nom du responsable de la boutique.<br>', 1, 2, '2008-09-15 09:39:27', '2006-04-09 16:13:47', NULL, NULL);

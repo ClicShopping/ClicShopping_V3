@@ -35,7 +35,7 @@
 
   <base href="<?php echo CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin'); ?>" />
 
-  <link rel="icon" type="image/png"  href="<?php echo CLICSHOPPING::link('Shop/images/logo_clicshopping.png'); ?>" />
+  <link rel="icon" type="image/webp"  href="<?php echo CLICSHOPPING::link('Shop/images/logo_clicshopping.webp'); ?>" />
 
   <?php
      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Header/';

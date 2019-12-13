@@ -32,7 +32,7 @@
     name.
   </div>
   <div class="text-md-center" style="padding-top:50px;"><a href="<?php echo $_SERVER['HTTP_HOST']; ?>"><img
-        src="images/logo_clicshopping.png" alt="ClicShopping"></a></div>
+        src="images/logo_clicshopping.webp" alt="ClicShopping"></a></div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -22,7 +22,7 @@
     public function display()
     {
       $output = '<link rel="manifest" href="' . HTTP::getShopUrlDomain() . 'manifest.php">' . "\n";
-      $output .= '<link rel="apple-touch-icon" sizes="101x102" href="' . HTTP::getShopUrlDomain() . 'images/logo_clicshopping.png">' . "\n";
+      $output .= '<link rel="apple-touch-icon" sizes="192x192" href="' . HTTP::getShopUrlDomain() . 'images/logo_clicshopping.webp">' . "\n";
 
       $output .= '<meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
       $output .= '<meta name="apple-mobile-web-app-title" content="' . HTML::outputProtected(STORE_NAME) . '">' . "\n";

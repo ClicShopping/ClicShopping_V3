@@ -11,6 +11,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTTP;
 
   class sf_footer_suffix_copyright {
     public $code;
@@ -36,7 +37,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      $logo = '<img width="24" height="24" alt="ClicShopping, Free E-commerce Open Source Solution B2B - B2C for everybody" src="images/clicshopping.gif">';
+      $logo = '<img width="24" height="24" alt="ClicShopping, Free E-commerce Open Source Solution B2B - B2C for everybody" src="' . HTTP::getShopUrlDomain() .'images/logo_clicshopping_24.webp">';
       $clicshopping_copyright = date('Y');
       $shop_owner_copyright = date('Y') . ' - ' . STORE_NAME;
 
@@ -85,10 +86,6 @@
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 

@@ -178,7 +178,7 @@
           <div class="card shadow">
             <div class="card-header" style="height:70px;">
               <div class="col-md-12">
-                <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'header/logo_clicshopping.png', '75', '75'); ?>
+                <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'header/logo_clicshopping.webp', '75', '75'); ?>
                 <?php echo $module_real_name; ?>
               </div>
             </div>
@@ -325,7 +325,7 @@
         <div class="card">
           <div class="card-header">
             <span  class="col-md-1">
-              <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'header/logo_clicshopping.png', '50', '50'); ?>
+              <?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'header/logo_clicshopping.webp', '50', '50'); ?>
             </span>
             <span class="col-md-11">
               <a href="<?php echo $link_html; ?>/archive/master.zip"><?php echo $module_real_name . ' - Github'; ?></a>
