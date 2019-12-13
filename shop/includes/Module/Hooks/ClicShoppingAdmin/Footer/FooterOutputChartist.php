@@ -20,7 +20,7 @@
     {
       $version = '0.11.4';
       $output = '<! -- Start Chartist -->' . "\n";
-      $output .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/' . $version . '/chartist.min.js"></script>' . "\n";
+      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/chartist/' . $version . '/chartist.min.js"></script>' . "\n";
       $output .= '<!-- End Chartist  -->' . "\n";
 
       return $output;

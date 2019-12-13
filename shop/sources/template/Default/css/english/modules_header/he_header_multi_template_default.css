@@ -96,3 +96,7 @@ li.headerMultiTemplateDefaultLanguage{
 a.headerMultiTemplateDefaultCartLink h2 {
   font-size: 1rem!important;
 }
+
+.headerMultiTemplateDefaultCurrencies {
+  height: 30px;
+}

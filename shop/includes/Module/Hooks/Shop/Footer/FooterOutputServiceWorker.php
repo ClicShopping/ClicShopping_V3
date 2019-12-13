@@ -21,7 +21,7 @@
      */
     public function display() :string
     {
-      $output = '<script>
+      $output = '<script defer>
 // This is the "Offline page" service worker
 // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
 
