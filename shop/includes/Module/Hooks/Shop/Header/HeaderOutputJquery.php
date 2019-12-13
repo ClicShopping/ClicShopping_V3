@@ -18,7 +18,7 @@
      */
     public function display(): string
     {
-     $output = '<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>' . "\n";
+     $output = '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>' . "\n";
 
      return $output;
     }

@@ -27,7 +27,7 @@
 //Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
       if (!defined('MODULE_HEADER_TAGS_BOOTSTRAP_SELECT_THEME') || MODULE_HEADER_TAGS_BOOTSTRAP_SELECT_THEME == 'False') {
 
-        $output = '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/' . $number .'/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">' . "\n";
+        $output = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css" integrity="sha384-vXOtxoYb1ilJXRLDg4YD1Kf7+ZDOiiAeUwiH9Ds8hM8Paget1UpGPc/KlaO33/nt" crossorigin="anonymous">' . "\n";
         $output .= '<link rel="stylesheet" media="screen, print" href="' . $CLICSHOPPING_Template->getTemplategraphism() . '" />' . "\n";
 
         return $output;
