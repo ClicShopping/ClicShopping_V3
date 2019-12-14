@@ -141,7 +141,7 @@
         $CLICSHOPPING_Template = Registry::get('Template');
 
         if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
-          $image = $CLICSHOPPING_Template->getDirectoryTemplateImages() . '/default/nophoto.png';
+          $image = $CLICSHOPPING_Template->getDirectoryTemplateImages() . '/icons/nophoto.png';
 
           if (!is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $image)) {
             $src = 'images/nophoto.png';

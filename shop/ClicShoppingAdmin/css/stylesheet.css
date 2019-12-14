@@ -507,10 +507,6 @@ a.btn {
 }
 
 div.backgroundMenu {
-    /*
-      background-image: url(../../images/ClicShoppingAdmin/menu_superfish.gif);
-      height:1.90rem;
-    */
     bottom: 4px;
     height: 1.90rem;
     z-index: 3;
