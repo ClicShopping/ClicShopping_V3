@@ -23,11 +23,29 @@
 
     public function __construct(string $module, string $user_id = null, string $user_name = null)
     {
-      $CLICSHOPPING_Language = Registry::get('Language');
-
-      $this->lang = $CLICSHOPPING_Language;
+      $this->lang = Registry::get('Language');
 
       $module = HTML::sanitize(str_replace(' ', '', $module));
+
+      $this->_module = $module;
+
+      static::isInstalled();
+
+      if (!empty($user_id) && is_numeric($user_id)) {
+        $this->_user_id = $user_id;
+      }
+
+      if (!empty($user_name)) {
+        $this->_user_name = $user_name;
+      }
+
+      $GLOBALS[$this->_module] = new $module();
+      $GLOBALS[$this->_module]->setIdentifier();
+    }
+
+    public function isInstalled()
+    {
+      $module = HTML::sanitize(str_replace(' ', '', $this->_module ));
 
       if (defined('MODULE_ACTION_RECORDER_INSTALLED') && !is_null(MODULE_ACTION_RECORDER_INSTALLED)) {
         if (!is_null($module) && in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), explode(';', MODULE_ACTION_RECORDER_INSTALLED))) {
@@ -48,19 +66,5 @@
       } else {
         return false;
       }
-
-      $this->_module = $module;
-
-      if (!empty($user_id) && is_numeric($user_id)) {
-        $this->_user_id = $user_id;
-      }
-
-      if (!empty($user_name)) {
-        $this->_user_name = $user_name;
-      }
-
-      $GLOBALS[$this->_module] = new $module();
-      $GLOBALS[$this->_module]->setIdentifier();
     }
   }
-
