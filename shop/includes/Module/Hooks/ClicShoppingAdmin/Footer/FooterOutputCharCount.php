@@ -21,7 +21,7 @@
     public function display(): string
     {
       $output = '<!--count words  Script start-->' . "\n";
-      $output .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.js') . '"></script>' . "\n";
+      $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.min.js') . '"></script>' . "\n";
       $output .= '<!--End count words -->' . "\n";
 
       return $output;

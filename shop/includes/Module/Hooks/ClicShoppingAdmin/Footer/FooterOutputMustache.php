@@ -19,7 +19,7 @@
     public function display(): string
     {
       $output = '<!-- Mustache Script start-->' . "\n";
-      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.3/mustache.min.js"></script>' . "\n";
+      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>' . "\n";
       $output .= '<!--Mustache end -->' . "\n";
 
       return $output;

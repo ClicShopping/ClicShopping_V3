@@ -24,7 +24,7 @@
 
       if (isset($_GET['cPath'])) {
         $output = '<!--TokenInput Script start-->' . "\n";
-        $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/tokeninput/jquery.tokeninput.min.js') . '"></script>' . "\n";
+        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tokeninput/1.7.0/jquery.tokeninput.min.js"></script>' . "\n";
         $output .= '<!--End TokenInput-->' . "\n";
       }
 

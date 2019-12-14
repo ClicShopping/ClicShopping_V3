@@ -61,13 +61,13 @@
         $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($id);
 
         $head = '<!--magnificPopup start  -->' . "\n";
-        $head .= '<link rel="stylesheet" type="text/css" media="all" href="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/magnific-popup.css')) . '">' . "\n";
+        $head .= '<link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">' . "\n";
         $head .= '<!--magnificPopup  end  -->' . "\n";
 
         $CLICSHOPPING_Template->addBlock($head, 'header_tags');
 
         $footer_tag = '<!-- magnificPopup start  -->' . "\n";
-        $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/jquery.magnific-popup.min.js')) . '"></script>' . "\n";
+        $footer_tag .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>' . "\n";
         $footer_tag .= '<script defer src="' . CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('magnific/ClicShopping/gallery.js')) . '"></script>' . "\n";
 
         $footer_tag .= '<!--magnificPopup  end  -->' . "\n";
