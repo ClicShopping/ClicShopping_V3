@@ -20,7 +20,7 @@
     {
       $version = '0.11.4';
       $output = '<! -- Start Chartist -->' . "\n";
-      $output .= '<link href="https://cdnjs.cloudflare.com/ajax/libs/chartist/' . $version . '/chartist.min.css" rel="stylesheet" media="screen, print"/>' . "\n";
+      $output .= '<link rel="stylesheet preload" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/' . $version . '/chartist.min.css" media="screen, print"/>' . "\n";
       $output .= '<!-- End Chartist  -->' . "\n";
 
       return $output;
