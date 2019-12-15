@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.50 (2019-08-20)
+ * Version 2.1.51 (2019-12-08)
  * http://elfinder.org
  * 
  * Copyright 2009-2019, Studio 42
@@ -942,6 +942,40 @@ ul.elfinder-help-integrations a:hover {
 /* for old jQuery UI */
 .ui-front {
     z-index: 100;
+}
+
+/* style reset */
+div.elfinder *,
+div.elfinder :after,
+div.elfinder :before {
+    box-sizing: content-box;
+}
+
+div.elfinder fieldset {
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+}
+
+div.elfinder legend {
+    display: block;
+    padding-inline-start: 2px;
+    padding-inline-end: 2px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    width: auto;
+    margin-bottom: 0;
 }
 
 /* base container */
@@ -4269,6 +4303,8 @@ pre.elfinder-quicklook-preview-text.prettyprint {
     margin: 0;
     padding: 3px 9px;
     border: none;
+    overflow: visible;
+    background: #fff;
     -o-tab-size: 4;
     -moz-tab-size: 4;
     tab-size: 4;
@@ -4321,6 +4357,13 @@ embed.elfinder-quicklook-preview-audio {
 .elfinder-quicklook-preview-video {
     width: 100%;
     height: 100%;
+}
+
+/* video.js error message */
+.elfinder-quicklook-preview .vjs-error .vjs-error-display .vjs-modal-dialog-content {
+    font-size: 12pt;
+    padding: 0;
+    color: #fff;
 }
 
 /* allow user select */

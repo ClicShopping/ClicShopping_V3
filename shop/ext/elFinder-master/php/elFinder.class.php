@@ -32,7 +32,7 @@ class elFinder
      *
      * @var integer
      */
-    protected static $ApiRevision = 50;
+    protected static $ApiRevision = 51;
 
     /**
      * Storages (root dirs)
@@ -3923,7 +3923,7 @@ class elFinder
             }
             $script .= 'window.close();';
 
-            $out = '<!DOCTYPE html><html><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><script>' . $script . '</script></head><body><a href="#" onlick="window.close();return false;">Close this window</a></body></html>';
+            $out = '<!DOCTYPE html><html><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><script>' . $script . '</script></head><body><a href="#" onclick="window.close();return false;">Close this window</a></body></html>';
 
             header('Content-Type: text/html; charset=utf-8');
             header('Content-Length: ' . strlen($out));
