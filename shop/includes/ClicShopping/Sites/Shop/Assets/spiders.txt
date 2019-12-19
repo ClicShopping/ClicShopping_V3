@@ -78,6 +78,7 @@ bingbot
 bingbot/2.0
 blackwidow
 blaiz
+Bleriot
 BlitzBOT
 blog
 blo.
