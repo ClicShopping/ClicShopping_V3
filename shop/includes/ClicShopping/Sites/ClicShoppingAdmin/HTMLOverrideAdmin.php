@@ -322,4 +322,34 @@
 
       return $output_string;
     }
+
+    /**
+     * @param array $data
+     * @param string $filename
+     * @param string $delimiter
+     * @param string $extension
+     * @param string $enclosure
+     */
+    public function exportDataToCsv(array $data, string $filename = 'export', string $delimiter = ';', string $extension='csv', string $enclosure = '"')
+    {
+      header("Content-disposition: attachment; filename=$filename.$extension");
+      header("Content-Type: text/csv");
+
+      $fp = fopen('php://output', 'w');
+
+      // Insert the UTF-8 BOM in the file
+      fputs($fp, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
+
+      // I add the array keys as CSV headers
+      fputcsv($fp,array_keys($data[0]), $delimiter, $enclosure);
+
+      // Add all the data in the file
+      foreach ($data as $fields) {
+        fputcsv($fp, $fields, $delimiter, $enclosure);
+      }
+
+      fclose($fp);
+
+      die();
+    }
   }

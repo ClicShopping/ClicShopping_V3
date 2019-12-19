@@ -11,6 +11,8 @@
 
   namespace ClicShopping\OM;
 
+  use ClicShopping\OM\Cache;
+
   class Db extends \PDO
   {
     protected $connected = false;
@@ -891,6 +893,8 @@
         $this->importSQL($directory . $filename, $prefix);
 
         $this->exec('SET FOREIGN_KEY_CHECKS = 1');
+
+        Cache::clear('configuration');
       }
     }
   }
