@@ -890,7 +890,7 @@
         $this->exec('DROP TABLE IF EXISTS ' . $prefix . basename($file, '.txt'));
 
         $this->exec($sql);
-        $this->importSQL($directory . $filename, $prefix);
+        $this->importSQL($path_file, $prefix);
 
         $this->exec('SET FOREIGN_KEY_CHECKS = 1');
 

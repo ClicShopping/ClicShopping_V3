@@ -53,7 +53,7 @@
           if (!class_exists($module)) {
             if (is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/' . $module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)))) {
 
-              $this->lang->loadDefinitions('Shop/modules/action_recorder/' . $module);
+              $this->lang->loadDefinitions('Shop/Module/ActionRecorder/' . $module);
 
               include_once(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/modules/action_recorder/' . $module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)));
             } else {

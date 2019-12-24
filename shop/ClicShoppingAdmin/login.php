@@ -42,7 +42,7 @@
   $country = '';
   $localisation = '';
     
-  if ($ip !== '::1') {
+  if (Is::IpAddress($ip)) {
     $host = @gethostbyaddr($ip);
     $referer = $_SERVER['HTTP_REFERER'];
     $details = @file_get_contents("https://ipinfo.io/{$ip}/geo");
@@ -127,7 +127,7 @@
 // send an email if someone try to connect on admin panel without authorization
 // get ip and infos
               if (SEND_EMAILS == 'true' && CONFIGURATION_EMAIL_SECURITY == 'true') {
-                if ($ip !== '::1') {
+                if (Is::IpAddress($ip)) {
 // build report
                   $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login', ['IP' => $ip]);
                   $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name', ['HOST' => $host]);
@@ -211,7 +211,6 @@
           $Qcheck->execute();
 
           if ($Qcheck->rowCount() == 1 && Is::EmailAddress($username)) {
-
             $new_password = Hash::getRandomString(ENTRY_PASSWORD_MIN_LENGTH);
             $crypted_password = Hash::encrypt($new_password);
 

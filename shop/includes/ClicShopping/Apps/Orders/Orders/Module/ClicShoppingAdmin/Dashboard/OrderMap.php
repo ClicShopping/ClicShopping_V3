@@ -55,8 +55,8 @@
       $text_order_delivery = $this->app->getDef('text_order_delivery');
 
 
-      $output = '<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet" media="screen" />';
-      $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" />';
+      $output = '<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet" media="screen" rel="preload"/>';
+      $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" rel="preload"/>';
 
       $output .= '<div class="' . $content_width . '">';
       $output .= '<div class="card">';

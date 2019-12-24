@@ -84,7 +84,7 @@
  } // end get_files()
 
 
-  $root_dir = realpath( dirname( __FILE__ ) );
+  $root_dir = realpath(__DIR__);
 
   $files_array = get_files($root_dir);
   $files_css_replace = str_replace ( $root_dir .'/', '', $files_array);
@@ -146,6 +146,7 @@
 
   $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
   $if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? $_SERVER['HTTP_IF_NONE_MATCH'] : false;
+
   if ((($if_none_match && $if_none_match == $etag) || (!$if_none_match)) &&
     ($if_modified_since && $if_modified_since == $tsstring)) {
     header('HTTP/1.1 304 Not Modified');
@@ -156,7 +157,7 @@
   }
 
 // Set the correct MIME type, because Apache won't set it for us
-  header("Content-type: text/css");
+  header("Content-type: text/css; charset=utf-8", true);
 
 // Write everything out
   echo $buffer;
