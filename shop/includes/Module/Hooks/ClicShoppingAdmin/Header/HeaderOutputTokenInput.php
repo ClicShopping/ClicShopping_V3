@@ -11,15 +11,16 @@
 
   namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
 
-  class HeaderOutputBootstrap
+  use ClicShopping\OM\CLICSHOPPING;
+
+  class HeaderOutputTokenInput
   {
     /**
      * @return bool|string
      */
     public function display(): string
     {
-//Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
-      $output = '<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css" integrity="sha384-vXOtxoYb1ilJXRLDg4YD1Kf7+ZDOiiAeUwiH9Ds8hM8Paget1UpGPc/KlaO33/nt" crossorigin="anonymous">' . "\n";
+      $output = '<link rel="stylesheet preload" as="style"   href="' .  CLICSHOPPING::link('css/tokenInput.css') . '" media="screen, print">' . "\n";
 
       return $output;
     }

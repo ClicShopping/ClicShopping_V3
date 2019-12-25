@@ -85,6 +85,7 @@
   if (isset($_SESSION['admin'])) {
 ?>
       <div><?php include_once('header_menu.php'); ?></div>
+      <div><?php $CLICSHOPPING_Hooks->output('Header', 'HeaderInfo', null, 'display'); ?></div>
 <?php
   }
 
