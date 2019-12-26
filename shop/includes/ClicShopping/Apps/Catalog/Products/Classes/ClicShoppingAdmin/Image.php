@@ -106,23 +106,25 @@
      * @param string $image
      * @return string
      */
-    protected function getImageExtensionWebp(string $image) :string
+    protected function getImageExtensionWebp(string $image): string
     {
-      $p = pathinfo($this->template->getDirectoryPathTemplateShopImages() . $image);
-      $ext = strtolower($p['extension']);
+      if (CONFIGURATION_CONVERT_IMAGE == 'True') {
+        $p = pathinfo($this->template->getDirectoryPathTemplateShopImages() . $image);
+        $ext = strtolower($p['extension']);
 
-      $big_image_resized_path = $this->template->getDirectoryPathTemplateShopImages() . $image;
+        $big_image_resized_path = $this->template->getDirectoryPathTemplateShopImages() . $image;
 
-      if ($ext != 'webp') {
-        if ($img = imagecreatefromstring(file_get_contents($big_image_resized_path))) {
-          $image = $image . '.webp';
+        if ($ext != 'webp') {
+          if ($img = imagecreatefromstring(file_get_contents($big_image_resized_path))) {
+            $image = str_replace($ext, 'webp', $image);
 
-          $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image);
-          imagedestroy($img);
+            $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image);
+            imagedestroy($img);
+          }
         }
-      }
 
-      unlink($big_image_resized_path);
+        unlink($big_image_resized_path);
+      }
 
       return $image;
     }
@@ -408,14 +410,11 @@
         $dir = '';
       }
 
-
       if (!empty($new_dir) && !is_dir($new_dir)) {
 // depend server configuration
-        if (!mkdir($concurrentDirectory = $root_images_dir . $new_dir, 0755, true) && !is_dir($concurrentDirectory)) {
-          throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-        }
-
+        @mkdir($root_images_dir . $new_dir, 0755, true);
         chmod($root_images_dir . $new_dir, 0755);
+
         $separator = '/';
       }
 

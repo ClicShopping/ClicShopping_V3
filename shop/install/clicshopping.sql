@@ -1499,6 +1499,7 @@ INSERT INTO configuration VALUES(1537, 'A quel endroit souhaitez-vous afficher l
 INSERT INTO configuration VALUES(1538, 'Souhaitez-vous activer ce module ?', 'MODULE_HEADER_TAGS_BREADCRUMB_STATUS', 'True', 'Souhaitez-vous activer ce module ?', 6, 1, NULL, '2019-09-22 21:39:43', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 INSERT INTO configuration VALUES(1539, 'Ordre de tri d\'affichager', 'MODULE_HEADER_TAGS_BREADCRUMB_SORT_ORDER', '555', 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)', 6, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 INSERT INTO configuration VALUES(1540, 'Souhaitez vous activer le Preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Fonctionnalité en beta, you devez avoir accès à votre php.init pour activer cette fonction. Veuillez vous référer à la documentation disponible sur le forum.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO configuration VALUES(1541, 'Souhaitez-vous convertir toutes les images du produits en Webp ?', 'CONFIGURATION_CONVERT_IMAGE', 'False', 'Toutes les images du produits seront converties au format Webp. Veuillez noter que certaines configuration serveur n\'accepte pas ce format', 4, 10, NULL, '2018-11-05 09:49:46', NULL, 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

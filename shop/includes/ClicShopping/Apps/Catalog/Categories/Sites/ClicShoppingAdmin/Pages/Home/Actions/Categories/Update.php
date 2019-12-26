@@ -60,7 +60,7 @@
           'categories_head_keywords_tag' => HTML::sanitize($categories_seo_keyword_array[$language_id])
         ];
 
-        $insert_sql_data = ['categories_id' => $categories_id,
+        $insert_sql_data = ['categories_id' => (int)$categories_id,
           'language_id' => (int)$language_id
         ];
 

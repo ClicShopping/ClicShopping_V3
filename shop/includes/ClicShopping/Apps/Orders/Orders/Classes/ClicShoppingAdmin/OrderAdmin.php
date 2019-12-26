@@ -149,9 +149,10 @@
         ]
       );
 
-
       while ($Qproducts->fetch()) {
-        $this->products[$index] = ['qty' => $Qproducts->value('products_quantity'),
+        $this->products[$index] = [
+          'orders_products_id' => $Qproducts->value('orders_products_id'),
+          'qty' => $Qproducts->value('products_quantity'),
           'products_id' => $Qproducts->valueInt('products_id'),
           'name' => $Qproducts->value('products_name'),
           'model' => $Qproducts->value('products_model'),

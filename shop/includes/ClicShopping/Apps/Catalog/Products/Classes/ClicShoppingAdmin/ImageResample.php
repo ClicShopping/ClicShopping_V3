@@ -95,9 +95,9 @@
      * @param null $permissions
      * @param bool $convertAll
      */
-    public function save(string $filename, string $image_type = IMAGETYPE_WEBP, int $compression = 80, $permissions = null, bool $convertAll = true)
+    public function save(string $filename, string $image_type = IMAGETYPE_WEBP, int $compression = 80, $permissions = null)
     {
-      if ($convertAll === true) {
+      if (CONFIGURATION_CONVERT_IMAGE == 'True') {
         imagewebp( $this->image, $filename, $compression );
       } else {
         if ($image_type == IMAGETYPE_JPEG) {
@@ -120,7 +120,7 @@
      * @param string $image_type
      * @param int $quality
      */
-    public function output(string $image_type = IMAGETYPE_WEBP, int $quality = 80)
+    public function output(string $image_type = IMAGETYPE_JPEG, int $quality = 80)
     {
       if ($image_type == IMAGETYPE_JPEG) {
         header("Content-type: image/jpeg");
