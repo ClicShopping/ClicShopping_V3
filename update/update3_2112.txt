@@ -15,7 +15,7 @@ Include in install smtp configuration
 Include beta functionality Preload
 add function export to csv
 fix recovery password admin
-
+fix order stock sql
 
 SQL update
 French

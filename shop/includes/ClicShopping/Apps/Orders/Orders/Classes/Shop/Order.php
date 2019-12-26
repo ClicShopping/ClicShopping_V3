@@ -893,6 +893,7 @@
           'class' => $order_totals[$i]['code'],
           'sort_order' => (int)$order_totals[$i]['sort_order']
         ];
+
         $this->db->save('orders_total', $sql_data_array);
       }
 
@@ -1327,7 +1328,7 @@
         if ($Qproducts->fetch() !== false) {
           while ($Qproducts->fetch()) {
             $Qstock = $this->db->prepare('select products_quantity_alert,
-                                                  products_stock
+                                                  products_quantity
                                             from :table_products
                                             where products_id = :products_id
                                           ');
@@ -1335,7 +1336,7 @@
             $Qstock->bindInt(':products_id', $Qproducts->valueInt('products_id'));
             $Qstock->execute();
 
-            $stock_left = $Qstock->valueInt('products_stock');
+            $stock_left = $Qstock->valueInt('products_quantity');
 
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
               $email_text_subject_stock = stripslashes(CLICSHOPPING::getDef('email_text_subject_stock', ['store_name' => STORE_NAME]));
@@ -1355,7 +1356,6 @@
 
       if (STOCK_ALERT_PRODUCT_REORDER_LEVEL == 'true') {
         if ((STOCK_ALLOW_CHECKOUT == 'false') && (STOCK_CHECK == 'true')) {
-
           $Qproducts = $this->db->prepare('select orders_products_id,
                                                    products_id
                                                    products_model,
@@ -1371,7 +1371,7 @@
           if ($Qproducts->fetch() !== false) {
             while ($Qproducts->fetch()) {
               $Qstock = $this->db->prepare('select products_quantity_alert,
-                                                    products_stock
+                                                    products_quantity
                                             from :table_products
                                             where products_id = :products_id
                                           ');
@@ -1382,7 +1382,7 @@
               $stock_products_quantity_alert = $Qstock->valueInt('products_quantity_alert');
 
               $warning_stock = STOCK_REORDER_LEVEL;
-              $current_stock = $Qstock->valueInt('products_stock');
+              $current_stock = $Qstock->valueInt('products_quantity');
 
 // alert email if stock product alert < warning stock
               if (($stock_products_quantity_alert <= $warning_stock) && ($stock_products_quantity_alert != '0')) {
