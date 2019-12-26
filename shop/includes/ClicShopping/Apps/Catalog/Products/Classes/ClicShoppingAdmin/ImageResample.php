@@ -97,7 +97,7 @@
      */
     public function save(string $filename, string $image_type = IMAGETYPE_WEBP, int $compression = 80, $permissions = null)
     {
-      if (CONFIGURATION_CONVERT_IMAGE == 'True') {
+      if (CONFIGURATION_CONVERT_IMAGE == 'true') {
         imagewebp( $this->image, $filename, $compression );
       } else {
         if ($image_type == IMAGETYPE_JPEG) {

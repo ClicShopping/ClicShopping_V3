@@ -108,7 +108,7 @@
      */
     protected function getImageExtensionWebp(string $image): string
     {
-      if (CONFIGURATION_CONVERT_IMAGE == 'True') {
+      if (CONFIGURATION_CONVERT_IMAGE == 'true') {
         $p = pathinfo($this->template->getDirectoryPathTemplateShopImages() . $image);
         $ext = strtolower($p['extension']);
 
