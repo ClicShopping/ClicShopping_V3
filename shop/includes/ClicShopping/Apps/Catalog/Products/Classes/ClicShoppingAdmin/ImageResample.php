@@ -85,29 +85,28 @@
           CLICSHOPPING::redirect(null, 'A&Catalog\Products&Suppliers&error=fileNotSupported');
         }
       }
-
     }
 
     /**
      * @param string $filename
-     * @param string $image_type
+     * @param string $ext
      * @param int $compression
      * @param null $permissions
      * @param bool $convertAll
      */
-    public function save(string $filename, string $image_type = IMAGETYPE_WEBP, int $compression = 80, $permissions = null)
+    public function save(string $filename, string $ext = IMAGETYPE_WEBP, int $compression = 80, $permissions = null)
     {
       if (CONFIGURATION_CONVERT_IMAGE == 'true') {
         imagewebp( $this->image, $filename, $compression );
       } else {
-        if ($image_type == IMAGETYPE_JPEG) {
+        if ($ext == IMAGETYPE_JPEG) {
           imagejpeg($this->image, $filename, $compression);
-        } elseif ($image_type == IMAGETYPE_GIF) {
+        } elseif ($ext == IMAGETYPE_GIF) {
           imagegif($this->image, $filename);
-        } elseif ($image_type == IMAGETYPE_PNG) {
+        } elseif ($ext == IMAGETYPE_PNG) {
           imagepng($this->image, $filename);
-        } elseif ($image_type == IMAGETYPE_WEBP) {
-          imagewebp($this->image, $filename);
+        } elseif ($ext == IMAGETYPE_WEBP) {
+          imagewebp($this->image, $filename, $compression);
         }
       }
 
@@ -117,21 +116,21 @@
     }
 
     /**
-     * @param string $image_type
+     * @param string $ext
      * @param int $quality
      */
-    public function output(string $image_type = IMAGETYPE_JPEG, int $quality = 80)
+    public function output(string $ext = IMAGETYPE_JPEG, int $quality = 80)
     {
-      if ($image_type == IMAGETYPE_JPEG) {
+      if ($ext == IMAGETYPE_JPEG) {
         header("Content-type: image/jpeg");
         imagejpeg($this->image, null, $quality);
-      } elseif ($image_type == IMAGETYPE_GIF) {
+      } elseif ($ext == IMAGETYPE_GIF) {
         header("Content-type: image/gif");
         imagegif($this->image);
-      } elseif ($image_type == IMAGETYPE_PNG) {
+      } elseif ($ext == IMAGETYPE_PNG) {
         header("Content-type: image/png");
         imagepng($this->image);
-      } elseif ($image_type == IMAGETYPE_WEBP) {
+      } elseif ($ext == IMAGETYPE_WEBP) {
         header("Content-type: image/webp");
         imagepng($this->image);
       }

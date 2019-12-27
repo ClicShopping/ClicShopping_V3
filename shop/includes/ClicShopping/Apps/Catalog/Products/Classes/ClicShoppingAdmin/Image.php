@@ -181,6 +181,9 @@
 
         $this->imageResample->load($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
 
+//get image type
+        $ext = exif_imagetype($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
+
         $image_name = HTML::removeFileAccents($filename_image_name);
         $image_name = HTML::replaceString(' ', '', $image_name);
 
@@ -203,7 +206,7 @@
 
         $big_image_resized = $dir_products_image . $big_image_width . '_' . $rand_image . '_' . $image_name;
 
-        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $big_image_resized);
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $big_image_resized, $ext);
 
         $big_image_resized = $this->getImageExtensionWebp($big_image_resized);
 //
@@ -225,7 +228,7 @@
 
         $medium_image_resized = $dir_products_image . $medium_catalog_image_with . '_' . $rand_image . '_' . $image_name;
 
-        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized);
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized, $ext);
 
         $medium_image_resized = $this->getImageExtensionWebp($medium_image_resized);
 //
@@ -247,7 +250,7 @@
 
         $small_image_resized = $dir_products_image . $small_image_width . '_' . $rand_image . '_' . $image_name;
 
-        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_resized);
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_resized, $ext);
 
         $small_image_resized = $this->getImageExtensionWebp($small_image_resized);
 
@@ -270,7 +273,7 @@
 
         $small_image_admin_resized = $dir_products_image . $small_image_admin_width . '_' . $rand_image . '_' . $image_name;
 
-        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_admin_resized);
+        $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $small_image_admin_resized, $ext);
 
         $small_image_admin_resized = $this->getImageExtensionWebp($small_image_admin_resized);
 
