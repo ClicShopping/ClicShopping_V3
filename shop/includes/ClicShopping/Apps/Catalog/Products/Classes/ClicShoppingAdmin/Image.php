@@ -118,12 +118,12 @@
           if ($img = imagecreatefromstring(file_get_contents($big_image_resized_path))) {
             $image = str_replace($ext, 'webp', $image);
 
-            $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image);
+            $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $image, $ext);
             imagedestroy($img);
           }
-        }
 
-        unlink($big_image_resized_path);
+          unlink($big_image_resized_path);
+        }
       }
 
       return $image;
@@ -226,7 +226,7 @@
           $medium_image_width = $medium_catalog_image_with;
         }
 
-        $medium_image_resized = $dir_products_image . $medium_catalog_image_with . '_' . $rand_image . '_' . $image_name;
+        $medium_image_resized = $dir_products_image . $medium_image_width . '_' . $rand_image . '_' . $image_name;
 
         $this->imageResample->save($this->template->getDirectoryPathTemplateShopImages() . $medium_image_resized, $ext);
 
