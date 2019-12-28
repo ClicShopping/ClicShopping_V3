@@ -1,5 +1,5 @@
 {
- "version": "3.2112",
- "description": "Introduce lot of new features. See the update files for more informations and update 3.2x series. The next release will be focus on php 7.4 compatibility and optimization files",
- "date": "November 2019"
+ "version": "3.212",
+ "description": "This release is compatible with php 7.3.3 / 7.4 and it introduces some fix and new features. The next release will be focus files optimization",
+ "date": "January 2020"
 }
