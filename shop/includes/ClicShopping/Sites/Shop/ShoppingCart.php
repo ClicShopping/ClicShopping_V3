@@ -87,7 +87,7 @@
      */
     public function hasContents() :bool
     {
-      return !empty($this->contents);
+      return is_array($this->contents);
     }
     
     /*
