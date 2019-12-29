@@ -21,7 +21,7 @@
   $CLICSHOPPING_Archive = Registry::get('Archive');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
-  $CLICSHOPPING_Products = Registry::get('Products');
+  $CLICSHOPPING_Image = Registry::get('Image');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
