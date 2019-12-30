@@ -35,7 +35,11 @@ title_help_clone = Note sur les attributs
 text_filename = Nom du fichier
 
 title_help_clone = Note sur le clonage
-text_help_clone = <ul><strong><u>La Copie / Clonage d'attribut</u></strong> : <br /><br /><li>Vous pouvez copier un ou plusieurs attributs d'un produit sur un ou plusieurs autres produits</li><li>Pour supprimer en masse un attribut vous devez choisir un produit, puis un ou plusieurs autres produits.<br />Cliquez ensuite sur supprimer et l'ensemble des attributs sera effacé</li></ul>
+text_help_clone = <ul><strong><u>La Copie / Clonage d'attribut</u></strong> :
+<br /><br />
+<li>Vous pouvez copier un ou plusieurs attributs d'un produit (étape 3) sur un ou plusieurs autres produits</li><
+li>Pour supprimer en masse un attribut vous devez choisir un produit, puis un ou plusieurs autres produits.<br />
+Cliquez ensuite sur supprimer et l'ensemble des attributs seront effacés</li></ul>
 
 
 text_warning_of_delete = Certains produits utilisent cette option - il n'est pas recommandé de la supprimer.

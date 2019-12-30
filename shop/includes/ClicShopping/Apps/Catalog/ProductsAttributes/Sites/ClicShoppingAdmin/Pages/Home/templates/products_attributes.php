@@ -1123,15 +1123,15 @@
                 <select name="clone_products_id_from">
                   <?php
                     $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                                     pd.products_name,
-                                                                     p.products_model
-                                                                from :table_products p,
-                                                                     :table_products_description pd
-                                                                where pd.products_id = p.products_id
-                                                                and pd.language_id = :language_id
-                                                                and p.products_archive = 0
-                                                                order by pd.products_name
-                                                             ');
+                                                                                       pd.products_name,
+                                                                                       p.products_model
+                                                                                  from :table_products p,
+                                                                                       :table_products_description pd
+                                                                                  where pd.products_id = p.products_id
+                                                                                  and pd.language_id = :language_id
+                                                                                  and p.products_archive = 0
+                                                                                  order by pd.products_name
+                                                                               ');
                     $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
                     $Qproducts->execute();
 
@@ -1147,15 +1147,15 @@
                 <select name="clone_products_id_to[]" multiple size="10">
                   <?php
                     $Qproducts = $CLICSHOPPING_ProductsAttributes->db->prepare('select p.products_id,
-                                                                     pd.products_name,
-                                                                     p.products_model
-                                                              from :table_products p,
-                                                                   :table_products_description pd
-                                                              where pd.products_id = p.products_id
-                                                              and pd.language_id = :language_id
-                                                              and p.products_archive = 0
-                                                              order by pd.products_name
-                                                             ');
+                                                                                       pd.products_name,
+                                                                                       p.products_model
+                                                                                from :table_products p,
+                                                                                     :table_products_description pd
+                                                                                where pd.products_id = p.products_id
+                                                                                and pd.language_id = :language_id
+                                                                                and p.products_archive = 0
+                                                                                order by pd.products_name
+                                                                               ');
                     $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
                     $Qproducts->execute();
 

@@ -36,7 +36,7 @@ text_help_attributs = <ul><strong><u>Attributs Prefix </u></strong> :<br /><br /
 text_filename = Nom du fichier
 
 title_help_clone = Note on the Clone
-text_help_clone = <ul><strong><u>Copy/ Clone attributs</u></strong> : <br /><br /><li>You can copy one or several products attributs on one or several others products</li><li>To delete one or several attributs, you must choose a product and select one or several products.<br />Click on delete and the attributs will be deleted</li></ul>
+text_help_clone = <ul><strong><u>Copy/ Clone attributs</u></strong> : <br /><br /><li>You can copy one or several products attributs created (step 3) on one or several others products</li><li>To delete one or several attributs, you must choose a product and select one or several products.<br />Click on delete and the attributs will be deleted</li></ul>
 
 text_warning_of_delete = This option has products and values linked to it - it is not safe to delete it.
 text_ok_to_delete = This option has no products and values linked to it - it is safe to delete it.
