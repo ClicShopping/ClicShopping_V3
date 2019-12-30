@@ -32,14 +32,28 @@
 
       if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = HTML::sanitize($_GET['search']);
+      } else {
+        $search= '';
       }
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      if (isset($_GET['ContentGroup'])) $content_group = HTML::sanitize($_GET['ContentGroup']);
-      if (isset($_POST['definition_value'])) $definition_values = $_POST['definition_value'];
+      if (isset($_GET['ContentGroup'])) {
+        $content_group = HTML::sanitize($_GET['ContentGroup']);
+      } else {
+        $content_group = '';
+      }
+
+      if (isset($_POST['definition_value'])) {
+        $definition_values = $_POST['definition_value'];
+      } else {
+        $definition_values = '';
+      }
+
       if (isset($_POST['new_definition_key']) && !empty($_POST['new_definition_key']) && isset($_POST['new_definition_value'])) {
         $new_definition_key = HTML::sanitize($_POST['new_definition_key']);
+      } else {
+        $new_definition_key = '';
       }
 
       if (isset($search)) {
@@ -53,33 +67,37 @@
         }
 
 // update only
-        foreach ($definition_values as $definition_key => $language_definition) {
-          foreach ($language_definition as $language_id => $definition_value) {
-            $sql_data_array = [
-              'content_group' => $content_group,
-              'definition_key' => $definition_key,
-              'languages_id' => $language_id,
-              'definition_value' => $definition_value
-            ];
+        if (is_array($definition_values)) {
+          foreach ($definition_values as $definition_key => $language_definition) {
+            if (is_array($language_definition)) {
+              foreach ($language_definition as $language_id => $definition_value) {
+                $sql_data_array = [
+                  'content_group' => $content_group,
+                  'definition_key' => $definition_key,
+                  'languages_id' => $language_id,
+                  'definition_value' => $definition_value
+                ];
 
-            $where_array = [
-              'content_group' => $content_group,
-              'definition_key' => $definition_key,
-              'languages_id' => $language_id
-            ];
+                $where_array = [
+                  'content_group' => $content_group,
+                  'definition_key' => $definition_key,
+                  'languages_id' => $language_id
+                ];
 
-            $Qdefinitions = $this->app->db->get(':table_languages_definitions', ['count(*) as total'], $where_array);
+                $Qdefinitions = $this->app->db->get(':table_languages_definitions', ['count(*) as total'], $where_array);
 
-            if ($Qdefinitions->valueInt('total') == 0) {
-              $this->app->db->save(':table_languages_definitions', $sql_data_array);
-            } else {
-              $this->app->db->save(':table_languages_definitions', $sql_data_array, $where_array);
+                if ($Qdefinitions->valueInt('total') == 0) {
+                  $this->app->db->save(':table_languages_definitions', $sql_data_array);
+                } else {
+                  $this->app->db->save(':table_languages_definitions', $sql_data_array, $where_array);
+                }
+              }
             }
           }
         }
 
   // add new_definition_key
-        if (isset($new_definition_key)) {
+        if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
             $sql_data_array = ['content_group' => $content_group,
               'definition_key' => $new_definition_key,
@@ -97,7 +115,7 @@
             if ($Qdefinitions->valueInt('total') == 0) {
               $this->app->db->save(':table_languages_definitions', $sql_data_array);
             } else {
-              $CLICSHOPPING_MessageStack->add($this->app > getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
+              $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
             }
           }
         }
@@ -105,7 +123,7 @@
 // reset all
         $new_definition_key_error = false;
 
-        if (isset($new_definition_key)) {
+        if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
             if (!isset($definition_values[$new_definition_key][$key])) {
               $new_definition_values[$new_definition_key][$key] = $value;
@@ -125,15 +143,17 @@
 
         $this->app->db->delete(':table_languages_definitions', $where_array);
 
-        foreach ($definition_values as $definition_key => $language_definition) {
-          foreach ($language_definition as $language_id => $definition_value) {
-            $sql_data_array = ['content_group' => $content_group,
-              'definition_key' => $definition_key,
-              'languages_id' => $language_id,
-              'definition_value' => $definition_value
-            ];
+        if (is_array($definition_values)) {
+          foreach ($definition_values as $definition_key => $language_definition) {
+            foreach ($language_definition as $language_id => $definition_value) {
+              $sql_data_array = ['content_group' => $content_group,
+                'definition_key' => $definition_key,
+                'languages_id' => $language_id,
+                'definition_value' => $definition_value
+              ];
 
-            $this->app->db->save(':table_languages_definitions', $sql_data_array);
+              $this->app->db->save(':table_languages_definitions', $sql_data_array);
+            }
           }
         }
       }
