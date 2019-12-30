@@ -19,6 +19,8 @@
   if ($CLICSHOPPING_MessageStack->exists('Orders')) {
     echo $CLICSHOPPING_MessageStack->get('Orders');
   }
+
+  $orders_id = HTML::sanitize($_GET['oID'])
 ?>
 
 <div class="contentBody">
@@ -30,12 +32,10 @@
           <span
             class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/orders.gif', $CLICSHOPPING_Orders->getDef('heading_title'), '40', '40'); ?></span>
           <span
-            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' . (int)$_GET['oID']; ?></span>
+            class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Orders->getDef('heading_title') . ' #' . (int)$orders_id; ?></span>
           <span class="col-md-9 text-md-right">
-<?php
-  echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPING_Orders->link('Orders'), 'primary');
-?>
-          </span>
+            <?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_back'), null, $CLICSHOPPING_Orders->link('Orders'), 'primary'); ?>
+         </span>
         </div>
       </div>
     </div>

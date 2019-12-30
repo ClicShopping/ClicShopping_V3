@@ -64,6 +64,9 @@ text_info_create_language = Souhaitez-vous créer les répertoires ?
 
 title_help = Aide
 
+icon_edit = Editer
+icon_delete = Supprimer
+
 text_note_create_language = <br /><strong>Notes :</strong><br /> La création des répertoires se fera à partir d'une copie des fichiers du répertoire de langue par défaut. <br /><strong>En fonction des caractéristiques des serveurs, cette opération peut ne pas fonctionner.</strong> Veuillez alors faire cette opération manuellement.<br /><br />Les répertoires ou seront créés les fichiers sont : <br />- Dans l'administration<br />- Dans le répertoire par défaut des langues du catalogue<br /><br />- Dans le répertoire langue du template du catalogue.<br />- Dans le répertoire graphisme du template par défaut.<br /><br />Veuillez vous connecter à la market place pour télécharger la langue et l'installer à partir du module d'installation de votre administration.
 
 text_info_delete_info = Supprimer cette langue

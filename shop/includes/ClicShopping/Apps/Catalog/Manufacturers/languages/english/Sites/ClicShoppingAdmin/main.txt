@@ -35,6 +35,7 @@ alert_cfg_saved_success = Configuration parameters have been successfully saved.
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)
 
+icon_edit = Edit
 
 table_heading_manufacturers = brands
 table_heading_action = Action

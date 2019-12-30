@@ -27,7 +27,6 @@ button_update = Mettre à jour
 button_insert_weight = Insérer un poids
 button_insert_class = Insérer une conversion
 
-
 dialog_uninstall_title = Désinstaller
 dialog_uninstall_body = Souhaitez-vous installer cette App ?
 dialog_uninstall_title = Désinstaller le module?
@@ -39,6 +38,9 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 
 text_result_page = Page {{listing_from}}  sur{{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
+icon_edit = Editer
+icon_delete = Supprimer
 
 table_heading_weight_class_id = Id
 table_heading_weight_class_symbol = Symbole

@@ -29,14 +29,6 @@ button_select = Select
 button_unselect = Unselect
 button_submit = Submit
 
-text_products = Products
-text_selected_products = Products selected
-text_count_customers = Number of customers
-text_unsubscribe = Unsebscribe
-
-email_from = Email from
-
-
 dialog_uninstall_title = Uninstall
 dialog_uninstall_body = Do you want install this App ?
 dialog_uninstall_title = Uninstall Module?

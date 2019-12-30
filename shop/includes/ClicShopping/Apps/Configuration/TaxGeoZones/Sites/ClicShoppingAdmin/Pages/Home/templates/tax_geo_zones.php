@@ -89,7 +89,7 @@
               echo '&nbsp;';
               echo HTML::link($CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('image_details')));
               echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Delete&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('image_delete')));
+              echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Delete&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')));
               echo '&nbsp;';
             ?>
           </td>

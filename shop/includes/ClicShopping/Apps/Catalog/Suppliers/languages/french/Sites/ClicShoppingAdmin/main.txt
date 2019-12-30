@@ -35,6 +35,7 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 text_result_page = Page {{listing_from}} sur {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
 
+icon_edit = Editer
 
 table_heading_suppliers = Nom du Fournisseur
 
@@ -91,5 +92,3 @@ text_suppliers_notes = Notes complémentaires
 text_delete_intro = Etes vous s&ucirc;r de vouloir supprimer ce fournisseur ?
 text_delete_image = Suppprimer l'image du fournisseur ?
 text_delete_products = Supprimer tous les produits de ce fournisseur ? (en incluant les critiques, produits en promotion, produits à venir)
-
-

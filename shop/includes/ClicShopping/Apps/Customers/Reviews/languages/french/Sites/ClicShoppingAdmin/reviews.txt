@@ -14,7 +14,7 @@ table_heading_review_group = Groupe clients
 
 tab_general = General
 
-icon_edit = Edit
+icon_edit = Editer
 icon_preview_comment = Prévisualiser le commentaire
 
 entry_products = Nom du produit

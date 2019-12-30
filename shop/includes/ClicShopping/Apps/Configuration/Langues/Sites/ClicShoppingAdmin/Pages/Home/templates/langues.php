@@ -98,7 +98,7 @@
                   echo '&nbsp;';
 
                   if ($Qlanguages->valueInt('languages_id') > 1) {
-                    echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('image_delete')));
+                    echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('icon_delete')));
                   }
                   echo '&nbsp;';
                 ?>

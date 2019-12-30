@@ -155,8 +155,9 @@ error_page_title_required = Error: Page title required.
 error_page_title_required_curseur = <span class="errorText">Please inform the title of the page.</span>
 
 image_new_page = New Page
-icon_edit = Edit la page
+icon_edit = Edit
 icon_preview = Preview
+icon_delete = delete
 
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Displa <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)

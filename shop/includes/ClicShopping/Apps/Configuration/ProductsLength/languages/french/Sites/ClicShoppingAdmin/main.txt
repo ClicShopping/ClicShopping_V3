@@ -40,8 +40,8 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 text_result_page = Page {{listing_from}}  sur{{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
 
-icon_edit = Edit
-icon_delete = delete
+icon_edit = Editer
+icon_delete = Supprimer
 
 table_heading_products_length_class_id = Id
 table_heading_products_length_class_symbol = Symbole

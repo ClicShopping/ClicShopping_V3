@@ -110,7 +110,7 @@
                 <?php
                   echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')));
                   echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('image_delete')));
+                  echo HTML::link($CLICSHOPPING_Currency->link('Delete&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Currency->getDef('icon_delete')));
                   echo '&nbsp;';
                 ?>
               </td>

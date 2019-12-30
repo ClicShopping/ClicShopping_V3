@@ -159,6 +159,7 @@ error_page_title_required_curseur = <span class="errorText">Veuillez informer le
 image_new_page = Nouvelle page
 icon_edit = Editer la page
 icon_preview = Prévisualiser
+icon_delete = Supprimer
 
 text_result_page = Page {{listing_from}} à {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

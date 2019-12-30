@@ -10,7 +10,6 @@ text_intro = Cette app vous permet d'include une gestion de tmeplate des emails 
 
 text_intro_fa =  Veuillez créer ce lien dans votre boutique pour accéder au template email
 
-
 module_te_introduction = Le processus d'installation installe la base de données et le menu
 module_te_short_title = TemplateEmail
 
@@ -40,7 +39,6 @@ alert_cfg_saved_success = les paramètres de configuration ont été mises à jo
 tab_general = General
 tab_description = description
 
-
 table_heading_template_email_name = Nom du template
 table_heading_template_email_description = Description
 table_heading_template_email_type = Email envoyé de
@@ -65,6 +63,8 @@ tab_description = Description
 tab_general = Général
 title_information_name = Informations Générales
 title_message = Message à envoyer
+
+image_edit = Edit
 
 help_title_onglet_general = Informations sur la gestion du template
 
