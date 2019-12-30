@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Marketing\Favorites\Sites\ClicShoppingAdmin\Pages\Home\Actions\Favorites;
 
   use ClicShopping\OM\Registry;
@@ -20,7 +19,7 @@
     {
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
 
           $Qdelete = $CLICSHOPPING_Favorites->db->prepare('delete

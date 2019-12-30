@@ -21,17 +21,17 @@
     {
       $this->app = Registry::get('Manufacturers');
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
 
           $this->app->db->delete('manufacturers', ['manufacturers_id' => (int)$id]);
           $this->app->db->delete('manufacturers_info', ['manufacturers_id' => (int)$id]);
 
           $Qupdate = $this->app->db->prepare('update :table_products
-                                          set products_status = 0,
-                                              manufacturers_id = :manufacturers_id
-                                          where manufacturers_id = :manufacturers_id
-                                        ');
+                                              set products_status = 0,
+                                                  manufacturers_id = :manufacturers_id
+                                              where manufacturers_id = :manufacturers_id
+                                            ');
 
           $Qupdate->bindInt(':manufacturers_id', '');
           $Qupdate->bindInt(':manufacturers_id', $id);

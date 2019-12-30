@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Reviews\Sites\ClicShoppingAdmin\Pages\Home\Actions\Reviews;
 
   use ClicShopping\OM\Registry;
@@ -17,17 +16,15 @@
 
   class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (isset($_GET['id'])) $rId = HTML::sanitize($_GET['id']);
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           $reviews_id = HTML::sanitize($id);
 

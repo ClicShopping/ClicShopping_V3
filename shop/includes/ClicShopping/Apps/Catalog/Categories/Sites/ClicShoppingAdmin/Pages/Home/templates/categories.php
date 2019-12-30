@@ -108,7 +108,7 @@
   </div>
   <div class="separator"></div>
   <?php
-    if (!isset($_POST['cPath'])) {
+    if (!isset($_POST['cPath']) || $_POST['cPath'] == 0) {
       ?>
       <div class="alert alert-info"
            role="alert"><?php echo $CLICSHOPPING_Categories->getDef('text_alert_info_categories'); ?></div>
@@ -168,7 +168,7 @@
                 }
               }
 
-              if ((!isset($_GET['cID']) && !isset($_GET['pID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('categories_id')))) && !isset($cInfo)) {
+              if (((!isset($_GET['cID']) && !isset($_GET['pID'])) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('categories_id')))) && !isset($cInfo)) {
                 $category_childs = array('childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id')));
                 $category_products = array('products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id')));
 

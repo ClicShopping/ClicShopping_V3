@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Marketing\Featured\Sites\ClicShoppingAdmin\Pages\Home\Actions\Featured;
 
   use ClicShopping\OM\Registry;
@@ -20,7 +19,7 @@
     {
       $CLICSHOPPING_Featured = Registry::get('Featured');
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
 
           $Qdelete = $CLICSHOPPING_Featured->db->prepare('delete

@@ -24,10 +24,8 @@
 
     public function execute()
     {
-
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
-
           $Qdelete = $this->app->db->prepare('delete
                                               from :table_suppliers
                                               where suppliers_id = :suppliers_id

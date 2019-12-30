@@ -33,7 +33,6 @@
     <div class="col-md-12">
       <div class="card card-block headerCard">
         <div class="row">
-
           <span
             class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/group_client.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-7 pageHeading"

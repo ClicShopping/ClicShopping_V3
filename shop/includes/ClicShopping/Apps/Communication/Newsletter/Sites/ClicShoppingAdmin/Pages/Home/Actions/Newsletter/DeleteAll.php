@@ -24,9 +24,8 @@
 
       if (isset($_GET['nID'])) $nID = HTML::sanitize($_GET['nID']);
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
-
           $Qdelete = $CLICSHOPPING_Newsletter->db->prepare('delete
                                                       from :table_newsletters
                                                       where newsletters_id = :newsletters_id

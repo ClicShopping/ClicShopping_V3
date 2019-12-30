@@ -123,40 +123,37 @@
       $Qsubmit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
       $Qsubmit->execute();
-      $submit = $Qsubmit->fetch();
 
       $keywords = HTML::sanitize($_POST['keywords']);
 
       if (!empty($keywords)) {
-        if (empty($keywords)) {
-          if (empty($submit['submit_defaut_language_title'])) {
-            $this->titleAdvancedPage = $keywords;
-          } else {
-            $this->titleAdvancedPage = $keywords . ',  ' . HTML::sanitize($submit['submit_defaut_language_title']);
-          }
+        if (empty($submit['submit_defaut_language_title'])) {
+          $this->titleAdvancedPage = $keywords;
         } else {
-          $this->titleAdvancedPage = HTML::sanitize($keywords);
+          $this->titleAdvancedPage = $keywords . ',  ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
         }
+      } else {
+        $this->titleAdvancedPage = HTML::sanitize($keywords);
+      }
 
-        if (empty($categories['categories_head_desc_tag'])) {
-          if (empty($submit['submit_defaut_language_description'])) {
-            $this->descriptionAdvancedPage = $keywords;
-          } else {
-            $this->descriptionAdvancedPage = $keywords . ', ' . HTML::sanitize($submit['submit_defaut_language_description']);
-          }
+      if (empty($categories['categories_head_desc_tag'])) {
+        if (empty($submit['submit_defaut_language_description'])) {
+          $this->descriptionAdvancedPage = $keywords;
         } else {
-          $this->descriptionAdvancedPage = HTML::sanitize($keywords);
+          $this->descriptionAdvancedPage = $keywords . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
         }
+      } else {
+        $this->descriptionAdvancedPage = HTML::sanitize($keywords);
+      }
 
-        if (empty($categories['categories_head_keywords_tag'])) {
-          if (empty($submit['submit_defaut_language_keywords'])) {
-            $this->keywordsAdvancedPage = $keywords;
-          } else {
-            $this->keywordsAdvancedPage = $keywords . ', ' . HTML::sanitize($submit['submit_defaut_language_keywords']);
-          }
-        } else {
+      if (empty($categories['categories_head_keywords_tag'])) {
+        if (empty($submit['submit_defaut_language_keywords'])) {
           $this->keywordsAdvancedPage = $keywords;
+        } else {
+          $this->keywordsAdvancedPage = $keywords . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
         }
+      } else {
+        $this->keywordsAdvancedPage = $keywords;
       }
     }
 

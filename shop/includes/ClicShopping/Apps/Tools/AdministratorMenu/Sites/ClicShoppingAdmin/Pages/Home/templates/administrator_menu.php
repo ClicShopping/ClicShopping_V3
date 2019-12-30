@@ -199,7 +199,7 @@
               $cInfo = new ObjectInfo($cInfo_array);
             }
             ?>
-            <td><?php echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . AdministratorMenu::getPath($Qcategories->valueInt('id'))) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/folder.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_folder')); ?></td>
+            <td><?php echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . AdministratorMenu::getPath($Qcategories->valueInt('id'))) . '"'; ?>><span class="text-primary"><i class="fas fa-folder fa-1x primary"></i></span></td>
             <td colspan="2">&nbsp</td>
             <td><?php echo '<strong>' . $Qcategories->value('id') . '</strong>'; ?></td>
             <td><?php echo '<strong>' . $Qcategories->value('label') . '</strong>'; ?></td>

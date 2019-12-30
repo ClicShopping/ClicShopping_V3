@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Configuration\Countries\Sites\ClicShoppingAdmin\Pages\Home\Actions\Countries;
 
   use ClicShopping\OM\Registry;
@@ -25,10 +24,9 @@
 
     public function execute()
     {
-
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
 
           $Qupdate = $this->app->db->prepare('update :table_countries

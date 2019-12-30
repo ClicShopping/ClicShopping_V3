@@ -28,7 +28,7 @@
     {
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-       if (!empty($_POST['selected'])) {
+       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
 
           $Qzones = $this->app->db->prepare('select zone_status

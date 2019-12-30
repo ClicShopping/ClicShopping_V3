@@ -69,9 +69,9 @@ Header always set X-FRAME-OPTIONS "DENY"
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
-    ExpiresByType image/gif "access plus 1 month"
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
     ExpiresByType text/css "access plus 1 week"
     ExpiresByType text/javascript "access plus 1 week"
     ExpiresByType application/javascript "access plus 1 week"

@@ -46,6 +46,7 @@
       $CLICSHOPPING_Tax = Registry::get('Tax');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
+      $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
         $products = $CLICSHOPPING_ShoppingCart->get_products();

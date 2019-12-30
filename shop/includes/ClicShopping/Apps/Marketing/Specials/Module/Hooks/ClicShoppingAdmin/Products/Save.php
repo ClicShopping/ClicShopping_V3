@@ -31,7 +31,7 @@
 
     private function saveProductsSpecials($id)
     {
-      if (!empty($_POST['products_specials'])) {
+      if (!empty($_POST['products_specials']) && !empty($_POST['percentage_products_specials'])) {
         if (isset($_POST['percentage_products_specials'])) {
           if (substr($_POST['percentage_products_specials'], -1) == '%') {
             $specials_price = str_replace('%', '', $_POST['percentage_products_specials']);

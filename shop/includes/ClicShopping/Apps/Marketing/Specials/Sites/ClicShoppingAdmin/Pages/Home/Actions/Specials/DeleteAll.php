@@ -9,20 +9,17 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Marketing\Specials\Sites\ClicShoppingAdmin\Pages\Home\Actions\Specials;
 
   use ClicShopping\OM\Registry;
 
   class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Specials = Registry::get('Specials');
 
-      if (!empty($_POST['selected'])) {
+      if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
 
           $Qdelete = $CLICSHOPPING_Specials->db->prepare('delete

@@ -13,7 +13,6 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
   class DeleteConfirm extends \ClicShopping\OM\PagesActionsAbstract
