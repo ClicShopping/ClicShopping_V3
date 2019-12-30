@@ -152,28 +152,20 @@
     /**
      * @return mixed|string
      */
-    private function saveFileUpload()
+    private function saveFileUpload(): ?string
     {
-      if (isset($_POST['products_download_filename']) && !is_null($_POST['products_download_filename'])) {
-        $upload_file = new Upload('products_download_filename', $this->template->getPathDownloadShopDirectory(), null, array('zip', 'doc', 'pdf', 'odf', 'xls', 'mp3', 'mp4', 'avi'));
+      $array_extension = ['zip', 'doc', 'pdf', 'odf', 'xls', 'mp3', 'mp4', 'avi', 'png', 'jpg', 'gif'];
 
-        if ($upload_file->check() && $upload_file->save()) {
-          $error = false;
-        }
+      $upload_file = new Upload('products_download_filename', $this->template->getPathDownloadShopDirectory(), null, $array_extension);
 
-        if ($error === false) {
-          $sql_data_array['products_download_filename'] = $this->template->getPathDownloadShopDirectory() . $upload_file->getFilename();
-        } else {
-          $sql_data_array['products_download_filename'] = '';
-        }
-
-        if ($upload_file->check()) {
-          $file = HTML::removeFileAccents($_POST['products_download_filename']);
-          $sql_data_array['products_download_filename'] = $file;
-        }
-
-        return $sql_data_array['products_download_filename'];
+      if ($upload_file->check() && $upload_file->save()) {
+        $products_download_filename = $upload_file->getFilename();
+        $file = HTML::removeFileAccents($products_download_filename);
+      } else {
+        $file = null;
       }
+
+      return $file;
     }
 
     /**
@@ -1084,7 +1076,6 @@
       $products_date_available = HTML::sanitize($_POST['products_date_available']);
       $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
 
-// Definir la position 0 ou 1 pour --> products_view : Affichage Produit Grand public - orders_view : Autorisation Commande
       if (isset($_POST['products_view']) && HTML::sanitize($_POST['products_view']) == 1) {
         $products_view = 1;
       } else {
@@ -1097,29 +1088,28 @@
         $orders_view = 0;
       }
 
-// Gestion de l'affichage concernant la le prix / kg
+// display price / kg
       if (isset($_POST['products_price_kilo']) && HTML::sanitize($_POST['products_price_kilo']) == 1) {
         $products_price_kilo = 1;
       } else {
         $products_price_kilo = 0;
       }
 
-// Gestion de l'affichage concernant les produits uniquement online ou en boutique (physique)
+// display products online
       if (isset($_POST['products_only_online']) && HTML::sanitize($_POST['products_only_online']) == 1) {
         $products_only_online = 1;
       } else {
         $products_only_online = 0;
       }
 
-// Gestion de l'affichage concernant les produits uniquement en boutique (physique)
+// display products store (physical)
       if (isset($_POST['products_only_shop']) && HTML::sanitize($_POST['products_only_shop']) == 1) {
         $products_only_shop = 1;
       } else {
         $products_only_shop = 0;
       }
 
-// Gestion de l'affichage concernant le telechargementde fichier publix / privee
-
+// display products file public or private
       if (isset($_POST['products_download_public']) && HTML::sanitize($_POST['products_download_public']) == 1) {
         $products_download_public = 1;
       } else {
@@ -1176,7 +1166,7 @@
       ];
 
 // Download file
-      $this->saveFileUpload();
+      $sql_data_array['products_download_filename'] = $this->saveFileUpload();
 // image
       $this->image->getImage();
 

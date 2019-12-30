@@ -1348,7 +1348,7 @@
                     <ul class="list-group-slider list-group-flush">
                       <li class="list-group-item-slider">
                         <label class="switch">
-                          <?php echo HTML::checkboxField('products_featured', '1', $pInfo->products_download_public, 'class="success"'); ?>
+                          <?php echo HTML::checkboxField('products_download_public', '1', $pInfo->products_download_public, 'class="success"'); ?>
                           <span class="slider"></span>
                         </label>
                       </li>
@@ -1365,8 +1365,9 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_file_download'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      echo HTML::fileField('products_download_filename', 'id="file"');
-                      if (!empty($pInfo->products_download_filename)) {
+                      echo HTML::fileField('products_download_filename', 'id="file" accept=".zip, .pdf, .doc, .odf, .xlsx., xls, .mp3, .mp4, .avi, .png, .jpg, .gif"');
+
+                      if ($pInfo->products_download_filename) {
                         echo HTML::inputField('products_download_filename', $pInfo->products_download_filename, 'id="products_download_filename" disabled="disabled"') . '&nbsp';
                       }
                     ?>

@@ -143,189 +143,190 @@
 
     $installed_modules = [];
   ?>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <td><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></td>
-          <td class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></td>
-          <td class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></td>
-          <td class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?></td>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $installed_modules = [];
 
-          for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
-            $file = $directory_array[$i];
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="sort_order"
+    data-sort-order="asc"
+    class="table table-md table-hover table-striped"
+  >
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="modules" data-sortable="true"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></th>
+        <th data-field="sort_order" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></th>
+        <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></th>
+        <th data-field="action" class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+    $installed_modules = [];
 
-            if (strpos($file, '\\') !== false) {
-              $file_extension = '';
+    for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+    $file = $directory_array[$i];
 
-              $class = Apps::getModuleClass($file, $appModuleType);
+    if (strpos($file, '\\') !== false) {
+      $file_extension = '';
 
-              $module = new $class();
-              $module->code = $file;
+      $class = Apps::getModuleClass($file, $appModuleType);
 
-              $class = $file;
+      $module = new $class();
+      $module->code = $file;
 
-            } else {
-              $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
+      $class = $file;
 
-              if (is_file($module_language_directory . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/' . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.txt')) {
-                $CLICSHOPPING_Language->loadDefinitions($module_site . '/modules/' . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
-              } else {
-                $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getDirectoryPathShopDefaultTemplateHtml() . '/languages/' . $CLICSHOPPING_Language->get('directory') . '/modules/' . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
-              }
+    } else {
+      $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
 
-              include($module_directory . $file);
+      if (is_file($module_language_directory . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/' . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME) . '.txt')) {
+        $CLICSHOPPING_Language->loadDefinitions($module_site . '/modules/' . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
+      } else {
+        $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getDirectoryPathShopDefaultTemplateHtml() . '/languages/' . $CLICSHOPPING_Language->get('directory') . '/modules/' . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
+      }
 
-              $class = substr($file, 0, strrpos($file, '.'));
+      include($module_directory . $file);
 
-              if (class_exists($class)) {
-                $module = new $class;
-              }
-            }
+      $class = substr($file, 0, strrpos($file, '.'));
 
-            if (isset($module)) {
-              if ($module->check() > 0) {
-                if (($module->sort_order > 0) && !isset($installed_modules[$module->sort_order])) {
-                  $installed_modules[$module->sort_order] = $file;
-                } else {
-                  $installed_modules[] = $file;
-                }
-              }
+      if (class_exists($class)) {
+        $module = new $class;
+      }
+    }
 
-              if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
-                $module_info = ['code' => $module->code,
-                  'title' => $module->title,
-                  'description' => $module->description,
-                  'status' => $module->check(),
-                  'signature' => (isset($module->signature) ? $module->signature : null),
-                  'api_version' => (isset($module->api_version) ? $module->api_version : null)
-                ];
+    if (isset($module)) {
+    if ($module->check() > 0) {
+      if (($module->sort_order > 0) && !isset($installed_modules[$module->sort_order])) {
+        $installed_modules[$module->sort_order] = $file;
+      } else {
+        $installed_modules[] = $file;
+      }
+    }
 
-                $module_keys = $module->keys();
+    if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
+      $module_info = ['code' => $module->code,
+        'title' => $module->title,
+        'description' => $module->description,
+        'status' => $module->check(),
+        'signature' => (isset($module->signature) ? $module->signature : null),
+        'api_version' => (isset($module->api_version) ? $module->api_version : null)
+      ];
 
-                $keys_extra = [];
+      $module_keys = $module->keys();
 
-                for ($j = 0, $k = count($module_keys); $j < $k; $j++) {
+      $keys_extra = [];
 
-                  $Qkeys = $CLICSHOPPING_Db->get('configuration', [
-                    'configuration_title',
-                    'configuration_value',
-                    'configuration_description',
-                    'use_function',
-                    'set_function'
-                  ], [
-                      'configuration_key' => $module_keys[$j]
-                    ]
-                  );
+      for ($j = 0, $k = count($module_keys); $j < $k; $j++) {
 
-                  $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
-                  $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
-                  $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
-                  $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
-                  $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
-                }
+        $Qkeys = $CLICSHOPPING_Db->get('configuration', [
+          'configuration_title',
+          'configuration_value',
+          'configuration_description',
+          'use_function',
+          'set_function'
+        ], [
+            'configuration_key' => $module_keys[$j]
+          ]
+        );
 
-                $module_info['keys'] = $keys_extra;
+        $keys_extra[$module_keys[$j]]['title'] = $Qkeys->value('configuration_title');
+        $keys_extra[$module_keys[$j]]['value'] = $Qkeys->value('configuration_value');
+        $keys_extra[$module_keys[$j]]['description'] = $Qkeys->value('configuration_description');
+        $keys_extra[$module_keys[$j]]['use_function'] = $Qkeys->value('use_function');
+        $keys_extra[$module_keys[$j]]['set_function'] = $Qkeys->value('set_function');
+      }
 
-                $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
-              }
-              ?>
-              <tr>
-                <td><?php echo $module->title; ?></td>
-                <td
-                  class="text-md-center"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
-                <td class="text-md-center">
-                  <?php
-                    if ($module->enabled == 'True') {
-                      echo 'True';
-                    } else {
-                      echo '<span class="text-info">False</span>';
-                    }
-                  ?>
-                </td>
-                <td class="text-md-right">
-                  <?php
-                    if ($module->check() > 0) {
-                      echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Modules->getDef('icon_edit'))) . '&nbsp;';
-                      echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', $CLICSHOPPING_Modules->getDef('icon_delete')));
-                    } else {
-                      echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/install.gif', $CLICSHOPPING_Modules->getDef('icon_install')));
-                    }
-                    echo '&nbsp;';
-                  ?>
-                </td>
-              </tr>
-              <?php
-            }
+      $module_info['keys'] = $keys_extra;
+
+      $mInfo = new \ArrayObject($module_info, \ArrayObject::ARRAY_AS_PROPS);
+    }
+    ?>
+      <tr>
+        <td><?php echo $module->title; ?></td>
+        <td
+          class="text-md-center"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
+        <td class="text-md-center">
+          <?php
+          if ($module->enabled == 'True') {
+            echo 'True';
+          } else {
+            echo '<span class="text-info">False</span>';
           }
-
-          if (!isset($_GET['list'])) {
-            ksort($installed_modules);
-
-            $Qcheck = $CLICSHOPPING_Db->get('configuration', 'configuration_value', ['configuration_key' => $module_key]);
-
-            if ($Qcheck->fetch() !== false) {
-              if ($Qcheck->value('configuration_value') != implode(';', $installed_modules)) {
-                Registry::get('Db')->save('configuration', ['configuration_value' => implode(';', $installed_modules),
-                  'last_modified' => 'now()'
-                ],
-                  ['configuration_key' => $module_key]
-                );
-              }
-            } else {
-
-              $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Modules',
-                  'configuration_key' => $module_key,
-                  'configuration_value' => implode(';', $installed_modules),
-                  'configuration_description' => 'This is automatically updated. No need to edit.',
-                  'configuration_group_id' => 6,
-                  'sort_order' => 0,
-                  'date_added' => 'now()'
-                ]
-              );
-
-            }
-
-            if ($template_integration === true) {
-              $Qcheck = $CLICSHOPPING_Db->get('configuration', 'configuration_value', ['configuration_key' => 'TEMPLATE_BLOCK_GROUPS']);
-
-              if ($Qcheck->fetch() !== false) {
-                $tbgroups_array = explode(';', $Qcheck->value('configuration_value'));
-
-                if (!in_array($module_type, $tbgroups_array)) {
-                  $tbgroups_array[] = $module_type;
-                  sort($tbgroups_array);
-
-                  $CLICSHOPPING_Db->save('configuration', ['configuration_value' => implode(';', $tbgroups_array),
-                    'last_modified' => 'now()'
-                  ],
-                    ['configuration_key' => 'TEMPLATE_BLOCK_GROUPS']
-                  );
-                }
-              } else {
-                $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Template Block Groups',
-                    'configuration_key' => 'TEMPLATE_BLOCK_GROUPS',
-                    'configuration_value' => $module_type,
-                    'configuration_description' => 'This is automatically updated. No need to edit.',
-                    'configuration_group_id' => 6,
-                    'sort_order' => 0,
-                    'date_added' => 'now()'
-                  ]
-                );
-
-              }
-            }
+          ?>
+        </td>
+        <td class="text-md-right">
+          <?php
+          if ($module->check() > 0) {
+            echo HTML::link($CLICSHOPPING_Modules->link('Edit&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Modules->getDef('icon_edit'))) . '&nbsp;';
+            echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Remove&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/remove.gif', $CLICSHOPPING_Modules->getDef('icon_delete')));
+          } else {
+            echo HTML::link($CLICSHOPPING_Modules->link('Modules&Modules&Install&set=' . $set . '&module=' . $class), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/install.gif', $CLICSHOPPING_Modules->getDef('icon_install')));
           }
-        ?>
-        </tbody>
-      </table>
-    </td>
+          echo '&nbsp;';
+          ?>
+        </td>
+      </tr>
+      <?php
+    }
+    }
+
+    if (!isset($_GET['list'])) {
+      ksort($installed_modules);
+
+      $Qcheck = $CLICSHOPPING_Db->get('configuration', 'configuration_value', ['configuration_key' => $module_key]);
+
+      if ($Qcheck->fetch() !== false) {
+        if ($Qcheck->value('configuration_value') != implode(';', $installed_modules)) {
+          Registry::get('Db')->save('configuration', ['configuration_value' => implode(';', $installed_modules),
+            'last_modified' => 'now()'
+          ],
+            ['configuration_key' => $module_key]
+          );
+        }
+      } else {
+
+        $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Modules',
+            'configuration_key' => $module_key,
+            'configuration_value' => implode(';', $installed_modules),
+            'configuration_description' => 'This is automatically updated. No need to edit.',
+            'configuration_group_id' => 6,
+            'sort_order' => 0,
+            'date_added' => 'now()'
+          ]
+        );
+      }
+
+      if ($template_integration === true) {
+        $Qcheck = $CLICSHOPPING_Db->get('configuration', 'configuration_value', ['configuration_key' => 'TEMPLATE_BLOCK_GROUPS']);
+
+        if ($Qcheck->fetch() !== false) {
+          $tbgroups_array = explode(';', $Qcheck->value('configuration_value'));
+
+          if (!in_array($module_type, $tbgroups_array)) {
+            $tbgroups_array[] = $module_type;
+            sort($tbgroups_array);
+
+            $CLICSHOPPING_Db->save('configuration', ['configuration_value' => implode(';', $tbgroups_array),
+              'last_modified' => 'now()'
+            ],
+              ['configuration_key' => 'TEMPLATE_BLOCK_GROUPS']
+            );
+          }
+        } else {
+          $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Template Block Groups',
+              'configuration_key' => 'TEMPLATE_BLOCK_GROUPS',
+              'configuration_value' => $module_type,
+              'configuration_description' => 'This is automatically updated. No need to edit.',
+              'configuration_group_id' => 6,
+              'sort_order' => 0,
+              'date_added' => 'now()'
+            ]
+          );
+
+        }
+      }
+    }
+    ?>
+    </tbody>
   </table>
-  <!-- body_eof //-->
 </div>

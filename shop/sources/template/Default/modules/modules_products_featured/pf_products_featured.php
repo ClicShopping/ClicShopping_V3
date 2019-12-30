@@ -324,10 +324,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want activate this module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_FEATURED_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want activate this module in your shop ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -420,10 +420,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous afficher une image concernant l\'état du stock du produit ?',
+          'configuration_title' => 'Would you like to display an image regarding the stock status of the product ?',
           'configuration_key' => 'MODULE_PRODUCTS_FEATURED_DISPLAY_STOCK',
           'configuration_value' => 'none',
-          'configuration_description' => 'Est-que vous souhaitez afficher une image indiquant une information sur le stock du produit (En stock, pratiquement épuisé, hors stock) ?',
+          'configuration_description' => 'Do you want to display an image indicating information on the stock of the product (In stock, practically sold out, out of stock) ?',
           'configuration_group_id' => '6',
           'sort_order' => '6',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'none\', \'image\', \'number\'))',
@@ -495,7 +495,7 @@
           'configuration_title' => 'Please choose the image size',
           'configuration_key' => 'MODULE_PRODUCTS_FEATURED_IMAGE_MEDIUM',
           'configuration_value' => 'Small',
-          'configuration_description' => 'Quelle taille d\'image souhaitez-vous afficher ?<br /><br /><i>(Valeur Small = Petite - Valeur Medium = Moyenne)</i>',
+          'configuration_description' => 'What image size do you want to display?',
           'configuration_group_id' => '6',
           'sort_order' => '10',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'Small\', \'Medium\'))',
@@ -519,7 +519,7 @@
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_PRODUCTS_FEATURED_SORT_ORDER',
           'configuration_value' => '100',
-          'configuration_description' => 'Sort order of display. Lowest is displayed first',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '12',
           'set_function' => '',

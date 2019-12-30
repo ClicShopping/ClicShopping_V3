@@ -168,10 +168,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want activate this module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_PRICE_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want activate this module in your shop ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -194,7 +194,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_PRICE_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'none',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
@@ -207,7 +207,7 @@
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER',
           'configuration_value' => '95',
-          'configuration_description' => 'Sort order of display. Lowest is displayed first',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',

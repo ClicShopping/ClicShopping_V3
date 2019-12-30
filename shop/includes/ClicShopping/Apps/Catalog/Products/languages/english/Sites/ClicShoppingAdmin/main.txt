@@ -314,7 +314,7 @@ error_catalog_image_directory_does_not_exist = Error: Catalog images directory d
 error_cannot_move_category_to_parent = Error : The category can not move in this under category.
 error_file_not_supported = File image format not supported
 
-help_general_tab8 =  - The files allowed are : zip, pdf, doc, odf, xls, mp3, mp4, avi<br />
+help_general_tab8 =  - The files allowed are : zip, pdf, doc, odf, xls, mp3, mp4, avi, jpg, png, gif<br />
 help_general_tab8_1 =  - The size can not be more :
 
 text_products_large_image_delete_title = Delete image

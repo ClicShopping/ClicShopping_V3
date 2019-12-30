@@ -209,10 +209,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous activer ce module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Souhaitez vous activer ce module à votre boutique ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -221,10 +221,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez choisir l\'emplacement du contenu de la boxe',
+          'configuration_title' => 'Please choose where the boxe must be displayed',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_CONTENT_PLACEMENT',
           'configuration_value' => 'Right Column',
-          'configuration_description' => 'Parmi les options qui vous sont proposées , veuillez en choisir une. <strong>Note :</strong><br /><br /><i>- Column right : Colonne de droite<br />- Column left : Colonne de gauche</i>',
+          'configuration_description' => 'Choose where the boxe must be displayed',
           'configuration_group_id' => '6',
           'sort_order' => '2',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'Left Column\', \'Right Column\'))',
@@ -233,10 +233,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez indiquer le groupe d\'appartenance de la banniere',
+          'configuration_title' => 'Please indicate the group where the banner belongs',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_BANNER_GROUP',
           'configuration_value' => SITE_THEMA.'_boxe_featured',
-          'configuration_description' => 'Veuillez indiquer le groupe d\'appartenance de la bannière<br /><br /><strong>Note :</strong><br /><i>Le groupe sera à indiquer lors de la création de la bannière dans la section Marketing / Gestion des bannières</i>',
+          'configuration_description' => 'Please indicate the group where the banner belongs <br /> <br /> <strong> Note: </strong> <br /> <i> The group will be indicated when creating the banner in the Marketing section / Banner management </i>',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',
@@ -245,10 +245,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous afficher le bouton détail ?',
+          'configuration_title' => 'Do you want to display the detail button?',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_DETAIL_BUTTON',
           'configuration_value' => 'False',
-          'configuration_description' => 'Afficher le bouton détail  ?',
+          'configuration_description' => 'Display the detail button?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -257,10 +257,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Combien de produit(s) souhaitez-vous voir affiché dans la boxe ?',
+          'configuration_title' => 'How many product (s) would you like displayed in the boxe ?',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_MAX_DISPLAY_LIMIT',
           'configuration_value' => '1',
-          'configuration_description' => 'Affiche un nombre déterminé de produits dans la boxe de fa&ccedil;on aléatoire.',
+          'configuration_description' => 'Randomly displays a specified number of products in the boxe.',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',
@@ -269,10 +269,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous afficher un message Nouveauté / Promotion /  Sélection / Coups de coeur?',
+          'configuration_title' => 'Do you want to display a message New / Special / Featured / Favorites?',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_TICKER',
           'configuration_value' => 'False',
-          'configuration_description' => 'Afficher un message Nouveauté / Promotion / Sélection / Coups de coeur en surimpression sur l\'image du produit ?<br /><br /><strong>Note</strong> :<br />- la durée d\affichage est paramétrable dans le Menu configuration / Ma boutique / Valeurs minimales / maximales<br /><i>(Valeur true = Oui - Valeur false = Non)</i>',
+          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> < br /> <i> (Value true = Yes - Value false = No) </i>',
           'configuration_group_id' => '6',
           'sort_order' => '9',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -281,10 +281,10 @@
       );
 
        $CLICSHOPPING_Db->save('configuration', [
-           'configuration_title' => 'Souhaitez-vous afficher le pourcentage de réduction du prix (promotion) ?',
+           'configuration_title' => 'Would you like to display the percentage reduction of the price (special) ?',
            'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_POURCENTAGE_TICKER',
            'configuration_value' => 'False',
-           'configuration_description' => 'Afficher le pourcentage de réduction du prix<br><i>(Valeur true = Oui - Valeur false = Non)</i>',
+           'configuration_description' => 'Show the percentage reduction of the price',
            'configuration_group_id' => '6',
            'sort_order' => '9',
            'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -293,10 +293,10 @@
        );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Ordre de tri d\'affichage',
+          'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_SORT_ORDER',
           'configuration_value' => '120',
-          'configuration_description' => 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',
@@ -305,10 +305,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez indiquer ou la boxe doit s\'afficher',
+          'configuration_title' => 'Please indicate where boxing should be displayed',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_DISPLAY_PAGES',
           'configuration_value' => 'all',
-          'configuration_description' => 'Sélectionnez les pages où la boxe doit être présente.',
+          'configuration_description' => 'Select the pages where the boxe must be present.',
           'configuration_group_id' => '6',
           'sort_order' => '5',
           'set_function' => 'clic_cfg_set_select_pages_list',

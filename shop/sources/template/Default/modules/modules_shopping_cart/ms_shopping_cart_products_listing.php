@@ -46,7 +46,6 @@
       $CLICSHOPPING_Tax = Registry::get('Tax');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
-      $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
         $products = $CLICSHOPPING_ShoppingCart->get_products();
@@ -220,10 +219,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want activate this module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want activate this module in your shop ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -232,7 +231,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez selectionner la largeur de votre listing ?',
+          'configuration_title' => 'Please select the width of your listing ?',
           'configuration_key' => 'MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH',
           'configuration_value' => '12',
           'configuration_description' => 'Select a number between 1 and 12',
@@ -248,7 +247,7 @@
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER',
           'configuration_value' => '10',
-          'configuration_description' => 'Sort order of display. Lowest is displayed first',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',

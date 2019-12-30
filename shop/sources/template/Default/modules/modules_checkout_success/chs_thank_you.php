@@ -117,7 +117,7 @@
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER',
           'configuration_value' => '1',
-          'configuration_description' => 'Sort order of display. Lowest is displayed first',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',

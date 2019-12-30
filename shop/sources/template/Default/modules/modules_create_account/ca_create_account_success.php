@@ -70,10 +70,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want activate this module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_CREATE_ACCOUNT_SUCCESS_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want activate this module in your shop ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -97,7 +97,7 @@
           'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_CREATE_ACCOUNT_SUCCESS_SORT_ORDER',
           'configuration_value' => '100',
-          'configuration_description' => 'Sort order of display. Lowest is displayed first',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',

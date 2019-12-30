@@ -68,10 +68,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous activer ce module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_TITLE_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Souhaitez vous activer ce module à votre boutique ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -80,10 +80,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez selectionner la largeur de l\'affichage?',
+          'configuration_title' => 'Please select the width of the display?',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_CONTENT_WIDTH',
           'configuration_value' => '12',
-          'configuration_description' => 'Veuillez indiquer un nombre compris entre 1 et 12',
+          'configuration_description' => 'Please enter a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_content_module_width_pull_down',
@@ -92,10 +92,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'A quel endroit souhaitez-vous afficher le module ?',
+          'configuration_title' => 'Where do you want to display the module?',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_POSITION',
-          'configuration_value' => 'float-md-none',
-          'configuration_description' => 'Affiche le module à gauche ou à droite<br><br><i>(Valeur Left = Gauche <br>Valeur Right = Droite <br>Valeur None = Aucun)</i>',
+          'configuration_value' => 'none',
+          'configuration_description' => 'Display the module on the left or on the right',
           'configuration_group_id' => '6',
           'sort_order' => '2',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
@@ -103,10 +103,10 @@
         ]
       );
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Ordre de tri d\'affichage',
+          'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_TITLE_SORT_ORDER',
           'configuration_value' => '10',
-          'configuration_description' => 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '12',
           'set_function' => '',
