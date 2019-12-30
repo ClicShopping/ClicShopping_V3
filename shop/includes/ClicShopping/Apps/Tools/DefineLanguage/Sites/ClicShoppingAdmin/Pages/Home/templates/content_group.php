@@ -9,7 +9,6 @@
    *
    */
 
-
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
@@ -80,15 +79,14 @@
               <tbody>
               <?php
                 if (isset($search)) {
-                  $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select definition_key,
+                  $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare("select definition_key,
                                                                                     definition_value
                                                                             from :table_languages_definitions
                                                                             where content_group = :content_group
-                                                                            and (definition_key like ' . $search . ' or definition_value like ' . $search . ')
+                                                                            and (definition_key like  " . "'%" . $search . "%'" . " or definition_value like  " . "'%" . $search . "%'" . ")
                                                                             and languages_id = :languages_id
                                                                             order by definition_key
-                                                                          ');
-                  $Qdefinitions->bindValue(':search', '%"' . $search . '"%');
+                                                                          ");
                 } else {
                   $Qdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select  id,
                                                                                      definition_key,

@@ -77,10 +77,11 @@
   <div class="separator"></div>
   <table class="table table-hover">
     <thead>
-    <tr class="dataTableHeadingRow">
-      <th class="col-md-8"><?php echo $CLICSHOPPING_DefineLanguage->getDef('table_heading_content_group_title'); ?></th>
-      <th class="col-md-4 action"></th>
-    </tr>
+      <tr class="dataTableHeadingRow">
+        <th class=""><?php echo $CLICSHOPPING_DefineLanguage->getDef('table_heading_content_group_title'); ?></th>
+        <th class=""></th>
+        <th class="action"></th>
+      </tr>
     </thead>
     <tbody>
     <?php
@@ -141,7 +142,10 @@
               if ($search_count > '') {
                 echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group') . '&search=' . $search), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/filter.png', $CLICSHOPPING_DefineLanguage->getDef('image_filter')));
               }
-
+              ?>
+          </td>
+          <td class="action text-md-right">
+            <?php
               echo HTML::link($CLICSHOPPING_DefineLanguage->link('ContentGroup=' . $Qcontent_group->value('content_group')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_DefineLanguage->getDef('image_edit')));
             ?>
           </td>
