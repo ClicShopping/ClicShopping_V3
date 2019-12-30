@@ -96,7 +96,7 @@
           $products_name = HTML::hiddenField('products_id[]', $products[$i]['id']);
           $products_name .= HTML::link($products_name_url, $products[$i]['name']);
 
-          $trash = HTML::link(CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/delete.gif', CLICSHOPPING::getDef('button_remove'))) . '&nbsp;&nbsp;&nbsp;';
+          $trash = HTML::link(CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), '<i class="fas fa-trash"></i>', CLICSHOPPING::getDef('button_remove')) . '&nbsp;&nbsp;&nbsp;';
           $image =  HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50)) . '&nbsp;&nbsp;&nbsp;';
 
           if (STOCK_CHECK == 'true') {
