@@ -40,7 +40,6 @@
       } else {
         $error = true;
       }
-
 // Informations client
       if (isset($_POST['customers_firstname'])) $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
       if (isset($_POST['customers_lastname'])) $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
@@ -132,40 +131,39 @@
           $error = false;
         } else {
           $error = true;
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_iso'), 'error', 'head');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_iso'), 'error', 'header');
         }
       }
 
       if (strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_firstname'), 'error', 'head');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_firstname'), 'error', 'header');
       }
 
       if (strlen($customers_lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_lastname'), 'error', 'head');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_lastname'), 'error', 'header');
       }
 
       if (!Is::EmailAddress($customers_email_address)) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error', 'head');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error', 'header');
       }
 
       if (strlen($customers_street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_address'), 'error', 'head');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_address'), 'error', 'header');
       }
 
       if (strlen($customers_postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_postcode'), 'error', 'head');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_postcode'), 'error', 'header');
       }
 
       if (strlen($customers_city) < ENTRY_CITY_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_city'), 'error', 'head');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_city'), 'error', 'header');
       }
-
 
       $entry_zone_id = 0;
 
@@ -179,57 +177,55 @@
           $entry_zone_id = $Qcheck->ValueInt('zone_country_id');
         }
 
-        if (isset($_SESSION['entry_state_has_zones']) === true) {
-          if (ACCOUNT_STATE_DROPDOWN == 'true') {
+        if (ACCOUNT_STATE_DROPDOWN == 'true') {
+          $Qzone = $CLICSHOPPING_Customers->db->prepare('select distinct zone_id
+                                                         from :table_zones
+                                                         where zone_country_id = :zone_country_id
+                                                         and zone_id = :zone_id
+                                                         and zone_status = 0
+                                                       ');
+
+          $Qzone->bindInt(':zone_country_id', $customers_country_id);
+          $Qzone->bindInt(':zone_id', $customers_state);
+          $Qzone->execute();
+        } elseif (ACCOUNT_STATE == 'true') {
+          if (!is_numeric($customers_state)) {
             $Qzone = $CLICSHOPPING_Customers->db->prepare('select distinct zone_id
-                                                     from :table_zones
-                                                     where zone_country_id = :zone_country_id
-                                                     and zone_id = :zone_id
-                                                     and zone_status = 0
-                                                   ');
-
+                                                            from :table_zones
+                                                            where zone_country_id = :zone_country_id
+                                                            and zone_name = :zone_name
+                                                            and zone_status = 0
+                                                          ');
             $Qzone->bindInt(':zone_country_id', $customers_country_id);
-            $Qzone->bindInt(':zone_id', $customers_state);
+            $Qzone->bindValue(':zone_name', $customers_state);
+
             $Qzone->execute();
-          } elseif (ACCOUNT_STATE == 'true') {
-            if (!is_numeric($customers_state)) {
-              $Qzone = $CLICSHOPPING_Customers->db->prepare('select distinct zone_id
-                                                              from :table_zones
-                                                              where zone_country_id = :zone_country_id
-                                                              and zone_name = :zone_name
-                                                              and zone_status = 0
-                                                            ');
-              $Qzone->bindInt(':zone_country_id', $customers_country_id);
-              $Qzone->bindValue(':zone_name', $customers_state);
-
-              $Qzone->execute();
-            } else {
-              $Qzone = $CLICSHOPPING_Customers->db->prepare('select distinct zone_id
-                                                              from :table_zones
-                                                              where zone_country_id = :zone_country_id
-                                                              and zone_id = :zone_id
-                                                              and zone_status = 0
-                                                            ');
-              $Qzone->bindInt(':zone_country_id', $customers_country_id);
-              $Qzone->bindValue(':zone_id', $customers_state);
-
-              $Qzone->execute();
-            }
-          }
-
-          if (!empty($Qzone->valueInt('zone_id')) || !is_null($Qzone->valueInt('zone_id'))) {
-            $entry_zone_id = (int)$Qzone->valueInt('zone_id');
           } else {
-            $error = true;
+            $Qzone = $CLICSHOPPING_Customers->db->prepare('select distinct zone_id
+                                                            from :table_zones
+                                                            where zone_country_id = :zone_country_id
+                                                            and zone_id = :zone_id
+                                                            and zone_status = 0
+                                                          ');
+            $Qzone->bindInt(':zone_country_id', $customers_country_id);
+            $Qzone->bindValue(':zone_id', $customers_state);
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'header');
+            $Qzone->execute();
           }
+        }
+
+        if (strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
+          $error = true;
+
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'header');
+        }
+
+        if (!empty($Qzone->valueInt('zone_id')) || !is_null($Qzone->valueInt('zone_id'))) {
+          $entry_zone_id = (int)$Qzone->valueInt('zone_id');
+          $error = false;
         } else {
-          if (strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
-            $error = true;
-
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'header');
-          }
+          $error = true;
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'header');
         }
       }
 
@@ -245,8 +241,7 @@
       $Qcheck->bindValue(':customers_email_address', $customers_email_address);
       $Qcheck->execute();
 
-
-      if ($Qcheck->fetch() !== false) {
+      if ($Qcheck->fetch() === true) {
         $error = true;
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email_address_exist'), 'error', 'header');
       }
