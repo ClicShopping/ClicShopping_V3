@@ -56,7 +56,7 @@
           'price_prefix' => $price_prefix,
           'products_options_sort_order' => (int)$value_sort_order,
           'products_attributes_reference' => $products_attributes_reference,
-          'customers_group_id' => $customers_group_id,
+          'customers_group_id' => (int)$customers_group_id,
           'products_attributes_image' => $products_attributes_image
         ]
       );

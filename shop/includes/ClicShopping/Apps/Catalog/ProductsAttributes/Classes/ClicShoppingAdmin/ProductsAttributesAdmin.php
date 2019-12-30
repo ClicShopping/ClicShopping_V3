@@ -70,8 +70,8 @@
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-      Registry::set('ImageResample', new ImageResample());
-      $CLICSHOPPING_ImageResample = Registry::get('ImageResample');
+      Registry::set('ImageResampleNew', new ImageResample());
+      $CLICSHOPPING_ImageResample = Registry::get('ImageResampleNew');
 
       $CLICSHOPPING_Image = Registry::get('Image');
 
@@ -80,7 +80,7 @@
       $error = true;
 
 // load originale image
-      $image = new Upload('products_image_resize', $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg']);
+      $image = new Upload('products_image_resize', $CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
 
 // When the image is updated
       if ($image->check() && $image->save()) {
