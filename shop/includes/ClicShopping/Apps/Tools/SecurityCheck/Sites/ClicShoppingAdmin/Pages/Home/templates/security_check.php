@@ -122,8 +122,8 @@
               $output = $secCheck->getMessage();
             }
 
-            echo '  <tr>' . "\n" .
-              '    <td class=text-md-center">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/ms_' . $secCheck->type . '.png', '', 16, 16) . '</td>' . "\n" .
+            echo '  <tr class="text-' . $secCheck->type .'">' . "\n" .
+              '    <td class="text-md-center">' . $secCheck->type . '</td>' . "\n" .
               '    <td valign="top" style="white-space: nowrap;">' . HTML::outputProtected($module['title']) . '</td>' . "\n" .
               '    <td>' . HTML::outputProtected($module['code']) . '</td>' . "\n" .
               '    <td>' . $output . '</td>' . "\n" .
