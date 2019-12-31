@@ -124,7 +124,11 @@
 
       $Qsubmit->execute();
 
-      $keywords = HTML::sanitize($_POST['keywords']);
+      if (isset($_POST['keywords'])) {
+        $keywords = HTML::sanitize($_POST['keywords']);
+      } else {
+        $keywords = '';
+      }
 
       if (!empty($keywords)) {
         if (empty($submit['submit_defaut_language_title'])) {
