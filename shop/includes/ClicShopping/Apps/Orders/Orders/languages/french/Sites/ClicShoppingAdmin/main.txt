@@ -74,7 +74,7 @@ table_heading_color_group = B2B
 table_heading_orders = No Commande
 table_heading_erp = ERP
 table_heading_guest = Guest
-
+table_heading_qty = Quantité
 table_heading_support = Support
 
 table_heading_customer_notified = Client notifié
@@ -217,6 +217,8 @@ button_orders_batch = Impression en lot des commandes
 
 success_order_updated = Votre demande a été traité avec succès
 warning_order_not_updated = Attention : Commande non mise à jour
+
+text_info_new_quantity = Mise à jour quantité de la commande : la nouvelle quantité mis à jour est {{new_quantity}} concernant le nom du produit : {{products_name}}
 
 text_result_page = Page {{listing_from}} à {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

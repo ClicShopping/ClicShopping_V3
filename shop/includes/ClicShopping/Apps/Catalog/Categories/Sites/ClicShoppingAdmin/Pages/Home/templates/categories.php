@@ -39,19 +39,19 @@
           <span
             class="col-md-1 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Categories->getDef('heading_title'); ?></span>
           <span class="col-md-3">
-               <div class="form-group">
-                 <div class="controls">
+             <div class="form-group">
+               <div class="controls">
 <?php
   echo HTML::form('search', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Categories->getDef('heading_title') . '"');
 ?>
-                  </form>
-                 </div>
-               </div>
-              </span>
+              </form>
+             </div>
+           </div>
+          </span>
           <span class="col-md-3 text-md-center">
-               <div class="form-group">
-                 <div class="controls">
+             <div class="form-group">
+               <div class="controls">
 <?php
   $current_category_id = 0;
 
@@ -62,10 +62,10 @@
   echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
-                  </form>
-                 </div>
-               </div>
-              </span>
+              </form>
+             </div>
+           </div>
+          </span>
           <span class="col-md-4 text-md-right">
 <?php
   $cPath_back = '';
@@ -115,109 +115,109 @@
       <?php
     }
   ?>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <td width="1" class="text-md-center"></td>
-          <td colspan="3">&nbsp;</td>
-          <td><?php echo $CLICSHOPPING_Categories->getDef('table_heading_categories_products'); ?></td>
-          <td class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></td>
-          <td class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?>
-            &nbsp;
-          </td>
-          <td></td>
-          <td class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?>&nbsp;
-          </td>
-          <td class="text-md-right"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</td>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $categories_count = 0;
 
-          if (isset($_POST['search'])) {
-            $search = HTML::sanitize($_POST['search']);
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="sort_order"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="image">&nbsp;</th>
+        <th data-field="id" data-sortable="true"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_categories_products'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></th>
+        <th data-field="last_modified" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?></th>
+        <th data-field="sort_order" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+    $categories_count = 0;
+
+    if (isset($_POST['search'])) {
+      $search = HTML::sanitize($_POST['search']);
+    } else {
+      $search = null;
+    }
+
+    $Qcategories = $CLICSHOPPING_CategoriesAdmin->getSearch($search);
+
+    $listingTotalRow = $Qcategories->getPageSetTotalRows();
+
+    if ($listingTotalRow > 0) {
+    $categories_count = 0;
+
+    while ($Qcategories->fetch()) {
+      $categories_count++;
+
+      // Get categories_id for product if search
+      if (!empty($search)) {
+        $cPath = $Qcategories->valueInt('categories_id');
+      } else {
+        if (isset($_POST['cPath'])) {
+          $cPath = HTML::sanitize($_POST['cPath']);
+        } else {
+          if (isset($_GET['cPath'])) {
+            $cPath = HTML::sanitize($_GET['cPath']);
           } else {
-            $search = null;
+            $cPath = null;
           }
+        }
+      }
 
-          $Qcategories = $CLICSHOPPING_CategoriesAdmin->getSearch($search);
+      if (((!isset($_GET['cID']) && !isset($_GET['pID'])) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('categories_id')))) && !isset($cInfo)) {
+        $category_childs = array('childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id')));
+        $category_products = array('products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id')));
 
-          $listingTotalRow = $Qcategories->getPageSetTotalRows();
-
-          if ($listingTotalRow > 0) {
-            $categories_count = 0;
-
-            while ($Qcategories->fetch()) {
-              $categories_count++;
-
-// Get categories_id for product if search
-              if (!empty($search)) {
-                $cPath = $Qcategories->valueInt('categories_id');
-              } else {
-                if (isset($_POST['cPath'])) {
-                  $cPath = HTML::sanitize($_POST['cPath']);
-                } else {
-                  if (isset($_GET['cPath'])) {
-                    $cPath = HTML::sanitize($_GET['cPath']);
-                  } else {
-                    $cPath = null;
-                  }
-                }
-              }
-
-              if (((!isset($_GET['cID']) && !isset($_GET['pID'])) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('categories_id')))) && !isset($cInfo)) {
-                $category_childs = array('childs_count' => $CLICSHOPPING_CategoriesAdmin->getChildsInCategoryCount($Qcategories->valueInt('categories_id')));
-                $category_products = array('products_count' => $CLICSHOPPING_CategoriesAdmin->getCatalogInCategoryCount($Qcategories->valueInt('categories_id')));
-
-                $cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
-                $cInfo = new ObjectInfo($cInfo_array);
-              }
-              ?>
-              <td class="text-md-center">&nbsp;</td>
-              <td><?php echo '<a href="' . $CLICSHOPPING_Categories->link('Categories&' . $CLICSHOPPING_CategoriesAdmin->getCategoriesPath($Qcategories->valueInt('categories_id'))) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/folder.gif', $CLICSHOPPING_Categories->getDef('icon_folder')); ?></td>
-              <td colspan="2"></td>
-              <td><?php echo '<strong>' . $Qcategories->value('categories_name') . '</strong>'; ?></td>
-              <td class="text-md-center">
-                <?php
-                  if ($Qcategories->valueInt('status') == 1) {
-                    echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=0&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
-                  } else {
-                    echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=1&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
-                  }
-                ?>
-              </td>
-              <?php
-              if (!is_null($Qcategories->value('last_modified'))) {
-                echo '<td class="text-md-center">' . DateTime::toShort($Qcategories->value('last_modified')) . '</td>';
-              } else {
-                echo '<td class="text-md-center"></td>';
-              }
-              ?>
-
-              <td class="text-md-center">&nbsp;</td>
-              <td class="text-md-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
-              <td class="text-md-right">
-                <?php
-                  echo '<a href="' . $CLICSHOPPING_Categories->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Categories->getDef('icon_edit')) . '</a>';
-                  echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_Categories->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_Categories->getDef('icon_move')) . '</a>';
-                  echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_Categories->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Categories->getDef('icon_delete')) . '</a>';
-                  echo '&nbsp;';
-                ?>
-              </td>
-              </tr>
-              <?php
-            }
-          } // end $listingTotalRow
-        ?>
-        </tbody>
-      </table>
-    </td>
+        $cInfo_array = array_merge($Qcategories->toArray(), $category_childs, $category_products);
+        $cInfo = new ObjectInfo($cInfo_array);
+      }
+    ?>
+      <tr>
+        <td><?php echo '<a href="' . $CLICSHOPPING_Categories->link('Categories&' . $CLICSHOPPING_CategoriesAdmin->getCategoriesPath($Qcategories->valueInt('categories_id'))) . '"'; ?><span class="text-primary"><i class="fas fa-folder fa-1x primary"></i></span></td>
+        <td><?php echo '<strong>' . $Qcategories->value('categories_name') . '</strong>'; ?></td>
+        <td>
+          <?php
+          if ($Qcategories->valueInt('status') == 1) {
+            echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=0&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+          } else {
+            echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=1&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+          }
+          ?>
+        </td>
+        <td>
+          <?php
+          if (!is_null($Qcategories->value('last_modified'))) {
+            echo  DateTime::toShort($Qcategories->value('last_modified'));
+          }
+          ?>
+        </td>
+        <td class="text-md-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
+        <td class="text-md-right">
+          <?php
+          echo '<a href="' . $CLICSHOPPING_Categories->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Categories->getDef('icon_edit')) . '</a>';
+          echo '&nbsp;';
+          echo '<a href="' . $CLICSHOPPING_Categories->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_Categories->getDef('icon_move')) . '</a>';
+          echo '&nbsp;';
+          echo '<a href="' . $CLICSHOPPING_Categories->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Categories->getDef('icon_delete')) . '</a>';
+          echo '&nbsp;';
+          ?>
+        </td>
+      </tr>
+      <?php
+    }
+  } // end $listingTotalRow
+  ?>
+    </tbody>
   </table>
   </form>
+  <div class="separator"></div>
   <div><?php echo $CLICSHOPPING_Categories->getDef('text_categories') . '&nbsp;' . $categories_count; ?></div>
 </div>

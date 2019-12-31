@@ -56,7 +56,7 @@
       }
 
       if (isset($_POST['customers_notes'])) {
-        $customers_notes = $_POST['customers_notes'];
+        $customers_notes = HTML::sanitize($_POST['customers_notes']);
       } else {
         $customers_notes = '';
       }

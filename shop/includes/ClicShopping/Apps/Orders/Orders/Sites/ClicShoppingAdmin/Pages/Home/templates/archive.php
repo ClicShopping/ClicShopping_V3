@@ -44,7 +44,7 @@
 
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Orders->getDef('text_info_heading_archive'); ?></strong></div>
-  <?php echo HTML::form('archive', $CLICSHOPPING_Orders->link('Orders&ArchiveToConfirm&oID=' . (int)$_GET['oID'])); ?>
+  <?php echo HTML::form('archive', $CLICSHOPPING_Orders->link('Orders&ArchiveToConfirm&oID=' . (int)$orders_id)); ?>
   <div class="adminformTitle">
     <div class="row">
       <div class="separator"></div>
@@ -53,7 +53,7 @@
       <div class="col-md-12"><?php echo '<br /><strong>' . $oInfo->customers_name . '</strong><br />'; ?><br/><br/>
       </div>
       <div class="col-md-12 text-md-center">
-        <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link(null, 'A&Orders\Orders&Edit&oID=' . $oInfo->orders_id), 'warning', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_archive'), null, null, 'primary', null, 'sm'); ?></span>
+        <span><br/><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_cancel'), null, $CLICSHOPPING_Orders->link('Orders&oID=' . $orders_id), 'warning', null, 'sm') . '&nbsp;</span><span>' . HTML::button($CLICSHOPPING_Orders->getDef('button_archive'), null, null, 'primary', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

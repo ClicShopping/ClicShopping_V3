@@ -14,6 +14,7 @@
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -29,108 +30,111 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Suppliers->getDef('heading_title'); ?></span>
           <span class="col-md-7 text-md-right">
-<?php
-  echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_new'), null, $CLICSHOPPING_Suppliers->link('Edit'), 'success');
-  echo HTML::form('delete_all', $CLICSHOPPING_Suppliers->link('Suppliers&DeleteAll&page=' . $page));
-?>
-              <a onclick="$('delete').prop('action', ''); $('form').submit();"
-                 class="button"><span><?php echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_delete'), null, null, 'danger'); ?></span></a>
+            <?php echo HTML::button($CLICSHOPPING_Suppliers->getDef('button_new'), null, $CLICSHOPPING_Suppliers->link('Edit'), 'success'); ?>
            </span>
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
+  <?php
+    echo HTML::form('delete_all', $CLICSHOPPING_Suppliers->link('Suppliers&DeleteAll&page=' . $page));
+  ?>
 
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th width="1" class="text-md-center"><input type="checkbox"
-                                                      onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"/>
-          </th>
-          <th></th>
-          <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_suppliers'); ?></th>
-          <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_manager'); ?></th>
-          <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_phone'); ?></th>
-          <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_fax'); ?></th>
-          <th><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_email_address'); ?></th>
-          <th class="text-md-center"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_status'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_action'); ?>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
+  <div id="toolbar">
+    <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Suppliers->getDef('button_delete'); ?></button>
+  </div>
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-id-field="selected"
+    data-select-item-name="selected[]"
+    data-click-to-select="true"
+    data-sort-order="asc"
+    data-sort-name="selected"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-checkbox="true" data-field="state"></th>
+        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Suppliers->getDef('id'); ?></th>
+        <th data-switchable="false"></th>
+        <th data-field="suppliers" data-sortable="true"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_suppliers'); ?></th>
+        <th data-field="manager"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_manager'); ?></th>
+        <th data-field="phone"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_phone'); ?></th>
+        <th data-field="fax"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_fax'); ?></th>
+        <th data-field="email"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_email_address'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_status'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Suppliers->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select SQL_CALC_FOUND_ROWS  *
+                                                          from :table_suppliers
+                                                          order by suppliers_name
+                                                          limit :page_set_offset, :page_set_max_results
+                                                          ');
+
+      $Qsuppliers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qsuppliers->execute();
+
+      $listingTotalRow = $Qsuppliers->getPageSetTotalRows();
+
+      if ($listingTotalRow > 0) {
+
+        while ($Qsuppliers->fetch()) {
+          if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ((int)$_GET['mID'] == $Qsuppliers->valueInt('suppliers_id')))) && !isset($mInfo)) {
+
+            $Qproducts = $CLICSHOPPING_Suppliers->db->get('products', 'count(*) as products_count', ['suppliers_id' => $Qsuppliers->valueInt('suppliers_id')]);
+
+            $mInfo_array = array_merge($Qsuppliers->toArray(), $Qproducts->toArray());
+            $mInfo = new ObjectInfo($mInfo_array);
+          }
+      ?>
+    <tr>
+      <td></td>
+      <td><?php echo $Qsuppliers->valueInt('suppliers_id'); ?></td>
+      <td>
         <?php
-          $Qsuppliers = $CLICSHOPPING_Suppliers->db->prepare('select  SQL_CALC_FOUND_ROWS  *
-                                                from :table_suppliers
-                                                order by suppliers_name
-                                                limit :page_set_offset, :page_set_max_results
-                                                ');
-
-          $Qsuppliers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qsuppliers->execute();
-
-          $listingTotalRow = $Qsuppliers->getPageSetTotalRows();
-
-          if ($listingTotalRow > 0) {
-
-            while ($Qsuppliers->fetch()) {
-              if ((!isset($_GET['mID']) || (isset($_GET['mID']) && ((int)$_GET['mID'] == $Qsuppliers->valueInt('suppliers_id')))) && !isset($mInfo)) {
-
-                $Qproducts = $CLICSHOPPING_Suppliers->db->get('products', 'count(*) as products_count', ['suppliers_id' => $Qsuppliers->valueInt('suppliers_id')]);
-
-                $mInfo_array = array_merge($Qsuppliers->toArray(), $Qproducts->toArray());
-                $mInfo = new ObjectInfo($mInfo_array);
-              }
-              ?>
-              <tr>
-                <td>
-                  <?php
-                    if (isset($_POST['selected'])) {
-                      ?>
-                      <input type="checkbox" name="selected[]"
-                             value="<?php echo $Qsuppliers->valueInt('suppliers_id'); ?>" checked="checked"/>
-                      <?php
-                    } else {
-                      ?>
-                      <input type="checkbox" name="selected[]"
-                             value="<?php echo $Qsuppliers->valueInt('suppliers_id'); ?>"/>
-                      <?php
-                    }
-                  ?>
-                </td>
-                <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qsuppliers->value('suppliers_image'), $Qsuppliers->value('suppliers_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
-                <th scope="row"><?php echo $Qsuppliers->value('suppliers_name'); ?></th>
-                <td><?php echo $Qsuppliers->value('suppliers_manager'); ?></td>
-                <td><?php echo $Qsuppliers->value('suppliers_phone'); ?></td>
-                <td><?php echo $Qsuppliers->value('suppliers_fax'); ?></td>
-                <td><?php echo $Qsuppliers->value('suppliers_email_address'); ?></td>
-                <td class="text-md-center">
-                  <?php
-                    if ($Qsuppliers->valueInt('suppliers_status') == 0) {
-                      echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $page . '&flag=1&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
-                    } else {
-                      echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $page . '&flag=0&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
-                    }
-                  ?>
-                </td>
-                <td class="text-md-right">
-                  <?php
-                    echo '<a href="' . $CLICSHOPPING_Suppliers->link('Edit&page=' . $page . '&mID=' . $Qsuppliers->valueInt('suppliers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Suppliers->getDef('icon_edit')) . '</a>';
-                    echo '&nbsp;';
-                  ?>
-                </td>
-              </tr>
-              <?php
-            } // end while
-          } // end $listingTotalRow
+          if (!empty($Qsuppliers->value('suppliers_image'))) {
+            echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qsuppliers->value('suppliers_image'), $Qsuppliers->value('suppliers_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN);
+          }
+          ?>
+      </td>
+      <td scope="row"><?php echo $Qsuppliers->value('suppliers_name'); ?></td>
+      <td><?php echo $Qsuppliers->value('suppliers_manager'); ?></td>
+      <td><?php echo $Qsuppliers->value('suppliers_phone'); ?></td>
+      <td><?php echo $Qsuppliers->value('suppliers_fax'); ?></td>
+      <td><?php echo $Qsuppliers->value('suppliers_email_address'); ?></td>
+      <td class="text-md-center">
+        <?php
+          if ($Qsuppliers->valueInt('suppliers_status') == '0') {
+            echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $page . '&flag=1&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+          } else {
+            echo '<a href="' . $CLICSHOPPING_Suppliers->link('Suppliers&SetFlag&page=' . $page . '&flag=0&id=' . $Qsuppliers->valueInt('suppliers_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+          }
         ?>
-        </form><!-- end form delete all -->
-        </tbody>
-      </table>
-    </td>
+      </td>
+      <td class="text-md-right">
+        <?php
+          echo '<a href="' . $CLICSHOPPING_Suppliers->link('Edit&page=' . $page . '&mID=' . $Qsuppliers->valueInt('suppliers_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Suppliers->getDef('icon_edit')) . '</a>';
+          echo '&nbsp;';
+        ?>
+      </td>
+    </tr>
+    <?php
+      } // end while
+    } // end $listingTotalRow
+    ?>
+    </tbody>
   </table>
+  </form><!-- end form delete all -->
   <?php
     if ($listingTotalRow > 0) {
       ?>
@@ -143,9 +147,6 @@
         </div>
       </div>
       <?php
-    }
+    } // end $listingTotalRow
   ?>
-
-
 </div>
-

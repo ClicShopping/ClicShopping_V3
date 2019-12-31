@@ -17,6 +17,8 @@ female = Female
 male_address = Mr.
 female_address = Ms.
 
+text_category_personal_pro = Personal informations
+
 entry_gender = Gender:
 entry_gender_error = Please select your Gender.
 entry_gender_error_pro = Please select your Gender.

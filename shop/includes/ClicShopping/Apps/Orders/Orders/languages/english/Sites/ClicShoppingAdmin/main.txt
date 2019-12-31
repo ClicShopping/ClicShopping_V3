@@ -73,7 +73,7 @@ table_heading_orders = Orders No
 table_heading_erp = ERP
 table_heading_support = Support
 table_heading_guest = Guest
-
+table_heading_qty = Quantity
 table_heading_customer_notified = Customer Notified
 table_heading_date_added = Date Added
 
@@ -100,7 +100,6 @@ entry_status_orders_tracking_number = Tracking number :
 entry_status_orders_support_name = Customer support
 entry_status_evidence = Customer evidence :
 entry_credit_card_express = Credit card express
-
 
 entry_status_invoice = PDF to create :
 entry_status_comment_invoice = PDF  created; :
@@ -216,6 +215,7 @@ button_orders_batch =  Orders print
 success_order_updated = Your request have been made with success
 warning_order_not_updated = Becarefull : order not updated
 
+text_info_new_quantity = Quantity orders updated : New Quantity is {{new_quantity}} about the product name : {{products_name}}
 
 text_result_page = Page {{listing_from}} of {{listing_total}}
 text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)

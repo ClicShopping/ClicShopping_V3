@@ -38,77 +38,76 @@
   </div>
   <div class="separator"></div>
 
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th width="20"></th>
-          <th width="50"></th>
-          <th><?php echo $CLICSHOPPING_Products->getDef('table_heading_number'); ?></th>
-          <th><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
-          <th
-            class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_purchased'); ?>
-            &nbsp;
-          </th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_clear'); ?>
-            &nbsp;
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $rows = 0;
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="sort_order"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
-          $Qproducts = $CLICSHOPPING_Products->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
-                                                                                        p.products_ordered,
-                                                                                        p.products_image,
-                                                                                        pd.products_name
-                                                            from :table_products p,
-                                                                 :table_products_description pd
-                                                            where pd.products_id = p.products_id
-                                                           and pd.language_id = :language_id
-                                                           and p.products_archive = 0
-                                                           and p.products_ordered > 0
-                                                           group by pd.products_id
-                                                           order by p.products_ordered DESC,
-                                                                    pd.products_name
-                                                           limit :page_set_offset,
-                                                                 :page_set_max_results
-                                                          ');
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-switchable="false" width="20"></th>
+        <th data-switchable="false" width="50"></th>
+        <th data-field="number" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_number'); ?></th>
+        <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
+        <th data-field="purchased" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_purchased'); ?></th>
+        <th data-field="clear" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_clear'); ?></th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $rows = 0;
 
-          $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-          $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qproducts->execute();
+      $Qproducts = $CLICSHOPPING_Products->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
+                                                                                    p.products_ordered,
+                                                                                    p.products_image,
+                                                                                    pd.products_name
+                                                        from :table_products p,
+                                                             :table_products_description pd
+                                                        where pd.products_id = p.products_id
+                                                       and pd.language_id = :language_id
+                                                       and p.products_archive = 0
+                                                       and p.products_ordered > 0
+                                                       group by pd.products_id
+                                                       order by p.products_ordered DESC,
+                                                                pd.products_name
+                                                       limit :page_set_offset,
+                                                             :page_set_max_results
+                                                      ');
 
-          $listingTotalRow = $Qproducts->getPageSetTotalRows();
+      $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qproducts->execute();
 
-          if ($listingTotalRow > 0) {
-            while ($products = $Qproducts->fetch()) {
-              $rows++;
+      $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
-              if (strlen($rows) < 2) {
-                $rows = '0' . $rows;
-              }
-              ?>
-              <tr>
-                <td scope="row"
-                    width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('text_preview'))); ?></td>
-                <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
-                <td><?php echo $rows; ?>.</td>
-                <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), $Qproducts->value('products_name')); ?></td>
-                <td class="text-md-center"><?php echo $Qproducts->valueInt('products_ordered'); ?>&nbsp;</td>
-                <td class="text-md-right"><?php echo HTML::link($CLICSHOPPING_Products->link('Products&UpdateStatsProductsPurchased&resetPurchased=1&products_id=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Products->getDef('image_delete'))); ?>
-                </td>
-              </tr>
-              <?php
-            }
-          } // end $listingTotalRow
-        ?>
-        </tbody>
-      </table>
-    </td>
-    </tr>
+      if ($listingTotalRow > 0) {
+        while ($products = $Qproducts->fetch()) {
+          $rows++;
+
+          if (strlen($rows) < 2) {
+            $rows = '0' . $rows;
+          }
+          ?>
+          <tr>
+            <td scope="row" width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('text_preview'))); ?></td>
+            <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
+            <td><?php echo $rows; ?>.</td>
+            <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), $Qproducts->value('products_name')); ?></td>
+            <td class="text-md-center"><?php echo $Qproducts->valueInt('products_ordered'); ?>&nbsp;</td>
+            <td class="text-md-right"><?php echo HTML::link($CLICSHOPPING_Products->link('Products&UpdateStatsProductsPurchased&resetPurchased=1&products_id=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Products->getDef('image_delete'))); ?>
+            </td>
+          </tr>
+          <?php
+        }
+      } // end $listingTotalRow
+    ?>
+    </tbody>
   </table>
   <?php
     if ($listingTotalRow > 0) {
@@ -124,7 +123,4 @@
       <?php
     } // end $listingTotalRow
   ?>
-
 </div>
-
-

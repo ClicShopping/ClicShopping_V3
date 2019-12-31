@@ -66,94 +66,100 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_Groups->getDef('table_heading_name'); ?></th>
-          <th class="text-md-center"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_color'); ?></th>
-          <th><?php echo $CLICSHOPPING_Groups->getDef('table_heading_quantity_default'); ?></th>
-          <?php
-            if (B2B == 'true') {
-              ?>
-              <th><?php echo $CLICSHOPPING_Groups->getDef('table_heading_discount_b2b'); ?></th>
-              <?php
-            } else {
-              ?>
-              <th><?php echo $CLICSHOPPING_Groups->getDef('table_heading_discount'); ?></th>
-              <?php
-            }
-          ?>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_action'); ?>&nbsp;</th>
-        </tr>
-        </thead>
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="name" data-sortable="true"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_name'); ?></th>
+        <th data-field="color"class="text-md-center"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_color'); ?></th>
+        <th data-field="quantity"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_quantity_default'); ?></th>
         <?php
-          $search = '';
-
-          if (isset($_POST['search'])) {
-            $keywords = HTML::sanitize($_POST['search']);
-
-            $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
-                                                         from :table_customers_groups
-                                                         where customers_group_name like :search
-                                                         limit :page_set_offset,
-                                                              :page_set_max_results
-                                                        ');
-            $QustomersGroup->bindvalue(':search', '%' . $keywords . '%');
-            $QustomersGroup->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-            $QustomersGroup->execute();
-
+          if (B2B == 'true') {
+            ?>
+            <th data-field="discount_b2b"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_discount_b2b'); ?></th>
+            <?php
           } else {
-            $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
-                                                         from :table_customers_groups
-                                                         limit :page_set_offset,
-                                                              :page_set_max_results
-                                                        ');
-            $QustomersGroup->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-            $QustomersGroup->execute();
+            ?>
+            <th data-field="discount"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_discount'); ?></th>
+            <?php
           }
-
-          $listingTotalRow = $QustomersGroup->getPageSetTotalRows();
-
-          if ($listingTotalRow > 0) {
-
-            while ($customers_group = $QustomersGroup->fetch()) {
-              if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $QustomersGroup->valueInt('customers_group_id')))) && !isset($cInfo)) {
-                $cInfo = new ObjectInfo($QustomersGroup->toArray());
-              }
-              ?>
-              <tr>
-                <td scope="row"><?php echo $QustomersGroup->value('customers_group_name'); ?></td>
-                <td class="text-md-center">
-                  <table cellspacing="0" cellpadding="0" border="0" width="30px">
-                    <td class="text-md-center" bgcolor="<?php echo $QustomersGroup->value('color_bar'); ?>">&nbsp;</td>
-                  </table>
-                </td>
-                <td
-                  class="text-md-left"><?php echo $QustomersGroup->valueInt('customers_group_quantity_default'); ?></td>
-                <td class="text-md-left"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
-                <td class="text-md-right">
-                  <?php
-                    echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
-                    echo '&nbsp;';
-                    echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')));
-                    echo '&nbsp;';
-
-                    if ($QustomersGroup->valueInt('customers_group_id') > 1) {
-                      echo HTML::link($CLICSHOPPING_Groups->link('Groups&Delete&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Groups->getDef('image_delete')));
-                      echo '&nbsp;';
-                    }
-                  ?>
-                </td>
-              </tr>
-              <?php
-            }
-          } // end $listingTotalRow
         ?>
-      </table>
-    </td>
-    </tr>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+      <?php
+        $search = '';
+
+        if (isset($_POST['search'])) {
+          $keywords = HTML::sanitize($_POST['search']);
+
+          $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
+                                                       from :table_customers_groups
+                                                       where customers_group_name like :search
+                                                       limit :page_set_offset,
+                                                            :page_set_max_results
+                                                      ');
+          $QustomersGroup->bindvalue(':search', '%' . $keywords . '%');
+          $QustomersGroup->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+          $QustomersGroup->execute();
+
+        } else {
+          $QustomersGroup = $CLICSHOPPING_Groups->db->prepare('select  SQL_CALC_FOUND_ROWS *
+                                                       from :table_customers_groups
+                                                       limit :page_set_offset,
+                                                            :page_set_max_results
+                                                      ');
+          $QustomersGroup->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+          $QustomersGroup->execute();
+        }
+
+        $listingTotalRow = $QustomersGroup->getPageSetTotalRows();
+
+        if ($listingTotalRow > 0) {
+
+          while ($customers_group = $QustomersGroup->fetch()) {
+            if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $QustomersGroup->valueInt('customers_group_id')))) && !isset($cInfo)) {
+              $cInfo = new ObjectInfo($QustomersGroup->toArray());
+            }
+            ?>
+            <tr>
+              <td scope="row"><?php echo $QustomersGroup->value('customers_group_name'); ?></td>
+              <td class="text-md-center">
+                <table cellspacing="0" cellpadding="0" border="0" width="30px">
+                  <td class="text-md-center" bgcolor="<?php echo $QustomersGroup->value('color_bar'); ?>">&nbsp;</td>
+                </table>
+              </td>
+              <td
+                class="text-md-left"><?php echo $QustomersGroup->valueInt('customers_group_quantity_default'); ?></td>
+              <td class="text-md-left"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
+              <td class="text-md-right">
+                <?php
+                  echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
+                  echo '&nbsp;';
+                  echo HTML::link($CLICSHOPPING_Groups->link('Groups&UpdateAllPrice&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/actualiser.gif', $CLICSHOPPING_Groups->getDef('icon_update')));
+                  echo '&nbsp;';
+
+                  if ($QustomersGroup->valueInt('customers_group_id') > 1) {
+                    echo HTML::link($CLICSHOPPING_Groups->link('Groups&Delete&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Groups->getDef('image_delete')));
+                    echo '&nbsp;';
+                  }
+                ?>
+              </td>
+            </tr>
+            <?php
+          }
+        } // end $listingTotalRow
+      ?>
+      </tr>
+    </tbody>
   </table>
   <?php
     if ($listingTotalRow > 0) {

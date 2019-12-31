@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-warning text-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
-        <h3><?php echo CLICSHOPPING::getDef('category_personal_pro'); ?></h3>
+        <h3><?php echo CLICSHOPPING::getDef('text_category_personal_pro'); ?></h3>
       </div>
     </div>
 <?php
@@ -276,6 +276,7 @@
     </div>
 <?php
     }
+
     if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
       if (AddressBook::countCustomersModifyCompany() == 1) {
         $input_field_option = 'maxlength="' . ENTRY_TVA_INTRACOM_MAX_LENGTH . '" placeholder="' . CLICSHOPPING::getDef('entry_tva_intracom') . '" id="entry_tva_intracom"';
