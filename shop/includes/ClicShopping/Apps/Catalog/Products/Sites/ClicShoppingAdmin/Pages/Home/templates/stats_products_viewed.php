@@ -51,7 +51,8 @@
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-show-export="true">
 
     <thead class="dataTableHeadingRow">
       <tr>

@@ -32,6 +32,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/stats_products_purchased.gif', $CLICSHOPPING_Products->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
+          </span>
         </div>
       </div>
     </div>
@@ -41,13 +42,14 @@
   <table
     id="table"
     data-toggle="table"
-    data-sort-name="sort_order"
+    data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-show-export="true">
 
     <thead class="dataTableHeadingRow">
       <tr>

@@ -43,187 +43,188 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="0">
-    <tr>
-      <td valign="top">
-        <table border="0" width="100%" cellspacing="0" cellpadding="5">
-          <tr class="dataTableHeadingRow">
-            <td><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_number'); ?></td>
-            <td><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_name'); ?></td>
-            <td><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_email'); ?></td>
-            <td><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_date'); ?></td>
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="number"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true"
+    data-show-export="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="number" data-sortable="true"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_number'); ?></th>
+        <th data-field="name" data-sortable="true"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_name'); ?></th>
+        <th data-field="email"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_email'); ?></th>
+        <th data-field="date" data-sortable="true"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_date'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_action'); ?></th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+  $Qcustomers = $CLICSHOPPING_StatsProductsNotification->dbprepare('select  SQL_CALC_FOUND_ROWS c.customers_firstname,
+                                                                                                 c.customers_lastname,
+                                                                                                 c.customers_email_address,
+                                                                                                 pn.date_added
+                                                                    from :table_customers c,
+                                                                         :table_products_notifications pn
+                                                                    where c.customers_id = pn.customers_id
+                                                                    and pn.products_id = :products_id
+                                                                    order by c.customers_firstname,
+                                                                     c.customers_lastname";
+                                                                    limit :page_set_offset,
+                                                                          :page_set_max_results
+                                                                    ');
+  $Qcustomers->bindInt(':products_id', (int)$products_id);
+  $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+  $Qcustomers->execute();
+
+  $listingTotalRow = $Qcustomers->getPageSetTotalRows();
+
+  if ($listingTotalRow > 0) {
+    while ($customers = $Qcustomers->fetch()) {
+      $rows++;
+
+      if (strlen($rows) < 2) {
+        $rows = '0' . $rows;
+      }
+    ?>
+          <tr>
+            <td width="30" nowrap class="dataTableContent"><?php echo $rows; ?>.</td>
             <td
-              class="text-md-right"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_action'); ?></td>
+              class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
+            <td
+              class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), $Qcustomers->value('customers_email_address')) ?></td>
+            <td class="dataTableContent"><?php echo DateTime::getLong($Qcustomers->value('date_added')); ?>&nbsp;
+            </td>
+            <td class="dataTableContent text-md-right">
+              <?php
+                echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
+                echo '&nbsp;';
+                echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_email')));
+              ?>
+            </td>
           </tr>
           <?php
-            $Qcustomers = $CLICSHOPPING_StatsProductsNotification->dbprepare('select  SQL_CALC_FOUND_ROWS   c.customers_firstname,
-                                                                                             c.customers_lastname,
-                                                                                             c.customers_email_address,
-                                                                                             pn.date_added
-                                                                from :table_customers c,
-                                                                     :table_products_notifications pn
-                                                                where c.customers_id = pn.customers_id
-                                                                and pn.products_id = :products_id
-                                                                order by c.customers_firstname,
-                                                                 c.customers_lastname";
-                                                                limit :page_set_offset,
-                                                                      :page_set_max_results
-                                                                ');
-
-            $Qcustomers->bindInt(':products_id', (int)$products_id);
-            $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-            $Qcustomers->execute();
-
-            $listingTotalRow = $Qcustomers->getPageSetTotalRows();
-
-            if ($listingTotalRow > 0) {
-
-            while ($customers = $Qcustomers->fetch()) {
-
-              $rows++;
-
-              if (strlen($rows) < 2) {
-                $rows = '0' . $rows;
-              }
-              ?>
-              <tr>
-                <td width="30" nowrap class="dataTableContent"><?php echo $rows; ?>.</td>
-                <td
-                  class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
-                <td
-                  class="dataTableContent"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), $Qcustomers->value('customers_email_address')) ?></td>
-                <td class="dataTableContent"><?php echo DateTime::getLong($Qcustomers->value('date_added')); ?>&nbsp;
-                </td>
-                <td class="dataTableContent text-md-right">
-                  <?php
-                    echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
-                    echo '&nbsp;';
-                    echo HTML::link(CLICSHOPPING::link(null, 'A&Communication\EMail&EMail&customer=' . $Qcustomers->value('customers_email_address')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/email.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_email')));
-                  ?>
-                </td>
-              </tr>
-              <?php
             }
           ?>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <div class="row">
-        <div class="col-md-12">
-          <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_StatsProductsNotification->getDef('text_display_number_of_link')); ?></div>
-          <div
-            class="float-md-right text-md-right"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
-        </div>
-      </div>
-    </tr>
+    </tbody>
   </table>
-  <?php
+  <div class="row">
+    <div class="col-md-12">
+      <div
+        class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_StatsProductsNotification->getDef('text_display_number_of_link')); ?></div>
+      <div
+        class="float-md-right text-md-right"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+    </div>
+  </div>
+<?php
     } // end $listingTotalRow
-    // default
-    } else {
-
+  } else {
     if (isset($page) && ($page > 1)) $rows = $page * (int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN - (int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN;
-  ?>
-  <!-- body //-->
+?>
+<!-- body //-->
   <div class="contentBody">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-block headerCard">
-          <div class="row">
-            <span
-              class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/categorie_produit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'), '40', '40'); ?></span>
-            <span class="col-md-3 pageHeading"
-                  width="250"><?php echo '&nbsp;' . $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'); ?></span>
-          </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-block headerCard">
+        <div class="row">
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/categorie_produit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'), '40', '40'); ?></span>
+          <span class="col-md-3 pageHeading"
+                width="250"><?php echo '&nbsp;' . $CLICSHOPPING_StatsProductsNotification->getDef('heading_title'); ?></span>
         </div>
       </div>
     </div>
-    <div class="separator"></div>
-    <table border="0" width="100%" cellspacing="0" cellpadding="2">
-      <td>
-        <table class="table table-sm table-hover table-striped">
-          <thead>
-          <tr class="dataTableHeadingRow">
-            <th width="20"></th>
-            <th width="50"></th>
-            <th><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_number'); ?></th>
-            <th><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_products'); ?></th>
-            <th
-              class="text-md-center"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_model'); ?></th>
-            <th
-              class="text-md-center"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_count'); ?>
-              &nbsp;
-            </th>
-            <th
-              class="text-md-right"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_action'); ?></th>
-          </tr>
-          </thead>
-          <tbody>
-          <?php
+  </div>
+  <div class="separator"></div>
 
-            $Qproducts = $CLICSHOPPING_StatsProductsNotification->db->prepare('select  SQL_CALC_FOUND_ROWS   count(pn.products_id) as count_notifications,
-                                                                                          pn.products_id,
-                                                                                          pd.products_name,
-                                                                                          p.products_image,
-                                                                                          p.products_model
-                                                             from :table_products_notifications pn,
-                                                                  :table_products_description pd,
-                                                                  :table_products p,
-                                                                  :table_customers c
-                                                             where pn.products_id = pd.products_id
-                                                             and pd.language_id = :language_id
-                                                             and pn.customers_id = c.customers_id
-                                                             and pn.products_id = p.products_id
-                                                             group by pn.products_id order by count_notifications desc,
-                                                                      pn.products_id
-                                                            limit :page_set_offset,
-                                                                  :page_set_max_results
-                                                            ');
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="number"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true"
+    data-show-export="true">
 
-            $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-            $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-            $Qproducts->execute();
+    <thead class="dataTableHeadingRow">
+    <tr>
+      <th data-switchable="false" width="20"></th>
+      <th data-switchable="false" width="50"></th>
+      <th data-field="number" data-sortable="true"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_number'); ?></th>
+      <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_products'); ?></th>
+      <th data-field="model" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_model'); ?></th>
+      <th data-field="count" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_count'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_StatsProductsNotification->getDef('table_heading_action'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+      <?php
 
-            $listingTotalRow = $Qproducts->getPageSetTotalRows();
+        $Qproducts = $CLICSHOPPING_StatsProductsNotification->db->prepare('select  SQL_CALC_FOUND_ROWS count(pn.products_id) as count_notifications,
+                                                                                                        pn.products_id,
+                                                                                                        pd.products_name,
+                                                                                                        p.products_image,
+                                                                                                        p.products_model
+                                                                           from :table_products_notifications pn,
+                                                                                :table_products_description pd,
+                                                                                :table_products p,
+                                                                                :table_customers c
+                                                                           where pn.products_id = pd.products_id
+                                                                           and pd.language_id = :language_id
+                                                                           and pn.customers_id = c.customers_id
+                                                                           and pn.products_id = p.products_id
+                                                                           group by pn.products_id order by count_notifications desc,
+                                                                                    pn.products_id
+                                                                          limit :page_set_offset,
+                                                                                :page_set_max_results
+                                                                          ');
 
-            $rows = 0;
+        $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+        $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+        $Qproducts->execute();
 
-            if ($listingTotalRow > 0) {
+        $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
-              while ($products = $Qproducts->fetch()) {
+        $rows = 0;
 
-                $rows++;
+        if ($listingTotalRow > 0) {
+          while ($products = $Qproducts->fetch()) {
+            $rows++;
 
-                if (strlen($rows) < 2) {
-                  $rows = '0' . $rows;
-                }
-                ?>
-                <tr>
-                  <td scope="row"
-                      width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
-                  <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id'));; ?></td>
-                  <td><?php echo $rows; ?>.</td>
-                  <td><?php echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $products['products_id'] . '&page=' . $page), $Qproducts->value('products_name')); ?></td>
-                  <td
-                    class="text-md-center"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), $Qproducts->value('products_model')); ?></td>
-                  <td class="text-md-center"><?php echo $Qproducts->valueInt('count_notifications'); ?>&nbsp;</td>
-                  <td class=text-md-right">
-                    <?php
-                      echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
-                      echo '&nbsp;';
-                      echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
-                    ?>
-                </tr>
-                <?php
-              } // end $listingTotalRow
+            if (strlen($rows) < 2) {
+              $rows = '0' . $rows;
             }
-          ?>
-          </tbody>
-        </table>
-      </td>
-      </tr>
+            ?>
+            <tr>
+              <td scope="row"
+                  width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_preview'))); ?></td>
+              <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id'));; ?></td>
+              <td><?php echo $rows; ?>.</td>
+              <td><?php echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $products['products_id'] . '&page=' . $page), $Qproducts->value('products_name')); ?></td>
+              <td
+                class="text-md-center"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), $Qproducts->value('products_model')); ?></td>
+              <td class="text-md-center"><?php echo $Qproducts->valueInt('count_notifications'); ?>&nbsp;</td>
+              <td class=text-md-right">
+                <?php
+                  echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
+                  echo '&nbsp;';
+                  echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
+                ?>
+            </tr>
+            <?php
+          } // end $listingTotalRow
+        }
+      ?>
+      </tbody>
     </table>
 
     <?php
@@ -239,7 +240,7 @@
         </div>
         <?php
       } // end $listingTotalRow
-      } // end else
+    } // end else
     ?>
   </div>
 

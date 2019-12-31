@@ -44,71 +44,76 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th></th>
-          <th></th>
-          <th><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
-          <th
-            class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_date_expected'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?>
-            &nbsp;
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $Qproducts = $CLICSHOPPING_Products->db->prepare('select  SQL_CALC_FOUND_ROWS  pd.products_id,
-                                                                                          pd.products_name,
-                                                                                          p.products_image,
-                                                                                          p.products_date_available
-                                                             from :table_products_description pd,
-                                                                  :table_products p
-                                                             where p.products_id = pd.products_id
-                                                             and (p.products_date_available = :products_date_available
-                                                                 or p.products_date_available <> :products_date_available1)
-                                                             and pd.language_id = :language_id
-                                                             order by p.products_date_available DESC
-                                                             limit :page_set_offset, :page_set_max_results
-                                                             ');
 
-          $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-          $Qproducts->bindInt(':products_date_available', null);
-          $Qproducts->bindInt(':products_date_available1', null);
-          $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qproducts->execute();
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="expected"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true"
+    data-show-export="true">
 
-          $listingTotalRow = $Qproducts->getPageSetTotalRows();
+    <thead class="dataTableHeadingRow">
+    <tr>
+      <th data-switchable="false" width="20"></th>
+      <th data-switchable="false" width="50"></th>
+      <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
+      <th data-field="expected" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_date_expected'); ?></th>
+      <th data-field="action" data-sortable="true" class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qproducts = $CLICSHOPPING_Products->db->prepare('select  SQL_CALC_FOUND_ROWS  pd.products_id,
+                                                                                      pd.products_name,
+                                                                                      p.products_image,
+                                                                                      p.products_date_available
+                                                         from :table_products_description pd,
+                                                              :table_products p
+                                                         where p.products_id = pd.products_id
+                                                         and (p.products_date_available = :products_date_available
+                                                             or p.products_date_available <> :products_date_available1)
+                                                         and pd.language_id = :language_id
+                                                         order by p.products_date_available DESC
+                                                         limit :page_set_offset, :page_set_max_results
+                                                         ');
 
-          if ($listingTotalRow > 0) {
-            while ($products = $Qproducts->fetch()) {
-              $rows++;
+      $Qproducts->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qproducts->bindInt(':products_date_available', null);
+      $Qproducts->bindInt(':products_date_available1', null);
+      $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qproducts->execute();
 
-              if (strlen($rows) < 2) {
-                $rows = '0' . $rows;
-              }
-              ?>
-              <tr>
-                <td scope="row"
-                    width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?></td>
-                <td
-                  class="dataTableContent"><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
-                <td class="dataTableContent"><?php echo $Qproducts->value('products_name'); ?></td>
-                <td
-                  class="dataTableContent text-md-center"><?php echo DateTime::toShort($products['products_date_available']); ?></td>
-                <td
-                  class="text-md-right"><?php echo $CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit'))); ?></td>
-              </tr>
-              <?php
-            } // end $listingTotalRow
+      $listingTotalRow = $Qproducts->getPageSetTotalRows();
+
+      if ($listingTotalRow > 0) {
+        while ($products = $Qproducts->fetch()) {
+          $rows++;
+
+          if (strlen($rows) < 2) {
+            $rows = '0' . $rows;
           }
-        ?>
-        </tbody>
-      </table>
-    </td>
+          ?>
+          <tr>
+            <td scope="row"
+                width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $_GET['page']), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?></td>
+            <td
+              class="dataTableContent"><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
+            <td class="dataTableContent"><?php echo $Qproducts->value('products_name'); ?></td>
+            <td
+              class="dataTableContent text-md-center"><?php echo DateTime::toShort($products['products_date_available']); ?></td>
+            <td
+              class="text-md-right"><?php echo $CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit'))); ?></td>
+          </tr>
+          <?php
+        } // end $listingTotalRow
+      }
+    ?>
+    </tbody>
   </table>
   <?php
     if ($listingTotalRow > 0) {
