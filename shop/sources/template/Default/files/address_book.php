@@ -119,6 +119,7 @@
 // --- Button   -----
 // ----------------------
 ?>
+        <div class="separator"></div>
         <div class="control-group">
         <div class="controls">
           <span class="buttonSet">

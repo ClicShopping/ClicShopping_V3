@@ -91,11 +91,8 @@
 
 // Clients B2B : Controle de la selection du pays pour le code ISO
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-          if (is_numeric($country) === false) {
-            $country = Edit::CheckCountryIsoCode2($country);
-          } else {
-            $error = true;
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error'), 'danger', 'account_edit');
+          if (is_numeric($country) === true) {
+            $country = Edit::getCheckCountryIsoCode2($country);
           }
         }
 
@@ -259,7 +256,7 @@
 
 // Clients en mode B2B : Modifier le nom de la societe sur toutes les adresses ce trouvant dans le carnet d'adresse
           if (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_COMPANY_PRO == 'true')) {
-            $sql_data_array = ['entry_company' => $company];
+            $sql_data_array = ['customers_company' => $company];
             $insert_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID()];
 
             $CLICSHOPPING_Db->save('customers', $sql_data_array, $insert_array);

@@ -24,27 +24,30 @@
       $this->customer = Registry::get('Customer');
     }
 
+    /**
+     * @return array
+     */
     public static function getAccountEdit(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $Qaccount = $CLICSHOPPING_Db->prepare('select customers_gender,
-                                              customers_firstname,
-                                              customers_lastname,
-                                              customers_dob,
-                                              customers_email_address,
-                                              customers_telephone,
-                                              customers_fax,
-                                              customers_cellular_phone,
-                                              customers_company,
-                                              customers_siret,
-                                              customers_ape,
-                                              customers_tva_intracom,
-                                              customers_tva_intracom_code_iso
-                                       from :table_customers
-                                       where customers_id = :customers_id
-                                      ');
+                                                    customers_firstname,
+                                                    customers_lastname,
+                                                    customers_dob,
+                                                    customers_email_address,
+                                                    customers_telephone,
+                                                    customers_fax,
+                                                    customers_cellular_phone,
+                                                    customers_company,
+                                                    customers_siret,
+                                                    customers_ape,
+                                                    customers_tva_intracom,
+                                                    customers_tva_intracom_code_iso
+                                             from :table_customers
+                                             where customers_id = :customers_id
+                                            ');
       $Qaccount->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qaccount->execute();
 
@@ -53,6 +56,10 @@
       return $account;
     }
 
+    /**
+     * @param string $email_address
+     * @return int
+     */
     public static function getCountEmail(string $email_address): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -72,6 +79,10 @@
       return $check_email;
     }
 
+    /**
+     * @param string $email_address
+     * @return bool
+     */
     public static function getCustomerAddressEmail(string $email_address): bool
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -92,7 +103,11 @@
       return $check;
     }
 
-    public static function getCheckCountryIsoCode2(string $country): string
+    /**
+     * @param int $country_id
+     * @return int
+     */
+    public static function getCheckCountryIsoCode2(int $country_id): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -101,11 +116,11 @@
                                           where countries_iso_code_2 = :countries_iso_code_2
                                           limit 1
                                           ');
-      $Qcheck->bindValue(':countries_iso_code_2', $country);
+      $Qcheck->bindValue(':countries_iso_code_2', $country_id);
       $Qcheck->execute();
 
-      $country = $Qcheck->valueInt('countries_id');
+      $country_id = $Qcheck->valueInt('countries_id');
 
-      return $country;
+      return $country_id;
     }
   }
