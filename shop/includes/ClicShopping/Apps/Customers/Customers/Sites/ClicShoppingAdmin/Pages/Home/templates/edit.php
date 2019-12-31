@@ -178,6 +178,9 @@
     }
 
     //--></script>
+<?php
+  echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 'post', 'onSubmit="return check_form();"') . HTML::hiddenField('default_address_id', $cInfo->customers_default_address_id);
+?>
 <div class="contentBody">
   <div class="row">
     <div class="col-md-12">
@@ -187,17 +190,8 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client_editer.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title_edit') . (int)$_GET['cID'] . '&nbsp;-&nbsp;' . $cInfo->customers_lastname . '&nbsp;' . $cInfo->customers_firstname; ?></span>
-          <span 
-	    class="col-md-6 text-md-right">
+          <span class="col-md-6 text-md-right">
 <?php
-  echo HTML::form('export_customer', $CLICSHOPPING_Customers->link('Customers&ExportCustomerInfo'));
-  echo HTML::hiddenField('customers_id', (int)$_GET['cID']);
-  echo HTML::button($CLICSHOPPING_Customers->getDef('button_export_customer_info'), null, null, 'info');
-?>
-            </form>
-
-<?php
-  echo HTML::form('customers', $CLICSHOPPING_Customers->link('Customers&Update'), 'post', 'onSubmit="return check_form();"') . HTML::hiddenField('default_address_id', $cInfo->customers_default_address_id);
   echo HTML::hiddenField('customers_id', (int)$_GET['cID']);
   echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning');
   echo '&nbsp;';
@@ -539,7 +533,6 @@
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_state'); ?></label>
                       <div class="col-md-5">
 <?php
-
     $entry_state = $CLICSHOPPING_Address->getZoneName($cInfo->entry_country_id, $cInfo->entry_zone_id, $cInfo->entry_state);
 
     if ($error === true) {
@@ -1064,14 +1057,14 @@
             <div class="row">
 <?php
   $QcustomersNotes = $CLICSHOPPING_Customers->db->prepare('select customers_notes_id,
-                                                       customers_id,
-                                                       customers_notes,
-                                                       customers_notes_date,
-                                                       user_administrator
-                                                from :table_customers_notes
-                                                where customers_id = :customers_id
-                                                order by customers_notes_date desc
-                                      ');
+                                                                  customers_id,
+                                                                  customers_notes,
+                                                                  customers_notes_date,
+                                                                  user_administrator
+                                                          from :table_customers_notes
+                                                          where customers_id = :customers_id
+                                                          order by customers_notes_date desc
+                                                          ');
   $QcustomersNotes->bindInt(':customers_id', $_GET['cID']);
   $QcustomersNotes->execute();
 

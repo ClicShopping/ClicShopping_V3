@@ -31,8 +31,7 @@
 
     public function execute()
     {
-      if (isset($_GET['Update'])) {
-
+      if (isset($_GET['Update']) && isset($_GET['Customers'])) {
         $CLICSHOPPING_Customers = Registry::get('Customers');
 
         if (isset($_POST['customers_group_id'])) {
@@ -50,9 +49,9 @@
 
           while ($QmultipleGroups->fetch()) {
             $QmultipleCustomers = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
-                                                                      from :table_customers_groups
-                                                                      where customers_group_id = :customers_group_id
-                                                                    ');
+                                                                        from :table_customers_groups
+                                                                        where customers_group_id = :customers_group_id
+                                                                      ');
             $QmultipleCustomers->bindInt(':customers_group_id', $QmultipleGroups->valueInt('customers_group_id'));
             $QmultipleCustomers->execute();
 
