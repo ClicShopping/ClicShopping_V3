@@ -180,11 +180,10 @@
               <td><?php echo $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('products_id')); ?></td>
               <td><?php echo '<i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
               <td class="text-md-center"><?php echo $Qreviews->value('customers_name'); ?></td>
-              <td
-                class="text-md-center"><?php echo number_format($Qreviews->valueDecimal('average_rating'), 2) . '%'; ?></td>
+              <td class="text-md-center"><?php echo number_format($Qreviews->valueDecimal('average_rating'), 2) . '%'; ?></td>
               <td class="text-md-center"><?php echo number_format($Qreviews->valueInt('reviews_read', 2)); ?></td>
               <td class="text-md-center"><?php echo $customer_group['customers_group_name']; ?></td>
-              <td class="text-md-center"><?php echo DateTime::toLong($Qreviews->value('last_modified')); ?>s</td>
+              <td class="text-md-center"><?php echo DateTime::toLong($Qreviews->value('last_modified')); ?></td>
               <td class="text-md-center">
                 <?php
                   if ($Qreviews->valueInt('status') == 1) {
