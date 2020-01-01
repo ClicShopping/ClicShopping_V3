@@ -8,5 +8,9 @@ $(function() {
     })
   })
 //export
-  $table.bootstrapTable()
+  $table.bootstrapTable(),
+  $table.bootstrapTable('destroy').bootstrapTable({
+    exportDataType: $(this).val(),
+    exportTypes: ['json', 'xml', 'csv', 'excel', 'pdf'],
+  })
 })
