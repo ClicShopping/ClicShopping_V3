@@ -70,6 +70,8 @@
   <table
     id="table"
     data-toggle="table"
+    data-sort-order="asc"
+    data-sort-name="name"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"

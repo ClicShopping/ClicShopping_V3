@@ -139,7 +139,7 @@
     data-select-item-name="selected[]"
     data-click-to-select="true"
     data-sort-order="asc"
-    data-sort-name="selected"
+    data-sort-name="sort_order"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"
