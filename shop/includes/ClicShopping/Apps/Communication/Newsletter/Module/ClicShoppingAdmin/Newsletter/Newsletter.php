@@ -404,7 +404,8 @@
           }
         }  // end while
       } else {
-        echo 'There is a pb with newsletters_customers_temp Database, Click Cancel to go back and retry.<br />';
+        echo'<br />';
+        echo '<span class="text-warning text-md-center">There is a pb with newsletters_customers_temp Database, Click Cancel to go back and retry.</span><br />';
       }
 
       $QmailNewsletterAccountTemp = $this->app->db->prepare('select customers_firstname,

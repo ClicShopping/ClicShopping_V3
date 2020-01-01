@@ -28,7 +28,8 @@
           <span
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/stats_customers.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></span>
           <span
-            class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></span>
+            class="col-md-3 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></span>
+          </span>
         </div>
       </div>
     </div>
@@ -44,7 +45,8 @@
     data-buttons-class="primary"
     data-show-toggle="true"
     data-show-columns="true"
-    data-mobile-responsive="true">
+    data-mobile-responsive="true"
+    data-show-export="true">
 
     <thead class="dataTableHeadingRow">
       <tr>

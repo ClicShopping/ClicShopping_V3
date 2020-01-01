@@ -73,8 +73,8 @@
         <th data-checkbox="true" data-field="state"></th>
         <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Reviews->getDef('id'); ?></th>
         <th data-switchable="false"></th>
-        <th></th>
-        <th data-field="products"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products'); ?></th>
+        <th data-switchable="false"></th>
+        <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products'); ?></th>
         <th data-field="rating" data-sortable="true"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_rating'); ?></th>
         <th data-field="author" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_author'); ?></th>
         <th data-field="average_rating" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products_average_rating'); ?></th>
