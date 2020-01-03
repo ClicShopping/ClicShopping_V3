@@ -112,128 +112,133 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th colspan="3">&nbsp;</th>
-          <th><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
-          <th><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_categories_products'); ?></th>
-          <th><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_rights_access'); ?></th>
-          <th class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_app'); ?></th>
-          <th class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_sort_order'); ?>
-            &nbsp;
-          </th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_action'); ?>
-            &nbsp;
-          </th>
-        </tr>
-        </thead>
-        </tbody>
-        <?php
-          $categories_count = 0;
-          $rows = 0;
 
-          if (isset($_POST['search'])) {
-            $search = HTML::sanitize($_POST['search']);
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
-            $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
-                                                                        a.link,
-                                                                        a.parent_id,
-                                                                        a.access,
-                                                                        a.sort_order,
-                                                                        a.b2b_menu,
-                                                                        a.app_code,
-                                                                        amd.label
-                                                                  from :table_administrator_menu a,
-                                                                       :table_administrator_menu_description amd
-                                                                  where a.id = amd.id
-                                                                  and amd.language_id = :language_id
-                                                                  and (amd.label like :search or a.id like :search  or a.app_code like :search)
-                                                                  and a.status = 1
-                                                                  order by a.parent_id,
-                                                                           a.sort_order
-                                                                  ');
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="id"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
-            $Qcategories->bindValue(':search', '%' . $search . '%');
-            $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-            $Qcategories->execute();
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-switchable="false" ></th>
+        <th data-field="id" data-sortable="true" ><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
+        <th data-field="menu"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_categories_products'); ?></th>
+        <th data-field="access"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_rights_access'); ?></th>
+        <th data-field="app" class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_app'); ?></th>
+        <th data-field="sort_order" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_sort_order'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_action'); ?></th>
+      </tr>
+    </thead>
+    </tbody>
+    <?php
+      $categories_count = 0;
+      $rows = 0;
 
-          } else {
+      if (isset($_POST['search'])) {
+        $search = HTML::sanitize($_POST['search']);
 
-            $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
-                                                                         a.link,
-                                                                        a.parent_id,
-                                                                        a.access,
-                                                                        a.sort_order,
-                                                                        a.b2b_menu,
-                                                                        a.app_code,
-                                                                        amd.label
-                                                                  from :table_administrator_menu a,
-                                                                       :table_administrator_menu_description amd
-                                                                  where a.id = amd.id
-                                                                  and a.parent_id = :parent_id
-                                                                  and amd.language_id = :language_id
-                                                                  and a.status = 1
-                                                                  order by a.parent_id,
-                                                                           a.sort_order
-                                                                  ');
+        $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
+                                                                            a.link,
+                                                                            a.parent_id,
+                                                                            a.access,
+                                                                            a.sort_order,
+                                                                            a.b2b_menu,
+                                                                            a.app_code,
+                                                                            amd.label
+                                                                      from :table_administrator_menu a,
+                                                                           :table_administrator_menu_description amd
+                                                                      where a.id = amd.id
+                                                                      and amd.language_id = :language_id
+                                                                      and (amd.label like :search or a.id like :search  or a.app_code like :search)
+                                                                      and a.status = 1
+                                                                      order by a.parent_id,
+                                                                               a.sort_order
+                                                                      ');
 
-            $Qcategories->bindInt(':parent_id', (int)$current_category_id);
-            $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-            $Qcategories->execute();
-          }
+        $Qcategories->bindValue(':search', '%' . $search . '%');
+        $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+        $Qcategories->execute();
+      } else {
+        $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,
+                                                                     a.link,
+                                                                    a.parent_id,
+                                                                    a.access,
+                                                                    a.sort_order,
+                                                                    a.b2b_menu,
+                                                                    a.app_code,
+                                                                    amd.label
+                                                              from :table_administrator_menu a,
+                                                                   :table_administrator_menu_description amd
+                                                              where a.id = amd.id
+                                                              and a.parent_id = :parent_id
+                                                              and amd.language_id = :language_id
+                                                              and a.status = 1
+                                                              order by a.parent_id,
+                                                                       a.sort_order
+                                                              ');
 
-          while ($Qcategories->fetch()) {
-            $categories_count++;
-            $rows++;
+        $Qcategories->bindInt(':parent_id', (int)$current_category_id);
+        $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+        $Qcategories->execute();
+      }
+
+      while ($Qcategories->fetch()) {
+        $categories_count++;
+        $rows++;
 
 // Get parent_id for subcategories if search
-            $cPath = $Qcategories->valueInt('parent_id');
+        $cPath = $Qcategories->valueInt('parent_id');
 
-            if ((!isset($_GET['cID']) && !isset($_GET['pID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('id')))) && !isset($cInfo)) {
-              $category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
+        if ((!isset($_GET['cID']) && !isset($_GET['pID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcategories->valueInt('id')))) && !isset($cInfo)) {
+          $category_childs = ['childs_count' => AdministratorMenu::getChildsInMenuCount($Qcategories->valueInt('id'))];
 
-              $cInfo_array = array_merge($Qcategories->toArray(), $category_childs);
-              $cInfo = new ObjectInfo($cInfo_array);
-            }
-            ?>
-            <td><?php echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . AdministratorMenu::getPath($Qcategories->valueInt('id'))) . '"'; ?>><span class="text-primary"><i class="fas fa-folder fa-1x primary"></i></span></td>
-            <td colspan="2">&nbsp</td>
-            <td><?php echo '<strong>' . $Qcategories->value('id') . '</strong>'; ?></td>
-            <td><?php echo '<strong>' . $Qcategories->value('label') . '</strong>'; ?></td>
-
-            <?php
-            if ($Qcategories->valueInt('access') == 0) {
-              echo '<td>' . $CLICSHOPPING_AdministratorMenu->getDef('text_all_right') . '</td>';
-            } else if ($Qcategories->valueInt('access') == 1) {
-              echo '<td class="text-info">' . $CLICSHOPPING_AdministratorMenu->getDef('text_all_rights_admin') . '</td>';
-            } elseif ($Qcategories->valueInt('access') == 2) {
-              echo '<td class="text-warning">' . $CLICSHOPPING_AdministratorMenu->getDef('text_rights_employee') . '</td>';
-            } elseif ($Qcategories->valueInt('access') == 3) {
-              echo '<td class="text-danger">' . $CLICSHOPPING_AdministratorMenu->getDef('text_rights_visitor') . '</td>';
-            }
-            ?>
-            <td><?php echo $Qcategories->value('app_code'); ?></td>
-            <td class="text-md-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
-            <td class="text-md-right">
-              <?php
-                echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_edit')) . '</a>';
-                echo '&nbsp;';
-                echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_move')) . '</a>';
-                echo '&nbsp;';
-                echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_delete')) . '</a>';
-                echo '&nbsp;';
-              ?>
-            </td>
-            </tr>
-            <?php
-          }
+          $cInfo_array = array_merge($Qcategories->toArray(), $category_childs);
+          $cInfo = new ObjectInfo($cInfo_array);
+        }
         ?>
-        </tbody>
-      </table>
-    </td>
+        <tr>
+          <td><?php echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('AdministratorMenu&' . AdministratorMenu::getPath($Qcategories->valueInt('id'))) . '"'; ?>><span class="text-primary"><i class="fas fa-folder fa-1x primary"></i></span></td>
+          <td><?php echo '<strong>' . $Qcategories->value('id') . '</strong>'; ?></td>
+          <td><?php echo '<strong>' . $Qcategories->value('label') . '</strong>'; ?></td>
+
+          <?php
+          if ($Qcategories->valueInt('access') == 0) {
+            echo '<td>' . $CLICSHOPPING_AdministratorMenu->getDef('text_all_right') . '</td>';
+          } else if ($Qcategories->valueInt('access') == 1) {
+            echo '<td class="text-info">' . $CLICSHOPPING_AdministratorMenu->getDef('text_all_rights_admin') . '</td>';
+          } elseif ($Qcategories->valueInt('access') == 2) {
+            echo '<td class="text-warning">' . $CLICSHOPPING_AdministratorMenu->getDef('text_rights_employee') . '</td>';
+          } elseif ($Qcategories->valueInt('access') == 3) {
+            echo '<td class="text-danger">' . $CLICSHOPPING_AdministratorMenu->getDef('text_rights_visitor') . '</td>';
+          }
+          ?>
+          <td><?php echo $Qcategories->value('app_code'); ?></td>
+          <td class="text-md-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
+          <td class="text-md-right">
+            <?php
+              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_edit')) . '</a>';
+              echo '&nbsp;';
+              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Move&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_move')) . '</a>';
+              echo '&nbsp;';
+              echo '<a href="' . $CLICSHOPPING_AdministratorMenu->link('Delete&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_AdministratorMenu->getDef('image_delete')) . '</a>';
+              echo '&nbsp;';
+            ?>
+          </td>
+        </tr>
+        <?php
+      }
+    ?>
+    </tbody>
   </table>
   </form>
   <div><?php echo $CLICSHOPPING_AdministratorMenu->getDef('text_categories') . '&nbsp;' . $categories_count; ?></div>

@@ -268,7 +268,10 @@ title_help_products = <li>automatic resizing image : <br />
     - Accepted formats : JPG, GIF, PNG. <br />
     - Max file size accepted : 2000 Ko max.<br />
     - You can change the automatic resizing (Design / Design Configuration/ Images).<br />
-    - You can activate also the manual upload (Configuration / Mon administrations / Gestion des images).<br />
+    - You can activate also the manual upload (Configuration / Mon administrations / Gestion des images).
+    <br /><br />
+    - Concerning the pick of favorites, promotions and select products, this is a shortcut allowing you to quickly create an action. The selector will always remain red.
+    This is useful when you are created a product. However, management must be done by the corresponding options.
  </blockquote>
 </li>
 <li> The gallery requires the fancy Box plug in installed. If there is no image in the gallery, then this is the default image of the thumbnail that is displayed as a popup. </li>

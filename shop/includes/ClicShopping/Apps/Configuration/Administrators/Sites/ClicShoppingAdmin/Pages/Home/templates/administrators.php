@@ -46,14 +46,22 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table class="table table-sm table-hover table-striped">
-    <thead>
-    <tr class="dataTableHeadingRow">
-      <td><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_administrators'); ?></td>
-      <td><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_user'); ?></td>
-      <td><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_right'); ?></td>
-      <td class="text-md-right"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_action'); ?>&nbsp;</td>
-    </tr>
+  <table
+    id="table"
+    data-toggle="table"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="administrator"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_administrators'); ?></th>
+        <th data-field="user"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_user'); ?></th>
+        <th data-field="right"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_right'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Administrators->getDef('table_heading_action'); ?></th>
+      </tr>
     </thead>
     <tbody>
     <?php
@@ -62,31 +70,33 @@
         $aInfo = new ObjectInfo($Qadmin->toArray());
       }
     ?>
-    <td><?php echo $Qadmin->value('user_name'); ?></td>
-    <td><?php echo $Qadmin->value('first_name') . ' ' . $Qadmin->value('name'); ?></td>
-    <td>
-      <?php
-        $access = $Qadmin->value('access');
+      <tr>
+        <td><?php echo $Qadmin->value('user_name'); ?></td>
+        <td><?php echo $Qadmin->value('first_name') . ' ' . $Qadmin->value('name'); ?></td>
+        <td>
+          <?php
+            $access = $Qadmin->value('access');
 
-        if ($access == 1) {
-          echo $CLICSHOPPING_Administrators->getDef('text_all_rights_admin');
-        } elseif ($access == 2) {
-          echo $CLICSHOPPING_Administrators->getDef('text_rights_employee');
-        } else {
-          echo $CLICSHOPPING_Administrators->getDef('text_rights_visitor');
-        }
-      ?>
-    </td>
-    <td class="text-md-right">
-      <?php
-        echo '<a href="' . $CLICSHOPPING_Administrators->link('Edit&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Administrators->getDef('image_edit')) . '</a>';
-        echo '&nbsp;';
-        echo '<a href="' . $CLICSHOPPING_Administrators->link('Delete&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Administrators->getDef('image_delete')) . '</a>';
-        echo '&nbsp;';
-        echo '</tr>';
-        }
-      ?>
-    </td>
+            if ($access == 1) {
+              echo $CLICSHOPPING_Administrators->getDef('text_all_rights_admin');
+            } elseif ($access == 2) {
+              echo $CLICSHOPPING_Administrators->getDef('text_rights_employee');
+            } else {
+              echo $CLICSHOPPING_Administrators->getDef('text_rights_visitor');
+            }
+          ?>
+        </td>
+        <td class="text-md-right">
+          <?php
+            echo '<a href="' . $CLICSHOPPING_Administrators->link('Edit&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Administrators->getDef('image_edit')) . '</a>';
+            echo '&nbsp;';
+            echo '<a href="' . $CLICSHOPPING_Administrators->link('Delete&aID=' . $Qadmin->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Administrators->getDef('image_delete')) . '</a>';
+            echo '&nbsp;';
+            echo '</tr>';
+            }
+          ?>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

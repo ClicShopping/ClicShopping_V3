@@ -38,13 +38,22 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table class="table table-sm table-hover table-striped">
-    <thead>
-    <tr class="dataTableHeadingRow">
-      <th><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_title'); ?></th>
-      <th><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>
-      <th class="text-md-right"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_action'); ?>&nbsp;</th>
-    </tr>
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="title"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_title'); ?></th>
+        <th data-field=value><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
     </thead>
     <tbody>
 
@@ -64,10 +73,9 @@
         $cfgValue = $Qconfiguration->value('configuration_value');
         ?>
         <tr>
-          <th scope="row"><?php echo $Qconfiguration->value('configuration_title'); ?></th>
+          <td><?php echo $Qconfiguration->value('configuration_title'); ?></td>
           <td><?php echo htmlspecialchars($cfgValue); ?></td>
           <td class="float-md-right">
-
             <script>
                 $(document).ready(function () {
                     $("#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>").on("show.bs.modal", function (e) {
@@ -90,7 +98,6 @@
                 </div> <!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-
           </td>
         </tr>
         <?php

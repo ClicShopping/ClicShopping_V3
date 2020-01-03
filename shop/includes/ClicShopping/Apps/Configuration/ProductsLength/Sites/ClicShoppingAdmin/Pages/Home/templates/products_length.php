@@ -45,37 +45,47 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <td><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_id'); ?></td>
-          <td><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_symbol'); ?></td>
-          <td><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_type'); ?></td>
-          <td><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_to_id'); ?></td>
-          <td><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_rule'); ?></td>
-          <td class="text-md-right"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_action'); ?>&nbsp;
-          </td>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="symbol"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="length_class_id" data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_id'); ?></th>
+        <th data-field="symbol" data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_symbol'); ?></th>
+        <th data-field="type" data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_type'); ?></th>
+        <th data-field="class_to_id" data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_to_id'); ?></th>
+        <th data-field="rule"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_rule'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php
           $Qproducts_length = $CLICSHOPPING_ProductsLength->db->prepare('select SQL_CALC_FOUND_ROWS  wc.products_length_class_id,
-                                                                                             wc.products_length_class_key,
-                                                                                             wc.language_id,
-                                                                                             wc.products_length_class_title,
-                                                                                             tc.products_length_class_from_id,
-                                                                                             tc.products_length_class_to_id,
-                                                                                             tc.products_length_class_rule
-                                                              from :table_products_length_classes wc,
-                                                                   :table_products_length_classes_rules tc 
-                                                              where wc.products_length_class_id = tc.products_length_class_from_id
-                                                              and wc.language_id = :language_id
-                                                              limit :page_set_offset,
-                                                                    :page_set_max_results
-                                                              ');
+                                                                                                     wc.products_length_class_key,
+                                                                                                     wc.language_id,
+                                                                                                     wc.products_length_class_title,
+                                                                                                     tc.products_length_class_from_id,
+                                                                                                     tc.products_length_class_to_id,
+                                                                                                     tc.products_length_class_rule
+                                                                          from :table_products_length_classes wc,
+                                                                               :table_products_length_classes_rules tc 
+                                                                          where wc.products_length_class_id = tc.products_length_class_from_id
+                                                                          and wc.language_id = :language_id
+                                                                          limit :page_set_offset,
+                                                                                :page_set_max_results
+                                                                          ');
           $Qproducts_length->bindInt(':language_id', $CLICSHOPPING_Language->getID());
           $Qproducts_length->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
           $Qproducts_length->execute();
@@ -92,23 +102,23 @@
               $products_length_class_title = ProductsLengthAdmin::getTitle($Qproducts_length->valueInt('products_length_class_to_id'), $CLICSHOPPING_Language->getID());
 
               ?>
-              <th scope="row"><?php echo $Qproducts_length->valueInt('products_length_class_id'); ?></th>
-              <td><?php echo $Qproducts_length->value('products_length_class_key'); ?></td>
-              <td><?php echo $Qproducts_length->value('products_length_class_title'); ?></td>
-              <td><?php echo $products_length_class_title; ?></td>
-              <td><?php echo $Qproducts_length->value('products_length_class_rule'); ?></td>
-              <td class="text-md-right">
-                <?php
-                  echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit')));
-                  echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_ProductsLength->link('ProductsLengthEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit_class_title')));
-                  echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassDelete&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsLength->getDef('icon_delete')));
-                  echo '&nbsp;';
-                ?>
-              </td>
+              <tr>
+                <td scope="row"><?php echo $Qproducts_length->valueInt('products_length_class_id'); ?></td>
+                <td><?php echo $Qproducts_length->value('products_length_class_key'); ?></td>
+                <td><?php echo $Qproducts_length->value('products_length_class_title'); ?></td>
+                <td><?php echo $products_length_class_title; ?></td>
+                <td><?php echo $Qproducts_length->value('products_length_class_rule'); ?></td>
+                <td class="text-md-right">
+                  <?php
+                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit')));
+                    echo '&nbsp;';
+                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ProductsLengthEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit_class_title')));
+                    echo '&nbsp;';
+                    echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassDelete&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsLength->getDef('icon_delete')));
+                    echo '&nbsp;';
+                  ?>
+                </td>
               </tr>
-
               <?php
             } // end while
           }
@@ -117,7 +127,7 @@
       </table>
     </td>
   </table>
-
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

@@ -42,64 +42,77 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_orders_status'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_action'); ?>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $Qstatus = $CLICSHOPPING_OrdersStatus->db->prepare('select  SQL_CALC_FOUND_ROWS  *
-                                                    from :table_orders_status
-                                                    where language_id = :language_id
-                                                    order by orders_status_id
-                                                    limit :page_set_offset,
-                                                         :page_set_max_results
-                                                    ');
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
-          $Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-          $Qstatus->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qstatus->execute();
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="status"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
-          $listingTotalRow = $Qstatus->getPageSetTotalRows();
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="status"><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_orders_status'); ?></th>
+        <th data-switchable="false"class="text-md-right"><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qstatus = $CLICSHOPPING_OrdersStatus->db->prepare('select SQL_CALC_FOUND_ROWS orders_status_id,
+                                                                                     orders_status_name
+                                                          from :table_orders_status
+                                                          where language_id = :language_id
+                                                          order by orders_status_id
+                                                          limit :page_set_offset,
+                                                               :page_set_max_results
+                                                          ');
 
-          if ($listingTotalRow > 0) {
-          while ($Qstatus->fetch()) {
+      $Qstatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $Qstatus->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qstatus->execute();
 
+      $listingTotalRow = $Qstatus->getPageSetTotalRows();
+
+      if ($listingTotalRow > 0) {
+        while ($Qstatus->fetch()) {
           if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $Qstatus->valueInt('orders_status_id')))) && !isset($oInfo)) {
             $oInfo = new ObjectInfo($Qstatus->toArray());
           }
+
+          echo '<tr>';
 
           if (DEFAULT_ORDERS_STATUS_ID == $Qstatus->value('orders_status_id')) {
             echo '                <th scope="row"><strong>' . $Qstatus->value('orders_status_name') . ' (' . $CLICSHOPPING_OrdersStatus->getDef('text_default') . ')</strong></th>' . "\n";
           } else {
             echo '                <th scope="row">' . $Qstatus->value('orders_status_name') . '</th>' . "\n";
           }
-        ?>
-        <td class="text-md-right">
-          <?php
-            if ($Qstatus->valueInt('orders_status_id') > 5) {
-              echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Delete&page=' . (int)$_GET['page'] . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatus->getDef('image_delete')) . '</a>';
-            }
-
-            echo '&nbsp;';
-            echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Edit&page=' . (int)$_GET['page'] . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatus->getDef('icon_edit')) . '</a>';
-            echo '&nbsp;';
-          ?>
-        </td>
-        </tbody>
-        </tr>
+    ?>
+      <td class="text-md-right">
         <?php
+          if ($Qstatus->valueInt('orders_status_id') > 5) {
+            echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Delete&page=' . (int)$_GET['page'] . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatus->getDef('image_delete')) . '</a>';
           }
-          } // end $listingTotalRow
+
+          echo '&nbsp;';
+          echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Edit&page=' . (int)$_GET['page'] . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatus->getDef('icon_edit')) . '</a>';
+          echo '&nbsp;';
         ?>
-      </table>
-    </td>
+      </td>
+    </tr>
+    <?php
+      }
+    } // end $listingTotalRow
+    ?>
+    </tbody>
   </table>
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

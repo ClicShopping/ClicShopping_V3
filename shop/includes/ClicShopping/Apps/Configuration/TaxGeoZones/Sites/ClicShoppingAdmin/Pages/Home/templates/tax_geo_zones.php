@@ -38,27 +38,41 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table class="table table-sm table-hover table-striped">
-    <thead>
-    <tr class="dataTableHeadingRow">
-      <th><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_zones'); ?></th>
-      <th><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_description'); ?></th>
-      <th><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_number_zone'); ?></th>
-      <th class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
-    </tr>
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="sort_order"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="zones" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_zones'); ?></th>
+        <th data-field="description" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_description'); ?></th>
+        <th data-field="number"  data-field="sort_order" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_number_zone'); ?></th>
+        <th data-field="action" data-switchable="false"  class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
     </thead>
     <tbody>
     <?php
       $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select SQL_CALC_FOUND_ROWS  geo_zone_id,
-                                                                                 geo_zone_name,
-                                                                                 geo_zone_description,
-                                                                                 last_modified,
-                                                                                 date_added
-                                                   from :table_geo_zones
-                                                   order by geo_zone_name
-                                                   limit :page_set_offset,
-                                                        :page_set_max_results
-                                              ');
+                                                                                     geo_zone_name,
+                                                                                     geo_zone_description,
+                                                                                     last_modified,
+                                                                                     date_added
+                                                        from :table_geo_zones
+                                                        order by geo_zone_name
+                                                        limit :page_set_offset,
+                                                             :page_set_max_results
+                                                        ');
 
       $Qzones->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN, 'zpage');
       $Qzones->execute();
@@ -69,30 +83,31 @@
         while ($Qzones->fetch()) {
           if ((!isset($_GET['zID']) || (isset($_GET['zID']) && ((int)$_GET['zID'] === $Qzones->valueInt('geo_zone_id')))) && !isset($zInfo)) {
             $Qtotal = $CLICSHOPPING_TaxGeoZones->db->prepare('select count(*) as num_zones
-                                                          from :table_zones_to_geo_zones
-                                                          where geo_zone_id = :geo_zone_id
-                                                          ');
+                                                              from :table_zones_to_geo_zones
+                                                              where geo_zone_id = :geo_zone_id
+                                                              ');
             $Qtotal->bindInt(':geo_zone_id', $Qzones->valueInt('geo_zone_id'));
             $Qtotal->execute();
 
             $zInfo = new ObjectInfo(array_merge($Qzones->toArray(), $Qtotal->toArray()));
           }
           ?>
-          <th
-            scope="row"><?php echo HTML::link($CLICSHOPPING_TaxGeoZones->link('List&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), $Qzones->value('geo_zone_name')) . '&nbsp;'; ?></th>
-          <td><?php echo $Qzones->value('geo_zone_description'); ?></td>
-          <td><?php echo $zInfo->num_zones ?? null; ?></td>
+          <tr>
+            <th
+              scope="row"><?php echo HTML::link($CLICSHOPPING_TaxGeoZones->link('List&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), $Qzones->value('geo_zone_name')) . '&nbsp;'; ?></th>
+            <td><?php echo $Qzones->value('geo_zone_description'); ?></td>
+            <td><?php echo $zInfo->num_zones ?? null; ?></td>
 
-          <td class="text-md-right">
-            <?php
-              echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Edit&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')));
-              echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('image_details')));
-              echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Delete&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')));
-              echo '&nbsp;';
-            ?>
-          </td>
+            <td class="text-md-right">
+              <?php
+                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Edit&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')));
+                echo '&nbsp;';
+                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('ListGeo&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('image_details')));
+                echo '&nbsp;';
+                echo HTML::link($CLICSHOPPING_TaxGeoZones->link('Delete&zpage=' . $page . '&zID=' . $Qzones->valueInt('geo_zone_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')));
+                echo '&nbsp;';
+              ?>
+            </td>
           </tr>
           <?php
         } // end while
@@ -100,6 +115,7 @@
     ?>
     </tbody>
   </table>
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

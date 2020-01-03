@@ -65,9 +65,7 @@
   <!-- //################################################################################################################ -->
   <!-- //                                             LISTING DES produits                                      -->
   <!-- //################################################################################################################ -->
-  <?php
-    echo HTML::form('delete_all', $CLICSHOPPING_Archive->link('Archive&DeleteAll&page=' . $page));
-  ?>
+  <?php echo HTML::form('delete_all', $CLICSHOPPING_Archive->link('Archive&DeleteAll&page=' . $page)); ?>
 
   <div id="toolbar">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Archive->getDef('button_delete'); ?></button>
@@ -88,20 +86,19 @@
     data-mobile-responsive="true">
 
     <thead class="dataTableHeadingRow">
-    <tr>
-      <th data-checkbox="true" data-field="state"></th>
-      <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Archive->getDef('id'); ?></th>
-      <th data-switchable="false"></th>
-      <th data-field="model" data-sortable="true"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_model_archives'); ?></th>
-      <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_products_archives'); ?></th>
-      <th data-field="date" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_date_archives'); ?></th>
-      <th data-field="tatus" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_status'); ?></th>
-      <th data-field="action" data-sortable="true" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_action'); ?>&nbsp;</th>
-    </tr>
+      <tr>
+        <th data-checkbox="true" data-field="state"></th>
+        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Archive->getDef('id'); ?></th>
+        <th data-switchable="false"></th>
+        <th data-field="model" data-sortable="true"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_model_archives'); ?></th>
+        <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_products_archives'); ?></th>
+        <th data-field="date" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_date_archives'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_status'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
     </thead>
     <tbody>
     <?php
-      // Recherche
       $search = '';
 
       if (isset($_POST['search']) && !is_null($_POST['search'])) {

@@ -37,66 +37,78 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_invoice_status'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_action'); ?>
-            &nbsp;
-          </th>
-        </tr>
-        </thead>
-        <tbody>
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="sort_order"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+    <tr>
+      <th data-field="status"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_invoice_status'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_action'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+      $QordersStatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->prepare('select SQL_CALC_FOUND_ROWS orders_status_invoice_id,
+                                                                                                         orders_status_invoice_name
+                                                                             from :table_orders_status_invoice
+                                                                             where language_id = :language_id
+                                                                             order by orders_status_invoice_id
+                                                                             limit :page_set_offset,
+                                                                                   :page_set_max_results
+                                                                            ');
+
+      $QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+      $QordersStatusInvoice->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $QordersStatusInvoice->execute();
+
+      $listingTotalRow = $QordersStatusInvoice->getPageSetTotalRows();
+
+      if ($listingTotalRow > 0) {
+      while ($QordersStatusInvoice->fetch()) {
+
+      if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $QordersStatusInvoice->valueInt('orders_status_invoice_id'))))) {
+        $oInfo = new ObjectInfo($QordersStatusInvoice->toArray());
+      }
+
+      echo '<tr>';
+
+      if (DEFAULT_ORDERS_STATUS_INVOICE_ID == $QordersStatusInvoice->valueInt('orders_status_invoice_id')) {
+        echo '                <td><strong>' . $QordersStatusInvoice->value('orders_status_invoice_name') . ' (' . $CLICSHOPPING_OrdersStatusInvoice->getDef('text_default') . ')</strong></td>' . "\n";
+      } else {
+        echo '                <td>' . $QordersStatusInvoice->value('orders_status_invoice_name') . '</td>' . "\n";
+      }
+    ?>
+      <td class="text-md-right">
         <?php
-          $QordersStatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->prepare('select  SQL_CALC_FOUND_ROWS  *
-                                                                       from :table_orders_status_invoice
-                                                                       where language_id = :language_id
-                                                                       order by orders_status_invoice_id
-                                                                       limit :page_set_offset,
-                                                                             :page_set_max_results
-                                                                      ');
-
-          $QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-          $QordersStatusInvoice->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $QordersStatusInvoice->execute();
-
-          $listingTotalRow = $QordersStatusInvoice->getPageSetTotalRows();
-
-          if ($listingTotalRow > 0) {
-          while ($QordersStatusInvoice->fetch()) {
-
-          if ((!isset($_GET['oID']) || (isset($_GET['oID']) && ((int)$_GET['oID'] === $QordersStatusInvoice->valueInt('orders_status_invoice_id'))))) {
-            $oInfo = new ObjectInfo($QordersStatusInvoice->toArray());
+          if ($QordersStatusInvoice->valueInt('orders_status_invoice_id') > 4) {
+            echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete')));
           }
 
-          if (DEFAULT_ORDERS_STATUS_INVOICE_ID == $QordersStatusInvoice->valueInt('orders_status_invoice_id')) {
-            echo '                <th scope="row"><strong>' . $QordersStatusInvoice->value('orders_status_invoice_name') . ' (' . $CLICSHOPPING_OrdersStatusInvoice->getDef('text_default') . ')</strong></th>' . "\n";
-          } else {
-            echo '                <th scope="row">' . $QordersStatusInvoice->value('orders_status_invoice_name') . '</th>' . "\n";
-          }
+          echo '&nbsp;';
+          echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Edit&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_edit')));
+          echo '&nbsp;';
         ?>
-        <td class="text-md-right">
-          <?php
-            if ($QordersStatusInvoice->valueInt('orders_status_invoice_id') > 4) {
-              echo '<a href="' . $CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete')) . '</a>';
-            }
-
-            echo '&nbsp;';
-            echo '<a href="' . $CLICSHOPPING_OrdersStatusInvoice->link('Edit&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_edit')) . '</a>';
-            echo '&nbsp;';
-          ?>
-        </td>
-        </tbody>
-        </tr>
-        <?php
-          }
-          } // end $listingTotalRow
-        ?>
-      </table>
-    </td>
+      </td>
+    </tr>
+    <?php
+      }
+    } // end $listingTotalRow
+    ?>
+  </tbody>
   </table>
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

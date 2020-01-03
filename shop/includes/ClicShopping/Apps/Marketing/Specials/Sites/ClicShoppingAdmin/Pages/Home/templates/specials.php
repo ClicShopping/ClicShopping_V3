@@ -116,8 +116,7 @@
       <th data-checkbox="true" data-field="state"></th>
       <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Specials->getDef('id'); ?></th>
       <th data-switchable="false"></th>
-
-      <th>&nbsp;</th>
+      <th data-switchable="false"></th>
       <th data-field="model" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_model'); ?></th>
       <th data-field="heading_products" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products'); ?></th>
       <?php

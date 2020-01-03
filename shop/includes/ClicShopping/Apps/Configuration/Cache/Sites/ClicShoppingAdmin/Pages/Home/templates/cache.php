@@ -53,14 +53,27 @@
     </div>
   </div>
   <div class="separator"></div>
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
-  <table class="table table-sm table-hover table-striped">
-    <thead>
-    <tr class="dataTableHeadingRow">
-      <th><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache'); ?></th>
-      <th class="text-md-right"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache_number_of_files'); ?></th>
-      <th class="text-md-right"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_action'); ?></th>
-    </tr>
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="number"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="cache"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache'); ?></th>
+        <th data-field="number" data-sortable="true" class="text-md-right"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_cache_number_of_files'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Cache->getDef('table_heading_action'); ?></th>
+      </tr>
     </thead>
     <tbody>
     <?php

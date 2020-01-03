@@ -50,7 +50,6 @@
       return HTML::selectMenu('configuration_value', $filename_array, $value);
     }
 
-
     /**
      * Copy file or folder from source to destination, it can do
      * recursive copy as well and is very smart

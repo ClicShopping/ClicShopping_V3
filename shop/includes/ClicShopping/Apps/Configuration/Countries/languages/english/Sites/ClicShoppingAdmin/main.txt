@@ -46,7 +46,8 @@ text_info_delete_country = Delete country
 
 text_info_heading_new_county = Countries
 table_heading_country_name = Countries
-table_heading_country_code = ISO Codes
+table_heading_country_code2 = ISO Codes 2
+table_heading_country_code3 = ISO Codes 3
 table_heading_action = Action
 table_heading_country_status = Status
 

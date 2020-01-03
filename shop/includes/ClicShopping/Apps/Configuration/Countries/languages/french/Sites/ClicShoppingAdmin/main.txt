@@ -46,7 +46,8 @@ text_info_delete_country = Suppression d'un pays
 
 text_info_heading_new_county = Pays
 table_heading_country_name = Pays
-table_heading_country_code = Codes ISO
+table_heading_country_code2 = Codes ISO 2
+table_heading_country_code3 = Codes ISO 3
 table_heading_action = Action
 table_heading_country_status = Statut
 

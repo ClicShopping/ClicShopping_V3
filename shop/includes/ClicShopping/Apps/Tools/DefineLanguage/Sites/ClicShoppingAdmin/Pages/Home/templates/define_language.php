@@ -87,41 +87,28 @@
     <?php
       if (isset($search)) {
         $Qcontent_group = $CLICSHOPPING_DefineLanguage->db->prepare("select distinct content_group
-                                                                from :table_languages_definitions
-                                                                where content_group like " . "'%" . $search . "%'" . " or definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . "
-                                                               ");
+                                                                      from :table_languages_definitions
+                                                                      where content_group like " . "'%" . $search . "%'" . " or definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . "
+                                                                     ");
       } else {
         $Qcontent_group = $CLICSHOPPING_DefineLanguage->db->prepare('select distinct content_group
-                                                                  from :table_languages_definitions
-                                                                 ');
+                                                                    from :table_languages_definitions
+                                                                   ');
       }
-      /*
-            $Qcontent_group = $CLICSHOPPING_DefineLanguage->db->prepare('select SQL_CALC_FOUND_ROWS distinct content_group
-                                                                   from :table_languages_definitions
-                                                                   limit :page_set_offset,
-                                                                         :page_set_max_results
-                                                                  ');
-      
-            $Qcontent_group->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-      */
 
       $Qcontent_group->execute();
-
-      //      $listingTotalRow = $Qcontent_group->getPageSetTotalRows();
-
-      //      if ($listingTotalRow > 0) {
 
       while ($Qcontent_group->fetch()) {
         $search_count = '';
 
         if (isset($search)) {
           $Qcontents = $CLICSHOPPING_DefineLanguage->db->prepare("select languages_id,
-                                                                      count(*) as count
-                                                               from :table_languages_definitions
-                                                               where content_group = :content_group
-                                                               and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
-                                                               group by languages_id
-                                                             ");
+                                                                         count(*) as count
+                                                                 from :table_languages_definitions
+                                                                 where content_group = :content_group
+                                                                 and (definition_key like " . "'%" . $search . "%'" . " or definition_value like " . "'%" . $search . "%'" . ")
+                                                                 group by languages_id
+                                                               ");
           $Qcontents->bindValue(':content_group', $Qcontent_group->value('content_group'));
           $Qcontents->execute();
           do {
@@ -152,24 +139,7 @@
         </tr>
         <?php
       }
-      //      }
     ?>
     </tbody>
   </table>
-  <?php
-    /*
-      if ($listingTotalRow > 0) {
-    ?>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcontent_group->getPageSetLabel($CLICSHOPPING_DefineLanguage->getDef('text_display_number_of_link')); ?></div>
-              <div class="float-md-right text-md-right"> <?php echo $Qcontent_group->getPageSetLinks(); ?></div>
-            </div>
-          </div>
-    
-    
-    <?php
-      } // end $listingTotalRow
-    */
-  ?>
 </div>

@@ -9,7 +9,7 @@
  *
  */
 
-use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\CLICSHOPPING;
 ?>
 <section class="boxe_currencies" id="boxe_currencies">
   <div class="separator"></div>

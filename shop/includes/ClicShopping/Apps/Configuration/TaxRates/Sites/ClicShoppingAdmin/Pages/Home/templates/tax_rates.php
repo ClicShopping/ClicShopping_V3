@@ -40,40 +40,50 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_rate_priority'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_class_title'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_zone'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_rate'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_description'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_code_tax_erp'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_action'); ?>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="zone"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="priority"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_rate_priority'); ?></th>
+        <th data-field="title"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_class_title'); ?></th>
+        <th data-field="zone" data-sortable="true"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_zone'); ?></th>
+        <th data-field="rate"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_rate'); ?></th>
+        <th data-field="description"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_description'); ?></th>
+        <th data-field="tax_erp"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_code_tax_erp'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+      <tbody>
+        <?php
           $Qrates = $CLICSHOPPING_TaxRates->db->prepare('select  SQL_CALC_FOUND_ROWS  r.tax_rates_id,
-                                                                     z.geo_zone_id,
-                                                                     z.geo_zone_name,
-                                                                     tc.tax_class_title,
-                                                                     tc.tax_class_id,
-                                                                     r.tax_priority,
-                                                                     r.tax_rate,
-                                                                     r.tax_description,
-                                                                     r.date_added,
-                                                                     r.last_modified,
-                                                                     r.code_tax_erp
-                                          from :table_tax_class tc,
-                                               :table_tax_rates r left join :table_geo_zones z on r.tax_zone_id = z.geo_zone_id
-                                          where r.tax_class_id = tc.tax_class_id
-                                          limit :page_set_offset,
-                                                :page_set_max_results
-                                          ');
+                                                                                     z.geo_zone_id,
+                                                                                     z.geo_zone_name,
+                                                                                     tc.tax_class_title,
+                                                                                     tc.tax_class_id,
+                                                                                     r.tax_priority,
+                                                                                     r.tax_rate,
+                                                                                     r.tax_description,
+                                                                                     r.date_added,
+                                                                                     r.last_modified,
+                                                                                     r.code_tax_erp
+                                                          from :table_tax_class tc,
+                                                               :table_tax_rates r left join :table_geo_zones z on r.tax_zone_id = z.geo_zone_id
+                                                          where r.tax_class_id = tc.tax_class_id
+                                                          limit :page_set_offset,
+                                                                :page_set_max_results
+                                                          ');
 
           $Qrates->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
           $Qrates->execute();
@@ -81,37 +91,34 @@
           $listingTotalRow = $Qrates->getPageSetTotalRows();
 
           if ($listingTotalRow > 0) {
-
             while ($Qrates->fetch()) {
               if ((!isset($_GET['tID']) || (isset($_GET['tID']) && ((int)$_GET['tID'] === $Qrates->valueInt('tax_rates_id')))) && !isset($trInfo)) {
                 $trInfo = new ObjectInfo($Qrates->toArray());
               }
               ?>
-              <th scope="row"><?php echo $Qrates->valueInt('tax_priority'); ?></th>
-              <td><?php echo $Qrates->value('tax_class_title'); ?></td>
-              <td><?php echo $Qrates->value('geo_zone_name'); ?></td>
-              <td><?php echo Tax::displayTaxRateValue($Qrates->valueDecimal('tax_rate')); ?></td>
-              <td><?php echo $Qrates->value('tax_description'); ?></td>
-              <td><?php echo $Qrates->value('code_tax_erp'); ?></td>
-              <td class="text-md-right">
-                <?php
-                  echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
-                  echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_TaxRates->link('Delete&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxRates->getDef('icon_delete')));
-                  echo '&nbsp;';
-                ?>
-              </td>
+              <tr>
+                <th scope="row"><?php echo $Qrates->valueInt('tax_priority'); ?></th>
+                <td><?php echo $Qrates->value('tax_class_title'); ?></td>
+                <td><?php echo $Qrates->value('geo_zone_name'); ?></td>
+                <td><?php echo Tax::displayTaxRateValue($Qrates->valueDecimal('tax_rate')); ?></td>
+                <td><?php echo $Qrates->value('tax_description'); ?></td>
+                <td><?php echo $Qrates->value('code_tax_erp'); ?></td>
+                <td class="text-md-right">
+                  <?php
+                    echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
+                    echo '&nbsp;';
+                    echo HTML::link($CLICSHOPPING_TaxRates->link('Delete&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxRates->getDef('icon_delete')));
+                    echo '&nbsp;';
+                  ?>
+                </td>
               </tr>
-
               <?php
             } // end while
           }
         ?>
-        </tbody>
-      </table>
-    </td>
+    </tbody>
   </table>
-
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

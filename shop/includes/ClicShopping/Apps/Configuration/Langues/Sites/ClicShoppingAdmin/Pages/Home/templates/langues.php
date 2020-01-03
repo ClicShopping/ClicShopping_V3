@@ -35,20 +35,32 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_name'); ?></th>
-          <th><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_code'); ?></th>
-          <th class="text-md-center"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_status'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_action'); ?>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select  SQL_CALC_FOUND_ROWS  languages_id,
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="status"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+    <tr>
+      <th data-field="name"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_name'); ?></th>
+      <th data-field="code"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_code'); ?></th>
+      <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_language_status'); ?></th>
+      <th data-field="action" data-switchable="false"  class="text-md-right"><?php echo $CLICSHOPPING_Langues->getDef('table_heading_action'); ?>&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select SQL_CALC_FOUND_ROWS languages_id,
                                                                                    name,
                                                                                    code,
                                                                                    image,
@@ -56,64 +68,62 @@
                                                                                    sort_order,
                                                                                    status,
                                                                                    locale
-                                                      from :table_languages
-                                                      order by sort_order
-                                                      limit :page_set_offset, :page_set_max_results
-                                                      ');
+                                                        from :table_languages
+                                                        order by sort_order
+                                                        limit :page_set_offset, :page_set_max_results
+                                                        ');
 
-          $Qlanguages->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qlanguages->execute();
+      $Qlanguages->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qlanguages->execute();
 
-          $listingTotalRow = $Qlanguages->getPageSetTotalRows();
+      $listingTotalRow = $Qlanguages->getPageSetTotalRows();
 
-          if ($listingTotalRow > 0) {
+      if ($listingTotalRow > 0) {
 
-            while ($Qlanguages->fetch()) {
-              if ((!isset($_GET['lID']) || (isset($_GET['lID']) && ((int)$_GET['lID'] === $Qlanguages->valueInt('languages_id')))) && !isset($lInfo)) {
-                $lInfo = new ObjectInfo($Qlanguages->toArray());
-              }
+        while ($Qlanguages->fetch()) {
+          if ((!isset($_GET['lID']) || (isset($_GET['lID']) && ((int)$_GET['lID'] === $Qlanguages->valueInt('languages_id')))) && !isset($lInfo)) {
+            $lInfo = new ObjectInfo($Qlanguages->toArray());
+          }
 
-              if (DEFAULT_LANGUAGE == $Qlanguages->value('code')) {
-                echo '                <th scope="row"><strong>' . $Qlanguages->value('name') . ' (' . $CLICSHOPPING_Langues->getDef('text_default') . ')</strong></th>' . "\n";
+          if (DEFAULT_LANGUAGE == $Qlanguages->value('code')) {
+            echo '                <th scope="row"><strong>' . $Qlanguages->value('name') . ' (' . $CLICSHOPPING_Langues->getDef('text_default') . ')</strong></th>' . "\n";
+          } else {
+            echo '                <th scope="row">' . $Qlanguages->value('name') . '</th>' . "\n";
+          }
+          ?>
+          <th scope="row"><?php echo $Qlanguages->value('code'); ?></td>
+          <td class="text-md-center">
+            <?php
+              //pb when the english when the status is off
+              //      if ($Qlanguages->valueInt('languages_id') != 1 && DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
+              if ($Qlanguages->valueInt('status') == 1) {
+                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
               } else {
-                echo '                <th scope="row">' . $Qlanguages->value('name') . '</th>' . "\n";
+                echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
               }
-              ?>
-              <th scope="row"><?php echo $Qlanguages->value('code'); ?></td>
-              <td class="text-md-center">
-                <?php
-                  //pb when the english when the status is off
-                  //      if ($Qlanguages->valueInt('languages_id') != 1 && DEFAULT_LANGUAGE != $Qlanguages->value('code')) {
-                  if ($Qlanguages->valueInt('status') == 1) {
-                    echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=0&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
-                  } else {
-                    echo HTML::link($CLICSHOPPING_Langues->link('Langues&SetFlag&flag=1&page=' . $page . '&lid=' . $Qlanguages->valueInt('languages_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
-                  }
-                  //      }
-                ?>
-              </td>
-              <td class="text-md-right">
-                <?php
-                  echo HTML::link($CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Langues->getDef('icon_edit')));
-                  echo '&nbsp;';
+              //      }
+            ?>
+          </td>
+          <td class="text-md-right">
+            <?php
+              echo HTML::link($CLICSHOPPING_Langues->link('Edit&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Langues->getDef('icon_edit')));
+              echo '&nbsp;';
 
-                  if ($Qlanguages->valueInt('languages_id') > 1) {
-                    echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('icon_delete')));
-                  }
-                  echo '&nbsp;';
-                ?>
-              </td>
-              </tr>
-              <?php
-            }
-          } // end $listingTotalRow
-        ?>
-        </tbody>
-      </table>
-    </td>
+              if ($Qlanguages->valueInt('languages_id') > 1) {
+                echo HTML::link($CLICSHOPPING_Langues->link('Delete&page=' . $page . '&lID=' . $Qlanguages->valueInt('languages_id') . '&action=delete'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Langues->getDef('icon_delete')));
+              }
+              echo '&nbsp;';
+            ?>
+          </td>
+          </tr>
+          <?php
+        }
+      } // end $listingTotalRow
+    ?>
+    </tbody>
   </table>
 
-  <?php
+   <?php
     if ($listingTotalRow > 0) {
       ?>
       <div class="row">

@@ -18,6 +18,8 @@
 ?>
           </div>
         </div>
+        <div class="separator"></div>
+        <div class="separator"></div>
         <footer id="footer">
           <nav class="navbar fixed-bottom navbar-light bg-faded footerCadre" role="navigation">
             <div class="navbar-collapse text-md-left" id="footer-body">

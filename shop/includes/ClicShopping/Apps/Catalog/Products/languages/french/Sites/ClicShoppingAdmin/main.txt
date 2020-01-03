@@ -272,6 +272,9 @@ title_help_products = <li>redimensionnement automatique des images : <br />
     - Taille maximum du fichier : 2000Ko max.<br />
     - Vous pouvez à tout moment changer le redimensionnement automatique des images (Design / Configuration générale du design / Gestion des images).<br />
     - Vous pouvez à tout moment activer aussi le téléchargement manuel (Configuration / Mon administrations / Gestion des images).<br />
+    <br /><br />
+    - Concernant le sélecteur des coups de coeur, les promotions et les produits sélectionner, il s'agit d'un raccourcis vous permettant de créer rapidement une action. La sélecteur restera toujours
+    rouge. C'est utile lors de la création d'un produit. Toutefois, la gestion devra se faire par les options correspondantes.
  </blockquote>
 </li>
 <li>l'utilisation de la galerie d'images nécéssite d'avoir le plug in ColorBox installé. Si n'y a pas d'images dans la gallerie, alors c'est l'image par défaut de la vignette qui est affichée sous forme de pop up.</li>

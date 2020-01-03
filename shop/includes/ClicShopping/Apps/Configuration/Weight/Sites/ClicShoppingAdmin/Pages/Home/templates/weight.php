@@ -45,78 +45,85 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <td><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_id'); ?></td>
-          <td><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_symbol'); ?></td>
-          <td><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_type'); ?></td>
-          <td><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_to_id'); ?></td>
-          <td><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_rule'); ?></td>
-          <td class="text-md-right"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_action'); ?>&nbsp;</td>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
-          $Qweight = $CLICSHOPPING_Weight->db->prepare('select SQL_CALC_FOUND_ROWS  wc.weight_class_id,
-                                                                             wc.weight_class_key,
-                                                                             wc.language_id,
-                                                                             wc.weight_class_title,
-                                                                             tc.weight_class_from_id,
-                                                                             tc.weight_class_to_id,
-                                                                             tc.weight_class_rule
-                                              from :table_weight_classes wc,
-                                                   :table_weight_classes_rules tc 
-                                              where wc.weight_class_id = tc.weight_class_from_id
-                                              and wc.language_id = :language_id
-                                              limit :page_set_offset,
-                                                    :page_set_max_results
-                                              ');
-          $Qweight->bindInt(':language_id', $CLICSHOPPING_Language->getID());
-          $Qweight->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qweight->execute();
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="symbol"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
-          $listingTotalRow = $Qweight->getPageSetTotalRows();
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="id"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_id'); ?></th>
+        <th data-field="symbol" data-sortable="true"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_symbol'); ?></th>
+        <th data-field="type" data-sortable="true"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_type'); ?></th>
+        <th data-field="class_to_id"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_to_id'); ?></th>
+        <th data-field="rule"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_weight_class_rule'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Weight->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qweight = $CLICSHOPPING_Weight->db->prepare('select SQL_CALC_FOUND_ROWS  wc.weight_class_id,
+                                                                                 wc.weight_class_key,
+                                                                                 wc.language_id,
+                                                                                 wc.weight_class_title,
+                                                                                 tc.weight_class_from_id,
+                                                                                 tc.weight_class_to_id,
+                                                                                 tc.weight_class_rule
+                                                  from :table_weight_classes wc,
+                                                       :table_weight_classes_rules tc 
+                                                  where wc.weight_class_id = tc.weight_class_from_id
+                                                  and wc.language_id = :language_id
+                                                  limit :page_set_offset,
+                                                        :page_set_max_results
+                                                  ');
+      $Qweight->bindInt(':language_id', $CLICSHOPPING_Language->getID());
+      $Qweight->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qweight->execute();
 
-          if ($listingTotalRow > 0) {
+      $listingTotalRow = $Qweight->getPageSetTotalRows();
 
-            while ($Qweight->fetch()) {
-              if ((!isset($_GET['wID']) || (isset($_GET['wID']) && ((int)$_GET['wID'] === $Qweight->valueInt('weight_id')))) && !isset($trInfo)) {
-                $trInfo = new ObjectInfo($Qweight->toArray());
-              }
-
-              $weight_class_title = WeightAdmin::getTitle($Qweight->valueInt('weight_class_to_id'), $CLICSHOPPING_Language->getID());
-
-              ?>
-              <th scope="row"><?php echo $Qweight->valueInt('weight_class_id'); ?></th>
-              <td><?php echo $Qweight->value('weight_class_key'); ?></td>
-              <td><?php echo $Qweight->value('weight_class_title'); ?></td>
-              <td><?php echo $weight_class_title; ?></td>
-              <td><?php echo $Qweight->value('weight_class_rule'); ?></td>
-              <td class="text-md-right">
-                <?php
-                  echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Weight->getDef('icon_edit')));
-                  echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Weight->link('WeightEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Weight->getDef('icon_edit_class_title')));
-                  echo '&nbsp;';
-                  echo HTML::link($CLICSHOPPING_Weight->link('ClassDelete&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Weight->getDef('icon_delete')));
-                  echo '&nbsp;';
-                ?>
-              </td>
-              </tr>
-
-              <?php
-            } // end while
+      if ($listingTotalRow > 0) {
+        while ($Qweight->fetch()) {
+          if ((!isset($_GET['wID']) || (isset($_GET['wID']) && ((int)$_GET['wID'] === $Qweight->valueInt('weight_id')))) && !isset($trInfo)) {
+            $trInfo = new ObjectInfo($Qweight->toArray());
           }
-        ?>
-        </tbody>
-      </table>
-    </td>
-  </table>
 
+          $weight_class_title = WeightAdmin::getTitle($Qweight->valueInt('weight_class_to_id'), $CLICSHOPPING_Language->getID());
+          ?>
+          <tr>
+            <td scope="row"><?php echo $Qweight->valueInt('weight_class_id'); ?></td>
+            <td><?php echo $Qweight->value('weight_class_key'); ?></td>
+            <td><?php echo $Qweight->value('weight_class_title'); ?></td>
+            <td><?php echo $weight_class_title; ?></td>
+            <td><?php echo $Qweight->value('weight_class_rule'); ?></td>
+            <td class="text-md-right">
+              <?php
+                echo HTML::link($CLICSHOPPING_Weight->link('ClassEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Weight->getDef('icon_edit')));
+                echo '&nbsp;';
+                echo HTML::link($CLICSHOPPING_Weight->link('WeightEdit&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Weight->getDef('icon_edit_class_title')));
+                echo '&nbsp;';
+                echo HTML::link($CLICSHOPPING_Weight->link('ClassDelete&page=' . $page . '&wID=' . $Qweight->valueInt('weight_class_id') . '&tID=' . $Qweight->valueInt('weight_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Weight->getDef('icon_delete')));
+                echo '&nbsp;';
+              ?>
+            </td>
+          </tr>
+          <?php
+        } // end while
+      }
+    ?>
+    </tbody>
+  </table>
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

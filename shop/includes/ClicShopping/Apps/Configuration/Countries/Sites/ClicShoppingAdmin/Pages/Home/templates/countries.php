@@ -30,75 +30,74 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/countries.gif', $CLICSHOPPING_Countries->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Countries->getDef('heading_title'); ?></span>
-
-          <span class="col-md-7 text-md-right">
-<?php
-  echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, $CLICSHOPPING_Countries->link('Insert&page=' . $page), 'success');
-  echo HTML::form('update_all', $CLICSHOPPING_Countries->link('Countries&UpdateAll&page=' . $page));
-?>
-            <a onclick="$('update').prop('action', ''); $('form').submit();"
-               class="button"><?php echo HTML::button($CLICSHOPPING_Countries->getDef('button_update'), null, null, 'warning'); ?></a>&nbsp;
-           </span>
+          <span
+            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Countries->getDef('button_insert'), null, $CLICSHOPPING_Countries->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
   </div>
   <div class="separator"></div>
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <td width="1" class="text-md-center"><input type="checkbox"
-                                                     onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"/>
-          </td>
-          <td><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_name'); ?></td>
-          <td class="text-md-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_status'); ?></td>
-          <td class="text-md-center"
-              colspan="2"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code'); ?></td>
-          <td class="text-md-right"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_action'); ?>&nbsp;</td>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $Qcountries = $CLICSHOPPING_Countries->db->prepare('select  SQL_CALC_FOUND_ROWS countries_id,
-                                                                           countries_name,
-                                                                           countries_iso_code_2,
-                                                                           countries_iso_code_3,
-                                                                           status,
-                                                                           address_format_id
-                                              from :table_countries
-                                              order by countries_name
-                                              limit :page_set_offset, :page_set_max_results
-                                              ');
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                                      -->
+  <!-- //################################################################################################################ -->
+  <?php echo HTML::form('update_all', $CLICSHOPPING_Countries->link('Countries&UpdateAll&page=' . $page)); ?>
 
-          $Qcountries->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
-          $Qcountries->execute();
+  <div id="toolbar">
+    <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Countries->getDef('button_delete'); ?></button>
+  </div>
 
-          $listingTotalRow = $Qcountries->getPageSetTotalRows();
+  <table
+    id="table"
+    data-toggle="table"
+    data-id-field="selected"
+    data-select-item-name="selected[]"
+    data-click-to-select="true"
+    data-sort-order="asc"
+    data-sort-name="name"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
-          if ($listingTotalRow > 0) {
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-checkbox="true" data-field="state"></th>
+        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Countries->getDef('id'); ?></th>
+        <th data-field="name" data-sortable="true"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_name'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_status'); ?></th>
+        <th data-field="code2" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code2'); ?></th>
+        <th data-field="code3" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_country_code3'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Countries->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qcountries = $CLICSHOPPING_Countries->db->prepare('select SQL_CALC_FOUND_ROWS countries_id,
+                                                                                     countries_name,
+                                                                                     countries_iso_code_2,
+                                                                                     countries_iso_code_3,
+                                                                                     status,
+                                                                                     address_format_id
+                                                        from :table_countries
+                                                        order by countries_name
+                                                        limit :page_set_offset, :page_set_max_results
+                                                        ');
 
-          while ($Qcountries->fetch()) {
-            if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcountries->valueInt('countries_id')))) && !isset($cInfo)) {
-              $cInfo = new ObjectInfo($Qcountries->toArray());
-            }
-            ?>
-            <td>
-              <?php
-                if (isset($_POST['selected'])) {
-                  ?>
-                  <input type="checkbox" name="selected[]" value="<?php echo $Qcountries->valueInt('countries_id'); ?>"
-                         checked="checked"/>
-                  <?php
-                } else {
-                  ?>
-                  <input type="checkbox" name="selected[]"
-                         value="<?php echo $Qcountries->valueInt('countries_id'); ?>"/>
-                  <?php
-                }
-              ?>
-            </td>
+      $Qcountries->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qcountries->execute();
+
+      $listingTotalRow = $Qcountries->getPageSetTotalRows();
+
+      if ($listingTotalRow > 0) {
+        while ($Qcountries->fetch()) {
+          if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] == $Qcountries->valueInt('countries_id')))) && !isset($cInfo)) {
+            $cInfo = new ObjectInfo($Qcountries->toArray());
+          }
+          ?>
+          <tr>
+            <td></td>
+            <td><?php echo $Qcountries->valueInt('countries_id'); ?></td>
             <td><?php echo $Qcountries->value('countries_name'); ?></td>
             <td class="text-md-center">
               <?php
@@ -118,17 +117,12 @@
                 echo HTML::link($CLICSHOPPING_Countries->link('Delete&page=' . $page . '&cID=' . $Qcountries->valueInt('countries_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Countries->getDef('icon_delete')));
               ?>
             </td>
-            </tr>
-            <?php
-          } // end while
-        ?>
-        </tbody>
-      </table>
-      <?php
-        } // end $listingTotalRow
-      ?>
-  </table>
-  </td>
+          </tr>
+        <?php
+        } // end while
+      } // end $listingTotalRow
+    ?>
+    </tbody>
   </table>
   </form>
   <?php

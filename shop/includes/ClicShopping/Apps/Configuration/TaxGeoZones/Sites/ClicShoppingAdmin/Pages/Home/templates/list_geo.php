@@ -46,81 +46,88 @@
     </div>
   </div>
   <div class="separator"></div>
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="sort_order"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
 
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
-          <th><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-          $rows = 0;
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-field="country" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
+        <th data-field="zone" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $rows = 0;
 
-          $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select  SQL_CALC_FOUND_ROWS a.association_id,
-                                                                        a.zone_country_id,
-                                                                        c.countries_name,
-                                                                        a.zone_id,
-                                                                        a.geo_zone_id,
-                                                                        a.last_modified,
-                                                                        a.date_added,
-                                                                        z.zone_name
-                                            from :table_zones_to_geo_zones a left join :table_countries c on a.zone_country_id = c.countries_id
-                                                                             left join :table_zones z on a.zone_id = z.zone_id
-                                            where a.geo_zone_id = :geo_zone_id
-                                            order by association_id
-                                            limit :page_set_offset,
-                                                  :page_set_max_results
-                                            ');
-          $Qzones->bindInt(':geo_zone_id', $_GET['zID']);
-          $Qzones->setPageSet(MAX_DISPLAY_SEARCH_RESULTS_ADMIN, 'spage');
-          $Qzones->execute();
+      $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select  SQL_CALC_FOUND_ROWS a.association_id,
+                                                                                    a.zone_country_id,
+                                                                                    c.countries_name,
+                                                                                    a.zone_id,
+                                                                                    a.geo_zone_id,
+                                                                                    a.last_modified,
+                                                                                    a.date_added,
+                                                                                    z.zone_name
+                                                        from :table_zones_to_geo_zones a left join :table_countries c on a.zone_country_id = c.countries_id
+                                                                                         left join :table_zones z on a.zone_id = z.zone_id
+                                                        where a.geo_zone_id = :geo_zone_id
+                                                        order by association_id
+                                                        limit :page_set_offset,
+                                                              :page_set_max_results
+                                                        ');
+      $Qzones->bindInt(':geo_zone_id', $_GET['zID']);
+      $Qzones->setPageSet(MAX_DISPLAY_SEARCH_RESULTS_ADMIN, 'spage');
+      $Qzones->execute();
 
-          $listingTotalRow = $Qzones->getPageSetTotalRows();
+      $listingTotalRow = $Qzones->getPageSetTotalRows();
 
-          if ($listingTotalRow > 0) {
+      if ($listingTotalRow > 0) {
 
-            while ($Qzones->fetch()) {
+        while ($Qzones->fetch()) {
 
-              if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo)) {
-                $sInfo = new ObjectInfo($Qzones->toArray());
-                if (is_null($sInfo->countries_name)) {
-                  $sInfo->countries_name = $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries');
-                }
+          if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] === $Qzones->valueInt('association_id')))) && !isset($sInfo)) {
+            $sInfo = new ObjectInfo($Qzones->toArray());
+            if (is_null($sInfo->countries_name)) {
+              $sInfo->countries_name = $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries');
+            }
 
-                if (is_null($sInfo->zone_name)) {
-                  $sInfo->zone_name = $CLICSHOPPING_TaxGeoZones->getDef('text_selected');
-                }
-              }
-              ?>
-              <th
-                scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
-              <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
-              <td class="text-md-right">
-                <?php
-                  echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')) . '</a>';
-                  echo '&nbsp;';
-                  echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')) . '</a>';
-                  echo '&nbsp;';
-                ?>
-              </td>
-              </tr>
+            if (is_null($sInfo->zone_name)) {
+              $sInfo->zone_name = $CLICSHOPPING_TaxGeoZones->getDef('text_selected');
+            }
+          }
+          ?>
+          <tr>
+            <th
+              scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
+            <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
+            <td class="text-md-right">
               <?php
-            } // end while
-          } // end $listingTotalRow
-        ?>
-        </tbody>
-      </table>
-    </td>
+                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')) . '</a>';
+                echo '&nbsp;';
+                echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('DeleteGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_delete')) . '</a>';
+                echo '&nbsp;';
+              ?>
+            </td>
+          </tr>
+          <?php
+        } // end while
+      } // end $listingTotalRow
+    ?>
+    </tbody>
   </table>
-
-  </form>
-</div>
+  <div class="separator"></div>
 <?php
   if ($listingTotalRow > 0) {
     ?>
@@ -135,4 +142,4 @@
     <?php
   } // end $listingTotalRow
 ?>
-
+</div>
