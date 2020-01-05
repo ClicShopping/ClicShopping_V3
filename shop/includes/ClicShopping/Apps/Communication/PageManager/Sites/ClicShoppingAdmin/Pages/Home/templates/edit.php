@@ -367,7 +367,7 @@
                                  class="col-5 col-form-label"> <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                           <div class="col-md-5">
                             <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>
-                            <?php echo HTML::inputField('pages_title_' . $languages[$i]['id'], $pagetitle[$languages[$i]['id']] ?? '', 'required aria-required="true" id="title" maxlength="64"', false); ?>
+                            <?php echo HTML::inputField('pages_title_' . $languages[$i]['id'], $pagetitle[$languages[$i]['id']] ?? '', 'required aria-required="true" id="' . 'pages_title_' . $languages[$i]['id'] .'" maxlength="64"', false); ?>
                           </div>
                         </div>
                       </div>
@@ -396,7 +396,7 @@
                         <label for="Langue"
                                class="col-5 col-form-label"> <?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                         <div class="col-md-5">
-                          <?php echo HTML::inputField('pages_title_' . $languages[$i]['id'], $pagetitle[$languages[$i]['id']] ?? '', 'required aria-required="true" id="title" maxlength="64"', false); ?>
+                          <?php echo HTML::inputField('pages_title_' . $languages[$i]['id'], $pagetitle[$languages[$i]['id']] ?? '', 'required aria-required="true" id="' . 'pages_title_' . $languages[$i]['id'] .'" maxlength="64"', false); ?>
                         </div>
                       </div>
                     </div>

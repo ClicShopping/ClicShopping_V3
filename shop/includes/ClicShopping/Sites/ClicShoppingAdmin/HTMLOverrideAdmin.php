@@ -42,7 +42,7 @@
     }
 
     /*
-     *  Ckeditor
+     *  Ckeditor cdn version
      *
      * @param string $string
      * @return string $string,
@@ -51,9 +51,20 @@
      */
     public static function getCkeditor(): string
     {
-      $script = '<script src="' . CLICSHOPPING::link('Shop/ext/ckeditor/ckeditor.js') . '"></script>';
+      $script = '<script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>';
 
       return $script;
+    }
+
+    /**
+     * Script url
+     * @return string
+     */
+    public static function getCkeditorCustomizeJsURL(): string
+    {
+      $url = CLICSHOPPING::link('Shop/ext/javascript/cKeditor/ckeditor4_config.js');
+
+      return $url;
     }
 
     /*
@@ -85,14 +96,14 @@
       } elseif (!is_null($text)) {
         $field .= HTML::outputProtected($text);
       }
-      
-      $field .= '</textarea>';
 
       $url  = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
-      
+
+      $field .= '</textarea>';
       $field .= '<script>
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
     {
+        customConfig: "' . static::getCkeditorCustomizeJsURL()  . '",
         width : ' . $height . ',
         toolbar : "Full",
         filebrowserBrowseUrl :"' . $url . '",
@@ -119,13 +130,14 @@
         $width = '250';
       }
 
-      $field = '<textarea name="' . HTML::output($name) . '" /></textarea>';
-
       $url  = CLICSHOPPING::link('Shop/ext/elFinder-master/elfinder-cke.php?Admin=ClicShoppingAdmin');
+
+      $field = '<textarea name="' . HTML::output($name) . '" /></textarea>';
 
       $field .= '<script>
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
       {
+        customConfig: "' . static::getCkeditorCustomizeJsURL()  . '",
         width : ' . $width . ',
         height : ' . $height . ',
         filebrowserBrowseUrl : "' . $url . '",

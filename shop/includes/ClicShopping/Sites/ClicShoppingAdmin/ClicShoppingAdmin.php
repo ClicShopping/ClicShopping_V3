@@ -53,6 +53,8 @@
         ]
       );
 
+      $Qcfg->execute();
+
       while ($Qcfg->fetch()) {
         define($Qcfg->value('k'), $Qcfg->value('v'));
       }
@@ -62,7 +64,6 @@
       define('LOCAL_EXE_GUNZIP', 'gunzip');
       define('LOCAL_EXE_ZIP', 'zip');
       define('LOCAL_EXE_UNZIP', 'unzip');
-
 
       $CLICSHOPPING_Session = Session::load();
       Registry::set('Session', $CLICSHOPPING_Session);
