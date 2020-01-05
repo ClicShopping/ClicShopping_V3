@@ -1,4 +1,13 @@
 <?php
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
 
@@ -12,10 +21,9 @@
 
     public function execute()
     {
-
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $customer_id = HTML::sanitize($_POST['customers_id']);
+      $customer_id = HTML::sanitize($_GET['customers_id']);
 
       $Qcustomers = $CLICSHOPPING_Db->prepare('select c.*,
                                                       a.*
@@ -27,9 +35,7 @@
 
       $customers = $Qcustomers->fetch();
 
-      $head = '"customers_id", "customers_company", "customers_siret", "customers_ape", "customers_tva_intracom", "customers_tva_intracom_code_iso", "customers_gender", "customers_firstname", "customers_lastname", "customers_dob", "customers_email_address", "customers_telephone", "customers_fax", "customers_newsletter",  "entry_company", "entry_street_address", "entry_suburb", "entry_postcode", "entry_city", "entry_state", "entry_country_id", "entry_zone_id", "customers_default_address_id";' . '",';
-
-      $header = 'Content-type: text/plain; Content-Disposition: "attachment; filename="customer_export.csv ';
+      $head = '"customers_id", "customers_company", "customers_siret", "customers_ape", "customers_tva_intracom", "customers_tva_intracom_code_iso", "customers_gender", "customers_firstname", "customers_lastname", "customers_dob", "customers_email_address", "customers_telephone", "customers_fax", "customers_newsletter",  "entry_company", "entry_street_address", "entry_suburb", "entry_postcode", "entry_city", "entry_state", "entry_country_id", "entry_zone_id", "customers_default_address_id"' . "\r\n";
 
       $output = '"' . $customers['customers_id'] . '",';
       $output .= '"' . $customers['customers_company'] . '",';
@@ -56,11 +62,12 @@
       $output .= '"' . $customers['entry_zone_id'] . '",';
       $output .= '"' . $customers['customers_default_address_id'] . "\n";
 
-      $foot = '';
+      $foot = '' . "\r\n";
 
       $content = $head . $output . $foot;
 
-      Header($header);
+      header('Content-Type: application/csv; charset=utf-8');
+      header('Content-Disposition: attachment; filename=products_purchased.csv');
 
       echo $content;
 

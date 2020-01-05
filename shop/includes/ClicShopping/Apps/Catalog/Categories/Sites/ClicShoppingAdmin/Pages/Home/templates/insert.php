@@ -111,7 +111,7 @@
                       <label for="code"
                              class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" required="" id="categories_name" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
+                        <?php echo HTML::inputField('categories_name[' . $languages[$i]['id'] . ']', null, 'class="form-control" required aria-required="true" required="" id="' . 'categories_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Categories->getDef('text_edit_categories_name') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>

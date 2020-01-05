@@ -9,12 +9,12 @@
    *
    */
 
-  namespace ClicShopping\Apps\Products\QuantityDiscount\Module\Hooks\ClicShoppingAdmin\Products;
+  namespace ClicShopping\Apps\Customers\Reviews\Module\Hooks\ClicShoppingAdmin\Products;
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Products\QuantityDiscount\QuantityDiscount as QuantityDiscountApp;
+  use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
 
   class RemoveProduct implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -22,11 +22,11 @@
 
     public function __construct()
     {
-      if (!Registry::exists('QuantityDiscount')) {
-        Registry::set('QuantityDiscount', new QuantityDiscountApp());
+      if (!Registry::exists('Reviews')) {
+        Registry::set('Reviews', new ReviewsApp());
       }
 
-      $this->app = Registry::get('QuantityDiscount');
+      $this->app = Registry::get('Reviews');
     }
 
     private function removeReviews($id)

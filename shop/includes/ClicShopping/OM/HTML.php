@@ -155,7 +155,11 @@
         }
       }
 
-      $image = '<img data-src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
+      if (CLICSHOPPING::getSite() == 'Shop') {
+        $image = '<img data-src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
+      } else {
+        $image = '<img src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
+      }
 
       if (isset($alt) && (strlen($alt) > 0)) {
         $image .= ' title="' . static::output($alt) . '"';
@@ -171,7 +175,11 @@
 
       $class = [];
 
-      $class[] = 'lozad media-object';
+      if (CLICSHOPPING::getSite() == 'Shop') {
+        $class[] = 'lozad media-object';
+      } else {
+        $class[] = 'media-object';
+      }
 
       if ($responsive === true) {
         $class[] = 'img-fluid';

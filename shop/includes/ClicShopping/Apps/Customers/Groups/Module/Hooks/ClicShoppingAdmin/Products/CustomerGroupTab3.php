@@ -107,7 +107,7 @@
             $header = true;
             $title = '<div class="separator"></div>';
             $title .= '<div class="col-md-12 mainTitle" style="height:30px;">';
-            $title .= $this->app->getDef('text_cust_groups') . '&nbsp;&nbsp;&nbsp;&nbsp;' . HTML::radioField('products_percentage', '1', $in_percent) . '&nbsp;' . $override_on . '&nbsp;&nbsp;&nbsp;' . HTML::radioField('products_percentage', '0', $out_percent) . '&nbsp;' . $this->app->getDef('text_override_off');
+            $title .= $this->app->getDef('text_cust_groups') . '&nbsp;&nbsp;&nbsp;&nbsp;' . HTML::radioField('products_percentage', '1', $in_percent, 'id="in_percent"') . '&nbsp;' . $override_on . '&nbsp;&nbsp;&nbsp;' . HTML::radioField('products_percentage', '0', $out_percent, 'id="out_percent"') . '&nbsp;' . $this->app->getDef('text_override_off');
             $title .= '</div>';
             $title .= '<div class="separator"></div>';
           }

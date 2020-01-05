@@ -192,6 +192,7 @@
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title_edit') . (int)$_GET['cID'] . '&nbsp;-&nbsp;' . $cInfo->customers_lastname . '&nbsp;' . $cInfo->customers_firstname; ?></span>
           <span class="col-md-6 text-md-right">
 <?php
+  echo HTML::button($CLICSHOPPING_Customers->getDef('button_export_customer_info'), null, $CLICSHOPPING_Customers->link('Customers&ExportCustomerInfo&customers_id='. (int)$_GET['cID']), 'info') . ' ';
   echo HTML::hiddenField('customers_id', (int)$_GET['cID']);
   echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning');
   echo '&nbsp;';
@@ -263,13 +264,13 @@
 <?php
     if ($error === true) {
       if ($entry_gender_error === true) {
-        echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_gender_error');
+        echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, 'id="gender_male"') . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female') . '&nbsp;' . $CLICSHOPPING_Customers->getDef('entry_gender_error');
       } else {
         echo ($cInfo->customers_gender == 'm') ? $CLICSHOPPING_Customers->getDef('male') : $CLICSHOPPING_Customers->getDef('female');
         echo HTML::hiddenField('customers_gender');
       }
     } else {
-      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
+      echo HTML::radioField('customers_gender', 'm', $cInfo->customers_gender,  'id="gender_female"') . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('male') . '&nbsp;&nbsp;' . HTML::radioField('customers_gender', 'f', $cInfo->customers_gender, $cInfo->customers_gender) . '&nbsp;&nbsp;' . $CLICSHOPPING_Customers->getDef('female');
     }
 ?>
                       </div>

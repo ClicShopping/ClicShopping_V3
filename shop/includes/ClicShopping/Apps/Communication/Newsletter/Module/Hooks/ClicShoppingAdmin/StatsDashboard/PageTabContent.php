@@ -51,6 +51,7 @@
       $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                             from :table_customers
                                             where customers_group_id = 0
+                                            and customers_newsletter = 1
                                             limit 1
                                            ');
       $Qcustomer->execute();
@@ -75,36 +76,36 @@
       $Qcustomer = $this->app->db->prepare('select count(customers_id) as count
                                              from :table_customers
                                              where customers_group_id > 0
+                                             and customers_newsletter = 1
                                              limit 1
                                             ');
       $Qcustomer->execute();
 
       $customers_total = $Qcustomer->valueInt('count');
+
       return $customers_total;
     }
 
 // Average newlstter subcribers vs total customers
     public function statAverageCustomersNewsletterB2B()
     {
-
       if ($this->statCountCustomersB2B() > 0 && $this->statsCountCustomersNewsletter() > 0) {
         $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2B()) * 100, 2) . ' %';
+
         return $Average;
       }
     }
 
     public function display()
     {
-
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_CS_STATUS') || CLICSHOPPING_APP_CUSTOMERS_CS_STATUS == 'False') {
         return false;
       }
 
       if ($this->statsCountCustomersNewsletter() != 0) {
-
         $content = '
          <div class="row">
-          <div class="col-md-11 mainTable">
+          <div class="col-md-11">
             <div class="form-group row">
               <label for="' . $this->app->getDef('box_entry_newsletter_b2c') . '" class="col-9 col-form-label"><a href="' . $this->app->link('Newsletter') . '">' . $this->app->getDef('box_entry_newsletter_b2c') . '</a></label>
               <div class="col-md-3">
@@ -115,7 +116,7 @@
         </div>
         ';
 
-        if (MODE_B2B_B2C == 'true') {
+        if (MODE_B2B_B2C == 'true' || MODE_B2B == 'true') {
           $content .= '
            <div class="row">
             <div class="col-md-11">
@@ -137,6 +138,7 @@
   <!--  Start NewsletterAnonymous      -->
   <!-- ######################## -->
              {$content}
+              <div class="col-md-11 mainTable"></div>
   <!-- ######################## -->
   <!--  Start NewsletterAnonymous      -->
   <!-- ######################## -->

@@ -205,7 +205,7 @@
                   <label for="code"
                          class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                   <div
-                    class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', (isset($products_name[$languages[$i]['id']]) ? $products_name[$languages[$i]['id']] : $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="products_name" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
+                    class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', ($products_name[$languages[$i]['id']] ?? $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="' . 'products_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
                 </div>
                 <?php
               }
@@ -864,9 +864,9 @@
                     <span
                       class="col-sm-2"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>&nbsp;</span>
                     <span class="col-sm-10">
-            <div
-              style="visibility:visible; display:block;"><?php echo HTMLOverrideAdmin::textAreaCkeditor('products_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id']))); ?></div>
-          </span>
+                      <div
+                        style="visibility:visible; display:block;"><?php echo HTMLOverrideAdmin::textAreaCkeditor('products_description[' . $languages[$i]['id'] . ']', 'soft', '750', '300', (isset($products_description[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescription($pInfo->products_id, $languages[$i]['id']))); ?></div>
+                  </span>
                   </div>
                   <div class="separator"></div>
                   <div id="tab4ContentRow2">
@@ -877,8 +877,8 @@
                     <span
                       class="col-sm-2"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?>&nbsp;</span>
                     <span class="col-sm-7">
-            <?php echo HTML::textAreaField('products_description_summary[' . $languages[$i]['id'] . ']', (isset($products_description_summary[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages[$i]['id'])), '120', '3'); ?>
-          </span>
+                      <?php echo HTML::textAreaField('products_description_summary[' . $languages[$i]['id'] . ']', (isset($products_description_summary[$languages[$i]['id']]) ? str_replace('& ', '&amp; ', trim($products_description_summary[$languages[$i]['id']])) : $CLICSHOPPING_ProductsAdmin->getProductsDescriptionSummary($pInfo->products_id, $languages[$i]['id'])), '120', '3'); ?>
+                    </span>
                   </div>
                   <div class="separator"></div>
                   <?php
@@ -1365,7 +1365,7 @@
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_file_download'); ?></label>
                   <div class="col-md-5">
                     <?php
-                      echo HTML::fileField('products_download_filename', 'id="file" accept=".zip, .pdf, .doc, .odf, .xlsx., xls, .mp3, .mp4, .avi, .png, .jpg, .gif"');
+                      echo HTML::fileField('products_download_filename', 'id="download_file" accept=".zip, .pdf, .doc, .odf, .xlsx., xls, .mp3, .mp4, .avi, .png, .jpg, .gif"');
 
                       if ($pInfo->products_download_filename) {
                         echo HTML::inputField('products_download_filename', $pInfo->products_download_filename, 'id="products_download_filename" disabled="disabled"') . '&nbsp';
