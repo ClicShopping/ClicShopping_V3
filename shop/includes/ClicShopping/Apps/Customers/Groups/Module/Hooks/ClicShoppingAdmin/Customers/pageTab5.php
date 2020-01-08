@@ -85,7 +85,7 @@
 
 // Search Shipping Module
         if ($cInfo->customers_group_id != 0) {
-          $shipping_unallowed = explode(",", $cInfo_group->group_shipping_unallowed);
+          $shipping_unallowed = explode(',', $cInfo_group->group_shipping_unallowed);
         }
 
         $module_key = 'MODULE_SHIPPING_INSTALLED';
@@ -113,7 +113,6 @@
         }
 
         for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-
           if (strpos($include_modules[$i]['class'], '\\') !== false) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
             $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
@@ -123,9 +122,9 @@
               $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
-            } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
+            } elseif ($cInfo->customers_group_id != 0 && !in_array($module->code, $shipping_unallowed)) {
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg text-danger" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
             } elseif ($cInfo->customers_group_id == 0) {
@@ -152,21 +151,16 @@
               }
 
               if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
-
                 $content .= '<div class="col-md-12">';
                 $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
                 $content .= '<span class="col-md-3">' . $module->title . '</span>';
                 $content .= '</div>';
-
               } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
-
                 $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg text-danger" aria-hidden="true"></i></span>';
                 $content .= '<span class="col-md-3">' . $module->title . '</span>';
                 $content .= '</div>';
-
               } elseif ($cInfo->customers_group_id == 0) {
-
                 $content .= '<div class="col-md-12">';
                 $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
                 $content .= '<span class="col-md-3">' . $module->title . '</span>';
