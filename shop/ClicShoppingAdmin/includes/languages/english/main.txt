@@ -1,4 +1,3 @@
-
 date_format_short = %m/%d/%Y
 date_format_short_sql = %Y-%m-%d
 date_format_long = %A %d %B, %Y

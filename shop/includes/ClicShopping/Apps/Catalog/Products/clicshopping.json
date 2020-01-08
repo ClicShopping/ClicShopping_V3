@@ -46,6 +46,11 @@
    "ClicShoppingAdmin/Categories": {
     "PageTabContent":"Module\\Hooks\\ClicShoppingAdmin\\Categories\\PageTabContentProducts"
    },
+   "ClicShoppingAdmin/TopDashboard": {
+    "TopDashboard":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\dashboardProductsOutOfStock",
+    "dashboardProductsWarning":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\dashboardProductsWarning",
+    "dashboardProductsExpected":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\dashboardProductsExpected"
+   },
    "ClicShoppingAdmin/DashboardShortCut": {
     "DashboardShortCut":"Module\\Hooks\\ClicShoppingAdmin\\DashboardShortCut\\DashboardShortCutProducts"
    }

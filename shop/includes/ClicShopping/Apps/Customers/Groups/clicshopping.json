@@ -66,6 +66,9 @@
     "pageTab4":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\pageTab4",
     "pageTab5":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\pageTab5",
     "Update":	"Module\\Hooks\\ClicShoppingAdmin\\Customers\\Update"
+   },
+   "ClicShoppingAdmin/TopDashboard": {
+    "TopDashboard":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\DashboardMembersB2B"
    }
   }
  },

@@ -26,6 +26,9 @@
    },
    "ClicShoppingAdmin/Products": {
     "RemoveProduct":"Module\\Hooks\\ClicShoppingAdmin\\Products\\RemoveProduct"
+   },
+   "ClicShoppingAdmin/TopDashboard": {
+    "TopDashboard":"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\DashboardTopReviews"
    }
   }
  },

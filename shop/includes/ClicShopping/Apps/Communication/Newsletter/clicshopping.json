@@ -24,6 +24,9 @@
    },
    "ClicShoppingAdmin/Langues": {
     "DeleteConfirm":	"Module\\Hooks\\ClicShoppingAdmin\\Langues\\DeleteConfirm"
+   },
+   "ClicShoppingAdmin/TopDashboard": {
+    "TopDashboard":	"Module\\Hooks\\ClicShoppingAdmin\\TopDashboard\\DashboardTopNewsletter"
    }
   }
  },

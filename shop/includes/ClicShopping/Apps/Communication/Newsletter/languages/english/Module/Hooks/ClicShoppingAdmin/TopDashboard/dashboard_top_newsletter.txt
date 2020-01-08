@@ -1,0 +1,2 @@
+text_newsletter = Newsletter subscriptions
+text_view = - More informations
