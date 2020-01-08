@@ -51,7 +51,7 @@
     <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="title"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_title'); ?></th>
-        <th data-field=value><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>
+        <th data-field="value"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_configuration_value'); ?></th>
         <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Settings->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
@@ -75,7 +75,7 @@
         <tr>
           <td><?php echo $Qconfiguration->value('configuration_title'); ?></td>
           <td><?php echo htmlspecialchars($cfgValue); ?></td>
-          <td class="float-md-right">
+          <td>
             <script>
                 $(document).ready(function () {
                     $("#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>").on("show.bs.modal", function (e) {

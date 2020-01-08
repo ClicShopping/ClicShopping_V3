@@ -76,7 +76,6 @@
         $Qreviews->execute();
 
         $count_review = $Qreviews->rowCount();
-
 //*******************************************
 // customers_feedback
 //********************************************

@@ -149,8 +149,12 @@
     data-toggle="table"
     data-sort-name="sort_order"
     data-sort-order="asc"
-    class="table table-md table-hover table-striped"
-  >
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
     <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="modules" data-sortable="true"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></th>

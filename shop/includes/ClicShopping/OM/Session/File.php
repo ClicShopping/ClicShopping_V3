@@ -82,10 +82,9 @@
 
     /**
      * Deletes the session data from the file storage handler
-     *
-     * @param string $session_id The ID of the session
+     * @param string $session_id
+     * @return bool
      */
-
     public function destroy($session_id)
     {
       $id = basename($session_id);
