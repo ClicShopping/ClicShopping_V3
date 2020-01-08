@@ -400,7 +400,7 @@
 
       if (is_numeric($products_id) && is_numeric($qty) && ($attributes_pass_check === true)) {
         $Qcheck = $this->db->prepare('select p.products_id
-                                      from :table_products p
+                                      from :table_products p,
                                            :table_products_to_categories p2c,
                                            :table_categories c
                                       where p.products_id = :products_id
@@ -684,8 +684,6 @@
      * @param : int $products_id, id of the product
      * @return : int qty
      */
-
-
     public function inCart(string $products_id) :bool
     {
       if (isset($this->contents[$products_id])) {
@@ -696,8 +694,8 @@
     }
 
     /**
-     * Remove item
-     * @param $products_id
+     * @param string $item_id
+     * @throws \Exception
      */
     public function remove(string $item_id)
     {
@@ -779,7 +777,7 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
-					    and p.products_archive = 0
+                                            and p.products_archive = 0
                                            ');
 
             $Qproduct->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
@@ -801,8 +799,8 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
-					    and p.products_archive = 0
-					    and p.products_status = 1
+                                            and p.products_archive = 0
+                                            and p.products_status = 1
                                            ');
 
             $Qproduct->bindInt(':products_id', $item_id);
@@ -936,7 +934,7 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
-					    and p.products_archive = 0
+                                            and p.products_archive = 0
                                       ');
 
             $Qproducts->bindInt(':products_id', $item_id);
@@ -966,8 +964,8 @@
                                             and p.products_id = p2c.products_id
                                             and p2c.categories_id = c.categories_id
                                             and c.status = 1
-					    and p.products_archive = 0
-					    and p.products_status = 1
+                                            and p.products_archive = 0
+                                            and p.products_status = 1
                                          ');
             $Qproducts->bindInt(':products_id', $item_id);
             $Qproducts->bindInt(':language_id', (int)$this->lang->getId());
@@ -1017,7 +1015,7 @@
               $products_price = $new_price_with_discount_quantity;
             }
 
-            if ($Qproducts->value('products_model_group') != '' && $this->customer->getCustomersGroupID() != 0) {
+            if (empty($Qproducts->value('products_model_group')) && $this->customer->getCustomersGroupID() != 0) {
               $model = $Qproducts->value('products_model_group');
             } else {
               $model = $Qproducts->value('products_model');
@@ -1056,9 +1054,10 @@
     {
       return $this->sub_total;
     }
-    
+
     /**
      * @return float
+     * @throws \Exception
      */
     public function show_total() :float
     {
@@ -1069,8 +1068,9 @@
 
     /**
      * @return float
+     * @throws \Exception
      */
-    public function getWeight() :float
+   public function getWeight() :float
     {
       $this->calculate();
 
@@ -1267,7 +1267,11 @@
       }
     }
 
-
+    /**
+     * @param string $products_id
+     * @param int $qty
+     * @return int
+     */
     public function getCheckGoodQty(string $products_id, int $qty) :int
     {
       if (defined('MAX_QTY_IN_CART') && (MAX_QTY_IN_CART > 0) && ((int)$qty > MAX_QTY_IN_CART)) {

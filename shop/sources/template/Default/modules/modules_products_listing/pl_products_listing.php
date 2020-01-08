@@ -161,6 +161,8 @@
                 $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
                 $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
+// Reviews
+                $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty

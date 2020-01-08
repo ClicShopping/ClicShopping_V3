@@ -45,11 +45,12 @@
       $CLICSHOPPING_Banner = Registry::get('Banner');
 
       $Qpages = $CLICSHOPPING_Db->prepare('select count(*) as count
-                                            from :table_pages_manager
-                                            where status = 1
-                                            and page_box = 0
-                                            and (customers_group_id = :customers_group_id or customers_group_id = 99)
-                                           ');
+                                          from :table_pages_manager
+                                          where status = 1
+                                          and page_box = 0
+                                          and page_type = 4
+                                          and (customers_group_id = :customers_group_id or customers_group_id = 99)
+                                         ');
       $Qpages->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID() );
 
       $Qpages->execute();

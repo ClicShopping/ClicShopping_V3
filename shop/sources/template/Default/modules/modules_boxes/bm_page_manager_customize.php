@@ -49,6 +49,7 @@
                                               from :table_pages_manager
                                               where status = 1
                                               and page_box = 1
+                                              and page_type = 4
                                               and (customers_group_id = :customers_group_id or customers_group_id = 99)
                                             ');
       $QpagesSecondary->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID() );
@@ -150,11 +151,6 @@
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                               ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                              );
-
     }
 
     public function  remove() {

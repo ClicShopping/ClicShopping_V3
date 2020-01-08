@@ -1,5 +1,5 @@
 <?php
-/**
+ /**
  *
  *  @copyright 2008 - https://www.clicshopping.org
  *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -46,6 +46,7 @@
       $CLICSHOPPING_Tax = Registry::get('Tax');
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
+      $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
         $products = $CLICSHOPPING_ShoppingCart->get_products();
@@ -63,7 +64,7 @@
         $shopping_cart .= '<tr>';
         $shopping_cart .= '<th style="width:60%">' . CLICSHOPPING::getDef('table_heading_products') . '</th>';
         $shopping_cart .= '<th style="width:18%">' . CLICSHOPPING::getDef('table_heading_quantity') . '</th>';
-        $shopping_cart .= '<th style="width:22%" class="text-md-right">' . CLICSHOPPING::getDef('table_heading_total') . '</th>';							
+        $shopping_cart .= '<th style="width:22%" class="text-md-right">' . CLICSHOPPING::getDef('table_heading_total') . '</th>';
         $shopping_cart .= '</tr>';
         $shopping_cart .= '</thead>';
         $shopping_cart .= '<tbody>';
@@ -166,12 +167,14 @@
             $ticker = '' ;
            }
 
+          $total_overall_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
+
           $cart ='<tr id="ShoppingCartContent" class="ModulesShoppingCartProductsListingContent">';
           $cart .='<td id="ShoppingCartProducts" class="ModulesShoppingCartProductsListingContent" data-th="Product">';
           $cart .='<div class="row">';
           $cart .='<div id="ShoppingCartImage" class="col-sm-2 hidden-xs">' . $image . '</div>';
           $cart .='<div class="col-sm-10">';
-          $cart .='<p id="ShoppingCartProductsName" class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . '</p>';
+          $cart .='<p id="ShoppingCartProductsName" class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . ' ' . $total_overall_reviews . '</p>';
           $cart .='<p id="ShoppingCartProductsOptions" class="small">' . $products_attributes . '</p>';
           $cart .='</div>';
           $cart .='</div>';
