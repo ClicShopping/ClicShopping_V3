@@ -17,7 +17,7 @@
 
   class Payment
   {
-    public $modules;
+    public $modules = [];
     public $selected_module;
     protected $template;
     protected $lang;
@@ -108,7 +108,7 @@
       }
     }
 
-    public function javascript_validation()
+    public function javascript_validation(): string
     {
       $js = '';
       if (is_array($this->modules)) {
@@ -156,7 +156,7 @@
       return $js;
     }
 
-    public function checkout_initialization_method()
+    public function checkout_initialization_method(): array
     {
       $initialize_array = [];
 
@@ -175,7 +175,7 @@
       return $initialize_array;
     }
 
-    public function selection()
+    public function selection(): array
     {
       $selection_array = [];
 
@@ -195,6 +195,9 @@
       return $selection_array;
     }
 
+    /**
+     * preconfirmation
+     */
     public function pre_confirmation_check()
     {
       if (is_array($this->modules)) {
@@ -208,6 +211,9 @@
       }
     }
 
+    /**
+     * confirmation
+     */
     public function confirmation()
     {
       if (is_array($this->modules)) {
@@ -221,6 +227,9 @@
       }
     }
 
+    /**
+     * process
+     */
     public function process_button()
     {
       if (is_array($this->modules)) {
@@ -234,6 +243,9 @@
       }
     }
 
+    /**
+     * before process
+     */
     public function before_process()
     {
       if (is_array($this->modules)) {
@@ -247,6 +259,9 @@
       }
     }
 
+    /**
+     * after process
+     */
     public function after_process()
     {
       if (is_array($this->modules)) {
@@ -260,6 +275,9 @@
       }
     }
 
+    /**
+     * error
+     */
     public function get_error()
     {
       if (is_array($this->modules)) {
@@ -273,7 +291,11 @@
       }
     }
 
-    public function getCountPaymentModules()
+    /**
+     * count payment
+     * @return int
+     */
+    public function getCountPaymentModules(): int
     {
       $count = 0;
 

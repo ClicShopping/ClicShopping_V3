@@ -18,11 +18,10 @@
 
   class Shipping
   {
-    public $modules;
+    public $modules = [];
     public $selected_module;
     protected $lang;
-
-// class constructor
+    
     public function __construct($module = null)
     {
       $this->lang = Registry::get('Language');
@@ -103,7 +102,7 @@
      * @param null $module
      * @return array
      */
-    public function getQuote($method = null, $module = null)
+    public function getQuote($method = null, $module = null): array
     {
       $quotes_array = [];
 
@@ -215,7 +214,7 @@
      * Count shipping modules
      * @return int
      */
-    public function geCountShippingModules()
+    public function geCountShippingModules(): int
     {
       $count = 0;
 
