@@ -45,6 +45,9 @@
    },
    "ClicShoppingAdmin/Categories": {
     "PageTabContent":"Module\\Hooks\\ClicShoppingAdmin\\Categories\\PageTabContentProducts"
+   },
+   "ClicShoppingAdmin/DashboardShortCut": {
+    "DashboardShortCut":"Module\\Hooks\\ClicShoppingAdmin\\DashboardShortCut\\DashboardShortCutProducts"
    }
   }
  },

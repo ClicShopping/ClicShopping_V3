@@ -28,6 +28,9 @@
    },
    "ClicShoppingAdmin/MailChimp": {
     "MailChimpBatch":	"Module\\Hooks\\ClicShoppingAdmin\\MailChimp\\MailChimpBatch"
+   },
+   "ClicShoppingAdmin/DashboardShortCut": {
+    "DashboardShortCut":	"Module\\Hooks\\ClicShoppingAdmin\\DashboardShortCut\\DashboardShortCutCustomers"
    }
   }
  },

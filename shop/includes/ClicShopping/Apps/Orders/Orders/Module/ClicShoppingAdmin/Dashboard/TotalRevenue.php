@@ -112,7 +112,7 @@ $(function() {
   chart.on('draw', function(context) {
     if (context.type === 'bar') {
       context.element.attr({
-        style: 'stroke: #13bf4c; stroke-width: 50px'
+        style: 'stroke: #13bf4c; stroke-width: 40px'
     
       });
     } else if (context.type === 'area') {

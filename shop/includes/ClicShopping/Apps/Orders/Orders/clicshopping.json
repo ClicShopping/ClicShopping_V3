@@ -43,6 +43,9 @@
    "Shop/Contact": {
     "DisplayRowContent":	"Module\\Hooks\\Shop\\Info\\Contact\\Evidence",
     "PreAction":	"Module\\Hooks\\Shop\\Info\\Contact\\PreActionEvidence"
+   },
+   "ClicShoppingAdmin/DashboardShortCut": {
+    "DashboardShortCut":	"Module\\Hooks\\ClicShoppingAdmin\\DashboardShortCut\\DashboardShortCutOrders"
    }
   }
  },

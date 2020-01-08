@@ -33,45 +33,40 @@
             </span>
             <span class="col-sm-2 pageHeading"><?php echo CLICSHOPPING::getDef('heading_title'); ?></span>
             <span class="col-sm-9 text-sm-right">
-              <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Categories&Categories'), null, 'class="btn btn-primary btn-sm" role="button"><span class="fas fa-list" title="' . CLICSHOPPING::getDef('heading_short_categories') . '"'); ?>
-              <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products'), null, 'class="btn btn-info btn-sm" role="button"><span class="fab fa-product-hunt" title="' . CLICSHOPPING::getDef('heading_short_products') . '"'); ?>
-              <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Orders\Orders&Orders'), null, 'class="btn btn-success btn-sm" role="button"><span class="fas fa-bookmark" title="' . CLICSHOPPING::getDef('heading_short_orders') . '"'); ?>
-              <?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers'), null, 'class="btn btn-warning btn-sm" role="button"><span class="fas fa-user" title="' . CLICSHOPPING::getDef('heading_short_customers') . '"'); ?>
+              <?php echo $CLICSHOPPING_Hooks->output('DashboardShortCut', 'DashboardShortCut', null, 'display'); ?>
             </span>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="separator"></div>
   <div class="row">
     <div class="col-md-12">
       <div class="d-flex flex-wrap justify-content-center">
-
         <?php
-          $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Dashboard/';
+          echo $CLICSHOPPING_Hooks->output('TopDashboard', 'TopDashboard', null, 'display');
+
+          $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/TopDashboard/';
 
           if (is_dir($source_folder)) {
-          $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'IndexDashboardTop*');
+          $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'TopDashboard*');
 
           if (is_array($files_get)) {
             foreach ($files_get as $value) {
               if (!empty($value['name'])) {
-                echo $CLICSHOPPING_Hooks->output('Dashboard', $value['name']);
+                echo $CLICSHOPPING_Hooks->output('TopDashboard', $value['name']);
               }
             }
-
-            echo '<div class="separator"></div>';
           }
         ?>
       </div>
     </div>
     <?php
-      echo $CLICSHOPPING_Hooks->output('IndexDashboardTop', 'PageTabContent', null, 'display');
+      echo $CLICSHOPPING_Hooks->output('TopDashboard', 'PageTabContent', null, 'display');
       }
     ?>
   </div>
+  <div class="separator"></div>
   <div class="col-md-12">
     <span class="col-md-8 float-md-left">
       <div class="row">
@@ -126,8 +121,8 @@
     <div class="tabsClicShopping">
       <div class="tab-content">
 <!-- ------------------------------------------------------------ //-->
-        <!--          ONGLET Statistics                                   //-->
-        <!-- ------------------------------------------------------------ //-->
+<!--          ONGLET Statistics           //-->
+<!-- ------------------------------------------------------------ //-->
         <div class="tab-pane active" id="tab1">
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('title_index_order'); ?></div>
           <div
@@ -140,9 +135,9 @@
 ?>
           </div>
         </div>
-        <!-- ------------------------------------------------------------ //-->
-        <!--          ONGLET Information                                    //-->
-        <!-- ------------------------------------------------------------ //-->
+<!-- ------------------------------------------------------------ //-->
+<!--          ONGLET Information         //-->
+<!-- ------------------------------------------------------------ //-->
         <div class="tab-pane" id="tab3">
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('title_customer_information'); ?></div>
           <div
