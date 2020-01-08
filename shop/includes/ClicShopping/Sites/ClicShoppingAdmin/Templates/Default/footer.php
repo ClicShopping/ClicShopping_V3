@@ -26,22 +26,13 @@
 <?php
   if (isset($_SESSION['admin'])) {
     ?>
-            <span class="col-md-3 navbar-text">
+            <span class="col-md-2 navbar-text">
               <?php echo 'ClicShopping™ - V. ' . CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date('Y'); ?><br/>
             </span>
-            <span class="col-md-4 navbar-text nav-item text-md-center">
+            <span class="col-md-7 navbar-text nav-item text-md-center">
               <?php echo $CLICSHOPPING_Language->getLanguageText(); ?>
             </span>
-            <span class="col-md-4 navbar-text text-md-center footerHelp go-top">
-<?php
-  echo CLICSHOPPING::getDef('text_legend');
-  echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', CLICSHOPPING::getDef('image_edit')) . ' ' . CLICSHOPPING::getDef('image_edit') . ' - ';
-  echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', CLICSHOPPING::getDef('image_copy_to')) . ' ' . CLICSHOPPING::getDef('image_copy_to') . ' - ';
-  echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', CLICSHOPPING::getDef('image_delete')) . ' ' . CLICSHOPPING::getDef('image_delete') . ' - ';
-  echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', CLICSHOPPING::getDef('image_preview')) . ' ' . CLICSHOPPING::getDef('image_preview') . ' - ';
-?>
-            </span>
-            <span class="text-md-right go-top"></span>
+            <span class="col-md-2 navbar-text text-md-right footerHelp go-top">Licence MIT - GPL2</span>
     <?php
   }
 ?>
@@ -49,14 +40,14 @@
         </nav>
       </footer>
       <div class="separator"></div>
+    </div>
 <?php
-    $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Footer/';
-    $file_get_output = 'FooterOutput*';
-    $file_get_call = 'FooterCall*';
-    $hook_call = 'Footer';
+  $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Footer/';
+  $file_get_output = 'FooterOutput*';
+  $file_get_call = 'FooterCall*';
+  $hook_call = 'Footer';
 
-    $CLICSHOPPING_Template->useRecursiveModulesHooksForTemplate($source_folder,  $file_get_output,  $file_get_call, $hook_call);
+  $CLICSHOPPING_Template->useRecursiveModulesHooksForTemplate($source_folder,  $file_get_output,  $file_get_call, $hook_call);
 ?>
-      </div>
    </body>
 </html>

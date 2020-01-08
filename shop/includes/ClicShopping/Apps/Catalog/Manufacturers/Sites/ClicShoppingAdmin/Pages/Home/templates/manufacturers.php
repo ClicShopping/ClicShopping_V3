@@ -39,9 +39,21 @@
     </div>
   </div>
   <div class="separator"></div>
-  <?php
-    echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $page));
-  ?>
+  <!-- ################# -->
+  <!-- Hooks Stats - just use execute function to display the hook-->
+  <!-- ################# -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck">
+        <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'StatsManufacturers'); ?>
+      </div>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <!-- //################################################################################################################ -->
+  <!-- //                                            Listing                                                               -->
+  <!-- //################################################################################################################ -->
+  <?php  echo HTML::form('delete_all', $CLICSHOPPING_Manufacturers->link('Manufacturers&DeleteAll&page=' . $page)); ?>
 
   <div id="toolbar">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Manufacturers->getDef('button_delete'); ?></button>
