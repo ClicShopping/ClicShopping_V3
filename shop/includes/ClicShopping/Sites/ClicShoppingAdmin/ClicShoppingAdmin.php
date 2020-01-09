@@ -47,11 +47,12 @@
       Registry::set('Hooks', new Hooks());
 
 // set the application parameters
-      $Qcfg = $CLICSHOPPING_Db->get('configuration', [
-          'configuration_key as k',
-          'configuration_value as v'
-        ]
-      );
+      $Qcfg = $CLICSHOPPING_Db->prepare('select configuration_key as k,
+                                                configuration_value as v
+                                         from :table_configuration
+                                       ');
+
+      $Qcfg->setCache('configuration');
 
       $Qcfg->execute();
 

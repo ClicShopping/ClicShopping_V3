@@ -55,7 +55,10 @@
       $this->_replace = $replace;
     }
 
-    public function check()
+    /**
+     * @return bool
+     */
+    public function check(): bool
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
@@ -120,6 +123,9 @@
       return false;
     }
 
+    /**
+     * @return bool
+     */
     public function save()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -161,10 +167,13 @@
       $this->_permissions = octdec($permissions);
     }
 
+    /**
+     * @param $extensions
+     */
     public function addExtensions($extensions)
     {
       if (!is_array($extensions)) {
-        $extensions = array($extensions);
+        $extensions = [$extensions];
       }
 
       $extensions = array_map('strtolower', $extensions);
@@ -172,21 +181,33 @@
       $this->_extensions = array_merge($this->_extensions, $extensions);
     }
 
-    public function setReplace($bool)
+    /**
+     * @param bool $bool
+     */
+    public function setReplace(bool $bool)
     {
       $this->_replace = ($bool === true);
     }
 
+    /**
+     * @return false|string
+     */
     public function getDestination()
     {
       return $this->_destination;
     }
 
-    public function setFilename($filename)
+    /**
+     * @param string $filename
+     */
+    public function setFilename(string $filename)
     {
       $this->_filename = $filename;
     }
 
+    /**
+     * @return mixed
+     */
     public function getFilename()
     {
       if (isset($this->_filename)) {
@@ -196,16 +217,25 @@
       return $this->_upload['name'];
     }
 
-    public function getExtension()
+    /**
+     * @return string
+     */
+    public function getExtension(): string
     {
       return strtolower(substr($this->getFilename(), strrpos($this->getFilename(), '.') + 1));
     }
 
+    /**
+     * @return mixed
+     */
     public function getPermissions()
     {
       return $this->_permissions;
     }
 
+    /**
+     * destruct
+     */
     public function __destruct()
     {
       if (isset($this->_upload['temp_filename']) && file_exists(CLICSHOPPING::BASE_DIR . 'Work/Temp/' . $this->_upload['temp_filename'])) {
