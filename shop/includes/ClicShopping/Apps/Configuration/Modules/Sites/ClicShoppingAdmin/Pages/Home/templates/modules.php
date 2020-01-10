@@ -160,7 +160,7 @@
         <th data-field="modules" data-sortable="true"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></th>
         <th data-field="sort_order" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></th>
         <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></th>
-        <th data-field="action" class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
