@@ -17,12 +17,10 @@
 
   class AdministratorAdmin
   {
-
     /**
      * get the user administrator
      * @param string $user_administrator
      */
-
     public static function getUserAdmin(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');

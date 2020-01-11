@@ -18,7 +18,6 @@
 
   class CategoriesAdmin
   {
-
     public $categorie;
     protected $lang;
     protected $template;

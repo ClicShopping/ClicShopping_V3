@@ -38,7 +38,7 @@
      * @return string $values_values['products_options_values_name'], the value of the option name
      * @access public
      */
-    public function getOptionsName($options_id)
+    public function getOptionsName(int $options_id): string
     {
       $Qoptions = Registry::get('Db')->get('products_options', 'products_options_name', ['products_options_id' => (int)$options_id,
           'language_id' => (int)$this->lang->getId()
@@ -56,7 +56,7 @@
      * @return string $values_values['products_options_values_name'], the name value of the option name
      * @access public
      */
-    public function getValuesName($values_id)
+    public function getValuesName(int $values_id): string
     {
       $Qvalues = Registry::get('Db')->get('products_options_values', 'products_options_values_name', ['products_options_values_id' => (int)$values_id,
           'language_id' => (int)$this->lang->getId()
@@ -120,7 +120,7 @@
      * Set attribut option type
      * @return array
      */
-    public function setAttributeType()
+    public function setAttributeType(): array
     {
       $products_options_type = [array('id' => 'select', 'text' => $this->app->getDef('text_select')),
         array('id' => 'radio', 'text' => $this->app->getDef('text_radio'))

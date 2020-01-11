@@ -17,7 +17,7 @@
   {
 
 // Sets the status of a featured product
-    private static function SetFeaturedStatus($products_featured_id, $status)
+    private static function SetFeaturedStatus(int $products_featured_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

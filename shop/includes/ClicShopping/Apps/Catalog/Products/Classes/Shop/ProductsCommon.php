@@ -18,7 +18,6 @@
 
   class ProductsCommon extends Prod
   {
-
     protected $id;
     protected $products_name;
     protected $products_short_description;

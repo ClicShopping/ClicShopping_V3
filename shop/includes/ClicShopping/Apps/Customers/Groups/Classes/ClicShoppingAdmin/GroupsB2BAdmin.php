@@ -117,7 +117,7 @@
         $iso = '0';
         while (!feof($fp1)) {
           if (substr_count(fgets($fp1, 128), $find) == 1) {
-            $iso = "1";
+            $iso = '1';
           }
         }
         fclose($fp1);

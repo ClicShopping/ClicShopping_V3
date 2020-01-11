@@ -15,7 +15,6 @@
 
   class Prod
   {
-
     protected $products_id;
     protected $id;
 
@@ -54,7 +53,7 @@
      * @return string
      */
 
-    public static function getProductIDString($id, $params)
+    public static function getProductIDString(string $id, $params)
     {
       $string = $id;
 
@@ -86,13 +85,14 @@
      * @access public
      */
 
-    public static function getProductID($id)
+    public static function getProductID(string $id)
     {
       if (is_numeric($id)) {
         return $id;
       }
 
       $id = HTML::sanitize($id);
+
       $product = explode('{', $id, 2);
 
       return (int)$product[0];
@@ -105,7 +105,7 @@
      * @access public
      *
      */
-    public function setSortBy($field, $direction = '+')
+    public function setSortBy(string $field, string $direction = '+')
     {
       switch ($field) {
         case 'model':
@@ -131,7 +131,7 @@
       $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
     }
 
-    public function setSortByDirection($direction)
+    public function setSortByDirection(string $direction)
     {
       $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
     }

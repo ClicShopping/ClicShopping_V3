@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Marketing\BannerManager\Classes\Shop;
 
   use ClicShopping\OM\Registry;

@@ -55,8 +55,8 @@
 <?php
   $current_category_id = 0;
 
-  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
-  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
+  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']) ?? $current_category_id = 0;
+  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']) ?? $current_category_id = 0;
 
   echo HTML::form('goto', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
   echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');

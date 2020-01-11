@@ -17,7 +17,7 @@
   {
 
 // Sets the status of a special product
-    private static function setSpecialsStatus($specials_id, $status)
+    private static function setSpecialsStatus(int $specials_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

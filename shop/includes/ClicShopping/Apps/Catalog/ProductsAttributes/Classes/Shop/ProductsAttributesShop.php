@@ -121,7 +121,7 @@
      * @param int $language_id
      * @return mixed
      */
-    public function getProductsAttributesInfo($products_id, $option_id, $options_values_id = null, $language_id)
+    public function getProductsAttributesInfo(int $products_id, int $option_id, $options_values_id = null, int $language_id)
     {
       if (!is_null($options_values_id)) {
         if ($this->customer->getCustomersGroupID() != 0) {
@@ -236,7 +236,7 @@
      * @param int $id
      * @return bool
      */
-    public function getCheckProductsStatus($id)
+    public function getCheckProductsStatus(int $id)
     {
       $Qcheck = $this->db->prepare('select products_id
                                     from :table_products
@@ -258,7 +258,7 @@
      * @param int $options_values_id
      * @return bool
      */
-    public function GetCheckProductsAttributes($products_id, $option_id, $options_values_id)
+    public function GetCheckProductsAttributes(int $products_id, int $option_id, int $options_values_id)
     {
       if ($this->customer->getCustomersGroupID() != 0) {
         $Qcheck = $this->db->prepare('select products_attributes_id
@@ -308,7 +308,7 @@
      * @param int $options_values_id
      * @return bool
      */
-    public function getCheckProductsDownload($products_id, $options_values_id)
+    public function getCheckProductsDownload(int $products_id, int $options_values_id)
     {
       if ($this->customer->getCustomersGroupID() != 0) {
         $Qcheck = $this->db->prepare('select pa.products_attributes_id
@@ -356,7 +356,7 @@
      * @param int $language_id
      * @return mixed
      */
-    public function getAttributesDownloaded($products_id, $options_id, $options_values_id, $language_id)
+    public function getAttributesDownloaded(int $products_id, int $options_id, int $options_values_id, int $language_id)
     {
       if (DOWNLOAD_ENABLED == 'true') {
         if ($this->customer->getCustomersGroupID() != 0) {
