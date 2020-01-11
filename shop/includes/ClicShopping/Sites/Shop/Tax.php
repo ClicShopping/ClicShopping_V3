@@ -20,7 +20,13 @@
     protected $tax_rates = [];
     public static $tag;
 
-    public function getTaxRate($class_id, $country_id = -1, $zone_id = -1)
+    /**
+     * @param int $class_id
+     * @param int $country_id
+     * @param int $zone_id
+     * @return mixed
+     */
+    public function getTaxRate(int $class_id, ?int $country_id = -1, ?int $zone_id = -1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -73,8 +79,14 @@
       return $this->tax_rates[$class_id][$country_id][$zone_id]['rate'];
     }
 
-// Return the tax description for a zone / class
-    public function getTaxRateDescription($class_id, $country_id, $zone_id)
+    /**
+     * Return the tax description for a zone / class
+     * @param int $class_id
+     * @param int $country_id
+     * @param int $zone_id
+     * @return mixed
+     */
+    public function getTaxRateDescription(int $class_id, ?int $country_id, ?int $zone_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -121,6 +133,11 @@
       return $this->tax_rates[$class_id][$country_id][$zone_id]['description'];
     }
 
+    /**
+     * @param float $price
+     * @param float $tax_rate
+     * @return float
+     */
     public static function calculate(float $price, float $tax_rate): float
     {
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -128,7 +145,11 @@
       return round($price * $tax_rate / 100, $CLICSHOPPING_Currencies->currencies[DEFAULT_CURRENCY]['decimal_places']);
     }
 
-
+    /**
+     * @param float $value
+     * @param string|null $padding
+     * @return string
+     */
     public static function displayTaxRateValue(float $value, string $padding = null): string
     {
       if (!is_numeric($padding)) {
@@ -173,9 +194,8 @@
      * symbol tax :display information after currency (ex : HT / TTC)
      * @param $price
      * @param $tax
-     * @return float
      */
-    public static function addTax($price, $tax)
+    public static function addTax(float $price, float $tax)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -253,9 +273,13 @@
       return $tax_class_array;
     }
 
-    public function getTag()
+    /**
+     * @return string
+     */
+    public function getTag(): string
     {
       $tag = static::$tag;
+
       return $tag;
     }
   }
