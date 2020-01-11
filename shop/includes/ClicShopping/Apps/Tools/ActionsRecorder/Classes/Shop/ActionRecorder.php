@@ -68,6 +68,9 @@
       return false;
     }
 
+    /**
+     * @return mixed
+     */
     public function getTitle()
     {
       if (!is_null($this->_module)) {
@@ -75,6 +78,9 @@
       }
     }
 
+    /**
+     * @return mixed
+     */
     public function getIdentifier()
     {
       if (!is_null($this->_module)) {
@@ -82,7 +88,10 @@
       }
     }
 
-    public function record($success = true)
+    /**
+     * @param bool $success
+     */
+    public function record(bool $success = true)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -105,6 +114,9 @@
       }
     }
 
+    /*
+     *
+     */
     public function expireEntries()
     {
       if (!is_null($this->_module)) {

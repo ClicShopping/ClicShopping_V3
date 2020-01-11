@@ -70,7 +70,8 @@
     /**
      * the category name
      *
-     * @param string $category_id , $language_id
+     * @param int $id
+     * @param int $language_id
      * @return string $category['categories_name'],  name of the categorie
      * @access public
      */
@@ -87,7 +88,7 @@
     /**
      *  remove category
      *
-     * @param string $category_id
+     * @param int $id
      * @return string
      * @access public
      */
@@ -104,10 +105,12 @@
 
     /**
      * category tree
-     *
-     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
-     * @return string $category_tree_array, the tree of category
-     * @access public
+     * @param string $parent_id
+     * @param string $spacing
+     * @param string $exclude
+     * @param string $category_tree_array
+     * @param bool $include_itself
+     * @return array|string
      */
     public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
     {
@@ -189,7 +192,7 @@
     }
 
 
-    public static function getGenerateCategoryPath($id, $categories_array = '', $index = 0): array
+    public static function getGenerateCategoryPath(int $id, $categories_array = '', $index = 0): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -225,7 +228,6 @@
      * remove Administatrator Menu Category
      *
      * @param string $id
-     * @return string
      * @access public
      */
     public static function getRemoveActionsRecorderCategory(int $id)
@@ -234,25 +236,25 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       $QImage = $CLICSHOPPING_Db->prepare('select image
-                                    from :table_actions_recorder
-                                    where id = :id
-                                   ');
-      $QImage->bindInt(':id', (int)$id);
+                                          from :table_actions_recorder
+                                          where id = :id
+                                         ');
+      $QImage->bindInt(':id', $id);
       $QImage->execute();
 
 // Controle si l'image est utilise sur une autre categorie
       $QduplicateImage = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                              from :table_actions_recorder
-                                              where image = :image
-                                             ');
+                                                    from :table_actions_recorder
+                                                    where image = :image
+                                                   ');
       $QduplicateImage->bindValue(':image', $QImage->value('image'));
       $QduplicateImage->execute();
 
 // Controle si l'image est utilise sur une autre categorie
       $QduplicateImageCategories = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                                        from :table_actions_recorder
-                                                        where image = :image
-                                                       ');
+                                                              from :table_actions_recorder
+                                                              where image = :image
+                                                             ');
       $QduplicateImageCategories->bindValue(':image', $QImage->value('image'));
       $QduplicateImageCategories->execute();
 
@@ -264,18 +266,18 @@
       }
 
       $Qdelete = $CLICSHOPPING_Db->prepare('delete
-                                      from :table_actions_recorder
-                                      where id = :id
-                                    ');
-      $Qdelete->bindInt(':id', (int)$id);
+                                            from :table_actions_recorder
+                                            where id = :id
+                                          ');
+      $Qdelete->bindInt(':id', $id);
       $Qdelete->execute();
 
 
       $Qdelete = $CLICSHOPPING_Db->prepare('delete
-                                      from :table_actions_recorder_description
-                                      where id = :id
-                                    ');
-      $Qdelete->bindInt(':id', (int)$id);
+                                            from :table_actions_recorder_description
+                                            where id = :id
+                                          ');
+      $Qdelete->bindInt(':id', $id);
       $Qdelete->execute();
     }
 
@@ -283,11 +285,15 @@
     /**
      * category tree
      *
-     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
+     * @param string $parent_id
+     * @param string $spacing
+     * @param string $exclude
+     * @param string $category_tree_array
+     * @param bool $include_itself
      * @return string $category_tree_array, the tree of category
      * @access public
      */
-    public static function getActionsRecorderCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
+    public static function getActionsRecorderCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -298,10 +304,10 @@
 
       if ($include_itself) {
         $Qcategory = $CLICSHOPPING_Db->prepare('select label
-                                          from :table_actions_recorder_description
-                                          where language_id = :language_id
-                                          and id = :parent_id
-                                         ');
+                                                from :table_actions_recorder_description
+                                                where language_id = :language_id
+                                                and id = :parent_id
+                                               ');
 
         $Qcategory->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qcategory->bindInt(':parent_id', (int)$parent_id);
@@ -311,16 +317,16 @@
       }
 
       $Qcategory = $CLICSHOPPING_Db->prepare('select c.id,
-                                               cd.label,
-                                               c.parent_id
-                                        from :table_actions_recorder c,
-                                             :table_actions_recorder_description cd
-                                        where c.id = cd.id
-                                        and cd.language_id = :language_id
-                                        and c.parent_id = :parent_id
-                                        order by c.sort_order,
-                                                 cd.label
-                                      ');
+                                                       cd.label,
+                                                       c.parent_id
+                                                from :table_actions_recorder c,
+                                                     :table_actions_recorder_description cd
+                                                where c.id = cd.id
+                                                and cd.language_id = :language_id
+                                                and c.parent_id = :parent_id
+                                                order by c.sort_order,
+                                                         cd.label
+                                              ');
 
       $Qcategory->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
       $Qcategory->bindInt(':parent_id', (int)$parent_id);
@@ -336,7 +342,11 @@
       return $category_tree_array;
     }
 
-// Count how many subcategories exist in a category
+    /**
+     * Count how many subcategories exist in a category
+     * @param int $id
+     * @return int
+     */
     public static function getChildsInMenuCount(int $id): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -344,9 +354,9 @@
       $categories_count = 0;
 
       $Qcategories = $CLICSHOPPING_Db->prepare('select id
-                                        from :table_actions_recorder
-                                        where parent_id = :parent_id
-                                        ');
+                                                from :table_actions_recorder
+                                                where parent_id = :parent_id
+                                                ');
 
       $Qcategories->bindInt(':parent_id', $id);
       $Qcategories->execute();

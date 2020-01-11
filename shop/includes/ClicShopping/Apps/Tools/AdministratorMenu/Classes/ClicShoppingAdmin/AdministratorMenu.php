@@ -16,7 +16,6 @@
 
   class AdministratorMenu
   {
-
     protected $category_id;
     protected $language_id;
 
@@ -70,11 +69,12 @@
     /**
      * the category name
      *
-     * @param string $category_id , $language_id
+     * @param int $id
+     * @param int $language_id
      * @return string $category['categories_name'],  name of the categorie
      * @access public
      */
-    public static function getAdministratorMenuLabel($id, $language_id): string
+    public static function getAdministratorMenuLabel(int $id, int $language_id): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -91,7 +91,7 @@
      * @return string
      * @access public
      */
-    public static function removeCategory(nt $id)
+    public static function removeCategory(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -101,15 +101,16 @@
       Cache::clear('menu-administrator');
     }
 
-
     /**
      * category tree
-     *
-     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
-     * @return string $category_tree_array, the tree of category
-     * @access public
+     * @param string $parent_id
+     * @param string $spacing
+     * @param string $exclude
+     * @param string $category_tree_array
+     * @param bool $include_itself
+     * @return array
      */
-    public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
+    public static function getLabelTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -160,7 +161,7 @@
     /**
      * getGeneratedAdministratorMenuPathIds
      *
-     * @param string $id , $from,
+     * @param int $id
      * @return string $calculated_category_path_string
      * @access public
      */
@@ -186,8 +187,13 @@
       return $calculated_category_path_string;
     }
 
-
-    public static function getGenerateCategoryPath($id, $categories_array = '', $index = 0)
+    /**
+     * @param int $id
+     * @param string $categories_array
+     * @param int $index
+     * @return array|string
+     */
+    public static function getGenerateCategoryPath(int $id, $categories_array = '', int $index = 0): array
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -224,8 +230,7 @@
     /**
      * remove Administatrator Menu Category
      *
-     * @param string $id
-     * @return string
+     * @param int $id
      * @access public
      */
     public static function getRemoveAdministratorMenuCategory(int $id)
@@ -234,25 +239,25 @@
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       $QImage = $CLICSHOPPING_Db->prepare('select image
-                                    from :table_administrator_menu
-                                    where id = :id
-                                   ');
+                                            from :table_administrator_menu
+                                            where id = :id
+                                           ');
       $QImage->bindInt(':id', (int)$id);
       $QImage->execute();
 
 // Controle si l'image est utilise sur une autre categorie
       $QduplicateImage = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                              from :table_administrator_menu
-                                              where image = :image
-                                             ');
+                                                    from :table_administrator_menu
+                                                    where image = :image
+                                                   ');
       $QduplicateImage->bindValue(':image', $QImage->value('image'));
       $QduplicateImage->execute();
 
 // Controle si l'image est utilise sur une autre categorie
       $QduplicateImageCategories = $CLICSHOPPING_Db->prepare('select count(*) as total
-                                                        from :table_administrator_menu
-                                                        where image = :image
-                                                       ');
+                                                              from :table_administrator_menu
+                                                              where image = :image
+                                                             ');
       $QduplicateImageCategories->bindValue(':image', $QImage->value('image'));
       $QduplicateImageCategories->execute();
 
@@ -264,12 +269,11 @@
       }
 
       $Qdelete = $CLICSHOPPING_Db->prepare('delete
-                                      from :table_administrator_menu
-                                      where id = :id
-                                    ');
+                                              from :table_administrator_menu
+                                              where id = :id
+                                            ');
       $Qdelete->bindInt(':id', (int)$id);
       $Qdelete->execute();
-
 
       $Qdelete = $CLICSHOPPING_Db->prepare('delete
                                       from :table_administrator_menu_description
@@ -277,18 +281,17 @@
                                     ');
       $Qdelete->bindInt(':id', (int)$id);
       $Qdelete->execute();
-
     }
 
-
     /**
-     * category tree
-     *
-     * @param string $parent_id , $spacing, $exclude, $category_tree_array , $include_itself
-     * @return string $category_tree_array, the tree of category
-     * @access public
+     * @param string $parent_id
+     * @param string $spacing
+     * @param string $exclude
+     * @param string $category_tree_array
+     * @param bool $include_itself
+     * @return array
      */
-    public static function getAdministratorMenuCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', $include_itself = false)
+    public static function getAdministratorMenuCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -300,10 +303,10 @@
       if ($include_itself) {
 
         $Qcategory = $CLICSHOPPING_Db->prepare('select label
-                                          from :table_administrator_menu_description
-                                          where language_id = :language_id
-                                          and id = :parent_id
-                                         ');
+                                                  from :table_administrator_menu_description
+                                                  where language_id = :language_id
+                                                  and id = :parent_id
+                                                 ');
 
         $Qcategory->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qcategory->bindInt(':parent_id', (int)$parent_id);
@@ -337,7 +340,11 @@
       return $category_tree_array;
     }
 
-// Count how many subcategories exist in a category
+    /**
+     * Count how many subcategories exist in a category
+     * @param int $id
+     * @return int
+     */
     public static function getChildsInMenuCount(int $id): int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -345,9 +352,9 @@
       $categories_count = 0;
 
       $Qcategories = $CLICSHOPPING_Db->prepare('select id
-                                        from :table_administrator_menu
-                                        where parent_id = :parent_id
-                                        ');
+                                                from :table_administrator_menu
+                                                where parent_id = :parent_id
+                                                ');
 
       $Qcategories->bindInt(':parent_id', $id);
       $Qcategories->execute();
