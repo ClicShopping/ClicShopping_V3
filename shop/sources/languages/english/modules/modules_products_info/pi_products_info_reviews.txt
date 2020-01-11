@@ -4,7 +4,7 @@
 
  module_products_info_reviews_all_reviews = See all comments
  module_products_info_reviews_write_review = Write a comment
- heading_rewiews = Customers Reviews
+ heading_rewiews = Customers Reviews -
  text_review_date_added = Date added :
  text_review_by = {{customer_name}}
  button_all_reviews =  Display all reviews
