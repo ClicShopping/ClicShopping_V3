@@ -19,7 +19,7 @@
     public $cc_expiry_month;
     public $cc_expiry_year;
 
-    public function __construct($number, $expiry_m, $expiry_y)
+    public function __construct(string $number, string $expiry_m, string $expiry_y)
     {
       $this->cc_number = preg_replace('/[^0-9]/', '', $number);
 

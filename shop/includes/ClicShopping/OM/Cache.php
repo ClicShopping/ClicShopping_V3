@@ -21,7 +21,7 @@
     protected $key;
     protected $data;
 
-    public function __construct($key)
+    public function __construct(string $key)
     {
       static::setPath();
 
@@ -181,11 +181,10 @@
       return static::$path;
     }
 
-    /**
+     /**
      * Delete cached files by their key ID
-     *
      * @param string $key The key ID of the cached files to delete
-     * @access public
+     * @return bool
      */
     public static function clear(string $key)
     {

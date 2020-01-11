@@ -13,13 +13,13 @@
 
   class SimpleXMLElement extends \SimpleXMLElement
   {
-    public function addChildCData($name, $value)
+    public function addChildCData(string $name, string $value)
     {
       $child = $this->addChild($name);
       $child->addCData($value);
     }
 
-    protected function addCData($value)
+    protected function addCData(string $value)
     {
       $node = dom_import_simplexml($this);
       if ($node !== false) {

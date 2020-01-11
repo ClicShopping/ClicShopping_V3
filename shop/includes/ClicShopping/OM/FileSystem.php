@@ -122,7 +122,7 @@
      * @param string $source The source to remove
      * @access public
      */
-    public static function rmFile($source)
+    public static function rmFile(string $source)
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 

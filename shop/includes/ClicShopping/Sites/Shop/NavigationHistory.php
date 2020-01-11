@@ -21,7 +21,7 @@
     public $path = [];
     public $snapshot = [];
 
-    public function __construct($add_current_page = false)
+    public function __construct(bool $add_current_page = false)
     {
       if (isset($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && is_array($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data']) && !empty($_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'])) {
         $this->path =& $_SESSION[CLICSHOPPING::getSite()]['NavigationHistory']['data'];
@@ -36,7 +36,9 @@
       }
     }
 
-
+    /**
+     *
+     */
     public function addCurrentPage()
     {
       $action_counter = 0;
@@ -86,6 +88,9 @@
       }
     }
 
+    /**
+     *
+     */
     public function removeCurrentPage()
     {
       array_pop($this->path);

@@ -21,7 +21,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function encrypt($plain, $algo = null)
+    public static function encrypt(string $plain, $algo = null)
     {
       if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         if (!isset($algo) || ($algo == 'default')) {
@@ -163,7 +163,7 @@
      * @return int
      * @throws \Exception
      */
-    public static function getRandomInt($min = null, $max = null, $secure = true)
+    public static function getRandomInt($min = null, $max = null, bool $secure = true)
     {
       if (!isset($min)) {
         $min = 0;
@@ -192,7 +192,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getRandomString(int $length, string $type = 'mixed'): string
+    public static function getRandomString(int $length, $type = 'mixed'): string
     {
       if (!in_array($type, [
         'mixed',
@@ -244,7 +244,7 @@
      * @return bool|string|void
      * @throws \Exception
      */
-    public static function getRandomBytes($length, $secure = true)
+    public static function getRandomBytes(int $length, bool $secure = true)
     {
       try {
         $result = random_bytes($length);

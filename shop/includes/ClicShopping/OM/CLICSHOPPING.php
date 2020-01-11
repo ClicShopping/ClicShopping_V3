@@ -698,13 +698,13 @@
      * @return bool|string
      * 
      */
-    public static function ArrayToString($array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
+    public static function ArrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
     {
       if (!is_array($exclude)) $exclude = [];
 
       $get_string = '';
 
-      if (!empty($array)) {
+      if (is_array($array)) {
         foreach ($array as $key => $value) {
           if ((!in_array($key, $exclude)) && ($key != 'x') && ($key != 'y')) {
             $get_string .= $key . $equals . $value . $separator;

@@ -16,7 +16,6 @@
 
   class AddressAdmin extends \ClicShopping\Sites\Shop\Address
   {
-
     /**
      * Get the country zone
      *
@@ -30,7 +29,6 @@
 
       return $zones_array;
     }
-
 
     /**
      * Get the address format

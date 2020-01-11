@@ -19,7 +19,6 @@
 
     public function __construct()
     {
-
       if (!is_dir(CLICSHOPPING::BASE_DIR . 'Work/Session')) {
         mkdir(CLICSHOPPING::BASE_DIR . 'Work/Session', 0777, true);
       }

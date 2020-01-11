@@ -137,7 +137,7 @@
      * @param $type
      * @return bool
      */
-    public static function getModuleClass($module, $type)
+    public static function getModuleClass(string $module, string $type)
     {
       if (!Registry::exists('ModuleType' . $type)) {
         $class = 'ClicShopping\OM\Modules\\' . $type;

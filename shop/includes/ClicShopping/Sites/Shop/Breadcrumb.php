@@ -20,26 +20,10 @@
    */
   class Breadcrumb implements \Iterator
   {
-
-    /**
-     * An array containing the breadcrumb navigation path
-     *
-     * @var array
-     * @access private
-     */
-
     private $_path = [];
-
-    /**
-     * The string to separate the breadcrumb entries with
-     *
-     * @var string
-     * @access private
-     */
-
     private $_separator = ' &raquo; ';
 
-    protected $rewriteUrl;
+    private $rewriteUrl;
 
     /**
      * Resets the breadcrumb navigation path

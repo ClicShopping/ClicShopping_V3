@@ -17,7 +17,6 @@
 
   class HTML
   {
-
     /**
      * Parse a user submited value
      *
@@ -823,7 +822,7 @@
     {
 
       $types = ['submit', 'button', 'reset'];
-      $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light'];
+      $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light', 'default'];
       $size_button = ['lg', 'md', 'sm'];
 
       if (!isset($params['type'])) {

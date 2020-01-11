@@ -12,15 +12,15 @@
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   class Tax extends \ClicShopping\Sites\Shop\Tax
   {
-
     public function getTaxRate($class_id, $country_id = null, $zone_id = null)
     {
       if (!isset($country_id) && !isset($zone_id)) {
-        $country_id = STORE_COUNTRY;
-        $zone_id = STORE_ZONE;
+        $country_id = HTML::sanitize(STORE_COUNTRY);
+        $zone_id = HTML::sanitize(STORE_ZONE);
       }
 
       return parent::getTaxRate($class_id, $country_id, $zone_id);

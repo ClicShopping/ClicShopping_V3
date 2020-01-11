@@ -61,7 +61,7 @@
       $this->_title = STORE_NAME;
       $this->_description = '';
       $this->_keywords = '';
-      $this->_Newskeywords = '';
+      $this->_newskeywords = '';
       $this->addBlock('<meta name="generator" content="ClicShopping" />', 'header_tags');
       $this->addBlock('<meta name="author" content="Innov Concept" />', 'header_tags');
     }
@@ -178,12 +178,12 @@
 
     public function setNewsKeywords($Newskeywords)
     {
-      $this->_Newskeywords = $Newskeywords;
+      $this->_newskeywords = $Newskeywords;
     }
 
     public function getNewsKeywords()
     {
-      return $this->_Newskeywords;
+      return $this->_newskeywords;
     }
 
     public function addBlock($block, $group)

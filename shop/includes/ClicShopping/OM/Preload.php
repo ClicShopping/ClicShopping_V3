@@ -63,8 +63,7 @@
      * Scan directory
      * @return array
      */
-    public static function scan() :array
-
+    public static function scan(): array
     {
       self::$recursive = false;
       self::$directories = [];

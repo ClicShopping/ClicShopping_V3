@@ -82,8 +82,8 @@
      */
     public function getTree(): array
     {
-      $Tree = array();
-      $pathArray = array();
+      $Tree = [];
+      $pathArray = [];
       for ($i = 0; $i < $this->numFiles; $i++) {
         $path = $this->getNameIndex($i);
         $pathBySlash = array_values(explode('/', $path));
