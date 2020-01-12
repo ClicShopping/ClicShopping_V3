@@ -72,21 +72,27 @@
 
 // Check we have minimum parameters
       if(!$args = func_get_args()){
-        die("Must provide a path string or array of path strings");
+        die('Must provide a path string or array of path strings');
       }
 
-      if(gettype($args[0]) != "string" && gettype($args[0]) != "array"){
-        die("Must provide a path string or array of path strings");
+      if(gettype($args[0]) != 'string' && gettype($args[0]) != 'array'){
+        die('Must provide a path string or array of path strings');
       }
 
       // Check if recursive scan | default action: no sub-directories
-      if(isset($args[2]) && $args[2] == true){self::$recursive = true;}
+      if(isset($args[2]) && $args[2] === true) {
+        self::$recursive = true;
+      }
 
       // Was a filter on file extensions included? | default action: return all file types
       if(isset($args[1])){
-        if(gettype($args[1]) == "array"){self::$ext_filter = array_map('strtolower', $args[1]);}
+        if(gettype($args[1]) == 'array'){
+          self::$ext_filter = array_map('strtolower', $args[1]);
+        }
         else
-          if(gettype($args[1]) == "string"){self::$ext_filter[] = strtolower($args[1]);}
+          if(gettype($args[1]) == 'string') {
+            self::$ext_filter[] = strtolower($args[1]);
+          }
       }
 
       // Grab path(s)
@@ -159,12 +165,6 @@
     {
       $shop_directory =  CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/';
       $shop_directory = static::scan($shop_directory, 'php', true);
-/*
-      $apps_directory =  CLICSHOPPING::BASE_DIR . 'Apps';
-      $apps_directory = static::scan($apps_directory, 'php', true);
-
-      $result = $shop_directory + $apps_directory;
-*/
       $result = $shop_directory;
 
       return $result;
