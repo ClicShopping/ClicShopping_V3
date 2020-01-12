@@ -225,7 +225,12 @@
       }
     }
 
-
+    /**
+     * @param string $number
+     * @param string|null $currency_code
+     * @param bool $use_locale
+     * @return string
+     */
     public function trim(string $number, string $currency_code = null, bool $use_locale = true): string
     {
       if (!isset($currency_code)) {

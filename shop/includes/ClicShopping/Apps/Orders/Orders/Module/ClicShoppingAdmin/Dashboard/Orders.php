@@ -80,16 +80,25 @@
 
       $output = '<div class="' . $content_width . '">';
       $output .= '<div class="separator"></div>';
-      $output .= '<table class="table table-sm table-hover">';
-      $output .= '<thead>';
-      $output .= '<tr class="dataTableHeadingRow">';
-      $output .= '<th>' . $this->app->getDef('module_admin_dashboard_orders_app_date') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_language') . '</th>';
-      $output .= ' <th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_total') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_erp_status') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_status') . '</th>';
-      $output .= '<th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_action') . '</th>';
+      $output .= '<table
+        id="table"
+        data-toggle="table"
+        data-sort-name="date"
+        data-sort-order="asc"
+        data-toolbar="#toolbar"
+        data-buttons-class="primary"
+        data-show-toggle="true"
+        data-show-columns="true"
+        data-mobile-responsive="true">';
+      $output .= '<thead class="dataTableHeadingRow">';
+      $output .= '<tr>';
+      $output .= '<th data-field="date">' . $this->app->getDef('module_admin_dashboard_orders_app_date') . '</th>';
+      $output .= '<th data-field="order" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order') . '</th>';
+      $output .= '<th data-field="language" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_language') . '</th>';
+      $output .= '<th data-field="total" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_total') . '</th>';
+      $output .= '<th data-field="erp" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_erp_status') . '</th>';
+      $output .= '<th data-field="status" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_status') . '</th>';
+      $output .= '<th data-field="action" data-switchable="false" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_orders_app_order_action') . '</th>';
       $output .= '</tr>';
       $output .= '</thead>';
       $output .= '<tbody>';
@@ -141,7 +150,7 @@
       );
 
       $this->app->db->save('configuration', [
-          'configuration_title' => 'Combien de commande souhaitez-vous afficher ?',
+          'configuration_title' => 'How many orders do you want to display ?',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_ORDERS_APP_LIMIT',
           'configuration_value' => '10',
           'configuration_description' => 'Please specify the number of orders to display',

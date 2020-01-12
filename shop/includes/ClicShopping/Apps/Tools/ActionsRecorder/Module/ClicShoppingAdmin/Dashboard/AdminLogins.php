@@ -53,13 +53,22 @@
 
       $output = '<div class="col-md-' . $content_width . '">';
       $output .= '<div class="separator"></div>';
-      $output .= '<table class="table table-sm table-hover">' .
-        '<thead>' .
-        '  <tr class="dataTableHeadingRow">' .
-        '    <th width="20">&nbsp;</th>' .
-        '    <th>' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
-        '    <th class="text-md-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
-        '    <th class="text-md-right">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
+      $output .= '<table
+        id="table"
+        data-toggle="table"
+        data-sort-name="status"
+        data-sort-order="asc"
+        data-toolbar="#toolbar"
+        data-buttons-class="primary"
+        data-show-toggle="true"
+        data-show-columns="true"
+        data-mobile-responsive="true">' .
+        '<thead class="dataTableHeadingRow">' .
+        '  <tr>' .
+        '    <th data-field="status" data-switchable="false" data-sortable="true" width="20">&nbsp;</th>' .
+        '    <th data-field="title" >' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
+        '    <th data-field="date" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
+        '    <th data-field="action" data-switchable="false" class="text-md-right">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
         '  </tr>' .
         '</thead>';
       '<tbody>';

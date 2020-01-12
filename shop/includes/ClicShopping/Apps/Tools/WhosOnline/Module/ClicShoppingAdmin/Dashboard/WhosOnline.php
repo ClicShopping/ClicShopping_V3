@@ -18,13 +18,11 @@
 
   class WhosOnline extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
 
     protected function init()
     {
-
       if (!Registry::exists('WhosOnline')) {
         Registry::set('WhosOnline', new WhosOnlineApp());
       }
@@ -54,13 +52,13 @@
       $Qdelete->bindValue(':time_last_click', $xx_mins_ago);
       $Qdelete->execute();
 
-      $QwhosOnline = $this->app->db->prepare('select customer_id,
-                                                    full_name,
-                                                    ip_address,
-                                                    user_agent
-                                              from  :table_whos_online
-                                              limit 5
-                                          ');
+      $QwhosOnline = $this->app->db->prepare('select distinct customer_id,
+                                                              full_name,
+                                                              ip_address,
+                                                              user_agent
+                                                from  :table_whos_online
+                                                limit 5
+                                              ');
       $QwhosOnline->execute();
 
       if ($QwhosOnline->rowCount() > 0) {
@@ -70,13 +68,22 @@
         $output = '<span class="' . $content_width . '">';
         $output .= '<div class="separator"></div>';
 
-        $output .= '<table class="table table-hover" width="100%">';
-        $output .= '<thead>';
-        $output .= '<tr class="dataTableRow backgroundBlank">';
-        $output .= '<th width="10%">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_online') . '</th>';
-        $output .= '<th width="20%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_full_name') . '</th>';
-        $output .= '<th width="10%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_ip_address') . '</th>';
-        $output .= '<th width="60%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_user_agent') . '</th>';
+        $output .= '<table 
+            id="table"
+            data-toggle="table"
+            data-sort-name="online"
+            data-sort-order="asc"
+            data-toolbar="#toolbar"
+            data-buttons-class="primary"
+            data-show-toggle="true"
+            data-show-columns="true"
+            data-mobile-responsive="true">';
+        $output .= '<thead class="dataTableHeadingRow">';
+        $output .= '<tr>';
+        $output .= '<th data-field="online" width="10%">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_online') . '</th>';
+        $output .= '<th data-field="name" width="20%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_full_name') . '</th>';
+        $output .= '<th data-field="ip" width="10%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_ip_address') . '</th>';
+        $output .= '<th data-field="agent" width="60%" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_whos_online_app_table_heading_user_agent') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';

@@ -53,17 +53,26 @@
 
       $content = '<div class="' . $content_width . '">';
       $content .= '<div class="separator"></div>';
-      $content .= '<table class="table table-sm table-hover">';
-      $content .= '<thead>';
-      $content .= '<tr class="dataTableHeadingRow">';
+      $content .= '<table 
+        id="table"
+        data-toggle="table"
+        data-sort-name="added"
+        data-sort-order="asc"
+        data-toolbar="#toolbar"
+        data-buttons-class="primary"
+        data-show-toggle="true"
+        data-show-columns="true"
+        data-mobile-responsive="true">';
+      $content .= '<thead class="dataTableHeadingRow">';
+      $content .= '<tr>';
 
       $content .= '
-          <th scope="col"> ' . $this->app->getDef('table_heading_products') . '</th>
-          <th scope="col">' . $this->app->getDef('table_heading_date_added') . '</th>
-          <th scope="col"> ' . $this->app->getDef('table_heading_review_author') . '</th>
-          <th scope="col">' . $this->app->getDef('table_heading_rating') . '</th>                    
-          <th scope="col"> ' . $this->app->getDef('table_heading_approved') . '</th>
-          <th class="text-md-right">' . $this->app->getDef('table_heading_action') . '&nbsp;</th>
+          <th data-field="products" scope="col"> ' . $this->app->getDef('table_heading_products') . '</th>
+          <th data-field="added" data-sortable="true" scope="col">' . $this->app->getDef('table_heading_date_added') . '</th>
+          <th data-field="author" scope="col"> ' . $this->app->getDef('table_heading_review_author') . '</th>
+          <th data-field="rating" scope="col">' . $this->app->getDef('table_heading_rating') . '</th>                    
+          <th data-field="approved" scope="col"> ' . $this->app->getDef('table_heading_approved') . '</th>
+          <th data-field="action" data-switchable="false" class="text-md-right">' . $this->app->getDef('table_heading_action') . '&nbsp;</th>
         </tr>
       ';
 
