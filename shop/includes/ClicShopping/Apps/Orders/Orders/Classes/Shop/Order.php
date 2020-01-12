@@ -1167,8 +1167,6 @@
     */
     public function sendCustomerEmail($insert_id)
     {
-      global $CLICSHOPPING_PM;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 

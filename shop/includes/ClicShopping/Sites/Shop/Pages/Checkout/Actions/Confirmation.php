@@ -18,10 +18,9 @@
 
   class Confirmation extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-      global $form_action_url, $CLICSHOPPING_PM;
+      global $form_action_url;
 
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
@@ -95,7 +94,6 @@
       $CLICSHOPPING_Payment->update_status();
 
       if (strpos($CLICSHOPPING_Payment->selected_module, '\\') !== false) {
-
         $code = 'Payment_' . str_replace('\\', '_', $CLICSHOPPING_Payment->selected_module);
 
         if (Registry::exists($code)) {

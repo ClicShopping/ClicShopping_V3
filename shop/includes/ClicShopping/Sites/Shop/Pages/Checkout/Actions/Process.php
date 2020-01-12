@@ -22,8 +22,6 @@
 
     public function execute()
     {
-      global $CLICSHOPPING_PM;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Order = Registry::get('Order');
