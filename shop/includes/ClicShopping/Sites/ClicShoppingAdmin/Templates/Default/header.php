@@ -24,12 +24,13 @@
 <!DOCTYPE html>
 <html <?php echo CLICSHOPPING::getDef('html_params'); ?>>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=<?= CLICSHOPPING::getDef('charset'); ?>">
+  <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CLICSHOPPING::getDef('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="robots" content="noindex,nofollow">
+  <meta name="robots" content="noindex,nofollow" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="ClicShopping" />
-  <meta name="author" content="innov Concept Consulting" />
+  <meta name="author" content="ClicShopping" />
+  <meta name="Description" content="ClicShopping Administration" />
 
   <title><?php echo CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]); ?></title>
 
