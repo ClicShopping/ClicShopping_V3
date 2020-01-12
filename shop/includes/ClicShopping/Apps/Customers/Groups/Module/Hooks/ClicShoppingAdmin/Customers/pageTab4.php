@@ -69,9 +69,9 @@
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
 // Affiche la case cochée par défaut pour le mode de facturation utilisée avec taxe ou non
-        if (!$cInfo->customers_options_order_taxe) $cInfo->customers_options_order_taxe = '0';
+        if (!$cInfo_group->group_order_taxe) $cInfo_group->group_order_taxe = '0';
 
-        switch ($cInfo->customers_options_order_taxe) {
+        switch ($cInfo_group->group_order_taxe) {
           case '0':
             $status_order_taxe = true;
             $status_order_no_taxe = false;
@@ -111,22 +111,34 @@
             $content .= '<div class="adminformTitle">';
             $content .= '<div class="row">';
 
+            if ($status_order_taxe === false) {
+              $class_option_order_taxe = 'fas fa-times fa-lg';
+            }  else {
+              $class_option_order_taxe ='fas fa-check fa-lg';
+            }
+
+            if ($status_order_no_taxe === false) {
+              $class_option_no_order_taxe = 'fas fa-times fa-lg';
+              } else {
+              $class_option_no_order_taxe ='fas fa-check fa-lg';
+            }
+
             if ($cInfo_group->group_order_taxe == 0) {
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-times fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="' .  $class_option_order_taxe . '" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $this->app->getDef('options_order_taxe') . '</span>';
               $content .= '</div>';
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="' . $class_option_no_order_taxe . '" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $this->app->getDef('options_order_no_taxe') . '</span>';
               $content .= '</div>';
             } else {
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-times fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="' .  $class_option_order_taxe . '" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $this->app->getDef('options_order_taxe') . '</span>';
               $content .= '</div>';
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="' . $class_option_no_order_taxe . '" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $this->app->getDef('options_order_no_taxe') . '</span>';
               $content .= '</div>';
             } //end group_order_taxe
