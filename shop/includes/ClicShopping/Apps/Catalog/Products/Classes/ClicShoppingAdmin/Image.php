@@ -294,7 +294,7 @@
         $this->products_image = $sql_data_array['products_image'] = null;
         $this->products_image_zoom = $sql_data_array['products_image_zoom'] = null;
         $this->products_image_medium = $sql_data_array['products_image_medium'] = null;
-        $this->products_image_small = $sql_data_array['products_image_mall'] = null;
+        $this->products_image_small = $sql_data_array['products_image_small'] = null;
 
       } else {
         if ((isset($_POST['products_image']) && !is_null($_POST['products_image'])) || !empty($small_image_resized) || !empty($small_image_admin_resized)) {
