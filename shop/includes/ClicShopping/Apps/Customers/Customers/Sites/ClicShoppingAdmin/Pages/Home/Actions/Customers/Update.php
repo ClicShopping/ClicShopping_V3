@@ -135,7 +135,11 @@
       }
 
       if (isset($_POST['entry_zone_id'])) {
-        if (isset($_POST['entry_zone_id'])) $entry_zone_id = HTML::sanitize($_POST['entry_zone_id']);
+        if (isset($_POST['entry_zone_id'])) {
+          $entry_zone_id = HTML::sanitize($_POST['entry_zone_id']);
+        } else {
+          $entry_zone_id = false;
+        }
       }
 
 // Autorisation aux clients de modifier adresse principal
