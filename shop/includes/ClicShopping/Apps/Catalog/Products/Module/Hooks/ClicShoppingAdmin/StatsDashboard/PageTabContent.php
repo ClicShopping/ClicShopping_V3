@@ -33,8 +33,6 @@
 
     private function statsProductsOffline()
     {
-      $CLICSHOPPING_Db = Registry::get('Db');
-
       $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                            from :table_products
                                            where products_status = 0
