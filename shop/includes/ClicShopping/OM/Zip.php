@@ -83,18 +83,20 @@
     public function getTree(): array
     {
       $Tree = [];
-      $pathArray = [];
+
       for ($i = 0; $i < $this->numFiles; $i++) {
         $path = $this->getNameIndex($i);
         $pathBySlash = array_values(explode('/', $path));
         $c = count($pathBySlash);
         $temp = &$Tree;
+
         for ($j = 0; $j < $c - 1; $j++) {
           if (isset($temp[$pathBySlash[$j]])) {
             $temp = &$temp[$pathBySlash[$j]];
           } else {
             $temp = &$temp[$pathBySlash[$j]];
           }
+
           if ($this->isDir($path) !== true) {
             $temp[] = $pathBySlash[$c - 1];
           }

@@ -17,10 +17,8 @@
 
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -33,12 +31,9 @@
 
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
       if (strlen($customers_groups_name) == '') {
-        $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_error'));
-        $CLICSHOPPING_Groups->redirect('Groups&Insert&error=name');
-
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_error'), 'warning', 'header');
+        $CLICSHOPPING_Groups->redirect('Groups&error=name');
       } else {
-
         if (empty($customers_groups_discount)) {
 // valeur discount mis a zero si le champs est vide
           $customers_groups_discount = '0.00';
