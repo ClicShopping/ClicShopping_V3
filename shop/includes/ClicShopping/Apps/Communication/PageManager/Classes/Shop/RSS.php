@@ -18,7 +18,6 @@
 
   use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
-
   class RSS
   {
 
@@ -37,7 +36,7 @@
      */
     public function __construct()
     {
-      $this->site_name = STORE_NAME;
+      $this->site_name = HTML::outputProtected(STORE_NAME);
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
       $this->navigationHistory = Registry::get('NavigationHistory');

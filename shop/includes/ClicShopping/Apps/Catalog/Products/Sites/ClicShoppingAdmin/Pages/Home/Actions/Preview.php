@@ -9,7 +9,7 @@
    *
    */
 
-  namespace ClicShopping\Apps\Catalog\Preview\Sites\ClicShoppingAdmin\Pages\Home\Actions;
+  namespace ClicShopping\Apps\Catalog\Products\Sites\ClicShoppingAdmin\Pages\Home\Actions;
 
   use ClicShopping\OM\Registry;
 
@@ -17,11 +17,11 @@
   {
     public function execute()
     {
-      $CLICSHOPPING_Preview = Registry::get('Preview');
+      $CLICSHOPPING_Products = Registry::get('Products');
 
       $this->page->setFile('preview.php');
       $this->page->data['action'] = 'Preview';
 
-      $CLICSHOPPING_Preview->loadDefinitions('Sites/ClicShoppingAdmin/main');
+      $CLICSHOPPING_Products->loadDefinitions('Sites/ClicShoppingAdmin/main');
     }
   }

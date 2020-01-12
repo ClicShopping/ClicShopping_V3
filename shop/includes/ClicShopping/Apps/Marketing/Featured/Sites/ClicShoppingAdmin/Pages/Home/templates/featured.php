@@ -213,7 +213,7 @@
           <td><?php echo $Qfeatured->valueInt('products_featured_id'); ?></td>
 
           <td scope="row"
-              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Preview&Preview&pID=' . $Qfeatured->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Featured->getDef('icon_preview'))); ?></td>
+              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qfeatured->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Featured->getDef('icon_preview'))); ?></td>
           <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qfeatured->valueInt('products_id')); ?></td>
           <td><?php echo $Qfeatured->value('products_model'); ?></td>
           <td><?php echo $Qfeatured->value('products_name'); ?></td>
