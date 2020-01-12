@@ -19,19 +19,11 @@
 
     public function execute()
     {
-      global $listingTotalRow, $Qlisting;
-
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Search = Registry::get('Search');
       $CLICSHOPPING_Language = Registry::get('Language');
-
-      if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
-        $max_display = MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
-      } else {
-        $max_display = 1;
-      }
 
       if ($CLICSHOPPING_Search->hasKeywords() && empty($CLICSHOPPING_Search->hasKeywords()) &&
         ($CLICSHOPPING_Search->getDateFrom() && (empty($CLICSHOPPING_Search->getDateFrom()) || ($CLICSHOPPING_Search->getDateFrom() == CLICSHOPPING::getDef('dob_format_string')))) &&
@@ -41,10 +33,17 @@
 
         $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_at_least_one_input'), 'danger', 'search');
       } else {
+        if (defined('MODULE_PRODUCTS_SEARCH_MAX_DISPLAY')) {
+          $max_display = MODULE_PRODUCTS_SEARCH_MAX_DISPLAY;
+        } else {
+          $max_display = 1;
+        }
+
         $search = $CLICSHOPPING_Search->getResult();
 
         $listingTotalRow = $search['total'];
 
+        $Qlisting = $CLICSHOPPING_Search->getListing();
         $Qlisting->setPageSet($max_display);
 
         $Qlisting->execute();

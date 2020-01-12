@@ -46,17 +46,25 @@
       $this->_period_max_year = $Qproducts->valueInt('max_year');
     }
 
-
+    /**
+     * @return string
+     */
     public function getMinYear(): string
     {
       return $this->_period_min_year;
     }
 
+    /**
+     * @return string
+     */
     public function getMaxYear(): string
     {
       return $this->_period_max_year;
     }
 
+    /**
+     * @return string
+     */
     public function getDateFrom(): string
     {
       if (isset($_POST['dfrom']) && !empty($_POST['dfrom'])) {
@@ -70,7 +78,9 @@
       return $this->_date_from;
     }
 
-
+    /**
+     * @return bool
+     */
     public function hasDateFrom(): bool
     {
       $dfromDateTime = new DateTime($this->getDateFrom(), false);
@@ -84,6 +94,9 @@
       return $datefrom;
     }
 
+    /**
+     * @return string
+     */
     public function getDateTo(): string
     {
       if (isset($_POST['dto']) && !empty($_POST['dto'])) {
@@ -97,7 +110,9 @@
       return $this->_date_to;
     }
 
-
+    /**
+     * @return bool
+     */
     public function hasDateTo(): bool
     {
       $dtoDateTime = new DateTime($this->getDateTo(), false);
@@ -111,20 +126,28 @@
       return $dateto;
     }
 
+    /**
+     * @param string $timestamp
+     * @return string
+     */
     public function setDateFrom(string $timestamp): string
     {
       $this->_date_from = $timestamp;
     }
 
+    /**
+     * @param $timestamp
+     */
     public function setDateTo($timestamp)
     {
       $this->_date_to = $timestamp;
     }
 
-
+    /**
+     * @return string
+     */
     public function getPriceFrom(): string
     {
-
       if (isset($_POST['pfrom']) && !empty($_POST['pfrom']) && is_numeric($_POST['pfrom'])) {
         $this->_price_from = HTML::sanitize((float)$_POST['pfrom']);
       } elseif (isset($_GET['pfrom']) && !empty($_GET['pfrom']) && is_numeric($_GET['pfrom'])) {
@@ -136,7 +159,9 @@
       return $this->_price_from;
     }
 
-
+    /**
+     * @return bool
+     */
     public function hasPriceFrom(): bool
     {
       if (empty($this->getPriceFrom())) {
@@ -148,6 +173,9 @@
       return $pricefrom;
     }
 
+    /**
+     * @return string
+     */
     public function getPriceTo(): string
     {
       if (isset($_POST['pto']) && !empty($_POST['pto']) && is_numeric($_POST['pto'])) {
@@ -161,6 +189,9 @@
       return $this->_price_to;
     }
 
+    /**
+     * @return bool
+     */
     public function hasPriceTo(): bool
     {
       if (empty($this->getPriceTo())) {
@@ -406,7 +437,6 @@
       }
     }
 
-
     /*
      * Execute
      *
@@ -415,8 +445,6 @@
     */
     public function execute()
     {
-      global $Qlisting;
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_CategoryTree = Registry::get('CategoryTree');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
