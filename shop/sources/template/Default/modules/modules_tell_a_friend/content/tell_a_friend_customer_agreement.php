@@ -25,7 +25,7 @@
           <div class="separator"></div>
           <?php echo CLICSHOPPING::getDef('text_privacy_conditions_agree'); ?>
           <label class="switch">
-            <?php echo HTML::checkboxField('text_privacy_conditions_description',null, null, 'id="conditions" required aria-required="true" class="success"'); ?>
+            <?php echo HTML::checkboxField('customer_agree_privacy',null, null, 'id="conditions" required aria-required="true" class="success"'); ?>
             <span class="slider"></span>
           </label>
         </li>

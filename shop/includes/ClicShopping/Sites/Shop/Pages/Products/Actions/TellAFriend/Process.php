@@ -35,7 +35,7 @@
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
         $error = false;
 
-        $CLICSHOPPING_Hooks->call('PreAction', 'TellAFriend');
+        $CLICSHOPPING_Hooks->call('TellAFriend', 'PreAction');
 
         $to_email_address = HTML::sanitize($_POST['to_email_address']);
         $to_name = HTML::sanitize($_POST['to_name']);
@@ -116,8 +116,6 @@
 
           CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
         }
-
-        // revoir cette partie
       }
     }
   }
