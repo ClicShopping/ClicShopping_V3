@@ -1,0 +1,12 @@
+Add Top Dashboard Hooks to be manage accross apps
+Add hooks dashboard ShortCut
+add review products listing
+add reviews shopping cart
+Remove Preview App and replace in Products
+fix remove products for reviews
+fix error sql shopping cart
+fix on / off color shipping customer group
+fix display box information if count > 0
+fix customer group with taxes or whithout taxes indicator
+fix filename tell_friend template
+remove deprecated code
