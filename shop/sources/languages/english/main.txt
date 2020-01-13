@@ -286,6 +286,8 @@ email_text_product_url = Product URL
 email_text_product_stock = New product stock
 email_text_date_alert = Alert date
 
+text_error_antispam = Antispam error
+
 text_install =
 <div style="text-align:center; padding-top: 50px;"><a href="https://www.clicshopping.org" target="_blank" rel="noreferrer"><img src="images/logo_clicshopping_1.png" border="0" height="105" width="284" alt="Market Place"></a><br />
 <div style="padding-top: 120px;">Congratulation, you have make with success the install process, please  read the informations below</div>

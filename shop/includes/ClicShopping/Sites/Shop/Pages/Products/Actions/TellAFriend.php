@@ -16,7 +16,6 @@
 
   class TellAFriend extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -31,9 +30,11 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      if (isset($_GET['products_id']) && !empty($_GET['products_id'])) {
-        if (empty($CLICSHOPPING_ProductsCommon->getProductsName())) {
-          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
+      $products_id = (int)$CLICSHOPPING_ProductsCommon->getID();
+
+      if (isset($products_id) && !empty($products_id)) {
+        if (empty($CLICSHOPPING_ProductsCommon->getProductsName($products_id))) {
+          CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . $products_id);
         }
       }
 
@@ -44,6 +45,6 @@
 //language
       $CLICSHOPPING_Language->loadDefinitions('tell_a_friend');
 
-      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Description&TellAFriend&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getId()));
+      $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, 'Products&Description&TellAFriend&products_id=' . $products_id));
     }
   }

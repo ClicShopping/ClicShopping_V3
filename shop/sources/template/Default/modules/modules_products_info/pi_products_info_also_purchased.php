@@ -143,9 +143,7 @@
           $new_prods_content .= '<div class="d-flex flex-wrap">';
 
             while ($Qproducts->fetch() ) {
-
-              $products_id = $Qproducts->valueInt('products_related_id_slave');
-              $in_stock = $Qproducts->valueInt('in_stock');
+              $products_id = $Qproducts->valueInt('products_id');
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 //product name
@@ -218,7 +216,7 @@
               }
 
 // See the button more view details
-                $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), null, CLICSHOPPING::link($products_name_url, 'info', null, 'sm'));
+                $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), null, CLICSHOPPING::link($products_name_url), 'info', null, 'sm');
 // 10 - Display the image
                 $products_image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qproducts->value('products_image'), HTML::outputProtected($Qproducts->value('products_name')), MODULE_PRODUCTS_INFO_ALSO_PURCHASED_IMAGE_WIDTH, MODULE_PRODUCTS_INFO_ALSO_PURCHASED_IMAGE_HEIGHT, null, true));
 //Ticker Image
