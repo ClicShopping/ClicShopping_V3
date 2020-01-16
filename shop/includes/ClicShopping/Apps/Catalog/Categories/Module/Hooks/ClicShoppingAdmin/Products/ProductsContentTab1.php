@@ -43,11 +43,23 @@
 
       if (isset($_GET['cPath'])) {
         $current_category_id = HTML::sanitize($_GET['cPath']);
-        $category_tree = $CLICSHOPPING_CategoriesAdmin->getCategoryTree();
       } else {
-        $current_category_id = 0;
-        $category_tree = 0;
+        if (isset($_GET['pID'])) {
+          $QproductsCategories = $this->app->db->prepare('select categories_id
+                                                          from :table_products_to_categories
+                                                          where products_id = :products_id
+                                                          limit 1
+                                                        ');
+          $QproductsCategories->bindInt('products_id', $_GET['pID']);
+          $QproductsCategories->execute();
+
+          $current_category_id = $QproductsCategories->valueInt('categories_id');
+        } else {
+          $current_category_id = 0;
+        }
       }
+
+      $category_tree = $CLICSHOPPING_CategoriesAdmin->getCategoryTree();
 
       $content = '<!-- Categories -->';
       $content .= '<div class="form-group row">';

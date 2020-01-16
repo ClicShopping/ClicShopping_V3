@@ -52,6 +52,7 @@
           ->memory(32)
           ->whenHits(200000)
           ->overwrite(true)
+          ->useCompile()
           ->append(
             static::getFiles()
           )
