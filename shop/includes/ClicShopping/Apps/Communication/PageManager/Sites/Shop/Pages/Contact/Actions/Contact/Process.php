@@ -131,7 +131,7 @@
             $message_to_customer = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n" . $template_email_footer;
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
           }
-	  
+
 // insert the modification in the database
           if ($CLICSHOPPING_Customer->isLoggedOn()) {
             if ($order_id != 0) {

@@ -69,7 +69,9 @@
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
 // Affiche la case cochée par défaut pour le mode de facturation utilisée avec taxe ou non
-        if (!$cInfo_group->group_order_taxe) $cInfo_group->group_order_taxe = '0';
+        if (!isset($cInfo_group->group_order_taxe) || empty($cInfo_group->group_order_taxe)) {
+	  $cInfo_group->group_order_taxe = '0';
+	}
 
         switch ($cInfo_group->group_order_taxe) {
           case '0':

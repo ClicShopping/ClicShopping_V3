@@ -2,3 +2,4 @@ Add correct float bootstrap
 update composer preloader
 fix Tax function float (typage) when is null
 fix categories tree in products when Cpath not exist (update)
+fix warning customer group tab in customer
