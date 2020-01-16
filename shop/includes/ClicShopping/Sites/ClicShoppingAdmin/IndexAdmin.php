@@ -15,10 +15,6 @@
 
   class IndexAdmin
   {
-
-    protected $size;
-    protected $path;
-
     /**
      * Return human readable sizes
      *

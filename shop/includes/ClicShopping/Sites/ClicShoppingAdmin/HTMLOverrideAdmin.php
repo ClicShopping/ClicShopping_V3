@@ -231,10 +231,7 @@
       $Qproducts->execute();
 
       while ($Qproducts->fetch()) {
-
-// Permettre le changement de groupe en mode B2B
         if (MODE_B2B_B2C == 'true') {
-//B2BSuite modification
           if (!in_array($Qproducts->valueInt('products_id'), $exclude)) {
 
             $Qprice = $CLICSHOPPING_Db->prepare('select customers_group_price,

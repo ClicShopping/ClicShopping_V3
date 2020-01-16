@@ -195,7 +195,7 @@
      * @param $price
      * @param $tax
      */
-    public static function addTax(float $price, float $tax)
+    public static function addTax(float $price, ?float $tax)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
