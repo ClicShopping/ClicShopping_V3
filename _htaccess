@@ -3,10 +3,56 @@ Options +FollowSymlinks
 Options -MultiViews
 
 #AcceptPathInfo on
+
+
 ##################################
-#### Your config to change ###############
+# Security
+# Be carefull approach is different : Linux, Ngix, IIS
+# Below for linux
 ##################################
-#Uncomment and adapt
+  <IfModule mod_headers.c>
+
+# prevent mime based attacks
+Header set X-Content-Type-Options "nosniff"
+
+# XSS Protection
+Header set X-XSS-Protection "1; mode=block"
+
+#X Frame
+Header always set X-FRAME-OPTIONS "DENY"
+</IfModule>
+##################################
+# Bot
+##################################
+##Rules to block bad bods from accessing web pages on your site.
+##Remove or add more rules as per your needs.
+
+BrowserMatchNoCase "Baiduspider" bots
+BrowserMatchNoCase "SemrushBot" bots
+BrowserMatchNoCase "Yandex" bots
+BrowserMatchNoCase "BLEXBot" bots
+BrowserMatchNoCase "AhrefsBot" bots
+BrowserMatchNoCase "DotBot" bots
+BrowserMatchNoCase "Exabot" bots
+BrowserMatchNoCase "SeznamBot" bots
+BrowserMatchNoCase "aiHitBot" bots
+BrowserMatchNoCase "spbot" bots
+BrowserMatchNoCase "MJ12bot" bots
+BrowserMatchNoCase "oBot" bots
+BrowserMatchNoCase "DeuSu" bots
+BrowserMatchNoCase "ia_archiver" bots
+BrowserMatchNoCase "MetaURI" bots
+BrowserMatchNoCase "FlipboardProxy" bots
+
+Order Allow,Deny
+Allow from ALL
+Deny from env=bots
+
+##################################
+# Your config to change 
+##################################
+##Uncomment and adapt
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
@@ -15,7 +61,7 @@ RewriteEngine On
 #    RewriteCond %{HTTP_HOST} !^www.mysite.org$ [NC]
 #    RewriteRule ^(.*)$ https://www.mysite.org/$1 [L,R=301]
 
-#to change in function your website
+##to change in function your website
 #RewriteBase /shop/
 
 #    RewriteCond %{REQUEST_FILENAME} !-f
@@ -41,6 +87,7 @@ RewriteEngine On
     ExpiresByType image/gif "access plus 1 month"
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
     ExpiresByType text/css "access plus 1 week"
     ExpiresByType text/javascript "access plus 1 week"
     ExpiresByType application/javascript "access plus 1 week"
