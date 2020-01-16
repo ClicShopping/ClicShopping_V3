@@ -1,4 +1,4 @@
-module_admin_dashboard_reviews_app_title =Souaitez vous afficher les commentaires des clients ?
+module_admin_dashboard_reviews_app_title =Souhaitez vous afficher les commentaires des clients ?
 module_admin_dashboard_reviews_app_description = Affiche les commentaires des clients
 
 table_heading_products = Produits

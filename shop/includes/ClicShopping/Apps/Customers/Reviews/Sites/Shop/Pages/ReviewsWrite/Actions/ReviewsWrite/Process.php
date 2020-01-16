@@ -17,16 +17,16 @@
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
-
         $error = false;
+
+        $CLICSHOPPING_Hooks->call('ReviewsWrite', 'PreAction');
 
         $rating = HTML::sanitize((int)$_POST['rating']);
         $review = HTML::sanitize($_POST['review']);
@@ -52,6 +52,8 @@
 // save data
           $CLICSHOPPING_Reviews->saveEntry();
           $CLICSHOPPING_Reviews->sendEmail();
+
+          $CLICSHOPPING_Hooks->call('ReviewsWrite', 'Process');
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('message_customer'), 'success', 'review_write');
 
