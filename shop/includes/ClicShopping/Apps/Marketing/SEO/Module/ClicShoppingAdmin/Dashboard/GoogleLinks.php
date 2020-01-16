@@ -49,10 +49,10 @@
       $url_adsense = 'https://google.com/adsense';
       $url_analytics = 'https://www.google.com/analytics/';
       $url_adwords = 'https://adwords.google.com';
-      $url_webmastertools = 'https://www.google.com/webmasters/tools/';
+       $url_webmastertools = 'https://search.google.com/search-console';;
       $url_alerts = 'https://www.google.com/alerts';
       $url_places = 'https://accounts.google.com/ServiceLogin?service=lbc&continue=https://www.google.com/local/add%3Fservice%3Dlbc';
-      $url_plus = 'https://plus.google.com';
+
       $url_merchant = 'https://www.google.com/merchants/default';
 
       $content_width = (int)MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH;
@@ -85,9 +85,6 @@
         '  </tr>' .
         '  <tr>' .
         '    <td colspan="2"><a href="' . $url_adwords . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adwords') . '</a></td>' .
-        '  </tr>' .
-        '  <tr>' .
-        '    <td colspan="2"><a href="' . $url_plus . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_plus') . '</a></td>' .
         '  </tr>' .
         '  <tr>' .
         '    <td colspan="2"><a href="' . $url_merchant . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_merchant') . '</a></td>' .

@@ -16,7 +16,8 @@
 
  "modules": {
   "AdminDashboard": {
-   "Upgrade":	"Module\\ClicShoppingAdmin\\Dashboard\\Upgrade"
+   "Upgrade":	"Module\\ClicShoppingAdmin\\Dashboard\\Upgrade",
+   "LatestApps":	"Module\\ClicShoppingAdmin\\Dashboard\\LatestApps"
   }
  },
 
