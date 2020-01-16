@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "darkghosthunter/preloader",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DarkGhostHunter/Preloader.git",
-                "reference": "406fa5c90e60b15770fb6fe22caca8a16b5782f3"
+                "reference": "001b8a829cbd49dd1ea4eafc4213e41c63fe755e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DarkGhostHunter/Preloader/zipball/406fa5c90e60b15770fb6fe22caca8a16b5782f3",
-                "reference": "406fa5c90e60b15770fb6fe22caca8a16b5782f3",
+                "url": "https://api.github.com/repos/DarkGhostHunter/Preloader/zipball/001b8a829cbd49dd1ea4eafc4213e41c63fe755e",
+                "reference": "001b8a829cbd49dd1ea4eafc4213e41c63fe755e",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "php-7.4",
                 "preloader"
             ],
-            "time": "2019-12-25T16:36:10+00:00"
+            "time": "2020-01-15T18:38:02+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
