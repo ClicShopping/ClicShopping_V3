@@ -112,7 +112,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want to display the module?',
           'configuration_key' => 'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_POSITION',
-          'configuration_value' => 'none',
+          'configuration_value' => 'float-md-none',
           'configuration_description' => 'Displays the module to the left or to the right ',
           'configuration_group_id' => '6',
           'sort_order' => '2',
@@ -131,10 +131,6 @@
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 

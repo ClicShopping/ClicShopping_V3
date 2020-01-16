@@ -21,10 +21,34 @@
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
     CLICSHOPPING::redirect(null, 'Account&LogIn');
   }
-// Do not touch the script below
 ?>
-<script src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/review_write.js.php')); ?>"></script>
 
+<script>
+    function checkForm() {
+        var error = 0;
+        var error_message = "Errors have occured during the process of your form";
+
+        var review = document.product_reviews_write.review.value;
+
+        if (review.length = <?php echo (int)REVIEW_TEXT_MIN_LENGTH; ?>) {
+            error_message = error_message + "* Le commentaire que vous avez rentré doit avoir au moins' <?php echo (int)REVIEW_TEXT_MIN_LENGTH; ?> 'caracters";
+            error = 1;
+        }
+
+        if ((document.product_reviews_write.rating[0].checked) || (document.product_reviews_write.rating[1].checked) || (document.product_reviews_write.rating[2].checked) || (document.product_reviews_write.rating[3].checked) || (document.product_reviews_write.rating[4].checked)) {
+        } else {
+            error_message = error_message + " * You must rate the product for your review";
+            error = 1;
+        }
+
+        if (error == 1) {
+            alert(error_message);
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
 <?php
   if ( $CLICSHOPPING_MessageStack->exists('review_write') ) {
     echo $CLICSHOPPING_MessageStack->get('review_write');

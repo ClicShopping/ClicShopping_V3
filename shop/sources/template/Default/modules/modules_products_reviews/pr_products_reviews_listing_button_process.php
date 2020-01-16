@@ -102,7 +102,7 @@ class pr_products_reviews_listing_button_process {
     $CLICSHOPPING_Db->save('configuration', [
         'configuration_title' => 'Where do you want display the module ?',
         'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_BUTTON_PROCESS_POSITION',
-        'configuration_value' => 'none',
+        'configuration_value' => 'float-md-none',
         'configuration_description' => 'Select where you want display the module',
         'configuration_group_id' => '6',
         'sort_order' => '2',

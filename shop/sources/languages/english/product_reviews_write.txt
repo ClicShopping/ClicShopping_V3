@@ -1,7 +1,7 @@
  navbar_title = Reviews
  navbar_title_1 = Write
 
- heading_title_reviews = Do you want let a comments ?
+ heading_title_reviews = Do you want to let a comments ?
 
  email_subject_customer = Your comment on {{store_name}}
  email_text_customer = Hello, <br /><br />Thank you to let us your comment. We will check and valid. Please, note than all comment not responding at our ethic chart will not validate. <br /><br />. Regards, Customer services.

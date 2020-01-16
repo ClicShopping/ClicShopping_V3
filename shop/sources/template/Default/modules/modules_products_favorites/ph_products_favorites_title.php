@@ -94,11 +94,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want to display the module?',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_POSITION',
-          'configuration_value' => 'none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Display the module on the left or on the right',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\' \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

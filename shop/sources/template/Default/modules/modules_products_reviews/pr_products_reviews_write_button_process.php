@@ -35,14 +35,12 @@
     }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $content_width = (int)MODULES_PRODUCTS_REVIEWS_WRITE_BUTTON_PROCESS_CONTENT_WIDTH;
       $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_BUTTON_PROCESS_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
-
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
         $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
@@ -102,7 +100,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want display the module ?',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_BUTTON_PROCESS_POSITION',
-          'configuration_value' => 'none',
+          'configuration_value' => 'float-md-none',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
@@ -121,10 +119,6 @@
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 

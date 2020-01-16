@@ -10,7 +10,6 @@
  */
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
   class pr_products_reviews_write_customer_agreement {
@@ -113,10 +112,6 @@
           'set_function' => '',
           'date_added' => 'now()'
         ]
-      );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
       );
     }
 

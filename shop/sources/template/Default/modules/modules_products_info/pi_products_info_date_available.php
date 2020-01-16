@@ -99,7 +99,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do you want to display this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_DATE_AVAILABLE_POSITION',
-          'configuration_value' => 'none',
+          'configuration_value' => 'float-md-none',
           'configuration_description' => 'Display the module in function your choice.',
           'configuration_group_id' => '6',
           'sort_order' => '2',
