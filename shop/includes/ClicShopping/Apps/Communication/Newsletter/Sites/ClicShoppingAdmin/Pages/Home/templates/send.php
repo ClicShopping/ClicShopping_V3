@@ -19,7 +19,7 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
 
-  $action = (isset($_GET['action']) ? $_GET['action'] : '');
+  $action = $_GET['action'] ?? '';
 
   if (isset($_GET['nID'])) {
     $nID = HTML::sanitize($_GET['nID']);
