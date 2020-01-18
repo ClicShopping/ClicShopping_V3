@@ -167,7 +167,7 @@
             $ticker = '' ;
            }
 
-          $total_overall_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
+          $total_overall_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
           $cart ='<tr id="ShoppingCartContent" class="ModulesShoppingCartProductsListingContent">';
           $cart .='<td id="ShoppingCartProducts" class="ModulesShoppingCartProductsListingContent" data-th="Product">';

@@ -350,7 +350,7 @@
      * @param bool $all_language
      * @return float
      */
-    public function getoverallReviewsbyProducts(int $products_id, bool $all_language = false): ?float
+    public function getAverageProductReviews(int $products_id, bool $all_language = false): ?float
     {
       if ($all_language === false) {
         if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
@@ -413,11 +413,134 @@
       }
 
       if ($Qcheck->valueInt('reviews_total') > 0) {
-        $overall = $Qcheck->valueInt('sum_reviews') / $Qcheck->valueInt('reviews_total');
+        $average = $Qcheck->valueInt('sum_reviews') / $Qcheck->valueInt('reviews_total');
       } else {
-        $overall = 0;
+        $average = 1;
       }
 
-      return $overall;
+      return $average;
+    }
+
+
+    /**
+     * @param int $products_id
+     * @param bool $all_language
+     * @return float
+     */
+    public function getBestProductReviews(int $products_id, bool $all_language = false) :?int
+    {
+      if ($all_language === false) {
+        if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                                max(r.reviews_rating) as max_reviews
+                                        from :table_reviews r,
+                                             :table_reviews_description rd
+                                        where r.products_id = :products_id
+                                        and r.reviews_id = rd.reviews_id
+                                        and r.status = 1
+                                        and r.customers_group_id = 0
+                                        ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->execute();
+
+        } else {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                               max(r.reviews_rating) as max_reviews
+                                      from :table_reviews r,
+                                           :table_reviews_description rd
+                                      where r.products_id = :products_id
+                                      and r.reviews_id = rd.reviews_id
+                                      and r.status = 1
+                                      and r.customers_group_id > 0
+                                      ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->execute();
+        }
+      } else {
+        if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                               max(r.reviews_rating) as max_reviews
+                                      from :table_reviews r,
+                                           :table_reviews_description rd
+                                      where r.products_id = :products_id
+                                      and rd.languages_id = :languages_id
+                                      and r.reviews_id = rd.reviews_id
+                                      and r.status = 1
+                                      and r.customers_group_id = 0
+                                      ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->bindInt(':languages_id', $this->lang->getId());
+          $Qcheck->execute();
+        } else {
+          $Qcheck = $this->db->prepare('select count(r.reviews_id) as reviews_total, 
+                                               max(r.reviews_rating) as max_reviews
+                                      from :table_reviews r,
+                                           :table_reviews_description rd
+                                      where r.products_id = :products_id
+                                      and rd.languages_id = :languages_id
+                                      and r.reviews_id = rd.reviews_id
+                                      and r.status = 1
+                                      and r.customers_group_id > 0
+                                      ');
+          $Qcheck->bindInt(':products_id', $products_id);
+          $Qcheck->bindInt(':languages_id', $this->lang->getId());
+          $Qcheck->execute();
+        }
+      }
+
+      if ($Qcheck->valueInt('reviews_total') > 0) {
+        $max = $Qcheck->valueInt('max_reviews');
+      } else {
+        $max = 1;
+      }
+
+      return $max;
+    }
+
+    /**
+     * @param int $products_id
+     * @return string
+     */
+    public function getAuthor(int $products_id): string
+    {
+      $Qauthor = $this->db->prepare('select r.customers_name
+                                    from :table_reviews r
+                                    where r.products_id = :products_id
+                                    and r.status = 1
+                                    limit 1
+                                   ');
+      $Qauthor->bindInt(':products_id', $products_id);
+      $Qauthor->execute();
+
+      if (!empty($Qauthor->value('customers_name'))) {
+        $author = '*** ' . HTML::outputProtected(substr($Qauthor->value('customers_name') . ' ', 4, -4)) . ' ***';
+      } else {
+        $author = '';
+      }
+
+      return $author;
+    }
+
+    /**
+     * @param int $products_id
+     * @return int
+     */
+    public function getCount(int $products_id): int
+    {
+      $Qcount = $this->db->prepare('select count(r.reviews_id) as reviews_total
+                                      from :table_reviews r
+                                      where r.products_id = :products_id
+                                      and r.status = 1
+                                      ');
+      $Qcount->bindInt(':products_id', $products_id);
+      $Qcount->execute();
+
+      if ($Qcount->valueInt('reviews_total')) {
+        $count = $Qcount->valueInt('reviews_total');
+      } else {
+        $count = 1;
+      }
+
+      return $count;
     }
   }

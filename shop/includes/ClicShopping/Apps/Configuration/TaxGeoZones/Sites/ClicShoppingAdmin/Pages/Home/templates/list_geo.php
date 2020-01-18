@@ -63,8 +63,8 @@
 
     <thead class="dataTableHeadingRow">
       <tr>
-        <th data-field="country" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
-        <th data-field="zone" ><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
+        <th data-field="country<?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
+        <th data-field="zone<?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
         <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>

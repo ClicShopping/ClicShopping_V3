@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTTP;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\DateTime;
 
@@ -51,7 +52,14 @@
     }
 
 //display a button on the stock (good, alert, out of stock).
-    public function getStock($constant, $products_id, $tag = ' ')
+
+    /**
+     * @param string $constant
+     * @param int $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getStock(string $constant, int $products_id, string $tag = ' '): string
     {
       if ($constant == 'number') {
         $products_stock = CLICSHOPPING::getDef('text_stock') . $tag . $this->productsCommon->getProductsStock($products_id);
@@ -64,8 +72,12 @@
       return $products_stock;
     }
 
-//Flash discount
-    public function getFlashDiscount($products_id, $tag = '<br />')
+    /**
+     * @param int $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getFlashDiscount(int $products_id, string $tag = '<br />'): string
     {
       $products_flash_discount = '';
 
@@ -337,4 +349,67 @@
       }
     }
 
+    public function getProductJsonLd($products_id) {
+      $CLICSHOPPING_Reviews = Registry::get('Reviews');
+
+      if ($this->productsCommon->getProductsStock($products_id) > 0) {
+        $stock = 'InStock';
+      } else {
+        $stock = 'OutofStock';
+      }
+
+      if (STOCK_ALLOW_CHECKOUT == 'true') {
+        $stock = 'InStock';
+      }
+
+      $products_packaging = $this->productsCommon->getProductsPackaging($products_id);
+
+      if ($products_packaging == 0) $products_packaging = 'http://schema.org/NewCondition'; // default newCondition
+      if ($products_packaging == 1) $products_packaging = 'http://schema.org/NewCondition';
+      if ($products_packaging == 2) $products_packaging = 'http://schema.org/RefurbishedCondition';
+      if ($products_packaging == 3) $products_packaging = 'http://schema.org/UsedCondition';
+
+      $price = $this->productsCommon->getDisplayPriceGroupWithoutCurrencies($products_id);
+
+      $output = '
+      <script defer type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "' .  strip_tags(str_replace('"', '', $this->productsCommon->getProductsName($products_id))) . '",
+  "model": "' .  $this->productsCommon->getProductsModel($products_id) . '",
+  "image": [
+    "' . HTTP::typeUrlDomain() . $this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImage($products_id) . '",
+    "' . HTTP::typeUrlDomain() . $this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImageMedium($products_id) . '"
+   ],
+  "description": "' .  strip_tags(str_replace('"', '', $this->productsCommon->getProductsDescription($products_id))) . '",
+  "sku": "' . $this->productsCommon->getProductsSKU($products_id) . '",
+  "mpn": "", 
+  "brand": {
+    "@type": "Thing",
+    "name": "' . $this->productsCommon->getProductsManufacturer($products_id) . '"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "' . $CLICSHOPPING_Reviews->getAverageProductReviews($products_id) . '",
+    "reviewCount": "' . $CLICSHOPPING_Reviews->getCount($products_id) .'"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "' . $this->getProductsUrlRewrited()->getProductNameUrl($products_id) . '",
+    "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
+    "price": "' . $price . '",
+    "priceValidUntil": "",
+    "itemCondition": "https://schema.org/' .$products_packaging . '",
+    "availability": "https://schema.org/' . $stock . '",
+    "seller": {
+      "@type": "Organization",
+      "name": "' . HTML::output(STORE_NAME) .'"
+    }
+  }
+}
+</script>      
+      ';
+      return $output;
+    }
   }

@@ -71,7 +71,7 @@
           }
         }
 
-        $data .= '<div class= "d-flex flex-wrap ">';
+        $data .= '<div class="d-flex flex-wrap ">';
         $delete_reviews = '';
         $delete_comment = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT;
 

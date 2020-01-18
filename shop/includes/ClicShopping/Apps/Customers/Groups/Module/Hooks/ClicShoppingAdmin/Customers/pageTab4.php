@@ -49,11 +49,10 @@
                                                         ');
       $Qcustomers->bindInt(':customers_id', $_GET['cID']);
       $Qcustomers->execute();
-
       $cInfo = new ObjectInfo($Qcustomers->toArray());
 
 // Lecture sur la base de données des informations facturations et livraison du groupe client
-      if ($cInfo->customers_group_id != 0) {
+     if ($cInfo->customers_group_id != 0) {
         $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
                                                                         group_order_taxe,
                                                                         group_payment_unallowed,
@@ -64,16 +63,17 @@
         $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id);
         $QcustomersGroup->execute();
 
-        $cInfo_group = new ObjectInfo($QcustomersGroup->toArray());
-      }
+        $customer_group = $QcustomersGroup->toArray();
+        $group_order_taxe = $customer_group['group_order_taxe'];
+     }
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
 // Affiche la case cochée par défaut pour le mode de facturation utilisée avec taxe ou non
-        if (!isset($cInfo_group->group_order_taxe) || empty($cInfo_group->group_order_taxe)) {
-	  $cInfo_group->group_order_taxe = '0';
-	}
+        if (!empty($group_order_taxe)) {
+          $group_order_taxe = '0';
+	      }
 
-        switch ($cInfo_group->group_order_taxe) {
+        switch ($group_order_taxe) {
           case '0':
             $status_order_taxe = true;
             $status_order_no_taxe = false;
@@ -109,7 +109,7 @@
 
           if ($cInfo->customers_group_id != 0) {
             $content .= '<div class="separator"></div>';
-            $content .= '<div class="mainTitle">' . $this->app->getDef('category_order_taxe_group') . '&nbsp;' . $cInfo_group->customers_group_name . '</div>';
+            $content .= '<div class="mainTitle">' . $this->app->getDef('category_order_taxe_group') . '&nbsp;' . $customer_group['customers_group_name'] . '</div>';
             $content .= '<div class="adminformTitle">';
             $content .= '<div class="row">';
 
@@ -125,7 +125,7 @@
               $class_option_no_order_taxe ='fas fa-check fa-lg';
             }
 
-            if ($cInfo_group->group_order_taxe == 0) {
+            if ($group_order_taxe == 0) {
               $content .= '<div class="col-md-12">';
               $content .= '<span class="col-md-1"><i class="' .  $class_option_order_taxe . '" aria-hidden="true"></i></span>';
               $content .= '<span class="col-md-3">' . $this->app->getDef('options_order_taxe') . '</span>';
@@ -154,7 +154,7 @@
           $content .= '<div class="mainTitle">';
 
           if ($cInfo->customers_group_id != 0) {
-            $content .= '<span class="col-md-3">' . $this->app->getDef('category_order_customer_group') . '&nbsp;' . $cInfo_group->customers_group_name . '</span>';
+            $content .= '<span class="col-md-3">' . $this->app->getDef('category_order_customer_group') . '&nbsp;' . $customer_group['customers_group_name'] . '</span>';
           } else {
             $content .= '<span class="col-md-3">' . $this->app->getDef('category_order_customer') . '</span>';
           } // end customers_group_id
@@ -167,8 +167,8 @@
           $content .= '<div class="col-md-12">';
 
 // Search payment module
-          if ($cInfo->customers_group_id != 0 && $cInfo_group->group_payment_unallowed) {
-            $payments_unallowed = explode(',', $cInfo_group->group_payment_unallowed);
+          if ($cInfo->customers_group_id != 0 && $customer_group['group_payment_unallowed']) {
+            $payments_unallowed = explode(',', $customer_group['group_payment_unallowed']);
           }
 
           $module_key = 'MODULE_PAYMENT_INSTALLED';

@@ -13,7 +13,7 @@
 ?>
 <div class="col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?>">
   <div class="separator"></div>
-  <div class="card-deck-wrapper" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Product">
+  <div class="card-deck-wrapper">
     <div class="card-deck">
       <div class="card">
         <div class="card-block">
@@ -27,7 +27,7 @@
 <?php
   if (!empty($products_short_description)) {
 ?>
-            <div class="ModulesProductsFavoritesBoostrapColumn5ShortDescription"><span itemprop="description"><h3><?php echo $products_short_description; ?></h3></span></div>
+            <div class="ModulesProductsFavoritesBoostrapColumn5ShortDescription"><h3><?php echo $products_short_description; ?></h3></div>
 <?php
   }
 ?>
@@ -51,7 +51,7 @@
 ?>
           </div>
           <div>
-            <div class="ModulesProductsFavoritesBoostrapColumn5TextPrice" itemprop="offers" itemscope itemtype="https://schema.org/Offer"><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
+            <div class="ModulesProductsFavoritesBoostrapColumn5TextPrice" ><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
           </div>
           <?php echo $form; ?>
           <div class="form-group form-group-center">

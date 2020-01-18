@@ -18,7 +18,7 @@ use ClicShopping\OM\CLICSHOPPING;
       <div class="card-text">
         <div class="ModulesProductsInfoPrice">
           <?php echo CLICSHOPPING::getDef('text_price_info'); ?>
-            <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <span class="productsPrice>
               <?php echo $product_price; ?>
             </span>
           <div class="ModulesProductsInfokiloPrice">

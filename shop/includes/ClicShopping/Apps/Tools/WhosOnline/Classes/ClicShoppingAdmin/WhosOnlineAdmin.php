@@ -12,34 +12,40 @@
   namespace ClicShopping\Apps\Tools\WhosOnline\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTTP;
 
   class WhosOnlineAdmin
   {
-
+    /**
+     * @return int
+     */
     public static function getCountWhosOnline() :int
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (isset($_SESSION['admin'])) {
-        $QwhosOnline = $CLICSHOPPING_Db->prepare('select distinct customer_id,
+        static::delete();
+
+        $QwhosOnline = $CLICSHOPPING_Db->prepare('select distinct session_id,
+                                                                  customer_id,
                                                                   full_name,
                                                                   ip_address,
                                                                   time_entry,
                                                                   time_last_click,
-                                                                  last_page_url,
-                                                                  session_id
+                                                                  last_page_url
                                                    from :table_whos_online
                                                 ');
         $QwhosOnline->execute();
 
         $whosOnlineNumber = $QwhosOnline->rowCount();
 
-        static::delete();
-
         return $whosOnlineNumber;
       }
     }
 
+    /**
+     *
+     */
     private static function delete()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -49,13 +55,16 @@
 
 // Delete data after expiration time
       $Qdelete = $CLICSHOPPING_Db->prepare('delete
-                                              from :table_whos_online
-                                              where  time_last_click <= :time_last_click
-                                            ');
+                                            from :table_whos_online
+                                            where  time_last_click <= :time_last_click
+                                          ');
       $Qdelete->bindValue(':time_last_click', $xx_mins_ago);
       $Qdelete->execute();
     }
 
+    /**
+     *
+     */
     public static function removeWhoOnline() {
       $CLICSHOPPING_Db = Registry::get('Db');
 

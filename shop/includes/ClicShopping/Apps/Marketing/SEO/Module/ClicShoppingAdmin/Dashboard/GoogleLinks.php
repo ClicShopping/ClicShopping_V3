@@ -49,12 +49,10 @@
       $url_adsense = 'https://google.com/adsense';
       $url_analytics = 'https://www.google.com/analytics/';
       $url_adwords = 'https://adwords.google.com';
-       $url_webmastertools = 'https://search.google.com/search-console';;
+      $url_webmastertools = 'https://search.google.com/search-console';
       $url_alerts = 'https://www.google.com/alerts';
       $url_places = 'https://accounts.google.com/ServiceLogin?service=lbc&continue=https://www.google.com/local/add%3Fservice%3Dlbc';
-
       $url_merchant = 'https://www.google.com/merchants/default';
-
       $content_width = (int)MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_CONTENT_WIDTH;
 
       $output = '<div class="col-md-' . $content_width . '">';
@@ -63,30 +61,30 @@
         '<thead>' .
         '  <tr class="dataTableHeadingRow">' .
         '    <th width="20">&nbsp;</th>' .
-        '    <th>' . $this->app->getDef('module_admin_dashboard_googlelinks_app_title') . '</th>' .
+        '    <th>' . $this->app->getDef('module_admin_dashboard_googlelinks_app_seo_title') . '</th>' .
         '  </tr>' .
         '</thead>';
       '<tbody>';
 
-      $output .= '  <tr>' .
+      $output .= '<tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_analytics . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_analytics') . '</a></td>' .
         '  </tr>' .
-        '  <tr>' .
+        '  <tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_webmastertools . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_webmastertools') . '</a></td>' .
         '  </tr>' .
-        '  <tr>' .
+        '  <tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_places . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_places') . '</a></td>' .
         '  </tr>' .
-        '  <tr>' .
+        '  <tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_alerts . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_alerts') . '</a></td>' .
         '  </tr>' .
-        '  <tr>' .
+        '  <tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_adsense . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adsense') . '</a></td>' .
         '  </tr>' .
-        '  <tr>' .
+        '  <tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_adwords . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_adwords') . '</a></td>' .
         '  </tr>' .
-        '  <tr>' .
+        '  <tr class="dataTableRow backgroundBlank">' .
         '    <td colspan="2"><a href="' . $url_merchant . '" target="_blank" rel="noreferrer">' . $this->app->getDef('module_admin_dashboard_googlelinks_app_merchant') . '</a></td>' .
         '  </tr>';
 

@@ -119,7 +119,7 @@
 ?>
       <div class="col-md-12">
         <span class="col-md-1"><?php echo HTML::link($CLICSHOPPING_Upgrade->link('Upgrade'), HTML::button($CLICSHOPPING_Upgrade->getDef('test_download'), null, null, 'warning', null, 'sm')) . ' '; ?></span>
-        <span class="col-md-11"><?php  echo ' <a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="nofollow" >' . HTML::button('ClicShopping', null, null, 'primary', null, 'sm') . '</a>'; ?></span>
+        <span class="col-md-11"><?php echo '<a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="nofollow">' . HTML::button('ClicShopping', null, null, 'primary', null, 'sm') . '</a>'; ?></span>
 <?php
       }
 ?>

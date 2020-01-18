@@ -258,7 +258,7 @@
 // display products weight
             $products_weight = $CLICSHOPPING_ProductsFunctionTemplate->getProductsWeight($products_id);
 // Reviews
-            $total_reviews = '<span class="ModulesReviews" itemprop="ratingValue">' . HTML::stars($CLICSHOPPING_Reviews->getoverallReviewsbyProducts($products_id)) . '</span>';
+            $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 //******************************************************************************************************************
 //            End Options -- activate and insert code in template and css

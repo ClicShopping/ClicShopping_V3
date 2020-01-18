@@ -13,7 +13,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $bootstrap_column; ?> col-md-<?php echo $bootstrap_column; ?>">
   <div class="separator"></div>
-  <div class="card-deck-wrapper" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/Product">
+  <div class="card-deck-wrapper">
     <div class="card-deck">
       <div class="card">
         <div class="card-block">
@@ -29,7 +29,7 @@ use ClicShopping\OM\CLICSHOPPING;
             <?php
   if (!empty($products_short_description)) {
 ?>
-            <div class="ModulesIndexCategoriesBoostrapColumn5ShortDescription"><span itemprop="description"><h3><?php echo $products_short_description; ?></h3></span></div>
+            <div class="ModulesIndexCategoriesBoostrapColumn5ShortDescription"><h3><?php echo $products_short_description; ?></h3></div>
 <?php
   }
 ?>
@@ -54,7 +54,7 @@ use ClicShopping\OM\CLICSHOPPING;
 ?>
           </div>
           <div class="text-md-center">
-            <div class="ModulesIndexCategoriesBoostrapColumn5TextPrice" itemprop="offers" itemscope itemtype="https://schema.org/Offer"><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
+            <div class="ModulesIndexCategoriesBoostrapColumn5TextPrice" ><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $product_price; ?></div>
           </div>
           <?php echo $form; ?>
           <div class="form-group form-group-center">

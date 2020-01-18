@@ -16,11 +16,6 @@
 
   class ModuleDownload
   {
-
-    protected $value;
-    protected $dest;
-    protected $source;
-
     /**
      * Directory template with a drop down for all template
      *

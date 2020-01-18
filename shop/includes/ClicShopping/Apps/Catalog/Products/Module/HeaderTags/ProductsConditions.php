@@ -55,60 +55,19 @@
     {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
+      $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
 
       if (!defined('CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS') || CLICSHOPPING_APP_CATALOG_PRODUCTS_PD_STATUS == 'False') {
         return false;
       }
 
+      $products_id = $CLICSHOPPING_ProductsCommon->getId();
+
       if (isset($_GET['Products']) && isset($_GET['Description'])) {
-        $products_packaging = $CLICSHOPPING_ProductsCommon->getProductsPackaging();
-
-        if ($products_packaging == 0) $products_packaging = 'http://schema.org/NewCondition'; // default newCondition
-        if ($products_packaging == 1) $products_packaging = 'http://schema.org/NewCondition';
-        if ($products_packaging == 2) $products_packaging = 'http://schema.org/RefurbishedCondition';
-        if ($products_packaging == 3) $products_packaging = 'http://schema.org/UsedCondition';
-
-        $sku = $CLICSHOPPING_ProductsCommon->getProductsSKU();
-
-        if ($CLICSHOPPING_ProductsCommon->getProductsStock() > 0) {
-          $stock = 'InStock';
-        } else {
-          $stock = 'OutofStock';
-        }
-
-        if (STOCK_ALLOW_CHECKOUT == 'true') {
-          $stock = 'InStock';
-        }
-
-        $price = floatval(preg_replace('/[^\d\.]/', '', $CLICSHOPPING_ProductsCommon->getCustomersPrice()));
+        $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
 
         $output = '<!-- products condition json_ltd -->' . "\n";
-        $output .= '
-          <script type="application/ld+json">
-          {
-           "@context" : "http://schema.org",
-           "@type": "Product",
-           "name": "' . $CLICSHOPPING_ProductsCommon->getProductsName() . '",
-           "brand": {
-                     "@type": "Brand",
-                     "name": "' . $CLICSHOPPING_ProductsCommon->getProductsName() . '"
-                     },
-           "sku": "' . $sku . '",
-           "description": "' . strip_tags($CLICSHOPPING_ProductsCommon->getProductsDescription()) . '",
-           "url": "' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) . '",
-           "image": "' . CLICSHOPPING::getConfig('http_server', 'Shop') . '/' . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage() . '",
-           "itemCondition": "' .$products_packaging . '",
-   "offers": {
-                 "@type": "Offer",
-                 "price": "' . $price . '",
-                 "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
-                 "itemCondition": "' . $products_packaging . '",
-                 "url": "' . CLICSHOPPING::link(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID()) . '",
-                 "sku": "' . $sku . '",
-                 "availability": "' . $stock . '"
-                }
-   }
-   ' . "\n";
+        $output .= $jsonLtd . "\n";
 
         $output .= '</script>' . "\n";
 

@@ -535,9 +535,9 @@
      * @return string $products_name, name of the product
      * @access public
      */
-    public function getProductsSKU()
+    public function getProductsSKU($id = null): string
     {
-      return $this->setProductsSKU();
+      return $this->setProductsSKU($id);
     }
 
     /**
@@ -547,11 +547,15 @@
      * @return string $products_date_available,  product date available
      * @access private
      */
-    private function setProductsSKU()
+    private function setProductsSKU(?int $id): string
     {
+      if (is_null($id)) {
+        $id = $this->getID();
+      }
+
       $Qproducts = $this->db->get('products', ['products_sku'],
         ['products_status' => 1,
-          'products_id' => (int)$this->getID()
+          'products_id' => (int)$id
         ]
       );
 
@@ -602,8 +606,11 @@
      * @return string description
      * @access private
      */
-    private function setProductsDescription()
+    private function setProductsDescription(?int $id): string
     {
+      if (is_null($id)) {
+        $id = $this->getID();
+      }
 
       $Qproducts = $this->db->prepare('select pd.products_description
                                         from :table_products p,
@@ -629,9 +636,9 @@
      * @return string $products_description, description of the product
      * @access public
      */
-    public function getProductsDescription()
+    public function getProductsDescription($id = null)
     {
-      return $this->setProductsDescription();
+      return $this->setProductsDescription($id);
     }
 
 
@@ -774,7 +781,7 @@
      * @access private
      */
 
-    private function setProductsManufacturer($id = null)
+    private function setProductsManufacturer(?int $id): string
     {
 
       $manufacturer_search = '';
@@ -813,7 +820,7 @@
     /**
      * display products manufacturer
      *
-     * @param string
+     * @param int
      * @return string $products_manufacturer, manufacturer of the product
      * @access public
      */
@@ -969,11 +976,11 @@
     /**
      * products packaging
      *
-     * @param string
+     * @param null|int
      * @return string $products_packaging, packaging concerning the product
      * @access private
      */
-    private function setProductsPackaging($id = null)
+    private function setProductsPackaging(?int $id)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -993,7 +1000,7 @@
     /**
      * display products packaging
      *
-     * @param string
+     * @param null|int
      * @return string $products_packaging, products packaging
      * @access public
      */
@@ -2202,7 +2209,7 @@
      * @access public
      */
 
-    public function getDisplayPriceGroupWithoutCurrencies($id = null)
+    public function getDisplayPriceGroupWithoutCurrencies($id = null): float
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -2254,12 +2261,12 @@
       if ($this->customer->getCustomersGroupID() != 0) {
         if ($new_price = $this->setSpecialPriceGroup($id)) {
           if ($price_group_view == 1) {
-            $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
+            $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
           } else {
-            $products_price = '<span itemprop="price">' . $this->setDisplayPriceGroup($id) . '</span>';
+            $products_price = $this->setDisplayPriceGroup($id);
           }
         } else {
-          $products_price = '<span itemprop="price">' . $this->setDisplayPriceGroup($id) . '</span>';
+          $products_price = $this->setDisplayPriceGroup($id);
         }
       } else {
         $normal_price = 1; // Arret du mode Grand public pour refus d'afficher le prix groupe B2B
@@ -2267,12 +2274,12 @@
 
       if (($this->customer->getCustomersGroupID() == 0) || ($normal_price == 1)) {
         if ($new_price = $this->setSpecialPriceGroup($id)) {
-          $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice" itemprop="price">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
+          $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
         } else {
-          $products_price = '<span itemprop="price">' . $this->setDisplayPriceGroup($id) . '</span>';
+          $products_price = $this->setDisplayPriceGroup($id);
         }
 
-        $products_price .= '<meta itemprop="priceCurrency" content="' . HTML::output($_SESSION['currency']) . '" />';
+        $products_price .= HTML::output($_SESSION['currency']);
       }
 
       $normal_price = 0; // Arret du mode Grand public pour refus d'afficher le prix groupe B2B
@@ -2298,7 +2305,7 @@
      * @access public
      */
 
-    public function getProductsStock($id = null)
+    public function getProductsStock($id = null): string
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
