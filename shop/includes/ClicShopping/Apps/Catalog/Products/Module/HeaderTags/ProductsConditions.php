@@ -33,7 +33,7 @@
 
       $this->app = Registry::get('Products');
       $this->lang = Registry::get('Language');
-      $this->group = 'header_tags'; // could be header_tags or footer_scripts
+      $this->group = 'footer_scripts'; // could be header_tags or footer_scripts
 
       $this->app->loadDefinitions('Module/HeaderTags/products_conditions');
 
@@ -66,17 +66,14 @@
       if (isset($_GET['Products']) && isset($_GET['Description'])) {
         $jsonLtd = $CLICSHOPPING_ProductsFunctionTemplate->getProductJsonLd($products_id);
 
-        $output = '<!-- products condition json_ltd -->' . "\n";
-        $output .= $jsonLtd . "\n";
+        $footer_tag = '<!-- products condition json_ltd -->' . "\n";
+        $footer_tag .= $jsonLtd . "\n";
+        $footer_tag .= '<!-- end products condition json_ltd -->' . "\n";
 
-        $output .= '</script>' . "\n";
-
-        $output .= '<!-- end products condition json_ltd -->' . "\n";
-
-        $display_result = $CLICSHOPPING_Template->addBlock($output, $this->group);
+        $display_result = $CLICSHOPPING_Template->addBlock($footer_tag,  $this->group);
 
         $output =
-          <<<EOD
+<<<EOD
 {$display_result}
 EOD;
 

@@ -1,0 +1,3 @@
+remove json product description
+fix manifest
+fix header tag products condition

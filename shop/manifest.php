@@ -36,13 +36,13 @@
 
   $CLICSHOPPING_seoShop = Registry::get('SeoShop');
 
-  $title = $CLICSHOPPING_seoShop->getSeoIndexTitle();
-  $description = $CLICSHOPPING_seoShop->getSeoIndexDescription();
+  $title = HTML::removeFileAccents($CLICSHOPPING_seoShop->getSeoIndexTitle());
+  $description = HTML::removeFileAccents($CLICSHOPPING_seoShop->getSeoIndexDescription());
 
-  $siteName = HTML::outputProtected(STORE_NAME);
+  $siteName = HTML::removeFileAccents(STORE_NAME);
 
   if(empty($title)) {
-    $store_name = HTML::outputProtected(STORE_NAME);
+    $store_name = HTML::removeFileAccents(STORE_NAME);
     $shortName = substr($store_name, 0, 30);
 
   } else {
@@ -50,10 +50,11 @@
   }
 
   if(empty($description)) {
-    $description = HTML::outputProtected(STORE_NAME);
+    $description = HTML::removeFileAccents(STORE_NAME);
   }
 
   $scope = HTTP::getShopUrlDomain() . 'index.php';
+  $start_url = HTTP::getShopUrlDomain() . 'index.php';
 
   $image_192 =  HTTP::getShopUrlDomain() . 'sources/images/logos/manifest/logo_192.png';
   $image_512 =  HTTP::getShopUrlDomain() . 'sources/images/logos/manifest/logo_512.png';
@@ -68,7 +69,7 @@
     "description" => "{$description}",
     "scope" => "{$scope}",
     "display" => "standalone",
-    "start_url" => "{$scope}",
+    "start_url" => "{$start_url}",
     "theme_color" => "#317EFB",
     "orientation" => "any",
     "background_color" => "#fff",
@@ -88,4 +89,4 @@
 
    $json_manifest = json_encode($manifest);
 
-   echo  $json_manifest;
+   echo $json_manifest;
