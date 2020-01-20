@@ -23,10 +23,10 @@ products_group_quantity_unit_title = FRS-
 
 error_conditions_not_accepted = Veuillez confirmer que vous acceptez les termes et les conditions de vente.
 
-js_error = Des erreurs sont survenues durant le traitement de votre formulaire.\n\nVeuillez effectuer les corrections suivantes :\n\n
-js_review_text = * Le commentaire que vous avez rentré doit avoir au moins {{min_length}} caracteres.\n
-js_review_rating = * Vous devez mettre une appréciation pour cet article.\n
-js_error_no_payment_module_selected = * Veuillez choisir une méthode de paiement pour votre commande.\n
+js_error = Des erreurs sont survenues durant le traitement de votre formulaire.<br />Veuillez effectuer les corrections suivantes :<br />
+js_review_text = * Le commentaire que vous avez rentré doit avoir au moins {{min_length}} caractères.
+js_review_rating = * Vous devez mettre une appréciation pour cet article.
+js_error_no_payment_module_selected = * Veuillez choisir une méthode de paiement pour votre commande.
 js_error_submitted = Ce formulaire a été déjà soumis. Veuillez appuyer sur Ok et attendez jusqu'à ce que le traitement soit fini.
 
 error_no_payment_module_selected = Veuillez choisir une méthode de paiement pour votre commande.

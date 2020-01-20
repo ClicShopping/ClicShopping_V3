@@ -50,8 +50,8 @@
     }
 </script>
 <?php
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
-    echo $CLICSHOPPING_MessageStack->get('main');
+  if ( $CLICSHOPPING_MessageStack->exists('rewiews_write') ) {
+    echo $CLICSHOPPING_MessageStack->get('rewiews_write');
   }
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
