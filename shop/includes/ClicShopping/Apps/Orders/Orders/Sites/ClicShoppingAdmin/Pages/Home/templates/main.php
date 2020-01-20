@@ -18,8 +18,8 @@
   $CLICSHOPPING_Orders = Registry::get('Orders');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  if ($CLICSHOPPING_MessageStack->exists('Orders')) {
-    echo $CLICSHOPPING_MessageStack->get('Orders');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

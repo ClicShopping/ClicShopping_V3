@@ -53,7 +53,7 @@
           $Qupdate->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID());
           $Qupdate->execute();
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'account_notification');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
 
         } elseif (count($products) > 0) {
           $products_parsed = [];
@@ -95,7 +95,7 @@
               $Qdelete->execute();
             }
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'account_notification');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
           }
         } else {
 
@@ -116,7 +116,7 @@
             $Qdelete->execute();
           }
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'account_notification');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
         }
 
         $CLICSHOPPING_Hooks->call('Notifications', 'Process');

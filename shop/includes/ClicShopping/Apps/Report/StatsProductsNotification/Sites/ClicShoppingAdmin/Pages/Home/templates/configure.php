@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_StatsProductsNotification_Config = Registry::get('StatsProductsNotificationAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('StatsProductsNotification')) {
-    echo $CLICSHOPPING_MessageStack->get('StatsProductsNotification');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

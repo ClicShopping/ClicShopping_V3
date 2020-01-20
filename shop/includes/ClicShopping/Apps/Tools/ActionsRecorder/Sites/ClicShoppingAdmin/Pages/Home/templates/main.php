@@ -16,8 +16,8 @@
   $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('ActionsRecorder')) {
-    echo $CLICSHOPPING_MessageStack->get('ActionsRecorder');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

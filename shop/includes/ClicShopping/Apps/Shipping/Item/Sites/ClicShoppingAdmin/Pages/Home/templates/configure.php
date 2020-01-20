@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_Item_Config = Registry::get('ItemAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Item')) {
-    echo $CLICSHOPPING_MessageStack->get('Item');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

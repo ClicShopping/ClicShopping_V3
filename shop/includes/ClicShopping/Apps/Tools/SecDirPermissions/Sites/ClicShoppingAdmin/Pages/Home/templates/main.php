@@ -16,8 +16,8 @@
   $CLICSHOPPING_SecDirPermissions = Registry::get('SecDirPermissions');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('SecDirPermissions')) {
-    echo $CLICSHOPPING_MessageStack->get('SecDirPermissions');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

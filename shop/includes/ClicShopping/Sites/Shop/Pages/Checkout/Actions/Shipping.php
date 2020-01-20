@@ -143,7 +143,7 @@
 // method if more than one module is now enabled
       if (!isset($_SESSION['shipping']) || (isset($_SESSION['shipping']) && ($_SESSION['shipping'] === false) && ($CLICSHOPPING_Shipping->geCountShippingModules() > 1))) $_SESSION['shipping'] = $CLICSHOPPING_Shipping->getCheapest();
       if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False') && !$CLICSHOPPING_Customer->isLoggedOn() && ($_SESSION['shipping'] === false)) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_shipping_available_to_shipping_address'), 'danger', 'checkout_address');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_no_shipping_available_to_shipping_address'), 'error');
 
         CLICSHOPPING::redirect(null, 'Checkout&ShippingAddress');
       }

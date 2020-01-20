@@ -16,8 +16,8 @@
   $CLICSHOPPING_Upgrade = Registry::get('Upgrade');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('Upgrade')) {
-    echo $CLICSHOPPING_MessageStack->get('Upgrade');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

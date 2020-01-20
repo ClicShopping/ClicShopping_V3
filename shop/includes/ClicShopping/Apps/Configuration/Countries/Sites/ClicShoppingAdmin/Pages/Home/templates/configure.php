@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Countries_Config = Registry::get('CountriesAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Countries')) {
-    echo $CLICSHOPPING_MessageStack->get('Countries');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

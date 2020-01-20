@@ -16,8 +16,8 @@
   $CLICSHOPPING_EditLogError = Registry::get('EditLogError');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('EditLogError')) {
-    echo $CLICSHOPPING_MessageStack->get('EditLogError');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

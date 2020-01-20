@@ -17,8 +17,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
 
-  if ($CLICSHOPPING_MessageStack->exists('TaxGeoZones')) {
-    echo $CLICSHOPPING_MessageStack->get('TaxGeoZones');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

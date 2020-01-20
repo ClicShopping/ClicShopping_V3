@@ -16,8 +16,8 @@
   $CLICSHOPPING_WhosOnline = Registry::get('WhosOnline');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('WhosOnline')) {
-    echo $CLICSHOPPING_MessageStack->get('WhosOnline');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

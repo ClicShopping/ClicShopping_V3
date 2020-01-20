@@ -42,7 +42,7 @@
 
 // Controle autorisation au client de modifier son adresse par defaut
       if ((AddressBook::countCustomersModifyAddressDefault() == 0)) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_modify_default'), 'danger', 'header');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_address_book_no_modify_default'), 'error');
 
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }

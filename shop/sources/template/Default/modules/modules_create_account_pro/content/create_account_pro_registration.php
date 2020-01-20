@@ -21,17 +21,15 @@
   <div class="separator"></div>
   <div class="contentText">
 <?php
-  if ( $CLICSHOPPING_MessageStack->exists('create_account_pro') ) {
-?>
-    <div class="alert-warning" role="alert"><?php echo $CLICSHOPPING_MessageStack->get('create_account_pro'); ?></div>
-    <div class="separator"></div>
-<?php
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 // ----------------------
 // ------ Address   -----
 // ----------------------
   if ((ACCOUNT_COMPANY_PRO == 'true') || (ACCOUNT_SIRET_PRO == 'true') || (ACCOUNT_TVA_INTRACOM_PRO == 'true')) {
 ?>
+    <div class="separator"></div>
     <div class="card">
       <div class="card-header">
         <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>

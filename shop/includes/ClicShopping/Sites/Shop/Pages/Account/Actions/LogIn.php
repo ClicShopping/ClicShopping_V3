@@ -74,7 +74,7 @@
         }
 
         if ($error === true) {
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_login_error'), 'error', 'login');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_login_error'), 'error');
         }
       }
 

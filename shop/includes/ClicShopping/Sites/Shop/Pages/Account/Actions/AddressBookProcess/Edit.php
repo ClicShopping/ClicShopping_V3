@@ -29,7 +29,7 @@
 
 // error checking when updating or adding an entry
       if (AddressBook::checkNewCustomer() === false) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error', 'checkout_address');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_nonexisting_address_book_entry'), 'error');
 
         CLICSHOPPING::redirect(null, 'Account&AddressBook');
       }
@@ -95,13 +95,13 @@
           if ($gender != 'm' && $gender != 'f') {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error'), 'error', 'checkout_address');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error'), 'error');
           }
         } elseif (ACCOUNT_GENDER_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error', 'checkout_address');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error');
           }
         }
 
@@ -109,70 +109,70 @@
         if ((strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error');
 
         } else if ((strlen($firstname) < ENTRY_FIRST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C et B2B : Controle entree du nom de famille
         if ((strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error');
 
         } else if ((strlen($lastname) < ENTRY_LAST_NAME_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C et B2B : Controle entree adresse
         if ((strlen($street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error', ['min_length' => ENTRY_STREET_ADDRESS_MIN_LENGTH]), 'error');
         } else if ((strlen($street_address) < ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C et B2B : Controle entree code postal
         if ((strlen($postcode) < ENTRY_POSTCODE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]), 'danger', 'addressbook');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error', ['min_length' => ENTRY_POSTCODE_MIN_LENGTH]), 'error');
 
         } else if ((strlen($postcode) < ENTRY_POSTCODE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C et B2B : Controle entree de la ville
         if ((strlen($city) < ENTRY_CITY_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_MIN_LENGTH]), 'error');
         } else if ((strlen($city) < ENTRY_CITY_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error_pro', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error_pro', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C et B2B : Controle de la selection du pays
         if ((!is_numeric($country_id)) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error'), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error'), 'error');
 
         } else if ((!is_numeric($country_id)) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error_pro'), 'error', 'checkout_address');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_country_error_pro'), 'error');
         }
 
         if (((ACCOUNT_STATE == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_STATE_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
@@ -203,10 +203,10 @@
               $error = true;
 
               if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_not_existing'), 'error', 'checkout_address');
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_not_existing'), 'error');
 
               } else if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'checkout_address');
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error');
               }
             }
           } else {
@@ -215,7 +215,7 @@
 
               if ($check_zone === false) {
                 $error = true;
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_not_existing'), 'error', 'checkout_address');
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_not_existing'), 'error');
               }
             }
           }
@@ -223,11 +223,11 @@
           if ((strlen($state) < ENTRY_STATE_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'checkout_address');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error');
           } else if ((strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro', ['min_length' => entry_state_error_select_pro]), 'error', 'checkout_address');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro', ['min_length' => entry_state_error_select_pro]), 'error');
           }
         } // end else
 

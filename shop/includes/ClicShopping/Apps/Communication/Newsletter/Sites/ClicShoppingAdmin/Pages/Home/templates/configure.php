@@ -20,8 +20,8 @@
 
   $CLICSHOPPING_Newsletter_Config = Registry::get('NewsletterAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Newsletter')) {
-    echo $CLICSHOPPING_MessageStack->get('Newsletter');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

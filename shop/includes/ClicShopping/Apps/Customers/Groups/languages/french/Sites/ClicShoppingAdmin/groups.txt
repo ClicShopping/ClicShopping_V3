@@ -78,7 +78,7 @@ entry_groups_categorie_error = Erreur sur la catégorie
 
 options_order_taxe = avec taxes
 options_order_no_taxe = Sans taxes
-text_price_success = tarifs mis à jour avec succès
+text_price_success = Tarifs du groupe mis à jour avec succès
 
 text_result_page = Page {{listing_from}} à {{listing_total}}
 text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

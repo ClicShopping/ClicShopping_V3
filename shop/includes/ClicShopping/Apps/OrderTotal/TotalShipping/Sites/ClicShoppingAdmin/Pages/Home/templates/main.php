@@ -16,8 +16,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_TotalShipping = Registry::get('TotalShipping');
 
-  if ($CLICSHOPPING_MessageStack->exists('TotalShipping')) {
-    echo $CLICSHOPPING_MessageStack->get('TotalShipping');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

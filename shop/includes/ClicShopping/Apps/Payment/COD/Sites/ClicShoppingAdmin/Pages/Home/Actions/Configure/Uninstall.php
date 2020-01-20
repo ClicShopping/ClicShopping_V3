@@ -27,7 +27,7 @@
       $m = Registry::get('CodAdminConfig' . $current_module);
       $m->uninstall();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_COD->getDef('alert_module_uninstall_success'), 'success', 'COD');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_COD->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_COD->redirect('Configure&module=' . $current_module);
     }

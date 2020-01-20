@@ -20,8 +20,8 @@
   $CLICSHOPPING_Customer = Registry::get('Customer');
   $CLICSHOPPING_Address = Registry::get('Address');
 
-  if ( $CLICSHOPPING_MessageStack->exists('checkout_address') ) {
-    echo $CLICSHOPPING_MessageStack->get('checkout_address');
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));

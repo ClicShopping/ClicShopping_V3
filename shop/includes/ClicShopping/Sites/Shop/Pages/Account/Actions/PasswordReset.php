@@ -34,7 +34,7 @@
       if (!isset($_GET['account']) || !isset($_GET['key'])) {
         $error = true;
 
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'header');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'error');
       }
 
       if ($error === false) {
@@ -44,12 +44,12 @@
         if ((Is::EmailAddress($email_address) === false)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'danger', 'header');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error');
 
         } elseif (strlen($password_key) != 40) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'header');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'error');
         } else {
           $Qcheck = $CLICSHOPPING_Db->prepare('select c.customers_id,
                                                       c.customers_email_address,
@@ -70,12 +70,12 @@
             if ((strlen($Qcheck->value('password_reset_key')) != 40) || ($Qcheck->value('password_reset_key') != $password_key) || (strtotime($Qcheck->value('password_reset_date') . ' +1 day') <= time())) {
               $error = true;
 
-              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'danger', 'header');
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_reset_link_found'), 'error');
             }
           } else {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'danger', 'header');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error');
           }
         }
       }

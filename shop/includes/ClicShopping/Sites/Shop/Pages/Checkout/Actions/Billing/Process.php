@@ -45,7 +45,7 @@
 // Confirmation des conditions des vente
         if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
           if (!isset($_POST['conditions']) || ($_POST['conditions'] != 1)) {
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_conditions_not_accepted'), 'danger', 'header');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_conditions_not_accepted'), 'error');
 
             CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
@@ -68,7 +68,7 @@
         CLICSHOPPING::redirect(null, 'Checkout&Confirmation');
 
       } else {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_during_process'), 'danger', 'checkout_payment');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_during_process'), 'error');
 
         CLICSHOPPING::redirect(null, 'Checkout&Billing');
       }

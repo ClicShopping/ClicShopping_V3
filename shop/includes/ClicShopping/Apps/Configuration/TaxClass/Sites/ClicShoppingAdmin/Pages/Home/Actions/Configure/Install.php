@@ -33,7 +33,7 @@
       static::installDbMenuAdministration();
       static::installProductsTaxClassDb();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TaxClass->getDef('alert_module_install_success'), 'success', 'TaxClass');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TaxClass->getDef('alert_module_install_success'), 'success');
 
       $CLICSHOPPING_TaxClass->redirect('Configure&module=' . $current_module);
     }

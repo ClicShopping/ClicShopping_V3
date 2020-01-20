@@ -26,7 +26,7 @@
       $m = Registry::get('SecurityCheckAdminConfig' . $current_module);
       $m->uninstall();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_SecurityCheck->getDef('alert_module_uninstall_success'), 'success', 'SecurityCheck');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_SecurityCheck->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_SecurityCheck->redirect('Configure&module=' . $current_module);
     }

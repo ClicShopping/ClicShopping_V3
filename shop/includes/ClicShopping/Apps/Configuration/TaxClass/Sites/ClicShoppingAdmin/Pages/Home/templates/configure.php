@@ -20,8 +20,8 @@
 
   $CLICSHOPPING_TaxClass_Config = Registry::get('TaxClassAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('TaxClass')) {
-    echo $CLICSHOPPING_MessageStack->get('TaxClass');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

@@ -24,8 +24,8 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  if ($CLICSHOPPING_MessageStack->exists('content_group')) {
-    echo $CLICSHOPPING_MessageStack->get('content_group');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   echo HTML::form('define_language', $CLICSHOPPING_DefineLanguage->link('DefineLanguage&Save&ContentGroup=' . $_GET['ContentGroup'], 'post', 'enctype="multipart/form-data"'));

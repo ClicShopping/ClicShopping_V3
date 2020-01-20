@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_TotalShipping_Config = Registry::get('TotalShippingAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('TotalShipping')) {
-    echo $CLICSHOPPING_MessageStack->get('TotalShipping');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

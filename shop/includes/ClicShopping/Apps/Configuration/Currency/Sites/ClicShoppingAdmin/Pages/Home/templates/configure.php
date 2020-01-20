@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Currency_Config = Registry::get('CurrencyAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Currency')) {
-    echo $CLICSHOPPING_MessageStack->get('Currency');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

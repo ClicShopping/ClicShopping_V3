@@ -20,8 +20,8 @@
 
   $CLICSHOPPING_Settings_Config = Registry::get('SettingsAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Settings')) {
-    echo $CLICSHOPPING_MessageStack->get('Settings');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

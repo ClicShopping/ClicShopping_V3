@@ -16,8 +16,8 @@
   $CLICSHOPPING_Backup = Registry::get('Backup');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('Backup')) {
-    echo $CLICSHOPPING_MessageStack->get('Backup');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

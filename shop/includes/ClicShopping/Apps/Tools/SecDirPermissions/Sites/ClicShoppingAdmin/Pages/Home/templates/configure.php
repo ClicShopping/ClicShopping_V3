@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_SecDirPermissions_Config = Registry::get('SecDirPermissionsAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('SecDirPermissions')) {
-    echo $CLICSHOPPING_MessageStack->get('SecDirPermissions');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

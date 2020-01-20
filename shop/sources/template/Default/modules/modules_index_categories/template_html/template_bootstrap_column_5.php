@@ -68,3 +68,4 @@ use ClicShopping\OM\CLICSHOPPING;
      </div>
   </div>
 </div>
+<?php echo $jsonLtd; ?>

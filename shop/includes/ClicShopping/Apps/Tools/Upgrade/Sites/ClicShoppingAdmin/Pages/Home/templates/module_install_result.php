@@ -23,8 +23,8 @@
   $CLICSHOPPING_Github = new Github();
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  if ($CLICSHOPPING_MessageStack->exists('header')) {
-    echo $CLICSHOPPING_MessageStack->get('header');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

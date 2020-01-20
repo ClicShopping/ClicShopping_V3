@@ -32,7 +32,7 @@
 
       Cache::clear('menu-administrator');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TaxClass->getDef('alert_module_uninstall_success'), 'success', 'TaxClass');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TaxClass->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_TaxClass->redirect('Configure&module=' . $current_module);
     }

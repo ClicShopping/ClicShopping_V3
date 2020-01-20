@@ -32,7 +32,7 @@
         }
       }
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_COD->getDef('alert_cfg_saved_success'), 'success', 'COD');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_COD->getDef('alert_cfg_saved_success'), 'success');
 
       $CLICSHOPPING_COD->redirect('Configure&module=' . $current_module);
     }

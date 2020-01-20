@@ -54,12 +54,12 @@
         if ((strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) && !isset($key)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error', 'password_reset');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');
 
         } elseif (($password_new != $password_confirmation) && !isset($key)) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error_not_matching'), 'error', 'password_reset');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error_not_matching'), 'error');
         }
 
         if ($error === false) {
@@ -75,7 +75,7 @@
 
           $CLICSHOPPING_Db->save('customers_info', $sql_array, ['customers_info_id' => (int)$Qcheck->valueInt('customers_id')]);
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_reset'), 'success', 'password_reset');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_reset'), 'success');
 
           $email_text_body = ' <br />' . TemplateEmail::getTemplateEmailTextFooter();
           $email_text_body .= ' <br />' . TemplateEmail::getTemplateEmailSignature();

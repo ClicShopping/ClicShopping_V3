@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_ActionsRecorder_Config = Registry::get('ActionsRecorderAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('ActionsRecorder')) {
-    echo $CLICSHOPPING_MessageStack->get('ActionsRecorder');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

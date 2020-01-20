@@ -16,8 +16,8 @@
   $CLICSHOPPING_ModulesHooks = Registry::get('ModulesHooks');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('ModulesHooks')) {
-    echo $CLICSHOPPING_MessageStack->get('ModulesHooks');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

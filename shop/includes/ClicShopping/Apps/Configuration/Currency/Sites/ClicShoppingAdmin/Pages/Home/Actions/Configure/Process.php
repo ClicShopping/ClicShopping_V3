@@ -32,7 +32,7 @@
         }
       }
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('alert_cfg_saved_success'), 'success', 'Currency');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('alert_cfg_saved_success'), 'success');
 
       $CLICSHOPPING_Currency->redirect('Configure&module=' . $current_module);
     }

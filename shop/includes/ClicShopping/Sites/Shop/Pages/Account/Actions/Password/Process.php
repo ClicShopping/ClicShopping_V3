@@ -37,12 +37,12 @@
         if (strlen($password_new) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error', 'account_password');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');
 
         } elseif ($password_new != $password_confirmation) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error_not_matching'), 'error', 'account_password');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_new_error_not_matching'), 'error');
         }
 
         if ($error === false) {
@@ -77,7 +77,7 @@
 
             $CLICSHOPPING_Mail->clicMail($QcheckCustomer->value('customers_firstname') . ' ' . $QcheckCustomer->value('customers_lastname'), $QcheckCustomer->value('customers_email_address'), $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_updated'), 'success', 'account_password');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_password_updated'), 'success');
 
             $CLICSHOPPING_Hooks->call('Password', 'Process');
 
@@ -85,7 +85,7 @@
           } else {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_current_password_not_matching'), 'error', 'account_password');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_current_password_not_matching'), 'error');
           }
         }
       }

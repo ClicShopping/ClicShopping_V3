@@ -92,7 +92,7 @@
 
                 $CLICSHOPPING_ActionRecorder->record(false);
 
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_reset_password_minutes' => (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)]), 'danger', 'password_forgotten');
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_reset_password_minutes' => (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)]), 'danger');
               }
 
               $CLICSHOPPING_Hooks->call('PasswordForgotten', 'Process');
@@ -100,10 +100,10 @@
               CLICSHOPPING::redirect(null, 'Account&PasswordForgotten&Success&reset=' . $password_reset_initiated);
 
             } else {
-              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error', 'password_forgotten');
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error');
             }
           } else {
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error', 'password_forgotten');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error');
           }
         }
       }

@@ -58,7 +58,7 @@
 
         $CLICSHOPPING_Hooks->call('Products', 'Add');
 
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'products');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
 
         CLICSHOPPING::redirect(null, 'Products&Description&products_id=' . (int)$CLICSHOPPING_ProductsCommon->getID());
 

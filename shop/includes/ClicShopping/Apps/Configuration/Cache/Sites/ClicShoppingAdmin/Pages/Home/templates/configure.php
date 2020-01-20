@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Cache_Config = Registry::get('CacheAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Cache')) {
-    echo $CLICSHOPPING_MessageStack->get('Cache');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

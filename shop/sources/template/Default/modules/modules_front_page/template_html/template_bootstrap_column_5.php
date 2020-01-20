@@ -19,9 +19,7 @@ use ClicShopping\OM\CLICSHOPPING;
         <div class="card-block">
           <div class="separator"></div>
           <div class="card-img-top ModulesFrontPageBoostrapColumn5Image">
-            <span itemprop="image">
-              <?php echo $products_image . $ticker; ?>
-            </span>
+            <?php echo $products_image . $ticker; ?>
           </div>
           <div>
             <div class="ModulesFrontPageBoostrapColumn5Title"><h3><?php echo $products_name; ?></h3></div>

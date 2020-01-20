@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_TemplateEmail_Config = Registry::get('TemplateEmailAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('TemplateEmail')) {
-    echo $CLICSHOPPING_MessageStack->get('TemplateEmail');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

@@ -31,7 +31,7 @@
 
       Cache::clear('menu-administrator');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('alert_module_uninstall_success'), 'success', 'Backup');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Backup->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_Backup->redirect('Configure&module=' . $current_module);
     }

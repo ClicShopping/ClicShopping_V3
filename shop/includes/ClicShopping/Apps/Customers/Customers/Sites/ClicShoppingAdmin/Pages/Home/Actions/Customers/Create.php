@@ -131,45 +131,45 @@
           $error = false;
         } else {
           $error = true;
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_iso'), 'error', 'header');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_iso'), 'error');
         }
       }
 
       if (strlen($customers_firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_firstname'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_firstname'), 'error');
       }
 
       if (strlen($customers_lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_lastname'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_lastname'), 'error');
       }
 
       if (!Is::EmailAddress($customers_email_address)) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email'), 'error');
       }
 
       if (strlen($customers_street_address) < ENTRY_STREET_ADDRESS_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_address'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_address'), 'error');
       }
 
       if (strlen($customers_postcode) < ENTRY_POSTCODE_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_postcode'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_postcode'), 'error');
       }
 
       if (strlen($customers_city) < ENTRY_CITY_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_city'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_city'), 'error');
       }
 
       $entry_zone_id = 0;
 
       if (empty($customers_country_id)) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('entry_state_error_select'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('entry_state_error_select'), 'error');
       } else {
         $Qcheck = $CLICSHOPPING_Customers->db->get('zones', 'zone_country_id', ['zone_country_id' => (int)$customers_country_id]);
 
@@ -217,7 +217,7 @@
         if (strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error', 'header');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error');
         }
 
         if (!empty($Qzone->valueInt('zone_id')) || !is_null($Qzone->valueInt('zone_id'))) {
@@ -225,13 +225,13 @@
           $error = false;
         } else {
           $error = true;
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'header');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error');
         }
       }
 
       if (strlen($customers_telephone) < ENTRY_TELEPHONE_MIN_LENGTH) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_telephone'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_telephone'), 'error');
       }
 
       $Qcheck = $CLICSHOPPING_Customers->db->prepare('select customers_email_address
@@ -243,7 +243,7 @@
 
       if ($Qcheck->fetch() === true) {
         $error = true;
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email_address_exist'), 'error', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_email_address_exist'), 'error');
       }
 
       if ($error === false) {

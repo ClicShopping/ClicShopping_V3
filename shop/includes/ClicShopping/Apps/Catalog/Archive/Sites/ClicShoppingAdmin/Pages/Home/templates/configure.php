@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Archive_Config = Registry::get('ArchiveAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Archive')) {
-    echo $CLICSHOPPING_MessageStack->get('Archive');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

@@ -78,13 +78,13 @@
               $secCheck->type = 'info';
             }
 
-            $CLICSHOPPING_MessageStack->add($secCheck->getMessage(), $secCheck->type, 'securityCheckModule');
+            $CLICSHOPPING_MessageStack->add($secCheck->getMessage(), $secCheck->type);
           }
         }
       }
 
       if (!$CLICSHOPPING_MessageStack->exists('securityCheckModule')) {
-        $CLICSHOPPING_MessageStack->add($this->app->getDef('module_admin_dashboard_security_checks_app_success'), 'success', 'securityCheckModule');
+        $CLICSHOPPING_MessageStack->add($this->app->getDef('module_admin_dashboard_security_checks_app_success'), 'success');
       }
 
       $output = '<div class="clearfix"></div>';

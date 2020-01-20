@@ -136,7 +136,7 @@
           CLICSHOPPING::redirect();
 
         } else {
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('module_account_customers_gdpr_text_error_delete'), 'danger', 'header');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('module_account_customers_gdpr_text_error_delete'), 'error');
           CLICSHOPPING::redirect(null, 'Account&Delete');
         }
       }

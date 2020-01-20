@@ -27,7 +27,7 @@
       $m = Registry::get('TotalShippingAdminConfig' . $current_module);
       $m->uninstall();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TotalShipping->getDef('alert_module_uninstall_success'), 'success', 'TotalShipping');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TotalShipping->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_TotalShipping->redirect('Configure&module=' . $current_module);
     }

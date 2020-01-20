@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Suppliers_Config = Registry::get('SuppliersAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Suppliers')) {
-    echo $CLICSHOPPING_MessageStack->get('Suppliers');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

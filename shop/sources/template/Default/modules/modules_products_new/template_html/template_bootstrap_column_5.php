@@ -65,3 +65,4 @@
      </div>
   </div>
 </div>
+<?php echo $jsonLtd; ?>

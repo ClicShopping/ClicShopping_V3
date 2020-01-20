@@ -32,7 +32,7 @@
 
 //      static::installDbMenuAdministration();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Settings->getDef('alert_module_install_success'), 'success', 'Settings');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Settings->getDef('alert_module_install_success'), 'success');
 
       $CLICSHOPPING_Settings->redirect('Configure&module=' . $current_module);
     }

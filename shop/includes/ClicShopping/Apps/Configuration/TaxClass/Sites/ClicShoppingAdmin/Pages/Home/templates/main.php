@@ -17,8 +17,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_TaxClass = Registry::get('TaxClass');
 
-  if ($CLICSHOPPING_MessageStack->exists('TaxClass')) {
-    echo $CLICSHOPPING_MessageStack->get('TaxClass');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

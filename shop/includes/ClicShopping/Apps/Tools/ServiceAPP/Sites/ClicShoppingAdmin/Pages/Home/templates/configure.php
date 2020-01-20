@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_ServiceAPP_Config = Registry::get('ServiceAPPAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('ServiceAPP')) {
-    echo $CLICSHOPPING_MessageStack->get('ServiceAPP');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <style>

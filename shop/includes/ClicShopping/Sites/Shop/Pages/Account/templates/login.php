@@ -15,8 +15,8 @@
 
   require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
-  if ($CLICSHOPPING_MessageStack->exists('login')) {
-    echo $CLICSHOPPING_MessageStack->get('login');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
   <div id="loginModules">

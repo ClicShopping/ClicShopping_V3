@@ -41,9 +41,9 @@
             }
           }
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_success_gdpr'), 'success', 'main');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_success_gdpr'), 'success');
         } else {
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_error_delete'), 'danger', 'main');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_error_delete'), 'error');
         }
       }
 

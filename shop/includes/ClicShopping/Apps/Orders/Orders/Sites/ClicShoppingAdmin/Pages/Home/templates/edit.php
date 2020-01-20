@@ -25,8 +25,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Image = Registry::get('Image');
 
-  if ($CLICSHOPPING_MessageStack->exists('Orders')) {
-    echo $CLICSHOPPING_MessageStack->get('Orders');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   $order_id = HTML::sanitize($_GET['oID']);

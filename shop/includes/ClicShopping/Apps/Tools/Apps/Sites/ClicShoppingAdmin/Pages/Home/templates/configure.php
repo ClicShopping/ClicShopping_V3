@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Apps_Config = Registry::get('AppsAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Apps')) {
-    echo $CLICSHOPPING_MessageStack->get('Apps');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

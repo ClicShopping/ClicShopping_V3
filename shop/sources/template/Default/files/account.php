@@ -11,8 +11,8 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  if ( $CLICSHOPPING_MessageStack->exists('main_account') ) {
-    echo $CLICSHOPPING_MessageStack->get('main_account');
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <section class="account" id="account">

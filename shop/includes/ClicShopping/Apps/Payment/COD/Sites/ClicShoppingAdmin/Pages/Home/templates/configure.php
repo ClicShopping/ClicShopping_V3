@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_COD_Config = Registry::get('CodAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('COD')) {
-    echo $CLICSHOPPING_MessageStack->get('COD');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

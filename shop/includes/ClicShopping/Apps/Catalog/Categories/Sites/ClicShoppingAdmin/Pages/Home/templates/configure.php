@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Categories_Config = Registry::get('CategoriesAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Categories')) {
-    echo $CLICSHOPPING_MessageStack->get('Categories');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

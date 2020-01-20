@@ -17,8 +17,8 @@
   $CLICSHOPPING_DefineLanguage = Registry::get('DefineLanguage');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('DefineLanguage')) {
-    echo $CLICSHOPPING_MessageStack->get('DefineLanguage');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

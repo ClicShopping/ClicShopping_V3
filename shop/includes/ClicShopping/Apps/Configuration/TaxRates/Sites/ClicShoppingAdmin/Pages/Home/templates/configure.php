@@ -20,8 +20,8 @@
 
   $CLICSHOPPING_TaxRates_Config = Registry::get('TaxRatesAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('TaxRates')) {
-    echo $CLICSHOPPING_MessageStack->get('TaxRates');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

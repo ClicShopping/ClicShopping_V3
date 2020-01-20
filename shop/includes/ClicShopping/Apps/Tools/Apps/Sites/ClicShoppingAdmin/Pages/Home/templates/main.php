@@ -16,8 +16,8 @@
   $CLICSHOPPING_Apps = Registry::get('Apps');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('Apps')) {
-    echo $CLICSHOPPING_MessageStack->get('Apps');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

@@ -43,12 +43,12 @@ table_heading_files = Fichiers
 table_heading_writable = Ecriture
 table_heading_last_modified = Dernière modification
 
-text_edit_note = <strong>Editing Definitions</strong><br /><br />Each language definition is set using the PHP <a href="https://www.php.net/define" target="_blank" rel="noreferrer">define()</a> function in the following manner:<br /><br /><nobr>define('TEXT_MAIN = '<span style="background-color: #FFFF99;">This text can be edited. It's really easy to do!</span>\ </nobr><br /><br />The highlighted text can be edited. As this definition is using single quotes to contain the text, any single quotes within the text definition must be escaped with a backslash (eg, It's).
+text_edit_note = <strong>Editer Definitions</strong><br /><br />Chaque définition de langue est définie à l'aide d'une fonction PHP <a href="https://www.php.net/define" target="_blank" rel="noreferrer">define()</a> de la manière suivante:<br /><br /><nobr>define('TEXT_MAIN = '<span style="background-color: #FFFF99;">Ce texte peut être modifié. C'est vraiment facile à faire!</span>\ </nobr><br /><br />Le texte mis en surbrillance peut être modifié. Comme cette définition utilise des guillemets uniques pour contenir le texte, toute citation unique dans la définition du texte doit être échappée avec une barre oblique inverse (par exemple, c'est).
 text_file_does_not_exist = Le fichier n'existe pas.
 
 error_file_not_writeable = Erreur : Impossible d'écrire dans le fichier. Merci de vérifier les droits d'accès sur : {{error}}
 ms_error_create = <strong>Erreur:</strong> {{dpathname}} Impossible d'écrire dans le fichier. Merci de vérifier les droits d'accès
-ms_error_db_save = <strong>Erreur:</strong> {{definition_key}}  es déjà ajouté. Veuillez éditer la valeur de cette {{definition_key}} ou en ajouter une autre.
+ms_error_db_save = <strong>Erreur:</strong> {{definition_key}} a déjà été ajoutée. Veuillez éditer la valeur de cette {{definition_key}} ou en ajouter une autre.
 
 button_reset_all_languages = Effacer toutes les langues
 section_heading_translations = Editer la traduction

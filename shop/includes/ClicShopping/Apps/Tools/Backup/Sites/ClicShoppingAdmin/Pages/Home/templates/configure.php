@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Backup_Config = Registry::get('BackupAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Backup')) {
-    echo $CLICSHOPPING_MessageStack->get('Backup');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

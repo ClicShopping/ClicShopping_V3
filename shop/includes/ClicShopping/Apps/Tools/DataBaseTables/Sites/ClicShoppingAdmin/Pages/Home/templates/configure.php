@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_DataBaseTables_Config = Registry::get('DataBaseTablesAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('DataBaseTables')) {
-    echo $CLICSHOPPING_MessageStack->get('DataBaseTables');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

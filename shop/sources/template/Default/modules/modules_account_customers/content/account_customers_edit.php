@@ -190,11 +190,10 @@
 // ----------------------
 // ----- Company   -----
 // ----------------------
-  if ( $CLICSHOPPING_MessageStack->exists('account_edit') ) {
-?>
-      <div class="alert alert-warning" role="alert"><?php echo $CLICSHOPPING_MessageStack->get('account_edit'); ?></div>
-<?php
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
+
   if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 ?>
         <h2><?php echo CLICSHOPPING::getDef('module_account_customers_edit_title_company'); ?></h2>

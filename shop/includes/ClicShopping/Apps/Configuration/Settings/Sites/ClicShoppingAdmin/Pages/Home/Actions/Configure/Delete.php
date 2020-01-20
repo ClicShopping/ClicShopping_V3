@@ -32,7 +32,7 @@
 
       Cache::clear('menu-administrator');
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Settings->getDef('alert_module_uninstall_success'), 'success', 'Settings');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Settings->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_Settings->redirect('Configure&module=' . $current_module);
     }

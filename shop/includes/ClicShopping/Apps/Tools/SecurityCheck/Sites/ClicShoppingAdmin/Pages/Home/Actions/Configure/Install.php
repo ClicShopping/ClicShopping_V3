@@ -34,7 +34,7 @@
 
       static::installDbMenuAdministration();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_SecurityCheck->getDef('alert_module_install_success'), 'success', 'SecurityCheck');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_SecurityCheck->getDef('alert_module_install_success'), 'success');
 
       $CLICSHOPPING_SecurityCheck->redirect('Configure&module=' . $current_module);
     }

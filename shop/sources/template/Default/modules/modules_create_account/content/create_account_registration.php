@@ -16,13 +16,11 @@
 ?>
   <div class="col-md-<?php echo $content_width; ?>">
 <?php
-  if ( $CLICSHOPPING_MessageStack->exists('create_account') ) {
-?>
-    <div class="alert-warning" role="alert"><?php echo $CLICSHOPPING_MessageStack->get('create_account'); ?></div>
-    <div class="separator"></div>
-<?php
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+     echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
+    <div class="separator"></div>
     <div class="card">
       <div class="card-header">
         <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>

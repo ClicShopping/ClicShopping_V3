@@ -17,8 +17,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Currency = Registry::get('Currency');
 
-  if ($CLICSHOPPING_MessageStack->exists('Currency')) {
-    echo $CLICSHOPPING_MessageStack->get('Currency');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

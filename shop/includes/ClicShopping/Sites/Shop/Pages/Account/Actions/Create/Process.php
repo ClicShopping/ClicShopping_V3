@@ -71,21 +71,21 @@
         if (DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
             $error = true;
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error', 'create_account');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error');
           }
         }
 
 // Clients B2C : Controle entree du prenom
         if (strlen($firstname) < ENTRY_FIRST_NAME_MIN_LENGTH) {
           $error = true;
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error', ['min_length' => ENTRY_FIRST_NAME_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C : Controle entree du nom de famille
         if (strlen($lastname) < ENTRY_LAST_NAME_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error', ['min_length' => ENTRY_LAST_NAME_MIN_LENGTH]), 'error');
         }
 
 // Clients B2C : Controle entree date de naissance
@@ -95,7 +95,7 @@
           if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'error', 'create_account');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error'), 'error');
           }
         }
 
@@ -103,11 +103,11 @@
         if (Is::EmailAddress($email_address) === false) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error', ['min_length' => ENTRY_EMAIL_ADDRESS_MIN_LENGTH]), 'error', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error', ['min_length' => ENTRY_EMAIL_ADDRESS_MIN_LENGTH]), 'error');
 
         } elseif ($email_address != $email_address_confirm) {
           $error = true;
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirm_not_matching'), 'danger', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirm_not_matching'), 'error');
         } else {
 
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
@@ -121,19 +121,19 @@
           if ($Qcheckemail->fetch() !== false) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_error_exists'), 'error', 'create_account');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_error_exists'), 'error');
           }
         }
 
         if (strlen($password) < ENTRY_PASSWORD_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error', ['min_length' => ENTRY_PASSWORD_MIN_LENGTH]), 'error');
 
         } elseif ($password != $confirmation) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_not_matching'), 'error', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_not_matching'), 'error');
         }
 
         Registry::set('ActionRecorder', new ActionRecorder('ar_create_account', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $lastname));
@@ -143,7 +143,7 @@
           $error = true;
           $CLICSHOPPING_ActionRecorder->record(false);
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'danger', 'create_account');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES : 15)]), 'error');
         }
 
         if ($error === false) {

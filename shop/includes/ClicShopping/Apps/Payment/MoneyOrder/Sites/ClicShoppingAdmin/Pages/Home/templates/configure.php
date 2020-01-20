@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_MoneyOrder_Config = Registry::get('MoneyOrderAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('MoneyOrder')) {
-    echo $CLICSHOPPING_MessageStack->get('MoneyOrder');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

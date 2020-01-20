@@ -17,8 +17,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Countries = Registry::get('Countries');
 
-  if ($CLICSHOPPING_MessageStack->exists('Countries')) {
-    echo $CLICSHOPPING_MessageStack->get('Countries');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

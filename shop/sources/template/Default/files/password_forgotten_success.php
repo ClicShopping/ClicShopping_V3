@@ -12,8 +12,8 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  if ( $CLICSHOPPING_MessageStack->exists('password_forgotten') ) {
-    echo $CLICSHOPPING_MessageStack->get('password_forgotten');
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));

@@ -158,7 +158,7 @@
           if ($customer_agree_privacy != 'on') {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error');
           }
         }
 
@@ -167,7 +167,7 @@
           if (strlen($company) < ENTRY_COMPANY_PRO_MIN_LENGTH) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_company_error_pro', ['min_length' => ENTRY_COMPANY_PRO_MIN_LENGTH]), 'error', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_company_error_pro', ['min_length' => ENTRY_COMPANY_PRO_MIN_LENGTH]), 'error');
           }
         }
 
@@ -175,7 +175,7 @@
           if (strlen($siret) < ENTRY_SIRET_MIN_LENGTH && strlen($siret) > 14) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_siret_error', ['min_length' => ENTRY_SIRET_MIN_LENGTH]), 'error', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_siret_error', ['min_length' => ENTRY_SIRET_MIN_LENGTH]), 'error');
           }
         }
 
@@ -183,7 +183,7 @@
           if (strlen($ape) < ENTRY_CODE_APE_MIN_LENGTH && strlen($ape) > 4) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_code_ape_error', ['min_length' => ENTRY_CODE_APE_MIN_LENGTH]), 'error', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_code_ape_error', ['min_length' => ENTRY_CODE_APE_MIN_LENGTH]), 'error');
           }
         }
 
@@ -191,7 +191,7 @@
           if (strlen($tva_intracom) < ENTRY_TVA_INTRACOM_MIN_LENGTH && strlen($tva_intracom) > 14) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_tva_intracom_error', ['min_length' => ENTRY_TVA_INTRACOM_MIN_LENGTH]), 'danger', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_tva_intracom_error', ['min_length' => ENTRY_TVA_INTRACOM_MIN_LENGTH]), 'error');
           }
         }
 
@@ -199,20 +199,20 @@
           if (($gender != 'm') && ($gender != 'f')) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'danger', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_gender_error_pro'), 'error');
           }
         }
 
         if (strlen($firstname) < ENTRY_FIRST_NAME_PRO_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_first_name_error_pro', ['min_length' => ENTRY_FIRST_NAME_PRO_MIN_LENGTH]), 'error');
         }
 
         if (strlen($lastname) < ENTRY_LAST_NAME_PRO_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_last_name_error_pro', ['min_length' => ENTRY_LAST_NAME_PRO_MIN_LENGTH]), 'error');
         }
 
         if (ACCOUNT_DOB_PRO == 'true') {
@@ -221,18 +221,18 @@
           if ((strlen($dob) < ENTRY_DOB_MIN_LENGTH) || ($dobDateTime->isValid() === false)) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error_pro', ['min_length' => ENTRY_DOB_MIN_LENGTH]), 'danger', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_date_of_birth_error_pro', ['min_length' => ENTRY_DOB_MIN_LENGTH]), 'error');
           }
         }
 
         if (Is::EmailAddress($email_address) === false) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_pro'), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_check_error_pro'), 'error');
 
         } elseif ($email_address != $email_address_confirmation) {
           $error = true;
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirmation_check_error_pro'), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_confirmation_check_error_pro'), 'error');
         } else {
 
           $Qcheckemail = $CLICSHOPPING_Db->prepare('select customers_id
@@ -246,26 +246,26 @@
           if ($Qcheckemail->fetch() !== false) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_error_exists_pro'), 'danger', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_email_address_error_exists_pro'), 'error');
           }
         }
 
         if (strlen($street_address) < ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_street_address_error_pro', ['min_length' => ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH]), 'error');
         }
 
         if (strlen($postcode) < ENTRY_POSTCODE_PRO_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_post_code_error_pro', ['min_length' => ENTRY_POSTCODE_PRO_MIN_LENGTH]), 'error');
         }
 
         if (strlen($city) < ENTRY_CITY_PRO_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_city_error', ['min_length' => ENTRY_CITY_PRO_MIN_LENGTH]), 'error');
         }
 
         if (!is_numeric($country)) {
@@ -335,13 +335,13 @@
             } else {
               $error = true;
 
-              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error', 'create_account_pro');
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_select_pro'), 'error');
             }
           } else {
             if (strlen($state) < ENTRY_STATE_PRO_MIN_LENGTH) {
               $error = true;
 
-              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_PRO_MIN_LENGTH]), 'error', 'create_account_pro');
+              $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_PRO_MIN_LENGTH]), 'error');
             }
           }
         }
@@ -349,19 +349,19 @@
         if (strlen($telephone) < ENTRY_TELEPHONE_PRO_MIN_LENGTH) {
           $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_telephone_number_error_pro', ['min_length' => ENTRY_TELEPHONE_PRO_MIN_LENGTH]), 'error', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_telephone_number_error_pro', ['min_length' => ENTRY_TELEPHONE_PRO_MIN_LENGTH]), 'error');
         }
 
         if (MEMBER == 'false') {
           if (strlen($password) < ENTRY_PASSWORD_PRO_MIN_LENGTH) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_pro', ['min_length' => ENTRY_PASSWORD_PRO_MIN_LENGTH]), 'danger', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_pro', ['min_length' => ENTRY_PASSWORD_PRO_MIN_LENGTH]), 'error');
 
           } elseif ($password != $confirmation) {
             $error = true;
 
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_not_matching_pro'), 'danger', 'create_account_pro');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_password_error_not_matching_pro'), 'error');
           }
         }
 
@@ -410,7 +410,7 @@
           $error = true;
           $CLICSHOPPING_ActionRecorder->record(false);
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES : 15)]), 'danger', 'create_account_pro');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_create_account_email_minutes' => (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_PRO_EMAIL_MINUTES : 15)]), 'error');
         }
 
         if ($error === false) {

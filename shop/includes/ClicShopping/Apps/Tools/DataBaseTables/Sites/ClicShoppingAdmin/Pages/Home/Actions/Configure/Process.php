@@ -32,7 +32,7 @@
         }
       }
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_DataBaseTables->getDef('alert_cfg_saved_success'), 'success', 'DataBaseTables');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_DataBaseTables->getDef('alert_cfg_saved_success'), 'success');
 
       $CLICSHOPPING_DataBaseTables->redirect('Configure&module=' . $current_module);
     }

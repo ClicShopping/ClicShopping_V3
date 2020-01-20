@@ -88,7 +88,7 @@
         if ($this->categoriesId != $this->currentCategoryId) {
           $this->Link();
         } else {
-          $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'danger');
+          $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_link_to_same_category'), 'error');
         }
       }
     }

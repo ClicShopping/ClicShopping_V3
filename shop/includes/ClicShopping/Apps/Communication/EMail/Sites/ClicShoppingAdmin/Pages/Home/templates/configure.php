@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_EMail_Config = Registry::get('EMailAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Email')) {
-    echo $CLICSHOPPING_MessageStack->get('Email');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_PageManager_Config = Registry::get('PageManagerAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('PageManager')) {
-    echo $CLICSHOPPING_MessageStack->get('PageManager');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

@@ -20,8 +20,8 @@
 
   $CLICSHOPPING_DefineLanguage_Config = Registry::get('DefineLanguageAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('DefineLanguage')) {
-    echo $CLICSHOPPING_MessageStack->get('DefineLanguage');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

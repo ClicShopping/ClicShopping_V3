@@ -17,8 +17,8 @@
 
   $CLICSHOPPING_Address = Registry::get('Address');
 
-  if ( $CLICSHOPPING_MessageStack->exists('addressbook') ) {
-    echo $CLICSHOPPING_MessageStack->get('addressbook');
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));

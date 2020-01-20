@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_Upgrade_Config = Registry::get('UpgradeAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Upgrade')) {
-    echo $CLICSHOPPING_MessageStack->get('Upgrade');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

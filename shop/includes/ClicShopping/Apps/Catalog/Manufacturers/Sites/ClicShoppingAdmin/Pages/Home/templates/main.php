@@ -15,8 +15,8 @@
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('Manufacturers')) {
-    echo $CLICSHOPPING_MessageStack->get('Manufacturers');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');

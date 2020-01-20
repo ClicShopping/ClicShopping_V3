@@ -12,9 +12,10 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  if ( $CLICSHOPPING_MessageStack->exists('search') ) {
-    echo $CLICSHOPPING_MessageStack->get('search');
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
+
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="advanced_search" role="form"', ['session_id' => true]);

@@ -17,8 +17,8 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_TemplateEmail = Registry::get('TemplateEmail');
 
-  if ($CLICSHOPPING_MessageStack->exists('TemplateEmail')) {
-    echo $CLICSHOPPING_MessageStack->get('TemplateEmail');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

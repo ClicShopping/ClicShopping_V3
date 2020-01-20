@@ -26,7 +26,7 @@
       $m = Registry::get('ProductsAdminConfig' . $current_module);
       $m->uninstall();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('alert_module_uninstall_success'), 'success', 'Products');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_Products->redirect('Configure&module=' . $current_module);
     }

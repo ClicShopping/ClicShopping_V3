@@ -130,8 +130,8 @@
 
     <thead class="dataTableHeadingRow">
       <tr>
-        <th data-switchable="false" ></th>
-        <th data-field="id" data-sortable="true" ><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
+        <th data-switchable="false"></th>
+        <th data-field="id" data-sortable="true"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_id'); ?></th>
         <th data-field="menu"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_categories_products'); ?></th>
         <th data-field="access"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_rights_access'); ?></th>
         <th data-field="app" class="text-md-center"><?php echo $CLICSHOPPING_AdministratorMenu->getDef('table_heading_app'); ?></th>

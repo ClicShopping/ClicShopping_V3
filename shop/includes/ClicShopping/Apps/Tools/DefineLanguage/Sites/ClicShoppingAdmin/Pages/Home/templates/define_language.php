@@ -25,8 +25,8 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  if ($CLICSHOPPING_MessageStack->exists('define_language')) {
-    echo $CLICSHOPPING_MessageStack->get('define_language');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   if (!FileSystem::isWritable($CLICSHOPPING_Template->getDirectoryPathLanguage())) {

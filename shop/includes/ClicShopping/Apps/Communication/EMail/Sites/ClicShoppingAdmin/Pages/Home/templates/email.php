@@ -41,8 +41,8 @@
     ];
   }
 
-  if ($CLICSHOPPING_MessageStack->exists('email')) {
-    echo $CLICSHOPPING_MessageStack->get('email');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   echo HTMLOverrideAdmin::getCkeditor();

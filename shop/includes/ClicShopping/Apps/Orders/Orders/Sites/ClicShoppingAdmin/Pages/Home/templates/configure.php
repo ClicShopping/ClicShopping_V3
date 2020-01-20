@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_Orders_Config = Registry::get('OrdersAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Orders')) {
-    echo $CLICSHOPPING_MessageStack->get('Orders');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

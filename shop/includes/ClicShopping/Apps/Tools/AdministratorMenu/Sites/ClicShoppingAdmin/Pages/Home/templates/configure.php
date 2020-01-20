@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_AdministratorMenu_Config = Registry::get('AdministratorMenuAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('AdministratorMenu')) {
-    echo $CLICSHOPPING_MessageStack->get('AdministratorMenu');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

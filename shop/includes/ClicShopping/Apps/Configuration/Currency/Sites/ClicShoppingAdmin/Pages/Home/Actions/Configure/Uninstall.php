@@ -26,7 +26,7 @@
       $m = Registry::get('CurrencyAdminConfig' . $current_module);
       $m->uninstall();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('alert_module_uninstall_success'), 'success', 'Currency');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('alert_module_uninstall_success'), 'success');
 
       $CLICSHOPPING_Currency->redirect('Configure&module=' . $current_module);
     }

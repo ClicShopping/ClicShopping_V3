@@ -53,7 +53,7 @@
 // if the customer is not logged on, redirect them to the login page
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'products_info');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
     }

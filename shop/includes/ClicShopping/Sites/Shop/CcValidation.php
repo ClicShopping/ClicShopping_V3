@@ -64,7 +64,10 @@
       return $this->isValid();
     }
 
-    public function isValid()
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
     {
       $cardNumber = strrev($this->cc_number);
       $numSum = 0;

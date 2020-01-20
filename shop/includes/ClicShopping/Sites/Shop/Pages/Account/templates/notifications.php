@@ -16,7 +16,7 @@
 
   require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 
-  $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'account');
+  $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success');
 
   require_once($CLICSHOPPING_Page->data['content']);
 

@@ -20,8 +20,8 @@
 
   $CLICSHOPPING_Products_Config = Registry::get('ProductsAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('Products')) {
-    echo $CLICSHOPPING_MessageStack->get('Products');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

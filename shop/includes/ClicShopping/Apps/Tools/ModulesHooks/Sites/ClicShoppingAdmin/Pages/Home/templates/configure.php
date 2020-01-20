@@ -22,8 +22,8 @@
 
   $CLICSHOPPING_ModulesHooks_Config = Registry::get('ModulesHooksAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('ModulesHooks')) {
-    echo $CLICSHOPPING_MessageStack->get('ModulesHooks');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <style>

@@ -32,7 +32,7 @@
         }
       }
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TotalShipping->getDef('alert_cfg_saved_success'), 'success', 'TotalShipping');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_TotalShipping->getDef('alert_cfg_saved_success'), 'success');
 
       $CLICSHOPPING_TotalShipping->redirect('Configure&module=' . $current_module);
     }

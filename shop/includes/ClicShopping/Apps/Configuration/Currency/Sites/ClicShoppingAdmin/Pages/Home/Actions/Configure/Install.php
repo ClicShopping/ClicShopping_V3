@@ -34,7 +34,7 @@
       static::installDbMenuAdministration();
       static::installCurrencyDb();
 
-      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('alert_module_install_success'), 'success', 'Currency');
+      $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Currency->getDef('alert_module_install_success'), 'success');
 
       $CLICSHOPPING_Currency->redirect('Configure&module=' . $current_module);
     }

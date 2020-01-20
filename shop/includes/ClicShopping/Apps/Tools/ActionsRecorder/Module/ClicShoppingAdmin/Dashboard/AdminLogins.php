@@ -66,7 +66,7 @@
         '<thead class="dataTableHeadingRow">' .
         '  <tr>' .
         '    <th data-field="status" data-switchable="false" data-sortable="true" width="20">&nbsp;</th>' .
-        '    <th data-field="title" >' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
+        '    <th data-field="title">' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
         '    <th data-field="date" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
         '    <th data-field="action" data-switchable="false" class="text-md-right">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
         '  </tr>' .

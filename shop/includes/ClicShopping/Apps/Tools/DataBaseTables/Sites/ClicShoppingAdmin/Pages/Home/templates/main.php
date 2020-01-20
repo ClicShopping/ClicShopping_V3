@@ -16,8 +16,8 @@
   $CLICSHOPPING_DataBaseTables = Registry::get('DataBaseTables');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-  if ($CLICSHOPPING_MessageStack->exists('DataBaseTables')) {
-    echo $CLICSHOPPING_MessageStack->get('DataBaseTables');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

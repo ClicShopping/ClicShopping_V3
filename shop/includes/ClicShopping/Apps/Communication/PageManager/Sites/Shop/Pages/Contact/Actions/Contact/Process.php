@@ -78,13 +78,13 @@
         if (defined('DISPLAY_PRIVACY_CONDITIONS') && DISPLAY_PRIVACY_CONDITIONS == 'true') {
           if ($customer_agree_privacy != 'on') {
             $error = true;
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error', 'contact');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_agreement_check_error'), 'error');
           }
         }
 
         if (!Is::EmailAddress($email_address)) {
           $error = true;
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error'), 'warning', 'contact');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error'), 'warning');
         }
 
         Registry::set('ActionRecorder', new ActionRecorder('ar_contact_us', ($CLICSHOPPING_Customer->isLoggedOn() ? $CLICSHOPPING_Customer->getID() : null), $name));
@@ -93,7 +93,7 @@
         if (!$CLICSHOPPING_ActionRecorder->canPerform()) {
           $error = true;
           $CLICSHOPPING_ActionRecorder->record(false);
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('error_action_recorder', ['module_action_recorder_contact_us_email_minutes' => (defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES : 15)]), 'danger', 'contact');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('error_action_recorder', ['module_action_recorder_contact_us_email_minutes' => (defined('MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES') ? (int)MODULE_ACTION_RECORDER_CONTACT_US_EMAIL_MINUTES : 15)]), 'error');
         }
 
         $template_email_footer = TemplateEmailAdmin::getTemplateEmailTextFooter();
@@ -154,12 +154,12 @@
 
           CLICSHOPPING::redirect(null, 'Info&Contact&Success');
         } else {
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_error_contact'), 'warning', 'contact');
+          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_error_contact'), 'warning');
 
           CLICSHOPPING::redirect(null, 'Info&Contact');
         }
       } else {
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_error_contact'), 'warning', 'contact');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_error_contact'), 'warning');
 
         CLICSHOPPING::redirect(null, 'Info&Contact');
       }

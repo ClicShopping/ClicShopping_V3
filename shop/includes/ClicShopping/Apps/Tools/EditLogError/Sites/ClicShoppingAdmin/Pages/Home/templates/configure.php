@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_EditLogError_Config = Registry::get('EditLogErrorAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('EditLogError')) {
-    echo $CLICSHOPPING_MessageStack->get('EditLogError');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

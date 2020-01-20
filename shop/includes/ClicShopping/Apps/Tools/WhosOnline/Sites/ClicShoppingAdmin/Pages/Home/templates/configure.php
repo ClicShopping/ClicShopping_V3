@@ -21,8 +21,8 @@
 
   $CLICSHOPPING_WhosOnline_Config = Registry::get('WhosOnlineAdminConfig' . $current_module);
 
-  if ($CLICSHOPPING_MessageStack->exists('WhosOnline')) {
-    echo $CLICSHOPPING_MessageStack->get('WhosOnline');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 

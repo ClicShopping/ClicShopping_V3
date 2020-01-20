@@ -9,8 +9,8 @@
  *
  */
 
-  if ( $CLICSHOPPING_MessageStack->exists('account_edit') ) {
-   echo $CLICSHOPPING_MessageStack->get('account_edit');
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+   echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
