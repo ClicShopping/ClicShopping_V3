@@ -1,9 +1,9 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.51 (2019-12-08)
+ * Version 2.1.52 (2020-01-20)
  * http://elfinder.org
  * 
- * Copyright 2009-2019, Studio 42
+ * Copyright 2009-2020, Studio 42
  * Licensed under a 3-clauses BSD license
  */
 
@@ -2484,7 +2484,7 @@ div.elfinder {
 }
 
 .elfinder .elfinder-cwd table td {
-    padding: 4px 12px;
+    padding: 0 12px;
     white-space: pre;
     overflow: hidden;
     text-align: right;
@@ -2553,6 +2553,12 @@ tr.elfinder-cwd-file td .elfinder-cwd-select {
 
 .elfinder-rtl .elfinder-cwd-view-list.elfinder-has-checkbox .elfinder-cwd-file-wrapper {
     margin-right: 8px;
+}
+
+.elfinder-cwd-view-list .elfinder-cwd-filename {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: inline-block;
 }
 
 .elfinder-ltr .elfinder-cwd-view-list .elfinder-cwd-filename {
@@ -2908,7 +2914,6 @@ tr.elfinder-cwd-file td .elfinder-cwd-select {
 /* content */
 .std42-dialog .ui-dialog-content {
     padding: .3em .5em;
-    box-sizing: border-box;
 }
 
 .elfinder .std42-dialog .ui-dialog-content,
