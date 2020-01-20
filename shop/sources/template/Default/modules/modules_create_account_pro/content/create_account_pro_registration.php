@@ -24,6 +24,7 @@
   if ( $CLICSHOPPING_MessageStack->exists('main') ) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
+
 // ----------------------
 // ------ Address   -----
 // ----------------------

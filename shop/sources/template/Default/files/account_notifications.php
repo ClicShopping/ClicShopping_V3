@@ -11,8 +11,8 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
-    echo $CLICSHOPPING_MessageStack->get('main');
+  if ( $CLICSHOPPING_MessageStack->exists('notification') ) {
+    echo $CLICSHOPPING_MessageStack->get('notification');
   }
 ?>
 <section class="account_notifications" id="account_notifications">

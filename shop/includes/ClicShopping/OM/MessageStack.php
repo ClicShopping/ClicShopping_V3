@@ -32,23 +32,19 @@
         }
       });
 
-      Registry::get('Hooks')->watch('Session', 'StartAfter', 'execute', function () {
-        if (isset($_SESSION['MessageStack_Data']) && !empty($_SESSION['MessageStack_Data'])) {
-          foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
-            foreach ($messages as $message) {
-              $this->add($message['text'], $message['type'], $group);
-            }
+      if (is_array($_SESSION['MessageStack_Data']) && !empty($_SESSION['MessageStack_Data'])) {
+        foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
+          foreach ($messages as $message) {
+            $this->add($message['text'], $message['type'], $group);
           }
-
-          unset($_SESSION['MessageStack_Data']);
         }
-      });
 
-      Registry::get('Hooks')->watch('Account', 'LogoutAfter', 'execute', function () {
+        unset($_SESSION['MessageStack_Data']);
+      }
+      Registry::get('Hooks')->watch('Account', 'LogoutAfter', 'execute', function() {
         $this->reset('main');
       });
     }
-
 
     /**
      * Add a message to the stack
@@ -96,7 +92,7 @@
     public function exists(?string $group = null)
     {
       if (isset($group)) {
-        return array_key_exists($group, $this->data);
+         return array_key_exists($group, $this->data);
       }
 
       return !empty($this->data);
@@ -109,7 +105,7 @@
 
     public function hasContent()
     {
-      return !empty($this->_data);
+      return !empty($this->data);
     }
 
     /**
@@ -126,23 +122,25 @@
       if ($this->exists($group)) {
         $data = [];
 
-        foreach ($this->data[$group] as $message) {
-          $data['alert-' . $message['type']][] = $message['text'];
-        }
-
-        foreach ($data as $type => $messages) {
-          $result .= '<div class="alert ' . HTML::outputProtected($type) . '" role="alert">';
-
-          foreach ($messages as $message) {
-            $result .= '<p>' . $message . '</p>';
+        if (is_array($this->data[$group])) {
+          foreach ($this->data[$group] as $message) {
+            $data['alert-' . $message['type']][] = $message['text'];
           }
 
-          $result .= '</div>';
+          foreach ($data as $type => $messages) {
+            $result .= '<div class="alert ' . HTML::outputProtected($type) . '" role="alert">';
+
+            foreach ($messages as $message) {
+              $result .= '<p>' . $message . '</p>';
+            }
+
+            $result .= '</div>';
+          }
+
+          unset($this->data[$group]);
         }
-
-        unset($this->data[$group]);
       }
-
+      
       return $result;
     }
 

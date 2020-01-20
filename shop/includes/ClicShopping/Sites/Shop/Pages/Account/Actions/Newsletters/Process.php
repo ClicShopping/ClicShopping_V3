@@ -50,7 +50,7 @@
             ['customers_id' => (int)$CLICSHOPPING_Customer->getID()]
           );
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_newsletter_updated'), 'success');
+          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_newsletter_updated'), 'success', 'newsletter');
         }
       }
 

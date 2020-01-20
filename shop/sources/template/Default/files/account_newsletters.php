@@ -11,8 +11,8 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
-    echo $CLICSHOPPING_MessageStack->get('main');
+  if ( $CLICSHOPPING_MessageStack->exists('newsletter') ) {
+    echo $CLICSHOPPING_MessageStack->get('newsletter');
   }
 ?>
 <section class="account_newsletter" id="account_newsletter">
