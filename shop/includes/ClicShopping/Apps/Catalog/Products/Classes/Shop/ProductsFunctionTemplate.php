@@ -59,7 +59,7 @@
      * @param string $tag
      * @return string
      */
-    public function getStock(string $constant, int $products_id, string $tag = ' '): string
+    public function getStock(string $constant, $products_id, string $tag = ' ')
     {
       if ($constant == 'number') {
         $products_stock = CLICSHOPPING::getDef('text_stock') . $tag . $this->productsCommon->getProductsStock($products_id);
@@ -77,7 +77,7 @@
      * @param string $tag
      * @return string
      */
-    public function getFlashDiscount(int $products_id, string $tag = '<br />'): string
+    public function getFlashDiscount(int $products_id, string $tag = '<br />')
     {
       $products_flash_discount = '';
 
@@ -89,7 +89,7 @@
     }
 
 // Minimum quantity to take an order
-    public function getMinOrderQuantityProductDisplay($products_id, $tag = ' ')
+    public function getMinOrderQuantityProductDisplay($products_id, string $tag = ' ')
     {
       if ($this->productsCommon->getProductsMinimumQuantityToTakeAnOrder($products_id) > 1) {
         $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_product') . $tag . $this->productsCommon->getProductsMinimumQuantityToTakeAnOrder($products_id);
@@ -108,7 +108,7 @@
     }
 
 // Display an input allowing for the customer to insert a quantity
-    public function getDisplayInputQuantity($constant, $products_id, $tag = ' ')
+    public function getDisplayInputQuantity(string $constant, $products_id, string $tag = ' ')
     {
       $input_quantity = '';
 
@@ -125,7 +125,7 @@
       return $input_quantity;
     }
 
-    public function getProductQuantityUnitType($products_id, $tag = ' ')
+    public function getProductQuantityUnitType($products_id, string $tag = ' ')
     {
       $products_quantity_unit = '';
 
@@ -143,7 +143,7 @@
     }
 
 
-    public function getButtonViewDetails($constant, $products_id, $icon = null, $button_color = 'info', $params = null, $button_size = 'sm')
+    public function getButtonViewDetails(string $constant, $products_id, ?string $icon = null, string $button_color = 'info', $params = null, string $button_size = 'sm')
     {
       $button = '';
 
@@ -159,7 +159,7 @@
     }
 
 
-    public function getImage($constant, $products_id, $parameters = '', $responsive = true, $css = '')
+    public function getImage(string $constant, $products_id, $parameters = '', bool $responsive = true, string $css = '')
     {
       if ($constant == 'Medium') {
         if ($this->productsCommon->getProductsImageMedium($products_id) !== false) {
@@ -174,7 +174,7 @@
       return $products_image;
     }
 
-    public function getTicker($constant, $products_id, $cssSpecial, $cssFavorites, $cssFeatured, $cssProductsNew)
+    public function getTicker(string $constant, $products_id, string $cssSpecial, string $cssFavorites, string $cssFeatured, string $cssProductsNew): string
     {
       $ticker = '';
 
@@ -191,7 +191,7 @@
       return $ticker;
     }
 
-    public function getTickerPourcentage($constant, $products_id, $cssPourcentage)
+    public function getTickerPourcentage(string $constant, $products_id, string $cssPourcentage)
     {
       if ($constant == 'True' && !is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
         $ticker = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id), $cssPourcentage, true));
@@ -203,7 +203,7 @@
     }
 
 
-    public function getProductsModel($products_id, $tag = ' ')
+    public function getProductsModel($products_id, string $tag = ' ')
     {
       if (!empty($this->productsCommon->getProductsModel($products_id))) {
         $products_model = $tag . $this->productsCommon->getProductsModel($products_id);
@@ -213,7 +213,7 @@
     }
 
 
-    public function getProductsManufacturer($products_id, $tag = ' ')
+    public function getProductsManufacturer($products_id, string $tag = ' ')
     {
       if (!empty($this->productsCommon->getProductsManufacturer($products_id))) {
         $products_manufacturers = CLICSHOPPING::getDef('text_manufacturer') . $tag . $this->productsCommon->getProductsManufacturer($products_id);
@@ -223,7 +223,7 @@
     }
 
 
-    public function getProductsPriceByWeight($products_id, $tag = ' ')
+    public function getProductsPriceByWeight($products_id, string $tag = ' ')
     {
       if (!empty($this->productsCommon->getProductsPriceByWeight($products_id))) {
         $product_price_kilo = CLICSHOPPING::getDef('text_products_price_kilo') . $tag . $this->productsCommon->getProductsPriceByWeight($products_id);
@@ -232,7 +232,7 @@
       }
     }
 
-    public function getProductsDateAvailable($products_id, $tag = ' ')
+    public function getProductsDateAvailable($products_id, string $tag = ' ')
     {
       if (!empty($this->productsCommon->getProductsDateAvailable($products_id))) {
         $products_date_available = $this->productsCommon->getProductsDateAvailable($products_id);
@@ -262,7 +262,7 @@
       }
     }
 
-    public function getProductsPackaging($products_id, $tag = ' ')
+    public function getProductsPackaging($products_id, string $tag = ' ')
     {
       $products_packaging = $this->productsCommon->getProductsPackaging($products_id);
 
@@ -274,7 +274,7 @@
       return $products_packaging;
     }
 
-    public function getProductsShippingDelay($products_id, $tag = ' ')
+    public function getProductsShippingDelay($products_id, string $tag = ' ')
     {
       if (!empty($this->productsCommon->getProductsShippingDelay($products_id))) {
         $products_shipping_delay = CLICSHOPPING::getDef('text_display_shipping_delay') . $tag . $this->productsCommon->getProductsShippingDelay($products_id);
@@ -290,14 +290,14 @@
         $products_tag = $this->productsCommon->getProductsHeadTag($products_id);
         $delimiter = ',';
         $products_tag = trim(preg_replace('|\\s*(?:' . preg_quote($delimiter) . ')\\s*|', $delimiter, $products_tag));
-        $tag = explode(",", $products_tag);
+        $tag = explode(',', $products_tag);
 
         return $tag;
       }
     }
 
 
-    public function getProductsVolume($products_id, $tag = ' ')
+    public function getProductsVolume($products_id, string $tag = ' ')
     {
       if (!empty($this->productsCommon->getProductsVolume($products_id))) {
         $products_volume = CLICSHOPPING::getDef('text_products_volume') . $tag . $this->productsCommon->getProductsVolume($products_id);
@@ -306,7 +306,7 @@
       }
     }
 
-    public function getProductsWeight($products_id, $tag = ' / ')
+    public function getProductsWeight($products_id, string $tag = ' / ')
     {
       if (!empty($this->productsCommon->getProductsWeight($products_id))) {
         $weight_symbol = $this->productsCommon->getSymbolbyProducts($this->productsCommon->getWeightClassIdByProducts($products_id));
@@ -318,9 +318,9 @@
 
     public function getManufacturerName($products_id)
     {
-      if (isset($_GET['manufacturers_id']) && !is_null($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
-        $manufacturer_id = HTML::sanitize($_GET['manufacturers_id']);
-        $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturers_id=' . $manufacturer_id . '&products_id=' . $products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
+      if (isset($_GET['manufacturersId']) && !is_null($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
+        $manufacturer_id = HTML::sanitize($_GET['manufacturersId']);
+        $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturersId=' . $manufacturer_id . '&products_id=' . $products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
       } else {
         $name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&' . ($this->category->getPath() ? 'cPath=' . $this->category->getPath() . '&' : '') . 'products_id=' . $products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
       }
@@ -328,11 +328,11 @@
       return $name;
     }
 
-    public function getManufacturerImage($products_id, $products_image)
+    public function getManufacturerImage($products_id, string $products_image)
     {
-      if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
-        $manufacturer_id = HTML::sanitize($_GET['manufacturers_id']);
-        $image = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturers_id=' . $manufacturer_id . '&products_id=' . $products_id), HTML::image($this->template->getDirectoryTemplateImages() . $products_image, HTML::outputProtected($this->productsCommon->getProductsName($products_id), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, null, true)));
+      if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
+        $manufacturer_id = HTML::sanitize($_GET['manufacturersId']);
+        $image = HTML::link(CLICSHOPPING::link(null, 'Products&Description&manufacturersId=' . $manufacturer_id . '&products_id=' . $products_id), HTML::image($this->template->getDirectoryTemplateImages() . $products_image, HTML::outputProtected($this->productsCommon->getProductsName($products_id), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, null, true)));
       } else {
         $image = HTML::link($this->rewriteUrl->getProductNameUrl($products_id, 'products_id=', ($this->category->getPath() ? 'cPath=' . $this->category->getPath() . '&' : '') . 'products_id=' . $products_id), HTML::image($this->template->getDirectoryTemplateImages() . $products_image, HTML::outputProtected($this->productsCommon->getProductsName($products_id)), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, null, true));
       }
@@ -349,7 +349,8 @@
       }
     }
 
-    public function getProductJsonLd($products_id) {
+    public function getProductJsonLd($products_id): string
+    {
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
       if ($this->productsCommon->getProductsStock($products_id) > 0) {
@@ -410,6 +411,7 @@
 }
 </script>      
       ';
+      
       return $output;
     }
   }

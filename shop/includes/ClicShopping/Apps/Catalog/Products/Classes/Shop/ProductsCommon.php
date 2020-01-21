@@ -2476,9 +2476,8 @@
      * @param string $manufacturers ['manufacturer_name'], The name of manufacturer
      * @access private
      */
-    private function setManufacturersName()
+    private function setManufacturersName(): string
     {
-
       $language_id = $this->language->getId();
 
       $Qmanufacturers = $this->db->prepare('select manufacturer_name
@@ -2486,7 +2485,7 @@
                                              where manufacturers_id = :manufacturers_id
                                              and languages_id = :languages_id
                                            ');
-      $Qmanufacturers->bindInt(':manufacturers_id', (int)$_GET['manufacturers_id']);
+      $Qmanufacturers->bindInt(':manufacturers_id', (int)$_GET['manufacturersId']);
       $Qmanufacturers->bindInt(':languages_id', (int)$language_id);
 
       $Qmanufacturers->execute();
@@ -2513,7 +2512,7 @@
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
      * @access private
      */
-    private function setManufacturersDescription($id)
+    private function setManufacturersDescription($id): string
     {
       $language_id = $this->language->getId();
 
@@ -2532,7 +2531,7 @@
 
     public function getManufacturersDescription()
     {
-      $id = HTML::sanitize($_GET['manufacturers_id']);
+      $id = HTML::sanitize($_GET['manufacturersId']);
       return $this->setManufacturersDescription($id);
     }
 
@@ -2542,15 +2541,16 @@
      * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
      * @access private
+     * @return
      */
-    private function setManufacturersImage()
+    private function setManufacturersImage(): string
     {
 
       $Qmanufacturers = $this->db->prepare('select manufacturer_image
                                              from :table_manufacturers
                                              where manufacturers_id = :manufacturers_id
                                            ');
-      $Qmanufacturers->bindInt(':manufacturers_id', (int)$_GET['manufacturers_id']);
+      $Qmanufacturers->bindInt(':manufacturers_id', (int)$_GET['manufacturersId']);
 
       $Qmanufacturers->execute();
 
@@ -2594,7 +2594,7 @@
       $Qmanufacturers->execute();
 
       while ($Qmanufacturers->fetch()) {
-        $manufacturers_array[] = ['id' => $Qmanufacturers->valueInt('manufacturers_id'),
+        $manufacturers_array[] = ['id' => $Qmanufacturers->valueInt('manufacturersId'),
           'text' => $Qmanufacturers->value('manufacturers_name')
         ];
       }
@@ -2610,7 +2610,7 @@
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
      * @access public
      */
-    public function getManufacturersDropDown()
+    public function getManufacturersDropDown(): array
     {
       return $this->setManufacturersDropDown();
     }
