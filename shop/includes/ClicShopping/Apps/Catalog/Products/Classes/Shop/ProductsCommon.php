@@ -783,7 +783,6 @@
 
     private function setProductsManufacturer(?int $id): string
     {
-
       $manufacturer_search = '';
 
       if (is_null($id)) {

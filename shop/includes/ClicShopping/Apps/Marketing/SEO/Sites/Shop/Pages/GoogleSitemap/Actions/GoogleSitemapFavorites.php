@@ -15,7 +15,6 @@
 
   class GoogleSitemapFavorites extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     protected $use_site_template = false;
     protected $rewriteUrl;
 
@@ -39,7 +38,7 @@
                                                 order by last_modified DESC
                                                 ');
 
-        $Qproducts->bindValue(':products_favorites_last_modified', '');
+        $Qproducts->bindValue(':products_favorites_last_modified', null);
         $Qproducts->execute();
 
         while ($Qproducts->fetch()) {

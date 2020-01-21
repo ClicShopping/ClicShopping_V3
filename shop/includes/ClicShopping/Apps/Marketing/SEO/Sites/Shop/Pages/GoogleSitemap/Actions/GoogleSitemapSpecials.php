@@ -15,7 +15,6 @@
 
   class GoogleSitemapSpecials extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     protected $use_site_template = false;
     protected $rewriteUrl;
 
@@ -25,7 +24,6 @@
       $this->rewriteUrl = Registry::get('RewriteUrl');
 
       if (MODE_VENTE_PRIVEE == 'false') {
-
         $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
         $special_array = [];
@@ -39,7 +37,7 @@
                                                 order by last_modified DESC
                                                 ');
 
-        $Qproducts->bindValue(':specials_last_modified', '');
+        $Qproducts->bindValue(':specials_last_modified', null);
         $Qproducts->execute();
 
 

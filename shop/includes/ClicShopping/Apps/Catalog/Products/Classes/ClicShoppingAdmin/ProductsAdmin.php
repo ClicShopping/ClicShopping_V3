@@ -574,15 +574,15 @@
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'));
         }
-	
+
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'));
         }
-	
+
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'));
         }
-	
+
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'))) {
           @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'));
         }
@@ -679,11 +679,11 @@
     }
 
     /**
-     * getCountProductsToCategory count the products into category
-     * @param $id - products id of the products
-     * @param $categories_id - category id
-     * @access public
-     */
+    * getCountProductsToCategory count the products into category
+    * @param $id - products id of the products
+    * @param $categories_id - category id
+    * @access public
+    */
     public function getCountProductsToCategory(int $id, int $categories_id): int
     {
       $Qcheck = $this->db->prepare('select count(*) as total

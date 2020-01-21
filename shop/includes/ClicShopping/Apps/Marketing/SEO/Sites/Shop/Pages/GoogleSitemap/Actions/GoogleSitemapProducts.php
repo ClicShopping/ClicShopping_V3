@@ -15,7 +15,6 @@
 
   class GoogleSitemapProducts extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     protected $use_site_template = false;
     protected $rewriteUrl;
 
@@ -25,28 +24,26 @@
       $this->rewriteUrl = Registry::get('RewriteUrl');
 
       if (MODE_VENTE_PRIVEE == 'false') {
-
         $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
         $product_array = [];
 
         $Qproducts = $CLICSHOPPING_Db->prepare('select p.products_id,
-                                                 coalesce(NULLIF(p.products_last_modified, :products_last_modified),
-                                                                 p.products_date_added) as last_modified
-                                                  from :table_products p,
-                                                       :table_products_to_categories p2c,
-                                                       :table_categories c
-                                                  where p.products_status = 1
-                                                  and p.products_view = 1                                                                                         
-                                                  and p.products_id = p2c.products_id
-                                                  and p2c.categories_id = c.categories_id
-                                                  and c.status = 1    
-                                                  order by last_modified desc
-                                                  ');
+                                                        coalesce(NULLIF(p.products_last_modified, :products_last_modified),
+                                                                        p.products_date_added) as last_modified
+                                                from :table_products p,
+                                                     :table_products_to_categories p2c,
+                                                     :table_categories c
+                                                where p.products_status = 1
+                                                and p.products_view = 1                                                                                         
+                                                and p.products_id = p2c.products_id
+                                                and p2c.categories_id = c.categories_id
+                                                and c.status = 1    
+                                                order by last_modified desc
+                                                ');
 
-        $Qproducts->bindValue(':products_last_modified', '');
+        $Qproducts->bindValue(':products_last_modified', null);
         $Qproducts->execute();
-
 
         while ($Qproducts->fetch()) {
           $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($Qproducts->valueInt('products_id'))));

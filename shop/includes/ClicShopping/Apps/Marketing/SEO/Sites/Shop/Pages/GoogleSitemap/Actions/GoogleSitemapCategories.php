@@ -15,7 +15,6 @@
 
   class GoogleSitemapCategories extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     protected $use_site_template = false;
 
     public function execute()
@@ -42,7 +41,7 @@
                                               order by last_modified DESC
                                               ');
 
-      $Qcategorie->bindValue(':last_modified', '');
+      $Qcategorie->bindValue(':last_modified', null);
       $Qcategorie->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       $Qcategorie->execute();
 

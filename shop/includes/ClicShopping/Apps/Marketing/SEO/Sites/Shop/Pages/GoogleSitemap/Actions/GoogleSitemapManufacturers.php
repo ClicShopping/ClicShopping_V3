@@ -15,7 +15,6 @@
 
   class GoogleSitemapManufacturers extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     protected $use_site_template = false;
     protected $rewriteUrl;
 
@@ -25,7 +24,6 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (MODE_VENTE_PRIVEE == 'false') {
-
         $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8' ?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
         $manufacturer_array = [];
@@ -38,7 +36,7 @@
                                                       order by last_modified DESC
                                                       ');
 
-        $Qmanufacturers->bindValue(':last_modified', '');
+        $Qmanufacturers->bindValue(':last_modified', null);
         $Qmanufacturers->execute();
 
         while ($Qmanufacturers->fetch()) {

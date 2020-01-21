@@ -15,17 +15,13 @@
 
   class GoogleSitemapIndex extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     protected $use_site_template = false;
 
     public function execute()
     {
-
       $this->page->setUseSiteTemplate(false); //don't display Header / Footer
 
       if (MODE_VENTE_PRIVEE == 'false') {
-
-
         $xml = new \SimpleXMLElement("<?xml version='1.0' encoding='UTF-8'?>\n" . '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" />');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapCategories');
@@ -42,22 +38,21 @@
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-
-        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapSpecials');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapSpecials');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapFavorites');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapFavorites');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapManufacturers');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapManufacturers');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
@@ -71,21 +66,21 @@
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapBlogContent');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapBlogContent');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapPageManager.php');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapPageManager');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
-        $location = CLICSHOPPING::link(null, 'index.php?Sitemap&GoogleSitemapFeaturedProducts');
+        $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapFeatured');
         $url = $xml->addChild('url');
         $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
