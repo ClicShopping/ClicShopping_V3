@@ -455,6 +455,7 @@ table_heading_options = Options
 visitor_name = Normal customer
 
 text_error_upload_file = Error : file upload failed
+error_file_cannot_process = Can not process for upload file
 
 text_number_support = Order support
 text_number_of_item = Item number

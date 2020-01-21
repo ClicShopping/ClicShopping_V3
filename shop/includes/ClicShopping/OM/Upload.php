@@ -93,7 +93,7 @@
           ];
         } else {
           if (!empty($_FILES[$this->_file]['tmp_name'])) {
-            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_cannot_process') . ' ' . $_FILES[' . $this->_file . ']['tmp_name'], 'warning');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_file_cannot_process') . ' ' . $_FILES[$this->_file]['tmp_name'], 'warning');
           }
         }
       }

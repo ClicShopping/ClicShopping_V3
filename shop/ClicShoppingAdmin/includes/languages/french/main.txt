@@ -450,6 +450,7 @@ table_heading_options = Options
 visitor_name = Client normal
 
 text_error_upload_file = Erreur lors du téléchargement du fichier
+error_file_cannot_process = Implossible de procéder au téléchargement du fichier
 
 text_number_support = Commande support
 text_number_of_item = Nombre d'items
