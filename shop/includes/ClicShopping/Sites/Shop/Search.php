@@ -31,8 +31,6 @@
     protected $column_list;
     protected $db;
 
-    private $checkManufacturer;
-
     public function __construct()
     {
       $this->db = Registry::get('Db');
