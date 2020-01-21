@@ -31,7 +31,7 @@
 
 // Supprimer (|| $customers_group_discount ==  0) dans la condition IF pour pouvoir cree un groupe a 0% par defaut
       if (strlen($customers_groups_name) == '') {
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_error'), 'warning', 'header');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('entry_groups_name_error'), 'warning');
         $CLICSHOPPING_Groups->redirect('Groups&error=name');
       } else {
         if (empty($customers_groups_discount)) {

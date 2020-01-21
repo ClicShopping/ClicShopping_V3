@@ -898,12 +898,12 @@
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($page_id);
           $page_title = $this->replaceString($page_title);
-          $content_url_rewrited = 'Info&Content&' . $page_title . '&pages_id=' . $page_id;
+          $content_url_rewrited = 'Info&Content&' . $page_title . '&pagesId=' . $page_id;
         } else {
-          $content_url_rewrited = 'Info&Content&pages_id=' . $page_id;
+          $content_url_rewrited = 'Info&Content&pagesId=' . $page_id;
         }
       } else {
-        $content_url_rewrited = 'Info&Content&pages_id=' . $page_id;
+        $content_url_rewrited = 'Info&Content&pagesId=' . $page_id;
       }
 
       $url = CLICSHOPPING::link(null, $content_url_rewrited . $parameters);

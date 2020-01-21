@@ -37,13 +37,13 @@
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Content/content');
 
 // Recuperation de la valeur id de order.php
-      if (isset($_GET['pages_id'])) {
-        $id = HTML::sanitize($_GET['pages_id']);
+      if (isset($_GET['pagesId'])) {
+        $id = HTML::sanitize($_GET['pagesId']);
 
         if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayInformation($id))) {
           $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($id);
 
-          $CLICSHOPPING_Breadcrumb->add($page_title, CLICSHOPPING::link(null, 'Info&Content&pages_id=' . $id));
+          $CLICSHOPPING_Breadcrumb->add($page_title, CLICSHOPPING::link(null, 'Info&Content&pagesId=' . $id));
 // templates
           $this->page->setFile('content.php');
 //Content

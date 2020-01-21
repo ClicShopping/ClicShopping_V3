@@ -18,6 +18,7 @@
   $CLICSHOPPING_Groups = Registry::get('Groups');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -26,6 +27,10 @@
 
   if (isset($_GET['search'])) {
     $_POST['search'] = HTML::sanitize($_GET['search']);
+  }
+
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>
 <div class="contentBody">

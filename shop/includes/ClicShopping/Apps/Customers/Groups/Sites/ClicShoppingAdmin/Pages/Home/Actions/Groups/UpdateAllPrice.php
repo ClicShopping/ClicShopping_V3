@@ -155,7 +155,7 @@
           }
         } // end while
 
-        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('text_price_success'), 'success', 'update');
+        $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Groups->getDef('text_price_success'), 'success');
         $CLICSHOPPING_Groups->redirect('Groups');
       }
     }

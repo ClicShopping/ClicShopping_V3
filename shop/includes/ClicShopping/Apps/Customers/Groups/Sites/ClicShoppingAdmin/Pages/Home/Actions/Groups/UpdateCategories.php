@@ -28,7 +28,7 @@
       if (isset($_POST['customers_groups_id'])) $customers_group_id = HTML::sanitize($_POST['customers_groups_id']);
 
       if (isset($_POST['upddiscount']) && empty($_POST['upddiscount'])) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_groups_categories_error_zero'));
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_groups_categories_error_zero'), 'error');
 
         $CLICSHOPPING_Groups->redirect('Edit&cID=' . $customers_group_id);
       } else {

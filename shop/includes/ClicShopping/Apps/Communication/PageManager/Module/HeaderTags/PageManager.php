@@ -85,7 +85,7 @@
                                                   ');
 
         $QpageManager->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-        $QpageManager->bindInt(':pages_id', (int)$_GET['pages_id']);
+        $QpageManager->bindInt(':pages_id', (int)$_GET['pagesId']);
         $QpageManager->execute();
 
         if (empty($QpageManager->value('page_manager_head_title_tag'))) {

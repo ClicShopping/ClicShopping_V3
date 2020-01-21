@@ -163,7 +163,6 @@
               $_POST['products_id'] = $products_id;
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
-
 //product name
               $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
 //Stock (good, alert, out of stock).
@@ -205,7 +204,6 @@
 
 // Quantity type
               $products_quantity_unit = $CLICSHOPPING_ProductsFunctionTemplate->getProductQuantityUnitType($products_id);
-
 
 // **************************************************
 // Button Free - Must be above getProductsExhausted

@@ -144,7 +144,6 @@
           $new_prods_content .= '<div class="boxContentsModulesProductsNew">';
 
           if ($listingTotalRow > 0) {
-
             $new_prods_content .= '<div class="d-flex flex-wrap">';
 
 // display number of short description

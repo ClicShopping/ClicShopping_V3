@@ -14,7 +14,7 @@
 
   $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 
-  $id = HTML::sanitize($_GET['pages_id']);
+  $id = HTML::sanitize($_GET['pagesId']);
   $page = $CLICSHOPPING_PageManagerShop->pageManagerDisplayInformation($id);
   $page_title = $CLICSHOPPING_PageManagerShop->pageManagerDisplayTitle($id);
 
