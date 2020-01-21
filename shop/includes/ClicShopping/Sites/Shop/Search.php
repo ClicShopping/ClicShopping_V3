@@ -31,6 +31,8 @@
     protected $column_list;
     protected $db;
 
+    private $checkManufacturer;
+
     public function __construct()
     {
       $this->db = Registry::get('Db');
@@ -384,12 +386,14 @@
     */
     private function getManufacturer(): bool
     {
-      if (isset($_POST['manufacturers_id']) && !empty($_POST['manufacturers_id']) && is_numeric($_POST['manufacturers_id'])) {
-        $this->_manufacturer = true;
-      } elseif (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id'])) {
-        $this->_manufacturer = true;
+      if (isset($_POST['manufacturersId']) && !empty($_POST['manufacturersId']) && is_numeric($_POST['manufacturersId'])) {
+        $this->_manufacturer = HTML::sanitize($_POST['manufacturersId']);
+        $this->checkManufacturer = true;
+      } elseif (isset($_GET['manufacturersId']) && !empty($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
+        $this->_manufacturer = HTML::sanitize($_POST['manufacturersId']);
+        $this->checkManufacturer = true;
       } else {
-        $this->_manufacturer = false;
+        $this->checkManufacturer = false;
       }
 
       return $this->_manufacturer;
@@ -401,9 +405,9 @@
      * @return true or False
      * @access private
     */
-    private function hasManufacturer(): bool
+    private function hasManufacturer(): ?bool
     {
-      return $this->getManufacturer();
+      return $this->checkManufacturer;
     }
 
     /*
