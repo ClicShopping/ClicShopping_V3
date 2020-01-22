@@ -54,18 +54,18 @@
 <?php
   if (!empty($facebook_url)) {
 ?>
-              <li><a aria-label="Facebook" href="<?php echo $facebook_url;?>" target="_blank" rel="noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a aria-label="Facebook" href="<?php echo $facebook_url;?>" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a></li>
 <?php
   }
   if (!empty($twitter_url)) {
 ?>
-              <li><a aria-label="Twitter" href="<?php echo $twitter_url;?>" target="_blank" rel="noreferrer"><i class="fab fa-twitter"></i></a></li>
+              <li><a aria-label="Twitter" href="<?php echo $twitter_url;?>" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a></li>
 <?php
   }
 
   if (!empty($pinterest_url)) {
 ?>
-              <li><a aria-label="Pinterest" href="<?php echo $pinterest_url;?>" target="_blank" rel="noreferrer"><i class="fab fa-pinterest"></i></a></li>
+              <li><a aria-label="Pinterest" href="<?php echo $pinterest_url;?>" target="_blank" rel="noopener"><i class="fab fa-pinterest"></i></a></li>
 <?php
   }
 ?>
