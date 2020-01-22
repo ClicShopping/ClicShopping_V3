@@ -1015,7 +1015,7 @@
               $products_price = $new_price_with_discount_quantity;
             }
 
-            if (empty($Qproducts->value('products_model_group')) && $this->customer->getCustomersGroupID() != 0) {
+            if ($Qproducts->value('products_model_group') != '' && $this->customer->getCustomersGroupID() != 0) {
               $model = $Qproducts->value('products_model_group');
             } else {
               $model = $Qproducts->value('products_model');

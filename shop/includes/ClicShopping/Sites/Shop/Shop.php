@@ -62,8 +62,8 @@
 
 // set the application parameters
       $Qcfg = $CLICSHOPPING_Db->prepare('select configuration_key as k,
-                                                configuration_value as v
-                                        from :table_configuration
+                                             configuration_value as v
+                                       from :table_configuration
                                        ');
       $Qcfg->setCache('configuration');
 

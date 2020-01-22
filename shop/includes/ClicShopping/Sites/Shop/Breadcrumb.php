@@ -74,9 +74,10 @@
             'name' => strip_tags($v['title'])));
       }
 
-      $schema_breadcrumb = array('@context' => 'https://schema.org',
-          '@type' => 'BreadcrumbList',
-          'itemListElement' => $itemlistelement);
+      $schema_breadcrumb = ['@context' => 'https://schema.org',
+                            '@type' => 'BreadcrumbList',
+                            'itemListElement' => $itemlistelement
+                           ];
 
       $data = json_encode($schema_breadcrumb);
 

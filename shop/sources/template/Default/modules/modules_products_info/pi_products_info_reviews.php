@@ -151,7 +151,7 @@
 
         if($count_review === 0) {
           $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info');
-          $products_reviews_content .= '<div class="separato"></div>';
+          $products_reviews_content .= '<div class="separator"></div>';
           $products_reviews_content .= '<div class="col-md-12">';
           $products_reviews_content .= '<div class="moduleProductsInfoNoReview">' . CLICSHOPPING::getDef('text_info_no_reviews') . '</div>';
           $products_reviews_content .= '<div class="text-md-right">' . $write_button . '</div>';

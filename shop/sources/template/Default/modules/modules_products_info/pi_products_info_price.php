@@ -148,7 +148,6 @@
             $products_price_content .= '<!-- products_archives end -->' . "\n";
           }
 
-          $products_price_content .= '</div>' . "\n";
           $products_price_content .= '<!-- end products_PRICE -->' . "\n";
 
           $CLICSHOPPING_Template->addBlock($products_price_content, $this->group);

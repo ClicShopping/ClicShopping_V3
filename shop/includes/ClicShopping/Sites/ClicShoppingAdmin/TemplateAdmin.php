@@ -18,17 +18,16 @@
 
   class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   {
-
     protected $default_template_directory = 'Default';
     protected $thema;
     protected $name;
-    protected $directoryAdminLanguages = 'languages';
-    protected $directoryAdminmodules = 'modules';
-    protected $directoryAdmin = 'ClicShoppingAdmin';
-    protected $directoryAdminBoxes = 'boxes';
-    protected $directoryAdminImages = 'images';
-    protected $directoryAdminIncludes = 'includes';
-
+    protected $directoryAdminLanguages = 'languages/';
+    protected $directoryAdmin = 'ClicShoppingAdmin/';
+    protected $directoryAdminBoxes = 'boxes/';
+    protected $directoryAdminImages = 'images/';
+    protected $directoryAdminIncludes = 'includes/';
+    protected $directoryAdminModules = 'modules/';
+    protected $directoryAdminSources = 'sources/';
     /**********************************************
      * Path
      ************************************************/
@@ -55,7 +54,7 @@
      */
     public function getPathLanguageShopDirectory(): string
     {
-      $path_shop_languages_directory = parent::getPathRoot() . 'sources/' . $this->directoryAdminLanguages;
+      $path_shop_languages_directory = parent::getPathRoot() . $this->directoryAdminSources . $this->directoryAdminLanguages;
 
       return $path_shop_languages_directory;
     }
@@ -85,10 +84,10 @@
 
     public function getDirectoryPathModuleShopTemplateHtml(string $name): string
     {
-      if (file_exists(parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/')) {
-        $template_directory = parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/modules/' . $name . '/template_html/';
+      if (file_exists(parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/')) {
+        $template_directory = parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/';
       } else {
-        $template_directory = parent::getPathRoot() . static::getDefaultTemplateDirectory() . '/modules/' . $name . '/template_html/';
+        $template_directory = parent::getPathRoot() . static::getDefaultTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/';
       }
 
       return $template_directory;
@@ -126,7 +125,7 @@
      */
     public function getDirectoryPathModuleShop(): string
     {
-      $modules_catalog_directory = $this->getModulesDirectory() . '/modules';
+      $modules_catalog_directory = $this->getModulesDirectory() . '/'. $this->directoryAdminModules;
 
       return $modules_catalog_directory;
     }
@@ -187,7 +186,7 @@
     */
     public function getImageDirectory(): string
     {
-      return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminImages . '/' . $this->directoryAdmin . '/';
+      return CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $this->directoryAdminImages . $this->directoryAdmin;
     }
 
     /**
@@ -200,7 +199,7 @@
      */
     public function getBoxeDirectory(): string
     {
-      $directory = $this->directoryAdminIncludes . '/' . $this->directoryAdminBoxes; //'includes/boxes/'
+      $directory = $this->directoryAdminIncludes . $this->directoryAdminBoxes; //'includes/boxes/'
 
       return $directory;
     }
@@ -215,7 +214,7 @@
      */
     public function getLanguageDirectory(): string
     {
-      $directory = $this->directoryAdminIncludes . '/' . $this->directoryAdminLanguages; //'includes/languages/'
+      $directory = $this->directoryAdminIncludes . $this->directoryAdminLanguages; //'includes/languages/'
 
       return $directory;
     }
@@ -309,6 +308,7 @@
         'Products&Featured',
         'Products&ProductsNew',
         'Products&Specials',
+        'Products&TellAFriend',
         'search&AdvancedSearch',
         'search&Q',
       ];
