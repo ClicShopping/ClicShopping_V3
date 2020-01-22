@@ -164,7 +164,7 @@
 
                 if ($CLICSHOPPING_Manufacturers->getID() && !empty($CLICSHOPPING_Manufacturers->getID())) {
 
-                  $products_listing_filter .= HTML::hiddenField('manufacturers_id', $CLICSHOPPING_Manufacturers->getID());
+                  $products_listing_filter .= HTML::hiddenField('manufacturersId', $CLICSHOPPING_Manufacturers->getID());
 
                   $options = array(
                                     array(

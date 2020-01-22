@@ -53,7 +53,7 @@
                 $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl((int)$m['id']);
 
                 $manufacturers_name = ((strlen($m['name']) > MODULE_BOXES_MANUFACTURERS_MAX_DISPLAY_MANUFACTURER_NAME_LEN) ? substr($m['name'], 0, MAX_DISPLAY_MANUFACTURER_NAME_LEN) . '..' : $m['name']);
-                if (isset($_GET['manufacturers_id']) && ($_GET['manufacturers_id'] == $m['id'])) {
+                if (isset($_GET['manufacturersId']) && ($_GET['manufacturersId'] == $m['id'])) {
                  $manufacturers_name = '<strong>' . $manufacturers_name .'</strong>';
                 }
 
@@ -84,7 +84,7 @@
 
           $data = HTML::form('manufacturers', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
           $data .= '<label for="manufacturerDropDown" class="sr-only">' . CLICSHOPPING::getDef('module_boxes_manufacturers_title') . '</label>';
-          $data .=  HTML::selectField('manufacturers_id', $manufacturers_array, (isset($_GET['manufacturers_id']) ? $_GET['manufacturers_id'] : ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
+          $data .=  HTML::selectField('manufacturersId', $manufacturers_array, ($_GET['manufacturersId'] ?? ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
           $data .=  '</form>';
           $data .=  '<div class="separator"></div>';
         }

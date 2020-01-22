@@ -49,7 +49,7 @@
 
         $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($id);
 
-        $products_name = '<a href="' . $products_name_url . '" itemprop="url" class="productTitle"><span itemprop="name">' . HTML::outputProtected($products_name) . '</span></a>';
+        $products_name = '<a href="' . $products_name_url . '"class="productTitle">' . HTML::outputProtected($products_name) . '</a>';
 
         $products_name_content = '<!-- Start products_name -->' . "\n";
 
