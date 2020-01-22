@@ -415,7 +415,7 @@
       if ($Qcheck->valueInt('reviews_total') > 0) {
         $average = $Qcheck->valueInt('sum_reviews') / $Qcheck->valueInt('reviews_total');
       } else {
-        $average = 1;
+        $average = 0;
       }
 
       return $average;

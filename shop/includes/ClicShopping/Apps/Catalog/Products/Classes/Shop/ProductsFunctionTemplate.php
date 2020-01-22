@@ -372,6 +372,12 @@
 
       $price = $this->productsCommon->getDisplayPriceGroupWithoutCurrencies($products_id);
 
+      if ($CLICSHOPPING_Reviews->getAverageProductReviews($products_id) == 0) {
+        $review_average = '';
+      } else {
+        $review_average = $CLICSHOPPING_Reviews->getAverageProductReviews($products_id);
+      }
+
       $output = '
       <script defer type="application/ld+json">
 {
@@ -392,7 +398,7 @@
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "' . $CLICSHOPPING_Reviews->getAverageProductReviews($products_id) . '",
+    "ratingValue": "' . $review_average . '",
     "reviewCount": "' . $CLICSHOPPING_Reviews->getCount($products_id) .'"
   },
   "offers": {
