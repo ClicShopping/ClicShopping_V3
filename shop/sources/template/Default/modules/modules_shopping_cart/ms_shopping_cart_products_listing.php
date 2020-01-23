@@ -96,8 +96,32 @@
 
           $products_name = HTML::hiddenField('products_id[]', $products[$i]['id']);
           $products_name .= HTML::link($products_name_url, $products[$i]['name']);
+          $remove_product_id = 'remove_product_' . $products[$i]['id'];
 
-          $trash = HTML::link(CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), '<i class="fas fa-trash"></i>', CLICSHOPPING::getDef('button_remove')) . '&nbsp;&nbsp;&nbsp;';
+          $trash = '
+          <a href="#" data-toggle="modal" data-target="#' . $remove_product_id . '"><i class="fas fa-trash"></i></a>
+          <div class="modal fade ' . $remove_product_id . '" tabindex="-1" role="dialog" aria-labelledby="' . $remove_product_id . '" aria-hidden="true" id="' . $remove_product_id . '">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-content">
+                  <div class="modal-header">
+                  <h6 class="modal-title" id="myModalLabel">Are you sure about this?</h6>
+                  </div>
+                  <div class="modal-body">
+                    This action will remove the itm from your cart
+                  </div>
+                  <div class="modal-footer">
+                    <div class="row col-md-12">
+                      <span class="col-md-6 text-md-left">' . HTML::button(ClicShopping::getDef('button_cancel'), null, null, 'light') . '</span>
+                      <span class="col-md-6 text-md-right">' . HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Cart&Delete&products_id=' . $products[$i]['id']), 'danger') . '</span>
+                    </div>                  
+                </div>          
+              </div>
+              </div>
+            </div>
+          </div>
+          ';
+
           $image =  HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50)) . '&nbsp;&nbsp;&nbsp;';
 
           if (STOCK_CHECK == 'true') {

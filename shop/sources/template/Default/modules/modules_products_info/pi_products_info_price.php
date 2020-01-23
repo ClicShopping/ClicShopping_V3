@@ -116,7 +116,7 @@
 
               $products_price_content = '<!-- Start product price -->' . "\n";
 // Strong relations with pi_products_info_options.php = Don't delete
-              if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
+              if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
                 $products_price_content .=  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
                 if (isset($_GET['Description'])) $products_price_content .= HTML::hiddenField('url', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
               }
@@ -131,9 +131,8 @@
                 $products_price_content .= ob_get_clean();
 
 // Strong relations with pi_products_options.php Don't delete
-
-                if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() == 0 || (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER >= MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
-                  $products_price_content .='</form>' . "\n";
+                if ($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes() == 0 || (defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER >= MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
+                  $products_price_content .= '</form>' . "\n";
                 }
               } // end products_group_view
 

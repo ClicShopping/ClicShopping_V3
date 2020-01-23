@@ -12,3 +12,5 @@ text_shopping_cart_save_money_by_product = par quantité
 text_shopping_cart_products_discount_quantity = Vos rabais en fonction des quantités de produit commandés ont été appliquées. Vous sauvez
 text_shopping_cart_products_discount_without_tax = Hors taxes
 
+button_cancel = Annuler
+button_delete = Supprimer
