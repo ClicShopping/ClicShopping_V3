@@ -13,3 +13,5 @@ text_shopping_cart_products_discount_without_tax = Without taxes
 
 button_cancel = Cancel
 button_delete = Delete
+text_title_modal_delete = Are you sure about this?
+text_title_modal_info = This action will remove the item from your cart

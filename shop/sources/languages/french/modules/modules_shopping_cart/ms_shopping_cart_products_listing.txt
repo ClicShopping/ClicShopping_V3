@@ -14,3 +14,5 @@ text_shopping_cart_products_discount_without_tax = Hors taxes
 
 button_cancel = Annuler
 button_delete = Supprimer
+text_title_modal_delete = Etes-vous sur de votre décision ?
+text_title_modal_info = Cette supprimera le produit de votre panier

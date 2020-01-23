@@ -299,7 +299,7 @@
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
             if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
               $new_prods_content .= '<div class="clearfix"></div>';
-              $new_prods_content .= '<div style="padding-top:10px;"></div>';
+              $new_prods_content .= '<div class="separator"></div>';
               $new_prods_content .= '<div>';
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
