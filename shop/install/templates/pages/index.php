@@ -35,6 +35,20 @@
 // file exists and is writable
     unset($configfile_array[$key]);
   }
+
+    $directory_array = [CLICSHOPPING::BASE_DIR . 'Work'];
+
+    foreach ($directory_array as $key => $d) {
+      if (!is_dir($d)) {
+        continue;
+      } elseif (!is_writable($d)) {
+          continue;
+      }
+
+      // Directtory exists and is writable
+      unset($directory_array[$key]);
+    }
+
     $warning_array = [];
 
 if (version_compare(phpversion(), '7.3.3', '<')) {
@@ -106,7 +120,7 @@ if (!empty($warning_array)) {
 <?php
 }
 
-if (!empty($configfile_array)) {
+if (!empty($configfile_array)  || !empty($directory_array)) {
 ?>
 
     <div class="alert alert-danger" role="alert">
@@ -118,6 +132,10 @@ if (!empty($configfile_array)) {
     foreach ($configfile_array as $file) {
         echo '<li>' . FileSystem::displayPath($file) . '</li>';
     }
+
+    foreach ($directory_array as $dir) {
+      echo  '<li>' . $dir . '</li>';
+    }
 ?>
 
       </ul>
@@ -126,7 +144,7 @@ if (!empty($configfile_array)) {
 <?php
 }
 
-if (!empty($configfile_array) || !empty($warning_array)) {
+if (!empty($configfile_array) || !empty($warning_array) || !empty($directory_array)) {
 ?>
 
     <p><a href="index.php" class="btn btn-danger" role="button">Retry Installation</a></p>
