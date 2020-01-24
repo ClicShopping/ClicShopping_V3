@@ -219,7 +219,7 @@
 
                <?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?>
               </td>
-              <td><?php echo $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'; ?></td>
+              <td class="text-md-left"><?php echo $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'; ?></td>
               <td class="text-md-center">
                 <?php
                   if ($Qproducts->valueInt('products_status') == 1) {
