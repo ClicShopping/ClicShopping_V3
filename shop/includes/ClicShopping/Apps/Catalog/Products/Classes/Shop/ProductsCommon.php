@@ -2277,8 +2277,6 @@
         } else {
           $products_price = $this->setDisplayPriceGroup($id);
         }
-
-        $products_price .= HTML::output($_SESSION['currency']);
       }
 
       $normal_price = 0; // Arret du mode Grand public pour refus d'afficher le prix groupe B2B
