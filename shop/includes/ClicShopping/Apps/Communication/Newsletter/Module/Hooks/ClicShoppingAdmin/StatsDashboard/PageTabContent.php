@@ -14,7 +14,6 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Communication\Newsletter\Newsletter as NewsletterApp;
-  use net\authorize\api\contract\v1\ValidateCustomerPaymentProfileRequest;
 
   class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   {
