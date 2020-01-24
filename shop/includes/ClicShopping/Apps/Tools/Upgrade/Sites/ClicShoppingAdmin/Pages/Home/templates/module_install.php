@@ -112,9 +112,9 @@
 ?>
       <div class="d-flex flex-wrap">
 <?php
-      $count = $CLICSHOPPING_Github->getSearchTotalCount();
+    if ($count_file > 0) {
+      for ($i = 0, $n = $count_file; $i < $n;  $i++) {
 
-      for ($i = 0, $n = $count_file;$i < $n;  $i++) {
         if ($result->items[$i] === null) {
           $item = $result[$i];
           $module_real_name = $item->title;
@@ -406,7 +406,7 @@
 <?php
                 }
               }
-?>                                      
+?>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -464,8 +464,9 @@
         </div>
       </div>
 <?php
-      }
-    }//for
+        }
+      }//for
+    }
   }
 ?>
     </div>

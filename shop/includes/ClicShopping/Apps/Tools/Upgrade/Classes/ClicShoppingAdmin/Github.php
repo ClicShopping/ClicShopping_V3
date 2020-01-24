@@ -23,7 +23,6 @@
 
   class Github
   {
-
     protected $app;
     protected $github;
     protected $githubRepo;
@@ -38,7 +37,6 @@
 
     public function __construct()
     {
-
       if (!Registry::exists('Upgrade')) {
         Registry::set('Upgrade', new UpgradeApp());
       }
