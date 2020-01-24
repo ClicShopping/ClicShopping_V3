@@ -88,7 +88,7 @@
       }
 
       $output = '<div class="clearfix"></div>';
-      $output .= '<div>' . $CLICSHOPPING_MessageStack->get('securityCheckModule') . '</div>';
+      $output .= '<div>' . $CLICSHOPPING_MessageStack->get('main') . '</div>';
 
 
       return $output;
