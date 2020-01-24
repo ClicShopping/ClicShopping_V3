@@ -14,6 +14,7 @@
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Communication\Newsletter\Newsletter as NewsletterApp;
+  use net\authorize\api\contract\v1\ValidateCustomerPaymentProfileRequest;
 
   class PageTabContent implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -65,7 +66,7 @@
     private function statAverageCustomersNewsletterB2C()
     {
       if ($this->statCountCustomersB2C() > 0 && $this->statsCountCustomersNewsletter() > 0) {
-        $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2C()) * 100, 2) . ' %';
+        $Average = round(($this->statCountCustomersB2C() / $this->statsCountCustomersNewsletter()) * 100, 2) . ' %';
       }
       return $Average;
     }
@@ -90,7 +91,7 @@
     public function statAverageCustomersNewsletterB2B()
     {
       if ($this->statCountCustomersB2B() > 0 && $this->statsCountCustomersNewsletter() > 0) {
-        $Average = round(($this->statsCountCustomersNewsletter() / $this->statCountCustomersB2B()) * 100, 2) . ' %';
+        $Average = round(($this->statCountCustomersB2B() / $this->statsCountCustomersNewsletter()) * 100, 2) . ' %';
 
         return $Average;
       }
