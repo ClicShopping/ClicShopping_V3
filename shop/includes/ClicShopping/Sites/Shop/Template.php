@@ -16,6 +16,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Apps;
+  use ClicShopping\Sites\Common\HTMLOverrideCommon;
 
   class Template
   {
