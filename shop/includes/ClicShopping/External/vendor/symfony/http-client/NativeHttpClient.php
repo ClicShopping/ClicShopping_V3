@@ -77,7 +77,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
             $options['headers'][] = 'Content-Type: application/x-www-form-urlencoded';
         }
 
-        if ($gzipEnabled = \extension_loaded('zlib') && !isset($options['normalized_headers']['accept-encoding'])) {
+        if (\extension_loaded('zlib') && !isset($options['normalized_headers']['accept-encoding'])) {
             // gzip is the most widely available algo, no need to deal with deflate
             $options['headers'][] = 'Accept-Encoding: gzip';
         }
@@ -169,7 +169,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
             $this->multi->dnsCache = $options['resolve'] + $this->multi->dnsCache;
         }
 
-        $this->logger && $this->logger->info(sprintf('Request: %s %s', $method, implode('', $url)));
+        $this->logger && $this->logger->info(sprintf('Request: "%s %s"', $method, implode('', $url)));
 
         [$host, $port, $url['authority']] = self::dnsResolve($url, $this->multi, $info, $onProgress);
 
@@ -187,7 +187,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
 
         $context = [
             'http' => [
-                'protocol_version' => $options['http_version'] ?: '1.1',
+                'protocol_version' => min($options['http_version'] ?: '1.1', '1.1'),
                 'method' => $method,
                 'content' => $options['body'],
                 'ignore_errors' => true,
@@ -227,7 +227,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
         $context = stream_context_create($context, ['notification' => $notification]);
         self::configureHeadersAndProxy($context, $host, $options['headers'], $proxy, $noProxy);
 
-        return new NativeResponse($this->multi, $context, implode('', $url), $options, $gzipEnabled, $info, $resolveRedirect, $onProgress, $this->logger);
+        return new NativeResponse($this->multi, $context, implode('', $url), $options, $info, $resolveRedirect, $onProgress, $this->logger);
     }
 
     /**
@@ -357,7 +357,7 @@ final class NativeHttpClient implements HttpClientInterface, LoggerAwareInterfac
             });
 
             if (isset($options['normalized_headers']['authorization']) || isset($options['normalized_headers']['cookie'])) {
-                $redirectHeaders['no_auth'] = array_filter($options['headers'], static function ($h) {
+                $redirectHeaders['no_auth'] = array_filter($redirectHeaders['no_auth'], static function ($h) {
                     return 0 !== stripos($h, 'Authorization:') && 0 !== stripos($h, 'Cookie:');
                 });
             }

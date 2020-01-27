@@ -47,3 +47,4 @@ table_heading_modules = Modules
 table_heading_sort_order = Sort order
 table_heading_status = Status
 table_heading_action = Action
+table_heading_group = Group

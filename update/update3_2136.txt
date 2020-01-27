@@ -1,0 +1,14 @@
+elfinder update
+Light Module improvement
+fix little html error in product description
+add html compessor function
+fix price produyct description
+update language file
+update composer file
+
+-- SQL update
+--English
+INSERT INTO clic_configuration VALUES(null, 'Do you want to compress the HTML', 'CONFIGURATION_TEMPLATE_MINIFY_HTML', 'false', 'Compress the HTML code and JS inside the HTML (only catalog)', 43, 1, '2013-12-16 18:12:37', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+
+--French
+INSERT INTO clic_configuration VALUES(null, 'Souhaitez-vous compresser le HTML', 'CONFIGURATION_TEMPLATE_MINIFY_HTML', 'false', 'Compression du code HTML et le js dans le HTML (catalogue)', 43, 1, '2013-12-16 18:12:37', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');

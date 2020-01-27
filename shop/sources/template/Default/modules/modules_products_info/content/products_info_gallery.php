@@ -22,7 +22,7 @@
   <ul class="thumbnails">
 <?php
   if ( !empty($products_small_image)) {
-    echo '<li>' . $ticker_pourcentage_discount . $ticker_image . '<a class="thumbnail" href="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_image_zoom) . '" title="' . $products_name . '">' . HTML::image(CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_image_medium), $products_name, null, null, ' title="' . $products_name . '"hspace="5" vspace="5"', true) .'</a>';
+    echo '<li>' . $ticker_pourcentage_discount . $ticker_image . '<a class="thumbnail" href="' . CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_image_zoom) . '" title="' . $products_name . '">' . HTML::image(CLICSHOPPING::link($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_image_medium), $products_name, null, null, 'title="' . $products_name . '" hspace="5" vspace="5"', true) . '</a>';
 
     $Qpi = $CLICSHOPPING_Db->get('products_images', ['image', 'htmlcontent'], ['products_id' => $CLICSHOPPING_ProductsCommon->getID()], 'sort_order');
     $pi = $Qpi->fetchAll();

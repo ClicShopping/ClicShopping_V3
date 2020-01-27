@@ -19,7 +19,6 @@
 
   class Template
   {
-
     protected $_template = 'template/';
     protected $_directoryTemplate = 'template/';
     
@@ -54,7 +53,7 @@
     protected $title;
     protected $description;
     protected $block;
-    protected $group;
+    public $group;
     protected $name;
 
     public function __construct()
@@ -187,8 +186,18 @@
       return $this->_newskeywords;
     }
 
-    public function addBlock($block, $group)
+    /**
+     * @param $block
+     * @param $group
+     */
+    public function addBlock(string $block, string $group)
     {
+      if (defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
+        $block = HTMLOverrideCommon::getMinifyHtml($block);
+      } else {
+        $block = $block;
+      }
+
       $this->_blocks[$group][] = $block;
     }
 

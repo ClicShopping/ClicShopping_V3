@@ -27,10 +27,10 @@
       $this->db = Registry::get('Db');
       $this->lang = Registry::get('Language');
 
-      if (isset($_GET['manufacturers_id']) && is_numeric($_GET['manufacturers_id']) && !empty(HTML::sanitize($_GET['manufacturers_id']))) {
-        $this->Id = HTML::sanitize($_GET['manufacturers_id']);
-      } elseif (isset($_POST['manufacturers_id']) && is_numeric($_POST['manufacturers_id']) && !empty(HTML::sanitize($_POST['manufacturers_id']))) {
-        $this->Id = HTML::sanitize($_POST['manufacturers_id']);
+      if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId']) && !empty(HTML::sanitize($_GET['manufacturersId']))) {
+        $this->Id = HTML::sanitize($_GET['manufacturersId']);
+      } elseif (isset($_POST['manufacturersId']) && is_numeric($_POST['manufacturersId']) && !empty(HTML::sanitize($_POST['manufacturersId']))) {
+        $this->Id = HTML::sanitize($_POST['manufacturersId']);
       } else {
         $this->Id = null;
       }

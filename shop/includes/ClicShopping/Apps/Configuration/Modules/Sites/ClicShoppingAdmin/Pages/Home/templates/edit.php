@@ -29,7 +29,7 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $set = (isset($_GET['set']) ? $_GET['set'] : '');
+  $set = $_GET['set'] ?? '';
 
   $modules = $CLICSHOPPING_CfgModule->getAll();
 

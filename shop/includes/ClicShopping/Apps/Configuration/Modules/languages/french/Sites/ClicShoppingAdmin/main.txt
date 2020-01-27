@@ -48,6 +48,4 @@ table_heading_modules = Modules
 table_heading_sort_order = Ordre de tri
 table_heading_status = Statut
 table_heading_action = Action
-
-
-
+table_heading_group = Group

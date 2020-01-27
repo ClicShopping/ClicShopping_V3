@@ -31,14 +31,13 @@
     public function execute()
     {
       $CLICSHOPPING_CfgModule = Registry::get('CfgModulesAdmin');
-      $CLICSHOPPING_Modules = Registry::get('Modules');
 
       Registry::set('ModulesAdmin', new ModulesAdmin());
       $CLICSHOPPING_ModulesAdmin = Registry::get('ModulesAdmin');
 
       $modules = $CLICSHOPPING_CfgModule->getAll();
 
-      $set = (isset($_GET['set']) ? $_GET['set'] : '');
+      $set = $_GET['set'] ?? '';
 
       if (empty($set) || !$CLICSHOPPING_CfgModule->exists($set)) {
         $set = $modules[0]['code'];
@@ -85,7 +84,7 @@
 
         Cache::clear('configuration');
 
-        $CLICSHOPPING_Modules->redirect('Modules&set=' . $set);
+        $this->app->redirect('Modules&set=' . $set);
       }
     }
   }

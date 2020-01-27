@@ -158,7 +158,9 @@
     <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="modules" data-sortable="true"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_modules'); ?></th>
+        <th data-field="group" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_group'); ?></th>
         <th data-field="sort_order" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_sort_order'); ?></th>
+
         <th data-field="status" data-sortable="true"class="text-md-center"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_status'); ?></th>
         <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Modules->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
@@ -211,6 +213,7 @@
       $module_info = ['code' => $module->code,
         'title' => $module->title,
         'description' => $module->description,
+        'group' => $module->group,
         'status' => $module->check(),
         'signature' => (isset($module->signature) ? $module->signature : null),
         'api_version' => (isset($module->api_version) ? $module->api_version : null)
@@ -247,15 +250,16 @@
     ?>
       <tr>
         <td><?php echo $module->title; ?></td>
+        <td class="text-md-left"><?php echo $module->group; ?></td>
         <td
-          class="text-md-center"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
+          class="text-md-right"><?php if (in_array($module->code . $file_extension, $modules_installed) && is_numeric($module->sort_order)) echo $module->sort_order; ?></td>
         <td class="text-md-center">
           <?php
-          if ($module->enabled == 'True') {
-            echo 'True';
-          } else {
-            echo '<span class="text-info">False</span>';
-          }
+            if ($module->enabled == 'True') {
+              echo '<i class="fas fa-check fa-lg" aria-hidden="true"></i>';
+            } else {
+              echo '<i class="fas fa-times fa-lg" aria-hidden="true"></i>';
+            }
           ?>
         </td>
         <td class="text-md-right">
@@ -271,7 +275,7 @@
         </td>
       </tr>
       <?php
-    }
+      }
     }
 
     if (!isset($_GET['list'])) {

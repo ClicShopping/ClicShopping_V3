@@ -22,7 +22,7 @@
     protected $db;
     protected $lang;
     protected $app;
-    protected $group;
+    public $group;
 
     protected function init()
     {

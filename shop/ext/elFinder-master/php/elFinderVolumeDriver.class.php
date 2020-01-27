@@ -318,6 +318,7 @@ abstract class elFinderVolumeDriver
             'ai:application/pdf' => 'application/postscript',
             'cgm:text/plain' => 'image/cgm',
             'dxf:text/plain' => 'image/vnd.dxf',
+            'dds:application/octet-stream' => 'image/vnd-ms.dds',
             'hpgl:text/plain' => 'application/vnd.hp-hpgl',
             'igs:text/plain' => 'model/iges',
             'iges:text/plain' => 'model/iges',
@@ -4083,9 +4084,12 @@ abstract class elFinderVolumeDriver
                 $_var = false;
                 if (is_string($var)) {
                     $_var = $var;
+                    $errlev = error_reporting();
+                    error_reporting($errlev ^ E_NOTICE);
                     if (false !== ($_var = iconv($from, $to . '//TRANSLIT', $_var))) {
                         $_var = str_replace('?', $unknown, $_var);
                     }
+                    error_reporting($errlev);
                 }
                 if ($_var !== false) {
                     $var = $_var;
@@ -4315,8 +4319,8 @@ abstract class elFinderVolumeDriver
             } else {
                 $path = $this->decode($hash);
                 if (!$canLink || !($canLink = link($path, $target)) || !($canLink = is_readable($path))) {
-                    if (file_exists($path)) {
-                        unlink($path);
+                    if (file_exists($target)) {
+                        unlink($target);
                     }
                     if ($fp = $this->fopenCE($path)) {
                         if ($tfp = fopen($target, 'wb')) {

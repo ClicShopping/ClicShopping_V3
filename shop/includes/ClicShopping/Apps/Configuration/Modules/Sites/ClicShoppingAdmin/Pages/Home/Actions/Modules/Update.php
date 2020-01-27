@@ -27,11 +27,10 @@
 
     public function execute()
     {
-      $CLICSHOPPING_Modules = Registry::get('Modules');
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (isset($_GET['Update'])) {
-        $set = (isset($_GET['set']) ? $_GET['set'] : '');
+        $set = $_GET['set'] ?? '';
 
         foreach ($_POST['configuration'] as $key => $value) {
           if ((is_array($value)) && (!empty($value))) {
@@ -54,7 +53,7 @@
 
         Cache::clear('configuration');
 
-        $CLICSHOPPING_Modules->redirect('Modules&set=' . $set . '&module=' . $_GET['module']);
+        $this->app->redirect('Modules&set=' . $set . '&module=' . $_GET['module']);
       }
     }
   }

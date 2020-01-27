@@ -238,8 +238,8 @@
                   echo '<td class="text-md-center"></td>';
                 }
               ?>
-              <td class="text-md-center"><?php echo $Qproducts->value('admin_user_name'); ?></td>
-              <td class="text-md-center"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
+              <td class="text-md-left"><?php echo $Qproducts->value('admin_user_name'); ?></td>
+              <td class="text-md-right"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
               <td class="text-md-right">
                 <?php
                   echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit')));
