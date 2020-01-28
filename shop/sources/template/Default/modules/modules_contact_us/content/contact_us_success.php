@@ -11,7 +11,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="col-md-<?php echo $content_width; ?>" id="RowContentSuccess1">
+<div class="col-md-<?php echo $content_width; ?>" id="buttonSuccess1">
   <div class="modulesContactUsSuccess">
     <?php echo CLICSHOPPING::getDef('modules_contact_us_success_text_success', ['store_name' => STORE_NAME]); ?>
   </div>

@@ -136,7 +136,7 @@
     <div class="control-group">
      <div class="controls">
        <div class="buttonSet">
-         <span class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></span>
+         <span class="float-md-right"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?></label></span>
        </div>
      </div>
     </div>
@@ -146,7 +146,7 @@
     <div class="control-group">
       <div class="controls">
         <div class="buttonSet">
-          <span class="float-md-left"> <?php echo  HTML::button(CLICSHOPPING::getDef('button_back'), '', CLICSHOPPING::link('checkout_payment_address.php'),'info'); ?></span>
+          <span class="float-md-left"><label for="buttonBack"><?php echo  HTML::button(CLICSHOPPING::getDef('button_back'), '', CLICSHOPPING::link('checkout_payment_address.php'),'info'); ?></label></span>
         </div>
       </div>
     </div>

@@ -487,7 +487,7 @@
               </div>
               <div class="separator"></div>
               <div class="text-md-right">
-                <?php echo HTML::button($button_text, null, null, 'primary', null, null); ?>
+                <label for="buttonText"><?php echo HTML::button($button_text, null, null, 'primary'); ?></label>
               </div>
               <div class="separator"></div>
             </div>
@@ -496,16 +496,16 @@
           <div class="modal-footer">
             <div class="row col-md-12">
               <div class="col-md-6">
-                <a href="../index.php">
+                <label for="buttononlineCatalog"><a href="../index.php">
                   <button class="btn text-md-left" data-dismiss="modal"
                           aria-hidden="true"><?php echo CLICSHOPPING::getDef('header_title_online_catalog'); ?></button>
-                </a>
+                  </a></label>
               </div>
               <div class="col-md-6">
-                <a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
+                <label for="buttonNewPassword"><a href="<?php echo CLICSHOPPING::link('login.php', 'action=password'); ?>">
                   <button class="btn text-md-right" data-dismiss="modal"
                           aria-hidden="true"><?php echo CLICSHOPPING::getDef('text_new_text_password'); ?></button>
-                </a>
+                  </a></label>
               </div>
             </div>
           </div>
@@ -535,13 +535,13 @@
           </div>
           <div class="row col-md-12">
             <div class="col-md-6">
-              <a href="<?php echo CLICSHOPPING::link('login.php'); ?>">
+              <label for="buttonheaderAdministration"><a href="<?php echo CLICSHOPPING::link('login.php'); ?>">
                 <button class="btn btn-secondary text-md-left"
                         type="button"><?php echo CLICSHOPPING::getDef('header_title_administration'); ?></button>
-              </a>
+                </a></label>
             </div>
             <div class="col-md-6 text-md-right">
-              <?php echo HTML::button(CLICSHOPPING::getDef('button_submit'), null, null, 'primary'); ?>
+              <label for="buttonSubmit"><?php echo HTML::button(CLICSHOPPING::getDef('button_submit'), null, null, 'primary'); ?></label>
             </div>
           </div>
         </div>

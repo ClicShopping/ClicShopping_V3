@@ -56,8 +56,8 @@
           <?php echo $form; ?>
           <div class="form-group form-group-center">
             <span class="ModulesProductsFavoritesBoostrapColumn5QuantityMinOrder"><?php echo $input_quantity; ?>&nbsp; </span>
-            <span class="ModulesProductsFavoritesBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?>&nbsp; </span>
-            <span class="ModulesProductsFavoritesBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></span>
+            <span class="ModulesProductsFavoritesBoostrapColumn5ViewDetails"><label for="ModulesProductsFavoritesBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?></label>&nbsp;</span>
+            <span class="ModulesProductsFavoritesBoostrapColumn5SubmitButton"><label for="ModulesProductsFavoritesBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></label></span>
           </div>
           <?php echo $endform; ?>
         </div>

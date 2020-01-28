@@ -30,7 +30,7 @@
         <div class="controls">
           <div class="buttonSet">
             <div class="buttonSet">
-              <span class="text-md-right"><?php echo  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::redirect(null, 'Account&LogIn'), 'success'); ?></span>
+              <span class="text-md-right"><label for="buttonContinue"><?php echo  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::redirect(null, 'Account&LogIn'), 'success'); ?></label></span>
             </div>
           </div>
         </div>

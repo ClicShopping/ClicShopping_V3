@@ -36,7 +36,7 @@ use ClicShopping\OM\CLICSHOPPING;
         </div>
         <div class="separator"></div>
          <div class="modulesProductsInfoModulesProductsInfosubmitButton">
-          <span class="modulesProductsInfoModulesProductsInfosubmitButton"><?php echo $submit_button; ?></span>
+          <span class="modulesProductsInfoModulesProductsInfosubmitButton"><label for="modulesProductsInfoModulesProductsInfosubmitButton"><?php echo $submit_button; ?></label></span>
         </div>
       </div>
     </div>

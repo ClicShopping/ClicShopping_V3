@@ -164,12 +164,11 @@
       if (count($best_sellers) >= MODULE_BOXES_BEST_SELLERS_MIN_DISPLAY && count($best_sellers) <= MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY) {
         $position = 1;
 
-
         $bestsellers_list = '<ol class="olBestSellers">';
 
         foreach ($best_sellers as $b) {
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($b['products_id']);
-          $bestsellers_list .= '<div class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') . '</div>';
+          $bestsellers_list .= '<li class="BestSellerLi">' . HTML::link($products_name_url, $position . '. <span itemprop="itemListElement">' . $b['products_name'] .'</span>') . '</li>';
 
           $position++;
         }

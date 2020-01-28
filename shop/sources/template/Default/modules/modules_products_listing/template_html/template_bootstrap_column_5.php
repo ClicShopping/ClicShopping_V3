@@ -57,7 +57,7 @@ use ClicShopping\OM\CLICSHOPPING;
           <div class="form-group form-group-center">
             <span class="ModulesProductsListingBoostrapColumn5QuantityMinOrder"><?php echo $input_quantity; ?>&nbsp; </span>
             <span class="ModulesProductsListingBoostrapColumn5ViewDetails"><?php echo $button_small_view_details; ?>&nbsp; </span>
-            <span class="ModulesProductsListingBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></span>
+            <span class="ModulesProductsListingBoostrapColumn5SubmitButton"><label for="ModulesProductsListingBoostrapColumn5SubmitButton"><?php echo $submit_button; ?></label></span>
           </div>
           <?php echo $endform; ?>
         </div>

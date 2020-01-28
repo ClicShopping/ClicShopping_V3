@@ -25,7 +25,7 @@ use ClicShopping\OM\html;
     <div class="control-group">
       <div class="controls">
         <div class="buttonSet">
-          <span class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'info'); ?></span>
+          <span class="float-md-right"><label for="buttonUpdate"><?php echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'info'); ?></label></span>
         </div>
       </div>
     </div>

@@ -45,7 +45,7 @@
       <div class="control-group">
         <div class="controls">
           <div class="buttonSet">
-            <span class="float-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&LogIn'), 'success'); ?></span>
+            <span class="float-md-right"><label for="buttonContinue"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&LogIn'), 'success'); ?></label></span>
           </div>
         </div>
       </div>

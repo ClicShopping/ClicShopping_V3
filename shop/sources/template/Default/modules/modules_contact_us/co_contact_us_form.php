@@ -52,7 +52,7 @@
         }
 
         $contact_us_form = '<!--  contact_us_form start -->' . "\n";
-        $contact_us_form .= '<div class="col-md-' . $content_width . '">';
+        $contact_us_form .= '<div class="col-md-' . $content_width . '" id="ContactUs">';
         $contact_us_form .= $form;
 
         if ($order_id == 0 && !$CLICSHOPPING_Customer->isLoggedOn()) {
@@ -63,7 +63,7 @@
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
-            <div class="row" id="RowContent1">
+            <div class="row" id="NameCustomer">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="AllName" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_name') . '</label>
@@ -77,7 +77,7 @@
 
         } else {
           $contact_us_form .= '
-            <div class="row" id="RowContent2">
+            <div class="row" id="nameCustomerAnonymous">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="InputName" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_name') . '</label>
@@ -93,7 +93,7 @@
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
-            <div class="row" id="RowContent3">
+            <div class="row" id="emailCustomer">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="dob" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_email') . '</label>
@@ -106,7 +106,7 @@
           ';
         } else {
           $contact_us_form .= '
-            <div class="row" id="RowContent4">
+            <div class="row" id="emailCustomerAnonymous">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="email" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_email') . '</label>
@@ -124,7 +124,7 @@
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
 
           $contact_us_form .= '
-              <div class="row" id="RowContent5">
+              <div class="row" id="customerPhone">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
@@ -139,7 +139,7 @@
         } else {
 
           $contact_us_form .= '
-              <div class="row" id="RowContent6">
+              <div class="row" id="customerAnonymousPhone">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
@@ -159,7 +159,7 @@
 
         if ($CLICSHOPPING_Customer->isLoggedOn()) {
           $contact_us_form .= '
-              <div class="row" id="RowContent7">
+              <div class="row" id="customerId">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="entry_customers_id" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_id') . '</label>
@@ -172,14 +172,14 @@
             ';
 // customer registered with order number
           if ($order_id == 0) {
-            $contact_us_form .= '<div>';
+            $contact_us_form .= '<div id="noteRegistrednoOrder">';
             $contact_us_form .= '<label for="entry_note_registred" class="col-md-12">' . CLICSHOPPING::getDef('entry_note_registered') . '</label>';
             $contact_us_form .= '</div>';
 
           } else {
 // customer registered with no order number
             $contact_us_form .= '
-              <div class="row" id="RowContent8">
+              <div class="row" id="orderId">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <label for="gender" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_order') . '</label>
@@ -192,7 +192,7 @@
             ';
 
             $contact_us_form .= '
-              <div class="row" id="RowContent9">
+              <div class="row" id="NoteRegistred">
                 <div class="col-md-12">
                   <div class="form-group row">
                     <div class="col-md-12 alert alert-warning">
@@ -208,7 +208,7 @@
 
         if (!empty(CONTACT_DEPARTMENT_LIST)) {
           $contact_us_form .= '
-            <div class="row" id="RowContent10">
+            <div class="row" id="companyDepartement">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="CompanyDepartment" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('send_department_company') . '</label>
@@ -224,7 +224,7 @@
 // Subject
 // -------
         $contact_us_form .= '
-            <div class="row" id="RowContent11">
+            <div class="row" id="subject">
               <div class="col-md-12">
                 <div class="form-group row">
                   <label for="Inputsubject" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_subject') . '</label>
@@ -241,23 +241,24 @@
 // ----------------------
         $contact_us_form .= '<div class="separator"></div>';
         $contact_us_form .= '
-            <div class="row" id="RowContent12">
-              <div class="col-md-12">
+           <div class="row" id="enquiry">
+             <div class="col-md-12">
                 <div class="form-group row">
                   <label for="inputMessage" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_enquiry') . '</label>
-                  </div>
-              </div>
-              <div class="col-md-10">
-                ' . HTML::textAreaField('enquiry', null, 50, 15, 'class="form-control" required aria-required="true" id="inputMessage" placeholder="' . CLICSHOPPING::getDef('entry_enquiry') . '" class="inputContacUsFormTextArea"') . '
-              </div>
+                </div>
              </div>
+             <div class="col-md-10">
+                ' . HTML::textAreaField('enquiry', null, 50, 15, 'class="form-control inputContacUsFormTextArea" required aria-required="true" id="inputMessage" placeholder="' . CLICSHOPPING::getDef('entry_enquiry') . '"') . '
+             </div>
+           </div>
             ';
 // ----------------------
 // Hooks
 // ----------------------
-        $contact_us_form .= $CLICSHOPPING_Hooks->output('Contact', 'DisplayRowContent', null, 'display');
 
         $contact_us_form .= '</div>' . "\n";
+
+        $contact_us_form .= $CLICSHOPPING_Hooks->output('Contact', 'DisplayRowContent', null, 'display');
 
         $contact_us_form .= '<!-- contact_us_form end -->' . "\n";
 

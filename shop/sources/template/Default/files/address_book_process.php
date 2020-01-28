@@ -69,8 +69,8 @@
       <div class="separator"></div>
       <div class="control-group">
         <div class="buttonSet">
-          <div class="col-md-6 float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
-          <div class="col-md-6 float-md-right"><span class="buttonAction"><?php echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . HTML::sanitize($_GET['delete']) . '&action=deleteconfirm&formid=' . md5($_SESSION['sessiontoken'])), 'danger'); ?></span></div>
+          <div class="col-md-6 float-md-left"><label for="buttonBack"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></label></div>
+          <div class="col-md-6 float-md-right"><span class="buttonAction"><label for="buttonDelete"><?php echo HTML::button(CLICSHOPPING::getDef('button_delete'), null, CLICSHOPPING::link(null, 'Account&AddressBookProcess&Delete&delete=' . HTML::sanitize($_GET['delete']) . '&action=deleteconfirm&formid=' . md5($_SESSION['sessiontoken'])), 'danger'); ?></label></span></div>
         </div>
       </div>
 <?php
@@ -89,11 +89,11 @@
 <?php
      if (empty($newcustomer)) {
 ?>
-            <div class="col-md-6 float-md-left"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></div>
+       <div class="col-md-6 float-md-left"><label for="buttonBack"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null,'Account&AddressBook'), 'primary'); ?></label></div>
 <?php
      }
 ?>
-             <div class="col-md-6 float-md-right text-md-right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success'); ?></div>
+             <div class="col-md-6 float-md-right text-md-right"><?php echo HTML::hiddenField('action', 'update') . HTML::hiddenField('edit', (int)$_GET['edit']) . HTML::hiddenField('shopping', isset($_GET['shopping']) ?? null) . '<label for="buttonBack">' .HTML::button(CLICSHOPPING::getDef('button_update'), 'refresh', null, 'success') . '</label>'; ?></div>
            </div>
          </div>
        </div>
@@ -113,10 +113,10 @@
       <div class="control-group">
         <div class="controls">
           <div class="buttonSet">
-            <span class="col-md-6"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, $back_link, 'primary'); ?></span>
+            <span class="col-md-6"><label for="buttonBack"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, $back_link, 'primary'); ?></label></span>
             <span class="col-md-6 text-md-right">
               <span class="buttonAction">
-                <?php echo  HTML::hiddenField('action', 'process') . HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success'); ?>
+                <?php echo  HTML::hiddenField('action', 'process') . '<label for="buttonContinue">' . HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success') . '</label>'; ?>
               </span>
             </span>
           </div>

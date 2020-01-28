@@ -25,12 +25,12 @@
         <li><?php echo HTML::link(CLICSHOPPING::link(null,'Account&AddressBook'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_address_book')); ?></li>
         <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&History'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_order_history')); ?></li>
 <br />
-          <a class="btn btn-danger btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&Logoff') ?>"><i class="fas fa-sign-out-alt"></i><?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_logoff') ?></a>
+    <label for="buttonLogOff"><a class="btn btn-danger btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&Logoff') ?>"><i class="fas fa-sign-out-alt"></i><?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_logoff') ?></a></label>
 <?php
   } else {
 ?>
         <li><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Create'), CLICSHOPPING::getDef('module_footer_multi_template_account_box_create_account')); ?></li>
-        <li class="col-md-12"><br /><a class="btn btn-success btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&LogIn'); ?>"><i class="fas fa-sign-in-alt"></i> <?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_login') ?></a></li>
+    <li class="col-md-12"><br /><label for="buttonLogIn"><a class="btn btn-success btn-sm btn-block" role="button" href="<?php echo CLICSHOPPING::link(null, 'Account&LogIn'); ?>"><i class="fas fa-sign-in-alt"></i> <?php echo CLICSHOPPING::getDef('module_footer_multi_template_account_box_login') ?></a></label></li>
 <?php
   }
 ?>
@@ -85,7 +85,7 @@
         <?php echo nl2br(STORE_NAME_ADDRESS); ?><br />
       </address>
       <ul class="list-unstyled">
-        <li><?php echo HTML::button(CLICSHOPPING::getDef('module_footer_multi_template_contact_us_email_link'), 'fas fa-paper-plane', 'index.php?Info&Contact', 'info'); ?></li>
+        <li><label for="buttonFooterContactUs"><?php echo HTML::button(CLICSHOPPING::getDef('module_footer_multi_template_contact_us_email_link'), 'fas fa-paper-plane', 'index.php?Info&Contact', 'info'); ?></label></li>
       </ul>
     </div>
   </div>
