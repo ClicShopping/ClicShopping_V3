@@ -13,7 +13,7 @@
   use ClicShopping\OM\Registry;
 
   class securityCheck_check_github_directory {
-    public string $type = 'warning';
+    public $type = 'warning';
 
     public function __construct()
     {
