@@ -14,7 +14,7 @@
 
   class securityCheckExtended_admin_backup_file
   {
-    public $type = 'error';
+    public $type = 'danger';
     public $has_doc = true;
 
     public function __construct()

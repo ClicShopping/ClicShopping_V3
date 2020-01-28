@@ -27,7 +27,7 @@
     return strcasecmp($a['title'], $b['title']);
   }
 
-  $types = ['info', 'warning', 'error'];
+  $types = ['info', 'warning', 'error', 'danger'];
 
   $modules = [];
 

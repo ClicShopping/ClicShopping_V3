@@ -14,7 +14,7 @@
 
   class securityCheckExtended_admin_backup_directory_listing
   {
-    public $type = 'error';
+    public $type = 'danger';
     public $has_doc = true;
 
     public function __construct()

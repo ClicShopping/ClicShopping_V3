@@ -14,7 +14,7 @@
 
   class securityCheck_default_language
   {
-    public $type = 'error';
+    public $type = 'danger';
 
     public function __construct()
     {

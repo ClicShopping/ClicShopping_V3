@@ -14,7 +14,7 @@
 
   class securityCheck_default_currency
   {
-    public $type = 'error';
+    public $type = 'danger';
 
     public function __construct()
     {
