@@ -18,10 +18,13 @@
      */
     public function display(): string
     {
-      $version = '0.11.4';
-      $output = '<! -- Start Chartist -->' . "\n";
-      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/chartist/' . $version . '/chartist.min.js"></script>' . "\n";
-      $output .= '<!-- End Chartist  -->' . "\n";
+      $output = '';
+
+      if (isset($_SESSION['admin'])) {
+        $output .= '<! -- Start Chartist -->' . "\n";
+        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>' . "\n";
+        $output .= '<!-- End Chartist  -->' . "\n";
+      }
 
       return $output;
     }

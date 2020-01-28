@@ -11,19 +11,26 @@
 
   namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 
-  class FooterOutputMustache
+  class FooterOutputJqvMap
   {
     /**
      * @return string
      */
     public function display(): string
     {
+      $params = $_SERVER['QUERY_STRING'];
+
+      if (!empty($params)) {
+        return false;
+      }
+
       $output ='';
 
       if (isset($_SESSION['admin'])) {
-        $output .= '<!-- Mustache Script start-->' . "\n";
-        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>' . "\n";
-        $output .= '<!--Mustache end -->' . "\n";
+        $output .= '<! -- Start Jqvmap -->' . "\n";
+        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>' . "\n";
+        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js"></script>' . "\n";
+        $output .= '<!-- End Jqvmap  -->' . "\n";
       }
 
       return $output;

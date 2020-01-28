@@ -20,9 +20,13 @@
      */
     public function display(): string
     {
-      $output = '<!--count words  Script start-->' . "\n";
-      $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.min.js') . '"></script>' . "\n";
-      $output .= '<!--End count words -->' . "\n";
+      $output = '';
+
+      if (isset($_SESSION['admin'])) {
+        $output .= '<!--count words  Script start-->' . "\n";
+        $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.min.js') . '"></script>' . "\n";
+        $output .= '<!--End count words -->' . "\n";
+      }
 
       return $output;
     }

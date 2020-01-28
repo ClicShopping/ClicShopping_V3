@@ -11,8 +11,6 @@
 
   namespace ClicShopping\Apps\Orders\Orders\Module\ClicShoppingAdmin\Dashboard;
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\DateTime;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
@@ -54,19 +52,12 @@
       $text_orders_status = $this->app->getDef('text_orders_status');
       $text_order_delivery = $this->app->getDef('text_order_delivery');
 
-
-      $output = '<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css" rel="stylesheet" media="screen" rel="preload"/>';
-      $output .= '<link type="text/css" href="' . CLICSHOPPING::link('css/jqvmap.css') . '" rel="stylesheet" rel="preload"/>';
-
-      $output .= '<div class="' . $content_width . '">';
+      $output = '<div class="' . $content_width . '">';
       $output .= '<div class="card">';
       $output .= '<div id="vmap"></div>';
       $output .= '<div class="separator"></div>';
       $output .= '</div>';
       $output .= '</div>';
-
-      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>';
-      $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js"></script>';
 
       $output .= '
 <script type="text/javascript"><!--

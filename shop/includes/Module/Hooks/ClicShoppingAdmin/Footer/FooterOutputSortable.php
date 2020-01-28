@@ -20,10 +20,12 @@
     {
       $output = '';
 
-      if (isset($_GET['cPath'])) {
-        $output = '<!-- Sortable Script start-->' . "\n";
-        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.min.js"></script>' . "\n";
-        $output .= '<!--Sortable end -->' . "\n";
+      if (isset($_SESSION['admin'])) {
+        if (isset($_GET['cPath'])) {
+          $output .= '<!-- Sortable Script start-->' . "\n";
+          $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.min.js"></script>' . "\n";
+          $output .= '<!--Sortable end -->' . "\n";
+        }
       }
 
       return $output;

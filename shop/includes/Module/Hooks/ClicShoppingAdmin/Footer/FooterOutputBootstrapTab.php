@@ -20,9 +20,13 @@
      */
     public function display(): string
     {
-      $output = '<!-- Bootstrap tab Script start-->' . "\n";
-      $output .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrap/tab/bootstrap_tab.js') . '"></script>' . "\n";
-      $output .= '<!--Bootstrap tab end -->' . "\n";
+      $output = '';
+
+      if (isset($_SESSION['admin'])) {
+        $output .= '<!-- Bootstrap tab Script start-->' . "\n";
+        $output .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/bootstrap/tab/bootstrap_tab.js') . '"></script>' . "\n";
+        $output .= '<!--Bootstrap tab end -->' . "\n";
+      }
 
       return $output;
     }

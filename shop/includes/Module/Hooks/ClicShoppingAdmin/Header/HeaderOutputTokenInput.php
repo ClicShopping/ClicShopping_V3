@@ -20,8 +20,12 @@
      */
     public function display(): string
     {
-      $output = '<link rel="stylesheet preload" as="style"   href="' .  CLICSHOPPING::link('css/tokenInput.css') . '" media="screen, print">' . "\n";
+      $output = '';
 
+      if (isset($_SESSION['admin'])) {
+        $output = '<link rel="stylesheet preload" as="style"   href="' . CLICSHOPPING::link('css/tokenInput.css') . '" media="screen, print">' . "\n";
+      }
+      
       return $output;
     }
   }

@@ -18,7 +18,11 @@
      */
     public function display(): string
     {
-      $output = '<link rel="stylesheet preload" as="style" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">';
+      $output = '';
+
+      if (isset($_SESSION['admin'])) {
+        $output = '<link rel="stylesheet preload" as="style" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">';
+      }
 
       return $output;
     }

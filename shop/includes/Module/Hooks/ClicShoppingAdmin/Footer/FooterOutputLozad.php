@@ -18,12 +18,16 @@
      */
     public function display(): string
     {
-      $output = '<!--Lazyload Script start-->' . "\n";
-      $output .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
-      $output .= '<script defer>';
-      $output .= 'const observer = lozad(); observer.observe();';
-      $output .= '</script>' . "\n";
-      $output .= '<!--End Lazyload Script-->' . "\n";
+      $output ='';
+
+      if (isset($_SESSION['admin'])) {
+        $output .= '<!--Lazyload Script start-->' . "\n";
+        $output .= '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>' . "\n";
+        $output .= '<script defer>';
+        $output .= 'const observer = lozad(); observer.observe();';
+        $output .= '</script>' . "\n";
+        $output .= '<!--End Lazyload Script-->' . "\n";
+      }
 
       return $output;
     }
