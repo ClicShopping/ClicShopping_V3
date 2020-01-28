@@ -15,6 +15,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\FileSystem;
 
   class Save extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -113,7 +114,9 @@
             $Qdefinitions = $this->app->db->get(':table_languages_definitions', ['count(*) as total'], $where_array);
 
             if ($Qdefinitions->valueInt('total') == 0) {
-              $this->app->db->save(':table_languages_definitions', $sql_data_array);
+              if (!empty($new_definition_key)) {
+                $this->app->db->save(':table_languages_definitions', $sql_data_array);
+              }
             } else {
               $CLICSHOPPING_MessageStack->add($this->app->getDef('ms_error_db_save', ['definition_key' => $new_definition_key]), 'error');
             }
@@ -166,9 +169,9 @@
         $path_to_file .= $groups[$i] . '/';
       }
 
-      $file_name = $groups[count($groups) - 1] . '.txt';
+//      $file_name = $groups[count($groups) - 1] . '.txt';
 
-      $path_name = str_replace("-", "/", substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . ".txt";
+      $path_name = str_replace('-', '/', substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . '.txt';
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $language_dir = CLICSHOPPING::getConfig('dir_root', ($groups[0] == 'Apps' ? 'Shop' : $groups[0])) . ($groups[0] == 'Apps' ? 'includes/ClicShopping/Apps/' . $groups[1] . '/' . $groups[2] . '/' : 'includes/') . 'languages/' . $languages[$i]['directory'];
@@ -180,7 +183,11 @@
             }
           }
         } else {
-//            unlink($language_dir . $path_name);
+          if (FileSystem::isWritable($language_dir . $path_name) === true) {
+             unlink($language_dir . $path_name);
+          } else {
+            $CLICSHOPPING_MessageStack->add($this->app->getDef('error_file_not_writeable', ['pathname' => $language_dir . $path_name]), 'warning');
+          }
         }
 
         $Qdefinitions = $this->app->db->prepare('select definition_key,
@@ -199,8 +206,10 @@
           do {
             $data = $Qdefinitions->value('definition_key') . ' = ' . $Qdefinitions->value('definition_value');
 
-            if (is_file($language_dir . $path_name)) {
-              @file_put_contents($language_dir . $path_name, $data . PHP_EOL, FILE_APPEND | LOCK_EX);
+            if (is_file($language_dir . $path_name) && FileSystem::isWritable($language_dir . $path_name)) {
+              file_put_contents($language_dir . $path_name, $data . PHP_EOL, FILE_APPEND | LOCK_EX);
+            } else {
+             // $CLICSHOPPING_MessageStack->add($this->app->getDef('error_file_not_writeable', ['pathname' => $language_dir . $path_name]), 'warning');
             }
           } while ($Qdefinitions->fetch());
         }

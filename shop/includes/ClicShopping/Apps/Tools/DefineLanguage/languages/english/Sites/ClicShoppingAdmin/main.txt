@@ -73,3 +73,4 @@ image_filter = Filter
 error_language_directory_not_writeable = The language directory is not writeable
 
 alert_info_language = if you do not see all language, please click on the different language on the catalog to activate the cache
+error_file_not_writeable = Impossible the write inside the file but your modification is save inside the database
