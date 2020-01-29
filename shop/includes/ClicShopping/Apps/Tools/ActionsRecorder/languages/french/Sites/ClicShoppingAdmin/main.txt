@@ -44,7 +44,7 @@ table_heading_module = Modules
 table_heading_customer = Clients
 table_heading_date_added =  Date ajout
 table_heading_action = Action
-table_heading_identifier = Iormation client
+table_heading_identifier = Information client
 text_info_date_added = Date ajout
 success_expired_entries = Succès
 

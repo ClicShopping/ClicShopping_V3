@@ -49,8 +49,6 @@
       for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
         $file = $directory_array[$i];
 
-//    $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/action_recorder'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));
-
         include($CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/action_recorder/' . $file);
 
         $class = substr($file, 0, strrpos($file, '.'));
@@ -59,27 +57,12 @@
         }
       }
 
-
       $modules_array = [];
-      $modules_list_array = array(array('id' => '',
-        'text' => $this->app->getDef('txt_all_modules')
-        )
-      );
 
       $Qmodules = $this->app->db->get('action_recorder', 'distinct module', null, 'module');
 
       while ($Qmodules->fetch()) {
         $modules_array[] = $Qmodules->value('module');
-
-        if (isset($GLOBALS[$Qmodules->value('module')]) && is_object($GLOBALS[$Qmodules->value('module')])) {
-          $module_title = $GLOBALS[$Qmodules->value('module')]->title;
-        } else {
-          $module_title = $Qmodules->value('module');
-        }
-
-        $modules_list_array[] = ['id' => $Qmodules->value('module'),
-          'text' => $module_title
-        ];
       }
 
       $expired_entries = 0;

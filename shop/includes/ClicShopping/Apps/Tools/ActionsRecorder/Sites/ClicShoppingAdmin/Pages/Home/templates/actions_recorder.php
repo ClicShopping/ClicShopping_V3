@@ -81,7 +81,6 @@
               <div class="controls">
 <?php
   echo HTML::form('search', $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder'), 'post', 'class="form-inline"', ['session_id' => true]);
-  //  echo HTML::inputField('search', null, 'id="search" placeholder="' . $CLICSHOPPING_ActionsRecorder->getDef('text_filter_search') . '"');
   echo HTML::selectField('module', $modules_list_array, null, 'onchange="this.form.submit();"');
 ?>
               </div>
