@@ -373,7 +373,7 @@
       $price = $this->productsCommon->getDisplayPriceGroupWithoutCurrencies($products_id);
 
       if ($CLICSHOPPING_Reviews->getAverageProductReviews($products_id) == 0) {
-        $review_average = 0;
+        $review_average = 1;
       } else {
         $review_average = $CLICSHOPPING_Reviews->getAverageProductReviews($products_id);
       }
