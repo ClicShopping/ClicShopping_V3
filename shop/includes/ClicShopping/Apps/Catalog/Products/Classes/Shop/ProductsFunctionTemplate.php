@@ -399,7 +399,7 @@
     "' . HTTP::typeUrlDomain() . $this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImage($products_id) . '",
     "' . HTTP::typeUrlDomain() . $this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImageMedium($products_id) . '"
    ],
-  "description": "' .  $description . '",
+  "description": "",
   "sku": "' . $this->productsCommon->getProductsSKU($products_id) . '",
   "mpn": "' . $this->productsCommon->getProductsSKU($products_id) . '", 
   "brand": {
