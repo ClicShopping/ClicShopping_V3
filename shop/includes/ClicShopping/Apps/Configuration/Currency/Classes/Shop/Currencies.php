@@ -228,18 +228,20 @@
     /**
      * @param string $number
      * @param string|null $currency_code
-     * @param bool $use_locale
      * @return string
      */
-    public function trim(string $number, string $currency_code = null, bool $use_locale = true): string
+    public function trim(string $number, string $currency_code = null): string
     {
       if (!isset($currency_code)) {
         $currency_code = $this->getDefault();
       }
 
       $dec_point = '.';
-      if (!empty($this->currencies[$_SESSION['currency']]['thousands_point'])) {
-        $dec_point = $this->currencies[$_SESSION['currency']]['thousands_point'];
+
+      $currency = $_SESSION['currency'];
+
+      if (!empty($this->currencies[$currency]['thousands_point'])) {
+        $dec_point = $this->currencies[$currency]['thousands_point'];
       }
 
       $number = str_replace($dec_point . str_repeat('0', $this->currencies[$currency_code]['decimal_places']), '', $number);

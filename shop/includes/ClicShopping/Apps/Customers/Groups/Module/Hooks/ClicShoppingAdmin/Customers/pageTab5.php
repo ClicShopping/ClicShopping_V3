@@ -133,43 +133,7 @@
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
             } // end customers_group_id
-          } else {
-
-            $file = $include_modules[$i]['file'];
-
-            if (in_array($include_modules[$i]['file'], $modules_shipping)) {
-
-              $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/shipping/' . $include_modules[$i]['file']);
-
-              $class = substr($file, 0, strrpos($file, '.'));
-
-              if (class_exists($class)) {
-                $module = new $class;
-                if ($module->check() > 0) {
-                  $installed_modules[] = $file;
-                }
-              }
-
-              if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
-                $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-                $content .= '<span class="col-md-3">' . $module->title . '</span>';
-                $content .= '</div>';
-              } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $shipping_unallowed))) {
-                $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg text-danger" aria-hidden="true"></i></span>';
-                $content .= '<span class="col-md-3">' . $module->title . '</span>';
-                $content .= '</div>';
-              } elseif ($cInfo->customers_group_id == 0) {
-                $content .= '<div class="col-md-12">';
-                $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
-                $content .= '<span class="col-md-3">' . $module->title . '</span>';
-                $content .= '</div>';
-
-
-              } // end customers_group_id
-            } // end in_array
-          } // end class
+          }
         } // end for
 
         $content .= '</div>';
