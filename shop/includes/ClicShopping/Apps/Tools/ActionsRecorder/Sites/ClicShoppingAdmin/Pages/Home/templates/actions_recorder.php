@@ -95,15 +95,25 @@
     </div>
   </div>
   <div class="separator"></div>
-  <table class="table table-sm table-hover table-striped">
-    <thead>
-    <tr class="dataTableHeadingRow">
-      <th width="20">&nbsp;</th>
-      <th><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_module'); ?></th>
-      <th><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_customer'); ?></th>
-      <th><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_identifier'); ?></th>
-      <th class="text-md-center"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_date_added'); ?></th>
-    </tr>
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="date_added"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th width="20" data-field="none">&nbsp;</th>
+        <th data-field="module" data-sortable="true"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_module'); ?></th>
+        <th data-field="customer" data-sortable="true"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_customer'); ?></th>
+        <th data-field="identifier" data-sortable="true"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_identifier'); ?></th>
+        <th data-field="date_added" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_date_added'); ?></th>
+      </tr>
     </thead>
     <tbody>
     <?php

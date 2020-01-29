@@ -81,12 +81,7 @@
           <span
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/cybermarketing.gif', $CLICSHOPPING_SecurityCheck->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo $CLICSHOPPING_SecurityCheck->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
-<?php
-  echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_reset'), null, $CLICSHOPPING_SecurityCheck->link('SecurityCheck'), 'warning') . ' ';
-  echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_reload'), null, $CLICSHOPPING_SecurityCheck->link('SecurityCheck'), 'primary');
-?>
-             </span>
+          <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_reset'), null, $CLICSHOPPING_SecurityCheck->link('SecurityCheck'), 'warning'); ?></span>
         </div>
       </div>
     </div>
@@ -94,7 +89,7 @@
   <div class="separator"></div>
   <table border="0" width="100%" cellspacing="0" cellpadding="2">
     <td>
-      <table class="table table-sm table-hover table-striped">
+      <table class="table table-sm table-hover">
         <thead>
         <tr class="dataTableHeadingRow">
           <th width="20">&nbsp;</th>
