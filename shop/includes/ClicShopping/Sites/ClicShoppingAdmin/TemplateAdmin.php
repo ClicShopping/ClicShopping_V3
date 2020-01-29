@@ -359,12 +359,8 @@
       $template_directory = $this->getDirectoryPathModuleShopTemplateHtml($module);
 
       if ($contents = @scandir($template_directory)) {
-
-        $found = []; //initialize an array for matching files
         $fileTypes = ['php']; // Create an array of file types
         $found = []; // Traverse the folder, and add filename to $found array if type matches
-
-        $name = (($key) ? 'configuration[' . $key . ']' : 'configuration_value');
 
         foreach ($contents as $item) {
           $fileInfo = pathinfo($item);
