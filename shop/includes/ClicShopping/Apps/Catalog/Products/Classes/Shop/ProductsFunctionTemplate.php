@@ -17,6 +17,8 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\DateTime;
 
+  use ClicShopping\Sites\Common\HTMLOverrideCommon;
+
   class ProductsFunctionTemplate
   {
 
@@ -378,20 +380,28 @@
         $review_average = $CLICSHOPPING_Reviews->getAverageProductReviews($products_id);
       }
 
+//description
+      $str = $this->productsCommon->getProductsDescription($products_id);
+      $str = HTMLOverrideCommon::stripHtmlTags($str);
+      $description = HTMLOverrideCommon::cleanHtml($str);
+
+      $name = str_replace('"', '', $this->productsCommon->getProductsName($products_id));
+      $name = HTMLOverrideCommon::cleanHtml($name);
+
       $output = '
       <script defer type="application/ld+json">
 {
   "@context": "https://schema.org/",
   "@type": "Product",
-  "name": "' .  strip_tags(str_replace('"', '', $this->productsCommon->getProductsName($products_id))) . '",
+  "name": "' .  $name . '",
   "model": "' .  $this->productsCommon->getProductsModel($products_id) . '",
   "image": [
     "' . HTTP::typeUrlDomain() . $this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImage($products_id) . '",
     "' . HTTP::typeUrlDomain() . $this->template->getDirectoryTemplateImages() . $this->productsCommon->getProductsImageMedium($products_id) . '"
    ],
-  "description": "' .  strip_tags(str_replace('"', '', $this->productsCommon->getProductsDescription($products_id))) . '",
+  "description": "' .  $description . '",
   "sku": "' . $this->productsCommon->getProductsSKU($products_id) . '",
-  "mpn": "", 
+  "mpn": "' . $this->productsCommon->getProductsSKU($products_id) . '", 
   "brand": {
     "@type": "Thing",
     "name": "' . $this->productsCommon->getProductsManufacturer($products_id) . '"
