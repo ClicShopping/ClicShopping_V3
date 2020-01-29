@@ -301,9 +301,13 @@
 
 
         if (ACCOUNT_STATE == 'true') {
-          if (isset($entry_zone_id) && $entry_zone_id > 0) $entry_state = '';
+          if (isset($entry_zone_id) && $entry_zone_id > 0) {
+            $sql_data_array['entry_state'] = '';
+          } else {
+            $sql_data_array['entry_state'] = $customers_state;
+          }
+
           $sql_data_array['entry_zone_id'] = $entry_zone_id;
-          $sql_data_array['entry_state'] = $customers_state;
         } else {
           $sql_data_array['entry_zone_id'] = 0;
           $sql_data_array['entry_state'] = $customers_state;
