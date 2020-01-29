@@ -11,12 +11,9 @@
 
   namespace ClicShopping\Apps\Customers\Groups\Module\Hooks\ClicShoppingAdmin\Customers;
 
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\Apps;
-
-  use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
 
   use ClicShopping\Apps\Customers\Groups\Groups as GroupsApp;
 
@@ -35,9 +32,6 @@
 
     public function display()
     {
-      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-      $CLICSHOPPING_Language = Registry::get('Language');
-
       $this->app = Registry::get('Customers');
 
       if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
