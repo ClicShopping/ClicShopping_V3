@@ -97,9 +97,9 @@
 
 
 <div style="padding:20px 10px 30px 10px;">
-  <div style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
+  <div s class="text-md-left" style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
   <div class="separator"></div>
-  <div><?php echo $cInfo->configuration_description; ?></div>
+  <div class="text-md-left"><?php echo $cInfo->configuration_description; ?></div>
   <div class="separator"></div>
   <div><?php echo $value_field; ?></div>
 </div>
