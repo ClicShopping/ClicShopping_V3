@@ -15,7 +15,6 @@
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTML;
 
-
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;

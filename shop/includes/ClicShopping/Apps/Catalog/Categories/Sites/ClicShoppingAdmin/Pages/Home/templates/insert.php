@@ -25,6 +25,7 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $CLICSHOPPING_Hooks->call('Categories', 'PreAction');
 

@@ -45,4 +45,5 @@ table_heading_edit_products_archive = Activate the product
 text_edit_intro = Do  you want activate this product ?
 text_archive = <strong>Note : </strong>The reactivation article will display the product in the admin catalog at the same place where he was previously. <br /> Depending on the status, the product will be displayed or not in the catalog client side.
 
-
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (on <strong>{{listing_total}}</strong>)

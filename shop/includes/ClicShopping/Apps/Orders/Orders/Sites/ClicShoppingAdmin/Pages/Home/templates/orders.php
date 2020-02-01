@@ -22,6 +22,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Language =  Registry::get('Language');
 
   if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
@@ -30,12 +31,12 @@
   $orders_statuses = [];
   $orders_status_array = [];
 
-  $QordersStatus = $CLICSHOPPING_Db->prepare('select orders_status_id,
-                                                     orders_status_name
-                                              from :table_orders_status
-                                              where language_id = :language_id
-                                              ');
-  $QordersStatus->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+  $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
+                                                             orders_status_name
+                                                      from :table_orders_status
+                                                      where language_id = :language_id
+                                                      ');
+  $QordersStatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QordersStatus->execute();
 
   while ($QordersStatus->fetch() !== false) {
@@ -49,7 +50,7 @@
   if (isset($_GET['oID']) && is_numeric($_GET['oID']) && ($_GET['oID'] > 0)) {
     $oID = HTML::sanitize($_GET['oID']);
 
-    $Qorders = $CLICSHOPPING_Db->get('orders', ['orders_id', 'customers_group_id'], ['orders_id' => (int)$oID]);
+    $Qorders = $CLICSHOPPING_Orders->db->get('orders', ['orders_id', 'customers_group_id'], ['orders_id' => (int)$oID]);
 
     if ($Qorders->fetch()) {
       Registry::set('Order', new OrderAdmin($Qorders->valueInt('orders_id')));
@@ -169,30 +170,30 @@
 
       if (!empty($cID)) {
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
-                                                                        o.customers_id,
-                                                                        o.customers_name,
-                                                                        o.customers_company,
-                                                                        o.customers_id,
-                                                                        o.customers_group_id,
-                                                                        o.payment_method,
-                                                                        o.date_purchased,
-                                                                        o.last_modified,
-                                                                        o.currency,
-                                                                        o.currency_value,
-                                                                        s.orders_status_name,
-                                                                        ot.text as order_total,
-                                                                        o.erp_invoice
-                                               from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
-                                                    :table_orders_status s
-                                               where o.customers_id = :customers_id
-                                               and o.orders_status = s.orders_status_id
-                                               and s.language_id = :language_id
-                                               and o.orders_archive = :orders_archive
-                                               and (ot.class = :class or ot.class = :class1)
-                                               order by o.orders_id DESC
-                                               limit :page_set_offset,
-                                                     :page_set_max_results
-                                              ');
+                                                                                o.customers_id,
+                                                                                o.customers_name,
+                                                                                o.customers_company,
+                                                                                o.customers_id,
+                                                                                o.customers_group_id,
+                                                                                o.payment_method,
+                                                                                o.date_purchased,
+                                                                                o.last_modified,
+                                                                                o.currency,
+                                                                                o.currency_value,
+                                                                                s.orders_status_name,
+                                                                                ot.text as order_total,
+                                                                                o.erp_invoice
+                                                       from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
+                                                            :table_orders_status s
+                                                       where o.customers_id = :customers_id
+                                                       and o.orders_status = s.orders_status_id
+                                                       and s.language_id = :language_id
+                                                       and o.orders_archive = :orders_archive
+                                                       and (ot.class = :class or ot.class = :class1)
+                                                       order by o.orders_id DESC
+                                                       limit :page_set_offset,
+                                                             :page_set_max_results
+                                                      ');
 
         $Qorders->bindInt(':customers_id', $cID);
         $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
@@ -205,29 +206,29 @@
         $customers_group_id = (int)$_POST['customers_group_id'];
 
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
-                                                                        o.customers_id,
-                                                                        o.customers_name,
-                                                                        o.customers_group_id,
-                                                                        o.customers_company,
-                                                                        o.payment_method,
-                                                                        o.date_purchased,
-                                                                        o.last_modified,
-                                                                        o.currency,
-                                                                        o.currency_value,
-                                                                        s.orders_status_name,
-                                                                        ot.text as order_total,
-                                                                        o.erp_invoice
-                                             from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
-                                                  :table_orders_status s
-                                             where o.orders_status = s.orders_status_id
-                                             and s.language_id = :language_id
-                                             and o.customers_group_id = :customers_group_id
-                                             and o.orders_archive = :orders_archive
-                                             and (ot.class = :class or ot.class = :class1)
-                                             order by o.orders_id DESC
-                                             limit :page_set_offset,
-                                                   :page_set_max_results
-                                            ');
+                                                                                o.customers_id,
+                                                                                o.customers_name,
+                                                                                o.customers_group_id,
+                                                                                o.customers_company,
+                                                                                o.payment_method,
+                                                                                o.date_purchased,
+                                                                                o.last_modified,
+                                                                                o.currency,
+                                                                                o.currency_value,
+                                                                                s.orders_status_name,
+                                                                                ot.text as order_total,
+                                                                                o.erp_invoice
+                                                     from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
+                                                          :table_orders_status s
+                                                     where o.orders_status = s.orders_status_id
+                                                     and s.language_id = :language_id
+                                                     and o.customers_group_id = :customers_group_id
+                                                     and o.orders_archive = :orders_archive
+                                                     and (ot.class = :class or ot.class = :class1)
+                                                     order by o.orders_id DESC
+                                                     limit :page_set_offset,
+                                                           :page_set_max_results
+                                                    ');
 
         $Qorders->bindInt(':customers_group_id', $customers_group_id);
         $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
@@ -241,28 +242,28 @@
         if ($status == 0) {
 
           $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
-                                                                          o.customers_id,
-                                                                          o.customers_name,
-                                                                          o.customers_group_id,
-                                                                          o.customers_company,
-                                                                          o.payment_method,
-                                                                          o.date_purchased,
-                                                                          o.last_modified,
-                                                                          o.currency,
-                                                                          o.currency_value,
-                                                                          s.orders_status_name,
-                                                                          ot.text as order_total,
-                                                                          o.erp_invoice
-                                               from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
-                                                    :table_orders_status s
-                                               where o.orders_status = s.orders_status_id
-                                               and s.language_id = :language_id
-                                               and o.orders_archive = :orders_archive
-                                               and (ot.class = :class or ot.class = :class1)
-                                               order by o.orders_id DESC
-                                               limit :page_set_offset,
-                                                     :page_set_max_results
-                                            ');
+                                                                                  o.customers_id,
+                                                                                  o.customers_name,
+                                                                                  o.customers_group_id,
+                                                                                  o.customers_company,
+                                                                                  o.payment_method,
+                                                                                  o.date_purchased,
+                                                                                  o.last_modified,
+                                                                                  o.currency,
+                                                                                  o.currency_value,
+                                                                                  s.orders_status_name,
+                                                                                  ot.text as order_total,
+                                                                                  o.erp_invoice
+                                                       from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
+                                                            :table_orders_status s
+                                                       where o.orders_status = s.orders_status_id
+                                                       and s.language_id = :language_id
+                                                       and o.orders_archive = :orders_archive
+                                                       and (ot.class = :class or ot.class = :class1)
+                                                       order by o.orders_id DESC
+                                                       limit :page_set_offset,
+                                                             :page_set_max_results
+                                                    ');
 
           $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $Qorders->bindInt(':orders_archive', $archive_id);
@@ -271,29 +272,29 @@
         } else {
 
           $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
-                                                                            o.customers_id,
-                                                                            o.customers_name,
-                                                                            o.customers_group_id,
-                                                                            o.customers_company,
-                                                                            o.payment_method,
-                                                                            o.date_purchased,
-                                                                            o.last_modified,
-                                                                            o.currency,
-                                                                            o.currency_value,
-                                                                            s.orders_status_name,
-                                                                            ot.text as order_total,
-                                                                            o.erp_invoice
-                                                   from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
-                                                        :table_orders_status s
-                                                   where o.orders_status = s.orders_status_id
-                                                   and s.language_id = :language_id
-                                                   and s.orders_status_id = :orders_status_id
-                                                   and o.orders_archive = :orders_archive
-                                                   and (ot.class = :class or ot.class = :class1)
-                                                   order by o.orders_id DESC
-                                                   limit :page_set_offset,
-                                                         :page_set_max_results
-                                                ');
+                                                                                    o.customers_id,
+                                                                                    o.customers_name,
+                                                                                    o.customers_group_id,
+                                                                                    o.customers_company,
+                                                                                    o.payment_method,
+                                                                                    o.date_purchased,
+                                                                                    o.last_modified,
+                                                                                    o.currency,
+                                                                                    o.currency_value,
+                                                                                    s.orders_status_name,
+                                                                                    ot.text as order_total,
+                                                                                    o.erp_invoice
+                                                           from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
+                                                                :table_orders_status s
+                                                           where o.orders_status = s.orders_status_id
+                                                           and s.language_id = :language_id
+                                                           and s.orders_status_id = :orders_status_id
+                                                           and o.orders_archive = :orders_archive
+                                                           and (ot.class = :class or ot.class = :class1)
+                                                           order by o.orders_id DESC
+                                                           limit :page_set_offset,
+                                                                 :page_set_max_results
+                                                        ');
 
           $Qorders->bindInt(':orders_status_id', $status);
           $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
@@ -305,29 +306,29 @@
         $orders_id = HTML::sanitize($_POST['orders_id']);
 
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
-                                                                          o.customers_id,
-                                                                          o.customers_name,
-                                                                          o.customers_group_id,
-                                                                          o.customers_company,
-                                                                          o.payment_method,
-                                                                          o.date_purchased,
-                                                                          o.last_modified,
-                                                                          o.currency,
-                                                                          o.currency_value,
-                                                                          s.orders_status_name,
-                                                                          ot.text as order_total,
-                                                                          o.erp_invoice
-                                               from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
-                                                    :table_orders_status s
-                                               where o.orders_status = s.orders_status_id
-                                               and s.language_id = :language_id
-                                               and o.orders_id = :orders_id
-                                               and o.orders_archive = :orders_archive
-                                               and (ot.class = :class or ot.class = :class1)
-                                               order by o.orders_id DESC
-                                               limit :page_set_offset,
-                                                     :page_set_max_results
-                                              ');
+                                                                                  o.customers_id,
+                                                                                  o.customers_name,
+                                                                                  o.customers_group_id,
+                                                                                  o.customers_company,
+                                                                                  o.payment_method,
+                                                                                  o.date_purchased,
+                                                                                  o.last_modified,
+                                                                                  o.currency,
+                                                                                  o.currency_value,
+                                                                                  s.orders_status_name,
+                                                                                  ot.text as order_total,
+                                                                                  o.erp_invoice
+                                                       from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
+                                                            :table_orders_status s
+                                                       where o.orders_status = s.orders_status_id
+                                                       and s.language_id = :language_id
+                                                       and o.orders_id = :orders_id
+                                                       and o.orders_archive = :orders_archive
+                                                       and (ot.class = :class or ot.class = :class1)
+                                                       order by o.orders_id DESC
+                                                       limit :page_set_offset,
+                                                             :page_set_max_results
+                                                      ');
 
         $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         $Qorders->bindInt(':orders_archive', $archive_id);
@@ -338,29 +339,29 @@
       } else {
 
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
-                                                                          o.customers_id,
-                                                                          o.customers_name,
-                                                                          o.customers_group_id,
-                                                                          o.customers_company,
-                                                                          o.payment_method,
-                                                                          o.date_purchased,
-                                                                          o.last_modified,
-                                                                          o.currency,
-                                                                          o.currency_value,
-                                                                          s.orders_status_name,
-                                                                          s.orders_status_id,
-                                                                          ot.text as order_total,
-                                                                          o.erp_invoice
-                                               from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
-                                                    :table_orders_status s
-                                               where o.orders_status = s.orders_status_id
-                                               and s.language_id = :language_id
-                                               and o.orders_archive = :orders_archive
-                                               and (ot.class = :class or ot.class = :class1)
-                                               order by o.orders_id DESC
-                                               limit :page_set_offset,
-                                                     :page_set_max_results
-                                              ');
+                                                                                  o.customers_id,
+                                                                                  o.customers_name,
+                                                                                  o.customers_group_id,
+                                                                                  o.customers_company,
+                                                                                  o.payment_method,
+                                                                                  o.date_purchased,
+                                                                                  o.last_modified,
+                                                                                  o.currency,
+                                                                                  o.currency_value,
+                                                                                  s.orders_status_name,
+                                                                                  s.orders_status_id,
+                                                                                  ot.text as order_total,
+                                                                                  o.erp_invoice
+                                                       from :table_orders o left join :table_orders_total ot on (o.orders_id = ot.orders_id),
+                                                            :table_orders_status s
+                                                       where o.orders_status = s.orders_status_id
+                                                       and s.language_id = :language_id
+                                                       and o.orders_archive = :orders_archive
+                                                       and (ot.class = :class or ot.class = :class1)
+                                                       order by o.orders_id DESC
+                                                       limit :page_set_offset,
+                                                             :page_set_max_results
+                                                      ');
 
         $Qorders->bindInt(':language_id', $CLICSHOPPING_Language->getId());
         $Qorders->bindInt(':orders_archive', $archive_id);
@@ -378,35 +379,35 @@
         while ($Qorders->fetch()) {
 
           $Qcustomers = $CLICSHOPPING_Orders->db->prepare('select customers_id,
-                                                          customers_group_id,
-                                                          customer_guest_account
-                                                   from :table_customers
-                                                   where customers_id = :customers_id
-                                                 ');
+                                                                  customers_group_id,
+                                                                  customer_guest_account
+                                                           from :table_customers
+                                                           where customers_id = :customers_id
+                                                         ');
           $Qcustomers->bindInt(':customers_id', $Qorders->valueInt('customers_id'));
           $Qcustomers->execute();
 
           // select the last update by the admin name
           $Qhistory = $CLICSHOPPING_Orders->db->prepare('select osh.admin_user_name,
-                                                        osh.orders_id,
-                                                        o.orders_id,
-                                                        osh.orders_status_support_id
-                                                 from :table_orders_status_history osh,
-                                                      :table_orders o
-                                                 where osh.orders_id = o.orders_id
-                                                 and o.orders_id = :orders_id
-                                                 order by osh.date_added desc
-                                                 limit 1
-                                                ');
+                                                                osh.orders_id,
+                                                                o.orders_id,
+                                                                osh.orders_status_support_id
+                                                         from :table_orders_status_history osh,
+                                                              :table_orders o
+                                                         where osh.orders_id = o.orders_id
+                                                         and o.orders_id = :orders_id
+                                                         order by osh.date_added desc
+                                                         limit 1
+                                                        ');
           $Qhistory->bindInt(':orders_id', $Qorders->valueInt('orders_id'));
           $Qhistory->execute();
 
 // Selectionne la couleur selon le groupe client au moment de la commande
           if ($Qorders->valueInt('customers_group_id') != 0) {
             $Qcolor = $CLICSHOPPING_Orders->db->prepare('select color_bar
-                                                 from :table_customers_groups
-                                                 where customers_group_id = :customers_group_id
-                                                ');
+                                                         from :table_customers_groups
+                                                         where customers_group_id = :customers_group_id
+                                                        ');
             $Qcolor->bindInt(':customers_group_id', $Qorders->valueInt('customers_group_id'));
             $Qcolor->execute();
           }
@@ -416,14 +417,14 @@
           <?php
           if ($Qhistory->valueInt('orders_status_support_id') > 1) {
             $QCustomerSupport = $CLICSHOPPING_Orders->db->prepare('select oss.orders_status_support_name
-                                                           from :table_orders_status_history osh,
-                                                                :table_orders_status_support oss
-                                                           where osh.orders_status_support_id = :orders_status_support_id
-                                                           and osh.orders_status_support_id = oss.orders_status_support_id
-                                                           and oss.language_id = :language_id
-                                                           order by osh.date_added desc
-                                                            limit 1
-                                                          ');
+                                                                   from :table_orders_status_history osh,
+                                                                        :table_orders_status_support oss
+                                                                   where osh.orders_status_support_id = :orders_status_support_id
+                                                                   and osh.orders_status_support_id = oss.orders_status_support_id
+                                                                   and oss.language_id = :language_id
+                                                                   order by osh.date_added desc
+                                                                    limit 1
+                                                                  ');
 
             $QCustomerSupport->bindInt(':orders_status_support_id', $Qhistory->valueInt('orders_status_support_id'));
             $QCustomerSupport->bindInt(':language_id', $CLICSHOPPING_Language->getId());

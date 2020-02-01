@@ -17,11 +17,11 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $Qzones = $CLICSHOPPING_Zones->db->prepare('select *
-                                        from :table_zones z,
-                                             :table_countries c
-                                        where z.zone_country_id = c.countries_id
-                                        and zone_id = :zone_id
-                                       ');
+                                              from :table_zones z,
+                                                   :table_countries c
+                                              where z.zone_country_id = c.countries_id
+                                              and zone_id = :zone_id
+                                             ');
 
   $Qzones->bindInt(':zone_id', $_GET['cID']);
   $Qzones->execute();

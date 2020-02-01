@@ -27,8 +27,8 @@
      * @access public
      */
 
-    Public static function getSuppliersStatus(int $suppliers_id,int $status)
-  {
+    public static function getSuppliersStatus(int $suppliers_id,int $status)
+    {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if ($status == 1) {

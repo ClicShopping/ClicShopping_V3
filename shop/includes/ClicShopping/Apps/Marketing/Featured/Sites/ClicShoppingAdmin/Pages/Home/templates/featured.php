@@ -202,7 +202,7 @@
       if ($listingTotalRow > 0) {
         while ($Qfeatured->fetch()) {
           if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] == $Qfeatured->valueInt('products_featured_id')))) && !isset($sInfo)) {
-            $Qproduct = $CLICSHOPPING_Db->get('products', 'products_image', ['products_id' => $Qfeatured->valueInt('products_id')]);
+            $Qproduct = $CLICSHOPPING_Featured->db->get('products', 'products_image', ['products_id' => $Qfeatured->valueInt('products_id')]);
 
             $sInfo_array = array_merge($Qfeatured->toArray(), $Qproduct->toArray());
             $sInfo = new ObjectInfo($sInfo_array);

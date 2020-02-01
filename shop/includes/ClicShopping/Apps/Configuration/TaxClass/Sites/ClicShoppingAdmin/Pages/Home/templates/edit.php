@@ -17,10 +17,10 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qclasse = $CLICSHOPPING_Db->prepare('select *
-                                   from :table_tax_class
-                                   where tax_class_id = :tax_class_id
-                                  ');
+  $Qclasse = $CLICSHOPPING_TaxClass->db->prepare('select *
+                                                   from :table_tax_class
+                                                   where tax_class_id = :tax_class_id
+                                                  ');
   $Qclasse->bindInt(':tax_class_id', $_GET['tID']);
   $Qclasse->execute();
 

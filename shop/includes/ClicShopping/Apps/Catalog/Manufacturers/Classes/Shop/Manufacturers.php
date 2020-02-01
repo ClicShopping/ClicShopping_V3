@@ -66,13 +66,13 @@
     public function getTitle($id)
     {
       $Qmanufacturer = $this->db->prepare('select m.manufacturers_name as name
-                                      from :table_manufacturers m,
-                                           :table_manufacturers_info mi
-                                      where m.manufacturers_id = :manufacturers_id
-                                      and m.manufacturers_id = mi.manufacturers_id
-                                      and mi.languages_id = :languages_id
-                                      and m.manufacturers_status = 0
-                                      ');
+                                            from :table_manufacturers m,
+                                                 :table_manufacturers_info mi
+                                            where m.manufacturers_id = :manufacturers_id
+                                            and m.manufacturers_id = mi.manufacturers_id
+                                            and mi.languages_id = :languages_id
+                                            and m.manufacturers_status = 0
+                                            ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
       $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
       $Qmanufacturer->execute();
@@ -114,13 +114,13 @@
     public function getDescription($id)
     {
       $Qmanufacturer = $this->db->prepare('select mi.manufacturer_description as description
-                                      from :table_manufacturers m,
-                                           :table_manufacturers_info mi
-                                      where m.manufacturers_id = :manufacturers_id
-                                      and m.manufacturers_id = mi.manufacturers_id
-                                      and mi.languages_id = :languages_id
-                                      and m.manufacturers_status = 0
-                                      ');
+                                            from :table_manufacturers m,
+                                                 :table_manufacturers_info mi
+                                            where m.manufacturers_id = :manufacturers_id
+                                            and m.manufacturers_id = mi.manufacturers_id
+                                            and mi.languages_id = :languages_id
+                                            and m.manufacturers_status = 0
+                                            ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
       $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
       $Qmanufacturer->execute();
@@ -135,13 +135,13 @@
     public function getUrl($id)
     {
       $Qmanufacturer = $this->db->prepare('select mi.manufacturers_url as url
-                                    from :table_manufacturers m,
-                                         :table_manufacturers_info mi
-                                    where m.manufacturers_id = :manufacturers_id
-                                    and m.manufacturers_id = mi.manufacturers_id
-                                    and mi.languages_id = :languages_id
-                                    and m.manufacturers_status = 0
-                                    ');
+                                            from :table_manufacturers m,
+                                                 :table_manufacturers_info mi
+                                            where m.manufacturers_id = :manufacturers_id
+                                            and m.manufacturers_id = mi.manufacturers_id
+                                            and mi.languages_id = :languages_id
+                                            and m.manufacturers_status = 0
+                                            ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
       $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
       $Qmanufacturer->execute();
@@ -157,34 +157,34 @@
     {
       if (!is_null($id)) {
         $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
-                                             m.manufacturers_name as name,
-                                             m.manufacturers_image as image,
-                                             mi.languages_id,
-                                             mi.manufacturers_url as url,
-                                             mi.manufacturer_description as description
-                                      from :table_manufacturers m,
-                                           :table_manufacturers_info mi
-                                      where m.manufacturers_id = :manufacturers_id
-                                      and m.manufacturers_id = mi.manufacturers_id
-                                      and mi.languages_id = :languages_id
-                                      and m.manufacturers_status = 0
-                                      ');
+                                                     m.manufacturers_name as name,
+                                                     m.manufacturers_image as image,
+                                                     mi.languages_id,
+                                                     mi.manufacturers_url as url,
+                                                     mi.manufacturer_description as description
+                                              from :table_manufacturers m,
+                                                   :table_manufacturers_info mi
+                                              where m.manufacturers_id = :manufacturers_id
+                                              and m.manufacturers_id = mi.manufacturers_id
+                                              and mi.languages_id = :languages_id
+                                              and m.manufacturers_status = 0
+                                              ');
         $Qmanufacturer->bindInt(':manufacturers_id', $id);
         $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
         $Qmanufacturer->execute();
       } else {
         $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
-                                             m.manufacturers_name as name,
-                                             m.manufacturers_image as image,
-                                             mi.languages_id,
-                                             mi.manufacturers_url as url,
-                                             mi.manufacturer_description as description
-                                      from :table_manufacturers m,
-                                           :table_manufacturers_info mi
-                                      where m.manufacturers_id = mi.manufacturers_id
-                                      and mi.languages_id = :languages_id
-                                      and m.manufacturers_status = 0
-                                      ');
+                                                     m.manufacturers_name as name,
+                                                     m.manufacturers_image as image,
+                                                     mi.languages_id,
+                                                     mi.manufacturers_url as url,
+                                                     mi.manufacturer_description as description
+                                              from :table_manufacturers m,
+                                                   :table_manufacturers_info mi
+                                              where m.manufacturers_id = mi.manufacturers_id
+                                              and mi.languages_id = :languages_id
+                                              and m.manufacturers_status = 0
+                                              ');
         $Qmanufacturer->bindInt(':languages_id', $this->lang->getId());
         $Qmanufacturer->execute();
       }

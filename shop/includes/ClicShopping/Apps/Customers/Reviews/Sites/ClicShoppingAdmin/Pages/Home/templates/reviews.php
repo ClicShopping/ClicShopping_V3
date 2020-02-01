@@ -19,9 +19,10 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
-  if ($CLICSHOPPING_MessageStack->exists('reviews')) {
-    echo $CLICSHOPPING_MessageStack->get('reviews');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -95,21 +96,21 @@
     </thead>
     <tbody>
     <?php
-      $Qreviews = $CLICSHOPPING_Db->prepare('select SQL_CALC_FOUND_ROWS  r.reviews_id,
-                                                                         r.products_id,
-                                                                         r.date_added,
-                                                                         r.last_modified,
-                                                                         r.reviews_rating,
-                                                                         r.status,
-                                                                         r.customers_group_id,
-                                                                         r.customers_name,
-                                                                         p.products_image
-                                          from :table_reviews r,
-                                               :table_products p
-                                          where p.products_id = r.products_id
-                                          order by r.date_added desc
-                                          limit :page_set_offset, :page_set_max_results
-                                          ');
+      $Qreviews = $CLICSHOPPING_Reviews->db->prepare('select SQL_CALC_FOUND_ROWS  r.reviews_id,
+                                                                                 r.products_id,
+                                                                                 r.date_added,
+                                                                                 r.last_modified,
+                                                                                 r.reviews_rating,
+                                                                                 r.status,
+                                                                                 r.customers_group_id,
+                                                                                 r.customers_name,
+                                                                                 p.products_image
+                                                  from :table_reviews r,
+                                                       :table_products p
+                                                  where p.products_id = r.products_id
+                                                  order by r.date_added desc
+                                                  limit :page_set_offset, :page_set_max_results
+                                                  ');
 
       $Qreviews->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
       $Qreviews->execute();
@@ -119,7 +120,7 @@
       if ($listingTotalRow > 0) {
         while ($Qreviews->fetch()) {
           if ((!isset($_GET['rID']) || (isset($_GET['rID']) && ((int)$_GET['rID'] === $Qreviews->valueInt('reviews_id')))) && !isset($rInfo)) {
-            $QreviewsText = $CLICSHOPPING_Db->get(['reviews r',
+            $QreviewsText = $CLICSHOPPING_Reviews->db->get(['reviews r',
               'reviews_description rd',
             ], [
               'r.reviews_read',
@@ -133,23 +134,23 @@
               ]
             );
 
-            $Qproducts_image = $CLICSHOPPING_Db->prepare('select products_image
-                                                   from :table_products
-                                                   where products_id = :products_id
-                                                  ');
+            $Qproducts_image = $CLICSHOPPING_Reviews->db->prepare('select products_image
+                                                                   from :table_products
+                                                                   where products_id = :products_id
+                                                                  ');
             $Qproducts_image->bindInt(':products_id', $Qreviews->valueInt('products_id'));
             $Qproducts_image->execute();
 
-            $Qproducts = $CLICSHOPPING_Db->prepare('select products_name
-                                             from :table_products_description
-                                             where products_id = :products_id
-                                             and language_id = :language_id
-                                             ');
+            $Qproducts = $CLICSHOPPING_Reviews->db->prepare('select products_name
+                                                             from :table_products_description
+                                                             where products_id = :products_id
+                                                             and language_id = :language_id
+                                                             ');
             $Qproducts->bindInt(':products_id', $Qreviews->valueInt('products_id'));
             $Qproducts->bindint(':language_id', $CLICSHOPPING_Language->getId());
             $Qproducts->execute();
 
-            $Qaverage = $CLICSHOPPING_Db->get('reviews', ['(avg(reviews_rating) / 5 * 100) as average_rating'],
+            $Qaverage = $CLICSHOPPING_Reviews->db->get('reviews', ['(avg(reviews_rating) / 5 * 100) as average_rating'],
               ['products_id' => $Qreviews->valueInt('products_id')]
             );
 
@@ -164,11 +165,11 @@
             $rInfo = new ObjectInfo($rInfo_array);
           }
 
-          $QcustomerGroup = $CLICSHOPPING_Db->prepare('select customers_group_id,
-                                                             customers_group_name
-                                                       from :table_customers_groups
-                                                       where customers_group_id = :customers_group_id
-                                                      ');
+          $QcustomerGroup = $CLICSHOPPING_Reviews->db->prepare('select customers_group_id,
+                                                                       customers_group_name
+                                                                 from :table_customers_groups
+                                                                 where customers_group_id = :customers_group_id
+                                                                ');
           $QcustomerGroup->bindInt(':customers_group_id', $Qreviews->valueInt('customers_group_id'));
           $QcustomerGroup->execute();
 

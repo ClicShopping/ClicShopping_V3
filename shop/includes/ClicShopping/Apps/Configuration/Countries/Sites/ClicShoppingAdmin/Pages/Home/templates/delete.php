@@ -18,10 +18,10 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qcountries = $CLICSHOPPING_Db->prepare('select *
-                                   from :table_countries
-                                   where countries_id = :countries_id
-                                  ');
+  $Qcountries = $CLICSHOPPING_Countries->db->prepare('select *
+                                                     from :table_countries
+                                                     where countries_id = :countries_id
+                                                    ');
   $Qcountries->bindInt(':countries_id', $_GET['cID']);
   $Qcountries->execute();
 

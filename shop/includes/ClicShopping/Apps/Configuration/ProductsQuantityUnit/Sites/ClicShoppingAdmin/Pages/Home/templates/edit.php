@@ -15,14 +15,16 @@
 
   $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
+
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $QproductsQquantityUnit = $CLICSHOPPING_Db->prepare('select  *
-                                                      from :table_products_quantity_unit
-                                                      where language_id = :language_id
-                                                      and products_quantity_unit_id = :products_quantity_unit_id
-                                                      order by products_quantity_unit_id
-                                                  ');
+  $QproductsQquantityUnit = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select  *
+                                                                            from :table_products_quantity_unit
+                                                                            where language_id = :language_id
+                                                                            and products_quantity_unit_id = :products_quantity_unit_id
+                                                                            order by products_quantity_unit_id
+                                                                        ');
 
   $QproductsQquantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QproductsQquantityUnit->bindInt(':products_quantity_unit_id', $_GET['oID']);

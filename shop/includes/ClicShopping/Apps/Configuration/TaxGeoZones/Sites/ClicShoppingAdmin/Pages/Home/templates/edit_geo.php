@@ -21,14 +21,14 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select a.association_id,
-                                                    a.zone_country_id,
-                                                    a.zone_id,
-                                                    a.geo_zone_id,
-                                                    a.last_modified,
-                                                    a.date_added
-                                            from :table_zones_to_geo_zones a
-                                            where a.association_id = :association_id
-                                            ');
+                                                            a.zone_country_id,
+                                                            a.zone_id,
+                                                            a.geo_zone_id,
+                                                            a.last_modified,
+                                                            a.date_added
+                                                    from :table_zones_to_geo_zones a
+                                                    where a.association_id = :association_id
+                                                    ');
 
   $Qzones->bindInt('association_id', $_GET['sID']); ///3
   $Qzones->execute();

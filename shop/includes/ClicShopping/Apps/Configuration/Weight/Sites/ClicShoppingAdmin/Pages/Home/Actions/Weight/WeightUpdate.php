@@ -39,7 +39,8 @@
 
         $weight_class_title_array = HTML::sanitize($weight_class_title_array[$language_id]);
 
-        $sql_data_array = ['weight_class_title' => $weight_class_title_array,
+        $sql_data_array = [
+          'weight_class_title' => $weight_class_title_array,
           'weight_class_key' => $weight_class_key
         ];
 

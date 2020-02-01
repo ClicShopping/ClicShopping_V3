@@ -24,6 +24,7 @@
   $CLICSHOPPING_Address = Registry::get('Address');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Image = Registry::get('Image');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
@@ -36,11 +37,11 @@
   $orders_statuses = [];
   $orders_status_array = [];
 
-  $QordersStatus = $CLICSHOPPING_Db->prepare('select orders_status_id,
-                                                    orders_status_name
-                                              from :table_orders_status
-                                              where language_id = :language_id
-                                              ');
+  $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
+                                                            orders_status_name
+                                                      from :table_orders_status
+                                                      where language_id = :language_id
+                                                      ');
   $QordersStatus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QordersStatus->execute();
 
@@ -55,7 +56,7 @@
 
     $oID = HTML::sanitize($order_id);
 
-    $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['orders_id' => (int)$oID]);
+    $Qorders = $CLICSHOPPING_Orders->db->get('orders', 'orders_id', ['orders_id' => (int)$oID]);
 
     if ($Qorders->fetch()) {
       Registry::set('Order', new OrderAdmin($Qorders->valueInt('orders_id')));
@@ -69,7 +70,7 @@
   $orders_invoice_statuses = [];
   $orders_status_invoice_array = [];
 
-  $QordersStatusInvoice = $CLICSHOPPING_Db->prepare('select orders_status_invoice_id,
+  $QordersStatusInvoice = $CLICSHOPPING_Orders->db->prepare('select orders_status_invoice_id,
                                                             orders_status_invoice_name
                                                      from :table_orders_status_invoice
                                                      where language_id = :language_id
@@ -342,16 +343,15 @@
 
                 if (isset($order->products[$i]['attributes']) && (count($order->products[$i]['attributes']) > 0)) {
                   for ($j = 0, $k = count($order->products[$i]['attributes']); $j < $k; $j++) {
-
 // attributes reference
                     if ($order->products[$i]['attributes'][$j]['reference'] != '' || $order->products[$i]['attributes'][$j]['reference'] != 'null') {
                       $attributes_reference = '<strong> ' . $order->products[$i]['attributes'][$j]['reference'] . '</strong> - ';
                     }
 
-                    echo '<br /><nobr><small>&nbsp;<i> - ' . $attributes_reference . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'];
+                    echo '<br /><small>&nbsp;<i> - ' . $attributes_reference . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'];
 
                     if ($order->products[$i]['attributes'][$j]['price'] != 0) echo ' (' . $order->products[$i]['attributes'][$j]['prefix'] . $CLICSHOPPING_Currencies->format($order->products[$i]['attributes'][$j]['price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']) . ')';
-                    echo '</i></small></nobr>';
+                    echo '</i></small>';
                   }
                 }
 

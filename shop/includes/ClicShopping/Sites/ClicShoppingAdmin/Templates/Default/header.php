@@ -20,6 +20,7 @@
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  $CLICSHOPPING_Language = Registry::get('Language');
 ?>
 <!DOCTYPE html>
 <html <?php echo CLICSHOPPING::getDef('html_params'); ?>>
@@ -85,8 +86,8 @@
 <?php
   if (isset($_SESSION['admin'])) {
 ?>
-      <div><?php include_once('header_menu.php'); ?></div>
-      <div><?php $CLICSHOPPING_Hooks->output('Header', 'HeaderInfo', null, 'display'); ?></div>
+      <div><?php echo $CLICSHOPPING_Hooks->output('Header', 'HeaderMenu', null, 'display'); ?></div>
+      <div><?php echo $CLICSHOPPING_Hooks->output('Header', 'HeaderInfo', null, 'display'); ?></div>
 <?php
   }
 

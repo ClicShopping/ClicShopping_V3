@@ -20,6 +20,7 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $QcustomersGroup = $CLICSHOPPING_Groups->db->prepare('select *
                                                          from :table_customers_groups

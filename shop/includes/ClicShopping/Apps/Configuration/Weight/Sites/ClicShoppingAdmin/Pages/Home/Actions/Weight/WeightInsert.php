@@ -29,14 +29,13 @@
     {
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $CLICSHOPPING_Language = Registry::get('Language');
-      $CLICSHOPPING_Db = Registry::get('Db');
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      $QlastId = $CLICSHOPPING_Db->prepare('select weight_class_id 
-                                              from :table_weight_classes 
-                                              order by weight_class_id desc
-                                              limit 1
-                                             ');
+      $QlastId = $this->app->db->prepare('select weight_class_id 
+                                          from :table_weight_classes 
+                                          order by weight_class_id desc
+                                          limit 1
+                                         ');
       $QlastId->execute();
 
       $weight_class_id = $QlastId->valueInt('weight_class_id') + 1;
@@ -50,7 +49,8 @@
 
         $sql_data_array = ['weight_class_title' => $weight_class_title_array];
 
-        $insert_sql_data = ['weight_class_key' => $weight_class_key,
+        $insert_sql_data = [
+          'weight_class_key' => $weight_class_key,
           'weight_class_id' => (int)$weight_class_id,
           'language_id' => (int)$languages[$i]['id']
         ];

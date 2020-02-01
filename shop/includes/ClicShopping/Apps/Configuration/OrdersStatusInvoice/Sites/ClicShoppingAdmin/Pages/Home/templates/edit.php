@@ -19,11 +19,11 @@
   $CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $QordersStatusInvoice = $CLICSHOPPING_Db->prepare('select  *
-                                                from :table_orders_status_invoice
-                                                where language_id = :language_id
-                                                and orders_status_invoice_id = :orders_status_invoice_id
-                                                ');
+  $QordersStatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->prepare('select  *
+                                                                          from :table_orders_status_invoice
+                                                                          where language_id = :language_id
+                                                                          and orders_status_invoice_id = :orders_status_invoice_id
+                                                                          ');
 
   $QordersStatusInvoice->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QordersStatusInvoice->bindInt(':orders_status_invoice_id', $_GET['oID']);

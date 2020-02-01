@@ -44,3 +44,6 @@ table_heading_action = Actions
 table_heading_edit_products_archive = Ré-activation du produit
 text_edit_intro = Souhaitez vous ré-activer ce produit ?
 text_archive = <strong>Note : </strong>la réactivation de l'article fera ré-apparaitre le produit dans le catalogue des produits de l'admin à la même place ou il était précédement.<br /> En fonction du statut, celui-ci peut apparaitre ou pas dans la partie catalogue cité client
+
+text_result_page = Page {{listing_from}}  sur{{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)

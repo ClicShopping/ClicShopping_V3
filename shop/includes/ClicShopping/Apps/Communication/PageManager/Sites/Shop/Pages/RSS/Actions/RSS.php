@@ -17,10 +17,8 @@
 
   class RSS extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_RSS = new RSSApp();
       Registry::set('RSS', $CLICSHOPPING_RSS);
 
@@ -29,7 +27,6 @@
       if (!function_exists('getallheaders')) {
         function getallheaders()
         {
-          settype($headers, 'array');
           foreach ($_SERVER as $h => $v) {
             if (preg_match('#HTTP_(.+)#', $h, $hp)) {
               $headers[$hp[1]] = $v;
@@ -43,7 +40,9 @@
       header('Last-Modified: ' . gmdate("D, d M Y G:i:s", strtotime($CLICSHOPPING_RSS->productDateAdded())) . ' GMT');
 
       $CLICSHOPPING_RSS->getMaxListing(20);
+
       echo $CLICSHOPPING_RSS->displayFeed();
+
       exit;
     }
   }

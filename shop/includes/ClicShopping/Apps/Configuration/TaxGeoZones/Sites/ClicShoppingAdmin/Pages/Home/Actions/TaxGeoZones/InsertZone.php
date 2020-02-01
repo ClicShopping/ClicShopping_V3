@@ -21,8 +21,7 @@
 
     public function __construct()
     {
-      $CLICSHOPPING_TaxGeoZones = Registry::get('TaxGeoZones');
-      $this->app = $CLICSHOPPING_TaxGeoZones;
+      $this->app = Registry::get('TaxGeoZones');
     }
 
     public function execute()

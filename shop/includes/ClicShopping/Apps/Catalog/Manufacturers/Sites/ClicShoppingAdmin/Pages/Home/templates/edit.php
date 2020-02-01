@@ -21,6 +21,7 @@
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $form_action = 'Insert';
   $variable = '';

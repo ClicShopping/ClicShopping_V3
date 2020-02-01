@@ -17,8 +17,6 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
-
-  require_once('calcul_statistics.php');
 ?>
 <!-- header_eof //-->
 <!-- body //-->

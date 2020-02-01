@@ -15,6 +15,7 @@
 
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
+
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;

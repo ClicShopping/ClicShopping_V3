@@ -53,7 +53,8 @@
         $categories_seo_keyword_array =  HTML::sanitize($_POST['categories_head_keywords_tag']);
         $language_id = $languages[$i]['id'];
 
-        $sql_data_array = ['categories_name' => HTML::sanitize($categories_name_array[$language_id]),
+        $sql_data_array = [
+          'categories_name' => HTML::sanitize($categories_name_array[$language_id]),
           'categories_description' => $categories_description_array[$language_id],
           'categories_head_title_tag' => HTML::sanitize($categories_seo_title_array[$language_id]),
           'categories_head_desc_tag' => HTML::sanitize($categories_seo_description_array[$language_id]),

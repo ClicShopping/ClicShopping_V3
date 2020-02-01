@@ -19,6 +19,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $Qcategories = $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
                                                                cd.categories_name,

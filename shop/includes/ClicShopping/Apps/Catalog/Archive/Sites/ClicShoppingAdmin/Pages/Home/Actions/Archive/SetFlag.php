@@ -49,15 +49,12 @@
       $CLICSHOPPING_Archive = Registry::get('Archive');
 
       if ($archive == 1) {
-
         return $CLICSHOPPING_Archive->db->save('products', ['products_status' => 1,
           'products_last_modified' => 'now()'
         ],
           ['products_id' => (int)$products_id]
         );
-
       } elseif ($archive == 0) {
-
         return $CLICSHOPPING_Archive->db->save('products', ['products_status' => 0,
           'products_last_modified' => 'now()'
         ],

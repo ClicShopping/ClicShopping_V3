@@ -141,7 +141,7 @@
       if (isset($_POST['customers_group_id']) && $_POST['customers_group_id'] != 0) {
         $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
-        $Qspecials = $CLICSHOPPING_Specials->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
+        $Qspecials = $CLICSHOPPING_Specials->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
                                                                                       p.products_model,
                                                                                       pd.products_name,
                                                                                       p.products_image,
@@ -173,7 +173,7 @@
         $Qspecials->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qspecials->execute();
       } else {
-        $Qspecials = $CLICSHOPPING_Specials->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
+        $Qspecials = $CLICSHOPPING_Specials->db->prepare('select SQL_CALC_FOUND_ROWS  p.products_id,
                                                                                         p.products_model,
                                                                                         pd.products_name,
                                                                                         p.products_image,
@@ -211,17 +211,17 @@
         while ($Qspecials->fetch()) {
           if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ((int)$_GET['sID'] == $Qspecials->valueInt('specials_id')))) && !isset($sInfo)) {
 
-            $Qproduct = $CLICSHOPPING_Db->get('products', 'products_image', ['products_id' => $Qspecials->valueInt('products_id')]);
+            $Qproduct = $CLICSHOPPING_Specials->db->get('products', 'products_image', ['products_id' => $Qspecials->valueInt('products_id')]);
 
             $sInfo_array = array_merge($Qspecials->toArray(), $Qproduct->toArray());
             $sInfo = new ObjectInfo($sInfo_array);
           }
 
           $QcustomersGroupPrice = $CLICSHOPPING_Specials->db->prepare('select customers_group_price
-                                                                from :table_products_groups
-                                                                where products_id = :products_id
-                                                                and customers_group_id =  :customers_group_id
-                                                              ');
+                                                                        from :table_products_groups
+                                                                        where products_id = :products_id
+                                                                        and customers_group_id =  :customers_group_id
+                                                                      ');
           $QcustomersGroupPrice->bindInt(':products_id', $Qspecials->valueInt('products_id'));
           $QcustomersGroupPrice->bindInt(':customers_group_id', $sInfo->customers_group_id);
 

@@ -30,7 +30,6 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
-      $CLICSHOPPING_Db = Registry::get('Db');
 
       if (!empty($_POST['manufacturers_name'])) {
         $manufacturers_name = HTML::sanitize($_POST['manufacturers_name']);
@@ -54,9 +53,9 @@
 
         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-        $CLICSHOPPING_Db->save('manufacturers', $sql_data_array);
+        $this->app->db->save('manufacturers', $sql_data_array);
 
-        $manufacturers_id = $CLICSHOPPING_Db->lastInsertId();
+        $manufacturers_id = $this->app->db->lastInsertId();
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
@@ -73,7 +72,7 @@
 
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
-          $CLICSHOPPING_Db->save('manufacturers_info', $sql_data_array);
+          $this->app->db->save('manufacturers_info', $sql_data_array);
 
           $CLICSHOPPING_Hooks->call('Manufacturer', 'Insert');
         }

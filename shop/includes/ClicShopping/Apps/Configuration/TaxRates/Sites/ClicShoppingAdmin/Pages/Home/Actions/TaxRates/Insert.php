@@ -39,16 +39,17 @@
       $tax_priority = HTML::sanitize($_POST['tax_priority']);
       $code_tax_erp = HTML::sanitize($_POST['code_tax_erp']);
 
-      $this->app->db->save('tax_rates', [
-          'tax_zone_id' => (int)$tax_zone_id,
-          'tax_class_id' => (int)$tax_class_id,
-          'tax_rate' => (float)$tax_rate,
-          'tax_description' => $tax_description,
-          'tax_priority' => (int)$tax_priority,
-          'date_added' => 'now()',
-          'code_tax_erp' => $code_tax_erp
-        ]
-      );
+      $insert_array = [
+        'tax_zone_id' => (int)$tax_zone_id,
+        'tax_class_id' => (int)$tax_class_id,
+        'tax_rate' => (float)$tax_rate,
+        'tax_description' => $tax_description,
+        'tax_priority' => (int)$tax_priority,
+        'date_added' => 'now()',
+        'code_tax_erp' => $code_tax_erp
+      ];
+
+      $this->app->db->save('tax_rates', $insert_array);
 
       $this->app->redirect('TaxRates&page=' . $page);
     }

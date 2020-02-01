@@ -17,7 +17,7 @@
 
   $CLICSHOPPING_AdministratorMenu = Registry::get('AdministratorMenu');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
-
+  $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $Qcategories = $CLICSHOPPING_AdministratorMenu->db->prepare('select a.id,

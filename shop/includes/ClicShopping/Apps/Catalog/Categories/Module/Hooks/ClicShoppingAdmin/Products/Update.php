@@ -48,10 +48,10 @@
     public function moveCategory($move_new_category, $id)
     {
       $QCheck = $this->app->db->prepare('select count(*)
-                                                    from :table_products_to_categories
-                                                    where products_id = :products_id
-                                                    and categories_id not in ( :categories_id )
-                                                  ');
+                                          from :table_products_to_categories
+                                          where products_id = :products_id
+                                          and categories_id not in ( :categories_id )
+                                        ');
       $QCheck->bindInt(':products_id', $id);
       $QCheck->bindInt(':categories_id', $move_new_category);
       $QCheck->execute();

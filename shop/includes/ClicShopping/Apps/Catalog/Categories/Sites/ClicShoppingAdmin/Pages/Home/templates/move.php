@@ -21,17 +21,18 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $Qcategories = $CLICSHOPPING_Categories->db->prepare('select c.categories_id,
-                                                       cd.categories_name,
-                                                       c.parent_id
-                                                from :table_categories c,
-                                                     :table_categories_description cd
-                                                where c.categories_id = cd.categories_id
-                                                and cd.language_id = :language_id
-                                                and c.categories_id = :categories_id
-                                                ');
-  $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+                                                               cd.categories_name,
+                                                               c.parent_id
+                                                        from :table_categories c,
+                                                             :table_categories_description cd
+                                                        where c.categories_id = cd.categories_id
+                                                        and cd.language_id = :language_id
+                                                        and c.categories_id = :categories_id
+                                                        ');
+  $Qcategories->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $Qcategories->bindInt(':categories_id', $_GET['cID']);
 
   $Qcategories->execute();

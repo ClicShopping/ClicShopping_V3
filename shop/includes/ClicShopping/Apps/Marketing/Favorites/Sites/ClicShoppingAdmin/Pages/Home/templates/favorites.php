@@ -204,7 +204,7 @@
   if ($listingTotalRow > 0) {
     while ($Qfavorites->fetch()) {
       if ((!isset($_GET['sID']) || (isset($_GET['sID']) && ($_GET['sID'] == $Qfavorites->valueInt('products_favorites_id')))) && !isset($sInfo)) {
-        $Qproduct = $CLICSHOPPING_Db->get('products', 'products_image', ['products_id' => $Qfavorites->valueInt('products_id')]);
+        $Qproduct = $CLICSHOPPING_Favorites->db->get('products', 'products_image', ['products_id' => $Qfavorites->valueInt('products_id')]);
 
         $sInfo_array = array_merge($Qfavorites->toArray(), $Qproduct->toArray());
         $sInfo = new ObjectInfo($sInfo_array);

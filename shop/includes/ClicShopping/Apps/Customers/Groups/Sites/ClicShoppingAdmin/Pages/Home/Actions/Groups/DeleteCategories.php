@@ -27,10 +27,10 @@
       if (isset($_POST['customers_groups_id'])) $customers_groups_id = HTML::sanitize($_POST['customers_groups_id']);
 
       $Qdelete = $CLICSHOPPING_Groups->db->prepare('delete
-                                             from :table_groups_to_categories
-                                             where customers_group_id = :customers_group_id
-                                             and categories_id = :categories_id
-                                            ');
+                                                   from :table_groups_to_categories
+                                                   where customers_group_id = :customers_group_id
+                                                   and categories_id = :categories_id
+                                                  ');
       $Qdelete->bindInt(':customers_group_id', (int)$customers_groups_id);
       $Qdelete->bindInt(':categories_id', (int)$category_id);
       $Qdelete->execute();

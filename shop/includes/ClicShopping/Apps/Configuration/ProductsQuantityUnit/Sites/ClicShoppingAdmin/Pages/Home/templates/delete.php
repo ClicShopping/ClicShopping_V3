@@ -14,15 +14,16 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
 
+  $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_ProductsQuantityUnit = Registry::get('ProductsQuantityUnit');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $oID = HTML::sanitize($_GET['oID']);
 
   $Qstatus = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select count(*) as count
-                                                       from :table_products
-                                                       where products_quantity_unit_id = :products_quantity_unit_id
-                                                      ');
+                                                             from :table_products
+                                                             where products_quantity_unit_id = :products_quantity_unit_id
+                                                            ');
   $Qstatus->bindValue(':products_quantity_unit_id', (int)$oID);
   $Qstatus->execute();
 
@@ -38,12 +39,12 @@
     $CLICSHOPPING_MessageStack->add($CLICSHOPPING_ProductsQuantityUnit->getDef('error_status_used_in_products_unit_quantity'), 'error');
   }
 
-  $QproductsQquantityUnit = $CLICSHOPPING_Db->prepare('select  *
-                                                from :table_products_quantity_unit
-                                                where language_id = :language_id
-                                                and products_quantity_unit_id = :products_quantity_unit_id
-                                                order by products_quantity_unit_id
-                                              ');
+  $QproductsQquantityUnit = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select  *
+                                                                            from :table_products_quantity_unit
+                                                                            where language_id = :language_id
+                                                                            and products_quantity_unit_id = :products_quantity_unit_id
+                                                                            order by products_quantity_unit_id
+                                                                          ');
 
   $QproductsQquantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QproductsQquantityUnit->bindInt(':products_quantity_unit_id', $_GET['oID']);

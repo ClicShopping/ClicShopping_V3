@@ -23,9 +23,9 @@
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           $Qupdate = $CLICSHOPPING_Archive->db->prepare('update :table_products
-                                                  set products_archive = :products_archive
-                                                  where products_id = :products_id
-                                                ');
+                                                        set products_archive = :products_archive
+                                                        where products_id = :products_id
+                                                      ');
           $Qupdate->bindInt(':products_archive', '0');
           $Qupdate->bindInt(':products_id', $id);
           $Qupdate->execute();

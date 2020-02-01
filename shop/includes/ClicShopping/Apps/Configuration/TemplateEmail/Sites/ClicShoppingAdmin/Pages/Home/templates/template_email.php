@@ -32,7 +32,7 @@
                                                                and te.template_email_id = ted.template_email_id
                                                               ');
 
-  $QtemplateEmail->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+  $QtemplateEmail->bindInt(':language_id', $CLICSHOPPING_Language->getId());
   $QtemplateEmail->execute();
 ?>
 <!-- body //-->

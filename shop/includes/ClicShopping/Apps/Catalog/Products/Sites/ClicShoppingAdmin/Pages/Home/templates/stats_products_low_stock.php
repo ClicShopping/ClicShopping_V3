@@ -17,6 +17,7 @@
   $CLICSHOPPING_Image = Registry::get('Image');
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_Image = Registry::get('Image');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 

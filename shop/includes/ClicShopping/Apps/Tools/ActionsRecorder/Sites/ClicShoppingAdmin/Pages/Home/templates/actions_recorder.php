@@ -52,7 +52,7 @@
     )
   );
 
-  $Qmodules = $CLICSHOPPING_Db->get('action_recorder', 'distinct module', null, 'module');
+  $Qmodules = $CLICSHOPPING_ActionsRecorder->db->get('action_recorder', 'distinct module', null, 'module');
 
   while ($Qmodules->fetch()) {
     $modules_array[] = $Qmodules->value('module');

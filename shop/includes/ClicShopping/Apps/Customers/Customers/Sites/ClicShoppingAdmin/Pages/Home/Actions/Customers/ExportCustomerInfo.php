@@ -16,20 +16,19 @@
 
   class ExportCustomerInfo extends \ClicShopping\OM\PagesActionsAbstract
   {
-    protected $file = null;
     protected $use_site_template = false;
 
     public function execute()
     {
-      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Customers = Registry::get('Customers');
 
       $customer_id = HTML::sanitize($_GET['customers_id']);
 
-      $Qcustomers = $CLICSHOPPING_Db->prepare('select c.*,
-                                                      a.*
-                                                from :table_customers c left join :table_address_book a on c.customers_default_address_id = a.address_book_id
-                                                where c.customers_id = :customers_id
-                                              ');
+      $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select c.*,
+                                                                  a.*
+                                                            from :table_customers c left join :table_address_book a on c.customers_default_address_id = a.address_book_id
+                                                            where c.customers_id = :customers_id
+                                                          ');
       $Qcustomers->bindInt(':customers_id', $customer_id);
       $Qcustomers->execute();
 

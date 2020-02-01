@@ -9,14 +9,11 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Tools\AdministratorMenu\Sites\ClicShoppingAdmin\Pages\Home\Actions\AdministratorMenu;
-
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\Cache;
   use ClicShopping\OM\HTML;
-
 
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {

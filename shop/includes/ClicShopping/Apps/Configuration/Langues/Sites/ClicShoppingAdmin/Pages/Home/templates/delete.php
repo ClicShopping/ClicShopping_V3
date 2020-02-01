@@ -19,9 +19,9 @@
   $lID = HTML::sanitize($_GET['lID']);
 
   $Qlanguages = $CLICSHOPPING_Langues->db->prepare('select  *
-                                              from :table_languages
-                                              where languages_id = :languages_id
-                                              ');
+                                                    from :table_languages
+                                                    where languages_id = :languages_id
+                                                    ');
   $Qlanguages->bindInt(':languages_id', $lID);
 
   $Qlanguages->execute();

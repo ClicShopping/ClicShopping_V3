@@ -16,6 +16,7 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']) ?? $cPath = 0;
 

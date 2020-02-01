@@ -20,7 +20,6 @@
   use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
   $CLICSHOPPING_ManufacturersAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');

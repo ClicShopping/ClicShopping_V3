@@ -26,9 +26,9 @@
       if (isset($_GET['banners_id']) && is_numeric($_GET['banners_id'])) {
 
         $Qbanner = $CLICSHOPPING_BannerManager->db->prepare('select banners_title
-                                                      from :table_banners
-                                                      where banners_id = :banners_id
-                                                    ');
+                                                              from :table_banners
+                                                              where banners_id = :banners_id
+                                                            ');
         $Qbanner->bindInt(':banners_id', $_GET['banners_id']);
         $Qbanner->execute();
 
@@ -42,12 +42,12 @@
           }
 
           $Qstats = $CLICSHOPPING_BannerManager->db->prepare('select date_format(banners_history_date, "%m-%d") as date_day,
-                                                              banners_shown,
-                                                              banners_clicked
-                                                        from :table_banners_history
-                                                        where banners_id = :banners_id
-                                                        and banners_history_date >= date_sub(now(), interval 7 day)
-                                                      ');
+                                                                      banners_shown,
+                                                                      banners_clicked
+                                                                from :table_banners_history
+                                                                where banners_id = :banners_id
+                                                                and banners_history_date >= date_sub(now(), interval 7 day)
+                                                              ');
           $Qstats->bindInt(':banners_id', $_GET['banners_id']);
           $Qstats->execute();
 

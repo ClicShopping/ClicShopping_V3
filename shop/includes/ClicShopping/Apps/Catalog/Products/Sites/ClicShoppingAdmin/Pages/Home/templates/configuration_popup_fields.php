@@ -19,6 +19,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Products = Registry::get('Products');
   $CLICSHOPPING_Language = Registry::get('Language');
+
   $supplier_inputs_string = '';
   $languages = $CLICSHOPPING_Language->getLanguages();
 

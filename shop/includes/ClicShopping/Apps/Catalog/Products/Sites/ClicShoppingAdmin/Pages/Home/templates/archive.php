@@ -18,17 +18,18 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
-  $Qproducts = $CLICSHOPPING_Products->db->prepare('select  p.products_id,
-                                                    pd.products_name
-                                             from :table_products p,
-                                                  :table_products_description pd,
-                                                  :table_products_to_categories p2c
-                                             where p.products_id = pd.products_id
-                                             and pd.language_id = :language_id
-                                             and p.products_id = p2c.products_id
-                                             and p.products_id = :products_id
-                                            ');
+  $Qproducts = $CLICSHOPPING_Products->db->prepare('select p.products_id,
+                                                            pd.products_name
+                                                     from :table_products p,
+                                                          :table_products_description pd,
+                                                          :table_products_to_categories p2c
+                                                     where p.products_id = pd.products_id
+                                                     and pd.language_id = :language_id
+                                                     and p.products_id = p2c.products_id
+                                                     and p.products_id = :products_id
+                                                    ');
 
   $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
   $Qproducts->bindInt(':products_id', (int)$_GET['pID']);

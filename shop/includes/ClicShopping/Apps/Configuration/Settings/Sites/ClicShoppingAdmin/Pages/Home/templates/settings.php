@@ -11,7 +11,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\Cache;
 
   $CLICSHOPPING_Settings = Registry::get('Settings');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
@@ -20,7 +19,7 @@
 
   $gID = (isset($_GET['gID'])) ? $_GET['gID'] : 1;
 
-  $QcfgGroup = $CLICSHOPPING_Db->get('configuration_group', 'configuration_group_title', ['configuration_group_id' => (int)$gID]);
+  $QcfgGroup = $CLICSHOPPING_Settings->db->get('configuration_group', 'configuration_group_title', ['configuration_group_id' => (int)$gID]);
 
 ?>
 <!-- body //-->

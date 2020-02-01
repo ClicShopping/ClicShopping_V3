@@ -18,13 +18,13 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select  geo_zone_id,
-                                                     geo_zone_name,
-                                                     geo_zone_description,
-                                                     last_modified,
-                                                     date_added
-                                           from :table_geo_zones
-                                           where geo_zone_id =:geo_zone_id
-                                          ');
+                                                           geo_zone_name,
+                                                           geo_zone_description,
+                                                           last_modified,
+                                                           date_added
+                                                 from :table_geo_zones
+                                                 where geo_zone_id =:geo_zone_id
+                                                ');
   $Qzones->bindInt(':geo_zone_id', $_GET['zID']);
 
   $Qzones->execute();

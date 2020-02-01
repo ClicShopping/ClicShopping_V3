@@ -24,7 +24,6 @@
       $this->app = Registry::get('Backup');
     }
 
-
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');

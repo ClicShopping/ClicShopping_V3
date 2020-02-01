@@ -14,11 +14,11 @@
   use ClicShopping\OM\ObjectInfo;
 
   $CLICSHOPPING_OrdersStatusInvoice = Registry::get('OrdersStatusInvoice');
+  $CLICSHOPPING_Language = Registry::get('Language');
+
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
   $oID = HTML::sanitize($_GET['oID']);
-
-
   $Qstatus = $CLICSHOPPING_OrdersStatusInvoice->db->get('configuration', 'configuration_value', ['configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID']);
 
   if ($Qstatus->value('configuration_value') == $oID) {
@@ -29,7 +29,6 @@
       ]
     );
   }
-
 
   $QstatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->get('orders', 'orders_status', ['orders_status_invoice' => (int)$oID], null, 1);
 
@@ -50,7 +49,6 @@
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_OrdersStatusInvoice->getDef('error_status_used_in_hsitory'), 'error');
     }
   }
-
 
   $QordersStatusInvoice = $CLICSHOPPING_OrdersStatusInvoice->db->prepare('select  *
                                                                   from :table_orders_status_invoice

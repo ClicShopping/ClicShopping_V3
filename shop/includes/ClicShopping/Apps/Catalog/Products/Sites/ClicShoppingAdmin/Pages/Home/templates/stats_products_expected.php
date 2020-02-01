@@ -21,10 +21,10 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qupdate = $CLICSHOPPING_Db->prepare('update :table_products
-                                       set products_date_available = :products_date_available
-                                       where to_days(now()) > to_days(products_date_available)
-                                      ');
+  $Qupdate = $CLICSHOPPING_Products->db->prepare('update :table_products
+                                                 set products_date_available = :products_date_available
+                                                 where to_days(now()) > to_days(products_date_available)
+                                                ');
   $Qupdate->bindValue(':products_date_available', null);
   $Qupdate->execute();
 

@@ -55,7 +55,8 @@
 
         $language_id = $languages[$i]['id'];
 
-        $sql_data_array = ['categories_name' => HTML::sanitize($categories_name_array[$language_id]),
+        $sql_data_array = [
+          'categories_name' => HTML::sanitize($categories_name_array[$language_id]),
           'categories_description' => $_POST['categories_description'][$language_id],
           'categories_head_title_tag' => HTML::sanitize($_POST['categories_head_title_tag'][$language_id]),
           'categories_head_desc_tag' => HTML::sanitize($_POST['categories_head_desc_tag'][$language_id]),

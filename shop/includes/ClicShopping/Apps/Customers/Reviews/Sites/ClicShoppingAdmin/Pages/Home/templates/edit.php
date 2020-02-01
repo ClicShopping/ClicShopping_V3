@@ -17,45 +17,46 @@
   $CLICSHOPPING_Reviews = Registry::get('Reviews');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
-  if ($CLICSHOPPING_MessageStack->exists('reviews')) {
-    echo $CLICSHOPPING_MessageStack->get('reviews');
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
   }
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
   if (isset($_GET['rID'])) $rID = HTML::sanitize($_GET['rID']);
 
-  $Qreviews = $CLICSHOPPING_Db->prepare('select r.reviews_id,
-                                                  r.products_id,
-                                                  r.customers_name,
-                                                  r.date_added,
-                                                  r.last_modified,
-                                                  r.reviews_read,
-                                                  r.status,
-                                                  r.reviews_rating,
-                                                  rd.reviews_text,
-                                                  rd.languages_id
-                                           from :table_reviews r,
-                                                :table_reviews_description rd
-                                           where r.reviews_id = :reviews_id
-                                           and r.reviews_id = rd.reviews_id
-                                          ');
+  $Qreviews = $CLICSHOPPING_Reviews->db->prepare('select r.reviews_id,
+                                                          r.products_id,
+                                                          r.customers_name,
+                                                          r.date_added,
+                                                          r.last_modified,
+                                                          r.reviews_read,
+                                                          r.status,
+                                                          r.reviews_rating,
+                                                          rd.reviews_text,
+                                                          rd.languages_id
+                                                   from :table_reviews r,
+                                                        :table_reviews_description rd
+                                                   where r.reviews_id = :reviews_id
+                                                   and r.reviews_id = rd.reviews_id
+                                                  ');
   $Qreviews->bindValue(':reviews_id', (int)$rID);
   $Qreviews->execute();
 
-  $Qproducts = $CLICSHOPPING_Db->prepare('select products_image
-                                             from :table_products
-                                             where products_id = :products_id
-                                            ');
+  $Qproducts = $CLICSHOPPING_Reviews->db->prepare('select products_image
+                                                   from :table_products
+                                                   where products_id = :products_id
+                                                  ');
   $Qproducts->bindValue(':products_id', $Qreviews->valueInt('products_id'));
   $Qproducts->execute();
 
-  $QproductsName = $CLICSHOPPING_Db->prepare('select products_name
-                                                 from :table_products_description
-                                                 where products_id = :products_id
-                                                 and language_id = :language_id
-                                                ');
+  $QproductsName = $CLICSHOPPING_Reviews->db->prepare('select products_name
+                                                       from :table_products_description
+                                                       where products_id = :products_id
+                                                       and language_id = :language_id
+                                                      ');
   $QproductsName->bindValue(':products_id', $Qreviews->valueInt('products_id'));
   $QproductsName->bindValue(':language_id', $CLICSHOPPING_Language->getId());
   $QproductsName->execute();

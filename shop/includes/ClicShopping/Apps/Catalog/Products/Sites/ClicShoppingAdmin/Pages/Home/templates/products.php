@@ -24,6 +24,7 @@
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
   $CLICSHOPPING_Image = Registry::get('Image');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $cPath_back = '';
 

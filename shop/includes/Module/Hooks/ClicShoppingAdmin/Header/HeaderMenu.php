@@ -9,30 +9,38 @@
    *
    */
 
+  namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
+
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-  $CLICSHOPPING_Db = Registry::get('Db');
-  $CLICSHOPPING_Language = Registry::get('Language');
+  class HeaderMenu
+  {
+    /**
+     * @return bool|string
+     */
+    public function display(): string
+    {
+      $CLICSHOPPING_Db = Registry::get('Db');
+      $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (isset($_SESSION['admin']['access'])) {
-    if ($_SESSION['admin']['access'] == 1) {
-      $access_level = 0;
-    } elseif ($_SESSION['admin']['access'] == 2) {
-      $access_level = 2;
-    } elseif ($_SESSION['admin']['access'] == 3) {
-      $access_level = 2;
-    } else {
-      $access_level = 0;
-    }
-  } else {
-    $access_level = 0;
-  }
+      if (isset($_SESSION['admin']['access'])) {
+        if ($_SESSION['admin']['access'] == 1) {
+          $access_level = 0;
+        } elseif ($_SESSION['admin']['access'] == 2) {
+          $access_level = 2;
+        } elseif ($_SESSION['admin']['access'] == 3) {
+          $access_level = 2;
+        } else {
+          $access_level = 0;
+        }
+      } else {
+        $access_level = 0;
+      }
 
-  if ($access_level == 0) {
-    $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
+      if ($access_level == 0) {
+        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
                                                   am.link,
                                                   am.parent_id,
                                                   am.access,
@@ -48,10 +56,10 @@
                                             order by am.parent_id,
                                                      am.sort_order
                                             ');
-    $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
-  } elseif ($access_level == 2) {
-    $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
+      } elseif ($access_level == 2) {
+        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
                                                 am.link,
                                                 am.parent_id,
                                                 am.access,
@@ -69,10 +77,10 @@
                                                    am.sort_order
                                           ');
 
-    $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
+        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
-  } elseif ($access_level == 3) {
-    $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
+      } elseif ($access_level == 3) {
+        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
                                                 am.link,
                                                 am.parent_id,
                                                 am.access,
@@ -90,119 +98,123 @@
                                                    am.sort_order
                                           ');
 
-    $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-  }
-
-  $Qmenus->setCache('menu-administrator');
-  $Qmenus->execute();
-
-  $menu_parent = [];
-  $menu_sub = [];
-
-  foreach ($Qmenus as $menus) {
-    if ($menus['parent_id'] == 0) {
-      $menu_parent[$menus['id']] = $menus;
-    } else {
-      if (isset($menu_parent[$menus['parent_id']]) && !is_null($menu_parent[$menus['parent_id']])) {
-        $menu_parent[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
-        $menu_sub[$menus['id']] = $menus;
-      } elseif (isset($menu_sub[$menus['parent_id']]) && !is_null($menu_sub[$menus['parent_id']])) {
-        $menu_sub[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
-        $menu_sub[$menus['id']] = $menus;
+        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
       }
-    }
-  }
-?>
-<div class="headerLine"></div>
-<div class="backgroundMenu">
-    <span class="float-md-left">
-      <nav class="main-nav" role="navigation">
-        <input id="main-menu-state" type="checkbox"/>
-        <label class="main-menu-btn" for="main-menu-state">
-          <span class="main-menu-btn-icon"></span>
-        </label>
 
-        <ul id="main-menu" class="sm sm-mint">
-<?php
-  // level 1
+      $Qmenus->setCache('menu-administrator');
+      $Qmenus->execute();
+
+      $menu_parent = [];
+      $menu_sub = [];
+
+      foreach ($Qmenus as $menus) {
+        if ($menus['parent_id'] == 0) {
+          $menu_parent[$menus['id']] = $menus;
+        } else {
+          if (isset($menu_parent[$menus['parent_id']]) && !is_null($menu_parent[$menus['parent_id']])) {
+            $menu_parent[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
+            $menu_sub[$menus['id']] = $menus;
+          } elseif (isset($menu_sub[$menus['parent_id']]) && !is_null($menu_sub[$menus['parent_id']])) {
+            $menu_sub[$menus['parent_id']]['sub_menu'][$menus['id']] = $menus['id'];
+            $menu_sub[$menus['id']] = $menus;
+          }
+        }
+      }
+
+      $output = '<div class="headerLine"></div>';
+      $output .= '<div class="backgroundMenu">';
+      $output .= '<span class="float-md-left">';
+      $output .= '<nav class="main-nav" role="navigation">';
+      $output .= '<input id="main-menu-state" type="checkbox"/>';
+      $output .= '<label class="main-menu-btn" for="main-menu-state">';
+      $output .= '<span class="main-menu-btn-icon"></span>';
+      $output .= '</label>';
+
+      $output .= '<ul id="main-menu" class="sm sm-mint">';
+
+// level 1
   foreach ($menu_parent as $key => $menus) {
     $image = '';
 
     if ($menus['link'] != '') {
-      echo '<li>' . HTML::link(CLICSHOPPING::link($menus['link']), $menus['label']) . '</li>';
+      $output .= '<li>' . HTML::link(CLICSHOPPING::link($menus['link']), $menus['label']) . '</li>';
     } else {
-      echo '<li><a class="nav-link">' . $image . ' ' . $menus['label'] . '</a>';
+      $output .= '<li><a class="nav-link">' . $image . ' ' . $menus['label'] . '</a>';
     }
 
 //--------------------------------------------------------------
 // level 2
     if (isset($menus['sub_menu'])) {
-      echo '<ul>';
+      $output .= '<ul>';
       foreach ($menus['sub_menu'] as $second_level) {
         $image = '';
 
         if ($menu_sub[$second_level]['link'] != '') {
-          echo '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$second_level]['link']), $image . ' ' . $menu_sub[$second_level]['label']) . '</li>';
+          $output .= '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$second_level]['link']), $image . ' ' . $menu_sub[$second_level]['label']) . '</li>';
         } else {
-          echo '<li class="sub_menu_1st_level"><a class="nav-link">' . $image . ' ' . $menu_sub[$second_level]['label'] . '</a>';
+          $output .= '<li class="sub_menu_1st_level"><a class="nav-link">' . $image . ' ' . $menu_sub[$second_level]['label'] . '</a>';
         }
 //--------------------------------------------------------------
 // level 3
         if (isset($menu_sub[$second_level]['sub_menu'])) {
-          echo '<ul>';
+          $output .= '<ul>';
 
           foreach ($menu_sub[$second_level]['sub_menu'] as $third_level) {
             $image = '';
 
             if (!is_null($menu_sub[$third_level]['link'])) {
-              echo '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$third_level]['link']), $image . ' ' . $menu_sub[$third_level]['label']) . '</li>';
+              $output .= '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$third_level]['link']), $image . ' ' . $menu_sub[$third_level]['label']) . '</li>';
             } else {
-              echo '<li><a class="nav-link">' . $image . ' ' . $menu_sub[$third_level]['label'] . '</a>';
+              $output .= '<li><a class="nav-link">' . $image . ' ' . $menu_sub[$third_level]['label'] . '</a>';
             }
 
 //--------------------------------------------------------------
 // level 4
             if (isset($menu_sub[$third_level]['sub_menu'])) {
-//              echo '<ul>';
+//              $output .= '<ul>';
 
               foreach ($menu_sub[$third_level]['sub_menu'] as $fourth_level) {
                 $image = '';
 
                 if (!is_null($menu_sub[$fourth_level]['link'])) {
-                  echo '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$fourth_level]['link']), $image . ' ' . $menu_sub[$fourth_level]['label']) . '</li>';
+                  $output .= '<li>' . HTML::link(CLICSHOPPING::link($menu_sub[$fourth_level]['link']), $image . ' ' . $menu_sub[$fourth_level]['label']) . '</li>';
                 } else {
 
-                  echo '<li><a class="nav-link">' . $image . ' ' . $menu_sub[$fourth_level]['label'] . '</a>';
+                  $output .= '<li><a class="nav-link">' . $image . ' ' . $menu_sub[$fourth_level]['label'] . '</a>';
                 }
               }
 
               if (is_null($menu_sub[$fourth_level]['link'])) {
-                echo '</li>';
+                $output .= '</li>';
               }
-//              echo '</ul>';
+//              $output .= '</ul>';
             }
 
 //--------------------------------------------------------------
 
             if (is_null($menu_sub[$third_level]['link'])) {
-              echo '</li>';
+              $output .= '</li>';
             }
           }
-          echo '</ul>';
+          $output .= '</ul>';
         }
         if (is_null($menu_sub[$second_level]['link'])) {
-          echo '</li>';
+          $output .= '</li>';
         }
       }
-      echo '</ul>';
+      $output .= '</ul>';
     }
     if ($menus['link'] != '') {
-      echo '</li>';
+      $output .= '</li>';
     }
   }
-?>
-      </ul>
-    </nav>
-  </span>
-</div>
-<div class="clearfix"></div>
+
+      $output .= '</ul>';
+      $output .= '</nav>';
+      $output .= '</span>';
+      $output .= '</div>';
+      $output .= '<div class="clearfix"></div>';
+
+      return $output;
+    }
+  }

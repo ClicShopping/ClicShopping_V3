@@ -11,9 +11,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-
-  ;
-
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
@@ -54,15 +51,15 @@
         <tbody>
         <?php
           $Qclasse = $CLICSHOPPING_TaxClass->db->prepare('select  SQL_CALC_FOUND_ROWS  tax_class_id,
-                                                                         tax_class_title,
-                                                                         tax_class_description,
-                                                                         last_modified,
-                                                                         date_added
-                                            from :table_tax_class
-                                            order by tax_class_title
-                                            limit :page_set_offset,
-                                                  :page_set_max_results
-                                            ');
+                                                                                       tax_class_title,
+                                                                                       tax_class_description,
+                                                                                       last_modified,
+                                                                                       date_added
+                                                          from :table_tax_class
+                                                          order by tax_class_title
+                                                          limit :page_set_offset,
+                                                                :page_set_max_results
+                                                          ');
 
           $Qclasse->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
           $Qclasse->execute();
