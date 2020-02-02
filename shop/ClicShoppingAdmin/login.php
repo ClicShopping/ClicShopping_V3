@@ -22,7 +22,7 @@
 
   $login_request = true;
 
-  require_once('includes/application_top.php');
+  require_once __DIR__ . '/includes/application_top.php';
 
   $CLICSHOPPING_Db = Registry::get('Db');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -37,33 +37,11 @@
     $action = 'logoff';
   }
 
-  $ip = HTTP::getIpAddress();
-  $city = '';
-  $country = '';
-  $localisation = '';
-    
-  if (Is::IpAddress($ip)) {
-    $host = @gethostbyaddr($ip);
-    $referer = $_SERVER['HTTP_REFERER'];
-    $details = @file_get_contents("https://ipinfo.io/{$ip}/geo");
-
-    if ($details !== false) {
-      $details = json_decode($details);
-
-      $country = $details->country;
-      $city = $details->city;
-      $region =$details->region;
-      $localisation = $details->loc;
-      $google_map = CLICSHOPPING::getDef('report_sender_ip_address', ['IP' => $ip]) . ' : https://www.google.com/maps/place/' . $localisation;
-
-    } else {
-      $new_info_ip = CLICSHOPPING::getDef('report_sender_ip_address', ['IP' => $ip]) . ' <a href="https://whatismyipaddress.com/ip/' . $ip . '">https://whatismyipaddress.com/ip/' . $ip . '</a>';
-    }
-  }
-
   if (!is_null($action)) {
     switch ($action) {
       case 'process':
+        $CLICSHOPPING_Hooks->call('PreAction', 'Process');
+
         if (isset($_SESSION['redirect_origin']) && isset($_SESSION['redirect_origin']['auth_user']) && !isset($_POST['username'])) {
           $username = HTML::sanitize($_SESSION['redirect_origin']['auth_user']);
           $password = HTML::sanitize($_SESSION['redirect_origin']['auth_pw']);
@@ -77,8 +55,8 @@
           $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorderAdmin');
 
           if ($CLICSHOPPING_ActionRecorder->canPerform()) {
-
-            $sql_array = ['id',
+            $sql_array = [
+              'id',
               'user_name',
               'user_password',
               'name',
@@ -90,7 +68,9 @@
 
             if ($Qadmin->fetch() !== false) {
               if (Hash::verify($password, $Qadmin->value('user_password'))) {
-  // migrate old hashed password to new php password_hash
+//**********************************
+// migrate old hashed password to new php password_hash
+//**********************************
                 if (PHP_VERSION < 7.4) {
                   if (Hash::needsRehash($Qadmin->value('user_password'))) {
                     $CLICSHOPPING_Db->save('administrators', ['user_password' => Hash::encrypt($password)],
@@ -99,7 +79,8 @@
                   }
                 }
 
-                $_SESSION['admin'] = ['id' => $Qadmin->valueInt('id'),
+                $_SESSION['admin'] = [
+                  'id' => $Qadmin->valueInt('id'),
                   'username' => $Qadmin->value('user_name'),
                   'access' => $Qadmin->value('access')
                 ];
@@ -114,6 +95,8 @@
 
                   unset($_SESSION['redirect_origin']);
 
+                  $CLICSHOPPING_Hooks->call('Login', 'Process');
+
                   CLICSHOPPING::redirect($page, $get_string);
                 } else {
                   CLICSHOPPING::redirect();
@@ -124,25 +107,7 @@
             if (isset($_POST['username'])) {
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_invalid_administrator'), 'error');
 
-// send an email if someone try to connect on admin panel without authorization
-// get ip and infos
-              if (SEND_EMAILS == 'true' && CONFIGURATION_EMAIL_SECURITY == 'true') {
-                if (Is::IpAddress($ip)) {
-// build report
-                  $report = date("D M j G:i:s Y") . "\n\n" . CLICSHOPPING::getDef('report_access_login', ['IP' => $ip]);
-                  $report .= "\n" . CLICSHOPPING::getDef('report_sender_host_name', ['HOST' => $host]);
-                  $report .= "\n" . CLICSHOPPING::getDef('report_sender_username', ['USERNAME' => $username]);
-                  $report .= "\n" .'City : '. $city;
-                  $report .= "\n" .'Country : '. $country;
-                  $report .= "\n" .'Region : '. $region;
-                  $report .= "\n\n" . $google_map;
-                  $report .= "\n" . $new_info_ip;
-                  $report .= "\n" . CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin');
-                  $report .= "\n\n" . TemplateEmailAdmin::getTemplateEmailTextFooter();
-  // mail report
-                  $CLICSHOPPING_Mail->clicMail(STORE_OWNER_EMAIL_ADDRESS, STORE_OWNER_EMAIL_ADDRESS, CLICSHOPPING::getDef('report_email_subject'), $report, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
-                }
-              }
+              $CLICSHOPPING_Hooks->call('Login', 'ErrorProcess');
             }
           } else {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_admin_login_minutes' => (defined('MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES') ? (int)MODULE_ACTION_RECORDER_ADMIN_LOGIN_MINUTES : 5)]));
@@ -152,7 +117,6 @@
             $CLICSHOPPING_ActionRecorder->record(false);
           }
         }
-
         break;
 
       case 'logoff':
@@ -168,7 +132,10 @@
 
         CLICSHOPPING::redirect();
         break;
+
       case 'create':
+        $CLICSHOPPING_Hooks->call('PreAction', 'Create');
+
         $Qcheck = $CLICSHOPPING_Db->get('administrators', 'id', null, null, 1);
 
         if (!$Qcheck->check()) {
@@ -178,7 +145,6 @@
           $first_name = HTML::sanitize($_POST['first_name']);
 
           if (!empty($username)) {
-
             $CLICSHOPPING_Db->save('administrators', [
                 'user_name' => $username,
                 'user_password' => Hash::encrypt($password),
@@ -189,6 +155,8 @@
             );
           }
         }
+
+        $CLICSHOPPING_Hooks->call('Login', 'Create');
 
         CLICSHOPPING::redirect('login.php');
 
@@ -235,6 +203,8 @@
           } else {
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error, again 1 time before to block your IP address');
           }
+
+          $CLICSHOPPING_Hooks->call('Login', 'SendPassword');
 
           CLICSHOPPING::redirect('login.php');
         }
@@ -524,8 +494,7 @@
           </div>
           <div class="modal-body">
             <div class="col-md-12 center-block">
-              <div class="text-danger"
-                   style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
+              <div class="text-danger" style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
                 <?php echo HTML::inputField('username', '', 'size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>

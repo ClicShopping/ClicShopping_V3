@@ -23,4 +23,5 @@
     echo $CLICSHOPPING_LoggerAdmin->timerStop(DISPLAY_PAGE_PARSE_TIME);
     echo '</div>';
     echo '</div>';
+    echo '<div class="separator"></div>';
   }

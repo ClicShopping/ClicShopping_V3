@@ -296,7 +296,6 @@
     {
       $xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
       $xml .= '<?xml-stylesheet href="https://www.w3.org/2000/08/w3c-synd/style.css" type="text/css"?>' . "\n";
-
       $xml .= '<rss version="2.0" ' . "\n";
       $xml .= $this->xmlns();
       $xml .= '>' . "\n";

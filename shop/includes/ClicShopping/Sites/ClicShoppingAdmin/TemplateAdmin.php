@@ -18,9 +18,6 @@
 
   class TemplateAdmin extends \ClicShopping\Sites\Shop\Template
   {
-    protected $default_template_directory = 'Default';
-    protected $thema;
-    protected $name;
     protected $directoryAdminLanguages = 'languages/';
     protected $directoryAdmin = 'ClicShoppingAdmin/';
     protected $directoryAdminBoxes = 'boxes/';

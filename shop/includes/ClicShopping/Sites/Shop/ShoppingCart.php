@@ -26,6 +26,8 @@
     protected $content_type;
     protected $min_quantity;
     protected $quantity;
+    protected $productsId;
+    protected $products_in_stock = true;
     protected $db;
     protected $lang;
     protected $customer;
@@ -33,8 +35,6 @@
     protected $prod;
     protected $tax;
     protected $productsAttributes;
-    protected $productsId;
-    protected $products_in_stock = true;
 
     public function __construct()
     {

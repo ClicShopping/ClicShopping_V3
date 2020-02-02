@@ -98,7 +98,7 @@
           $products_name .= HTML::link($products_name_url, $products[$i]['name']);
           $remove_product_id = 'remove_product_' . $products[$i]['id'];
 
-          $trash = '          
+          $trash = '
           <a href="#" data-toggle="modal" data-target="#' . $remove_product_id . '"><i class="fas fa-trash"></i></a>
           <div class="modal hide fade active' . $remove_product_id . '" tabindex="-1" role="dialog" aria-labelledby="' . $remove_product_id . '" aria-hidden="true" id="' . $remove_product_id . '">
             <div class="modal-dialog modal-sm">

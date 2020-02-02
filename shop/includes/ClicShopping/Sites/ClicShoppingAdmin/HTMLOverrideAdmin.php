@@ -18,15 +18,6 @@
 
   class HTMLOverrideAdmin extends HTML
   {
-
-    protected $string;
-    protected $name;
-    protected $width;
-    protected $height;
-    protected $country;
-    protected $form;
-    protected $field;
-
     /*
      *  remplace les espaces par un +
      *

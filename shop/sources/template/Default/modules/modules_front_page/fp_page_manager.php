@@ -34,7 +34,7 @@
     }
 
     public function execute() {
-       $CLICSHOPPING_Template = Registry::get('Template');
+      $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Category = Registry::get('Category');
       $CLICSHOPPING_PageManagerShop = Registry::get('PageManagerShop');
 

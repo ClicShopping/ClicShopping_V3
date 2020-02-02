@@ -79,7 +79,7 @@
     /**
      * @param null $site
      */
-    public static function loadSite(string $site = null)
+    public static function loadSite(?string $site = null)
     {
       if (!isset($site)) {
         $site = static::$site;

@@ -20,6 +20,12 @@
      */
     public function display(): string
     {
+      $params = $_SERVER['QUERY_STRING'];
+
+      if (empty($params)) {
+        return false;
+      }
+
       $output = '';
 
       if (isset($_SESSION['admin'])) {

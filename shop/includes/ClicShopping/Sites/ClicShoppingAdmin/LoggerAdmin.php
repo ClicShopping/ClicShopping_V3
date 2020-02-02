@@ -32,7 +32,11 @@
       }
     }
 
-    public function timerStop($display = 'false')
+    /**
+     * @param bool $display
+     * @return string
+     */
+    public function timerStop(bool $display = false)
     {
       $this->timerStop = microtime();
 
@@ -45,22 +49,33 @@
 
       if ($display == 'true') {
         return $this->timerDisplay();
+      } else {
+       return false;
       }
     }
 
+    /**
+     * @return string
+     */
     public function timerDisplay()
     {
       return '<span>Parse Time: ' . $this->timer_total . 's</span>';
     }
 
-    public static function write($message, $type)
+    /**
+     * @param $message
+     * @param $type
+     */
+    public static function write(string $message, string $type)
     {
       if ( STORE_PAGE_PARSE_TIME == 'True') {
         if (is_file(STORE_PAGE_PARSE_TIME_LOG)) {
-          error_log(strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' [' . $type . '] ' . $message . "\n", 3, STORE_PAGE_PARSE_TIME_LOG);
+          return '<div class="alert alert-warning text-md-center">' . strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' [' . $type . '] ' . $message . "\n" . STORE_PAGE_PARSE_TIME_LOG . '</div>';
         } else {
-          echo '<div class="alert alert-warning text-md-center">The time log directory or file is not found</div>';
+          return '<div class="alert alert-warning text-md-center">The time log directory or file is not found</div>';
         }
+      } else {
+        return false;
       }
     }
   }

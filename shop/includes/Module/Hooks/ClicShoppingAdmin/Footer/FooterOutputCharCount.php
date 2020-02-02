@@ -20,11 +20,17 @@
      */
     public function display(): string
     {
+      $params = $_SERVER['QUERY_STRING'];
+
+      if (empty($params)) {
+        return false;
+      }
+
       $output = '';
 
       if (isset($_SESSION['admin'])) {
         $output .= '<!--count words  Script start-->' . "\n";
-        $output .= '<script defer src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.min.js') . '"></script>' . "\n";
+        $output .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.min.js') . '"></script>' . "\n";
         $output .= '<!--End count words -->' . "\n";
       }
 
