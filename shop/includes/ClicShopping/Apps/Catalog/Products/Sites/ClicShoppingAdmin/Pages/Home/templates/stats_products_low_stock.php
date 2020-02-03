@@ -65,7 +65,7 @@
     </thead>
     <tbody>
     <?php
-      $Qcheck = $CLICSHOPPING_Db->query("show columns from :table_products like 'products_warehouse_time_replenishment'");
+      $Qcheck = $CLICSHOPPING_Products->db->query("show columns from :table_products like 'products_warehouse_time_replenishment'");
 
       if ($Qcheck->fetch() === false) {
         $Qproducts = $CLICSHOPPING_Products->db->prepare('select  SQL_CALC_FOUND_ROWS  p.products_id,
