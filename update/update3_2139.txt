@@ -1,0 +1,1 @@
+fix quick update customer group price for update all prices.

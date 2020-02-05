@@ -58,7 +58,7 @@
                                                                 where customers_group_id = :customers_group_id
                                                                 and products_id = :products_id
                                                               ');
-              $Qattributes->bindInt(':customers_group_id', (int)$groups_id);
+              $Qattributes->bindInt(':customers_group_id', $groups_id);
               $Qattributes->bindInt(':products_id', $Qpricek->valueInt('products_id'));
               $Qattributes->execute();
 
@@ -71,7 +71,7 @@
               $Qdiscount->bindInt(':categories_id', $Qpricek->valueInt('categories_id'));
               $Qdiscount->execute();
 
-              if (is_null($Qdiscount->value('discount'))) {
+              if (empty($Qdiscount->value('discount'))) {
                 $ricarico = $QcustomersGroup->value('customers_group_discount');
               } else {
                 $ricarico = $Qdiscount->value('discount');
@@ -88,8 +88,7 @@
                 } elseif ($ricarico == 0) {
                   $newprice = $pricek;
                 }
-              }
-              if (B2B == 'false') {
+              } else {
                 if ($ricarico > 0) {
                   $newprice = $pricek - ($pricek / 100) * $ricarico;
                 } elseif ($ricarico == 0) {
