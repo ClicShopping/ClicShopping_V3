@@ -122,7 +122,7 @@
             imagedestroy($img);
           }
 
-          unlink($big_image_resized_path);
+          @unlink($big_image_resized_path);
         }
       }
 
@@ -408,13 +408,15 @@
       $error = true;
 
 // gallery
-      if (isset($_POST['new_directory'])) {
+      if (isset($_POST['new_directory']) && !empty($_POST['new_directory'])) {
         $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);
         $new_dir = HTML::replaceString(' ', '_', $new_dir_without_accents);
         $new_dir = strtolower($new_dir);
-        $dir = 'products/' . (!empty($new_dir) ? $new_dir : $_POST['directory']);
+        $dir = 'products/' . $new_dir . '/' . HTML::sanitize($_POST['directory']);
       } else {
-        $dir = '';
+        if (!empty($_POST['directory_products_image'])) {
+          $dir = 'products/' . HTML::sanitize($_POST['directory_products_image']) . '/';
+        }
       }
 
       if (!empty($new_dir) && !is_dir($new_dir)) {
@@ -503,7 +505,7 @@
 
           if ($Qcheck->valueInt('total') < 2) {
             if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'))) {
-              unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
+              @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
             }
           }
         } while ($Qimages->fetch());

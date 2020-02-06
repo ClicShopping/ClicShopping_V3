@@ -35,10 +35,10 @@
         return false;
       }
 
-      if (isset($_GET['Update'])) {
+      if (isset($_GET['Update']) && isset($_GET['Products'])) {
         $id = HTML::sanitize($_GET['pID']);
 
-        If (empty($_POST['supplier_id'])) {
+        If (empty($_POST['suppliers_id'])) {
           $suppliers_id = 0;
         } else {
           $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
