@@ -31,12 +31,11 @@
 
     public function execute()
     {
-
       if (!defined('CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS') || CLICSHOPPING_APP_MANUFACTURERS_CM_STATUS == 'False') {
         return false;
       }
 
-      if (isset($_GET['Update'])) {
+      if (isset($_GET['Update']) && isset($_GET['Products'])) {
         $id = HTML::sanitize($_GET['pID']);
 
         $sql_data_array = ['manufacturers_id' => (int)HTML::sanitize($_POST['manufacturers_id'])];

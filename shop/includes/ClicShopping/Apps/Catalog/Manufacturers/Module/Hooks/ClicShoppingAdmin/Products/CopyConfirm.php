@@ -35,7 +35,7 @@
         return false;
       }
 
-      if (isset($_POST['products_id'])) {
+      if (isset($_POST['products_id']) && isset($_GET['Products'])) {
         $current_products_id = HTML::sanitize($_POST['products_id']);
 
         if (isset($current_products_id) && isset($_GET['CopyConfirm'])) {

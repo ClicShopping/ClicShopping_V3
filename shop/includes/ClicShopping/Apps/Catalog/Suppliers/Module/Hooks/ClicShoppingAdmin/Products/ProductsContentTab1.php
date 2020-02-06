@@ -33,7 +33,7 @@
 
     private function getSupplier()
     {
-      if (isset($_GET['pID']) && isset($_GET['Products'])) {
+      if (isset($_GET['pID'])) {
         $pID = HTML::sanitize($_GET['pID']);
 
         $Qproducts = $this->app->db->prepare('select suppliers_id
