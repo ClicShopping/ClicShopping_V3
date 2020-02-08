@@ -184,11 +184,18 @@
               $min_order_quantity_products_display = $CLICSHOPPING_ProductsFunctionTemplate->getMinOrderQuantityProductDisplay($products_id);
 // display a message in public function the customer group applied - before submit button
               $submit_button_view = $CLICSHOPPING_ProductsFunctionTemplate->getButtonView($products_id);
+
 // button buy
               $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
+
 // Display an input allowing for the customer to insert a quantity
-              $input_quantity = $CLICSHOPPING_ProductsFunctionTemplate->getDisplayInputQuantity(MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON, $products_id);
+              if ($CLICSHOPPING_ProductsCommon->getProductsQuantity() > 0) {
+                $input_quantity = $CLICSHOPPING_ProductsFunctionTemplate->getDisplayInputQuantity(MODULE_FRONT_PAGE_NEW_PRODUCTS_DELETE_BUY_BUTTON, $products_id);
+              } else {
+                $input_quantity = '';
+              }
+
 // display the differents prices before button
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description

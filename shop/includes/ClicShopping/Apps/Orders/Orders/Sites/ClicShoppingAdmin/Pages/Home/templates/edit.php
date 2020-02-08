@@ -317,18 +317,17 @@
             <tr class="dataTableHeadingRow">
               <td></td>
               <td></td>
-              <td colspan="3"
-                  class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_products'); ?></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="text-md-center"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_products'); ?></td>
+              <td></td>
               <td><?php echo $CLICSHOPPING_Orders->getDef('table_heading_products_model'); ?></td>
               <td class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_tax'); ?></td>
-              <td
-                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_excluding_tax'); ?></td>
-              <td
-                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_including_tax'); ?></td>
-              <td
-                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_excluding_tax'); ?></td>
-              <td
-                class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_including_tax'); ?></td>
+              <td class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_excluding_tax'); ?></td>
+              <td class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_price_including_tax'); ?></td>
+              <td class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_excluding_tax'); ?></td>
+              <td class="text-md-right"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_including_tax'); ?></td>
             </tr>
             <?php
               for ($i = 0, $n = count($order->products); $i < $n; $i++) {
@@ -365,21 +364,20 @@
                 echo '    </tr>' . "\n";
               }
             ?>
-            <tr>
-              <td class="text-md-right" colspan="11">
-                <table border="0" cellspacing="0" cellpadding="2" width="100%">
-                  <?php
-                    foreach ($order->totals as $value) {
-                      echo '      <tr>' . "\n" .
-                        '          <td class="text-md-right"><strong>' . $value['title'] . '</strong></td>' . "\n" .
-                        '          <td class="text-md-right"><strong>' . strip_tags($value['text']) . '</strong></td>' . "\n" .
-                        '        </tr>' . "\n";
-                    }
-                  ?>
-                </table>
-              </td>
-            </tr>
           </table>
+
+
+          <div class="separator"></div>
+            <table border="0" cellspacing="0" cellpadding="2" width="100%">
+              <?php
+                foreach ($order->totals as $value) {
+                  echo '      <tr>' . "\n" .
+                    '          <td class="text-md-right"><strong>' . $value['title'] . '</strong></td>' . "\n" .
+                    '          <td class="text-md-right"><strong>' . strip_tags($value['text']) . '</strong></td>' . "\n" .
+                    '        </tr>' . "\n";
+                }
+              ?>
+            </table>
           <div class="col-md-12" id="contentTab2"></div>
           <?php echo $CLICSHOPPING_Hooks->output('Orders', 'PageContentTab2', null, 'display'); ?>
         </div>

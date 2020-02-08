@@ -78,17 +78,24 @@
            if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
              $submit_button_view = $CLICSHOPPING_ProductsCommon->getProductsAllowingTakeAnOrderMessage();
            }
-// display buy button
-          $buy_button =  HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
-          $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
 
 // display the differents buttons before minorder qty
-           if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
-             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton() ;
-           }
+          if (STOCK_ALLOW_CHECKOUT == 'true' && PRE_ORDER_AUTORISATION == 'true' && $CLICSHOPPING_ProductsCommon->getProductsQuantity() < 1) {
+            $buy_button = HTML::button(CLICSHOPPING::getDef('button_pre_order'), null, null, 'success', null, 'lg');
+            $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
+            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
+          } elseif(STOCK_ALLOW_CHECKOUT == 'true') {
+            $buy_button =  HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
+            $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
+            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
+          } elseif ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
+            $buy_button =  HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
+            $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
+            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton() ;
+          }
 
 // Display an input allowing for the customer to insert a quantity
-           if ($CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity() !='' ) {
+           if ($CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity() != '' && $CLICSHOPPING_ProductsCommon->getProductsQuantity() > 0) {
              $input_quantity =  CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
            } else {
              $input_quantity = '';

@@ -4,6 +4,8 @@ module_products_info_price_description = Affiche le bouton commande et le tarif 
 text_price_info =
 text_products_info_price_by_weight = Tarif au Kg :
 button_cart = Ajouter au panier
+button_pre_order = Pré-commander
+
 customer_quantity = Quantité
 
 min_qty_order_product = Qté min :

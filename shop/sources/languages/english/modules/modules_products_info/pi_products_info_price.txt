@@ -5,6 +5,8 @@
  text_price_info =
  text_products_info_price_by_weight = Price by Kg :
  button_cart = Add Shopping cart
+ button_pre_order = Pre order
+
  customer_quantity = Quantité
 
  min_qty_order_product = Qty min :

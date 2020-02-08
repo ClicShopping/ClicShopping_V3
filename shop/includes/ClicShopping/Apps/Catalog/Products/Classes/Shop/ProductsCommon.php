@@ -2334,7 +2334,7 @@
       $out_of_stock = '';
 
       if ($stock_left < 0) {
-        $out_of_stock = '<span class="markProductOutOfStock">' . CLICSHOPPING::getDef('text_out_of_stock') . '</span>';
+        $out_of_stock = '<span class="markProductOutOfStock" id="markProductOutOfStock">' . CLICSHOPPING::getDef('text_out_of_stock') . '</span>';
       }
 
       return $out_of_stock;

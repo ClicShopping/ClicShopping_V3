@@ -162,8 +162,14 @@
 // button buy
               $buy_button = HTML::button(CLICSHOPPING::getDef('button_buy_now'), null, null, 'primary', null, 'sm');
               $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
+
 // Display an input allowing for the customer to insert a quantity
-              $input_quantity = $CLICSHOPPING_ProductsFunctionTemplate->getDisplayInputQuantity(MODULE_PRODUCTS_FAVORITES_DELETE_BUY_BUTTON, $products_id);
+              if ($CLICSHOPPING_ProductsCommon->getProductsQuantity() > 0) {
+                $input_quantity = $CLICSHOPPING_ProductsFunctionTemplate->getDisplayInputQuantity(MODULE_PRODUCTS_FAVORITES_DELETE_BUY_BUTTON, $products_id);
+              } else {
+                $input_quantity ='';
+              }
+
 // display the differents prices before button
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
