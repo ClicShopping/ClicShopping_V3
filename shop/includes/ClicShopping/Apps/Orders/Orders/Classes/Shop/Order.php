@@ -1070,12 +1070,10 @@
           }
 
           if ($Qstock->fetch() !== false) {
-
 // do not decrement quantities if products_attributes_filename exists
             if ((DOWNLOAD_ENABLED != 'true') || !is_null($Qstock->value('products_attributes_filename'))) {
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
               if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-
                 $QproductsQuantityCustomersGroup = $this->db->prepare('select products_quantity_fixed_group
                                                                         from :table_products_groups
                                                                         where products_id = :products_id
@@ -1093,22 +1091,25 @@
                 $products_quantity_customers_group = 1;
               }
 
-              $stock_left = $Qstock->valueInt('products_quantity') - ($Qproducts->valueInt('products_quantity') * $products_quantity_customers_group);
-
+              if (STOCK_ALLOW_CHECKOUT == 'false') {
+                $stock_left = $Qstock->valueInt('products_quantity') - ($Qproducts->valueInt('products_quantity') * $products_quantity_customers_group);
+              } else {
+                $stock_left = $Qstock->valueInt('products_quantity');
+              }
             } else {
               $stock_left = $Qstock->valueInt('products_quantity');
             }
 
             if ($stock_left != $Qstock->valueInt('products_quantity')) {
-              $this->db->save('products', ['products_quantity' => (int)$stock_left],
-                ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
+              $this->db->save('products', ['products_quantity' => $stock_left],
+                ['products_id' => $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id'))
                 ]
               );
             }
 
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false')) {
               $this->db->save('products', ['products_status' => 0],
-                ['products_id' => $CLICSHOPPING_Prod::getProductID((int)$Qproducts->valueInt('products_id'))
+                ['products_id' => $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id'))
                 ]
               );
             }
@@ -1169,6 +1170,14 @@
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
+
+      if (strpos($_SESSION['payment'], '\\') !== false) {
+        $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
+
+        if (Registry::exists($code)) {
+          $CLICSHOPPING_PM = Registry::get($code);
+        }
+      }
 
       $Qorder = $this->db->prepare('select *
                                      from :table_orders
