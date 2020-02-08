@@ -215,6 +215,8 @@ tax_excluded = HT
 no_orders_group = Indisponible
 no_orders_public =
 text_out_of_stock = Hors stock
+text_out_of_stock_allow_checkout = Commande hors stock acceptée
+text_out_of_stock_pre_order = Pré-commande
 
 text_antispam = trois
 

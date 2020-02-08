@@ -23,6 +23,8 @@ text_display_products_weight = Poids kg
 text_price =
 
 text_out_of_stock = Hors stock
+text_out_of_stock_pre_order = Pré-commande
+text_out_of_stock_allow_checkout = Commande hors stock acceptée
 text_alert_stock = Alerte Stock
 text_in_stock = En stock
 min_qty_product = min qty

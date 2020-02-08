@@ -29,6 +29,8 @@ text_price =
 text_sort_by = Display by
 
 text_out_of_stock = Out of stock
+text_out_of_stock_pre_order = Only pre-order
+text_out_of_stock_allow_checkout = Order out of stock accepted
 text_alert_stock = Alert stock
 text_in_stock = In stock
 

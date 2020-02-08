@@ -2019,7 +2019,6 @@
         $product_exhausted = '';
       }
 
-
       return $product_exhausted;
     }
 
@@ -2334,7 +2333,13 @@
       $out_of_stock = '';
 
       if ($stock_left < 0) {
-        $out_of_stock = '<span class="markProductOutOfStock" id="markProductOutOfStock">' . CLICSHOPPING::getDef('text_out_of_stock') . '</span>';
+        if (PRE_ORDER_AUTORISATION == 'true') {
+          $out_of_stock = '<span class="markProductOutOfStock" id="markProductOutOfStock">' . CLICSHOPPING::getDef('text_out_of_stock_pre_order') . '</span>';
+        } elseif (STOCK_ALLOW_CHECKOUT == 'true') {
+          $out_of_stock = '<span class="markProductOutOfStock" id="markProductOutOfStock">' . CLICSHOPPING::getDef('text_out_of_stock_allow_checkout') . '</span>';
+        } else {
+          $out_of_stock = '<span class="markProductOutOfStock" id="markProductOutOfStock">' . CLICSHOPPING::getDef('text_out_of_stock') . '</span>';
+        }
       }
 
       return $out_of_stock;

@@ -214,6 +214,9 @@ tax_excluded = TAX exc.
 no_orders_group = No product avalaible
 no_orders_public =
 text_out_of_stock = Out of stock
+text_out_of_stock_pre_order = Only pre-order
+text_out_of_stock_allow_checkout = Order out of stock accepted
+text_out_of_stock_allow_checkout = Order out of stock accepted
 
 text_antispam = three
 

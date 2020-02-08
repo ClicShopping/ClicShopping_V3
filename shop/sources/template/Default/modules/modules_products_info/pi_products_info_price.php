@@ -95,11 +95,7 @@
           }
 
 // Display an input allowing for the customer to insert a quantity
-           if ($CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity() != '' && $CLICSHOPPING_ProductsCommon->getProductsQuantity() > 0) {
              $input_quantity =  CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
-           } else {
-             $input_quantity = '';
-           }
 
 // Quantity type
           if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {

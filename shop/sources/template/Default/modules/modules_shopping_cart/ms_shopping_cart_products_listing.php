@@ -142,8 +142,9 @@
 
             $stock_check = $CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'] * $products_quantity_customers_group[$i]);
 
+            $products_stock = '';
             if (!empty($stock_check)) {
-              $products_option .= '<p>' . $stock_check .'</p>';
+              $products_stock = '<p>' . $stock_check .'</p>';
             }
           }
 
@@ -196,7 +197,7 @@
           $cart .='<div class="row">';
           $cart .='<div id="ShoppingCartImage" class="col-sm-2 hidden-xs">' . $image . '</div>';
           $cart .='<div class="col-sm-10">';
-          $cart .='<p id="ShoppingCartProductsName" class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . ' ' . $total_overall_reviews . '</p>';
+          $cart .='<p id="ShoppingCartProductsName" class="nomargin text-sm-left">' . $ticker . ' ' .  $products_name . ' ' . $total_overall_reviews . ' ' . $products_stock . '</p>';
           $cart .='<p id="ShoppingCartProductsOptions" class="small">' . $products_attributes . '</p>';
           $cart .='</div>';
           $cart .='</div>';
@@ -288,7 +289,7 @@
     public function keys() {
       return [
         'MODULE_SHOPPING_CART_PRODUCTS_LISTING_STATUS',
-	      'MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH',
+        'MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH',
         'MODULE_SHOPPING_CART_PRODUCTS_LISTING_SORT_ORDER'
       ];
     }
