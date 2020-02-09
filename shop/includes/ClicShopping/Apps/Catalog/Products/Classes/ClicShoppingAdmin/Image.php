@@ -365,7 +365,7 @@
      * Product Image
      * @return string
      */
-    public function productsImage(): string
+    public function productsImage(): ?string
     {
       return $this->products_image;
     }
@@ -374,7 +374,7 @@
      * Products Image medium
      * @return string
      */
-    public function productsImageMedium(): string
+    public function productsImageMedium(): ?string
     {
       return $this->products_image_medium;
     }
@@ -383,7 +383,7 @@
      * Products Image Zoom
      * @return string
      */
-    public function productsImageZoom(): string
+    public function productsImageZoom(): ?string
     {
       return $this->products_image_zoom;
     }
@@ -392,7 +392,7 @@
      * Products Image Zoom
      * @return string
      */
-    public function productsSmallImage(): string
+    public function productsSmallImage(): ?string
     {
       return $this->products_image_small;
     }

@@ -366,7 +366,6 @@
             ?>
           </table>
 
-
           <div class="separator"></div>
             <table border="0" cellspacing="0" cellpadding="2" width="100%">
               <?php
