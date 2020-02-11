@@ -55,10 +55,10 @@
 
     <thead class="dataTableHeadingRow">
       <tr>
-        <th data-field="zones<?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_zones'); ?></th>
-        <th data-field="description<?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_description'); ?></th>
-        <th data-field="number"  data-field="sort_order<?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_number_zone'); ?></th>
-        <th data-field="action" data-switchable="false"  class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="zones" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_zones'); ?></th>
+        <th data-field="description" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_tax_description'); ?></th>
+        <th data-field="number" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_number_zone'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>

@@ -21,9 +21,9 @@
 
     protected function init()
     {
-      $this->title = $this->app->getDef('modulemodule_tx_title');
-      $this->short_title = $this->app->getDef('modulemodule_tx_short_title');
-      $this->introduction = $this->app->getDef('modulemodule_tx_introduction');
+      $this->title = $this->app->getDef('module_tx_title');
+      $this->short_title = $this->app->getDef('module_tx_short_title');
+      $this->introduction = $this->app->getDef('module_tx_introduction');
       $this->is_installed = defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (trim(CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS) != '');
     }
 

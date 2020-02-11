@@ -183,7 +183,7 @@
 
 // Will work with only one option for downloadable products
 // otherwise, we have to build the query dynamically with a loop
-                  $products_attributes = (isset($CLICSHOPPING_Order->products[$i]['attributes'])) ? $CLICSHOPPING_Order->products[$i]['attributes'] : '';
+                  $products_attributes = $CLICSHOPPING_Order->products[$i]['attributes'] ?? '';
 
                   if (is_array($products_attributes)) {
                     $stock_query_sql .= ' and pa.options_id = :options_id
@@ -206,7 +206,11 @@
                 if ($Qstock->fetch() !== false) {
 // do not decrement quantities if products_attributes_filename exists
                   if ((DOWNLOAD_ENABLED != 'true') || !empty($Qstock->value('products_attributes_filename'))) {
-                    $stock_left = $Qstock->valueInt('products_quantity') - $CLICSHOPPING_Order->products[$i]['qty'];
+                    if (STOCK_ALLOW_CHECKOUT == 'false') {
+                      $stock_left = $Qstock->valueInt('products_quantity') - ($CLICSHOPPING_Order->products[$i]['qty']) * $products_quantity_customers_group;
+                    } else {
+                      $stock_left = $Qstock->valueInt('products_quantity');
+                    }
                   } else {
                     $stock_left = $Qstock->valueInt('products_quantity');
                   }

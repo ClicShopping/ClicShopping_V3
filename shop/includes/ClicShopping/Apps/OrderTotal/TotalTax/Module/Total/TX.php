@@ -45,8 +45,8 @@
       $this->api_version = $this->app->getApiVersion();
 
       $this->code = 'TX';
-      $this->title = $this->app->getDef('modulemodule_tx_title');
-      $this->public_title = $this->app->getDef('modulemodule_tx_public_title');
+      $this->title = $this->app->getDef('module_tx_title');
+      $this->public_title = $this->app->getDef('module_tx_public_title');
 
 
 // Controle en B2B l'assujetti a la TVA (valeur true par defaut en mode B2C)
