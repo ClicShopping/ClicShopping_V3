@@ -30,6 +30,21 @@
       $CLICSHOPPING_OrderTotal = Registry::get('OrderTotal');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Checkout/';
+
+      if (is_dir($source_folder)) {
+        $files_get = $CLICSHOPPING_Template->getSpecificFiles($source_folder, 'CheckoutConfirmation*');
+
+        if (is_array($files_get)) {
+          foreach ($files_get as $value) {
+            if (!empty($value['name'])) {
+              $CLICSHOPPING_Hooks->call('Checkout', $value['name']);
+            }
+          }
+        }
+      }
 
 // if there is nothing in the customers cart, redirect them to the shopping cart page
       if ($CLICSHOPPING_ShoppingCart->getCountContents() < 1) {
@@ -109,20 +124,6 @@
         $CLICSHOPPING_Payment->pre_confirmation_check();
       }
 
-// discount coupons
-      if (isset($_SESSION['coupon']) && is_object($CLICSHOPPING_Order->coupon)) {
-
-// erreur quand le nbr de coupon permis = 0 et debug = false
-        if (CLICSHOPPING_APP_ORDER_TOTAL_DISCOUNT_COUPON_DC_DEBUG == 'False') {
-          if ($CLICSHOPPING_Order->coupon->getErrors()) {
-
-            if (isset($_SESSION['coupon'])) unset($_SESSION['coupon']);
-            $message = implode(' ', $CLICSHOPPING_Order->coupon->getDisplayMessages());
-
-            CLICSHOPPING::redirect(null, 'Checkout&Billing&error_message=' . urlencode($message));
-          }
-        }
-      }
 
       $CLICSHOPPING_OrderTotal->process();
 
@@ -154,6 +155,7 @@
         $CLICSHOPPING_Payment->confirmation();
       }
 
+      $CLICSHOPPING_Hooks->call('CheckoutConfirmation', 'PostAction');
 // templates
       $this->page->setFile('checkout_confirmation.php');
 //Content

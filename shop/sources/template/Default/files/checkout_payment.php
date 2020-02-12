@@ -15,10 +15,14 @@
 
   $CLICSHOPPING_Customer = Registry::get('Customer');
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
-
+  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_Payment = Registry::get('Payment');
 
   echo $CLICSHOPPING_Payment->javascript_validation();
+
+  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+    echo $CLICSHOPPING_MessageStack->get('main');
+  }
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 

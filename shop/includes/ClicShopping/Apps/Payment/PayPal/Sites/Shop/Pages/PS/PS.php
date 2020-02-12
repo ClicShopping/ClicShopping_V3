@@ -35,6 +35,7 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Prod = Registry::get('Prod');
       $CLICSHOPPING_Address = Registry::get('Address');
+      $CLICSHOPPING_Customer = Registry::get('Customer');
 
       $this->pm = new PaymentModulePS();
 
@@ -162,14 +163,64 @@
 
             for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
               if (STOCK_LIMITED == 'true') {
-                $Qstock = $this->pm->app->db->prepare('select products_quantity
-                                                        from :table_products
-                                                        where products_id = :products_id
-                                                       ');
-                $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
-                $Qstock->execute();
+                  if (DOWNLOAD_ENABLED == 'true') {
 
-                $stock_left = $Qstock->valueInt('products_quantity') - $CLICSHOPPING_Order->products[$i]['qty'];
+                    $stock_query_sql = 'select p.products_quantity,
+                                                pad.products_attributes_filename
+                                          from :table_products p
+                                          left join :table_products_attributes pa  on p.products_id = pa.products_id
+                                          left join :table_products_attributes_download pad on pa.products_attributes_id = pad.products_attributes_id
+                                          where p.products_id = :products_id';
+
+                    $products_attributes = $this->products['attributes'] ?? '';
+
+                    if (is_array($products_attributes)) {
+                      $stock_query_sql .= ' and pa.options_id = :options_id
+                                           and pa.options_values_id = :options_values_id
+                                        ';
+                    }
+
+                    $Qstock = $this->pm->app->db->prepare($stock_query_sql);
+
+                    $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
+
+                    if (is_array($products_attributes)) {
+                      $Qstock->bindInt(':options_id', $products_attributes['option_id']);
+                      $Qstock->bindInt(':options_values_id', $products_attributes['value_id']);
+                    }
+
+                    $Qstock->execute();
+                  } else {
+                     $Qstock = $this->pm->app->db->prepare('select products_quantity
+                                                  products_quantity_alert
+                                          from :table_products
+                                          where products_id = :products_id
+                                          ');
+
+                    $Qstock->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
+                    $Qstock->execute();
+                  }
+
+
+// select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
+                if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+                  $QproductsQuantityCustomersGroup = $this->pm->app->db->prepare('select products_quantity_fixed_group
+                                                                        from :table_products_groups
+                                                                        where products_id = :products_id
+                                                                        and customers_group_id =  :customers_group_id
+                                                                       ');
+                  $QproductsQuantityCustomersGroup->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($CLICSHOPPING_Order->products[$i]['id']));
+                  $QproductsQuantityCustomersGroup->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+                  $QproductsQuantityCustomersGroup->execute();
+
+                  $products_quantity_customers_group = $QproductsQuantityCustomersGroup->fetch();
+
+// do the exact qty in function the customer group and product
+                  $products_quantity_customers_group = $products_quantity_customers_group['products_quantity_fixed_group'];
+                } else {
+                  $products_quantity_customers_group = 1;
+                }
+
 
                 if (DOWNLOAD_ENABLED == 'true') {
                   $stock_query_sql = 'select p.products_quantity,

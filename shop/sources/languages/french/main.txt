@@ -223,7 +223,7 @@ text_antispam = trois
 entry_discount_coupon_error = Le code du coupon est invalide, veuillez reessayer.
 entry_discount_coupon_available_error = Le code du coupon insere n est pas ou plus valide.
 entry_discount_coupon_use_error = Nos informations nous disent que vous avez deja utilise ce coupon {{entry_discount_coupon_use_error}} fois. Vous ne pouvez plus l utiliser. que  {{entry_discount_coupon_max_use}} fois.
-entry_discount_coupon_min_price_error = La commande mimnimale pour ce coupon est de {{discount_min_price_error}}
+entry_discount_coupon_min_price_error = La commande minimale pour ce coupon est de {{discount_min_price_error}}
 
 module_order_total_discount_coupon_title = Coupon Remise
 module_order_total_discount_coupon_tax_applied = Taxe appliquée

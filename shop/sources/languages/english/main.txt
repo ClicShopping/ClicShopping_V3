@@ -231,7 +231,7 @@ module_order_total_discount_coupon_display_file = Discount Coupon [code] applied
 
 entry_discount_coupon_min_quantity_error = The minimum number of products required for this coupon is {{discount_min_price_error}}
 entry_discount_coupon_exclusion_error = Some or all of the products in your cart are excluded.
-
+entry_discount_coupon = Code du coupon :
 
 table_heading_image =
 table_heading_date_added = Date

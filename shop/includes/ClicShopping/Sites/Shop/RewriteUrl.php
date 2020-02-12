@@ -930,7 +930,7 @@
      * @return string
      */
 
-    public function getCategoryTreeUrl($categories_id, string $parameters = ''): string
+    public function getCategoryTreeUrl(int $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -955,7 +955,7 @@
      * @return string
      */
 
-    public function getCategoryImageUrl($categories_id, string $parameters = ''): string
+    public function getCategoryImageUrl(int $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -990,12 +990,12 @@
           $manufacturer_title = $CLICSHOPPING_Manufacturers->getTitle($manufacturer_id);
           $manufacturer_title = $this->replaceString($manufacturer_title);
 
-          $manufacturer_url_rewrited = $manufacturer_title . '&manufacturers_id=' . (int)$manufacturer_id;
+          $manufacturer_url_rewrited = '&manufacturersId=' . (int)$manufacturer_id;
         } else {
-          $manufacturer_url_rewrited = 'manufacturers_id=' . (int)$manufacturer_id;
+          $manufacturer_url_rewrited = 'manufacturersId=' . (int)$manufacturer_id;
         }
       } else {
-        $manufacturer_url_rewrited = 'manufacturers_id=' . (int)$manufacturer_id;
+        $manufacturer_url_rewrited = 'manufacturersId=' . (int)$manufacturer_id;
       }
 
       $url = CLICSHOPPING::link(null, $manufacturer_url_rewrited . $parameters);
