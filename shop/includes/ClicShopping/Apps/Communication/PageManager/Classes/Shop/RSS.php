@@ -340,6 +340,7 @@
         $url = $this->rewriteUrl->getProductNameUrl($products_id);
 
         $link = str_replace('&', '&amp;', $url);
+        $name = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $name);
 
         $xml .= '<item>' . "\n";
         $xml .= '<title>' . $name . '</title>' . "\n";
