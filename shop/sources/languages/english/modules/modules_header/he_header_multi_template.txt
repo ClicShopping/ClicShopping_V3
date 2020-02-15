@@ -32,5 +32,3 @@ modules_header_multi_template_shopping_cart_checkout = Checkout
 modules_header_multi_template_shopping_cart_total_content = Total
 
 template_does_not_exist = No template
-
-pull_down_default_manufacturer = Our brands

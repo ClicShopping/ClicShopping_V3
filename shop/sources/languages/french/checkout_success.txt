@@ -3,13 +3,3 @@ navbar_title_1 = Confirmation
 navbar_title_2 = Succès
 heading_title = Merci de nous avoir fait confiance.
 button_continue = Continuer
-
-module_checkout_success_guest_account_create_account_subject =  {{store_name}} - Information concernant votre création de compte et mot de passe
-module_checkout_success_guest_account_create_account_hello = Bonjour, <br /><br />
-Veuillez trouver ci dessous vos informations concernant votre demande.<br/><br />
-module_checkout_success_guest_account_create_account_body = <br /><br />Veuillez trouver ci-dessous votre nouveau mot de passe pour vous connecter sur {{store_name}} <br />
-Votre nom d'utilisateur : {{username}} <br />
-Votre nouveau mot de passe : {{password}} <br /><br />
-Très cordialement, <br /><br />
-<strong>L'équipe {{store_name}}</strong><br /><br />
-<p>{{store_name_address}} <br /><br />

@@ -294,6 +294,7 @@ email_text_product_stock = Nouveau stock du produit :
 email_text_date_alert = Date Alerte
 
 text_error_antispam = Erreur sur l'antispam
+pull_down_default_manufacturer = Nos marques
 
 text_install =
    <div style="text-align:center; padding-top: 50px;"><a href="https://www.clicshopping.org" target="_blank" rel="noopener"><img src="images/logo_clicshopping_1.png" border="0" height="105" width="284" alt="Market Place"></a><br />

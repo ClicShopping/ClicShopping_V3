@@ -19,14 +19,20 @@
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Tax = Registry::get('Tax');
 
-  $Qrates = $CLICSHOPPING_TaxRates->db->prepare('select *
+  $Qrates = $CLICSHOPPING_TaxRates->db->prepare('select tax_rates_id,
+                                                        tax_zone_id,
+                                                        tax_class_id,
+                                                        tax_priority,
+                                                        tax_rate,
+                                                        tax_description,
+                                                        last_modified,
+                                                        date_added,
+                                                        code_tax_erp
                                                  from :table_tax_rates
                                                  where tax_rates_id = :tax_rates_id
                                                 ');
   $Qrates->bindInt(':tax_rates_id', $_GET['tID']);
   $Qrates->execute();
-
-  $trInfo = new ObjectInfo($Qrates->toArray());
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
@@ -42,7 +48,7 @@
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
           <span class="col-md-4 text-md-right">
 <?php
-  echo HTML::form('status_tax_class', $CLICSHOPPING_TaxRates->link('TaxRates&Update&page=' . $page . '&tID=' . $trInfo->tax_rates_id));
+  echo HTML::form('tax_class', $CLICSHOPPING_TaxRates->link('TaxRates&Update&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')));
   echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSHOPPING_TaxRates->link('TaxRates'), 'warning');
 ?>
@@ -71,7 +77,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_class_title'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_class_title'); ?></label>
           <div class="col-md-5">
-            <?php echo $CLICSHOPPING_Tax->getTaxClassesPullDown('tax_class_id', $trInfo->tax_class_id ?? null); ?>
+            <?php echo $CLICSHOPPING_Tax->getTaxClassesPullDown('tax_class_id', $Qrates->valueInt('tax_class_id')); ?>
           </div>
         </div>
       </div>
@@ -83,7 +89,8 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_zone_name'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_zone_name'); ?></label>
           <div class="col-md-5">
-            <?php echo AddressAdmin::getGeoZonesPullDown('tax_zone_id', $trInfo->geo_zone_id ?? null); ?>
+            <?php
+              echo AddressAdmin::getGeoZonesPullDown('tax_zone_id', $Qrates->valueInt('tax_zone_id')); ?>
           </div>
         </div>
       </div>
@@ -95,7 +102,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_rate_description'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_rate_description'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('tax_description', $trInfo->tax_description ?? null); ?>
+            <?php echo HTML::inputField('tax_description', $Qrates->value('tax_description')); ?>
           </div>
         </div>
       </div>
@@ -107,7 +114,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('tax_rate', $trInfo->tax_rate ?? null, 'required aria-required="true"'); ?>
+            <?php echo HTML::inputField('tax_rate', $Qrates->valueDecimal('tax_rate'), 'required aria-required="true"'); ?>
           </div>
         </div>
       </div>
@@ -119,7 +126,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_erp'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_erp'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('code_tax_erp', $trInfo->code_tax_erp ?? null); ?>
+            <?php echo HTML::inputField('code_tax_erp', $Qrates->value('code_tax_erp')); ?>
           </div>
         </div>
       </div>
@@ -131,7 +138,7 @@
           <label for="<?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate_priority'); ?>"
                  class="col-5 col-form-label"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_tax_rate_priority'); ?></label>
           <div class="col-md-5">
-            <?php echo HTML::inputField('tax_priority', $trInfo->tax_priority ?? null); ?>
+            <?php echo HTML::inputField('tax_priority', $Qrates->valueInt('tax_priority')); ?>
           </div>
         </div>
       </div>

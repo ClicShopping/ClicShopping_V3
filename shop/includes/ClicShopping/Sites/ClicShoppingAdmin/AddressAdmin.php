@@ -125,10 +125,9 @@
      * @access public
      *
      */
-    public static function getGeoZonesPullDown($parameters, $selected = '') :string
+    public static function getGeoZonesPullDown(string $parameters, string $selected = '') :string
     {
-
-      $select_string = '<select ' . $parameters . '>';
+      $select_string = '<select name="' . $parameters . '" id="' . $parameters . '">';
 
       $Qzones = Registry::get('Db')->get('geo_zones', ['geo_zone_id',
         'geo_zone_name'

@@ -58,9 +58,9 @@
      * @return string $select_string, the drop down f the title class
      *
      */
-    public static function getTaxClassesPullDown($parameters, $selected = '')
+    public static function getTaxClassesPullDown(string $parameters, string $selected = ''): string
     {
-      $select_string = '<select ' . $parameters . '>';
+      $select_string = '<select name="' . $parameters . '" id ="' . $parameters . '">';
 
       $Qclasses = Registry::get('Db')->get('tax_class', [
         'tax_class_id',

@@ -77,37 +77,51 @@
 
         $compound_tax = false;
 
+        if ($CLICSHOPPING_Order->delivery['zone_id'] == 0) {
+          $QzoneCheck = $CLICSHOPPING_Db->prepare('select zone_id
+                                                    from :table_zones
+                                                    where zone_name = :zone_name
+                                                    and zone_country_id = :zone_country_id
+                                                    ');
+          $QzoneCheck->bindInt(':zone_country_id', $CLICSHOPPING_Order->delivery['country']['id']);
+          $QzoneCheck->bindvalue(':zone_name', $CLICSHOPPING_Order->delivery['state']);
+          $QzoneCheck->execute();
+
+          $zone_id = $QzoneCheck->valueInt('zone_id');
+        } else {
+          $zone_id = $CLICSHOPPING_Order->delivery['zone_id'];
+        }
+
         $QtaxPriority = $CLICSHOPPING_Db->prepare('select tax_priority
-                                           from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
-                                                                    left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
-                                           where za.zone_country_id = :zone_country_id
-                                           and za.zone_id = :zone_id
-                                           order by tr.tax_priority
-                                          ');
+                                                   from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
+                                                                            left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
+                                                   where za.zone_country_id = :zone_country_id
+                                                   and za.zone_id = :zone_id
+                                                   order by tr.tax_priority
+                                                  ');
         $QtaxPriority->bindInt(':zone_country_id', $CLICSHOPPING_Order->delivery['country']['id']);
-        $QtaxPriority->bindInt(':zone_id', $CLICSHOPPING_Order->delivery['zone_id']);
+        $QtaxPriority->bindInt(':zone_id', $zone_id);
         $QtaxPriority->execute();
 
         $Qtax = $CLICSHOPPING_Db->prepare('select tax_rates_id,
-                                          tax_priority,
-                                          tax_rate,
-                                          tax_description
-                                   from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
-                                                             left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
-                                   where za.zone_country_id = :zone_country_id
-                                   and za.zone_id = :zone_id
-                                   order by tr.tax_priority
-                                ');
+                                                  tax_priority,
+                                                  tax_rate,
+                                                  tax_description
+                                           from :table_tax_rates tr left join :table_zones_to_geo_zones za on (tr.tax_zone_id = za.geo_zone_id)
+                                                                     left join :table_geo_zones tz on (tz.geo_zone_id = tr.tax_zone_id)
+                                           where za.zone_country_id = :zone_country_id
+                                           and za.zone_id = :zone_id
+                                           order by tr.tax_priority
+                                        ');
         $Qtax->bindInt(':zone_country_id', $CLICSHOPPING_Order->delivery['country']['id']);
-        $Qtax->bindInt(':zone_id', $CLICSHOPPING_Order->delivery['zone_id']);
+        $Qtax->bindInt(':zone_id', $zone_id);
         $Qtax->execute();
-
-        if ($QtaxPriority->fetch() !== false) {
-
+        if ($QtaxPriority->fetch()) {
           $hst_total = 0;
 
           if ($QtaxPriority->rowCount() == 2) { //Show taxes on two lines
             $i = 0;
+            $tax_priority = '';
 
             while ($QtaxPriority->fetch()) { //compare tax_priotiries
               if ($i == 0) {
@@ -124,11 +138,9 @@
 //END Compare tax priorities
 
             if ($compound_tax) { //ie Quebec different de false et true
-
               $j = 0;
 
               while ($Qtax->fetch()) {
-
                 if ($j == 0) {
                   $gst_description = $Qtax->value('tax_description');
                   $gst_rate = $Qtax->valueDecimal('tax_rate') / 100;
@@ -148,13 +160,16 @@
               $pst_total = ($subtotal + $gst_total) * $pst_rate;
 
               foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
-
                 if ($value > 0) {
-                  $this->output[] = array('title' => $gst_description . ':',
-                    'text' => $CLICSHOPPING_Currencies->format($gst_total, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']), 'value' => $gst_total);
-                  $this->output[] = array('title' => $pst_description . ':',
+                  $this->output[] = [
+                    'title' => $gst_description . ':',
+                    'text' => $CLICSHOPPING_Currencies->format($gst_total, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']), 'value' => $gst_total
+                  ];
+                  $this->output[] = [
+                    'title' => $pst_description . ':',
                     'text' => $CLICSHOPPING_Currencies->format($pst_total, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
-                    'value' => $pst_total);
+                    'value' => $pst_total
+                  ];
                 }
               } // end while
             } else { //ie: Ontario
@@ -182,12 +197,16 @@
 
               foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
                 if ($value > 0) {
-                  $this->output[] = array('title' => $gst_description . ':',
+                  $this->output[] = [
+                    'title' => $gst_description . ':',
                     'text' => $CLICSHOPPING_Currencies->format($gst_total, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
-                    'value' => $gst_total);
-                  $this->output[] = array('title' => $pst_description . ':',
+                    'value' => $gst_total
+                  ];
+                  $this->output[] = [
+                    'title' => $pst_description . ':',
                     'text' => $CLICSHOPPING_Currencies->format($pst_total, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
-                    'value' => $pst_total);
+                    'value' => $pst_total
+                  ];
                 }
               }
             }
@@ -206,9 +225,10 @@
 
               foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
                 if ($value > 0) {
-                  $this->output[] = array('title' => $Qtax->value('tax_description') . ' : ',
+                  $this->output[] = [
+                    'title' => $Qtax->value('tax_description') . ' : ',
                     'text' => $CLICSHOPPING_Currencies->format($hst_total, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']), 'value' => $hst_total
-                  );
+                  ];
                 }
               }
             }
