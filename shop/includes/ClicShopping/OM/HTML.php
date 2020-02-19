@@ -275,10 +275,10 @@
 
       if (!empty($parameters)) {
         $field .= ' ' . $parameters;
-      }
-
-      if (!empty($class)) {
-        $field .= ' class="' . $class . '"';
+      } else {
+        if (!empty($class)) {
+          $field .= ' class="' . $class . '"';
+        }
       }
 
       $field .= ' />';

@@ -260,11 +260,11 @@
     {
 
       if (!isset($width) || !is_int($width)) {
-        $width = 16;
+        $width = 28;
       }
 
       if (!isset($height) || !is_int($height)) {
-        $height = 12;
+        $height = 24;
       }
 
       return HTML::image(CLICSHOPPING::link('Shop/sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', null, false), $this->get('name', $language_code), $width, $height);

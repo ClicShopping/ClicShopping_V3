@@ -47,8 +47,8 @@
                   </div>
                   <div class="separator"></div>
                   <div>
-                    <span class="headerMultiTemplateDefaultPassword col-md-6"><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&PasswordForgotten'), CLICSHOPPING::getDef('modules_header_multi_template_password_forgotten')); ?>
-                    <span class="text-md-right col-md-6"><label for="' . CLICSHOPPING::getDef('modules_header_multi_template_account_login') . '"><?php echo $login; ?></label></span>
+                    <span class="headerMultiTemplateDefaultPassword col-md-6"><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&PasswordForgotten'), CLICSHOPPING::getDef('modules_header_multi_template_password_forgotten')); ?></span>
+                    <span class="text-md-right col-md-6"><label for="<?php echo CLICSHOPPING::getDef('modules_header_multi_template_account_login'); ?>"><?php echo $login; ?></label></span>
                   </div>
                   <?php echo $endform; ?>
                 </div>
