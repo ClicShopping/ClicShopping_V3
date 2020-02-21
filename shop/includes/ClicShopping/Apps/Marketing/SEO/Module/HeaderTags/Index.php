@@ -62,7 +62,7 @@
       }
       
       $CLICSHOPPING_seoShop = Registry::get('SeoShop');
-      
+
       $index = HTTP::getShopUrlDomain() . 'index.php';
       $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['REQUEST_URI'];
 
@@ -70,7 +70,7 @@
         $language = HTML::sanitize($_GET['language']);
       }
 
-      if (($index === $url || isset($language)) && !isset($_GET['Products']) && !isset($_GET['Blog']) && !isset($_GET['Info'])) {
+      if (CLICSHOPPING::getConfig('http_server', 'Shop') . '/' === HTTP::getShopUrlDomain() && $index !== $url) {
         $title = $CLICSHOPPING_seoShop->getSeoIndexTitle();
         $description = $CLICSHOPPING_seoShop->getSeoIndexDescription();
         $keywords = $CLICSHOPPING_seoShop->getSeoIndexKeywords();
@@ -79,6 +79,16 @@
         $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
         $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
         $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+      } elseif (($index === $url || isset($language)) && !isset($_GET['Products']) && !isset($_GET['Blog']) && !isset($_GET['Info'])) {
+        $title = $CLICSHOPPING_seoShop->getSeoIndexTitle();
+        $description = $CLICSHOPPING_seoShop->getSeoIndexDescription();
+        $keywords = $CLICSHOPPING_seoShop->getSeoIndexKeywords();
+
+        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
+        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
+        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+      }
 
         $output =
           <<<EOD
@@ -89,7 +99,6 @@
 EOD;
 
         return $output;
-      }
     }
 
     public function Install()

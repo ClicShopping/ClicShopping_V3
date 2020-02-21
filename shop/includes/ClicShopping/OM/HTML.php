@@ -274,7 +274,7 @@
       }
 
       if (!empty($parameters)) {
-        $field .= ' ' . $parameters;
+        $field .= ' ' . $parameters . ' class="' . $class . '"';
       } else {
         if (!empty($class)) {
           $field .= ' class="' . $class . '"';
@@ -298,7 +298,6 @@
     {
       return static::inputField($name, $value, $parameters, 'password', false);
     }
-
 
     /**
      * Generate a form selection field (checkbox/radio)
