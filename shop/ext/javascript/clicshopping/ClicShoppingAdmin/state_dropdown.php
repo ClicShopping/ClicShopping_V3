@@ -12,7 +12,7 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\Sites\ClicShoppingAdmin\HTMLOverrideAdmin;
 ?>
-<script type="text/javascript"><!--
+<script>
   function resetZoneSelected(theForm) {
     if (theForm.state.value != '') {
       theForm.state.selectedIndex = '0';
@@ -36,4 +36,4 @@
     <?php echo HTMLOverrideAdmin::getJsZoneList('SelectedCountry', 'theForm', 'state'); ?>
 
   }
-  //--></script>
+</script>
