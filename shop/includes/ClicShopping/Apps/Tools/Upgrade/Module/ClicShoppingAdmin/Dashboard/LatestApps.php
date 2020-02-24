@@ -48,57 +48,59 @@
     {
       $feed = simplexml_load_string(file_get_contents('https://www.clicshopping.org/forum/files/files.xml/'));
 
-      $output = null;
+      if (isset($feed)) {
+        $output = null;
 
-      $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_CONTENT_WIDTH;
+        $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_CONTENT_WIDTH;
 
-      $output = '<div class="' . $content_width . '">';
-      $output .= '<div class="separator"></div>';
-      $output .= '<table
-                    id="table"
-                    data-toggle="table"
-                    data-toolbar="#toolbar"
-                    data-buttons-class="primary"
-                    data-show-toggle="true"
-                    data-show-columns="true"
-                    data-mobile-responsive="true">';
-      $output .= '<thead class="dataTableHeadingRow">';
-      $output .= '<tr>';
-      $output .= '<th data-field="logo">' . HTML::image(CLICSHOPPING::link('Shop/images/logo_clicshopping_24.webp'), 'ClicShopping') . '</th>';
-      $output .= '<th data-field="title" data-switchable="false">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_tilte') . '</th>';
-      $output .= '<th data-field="date" class="text-right">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_date') . '</th>';
-      $output .= '</tr>';
-      $output .= '</thead>';
-      $output .= '<tbody>';
+        $output = '<div class="' . $content_width . '">';
+        $output .= '<div class="separator"></div>';
+        $output .= '<table
+                      id="table"
+                      data-toggle="table"
+                      data-toolbar="#toolbar"
+                      data-buttons-class="primary"
+                      data-show-toggle="true"
+                      data-show-columns="true"
+                      data-mobile-responsive="true">';
+        $output .= '<thead class="dataTableHeadingRow">';
+        $output .= '<tr>';
+        $output .= '<th data-field="logo">' . HTML::image(CLICSHOPPING::link('Shop/images/logo_clicshopping_24.webp'), 'ClicShopping') . '</th>';
+        $output .= '<th data-field="title" data-switchable="false">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_tilte') . '</th>';
+        $output .= '<th data-field="date" class="text-right">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_date') . '</th>';
+        $output .= '</tr>';
+        $output .= '</thead>';
+        $output .= '<tbody>';
 
-      $i = 1;
-      $display_max = (int)MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_DISPLAY;
+        $i = 1;
+        $display_max = (int)MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_DISPLAY;
 
-      foreach ($feed->channel as $item) {
-        foreach ($item as $value) {
-          if (!empty($value->title)) {
-            if ($i <= $display_max) {
-              $output .= '<tr class="backgroundBlank">';
-              $output .= '<td>' . $i . '</td>';
-              $output .= '<td>' . HTML::link($value->link, $value->title, 'target="_blank" rel="noreferrer"') . '</td>';
-              $output .= '<td>' .  DateTime::toShort($value->pubDate) . '</td>';
-              $output .= '</tr>';
+        foreach ($feed->channel as $item) {
+          foreach ($item as $value) {
+            if (!empty($value->title)) {
+              if ($i <= $display_max) {
+                $output .= '<tr class="backgroundBlank">';
+                $output .= '<td>' . $i . '</td>';
+                $output .= '<td>' . HTML::link($value->link, $value->title, 'target="_blank" rel="noreferrer"') . '</td>';
+                $output .= '<td>' . DateTime::toShort($value->pubDate) . '</td>';
+                $output .= '</tr>';
+              }
+              $i++;
             }
-            $i++;
           }
         }
+
+        $output .= '<tr>';
+        $output .= '<td>' . HTML::button($this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_search'), null, CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), 'primary', null, 'sm') . '</td>';
+        $output .= '<td ></td>';
+        $output .= '<td>' . HTML::button($this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_join_community'), null, 'https://www.clicshopping.org', 'info', ['params' => 'target="_blank" rel="noreferrer"'], 'sm') . '</td>';
+        $output .= '</tr>';
+        $output .= '</tbody>';
+        $output .= '</table>';
+        $output .= '</div>';
+
+        return $output;
       }
-
-      $output .= '<tr>';
-      $output .= '<td>' . HTML::button($this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_search'), null, CLICSHOPPING::link(null, 'A&Tools\Upgrade&Upgrade'), 'primary', null, 'sm') . '</td>';
-      $output .= '<td ></td>';
-      $output .= '<td>' . HTML::button($this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_join_community'), null,  'https://www.clicshopping.org', 'info', ['params' => 'target="_blank" rel="noreferrer"'], 'sm') . '</td>';
-      $output .= '</tr>';
-      $output .= '</tbody>';
-      $output .= '</table>';
-      $output .= '</div>';
-
-      return $output;
     }
 
     public function Install()
