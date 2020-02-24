@@ -955,7 +955,7 @@
      * @return string
      */
 
-    public function getCategoryImageUrl(int $categories_id, string $parameters = ''): string
+    public function getCategoryImageUrl($categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
