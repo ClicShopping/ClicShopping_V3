@@ -46,9 +46,11 @@
 
     public function getOutput()
     {
-      $feed = simplexml_load_string(file_get_contents('https://www.clicshopping.org/forum/files/files.xml/'));
+      $check_source = file_get_contents('https://www.clicshopping.org/forum/files/files.xml');
 
-      if (isset($feed)) {
+      if ($check_source !== false  && !empty($check_source)) {
+        $feed = simplexml_load_string($check_source);
+
         $output = null;
 
         $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_CLICSHOPPING_LASTEST_APPS_CONTENT_WIDTH;
