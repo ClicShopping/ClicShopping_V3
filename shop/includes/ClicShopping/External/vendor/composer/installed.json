@@ -246,17 +246,17 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v6.1.4",
-        "version_normalized": "6.1.4.0",
+        "version": "v6.1.5",
+        "version_normalized": "6.1.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "c5e61d0729507049cec9673aa1a679f9adefd683"
+            "reference": "a8bf068f64a580302026e484ee29511f661b2ad3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/c5e61d0729507049cec9673aa1a679f9adefd683",
-            "reference": "c5e61d0729507049cec9673aa1a679f9adefd683",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/a8bf068f64a580302026e484ee29511f661b2ad3",
+            "reference": "a8bf068f64a580302026e484ee29511f661b2ad3",
             "shasum": ""
         },
         "require": {
@@ -277,7 +277,7 @@
             "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
             "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
         },
-        "time": "2019-12-10T11:17:38+00:00",
+        "time": "2020-03-14T14:23:48+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -310,17 +310,17 @@
     },
     {
         "name": "phpxmlrpc/phpxmlrpc",
-        "version": "4.4.1",
-        "version_normalized": "4.4.1.0",
+        "version": "4.4.2",
+        "version_normalized": "4.4.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/gggeek/phpxmlrpc.git",
-            "reference": "3ba5608040e61564cf5e9a1ede98a9b0cf9d060e"
+            "reference": "9b400d2c102f2a55839af8f73279274ebe148526"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/3ba5608040e61564cf5e9a1ede98a9b0cf9d060e",
-            "reference": "3ba5608040e61564cf5e9a1ede98a9b0cf9d060e",
+            "url": "https://api.github.com/repos/gggeek/phpxmlrpc/zipball/9b400d2c102f2a55839af8f73279274ebe148526",
+            "reference": "9b400d2c102f2a55839af8f73279274ebe148526",
             "shasum": ""
         },
         "require": {
@@ -342,7 +342,7 @@
             "ext-mbstring": "Needed to allow reception of requests/responses in character sets other than ASCII,LATIN-1,UTF-8",
             "ext-zlib": "Needed for sending compressed requests and receiving compressed responses, if cURL is not available"
         },
-        "time": "2019-07-29T14:20:48+00:00",
+        "time": "2020-03-04T10:26:33+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
