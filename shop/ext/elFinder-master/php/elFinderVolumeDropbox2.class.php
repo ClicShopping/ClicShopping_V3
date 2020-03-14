@@ -68,7 +68,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             'aliasFormat' => '%s@Dropbox',
             'path' => '/',
             'separator' => '/',
-            'acceptedName' => '#^[^/\\?*:|"<>]*[^./\\?*:|"<>]$#',
+            'acceptedName' => '#^[^\\\/]+$#',
             'rootCssClass' => 'elfinder-navbar-root-dropbox',
             'publishPermission' => [
                 'requested_visibility' => 'public',
@@ -336,9 +336,9 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                 if (!$aToken && empty($_GET['code'])) {
                     $url = $authHelper->getAuthUrl($callback);
 
-                    $html = '<input id="elf-volumedriver-dropbox2-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button" onclick="window.open(\'' . $url . '\')">';
+                    $html = '<input id="elf-volumedriver-dropbox2-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button">';
                     $html .= '<script>
-                        $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "dropbox2", mode: "makebtn"});
+                        $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "dropbox2", mode: "makebtn", url: "' . $url . '"});
                     </script>';
                     if (empty($options['pass']) && $options['host'] !== '1') {
                         $options['pass'] = 'return';
@@ -1159,6 +1159,16 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                         'target' => $link->getLink(),
                         'headers' => array('Authorization: Bearer ' . $access_token),
                     );
+
+                    // to support range request
+                    if (func_num_args() > 2) {
+                        $opts = func_get_arg(2);
+                    } else {
+                        $opts = array();
+                    }
+                    if (!empty($opts['httpheaders'])) {
+                        $data['headers'] = array_merge($opts['httpheaders'], $data['headers']);
+                    }
 
                     return elFinder::getStreamByUrl($data);
                 }
