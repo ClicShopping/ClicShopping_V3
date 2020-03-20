@@ -382,6 +382,7 @@
 
 //description
       $str = $this->productsCommon->getProductsDescription($products_id);
+      $str = str_replace('"', '', $str);
       $str = HTMLOverrideCommon::stripHtmlTags($str);
       $description = HTMLOverrideCommon::cleanHtml($str);
 

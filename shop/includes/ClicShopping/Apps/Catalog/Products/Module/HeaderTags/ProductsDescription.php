@@ -61,7 +61,6 @@
 
       if (isset($_GET['Products']) && isset($_GET['Description'])) {
         if (isset($_GET['products_id'])) {
-
           $products_id = $CLICSHOPPING_ProductsCommon->getID();
 
           $Qsubmit = $this->app->db->prepare('select submit_id,
@@ -148,7 +147,6 @@
           $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
 
           $title = $CLICSHOPPING_Template->setTitle($title);
-
           $output =
             <<<EOD
 {$title}

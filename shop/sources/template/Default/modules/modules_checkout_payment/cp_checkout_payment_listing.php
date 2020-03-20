@@ -81,7 +81,7 @@
           if (count($selection) > 1) {
             $data .= '<span class="moduleCheckoutPaymentListingRadio">' . HTML::radioField('payment', $selection[$i]['id'], (isset($_SESSION['payment']) && ($selection[$i]['id'] == $_SESSION['payment'])), 'required aria-required="true"') . '</span>';
           } else {
-            $data .= HTML::radioField('payment', $selection[$i]['id']);
+            $data .=  HTML::radioField('payment', $selection[$i]['id'], $selection[$i]['id'], 'required aria-required="true"');
           }
 
           $data .= '</td>';

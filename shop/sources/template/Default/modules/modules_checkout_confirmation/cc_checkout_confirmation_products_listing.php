@@ -112,7 +112,7 @@
                 $products_attributes_image = '     ';
               }
 
-              $data .=  '<br /><nobr><small>&nbsp;<i> - '. $products_attributes_image . $reference . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ': ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['price'] . '</i></small></nobr>';
+              $data .=  '<br /><small>&nbsp;<i> - '. $products_attributes_image . $reference . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['option'] . ': ' . $CLICSHOPPING_Order->products[$i]['attributes'][$j]['price'] . '</i></small>';
             }
           }
 
@@ -125,13 +125,14 @@
          $data .=  '<td  class="text-md-right" valign="top">';
          $data .= $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']);
          $data .= '</td>' . "\n";
-
-          $data .=  '</tr>' . "\n";
+         $data .= '</tr>' . "\n";
 
           ob_start();
           require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_products_listing'));
 
           $confirmation .= ob_get_clean();
+
+          $confirmation .= $data;
         }
 
         $confirmation .= '</table>';

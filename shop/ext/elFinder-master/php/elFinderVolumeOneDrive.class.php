@@ -581,7 +581,8 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 elFinder::extendTimeLimit();
                 $putFp = tmpfile();
                 fwrite($putFp, $send);
-                fseek($putFp, 0);
+                rewind($putFp);
+                $_size = strlen($send);
                 $url = $sess->uploadUrl;
                 $curl = curl_init();
                 $options = array(
@@ -589,8 +590,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     CURLOPT_PUT => true,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_INFILE => $putFp,
+                    CURLOPT_INFILESIZE => $_size,
                     CURLOPT_HTTPHEADER => array(
-                        'Content-Length: ' . strlen($send),
+                        'Content-Length: ' . $_size,
                         'Content-Range: bytes ' . $range,
                     ),
                 );
@@ -845,9 +847,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                         return array('exit' => true, 'body' => '{msg:errAccess}');
                     }
 
-                    $html = '<input id="elf-volumedriver-onedrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button" onclick="window.open(\'' . $url . '\')">';
+                    $html = '<input id="elf-volumedriver-onedrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button">';
                     $html .= '<script>
-                            $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "onedrive", mode: "makebtn"});
+                            $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "onedrive", mode: "makebtn", url: "' . $url . '"});
                             </script>';
 
                     return array('exit' => true, 'body' => $html);
@@ -1654,6 +1656,16 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 'target' => self::API_URL . $itemId . '/content',
                 'headers' => array('Authorization: Bearer ' . $this->token->data->access_token),
             );
+
+            // to support range request
+            if (func_num_args() > 2) {
+                $opts = func_get_arg(2);
+            } else {
+                $opts = array();
+            }
+            if (!empty($opts['httpheaders'])) {
+                $data['headers'] = array_merge($opts['httpheaders'], $data['headers']);
+            }
 
             return elFinder::getStreamByUrl($data);
         }

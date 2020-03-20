@@ -43,7 +43,6 @@
         $configuration_value = $_POST['configuration_value'];
       }
 
-      if (!empty($configuration_value)) {
       $this->app->db->save('configuration', [
         'configuration_value' => $configuration_value,
         'last_modified' => 'now()'
@@ -51,8 +50,6 @@
           'configuration_id' => (int)$cID
         ]
       );
-
-      }
 
       Cache::clear('configuration');
 

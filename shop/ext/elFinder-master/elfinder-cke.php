@@ -13,15 +13,15 @@ if (!isset($_GET['Admin']) || $_GET['Admin'] !== 'ClicShoppingAdmin') {
 
 		<!-- Require JS (REQUIRED) -->
 		<!-- Rename "main.default.js" to "main.js" and edit it if you need configure elFInder options or any things -->
-		<script data-main="./main.default.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+		<script data-main="./main.default.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 		<script>
 			define('elFinderConfig', {
 				// elFinder options (REQUIRED)
 				// Documentation for client options:
 				// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
 				defaultOpts : {
-					url : 'php/connector.minimal.php' // connector URL (REQUIRED)
-					,commandsOptions : {
+					url : 'php/connector.minimal.php', // or connector.maximal.php : connector URL (REQUIRED)
+					commandsOptions : {
 						edit : {
 							extraOptions : {
 								// set API key to enable Creative Cloud image editor
@@ -31,8 +31,8 @@ if (!isset($_GET['Admin']) || $_GET['Admin'] !== 'ClicShoppingAdmin') {
 								// uses self location with the empty value
 								managerUrl : ''
 							}
-						}
-						,quicklook : {
+						},
+						quicklook : {
 							// to enable CAD-Files and 3D-Models preview with sharecad.org
 							sharecadMimes : ['image/vnd.dwg', 'image/vnd.dxf', 'model/vnd.dwf', 'application/vnd.hp-hpgl', 'application/plt', 'application/step', 'model/iges', 'application/vnd.ms-pki.stl', 'application/sat', 'image/cgm', 'application/x-msmetafile'],
 							// to enable preview with Google Docs Viewer
@@ -41,9 +41,9 @@ if (!isset($_GET['Admin']) || $_GET['Admin'] !== 'ClicShoppingAdmin') {
 							// these MIME types override "googleDocsMimes"
 							officeOnlineMimes : ['application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.oasis.opendocument.presentation']
 						}
-					}
+					},
 					// bootCalback calls at before elFinder boot up 
-					,bootCallback : function(fm, extraObj) {
+					bootCallback : function(fm, extraObj) {
 						/* any bind functions etc. */
 						fm.bind('init', function() {
 							// any your code

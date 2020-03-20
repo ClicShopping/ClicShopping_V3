@@ -102,8 +102,9 @@
           $today = date("Y-m-d H:i:s");
 
           if (!empty(CONTACT_DEPARTMENT_LIST)) {
-            $send_to_array = explode(",", CONTACT_DEPARTMENT_LIST);
+            $send_to_array = explode(',', CONTACT_DEPARTMENT_LIST);
             preg_match('/\<[^>]+\>/', $send_to_array[$send_to], $send_email_array);
+
             $send_to_email = preg_replace('#>#', '', $send_email_array[0]);
             $send_to_email = preg_replace('#<#', '', $send_to_email);
 
