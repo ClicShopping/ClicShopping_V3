@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\OM;
 
   use ClicShopping\OM\Apps;
