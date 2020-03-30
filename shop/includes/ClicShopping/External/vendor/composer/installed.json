@@ -648,17 +648,17 @@
     },
     {
         "name": "symfony/console",
-        "version": "v5.0.6",
-        "version_normalized": "5.0.6.0",
+        "version": "v5.0.7",
+        "version_normalized": "5.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/console.git",
-            "reference": "0085aec018950e1161bdf6bcb19fcb0828308cfc"
+            "reference": "5fa1caadc8cdaa17bcfb25219f3b53fe294a9935"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/console/zipball/0085aec018950e1161bdf6bcb19fcb0828308cfc",
-            "reference": "0085aec018950e1161bdf6bcb19fcb0828308cfc",
+            "url": "https://api.github.com/repos/symfony/console/zipball/5fa1caadc8cdaa17bcfb25219f3b53fe294a9935",
+            "reference": "5fa1caadc8cdaa17bcfb25219f3b53fe294a9935",
             "shasum": ""
         },
         "require": {
@@ -691,7 +691,7 @@
             "symfony/lock": "",
             "symfony/process": ""
         },
-        "time": "2020-03-16T13:02:39+00:00",
+        "time": "2020-03-30T11:42:42+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -726,17 +726,17 @@
     },
     {
         "name": "symfony/http-client",
-        "version": "v5.0.6",
-        "version_normalized": "5.0.6.0",
+        "version": "v5.0.7",
+        "version_normalized": "5.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/http-client.git",
-            "reference": "b643c720858d433d2c376407703df1f874534f07"
+            "reference": "14d386ae55b699ea9a0ddb872fa5f3e35219bba8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-client/zipball/b643c720858d433d2c376407703df1f874534f07",
-            "reference": "b643c720858d433d2c376407703df1f874534f07",
+            "url": "https://api.github.com/repos/symfony/http-client/zipball/14d386ae55b699ea9a0ddb872fa5f3e35219bba8",
+            "reference": "14d386ae55b699ea9a0ddb872fa5f3e35219bba8",
             "shasum": ""
         },
         "require": {
@@ -761,7 +761,7 @@
             "symfony/http-kernel": "^4.4|^5.0",
             "symfony/process": "^4.4|^5.0"
         },
-        "time": "2020-03-16T16:38:48+00:00",
+        "time": "2020-03-27T16:56:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -855,17 +855,17 @@
     },
     {
         "name": "symfony/mime",
-        "version": "v5.0.6",
-        "version_normalized": "5.0.6.0",
+        "version": "v5.0.7",
+        "version_normalized": "5.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/mime.git",
-            "reference": "e9927cabc1519d2498d02b743f2cab6e4722ad3d"
+            "reference": "481b7d6da88922fb1e0d86a943987722b08f3955"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/mime/zipball/e9927cabc1519d2498d02b743f2cab6e4722ad3d",
-            "reference": "e9927cabc1519d2498d02b743f2cab6e4722ad3d",
+            "url": "https://api.github.com/repos/symfony/mime/zipball/481b7d6da88922fb1e0d86a943987722b08f3955",
+            "reference": "481b7d6da88922fb1e0d86a943987722b08f3955",
             "shasum": ""
         },
         "require": {
@@ -880,7 +880,7 @@
             "egulias/email-validator": "^2.1.10",
             "symfony/dependency-injection": "^4.4|^5.0"
         },
-        "time": "2020-03-16T12:10:54+00:00",
+        "time": "2020-03-27T16:56:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
