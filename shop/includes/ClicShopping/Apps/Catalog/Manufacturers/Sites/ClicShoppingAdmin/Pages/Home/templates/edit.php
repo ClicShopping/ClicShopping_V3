@@ -280,8 +280,6 @@
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends"
                                           target="_blank"><?php echo $CLICSHOPPING_Manufacturers->getDef('keywords_google_trend'); ?></a></span>
-                <span class="col-md-3"><a href="https://adwords.google.com/select/KeywordToolExternal"
-                                          target="_blank"><?php echo $CLICSHOPPING_Manufacturers->getDef('analysis_google_tool'); ?></a></span>
               </div>
             </div>
             <?php

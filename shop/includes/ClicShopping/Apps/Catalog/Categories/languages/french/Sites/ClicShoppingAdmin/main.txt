@@ -46,7 +46,7 @@ tab_ref = SEO
 tab_img = Images
 
 keywords_google_trend = Mots clefs Google
-analysis_google_tool = Outils d'analyse Google
+
 
 heading_title_search = Rechercher
 heading_title_goto = Aller à :

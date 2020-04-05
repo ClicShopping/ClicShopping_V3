@@ -115,7 +115,7 @@ text_pages_information_description = Page description
 text_info_delete_intro = Are you sure you want to delete this page?
 
 keywords_google_trend = Keywords Google trend
-analysis_google_tool = Analysis Google Tool
+
 text_products_page_refefrencement = Product Meta Data
 text_products_page_title = Title
 text_products_header_description = Description

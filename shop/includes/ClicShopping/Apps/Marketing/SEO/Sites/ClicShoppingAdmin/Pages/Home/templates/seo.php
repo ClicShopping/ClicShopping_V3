@@ -202,13 +202,9 @@
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                <span class="col-md-3"><a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank"
-                                          rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('analysis_google_tool'); ?></a></span>
               </div>
             </div>
             <?php
-
-
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
                 ?>
 
@@ -295,8 +291,6 @@
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                <span class="col-md-3"><a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank"
-                                          rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('analysis_google_tool'); ?></a></span>
               </div>
             </div>
             <?php
@@ -376,8 +370,6 @@
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                <span class="col-md-3"><a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank"
-                                          rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('analysis_google_tool'); ?></a></span>
               </div>
             </div>
 
@@ -458,9 +450,7 @@
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                <span class="col-md-3"><a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank"
-                                          rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('analysis_google_tool'); ?></a></span>
-              </div>
+               </div>
             </div>
 
             <?php
@@ -538,8 +528,6 @@
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                <span class="col-md-3"><a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank"
-                                          rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('analysis_google_tool'); ?></a></span>
               </div>
             </div>
 

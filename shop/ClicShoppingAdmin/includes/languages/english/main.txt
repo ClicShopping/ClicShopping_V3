@@ -403,7 +403,7 @@ price_total = Price total
 product_quantity = Product quantity
 
 keywords_google_trend = Keywords Google trend
-analysis_google_tool = Analysis Google Tool
+
 
 success_status_updated = Success update
 error_unknown_status_flag = Error unknown

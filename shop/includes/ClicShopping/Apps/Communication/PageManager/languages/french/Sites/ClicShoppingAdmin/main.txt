@@ -117,7 +117,7 @@ text_pages_information_description = Description de la page
 text_info_delete_intro = &Euml;tes-vous certain que vous voulez supprimer cette page ?
 
 keywords_google_trend = Tendance des mots clefs selon Google
-analysis_google_tool = Outil d'analyse selon Google
+
 text_products_page_refefrencement = Métadonnées
 text_products_page_title = Titre
 text_products_header_description = Description

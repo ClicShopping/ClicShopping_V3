@@ -57,7 +57,7 @@ tab_submit_specials = Specials
 tab_submit_reviews = Reviews
 
 keywords_google_trend =  Google trend
-analysis_google_tool = Analysis Google Tool
+
 success_page_updated = Success
 
 title_help_image = Notes

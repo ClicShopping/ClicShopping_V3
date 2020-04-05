@@ -45,7 +45,7 @@ tab_submit_specials = Promotions
 tab_submit_reviews = Commentaires
 
 keywords_google_trend = Tendance des mots clefs selon Google
-analysis_google_tool = Outil d'analyse selon Google
+
 success_page_updated = Succès
 
 title_help_image = Note

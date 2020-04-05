@@ -660,9 +660,6 @@
                   <div class="col-md-12 text-md-center">
                     <span class="col-md-6 text-md-center"><a href="https://www.google.fr/trends" target="_blank"
                                                              rel="noreferrer"><?php echo $CLICSHOPPING_PageManager->getDef('keywords_google_trend'); ?></a></span>
-                    <span class="col-md-6 text-md-center"><a
-                        href="https://adwords.google.com/select/KeywordToolExternal" target="_blank"
-                        rel="noreferrer"><?php echo $CLICSHOPPING_PageManager->getDef('analysis_google_tool'); ?></a></span>
                   </div>
                 </div>
               </div>

@@ -398,7 +398,7 @@ price_total = Total du prix
 product_quantity = Quantité de produit
 
 keywords_google_trend = Tendance des mots clefs selon Google
-analysis_google_tool = Outil d'analyse selon Google
+
 
 success_status_updated = Mise à jour fait avec succès
 error_unknown_status_flag = Erreur Inconnue
