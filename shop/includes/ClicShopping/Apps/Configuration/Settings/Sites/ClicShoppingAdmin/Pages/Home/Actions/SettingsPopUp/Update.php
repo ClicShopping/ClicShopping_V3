@@ -27,7 +27,6 @@
 
     public function execute()
     {
-
       if (isset($_POST['configuration'])) {
         foreach ($_POST['configuration'] as $value) {
           $configuration_value = $value;

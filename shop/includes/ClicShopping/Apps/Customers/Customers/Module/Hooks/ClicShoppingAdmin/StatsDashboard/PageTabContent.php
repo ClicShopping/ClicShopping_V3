@@ -56,7 +56,7 @@
 
     private function statsAverageCustomersMen()
     {
-      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent,
+      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
                                                                   ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                           from :table_customers
                                                           where customers_gender = :customers_gender
@@ -83,11 +83,11 @@
     {
       $avgage = '';
 
-      $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent,
-                                                            ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
-                                                       from :table_customers
-                                                       where customers_gender = :customers_gender
-                                                      ');
+      $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
+                                                                  ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
+                                                             from :table_customers
+                                                             where customers_gender = :customers_gender
+                                                            ');
 
       $QstatAnalyseCustomersWoman->bindValue(':customers_gender', 'f');
       $QstatAnalyseCustomersWoman->execute();

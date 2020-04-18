@@ -52,7 +52,7 @@
       }
 
       $Qorders = $this->app->db->query('select date_format(customers_info_date_account_created, "%d") as dateday,
-                                        count(*) as total
+                                        count(customers_info_id) as total
                                         from :table_customers_info
                                         where date_sub(curdate(), interval 7 day) <= customers_info_date_account_created
                                         group by dateday

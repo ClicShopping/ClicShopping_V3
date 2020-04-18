@@ -32,7 +32,7 @@
 
     private function statsCustomersB2C()
     {
-      $QstatCustomersB2C = $this->app->db->prepare('select count(*) as count
+      $QstatCustomersB2C = $this->app->db->prepare('select count(customers_id) as count
                                                     from :table_customers
                                                     where customers_group_id = 0
                                                    ');
@@ -45,7 +45,7 @@
 
     private function statCustomersB2B()
     {
-      $QstatCustomersB2B = $this->app->db->prepare('select count(*) as count
+      $QstatCustomersB2B = $this->app->db->prepare('select count(customers_id) as count
                                                     from :table_customers
                                                     where customers_group_id > 0
                                                    ');

@@ -15,7 +15,6 @@
 
   class SeoAdmin
   {
-
     protected $manufacturers_id;
     protected $language_id;
     protected $product_id;

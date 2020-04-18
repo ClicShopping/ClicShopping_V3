@@ -37,7 +37,7 @@
 
     public function Display(): string
     {
-      $Qreviews = $this->app->db->prepare('select count(*) as num_reviews 
+      $Qreviews = $this->app->db->prepare('select count(reviews_id) as num_reviews 
                                           from :table_reviews 
                                           where date_added >= (now() - INTERVAL 2 month) 
                                           and status = 0

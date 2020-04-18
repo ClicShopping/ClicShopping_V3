@@ -34,7 +34,7 @@
 
     public function Display(): string
     {
-      $Qustomers = $this->app->db->prepare('select count(*) as count 
+      $Qustomers = $this->app->db->prepare('select count(customers_id) as count 
                                             from :table_customers 
                                             where customers_newsletter = 1
                                            ');

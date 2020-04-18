@@ -33,7 +33,7 @@
 
     public function Display(): string
     {
-      $Qproducts = $this->app->db->prepare('select count(*) as count 
+      $Qproducts = $this->app->db->prepare('select count(products_id) as count 
                                             from :table_products 
                                             where products_date_available <> null
                                             ');

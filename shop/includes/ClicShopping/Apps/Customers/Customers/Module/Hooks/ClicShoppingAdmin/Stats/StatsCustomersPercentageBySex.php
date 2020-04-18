@@ -35,7 +35,7 @@
     {
       $numberByPerCentMen = '   ';
 
-      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent
+      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                             from :table_customers
                                                             where customers_gender = :customers_gender
                                                            ');
@@ -55,7 +55,7 @@
     {
       $numberByPerCentWomen = '   ';
 
-      $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS numberByGenderPerCent
+      $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent
                                                               from :table_customers
                                                               where customers_gender = :customers_gender
                                                              ');

@@ -31,7 +31,7 @@
     private function getProductsArchive()
     {
 
-      $Qproducts = $this->app->db->prepare('select count(*) as count
+      $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                             from :table_products
                                             where products_archive = 1
                                           ');
@@ -42,7 +42,7 @@
 
     private function getNumberOfProducts()
     {
-      $Qproducts = $this->app->db->prepare('select count(*) as count
+      $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                             from :table_products
                                           ');
       $Qproducts->execute();

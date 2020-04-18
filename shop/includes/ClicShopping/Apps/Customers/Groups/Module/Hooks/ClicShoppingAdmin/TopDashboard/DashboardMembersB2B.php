@@ -37,7 +37,7 @@
 
     public function Display(): string
     {
-      $Qmembes = $this->app->db->prepare('select count(*) as count 
+      $Qmembes = $this->app->db->prepare('select count(customers_id) as count 
                                             from :table_customers 
                                             where member_level = 0
                                             ');

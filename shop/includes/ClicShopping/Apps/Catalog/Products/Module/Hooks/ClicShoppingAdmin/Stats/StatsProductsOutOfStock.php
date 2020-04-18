@@ -31,7 +31,7 @@
     private function getOutOfStock()
     {
 
-      $Qproducts = $this->app->db->prepare('select count(*) as count
+      $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                             from :table_products
                                             where products_quantity <= 0
                                           ');
@@ -43,7 +43,7 @@
     private function getProductsOffLine()
     {
 
-      $Qproducts = $this->app->db->prepare('select count(*) as count
+      $Qproducts = $this->app->db->prepare('select count(products_id) as count
                                             from :table_products
                                             where products_status = 0
                                           ');

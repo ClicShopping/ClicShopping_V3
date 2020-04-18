@@ -32,7 +32,7 @@
 
     private function getCategoriesOn()
     {
-      $QCategories = $this->app->db->prepare('select count(*) as count
+      $QCategories = $this->app->db->prepare('select count(categories_id) as count
                                               from :table_categories
                                               where status = 1
                                             ');
@@ -43,7 +43,7 @@
 
     private function getCategoriesOff()
     {
-      $QCategories = $this->app->db->prepare('select count(*) as count
+      $QCategories = $this->app->db->prepare('select count(categories_id) as count
                                               from :table_categories
                                               where status = 0
                                             ');
