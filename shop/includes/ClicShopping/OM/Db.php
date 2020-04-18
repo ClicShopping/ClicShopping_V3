@@ -208,7 +208,7 @@
         foreach ($it_where as $key => $value) {
           if (is_array($value)) {
             if (isset($value['val'])) {
-              $statement .= $key . ' ' . (isset($value['op']) ? $value['op'] : '=') . ' :cond_' . $counter;
+              $statement .= $key . ' ' . ($value['op'] ?? '=') . ' :cond_' . $counter;
             }
 
             if (isset($value['rel'])) {
@@ -227,7 +227,7 @@
                   }
                 }
               } else {
-                $statement .= $key . ' = ' . $value['rel'];
+                $statement .= $key . ' ' . ($value['op'] ?? '=') . ' ' . $value['rel'];
               }
             }
           } else {
