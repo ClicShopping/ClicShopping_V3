@@ -22,7 +22,7 @@
   {
     protected $_template = 'template/';
     protected $_directoryTemplate = 'template/';
-    
+
     protected $_dynamicTemplate = SITE_THEMA;
     protected $_directoryTemplateDefault = 'Default';
 
@@ -34,7 +34,7 @@
     protected $_directoryTemplateLanguages = 'languages/';
     protected $_directoryTemplateImages = 'images/';
     protected $_directoryTemplateDownload = 'Download/';
-
+    protected $_directoryJavascript = 'javascript/';
     protected $thema_directory;
     protected $template_selected;
 
@@ -195,8 +195,6 @@
     {
       if (defined('CONFIGURATION_TEMPLATE_MINIFY_HTML') && CONFIGURATION_TEMPLATE_MINIFY_HTML == 'true') {
         $block = HTMLOverrideCommon::getMinifyHtml($block);
-      } else {
-        $block = $block;
       }
 
       $this->_blocks[$group][] = $block;
@@ -393,9 +391,9 @@
     {
 
       if (is_file($this->getPathRoot() . static::setSiteThema() . '/' . $this->_directoryTemplateFiles . 'index.php')) {
-        $thema = static::setSiteThema();
+        $thema = static::setSiteThema() . '/';
       } elseif (is_file($this->getPathRoot() . static::getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . 'index.php')) {
-        $thema = static::getDefaultTemplateDirectory();
+        $thema = static::getDefaultTemplateDirectory() . '/';
       } else {
         HTTP::redirect(HTTP::getShopUrlDomain() . 'includes/error_documents/error_template.php');
         clearstatcache();
@@ -405,7 +403,7 @@
       if (defined('MODULE_HEADER_SELECT_TEMPLATE_STATUS')) {
         if (MODULE_HEADER_SELECT_TEMPLATE_STATUS == 'True') {
           if ((isset($_POST['TemplateCustomerSelected']))) {
-            $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']);
+            $thema = $this->_directoryTemplateSources . $this->_directoryTemplate . HTML::sanitize($_POST['TemplateCustomerSelected']) . '/';
           }
         }
       }
@@ -491,8 +489,8 @@
 
                 if ($group == $modules_boxes) {
 //check the module exist inside the template or take default template
-                  if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                    include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                  if (is_file(static::getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php')) {
+                    include(static::getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php');
                   } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
                     include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                   } else {
@@ -512,8 +510,8 @@
                   $result = array_search($group, $this->getReadModulesDefaultDirectories());
 
                   if (!is_null($result)) {
-                    if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
-                      include(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
+                    if (is_file(static::getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php')) {
+                      include(static::getPathDirectoryTemplateThema() . $this->_directoryModules . $group . '/' . $class . '.php');
                     } elseif (is_file(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php')) {
                       include(static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $group . '/' . $class . '.php');
                     } else {
@@ -623,8 +621,8 @@
     public function getTemplateHeaderFooter(string $name): string
     {
 
-      if (file_exists(static::getPathDirectoryTemplateThema() . '/' . $name . '.php')) {
-        $themaFiles = static::getPathDirectoryTemplateThema() . '/' . $name . '.php';
+      if (file_exists(static::getPathDirectoryTemplateThema() . $name . '.php')) {
+        $themaFiles = static::getPathDirectoryTemplateThema() . $name . '.php';
       } else {
         $themaFiles = static::getDefaultTemplateDirectory() . '/' . $name . '.php';
       }
@@ -641,15 +639,15 @@
     public function getTemplategraphism(): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
-      if (is_file($this->getPathRoot() . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
-        $themaCSS = CLICSHOPPING::link(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
+      if (is_file($this->getPathRoot() . '/' . static::getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
+        $themaCSS = CLICSHOPPING::link(static::getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
       } else {
         $themaCSS = CLICSHOPPING::link(static::getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php');
       }
 
 // if current does'nt exist take default
-      if (!is_file($this->getPathRoot() . '/' . static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
-        $themaCSS = CLICSHOPPING::link(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateCss . 'english/' . 'compressed_css.php');
+      if (!is_file($this->getPathRoot() . '/' . static::getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
+        $themaCSS = CLICSHOPPING::link(static::getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . 'english/' . 'compressed_css.php');
       }
 
       return $themaCSS;
@@ -665,8 +663,8 @@
      */
     public function getTemplateFiles(string $name): string
     {
-      if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateFiles . $name . '.php')) {
-        $themaFiles = static::getPathDirectoryTemplateThema() . '/' . $this->_directoryTemplateFiles . $name . '.php';
+      if (is_file(static::getPathDirectoryTemplateThema() . $this->_directoryTemplateFiles . $name . '.php')) {
+        $themaFiles = static::getPathDirectoryTemplateThema() . $this->_directoryTemplateFiles . $name . '.php';
       } else {
         $themaFiles = static::getDefaultTemplateDirectory() . '/' . $this->_directoryTemplateFiles . $name . '.php';
       }
@@ -684,8 +682,8 @@
     public function getTemplateModules(string $name): string
     {
 
-      if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $name . '.php')) {
-        $themaFiles = static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $name . '.php';
+      if (is_file(static::getPathDirectoryTemplateThema() . $this->_directoryModules . $name . '.php')) {
+        $themaFiles = static::getPathDirectoryTemplateThema() . $this->_directoryModules . $name . '.php';
       } else {
         $themaFiles = static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $name . '.php';
       }
@@ -703,8 +701,8 @@
     public function getTemplateModulesFilename(string $name): string
     {
 
-      if (is_file(static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $name)) {
-        $themaFilename = static::getPathDirectoryTemplateThema() . '/' . $this->_directoryModules . $name;
+      if (is_file(static::getPathDirectoryTemplateThema() . $this->_directoryModules . $name)) {
+        $themaFilename = static::getPathDirectoryTemplateThema() . $this->_directoryModules . $name;
       } else {
         $themaFilename = static::getDefaultTemplateDirectory() . '/' . $this->_directoryModules . $name;
       }
@@ -723,8 +721,8 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_file($this->getPathRoot() . static::getPathDirectoryTemplateThema() . '/' . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
-        $languagefiles = static::getPathDirectoryTemplateThema() . '/' . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
+      if (is_file($this->getPathRoot() . static::getPathDirectoryTemplateThema() . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
+        $languagefiles = static::getPathDirectoryTemplateThema() . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
         if (is_file($this->getPathRoot() . $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
           $languagefiles = $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
         }
@@ -743,7 +741,7 @@
      */
     public function getTemplateDefaultJavaScript(string $name): string
     {
-      $javascript = CLICSHOPPING::getSite('Shop') . '/' . $this->_directoryTemplateSources . 'javascript/' . $name;
+      $javascript = CLICSHOPPING::getSite('Shop') . '/' . $this->_directoryTemplateSources . $this->_directoryJavascript . $name;
 
       return $javascript;
     }
@@ -756,10 +754,10 @@
      */
     public function getTemplateThemaJavaScript(string $name): string
     {
-      if (is_file(static::getPathDirectoryTemplateThema() . '/javascript/' . $name)) {
-        $javascript = static::getPathDirectoryTemplateThema() . '/javascript/' . $name;
+      if (is_file(static::getPathDirectoryTemplateThema() . $this->_directoryJavascript . $name)) {
+        $javascript = static::getPathDirectoryTemplateThema() . $this->_directoryJavascript . $name;
       } else {
-        $javascript = static::getDefaultTemplateDirectory() . '/javascript/' . $name;
+        $javascript = static::getDefaultTemplateDirectory() . '/' . $this->_directoryJavascript . $name;
       }
 
       return $javascript;
