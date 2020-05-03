@@ -310,7 +310,6 @@
 
     /**
      * Extract email to send more one email
-     * bug with SEND_EXTRA_ORDER_EMAILS_TO
      *
      * @param string : email
      * @return array $emails, email
@@ -318,8 +317,8 @@
      */
      public static function getExtractEmailAddress($string)
     {
-
       $emails = [];
+
       foreach (preg_split('/\s/', $string) as $token) {
         $email = filter_var(filter_var($token, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
         if ($email !== false) {

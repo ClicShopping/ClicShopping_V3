@@ -64,7 +64,7 @@
       $this->_keywords = '';
       $this->_newskeywords = '';
       $this->addBlock('<meta name="generator" content="ClicShopping" />', 'header_tags');
-      $this->addBlock('<meta name="author" content="Innov Concept" />', 'header_tags');
+      $this->addBlock('<meta name="author" content="ClicShopping" />', 'header_tags');
     }
 
     public function setCodeSail($_codeSail)

@@ -36,10 +36,10 @@
       if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select template_email_name
-                                            from :table_template_email_description
-                                            where template_email_id = :template_email_id
-                                            and language_id = :language_id
-                                           ');
+                                                  from :table_template_email_description
+                                                  where template_email_id = :template_email_id
+                                                  and language_id = :language_id
+                                                 ');
       $QtemplateEmail->bindInt(':template_email_id', (int)$template_email_id);
       $QtemplateEmail->bindInt(':language_id', (int)$language_id);
 
@@ -64,10 +64,10 @@
       if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select template_email_short_description
-                                            from :table_template_email_description
-                                            where template_email_id = :template_email_id
-                                            and language_id = :language_id
-                                           ');
+                                                  from :table_template_email_description
+                                                  where template_email_id = :template_email_id
+                                                  and language_id = :language_id
+                                                 ');
       $QtemplateEmail->bindInt(':template_email_id', (int)$template_email_id);
       $QtemplateEmail->bindInt(':language_id', (int)$language_id);
 
@@ -91,15 +91,14 @@
       if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select template_email_description
-                                            from :table_template_email_description
-                                            where template_email_id = :template_email_id
-                                            and language_id = :language_id
-                                          ');
+                                                  from :table_template_email_description
+                                                  where template_email_id = :template_email_id
+                                                  and language_id = :language_id
+                                                ');
       $QtemplateEmail->bindInt(':template_email_id', (int)$template_email_id);
       $QtemplateEmail->bindInt(':language_id', (int)$language_id);
 
       $QtemplateEmail->execute();
-
 
       return $QtemplateEmail->value('template_email_description');
     }
@@ -118,13 +117,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                     ted.template_email_description
-                                              from :table_template_email te,
-                                                   :table_template_email_description  ted
-                                              where te.template_email_variable = :template_email_variable
-                                              and te.template_email_id = ted.template_email_id
-                                              and ted.language_id = :language_id
-                                           ');
+                                                         ted.template_email_description
+                                                  from :table_template_email te,
+                                                       :table_template_email_description  ted
+                                                  where te.template_email_variable = :template_email_variable
+                                                  and te.template_email_id = ted.template_email_id
+                                                  and ted.language_id = :language_id
+                                               ');
       $QtemplateEmail->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_TEXT_FOOTER');
       $QtemplateEmail->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
 
@@ -162,13 +161,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                     ted.template_email_description
-                                              from :table_template_email te,
-                                                   :table_template_email_description  ted
-                                              where te.template_email_variable = :template_email_variable
-                                              and te.template_email_id = ted.template_email_id
-                                              and ted.language_id = :language_id
-                                            ');
+                                                         ted.template_email_description
+                                                  from :table_template_email te,
+                                                       :table_template_email_description  ted
+                                                  where te.template_email_variable = :template_email_variable
+                                                  and te.template_email_id = ted.template_email_id
+                                                  and ted.language_id = :language_id
+                                                ');
       $QtemplateEmail->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_NEWSLETTER_TEXT_FOOTER');
       $QtemplateEmail->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
@@ -206,13 +205,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                     ted.template_email_description
-                                              from :table_template_email te,
-                                                   :table_template_email_description  ted
-                                              where te.template_email_variable = :template_email_variable
-                                              and te.template_email_id = ted.template_email_id
-                                              and ted.language_id = :language_id
-                                            ');
+                                                           ted.template_email_description
+                                                    from :table_template_email te,
+                                                         :table_template_email_description  ted
+                                                    where te.template_email_variable = :template_email_variable
+                                                    and te.template_email_id = ted.template_email_id
+                                                    and ted.language_id = :language_id
+                                                  ');
       $QtemplateEmail->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_SIGNATURE');
       $QtemplateEmail->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
@@ -252,13 +251,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                     ted.template_email_description
-                                              from :table_template_email te,
-                                                   :table_template_email_description  ted
-                                              where te.template_email_variable = :template_email_variable
-                                              and te.template_email_id = ted.template_email_id
-                                              and ted.language_id = :language_id
-                                            ');
+                                                         ted.template_email_description
+                                                  from :table_template_email te,
+                                                       :table_template_email_description  ted
+                                                  where te.template_email_variable = :template_email_variable
+                                                  and te.template_email_id = ted.template_email_id
+                                                  and ted.language_id = :language_id
+                                                ');
       $QtemplateEmail->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_WELCOME_ADMIN');
       $QtemplateEmail->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
@@ -296,13 +295,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                     ted.template_email_description
-                                              from :table_template_email te,
-                                                   :table_template_email_description  ted
-                                              where te.template_email_variable = :template_email_variable
-                                              and te.template_email_id = ted.template_email_id
-                                              and ted.language_id = :language_id
-                                            ');
+                                                         ted.template_email_description
+                                                  from :table_template_email te,
+                                                       :table_template_email_description  ted
+                                                  where te.template_email_variable = :template_email_variable
+                                                  and te.template_email_id = ted.template_email_id
+                                                  and ted.language_id = :language_id
+                                                ');
       $QtemplateEmail->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_TEXT_COUPON');
       $QtemplateEmail->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 
@@ -340,13 +339,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select te.template_email_variable,
-                                                     ted.template_email_description
-                                              from :table_template_email te,
-                                                   :table_template_email_description  ted
-                                              where te.template_email_variable = :template_email_variable
-                                              and te.template_email_id = ted.template_email_id
-                                              and ted.language_id = :language_id
-                                            ');
+                                                           ted.template_email_description
+                                                    from :table_template_email te,
+                                                         :table_template_email_description  ted
+                                                    where te.template_email_variable = :template_email_variable
+                                                    and te.template_email_id = ted.template_email_id
+                                                    and ted.language_id = :language_id
+                                                  ');
       $QtemplateEmail->bindValue(':template_email_variable', 'TEMPLATE_EMAIL_INTRO_COMMAND');
       $QtemplateEmail->bindInt(':language_id', $CLICSHOPPING_Language->getId());
 

@@ -41,14 +41,37 @@
         $error = true;
       }
 // Informations client
-      if (isset($_POST['customers_firstname'])) $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
-      if (isset($_POST['customers_lastname'])) $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
-      if (isset($_POST['customers_telephone'])) $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
-      if (isset($_POST['customers_fax'])) $customers_fax = HTML::sanitize($_POST['customers_fax']);
-      if (isset($_POST['customers_cellular_phone'])) $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
-      if (isset($_POST['customers_languages_id'])) $customers_languages_id = HTML::sanitize($_POST['customers_languages_id']);
-      if (isset($_POST['customers_dob'])) $customers_dob = HTML::sanitize($_POST['customers_dob']);
-      if (isset($_POST['customers_group_id'])) $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+      if (isset($_POST['customers_firstname'])) {
+        $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
+      }
+
+      if (isset($_POST['customers_lastname'])) {
+        $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
+      }
+
+      if (isset($_POST['customers_telephone'])) {
+        $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
+      }
+
+      if (isset($_POST['customers_fax'])) {
+        $customers_fax = HTML::sanitize($_POST['customers_fax']);
+      }
+
+      if (isset($_POST['customers_cellular_phone'])) {
+        $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
+      }
+
+      if (isset($_POST['customers_languages_id'])) {
+        $customers_languages_id = HTML::sanitize($_POST['customers_languages_id']);
+      }
+
+      if (isset($_POST['customers_dob'])) {
+        $customers_dob = HTML::sanitize($_POST['customers_dob']);
+      }
+
+      if (isset($_POST['customers_group_id'])) {
+        $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+      }
 
       $dobDateTime = new DateTime($customers_dob, false);
 
@@ -250,9 +273,17 @@
         $customers_password = 'clicshopping_' . rand(5, 500);
 
 // Autorisation aux clients de modifier informations societe et adresse principal + Ajout adresse
-        if ($customers_modify_company != '1') $customers_modify_company = '0';
-        if ($customers_modify_address_default != '1') $customers_modify_address_default = '0';
-        if ($customers_add_address != '1') $customers_add_address = '0';
+        if ($customers_modify_company != '1') {
+          $customers_modify_company = '0';
+        }
+
+        if ($customers_modify_address_default != '1') {
+          $customers_modify_address_default = '0';
+        }
+
+        if ($customers_add_address != '1') {
+          $customers_add_address = '0';
+        }
 
         $sql_data_array = ['customers_company' => $customers_company,
           'customers_siret' => $customers_siret,

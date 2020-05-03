@@ -98,7 +98,7 @@
       if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 
-        if (($CLICSHOPPING_Customer->isLoggedOn()) && ($customer_group_id != 0)) {
+        if ($CLICSHOPPING_Customer->isLoggedOn() && $customer_group_id != 0) {
           $QshippingNotAllowed = $CLICSHOPPING_Db->prepare('select group_shipping_unallowed
                                                             from :table_customers_groups
                                                             where customers_group_id = :customers_group_id

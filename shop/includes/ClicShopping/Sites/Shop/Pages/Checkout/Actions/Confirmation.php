@@ -69,7 +69,9 @@
         CLICSHOPPING::redirect(null, 'Checkout&Shipping');
       }
 
-      if (isset($_POST['payment'])) $_SESSION['payment'] = $_POST['payment'];
+      if (isset($_POST['payment'])) {
+        $_SESSION['payment'] = $_POST['payment'];
+      }
 
       if (isset($_POST['comments'])) {
         $_SESSION['comments'] = null;
