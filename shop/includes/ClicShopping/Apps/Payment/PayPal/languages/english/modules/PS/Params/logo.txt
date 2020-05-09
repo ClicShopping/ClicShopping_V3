@@ -1,4 +1,4 @@
-cfg_ps_logo_title = Do you want display PayPal logo
+cfg_ps_logo_title = Do you want to display PayPal logo
 cfg_ps_logo_description = Display the logo
 
 text_ps_logo_true = True

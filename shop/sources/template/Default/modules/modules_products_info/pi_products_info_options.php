@@ -269,7 +269,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Where do you want display the module ?',
+          'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_OPTIONS_POSITION',
           'configuration_value' => 'float-md-none',
           'configuration_description' => 'Affiche l\'option du produit à gauche ou à droite<br><br><i>(Valeur Left = Gauche <br>Valeur Right = Droite <br>Valeur None = Aucun)</i>',

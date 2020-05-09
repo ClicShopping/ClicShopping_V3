@@ -105,7 +105,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-              'configuration_title' => 'Where do you want display the module ?',
+              'configuration_title' => 'Where Do you want to display the module ?',
               'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION',
               'configuration_value' => 'float-md-left',
               'configuration_description' => 'Select where you want display the module',

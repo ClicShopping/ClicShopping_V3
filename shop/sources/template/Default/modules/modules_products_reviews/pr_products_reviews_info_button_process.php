@@ -95,7 +95,7 @@ class pr_products_reviews_info_button_process {
     );
 
     $CLICSHOPPING_Db->save('configuration', [
-        'configuration_title' => 'Where do you want display the module ?',
+        'configuration_title' => 'Where Do you want to display the module ?',
         'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_INFO_BUTTON_PROCESS_POSITION',
         'configuration_value' => 'float-md-none',
         'configuration_description' => 'Select where you want display the module',

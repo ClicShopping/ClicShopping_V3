@@ -247,7 +247,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display details button ?',
+          'configuration_title' => 'Do you want to display details button ?',
           'configuration_key' => 'MODULE_BOXES_SPECIAL_DETAIL_BUTTON',
           'configuration_value' => 'False',
           'configuration_description' => 'display details button ?',
@@ -259,7 +259,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'How many products do you want display ?',
+          'configuration_title' => 'How many products Do you want to display ?',
           'configuration_key' => 'MODULE_BOXES_SPECIALS_MAX_DISPLAY_LIMIT',
           'configuration_value' => '1',
           'configuration_description' => 'Display products',
@@ -271,7 +271,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display a message News / Specials / Favorites / Featured ?',
+          'configuration_title' => 'Do you want to display a message News / Specials / Favorites / Featured ?',
           'configuration_key' => 'MODULE_BOXES_SPECIALS_TICKER',
           'configuration_value' => 'False',
           'configuration_description' => 'Display a message News / Specials / Favorites / Featured',
@@ -283,7 +283,7 @@
       );
 
        $CLICSHOPPING_Db->save('configuration', [
-           'configuration_title' => 'Do you want display the discount pourcentage (specials) ?',
+           'configuration_title' => 'Do you want to display the discount pourcentage (specials) ?',
            'configuration_key' => 'MODULE_BOXES_SPECIALS_POURCENTAGE_TICKER',
            'configuration_value' => 'False',
            'configuration_description' => 'Display the discount pourcentage (specials)',

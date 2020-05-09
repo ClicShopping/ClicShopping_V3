@@ -193,7 +193,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Where do you want display the module ?',
+          'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_PRICE_POSITION',
           'configuration_value' => 'float-md-none',
           'configuration_description' => 'Select where you want display the module',

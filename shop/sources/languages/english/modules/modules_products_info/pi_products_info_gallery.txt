@@ -1,2 +1,2 @@
-module_products_info_gallery_title = Do you want display a gallery image ?
+module_products_info_gallery_title = Do you want to display a gallery image ?
 module_products_info_gallery_description = Display a gallery image

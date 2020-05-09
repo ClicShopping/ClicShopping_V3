@@ -1,4 +1,4 @@
-module_products_new_title = Do you want display products new Title
+module_products_new_title = Do you want to display products new Title
 module_products_new_description = Display products new Title
 
 text_heading_title = New products

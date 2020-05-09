@@ -143,7 +143,7 @@
 
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display the basket ?',
+          'configuration_title' => 'Do you want to display the basket ?',
           'configuration_key' => 'MODULE_BOXES_SHOPPING_CART_DISPLAY',
           'configuration_value' => 'True',
           'configuration_description' => 'If False, the basket will be displayed only if the customer choose a product',

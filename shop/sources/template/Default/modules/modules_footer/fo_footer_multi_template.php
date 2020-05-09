@@ -187,7 +187,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-              'configuration_title' => 'Do you want display the privacy message (need mailchimp module) ?',
+              'configuration_title' => 'Do you want to display the privacy message (need mailchimp module) ?',
               'configuration_key' => 'MODULE_FOOTER_MULTI_TEMPLATE_MAILCHIMP_DISPLAY_PRIVACY',
               'configuration_value' => 'False',
               'configuration_description' => 'Display the privacy message (need mailchimp module)',

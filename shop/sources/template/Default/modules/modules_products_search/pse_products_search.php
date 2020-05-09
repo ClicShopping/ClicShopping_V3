@@ -393,7 +393,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display a short description ?',
+          'configuration_title' => 'Do you want to display a short description ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_SHORT_DESCRIPTION',
           'configuration_value' => '0',
           'configuration_description' => 'Please indicate a number of your short description',
@@ -405,7 +405,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want remove words of your short description ?',
+          'configuration_title' => 'Do you want to remove words of your short description ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_SHORT_DESCRIPTION_DELETE_WORLDS',
           'configuration_value' => '0',
           'configuration_description' => 'Please indicate a number',
@@ -417,7 +417,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display a message News / Specials / Favorites / Featured ?',
+          'configuration_title' => 'Do you want to display a message News / Specials / Favorites / Featured ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_TICKER',
           'configuration_value' => 'False',
           'configuration_description' => 'Display a message News / Specials / Favorites / Featured',
@@ -429,7 +429,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display the discount pourcentage (specials) ?',
+          'configuration_title' => 'Do you want to display the discount pourcentage (specials) ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_POURCENTAGE_TICKER',
           'configuration_value' => 'False',
           'configuration_description' => 'Display the discount pourcentage (specials)',
@@ -441,7 +441,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display the stock ?',
+          'configuration_title' => 'Do you want to display the stock ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_DISPLAY_STOCK',
           'configuration_value' => 'none',
           'configuration_description' => 'Display the stock (in stock, exhaused, out of stock) ?',
@@ -549,7 +549,7 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want remove the details button ?',
+          'configuration_title' => 'Do you want to remove the details button ?',
           'configuration_key' => 'MODULE_PRODUCTS_SEARCH_DELETE_BUY_BUTTON',
           'configuration_value' => 'False',
           'configuration_description' => 'Remove the button details',

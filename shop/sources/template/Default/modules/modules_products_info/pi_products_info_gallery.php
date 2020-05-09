@@ -116,7 +116,7 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Do you want display this module ?',
+          'configuration_title' => 'Do you want to display this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_STATUS',
           'configuration_value' => 'True',
           'configuration_description' => 'Activate the module in your shop ?',
