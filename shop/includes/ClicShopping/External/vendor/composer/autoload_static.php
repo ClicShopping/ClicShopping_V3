@@ -31,6 +31,7 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\HttpClient\\' => 29,
             'Symfony\\Component\\Console\\' => 26,
+            'Stripe\\' => 7,
             'SensioLabs\\Security\\' => 20,
         ),
         'P' => 
@@ -93,6 +94,10 @@ class ComposerStaticInit13b019cca6d94a59efef8057566200eb
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'SensioLabs\\Security\\' => 
         array (

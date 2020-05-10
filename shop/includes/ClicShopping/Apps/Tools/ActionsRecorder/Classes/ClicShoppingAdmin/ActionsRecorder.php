@@ -79,7 +79,10 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (!$language_id) $language_id = $CLICSHOPPING_Language->getId();
+      if (!$language_id) {
+        $language_id = $CLICSHOPPING_Language->getId();
+      }
+
       $Qcategory = Registry::get('Db')->get('actions_recorder_description', 'label', ['id' => (int)$id, 'language_id' => (int)$language_id]);
 
       return $Qcategory->value('label');
@@ -118,8 +121,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-      if (!is_array($category_tree_array)) $category_tree_array = [];
-      if ((count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
+      if (!is_array($category_tree_array)) {
+        $category_tree_array = [];
+      }
+
+      if ((count($category_tree_array) < 1) && ($exclude != '0')) {
+        $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
+      }
 
       if ($include_itself) {
         $Qcategory = $CLICSHOPPING_Db->get('actions_recorder_description', 'label', [
@@ -153,9 +161,11 @@
         ]
       );
 
-
       while ($Qcategories->fetch()) {
-        if ($exclude != $Qcategories->valueInt('id')) $category_tree_array[] = ['id' => $Qcategories->valueInt('id'), 'text' => $spacing . $Qcategories->value('label')];
+        if ($exclude != $Qcategories->valueInt('id')) {
+          $category_tree_array[] = ['id' => $Qcategories->valueInt('id'), 'text' => $spacing . $Qcategories->value('label')];
+        }
+
         $category_tree_array = static::getLabelTree($Qcategories->valueInt('id'), $spacing . '&nbsp;&nbsp;&nbsp;', $exclude, $category_tree_array);
       }
 
@@ -186,7 +196,9 @@
 
       $calculated_category_path_string = substr($calculated_category_path_string, 0, -6);
 
-      if (strlen($calculated_category_path_string) < 1) $calculated_category_path_string = $CLICSHOPPING_ActionsRecorder->getDef('text_top');
+      if (strlen($calculated_category_path_string) < 1) {
+        $calculated_category_path_string = $CLICSHOPPING_ActionsRecorder->getDef('text_top');
+      }
 
       return $calculated_category_path_string;
     }
@@ -197,7 +209,9 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if (!is_array($categories_array)) $categories_array = [];
+      if (!is_array($categories_array)) {
+        $categories_array = [];
+      }
 
       $Qcategory = $CLICSHOPPING_Db->get([
         'actions_recorder c',
@@ -219,7 +233,9 @@
         'text' => $Qcategory->value('label')
       ];
 
-      if ((!is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0')) $categories_array = static::getGenerateBlogCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+      if ((!is_null($Qcategory->valueInt['parent_id'])) && ($Qcategory->valueInt('parent_id') != '0')) {
+        $categories_array = static::getGenerateBlogCategoryPath($Qcategory->valueInt('parent_id'), 'category', $categories_array, $index);
+      }
 
       return $categories_array;
     }
@@ -299,8 +315,13 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ActionsRecorder = Registry::get('ActionsRecorder');
 
-      if (!is_array($category_tree_array)) $category_tree_array = [];
-      if ((count($category_tree_array) < 1) && ($exclude != '0')) $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
+      if (!is_array($category_tree_array)) {
+        $category_tree_array = [];
+      }
+
+      if ((count($category_tree_array) < 1) && ($exclude != '0')) {
+        $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
+      }
 
       if ($include_itself) {
         $Qcategory = $CLICSHOPPING_Db->prepare('select label
@@ -332,10 +353,11 @@
       $Qcategory->bindInt(':parent_id', (int)$parent_id);
       $Qcategory->execute();
 
-
       while ($Qcategory->fetch()) {
+        if ($exclude != $Qcategory->valueInt('id')) {
+          $category_tree_array[] = ['id' => $Qcategory->valueInt('id'), 'text' => $spacing . $Qcategory->value('label')];
+        }
 
-        if ($exclude != $Qcategory->valueInt('id')) $category_tree_array[] = ['id' => $Qcategory->valueInt('id'), 'text' => $spacing . $Qcategory->value('label')];
         $category_tree_array = static::getActionsRecorderCategoryTree($Qcategory->valueInt('id'), $spacing . '&nbsp;&nbsp;&nbsp;', $exclude, $category_tree_array);
       }
 
