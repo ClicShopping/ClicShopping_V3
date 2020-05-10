@@ -275,7 +275,7 @@
                 $tag = $CLICSHOPPING_ProductsFunctionTemplate->getProductsHeadTag($products_id);
 
                 $products_tag = '';
-                if (!empty($tag)) {
+                if (is_array($tag) && !empty($tag)) {
                   foreach ($tag as $value) {
                     $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
                   }
