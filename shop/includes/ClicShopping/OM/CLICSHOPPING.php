@@ -698,7 +698,7 @@
      * @return bool|string
      * 
      */
-    public static function ArrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
+    public static function arrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
     {
       if (!is_array($exclude)) $exclude = [];
 

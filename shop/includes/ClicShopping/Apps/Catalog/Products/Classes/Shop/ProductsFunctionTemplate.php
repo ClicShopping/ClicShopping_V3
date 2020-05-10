@@ -39,14 +39,17 @@
 
     /**
      * product url
-     * @return bool|mixed
      */
     public function getProductsUrlRewrited()
     {
       return $this->rewriteUrl;
     }
 
-    public function getProductsNameUrl($products_id)
+    /**
+     * @param $products_id
+     * @return string
+     */
+    public function getProductsNameUrl($products_id) :string
     {
       $products_name = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), '<span itemprop="name">' . $this->productsCommon->getProductsName($products_id) . '</span>', 'itemprop="url"');
 
@@ -61,7 +64,7 @@
      * @param string $tag
      * @return string
      */
-    public function getStock(string $constant, $products_id, string $tag = ' ')
+    public function getStock(string $constant, $products_id, string $tag = ' '): string
     {
       if ($constant == 'number') {
         $products_stock = CLICSHOPPING::getDef('text_stock') . $tag . $this->productsCommon->getProductsStock($products_id);
@@ -79,7 +82,7 @@
      * @param string $tag
      * @return string
      */
-    public function getFlashDiscount(int $products_id, string $tag = '<br />')
+    public function getFlashDiscount(int $products_id, string $tag = '<br />') :string
     {
       $products_flash_discount = '';
 
@@ -90,13 +93,20 @@
       return $products_flash_discount;
     }
 
-// Minimum quantity to take an order
-    public function getMinOrderQuantityProductDisplay($products_id, string $tag = ' ')
+    /**
+     * Minimum quantity to take an order
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getMinOrderQuantityProductDisplay($products_id, string $tag = ' ') :string
     {
       if ($this->productsCommon->getProductsMinimumQuantityToTakeAnOrder($products_id) > 1) {
         $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_product') . $tag . $this->productsCommon->getProductsMinimumQuantityToTakeAnOrder($products_id);
 
         return $min_order_quantity_products_display;
+      } else {
+        return '';
       }
     }
 
@@ -109,8 +119,14 @@
       }
     }
 
-// Display an input allowing for the customer to insert a quantity
-    public function getDisplayInputQuantity(string $constant, $products_id, string $tag = ' ')
+    /**
+     * Display an input allowing for the customer to insert a quantity
+     * @param string $constant
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getDisplayInputQuantity(string $constant, $products_id, string $tag = ' ') :string
     {
       $input_quantity = '';
 
@@ -127,7 +143,12 @@
       return $input_quantity;
     }
 
-    public function getProductQuantityUnitType($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductQuantityUnitType($products_id, string $tag = ' ') :string
     {
       $products_quantity_unit = '';
 
@@ -144,8 +165,16 @@
       return $products_quantity_unit;
     }
 
-
-    public function getButtonViewDetails(string $constant, $products_id, ?string $icon = null, string $button_color = 'info', $params = null, string $button_size = 'sm')
+    /**
+     * @param string $constant
+     * @param $products_id
+     * @param string|null $icon
+     * @param string $button_color
+     * @param null $params
+     * @param string $button_size
+     * @return string
+     */
+    public function getButtonViewDetails(string $constant, $products_id, ?string $icon = null, string $button_color = 'info', $params = null, string $button_size = 'sm') :string
     {
       $button = '';
 
@@ -160,8 +189,15 @@
       return $button;
     }
 
-
-    public function getImage(string $constant, $products_id, $parameters = '', bool $responsive = true, string $css = '')
+    /**
+     * @param string $constant
+     * @param $products_id
+     * @param string $parameters
+     * @param bool $responsive
+     * @param string $css
+     * @return string
+     */
+    public function getImage(string $constant, $products_id, $parameters = '', bool $responsive = true, string $css = '') :string
     {
       if ($constant == 'Medium') {
         if ($this->productsCommon->getProductsImageMedium($products_id) !== false) {
@@ -176,6 +212,15 @@
       return $products_image;
     }
 
+    /**
+     * @param string $constant
+     * @param $products_id
+     * @param string $cssSpecial
+     * @param string $cssFavorites
+     * @param string $cssFeatured
+     * @param string $cssProductsNew
+     * @return string
+     */
     public function getTicker(string $constant, $products_id, string $cssSpecial, string $cssFavorites, string $cssFeatured, string $cssProductsNew): string
     {
       $ticker = '';
@@ -193,7 +238,13 @@
       return $ticker;
     }
 
-    public function getTickerPourcentage(string $constant, $products_id, string $cssPourcentage)
+    /**
+     * @param string $constant
+     * @param $products_id
+     * @param string $cssPourcentage
+     * @return string
+     */
+    public function getTickerPourcentage(string $constant, $products_id, string $cssPourcentage) :string
     {
       if ($constant == 'True' && !is_null($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
         $ticker = HTML::link($this->rewriteUrl->getProductNameUrl($products_id), HTML::tickerImage($this->productsCommon->getProductsTickerSpecialsPourcentage($products_id), $cssPourcentage, true));
@@ -204,37 +255,60 @@
       return $ticker;
     }
 
-
-    public function getProductsModel($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsModel($products_id, string $tag = ' '): string
     {
       if (!empty($this->productsCommon->getProductsModel($products_id))) {
         $products_model = $tag . $this->productsCommon->getProductsModel($products_id);
 
         return $products_model;
+      } else {
+        return '';
       }
     }
 
-
-    public function getProductsManufacturer($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsManufacturer($products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsManufacturer($products_id))) {
         $products_manufacturers = CLICSHOPPING::getDef('text_manufacturer') . $tag . $this->productsCommon->getProductsManufacturer($products_id);
 
         return $products_manufacturers;
+      } else {
+        return '';
       }
     }
 
-
-    public function getProductsPriceByWeight($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsPriceByWeight($products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsPriceByWeight($products_id))) {
         $product_price_kilo = CLICSHOPPING::getDef('text_products_price_kilo') . $tag . $this->productsCommon->getProductsPriceByWeight($products_id);
 
         return $product_price_kilo;
+      } else {
+        return '';
       }
     }
 
-    public function getProductsDateAvailable($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsDateAvailable($products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsDateAvailable($products_id))) {
         $products_date_available = $this->productsCommon->getProductsDateAvailable($products_id);
@@ -243,28 +317,46 @@
         }
 
         return $products_date_available;
+      } else {
+        return '';
       }
     }
 
-    public function getProductsOnlyTheShop($products_id)
+    /*
+     *
+     */
+    public function getProductsOnlyTheShop($products_id): string
     {
       if ($this->productsCommon->getProductsOnlyTheShop($products_id) == 1) {
         $products_only_shop = CLICSHOPPING::getDef('text_only_shop');
 
         return $products_only_shop;
+      } else {
+        return '';
       }
     }
 
-    public function getProductsOnlyOnTheWebSite($products_id)
+    /**
+     * @param $products_id
+     * @return string
+     */
+    public function getProductsOnlyOnTheWebSite($products_id) :string
     {
       if ($this->productsCommon->getProductsOnlyOnTheWebSite($products_id) == 1) {
         $products_only_web = CLICSHOPPING::getDef('text_only_web');
 
         return $products_only_web;
+      } else {
+        return '';
       }
     }
 
-    public function getProductsPackaging($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsPackaging($products_id, string $tag = ' ') :string
     {
       $products_packaging = $this->productsCommon->getProductsPackaging($products_id);
 
@@ -276,49 +368,78 @@
       return $products_packaging;
     }
 
-    public function getProductsShippingDelay($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsShippingDelay($products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsShippingDelay($products_id))) {
         $products_shipping_delay = CLICSHOPPING::getDef('text_display_shipping_delay') . $tag . $this->productsCommon->getProductsShippingDelay($products_id);
 
         return $products_shipping_delay;
+      } else {
+        return '';
       }
     }
 
-
-    public function getProductsHeadTag($products_id)
+    /**
+     * @param $products_id
+     * @return string
+     */
+    public function getProductsHeadTag($products_id) :string
     {
       if (!empty($this->productsCommon->getProductsHeadTag($products_id))) {
         $products_tag = $this->productsCommon->getProductsHeadTag($products_id);
         $delimiter = ',';
-        $products_tag = trim(preg_replace('|\\s*(?:' . preg_quote($delimiter) . ')\\s*|', $delimiter, $products_tag));
+        $products_tag = trim(preg_replace('|\\s*(?:' . preg_quote($delimiter, null) . ')\\s*|', $delimiter, $products_tag));
         $tag = explode(',', $products_tag);
 
         return $tag;
+      } else {
+        return '';
       }
     }
 
-
-    public function getProductsVolume($products_id, string $tag = ' ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsVolume($products_id, string $tag = ' ') :string
     {
       if (!empty($this->productsCommon->getProductsVolume($products_id))) {
         $products_volume = CLICSHOPPING::getDef('text_products_volume') . $tag . $this->productsCommon->getProductsVolume($products_id);
 
         return $products_volume;
+      } else {
+        return '';
       }
     }
 
-    public function getProductsWeight($products_id, string $tag = ' / ')
+    /**
+     * @param $products_id
+     * @param string $tag
+     * @return string
+     */
+    public function getProductsWeight($products_id, string $tag = ' / ') :string
     {
       if (!empty($this->productsCommon->getProductsWeight($products_id))) {
         $weight_symbol = $this->productsCommon->getSymbolbyProducts($this->productsCommon->getWeightClassIdByProducts($products_id));
         $products_weight = CLICSHOPPING::getDef('text_products_weight') . '  ' . $this->productsCommon->getProductsWeight($products_id) . $tag . $weight_symbol;
 
         return $products_weight;
+      } else {
+        return '';
       }
     }
 
-    public function getManufacturerName($products_id)
+    /**
+     * @param $products_id
+     * @return string
+     */
+    public function getManufacturerName($products_id) :string
     {
       if (isset($_GET['manufacturersId']) && !is_null($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
         $manufacturer_id = HTML::sanitize($_GET['manufacturersId']);
@@ -330,7 +451,12 @@
       return $name;
     }
 
-    public function getManufacturerImage($products_id, string $products_image)
+    /**
+     * @param $products_id
+     * @param string $products_image
+     * @return string
+     */
+    public function getManufacturerImage($products_id, string $products_image) :string
     {
       if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
         $manufacturer_id = HTML::sanitize($_GET['manufacturersId']);
@@ -342,15 +468,25 @@
       return $image;
     }
 
-    public function getProductslength($products_id)
+    /**
+     * @param $products_id
+     * @return string
+     */
+    public function getProductslength($products_id) :string
     {
       if (!empty($this->productsCommon->getProductsDimension($products_id))) {
         $products_length = CLICSHOPPING::getDef('text_products_length') . ' : ' . $this->productsCommon->getProductsDimension($products_id);
 
         return $products_length;
+      } else {
+        return '';
       }
     }
 
+    /**
+     * @param $products_id
+     * @return string
+     */
     public function getProductJsonLd($products_id): string
     {
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
@@ -415,7 +551,7 @@
   "offers": {
     "@type": "Offer",
     "url": "' . $this->getProductsUrlRewrited()->getProductNameUrl($products_id) . '",
-    "priceCurrency": "' . HTML::output($_SESSION['currency']) . '",
+    "priceCurrency": "' . HTML::output(HTML::sanitize($_SESSION['currency'])) . '",
     "price": "' . $price . '",
     "priceValidUntil": "",
     "itemCondition": "https://schema.org/' .$products_packaging . '",

@@ -248,7 +248,6 @@
      */
     public static function typeUrlDomain(): string
     {
-
       if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
         $domain = CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin');
       } else {

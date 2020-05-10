@@ -64,6 +64,10 @@
       $this->language = Registry::get('Language');
     }
 
+    /**
+     * get product id if exist
+     * @return bool|int|null
+     */
     public function getID()
     {
       if (parent::getID() === null || !is_numeric(parent::getID()) || empty(parent::getID())) {
@@ -75,6 +79,9 @@
       return $id;
     }
 
+    /**
+     * @return bool or array
+     */
     private function setData()
     {
       if ($this->customer->getCustomersGroupID() != 0) {
@@ -127,7 +134,6 @@
 
       return $result;
     }
-
 
     public function getData()
     {
@@ -699,11 +705,12 @@
     /**
      * products dimension
      *
+     * @param Int | null
      * @param string
      * @return string $products_dimension, dimension of the product
      * @access private
      */
-    private function setProductsDimension($id = null)
+    private function setProductsDimension(?int $id = null, string $separator) :string
     {
       $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
       $products_dimension = '';
@@ -721,57 +728,38 @@
           'products_id' => (int)$id
         ]
       );
-      $products_length_class_id = $Qproducts->valueInt('products_length_class_id');
 
+      $products_length_class_id = $Qproducts->valueInt('products_weight_class_id');
       $products_dimension_width = $Qproducts->valueDecimal('products_dimension_width');
       $products_dimension_height = $Qproducts->valueDecimal('products_dimension_height');
       $products_dimension_depth = $Qproducts->valueDecimal('products_dimension_depth');
 
       $products_type = $CLICSHOPPING_ProductsLength->getUnit($products_length_class_id, $this->language->getId());
 
-// Affichage de la dimension du produit
-      if (($products_dimension_width != 0.00 || $products_dimension_width != 0) ||
-        ($products_dimension_height != 0.00 || $products_dimension_height != 0) ||
-        ($products_dimension_depth != 0.00 || $products_dimension_depth != 0)
+      if (($products_dimension_width == 0 || empty($products_dimension_width)) ||
+        ($products_dimension_height == 0 || empty($products_dimension_height)) ||
+        ($products_dimension_depth == 0 || empty($products_dimension_depth))
       ) {
-
-        if ($products_dimension_width == 0.00) {
-          $products_width = '';
-        } else {
-          $products_width = $products_dimension_width;
-        }
-
-        if ($products_dimension_height == 0.00) {
-          $products_height = '';
-        } else {
-          $products_height = $products_dimension_height;
-        }
-
-        if ($products_dimension_depth == 0.00) {
-          $products_depth = '';
-        } else {
-          $products_depth = ' x ' . $products_dimension_depth;
-        }
-
-        if (!is_null($products_dimension_width) || !is_null($products_dimension_height)) $separator = ' x ';
-        $products_dimension = HTML::outputProtected($products_width . $separator . $products_height . $products_depth . ' ' . $products_type);
+        return false;
+      } else {
+        $products_dimension = HTML::outputProtected($products_dimension_width . $separator . $products_dimension_height  . $separator . $products_dimension_depth . ' ' . $products_type);
       }
 
-      return HTML::outputProtected($products_dimension);
+      return $products_dimension;
     }
 
     /**
      * display products dimension
      *
+     * @param int|null $id
      * @param string
      * @return string $products_dimension, dimension of the product
      * @access public
      */
-    public function getProductsDimension($id = null)
+    public function getProductsDimension(?int $id = null, string $separator = ' x ') :string
     {
-      return $this->setProductsDimension($id);
+      return $this->setProductsDimension($id,$separator);
     }
-
 
     /**
      * products Manufacturer

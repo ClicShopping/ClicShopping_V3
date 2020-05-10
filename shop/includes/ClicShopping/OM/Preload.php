@@ -165,8 +165,7 @@
     public static function getFiles(): array
     {
       $shop_directory =  CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/template/';
-      $shop_directory = static::scan($shop_directory, 'php', true);
-      $result = $shop_directory;
+      $result = static::scan($shop_directory, 'php', true);
 
       return $result;
     }

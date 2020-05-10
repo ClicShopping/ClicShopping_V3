@@ -147,42 +147,63 @@
       return $width;
     }
 
-    public function setTitle($title)
+    /**
+     * @param string|null $title
+     */
+    public function setTitle(?string $title)
     {
       $this->_title = $title;
     }
 
-    public function getTitle()
+    /**
+     * @return string|null
+     */
+    public function getTitle(): ?string
     {
       return $this->_title;
     }
 
-    public function setDescription($description)
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description)
     {
       $this->_description = $description;
     }
 
-    public function getDescription()
+    /**
+     * @return string
+     */
+    public function getDescription(): ?string
     {
       return $this->_description;
     }
 
-    public function setKeywords($keywords)
+    /**
+     * @param string|null $keywords
+     */
+    public function setKeywords(?string $keywords)
     {
       $this->_keywords = $keywords;
     }
 
-    public function getKeywords()
+    /**
+     * @return string|null
+     */
+    public function getKeywords(): ?string
     {
       return $this->_keywords;
     }
 
-    public function setNewsKeywords($Newskeywords)
+    public function setNewsKeywords(?string $Newskeywords)
     {
       $this->_newskeywords = $Newskeywords;
     }
 
-    public function getNewsKeywords()
+    /**
+     * @return string|null
+     */
+    public function getNewsKeywords(): ?string
     {
       return $this->_newskeywords;
     }
@@ -200,12 +221,18 @@
       $this->_blocks[$group][] = $block;
     }
 
+    /**
+     * @param string $group
+     * @return bool
+     */
     public function hasBlocks(string $group): bool
     {
       return (isset($this->_blocks[$group]) && !empty($this->_blocks[$group]));
     }
 
-
+    /**
+     * return all HeaderTags files in apps Hooks
+     */
     public function getAppsHeaderTags()
     {
       if (defined('MODULE_HEADER_TAGS_INSTALLED') && !is_null(MODULE_HEADER_TAGS_INSTALLED)) {
@@ -721,13 +748,13 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (is_file($this->getPathRoot() . static::getPathDirectoryTemplateThema() . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
-        $languagefiles = static::getPathDirectoryTemplateThema() . 'languages' . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
-        if (is_file($this->getPathRoot() . $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
-          $languagefiles = $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
+      if (is_file($this->getPathRoot() . static::getPathDirectoryTemplateThema() . $this->_directoryTemplateLanguages . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
+        $languagefiles = static::getPathDirectoryTemplateThema() . $this->_directoryTemplateLanguages . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
+        if (is_file($this->getPathRoot() . $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php')) {
+          $languagefiles = $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
         }
       } else {
-        $languagefiles = $this->getSiteTemplateLanguageDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
+        $languagefiles = $this->getSiteTemplateLanguageDirectory() . $CLICSHOPPING_Language->get('directory') . '/' . $name . '.php';
       }
 
       return $languagefiles;

@@ -102,7 +102,7 @@
 <?php
     } else {
       if (count($CLICSHOPPING_NavigationHistory->snapshot) > 0 && !empty($newcustomer)) {
-        $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], session_name()), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
+        $back_link = CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->snapshot['application'], CLICSHOPPING::arrayToString($CLICSHOPPING_NavigationHistory->snapshot['get'], session_name()), $CLICSHOPPING_NavigationHistory->snapshot['mode']);
       } else {
         $back_link = CLICSHOPPING::link(null,'Account&AddressBook');
       }

@@ -51,7 +51,7 @@
 
         if (isset($CLICSHOPPING_NavigationHistory->path[$back])) {
           if (!is_null(($CLICSHOPPING_NavigationHistory->path[$back]))) {
-            $button_navigation_history = HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['application'], CLICSHOPPING::ArrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'info');
+            $button_navigation_history = HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link($CLICSHOPPING_NavigationHistory->path[$back]['application'], CLICSHOPPING::arrayToString($CLICSHOPPING_NavigationHistory->path[$back]['get'], array('action')), $CLICSHOPPING_NavigationHistory->path[$back]['mode']), 'info');
           } else {
             $button_navigation_history = '';
           }

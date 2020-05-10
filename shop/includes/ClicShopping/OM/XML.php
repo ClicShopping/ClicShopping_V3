@@ -9,7 +9,7 @@
    *
    */
 
-  namespace ClicShopping\OM\Core;
+  namespace ClicShopping\OM;
 
   class XML
   {
@@ -47,7 +47,12 @@
       return (string)$xml;
     }
 
-    public static function fromArray($data, $encoding = 'UTF-8')
+    /**
+     * @param $data
+     * @param string $encoding
+     * @return string
+     */
+    public static function fromArray($data, string $encoding = 'UTF-8')
     {
       $xml = new \XMLWriter();
       $xml->openMemory();
@@ -60,7 +65,13 @@
       return $xml->outputMemory(true);
     }
 
-    protected static function _write(\XMLWriter $xml, $data, $parent = null, $add_to_parent_element = false)
+    /**
+     * @param \XMLWriter $xml
+     * @param $data
+     * @param null $parent
+     * @param bool $add_to_parent_element
+     */
+    protected static function _write(\XMLWriter $xml, $data, $parent = null, bool $add_to_parent_element = false)
     {
       foreach ($data as $key => $value) {
         if (is_array($value)) {

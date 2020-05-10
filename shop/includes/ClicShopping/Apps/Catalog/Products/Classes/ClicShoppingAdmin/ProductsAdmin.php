@@ -811,7 +811,6 @@
         $Qdescription->execute();
 
         while ($Qdescription->fetch()) {
-
           $sql_array = ['products_id' => (int)$dup_products_id,
             'language_id' => (int)$Qdescription->valueInt('language_id'),
             'products_name' => $Qdescription->value('products_name'),
@@ -853,9 +852,7 @@
                                               ');
         $QcustomersGroup->execute();
 
-        // Gets all of the customers groups
         while ($QcustomersGroup->fetch()) {
-
           $Qattributes = $this->db->prepare('select g.customers_group_id,
                                                      g.customers_group_price,
                                                      p.products_price

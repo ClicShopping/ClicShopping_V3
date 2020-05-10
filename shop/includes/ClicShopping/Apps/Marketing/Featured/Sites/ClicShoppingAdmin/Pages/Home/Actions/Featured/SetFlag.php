@@ -21,7 +21,7 @@
       $CLICSHOPPING_Featured = Registry::get('Featured');
 
       if (isset($_GET['flag']) && isset($_GET['id'])) {
-        static::GetFeaturedProductsStatus($_GET['id'], $_GET['flag']);
+        static::getFeaturedProductsStatus($_GET['id'], $_GET['flag']);
       }
 
       $CLICSHOPPING_Featured->redirect('Featured', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
@@ -36,7 +36,7 @@
      * @access public
      * osc_set_products_featured_status
      */
-    Public static function GetFeaturedProductsStatus($products_featured_id, $status)
+    Public static function getFeaturedProductsStatus($products_featured_id, $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

@@ -32,7 +32,7 @@
 
     private function statsNewsletterCustomersMen()
     {
-      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS avgage
+      $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS avgage
                                                            from :table_customers
                                                            where customers_gender = :customers_gender
                                                            and customers_newsletter = 1
@@ -52,7 +52,7 @@
 
     private function statsNewsletterCustomersWomen()
     {
-      $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(*)/(SELECT COUNT(*) FROM :table_customers))*100),2) AS avgage
+      $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS avgage
                                                               from :table_customers
                                                               where customers_gender = :customers_gender
                                                               and customers_newsletter = 1
