@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.33.1 - 2020-05-15
+* [#933](https://github.com/stripe/stripe-php/pull/933) Services bugfix: convert nested null params to empty strings
+
+## 7.33.0 - 2020-05-14
+* [#771](https://github.com/stripe/stripe-php/pull/771) Introduce client/services API
+
+## 7.32.1 - 2020-05-13
+* [#932](https://github.com/stripe/stripe-php/pull/932) Fix multiple PHPDoc
+
 ## 7.32.0 - 2020-05-11
 * [#931](https://github.com/stripe/stripe-php/pull/931) Add support for the `LineItem` resource and APIs
 
