@@ -26,7 +26,7 @@
 
   $json = [];
 
-  $Qorders = $CLICSHOPPING_Db->prepare('select count(*) AS total, 
+  $Qorders = $CLICSHOPPING_Db->prepare('select count(o.orders_id) AS total, 
                                               SUM(ot.value) AS amount, 
                                               c.countries_iso_code_2 
                                         from :table_orders o,
