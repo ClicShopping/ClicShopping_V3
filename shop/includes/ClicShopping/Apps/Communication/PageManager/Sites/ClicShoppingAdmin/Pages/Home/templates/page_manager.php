@@ -223,7 +223,7 @@
     echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' . $Qpages->valueInt('pages_id') . '&page=' . $page) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_PageManager->getDef('icon_edit')) . '</a>';
     echo '&nbsp;';
 
-    if (($Qpages->valueInt('pages_id') == 4) || ($Qpages->valueInt('pages_id') == 5)) {
+    if ($Qpages->valueInt('pages_id') === 3 || $Qpages->valueInt('pages_id') === 4 || $Qpages->valueInt('pages_id' === 5)) {
       echo '&nbsp;';
     } else {
       echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_PageManager->getDef('icon_delete'));

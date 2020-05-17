@@ -54,32 +54,26 @@
   $Qsubmit->bindInt(':language_id', $CLICSHOPPING_Language->getID());
   $Qsubmit->execute();
 
-// Definition de la variable de gestion des colonnes
-    $tags_array = [];
-
-//----------------------------------------------------------------
-//         fichier index.php du catalog                         //
-//---------------------------------------------------------------
    if (empty($Qsubmit->value('submit_defaut_language_title'))) {
-     $tags_array['title'] = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
+     $tile = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
    } else {
-     $tags_array['title'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+     $tile = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
    }
 
    if (empty($Qsubmit->value('submit_defaut_language_description'))) {
-     $tags_array['desc'] = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
+     $description = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
    } else {
-     $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+     $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
    }
 
    if (empty($Qsubmit->value('submit_defaut_language_keywords'))) {
-     $tags_array['keywords'] = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
+    $keywords = CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]);
    } else {
-     $tags_array['keywords'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+    $keywords = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
    }
 
-  $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ' ' . $CLICSHOPPING_Template->getTitle());
-  $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ' ' . $CLICSHOPPING_Template->getDescription());
+  $title = $CLICSHOPPING_Template->setTitle($tile . ' ' . $CLICSHOPPING_Template->getTitle());
+  $description = $CLICSHOPPING_Template->setDescription($description . ' ' . $CLICSHOPPING_Template->getDescription());
   $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ' ' . $CLICSHOPPING_Template->getKeywords());
 
   if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayPageIntro() )) {
@@ -92,8 +86,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="<?php echo HTTP::getShopUrlDomain() ;?>">
     <title><?php echo HTML::outputProtected($title);?></title>
-    <meta name="Description" content="<?php echo HTML::outputProtected($description);?>" />
-    <meta name="Keywords" content="<?php echo HTML::outputProtected($CLICSHOPPING_Template->getKeywords());?>" />
+    <meta name="description" content="<?php echo HTML::outputProtected($description);?>" />
+    <meta name="keywords"  content="<?php echo HTML::outputProtected($CLICSHOPPING_Template->getKeywords());?>" />
     <meta name="news_keywords" content="<?php echo HTML::outputProtected($keywords);?>" />
     <meta name="no-email-collection" content="<?php echo HTTP::typeUrlDomain(); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

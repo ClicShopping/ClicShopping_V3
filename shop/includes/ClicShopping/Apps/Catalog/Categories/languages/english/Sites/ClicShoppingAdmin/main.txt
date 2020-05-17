@@ -28,7 +28,7 @@ button_insert = Insert
 button_products = Products
 
 dialog_uninstall_title = Uninstall
-dialog_uninstall_body = Do you want install this App ?
+dialog_uninstall_body = Do you want to install this App ?
 dialog_uninstall_title = Uninstall Module?
 dialog_uninstall_body = Are you sure you want to uninstall this module?
 

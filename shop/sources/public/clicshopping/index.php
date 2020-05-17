@@ -18,8 +18,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <base href="https://www.clicshopping.org/marketplace/">
   <title>Download / Téléchargement clicShopping Solution Social E-Commerce B2B/B2C, ClicShopping Market Place</title>
-  <meta name="Description" content="Créer votre site de social e-commerce gratuitement. Choisissez la meilleure solution de social e-commerce OpenSource B2B-B2C, ">
-  <meta name="Keywords" content="boutique en ligne, site e-commerce, eboutique, social, creation e-commerce, creer site ecommerce, creation site marchand, creer site marchand, solution ecommerce, solution e-commerce, logiciel ecommerce, logiciel e-commerce, ecommerce gratuit, e-commerce gratuit, creation boutique en ligne, ">
+  <meta name="description" content="Créer votre site de social e-commerce gratuitement. Choisissez la meilleure solution de social e-commerce OpenSource B2B-B2C, ">
+  <meta name="keywords"  content="boutique en ligne, site e-commerce, eboutique, social, creation e-commerce, creer site ecommerce, creation site marchand, creer site marchand, solution ecommerce, solution e-commerce, logiciel ecommerce, logiciel e-commerce, ecommerce gratuit, e-commerce gratuit, creation boutique en ligne, ">
   <meta name="news_keywords" content="boutique en ligne, site e-commerce, eboutique, social, creation e-commerce, creer site ecommerce, creation site marchand, creer site marchand, solution ecommerce, solution e-commerce, logiciel ecommerce, logiciel e-commerce, ecommerce gratuit, e-commerce gratuit, creation boutique en ligne, ">
   <meta name="no-email-collection" content="https://www.clicshopping.org">
   <meta name="generator" content="ClicShopping">

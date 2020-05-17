@@ -1,4 +1,4 @@
-module_admin_dashboard_reviews_app_title = Do you want install the customers Reviews ?
+module_admin_dashboard_reviews_app_title = Do you want to install the customers Reviews ?
 module_admin_dashboard_reviews_app_description = Install the customers Reviews
 
 table_heading_products = Products

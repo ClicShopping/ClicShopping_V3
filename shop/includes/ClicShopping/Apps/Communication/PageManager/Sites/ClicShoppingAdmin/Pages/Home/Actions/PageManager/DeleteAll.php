@@ -28,12 +28,14 @@
 
       if (!is_null($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
-          if ($id != 4) {
-            if ($id != 5) {
-              $CLICSHOPPING_PageManager->db->delete('pages_manager', ['pages_id' => (int)$id]);
-              $CLICSHOPPING_PageManager->db->delete('pages_manager_description', ['pages_id' => (int)$id]);
+          if ($id != 3) {
+            if ($id != 4) {
+              if ($id != 5) {
+                $CLICSHOPPING_PageManager->db->delete('pages_manager', ['pages_id' => (int)$id]);
+                $CLICSHOPPING_PageManager->db->delete('pages_manager_description', ['pages_id' => (int)$id]);
 
-              $CLICSHOPPING_Hooks->call('PageManager', 'DeleteAll');
+                $CLICSHOPPING_Hooks->call('PageManager', 'DeleteAll');
+              }
             }
           }
         }

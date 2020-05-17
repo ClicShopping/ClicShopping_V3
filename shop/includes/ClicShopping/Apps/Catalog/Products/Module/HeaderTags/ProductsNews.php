@@ -112,17 +112,16 @@ EOD;
     public function Install()
     {
       $this->app->db->save('configuration', [
-          'configuration_title' => 'Do you want install this module ?',
+          'configuration_title' => 'Do you want to install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_PRODUCT_PRODUCTS_NEWS_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want install this module ?',
+          'configuration_description' => 'Do you want to install this module ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
           'date_added' => 'now()'
         ]
       );
-
 
       $this->app->db->save('configuration', [
           'configuration_title' => 'Display sort order',

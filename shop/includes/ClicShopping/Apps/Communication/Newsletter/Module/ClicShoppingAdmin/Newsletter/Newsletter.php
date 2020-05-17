@@ -124,7 +124,7 @@
                       <meta name="robots" content="noindex,nofollow" />
                       <meta name="viewport" content="width=device-width, initial-scale=1">
                       <title>' . $this->title . '</title>
-                      <meta name="Description" content ="' . $this->title . '">
+                      <meta name="description" content ="' . $this->title . '">
                      </head>
                     <body>
                       ' . $this->content . '

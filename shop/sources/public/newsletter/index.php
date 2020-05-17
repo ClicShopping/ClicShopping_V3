@@ -14,7 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Newsletter</title>
-  <meta name="Description" content="Newsletters of ClicShopping</description" />
+  <meta name="description" content="Newsletters of ClicShopping</description" />
   <style type="text/css">
   a img {
   border:0;

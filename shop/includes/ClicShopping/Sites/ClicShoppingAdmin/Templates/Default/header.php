@@ -31,7 +31,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="ClicShopping" />
   <meta name="author" content="ClicShopping" />
-  <meta name="Description" content="ClicShopping Administration" />
+  <meta name="description" content="ClicShopping Administration" />
 
   <title><?php echo CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]); ?></title>
 

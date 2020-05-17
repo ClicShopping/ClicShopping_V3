@@ -12,10 +12,10 @@
 namespace Symfony\Contracts\HttpClient\Exception;
 
 /**
- * When any error happens at the transport level.
+ * When an idle timeout occurs.
  *
  * @author Nicolas Grekas <p@tchwork.com>
  */
-interface TransportExceptionInterface extends ExceptionInterface
+interface TimeoutExceptionInterface extends TransportExceptionInterface
 {
 }

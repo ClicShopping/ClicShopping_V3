@@ -85,10 +85,10 @@ EOD;
     public function install()
     {
       $this->app->db->save('configuration', [
-          'configuration_title' => 'Do you want install this module ?',
+          'configuration_title' => 'Do you want to install this module ?',
           'configuration_key' => 'MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Do you want install this module ?',
+          'configuration_description' => 'Do you want to install this module ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
