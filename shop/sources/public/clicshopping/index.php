@@ -45,7 +45,7 @@
   <blockquote><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>">Accueil / home Page</a></blockquote>
 <?php
 
-  $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
   $iter = new DirectoryIterator(__DIR__ );
   $i = 0;

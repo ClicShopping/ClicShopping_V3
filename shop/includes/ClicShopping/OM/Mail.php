@@ -238,7 +238,7 @@
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send(string $to_name, string $to_addr, string $from_name, string $from_addr, string $subject = '', bool $reply_to = false): bool
+    public function send(string $to_name = '', string $to_addr, string $from_name, string $from_addr, string $subject = '', bool $reply_to = false): bool
     {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
@@ -333,7 +333,7 @@
      * @param string $from_email_address The email address of the sender
      * @access public
      */
-    public function clicMail(string $to_name, string $to_email_address, string $email_subject, string $email_text, string $from_email_name, string $from_email_address)
+    public function clicMail(string $to_name =  '', string $to_email_address, string $email_subject = '', string $email_text, string $from_email_name, string $from_email_address)
     {
       if (SEND_EMAILS != 'true') return false;
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5118c6883b5cda4a8efe506be3b972e1",
+    "content-hash": "68fbc94216939278d287a4da56e7b491",
     "packages": [
         {
             "name": "darkghosthunter/preloader",
@@ -631,16 +631,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.33.1",
+            "version": "v7.35.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:stripe/stripe-php.git",
-                "reference": "5df49745eed2d010e28b64831925dbf6fdfc01a4"
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "937bd36cb7b385e4511def0d1520b477ed5ffa68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/5df49745eed2d010e28b64831925dbf6fdfc01a4",
-                "reference": "5df49745eed2d010e28b64831925dbf6fdfc01a4",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/937bd36cb7b385e4511def0d1520b477ed5ffa68",
+                "reference": "937bd36cb7b385e4511def0d1520b477ed5ffa68",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-05-15T18:30:45+00:00"
+            "time": "2020-05-20T20:30:12+00:00"
         },
         {
             "name": "symfony/console",
@@ -1432,7 +1432,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
 }
