@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Groups\Sites\ClicShoppingAdmin\Pages\Home\Actions\Groups;
 
   use ClicShopping\OM\Registry;
@@ -17,10 +16,8 @@
 
   class Delete extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 

@@ -18,7 +18,6 @@
 
   class PasswordReset extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');

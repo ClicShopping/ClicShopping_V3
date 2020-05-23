@@ -15,7 +15,6 @@
 
   class Status
   {
-
     protected $languages_id;
     protected $suppliers_id;
 

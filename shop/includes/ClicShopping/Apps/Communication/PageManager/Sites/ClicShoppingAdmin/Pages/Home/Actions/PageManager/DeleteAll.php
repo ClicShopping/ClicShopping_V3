@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Communication\PageManager\Sites\ClicShoppingAdmin\Pages\Home\Actions\PageManager;
 
   use ClicShopping\OM\Registry;
@@ -17,10 +16,8 @@
 
   class DeleteAll extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 

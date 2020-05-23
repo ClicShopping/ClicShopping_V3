@@ -18,7 +18,6 @@
 
   class Delete extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
 

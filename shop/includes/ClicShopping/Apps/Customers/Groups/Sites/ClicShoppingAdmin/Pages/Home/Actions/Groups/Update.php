@@ -17,10 +17,8 @@
 
   class Update extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Groups = Registry::get('Groups');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');

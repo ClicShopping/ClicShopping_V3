@@ -18,7 +18,6 @@
 
   class ProductsDescription extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $lang;
     protected $app;
     public $group;

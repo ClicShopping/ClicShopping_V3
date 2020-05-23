@@ -18,7 +18,6 @@
 
   class PageManager extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $db;
     protected $lang;
     protected $app;

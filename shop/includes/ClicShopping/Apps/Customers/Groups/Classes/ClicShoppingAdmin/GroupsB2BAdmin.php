@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
@@ -17,11 +16,9 @@
 
   class GroupsB2BAdmin
   {
-
     protected $default;
     protected $iso;
     protected $piva;
-
 
     public static function getCustomersGroupName(int $id): string
     {

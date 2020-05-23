@@ -17,7 +17,7 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select  geo_zone_id,
+  $Qzones = $CLICSHOPPING_TaxGeoZones->db->prepare('select geo_zone_id,
                                                            geo_zone_name,
                                                            geo_zone_description,
                                                            last_modified,

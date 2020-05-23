@@ -21,7 +21,6 @@
 
   class ProductsFunctionTemplate
   {
-
     protected $productsCommon;
     protected $customer;
     protected $template;

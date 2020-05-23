@@ -21,7 +21,6 @@
 
     public function __construct()
     {
-
       if (!Registry::exists('Newsletters')) {
         Registry::set('Newsletters', new NewslettersApp());
       }

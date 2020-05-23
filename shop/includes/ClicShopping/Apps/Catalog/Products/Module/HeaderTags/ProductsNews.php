@@ -18,7 +18,6 @@
 
   class ProductsNews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $lang;
     protected $app;
     public $group;

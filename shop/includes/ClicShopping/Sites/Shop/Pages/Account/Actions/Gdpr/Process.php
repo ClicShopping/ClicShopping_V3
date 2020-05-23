@@ -16,7 +16,6 @@
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');

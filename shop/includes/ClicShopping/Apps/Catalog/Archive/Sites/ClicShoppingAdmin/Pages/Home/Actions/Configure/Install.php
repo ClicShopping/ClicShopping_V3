@@ -17,10 +17,8 @@
 
   class Install extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Archive = Registry::get('Archive');
 

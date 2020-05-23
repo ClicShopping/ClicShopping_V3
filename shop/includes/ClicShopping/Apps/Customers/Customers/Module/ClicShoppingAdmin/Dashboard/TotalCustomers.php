@@ -15,12 +15,10 @@
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
-
   use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
 
   class TotalCustomers extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
 

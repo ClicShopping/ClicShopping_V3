@@ -16,10 +16,8 @@
 
   class Delete extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Countries = Registry::get('Countries');
 

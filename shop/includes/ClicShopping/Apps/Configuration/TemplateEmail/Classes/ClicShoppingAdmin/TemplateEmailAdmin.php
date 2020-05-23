@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
@@ -17,7 +16,6 @@
 
   class TemplateEmailAdmin
   {
-
     protected $template_email_id;
     protected $language_id;
 

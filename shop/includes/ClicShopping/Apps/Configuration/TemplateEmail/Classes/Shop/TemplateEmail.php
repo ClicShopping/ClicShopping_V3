@@ -16,7 +16,6 @@
 
   class TemplateEmail
   {
-
     /**
      * the name of the template
      *

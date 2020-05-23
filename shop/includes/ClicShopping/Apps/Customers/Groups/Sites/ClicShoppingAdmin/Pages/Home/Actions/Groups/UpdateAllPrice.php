@@ -17,7 +17,6 @@
 
   class UpdateAllPrice extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Groups = Registry::get('Groups');

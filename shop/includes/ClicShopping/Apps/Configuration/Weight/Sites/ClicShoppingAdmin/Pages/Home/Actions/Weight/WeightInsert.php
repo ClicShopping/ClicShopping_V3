@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Configuration\Weight\Sites\ClicShoppingAdmin\Pages\Home\Actions\Weight;
 
   use ClicShopping\OM\Registry;

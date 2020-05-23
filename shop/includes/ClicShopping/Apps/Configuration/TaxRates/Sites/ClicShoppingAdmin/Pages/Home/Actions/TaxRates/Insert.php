@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Configuration\TaxRates\Sites\ClicShoppingAdmin\Pages\Home\Actions\TaxRates;
 
   use ClicShopping\OM\HTML;

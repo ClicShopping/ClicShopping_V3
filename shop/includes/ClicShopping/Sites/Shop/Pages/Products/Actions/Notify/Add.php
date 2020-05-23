@@ -16,10 +16,8 @@
 
   class Add extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');

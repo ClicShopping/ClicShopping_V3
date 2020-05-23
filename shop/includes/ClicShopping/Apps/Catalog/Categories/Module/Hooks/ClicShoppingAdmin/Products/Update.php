@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\Products;
 
   use ClicShopping\OM\Registry;

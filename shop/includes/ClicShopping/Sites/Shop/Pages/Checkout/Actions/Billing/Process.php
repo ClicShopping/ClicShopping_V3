@@ -19,7 +19,6 @@
   {
     public function execute()
     {
-
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');

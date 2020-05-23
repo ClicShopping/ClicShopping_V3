@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
 
   use ClicShopping\OM\Registry;
@@ -23,7 +22,6 @@
 
   class Create extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Customers = Registry::get('Customers');

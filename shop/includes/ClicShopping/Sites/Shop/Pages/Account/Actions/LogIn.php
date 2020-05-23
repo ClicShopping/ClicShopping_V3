@@ -19,7 +19,6 @@
 
   class LogIn extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Db = Registry::get('Db');

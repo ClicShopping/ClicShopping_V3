@@ -24,7 +24,6 @@
 
   class Order
   {
-
     public $info;
     public $totals;
     public $products;
