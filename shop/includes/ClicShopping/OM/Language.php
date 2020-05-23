@@ -267,7 +267,13 @@
         $height = 24;
       }
 
-      return HTML::image(CLICSHOPPING::link('Shop/sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', null, false), $this->get('name', $language_code), $width, $height);
+      if (CLICSHOPPING::getSite() == 'Shop') {
+        $image = HTML::image('sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', $this->get('name', $language_code), $width, $height);
+      } else {
+        $image = HTML::image('../sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', $this->get('name', $language_code), $width, $height);
+      }
+
+      return $image;
     }
 
     public function getDef($key, $values = null, $scope = 'global')

@@ -130,7 +130,7 @@
     * @return string
     */
 
-    public static function image($src, $alt = null, $width = null, $height = null, $parameters = '', $responsive = true, $bootstrap_css = '')
+    public static function image(?string $src= '',  ?string $alt = null,  ?int $width = null,  ?int $height = null, ?string $parameters = '', bool $responsive = true, string $bootstrap_css = '') :string
     {
       if ((empty($src) || ($src == CLICSHOPPING::linkImage(''))) && (IMAGE_REQUIRED == 'false')) {
         return false;
@@ -140,7 +140,7 @@
         $CLICSHOPPING_Template = Registry::get('Template');
 
         if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
-          $image = $CLICSHOPPING_Template->getDirectoryTemplateImages() . '/icons/nophoto.png';
+          $image = CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . 'icons/nophoto.png';
 
           if (!is_file(CLICSHOPPING::getConfig('dir_root', 'Shop') . $image)) {
             $src = 'images/nophoto.png';
@@ -155,7 +155,7 @@
       }
 
       if (CLICSHOPPING::getSite() == 'Shop') {
-        $image = '<img data-src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
+        $image = '<img data-src="' . static::output(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $src) . '" alt="' . static::output($alt) . '"';
       } else {
         $image = '<img src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
       }
@@ -213,7 +213,7 @@
      * @return string session_name(), session_name()
      */
 
-    public static function form($name, $action, $method = 'post', $parameters = '', array $flags = [])
+    public static function form(string $name, ?string $action = null, ?string $method = 'post', ?string $parameters = '', array $flags = []) :string
     {
       if (!isset($flags['tokenize']) || !is_bool($flags['tokenize'])) {
         $flags['tokenize'] = false;
@@ -252,12 +252,13 @@
      * @param string $name The name and ID of the input field
      * @param string $value The default value for the input field
      * @param string $parameters Additional parameters for the input field
-     * @param boolean $override Override the default value with the value found in the GET or POST scope
      * @param string $type The type of input field to use (text/password/file)
+     * @param bool $reinsert_value
+     * @param string $class
      * @return string
      */
 
-    public static function inputField($name, $value = '', $parameters = '', $type = 'text', $reinsert_value = true, $class = 'form-control')
+    public static function inputField($name,  $value = '', $parameters = '', $type = 'text', $reinsert_value = true, $class = 'form-control')
     {
       $field = '<input type="' . static::output($type) . '" name="' . static::output($name) . '"';
 
@@ -290,11 +291,12 @@
      * Generate a form password field
      *
      * @param string $name The name and ID of the password field
+     * @param string|null $value
      * @param string $parameters Additional parameters for the password field
      * @return string
      */
 
-    public static function passwordField($name, $value = null, $parameters = 'maxlength="40"')
+    public static function passwordField(string $name, ?string $value = null, string $parameters = 'maxlength="40"') :string
     {
       return static::inputField($name, $value, $parameters, 'password', false);
     }

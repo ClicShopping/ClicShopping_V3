@@ -990,7 +990,7 @@
           $manufacturer_title = $CLICSHOPPING_Manufacturers->getTitle($manufacturer_id);
           $manufacturer_title = $this->replaceString($manufacturer_title);
 
-          $manufacturer_url_rewrited = '&manufacturersId=' . (int)$manufacturer_id;
+          $manufacturer_url_rewrited = $manufacturer_title  .'&manufacturersId=' . (int)$manufacturer_id;
         } else {
           $manufacturer_url_rewrited = 'manufacturersId=' . (int)$manufacturer_id;
         }
@@ -1002,5 +1002,4 @@
 
       return $url;
     }
-
   }

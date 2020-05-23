@@ -42,7 +42,7 @@
      * manufacturer id
      * @return int
      */
-    public function getID()
+    public function getID() :?int
     {
       $id = $this->Id;
 
@@ -63,7 +63,7 @@
      * @param $id
      * @return mixed
      */
-    public function getTitle($id)
+    public function getTitle(int $id) :string
     {
       $Qmanufacturer = $this->db->prepare('select m.manufacturers_name as name
                                             from :table_manufacturers m,
@@ -89,13 +89,13 @@
      * @param $id
      * @return mixed
      */
-    public function getImage($id)
+    public function getImage(int $id) :string
     {
       $Qmanufacturer = $this->db->prepare('select manufacturers_image as image
-                                      from :table_manufacturers
-                                      where manufacturers_id = :manufacturers_id
-                                      and manufacturers_status = 0
-                                      ');
+                                          from :table_manufacturers
+                                          where manufacturers_id = :manufacturers_id
+                                          and manufacturers_status = 0
+                                          ');
       $Qmanufacturer->bindInt(':manufacturers_id', $id);
       $Qmanufacturer->execute();
 
@@ -111,7 +111,7 @@
      * @param $id
      * @return mixed
      */
-    public function getDescription($id)
+    public function getDescription(int $id) :string
     {
       $Qmanufacturer = $this->db->prepare('select mi.manufacturer_description as description
                                             from :table_manufacturers m,
@@ -132,7 +132,11 @@
       return $description;
     }
 
-    public function getUrl($id)
+    /**
+     * @param $id
+     * @return string
+     */
+    public function getUrl(int $id) :string
     {
       $Qmanufacturer = $this->db->prepare('select mi.manufacturers_url as url
                                             from :table_manufacturers m,
@@ -153,7 +157,11 @@
       return $url;
     }
 
-    public function getAll($id = null)
+    /**
+     * @param null $id
+     * @return mixed
+     */
+    public function getAll(?int $id = null)
     {
       if (!is_null($id)) {
         $Qmanufacturer = $this->db->prepare('select m.manufacturers_id as id,
@@ -192,25 +200,25 @@
       return $Qmanufacturer->fetchAll();
     }
 
-    public function setManufacturersByCategories()
+    public function setManufacturersByCategories() :array
     {
       $CLICSHOPPING_Category = Registry::get('Category');
 
       $Qmanufacturer = $this->db->prepare('select distinct m.manufacturers_id as id,
-                                                  m.manufacturers_name as name
-                                      from :table_products p,
-                                      :table_products_to_categories p2c,
-                                      :table_manufacturers m
-                                      where p.products_status = 1
-                                      and p.products_view = 1
-                                      and p.manufacturers_id = m.manufacturers_id
-                                      and p.products_id = p2c.products_id
-                                      and p.products_archive = 0
-                                      and p2c.categories_id = :categories_id
-                                      and m.manufacturers_status = 0
-                                      group by m.manufacturers_id
-                                      order by m.manufacturers_name
-                                      ');
+                                                            m.manufacturers_name as name
+                                                from :table_products p,
+                                                :table_products_to_categories p2c,
+                                                :table_manufacturers m
+                                                where p.products_status = 1
+                                                and p.products_view = 1
+                                                and p.manufacturers_id = m.manufacturers_id
+                                                and p.products_id = p2c.products_id
+                                                and p.products_archive = 0
+                                                and p2c.categories_id = :categories_id
+                                                and m.manufacturers_status = 0
+                                                group by m.manufacturers_id
+                                                order by m.manufacturers_name
+                                                ');
 
       $Qmanufacturer->bindInt(':categories_id', $CLICSHOPPING_Category->getID());
       $Qmanufacturer->execute();
@@ -224,10 +232,11 @@
       return $manufacturer_name_array;
     }
 
-
-    public function getManufacturersByCategories()
+    /**
+     * @return array
+     */
+    public function getManufacturersByCategories() :array
     {
       return $this->setManufacturersByCategories();
     }
-
   }
