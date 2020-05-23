@@ -23,7 +23,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_GET['Update']) && isset($_GET['Cart'])) {
-        if (isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+        if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
           if (isset($_POST['products_id'])) {
 
             for ($i = 0, $n = count($_POST['products_id']); $i < $n; $i++) {

@@ -46,7 +46,7 @@
 
       $CLICSHOPPING_Language->loadDefinitions('login');
 
-      if (isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
 
         $email_address = HTML::sanitize($_POST['email_address']);

@@ -28,7 +28,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
 
         if (isset($_POST['gender']) && ((ACCOUNT_GENDER == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_GENDER_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
           $gender = HTML::sanitize($_POST['gender']);

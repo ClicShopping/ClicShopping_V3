@@ -27,7 +27,7 @@
 
       $_SESSION['process'] = false;
 
-      if (isset($_POST['action']) && $_POST['action'] == 'process' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && $_POST['action'] == 'process' && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $_SESSION['process'] = true;
         $error = false;
 

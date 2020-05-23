@@ -25,7 +25,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
 
 // if the customer is not logged on, redirect them to the login page
         if (!$CLICSHOPPING_Customer->isLoggedOn()) {

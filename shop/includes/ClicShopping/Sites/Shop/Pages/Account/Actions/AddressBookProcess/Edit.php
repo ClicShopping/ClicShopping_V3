@@ -34,7 +34,7 @@
         CLICSHOPPING::redirect(null, 'Account&AddressBook');
       }
 
-      if (isset($_POST['action']) && $_POST['action'] == 'update' && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && $_POST['action'] == 'update' && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
 
         if (isset($_POST['gender']) && ((ACCOUNT_GENDER == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || (ACCOUNT_GENDER_PRO == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {

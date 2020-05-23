@@ -38,7 +38,7 @@
       $Qnewsletter->execute();
 
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
 
         $newsletter_general = (isset($_POST['newsletter_general']) && ($_POST['newsletter_general'] == 1)) ? 1 : 0;
 

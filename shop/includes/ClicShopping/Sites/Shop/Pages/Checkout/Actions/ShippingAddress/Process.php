@@ -26,7 +26,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Address = Registry::get('Address');
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
 // process a new shipping address
         if (!$CLICSHOPPING_Customer->hasDefaultAddress() || (isset($_POST['firstname']) && !empty($_POST['firstname']) && isset($_POST['lastname']) && !empty($_POST['lastname']) && isset($_POST['street_address']) && !empty($_POST['street_address']))) {

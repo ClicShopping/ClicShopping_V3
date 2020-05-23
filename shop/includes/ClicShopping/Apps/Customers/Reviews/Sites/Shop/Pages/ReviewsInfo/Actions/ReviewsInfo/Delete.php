@@ -29,7 +29,7 @@
         CLICSHOPPING::redirect();
       }
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $review_id = HTML::sanitize($_GET['reviews_id']);
         $products_id = HTML::sanitize($_GET['products_id']);
 

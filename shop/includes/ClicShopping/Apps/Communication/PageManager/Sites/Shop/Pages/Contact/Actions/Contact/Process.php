@@ -34,7 +34,7 @@
 //language
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Contact/contact');
 
-      if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
 
         $CLICSHOPPING_Hooks->call('Contact', 'PreAction');

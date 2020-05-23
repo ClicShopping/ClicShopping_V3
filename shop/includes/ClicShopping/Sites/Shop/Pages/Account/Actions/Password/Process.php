@@ -27,7 +27,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
-      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] == $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
         $password_current = HTML::sanitize($_POST['password_current']);
         $password_new = HTML::sanitize($_POST['password_new']);
