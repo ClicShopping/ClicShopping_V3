@@ -654,17 +654,17 @@
     },
     {
         "name": "stripe/stripe-php",
-        "version": "v7.36.0",
-        "version_normalized": "7.36.0.0",
+        "version": "v7.36.1",
+        "version_normalized": "7.36.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/stripe/stripe-php.git",
-            "reference": "b0f4e9afe20285297fc48b06b28adcf88ac79e0d"
+            "reference": "80979c8959dff86bf7b0610e44599a67132ebcd3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b0f4e9afe20285297fc48b06b28adcf88ac79e0d",
-            "reference": "b0f4e9afe20285297fc48b06b28adcf88ac79e0d",
+            "url": "https://api.github.com/repos/stripe/stripe-php/zipball/80979c8959dff86bf7b0610e44599a67132ebcd3",
+            "reference": "80979c8959dff86bf7b0610e44599a67132ebcd3",
             "shasum": ""
         },
         "require": {
@@ -680,7 +680,7 @@
             "squizlabs/php_codesniffer": "^3.3",
             "symfony/process": "~3.4"
         },
-        "time": "2020-05-22T02:18:11+00:00",
+        "time": "2020-05-28T18:11:30+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -889,26 +889,26 @@
     },
     {
         "name": "symfony/http-client-contracts",
-        "version": "v2.1.1",
-        "version_normalized": "2.1.1.0",
+        "version": "v2.1.2",
+        "version_normalized": "2.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/http-client-contracts.git",
-            "reference": "e3ba2688594d8ef284f40348f7efb72cba4edec4"
+            "reference": "f8bed25edc964d015bcd87f1fec5734963931910"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/e3ba2688594d8ef284f40348f7efb72cba4edec4",
-            "reference": "e3ba2688594d8ef284f40348f7efb72cba4edec4",
+            "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/f8bed25edc964d015bcd87f1fec5734963931910",
+            "reference": "f8bed25edc964d015bcd87f1fec5734963931910",
             "shasum": ""
         },
         "require": {
-            "php": "^7.2.5"
+            "php": ">=7.2.5"
         },
         "suggest": {
             "symfony/http-client-implementation": ""
         },
-        "time": "2020-05-09T18:37:03+00:00",
+        "time": "2020-05-25T17:37:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1412,31 +1412,31 @@
     },
     {
         "name": "symfony/service-contracts",
-        "version": "v2.0.1",
-        "version_normalized": "2.0.1.0",
+        "version": "v2.1.2",
+        "version_normalized": "2.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/service-contracts.git",
-            "reference": "144c5e51266b281231e947b51223ba14acf1a749"
+            "reference": "66a8f0957a3ca54e4f724e49028ab19d75a8918b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/service-contracts/zipball/144c5e51266b281231e947b51223ba14acf1a749",
-            "reference": "144c5e51266b281231e947b51223ba14acf1a749",
+            "url": "https://api.github.com/repos/symfony/service-contracts/zipball/66a8f0957a3ca54e4f724e49028ab19d75a8918b",
+            "reference": "66a8f0957a3ca54e4f724e49028ab19d75a8918b",
             "shasum": ""
         },
         "require": {
-            "php": "^7.2.5",
+            "php": ">=7.2.5",
             "psr/container": "^1.0"
         },
         "suggest": {
             "symfony/service-implementation": ""
         },
-        "time": "2019-11-18T17:27:11+00:00",
+        "time": "2020-05-20T17:43:50+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.0-dev"
+                "dev-master": "2.1-dev"
             }
         },
         "installation-source": "dist",
@@ -1468,6 +1468,20 @@
             "interfaces",
             "interoperability",
             "standards"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
         ]
     }
 ]
