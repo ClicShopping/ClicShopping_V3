@@ -1,0 +1,13 @@
+Small release
+
+update composer libraries
+new ckeditor version
+new elfinder version
+fix some little bugs : seo, products stock, dimension
+fix email function on string management
+add full link for image
+add stripe payment
+Remove Paypal
+update SEO
+remove duplication content checkout confirmation template
+some language fix

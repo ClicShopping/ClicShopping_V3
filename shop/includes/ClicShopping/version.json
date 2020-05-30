@@ -1,5 +1,5 @@
 {
  "version": "3.2145",
- "description": "This release is compatible with php 7.3.3 / 7.4 and it introduces some fix and new features. The next release will be focus files optimization.",
- "date": "February 2020"
+ "description": "This release is compatible with php 7.3.3 / 7.4 and it introduces some fix. The next release will be focus files optimization.",
+ "date": "June 2020"
 }
