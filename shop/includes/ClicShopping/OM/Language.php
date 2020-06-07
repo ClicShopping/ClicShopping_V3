@@ -258,7 +258,6 @@
      */
     public function getImage($language_code, $width = null, $height = null)
     {
-
       if (!isset($width) || !is_int($width)) {
         $width = 28;
       }

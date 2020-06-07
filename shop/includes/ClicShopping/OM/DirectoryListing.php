@@ -16,10 +16,10 @@
     protected $_directory = '';
     protected $_include_files = true;
     protected $_include_directories = true;
-    protected $_exclude_entries = array('.', '..');
+    protected $_exclude_entries = ['.', '..'];
     protected $_stats = false;
     protected $_recursive = false;
-    protected $_check_extension = array();
+    protected $_check_extension = [];
     protected $_add_directory_to_filename = false;
     protected $_listing;
 
