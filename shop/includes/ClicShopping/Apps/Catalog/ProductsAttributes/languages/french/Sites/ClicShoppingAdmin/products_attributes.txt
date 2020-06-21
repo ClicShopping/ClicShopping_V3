@@ -61,4 +61,4 @@ button_edit = Editer
 button_copy = Copier
 
 error_catalog_download_directory_not_writeable = Le répertoire de téléchargement n'est pas en mode écriture : Download/Private
-error_file_not_supported = Format fichier image supporté
+error_file_not_supported = Format fichier image non supporté
