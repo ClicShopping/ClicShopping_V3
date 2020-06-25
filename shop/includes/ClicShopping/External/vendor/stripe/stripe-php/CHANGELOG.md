@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.38.0 - 2020-06-24
+* [#959](https://github.com/stripe/stripe-php/pull/959) Add multiple constants missing for `Event`
+
+## 7.37.2 - 2020-06-23
+* [#957](https://github.com/stripe/stripe-php/pull/957) Updated PHPDocs
+
 ## 7.37.1 - 2020-06-11
 * [#952](https://github.com/stripe/stripe-php/pull/952) Improve PHPDoc
 
@@ -26,7 +32,7 @@
 * [#933](https://github.com/stripe/stripe-php/pull/933) Services bugfix: convert nested null params to empty strings
 
 ## 7.33.0 - 2020-05-14
-* [#771](https://github.com/stripe/stripe-php/pull/771) Introduce client/services API
+* [#771](https://github.com/stripe/stripe-php/pull/771) Introduce client/services API. The [migration guide](https://github.com/stripe/stripe-php/wiki/Migration-to-StripeClient-and-services-in-7.33.0) contains before & after examples of the backwards-compatible changes.
 
 ## 7.32.1 - 2020-05-13
 * [#932](https://github.com/stripe/stripe-php/pull/932) Fix multiple PHPDoc
