@@ -107,18 +107,20 @@
 
           $products_name_clean = HTML::sanitize($CLICSHOPPING_ProductsCommon->getProductsName($products_id)) . ', ';
           $products_name_replace = HTML::sanitize($QproductInfo->value('products_head_title_tag')) . ', ';
-          $categories_name_clean = HTML::sanitize($QcategoryInfo->value('categories_name')) . ', ';
+          $categories_name_clean = ', ' . HTML::sanitize($QcategoryInfo->value('categories_name'));
+
+          $store_name = HTML::sanitize(STORE_NAME);
 
           $submit_language_products_info_title = HTML::sanitize($Qsubmit->value('submit_language_products_info_title')) . ', ';
 
           if (empty($QproductInfo->value('products_head_title_tag'))) {
             if (empty($submit_language_products_info_title)) {
-              $title = $products_name_clean . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . STORE_NAME;
+              $title = $products_name_clean . $categories_name_clean . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . $store_name;
             } else {
-              $title = $products_name_clean . $categories_name_clean . $submit_language_products_info_title . STORE_NAME;
+              $title = $CLICSHOPPING_ProductsCommon->getProductsName($products_id) . $categories_name_clean . $submit_language_products_info_title . $store_name;
             }
           } else {
-            $title = HTML::sanitize($QproductInfo->value('products_head_title_tag')) . ', ' . $categories_name_clean . $submit_language_products_info_title . STORE_NAME;
+            $title = $products_name_replace . ', ' . $categories_name_clean . $submit_language_products_info_title . $store_name;
           }
 
           if (empty($QproductInfo->value('products_head_desc_tag'))) {
@@ -141,19 +143,13 @@
             $keywords = $QproductInfo->value('products_head_keywords_tag') . ', ' . $products_name_clean . $products_name_replace . $categories_name_clean;
           }
 
-          $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
-          $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-          $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-
-          $title = $CLICSHOPPING_Template->setTitle($title);
           $output =
-            <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+<<<EOD
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords"  content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
-
           return $output;
         }
       }

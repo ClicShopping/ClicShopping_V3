@@ -30,6 +30,7 @@
     protected $_result;
     protected $column_list;
     protected $db;
+    protected bool $checkManufacturer = false;
 
     public function __construct()
     {
@@ -384,14 +385,14 @@
     */
     private function getManufacturer(): bool
     {
+      $this->checkManufacturer = false;
+
       if (isset($_POST['manufacturersId']) && !empty($_POST['manufacturersId']) && is_numeric($_POST['manufacturersId'])) {
         $this->_manufacturer = HTML::sanitize($_POST['manufacturersId']);
         $this->checkManufacturer = true;
       } elseif (isset($_GET['manufacturersId']) && !empty($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
         $this->_manufacturer = HTML::sanitize($_POST['manufacturersId']);
         $this->checkManufacturer = true;
-      } else {
-        $this->checkManufacturer = false;
       }
 
       return $this->_manufacturer;

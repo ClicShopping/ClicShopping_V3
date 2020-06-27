@@ -15,8 +15,8 @@
 
   class Status
   {
-    protected $languages_id;
-    protected $banners_id;
+    protected int $languages_id;
+    protected int $banners_id;
 
     /**
      * Status modification of banners - Sets the status of a banner

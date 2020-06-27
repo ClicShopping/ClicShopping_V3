@@ -73,35 +73,32 @@
         $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
         $Qsubmit->execute();
 
-        if (empty($Qsubmit->value('submit_language_products_new_title'))) {
-          $title = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
-        } else {
-          $title = HTML::sanitize($Qsubmit->value('submit_language_products_new_title'));
-        }
+        $store_name = HTML::sanitize(STORE_NAME);
 
-        if (empty($Qsubmit->value('submit_language_products_new_description'))) {
-          $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+        if (empty($Qsubmit->value('submit_language_products_new_title'))) {
+          $title = HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . $CLICSHOPPING_Template->getTitle();
         } else {
-          $description = HTML::sanitize($Qsubmit->value('submit_language_products_new_description'));
+          $title = HTML::sanitize($Qsubmit->value('submit_language_products_new_title')) . ', ' . $CLICSHOPPING_Template->getTitle();
+        }
+        
+        if (empty($Qsubmit->value('submit_language_products_new_description'))) {
+          $description = HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . $CLICSHOPPING_Template->getDescription() . ', ' . $store_name;
+        } else {
+          $description = HTML::sanitize($Qsubmit->value('submit_language_products_new_description')) . ', ' . $CLICSHOPPING_Template->getDescription() . ', ' . $store_name;
         }
 
         if (empty($Qsubmit->value('submit_language_products_new_keywords'))) {
-          $keywords = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+          $keywords = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords')) . ', ' . $CLICSHOPPING_Template->getKeywords() . ', ' . $store_name;
         } else {
-          $keywords = HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords'));
+          $keywords = HTML::sanitize($Qsubmit->value('submit_language_products_new_keywords')) . ', ' . $CLICSHOPPING_Template->getKeywords() . ', ' . $store_name;
         }
-
-        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
 
         $output =
           <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+    <title>{$title}</title>
+    <meta name="Description" content="{$description}" />
+    <meta name="Keywords" content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
 
         return $output;

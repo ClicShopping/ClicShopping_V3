@@ -21,15 +21,15 @@
   class DbStatement extends \PDOStatement
   {
     protected $pdo;
-    protected $is_error = false;
-    protected $page_set_keyword = 'page';
-    protected $page_set;
+    protected bool $is_error = false;
+    protected string $page_set_keyword = 'page';
+    protected ?string $page_set;
     protected $page_set_results_per_page;
     protected $cache;
-    protected $cache_expire;
+    protected int $cache_expire;
     protected $cache_data;
-    protected $cache_read = false;
-    protected $cache_empty_results = false;
+    protected bool $cache_read = false;
+    protected bool $cache_empty_results = false;
     protected $query_call;
 
     /**

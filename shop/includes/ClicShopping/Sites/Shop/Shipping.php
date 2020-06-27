@@ -18,7 +18,7 @@
 
   class Shipping
   {
-    public $modules = [];
+    public array $modules = [];
     public $selected_module;
     protected $lang;
     

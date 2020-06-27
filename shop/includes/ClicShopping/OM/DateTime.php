@@ -18,8 +18,8 @@
 
     protected $datetime = false;
 
-    protected $raw_pattern_date = 'Y-m-d';
-    protected $raw_pattern_time = 'H:i:s';
+    protected string $raw_pattern_date = 'Y-m-d';
+    protected string $raw_pattern_time = 'H:i:s';
 
     /**
      * DateTime constructor.

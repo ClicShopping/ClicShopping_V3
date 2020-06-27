@@ -17,7 +17,7 @@
   class CfgModulesAdmin
   {
 
-    public $_modules = [];
+    public array $_modules = [];
     protected $lang;
 
     public function __construct()

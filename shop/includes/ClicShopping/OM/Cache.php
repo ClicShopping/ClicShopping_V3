@@ -16,9 +16,9 @@
 
   class Cache
   {
-    protected static $path;
+    protected static string $path;
     protected const SAFE_KEY_NAME_REGEX = 'a-zA-Z0-9-_';
-    protected $key;
+    protected string $key;
     protected $data;
 
     public function __construct(string $key)

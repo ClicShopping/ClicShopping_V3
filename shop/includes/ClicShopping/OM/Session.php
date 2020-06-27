@@ -21,8 +21,8 @@
      * @access public
      */
 
-    protected static $driver;
-    private static $default_driver = 'File';
+    protected static string $driver;
+    private static string $default_driver = 'File';
 
     /**
      * @param string|null $name

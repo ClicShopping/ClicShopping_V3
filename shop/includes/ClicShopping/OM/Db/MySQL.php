@@ -13,6 +13,9 @@
 
   class MySQL extends \ClicShopping\OM\Db
   {
+    protected bool $connected;
+    protected string $table_prefix;
+
     public function __construct($server, $username, $password, $database, $port, $driver_options, $options)
     {
       $this->server = $server;

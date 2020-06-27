@@ -13,17 +13,18 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\HTTP;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
-  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop;
+  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop as SeoShopIindex;
 
   class Index extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
     protected $lang;
     protected $app;
+    protected $template;
     public $group;
 
     protected function init()
@@ -33,7 +34,6 @@
       }
 
       $this->app = Registry::get('SEO');
-
       $this->lang = Registry::get('Language');
       $this->group = 'header_tags'; // could be header_tags or footer_scripts
 
@@ -55,50 +55,57 @@
 
     public function getOutput()
     {
-      $CLICSHOPPING_Template = Registry::get('Template');
+      $this->template = Registry::get('Template');
 
-      if (!Registry::exists('SeoShop')) {
-        Registry::set('SeoShop', new SeoShop());
-      }
-      
-      $CLICSHOPPING_seoShop = Registry::get('SeoShop');
+      $output = '';
 
-      $index = HTTP::getShopUrlDomain() . 'index.php';
-      $url = CLICSHOPPING::getConfig('http_server', 'Shop') . $_SERVER['REQUEST_URI'];
+      if (HTTP::getUri() === CLICSHOPPING::getConfig('http_path', 'Shop') || HTTP::getUri() === CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php') {
+        if (!Registry::exists('SeoShopIindex')) {
+          Registry::set('SeoShopIindex', new SeoShopIindex());
+        }
 
-      if (isset($_GET['language'])) {
-        $language = HTML::sanitize($_GET['language']);
-      }
+        $CLICSHOPPING_SEOShop = Registry::get('SeoShopIindex');
 
-      if (CLICSHOPPING::getConfig('http_server', 'Shop') . '/' === HTTP::getShopUrlDomain() && $index !== $url) {
-        $title = $CLICSHOPPING_seoShop->getSeoIndexTitle();
-        $description = $CLICSHOPPING_seoShop->getSeoIndexDescription();
-        $keywords = $CLICSHOPPING_seoShop->getSeoIndexKeywords();
+         $title = $CLICSHOPPING_SEOShop->getSeoIndexTitle();
+         $description = $CLICSHOPPING_SEOShop->getSeoIndexDescription();
+         $keywords = $CLICSHOPPING_SEOShop->getSeoIndexKeywords();
 
-        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-      } elseif (($index === $url || isset($language)) && !isset($_GET['Products']) && !isset($_GET['Blog']) && !isset($_GET['Info'])) {
-        $title = $CLICSHOPPING_seoShop->getSeoIndexTitle();
-        $description = $CLICSHOPPING_seoShop->getSeoIndexDescription();
-        $keywords = $CLICSHOPPING_seoShop->getSeoIndexKeywords();
+         $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+         $description = $this->template->setDescription($description) . ', ' . $this->template->getDescription();
+         $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
-        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-      }
+         $output =
+         <<<EOD
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords" content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
+EOD;
+      } elseif (isset($_GET['Account'])) {
+        if (!Registry::exists('SeoShopIindex')) {
+          Registry::set('SeoShopIindex', new SeoShopIindex());
+        }
+
+        $CLICSHOPPING_SEOShop = Registry::get('SeoShopIindex');
+
+        $title = $CLICSHOPPING_SEOShop->getSeoIndexTitle();
+        $description = $CLICSHOPPING_SEOShop->getSeoIndexDescription();
+        $keywords = $CLICSHOPPING_SEOShop->getSeoIndexKeywords();
+
+        $title = $this->template->setTitle($title) . ', ' . $this->template->getTitle() . ', ' . HTML::outputProtected(STORE_NAME);
+        $description = $this->template->setDescription($description) . ', ' . $this->template->getDescription() . ', ' . HTML::outputProtected(STORE_NAME);
+        $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords() . ', ' . HTML::outputProtected(STORE_NAME);
 
         $output =
-          <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+<<<EOD
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords" content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
+      }
 
-        return $output;
+      return $output;
     }
 
     public function Install()
@@ -118,7 +125,7 @@ EOD;
       $this->app->db->save('configuration', [
           'configuration_title' => 'Display sort order',
           'configuration_key' => 'MODULE_HEADER_TAGS_INDEX_SORT_ORDER',
-          'configuration_value' => '162',
+          'configuration_value' => '161',
           'configuration_description' => 'Display sort order (The lower is displayd in first)',
           'configuration_group_id' => '6',
           'sort_order' => '215',

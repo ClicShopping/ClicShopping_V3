@@ -19,7 +19,7 @@
 
   class Image
   {
-    private $rootImagesDir;
+    private string $rootImagesDir;
     private $db;
     private $template;
     private $imageResample;
@@ -406,7 +406,7 @@
       $root_images_dir = $this->rootImagesDir;
 
       $error = true;
-
+      $dir = 'products';
 // gallery
       if (isset($_POST['new_directory']) && !empty($_POST['new_directory'])) {
         $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);

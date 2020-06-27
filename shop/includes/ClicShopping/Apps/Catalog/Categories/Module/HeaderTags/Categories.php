@@ -19,9 +19,9 @@
 
   class Categories extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $lang;
     protected $app;
+    protected $template;
     public $group;
 
     protected function init()
@@ -52,8 +52,7 @@
 
     public function getOutput()
     {
-      $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_Language = Registry::get('Language');
+      $this->template = Registry::get('Template');
       $CLICSHOPPING_Category = Registry::get('Category');
 
       if (!defined('CLICSHOPPING_APP_CATEGORIES_CT_STATUS') || CLICSHOPPING_APP_CATEGORIES_CT_STATUS == 'False') {
@@ -63,11 +62,9 @@
       $current_category_id = $CLICSHOPPING_Category->getPath();
 
       if (CLICSHOPPING::getBaseNameIndex()) {
-
 // $categories is set in application_top.php to add the category to the breadcrumb
 // $categories is not set so a database query is needed
         if ($current_category_id > 0) {
-
           $Qsubmit = $this->app->db->prepare('select submit_id,
                                                     language_id,
                                                     submit_defaut_language_title,
@@ -77,7 +74,7 @@
                                               where submit_id = 1
                                               and language_id = :language_id
                                             ');
-          $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+          $Qsubmit->bindInt(':language_id', (int)$this->lang->getId());
           $Qsubmit->execute();
 
           $Qcategories = $this->app->db->prepare('select categories_name,
@@ -91,57 +88,53 @@
                                                 ');
 
           $Qcategories->bindInt(':categories_id', (int)$current_category_id);
-          $Qcategories->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
+          $Qcategories->bindInt(':language_id', (int)$this->lang->getId());
           $Qcategories->execute();
 
           if ($Qcategories->rowCount() > 0) {
             $categories_name_clean = HTML::sanitize($Qcategories->value('categories_name'));
 
-            $tags_array = [];
-
             if (empty($Qcategories->value('categories_head_title_tag'))) {
               if (empty($Qsubmit->value('submit_defaut_language_title'))) {
-                $tags_array['title'] = $categories_name_clean;
+                $title = $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
               } else {
-                $tags_array['title'] = $categories_name_clean . ',  ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
+                $title = $categories_name_clean . ',  ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
               }
             } else {
-              $tags_array['title'] = HTML::sanitize($Qcategories->value('categories_head_title_tag')) . ', ' . $categories_name_clean;
+              $title = HTML::sanitize($Qcategories->value('categories_head_title_tag')) . ', ' . $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
             }
 
             if (empty($Qcategories->value('categories_head_desc_tag'))) {
               if (empty($Qsubmit->value('submit_defaut_language_description'))) {
-                $tags_array['desc'] = $categories_name_clean;
+                $description = $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
               } else {
-                $tags_array['desc'] = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
+                $description = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
               }
             } else {
-              $tags_array['desc'] = HTML::sanitize($Qcategories->value('categories_head_desc_tag')) . ', ' . $categories_name_clean;
+              $description = HTML::sanitize($Qcategories->value('categories_head_desc_tag')) . ', ' . $categories_name_clean . ', ' . HTML::outputProtected(STORE_NAME);
             }
 
             if (empty($Qcategories->value('categories_head_keywords_tag'))) {
               if (empty($Qsubmit->value('submit_defaut_language_keywords'))) {
-                $tags_array['keywords'] = $categories_name_clean;
+                $keywords = $categories_name_clean;
               } else {
-                $tags_array['keywords'] = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+                $keywords = $categories_name_clean . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
               }
             } else {
-              $tags_array['keywords'] = $Qcategories->value('categories_head_keywords_tag') . ', ' . $categories_name_clean;
+              $keywords = $Qcategories->value('categories_head_keywords_tag') . ', ' . $categories_name_clean;
             }
 
-            $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
-            $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
-            $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
-            $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
+            $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+            $description = $this->template->setDescription($description) . ' ' . $this->template->getDescription();
+            $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
             $output =
               <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords"  content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
-
 
             return $output;
           }

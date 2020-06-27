@@ -17,7 +17,7 @@
   abstract class SessionAbstract
   {
     protected $name;
-    protected $force_cookies = true;
+    protected bool $force_cookies = true;
 
     /**
      * Checks if a session exists

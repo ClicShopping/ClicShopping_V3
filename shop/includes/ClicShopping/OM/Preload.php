@@ -18,11 +18,11 @@
 
   class Preload
   {
-    private static $work_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/';
-    private static $base_dir_autoload = CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php';
-    private static $output_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/preloader.php';
-    private static $directories;
-    private static $files;
+    private static string $work_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/';
+    private static string $base_dir_autoload = CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php';
+    private static string $output_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/preloader.php';
+    private static array $directories;
+    private static array $files;
     private static $ext_filter;
     private static $recursive;
 
@@ -109,10 +109,12 @@
     {
       $path_errors = [];
 
-      if(gettype($paths) == "string"){$paths = array($paths);}
+      if(gettype($paths) == "string"){
+        $paths = [$paths];
+      }
 
-      foreach($paths as $path){
-        if(is_dir($path)){
+      foreach($paths as $path) {
+        if(is_dir($path)) {
           self::$directories[] = $path;
           $dirContents = self::find_contents($path);
         } else {
@@ -150,8 +152,8 @@
         }
 
         if(self::$recursive){
-          foreach (self::find_contents($dir.DIRECTORY_SEPARATOR.$value) as $value) {
-            self::$files[] = $result[] = $value;
+          foreach (self::find_contents($dir.DIRECTORY_SEPARATOR . $value) as $new_value) {
+            self::$files[] = $result[] = $new_value;
           }
         }
       }

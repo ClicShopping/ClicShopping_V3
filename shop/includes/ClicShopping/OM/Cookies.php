@@ -13,15 +13,15 @@
 
   class Cookies
   {
-    protected $domain;
-    protected $path;
+    protected ?string $domain;
+    protected ?string $path;
 
-    protected $name;
-    protected $value;
-    protected $expire;
-    protected $secure;
-    protected $httpOnly;
-    protected $sameSite;
+    protected string $name;
+    protected ?string $value;
+    protected int $expire;
+    protected bool $secure;
+    protected bool $httpOnly;
+    protected ?string $sameSite;
 
     public function __construct()
     {

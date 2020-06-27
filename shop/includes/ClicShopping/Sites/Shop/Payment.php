@@ -17,8 +17,8 @@
 
   class Payment
   {
-    public $modules = [];
-    public $selected_module;
+    public array $modules = [];
+    public string $selected_module;
     protected $template;
     protected $lang;
 

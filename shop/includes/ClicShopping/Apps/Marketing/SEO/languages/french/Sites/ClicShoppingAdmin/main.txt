@@ -43,6 +43,8 @@ tab_submit_products_info = Description produits
 tab_submit_products_new = Nouveautés
 tab_submit_specials = Promotions
 tab_submit_reviews = Commentaires
+tab_submit_favorites = Coups de coeur
+tab_submit_featured = Sélections
 
 keywords_google_trend = Tendance des mots clefs selon Google
 
@@ -100,6 +102,24 @@ display_description_reviews = Afficher la description  des commentaires par déf
 text_submit_language_reviews_title = Titre des commentaires
 text_submit_language_reviews_keywords = Mots clefs des commentaires
 text_submit_language_reviews_description = Description des commentaires
+
+text_pages_submit_information_favorites = Gestion des Métadonnées du site par défaut de la section coups de coeur
+display_title_favorites = Afficher le titre de la description des coups de coeur par défaut
+display_favorites = Afficher les mots clefs de la description des coups de coeur par défaut
+display_description_favorites = Afficher la description  des coups de coeur par défaut
+
+text_submit_language_favorites_title = Titre des coups de coeur
+text_submit_language_favorites_keywords = Mots clefs des coups de coeur
+text_submit_language_favorites_description = Description des coups de coeur
+
+text_pages_submit_information_featured = Gestion des Métadonnées du site par défaut de la section coups de coeur
+display_title_featured = Afficher le titre de la description des produits sélectionnés par défaut
+display_featured = Afficher les mots clefs de la description des produits sélectionnés par défaut
+display_description_featured = Afficher la description des produits sélectionnés par défaut
+
+text_submit_language_featured_title = Titre des coups de coeur
+text_submit_language_featured_keywords = Mots clefs des coups de coeur
+text_submit_language_featured_description = Description des coups de coeur
 
 text_products_page_seo = SEO
 

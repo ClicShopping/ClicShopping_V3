@@ -12,9 +12,10 @@
   namespace ClicShopping\Apps\Customers\Reviews\Module\HeaderTags;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Customers\Reviews\Reviews as ReviewsApp;
+
+  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop as SeoShopReviews;
 
   class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
@@ -51,56 +52,29 @@
 
     public function getOutput()
     {
-      $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_Language = Registry::get('Language');
+      if (isset($_GET['Reviews']) || isset($_GET['ReviewsInfo']) || isset($_GET['ReviewsWrite'])) {
+        $this->template = Registry::get('Template');
 
-      if (isset($_GET['Reviews'])) {
-        $Qsubmit = $this->app->db->prepare('select submit_id,
-                                                    language_id,
-                                                    submit_defaut_language_title,
-                                                    submit_defaut_language_keywords,
-                                                    submit_defaut_language_description,
-                                                    submit_language_reviews_title,
-                                                    submit_language_reviews_keywords,
-                                                    submit_language_reviews_description
-                                            from :table_submit_description
-                                            where submit_id = 1
-                                            and language_id = :language_id
-                                          ');
-        $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-        $Qsubmit->execute();
-
-        $tags_array = [];
-
-        if (empty($Qsubmit->value('submit_language_special_title'))) {
-          $tags_array['title'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
-        } else {
-          $tags_array['title'] = HTML::sanitize($Qsubmit->value('submit_language_reviews_title'));
+        if (!Registry::exists('SeoShopReviews')) {
+          Registry::set('SeoShopReviews', new SeoShopReviews());
         }
 
-        if (empty($Qsubmit->value('submit_language_special_description'))) {
-          $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
-        } else {
-          $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_language_reviews_description'));
-        }
+        $CLICSHOPPING_SEOShop = Registry::get('SeoShopReviews');
 
-        if (empty($Qsubmit->value('submit_language_special_keywords'))) {
-          $tags_array['keywords'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
-        } else {
-          $tags_array['keywords'] = HTML::sanitize($Qsubmit->value('submit_language_reviews_keywords'));
-        }
+        $title = $CLICSHOPPING_SEOShop->getSeoReviewsTitle();
+        $description = $CLICSHOPPING_SEOShop->getSeoReviewsDescription();
+        $keywords = $CLICSHOPPING_SEOShop->getSeoReviewsKeywords();
 
-        $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+        $description = $this->template->setDescription($description) . ' ' . $this->template->getDescription();
+        $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
         $output =
           <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords"  content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
 
         return $output;

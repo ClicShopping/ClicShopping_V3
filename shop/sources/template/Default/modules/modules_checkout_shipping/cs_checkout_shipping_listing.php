@@ -41,115 +41,122 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (!Registry::exists('Shipping')) {
-        Registry::set('Shipping', new Delivery());
-      }
-
-      $CLICSHOPPING_Shipping = Registry::get('Shipping');
-
-      $quotes = $CLICSHOPPING_Shipping->getQuote();
-
       if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
-        $content_width = (int)MODULE_CHECKOUT_SHIPPING_LISTING_CONTENT_WIDTH;
+        if (!Registry::exists('Shipping')) {
+          Registry::set('Shipping', new Delivery());
+        }
 
-        $shipping_listing = '<!-- start checkout_shipping_listing -->'. "\n";
+        $CLICSHOPPING_Shipping = Registry::get('Shipping');
 
-        if ($CLICSHOPPING_Shipping->geCountShippingModules() > 0) {
-          $data = '<div class="separator"></div>';
-          $data .= '<span class="page-title moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
+        $quotes = $CLICSHOPPING_Shipping->getQuote();
+
+        if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
+          $content_width = (int)MODULE_CHECKOUT_SHIPPING_LISTING_CONTENT_WIDTH;
+
+          $shipping_listing = '<!-- start checkout_shipping_listing -->'. "\n";
+
+          if ($CLICSHOPPING_Shipping->geCountShippingModules() > 0) {
+            $data = '<div class="separator"></div>';
+            $data .= '<span class="page-title moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
 
 
-          if (count($quotes) > 1 && count($quotes[0]) > 1) {
-            $data .= '<div>';
-            $data .= '<span class="col-md-8 text-md-left moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
-            $data .= '<span class="col-md-4 text-md-right float-md-right moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
-            $data .= '</div>';
+            if (count($quotes) > 1 && count($quotes[0]) > 1) {
+              $data .= '<div>';
+              $data .= '<span class="col-md-8 text-md-left moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
+              $data .= '<span class="col-md-4 text-md-right float-md-right moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
+              $data .= '</div>';
+              $data .= '<div class="separator"></div>';
+            } elseif ($_SESSION['free_shipping'] === false) {
+              $data .= '<div class="separator"></div>';
+              $data .= '<div class="moduleCheckoutShippingListingInformation">' . CLICSHOPPING::getDef('module_checkout_shipping_text_enter_shipping_information') . '</div>';
+            }
+
             $data .= '<div class="separator"></div>';
+            $data .= '<table class="table table-striped table-sm table-hover">';
+            $data .= '<tbody>';
 
-          } elseif ($_SESSION['free_shipping'] === false) {
-            $data .= '<div class="separator"></div>';
-            $data .= '<div class="moduleCheckoutShippingListingInformation">' . CLICSHOPPING::getDef('module_checkout_shipping_text_enter_shipping_information') . '</div>';
-          }
+            if ($_SESSION['free_shipping'] === true) {
+              $data .= '<div class="moduleCheckoutShippingListingFreeTitle">' . CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_title') . '&nbsp;' . $quotes['icon'] . '</div>';
+              $data .= '<div style="padding-left: 15px;">';
+              $data .= CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_description', ['free_shipping_amount' => $CLICSHOPPING_Currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)]) .  HTML::hiddenField('shipping', 'free_free');
+              $data .= '</div>';
 
-          $data .= '<div class="separator"></div>';
-          $data .= '<table class="table table-striped table-sm table-hover">';
-          $data .= '<tbody>';
+            } else {
+  // load the selected shipping module
+              $radio_buttons = 0;
+              foreach ($quotes as $n => $quote) {
+                if (is_array($quote['methods'])) {
+                  for ($j=0, $n2=count($quote['methods']); $j<$n2; $j++) {
+                    $data .= '<tr>' . "\n";
+                    $data .= '<tr>';
+                    $data .= '<td>';
 
-          if ($_SESSION['free_shipping'] === true) {
+                    $data .= '<strong>'. $quote['module'] . '&nbsp;</strong>';
 
-            $data .= '<div class="moduleCheckoutShippingListingFreeTitle">' . CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_title') . '&nbsp;' . $quotes['icon'] . '</div>';
-            $data .= '<div style="padding-left: 15px;">';
-            $data .= CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_description', ['free_shipping_amount' => $CLICSHOPPING_Currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)]) .  HTML::hiddenField('shipping', 'free_free');
-            $data .= '</div>';
+                    if(!empty($quote['methods'][$j]['title'])) {
+                      $data .= $quote['methods'][$j]['title'] . '&nbsp;</strong>';
+                    }
 
-          } else {
-// load the selected shipping module
-            foreach ($quotes as $n => $quote) {
-              if (is_array($quote['methods'])) {
-                for ($j=0, $n2=count($quote['methods']); $j<$n2; $j++) {
-                  $checked = (($quote['id'] . '_' . $quote['methods'][$j]['id'] == $_SESSION['shipping']['id']) ? true : false);
+                    if(!empty($quote['methods'][$j]['info'])) {
+                      $data .= $quote['methods'][$j]['info'] . '&nbsp;';
+                    }
 
-                  $data .= '<tr>' . "\n";
-                  $data .= '<tr>';
-                  $data .= '<td>';
+                    if (isset($quote['icon']) && !empty($quote['icon'])) {
+                      $data .=  '&nbsp;' . $quote['icon'];
+                    }
 
-                  $data .= '<strong>'. $quote['module'] . '&nbsp;</strong>';
-
-                  if(!empty($quote['methods'][$j]['title'])) {
-                    $data .= $quote['methods'][$j]['title'] . '&nbsp;</strong>';
-                  }
-
-                  if(!empty($quote['methods'][$j]['info'])) {
-                    $data .= $quote['methods'][$j]['info'] . '&nbsp;';
-                  }
-
-                  if (isset($quote['icon']) && !empty($quote['icon'])) {
-                    $data .=  '&nbsp;' . $quote['icon'];
-                  }
-
-                  if (isset($quote['error'])) {
-                    $data .= '<div class="form-text">' . $quote['error'] . '</div>';
-                  }
-
-                  $data .= '</td>';
-
-                  if ( ($n >= 1) || ($n2 >= 1) ) {
-                    $data .= '<td class="text-md-right">';
-
-                    if (isset($quotes['error'])) {
-                      $data .= '&nbsp;';
-                    } else {
-                      $data .=  '<span class="moduleCheckoutShippingListingCurrencies">'. $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], (isset($quote['tax']) ? $quote['tax'] : 0))) . '</span>&nbsp;&nbsp';
-                      $data .=  '<span class="moduleCheckoutShippingListingRadio">'  . HTML::radioField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id'], $checked, 'required aria-required="true"') . '</span>';
+                    if (isset($quote['error'])) {
+                      $data .= '<div class="form-text">' . $quote['error'] . '</div>';
                     }
 
                     $data .= '</td>';
+
+                    if ( ($n >= 1) || ($n2 >= 1) ) {
+                      if(isset($_SESSION['shipping']['id'])) {
+                        $checked = $quote['id'] . '_' . $quote['methods'][$j]['id'] === $_SESSION['shipping']['id'];
+                      } ELSE {
+                        $checked = true;
+                      }
+
+                      $data .= '<td class="text-md-right">';
+
+                      if (isset($quotes['error'])) {
+                        $data .= '&nbsp;';
+                      } else {
+                        $data .=  '<span class="moduleCheckoutShippingListingCurrencies">'. $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], $quote['tax'] ?? 0)) . '</span>&nbsp;&nbsp';
+                        $data .=  '<span class="moduleCheckoutShippingListingRadio">'  . HTML::radioField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id'], $checked, 'required aria-required="true"') . '</span>';
+                      }
+
+                      $data .= '</td>';
+                      $data .= '</tr>';
+
+                    } else {
+                      $data .= '<td class="text-md-right">';
+                      $data .=  $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], $quote['tax'] ?? 0)) .  HTML::hiddenField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id']);
+                      $data .= '</td>';
+                    }
+
                     $data .= '</tr>';
-
-                  } else {
-                    $data .= '<td class="text-md-right">';
-                    $data .=  $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], (isset($quote['tax']) ? $quote['tax'] : 0))) .  HTML::hiddenField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id']);
-                    $data .= '</td>';
                   }
-
-                  $data .= '</tr>';
                 }
+
+                $radio_buttons++;
               }
             }
+
+            $data .= '</tbody>';
+            $data .= '</table>';
           }
 
-          $data .= '</tbody>';
-          $data .= '</table>';
+          ob_start();
+          require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_listing'));
+
+          $shipping_listing .= ob_get_clean();
+
+          $shipping_listing .= '<!--  end checkout_shipping_listing -->' . "\n";
+
+          $CLICSHOPPING_Template->addBlock($shipping_listing, $this->group);
         }
-
-        ob_start();
-        require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_shipping_listing'));
-
-        $shipping_listing .= ob_get_clean();
-
-        $shipping_listing .= '<!--  end checkout_shipping_listing -->' . "\n";
-
-        $CLICSHOPPING_Template->addBlock($shipping_listing, $this->group);
       }
     } // public function execute
 

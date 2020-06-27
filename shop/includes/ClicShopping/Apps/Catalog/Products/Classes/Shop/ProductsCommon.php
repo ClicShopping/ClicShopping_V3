@@ -1979,7 +1979,6 @@
 
     private function setProductsExhausted($id, $button_type = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }

@@ -20,46 +20,46 @@
 
   class Template
   {
-    protected $_template = 'template/';
-    protected $_directoryTemplate = 'template/';
+    protected string $_template = 'template/';
+    protected string $_directoryTemplate = 'template/';
 
-    protected $_dynamicTemplate = SITE_THEMA;
-    protected $_directoryTemplateDefault = 'Default';
+    protected string $_dynamicTemplate = SITE_THEMA;
+    protected string $_directoryTemplateDefault = 'Default';
 
-    protected $_directoryIncludes = 'includes/';
-    protected $_directoryModules = 'modules/';
-    protected $_directoryTemplateSources = 'sources/';
-    protected $_directoryTemplateCss = 'css/';
-    protected $_directoryTemplateFiles = 'files/';
-    protected $_directoryTemplateLanguages = 'languages/';
-    protected $_directoryTemplateImages = 'images/';
-    protected $_directoryTemplateDownload = 'Download/';
-    protected $_directoryJavascript = 'javascript/';
-    protected $thema_directory;
-    protected $template_selected;
+    protected string $_directoryIncludes = 'includes/';
+    protected string $_directoryModules = 'modules/';
+    protected string $_directoryTemplateSources = 'sources/';
+    protected string $_directoryTemplateCss = 'css/';
+    protected string $_directoryTemplateFiles = 'files/';
+    protected string $_directoryTemplateLanguages = 'languages/';
+    protected string $_directoryTemplateImages = 'images/';
+    protected string $_directoryTemplateDownload = 'Download/';
+    protected string $_directoryJavascript = 'javascript/';
+    protected string $thema_directory;
+    protected string $template_selected;
 
-    protected $_codeSail = 'Default/';
-    protected $_title;
-    protected $_description;
-    protected $_keywords;
-    protected $_newskeywords;
+    protected string $_codeSail = 'Default/';
+    protected string $_title;
+    protected string $_description;
+    protected string $_keywords;
+    protected string $_newskeywords;
 
-    protected $_blocks = [];
-    protected $_content = [];
+    protected array $_blocks = [];
+    protected array $_content = [];
     protected $_grid_container_width = GRID_CONTAINER_WITH;
     protected $_grid_content_width = GRID_CONTENT_WITH;
-    protected $_data = [];
+    protected array $_data = [];
 
     protected $width;
-    protected $title;
-    protected $description;
-    protected $block;
-    public $group;
-    protected $name;
+    protected string $title;
+    protected string $description;
+    protected string $block;
+    public string $group;
+    protected string $name;
 
     public function __construct()
     {
-      $this->_title = STORE_NAME;
+      $this->_title = HTML::sanitize(STORE_NAME);
       $this->_description = '';
       $this->_keywords = '';
       $this->_newskeywords = '';

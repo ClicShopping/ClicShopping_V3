@@ -17,9 +17,9 @@
 
   class Hooks
   {
-    protected $site;
-    protected $hooks = [];
-    protected $watches = [];
+    protected ?string $site;
+    protected array $hooks = [];
+    protected array $watches = [];
 
     public function __construct(?string $site = null)
     {

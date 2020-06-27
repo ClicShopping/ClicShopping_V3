@@ -14,8 +14,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   class Composer {
-    protected static $root;
-    protected static $composerJson;
+    protected static string $root;
+    protected static string $composerJson;
 
     public function __construct()
     {

@@ -15,11 +15,11 @@
 
   abstract class AdminDashboardAbstract implements \ClicShopping\OM\Modules\AdminDashboardInterface
   {
-    public $code;
-    public $title;
-    public $description;
-    public $sort_order;
-    public $enabled = false;
+    public string $code;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = null;
+    public bool $enabled = false;
 
     protected $db;
 

@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Customers\Sites\ClicShoppingAdmin\Pages\Home\Actions\Customers;
 
   use ClicShopping\OM\HTML;

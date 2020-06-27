@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
    *
    * @copyright 2008 - https://www.clicshopping.org
    * @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -12,15 +12,17 @@
   namespace ClicShopping\Apps\Marketing\SEO\Module\HeaderTags;
 
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
-  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop;
+  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop as SeoShopSearch;
 
   class AdvancedSearchResult extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
     protected $lang;
     protected $app;
+    protected $template;
     public $group;
 
     protected function init()
@@ -30,7 +32,6 @@
       }
 
       $this->app = Registry::get('SEO');
-
       $this->lang = Registry::get('Language');
       $this->group = 'header_tags'; // could be header_tags or footer_scripts
 
@@ -52,30 +53,29 @@
 
     public function getOutput()
     {
-      $CLICSHOPPING_Template = Registry::get('Template');
+       if (isset($_GET['Search']) && isset($_GET['Q'])) {
+         $this->template = Registry::get('Template');
 
-      if (isset($_GET['Search']) && isset($_GET['Q'])) {
-        if (!Registry::exists('SeoShop')) {
-          Registry::set('SeoShop', new SeoShop());
+        if (!Registry::exists('SeoShopSearch')) {
+          Registry::set('SeoShopSearch', new SeoShopSearch());
         }
 
-        $CLICSHOPPING_seoShop = Registry::get('SeoShop');
-        
-        $title = $CLICSHOPPING_seoShop->getAdvancedSearchTitle();
-        $description = $CLICSHOPPING_seoShop->getAdvancedSearchDescription();
-        $keywords = $CLICSHOPPING_seoShop->getAdvancedSearchKeywords();
+        $CLICSHOPPING_SEOShop = Registry::get('SeoShopSearch');
 
-        $title = $CLICSHOPPING_Template->setTitle($title . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($description . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($keywords . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $title = $CLICSHOPPING_SEOShop->getSeoIndexTitle();
+        $description = $CLICSHOPPING_SEOShop->getSeoIndexDescription();
+        $keywords = $CLICSHOPPING_SEOShop->getSeoIndexKeywords();
+
+         $title = HTML::sanitize($_POST['keywords']). ',' . $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+         $description =  HTML::sanitize($_POST['keywords']). ',' . $this->template->setDescription($description) . ', ' . $this->template->getDescription();
+         $keywords = HTML::sanitize($_POST['keywords']). ',' . $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
         $output =
-          <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+<<<EOD
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords" content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
 
         return $output;
@@ -117,7 +117,7 @@ EOD;
     public function keys()
     {
       return ['MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_STATUS',
-             'MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_SORT_ORDER
-	    '];
+             'MODULE_HEADER_TAGS_ADVANCED_SEARCH_RESULT_SORT_ORDER'
+             ];
     }
   }

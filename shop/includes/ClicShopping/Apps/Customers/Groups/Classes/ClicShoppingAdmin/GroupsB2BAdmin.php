@@ -16,9 +16,7 @@
 
   class GroupsB2BAdmin
   {
-    protected $default;
-    protected $iso;
-    protected $piva;
+    protected string $iso;
 
     public static function getCustomersGroupName(int $id): string
     {

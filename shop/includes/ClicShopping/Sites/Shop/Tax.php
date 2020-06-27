@@ -17,8 +17,8 @@
   class Tax
   {
 
-    protected $tax_rates = [];
-    public static $tag;
+    protected array $tax_rates = [];
+    public static string $tag;
 
     /**
      * @param int $class_id

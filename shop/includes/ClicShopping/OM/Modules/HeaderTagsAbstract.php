@@ -15,11 +15,11 @@
 
   abstract class HeaderTagsAbstract implements \ClicShopping\OM\Modules\HeaderTagsInterface
   {
-    public $code;
-    public $title;
-    public $description;
-    public $sort_order;
-    public $enabled = false;
+    public string $code;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = null;
+    public bool $enabled = false;
 
     protected $db;
 

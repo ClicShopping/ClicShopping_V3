@@ -18,7 +18,6 @@
 
   class CategoriesAdmin
   {
-    public $categorie;
     protected $lang;
     protected $template;
     protected $db;
@@ -62,7 +61,7 @@
                                                    cd.categories_name
                                           limit :page_set_offset, :page_set_max_results
                                           ');
-        $Qcategories->bindInt(':language_id', (int)$this->lang->getId());
+        $Qcategories->bindInt(':language_id', $this->lang->getId());
         $Qcategories->bindValue(':search', '%' . $search . '%');
         $Qcategories->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qcategories->execute();

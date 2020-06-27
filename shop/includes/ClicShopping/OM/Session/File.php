@@ -15,7 +15,7 @@
 
   class File extends \ClicShopping\OM\SessionAbstract implements \SessionHandlerInterface
   {
-    protected $path;
+    protected string $path;
 
     public function __construct()
     {
@@ -75,8 +75,7 @@
     public function write($session_id, $session_data)
     {
       $id = basename($session_id);
-
-      return file_put_contents($this->path . '/sess_' . $id, $session_data) === false ? false : true;
+      return file_put_contents($this->path . '/sess_' . $id, $session_data) !== false;
     }
 
     /**

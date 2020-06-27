@@ -72,11 +72,9 @@
         $radio_buttons = 0;
 
         for ($i=0, $n=count($selection); $i<$n; $i++) {
-
           $data .= '<tr class="table-selection">';
           $data .= '<td><strong>' . $selection[$i]['module'] . '</strong></td>';
           $data .= '<td class="ClicShoppingModulesCheckoutPaymentRadio">';
-
 
           if (count($selection) > 1) {
             $data .= '<span class="moduleCheckoutPaymentListingRadio">' . HTML::radioField('payment', $selection[$i]['id'], (isset($_SESSION['payment']) && ($selection[$i]['id'] == $_SESSION['payment'])), 'required aria-required="true"') . '</span>';
@@ -91,7 +89,6 @@
             $data .= '<div class="form-text">' .$selection[$i]['error'] . '</div>';
 
           } elseif (isset($selection[$i]['fields']) && is_array($selection[$i]['fields'])) {
-
             $data .= '<tr>';
             $data .= '<td colspan="2"><table border="0" cellspacing="0" cellpadding="2">';
 

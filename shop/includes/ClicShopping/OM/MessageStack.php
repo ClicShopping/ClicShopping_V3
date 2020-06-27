@@ -22,7 +22,7 @@
 
   class MessageStack
   {
-    protected $data = [];
+    protected array $data = [];
 
     public function __construct()
     {

@@ -19,20 +19,12 @@
   class Category
   {
     protected $_id;
-    protected $_title;
-    protected $_image;
+    protected string $_title;
+    protected string $_image;
     protected $_parent_id;
-    protected $_description;
-    protected $_category_depth;
-
-    /**
-     * An array containing the category information
-     *
-     * @var array
-     * @access protected
-     */
-
-    protected $_data = [];
+    protected string $_description;
+    protected string $_category_depth;
+    protected array $_data = [];
     protected $db;
     protected $lang;
     protected $categoryTree;

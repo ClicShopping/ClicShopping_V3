@@ -17,12 +17,12 @@
   class Upload
   {
     protected $_file;
-    protected $_filename;
-    protected $_destination;
-    protected $_permissions;
-    protected $_extensions = [];
-    protected $_replace = false;
-    protected $_upload = [];
+    protected string $_filename;
+    protected string $_destination;
+    protected int $_permissions;
+    protected array $_extensions = [];
+    protected bool $_replace = false;
+    protected array $_upload = [];
 
     /**
      * Upload constructor.

@@ -19,13 +19,13 @@
   {
     public $data = [];
 
-    protected $code;
-    protected $file = 'main.php';
-    protected $use_site_template = true;
+    protected string $code;
+    protected string $file = 'main.php';
+    protected bool $use_site_template = true;
     protected $site;
-    protected $actions_run = [];
-    protected $ignored_actions = [];
-    protected $is_rpc = false;
+    protected array $actions_run = [];
+    protected array $ignored_actions = [];
+    protected bool $is_rpc = false;
 
     protected $app;
 

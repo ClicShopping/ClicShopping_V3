@@ -52,7 +52,7 @@
       $cInfo = new ObjectInfo($Qcustomers->toArray());
 
 // Lecture sur la base de données des informations facturations et livraison du groupe client
-     if ($cInfo->customers_group_id != 0) {
+     if ($cInfo->customers_group_id !== 0) {
         $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
                                                                         group_order_taxe,
                                                                         group_payment_unallowed,
@@ -64,15 +64,12 @@
         $QcustomersGroup->execute();
 
         $customer_group = $QcustomersGroup->toArray();
-        $group_order_taxe = $customer_group['group_order_taxe'];
+        $group_order_taxe = $QcustomersGroup->value('group_order_taxe');
+     } else {
+       $group_order_taxe = 0;
      }
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
-// Affiche la case cochée par défaut pour le mode de facturation utilisée avec taxe ou non
-        if (!empty($group_order_taxe)) {
-          $group_order_taxe = '0';
-	      }
-
         switch ($group_order_taxe) {
           case '0':
             $status_order_taxe = true;
@@ -107,7 +104,7 @@
           $content .= '</div>';
           $content .= '</div>';
 
-          if ($cInfo->customers_group_id != 0) {
+          if ($cInfo->customers_group_id !== 0) {
             $content .= '<div class="separator"></div>';
             $content .= '<div class="mainTitle">' . $this->app->getDef('category_order_taxe_group') . '&nbsp;' . $customer_group['customers_group_name'] . '</div>';
             $content .= '<div class="adminformTitle">';
@@ -153,7 +150,7 @@
           $content .= '<div class="separator"></div>';
           $content .= '<div class="mainTitle">';
 
-          if ($cInfo->customers_group_id != 0) {
+          if ($cInfo->customers_group_id !== 0) {
             $content .= '<span class="col-md-3">' . $this->app->getDef('category_order_customer_group') . '&nbsp;' . $customer_group['customers_group_name'] . '</span>';
           } else {
             $content .= '<span class="col-md-3">' . $this->app->getDef('category_order_customer') . '</span>';
@@ -167,7 +164,7 @@
           $content .= '<div class="col-md-12">';
 
 // Search payment module
-          if ($cInfo->customers_group_id != 0 && $customer_group['group_payment_unallowed']) {
+          if ($cInfo->customers_group_id !== 0 && $customer_group['group_payment_unallowed']) {
             $payments_unallowed = explode(',', $customer_group['group_payment_unallowed']);
           }
 
@@ -195,12 +192,11 @@
           }
 
           for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-
             if (strpos($include_modules[$i]['class'], '\\') !== false) {
               Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
               $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
-              if (($cInfo->customers_group_id != 0) && (in_array($module->code, $payments_unallowed))) {
+              if (($cInfo->customers_group_id !== 0) && (in_array($module->code, $payments_unallowed))) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
@@ -211,7 +207,7 @@
                 $content .= '</div>';
                 $content .= '</div>';
                 $content .= '</div>';
-              } elseif (($cInfo->customers_group_id != 0) && (!in_array($module->code, $payments_unallowed))) {
+              } elseif (($cInfo->customers_group_id !== 0) && (!in_array($module->code, $payments_unallowed))) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';
@@ -222,7 +218,7 @@
                 $content .= '</div>';
                 $content .= '</div>';
                 $content .= '</div>';
-              } elseif ($cInfo->customers_group_id == 0) {
+              } elseif ($cInfo->customers_group_id === 0) {
                 $content .= '<div class="row">';
                 $content .= '<div class="col-md-5">';
                 $content .= '<div class="form-group row">';

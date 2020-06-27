@@ -12,16 +12,17 @@
   namespace ClicShopping\Apps\Marketing\Favorites\Module\HeaderTags;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Marketing\Favorites\Favorites as FavoritesApp;
 
+  use ClicShopping\Apps\Marketing\SEO\Classes\Shop\SeoShop as SeoShopFavorites;
+
   class Favorites extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $lang;
     protected $app;
     public $group;
+    protected $template;
 
     protected function init()
     {
@@ -29,9 +30,8 @@
         Registry::set('Favorites', new FavoritesApp());
       }
 
-      $this->app = Registry::get('Favorites');
-      $this->lang = Registry::get('Language');
       $this->group = 'header_tags'; // could be header_tags or footer_scripts
+      $this->app = Registry::get('Favorites');
 
       $this->app->loadDefinitions('Module/HeaderTags/products_favorites');
 
@@ -51,39 +51,29 @@
 
     public function getOutput()
     {
-      $CLICSHOPPING_Template = Registry::get('Template');
-      $CLICSHOPPING_Language = Registry::get('Language');
-
       if (isset($_GET['Products']) && isset($_GET['Favorites'])) {
-        $Qsubmit = $this->app->db->prepare('select submit_id,
-                                                  language_id,
-                                                  submit_defaut_language_title,
-                                                  submit_defaut_language_keywords,
-                                                  submit_defaut_language_description
-                                          from :table_submit_description
-                                          where submit_id = 1
-                                          and language_id = :language_id
-                                        ');
-        $Qsubmit->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
-        $Qsubmit->execute();
+        $this->template = Registry::get('Template');
 
-        $tags_array = [];
+        if (!Registry::exists('SeoShopFavorites')) {
+          Registry::set('SeoShopFavorites', new SeoShopFavorites());
+        }
 
-        $tags_array['title'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_title'));
-        $tags_array['desc'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_description'));
-        $tags_array['keywords'] = HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+        $CLICSHOPPING_SEOShop = Registry::get('SeoShopFavorites');
 
-        $title = $CLICSHOPPING_Template->setTitle($tags_array['title'] . ', ' . $CLICSHOPPING_Template->getTitle());
-        $description = $CLICSHOPPING_Template->setDescription($tags_array['desc'] . ', ' . $CLICSHOPPING_Template->getDescription());
-        $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
-        $new_keywords = $CLICSHOPPING_Template->setNewsKeywords($tags_array['keywords'] . ', ' . $CLICSHOPPING_Template->getKeywords());
+        $title = $CLICSHOPPING_SEOShop->getSeoFavoritesTitle();
+        $description = $CLICSHOPPING_SEOShop->getSeoFavoritesDescription();
+        $keywords = $CLICSHOPPING_SEOShop->getSeoFavoritesKeywords();
+
+        $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+        $description = $this->template->setDescription($description) . ' ' . $this->template->getDescription();
+        $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
         $output =
           <<<EOD
-{$title}
-{$description}
-{$keywords}
-{$new_keywords}
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords"  content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
 EOD;
 
         return $output;

@@ -13,14 +13,14 @@
 
   class DirectoryListing
   {
-    protected $_directory = '';
-    protected $_include_files = true;
-    protected $_include_directories = true;
-    protected $_exclude_entries = ['.', '..'];
-    protected $_stats = false;
-    protected $_recursive = false;
-    protected $_check_extension = [];
-    protected $_add_directory_to_filename = false;
+    protected string $_directory = '';
+    protected bool $_include_files = true;
+    protected bool $_include_directories = true;
+    protected array $_exclude_entries = ['.', '..'];
+    protected bool $_stats = false;
+    protected bool $_recursive = false;
+    protected array $_check_extension = [];
+    protected bool $_add_directory_to_filename = false;
     protected $_listing;
 
     public function __construct(string $directory = '', bool $stats = false)

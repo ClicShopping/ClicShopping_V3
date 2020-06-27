@@ -16,8 +16,8 @@
 
   class AdministratorMenu
   {
-    protected $category_id;
-    protected $language_id;
+    protected int $category_id;
+    protected int $language_id;
 
     /**
      *  Return catagories path

@@ -14,10 +14,10 @@
   class CcValidation
   {
 
-    public $cc_type;
-    public $cc_number;
-    public $cc_expiry_month;
-    public $cc_expiry_year;
+    public string $cc_type;
+    public string $cc_number;
+    public string $cc_expiry_month;
+    public string $cc_expiry_year;
 
     public function __construct(string $number, string $expiry_m, string $expiry_y)
     {

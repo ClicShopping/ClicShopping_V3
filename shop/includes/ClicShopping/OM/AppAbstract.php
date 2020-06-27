@@ -16,11 +16,11 @@
 
   abstract class AppAbstract
   {
-    public $code;
-    public $title;
-    public $vendor;
-    public $version;
-    public $modules = [];
+    public string $code;
+    public string $title;
+    public string $vendor;
+    public string $version;
+    public array $modules = [];
 
     public $db;
     public $lang;

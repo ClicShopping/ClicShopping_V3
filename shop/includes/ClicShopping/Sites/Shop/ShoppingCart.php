@@ -18,16 +18,17 @@
 
   class ShoppingCart
   {
-    public $contents = [];
-    public $total;
-    public $sub_total = 0;
+    public array $contents = [];
+    public float $total;
+    public float $sub_total = 0;
     public $cartID;
-    protected $weight;
-    protected $content_type;
-    protected $min_quantity;
+    protected float $weight;
+    protected string $content_type;
+    protected int $min_quantity;
     protected $quantity;
-    protected $productsId;
-    protected $products_in_stock = true;
+    protected string $productsId;
+    protected bool $products_in_stock = true;
+
     protected $db;
     protected $lang;
     protected $customer;
@@ -110,6 +111,8 @@
     {
       if (!$this->customer->isLoggedOn()) return false;
 
+      $qty = 0;
+
 // insert current cart contents in database
       if (is_array($this->contents)) {
         foreach ($this->contents as $item_id => $data) {
@@ -132,7 +135,8 @@
           $Qcheck->execute();
 
           if ($Qcheck->fetch() === false) {
-            $this->db->save('customers_basket', ['customers_id' => (int)$this->customer->getID(),
+            $this->db->save('customers_basket', [
+                'customers_id' => (int)$this->customer->getID(),
                 'products_id' => $item_id,
                 'customers_basket_quantity' => (int)$qty,
                 'customers_basket_date_added' => date('Ymd')
@@ -141,7 +145,8 @@
 
             if (isset($data['attributes'])) {
               foreach ($data['attributes'] as $option => $value) {
-                $this->db->save('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID(),
+                $this->db->save('customers_basket_attributes', [
+                    'customers_id' => (int)$this->customer->getID(),
                     'products_id' => $item_id,
                     'products_options_id' => (int)$option,
                     'products_options_value_id' => (int)$value
@@ -244,7 +249,7 @@
 
           $products_price = $Qproducts->valueDecimal('products_price');
 
-          if (($this->customer->getCustomersGroupID() != 0) && ($Qproducts->valueInt('price_group_view') == 1)) {
+          if ($this->customer->getCustomersGroupID() != 0 && $Qproducts->valueInt('price_group_view') == 1) {
             $Qspecial = $this->db->prepare('select specials_new_products_price
                                             from :table_specials
                                             where products_id = :products_id
@@ -324,7 +329,8 @@
           unset($this->contents[$id]);
         }
 
-        $Qdelete = $this->db->prepare('delete from :table_customers_basket
+        $Qdelete = $this->db->prepare('delete 
+                                       from :table_customers_basket
                                        where customers_id = :customers_id 
                                        and products_id in ("' . implode('", "', $_delete_array) . '")'
                                      );
@@ -1333,7 +1339,7 @@
 
     /**
      * get the attributes price
-     * @param in $products_id , the id of the products
+     * @param string $products_id , the id of the products
      * @return $attributes_price the price of the attributes
      * @access public
      */

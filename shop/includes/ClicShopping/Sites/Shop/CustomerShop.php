@@ -18,8 +18,8 @@
 
   class CustomerShop
   {
-    protected $_is_logged_on = false;
-    protected $_data = [];
+    protected bool $_is_logged_on = false;
+    protected array $_data = [];
     protected $db;
 
     public function __construct()

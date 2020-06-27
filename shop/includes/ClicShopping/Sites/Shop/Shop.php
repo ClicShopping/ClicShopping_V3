@@ -27,7 +27,7 @@
 
   class Shop extends \ClicShopping\OM\SitesAbstract
   {
-    protected static $_application;
+    protected static ?string $_application;
 
     protected function init()
     {
@@ -220,7 +220,7 @@
 
           return ($a['score'] < $b['score']) ? 1 : -1; // sort highest to lowest
         }
-        );
+      );
 
         return $result[0];
       }

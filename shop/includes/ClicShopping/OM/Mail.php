@@ -16,16 +16,16 @@
 
   class Mail
   {
-    protected $html;
-    protected $text;
-    protected $html_text;
-    protected $lf;
-    protected $debug = 0;
+    protected string $html;
+    protected string $text;
+    protected string $html_text;
+    protected string $lf;
+    protected int $debug = 0;
 //Enable SMTP debugging
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-    protected $debugFileOutput = 'Work/Log/phpmail_error.log';
+    protected string $debugFileOutput = 'Work/Log/phpmail_error.log';
     protected $phpMail;
 
     public function __construct()

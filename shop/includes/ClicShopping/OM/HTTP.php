@@ -17,13 +17,16 @@
 
   class HTTP
   {
-    protected static $request_type;
+    protected static string $request_type;
 
     public static function setRequestType()
     {
       static::$request_type = ((isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on')) || (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443))) ? 'SSL' : 'NONSSL';
     }
 
+    /**
+     * @return string
+     */
     public static function getRequestType(): string
     {
       return static::$request_type;
@@ -268,5 +271,16 @@
       $domain = CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop');
 
       return $domain;
+    }
+
+    /**
+     * get the url requests
+     * @return string
+     */
+    public static function getUri(): string
+    {
+      $uri = rtrim(preg_replace('#((?<=\?)|&)openid\.[^&]+#', '', $_SERVER['REQUEST_URI']), '?');
+
+      return $uri;
     }
   }

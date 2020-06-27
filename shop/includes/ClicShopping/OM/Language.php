@@ -20,13 +20,12 @@
 
   class Language
   {
-    protected $language;
-    protected $languages = [];
-    protected $definitions = [];
-    protected $detectors = [];
-    protected $use_cache = false;
+    protected string $language;
+    protected array $languages = [];
+    protected array $definitions = [];
+    protected array $detectors = [];
+    protected bool $use_cache = false;
     protected $db;
-    protected $content;
 
     /**
      * Language constructor.

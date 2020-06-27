@@ -18,8 +18,8 @@
   class Status
   {
 
-    protected $status;
-    protected $categories_id;
+    protected int $status;
+    protected int $categories_id;
 
     /**
      * Categories Status - Sets the status of a categorie

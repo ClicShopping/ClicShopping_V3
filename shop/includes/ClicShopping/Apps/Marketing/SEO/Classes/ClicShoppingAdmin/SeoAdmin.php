@@ -15,10 +15,10 @@
 
   class SeoAdmin
   {
-    protected $manufacturers_id;
-    protected $language_id;
-    protected $product_id;
-    protected $category_id;
+    protected int $manufacturers_id;
+    protected int $language_id;
+    protected int $product_id;
+    protected int $category_id;
 
     /**
      * the manufacturer seo description

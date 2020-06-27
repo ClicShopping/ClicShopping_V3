@@ -15,7 +15,7 @@
 
   class Status
   {
-    protected $pages_id;
+    protected int $pages_id;
 
     /**
      * Status modification of page manager - Sets the status of a page

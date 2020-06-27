@@ -25,10 +25,10 @@
     const BASE_DIR = CLICSHOPPING_BASE_DIR;
     const VALID_CLASS_NAME_REGEXP = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/'; // https://php.net/manual/en/language.oop5.basic.php
 
-    protected static $version;
-    protected static $site = 'Shop';
-    protected static $cfg = [];
-    protected static $_application;
+    protected static string $version;
+    protected static string $site = 'Shop';
+    protected static array $cfg = [];
+    protected static ?string $_application;
 
     public static function initialize()
     {

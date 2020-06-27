@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
 
@@ -57,7 +58,7 @@
         return false;
       }
 
-      $xml = $CLICSHOPPING_Template->addBlock('<link rel="alternate" type="application/rss+xml" title="' . STORE_NAME . '" href="' . HTTP::getShopUrlDomain() . 'index.php?Info&RSS' . '">', $this->group);
+      $xml = $CLICSHOPPING_Template->addBlock('<link rel="alternate" type="application/rss+xml" title="' . HTML::outputProtected(STORE_NAME) . '" href="' . HTTP::getShopUrlDomain() . 'index.php?Info&RSS' . '">', $this->group);
 
       $output =
         <<<EOD

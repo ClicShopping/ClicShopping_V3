@@ -16,8 +16,8 @@
   class PageManagerAdmin
   {
 
-    protected $pages_id;
-    protected $language_id;
+    protected int $pages_id;
+    protected int $language_id;
 
     /**
      * Title Name of the submit

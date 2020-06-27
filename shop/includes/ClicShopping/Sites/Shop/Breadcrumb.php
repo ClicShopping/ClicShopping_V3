@@ -20,9 +20,8 @@
    */
   class Breadcrumb implements \Iterator
   {
-    private $_path = [];
-    private $_separator = ' &raquo; ';
-
+    private array $_path = [];
+    private string $_separator = ' &raquo; ';
     private $rewriteUrl;
 
     /**

@@ -67,12 +67,12 @@
             $Qupdate->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID());
             $Qupdate->execute();
 
-            $emssqge_array = [
-              'new_password' => $password_current,
+            $message_array = [
+              'new_password' => $password_new,
               'store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS
             ];
 
-            $message = CLICSHOPPING::getDef('email_new_password', $emssqge_array);
+            $message = CLICSHOPPING::getDef('email_new_password', $message_array);
 
             $email_password_reminder_body = $message . "\n";
             $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . "\n";

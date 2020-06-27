@@ -16,7 +16,7 @@
 
   class OrderTotal
   {
-    public $modules = [];
+    public array $modules = [];
 
 // class constructor
     public function __construct()

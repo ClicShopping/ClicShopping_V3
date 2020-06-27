@@ -25,14 +25,14 @@
   class ClicShoppingAdmin extends \ClicShopping\OM\SitesAbstract
   {
 
-    protected static $default_application = 'Dashboard';
+    protected static string $default_application = 'Dashboard';
 
     protected function init()
     {
       global $login_request;
 
       error_reporting(E_ALL & ~E_NOTICE);
-      
+
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
 

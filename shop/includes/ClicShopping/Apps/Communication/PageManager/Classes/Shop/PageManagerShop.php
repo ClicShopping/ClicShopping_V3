@@ -19,16 +19,7 @@
 
   class PageManagerShop
   {
-
-    protected $pages_string;
-    protected $pages_introduction;
-    protected $pages_accueil;
-    protected $pages_contact;
-    protected $pages_liste_info_box;
-    protected $pages_liste_info_box_secondary;
-    protected $pages_liste_info_box_footer;
-    protected $pages_informations;
-    protected $id;
+    protected int $id;
     protected $db;
     protected $customer;
     protected $lang;

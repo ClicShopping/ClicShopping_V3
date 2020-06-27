@@ -55,6 +55,8 @@ tab_submit_products_info = Products description
 tab_submit_products_new = News
 tab_submit_specials = Specials
 tab_submit_reviews = Reviews
+tab_submit_favorites = Favorites
+tab_submit_featured = Featured
 
 keywords_google_trend =  Google trend
 
@@ -99,7 +101,6 @@ text_submit_language_products_new_title = Title
 text_submit_language_products_new_keywords = Keywords
 text_submit_language_products_new_description = Description
 
-
 text_pages_submit_information_specials = Meta data management specials of site
 display_title_special = Display default specials title
 display_special = Display default specials
@@ -117,6 +118,24 @@ display_description_reviews = Displays default reviews description
 text_submit_language_products_reviews_title = Title
 text_submit_language_reviews_keywords = Keywords
 text_submit_language_reviews_description = Description
+
+text_pages_submit_information_favorites = Meta data management favorites of site
+display_title_favorites = Title
+display_favorites = Display default favorites
+display_description_favorites = Displays default favorites description
+
+text_submit_language_products_favorites_title = Title
+text_submit_language_favorites_keywords = Keywords
+text_submit_language_favorites_description = Description
+
+text_pages_submit_information_featured = Meta data management featured of site
+display_title_featured = Title
+display_featured = Display default featured
+display_description_featured = Displays default featured description
+
+text_submit_language_products_featured_title = Title
+text_submit_language_featured_keywords = Keywords
+text_submit_language_featured_description = Description
 
 text_products_page_seo = SEO
 

@@ -18,8 +18,8 @@
   class NavigationHistory
   {
 
-    public $path = [];
-    public $snapshot = [];
+    public array $path = [];
+    public array $snapshot = [];
 
     public function __construct(bool $add_current_page = false)
     {

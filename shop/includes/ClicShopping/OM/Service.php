@@ -15,10 +15,10 @@
 
   class Service
   {
-    protected $_services = [];
-    protected $_started_services = [];
-    protected $_call_before_page_content = [];
-    protected $_call_after_page_content = [];
+    protected array $_services = [];
+    protected array $_started_services = [];
+    protected array $_call_before_page_content = [];
+    protected array $_call_after_page_content = [];
 
     public function __construct()
     {

@@ -16,6 +16,13 @@ submit_language_special_description varchar(255)
 submit_language_reviews_title varchar(255)
 submit_language_reviews_keywords text
 submit_language_reviews_description varchar(255)
+submit_language_favorites_title varchar(255)
+submit_language_favorites_keywords text
+submit_language_favorites_description varchar(255)
+submit_language_featured_title varchar(255)
+submit_language_featured_keywords text
+submit_language_featured_description varchar(255)
+
 --
 primary submit_id language_id
 ##

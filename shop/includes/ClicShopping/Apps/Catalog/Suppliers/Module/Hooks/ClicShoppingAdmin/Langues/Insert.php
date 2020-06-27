@@ -41,7 +41,7 @@
                                               where mi.languages_id = :languages_id
                                              ');
 
-        $Qsuppliers->bindInt(':languages_id', (int)$this->lang->getId());
+        $Qsuppliers->bindInt(':languages_id', $this->lang->getId());
         $Qsuppliers->execute();
 
         while ($Qsuppliers->fetch()) {

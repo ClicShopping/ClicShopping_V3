@@ -16,7 +16,8 @@
  "modules": {
   "HeaderTags": {
     "RSS":	"Module\\HeaderTags\\RSS",
-    "PageManager":	"Module\\HeaderTags\\PageManager"
+    "PageManager":	"Module\\HeaderTags\\PageManager",
+    "ContactCustomer":	"Module\\HeaderTags\\ContactCustomer"
   },
   "Hooks": {
    "ClicShoppingAdmin/Langues": {

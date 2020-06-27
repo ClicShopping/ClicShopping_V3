@@ -15,15 +15,15 @@
 
   class Db extends \PDO
   {
-    protected $connected = false;
-    protected $server;
-    protected $username;
-    protected $password;
-    protected $database;
-    protected $table_prefix;
-    protected $port;
-    protected $driver_options = [];
-    protected $options = [];
+    protected bool $connected = false;
+    protected string $server;
+    protected string $username;
+    protected string $password;
+    protected string $database;
+    protected string $table_prefix;
+    protected ?int $port;
+    protected array $driver_options = [];
+    protected array $options = [];
 
     public static function initialize(
       $server = null,

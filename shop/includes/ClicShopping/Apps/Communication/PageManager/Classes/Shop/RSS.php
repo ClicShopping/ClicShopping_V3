@@ -21,8 +21,8 @@
   class RSS
   {
 
-    protected $products_id;
-    protected $site_name;
+    protected int $products_id;
+    protected string $site_name;
     protected $db;
     protected $lang;
     protected $navigationHistory;
