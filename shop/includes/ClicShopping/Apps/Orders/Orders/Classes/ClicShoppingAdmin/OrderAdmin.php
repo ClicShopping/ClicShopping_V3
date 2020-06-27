@@ -12,17 +12,9 @@
   namespace ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   class OrderAdmin extends \ClicShopping\Apps\Orders\Orders\Classes\Shop\Order
   {
-
-    public $info;
-    public $totals;
-    public $products;
-    public $customer;
-    public $delivery;
-
     public function __construct($order_id)
     {
       $this->info = [];
@@ -40,7 +32,8 @@
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      $Qorder = $CLICSHOPPING_Db->get(['orders o',
+      $Qorder = $CLICSHOPPING_Db->get([
+        'orders o',
         'orders_status s'
       ], [
         'o.*',
@@ -52,7 +45,8 @@
         ]
       );
 
-      $Qtotals = $CLICSHOPPING_Db->get('orders_total', ['title',
+      $Qtotals = $CLICSHOPPING_Db->get('orders_total', [
+        'title',
         'text',
         'class'
       ], [
@@ -61,15 +55,16 @@
         'sort_order'
       );
 
-
       while ($Qtotals->fetch()) {
-        $this->totals[] = ['title' => $Qtotals->value('title'),
+        $this->totals[] = [
+          'title' => $Qtotals->value('title'),
           'text' => $Qtotals->value('text'),
           'class' => $Qtotals->value('class')
         ];
       }
 
-      $this->info = ['id' => $Qorder->valueInt('orders_id'),
+      $this->info = [
+        'id' => $Qorder->valueInt('orders_id'),
         'total' => null,
         'currency' => $Qorder->value('currency'),
         'currency_value' => $Qorder->value('currency_value'),
@@ -93,7 +88,8 @@
         }
       }
 
-      $this->customer = ['name' => $Qorder->value('customers_name'),
+      $this->customer = [
+        'name' => $Qorder->value('customers_name'),
         'company' => $Qorder->value('customers_company'),
         'siret' => $Qorder->value('customers_siret'),
         'ape' => $Qorder->value('customers_ape'),
@@ -112,7 +108,8 @@
         'provider_name_client' => $Qorder->value('provider_name_client')
       ];
 
-      $this->delivery = ['name' => $Qorder->value('delivery_name'),
+      $this->delivery = [
+        'name' => $Qorder->value('delivery_name'),
         'company' => $Qorder->value('delivery_company'),
         'street_address' => $Qorder->value('delivery_street_address'),
         'suburb' => $Qorder->value('delivery_suburb'),
@@ -123,7 +120,8 @@
         'format_id' => $Qorder->value('delivery_address_format_id')
       ];
 
-      $this->billing = ['name' => $Qorder->value('billing_name'),
+      $this->billing = [
+        'name' => $Qorder->value('billing_name'),
         'company' => $Qorder->value('billing_company'),
         'street_address' => $Qorder->value('billing_street_address'),
         'suburb' => $Qorder->value('billing_suburb'),
@@ -136,7 +134,8 @@
 
       $index = 0;
 
-      $Qproducts = $CLICSHOPPING_Db->get('orders_products', ['orders_products_id',
+      $Qproducts = $CLICSHOPPING_Db->get('orders_products', [
+        'orders_products_id',
         'products_id',
         'products_name',
         'products_model',
@@ -161,9 +160,10 @@
           'final_price' => $Qproducts->valueDecimal('final_price')
         ];
 
-        $subindex = 0;
+        $i = 0;
 
-        $Qattributes = $CLICSHOPPING_Db->get('orders_products_attributes', ['products_options',
+        $Qattributes = $CLICSHOPPING_Db->get('orders_products_attributes', [
+          'products_options',
           'products_options_values',
           'options_values_price',
           'price_prefix',
@@ -177,13 +177,15 @@
 
         if ($Qattributes->fetch() !== false) {
           do {
-            $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options'),
+            $this->products[$index]['attributes'][$i] = [
+              'option' => $Qattributes->value('products_options'),
               'value' => $Qattributes->value('products_options_values'),
               'prefix' => $Qattributes->value('price_prefix'),
               'price' => $Qattributes->value('options_values_price'),
               'reference' => $Qattributes->value('products_attributes_reference')
             ];
-            $subindex++;
+
+            $i++;
           } while ($Qattributes->fetch());
         }
         $index++;

@@ -248,8 +248,9 @@ pre_confirmation_check()
       $content .= '<input type="hidden" id="intent_id" value="' . HTML::output($stripe_payment_intent_id) . '" />' .
                   '<input type="hidden" id="secret" value="' . HTML::output($this->intent->client_secret) . '" />';
       $content .= '<div id="stripe_table_new_card">' .
-                  '<div class="form-group"><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label></div>' .
-                  '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>' .
+                  '<div class="form-group"><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
+                  '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>
+                  </div>' .
                   '<div class="separator"></div>' .
                   '<div class="form-group"><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
                   '<div id="card-element" class="col-md-5"></div>

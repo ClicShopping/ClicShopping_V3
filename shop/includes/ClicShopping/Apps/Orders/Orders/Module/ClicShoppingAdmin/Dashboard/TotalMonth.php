@@ -19,13 +19,11 @@
 
   class TotalMonth extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
 
     protected function init()
     {
-
       if (!Registry::exists('Orders')) {
         Registry::set('Orders', new OrdersApp());
       }
@@ -46,11 +44,7 @@
 
     public function getOutput()
     {
-      $days = [];
-
-      for ($i = 0; $i <= 12; $i++) {
-        $days[date('M')] = 0;
-      }
+      $month = [];
 
       $Qorder = $this->app->db->prepare('select date_format(o.date_purchased, "%M") as dateday,
                                                  sum(ot.value) as total
@@ -60,7 +54,7 @@
                                           and o.orders_status = 3
                                           and o.orders_id = ot.orders_id
                                           and (ot.class = :class)
-                                         group by dateday 
+                                          group by dateday  desc
                                         
                                          ');
       $Qorder->bindValue(':class', 'ST');
@@ -69,12 +63,12 @@
       $total = 0;
 
       while ($orders = $Qorder->fetch()) {
-        $days[$orders['dateday']] = $total + $Qorder->valueDecimal('total');
-        $total = $days[$orders['dateday']];
+        $month[$Qorder->value('dateday')] = $total + $Qorder->valueDecimal('total');
+        $total = $month[$Qorder->value('dateday')];
       }
 
-      $data_labels = json_encode(array_keys($days));
-      $data = json_encode(array_values($days));
+      $data_labels = json_encode(array_keys($month));
+      $data = json_encode(array_values($month));
 
       $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_month_app_chart_link'));
 
@@ -133,7 +127,6 @@ EOD;
 
     public function Install()
     {
-
       $this->app->db->save('configuration', [
           'configuration_title' => 'Do you want to enable this Module ?',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_STATUS',

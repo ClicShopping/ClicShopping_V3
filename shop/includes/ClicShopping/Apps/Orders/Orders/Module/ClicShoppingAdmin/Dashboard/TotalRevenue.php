@@ -46,17 +46,16 @@
 
     public function getOutput()
     {
-
-      $days = [];
+      $month = [];
       for ($i = 0; $i <= 12; $i++) {
-        $days[date('M')] = 0;
+        $month[date('M')] = 0;
       }
 
       $Qorder = $this->app->db->query('select date_format(o.date_purchased, "%M") as dateday,
                                              sum(ot.value) as total
                                       from :table_orders o,
                                            :table_orders_total ot
-                                      where date_sub(curdate(), interval 12 month) <= o.date_purchased
+                                      where date_sub(now(), interval 1 year) <= o.date_purchased
                                       and (o.orders_status > 0 and o.orders_status <> 4)
                                       and o.orders_id = ot.orders_id
                                       and ot.class = "ST"
@@ -64,13 +63,13 @@
                                      ');
 
       while ($Qorder->fetch()) {
-        $days[$Qorder->value('dateday')] = $Qorder->value('total');
+        $month[$Qorder->value('dateday')] = $Qorder->value('total');
       }
 
-      //$days = array_reverse($days, true);
+      $month = array_reverse($month, true);
 
-      $data_labels = json_encode(array_keys($days));
-      $data = json_encode(array_values($days));
+      $data_labels = json_encode(array_keys($month));
+      $data = json_encode(array_values($month));
 
       $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_revenue_app_chart_link'));
 
