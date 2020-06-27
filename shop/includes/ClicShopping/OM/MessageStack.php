@@ -32,7 +32,7 @@
         }
       });
 
-      if (is_array($_SESSION['MessageStack_Data']) && !empty($_SESSION['MessageStack_Data'])) {
+      if (isset($_SESSION['MessageStack_Data']) && is_array($_SESSION['MessageStack_Data'])) {
         foreach ($_SESSION['MessageStack_Data'] as $group => $messages) {
           foreach ($messages as $message) {
             $this->add($message['text'], $message['type'], $group);

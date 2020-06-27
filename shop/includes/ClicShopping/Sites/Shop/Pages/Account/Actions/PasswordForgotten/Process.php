@@ -30,12 +30,9 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-        $password_reset_initiated = false;
-
         $email_address = HTML::sanitize($_POST['email_address']);
 
         if (Is::EmailAddress($email_address) && !empty($email_address)) {
-
           $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id,
                                                       customers_firstname,
                                                       customers_lastname,
@@ -51,7 +48,6 @@
 
           if ($Qcheck->fetch() !== false) {
             if ($Qcheck->valueInt('member_level') == 1) {
-
               Registry::set('ActionRecorder', new ActionRecorder('ar_reset_password', $Qcheck->valueInt('customers_id'), $email_address));
               $CLICSHOPPING_ActionRecorder = Registry::get('ActionRecorder');
 
@@ -70,11 +66,12 @@
                   $reset_key_url = str_replace('&amp;', '&', $reset_key_url);
                 }
 
-                $message = CLICSHOPPING::getDef('email_password_reset_body', ['store_name' => STORE_NAME,
-                    'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
-                    'reset_url' => $reset_key_url
-                  ]
-                );
+                $array = ['store_name' => STORE_NAME,
+                  'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
+                  'reset_url' => $reset_key_url
+                ];
+
+                $message = CLICSHOPPING::getDef('email_password_reset_body', $array);
 
                 $email_password_reminder_body = $message . '</ br>';
                 $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . '</ br>';
@@ -85,19 +82,19 @@
                 $CLICSHOPPING_Mail->clicMail($Qcheck->value('customers_firstname') . ' ' . $Qcheck->value('customers_lastname'), $email_address, $email_subject, $email_password_reminder_body, STORE_NAME, STORE_OWNER_EMAIL_ADDRESS);
 
                 $password_reset_initiated = true;
-
               } else {
                 $password_reset_initiated = false;
 
                 $CLICSHOPPING_ActionRecorder->record(false);
 
-                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', ['module_action_recorder_reset_password_minutes' => (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)]), 'danger');
+                $message_array = ['module_action_recorder_reset_password_minutes' => (defined('MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES') ? (int)MODULE_ACTION_RECORDER_RESET_PASSWORD_MINUTES : 5)];
+
+                $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_action_recorder', $message_array), 'error');
               }
 
               $CLICSHOPPING_Hooks->call('PasswordForgotten', 'Process');
 
               CLICSHOPPING::redirect(null, 'Account&PasswordForgotten&Success&reset=' . $password_reset_initiated);
-
             } else {
               $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_no_email_address_found'), 'error');
             }

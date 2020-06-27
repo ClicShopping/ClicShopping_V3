@@ -11,11 +11,12 @@
 
   namespace ClicShopping\Sites\Shop\Pages\Account\Actions\Password;
 
-  use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Hash;
+
+  use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -45,10 +46,10 @@
         }
 
         if ($error === false) {
-          $QcheckCustomer = $CLICSHOPPING_Db->prepare('select  customers_firstname,
-                                                               customers_lastname,
-                                                               customers_emal_address,
-                                                               customers_password
+          $QcheckCustomer = $CLICSHOPPING_Db->prepare('select customers_firstname,
+                                                              customers_lastname,
+                                                              customers_email_address,
+                                                              customers_password
                                                        from :table_customers
                                                        where customers_id = :customers_id
                                                        and customer_guest_account = 0
@@ -66,7 +67,12 @@
             $Qupdate->bindInt(':customers_info_id', $CLICSHOPPING_Customer->getID());
             $Qupdate->execute();
 
-            $message = CLICSHOPPING::getDef('email_new_password', ['new_password' => $password_current, 'store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
+            $emssqge_array = [
+              'new_password' => $password_current,
+              'store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS
+            ];
+
+            $message = CLICSHOPPING::getDef('email_new_password', $emssqge_array);
 
             $email_password_reminder_body = $message . "\n";
             $email_password_reminder_body .= TemplateEmail::getTemplateEmailTextFooter() . "\n";

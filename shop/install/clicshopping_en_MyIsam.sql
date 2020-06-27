@@ -3164,15 +3164,21 @@ CREATE TABLE `clic_submit_description` (
   `submit_language_special_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `submit_language_reviews_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `submit_language_reviews_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `submit_language_reviews_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `submit_language_reviews_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_favorites_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_favorites_keywords` text COLLATE utf8mb4_unicode_ci,
+  `submit_language_favorites_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_featured_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `submit_language_featured_keywords` text COLLATE utf8mb4_unicode_ci,
+  `submit_language_featured_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `clic_submit_description`
 --
 
-INSERT INTO `clic_submit_description` VALUES(1, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `clic_submit_description` VALUES(1, 2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO submit_description VALUES(1, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO submit_description VALUES(1, 2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 

@@ -1916,8 +1916,8 @@ INSERT INTO sec_directory_whitelist VALUES(6, 'pub');
 INSERT INTO sec_directory_whitelist VALUES(7, 'includes/Work');
 
 
-INSERT INTO submit_description VALUES(1, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO submit_description VALUES(1, 2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO submit_description VALUES(1, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO submit_description VALUES(1, 2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 
 INSERT INTO tax_class VALUES(1, 'TVA 20', 'TVA France 20', '2015-02-09 16:13:40', '2006-04-09 16:13:48');
@@ -2667,4 +2667,3 @@ INSERT INTO zones_to_geo_zones VALUES(80, 38, 77, 7, NULL, '2015-02-09 16:11:01'
 INSERT INTO zones_to_geo_zones VALUES(81, 38, 68, 14, NULL, '2015-02-09 16:12:03');
 INSERT INTO zones_to_geo_zones VALUES(82, 38, 77, 14, NULL, '2015-02-09 16:12:14');
 INSERT INTO zones_to_geo_zones VALUES(83, 38, 76, 9, NULL, '2015-02-09 18:53:27');
-
