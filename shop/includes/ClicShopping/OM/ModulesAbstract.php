@@ -13,9 +13,9 @@
 
   abstract class ModulesAbstract
   {
-    public $code;
+    public string $code;
     protected $interface;
-    protected $ns = 'ClicShopping\Apps\\';
+    protected string $ns = 'ClicShopping\Apps\\';
 
     abstract public function getInfo($app, $key, $data);
 

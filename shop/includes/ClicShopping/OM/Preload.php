@@ -21,11 +21,9 @@
     private static string $work_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/';
     private static string $base_dir_autoload = CLICSHOPPING::BASE_DIR . 'External/vendor/autoload.php';
     private static string $output_dir = CLICSHOPPING::BASE_DIR . 'Work/Log/preloader.php';
-    private static array $directories;
     private static array $files;
+    private static bool $recursive;
     private static $ext_filter;
-    private static $recursive;
-
     /**
      * @return bool
      */
@@ -34,7 +32,7 @@
       $result = true;
 
       if (!is_writable(static::$work_dir)) $result = false;
-      if (PHP_VERSION < 7.4) $result = false;
+      if (PHP_VERSION < '7.4.3') $result = false;
       if (CONFIGURATION_PRELOADING == 'false') $result = false;
 
       return $result;
@@ -54,8 +52,13 @@
           ->overwrite(true)
           ->useCompile()
           ->append(
+            CLICSHOPPING::BASE_DIR . 'Apps/',
+            CLICSHOPPING::BASE_DIR . 'Sites/',
             static::getFiles()
           )
+          ->exclude([
+            CLICSHOPPING::BASE_DIR . 'External/'
+          ])
           ->generate();
       }
     }
@@ -105,18 +108,18 @@
     /**
      * @param $paths
      */
-    private static function verifyPaths($paths)
+    private static function verifyPaths(string $paths)
     {
       $path_errors = [];
 
-      if(gettype($paths) == "string"){
+      if(gettype($paths) == 'string'){
         $paths = [$paths];
       }
 
       foreach($paths as $path) {
         if(is_dir($path)) {
           self::$directories[] = $path;
-          $dirContents = self::find_contents($path);
+          $dirContents = self::findContents($path);
         } else {
           $path_errors[] = $path;
         }
@@ -128,31 +131,50 @@
       }
     }
 
+    /**
+     *
+     */
+    protected function clearWorkdir()
+    {
+      if (is_file($preload = implode(DIRECTORY_SEPARATOR, [static::$work_dir, 'preloader.php']))) {
+        unlink($preload);
+      }
+
+      if (is_dir($this->workdir )) {
+        foreach ((new Finder())->files()->in(static::$work_dir) as $file) {
+          /** @var \SplFileObject $file */
+          unlink($file->getRealPath());
+        }
+
+        rmdir(implode(DIRECTORY_SEPARATOR, [static::$work_dir]));
+      }
+    }
+
     // This is how we scan directories
 
     /**
      * @param $dir
      * @return array
      */
-    private static function find_contents(string $dir): array
+    private static function findContents(string $dir): array
     {
       $result = [];
       $root = scandir($dir);
 
-      foreach($root as $value){
+      foreach($root as $value) {
         if($value === '.' || $value === '..') {
           continue;
         }
 
         if(is_file($dir.DIRECTORY_SEPARATOR.$value)){
-          if(!self::$ext_filter || in_array(strtolower(pathinfo($dir.DIRECTORY_SEPARATOR.$value, PATHINFO_EXTENSION)), self::$ext_filter)){
-            self::$files[] = $result[] = $dir.DIRECTORY_SEPARATOR.$value;
+          if(!self::$ext_filter || in_array(strtolower(pathinfo($dir . DIRECTORY_SEPARATOR . $value, PATHINFO_EXTENSION)), self::$ext_filter)){
+            self::$files[] = $result[] = $dir . DIRECTORY_SEPARATOR . $value;
           }
           continue;
         }
 
         if(self::$recursive){
-          foreach (self::find_contents($dir.DIRECTORY_SEPARATOR . $value) as $new_value) {
+          foreach (self::findContents($dir . DIRECTORY_SEPARATOR . $value) as $new_value) {
             self::$files[] = $result[] = $new_value;
           }
         }
@@ -171,5 +193,4 @@
 
       return $result;
     }
-
   }

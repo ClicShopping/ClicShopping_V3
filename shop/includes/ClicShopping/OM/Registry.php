@@ -13,8 +13,8 @@
 
   class Registry
   {
-    protected static $aliases = [];
-    protected static $data = [];
+    protected static array $aliases = [];
+    protected static array $data = [];
 
     /**
      * @param string $key
