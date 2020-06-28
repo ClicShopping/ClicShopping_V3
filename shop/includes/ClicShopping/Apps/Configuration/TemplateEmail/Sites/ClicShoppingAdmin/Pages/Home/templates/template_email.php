@@ -87,7 +87,7 @@
           $template_email_type = $CLICSHOPPING_TemplateEmail->getDef('text_template_email_admin_catalog');
         }
 
-        if ($QtemplateEmail->value('customers_group_id') == 0) {
+        if ($QtemplateEmail->value('customers_group_id') === 0) {
           $template_email_customer_group = $CLICSHOPPING_TemplateEmail->getDef('text_template_email_b2c');
         } elseif ($QtemplateEmail->valueInt('template_email_type') == 1) {
           $template_email_customer_group = $CLICSHOPPING_TemplateEmail->getDef('text_template_email_b2c_b2b');

@@ -60,7 +60,7 @@
   $cInfo = new ObjectInfo($Qcustomers->toArray());
 
   // Lecture sur la base de données des informations facturations et livraison du groupe client
-  if ($cInfo->customers_group_id != 0) {
+  if ($cInfo->customers_group_id !== 0) {
     $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
                                                                         group_order_taxe,
                                                                         group_payment_unallowed,
