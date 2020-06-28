@@ -126,7 +126,6 @@
           } else {
             $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $message_to_admin, $name, $email_address);
-
 // send information to customer
             $message_to_customer = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n" . $template_email_footer;
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
@@ -134,7 +133,7 @@
 
 // insert the modification in the database
           if ($CLICSHOPPING_Customer->isLoggedOn()) {
-            if ($order_id != 0) {
+            if ($order_id !== 0) {
               $CLICSHOPPING_Db->save('orders_status_history', ['orders_id' => (int)$order_id,
                   'orders_status_invoice_id' => 1,
                   'admin_user_name' => '',

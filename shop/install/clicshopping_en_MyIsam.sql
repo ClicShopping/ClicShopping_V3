@@ -1693,6 +1693,7 @@ INSERT INTO `clic_configuration` VALUES(1539, 'Sort Order', 'MODULE_HEADER_TAGS_
 INSERT INTO `clic_configuration` VALUES(1540, 'Do you want to activate the preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Functionality in beta, you must have access to your php.init to activate this function. Please refer to the documentation available on the forum', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(1541, 'Do you want to convert all product images to Webp?', 'CONFIGURATION_CONVERT_IMAGE', 'false', 'All product images will be converted to Webp format. Please note that some server configuration does not accept this format', 4, 10, NULL, '2018-11-05 09:49:46', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(1542, 'Do you want to compress the HTML', 'CONFIGURATION_TEMPLATE_MINIFY_HTML', 'false', 'Compress the HTML code and JS inside the HTML (only catalog)', 43, 1, '2013-12-16 18:12:37', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO `clic_configuration` VALUES(1543, 'Exclude specific email domains', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'If the domain is caught, the email will not be sent. Please separate your domains with a comma "," <br> <br> <i> example: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
 
 -- --------------------------------------------------------
 

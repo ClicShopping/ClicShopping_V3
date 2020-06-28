@@ -30,7 +30,6 @@
 
     public function __construct()
     {
-
       $this->phpMail = new PHPMailer();
 
       $this->phpMail->XMailer = 'ClicShopping ' . CLICSHOPPING::getVersion();
@@ -323,6 +322,33 @@
     }
 
     /**
+     * Do not send en email if it'excluded by the admin
+     * @param string $email
+     * @return bool
+     */
+    private static function excludeEmailDomain(string $email) :bool
+    {
+      if( filter_var( $email, FILTER_VALIDATE_EMAIL)) {
+        $array_domain = explode('@', $email);
+        $domain = array_pop($array_domain);
+        $exlude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
+
+        if (is_array($exlude_domain)) {
+          foreach ($exlude_domain as $value) {
+
+            if ($value === $domain) {
+              return false;
+            } else {
+              return true;
+            }
+          }
+        }
+
+        return true;
+      }
+    }
+
+    /**
      * Send email (text/html) using MIME
      * This is the central mail function. The SMTP Server should be configured
      * @param string $to_name The name of the recipient
@@ -335,7 +361,13 @@
      */
     public function clicMail(string $to_name =  '', string $to_email_address, string $email_subject = '', string $email_text, string $from_email_name, string $from_email_address)
     {
-      if (SEND_EMAILS != 'true') return false;
+      if (SEND_EMAILS != 'true') {
+        return false;
+      }
+
+      if (static::excludeEmailDomain($from_email_address) === false) {
+        return false;
+      }
 
 // Build the text version
       $text = strip_tags($email_text);

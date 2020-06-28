@@ -21,3 +21,5 @@ entry_email_object_customer = Copie de votre demande
 entry_customers_subject = Sujet de votre demande :
 
 error_action_recorder = Erreur : Votre demande a déjà été envoyée. Veuillez réessayer dans {{module_action_recorder_contact_us_email_minutes}} minutes.
+entry_error_contact = Erreur : Veuillez recommencer
+

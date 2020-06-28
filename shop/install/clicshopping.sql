@@ -1500,6 +1500,8 @@ INSERT INTO configuration VALUES(1539, 'Ordre de tri d\'affichager', 'MODULE_HEA
 INSERT INTO configuration VALUES(1540, 'Souhaitez vous activer le Preloading (PHP >= 7.4)', 'CONFIGURATION_PRELOADING', 'false', 'Fonctionnalité en beta, you devez avoir accès à votre php.init pour activer cette fonction. Veuillez vous référer à la documentation disponible sur le forum.<br><br><i>(Valeur True = Oui - Valeur False = Non)</i>', 14, 10, '2006-09-23 01:42:33', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(1541, 'Souhaitez-vous convertir toutes les images du produits en Webp ?', 'CONFIGURATION_CONVERT_IMAGE', 'false', 'Toutes les images du produits seront converties au format Webp. Veuillez noter que certaines configuration serveur n\'accepte pas ce format', 4, 10, NULL, '2018-11-05 09:49:46', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(1542, 'Souhaitez-vous compresser le HTML', 'CONFIGURATION_TEMPLATE_MINIFY_HTML', 'false', 'Compression du code HTML et le js dans le HTML (catalogue)', 43, 1, '2013-12-16 18:12:37', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+INSERT INTO configuration VALUES(1543, 'Exclure des domaines d\'emails spécifiques', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'Si le domaine est attrapée, l\'email de ne sera pas envoyé. Veuillez séparer vos domaines par une virgule ","<br><br><i>exemple: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+
 
 
 INSERT INTO configuration_group VALUES(1, 'Gestion de ma boutique', 'Informations générales sur la boutique.', 1, 1);

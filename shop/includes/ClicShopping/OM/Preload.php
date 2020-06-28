@@ -54,8 +54,8 @@
           ->overwrite(true)
           ->useCompile()
           ->append(
-            CLICSHOPPING::BASE_DIR . 'Apps/',
-            CLICSHOPPING::BASE_DIR . 'Sites/',
+            CLICSHOPPING::BASE_DIR . 'Apps/*',
+            CLICSHOPPING::BASE_DIR . 'Sites/*',
             static::getFiles()
           )
           ->exclude([
