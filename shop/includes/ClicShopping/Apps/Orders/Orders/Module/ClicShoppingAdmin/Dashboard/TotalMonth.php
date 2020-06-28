@@ -62,7 +62,7 @@
 
       $total = 0;
 
-      while ($orders = $Qorder->fetch()) {
+      while ($Qorder->fetch()) {
         $month[$Qorder->value('dateday')] = $total + $Qorder->valueDecimal('total');
         $total = $month[$Qorder->value('dateday')];
       }
