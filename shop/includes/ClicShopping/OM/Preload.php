@@ -24,6 +24,8 @@
     private static array $files;
     private static bool $recursive;
     private static $ext_filter;
+    private static array $directories;
+    
     /**
      * @return bool
      */
