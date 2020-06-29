@@ -53,7 +53,7 @@
 
     public function getOutput()
     {
-       if (isset($_GET['Search']) && isset($_GET['Q'])) {
+       if (isset($_GET['Search']) && isset($_GET['Q']) && isset($_POST['keywords'])) {
          $this->template = Registry::get('Template');
 
         if (!Registry::exists('SeoShopSearch')) {
@@ -66,9 +66,9 @@
         $description = $CLICSHOPPING_SEOShop->getSeoIndexDescription();
         $keywords = $CLICSHOPPING_SEOShop->getSeoIndexKeywords();
 
-         $title = HTML::sanitize($_POST['keywords']). ',' . $this->template->setTitle($title) . ' ' . $this->template->getTitle();
-         $description =  HTML::sanitize($_POST['keywords']). ',' . $this->template->setDescription($description) . ', ' . $this->template->getDescription();
-         $keywords = HTML::sanitize($_POST['keywords']). ',' . $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
+         $title = HTML::sanitize($_POST['keywords']) . ',' . $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+         $description =  HTML::sanitize($_POST['keywords']) . ',' . $this->template->setDescription($description) . ', ' . $this->template->getDescription();
+         $keywords = HTML::sanitize($_POST['keywords']) . ',' . $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
         $output =
 <<<EOD

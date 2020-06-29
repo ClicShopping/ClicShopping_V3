@@ -1982,6 +1982,7 @@
       if (is_null($id)) {
         $id = $this->getID();
       }
+      $product_exhausted = '';
 
       $QproductExhausted = $this->db->prepare('select products_quantity
                                                 from :table_products
@@ -2002,13 +2003,10 @@
         } elseif (PRICES_LOGGED_IN == 'true' && $this->customer->getCustomersGroupID() == 0 && $this->customer->isLoggedOn() && STOCK_CHECK == 'true' && STOCK_ALLOW_CHECKOUT == 'false') {
           $product_exhausted = $this->getProductButtonExhausted($button_type);
         }
-      } else {
-        $product_exhausted = '';
       }
 
       return $product_exhausted;
     }
-
 
     /**
      * Display Products exhausted
