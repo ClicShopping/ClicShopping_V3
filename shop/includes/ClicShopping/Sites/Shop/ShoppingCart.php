@@ -421,7 +421,7 @@
         $Qcheck->execute();
 
         if ($Qcheck->fetch() !== false) {
-          if ($notify == true) {
+          if ($notify === true) {
             $_SESSION['new_products_id_inCart'] = $products_id;
           }
 
@@ -512,7 +512,7 @@
         $Qcheck->execute();
 
         if ($Qcheck->fetch() !== false) {
-          if ($notify == true) {
+          if ($notify === true) {
             $_SESSION['new_products_id_inCart'] = $products_id;
           }
 
@@ -592,7 +592,7 @@
         }
       }
 
-      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check == true)) {
+      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check === true)) {
         $this->contents[$products_id_string] = ['qty' => (int)$quantity];
 // update database
         if ($this->customer->isLoggedOn()) {
