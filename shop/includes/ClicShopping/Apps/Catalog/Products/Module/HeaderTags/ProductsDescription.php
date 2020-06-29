@@ -50,7 +50,6 @@
 
     public function getOutput()
     {
-      $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Language = Registry::get('Language');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 

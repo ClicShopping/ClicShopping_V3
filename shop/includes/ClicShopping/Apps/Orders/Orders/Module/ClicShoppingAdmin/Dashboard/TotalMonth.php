@@ -54,8 +54,8 @@
                                           and o.orders_status = 3
                                           and o.orders_id = ot.orders_id
                                           and (ot.class = :class)
-                                          group by dateday  desc
-                                        
+                                          group by dateday 
+					  order by dateday desc
                                          ');
       $Qorder->bindValue(':class', 'ST');
       $Qorder->execute();

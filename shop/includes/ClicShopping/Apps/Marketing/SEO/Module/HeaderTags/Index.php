@@ -14,7 +14,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\HTTP;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
 
@@ -64,7 +63,7 @@
           Registry::set('SeoShopIindex', new SeoShopIindex());
         }
 
-        $CLICSHOPPING_SEOShop = Registry::get('SeoShopIindex');
+         $CLICSHOPPING_SEOShop = Registry::get('SeoShopIindex');
 
          $title = $CLICSHOPPING_SEOShop->getSeoIndexTitle();
          $description = $CLICSHOPPING_SEOShop->getSeoIndexDescription();
@@ -92,9 +91,9 @@ EOD;
         $description = $CLICSHOPPING_SEOShop->getSeoIndexDescription();
         $keywords = $CLICSHOPPING_SEOShop->getSeoIndexKeywords();
 
-        $title = $this->template->setTitle($title) . ', ' . $this->template->getTitle() . ', ' . HTML::outputProtected(STORE_NAME);
-        $description = $this->template->setDescription($description) . ', ' . $this->template->getDescription() . ', ' . HTML::outputProtected(STORE_NAME);
-        $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords() . ', ' . HTML::outputProtected(STORE_NAME);
+        $title = $this->template->setTitle($title) . ', ' . $this->template->getTitle();
+        $description = $this->template->setDescription($description) . ', ' . $this->template->getDescription();
+        $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
 
         $output =
 <<<EOD

@@ -66,7 +66,10 @@
 //      if (HTTP::getUri() === CLICSHOPPING::getConfig('http_path', 'Shop') || HTTP::getUri() === CLICSHOPPING::getConfig('http_path', 'Shop') . 'index.php') {
 
         if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
-          $manufacturers_shop  = Registry::set('ManufacturersShop', new ManufacturersShop());
+          if (!Registry::exists('Manufacturers')) {
+            Registry::set('ManufacturersShop', new ManufacturersShop());
+          }
+
           $this->manufacturers_shop = Registry::get('ManufacturersShop');
 
           $id = $this->manufacturers_shop->getID();

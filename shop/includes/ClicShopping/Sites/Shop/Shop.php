@@ -89,7 +89,6 @@
         HTTP::redirect($url_req, 301);
       }
 
-
 // Security
       require_once(CLICSHOPPING::getConfig('dir_root') . 'includes/modules/security_pro/Security.php');
       $security_pro = new \Security();

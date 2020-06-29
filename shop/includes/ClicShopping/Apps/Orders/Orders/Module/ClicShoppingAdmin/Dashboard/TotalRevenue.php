@@ -19,13 +19,11 @@
 
   class TotalRevenue extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
 
     protected function init()
     {
-
       if (!Registry::exists('Orders')) {
         Registry::set('Orders', new OrdersApp());
       }
