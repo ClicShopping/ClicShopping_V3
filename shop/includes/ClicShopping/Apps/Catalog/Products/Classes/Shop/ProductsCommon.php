@@ -1706,7 +1706,7 @@
 
       $customers_group_id = $this->customer->getCustomersGroupID();
 
-      if ($customers_group_id === 0) {
+      if ($customers_group_id == 0) {
         $QproductMinOrder = $this->db->get('products', ['products_min_qty_order'],
           ['products_id' => (int)$id]
         );

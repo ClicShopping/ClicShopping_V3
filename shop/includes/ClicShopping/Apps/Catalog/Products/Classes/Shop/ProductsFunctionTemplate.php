@@ -387,7 +387,7 @@
      * @param $products_id
      * @return string
      */
-    public function getProductsHeadTag($products_id) :string
+    public function getProductsHeadTag($products_id)
     {
       if (!empty($this->productsCommon->getProductsHeadTag($products_id))) {
         $products_tag = $this->productsCommon->getProductsHeadTag($products_id);
