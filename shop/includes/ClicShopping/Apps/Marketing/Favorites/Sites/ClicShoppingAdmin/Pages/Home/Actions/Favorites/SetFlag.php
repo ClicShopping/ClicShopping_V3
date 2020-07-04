@@ -21,7 +21,7 @@
       $CLICSHOPPING_Favorites = Registry::get('Favorites');
 
       if (isset($_GET['flag']) && isset($_GET['id'])) {
-        static::GetFavoritesProductsStatus($_GET['id'], $_GET['flag']);
+        static::getFavoritesProductsStatus($_GET['id'], $_GET['flag']);
       }
 
       $CLICSHOPPING_Favorites->redirect('Favorites', (isset($_GET['page']) ? 'page=' . (int)$_GET['page'] . '&' : '') . 'sID=' . (int)$_GET['id']);
@@ -36,7 +36,7 @@
      * @access public
      * osc_set_products_favorites_status
      */
-    Public static function GetFavoritesProductsStatus($products_favorites_id, $status)
+    Public static function getFavoritesProductsStatus($products_favorites_id, $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

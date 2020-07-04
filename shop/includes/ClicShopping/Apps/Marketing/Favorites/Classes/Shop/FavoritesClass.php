@@ -18,7 +18,7 @@
 
 // Sets the status of a favorite product
 //osc_set_products_favorites_status
-    private static function SetFavoritesStatus(int $products_favorites_id, int $status)
+    private static function setFavoritesStatus(int $products_favorites_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
