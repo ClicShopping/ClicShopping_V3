@@ -29,3 +29,9 @@ title_help_image = Note on the use of the wysiwyg
 title_help_description = Note on the use of the wysiwyg
 help_description = <li>If you inserted plugin in Firefox, there can be incompatibilities (ex: adblock more)</li>
 
+text_message_customer = Hello Mr, Mme .....<br />
+.....<br />
+.....<br />
+.....<br />
+Regard,<br />
+The team<br />

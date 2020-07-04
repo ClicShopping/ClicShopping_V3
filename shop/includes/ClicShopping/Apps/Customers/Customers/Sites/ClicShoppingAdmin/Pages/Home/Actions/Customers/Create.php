@@ -235,10 +235,12 @@
           }
         }
 
-        if (strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
-          $error = true;
+        if (ACCOUNT_STATE == 'true') {
+          if (strlen($customers_state) < ENTRY_STATE_MIN_LENGTH) {
+            $error = true;
 
-          $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error');
+            $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('entry_state_error_pro', ['min_length' => ENTRY_STATE_MIN_LENGTH]), 'error');
+          }
         }
 
         if (!empty($Qzone->valueInt('zone_id')) || !is_null($Qzone->valueInt('zone_id'))) {
@@ -271,16 +273,16 @@
         $customers_password = 'clicshopping_' . rand(5, 500);
 
 // Autorisation aux clients de modifier informations societe et adresse principal + Ajout adresse
-        if ($customers_modify_company != '1') {
-          $customers_modify_company = '0';
+        if ($customers_modify_company !== 1) {
+          $customers_modify_company = 0;
         }
 
-        if ($customers_modify_address_default != '1') {
-          $customers_modify_address_default = '0';
+        if ($customers_modify_address_default !== 1) {
+          $customers_modify_address_default = 0;
         }
 
-        if ($customers_add_address != '1') {
-          $customers_add_address = '0';
+        if ($customers_add_address !== 1) {
+          $customers_add_address = 0;
         }
 
         $sql_data_array = ['customers_company' => $customers_company,
@@ -385,7 +387,7 @@
       $email_text = $email_gender . '<br /><br />' . $template_email_welcome_admin . '<br /><br />' . $template_email_signature . '<br /><br />' . $template_email_footer;
 
 // Envoi du mail avec gestion des images pour Fckeditor et Imanager.
-      if ($customers_email == '1') {
+      if ($customers_email === 1) {
         $message = html_entity_decode($email_text);
         $message = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain(), $message);
         $CLICSHOPPING_Mail->addHtmlCkeditor($message);

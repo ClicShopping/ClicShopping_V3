@@ -28,17 +28,44 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
+      $customers_tva_intracom = '';
       $error = false;
 
-      if (isset($_POST['customers_id'])) $customers_id = HTML::sanitize($_POST['customers_id']);
-      if (isset($_POST['customers_firstname'])) $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
-      if (isset($_POST['customers_lastname'])) $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
-      if (isset($_POST['customers_email_address'])) $customers_email_address = HTML::sanitize($_POST['customers_email_address']);
-      if (isset($_POST['customers_telephone'])) $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
-      if (isset($_POST['customers_fax'])) $customers_fax = HTML::sanitize($_POST['customers_fax']);
-      if (isset($_POST['customers_newsletter'])) $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
-      if (isset($_POST['languages_id'])) $language_id = HTML::sanitize($_POST['languages_id']);
-      if (isset($_POST['customers_gender'])) $customers_gender = HTML::sanitize($_POST['customers_gender']);
+      if (isset($_POST['customers_id'])) {
+        $customers_id = HTML::sanitize($_POST['customers_id']);
+      }
+
+      if (isset($_POST['customers_firstname'])) {
+        $customers_firstname = HTML::sanitize($_POST['customers_firstname']);
+      }
+
+      if (isset($_POST['customers_lastname'])) {
+        $customers_lastname = HTML::sanitize($_POST['customers_lastname']);
+      }
+
+      if (isset($_POST['customers_email_address'])) {
+        $customers_email_address = HTML::sanitize($_POST['customers_email_address']);
+      }
+
+      if (isset($_POST['customers_telephone'])) {
+        $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
+      }
+
+      if (isset($_POST['customers_fax'])) {
+        $customers_fax = HTML::sanitize($_POST['customers_fax']);
+      }
+
+      if (isset($_POST['customers_newsletter'])) {
+        $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
+      }
+
+      if (isset($_POST['languages_id'])) {
+        $language_id = HTML::sanitize($_POST['languages_id']);
+      }
+
+      if (isset($_POST['customers_gender'])) {
+        $customers_gender = HTML::sanitize($_POST['customers_gender']);
+      }
       
       if (isset($_POST['customers_dob'])) {
         $customers_dob = HTML::sanitize($_POST['customers_dob']);
@@ -96,37 +123,49 @@
 
 // Informations sur la société
       if (ACCOUNT_COMPANY_PRO == 'true') {
-        if (isset($_POST['customers_company'])) $customers_company = HTML::sanitize($_POST['customers_company']);
+        if (isset($_POST['customers_company'])) {
+          $customers_company = HTML::sanitize($_POST['customers_company']);
+        }
       } else {
         $customers_company = '';
       }
       if (ACCOUNT_SIRET_PRO == 'true') {
-        if (isset($_POST['customers_siret'])) $customers_siret = HTML::sanitize($_POST['customers_siret']);
+        if (isset($_POST['customers_siret'])) {
+          $customers_siret = HTML::sanitize($_POST['customers_siret']);
+        }
       } else {
         $customers_siret = '';
       }
 
       if (ACCOUNT_APE_PRO == 'true') {
-        if (isset($_POST['customers_ape'])) $customers_ape = HTML::sanitize($_POST['customers_ape']);
+        if (isset($_POST['customers_ape'])) {
+          $customers_ape = HTML::sanitize($_POST['customers_ape']);
+        }
       } else {
         $customers_ape = '';
       }
 
 // Information numéro de TVA avec transformation de code ISO en majuscule
       if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-        if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
+        if (isset($_POST['customers_tva_intracom_code_iso'])) {
+          $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
+        }
       } else {
         $customers_tva_intracom_code_iso = '';
       }
 
       if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-        if (isset($_POST['customers_id'])) $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+        if (isset($_POST['customers_id'])) {
+          $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+        }
       } else {
         $customers_tva_intracom_code_iso = 0;
       }
 
       if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
-        if (isset($_POST['customers_tva_intracom'])) $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+        if (isset($_POST['customers_tva_intracom'])) {
+          $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+        }
       } else {
         $customers_tva_intracom = '';
       }
@@ -141,11 +180,15 @@
 
 // Autorisation aux clients de modifier adresse principal
       if (isset($_POST['customers_modify_address_default'])) {
-        if (isset($_POST['customers_modify_address_default'])) $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+        if (isset($_POST['customers_modify_address_default'])) {
+          $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+        }
       }
 
       if (isset($_POST['customers_add_address'])) {
-        if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+        if (isset($_POST['customers_add_address'])) {
+          $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
+        }
       }
 
       if (!is_null($customers_dob)) {
@@ -155,6 +198,7 @@
       }
 // Contrôle des saisies faites sur les champs TVA Intracom
       if ((strlen($customers_tva_intracom_code_iso) > 0) || (strlen($customers_tva_intracom) > 0)) {
+
         $QcustomersTva = $CLICSHOPPING_Customers->db->prepare('select countries_iso_code_2
                                                                from :table_countries
                                                                where countries_iso_code_2 = :countries_iso_code_2
@@ -166,8 +210,12 @@
         if ($QcustomersTva->fetch()) {
           $error = false;
         } else {
-          $error = true;
-          $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_code_iso'), 'error');
+          if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
+            $error = true;
+            $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_code_iso'), 'error');
+          } else {
+            $error = false;
+          }
         }
       }
 
@@ -284,8 +332,9 @@
           'customers_cellular_phone' => $customers_cellular_phone,
         ];
 
+//       $customers_dob = str_replace('/', '-', $customers_dob);
         if (!is_null($customers_dob)) {
-          $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob);
+          $sql_data_array['customers_dob'] = $dobDateTime->getRaw($customers_dob); //@todo
         } else {
           $sql_data_array['customers_dob'] = null;
         }
@@ -300,14 +349,12 @@
 
         if (ACCOUNT_TVA_INTRACOM_PRO == 'true') {
           $sql_data_array['customers_tva_intracom'] = $customers_tva_intracom;
-        } else {
-          $customers_tva_intracom = '';
         }
 
 // Autorisation aux clients de modifier informations société et adresse principal + Ajout adresse
-        if ($customers_modify_company != '1') $customers_modify_company = '0';
-        if ($customers_modify_address_default != '1') $customers_modify_address_default = '0';
-        if ($customers_add_address != '1') $customers_add_address = '0';
+        if ($customers_modify_company !== 1) $customers_modify_company = 0;
+        if ($customers_modify_address_default !== 1) $customers_modify_address_default = 0;
+        if ($customers_add_address !== 1) $customers_add_address = 0;
 
         $sql_data_array['customers_modify_company'] = $customers_modify_company;
         $sql_data_array['customers_modify_address_default'] = $customers_modify_address_default;
@@ -344,8 +391,13 @@
           'entry_telephone' => $entry_telephone
         ];
 
-        if (ACCOUNT_COMPANY == 'true') $sql_data_array['entry_company'] = $entry_company;
-        if (ACCOUNT_SUBURB == 'true') $sql_data_array['entry_suburb'] = $entry_suburb;
+        if (ACCOUNT_COMPANY == 'true') {
+          $sql_data_array['entry_company'] = $entry_company;
+        }
+
+        if (ACCOUNT_SUBURB == 'true') {
+          $sql_data_array['entry_suburb'] = $entry_suburb;
+        }
 
         if (ACCOUNT_STATE == 'true') {
           if (isset($entry_zone_id) && $entry_zone_id > 0) {
@@ -357,7 +409,8 @@
           }
         }
 
-        $CLICSHOPPING_Customers->db->save('address_book', $sql_data_array, ['customers_id' => (int)$customers_id,
+        $CLICSHOPPING_Customers->db->save('address_book', $sql_data_array, [
+            'customers_id' => (int)$customers_id,
             'address_book_id' => (int)$default_address_id
           ]
         );
@@ -367,7 +420,6 @@
         $CLICSHOPPING_Customers->redirect('Customers&page=' . $page . '&cID=' . $customers_id);
 
       } elseif ($error === true) {
-
         $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Customers->getDef('error_in_form'), 'error');
 
         $CLICSHOPPING_Customers->redirect('Edit&cID=' . $customers_id);

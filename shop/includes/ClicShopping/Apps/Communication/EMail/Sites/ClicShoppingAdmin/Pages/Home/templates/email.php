@@ -88,19 +88,18 @@
                 <label for="<?php echo $CLICSHOPPING_EMail->getDef('text_customer'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_EMail->getDef('text_customer'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::selectMenu('customers_email_address', $customers, (isset($_GET['customer']) ? $_GET['customer'] : '')); ?>
+                  <?php echo HTML::selectMenu('customers_email_address', $customers, HTML::sanitize($_GET['customer']) ?? ''); ?>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_EMail->getDef('text_from'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_EMail->getDef('text_from'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::inputField('from', '', 'required aria-required="true" id="textFrom" placeholder="' . $CLICSHOPPING_EMail->getDef('email_text_from') . '"', 'email'); ?>
+                  <?php echo HTML::inputField('from', STORE_OWNER_EMAIL_ADDRESS, 'required aria-required="true" id="textFrom" placeholder="' . $CLICSHOPPING_EMail->getDef('email_text_from') . '"', 'email'); ?>
                 </div>
               </div>
             </div>
@@ -126,14 +125,20 @@
               }
               $('#elfinder').elfinder(options);
           </script>
-
+          <?php
+            if (isset($_GET['email_message'])) {
+              $message = $_GET['email_message'];
+            } else {
+              $message = $CLICSHOPPING_EMail->getDef('text_message_customer');
+            }
+          ?>
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
                 <label for="<?php echo $CLICSHOPPING_EMail->getDef('text_message'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_EMail->getDef('text_message'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTMLOverrideAdmin::textAreaCkeditor('message', null, '750', '300'); ?>
+                  <?php echo HTMLOverrideAdmin::textAreaCkeditor('message', 'soft', '750', '300', $message); ?>
                 </div>
               </div>
             </div>

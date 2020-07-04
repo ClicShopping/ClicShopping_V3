@@ -43,31 +43,32 @@
   $languages = $CLICSHOPPING_Language->getLanguages();
 
   for ($i = 0, $n = count($languages); $i < $n; $i++) {
-    $values_languages_id[$i] = ['id' => $languages[$i]['id'],
+    $values_languages_id[$i] = [
+      'id' => $languages[$i]['id'],
       'text' => $languages[$i]['name']
     ];
   }
 
   $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select c.*,
-                                                                 a.*
-                                                          from :table_customers c left join :table_address_book a on c.customers_default_address_id = a.address_book_id
-                                                          where a.customers_id = c.customers_id
-                                                          and c.customers_id = :customers_id
-                                                        ');
+                                                             a.*
+                                                      from :table_customers c left join :table_address_book a on c.customers_default_address_id = a.address_book_id
+                                                      where a.customers_id = c.customers_id
+                                                      and c.customers_id = :customers_id
+                                                    ');
   $Qcustomers->bindInt(':customers_id', (int)$_GET['cID']);
   $Qcustomers->execute();
 
   $cInfo = new ObjectInfo($Qcustomers->toArray());
 
-  // Lecture sur la base de données des informations facturations et livraison du groupe client
+// Lecture sur la base de données des informations facturations et livraison du groupe client
   if ($cInfo->customers_group_id != 0) {
     $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
-                                                                        group_order_taxe,
-                                                                        group_payment_unallowed,
-                                                                        group_shipping_unallowed
-                                                                 from :table_customers_groups
-                                                                 where customers_group_id = :customers_group_id
-                                                                ');
+                                                                    group_order_taxe,
+                                                                    group_payment_unallowed,
+                                                                    group_shipping_unallowed
+                                                             from :table_customers_groups
+                                                             where customers_group_id = :customers_group_id
+                                                            ');
     $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id);
     $QcustomersGroup->execute();
 
@@ -84,7 +85,6 @@
 ?>
 
 <script type="text/javascript"><!--
-
     function check_form() {
         var error = 0;
         var error_message = <?= json_encode($CLICSHOPPING_Customers->getDef('js_error') . "\n\n"); ?>;

@@ -456,9 +456,12 @@
                   <div class="col-md-5">
                     <?php
                       $languages = $CLICSHOPPING_Language->getLanguages();
+
                       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                        $values_languages_id[$i] = array('id' => $languages[$i]['id'],
-                          'text' => $languages[$i]['name']);
+                        $values_languages_id[$i] = [
+                          'id' => $languages[$i]['id'],
+                          'text' => $languages[$i]['name']
+                        ];
                       }
 
                       echo HTML::selectMenu('customers_languages_id', $values_languages_id);
