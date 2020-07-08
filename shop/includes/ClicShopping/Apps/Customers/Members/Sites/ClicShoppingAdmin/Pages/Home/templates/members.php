@@ -134,7 +134,6 @@
 
       $listingTotalRow = $Qcustomers->getPageSetTotalRows();
 
-
       if ($listingTotalRow > 0) {
         while ($Qcustomers->fetch()) {
           $Qinfo = $CLICSHOPPING_Members->db->prepare('select customers_info_date_account_created as date_account_created,
@@ -144,7 +143,7 @@
                                                        from :table_customers_info
                                                        where customers_info_id = :customers_info_id
                                                        ');
-          $Qinfo->bindInt(':customers_info_id', (int)$Qcustomers->valueInt('customers_id'));
+          $Qinfo->bindInt(':customers_info_id', $Qcustomers->valueInt('customers_id'));
           $Qinfo->execute();
 
           if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcustomers->valueInt('customers_id')))) && !isset($lInfo)) {

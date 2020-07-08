@@ -117,7 +117,8 @@
             $group_customer_price = $products_price;
           }
 
-          $sql_array = [ 'products_id' => (int)$this->id,
+          $sql_array = [
+            'products_id' => (int)$this->id,
             'products_price' => (float)$products_price,
             'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
             'customers_group_price' => (float)$group_customer_price,

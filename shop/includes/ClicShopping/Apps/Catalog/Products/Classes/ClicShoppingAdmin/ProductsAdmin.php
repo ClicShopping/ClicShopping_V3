@@ -1115,14 +1115,16 @@
 
 // manual price B2B
       if (isset($_POST['products_percentage']) && $_POST['products_percentage'] == 'on') {
-        $_POST['products_percentage'] = 0;
+        $products_percentage = 0;
+      } else {
+        $products_percentage = 1;
       }
 
 // Affichage des produits, autorisation de commander et mode B2B en automatique mis par defaut en valeur 1 dans la cas de la B2B desactivee.
       if (MODE_B2B_B2C == 'false') {
         $products_view = 1;
         $orders_view = 1;
-        $_POST['products_percentage'] = 1;
+        $products_percentage = 1;
       }
 
       $products_model = $this->getProductModel();
@@ -1145,7 +1147,7 @@
         'products_weight' => (float)HTML::sanitize($_POST['products_weight']),
         'products_price_kilo' => HTML::sanitize($products_price_kilo),
         'products_status' => (int)HTML::sanitize($products_status),
-        'products_percentage' => (int)HTML::sanitize($_POST['products_percentage']),
+        'products_percentage' => (int)$products_percentage,
         'products_view' => (int)$products_view,
         'orders_view' => (int)$orders_view,
         'products_tax_class_id' => (int)HTML::sanitize($_POST['products_tax_class_id']),

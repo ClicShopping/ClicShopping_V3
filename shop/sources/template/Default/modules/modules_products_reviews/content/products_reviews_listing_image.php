@@ -16,5 +16,4 @@
     <div class="text-md-right productsReviewsListingImage"><?php echo $reviews_image; ?></div>
     <div class="text-md-right productsReviewsListingProductsName"><?php echo $products_name; ?></div>
     <div class="text-md-right productsReviewsListingProductsPrice"><?php echo CLICSHOPPING::getDef('text_price') . ' ' . $products_price; ?></div>
-    <div class="text-md-right productsReviewsListingDetailsButton"><?php echo $button_small_view_details; ?></div>
 </div>

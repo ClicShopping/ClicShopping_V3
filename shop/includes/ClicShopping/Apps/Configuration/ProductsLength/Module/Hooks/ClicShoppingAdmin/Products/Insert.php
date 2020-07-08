@@ -45,7 +45,8 @@
 
         $id = $Qproducts->valueInt('products_id');
 
-        $sql_data_array = ['products_length_class_id' => (int)HTML::sanitize($_POST['products_length_class_id']),
+        $sql_data_array = [
+          'products_length_class_id' => (int)HTML::sanitize($_POST['products_length_class_id']),
           'products_dimension_width' => (float)HTML::sanitize($_POST['products_dimension_width']),
           'products_dimension_height' => (float)HTML::sanitize($_POST['products_dimension_height']),
           'products_dimension_depth' => (float)HTML::sanitize($_POST['products_dimension_height']),

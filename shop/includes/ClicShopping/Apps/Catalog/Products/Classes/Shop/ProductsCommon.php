@@ -1977,7 +1977,7 @@
      * @access public
      */
 
-    private function setProductsExhausted($id, $button_type = null)
+    private function setProductsExhausted($id, $button_type = null): string
     {
       if (is_null($id)) {
         $id = $this->getID();

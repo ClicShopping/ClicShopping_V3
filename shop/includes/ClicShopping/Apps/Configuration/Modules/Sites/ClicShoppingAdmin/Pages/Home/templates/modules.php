@@ -215,8 +215,8 @@
         'description' => $module->description,
         'group' => $module->group,
         'status' => $module->check(),
-        'signature' => (isset($module->signature) ? $module->signature : null),
-        'api_version' => (isset($module->api_version) ? $module->api_version : null)
+        'signature' => $module->signature ?? null,
+        'api_version' => $module->api_version ?? null
       ];
 
       $module_keys = $module->keys();
