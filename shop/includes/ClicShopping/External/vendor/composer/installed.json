@@ -654,17 +654,17 @@
     },
     {
         "name": "stripe/stripe-php",
-        "version": "v7.39.0",
-        "version_normalized": "7.39.0.0",
+        "version": "v7.40.0",
+        "version_normalized": "7.40.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/stripe/stripe-php.git",
-            "reference": "350e4f4db026bd0627925885b30c09d054777b68"
+            "reference": "04aedea5ad95b9722aa394a41787751b2b478310"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/stripe/stripe-php/zipball/350e4f4db026bd0627925885b30c09d054777b68",
-            "reference": "350e4f4db026bd0627925885b30c09d054777b68",
+            "url": "https://api.github.com/repos/stripe/stripe-php/zipball/04aedea5ad95b9722aa394a41787751b2b478310",
+            "reference": "04aedea5ad95b9722aa394a41787751b2b478310",
             "shasum": ""
         },
         "require": {
@@ -680,7 +680,7 @@
             "squizlabs/php_codesniffer": "^3.3",
             "symfony/process": "~3.4"
         },
-        "time": "2020-06-25T23:56:19+00:00",
+        "time": "2020-07-06T17:51:30+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -896,17 +896,17 @@
     },
     {
         "name": "symfony/http-client-contracts",
-        "version": "v2.1.2",
-        "version_normalized": "2.1.2.0",
+        "version": "v2.1.3",
+        "version_normalized": "2.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/http-client-contracts.git",
-            "reference": "f8bed25edc964d015bcd87f1fec5734963931910"
+            "reference": "cd88921e9add61f2064c9c6b30de4f589db42962"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/f8bed25edc964d015bcd87f1fec5734963931910",
-            "reference": "f8bed25edc964d015bcd87f1fec5734963931910",
+            "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/cd88921e9add61f2064c9c6b30de4f589db42962",
+            "reference": "cd88921e9add61f2064c9c6b30de4f589db42962",
             "shasum": ""
         },
         "require": {
@@ -915,11 +915,15 @@
         "suggest": {
             "symfony/http-client-implementation": ""
         },
-        "time": "2020-05-25T17:37:45+00:00",
+        "time": "2020-07-06T13:23:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "2.1-dev"
+            },
+            "thanks": {
+                "name": "symfony/contracts",
+                "url": "https://github.com/symfony/contracts"
             }
         },
         "installation-source": "dist",
@@ -1681,17 +1685,17 @@
     },
     {
         "name": "symfony/service-contracts",
-        "version": "v2.1.2",
-        "version_normalized": "2.1.2.0",
+        "version": "v2.1.3",
+        "version_normalized": "2.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/service-contracts.git",
-            "reference": "66a8f0957a3ca54e4f724e49028ab19d75a8918b"
+            "reference": "58c7475e5457c5492c26cc740cc0ad7464be9442"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/service-contracts/zipball/66a8f0957a3ca54e4f724e49028ab19d75a8918b",
-            "reference": "66a8f0957a3ca54e4f724e49028ab19d75a8918b",
+            "url": "https://api.github.com/repos/symfony/service-contracts/zipball/58c7475e5457c5492c26cc740cc0ad7464be9442",
+            "reference": "58c7475e5457c5492c26cc740cc0ad7464be9442",
             "shasum": ""
         },
         "require": {
@@ -1701,11 +1705,15 @@
         "suggest": {
             "symfony/service-implementation": ""
         },
-        "time": "2020-05-20T17:43:50+00:00",
+        "time": "2020-07-06T13:23:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "2.1-dev"
+            },
+            "thanks": {
+                "name": "symfony/contracts",
+                "url": "https://github.com/symfony/contracts"
             }
         },
         "installation-source": "dist",
