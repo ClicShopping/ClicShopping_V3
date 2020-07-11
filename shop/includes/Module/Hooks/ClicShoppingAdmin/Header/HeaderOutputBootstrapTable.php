@@ -21,7 +21,7 @@
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output = '<link rel="stylesheet preload" as="style" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">';
+        $output = '<link rel="stylesheet preload" as="style" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">';
       }
 
       return $output;
