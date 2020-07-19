@@ -413,7 +413,8 @@
         }
 
         if ($error === false) {
-          $sql_data_array = ['customers_firstname' => $firstname,
+          $sql_data_array = [
+            'customers_firstname' => $firstname,
             'customers_lastname' => $lastname,
             'customers_email_address' => $email_address,
             'customers_telephone' => $telephone,
@@ -448,7 +449,8 @@
 
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
 // save element in address book
-          $sql_data_array = ['customers_id' => (int)$customer_id,
+          $sql_data_array = [
+            'customers_id' => (int)$customer_id,
             'entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_street_address' => $street_address,
@@ -481,7 +483,8 @@
 
           $CLICSHOPPING_Db->save('customers',$sql_data_array, $insert_array);
 
-          $sql_array = ['customers_info_id' => (int)$customer_id,
+          $sql_array = [
+            'customers_info_id' => (int)$customer_id,
             'customers_info_number_of_logons' => 0,
             'customers_info_date_account_created' => 'now()'
           ];
@@ -538,7 +541,8 @@
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
             $admin_email_welcome = CLICSHOPPING::getDef('email_welcome', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
 
-            $data_array = ['customer_name' => HTML::sanitize($_POST['lastname']),
+            $data_array = [
+              'customer_name' => HTML::sanitize($_POST['lastname']),
               'customer_firstame' => HTML::sanitize($_POST['firstname']),
               'customer_company' => HTML::sanitize($_POST['company']),
               'customer_mail' => $_POST['email_address']

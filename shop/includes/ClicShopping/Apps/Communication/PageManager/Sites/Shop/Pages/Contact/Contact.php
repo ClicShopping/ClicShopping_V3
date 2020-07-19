@@ -21,7 +21,6 @@
 
     protected function init()
     {
-
       if (!Registry::exists('PageManager')) {
         Registry::set('PageManager', new PageManagerApp());
       }

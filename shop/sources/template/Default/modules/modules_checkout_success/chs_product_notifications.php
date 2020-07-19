@@ -43,7 +43,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
       if ( isset($_GET['Checkout']) && isset($_GET['Success'])) {
-        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_success_action'), 'success', 'checkout_success');
+        $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('text_success_action'), 'success', 'success');
 
         $order_id = CheckoutSuccess::getCheckoutSuccessOrderId();
 

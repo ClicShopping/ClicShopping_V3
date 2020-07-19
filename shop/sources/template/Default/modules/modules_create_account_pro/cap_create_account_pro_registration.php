@@ -54,9 +54,11 @@
       }
 
       if (isset( $_SESSION['entry_state_has_zones'])) {
-        $country = (int)$_SESSION['country'];
-      } else {
-        $country = null;
+        if (isset($_SESSION['country'])) {
+          $country = HTML::sanitize($_SESSION['country']);
+        } else {
+          $country =  0;
+        }
       }
 
       if (isset($_POST['country']))  {

@@ -34,7 +34,7 @@
 //language
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Contact/contact');
 
-      if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
+      if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
 
         $CLICSHOPPING_Hooks->call('Contact', 'PreAction');
@@ -47,7 +47,7 @@
         if (isset($_POST['order_id'])) {
           $order_id = HTML::sanitize($_POST['order_id']);
         } else {
-          $order_id = '0';
+          $order_id = 0;
         }
 
         if (isset($_POST['send_to'])) {
@@ -134,7 +134,8 @@
 // insert the modification in the database
           if ($CLICSHOPPING_Customer->isLoggedOn()) {
             if ($order_id !== 0) {
-              $CLICSHOPPING_Db->save('orders_status_history', ['orders_id' => (int)$order_id,
+              $CLICSHOPPING_Db->save('orders_status_history', [
+                  'orders_id' => (int)$order_id,
                   'orders_status_invoice_id' => 1,
                   'admin_user_name' => '',
                   'date_added' => 'now()',

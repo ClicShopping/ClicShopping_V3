@@ -89,8 +89,12 @@
             if ($_POST['products_percentage'] == 1) {
               if ($products_price > 0) {
                 if (B2B == 'true') {
-                  if ($group_discount > 0) $newprice = $products_price + ($products_price / 100) * $group_discount;
-                  if ($group_discount == 0) $newprice = $products_price;
+                  if ($group_discount > 0){
+                    $newprice = $products_price + ($products_price / 100) * $group_discount;
+                  }
+                  if ($group_discount == 0) {
+                    $newprice = $products_price;
+                  }
                 }
 
                 if (B2B == 'false') {
@@ -264,7 +268,7 @@
               $products_quantity_unit_id_group = 0;
               $products_model_group = '';
               $products_quantity_fixed_group = 1;
-            } //end MODE_B2B_B2C
+            }
 
             $Qupdate = $this->app->db->prepare('update :table_products_groups
                                                 set price_group_view = :price_group_view,
@@ -293,17 +297,20 @@
                 $group_customer_price = $products_price;
               }
 
-              $this->app->db->save('products_groups', ['customers_group_price' => $group_customer_price,
+              $this->app->db->save('products_groups', [
+                'customers_group_price' => $group_customer_price,
                 'products_price' => (float)HTML::sanitize($_POST['products_price']),
               ],
                 ['products_id' => (int)$this->id,
-                  'customers_group_id' => $Qattributes->valueInt('customers_group_id')
+                 'customers_group_id' => $Qattributes->valueInt('customers_group_id')
                 ]
               );
-
-            } elseif (($group_customer_price == $Qattributes->valueInt('customers_group_price'))) {
+            }
+/*
+            elseif (($group_customer_price == $Qattributes->valueInt('customers_group_price'))) {
               $attributes = $Qattributes->fetch();
             }
+*/
           }
         }
       }

@@ -29,6 +29,7 @@
     public $app;
     public $sort_order;
     protected $currency;
+    public $group;
 
     protected $intent;
     protected $private_key;

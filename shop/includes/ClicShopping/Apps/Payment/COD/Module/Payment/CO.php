@@ -25,7 +25,8 @@
     public $description;
     public $enabled;
     public $app;
-
+    public $group;
+    
     public function __construct()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');

@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.43.0 - 2020-07-17
+* [#975](https://github.com/stripe/stripe-php/pull/975) Add support for `political_exposure` on `Person`
+
+## 7.42.0 - 2020-07-15
+* [#974](https://github.com/stripe/stripe-php/pull/974) Add new constants for `purpose` on `File`
+
+## 7.41.1 - 2020-07-15
+* [#973](https://github.com/stripe/stripe-php/pull/973) Multiple PHPDoc fixes
+
 ## 7.41.0 - 2020-07-14
 * [#971](https://github.com/stripe/stripe-php/pull/971) Adds enum values for `billing_address_collection` on Checkout `Session`
 

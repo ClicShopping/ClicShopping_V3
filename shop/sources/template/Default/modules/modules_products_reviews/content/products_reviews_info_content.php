@@ -11,7 +11,7 @@
 
 use ClicShopping\OM\CLICSHOPPING;
 ?>
-<div class="<?php echo $text_position; ?> col-md-<?php echo $content_width; ?>">
+<div class="<?php echo $text_postion; ?> col-md-<?php echo $content_width; ?>">
   <div class="row">
     <div class="col-md-12">
        <span class="float-md-left col-md-7 productsReviewInfoContentCustomerProductsName"><h3><?php echo $products_name ?></h3></span>

@@ -27,6 +27,7 @@
     public $icon;
     public $app;
     public $quotes;
+    public $group;
 
     public function __construct()
     {
