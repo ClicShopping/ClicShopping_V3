@@ -255,7 +255,7 @@
      * @param null $height
      * @return string
      */
-    public function getImage($language_code, $width = null, $height = null)
+    public function getImage(string $language_code, ?int $width = null, ?int $height = null) :string
     {
       if (!isset($width) || !is_int($width)) {
         $width = 28;
@@ -423,13 +423,14 @@
           $defs = $this->getDefinitionsFromFile($pathname);
 
           foreach ($defs as $key => $value) {
-            $this->db->save('languages_definitions', [
-                'languages_id' => $this->getId($language_code),
-                'content_group' => $group_key,
-                'definition_key' => $key,
-                'definition_value' => $value
-              ]
-            );
+            $sql_array = [
+              'languages_id' => $this->getId($language_code),
+              'content_group' => $group_key,
+              'definition_key' => $key,
+              'definition_value' => $value
+            ];
+
+            $this->db->save('languages_definitions', $sql_array);
           }
         }
 

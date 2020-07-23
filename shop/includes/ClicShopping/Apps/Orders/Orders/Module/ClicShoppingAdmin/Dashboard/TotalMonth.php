@@ -21,6 +21,7 @@
   {
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
@@ -66,6 +67,8 @@
         $month[$Qorder->value('dateday')] = $total + $Qorder->valueDecimal('total');
         $total = $month[$Qorder->value('dateday')];
       }
+
+   //   $month = array_reverse($month, true);
 
       $data_labels = json_encode(array_keys($month));
       $data = json_encode(array_values($month));

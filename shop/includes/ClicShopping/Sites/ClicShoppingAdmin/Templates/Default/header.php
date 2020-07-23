@@ -33,7 +33,7 @@
   <meta name="author" content="ClicShopping" />
   <meta name="description" content="ClicShopping Administration" />
 
-  <title><?php echo CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]); ?></title>
+  <title>ClicShopping, <?php echo CLICSHOPPING::getDef('title', ['store_name' => STORE_NAME]); ?></title>
 
   <base href="<?php echo CLICSHOPPING::getConfig('http_server', 'ClicShoppingAdmin') . CLICSHOPPING::getConfig('http_path', 'ClicShoppingAdmin'); ?>" />
 

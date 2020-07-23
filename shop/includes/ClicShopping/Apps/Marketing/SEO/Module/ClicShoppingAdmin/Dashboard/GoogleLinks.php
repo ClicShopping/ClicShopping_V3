@@ -17,9 +17,9 @@
 
   class GoogleLinks extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
@@ -30,8 +30,7 @@
 
       $this->app = Registry::get('SEO');
       $this->lang = Registry::get('Language');
-
-
+      
       $this->app->loadDefinitions('Module/ClicShoppingAdmin/Dashboard/google_links');
 
       $this->title = $this->app->getDef('module_admin_dashboard_googlelinks_app_title');

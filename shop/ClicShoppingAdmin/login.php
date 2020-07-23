@@ -132,7 +132,6 @@
 
         CLICSHOPPING::redirect();
         break;
-
       case 'create':
         $CLICSHOPPING_Hooks->call('PreAction', 'Create');
 

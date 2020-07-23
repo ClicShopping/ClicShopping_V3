@@ -9,7 +9,6 @@
    *
    */
 
-
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;

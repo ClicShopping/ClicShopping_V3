@@ -17,7 +17,6 @@
 
   class ReviewsClass
   {
-
     protected $productsCommon;
     protected $db;
     protected $lang;
@@ -208,13 +207,15 @@
     /**
      * Get rewiews with specific reviews id
      *
+     * @param int|null $id
      * @return array : $Qreviews : review informations
      * @access public
      */
-    public function getDataReviews($id = null): array
+    public function getDataReviews(?int $id = null): array
     {
       $reviews_id = HTML::sanitize($id);
-      if (!is_null($reviews_id)) {
+
+      if (!is_null($reviews_id) &&  is_numeric($reviews_id)) {
         if ($this->customer->getCustomersGroupID() == 0 || $this->customer->getCustomersGroupID() == 99) {
           $Qreviews = $this->db->prepare('select r.reviews_id,
                                                 rd.reviews_text,
@@ -254,6 +255,8 @@
         }
 
         return $Qreviews->fetch();
+      } else {
+        return false;
       }
     }
 

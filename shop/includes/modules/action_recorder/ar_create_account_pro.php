@@ -9,7 +9,6 @@
    *
    */
 
-
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
@@ -21,7 +20,7 @@
     public $description;
     public $sort_order = 0;
     public $minutes = 90;
-    public $attempts = 6;
+    public $attempts = 10;
     public $identifier;
     public $enabled = true;
 

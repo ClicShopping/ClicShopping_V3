@@ -20,10 +20,10 @@
   {
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
-
       if (!Registry::exists('Orders')) {
         Registry::set('Orders', new OrdersApp());
       }

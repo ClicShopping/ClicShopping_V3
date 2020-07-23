@@ -17,10 +17,8 @@
 
   class ReviewsInfo extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');

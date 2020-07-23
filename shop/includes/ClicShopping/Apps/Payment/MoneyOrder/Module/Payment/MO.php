@@ -29,7 +29,7 @@
     public $app;
     public $title_selection;
     public $group;
-    
+
     public function __construct()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
