@@ -50,6 +50,6 @@
 
       $CLICSHOPPING_Hooks->call('TemplateEmail', 'Update');
 
-      $this->app->redirect('TemplateEmail&page=' . (int)$_GET['page']);
+      $this->app->redirect('TemplateEmail');
     }
   }
