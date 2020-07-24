@@ -55,12 +55,14 @@
 // Handle the event
       switch ($event->type) {
         case 'payment_intent.succeeded':
-          $paymentIntent = $event->data->object; // contains a \Stripe\PaymentIntent
-          //handlePaymentIntentSucceeded($paymentIntent);
+          $event->data->object;
+//          $paymentIntent = $event->data->object; // contains a \Stripe\PaymentIntent
+//handlePaymentIntentSucceeded($paymentIntent);
           break;
         case 'payment_method.attached':
-          $paymentMethod = $event->data->object; // contains a \Stripe\PaymentMethod
-          //handlePaymentMethodAttached($paymentMethod);
+          $event->data->object;
+//          $paymentMethod = $event->data->object; // contains a \Stripe\PaymentMethod
+//handlePaymentMethodAttached($paymentMethod);
           break;
         // ... handle other event types
         default:

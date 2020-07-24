@@ -208,7 +208,8 @@ pre_confirmation_check()
           $this->intent->currency = $currency;
           $this->intent->metadata = $metadata;
 
-          $response = $this->intent->save();
+          $this->intent->save();
+//          $response = $this->intent->save();
 
         } catch (exception $err) {
           //$this->event_log($customer_id, 'page create intent', $stripe_payment_intent_id, $err->getMessage());
