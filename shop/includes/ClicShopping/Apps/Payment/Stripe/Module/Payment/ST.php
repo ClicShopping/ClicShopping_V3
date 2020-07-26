@@ -220,6 +220,7 @@ pre_confirmation_check()
 
       if (!isset($stripe_payment_intent_id)) {
         $description = STORE_NAME . ' - Order date time : ' . date('Y-m-d H:i:s');
+
         $params = [
             'amount' => $total_amount,
             'currency' => $currency,

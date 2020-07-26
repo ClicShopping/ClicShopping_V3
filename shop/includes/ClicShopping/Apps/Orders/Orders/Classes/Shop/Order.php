@@ -772,7 +772,6 @@
           }
 
           $products_tax = $this->products[$index]['tax'];
-          $products_tax_description = $this->products[$index]['tax_description'];
 
 // tax control for B2B group setting
           if ((DISPLAY_PRICE_WITH_TAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() === 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0 && $group_tax['group_tax'] == 'true')) {

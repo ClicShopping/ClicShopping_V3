@@ -55,7 +55,9 @@
         return false;
       }
 
-      $suppliers_id = $this->getSuppliersId();
+      If (isset($_GET['mID'])) {
+        $suppliers_id = $this->getSuppliersId();
+      }
 
       $Qsuppliers = $this->app ->db->prepare('select suppliers_id,
                                                      suppliers_name
@@ -83,7 +85,7 @@
         $output .= '<div class="row" id="supplierName">';
         $output .= '<label for="code" class="col-2 col-form-label">' . $this->app->getDef('text_suppliers_suppliers_name') . '</label>';
         $output .= '<div class="col-md-5">';
-        $output .= HTML::selectField('suppliers_id', $suppliers_name_array, $suppliers_id ?? null);
+        $output .= HTML::selectField('suppliers_id', $suppliers_name_array, $suppliers_id ?? 0);
         $output .= '</div>';
         $output .= '</div>';
       }

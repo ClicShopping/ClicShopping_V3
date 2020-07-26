@@ -11,6 +11,8 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\Apps\Marketing\SEO\Classes\ClicShoppingAdmin\SeoAdmin;
 
   $CLICSHOPPING_SEO = Registry::get('SEO');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
@@ -22,7 +24,7 @@
     echo $CLICSHOPPING_MessageStack->get('SEO');
   }
 
-  $Qpage = $CLICSHOPPING_SEO->db->prepare('select  p.submit_id,
+  $Qseo = $CLICSHOPPING_SEO->db->prepare('select  p.submit_id,
                                                   p.language_id,
                                                   p.submit_defaut_language_title,
                                                   p.submit_defaut_language_keywords,
@@ -49,33 +51,35 @@
                                          from :table_submit_description p
                                          where p.submit_id = 1
                                         ');
-  $Qpage->execute();
-
-  while ($Qpage->fetch()) {
-    $languageid = $Qpage->valueInt('language_id');
-    $submit_defaut_language_title[$languageid] = $Qpage->value('submit_defaut_language_title');
-    $submit_defaut_language_keywords[$languageid] = $Qpage->value('submit_defaut_language_keywords');
-    $submit_defaut_language_description[$languageid] = $Qpage->value('submit_defaut_language_description');
-    $submit_defaut_language_footer[$languageid] = $Qpage->value('submit_defaut_language_footer');
-    $submit_language_products_info_title[$languageid] = $Qpage->value('submit_language_products_info_title');
-    $submit_language_products_info_keywords[$languageid] = $Qpage->value('submit_language_products_info_keywords');
-    $submit_language_products_info_description[$languageid] = $Qpage->value('submit_language_products_info_description');
-    $submit_language_products_new_title[$languageid] = $Qpage->value('submit_language_products_new_title');
-    $submit_language_products_new_keywords[$languageid] = $Qpage->value('submit_language_products_new_keywords');
-    $submit_language_products_new_description[$languageid] = $Qpage->value('submit_language_products_new_description');
-    $submit_language_special_title[$languageid] = $Qpage->value('submit_language_special_title');
-    $submit_language_special_keywords[$languageid] = $Qpage->value('submit_language_special_keywords');
-    $submit_language_special_description[$languageid] = $Qpage->value('submit_language_special_description');
-    $submit_language_reviews_title[$languageid] = $Qpage->value('submit_language_reviews_title');
-    $submit_language_reviews_keywords[$languageid] = $Qpage->value('submit_language_reviews_keywords');
-    $submit_language_reviews_description [$languageid] = $Qpage->value('submit_language_reviews_description');
-    $submit_language_favorites_title[$languageid] = $Qpage->value('submit_language_favorites_title');
-    $submit_language_favorites_keywords[$languageid] = $Qpage->value('submit_language_favorites_keywords');
-    $submit_language_favorites_description [$languageid] = $Qpage->value('submit_language_favorites_description');
-    $submit_language_featured_title[$languageid] = $Qpage->value('submit_language_featured_title');
-    $submit_language_featured_keywords[$languageid] = $Qpage->value('submit_language_featured_keywords');
-    $submit_language_featured_description [$languageid] = $Qpage->value('submit_language_featured_description');
+  $Qseo->execute();
+  $seo = new ObjectInfo($Qseo->toArray());
+/*
+  while ($Qseo->fetch()) {
+    $languageid = $Qseo->valueInt('language_id');
+    $submit_defaut_language_title[$languageid] = $Qseo->value('submit_defaut_language_title');
+    $submit_defaut_language_keywords[$languageid] = $Qseo->value('submit_defaut_language_keywords');
+    $submit_defaut_language_description[$languageid] = $Qseo->value('submit_defaut_language_description');
+    $submit_defaut_language_footer[$languageid] = $Qseo->value('submit_defaut_language_footer');
+    $submit_language_products_info_title[$languageid] = $Qseo->value('submit_language_products_info_title');
+    $submit_language_products_info_keywords[$languageid] = $Qseo->value('submit_language_products_info_keywords');
+    $submit_language_products_info_description[$languageid] = $Qseo->value('submit_language_products_info_description');
+    $submit_language_products_new_title[$languageid] = $Qseo->value('submit_language_products_new_title');
+    $submit_language_products_new_keywords[$languageid] = $Qseo->value('submit_language_products_new_keywords');
+    $submit_language_products_new_description[$languageid] = $Qseo->value('submit_language_products_new_description');
+    $submit_language_special_title[$languageid] = $Qseo->value('submit_language_special_title');
+    $submit_language_special_keywords[$languageid] = $Qseo->value('submit_language_special_keywords');
+    $submit_language_special_description[$languageid] = $Qseo->value('submit_language_special_description');
+    $submit_language_reviews_title[$languageid] = $Qseo->value('submit_language_reviews_title');
+    $submit_language_reviews_keywords[$languageid] = $Qseo->value('submit_language_reviews_keywords');
+    $submit_language_reviews_description [$languageid] = $Qseo->value('submit_language_reviews_description');
+    $submit_language_favorites_title[$languageid] = $Qseo->value('submit_language_favorites_title');
+    $submit_language_favorites_keywords[$languageid] = $Qseo->value('submit_language_favorites_keywords');
+    $submit_language_favorites_description [$languageid] = $Qseo->value('submit_language_favorites_description');
+    $submit_language_featured_title[$languageid] = $Qseo->value('submit_language_featured_title');
+    $submit_language_featured_keywords[$languageid] = $Qseo->value('submit_language_featured_keywords');
+    $submit_language_featured_description [$languageid] = $Qseo->value('submit_language_featured_description');
   }
+*/
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
@@ -99,104 +103,6 @@
   <!-- ############################################################# //-->
   <!--          ONGLET Information General de la Page Accueil          //-->
   <!-- ############################################################# //-->
-
-  <!-- decompte caracteres -->
-
-  <script type="text/javascript">
-      $(document).ready(function () {
-        <?php
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        ?>
-          //default title
-          $("#default_title_<?php echo $i; ?>").charCount({
-              allowed: 70,
-              warning: 20,
-              counterText: ' Max : '
-          });
-
-          //default_description
-          $("#default_description_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-          //products_info title
-          $("#products_info_title_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-          //products_info description
-          $("#products_info_description_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-//products_new title
-          $("#products_new_title_<?php echo $i; ?>").charCount({
-              allowed: 70,
-              warning: 20,
-              counterText: ' Max : '
-          });
-
-// products_new description
-          $("#products_new_description_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-//specials title
-          $("#specials_title_<?php echo $i; ?>").charCount({
-              allowed: 70,
-              warning: 20,
-              counterText: ' Max : '
-          });
-
-//specials description
-          $("#specials_description_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-//reviews title
-          $("#reviews_title_<?php echo $i; ?>").charCount({
-              allowed: 70,
-              warning: 20,
-              counterText: ' Max : '
-          });
-
-//reviews description
-          $("#reviews_description_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-//favorites title
-          $("#favorites_title_<?php echo $i; ?>").charCount({
-              allowed: 70,
-              warning: 20,
-              counterText: ' Max : '
-          });
-
-//reviews description
-          $("#favorites_description_<?php echo $i; ?>").charCount({
-              allowed: 150,
-              warning: 20,
-              counterText: 'Max : '
-          });
-
-        <?php
-        }
-        ?>
-      });
-  </script>
-
   <div id="pagesSubmitTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
@@ -236,68 +142,68 @@
             </div>
             <?php
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                ?>
+            ?>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="lang"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                </div>
+              </div>
+            </div>
 
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="lang"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::inputField('submit_defaut_language_title_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_title[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="default_title_' .$i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_title') . '"', true) . '&nbsp;'; ?>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_title'); ?></label>
-                      <div class="col-md-7">
-                        <?php echo HTML::inputField('submit_defaut_language_title_' . $languages[$i]['id'], $submit_defaut_language_title[$languages[$i]['id']], 'maxlength="70" size="77" id="default_title_' . $i . '"', false); ?>
-                      </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::textAreaField('submit_defaut_language_description_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_description[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="default_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_description') . '"') . '&nbsp;'; ?>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_description'); ?></label>
-                      <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_defaut_language_description_' . $languages[$i]['id'], (isset($submit_defaut_language_description[$languages[$i]['id']]) ? $submit_defaut_language_description[$languages[$i]['id']] : $submit_defaut_language_description), '75', '2', 'id="default_description_' . $i . '"'); ?>
-                      </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::inputField('submit_defaut_language_keywords_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageKeywords($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="submit_defaut_language_keywords' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords') . '"', true) . '&nbsp;'; ?>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_keywords'); ?></label>
-                      <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_defaut_language_keywords_' . $languages[$i]['id'], (isset($submit_defaut_language_keywords[$languages[$i]['id']]) ? $submit_defaut_language_keywords[$languages[$i]['id']] : $submit_defaut_language_keywords), '150', '2'); ?>
-                      </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::inputField('submit_defaut_language_footer_[' . $languages[$i]['id'] . ']', ($submit_defaut_language_footer[$languages[$i]['id']] ?? SeoAdmin::getSeoDefaultLanguageFooter($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="submit_defaut_language_footer' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer') . '"', true) . '&nbsp;'; ?>
                   </div>
                 </div>
-
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="form-group row">
-                      <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?>"
-                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_default_language_footer'); ?></label>
-                      <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_defaut_language_footer_' . $languages[$i]['id'], (isset($submit_defaut_language_footer[$languages[$i]['id']]) ? $submit_defaut_language_footer[$languages[$i]['id']] : $submit_defaut_language_footer), '150', '2'); ?>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <?php
-              }
+              </div>
+            </div>
+            <?php
+            }
             ?>
           </div>
+
           <div class="separator"></div>
           <div class="alert alert-info" role="alert">
             <div><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/help.gif', $CLICSHOPPING_SEO->getDef('title_help_submit')) . ' ' . $CLICSHOPPING_SEO->getDef('title_help_submit') ?></div>
@@ -309,7 +215,6 @@
         <!--     ONGLET Information General de page information produit   //-->
         <!-- ############################################################# //-->
         <div class="tab-pane" id="tab2">
-
           <div class="col-md-12 mainTitle">
             <div
               class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_products_info'); ?></div>
@@ -325,7 +230,7 @@
             </div>
             <?php
               for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                ?>
+              ?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -341,7 +246,7 @@
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_title'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_title'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::inputField('submit_language_products_info_title_' . $languages[$i]['id'], $submit_language_products_info_title[$languages[$i]['id']], 'maxlength="50" size="77" id="products_info_title_' . $i . '"', false); ?>
+                        <?php echo HTML::inputField('submit_language_products_info_title_[' . $languages[$i]['id'] . ']', ($submit_language_products_info_title[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsInfoTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="products_info_title_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -354,7 +259,7 @@
                         for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_description'); ?>"
                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_description'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::textAreaField('submit_language_products_info_description_' . $languages[$i]['id'], (isset($submit_language_products_info_description[$languages[$i]['id']]) ? $submit_language_products_info_description[$languages[$i]['id']] : $submit_language_products_info_description), '75', '2', 'id="products_info_description_' . $i . '"'); ?>
+                        <?php echo HTML::textAreaField('submit_language_products_info_description_[' . $languages[$i]['id'] . ']', ($submit_language_products_info_description[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsInfoDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="products_info_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_description') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -367,7 +272,7 @@
                         for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_keywords'); ?>"
                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_keywords'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_language_products_info_keywords_' . $languages[$i]['id'], (isset($submit_language_products_info_keywords[$languages[$i]['id']]) ? $submit_language_products_info_keywords[$languages[$i]['id']] : $submit_language_products_info_keywords), '150', '2'); ?>
+                        <?php echo HTML::textAreaField('submit_language_products_info_keywords_[' . $languages[$i]['id'] . ']', ($submit_language_products_info_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsInfoKeywords($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="submit_language_products_info_keywords' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_info_keywords') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -404,8 +309,8 @@
             </div>
 
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
-                ?>
+            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              ?>
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
@@ -421,7 +326,7 @@
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_title'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_title'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::inputField('submit_language_products_new_title_' . $languages[$i]['id'], $submit_language_products_new_title[$languages[$i]['id']], 'maxlength="50" size="77" id="products_new_title_' . $i . '"', false); ?>
+                        <?php echo HTML::inputField('submit_language_products_new_title_[' . $languages[$i]['id'] . ']', ($submit_language_products_new_title[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsNewTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="products_new_title_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -434,7 +339,7 @@
                         for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_description'); ?>"
                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_description'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::textAreaField('submit_language_products_new_description_' . $languages[$i]['id'], (isset($submit_language_products_new_description[$languages[$i]['id']]) ? $submit_language_products_new_description[$languages[$i]['id']] : $submit_language_products_new_description), '75', '2', 'id="products_new_description_' . $i . '"'); ?>
+                        <?php echo HTML::textAreaField('submit_language_products_new_description_[' . $languages[$i]['id'] . ']', ($submit_language_products_new_description[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsNewDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="products_new_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_description') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -447,7 +352,7 @@
                         for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_keywords'); ?>"
                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_keywords'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_language_products_new_keywords_' . $languages[$i]['id'], (isset($submit_language_products_new_keywords[$languages[$i]['id']]) ? $submit_language_products_new_keywords[$languages[$i]['id']] : $submit_language_products_new_keywords), '150', '2'); ?>
+                        <?php echo HTML::textAreaField('submit_language_products_new_keywords_[' . $languages[$i]['id'] . ']', ($submit_language_products_new_description[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsNewKeywords($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="submit_language_products_new_keywords' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_new_keywords') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -501,19 +406,18 @@
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_specials_title'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_specials_title'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::inputField('submit_language_special_title_' . $languages[$i]['id'], $submit_language_special_title[$languages[$i]['id']], 'maxlength="50" size="77" id="specials_title_' . $i . '"', false); ?>
+                        <?php echo HTML::inputField('submit_language_special_title_[' . $languages[$i]['id'] . ']', ($submit_language_special_title[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsSpecialsTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="specials_title_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_specials_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_specials_description'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_specials_description'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::textAreaField('submit_language_special_description_' . $languages[$i]['id'], (isset($submit_language_special_description[$languages[$i]['id']]) ? $submit_language_special_description[$languages[$i]['id']] : $submit_language_special_description), '75', '2', 'id="specials_description_' . $i . '"'); ?>
+                        <?php echo HTML::textAreaField('submit_language_special_description_[' . $languages[$i]['id'] . ']', ($submit_language_special_description[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsSpecialsDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="specials_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_specials_description') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -525,7 +429,7 @@
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_specials_keywords'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_specials_keywords'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_language_special_keywords_' . $languages[$i]['id'], (isset($submit_language_special_keywords[$languages[$i]['id']]) ? $submit_language_special_keywords[$languages[$i]['id']] : $submit_language_special_keywords), '150', '2'); ?>
+                        <?php echo HTML::textAreaField('submit_language_special_keywords_[' . $languages[$i]['id'] . ']', ($submit_language_special_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsSpecialskeywords($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="submit_language_products_info_description' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_specials_keywords') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -576,22 +480,21 @@
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label
-                        for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_reviews_title'); ?>"
-                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_reviews_title'); ?></label>
+                        for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_title'); ?>"
+                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_title'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::inputField('submit_language_reviews_title_' . $languages[$i]['id'], $submit_language_reviews_title[$languages[$i]['id']], 'maxlength="50" size="77" id="reviews_title_' . $i . '"', false); ?>
+                        <?php echo HTML::inputField('submit_language_reviews_title_[' . $languages[$i]['id'] . ']', ($submit_language_reviews_title[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsSpecialsTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="reviews_title_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_title') . '"', true) . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-5">
                     <div class="form-group row">
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_description'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_description'); ?></label>
                       <div class="col-md-5">
-                        <?php echo HTML::textAreaField('submit_language_reviews_description_' . $languages[$i]['id'], (isset($submit_language_reviews_description[$languages[$i]['id']]) ? $submit_language_reviews_description[$languages[$i]['id']] : $submit_language_reviews_description), '75', '2', 'id="reviews_description_' . $i . '"'); ?>
+                        <?php echo HTML::textAreaField('submit_language_reviews_description_[' . $languages[$i]['id'] . ']', ($submit_language_reviews_description[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsReviewsDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="reviews_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_description') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -603,7 +506,7 @@
                       <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_keywords'); ?>"
                              class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_keywords'); ?></label>
                       <div class="col-md-7">
-                        <?php echo HTML::textAreaField('submit_language_reviews_keywords_' . $languages[$i]['id'], (isset($submit_language_reviews_keywords[$languages[$i]['id']]) ? $submit_language_reviews_keywords[$languages[$i]['id']] : $submit_language_reviews_keywords), '150', '5'); ?>
+                        <?php echo HTML::textAreaField('submit_language_reviews_keywords_[' . $languages[$i]['id'] . ']', ($submit_language_reviews_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoProductsReviewsKeywords($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="text_submit_language_reviews_description' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_reviews_keywords') . '"') . '&nbsp;'; ?>
                       </div>
                     </div>
                   </div>
@@ -624,61 +527,61 @@
                class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_favorites'); ?></div>
           </div>
           <div class="adminformTitle">
-              <div class="row">
-                  <div class="col-md-12 text-md-center">
-                      <span class="col-md-3"></span>
-                      <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
-                                                rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                  </div>
+            <div class="row">
+              <div class="col-md-12 text-md-center">
+                <span class="col-md-3"></span>
+                <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
+                                          rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
               </div>
+            </div>
 
             <?php
             for ($i = 0, $n = count($languages); $i < $n; $i++) {
               ?>
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label for="lang1"
-                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                        </div>
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label for="lang1"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                     </div>
+                  </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label
-                                    for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_favorites_title'); ?>"
-                                    class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_favorites_title'); ?></label>
-                            <div class="col-md-7">
-                              <?php echo HTML::inputField('submit_language_favorites_title_' . $languages[$i]['id'], $submit_language_favorites_title[$languages[$i]['id']], 'maxlength="50" size="77" id="favorites_title_' . $i . '"', false); ?>
-                            </div>
-                        </div>
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label
+                          for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_favorites_title'); ?>"
+                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_favorites_title'); ?></label>
+                      <div class="col-md-7">
+                        <?php echo HTML::inputField('submit_language_favorites_title_[' . $languages[$i]['id'] . ']', ($submit_language_favorites_title[$languages[$i]['id']] ?? SeoAdmin::getSeoFavoritesTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="favorites_title_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_favorites_title') . '"', true) . '&nbsp;'; ?>
+                      </div>
                     </div>
+                  </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_description'); ?>"
-                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_description'); ?></label>
-                            <div class="col-md-5">
-                              <?php echo HTML::textAreaField('submit_language_favorites_description_' . $languages[$i]['id'], (isset($submit_language_favorites_description[$languages[$i]['id']]) ? $submit_language_favorites_description[$languages[$i]['id']] : $submit_language_favorites_description), '75', '2', 'id="favorites_description_' . $i . '"'); ?>
-                            </div>
-                        </div>
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_description'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_description'); ?></label>
+                      <div class="col-md-5">
+                        <?php echo HTML::textAreaField('submit_language_favorites_description_[' . $languages[$i]['id'] . ']', ($submit_language_favorites_description[$languages[$i]['id']] ?? SeoAdmin::getSeoFavoritesDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="favorites_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_description') . '"') . '&nbsp;'; ?>
+                      </div>
                     </div>
+                  </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_keywords'); ?>"
-                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_keywords'); ?></label>
-                            <div class="col-md-7">
-                              <?php echo HTML::textAreaField('submit_language_favorites_keywords_' . $languages[$i]['id'], (isset($submit_language_favorites_keywords[$languages[$i]['id']]) ? $submit_language_favorites_keywords[$languages[$i]['id']] : $submit_language_favorites_keywords), '150', '5'); ?>
-                            </div>
-                        </div>
+                  <div class="col-md-5">
+                    <div class="form-group row">
+                      <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_keywords'); ?>"
+                             class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_keywords'); ?></label>
+                      <div class="col-md-7">
+                        <?php echo HTML::textAreaField('submit_language_favorites_keywords_[' . $languages[$i]['id'] . ']', ($submit_language_favorites_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoFavoritesKeywords($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="text_submit_language_reviews_description' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_favorites_keywords') . '"') . '&nbsp;'; ?>
+                      </div>
                     </div>
+                  </div>
                 </div>
               <?php
             }
@@ -693,66 +596,66 @@
 
         <div class="tab-pane" id="tab7">
           <div class="col-md-12 mainTitle">
-              <div
-                class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_featured'); ?></div>
+            <div
+              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_featured'); ?></div>
           </div>
           <div class="adminformTitle">
-              <div class="row">
-                  <div class="col-md-12 text-md-center">
-                      <span class="col-md-3"></span>
-                      <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
-                                                rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
-                  </div>
+            <div class="row">
+              <div class="col-md-12 text-md-center">
+                  <span class="col-md-3"></span>
+                  <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
+                                            rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
               </div>
+            </div>
 
             <?php
             for ($i = 0, $n = count($languages); $i < $n; $i++) {
               ?>
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label for="lang1"
-                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
-                        </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="lang1"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
                 </div>
+              </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label
-                                    for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_featured_title'); ?>"
-                                    class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_featured_title'); ?></label>
-                            <div class="col-md-7">
-                              <?php echo HTML::inputField('submit_language_featured_title_' . $languages[$i]['id'], $submit_language_featured_title[$languages[$i]['id']], 'maxlength="50" size="77" id="featured_title_' . $i . '"', false); ?>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label
+                        for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_featured_title'); ?>"
+                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_products_featured_title'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::inputField('submit_language_featured_title_[' . $languages[$i]['id'] . ']', ($submit_language_featured_title[$languages[$i]['id']] ?? SeoAdmin::getSeoFeaturedTitle($seo->submit_id, $languages[$i]['id'])), 'class="form-control" id="featured_title_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_products_featured_title') . '"', true) . '&nbsp;'; ?>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_description'); ?>"
-                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_description'); ?></label>
-                            <div class="col-md-5">
-                              <?php echo HTML::textAreaField('submit_language_featured_description_' . $languages[$i]['id'], (isset($submit_language_featured_description[$languages[$i]['id']]) ? $submit_language_featured_description[$languages[$i]['id']] : $submit_language_featured_description), '75', '2', 'id="featured_description_' . $i . '"'); ?>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_description'); ?>"
+                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_description'); ?></label>
+                  <div class="col-md-5">
+                    <?php echo HTML::textAreaField('submit_language_featured_description_[' . $languages[$i]['id'] . ']', ($submit_language_featured_description[$languages[$i]['id']] ?? SeoAdmin::getSeoFeaturedDescription($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="featured_description_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_featured_description') . '"') . '&nbsp;'; ?>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group row">
-                            <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_keywords'); ?>"
-                                   class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_keywords'); ?></label>
-                            <div class="col-md-7">
-                              <?php echo HTML::textAreaField('submit_language_featured_keywords_' . $languages[$i]['id'], (isset($submit_language_featured_keywords[$languages[$i]['id']]) ? $submit_language_featured_keywords[$languages[$i]['id']] : $submit_language_featured_keywords), '150', '5'); ?>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group row">
+                  <label for="<?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_keywords'); ?>"
+                       class="col-5 col-form-label"><?php echo $CLICSHOPPING_SEO->getDef('text_submit_language_featured_keywords'); ?></label>
+                  <div class="col-md-7">
+                    <?php echo HTML::textAreaField('submit_language_featured_keywords_[' . $languages[$i]['id'] . ']', ($submit_language_featured_keywords[$languages[$i]['id']] ?? SeoAdmin::getSeoFeaturedkeywords($seo->submit_id, $languages[$i]['id'])), '75', '2', 'class="form-control" id="featured_keywords_' . $i . '" placeholder="' . $CLICSHOPPING_SEO->getDef('text_submit_language_featured_keywords') . '"') . '&nbsp;'; ?>
+                  </div>
                 </div>
+              </div>
+            </div>
               <?php
             }
             ?>
@@ -778,3 +681,113 @@
 </div>
 </form>
 </div>
+
+<!-- decompte caracteres -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      <?php
+      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      ?>
+        //default title
+        $("#default_title_<?php echo $i; ?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+        //default_description
+        $("#default_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+        //products_info title
+        $("#products_info_title_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+        //products_info description
+        $("#products_info_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+//products_new title
+        $("#products_new_title_<?php echo $i; ?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+// products_new description
+        $("#products_new_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+//specials title
+        $("#specials_title_<?php echo $i; ?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+//specials description
+        $("#specials_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+//reviews title
+        $("#reviews_title_<?php echo $i; ?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+//reviews description
+        $("#reviews_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+//favorites title
+        $("#favorites_title_<?php echo $i; ?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+//favorites description
+        $("#favorites_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+
+//featured title
+        $("#featured_title_<?php echo $i; ?>").charCount({
+            allowed: 70,
+            warning: 20,
+            counterText: ' Max : '
+        });
+
+//featured description
+        $("#featured_description_<?php echo $i; ?>").charCount({
+            allowed: 150,
+            warning: 20,
+            counterText: 'Max : '
+        });
+      <?php
+      }
+      ?>
+    });
+</script>

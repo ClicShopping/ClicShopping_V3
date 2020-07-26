@@ -71,9 +71,8 @@
       $suppliers = $Qsuppliers->fetch();
 
       $mInfo = new ObjectInfo($Qsuppliers->toArray());
-
     } else {
-      $mInfo = new ObjectInfo(array());
+      $mInfo = new ObjectInfo([]);
     }
 
     echo HTMLOverrideAdmin::getCkeditor();
@@ -256,7 +255,7 @@
                   <label for="<?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_notes'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_notes'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::textAreaField('suppliers_notes', $mInfo->suppliers_notes, 70, 10); ?>
+                    <?php echo HTML::textAreaField('suppliers_notes', $mInfo->suppliers_notes ?? '', 70, 10); ?>
                   </div>
                 </div>
               </div>
@@ -287,7 +286,7 @@
                       class="col-md-4 text-md-center float-md-left"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('suppliers_image', '212', '212', null); ?></span>
                     <span class="col-md-8 text-md-center float-md-right">
                         <div class="col-md-12">
-                          <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->suppliers_image, $CLICSHOPPING_Suppliers->getDef('text_products_image_vignette')); ?>
+                          <?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->suppliers_image ?? '', $CLICSHOPPING_Suppliers->getDef('text_products_image_vignette')); ?>
                          </div>
                         <div class="col-md-12 text-md-right">
                           <?php echo $CLICSHOPPING_Suppliers->getDef('text_suppliers_delete_image') . HTML::checkboxField('delete_image', 'yes', false); ?>

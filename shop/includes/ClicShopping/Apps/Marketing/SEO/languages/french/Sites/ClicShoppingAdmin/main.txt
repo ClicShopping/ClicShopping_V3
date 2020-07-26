@@ -117,9 +117,9 @@ display_title_featured = Afficher le titre de la description des produits sélec
 display_featured = Afficher les mots clefs de la description des produits sélectionnés par défaut
 display_description_featured = Afficher la description des produits sélectionnés par défaut
 
-text_submit_language_featured_title = Titre des coups de coeur
-text_submit_language_featured_keywords = Mots clefs des coups de coeur
-text_submit_language_featured_description = Description des coups de coeur
+text_submit_language_featured_title = Titre des coups des produits sélectionnés
+text_submit_language_featured_keywords = Mots clefs des produits sélectionnés
+text_submit_language_featured_description = Description des produits sélectionnés
 
 text_products_page_seo = SEO
 
