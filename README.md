@@ -43,6 +43,7 @@ PHP > 7.4.3
 #Installation
  Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
  Step2 : Install Clicshopping : https://www.mysite.com/shop/install
+More information in the Wiki on the forum
 
 #Checklist
 - [x] read this README document
