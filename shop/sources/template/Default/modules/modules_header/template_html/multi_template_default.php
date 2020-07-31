@@ -70,7 +70,7 @@
   }
   if (!$CLICSHOPPING_Customer->isLoggedOn()) {
 ?>
-          <span><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Login'), CLICSHOPPING::getDef('modules_header_multi_template_create_account')); ?> | </span>
+          <span><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&LogIn'), CLICSHOPPING::getDef('modules_header_multi_template_create_account')); ?> | </span>
  <?php
   }
 ?>

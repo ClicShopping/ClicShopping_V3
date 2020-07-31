@@ -69,7 +69,7 @@ image_edit = Edit
 help_title_onglet_general = Informations sur la gestion du template
 
 text_help_template = <ul>
-<li>{{http_shop}} vous permettra d'insérer l'URL du catalogue du site dans votre email : ex : {{http_shop}}index..php?Account&login = http://www.domain.com/shop/index. ?Account&Login</li>
+<li>{{http_shop}} vous permettra d'insérer l'URL du catalogue du site dans votre email : ex : {{http_shop}}index..php?Account&login = http://www.domain.com/shop/index. ?Account&LogIn</li>
 <li>{{store_name}} vous permettra d'insérer le nom de la boutique dans votre email</li>
 <li>{{store_owner_email_address}}  vous permettra d'insérer votre adresse email de la boutique dans votre email</li>
 </ul>

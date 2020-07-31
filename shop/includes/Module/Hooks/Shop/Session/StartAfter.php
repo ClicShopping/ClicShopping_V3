@@ -51,7 +51,7 @@
         if ($_SESSION['SESSION_USER_AGENT'] != $_SERVER['HTTP_USER_AGENT']) {
           $CLICSHOPPING_Session->kill();
 
-          CLICSHOPPING::redirect(null, 'Account&Login');
+          CLICSHOPPING::redirect(null, 'Account&LogIn');
         }
       }
 
@@ -64,7 +64,7 @@
         if ($_SESSION['SESSION_IP_ADDRESS'] != HTTP::GetIpAddress()) {
           $CLICSHOPPING_Session->kill();
 
-          CLICSHOPPING::redirect(null, 'Account&Login');
+          CLICSHOPPING::redirect(null, 'Account&LogIn');
         }
       }
     }

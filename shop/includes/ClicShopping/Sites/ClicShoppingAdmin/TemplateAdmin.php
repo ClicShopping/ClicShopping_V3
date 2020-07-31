@@ -276,7 +276,7 @@
         'Account&Edit',
         'Account&History',
         'Account&HistoryInfo',
-        'Account&Login',
+        'Account&LogIn',
         'Account&MyFeedBack',
         'Account&Newsletter',
         'Account&NewsletterNoAccount',
