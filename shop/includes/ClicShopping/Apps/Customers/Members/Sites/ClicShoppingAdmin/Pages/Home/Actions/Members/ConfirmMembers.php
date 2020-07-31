@@ -21,10 +21,8 @@
 
   class ConfirmMembers extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Members = Registry::get('Members');
       $CLICSHOPPING_Mail = Registry::get('Mail');
 
@@ -81,6 +79,8 @@
       if (!empty(COUPON_CUSTOMER_B2B)) {
         $email_coupon = $CLICSHOPPING_Members->getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
         $email_coupon = html_entity_decode($email_coupon);
+      } else {
+        $email_coupon = '';
       }
 
       $text_password_body = html_entity_decode($CLICSHOPPING_Members->getDef('email_password_reminder_body', ['store_name' => STORE_NAME,
