@@ -306,12 +306,7 @@
                 ]
               );
             }
-/*
-            elseif (($group_customer_price == $Qattributes->valueInt('customers_group_price'))) {
-              $attributes = $Qattributes->fetch();
-            }
-*/
-          }
+           }
         }
       }
     }

@@ -88,7 +88,7 @@
                 <label for="<?php echo $CLICSHOPPING_EMail->getDef('text_customer'); ?>"
                        class="col-5 col-form-label"><?php echo $CLICSHOPPING_EMail->getDef('text_customer'); ?></label>
                 <div class="col-md-5">
-                  <?php echo HTML::selectMenu('customers_email_address', $customers, HTML::sanitize($_GET['customer']) ?? ''); ?>
+                  <?php echo HTML::selectMenu('customers_email_address', $customers, isset($_GET['customer']) ?? ''); ?>
                 </div>
               </div>
             </div>
