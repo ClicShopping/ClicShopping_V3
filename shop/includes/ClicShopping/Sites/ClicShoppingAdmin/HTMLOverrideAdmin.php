@@ -69,9 +69,9 @@
      * @param boolean $override Override the default value with the value found in the GET or POST scope
      * @access public
      */
-    public static function textAreaCkeditor(string $name, ?string $value = null, int $width, int $height, ?string $text = null, ?string $parameters = null, bool $override = true): string
+    public static function textAreaCkeditor(string $name, ?string $value = null, int $width = 750, int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
     {
-      $height = '750';
+
 
       $field = '<textarea name="' . HTML::output($name) . '"';
 
@@ -95,7 +95,8 @@
         CKEDITOR.replace(\'' . HTML::output($name) . '\',
     {
         customConfig: "' . static::getCkeditorCustomizeJsURL()  . '",
-        width : ' . $height . ',
+        height : ' . $height . ',
+        width : ' . $width . ',
         toolbar : "Full",
         filebrowserBrowseUrl :"' . $url . '",
     });
