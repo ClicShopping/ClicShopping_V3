@@ -33,9 +33,17 @@
     {
       $result = true;
 
-      if (!is_writable(static::$work_dir)) $result = false;
-      if (PHP_VERSION < '7.4.3') $result = false;
-      if (CONFIGURATION_PRELOADING == 'false') $result = false;
+      if (!is_writable(static::$work_dir)) {
+        $result = false;
+      }
+
+      if (PHP_VERSION < '7.4.3') {
+        $result = false;
+      }
+
+      if (CONFIGURATION_PRELOADING == 'false') {
+        $result = false;
+      }
 
       return $result;
     }
@@ -53,14 +61,14 @@
           ->whenHits(200000)
           ->overwrite(true)
           ->useCompile()
+          ->exclude([
+              CLICSHOPPING::BASE_DIR . 'External/*'
+          ])
           ->append(
             CLICSHOPPING::BASE_DIR . 'Apps/*',
             CLICSHOPPING::BASE_DIR . 'Sites/*',
             static::getFiles()
           )
-          ->exclude([
-            CLICSHOPPING::BASE_DIR . 'External/'
-          ])
           ->generate();
       }
     }
@@ -128,8 +136,10 @@
       }
 
       if($path_errors){
-        echo 'The following directories do not exists<br />';
+        print_r('The following directories do not exists<br />' . $path_errors, true);
         die();
+      } else {
+        return $dirContents;
       }
     }
 

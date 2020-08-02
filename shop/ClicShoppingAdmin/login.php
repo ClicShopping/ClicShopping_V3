@@ -132,6 +132,7 @@
 
         CLICSHOPPING::redirect();
         break;
+
       case 'create':
         $CLICSHOPPING_Hooks->call('PreAction', 'Create');
 
@@ -493,7 +494,8 @@
           </div>
           <div class="modal-body">
             <div class="col-md-12 center-block">
-              <div class="text-danger" style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
+              <div class="text-danger"
+                   style="font-size:12px; padding-bottom:10px;"><?php echo CLICSHOPPING::getDef('text_sent_password'); ?></div>
               <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
                 <?php echo HTML::inputField('username', '', 'size="150" placeholder="' . CLICSHOPPING::getDef('text_email_lost_password') . '" required aria-required="true" autocomplete="off" aria-describedby="basic-addon1"'); ?>

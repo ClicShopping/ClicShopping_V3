@@ -328,7 +328,7 @@
      * @return string $manufacturer['manufacturers_seo_description']
      * @access public
      */
-    public static function getManufacturerSeoDescription(int $manufacturers_id, int $language_id) :string
+    public static function getManufacturerSeoDescription(?int $manufacturers_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -338,8 +338,8 @@
                                                   and languages_id = :language_id
                                                 ');
 
-      $Qmanufacturers->bindInt(':manufacturers_id', (int)$manufacturers_id);
-      $Qmanufacturers->bindInt(':language_id', (int)$language_id);
+      $Qmanufacturers->bindInt(':manufacturers_id', $manufacturers_id);
+      $Qmanufacturers->bindInt(':language_id', $language_id);
       $Qmanufacturers->execute();
 
 
@@ -353,7 +353,7 @@
      * @return string $manufacturer['manufacturers_seo_title'],  seo title of the manufacturer
      * @access public
      */
-    public static function getManufacturerSeoTitle($manufacturers_id, $language_id)
+    public static function getManufacturerSeoTitle(?int $manufacturers_id, int $language_id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
