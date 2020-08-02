@@ -219,7 +219,7 @@
           $message = $email_text;
           $message = str_replace('src="/', 'src="' . HTTP::typeUrlDomain() . '/', $message);
           $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-          $CLICSHOPPING_Mail->build_message();
+          $CLICSHOPPING_Mail->buildMessage();
           $from = STORE_OWNER_EMAIL_ADDRESS;
           $CLICSHOPPING_Mail->send($name, $email_address, '', $from, $email_subject);
 
@@ -239,7 +239,7 @@
             $from = STORE_OWNER_EMAIL_ADDRESS;
             $admin_email_text_admin .= $admin_email_welcome . $admin_email_text_admin;
             $CLICSHOPPING_Mail->addHtmlCkeditor($admin_email_text_admin);
-            $CLICSHOPPING_Mail->build_message();
+            $CLICSHOPPING_Mail->buildMessage();
             $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, '', $from, $email_subject_admin);
           }
 

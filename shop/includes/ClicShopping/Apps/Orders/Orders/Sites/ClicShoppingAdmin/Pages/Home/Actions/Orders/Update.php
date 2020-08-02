@@ -96,7 +96,7 @@
       $message = html_entity_decode($email_text);
       $message = str_replace('src="/', 'src="' . CLICSHOPPING::getConfig('http_server', 'Shop') . '/', $message);
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-      $CLICSHOPPING_Mail->build_message();
+      $CLICSHOPPING_Mail->buildMessage();
       $from = STORE_OWNER_EMAIL_ADDRESS;
       $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], '', $from, $email_subject);
 

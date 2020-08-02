@@ -372,7 +372,7 @@ function selectAll(FormName, SelectBox) {
       $text = strip_tags($this->content);
 
       $CLICSHOPPING_Mail->addText($text . $this->app->getDef('text_unsubscribe') . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
-      $CLICSHOPPING_Mail->build_message();
+      $CLICSHOPPING_Mail->buildMessage();
 
       foreach ($audience as $key => $value) {
         $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);
@@ -505,7 +505,7 @@ function selectAll(FormName, SelectBox) {
       $CLICSHOPPING_Mail = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain() . '/', $message);
 
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-      $CLICSHOPPING_Mail->build_message();
+      $CLICSHOPPING_Mail->buildMessage();
 
       foreach ($audience as $key => $value) {
         $CLICSHOPPING_Mail->send($value['firstname'] . ' ' . $value['lastname'], $value['email_address'], '', $this->app->getDef('email_from'), $this->title);

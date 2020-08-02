@@ -222,7 +222,7 @@
     /**
      * Must be removed
      */
-    public function build_message()
+    public function buildMessage()
     {
       //out of work function
     }
@@ -379,7 +379,7 @@
       }
 
       // Send message
-      $this->build_message();
+      $this->buildMessage();
       $this->send($to_name, $to_email_address, $from_email_name, $from_email_address, $email_subject);
     }
 
