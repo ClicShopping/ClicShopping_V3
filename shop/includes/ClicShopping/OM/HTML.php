@@ -124,13 +124,13 @@
     *
     * @param string $image The image filename to display
     * @param string $title The title of the image button
-    * @param int $width The width of the image
-    * @param int $height The height of the image
+    * @param ?string $width The width of the image
+    * @param ?string $height The height of the image
     * @param string $parameters Additional parameters for the image
     * @return string
     */
 
-    public static function image(?string $src= '',  ?string $alt = null,  ?int $width = null,  ?int $height = null, ?string $parameters = '', bool $responsive = true, string $bootstrap_css = '') :string
+    public static function image(string $src = '',  string $alt = '',  ?string $width = null,  ?string $height = null, string $parameters = '', bool $responsive = true, string $bootstrap_css = '') :string
     {
       if ((empty($src) || ($src == CLICSHOPPING::linkImage(''))) && (IMAGE_REQUIRED == 'false')) {
         return false;

@@ -79,10 +79,18 @@
       if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_ape = HTML::sanitize($_POST['customers_ape']);
 
 // Informations numero de TVA avec transformation de code ISO en majuscule
-      if (isset($_POST['customers_tva_intracom_code_iso'])) $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
-      $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+      if (isset($_POST['customers_tva_intracom_code_iso']))  {
+        $customers_tva_intracom_code_iso = HTML::sanitize($_POST['customers_tva_intracom_code_iso']);
+        $customers_tva_intracom_code_iso = strtoupper($customers_tva_intracom_code_iso);
+      } else {
+        $customers_tva_intracom_code_iso = '';
+      }
 
-      if (isset($_POST['customers_tva_intracom'])) $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+      if (isset($_POST['customers_tva_intracom'])) {
+        $customers_tva_intracom = HTML::sanitize($_POST['customers_tva_intracom']);
+      } else {
+        $customers_tva_intracom = '';
+      }
 
 // Informations sur le type de facturation
       if (isset($_POST['customers_street_address'])) $customers_street_address = HTML::sanitize($_POST['customers_street_address']);
@@ -97,7 +105,12 @@
       if (isset($_POST['customers_modify_company'])) $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
 
 // Autorisation aux clients de modifier adresse principal
-      if (isset($_POST['customers_modify_address_default'])) $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+      if (isset($_POST['customers_modify_address_default'])) {
+        $customers_modify_address_default = HTML::sanitize($_POST['customers_modify_address_default']);
+      } else {
+        $customers_modify_address_default = 0;
+      }
+      
       if (isset($_POST['customers_add_address'])) $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
 
       if (isset($_POST['customers_email'])) $customers_email = HTML::sanitize($_POST['customers_email']);
