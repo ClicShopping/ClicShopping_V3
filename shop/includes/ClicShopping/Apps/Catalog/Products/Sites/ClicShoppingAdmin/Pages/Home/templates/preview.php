@@ -97,7 +97,7 @@
         <div class="col-md-12 text-md-center">
 <?php
   if (!is_null($products['products_image'])) {
-    echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $products['products_image'], $products['products_name'], 'hspace="5" vspace="5"') . '<br />';
+    echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $products['products_image'], $products['products_name']) . '<br />';
   }
 ?>
         </div>
