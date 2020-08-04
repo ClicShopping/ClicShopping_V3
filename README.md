@@ -22,6 +22,7 @@
 * [Trademark - Licence](https://github.com/ClicShopping#Trademark)
 * [Functionnalities](https://github.com/ClicShopping#Functionnalities)
 * [Functionnalities](https://github.com/ClicShopping#Images)
+* [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
 
 # ClicShopping
 ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C. 
