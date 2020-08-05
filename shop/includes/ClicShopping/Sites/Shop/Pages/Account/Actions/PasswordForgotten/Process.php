@@ -32,7 +32,7 @@
       if (isset($_GET['action']) && ($_GET['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $email_address = HTML::sanitize($_POST['email_address']);
 
-        if (Is::EmailAddress($email_address) && !empty($email_address)) {
+        if (Is::EmailAddress($email_address) === true && !empty($email_address)) {
           $Qcheck = $CLICSHOPPING_Db->prepare('select customers_id,
                                                       customers_firstname,
                                                       customers_lastname,

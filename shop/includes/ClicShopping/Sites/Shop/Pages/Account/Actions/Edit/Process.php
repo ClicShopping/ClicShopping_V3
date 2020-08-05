@@ -168,7 +168,7 @@
           }
         }
 
-        if (!Is::EmailAddress($email_address)) {
+        if (Is::EmailAddress($email_address) === false) {
           $error = true;
 
           if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
