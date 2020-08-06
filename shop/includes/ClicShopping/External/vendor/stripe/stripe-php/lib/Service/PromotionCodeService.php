@@ -2,14 +2,12 @@
 
 // File generated from our OpenAPI spec
 
-namespace Stripe\Service\Issuing;
+namespace Stripe\Service;
 
-class CardService extends \Stripe\Service\AbstractService
+class PromotionCodeService extends \Stripe\Service\AbstractService
 {
     /**
-     * Returns a list of Issuing <code>Card</code> objects. The objects are sorted in
-     * descending order by creation date, with the most recently created object
-     * appearing first.
+     * Returns a list of your promotion codes.
      *
      * @param null|array $params
      * @param null|array|\Stripe\Util\RequestOptions $opts
@@ -20,26 +18,27 @@ class CardService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->requestCollection('get', '/v1/issuing/cards', $params, $opts);
+        return $this->requestCollection('get', '/v1/promotion_codes', $params, $opts);
     }
 
     /**
-     * Creates an Issuing <code>Card</code> object.
+     * A promotion code points to a coupon. You can optionally restrict the code to a
+     * specific customer, redemption limit, and expiration date.
      *
      * @param null|array $params
      * @param null|array|\Stripe\Util\RequestOptions $opts
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Issuing\Card
+     * @return \Stripe\PromotionCode
      */
     public function create($params = null, $opts = null)
     {
-        return $this->request('post', '/v1/issuing/cards', $params, $opts);
+        return $this->request('post', '/v1/promotion_codes', $params, $opts);
     }
 
     /**
-     * Retrieves an Issuing <code>Card</code> object.
+     * Retrieves the promotion code with the given ID.
      *
      * @param string $id
      * @param null|array $params
@@ -47,16 +46,16 @@ class CardService extends \Stripe\Service\AbstractService
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Issuing\Card
+     * @return \Stripe\PromotionCode
      */
     public function retrieve($id, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/issuing/cards/%s', $id), $params, $opts);
+        return $this->request('get', $this->buildPath('/v1/promotion_codes/%s', $id), $params, $opts);
     }
 
     /**
-     * Updates the specified Issuing <code>Card</code> object by setting the values of
-     * the parameters passed. Any parameters not provided will be left unchanged.
+     * Updates the specified promotion code by setting the values of the parameters
+     * passed. Most fields are, by design, not editable.
      *
      * @param string $id
      * @param null|array $params
@@ -64,10 +63,10 @@ class CardService extends \Stripe\Service\AbstractService
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Issuing\Card
+     * @return \Stripe\PromotionCode
      */
     public function update($id, $params = null, $opts = null)
     {
-        return $this->request('post', $this->buildPath('/v1/issuing/cards/%s', $id), $params, $opts);
+        return $this->request('post', $this->buildPath('/v1/promotion_codes/%s', $id), $params, $opts);
     }
 }
