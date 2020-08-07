@@ -335,7 +335,7 @@
         ($QduplicateProductsImage->valueInt('total') == 0)) {
 // delete categorie image
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $QcategoriesImage->value('categories_image'))) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $QcategoriesImage->value('categories_image'));
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $QcategoriesImage->value('categories_image'));
         }
       }
 

@@ -572,19 +572,19 @@
         ($duplicate_image_suppliers['total'] == 0)) {
 // delete product image and product image zoom
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'))) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'));
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image'));
         }
 
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'))) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'));
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_zoom'));
         }
 
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'))) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'));
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_medium'));
         }
 
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'))) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'));
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimage->value('products_image_small'));
         }
       }
 
@@ -605,7 +605,7 @@
 
           if ($Qduplicate->fetch() === false) {
             if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'))) {
-              @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
+              unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
             }
           }
         } while ($Qimages->fetch());

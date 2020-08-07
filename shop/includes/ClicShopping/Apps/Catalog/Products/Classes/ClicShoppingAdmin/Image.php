@@ -122,7 +122,9 @@
             imagedestroy($img);
           }
 
-          @unlink($big_image_resized_path);
+          if (file_exists($big_image_resized_path)) {
+            unlink($big_image_resized_path);
+          }
         }
       }
 
@@ -281,7 +283,7 @@
 // delete the orginal files
 //
         if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name)) {
-          @unlink($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
+          unlink($this->template->getDirectoryPathTemplateShopImages() . $dir_products_image . $filename_image_name);
         }
       } else {
         $big_image_resized = '';
@@ -505,7 +507,7 @@
 
           if ($Qcheck->valueInt('total') < 2) {
             if (file_exists($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'))) {
-              @unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
+              unlink($this->template->getDirectoryPathTemplateShopImages() . $Qimages->value('image'));
             }
           }
         } while ($Qimages->fetch());
