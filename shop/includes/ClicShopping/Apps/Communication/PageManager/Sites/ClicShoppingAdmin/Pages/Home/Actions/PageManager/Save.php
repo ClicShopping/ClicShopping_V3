@@ -29,10 +29,17 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      if (isset($_POST['pages_id'])) $pages_id = HTML::sanitize($_POST['pages_id']);
+      if (isset($_POST['pages_id'])) {
+        $pages_id = HTML::sanitize($_POST['pages_id']);
+      }
 
-      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
-      if (isset($_POST['page_type'])) $page_type = HTML::sanitize($_POST['page_type']);
+      if (isset($_POST['sort_order'])) {
+        $sort_order = HTML::sanitize($_POST['sort_order']);
+      }
+
+      if (isset($_POST['page_type'])) {
+        $page_type = HTML::sanitize($_POST['page_type']);
+      }
 
       if (isset($_POST['links_target'])) {
         $links_target = HTML::sanitize($_POST['links_target']);
@@ -77,7 +84,8 @@
 
       if ($page_error === false) {
 
-        $sql_data_array_pages = ['links_target' => $links_target,
+        $sql_data_array_pages = [
+          'links_target' => $links_target,
           'sort_order' => (int)$sort_order,
           'status' => 1,
           'page_type' => (int)$page_type,

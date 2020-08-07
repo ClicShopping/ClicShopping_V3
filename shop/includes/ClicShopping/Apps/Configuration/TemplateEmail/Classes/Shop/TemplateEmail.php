@@ -13,25 +13,27 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTTP;
+  use ClicShopping\OM\Is;
 
   class TemplateEmail
   {
     /**
      * the name of the template
      *
-     * @param string $template_email_id , $language_id
+     * @param int $template_email_id
+     * @param int $language_id
      * @return string $template_email_name['template_name'],  name.of the template email
      * @access public
      */
-    public static function getTemplateEmailName($template_email_id, $language_id)
+    public static function getTemplateEmailName(int $template_email_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QtemplateEmail = $CLICSHOPPING_Db->prepare('select template_email_name
-                                            from :table_template_email_description
-                                            where template_email_id = :template_email_id
-                                            and language_id = :language_id
-                                           ');
+                                                  from :table_template_email_description
+                                                  where template_email_id = :template_email_id
+                                                  and language_id = :language_id
+                                                 ');
       $QtemplateEmail->bindInt(':template_email_id', (int)$template_email_id);
       $QtemplateEmail->bindInt(':language_id', (int)$language_id);
       $QtemplateEmail->execute();
@@ -45,21 +47,22 @@
     /**
      * the template email short description
      *
-     * @param string $template_email_id , $language_id
+     * @param int $template_email_id
+     * @param int $language_id
      * @return string $template_email['template_short_description'],  the short description of the template email
      * @access public
      */
-    public static function getTemplateEmailShortDescription($template_email_id, $language_id)
+    public static function getTemplateEmailShortDescription(int $template_email_id, int $language_id) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QtemplateEmailShortDescription = $CLICSHOPPING_Db->prepare('select template_email_short_description
-                                                            from :table_template_email_description
-                                                            where template_email_id = :template_email_id
-                                                            and language_id = :language_id
-                                                           ');
-      $QtemplateEmailShortDescription->bindInt(':template_email_id', (int)$template_email_id);
-      $QtemplateEmailShortDescription->bindInt(':language_id', (int)$language_id);
+                                                                  from :table_template_email_description
+                                                                  where template_email_id = :template_email_id
+                                                                  and language_id = :language_id
+                                                                 ');
+      $QtemplateEmailShortDescription->bindInt(':template_email_id', $template_email_id);
+      $QtemplateEmailShortDescription->bindInt(':language_id', $language_id);
       $QtemplateEmailShortDescription->execute();
 
       $template_email_short_description = $QtemplateEmailShortDescription->fetch();
@@ -70,22 +73,23 @@
     /**
      * the template email description who is sent
      *
-     * @param string $template_email_id , $language_id
+     * @param int $template_email_id
+     * @param int $language_id
      * @return string $template_email['template_email_description'],  the description of the template email who is sent
      * @access public
      */
-    public static function getTemplateEmailDescription($template_email_id, $language_id)
+    public static function getTemplateEmailDescription(int $template_email_id, int $language_id) :string
     {
 
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $QtemplateEmailDescription = $CLICSHOPPING_Db->prepare('select template_email_description
-                                                        from :table_template_email_description
-                                                        where template_email_id = :template_email_id
-                                                        and language_id = :language_id
-                                                       ');
-      $QtemplateEmailDescription->bindInt(':template_email_id', (int)$template_email_id);
-      $QtemplateEmailDescription->bindInt(':language_id', (int)$language_id);
+                                                              from :table_template_email_description
+                                                              where template_email_id = :template_email_id
+                                                              and language_id = :language_id
+                                                             ');
+      $QtemplateEmailDescription->bindInt(':template_email_id', $template_email_id);
+      $QtemplateEmailDescription->bindInt(':language_id', $language_id);
       $QtemplateEmailDescription->execute();
 
       $template_email_description = $QtemplateEmailDescription->fetch();
@@ -96,11 +100,10 @@
     /**
      * the footer of email
      *
-     * @param string $template_email_footer
      * @return string $template_email_footer,  the footer of the email template who is sent
      * @access public
      */
-    public static function getTemplateEmailTextFooter()
+    public static function getTemplateEmailTextFooter() :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -125,7 +128,8 @@
         '/{{http_shop}}/'
       ];
 
-      $replaces = [STORE_NAME,
+      $replaces = [
+        STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
       ];
@@ -140,11 +144,10 @@
     /**
      * the signature of email
      *
-     * @param string $template_email_signature
      * @return string $template_email_signature,  the signature of the email template who is sent
      * @access public
      */
-    public static function getTemplateEmailSignature()
+    public static function getTemplateEmailSignature() :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -169,7 +172,8 @@
         '/{{http_shop}}/'
       ];
 
-      $replaces = [STORE_NAME,
+      $replaces = [
+        STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
       ];
@@ -183,7 +187,6 @@
     /**
      * the template email welcome catalog who is sent
      *
-     * @param string $template_email_welcome_admin
      * @return string $template_email_welcome_admin,  the description of the template email welcome admin who is sent
      * @access public
      */
@@ -212,7 +215,8 @@
         '/{{http_shop}}/'
       ];
 
-      $replaces = [STORE_NAME,
+      $replaces = [
+        STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
       ];
@@ -226,11 +230,10 @@
     /**
      * the template email coupon who is sent
      *
-     * @param string $template_email_coupon_admin
      * @return string $template_email_coupon_admin,  the description of the template email coupon who is sent
      * @access public
      */
-    public static function getTemplateEmailCouponCatalog()
+    public static function getTemplateEmailCouponCatalog() :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -255,7 +258,8 @@
         '/{{http_shop}}/'
       ];
 
-      $replaces = [STORE_NAME,
+      $replaces = [
+        STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
       ];
@@ -268,11 +272,10 @@
     /**
      * the template order intro command who is sent
      *
-     * @param string $template_email_intro_command
      * @return string $template_email_intro_command,  the description of the template email order intro command who is sent
      * @access public
      */
-    public static function getTemplateEmailIntroCommand()
+    public static function getTemplateEmailIntroCommand() :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -297,7 +300,8 @@
         '/{{http_shop}}/'
       ];
 
-      $replaces = [STORE_NAME,
+      $replaces = [
+        STORE_NAME,
         STORE_OWNER_EMAIL_ADDRESS,
         HTTP::getShopUrlDomain()
       ];
@@ -316,15 +320,20 @@
      */
      public static function getExtractEmailAddress($string)
     {
-      $emails = [];
+       $pattern = '/(?<=<)(.*?)+(?=\>)/';
 
-      foreach (preg_split('/\s/', $string) as $token) {
-        $email = filter_var(filter_var($token, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
-        if ($email !== false) {
-          $emails[] = $email;
+        $result = preg_match_all($pattern , $string , $emails);
+
+        if (is_array($result)) {
+         foreach ($result as $token) {
+          $email = filter_var(filter_var($token, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
+
+          if ($email !== false) {
+            $emails[] = $email;
+          }
         }
       }
 
-      return $emails;
+      return $emails[0];
     }
   }

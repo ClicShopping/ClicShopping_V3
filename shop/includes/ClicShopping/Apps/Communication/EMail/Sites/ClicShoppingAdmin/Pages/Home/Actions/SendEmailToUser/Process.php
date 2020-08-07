@@ -159,7 +159,6 @@
 
         $this->mail->addHtmlCkeditor($message);
 
-
         while ($Qmail->fetch()) {
           $this->mail->send($Qmail->value('customers_firstname') . ' ' . $Qmail->value('customers_lastname'), $Qmail->value('customers_email_address'), '', $this->from, $this->subject);
         }

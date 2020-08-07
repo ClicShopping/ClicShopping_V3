@@ -19,6 +19,7 @@
   use ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder;
 
   use ClicShopping\Apps\Configuration\TemplateEmail\Classes\ClicShoppingAdmin\TemplateEmailAdmin;
+  use ClicShopping\Apps\Configuration\TemplateEmail\Classes\Shop\TemplateEmail;
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -81,7 +82,7 @@
           }
         }
 
-        if (!Is::EmailAddress($email_address)) {
+        if (Is::EmailAddress($email_address) === false) {
           $error = true;
           $CLICSHOPPING_MessageStack->add($CLICSHOPPING_PageManager->getDef('entry_email_address_check_error'), 'warning');
         }
@@ -99,30 +100,35 @@
 
         if ($error === false) {
           $today = date("Y-m-d H:i:s");
-
           if (!empty(CONTACT_DEPARTMENT_LIST)) {
-            $send_to_array = explode(',', CONTACT_DEPARTMENT_LIST);
-            preg_match('/\<[^>]+\>/', $send_to_array[$send_to], $send_email_array);
+            $email_address_department = TemplateEmail::getExtractEmailAddress(CONTACT_DEPARTMENT_LIST);
 
-            $send_to_email = preg_replace('#>#', '', $send_email_array[0]);
-            $send_to_email = preg_replace('#<#', '', $send_to_email);
-
-            if (!is_null($customer_id)) {
-              $num_customer_id = $CLICSHOPPING_PageManager->getDef('entry_customers_id') . $customer_id;
+            if (empty($send_to)) {
+              $email_number = 0;
             } else {
-              $num_customer_id = '';
+              $email_number = $send_to;
             }
 
-            if ($CLICSHOPPING_Customer->isLoggedOn() && !empty($order_id)) {
-              $message_info_admin = $CLICSHOPPING_PageManager->getDef('entry_information_admin');
-            }
+            if ($email_number !== 0) {
+              $email_address_department = $email_address_department[$email_number];
 
-            $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" . $message_info_admin . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $num_customer_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
-            $CLICSHOPPING_Mail->clicMail(preg_replace('/\<[^*]*/', '', $send_to_array[$send_to]), $send_to_email, $email_subject, $message_to_admin, $name, $email_address);
+              if (!is_null($customer_id)) {
+                $num_customer_id = $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id;
+              } else {
+                $num_customer_id = '';
+              }
+
+              if ($CLICSHOPPING_Customer->isLoggedOn() && !empty($order_id)) {
+                $message_info_admin = $CLICSHOPPING_PageManager->getDef('entry_information_admin');
+              }
+
+              $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" . $message_info_admin . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $num_customer_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
+              $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address_department, $email_subject, $message_to_admin, $name, $email_address);
 
 // send information to customer
-            $message_to_customer = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $num_customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n" . $template_email_footer;
-            $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
+              $message_to_customer = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $num_customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_additional_information') . "\n\n" . $template_email_footer;
+              $CLICSHOPPING_Mail->clicMail(STORE_OWNER, $email_address, $CLICSHOPPING_PageManager->getDef('entry_email_object_customer'), $message_to_customer, $name, STORE_OWNER_EMAIL_ADDRESS);
+            }
           } else {
             $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_id') . ' ' . $customer_id . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_customers_phone') . ' ' . $customers_telephone . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";
             $CLICSHOPPING_Mail->clicMail(STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS, $email_subject, $message_to_admin, $name, $email_address);
@@ -134,17 +140,18 @@
 // insert the modification in the database
           if ($CLICSHOPPING_Customer->isLoggedOn()) {
             if ($order_id !== 0) {
-              $CLICSHOPPING_Db->save('orders_status_history', [
-                  'orders_id' => (int)$order_id,
-                  'orders_status_invoice_id' => 1,
-                  'admin_user_name' => '',
-                  'date_added' => 'now()',
-                  'customer_notified' => 1,
-                  'comments' => $enquiry,
-                  'orders_status_support_id' => 2,
-                  'evidence' => ''
-                ]
-              );
+              $sql_insert_array = [
+                'orders_id' => (int)$order_id,
+                'orders_status_invoice_id' => 1,
+                'admin_user_name' => '',
+                'date_added' => 'now()',
+                'customer_notified' => 1,
+                'comments' => $enquiry,
+                'orders_status_support_id' => 2,
+                'evidence' => ''
+              ];
+
+              $CLICSHOPPING_Db->save('orders_status_history', $sql_insert_array);
             }
           }
 
