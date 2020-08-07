@@ -1487,7 +1487,7 @@
           $this->_out($info['parms']);
         if (isset($info['trns']) && is_array($info['trns'])) {
           $trns = '';
-          for ($i = 0; $i < count($info['trns']); $i++)
+          for ($i = 0, $iMax = count($info['trns']); $i < $iMax; $i++)
             $trns .= $info['trns'][$i] . ' ' . $info['trns'][$i] . ' ';
           $this->_out('/Mask [' . $trns . ']');
         }
