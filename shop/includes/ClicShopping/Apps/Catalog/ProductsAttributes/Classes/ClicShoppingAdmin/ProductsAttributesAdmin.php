@@ -107,7 +107,7 @@
 
 // delete the orginal files
         if (file_exists($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name)) {
-          @unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
+          unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $dir_products_image . $image_name);
         }
 
         $products_image_name = $CLICSHOPPING_Image->CleanImageName($image);
