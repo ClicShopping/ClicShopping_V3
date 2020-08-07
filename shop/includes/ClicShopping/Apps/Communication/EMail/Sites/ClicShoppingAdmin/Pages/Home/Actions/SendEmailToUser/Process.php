@@ -158,7 +158,7 @@
         $message = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain(), $message);
 
         $this->mail->addHtmlCkeditor($message);
-        $this->mail->buildMessage();
+
 
         while ($Qmail->fetch()) {
           $this->mail->send($Qmail->value('customers_firstname') . ' ' . $Qmail->value('customers_lastname'), $Qmail->value('customers_email_address'), '', $this->from, $this->subject);

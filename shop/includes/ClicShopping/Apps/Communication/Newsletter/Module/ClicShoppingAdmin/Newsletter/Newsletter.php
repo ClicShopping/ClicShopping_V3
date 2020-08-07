@@ -250,7 +250,7 @@
         $CLICSHOPPING_Mail->addText('<p class="text-md-center">' . $this->app->getDef('text_send_newsletter_email', ['store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]) . '</p>' . $this->content . ' ' . $this->app->getDef('text_send_newsletter', ['store_name' => STORE_NAME]) . ' ' . HTTP::getShopUrlDomain() . 'index.php?Account&Newsletters');
       }
 
-      $CLICSHOPPING_Mail->buildMessage();
+      ;
 
 // ------------------------------------------
 // copy e-mails to a temporary table if that table is empty
@@ -423,7 +423,7 @@
 
       $message = str_replace('src="/', 'src="' . HTTP::getShopUrlDomain(), $message);
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-      $CLICSHOPPING_Mail->buildMessage();
+      ;
 
 
       $CLICSHOPPING_Hooks->call('Newsletter', 'NewsletterSendCkEditor');

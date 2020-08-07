@@ -23,7 +23,7 @@
         return false;
       }
 
-      if ($check_dns === true) {
+      if ($check_dns === true || ENTRY_EMAIL_ADDRESS_CHECK == 'true') {
         $domain = explode('@', $value, 2);
 
         // international domains (eg, containing german umlauts) are converted to punycode

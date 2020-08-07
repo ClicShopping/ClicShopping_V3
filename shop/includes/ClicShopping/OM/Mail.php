@@ -11,6 +11,8 @@
 
   namespace ClicShopping\OM;
 
+  use ClicShopping\OM\Is;
+
   use PHPMailer\PHPMailer\Exception;
   use PHPMailer\PHPMailer\PHPMailer;
 
@@ -220,14 +222,6 @@
     }
 
     /**
-     * Must be removed
-     */
-    public function buildMessage()
-    {
-      //out of work function
-    }
-
-    /**
      * @param string $to_name
      * @param string $to_addr
      * @param string $from_name
@@ -264,6 +258,10 @@
 
 //Set who the message is to be sent to
       $this->phpMail->AddAddress($to_addr, $to_name ?? '');
+
+      if ($this->validateDomainEmail($to_addr === false) || static::excludeEmailDomain($to_addr) === false) {
+        return false;
+      }
 
 //Set an alternative reply-to address
       if ($reply_to) {
@@ -335,7 +333,6 @@
 
         if (is_array($exlude_domain)) {
           foreach ($exlude_domain as $value) {
-
             if ($value === $domain) {
               return false;
             } else {
@@ -365,10 +362,10 @@
         return false;
       }
 
-      if (static::excludeEmailDomain($from_email_address) === false) {
+      if ($this->validateDomainEmail($to_email_address === false) || static::excludeEmailDomain($to_email_address) === false) {
         return false;
       }
-
+      
 // Build the text version
       $text = strip_tags($email_text);
 
@@ -379,7 +376,7 @@
       }
 
       // Send message
-      $this->buildMessage();
+
       $this->send($to_name, $to_email_address, $from_email_name, $from_email_address, $email_subject);
     }
 
@@ -393,32 +390,8 @@
 
     public function validateDomainEmail(string $email): bool
     {
-
-//check for all the non-printable codes in the standard ASCII set,
-//including null bytes and newlines, and exit immediately if any are found.
-      if (preg_match("/[\\000-\\037]/", $email)) {
+      if (Is::EmailAddress($email, true) === false) {
         return false;
       }
-
-      $pattern = "/^[-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+@(?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,6}|\d{1,3}(?:\.\d{1,3}){3})(?::\d++)?$/iD";
-
-      if (!preg_match($pattern, $email)) {
-        return false;
-      }
-// Validate the domain exists with a DNS check
-// if the checks cannot be made (soft fail over to true)
-      [$user, $domain] = explode('@', $email);
-
-      if (function_exists('checkdnsrr')) {
-        if (!checkdnsrr($domain, "MX")) { // Linux: PHP 4.3.0 and higher & Windows: PHP 5.3.0 and higher
-          return false;
-        }
-      } else if (function_exists("getmxrr")) {
-        if (!getmxrr($domain, $mxhosts)) {
-          return false;
-        }
-      }
-
-      return true;
-    } // end function validate_email
+    }
   }
