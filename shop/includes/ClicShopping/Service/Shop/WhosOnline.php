@@ -28,7 +28,7 @@
         $CLICSHOPPING_Db = Registry::get('Db');
 
         $wo_session_id = session_id();
-        $wo_ip_address = HTTP::GetIpAddress();
+        $wo_ip_address = HTTP::getIpAddress();
         $wo_last_page_url = HTML::outputProtected(substr($_SERVER['REQUEST_URI'], 0, 255));
 
         if (isset($_SERVER['HTTP_USER_AGENT'])) {

@@ -47,7 +47,7 @@
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;
       $attribute_page = (isset($_GET['attribute_page']) && is_numeric($_GET['attribute_page'])) ? $_GET['attribute_page'] : 1;
 
-      $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->UploadImage();
+      $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->uploadImage();
 
       if (is_null($products_attributes_image)) {
         $products_attributes_image = HTML::sanitize($_POST['products_attributes_image']);

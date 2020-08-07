@@ -22,7 +22,7 @@
 
   class Newsletter
   {
-    public $show_choose_audience;
+    public $show_chooseAudience;
     public $title;
     public $content;
 
@@ -43,7 +43,7 @@
 
       $this->app->loadDefinitions('modules/newsletter');
 
-      $this->show_choose_audience = false;
+      $this->show_chooseAudience = false;
       $this->title = $title;
       $this->content = $content;
       $this->emailFrom = htmlentities($this->app->getDef('email_from'));
@@ -62,7 +62,7 @@
 
     }
 
-    public function choose_audience()
+    public function chooseAudience()
     {
       return false;
     }

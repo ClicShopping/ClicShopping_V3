@@ -744,7 +744,7 @@
      * @access public
      */
 
-    public function GetPathDirectoryTemplatetLanguageFiles(string $name): string
+    public function getPathDirectoryTemplatetLanguageFiles(string $name): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 

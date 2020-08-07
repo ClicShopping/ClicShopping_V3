@@ -83,7 +83,7 @@
 
             $hasher = new \PasswordHash(10, true);
 
-            $result = $hasher->CheckPassword($plain, $hash);
+            $result = $hasher->checkPassword($plain, $hash);
 
             break;
 

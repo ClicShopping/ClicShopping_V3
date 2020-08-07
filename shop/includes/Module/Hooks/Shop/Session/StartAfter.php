@@ -58,10 +58,10 @@
 // verify the IP address if the feature is enabled
       if (SESSION_CHECK_IP_ADDRESS == 'True') {
         if (!isset($_SESSION['SESSION_IP_ADDRESS'])) {
-          $_SESSION['SESSION_IP_ADDRESS'] = HTTP::GetIpAddress();
+          $_SESSION['SESSION_IP_ADDRESS'] = HTTP::getIpAddress();
         }
 
-        if ($_SESSION['SESSION_IP_ADDRESS'] != HTTP::GetIpAddress()) {
+        if ($_SESSION['SESSION_IP_ADDRESS'] != HTTP::getIpAddress()) {
           $CLICSHOPPING_Session->kill();
 
           CLICSHOPPING::redirect(null, 'Account&LogIn');

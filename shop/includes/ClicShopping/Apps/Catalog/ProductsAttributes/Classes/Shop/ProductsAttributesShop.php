@@ -258,7 +258,7 @@
      * @param int $options_values_id
      * @return bool
      */
-    public function GetCheckProductsAttributes(int $products_id, int $option_id, int $options_values_id)
+    public function getCheckProductsAttributes(int $products_id, int $option_id, int $options_values_id)
     {
       if ($this->customer->getCustomersGroupID() != 0) {
         $Qcheck = $this->db->prepare('select products_attributes_id

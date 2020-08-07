@@ -41,7 +41,7 @@
       $products_attributes_reference = HTML::sanitize($_POST['products_attributes_reference']);
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
 
-      $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->UploadImage();
+      $products_attributes_image = $CLICSHOPPING_ProductsAttributesAdmin->uploadImage();
 
       $option_page = (isset($_GET['option_page']) && is_numeric($_GET['option_page'])) ? $_GET['option_page'] : 1;
       $value_page = (isset($_GET['value_page']) && is_numeric($_GET['value_page'])) ? $_GET['value_page'] : 1;

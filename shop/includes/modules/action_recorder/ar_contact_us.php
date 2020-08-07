@@ -42,7 +42,7 @@
 
     public function setIdentifier()
     {
-      $this->identifier = HTTP::GetIpAddress();
+      $this->identifier = HTTP::getIpAddress();
     }
 
     public function canPerform($user_id)

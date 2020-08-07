@@ -852,7 +852,7 @@
      * Calculate the size of all databse
      * @return float
      */
-    public static function DisplayDbSize() :float
+    public static function displayDbSize() :float
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

@@ -66,7 +66,7 @@
       return $Qvalues->value('products_options_values_name');
     }
 
-    public function UploadImage()
+    public function uploadImage()
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 

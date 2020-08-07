@@ -37,8 +37,8 @@
     $module_name = $nInfo->module;
     $module = new NewsletterModule($nInfo->title, $nInfo->content);
 
-    if ($module->show_choose_audience) {
-      echo $module->choose_audience();
+    if ($module->show_chooseAudience) {
+      echo $module->chooseAudience();
     } else {
       echo $module->confirm();
     }

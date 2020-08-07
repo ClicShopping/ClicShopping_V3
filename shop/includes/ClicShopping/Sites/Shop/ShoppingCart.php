@@ -391,7 +391,7 @@
             $attributes_pass_check = false;
             break;
           } else {
-            $check = $this->productsAttributes->GetCheckProductsAttributes($products_id, $option, $value);
+            $check = $this->productsAttributes->getCheckProductsAttributes($products_id, $option, $value);
 
             if ($check === false) {
               $attributes_pass_check = false;
@@ -483,7 +483,7 @@
             $attributes_pass_check = false;
             break;
           } else {
-            $check = $this->productsAttributes->GetCheckProductsAttributes($products_id, $option, $value);
+            $check = $this->productsAttributes->getCheckProductsAttributes($products_id, $option, $value);
 
             if ($check === false) {
               $attributes_pass_check = false;

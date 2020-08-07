@@ -17,7 +17,7 @@
 
   class productNotification
   {
-    public $show_choose_audience;
+    public $show_chooseAudience;
     public $title;
     public $content;
 
@@ -30,12 +30,12 @@
 
       $this->app = Registry::get('Newsletter');
 
-      $this->show_choose_audience = true;
+      $this->show_chooseAudience = true;
       $this->title = $title;
       $this->content = $content;
     }
 
-    public function choose_audience()
+    public function chooseAudience()
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
@@ -64,7 +64,7 @@
         ];
       }
 
-      $choose_audience_string = '<script type="text/javascript"><!--
+      $chooseAudience_string = '<script type="text/javascript"><!--
 function mover(move) {
   if (move == \'remove\') {
     for (x=0; x<(document.notifications.products.length); x++) {
@@ -112,7 +112,7 @@ function selectAll(FormName, SelectBox) {
         'document.write(\'<input type="button" value="' . $this->app->getDef('button_global') . '" style="width: 8em;" onclick="document.location=\\\'' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=confirm&global=true') . '\\\'">\');' . "\n" .
         '//--></script><noscript><a href="' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=confirm&global=true') . '">[ ' . $this->app->getDef('button_global') . ' ]</a></noscript>';
 
-      $choose_audience_string .= '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
+      $chooseAudience_string .= '    <td class="pageHeading text-md-right"><table border="0" cellspacing="0" cellpadding="0">' .
         '     <form name="notifications" action="' . $this->app->link('Newsletter&page=' . (int)$_GET['page'] . '&nID=' . (int)$_GET['nID'] . '&action=confirm') . '" method="post" onSubmit="return selectAll(\'notifications\', \'chosen[]\')">' . "\n" .
         '      <tr>' .
         '          <td class="text-md-right">' . HTML::button($this->app->getDef('button_send'), null, null, 'primary') . '</td>' .
@@ -127,7 +127,7 @@ function selectAll(FormName, SelectBox) {
         '  <td>&nbsp;</td>' .
         '</tr>';
 
-      $choose_audience_string .= '<table border="0" width="100%" cellspacing="0" cellpadding="2"><tr>' . "\n" .
+      $chooseAudience_string .= '<table border="0" width="100%" cellspacing="0" cellpadding="2"><tr>' . "\n" .
         '  <tr>' . "\n" .
         '    <td class="text-md-center"><b>' . $this->app->getDef('text_products') . '</b><br />' . HTML::selectMenu('products', $products_array, '', 'size="20" style="width: 20em;" multiple') . '</td>' . "\n" .
         '    <td class="text-md-center">&nbsp;<br />' . $global_button . '<br /><br /><br /><input type="button" value="' . $this->app->getDef('button_select') . '" style="width: 8em;" onClick="mover(\'remove\');"><br /><br /><input type="button" value="' . $this->app->getDef('button_unselect') . '" style="width: 8em;" onClick="mover(\'add\');"></td>' . "\n" .
@@ -135,7 +135,7 @@ function selectAll(FormName, SelectBox) {
         '  </tr>' . "\n" .
         '</table></form>';
 
-      return $choose_audience_string;
+      return $chooseAudience_string;
     }
 
     public function confirm()
