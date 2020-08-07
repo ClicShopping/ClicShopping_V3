@@ -69,7 +69,7 @@
       }
     }
 
-    public function UpdateProductCategories($id = null)
+    public function updateProductCategories($id = null)
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
@@ -139,7 +139,7 @@
       if (isset($_GET['pID'])) {
         $id = HTML::sanitize($_GET['pID']);
 
-        $this->UpdateProductCategories($id);
+        $this->updateProductCategories($id);
       }
     }
   }
