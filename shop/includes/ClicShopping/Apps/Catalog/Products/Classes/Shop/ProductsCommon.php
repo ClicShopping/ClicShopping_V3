@@ -713,13 +713,13 @@
     private function setProductsDimension(?int $id = null, string $separator) :string
     {
       $CLICSHOPPING_ProductsLength = Registry::get('ProductsLength');
-      $products_dimension = '';
 
       if (is_null($id)) {
         $id = $this->getID();
       }
 
-      $Qproducts = $this->db->get('products', ['products_dimension_width',
+      $Qproducts = $this->db->get('products', [
+        'products_dimension_width',
         'products_dimension_height',
         'products_dimension_depth',
         'products_weight_class_id'
@@ -2219,10 +2219,9 @@
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
       $CLICSHOPPING_Tax = Registry::get('Tax');
 
-      $normal_price = 1;
+      $normal_price = 0;
 
       if ($this->customer->getCustomersGroupID() != 0) {
-
         $Qproducts = $this->db->prepare('select g.price_group_view
                                           from :table_products p left join :table_products_groups g on p.products_id = g.products_id
                                           where p.products_status = 1
@@ -2238,10 +2237,7 @@
         $Qproducts->execute();
 
         $price_group_view = $Qproducts->valueInt('price_group_view');
-      }
 
-
-      if ($this->customer->getCustomersGroupID() != 0) {
         if ($new_price = $this->setSpecialPriceGroup($id)) {
           if ($price_group_view == 1) {
             $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
@@ -2262,8 +2258,6 @@
           $products_price = $this->setDisplayPriceGroup($id);
         }
       }
-
-      $normal_price = 0; // Arret du mode Grand public pour refus d'afficher le prix groupe B2B
 
       return $products_price;
     }

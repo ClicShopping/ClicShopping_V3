@@ -84,7 +84,7 @@
       $suppliers_country_id = HTML::sanitize($_POST['suppliers_country_id']);
 
       if (isset($_POST['suppliers_image'])) {
-        $suppliers_image = HTML::sanitize($_POST['suppliers_image']);
+        $suppliers_image = $_POST['suppliers_image'];
       } else {
         $suppliers_image = '';
       }

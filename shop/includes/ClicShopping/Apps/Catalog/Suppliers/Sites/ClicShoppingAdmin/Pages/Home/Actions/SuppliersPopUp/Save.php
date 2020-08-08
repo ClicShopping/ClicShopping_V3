@@ -86,7 +86,7 @@
         $suppliers_country_id = HTML::sanitize($_POST['suppliers_country_id']);
 
         if (isset($_POST['suppliers_image'])) {
-          $suppliers_image = HTML::sanitize($_POST['suppliers_image']);
+          $suppliers_image = $_POST['suppliers_image'];
         } else {
           $suppliers_image = '';
         }
@@ -98,8 +98,6 @@
         }
 
         if (isset($_POST['suppliers_image']) && !is_null($_POST['suppliers_image']) && ($_POST['suppliers_image'] != 'none') && (!isset($_POST['delete_image']))) {
-          $suppliers_image = $_POST['suppliers_image'];
-
           $suppliers_image = HTMLOverrideAdmin::getCkeditorImageAlone($suppliers_image);
         } else {
           $suppliers_image = 'null';
