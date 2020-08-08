@@ -241,6 +241,7 @@ text_products_type = Product type
 text_stockable_product = Product
 text_stockable_consumable = Consumable
 text_stockable_service = Service
+text_categories = Categories
 
 text_user_name = Created / Modified by
 
