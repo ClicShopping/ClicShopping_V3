@@ -164,9 +164,10 @@
 
       $error = true;
 //
-// load originale image
+// load original image
 //
       $image = new Upload('products_image_resize', $this->template->getDirectoryPathTemplateShopImages() . $dir_products_image, null, ['gif', 'jpg', 'png', 'jpeg', 'webp']);
+      $sql_data_array = [];
 
       if ($image->check() && $image->save()) {
         $error = false;
@@ -409,6 +410,8 @@
 
       $error = true;
       $dir = 'products';
+      $separator = '';
+
 // gallery
       if (isset($_POST['new_directory']) && !empty($_POST['new_directory'])) {
         $new_dir_without_accents = HTML::removeFileAccents($_POST['new_directory']);
@@ -424,7 +427,7 @@
       if (!empty($new_dir) && !is_dir($new_dir)) {
 // depend server configuration
         @mkdir($root_images_dir . $new_dir, 0755, true);
-        chmod($root_images_dir . $new_dir, 0755);
+        @chmod($root_images_dir . $new_dir, 0755);
 
         $separator = '/';
       }
