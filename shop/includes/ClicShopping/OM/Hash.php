@@ -21,9 +21,9 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function encrypt(string $plain, string $algo)
+    public static function encrypt(string $plain, string $algo = '')
     {
-      if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
+      if (!empty($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         if (!isset($algo) || ($algo == 'default')) {
           $algo = PASSWORD_DEFAULT;
         } elseif ($algo == 'bcrypt') {
@@ -114,9 +114,9 @@
      * @param string $algo
      * @return bool
      */
-    public static function needsRehash(string $hash, string $algo)
+    public static function needsRehash(string $hash, string $algo = '')
     {
-      if (!isset($algo) || $algo == 'default') {
+      if (!empty($algo) || $algo == 'default') {
         $algo = PASSWORD_DEFAULT;
       } elseif ($algo == 'bcrypt') {
         $algo = PASSWORD_BCRYPT;

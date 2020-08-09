@@ -17,14 +17,14 @@
 
   class Status
   {
-
     protected int $status;
     protected int $categories_id;
 
     /**
      * Categories Status - Sets the status of a categorie
      *
-     * @param string categories_id, status
+     * @param int $categories_id
+     * @param int $status
      * @return string status on or off
      * @access public
      */

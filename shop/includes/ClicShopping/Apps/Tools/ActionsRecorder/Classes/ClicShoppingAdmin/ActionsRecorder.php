@@ -277,7 +277,7 @@
       if (($QduplicateImage->valueInt('total') < 2) && ($QduplicateImageCategories->valueInt('total') == 0)) {
 // delete categorie image
         if (is_file($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $QImage->value('image'))) {
-          @unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $QImage->value('image'));
+          unlink($CLICSHOPPING_Template->getDirectoryPathTemplateShopImages() . $QImage->value('image'));
         }
       }
 

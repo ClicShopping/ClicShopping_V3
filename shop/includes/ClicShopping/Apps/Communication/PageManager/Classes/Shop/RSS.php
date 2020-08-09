@@ -44,12 +44,10 @@
     }
 
     /**
-     * Site link
-     *
-     * @return $xmlns  Site link for rss
+     *  Site link for rss
+     * @return string
      */
-
-    public function xmlns()
+    public function xmlns(): string
     {
 // set more namespaces if you need them
 
@@ -122,15 +120,15 @@
                 ';
 
       $xmlns = $xmlns ? ' ' . $xmlns : '';
+
       return $xmlns;
     }
 
     /**
-     * Title of the site
-     *
-     * @return string $title, Title of the site
+     *  Title of the site
+     * @return string
      */
-    private function setTitle()
+    private function setTitle() :string
     {
       $Qsubmit = $this->db->prepare('select submit_id,
                                             language_id,
@@ -154,10 +152,9 @@
 
     /**
      * Description of the site
-     *
-     * @return string $description, Description of the site
+     * @return string
      */
-    private function setDescription()
+    private function setDescription() :string
     {
       $Qsubmit = $this->db->prepare('select submit_id,
                                             language_id,
@@ -179,24 +176,21 @@
       return $description;
     }
 
-
     /**
-     * Number max of item to display
-     *
-     * @return string $number_of_item, Number max of item to display
+     *  max of item to display
+     * @param int $number_of_item
+     * @return int
      */
-    public function getMaxListing($number_of_item = 20)
+    public function getMaxListing(int $number_of_item = 20) :int
     {
       return $number_of_item;
     }
 
-
     /**
-     * List of items
-     *
-     * @return string all list of items
+     * all list of items
+     * @return array
      */
-    public function setListRSS()
+    public function setListRSS() :array
     {
       $this->navigationHistory->removeCurrentPage();
 
@@ -255,24 +249,20 @@
 
       return $Qlisting->fetchAll();
     }
-
     /**
-     * Number of item
-     *
-     * @return string $countRSS; num ber of item
+     * number of item
+     * @return int
      */
-    public function countRSS()
+    public function countRSS() :int
     {
       $countRSS = count($this->setListRSS());
       return $countRSS;
     }
 
     /**
-     * Choose the last added product date
-     *
-     * @return string products_date_added
+     * @return string
      */
-    public function productDateAdded()
+    public function productDateAdded() :string
     {
       $Qproducts = $this->db->prepare('select products_date_added
                                         from :table_products
@@ -288,11 +278,10 @@
     }
 
     /**
-     * Generate RSS 2.0 feed
-     *
-     * @return string RSS 2.0 xml
+     * RSS 2.0 xml
+     * @return string
      */
-    public function displayFeed()
+    public function displayFeed() :string
     {
       $xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
       $xml .= '<?xml-stylesheet href="https://www.w3.org/2000/08/w3c-synd/style.css" type="text/css"?>' . "\n";
