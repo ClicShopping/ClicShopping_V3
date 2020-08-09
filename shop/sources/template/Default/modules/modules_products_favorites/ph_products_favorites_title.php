@@ -41,7 +41,7 @@
         $content_width = (int)MODULE_PRODUCTS_FAVORITES_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_FAVORITES_POSITION;
 
-        $content = '  <!-- Product favorites title start -->'. "\n";
+        $content = '  <!-- Product favorites title start -->' . "\n";
         $content .= '<div class="ModulesProductsFavoritesContainer">';
 
         ob_start();

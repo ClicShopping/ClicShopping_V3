@@ -48,7 +48,7 @@
         $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_ProductsCommon->getID());
 
         $button_back = HTML::button(CLICSHOPPING::getDef('button_back'), null, $products_name_url, 'primary');
-        $button_process =  HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
+        $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 
         $data = '<!-- ta_tell_a_friend_button_process start -->' . "\n";
 

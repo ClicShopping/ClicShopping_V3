@@ -43,7 +43,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_SHIPPING_BUTTON_PROCESS_CONTENT_WIDTH;
 
-        $shipping = '<!-- start cs_checkout_shipping_comment -->'. "\n";
+        $shipping = '<!-- start cs_checkout_shipping_comment -->' . "\n";
 
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 

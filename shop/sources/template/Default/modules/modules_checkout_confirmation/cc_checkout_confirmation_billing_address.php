@@ -53,7 +53,7 @@
         $payment_method  = HTML::link(CLICSHOPPING::link(null, 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_edit') . ')</span>');
         $type_payment = $_SESSION['payment'];
 
-        $confirmation = '  <!-- cc_checkout_confirmation_billing_address start -->'. "\n";
+        $confirmation = '  <!-- cc_checkout_confirmation_billing_address start -->' . "\n";
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_billing_address'));

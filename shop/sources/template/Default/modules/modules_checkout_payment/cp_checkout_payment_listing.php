@@ -50,7 +50,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_PAYMENT_LISTING_CONTENT_WIDTH;
 
-        $payment_process = '<!-- start cp_checkout_payment_listing -->'. "\n";
+        $payment_process = '<!-- start cp_checkout_payment_listing -->' . "\n";
 
         $data = '<div class="separator"></div>';
         $data .= '<span class="page-title moduleCheckoutPaymentListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_payment_listing_table_heading_payment_method') . '</h3></span>';
@@ -79,7 +79,7 @@
           if (count($selection) > 1) {
             $data .= '<span class="moduleCheckoutPaymentListingRadio">' . HTML::radioField('payment', $selection[$i]['id'], (isset($_SESSION['payment']) && ($selection[$i]['id'] == $_SESSION['payment'])), 'required aria-required="true"') . '</span>';
           } else {
-            $data .=  HTML::radioField('payment', $selection[$i]['id'], $selection[$i]['id'], 'required aria-required="true"');
+            $data .= HTML::radioField('payment', $selection[$i]['id'], $selection[$i]['id'], 'required aria-required="true"');
           }
 
           $data .= '</td>';

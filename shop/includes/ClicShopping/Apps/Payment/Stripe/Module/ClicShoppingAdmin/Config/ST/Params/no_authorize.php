@@ -27,8 +27,8 @@ class no_authorize extends \ClicShopping\Apps\Payment\Stripe\Module\ClicShopping
     public function getInputField()  {
       $value = $this->getInputValue();
 
-      $input =  HTML::radioField($this->key, 'True', $value, 'id="' . $this->key . '1" autocomplete="off"') . $this->app->getDef('cfg_stripe_no_authorize_true') . '<br /> ';
-      $input .=  HTML::radioField($this->key, 'False', $value, 'id="' . $this->key . '0" autocomplete="off"') . $this->app->getDef('cfg_stripe_no_authorize_false') . '<br />';
+      $input = HTML::radioField($this->key, 'True', $value, 'id="' . $this->key . '1" autocomplete="off"') . $this->app->getDef('cfg_stripe_no_authorize_true') . '<br /> ';
+      $input .= HTML::radioField($this->key, 'False', $value, 'id="' . $this->key . '0" autocomplete="off"') . $this->app->getDef('cfg_stripe_no_authorize_false') . '<br />';
 
       return $input;
     }

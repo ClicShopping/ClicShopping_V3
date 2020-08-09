@@ -73,11 +73,11 @@
           }
         }
 
-        $button_continue =  HTML::button(CLICSHOPPING::getDef('button_order'), null, CLICSHOPPING::link(null, 'Checkout&Shipping'), 'success', null, 'lg');
+        $button_continue = HTML::button(CLICSHOPPING::getDef('button_order'), null, CLICSHOPPING::link(null, 'Checkout&Shipping'), 'success', null, 'lg');
 
         $content_width = (int)MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_CONTENT_WIDTH;
 
-        $shopping_cart_information_customers = '  <!-- start ms_shopping_cart_order_button_process -->'. "\n";
+        $shopping_cart_information_customers = '  <!-- start ms_shopping_cart_order_button_process -->' . "\n";
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_order_button_process'));

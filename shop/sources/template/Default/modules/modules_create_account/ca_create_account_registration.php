@@ -39,12 +39,12 @@
     $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-    if (isset($_GET['Account'] ) && isset($_GET['Create']) && !isset($_GET['Success'])) {
+    if (isset($_GET['Account']) && isset($_GET['Create']) && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH;
 
       $create_account = '<!-- Start create_account_introduction start -->' . "\n";
 
-      $form =  HTML::form('create_account', CLICSHOPPING::link(null, 'Account&Create&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
+      $form = HTML::form('create_account', CLICSHOPPING::link(null, 'Account&Create&Process'), 'post', 'id="usrForm"',  ['tokenize' => true, 'action' => 'process']);
       $endform = '</form>';
 
       ob_start();

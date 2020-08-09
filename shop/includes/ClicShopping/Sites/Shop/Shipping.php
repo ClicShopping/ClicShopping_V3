@@ -41,7 +41,7 @@
           }
         }
 
-        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($code, $this->modules))) {
+        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules, true) || in_array($code, $this->modules))) {
           if (strpos($code, '\\') !== false) {
             $class = Apps::getModuleClass($code, 'Shipping');
 
@@ -55,7 +55,8 @@
             if (strpos($value, '\\') !== false) {
               $class = Apps::getModuleClass($value, 'Shipping');
 
-              $include_modules[] = ['class' => $value,
+              $include_modules[] = [
+                'class' => $value,
                 'file' => $class
               ];
             }
@@ -75,7 +76,7 @@
      * @param int $shipping_num_boxes
      * @return float
      */
-    public function getShippingWeight()
+    public function getShippingWeight() :float
     {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $shipping_weight = 1;

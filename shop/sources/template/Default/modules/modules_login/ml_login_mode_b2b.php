@@ -41,7 +41,7 @@
 
         $content_width = (int)MODULE_LOGIN_MODE_B2B_CONTENT_WIDTH;
 
-        $login_mode_b2b = '<!-- login_mode_b2b start -->'. "\n";
+        $login_mode_b2b = '<!-- login_mode_b2b start -->' . "\n";
 
         if (MODE_MANAGEMENT_B2C_B2B == 'B2B' && MODE_B2B_B2C == 'true') {
 

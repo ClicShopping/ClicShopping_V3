@@ -42,7 +42,7 @@
         $content_width = (int)MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_CONTENT_WIDTH;
         $position = MODULE_SHOPPING_CART_DELAY_SAVE_CART_MESSAGE_POSITION;
 
-        $shopping_cart_information_customers = '  <!-- start ms_shopping_cart_out_of_message -->'. "\n";
+        $shopping_cart_information_customers = '  <!-- start ms_shopping_cart_out_of_message -->' . "\n";
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_delay_save_cart_message'));

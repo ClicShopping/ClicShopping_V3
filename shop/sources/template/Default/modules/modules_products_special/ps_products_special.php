@@ -139,7 +139,7 @@
           }
 
           $new_prods_content .= '<div class="separator"></div>';
-          $new_prods_content .= '</div>'. "\n";
+          $new_prods_content .= '</div>' . "\n";
           $new_prods_content .= '<div class="boxContentsModulesProductsSpecials">';
 
           if ($listingTotalRow > 0) {
@@ -199,7 +199,7 @@
               if (MODULE_PRODUCTS_SPECIAL_DELETE_BUY_BUTTON == 'False') {
                 if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity($products_id) != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity($products_id) != 0) {
                   if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($products_id) === false) {
-                    $form =  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add' ),'post','class="justify-content-center"', ['tokenize' => true]). "\n";
+                    $form = HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add' ),'post','class="justify-content-center"', ['tokenize' => true]). "\n";
                     $form .= HTML::hiddenField('products_id', $products_id);
                     if (isset($_GET['Specials'])) $form .= HTML::hiddenField('url', 'Products&Specials');
                     $endform = '</form>';

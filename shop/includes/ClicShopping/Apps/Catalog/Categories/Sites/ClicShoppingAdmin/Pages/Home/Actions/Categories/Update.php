@@ -46,11 +46,11 @@
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        $categories_name_array =  HTML::sanitize($_POST['categories_name']);
-        $categories_description_array =  HTML::sanitize($_POST['categories_description']);
-        $categories_seo_title_array =  HTML::sanitize($_POST['categories_head_title_tag']);
-        $categories_seo_description_array =  HTML::sanitize($_POST['categories_head_desc_tag']);
-        $categories_seo_keyword_array =  HTML::sanitize($_POST['categories_head_keywords_tag']);
+        $categories_name_array = HTML::sanitize($_POST['categories_name']);
+        $categories_description_array = HTML::sanitize($_POST['categories_description']);
+        $categories_seo_title_array = HTML::sanitize($_POST['categories_head_title_tag']);
+        $categories_seo_description_array = HTML::sanitize($_POST['categories_head_desc_tag']);
+        $categories_seo_keyword_array = HTML::sanitize($_POST['categories_head_keywords_tag']);
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = [

@@ -43,13 +43,13 @@
 
         $content_width = (int)MODULE_CHECKOUT_PAYMENT_ADDRESS_CONTENT_WIDTH;
 
-        $payment_process = '<!-- start cp_checkout_payment_address -->'. "\n";
+        $payment_process = '<!-- start cp_checkout_payment_address -->' . "\n";
 
         $address_billto = AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['billto'], true, ' ', '<br />');
 
 // Autorise l'ajout dans le carnet d'adresse des clients B2B ou clients normaux
         if (AddressBook::countCustomersModifyAddressDefault() == 1) {
-          $address_button =  HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link(null, 'Checkout&PaymentAddress'), 'primary');
+          $address_button = HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link(null, 'Checkout&PaymentAddress'), 'primary');
         }
 
         ob_start();

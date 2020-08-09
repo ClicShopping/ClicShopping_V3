@@ -45,7 +45,7 @@
 
         $sub_total = $CLICSHOPPING_Currencies->format($CLICSHOPPING_ShoppingCart->show_total());
 
-        $shopping_cart = '  <!-- ms_shopping_cart_show_total -->'. "\n";
+        $shopping_cart = '  <!-- ms_shopping_cart_show_total -->' . "\n";
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/shopping_cart_show_total'));

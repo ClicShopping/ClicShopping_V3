@@ -46,7 +46,7 @@
       $content .= '<ul class="list-group-slider list-group-flush">';
       $content .= '<li class="list-group-item-slider">';
       $content .= '<label class="switch">';
-      $content .=  HTML::checkboxField('products_favorites',  'yes', false, 'class="success"');
+      $content .= HTML::checkboxField('products_favorites',  'yes', false, 'class="success"');
       $content .= '<span class="slider"></span>';
       $content .= '</label>';
       $content .= '</li>';

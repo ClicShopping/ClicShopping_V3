@@ -99,7 +99,7 @@
 //*****************************
             if (defined('MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER')) {
                 if (MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER > MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER) {
-                 $products_options_content_display .=  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $CLICSHOPPING_Category->getPath(), ' SSL'), 'post', '', ['tokenize' => true]);
+                 $products_options_content_display .= HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $CLICSHOPPING_Category->getPath(), ' SSL'), 'post', '', ['tokenize' => true]);
                }
             }
 

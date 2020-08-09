@@ -43,7 +43,7 @@
         if (CONFIGURATION_LAW_HAMON == 'true') {
           $content_width = (int)MODULE_CHECKOUT_PAYMENT_AGREEMENT_CONTENT_WIDTH;
 
-          $payment_process = '<!-- start cp_checkout_payment_aggreement -->'. "\n";
+          $payment_process = '<!-- start cp_checkout_payment_aggreement -->' . "\n";
 
           ob_start();
           require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_agreement'));

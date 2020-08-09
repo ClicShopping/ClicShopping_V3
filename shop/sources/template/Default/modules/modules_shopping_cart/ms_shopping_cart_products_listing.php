@@ -56,7 +56,7 @@
         $form = HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Update'), 'post', 'role="form" id="cart_quantity"', ['tokenize' => true]);
         $endform = '</form>';
 
-        $shopping_cart = '<!-- ms_shopping_cart_products_listing -->'. "\n";
+        $shopping_cart = '<!-- ms_shopping_cart_products_listing -->' . "\n";
         $shopping_cart .= $form;
         $shopping_cart .= '<div>';
         $shopping_cart .= '<table id="cart" class="table table-hover table-condensed ModulesShoppingCartProductsListingTableHeading">';
@@ -120,7 +120,7 @@
           </div>
           ';
 
-          $image =  HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50)) . '&nbsp;&nbsp;&nbsp;';
+          $image = HTML::link($products_name_url, HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products[$i]['image'], $products[$i]['name'], 50, 50)) . '&nbsp;&nbsp;&nbsp;';
 
           if (STOCK_CHECK == 'true') {
 // select the good qty in B2B to decrease the stock (see checkout_process to update stock)
@@ -184,7 +184,7 @@
           $products_id = $CLICSHOPPING_Prod::getProductID($products[$i]['id']);
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 
-          $ticker =  HTML::link($products_name_url, HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
+          $ticker = HTML::link($products_name_url, HTML::tickerImage($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id), 'ModulesShoppingCartBootstrapTickerPourcentage', true )) .'</a>';
 
           if (is_null($CLICSHOPPING_ProductsCommon->getProductsTickerSpecialsPourcentage($products_id))) {
             $ticker = '' ;

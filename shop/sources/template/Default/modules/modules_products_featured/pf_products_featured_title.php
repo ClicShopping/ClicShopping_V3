@@ -41,7 +41,7 @@
         $content_width = (int)MODULE_PRODUCTS_FEATURED_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_FEATURED_POSITION;
 
-        $content = '  <!-- Product featured title start -->'. "\n";
+        $content = '  <!-- Product featured title start -->' . "\n";
         $content .= '<div class="ModulesProductsFeaturedContainer">';
 
         ob_start();

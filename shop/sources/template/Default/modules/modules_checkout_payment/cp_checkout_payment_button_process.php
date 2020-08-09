@@ -43,7 +43,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_PAYMENT_BUTTON_PROCESS_CONTENT_WIDTH;
 
-        $payment_process = '<!-- start cp_checkout_payment_button_process -->'. "\n";
+        $payment_process = '<!-- start cp_checkout_payment_button_process -->' . "\n";
 
         $button_process = HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');
 

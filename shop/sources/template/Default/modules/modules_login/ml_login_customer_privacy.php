@@ -41,7 +41,7 @@
 
         $content_width = (int)MODULE_LOGIN_CUSTOMER_PRIVACY_CONTENT_WIDTH;
 
-        $login_information_customers = '<!-- login_customer_privacy start -->'. "\n";
+        $login_information_customers = '<!-- login_customer_privacy start -->' . "\n";
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_customer_privacy'));

@@ -25,7 +25,7 @@
     protected float $weight;
     protected string $content_type;
     protected int $min_quantity;
-    protected $quantity;
+    protected int $quantity;
     protected string $productsId;
     protected bool $products_in_stock = true;
 

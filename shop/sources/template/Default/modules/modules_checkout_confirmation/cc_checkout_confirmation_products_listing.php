@@ -49,7 +49,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_CONTENT_WIDTH;
 
-        $confirmation = '  <!-- cc_checkout_confirmation_products_listing start -->'. "\n";
+        $confirmation = '  <!-- cc_checkout_confirmation_products_listing start -->' . "\n";
 
         $confirmation .= '<div class="col-md-' . $content_width . '">';
         $confirmation .= '<div class="separator"></div>';
@@ -60,7 +60,7 @@
         if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
           $confirmation .= '<div class="card moduleCheckoutConfirmationProductsListingCard">';
           $confirmation .= '<div class="card-header moduleCheckoutConfirmationProductsListingHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_products')  . '</strong>';
-          $confirmation .=  HTML::link(CLICSHOPPING::link(null, 'Cart'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_text_edit') . ')</span>');
+          $confirmation .= HTML::link(CLICSHOPPING::link(null, 'Cart'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_text_edit') . ')</span>');
           $confirmation .= '</div>';
           $confirmation .= '<div class="hr"></div>';
           $confirmation .= '<div class="card-block moduleCheckoutConfirmationProductsListingCardBlock">';

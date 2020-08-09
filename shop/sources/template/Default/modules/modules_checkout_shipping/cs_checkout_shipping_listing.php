@@ -53,7 +53,7 @@
         if (isset($_GET['Checkout']) && isset($_GET['Shipping'])) {
           $content_width = (int)MODULE_CHECKOUT_SHIPPING_LISTING_CONTENT_WIDTH;
 
-          $shipping_listing = '<!-- start checkout_shipping_listing -->'. "\n";
+          $shipping_listing = '<!-- start checkout_shipping_listing -->' . "\n";
 
           if ($CLICSHOPPING_Shipping->geCountShippingModules() > 0) {
             $data = '<div class="separator"></div>';

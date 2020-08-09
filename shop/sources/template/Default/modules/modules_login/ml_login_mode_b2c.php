@@ -41,7 +41,7 @@
         $content_width = (int)MODULE_LOGIN_MODE_B2C_CONTENT_WIDTH;
 
         if ( MODE_MANAGEMENT_B2C_B2B == 'B2C' || MODE_B2B_B2C == 'false')  {
-          $login_mode_b2c = '<!-- login_mode_b2c start -->'. "\n";
+          $login_mode_b2c = '<!-- login_mode_b2c start -->' . "\n";
 
           ob_start();
           require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_mode_b2c'));

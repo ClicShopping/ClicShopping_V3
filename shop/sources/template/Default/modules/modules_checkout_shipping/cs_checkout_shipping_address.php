@@ -45,7 +45,7 @@
 
         $content_width = (int)MODULE_CHECKOUT_SHIPPING_ADDRESS_CONTENT_WIDTH;
 
-        $shipping = '<!-- start cs_checkout_shipping_address -->'. "\n";
+        $shipping = '<!-- start cs_checkout_shipping_address -->' . "\n";
 
         $address_send_to = AddressBook::addressLabel($CLICSHOPPING_Customer->getID(), $_SESSION['sendto'], true, ' ', '<br />');
 

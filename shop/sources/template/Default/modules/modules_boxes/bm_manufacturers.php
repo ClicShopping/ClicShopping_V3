@@ -84,7 +84,7 @@
 
           $data = HTML::form('manufacturers', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
           $data .= '<label for="manufacturerDropDown" class="sr-only">' . CLICSHOPPING::getDef('module_boxes_manufacturers_title') . '</label>';
-          $data .=  HTML::selectField('manufacturersId', $manufacturers_array, ($_GET['manufacturersId'] ?? ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
+          $data .= HTML::selectField('manufacturersId', $manufacturers_array, ($_GET['manufacturersId'] ?? ''), 'onchange="this.form.submit();" id="manufacturerDropDown" class="boxePullDownManufacturer" size="' . MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST . '"');
           $data .=  '</form>';
           $data .=  '<div class="separator"></div>';
         }

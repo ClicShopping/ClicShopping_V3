@@ -43,7 +43,7 @@
 
         if (MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B' && MODE_B2B_B2C == 'true') {
 
-          $login_mode_b2b_b2c = '<!-- login_mode_b2b_b2c start -->'. "\n";
+          $login_mode_b2b_b2c = '<!-- login_mode_b2b_b2c start -->' . "\n";
 
           ob_start();
           require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/login_mode_b2b_b2c'));

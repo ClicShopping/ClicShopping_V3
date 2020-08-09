@@ -50,7 +50,7 @@
         $shipping_link = HTML::link(CLICSHOPPING::link(null, 'Checkout&Shipping'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_delivery_address_text_edit') . ')</span>');
         $shipping_method = $CLICSHOPPING_Order->info['shipping_method'];
 
-        $confirmation = '  <!-- processing_checkout_confirmation_delivery -->'. "\n";
+        $confirmation = '  <!-- processing_checkout_confirmation_delivery -->' . "\n";
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_confirmation_delivery_address'));

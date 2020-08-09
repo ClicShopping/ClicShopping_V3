@@ -85,11 +85,11 @@
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
           } elseif(STOCK_ALLOW_CHECKOUT == 'true') {
-            $buy_button =  HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
+            $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
           } elseif ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
-            $buy_button =  HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
+            $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton() ;
           }
@@ -120,14 +120,14 @@
               $products_price_content = '<!-- Start product price -->' . "\n";
 // Strong relations with pi_products_info_options.php = Don't delete
               if (($CLICSHOPPING_ProductsAttributes->getCountProductsAttributes($CLICSHOPPING_ProductsCommon->getId()) == 0) || (defined('MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER') && MODULE_PRODUCTS_INFO_PRICE_SORT_ORDER < MODULE_PRODUCTS_INFO_OPTIONS_SORT_ORDER)) {
-                $products_price_content .=  HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
+                $products_price_content .= HTML::form('cart_quantity', CLICSHOPPING::link(null, 'Cart&Add&cPath=' . $cPath, ' SSL'), 'post', null, ['tokenize' => true]). "\n";
                 if (isset($_GET['Description'])) $products_price_content .= HTML::hiddenField('url', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
               }
 
               $products_price_content .= '<div class="contentText"  style="float:'. MODULE_PRODUCTS_INFO_PRICE_POSITION .';">';
 
               if ($CLICSHOPPING_ProductsCommon->getProductsArchive() == 0) {
-                $products_price_content .=  HTML::hiddenField('products_id', $CLICSHOPPING_ProductsCommon->getID());
+                $products_price_content .= HTML::hiddenField('products_id', $CLICSHOPPING_ProductsCommon->getID());
 
                 ob_start();
                 require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_info_price'));
