@@ -28,7 +28,11 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+      if (isset($_GET['cPath'])) {
+        $cPath = HTML::sanitize($_GET['cPath']);
+      } else {
+        $cPath = 0;
+      }
 
       $sort_order = HTML::sanitize($_POST['sort_order']);
 
