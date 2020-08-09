@@ -364,7 +364,7 @@
         $subcategories_array[count($subcategories_array)] = $Qsub->valueInt('categories_id');
 
         if ($Qsub->valueInt('categories_id') != $parent_id) {
-          static::getSubcategories($subcategories_array, $Qsub->valueInt('categories_id'));
+          $this->getSubcategories($subcategories_array, $Qsub->valueInt('categories_id'));
         }
       }
     }
@@ -375,11 +375,15 @@
      * string  $parent_id, id of the parent category
      * string $indent, options
      * @access public
+     * @param array $categories_array
+     * @param string $parent_id
+     * @param string $indent
+     * @return array|mixed
      */
 
-    public function getCategories($categories_array = '', $parent_id = '0', $indent = '')
+    public function getCategories($categories_array = '', string $parent_id = '0', string $indent = '')
     {
-      if (!is_array($categories_array)) $categories_array = [];
+      $categories_array = [];
 
       $Qcategories = $this->db->prepare('select c.categories_id,
                                                 cd.categories_name
@@ -398,7 +402,8 @@
       $Qcategories->execute();
 
       while ($Qcategories->fetch()) {
-        $categories_array[] = ['id' => $Qcategories->valueInt('categories_id'),
+        $categories_array = [
+          'id' => $Qcategories->valueInt('categories_id'),
           'text' => $indent . $Qcategories->value('categories_name')
         ];
 

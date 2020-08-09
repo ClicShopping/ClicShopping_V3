@@ -64,7 +64,7 @@
     /**
      * @param string $entries
      */
-    public function setExcludeEntries(string $entries)
+    public function setExcludeEntries($entries)
     {
       if (is_array($entries)) {
         foreach ($entries as $value) {

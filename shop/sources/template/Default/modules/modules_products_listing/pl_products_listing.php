@@ -71,6 +71,7 @@
         $new_prods_content .= '<ul class="dropdown-menu text-md-left"  aria-labelledby="dropdownMenu2">';
 
         $column_list = $ProductsListing->getColumnList();
+        $lc_text = CLICSHOPPING::getDef('table_heading_date');
 
 // number of sort criterias
             for ($col = 0, $n = count($column_list); $col < $n; $col++) {
@@ -137,8 +138,6 @@
               while($Qlisting->fetch()) {
                 $products_id = $Qlisting->valueInt('products_id');
                 $_POST['products_id'] = $products_id;
-
-                $products_image = $Qlisting->value('products_image');
 
                 $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);
 

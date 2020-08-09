@@ -180,6 +180,10 @@
       }
 
 // determine permissions
+      $owner= [];
+      $group = [];
+      $world = [];
+
       $owner['read'] = ($mode & 00400) ? 'r' : '-';
       $owner['write'] = ($mode & 00200) ? 'w' : '-';
       $owner['execute'] = ($mode & 00100) ? 'x' : '-';

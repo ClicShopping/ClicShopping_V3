@@ -164,9 +164,9 @@
     }
 
     /**
-     * @param $width3
+     * @param float $width
      */
-    public function resizeToWidth(int $width)
+    public function resizeToWidth(float $width)
     {
       $ratio = $width / $this->getWidth();
       $height = round($this->getHeight() * $ratio);
@@ -175,9 +175,9 @@
     }
 
     /**
-     * @param $size
+     * @param float $size
      */
-    public function square(int $size)
+    public function square(float $size)
     {
       $new_image = imagecreatetruecolor($size, $size);
 
@@ -211,10 +211,10 @@
     }
 
     /**
-     * @param $width
-     * @param $height
+     * @param float $width
+     * @param float $height
      */
-    public function resize(int $width, int $height)
+    public function resize(float $width, float $height)
     {
       $new_image = imagecreatetruecolor($width, $height);
 
@@ -228,12 +228,12 @@
     }
 
     /**
-     * @param $x
-     * @param $y
-     * @param $width
-     * @param $height
+     * @param int $x
+     * @param int $y
+     * @param float $width
+     * @param float $height
      */
-    public function cut(int $x, int $y, int $width, int $height)
+    public function cut(int $x, int $y, float $width, float $height)
     {
       $new_image = imagecreatetruecolor($width, $height);
 
@@ -247,10 +247,10 @@
     }
 
     /**
-     * @param $width
-     * @param null $height
+     * @param float $width
+     * @param float|null $height
      */
-    public function maxarea(int $width, int $height = null)
+    public function maxarea(float $width, ?float $height = null)
     {
       $height = $height ? $height : $width;
 
@@ -266,9 +266,9 @@
      * @param $width
      * @param null $height
      */
-    public function minarea(int $width, $height = null)
+    public function minarea(float $width, ?float $height = null)
     {
-      $height = $height ? $height : $width;
+      $height = $height ?: $width;
 
       if ($this->getWidth() < $width) {
         $this->resizeToWidth($width);
@@ -279,10 +279,10 @@
     }
 
     /**
-     * @param $width
-     * @param $height
+     * @param float $width
+     * @param float $height
      */
-    public function cutFromCenter(int $width, int $height)
+    public function cutFromCenter(float $width, float $height)
     {
 
       if ($width < $this->getWidth() && $width > $height) {
@@ -299,13 +299,13 @@
     }
 
     /**
-     * @param $width
-     * @param $height
+     * @param float $width
+     * @param float $height
      * @param int $red
      * @param int $green
      * @param int $blue
      */
-    public function maxareafill(int $width, int $height, int $red = 0, int $green = 0, int $blue = 0)
+    public function maxareafill(float $width, float $height, int $red = 0, int $green = 0, int $blue = 0)
     {
       $this->maxarea($width, $height);
       $new_image = imagecreatetruecolor($width, $height);

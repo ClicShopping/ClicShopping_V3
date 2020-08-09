@@ -95,13 +95,14 @@
      *
      * @param string $url The url to link to
      * @param string $element The element to link to
-     * @param string $parameters Additional parameters for the a href tag
+     * @param null $parameters Additional parameters for the a href tag
+     * @param string $option
      * @return string
      */
 
-    public static function link($url, $element, $parameters = null)
+    public static function link(string $url, string $element, $parameters = null, string $option = '')
     {
-      return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
+      return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '' . (!empty($option) ? ' ' . $option : '') . '>' . $element . '</a>';
     }
 
     /*

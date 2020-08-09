@@ -34,7 +34,10 @@
         $h2 = opendir($dir . $subdir);
         while ($file = readdir($h2)) {
           if ($file == '.' || $file == '..') continue;
-          @unlink($dir . $subdir . '/' . $file);
+
+          if (file_exists($dir . $subdir . '/' . $file)) {
+            unlink($dir . $subdir . '/' . $file);
+          }
         }
         closedir($h2);
         @rmdir($dir . $subdir);

@@ -23,12 +23,14 @@
     protected string $html_text;
     protected string $lf;
     protected int $debug = 0;
+    public string $debugOutput;
+
 //Enable SMTP debugging
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
     protected string $debugFileOutput = 'Work/Log/phpmail_error.log';
-    protected $phpMail;
+    protected PHPMailer $phpMail;
 
     public function __construct()
     {
@@ -108,10 +110,11 @@
      * Also replaces image names with
      * content-id's.
      * @param string $html
-     * @param null $text
+     * @param string $text
      * @param string|null $images_dir
+     * @throws Exception
      */
-    public function addHtml(string $html, $text = NULL, $images_dir = NULL)
+    public function addHtml(string $html, string $text = '', $images_dir = NULL)
     {
       $this->phpMail->IsHTML(true);
       $this->html = $this->convertLinefeeds(array("\r\n", "\n", "\r"), '<br />', $html);
@@ -384,8 +387,6 @@
      * Analyse the customer email  domain and validate or not the email
      * @param string : $email : mail of the customer
      * @param string return : value 0,1 the value of the test result
-     * return : 1  valid email
-     * return : 0 email no valid
     */
 
     public function validateDomainEmail(string $email): bool

@@ -930,7 +930,7 @@
      * @return string
      */
 
-    public function getCategoryTreeUrl($categories_id, string $parameters = ''): string
+    public function getCategoryTreeUrl(int $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -955,7 +955,7 @@
      * @return string
      */
 
-    public function getCategoryImageUrl($categories_id, string $parameters = ''): string
+    public function getCategoryImageUrl(int $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -964,9 +964,11 @@
           $categories_url_rewrited = $link_title . '&' . $categories_id;
         } else {
           $categories_url_rewrited = $categories_id;
+//          $categories_url_rewrited = 'cPath=' . $categories_id;	  
         }
       } else {
         $categories_url_rewrited = $categories_id;
+//        $categories_url_rewrited = 'cPath=' . $categories_id;	
       }
 
       $url = CLICSHOPPING::link(null, $categories_url_rewrited . $parameters);
@@ -976,12 +978,12 @@
 
     /**
      * manufacturer url
-     * @param $manufactuer_id , manufacturer id
+     * @param int $manufacturer_id
      * @param string $parameters , url parameters
      * @return string
      */
 
-    public function getManufacturerUrl($manufacturer_id, string $parameters = ''): string
+    public function getManufacturerUrl(int $manufacturer_id, string $parameters = ''): string
     {
       $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
 

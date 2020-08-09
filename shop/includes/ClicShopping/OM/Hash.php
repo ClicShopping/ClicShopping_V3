@@ -16,12 +16,12 @@
   class Hash
   {
     /**
-     * @param $plain
-     * @param null $algo
+     * @param string $plain
+     * @param string $algo
      * @return bool|string
      * @throws \Exception
      */
-    public static function encrypt(string $plain, $algo = null)
+    public static function encrypt(string $plain, string $algo)
     {
       if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         if (!isset($algo) || ($algo == 'default')) {
@@ -110,11 +110,11 @@
     }
 
     /**
-     * @param $hash
-     * @param null $algo
+     * @param string $hash
+     * @param string $algo
      * @return bool
      */
-    public static function needsRehash($hash, $algo = null)
+    public static function needsRehash(string $hash, string $algo)
     {
       if (!isset($algo) || $algo == 'default') {
         $algo = PASSWORD_DEFAULT;
@@ -133,9 +133,9 @@
 
     /**
      * @param string $hash
-     * @return string|null
+     * @return string
      */
-    public static function getType(string $hash): ?string
+    public static function getType(string $hash) :string
     {
       $info = password_get_info($hash);
 
@@ -157,13 +157,13 @@
     }
 
     /**
-     * @param null $min
-     * @param null $max
+     * @param int|null $min
+     * @param int|null $max
      * @param bool $secure
      * @return int
      * @throws \Exception
      */
-    public static function getRandomInt($min = null, $max = null, bool $secure = true)
+    public static function getRandomInt(?int $min = null, ?int $max = null, bool $secure = true)
     {
       if (!isset($min)) {
         $min = 0;
@@ -192,7 +192,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getRandomString(int $length, $type = 'mixed'): string
+    public static function getRandomString(int $length, string $type = 'mixed'): string
     {
       if (!in_array($type, [
         'mixed',
