@@ -117,7 +117,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_STATUS',
         'MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_CONTENT_WIDTH',
         'MODULE_CHECKOUT_CONFIRMATION_LAW_HAMON_SORT_ORDER'

@@ -112,7 +112,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ADVANCED_SEARCH_CRITERIA_STATUS',
         'MODULE_ADVANCED_SEARCH_CRITERIA_CONTENT_WIDTH',
         'MODULE_ADVANCED_SEARCH_CRITERIA_SORT_ORDER'

@@ -42,7 +42,7 @@
     $CLICSHOPPING_Db = Registry::get('Db');
     $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-    if (isset($_GET['Account'] ) && isset($_GET['CreatePro'])  && !isset($_GET['Success'])) {
+    if (isset($_GET['Account'] ) && isset($_GET['CreatePro']) && !isset($_GET['Success'])) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH;
 
       $process = isset($_SESSION['process']);
@@ -140,7 +140,7 @@
     }
 
   public function keys() {
-    return array (
+    return array(
       'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_STATUS',
       'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_CONTENT_WIDTH',
       'MODULE_CREATE_ACCOUNT_PRO_REGISTRATION_SORT_ORDER'

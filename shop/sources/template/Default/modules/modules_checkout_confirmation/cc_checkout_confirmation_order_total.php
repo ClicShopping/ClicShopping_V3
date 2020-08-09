@@ -120,7 +120,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_STATUS',
         'MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_CONTENT_WIDTH',
         'MODULE_CHECKOUT_CONFIRMATION_ORDER_TOTAL_SORT_ORDER'

@@ -124,7 +124,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_FEATURED_TITLE_STATUS',
         'MODULE_PRODUCTS_FEATURED_CONTENT_WIDTH',
         'MODULE_PRODUCTS_FEATURED_POSITION',

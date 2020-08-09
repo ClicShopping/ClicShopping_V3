@@ -108,7 +108,7 @@
     }
 
   public function keys() {
-    return array (
+    return array(
       'MODULE_CREATE_ACCOUNT_BUTTON_PROCESS_STATUS',
       'MODULE_CREATE_ACCOUNT_BUTTON_PROCESS_CONTENT_WIDTH',
       'MODULE_CREATE_ACCOUNT_BUTTON_PROCESS_SORT_ORDER'

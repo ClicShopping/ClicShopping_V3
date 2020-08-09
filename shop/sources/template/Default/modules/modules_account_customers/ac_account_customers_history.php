@@ -116,7 +116,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ACCOUNT_CUSTOMERS_HISTORY_TITLE_STATUS',
         'MODULE_ACCOUNT_CUSTOMERS_HISTORY_CONTENT_WIDTH',
         'MODULE_ACCOUNT_CUSTOMERS_HISTORY_TITLE_SORT_ORDER'

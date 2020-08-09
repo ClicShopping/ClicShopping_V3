@@ -116,7 +116,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_PAYMENT_BUTTON_PROCESS_STATUS',
         'MODULE_CHECKOUT_PAYMENT_BUTTON_PROCESS_CONTENT_WIDTH',
         'MODULE_CHECKOUT_PAYMENT_BUTTON_PROCESS_SORT_ORDER'

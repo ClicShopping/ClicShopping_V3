@@ -119,7 +119,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_LOGIN_PASSWORD_RESET_STATUS',
         'MODULE_LOGIN_PASSWORD_RESET_CONTENT_WIDTH',
         'MODULE_LOGIN_PASSWORD_RESET_SORT_ORDER'

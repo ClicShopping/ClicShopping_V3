@@ -116,7 +116,7 @@
     }
 
   public function keys() {
-    return array (
+    return array(
       'MODULE_CREATE_ACCOUNT_REGISTRATION_STATUS',
       'MODULE_CREATE_ACCOUNT_REGISTRATION_CONTENT_WIDTH',
       'MODULE_CREATE_ACCOUNT_REGISTRATION_SORT_ORDER'

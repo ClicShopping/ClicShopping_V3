@@ -113,7 +113,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_LOGIN_PASSWORD_FORGOTTEN_STATUS',
         'MODULE_LOGIN_PASSWORD_FORGOTTEN_CONTENT_WIDTH',
         'MODULE_LOGIN_PASSWORD_FORGOTTEN_SORT_ORDER'

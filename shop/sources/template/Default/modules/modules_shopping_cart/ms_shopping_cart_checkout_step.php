@@ -39,7 +39,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
 
-      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
+      if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
 
         $content_width = (int)MODULE_SHOPPING_CART_CHECKOUT_STEP_CONTENT_WIDTH;
 
@@ -109,7 +109,7 @@
     }
     
     public function keys() {
-      return array (
+      return array(
         'MODULE_SHOPPING_CART_CHECKOUT_STEP_STATUS',
         'MODULE_SHOPPING_CART_CHECKOUT_STEP_CONTENT_WIDTH',
         'MODULE_SHOPPING_CART_CHECKOUT_STEP_SORT_ORDER'

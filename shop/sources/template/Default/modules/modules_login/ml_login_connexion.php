@@ -127,7 +127,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_LOGIN_CONNEXION_STATUS',
         'MODULE_LOGIN_CONNEXION_CONTENT_WIDTH',
         'MODULE_LOGIN_CONNEXION_POSITION',

@@ -218,7 +218,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_SHIPPING_LISTING_STATUS',
         'MODULE_CHECKOUT_SHIPPING_LISTING_CONTENT_WIDTH',
         'MODULE_CHECKOUT_SHIPPING_LISTING_SORT_ORDER'

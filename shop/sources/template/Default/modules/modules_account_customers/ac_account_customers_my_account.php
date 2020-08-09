@@ -110,7 +110,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ACCOUNT_CUSTOMERS_MY_ACCOUNT_TITLE_STATUS',
         'MODULE_ACCOUNT_CUSTOMERS_MY_ACCOUNT_CONTENT_WIDTH',
         'MODULE_ACCOUNT_CUSTOMERS_MY_ACCOUNT_TITLE_SORT_ORDER'

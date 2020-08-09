@@ -468,7 +468,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_INFO_ALSO_PURCHASED_STATUS',
         'MODULE_PRODUCTS_INFO_ALSO_PURCHASED_TEMPLATE',
         'MODULE_PRODUCTS_INFO_ALSO_PURCHASED_TITLE',

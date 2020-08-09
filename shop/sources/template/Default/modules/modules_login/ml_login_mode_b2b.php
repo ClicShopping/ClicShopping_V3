@@ -126,7 +126,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_LOGIN_MODE_B2B_STATUS',
         'MODULE_LOGIN_MODE_B2B_CONTENT_WIDTH',
         'MODULE_LOGIN_MODE_B2B_POSITION',

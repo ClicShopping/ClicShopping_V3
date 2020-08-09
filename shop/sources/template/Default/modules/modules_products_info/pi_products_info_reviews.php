@@ -244,7 +244,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_INFO_REVIEWS_STATUS',
         'MODULE_PRODUCTS_INFO_REVIEWS_CONTENT_WIDTH',
         'MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS',

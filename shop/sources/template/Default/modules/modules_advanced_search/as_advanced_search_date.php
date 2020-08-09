@@ -111,7 +111,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ADVANCED_SEARCH_DATE_STATUS',
         'MODULE_ADVANCED_SEARCH_DATE_CONTENT_WIDTH',
         'MODULE_ADVANCED_SEARCH_DATE_SORT_ORDER'

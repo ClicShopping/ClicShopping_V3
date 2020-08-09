@@ -115,7 +115,7 @@
     }
 
   public function keys() {
-    return array (
+    return array(
       'MODULE_CREATE_ACCOUNT_SUCCESS_STATUS',
       'MODULE_CREATE_ACCOUNT_SUCCESS_CONTENT_WIDTH',
       'MODULE_CREATE_ACCOUNT_SUCCESS_SORT_ORDER'

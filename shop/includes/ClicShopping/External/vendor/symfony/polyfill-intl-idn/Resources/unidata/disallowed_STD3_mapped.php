@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   160 => ' ',
   168 => ' ̈',
   175 => ' ̄',

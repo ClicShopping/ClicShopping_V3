@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   223 => 'ss',
   962 => 'σ',
   8204 => '',

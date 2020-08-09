@@ -36,7 +36,7 @@
   public function execute() {
     $CLICSHOPPING_Template = Registry::get('Template');
 
-    if (isset($_GET['Account'] ) && isset($_GET['CreatePro'])  && !isset($_GET['Success']) ) {
+    if (isset($_GET['Account'] ) && isset($_GET['CreatePro']) && !isset($_GET['Success']) ) {
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_CONTENT_WIDTH;
 
       $create_account_pro = '<!-- Start create_account_pro_button_process start -->' . "\n";
@@ -107,7 +107,7 @@
     }
 
   public function keys() {
-    return array (
+    return array(
       'MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_STATUS',
       'MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_CONTENT_WIDTH',
       'MODULE_CREATE_ACCOUNT_PRO_BUTTON_PROCESS_SORT_ORDER'

@@ -107,7 +107,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ADVANCED_SEARCH_MANUFACTURERS_STATUS',
         'MODULE_ADVANCED_SEARCH_MANUFACTURERS_CONTENT_WIDTH',
         'MODULE_ADVANCED_SEARCH_MANUFACTURERS_SORT_ORDER'

@@ -560,7 +560,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_NEW_STATUS',
         'MODULE_PRODUCTS_NEW_TEMPLATE',
         'MODULE_PRODUCTS_NEW_MAX_DISPLAY',

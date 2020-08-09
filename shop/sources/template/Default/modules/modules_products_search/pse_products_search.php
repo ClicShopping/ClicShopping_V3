@@ -582,7 +582,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_SEARCH_STATUS',
         'MODULE_PRODUCTS_SEARCH_TEMPLATE',
         'MODULE_PRODUCTS_SEARCH_MAX_DISPLAY',

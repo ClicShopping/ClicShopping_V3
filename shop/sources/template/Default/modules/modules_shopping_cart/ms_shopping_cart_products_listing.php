@@ -48,7 +48,7 @@
       $CLICSHOPPING_ProductsFunctionTemplate = Registry::get('ProductsFunctionTemplate');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
 
-      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
+      if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
 //        $content_width = (int)MODULE_SHOPPING_CART_PRODUCTS_LISTING_CONTENT_WIDTH;

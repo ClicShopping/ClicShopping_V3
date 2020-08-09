@@ -545,7 +545,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_FEATURED_STATUS',
         'MODULE_PRODUCTS_FEATURED_TEMPLATE',
         'MODULE_PRODUCTS_FEATURED_MAX_DISPLAY',

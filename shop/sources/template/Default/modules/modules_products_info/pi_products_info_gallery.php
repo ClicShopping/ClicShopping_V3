@@ -218,7 +218,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_INFO_GALLERY_STATUS',
         'MODULE_PRODUCTS_INFO_GALLERY_CONTENT_WIDTH',
         'MODULE_PRODUCTS_INFO_GALLERY_POSITION',

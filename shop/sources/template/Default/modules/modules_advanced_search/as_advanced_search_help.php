@@ -110,7 +110,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ADVANCED_SEARCH_HELP_STATUS',
         'MODULE_ADVANCED_SEARCH_HELP_CONTENT_WIDTH',
         'MODULE_ADVANCED_SEARCH_HELP_SORT_ORDER'

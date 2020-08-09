@@ -119,7 +119,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS',
         'MODULE_ACCOUNT_CUSTOMERS_PASSWORD_CONTENT_WIDTH',
         'MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_SORT_ORDER'

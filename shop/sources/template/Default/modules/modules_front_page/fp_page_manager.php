@@ -114,7 +114,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_FRONT_PAGE_PAGE_MANAGER_STATUS',
         'MODULE_FRONT_PAGE_PAGE_MANAGER_CONTENT_WIDTH',
         'MODULE_FRONT_PAGE_PAGE_MANAGER_SORT_ORDER'

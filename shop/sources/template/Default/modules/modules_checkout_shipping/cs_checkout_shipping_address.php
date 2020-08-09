@@ -123,7 +123,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_SHIPPING_ADDRESS_STATUS',
         'MODULE_CHECKOUT_SHIPPING_ADDRESS_CONTENT_WIDTH',
         'MODULE_CHECKOUT_SHIPPING_ADDRESS_SORT_ORDER'

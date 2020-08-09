@@ -120,7 +120,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_INDEX_CATEGORIES_NAME_STATUS',
         'MODULE_INDEX_CATEGORIES_NAME_CONTENT_WIDTH',
         'MODULE_INDEX_CATEGORIES_NAME_SORT_ORDER'

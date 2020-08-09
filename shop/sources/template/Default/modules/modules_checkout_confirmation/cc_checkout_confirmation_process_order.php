@@ -133,7 +133,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_STATUS',
         'MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_CONTENT_WIDTH',
         'MODULE_CHECKOUT_CONFIRMATION_PROCESS_ORDER_SORT_ORDER'

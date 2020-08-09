@@ -139,7 +139,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_STATUS',
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_CONTENT_WIDTH',
         'MODULE_SHOPPING_CART_OUT_OF_STOCK_MESSAGE_POSITION',

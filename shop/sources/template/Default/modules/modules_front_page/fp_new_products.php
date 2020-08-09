@@ -493,7 +493,7 @@
     }
 
     public function keys() {
-      return array ('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS',
+      return array('MODULE_FRONT_PAGE_NEW_PRODUCTS_STATUS',
                     'MODULE_FRONT_PAGE_NEW_PRODUCTS_TEMPLATE',
                     'MODULE_FRONT_PAGE_NEW_PRODUCTS_FRONT_TITLE',
                     'MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY',

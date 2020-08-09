@@ -121,7 +121,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_PAYMENT_ADDRESS_STATUS',
         'MODULE_CHECKOUT_PAYMENT_ADDRESS_CONTENT_WIDTH',
         'MODULE_CHECKOUT_PAYMENT_ADDRESS_SORT_ORDER'

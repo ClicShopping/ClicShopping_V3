@@ -40,7 +40,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
 
-      if (isset($_GET['Cart'])  && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
+      if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
         if (is_array($CLICSHOPPING_NavigationHistory)) {
           $back = count($CLICSHOPPING_NavigationHistory->path)-2;
         } else {
@@ -154,7 +154,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_STATUS',
         'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_CONTENT_WIDTH',
         'MODULE_SHOPPING_CART_ORDER_BUTTON_PROCESS_POSITION',

@@ -485,7 +485,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_PRODUCTS_LISTING_STATUS',
         'MODULE_PRODUCTS_LISTING_TEMPLATE',
         'MODULE_PRODUCTS_LISTING_MAX_DISPLAY',

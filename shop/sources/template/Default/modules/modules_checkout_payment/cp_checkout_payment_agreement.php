@@ -115,7 +115,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_PAYMENT_AGREEMENT_STATUS',
         'MODULE_CHECKOUT_PAYMENT_AGREEMENT_CONTENT_WIDTH',
         'MODULE_CHECKOUT_PAYMENT_AGREEMENT_SORT_ORDER'

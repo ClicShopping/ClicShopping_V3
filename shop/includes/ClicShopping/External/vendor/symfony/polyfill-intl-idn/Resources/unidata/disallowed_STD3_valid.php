@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   0 => true,
   1 => true,
   2 => true,

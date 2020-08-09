@@ -116,7 +116,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_CHECKOUT_PAYMENT_COMMENT_STATUS',
         'MODULE_CHECKOUT_PAYMENT_COMMENT_CONTENT_WIDTH',
         'MODULE_CHECKOUT_PAYMENT_COMMENT_SORT_ORDER'

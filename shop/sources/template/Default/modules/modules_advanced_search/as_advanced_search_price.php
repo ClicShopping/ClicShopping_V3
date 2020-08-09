@@ -104,7 +104,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ADVANCED_SEARCH_PRICE_STATUS',
         'MODULE_ADVANCED_SEARCH_PRICE_CONTENT_WIDTH',
         'MODULE_ADVANCED_SEARCH_PRICE_SORT_ORDER'

@@ -143,7 +143,7 @@
     }
 
     public function keys() {
-      return array (
+      return array(
         'MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_STATUS',
         'MODULE_ACCOUNT_CUSTOMERS_EDIT_CONTENT_WIDTH',
         'MODULE_ACCOUNT_CUSTOMERS_EDIT_TITLE_SORT_ORDER'
