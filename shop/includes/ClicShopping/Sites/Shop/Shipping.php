@@ -45,7 +45,8 @@
           if (strpos($code, '\\') !== false) {
             $class = Apps::getModuleClass($code, 'Shipping');
 
-            $include_modules[] = ['class' => $code,
+            $include_modules[] = [
+              'class' => $code,
               'file' => $class
             ];
           }
@@ -77,6 +78,7 @@
     public function getShippingWeight()
     {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
+      $shipping_weight = 1;
 
       if (is_array($this->modules)) {
         $shipping_weight = $CLICSHOPPING_ShoppingCart->getWeight();
@@ -183,7 +185,8 @@
 
               for ($i = 0, $n = count($quotes['methods'] ?: []); $i < $n; $i++) {
                 if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
-                  $rates[] = ['id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
+                  $rates[] = [ 
+                     'id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
                     'title' => $quotes['module'] . (isset($quotes['methods'][$i]['title']) && !empty($quotes['methods'][$i]['title']) ? ' (' . $quotes['methods'][$i]['title'] . ')' : ''),
                     'info' => $quotes['info'] . (isset($quotes['methods'][$i]['info']) && !empty($quotes['methods'][$i]['info']) ? ' (' . $quotes['methods'][$i]['info'] . ')' : ''),
                     'cost' => $quotes['methods'][$i]['cost']

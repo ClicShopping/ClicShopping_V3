@@ -109,7 +109,9 @@
     */
     public function getRestoreContents()
     {
-      if (!$this->customer->isLoggedOn()) return false;
+      if (!$this->customer->isLoggedOn()) {
+        return false;
+      }
 
       $qty = 0;
 
