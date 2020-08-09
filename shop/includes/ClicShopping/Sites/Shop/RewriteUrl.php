@@ -925,12 +925,12 @@
 
 
     /**
-     * @param $categories_id , id of the categories
+     * @param string $categories_id , id of the categories
      * @param string $parameters , url parameters
      * @return string
      */
 
-    public function getCategoryTreeUrl(int $categories_id, string $parameters = ''): string
+    public function getCategoryTreeUrl(string $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
@@ -950,12 +950,12 @@
     }
 
     /**
-     * @param $categories_id , id of the categories
+     * @param string $categories_id , id of the categories
      * @param string $parameters , url parameters
      * @return string
      */
 
-    public function getCategoryImageUrl(int $categories_id, string $parameters = ''): string
+    public function getCategoryImageUrl(string $categories_id, string $parameters = ''): string
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
