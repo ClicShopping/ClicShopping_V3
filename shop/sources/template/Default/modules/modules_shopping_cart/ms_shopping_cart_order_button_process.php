@@ -63,13 +63,13 @@
 
         if (!$CLICSHOPPING_Customer->isLoggedOn()) {
           if ((MODE_MANAGEMENT_B2C_B2B == 'B2C' || MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B') && (MODE_B2B_B2C == 'true')) {
-            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account/Create'), 'info', null, 'lg');
+            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account&Create'), 'info', null, 'lg');
           } elseif ((MODE_MANAGEMENT_B2C_B2B == 'B2B' || MODE_MANAGEMENT_B2C_B2B == 'B2C_B2B') && (MODE_B2B_B2C == 'true')) {
-            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account/CreatePro'), 'info', null, 'lg');
+            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'info', null, 'lg');
           } elseif (MODE_MANAGEMENT_B2C_B2B == 'B2C' && (MODE_B2B_B2C == 'false')) {
-            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account/Create'), 'info', null, 'lg');
+            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account&Create'), 'info', null, 'lg');
           } elseif (MODE_MANAGEMENT_B2C_B2B == 'B2C' && (MODE_B2B_B2C == 'false')) {
-            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account/CreatePro'), 'info', null, 'lg');
+            $save_shopping_cart = HTML::button(CLICSHOPPING::getDef('button_save_shopping_cart'), null, CLICSHOPPING::link(null, 'Account&CreatePro'), 'info', null, 'lg');
           }
         }
 
