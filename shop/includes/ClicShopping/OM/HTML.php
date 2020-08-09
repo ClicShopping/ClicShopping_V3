@@ -95,14 +95,13 @@
      *
      * @param string $url The url to link to
      * @param string $element The element to link to
-     * @param null $parameters Additional parameters for the a href tag
-     * @param string $option
+     * @param string $parameters Additional parameters for the a href tag
      * @return string
      */
 
-    public static function link(string $url, string $element, $parameters = null, string $option = '')
+    public static function link(string $url, string $element, $parameters = null)
     {
-      return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '' . (!empty($option) ? ' ' . $option : '') . '>' . $element . '</a>';
+      return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }
 
     /*
@@ -314,7 +313,7 @@
      * @return string
      */
 
-    protected static function selectionField($name, $type, $values = null, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
+    protected static function selectionField(string $name, string $type, $values = null, $default = null, $parameters = null, string $separator = '&nbsp;&nbsp;')
     {
       if (!is_array($values)) {
         $values = array($values);
@@ -402,7 +401,7 @@
      * @return string
      */
 
-    public static function checkboxField($name, $values = null, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
+    public static function checkboxField(string $name, $values = null, $default = null, $parameters = null, string $separator = '&nbsp;&nbsp;')
     {
       return static::selectionField($name, 'checkbox', $values, $default, $parameters, $separator);
     }

@@ -180,6 +180,12 @@ $opts = array(
                                     'read' => false,
                                     'hidden' => true,
                                   ),
+                            array( // restrict access to htaccess$ files
+                              'pattern' => '/\.index/',
+                              'write' => false,
+                              'read' => false,
+                              'hidden' => true,
+                            ),
                              array( // restrict access to php files
                                      'pattern' => '/\.php$/',
                                      'write' => false,

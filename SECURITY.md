@@ -12,11 +12,13 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-If you identified a vulnerabilities, please report a Issues on Github :
+If you identified a vulnerability, please report an issues on Github :
 https://github.com/ClicShopping/ClicShopping_V3/issues
 
 - Explain the problem
+- add a detail example that can be reproduced
 - If you know a solution, propose your idea to solve
 
+We will check your post, test and remove 
 
 
