@@ -39,7 +39,7 @@
   </style>
 </head>
 <body>
-<p align="center"><a href="<?php echo 'https://'.$_SERVER['HTTP_HOST']; ?>"><img src="<?php echo 'https://'.$_SERVER['HTTP_HOST']; ?>/shop/images/logo_clicshopping_1.png"></a></p>
+<p align="center"><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>"><img src="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>/shop/images/logo_clicshopping_1.png"></a></p>
 <h2 align="center">Download / Téléchargement clicShopping OpenSource</h2>
 <div style="padding-top: 100px;">
   <blockquote><a href="<?php echo 'https://' . $_SERVER['HTTP_HOST']; ?>">Accueil / home Page</a></blockquote>
@@ -49,8 +49,9 @@
 
   $iter = new DirectoryIterator(__DIR__ );
   $i = 0;
-  foreach($iter as $file ) {
-    if ( !$file->isDot()) {
+
+  foreach($iter as $file) {
+    if (!$file->isDot()) {
       if ($file != 'index.php') {
         if ($file != '.htaccess') {
            $file =  $file->getFilename();
@@ -58,7 +59,8 @@
         }
       }
     }
-    $i = $i+1;
+    
+    $i = $i++;
   }
 ?>
 </div>

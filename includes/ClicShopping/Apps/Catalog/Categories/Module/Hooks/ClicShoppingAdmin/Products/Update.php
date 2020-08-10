@@ -22,8 +22,9 @@
   class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $productsAdmin;
-    protected $productsLink;
+    protected ProductsAdmin $productsAdmin;
+    protected string $productsLink;
+    protected string $currentCategoryId;
 
     public function __construct()
     {

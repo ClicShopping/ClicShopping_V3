@@ -27,20 +27,31 @@
       $h1 = opendir($dir);
       while ($subdir = readdir($h1)) {
 // Ignore non directories
-        if (!is_dir($dir . $subdir)) continue;
+        if (!is_dir($dir . $subdir)) {
+          continue;
+        }
 // Ignore . and .. and CVS
-        if ($subdir == '.' || $subdir == '..' || $subdir == 'CVS') continue;
+        if ($subdir == '.' || $subdir == '..' || $subdir == 'CVS') {
+          continue;
+        }
 // Loop and unlink files in subdirectory
         $h2 = opendir($dir . $subdir);
+
         while ($file = readdir($h2)) {
-          if ($file == '.' || $file == '..') continue;
+          if ($file == '.' || $file == '..') {
+            continue;
+          }
 
           if (file_exists($dir . $subdir . '/' . $file)) {
             unlink($dir . $subdir . '/' . $file);
           }
         }
+
         closedir($h2);
-        @rmdir($dir . $subdir);
+
+        if (is_dir($dir . $subdir)) {
+          rmdir($dir . $subdir);
+        }
       }
       closedir($h1);
     }

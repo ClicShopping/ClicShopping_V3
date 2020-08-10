@@ -17,7 +17,7 @@
   class Insert extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;
-    protected $cPath;
+    protected string $currentCategoryId;
 
     public function __construct()
     {

@@ -28,12 +28,24 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['cID'])) $categories_id = HTML::sanitize($_GET['cID']);
-      if (isset($_POST['current_category_id'])) $categories_id = HTML::sanitize($_POST['current_category_id']);
-      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
-      if (isset($_POST['move_to_category_id'])) $new_parent_id = HTML::sanitize($_POST['move_to_category_id']);
+      if (isset($_GET['cID'])) {
+        $categories_id = HTML::sanitize($_GET['cID']);
+      }
 
-      $sql_data_array = ['parent_id' => (int)$new_parent_id,
+      if (isset($_POST['current_category_id'])) {
+        $categories_id = HTML::sanitize($_POST['current_category_id']);
+      }
+
+      if (isset($_POST['sort_order'])) {
+        $sort_order = HTML::sanitize($_POST['sort_order']);
+      }
+
+      if (isset($_POST['move_to_category_id'])) {
+        $new_parent_id = HTML::sanitize($_POST['move_to_category_id']);
+      }
+
+      $sql_data_array = [
+        'parent_id' => (int)$new_parent_id,
         'sort_order' => (int)$sort_order
       ];
 
@@ -61,7 +73,8 @@
           'categories_head_keywords_tag' => HTML::sanitize($categories_seo_keyword_array[$language_id])
         ];
 
-        $insert_sql_data = ['categories_id' => (int)$categories_id,
+        $insert_sql_data = [
+          'categories_id' => (int)$categories_id,
           'language_id' => (int)$language_id
         ];
 

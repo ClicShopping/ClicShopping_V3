@@ -28,12 +28,25 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['cID'])) $id = HTML::sanitize($_GET['cID']);
-      if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']);
+      if (isset($_GET['cID'])) {
+        $id = HTML::sanitize($_GET['cID']);
+      }
 
-      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
-      if (isset($_POST['link'])) $link = HTML::sanitize($_POST['link']);
-      if (isset($_POST['image'])) $image = HTML::sanitize($_POST['image']);
+      if (isset($_GET['cPath'])) {
+        $cPath = HTML::sanitize($_GET['cPath']);
+      }
+
+      if (isset($_POST['sort_order'])) {
+        $sort_order = HTML::sanitize($_POST['sort_order']);
+      }
+
+      if (isset($_POST['link'])) {
+        $link = HTML::sanitize($_POST['link']);
+      }
+
+      if (isset($_POST['image'])) {
+        $image = HTML::sanitize($_POST['image']);
+      }
 
       if (isset($_POST['b2b_menu'])) {
         $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
