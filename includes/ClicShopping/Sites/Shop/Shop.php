@@ -41,9 +41,6 @@
         if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/install')) {
           header('Location: /install/index.php');
           exit;
-        } elseif (is_file($_SERVER['DOCUMENT_ROOT'] . '/shop/install/index.php')) {
-          header('Location: /shop/install/index.php');
-          exit;
         } else {
           echo 'Please look your install directory to begin your new installation like https://wwww.mydomain.com/MyDirectory/install';
           exit;
