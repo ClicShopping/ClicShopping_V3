@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_categories_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_categories_description');
 
-      if ( defined('MODULE_BOXES_CATEGORIES_STATUS') ) {
+      if (defined('MODULE_BOXES_CATEGORIES_STATUS')) {
         $this->sort_order = MODULE_BOXES_CATEGORIES_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_CATEGORIES_STATUS == 'True');
         $this->pages = MODULE_BOXES_CATEGORIES_DISPLAY_PAGES;
@@ -48,7 +48,7 @@
       if ($CLICSHOPPING_CategoryTree->getCountCategories() != 0) {
         $categories_banner = '';
 	
-        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+        if ($CLICSHOPPING_Service->isStarted('Banner')) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CATEGORIES_BANNER_GROUP)) {
             $categories_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }

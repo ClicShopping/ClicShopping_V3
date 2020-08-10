@@ -130,7 +130,7 @@
                                                                                 where products_id = :products_id
                                                                                 and customers_group_id = :customers_group_id
                                                                               ');
-              $QproductsQuantityCustomersGroupQuery->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($products[$i]['id']) );
+              $QproductsQuantityCustomersGroupQuery->bindInt(':products_id', $CLICSHOPPING_Prod::getProductID($products[$i]['id']));
               $QproductsQuantityCustomersGroupQuery->bindInt(':customers_group_id', $CLICSHOPPING_Customer->getCustomersGroupID() );
               $QproductsQuantityCustomersGroupQuery->execute();
 

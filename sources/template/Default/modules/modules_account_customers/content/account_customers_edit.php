@@ -109,7 +109,7 @@
     </div>
   </div>
 <?php
-  if ((ACCOUNT_DOB == 'true' && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (ACCOUNT_DOB_PRO == 'true'  && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)) ) {
+  if ((ACCOUNT_DOB == 'true' && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (ACCOUNT_DOB_PRO == 'true'  && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
     if (!empty($customers_dob)) {
       $customers_dob = DateTime::toShort($customers_dob);
       $dateObj = new \DateTime($customers_dob);
@@ -190,7 +190,7 @@
 // ----------------------
 // ----- Company   -----
 // ----------------------
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 

@@ -39,8 +39,8 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Category = Registry::get('Category');
 
-      if (!empty($CLICSHOPPING_Category->getPath()) ) {
-        if ( $CLICSHOPPING_Category->getID()) {
+      if (!empty($CLICSHOPPING_Category->getPath())) {
+        if ($CLICSHOPPING_Category->getID()) {
           if ($CLICSHOPPING_Category->getDepth() == 'nested' || $CLICSHOPPING_Category->getDepth() == 'products') {
             $bootstrap_column = (int)MODULE_PRODUCTS_LISTING_CATEGORIES_COLUMNS;
 

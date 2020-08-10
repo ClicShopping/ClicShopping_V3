@@ -45,7 +45,7 @@
 
         $form = HTML::form('contact', CLICSHOPPING::link(null, 'Info&Contact&Process'), 'post', 'enctype="multipart/form-data"',  ['tokenize' => true, 'action' => 'process']);
 
-        if ( isset($_GET['order_id']) && is_numeric($_GET['order_id']) ) {
+        if ( isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
           $order_id = HTML::sanitize($_GET['order_id']);
         } else {
           $order_id = 0;

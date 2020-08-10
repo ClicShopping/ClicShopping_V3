@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_tell_a_friend_button_process_title');
       $this->description = CLICSHOPPING::getDef('modules_tell_a_friend_button_process_description');
 
-      if ( defined('MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS') ) {
+      if (defined('MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS')) {
         $this->sort_order = MODULES_TELL_A_FRIEND_BUTTON_PROCESS_SORT_ORDER;
         $this->enabled = (MODULES_TELL_A_FRIEND_BUTTON_PROCESS_STATUS == 'True');
       }

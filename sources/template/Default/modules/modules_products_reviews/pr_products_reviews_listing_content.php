@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_listing_content_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_listing_content_description');
 
-      if ( defined('MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_STATUS') ) {
+      if (defined('MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_STATUS == 'True');
       }
@@ -75,9 +75,9 @@
         $delete_reviews = '';
         $delete_comment = MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_DELETE_COMMENT;
 
-        while ($Qreviews->fetch() ) {
+        while ($Qreviews->fetch()) {
           $date_reviews = CLICSHOPPING::getDef('text_review_date_added') . ' ' . DateTime::toLong($Qreviews->value('date_added'));
-          $customer_name =  CLICSHOPPING::getDef('text_review_by',  ['customer_name' => '*** ' . HTML::outputProtected(substr($Qreviews->value('customers_name'), 4, -4)) . ' ***']);
+          $customer_name = CLICSHOPPING::getDef('text_review_by',  ['customer_name' => '*** ' . HTML::outputProtected(substr($Qreviews->value('customers_name'), 4, -4)) . ' ***']);
           $customer_review = '<a href="' . CLICSHOPPING::link(null, 'Products&ReviewsInfo&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')) . '">' . $customer_name . '</a>';
           $delete_reviews = '';
 
@@ -93,7 +93,7 @@
           ob_start();
           require($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_listing_content'));
 
-          $data.= ob_get_clean();
+          $data .= ob_get_clean();
         }
 
         if ($Qreviews->getPageSetTotalRows() > 0) {

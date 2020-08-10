@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_footer_suffix_copyright_title');
       $this->description = CLICSHOPPING::getDef('modules_footer_suffix_copyright_description');
 
-      if ( defined('MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS') ) {
+      if (defined('MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS')) {
         $this->sort_order = MODULES_FOOTER_SUFFIX_COPYRIGHT_SORT_ORDER;
         $this->enabled = (MODULES_FOOTER_SUFFIX_COPYRIGHT_STATUS == 'True');
       }

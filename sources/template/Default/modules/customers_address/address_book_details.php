@@ -124,7 +124,7 @@
     echo HTML::inputField('firstname', ($entry['firstname'] ?? null), 'required aria-required="true" id="InputFirstName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_first_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_first_name') . '" minlength="'. ENTRY_FIRST_NAME_PRO_MIN_LENGTH .'"');
   }
 
-  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_FIRST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_FIRST_NAME_PRO_MIN_LENGTH > 0 ) ) {
+  if (($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_FIRST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_FIRST_NAME_PRO_MIN_LENGTH > 0 )) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_first_name_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_first_name_text') . '</span>': '');
   }
 ?>
@@ -145,7 +145,7 @@
     echo HTML::inputField('lastname', $entry['lastname'] ?? null, 'required aria-required="true" id="InputLastName" autocomplete="name" aria-describedby="' . CLICSHOPPING::getDef('entry_last_name') . '" placeholder="' . CLICSHOPPING::getDef('entry_last_name') . '" minlength="' . ENTRY_LAST_NAME_PRO_MIN_LENGTH . '"');
   }
 
-  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_LAST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_LAST_NAME_PRO_MIN_LENGTH > 0 ) ) {
+  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_LAST_NAME_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_LAST_NAME_PRO_MIN_LENGTH > 0 )) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_last_name_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_last_name_text') . '</span>': '');
   }
 ?>
@@ -217,7 +217,7 @@
                   <div class="col-sm-6 col-md-4">
 <?php
   echo HTML::inputField('street_address', ($entry['street_address'] ?? null), 'required aria-required="true" id="InputStreetAddress" aria-describedby="' . CLICSHOPPING::getDef('entry_street_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_street_address') . '" minlength="'. ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH .'"');
-  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_STREET_ADDRESS_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH > 0 ) ) {
+  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_STREET_ADDRESS_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_STREET_ADDRESS_PRO_MIN_LENGTH > 0 )) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_street_address_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_street_address_text') . '</span>': '');
   }
 ?>
@@ -248,7 +248,7 @@
                   <div class="col-sm-6 col-md-4">
 <?php
   echo HTML::inputField('postcode', ($entry['postcode'] ?? null), 'required aria-required="true" id="InputPostCode" aria-describedby="' . CLICSHOPPING::getDef('entry_post_code') . '" placeholder="' . CLICSHOPPING::getDef('entry_post_code') . '"');
-  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_POSTCODE_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_POSTCODE_PRO_MIN_LENGTH > 0 ) ) {
+  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_POSTCODE_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_POSTCODE_PRO_MIN_LENGTH > 0 )) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_post_code_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_post_code_text') . '</span>': '');
   }
 ?>
@@ -264,7 +264,7 @@
                   <div class="col-sm-6 col-md-4">
 <?php
   echo HTML::inputField('city', ($entry['city'] ?? null), 'required aria-required="true" id="InputCity" aria-describedby="' . CLICSHOPPING::getDef('entry_city') . '" placeholder="' . CLICSHOPPING::getDef('entry_city') . '"');
-  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_CITY_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_CITY_PRO_MIN_LENGTH > 0 ) ) {
+  if ( ($CLICSHOPPING_Customer->getCustomersGroupID() == 0 && ENTRY_CITY_MIN_LENGTH > 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && ENTRY_CITY_PRO_MIN_LENGTH > 0 )) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_city_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_city_text') . '</span>': '');
   }
 ?>
@@ -361,7 +361,7 @@
         }
 
         if ($Qcheck->rowCount() > 1) {
-          while ($Qcheck->fetch() ) {
+          while ($Qcheck->fetch()) {
             $zones_array[] = ['id' => $Qcheck->value('zone_name'),
                 'text' => $Qcheck->value('zone_name')
             ];

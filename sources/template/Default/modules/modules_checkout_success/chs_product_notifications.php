@@ -31,7 +31,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_success_product_notifications_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_success_product_notification_description');
 
-      if ( defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS') ) {
+      if (defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS')) {
         $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_SORT_ORDER : 0;
         $this->enabled = (MODULE_CHECKOUT_SUCCESS_PRODUCT_NOTIFICATIONS_STATUS == 'True');
       }

@@ -20,7 +20,7 @@
 
   echo $CLICSHOPPING_Payment->javascript_validation();
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 

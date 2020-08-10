@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_products_featured_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_products_featured_description');
 
-      if ( defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS') ) {
+      if (defined('MODULE_BOXES_PRODUCTS_FEATURED_STATUS')) {
         $this->sort_order = MODULE_BOXES_PRODUCTS_FEATURED_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_PRODUCTS_FEATURED_STATUS == 'True');
         $this->pages = MODULE_BOXES_PRODUCTS_FEATURED_DISPLAY_PAGES;
@@ -109,7 +109,7 @@
       if ($Qproducts->rowCount() > 0  ) {
         $featured_banner = '';
 
-        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+        if ($CLICSHOPPING_Service->isStarted('Banner')) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PRODUCTS_FEATURED_BANNER_GROUP)) {
             $featured_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }
@@ -125,7 +125,7 @@
         $data .= '<div class="card-block  text-md-center boxeContentArroundFeatured">';
         $data .= '<div class="separator"></div>';
 
-        while ($Qproducts->fetch() ) {
+        while ($Qproducts->fetch()) {
           $products_id = $Qproducts->valueInt('products_id');
           $_POST['products_id'] = $products_id;
 // **************************
@@ -140,7 +140,7 @@
 // **************************
           $products_flash_discount = '';
           if ($CLICSHOPPING_ProductsCommon->getProductsFlashDiscount($products_id) != '') {
-            $products_flash_discount =  CLICSHOPPING::getDef('text_flash_discount') . '<br/>' . $CLICSHOPPING_ProductsCommon->getProductsFlashDiscount($products_id);
+            $products_flash_discount = CLICSHOPPING::getDef('text_flash_discount') . '<br/>' . $CLICSHOPPING_ProductsCommon->getProductsFlashDiscount($products_id);
           }
 // *************************
 // display the differents prices before button

@@ -50,7 +50,7 @@
     }
 </script>
 <?php
-  if ( $CLICSHOPPING_MessageStack->exists('rewiews_write') ) {
+  if ($CLICSHOPPING_MessageStack->exists('rewiews_write')) {
     echo $CLICSHOPPING_MessageStack->get('rewiews_write');
   }
 

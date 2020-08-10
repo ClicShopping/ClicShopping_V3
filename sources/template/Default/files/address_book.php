@@ -17,7 +17,7 @@
 
   $CLICSHOPPING_Address = Registry::get('Address');
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 

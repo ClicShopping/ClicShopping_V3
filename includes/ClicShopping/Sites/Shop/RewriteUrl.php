@@ -434,11 +434,11 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if ( ! preg_match( '/[\x80-\xff]/', $string ) ) {
+      if ( ! preg_match( '/[\x80-\xff]/', $string )) {
         return $string;
       }
 
-      if ( static::seemsUtf8( $string ) ) {
+      if ( static::seemsUtf8( $string )) {
         $chars = array(
           // Decompositions for Latin-1 Supplement
           'ª' => 'a',

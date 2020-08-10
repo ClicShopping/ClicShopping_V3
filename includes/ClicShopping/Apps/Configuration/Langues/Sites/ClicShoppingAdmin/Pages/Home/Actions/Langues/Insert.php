@@ -107,15 +107,15 @@
 // -- Copy the new language in template catalog directory for the add on module
 // ---------------------------------------------
         /*
-                  $source =  CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' . $lng_default_directory;
-                  $dest =  CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' .  $directory;
+                  $source = CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' . $lng_default_directory;
+                  $dest = CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' .  $directory;
 
                   if (is_dir($source)) {
                     ModuleDownload::smartCopy($source, $dest);
                   }
 
-                  $source_catalogue =  CLICSHOPPING::getConfig('dir_root', 'Shop') .$CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' . $lng_default_directory.'.txt';
-                  $dest_catalogue =  CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' . $directory.'.txt';
+                  $source_catalogue = CLICSHOPPING::getConfig('dir_root', 'Shop') .$CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' . $lng_default_directory.'.txt';
+                  $dest_catalogue = CLICSHOPPING::getConfig('dir_root', 'Shop') . $CLICSHOPPING_Template->getDynamicTemplateDirectory() . '/languages/' . $directory.'.txt';
 
                   if (is_file($source_catalogue)) {
                     copy($source_catalogue, $dest_catalogue);

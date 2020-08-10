@@ -20,7 +20,7 @@
   $CLICSHOPPING_Customer = Registry::get('Customer');
   $CLICSHOPPING_Address = Registry::get('Address');
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 
@@ -73,7 +73,7 @@
 
         $Qaddresses = AddressBook::getListing();
 
-        while ($addresses = $Qaddresses->fetch() ) {
+        while ($addresses = $Qaddresses->fetch()) {
           $format_id = $CLICSHOPPING_Address->getAddressFormatId($Qaddresses->valueInt('country_id'));
 ?>
         <div class="col-md-4">

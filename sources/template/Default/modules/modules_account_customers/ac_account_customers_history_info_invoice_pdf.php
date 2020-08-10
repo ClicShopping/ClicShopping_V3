@@ -40,7 +40,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
+      if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo'])) {
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_INVOICE_PDF_CONTENT_WIDTH;
 // Count the number of the history order

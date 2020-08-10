@@ -39,7 +39,7 @@
   public function execute() {
     $CLICSHOPPING_Template = Registry::get('Template');
 
-    if (isset($_GET['Account']) && isset($_GET['CreatePro']) && isset($_GET['Success']) ) {
+    if (isset($_GET['Account']) && isset($_GET['CreatePro']) && isset($_GET['Success'])) {
       $origin_href = CreateAccount::getOriginHref();
 
       $content_width = (int)MODULE_CREATE_ACCOUNT_PRO_SUCCESS_CONTENT_WIDTH;

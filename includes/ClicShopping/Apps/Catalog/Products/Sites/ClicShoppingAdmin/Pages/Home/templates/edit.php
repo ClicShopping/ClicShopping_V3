@@ -606,7 +606,7 @@
 
               $QcustomersGroup->execute();
 
-              while ($QcustomersGroup->fetch() ) {
+              while ($QcustomersGroup->fetch()) {
               ?>
                 var grossValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = document.forms["new_product"].price<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value;
 
@@ -659,7 +659,7 @@
 
               $QcustomersGroup->execute();
 
-              while ($QcustomersGroup->fetch() ) {
+              while ($QcustomersGroup->fetch()) {
               ?>
                 var netValue<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?> = document.forms["new_product"].price_gross<?php echo $QcustomersGroup->valueInt('customers_group_id'); ?>.value;
 

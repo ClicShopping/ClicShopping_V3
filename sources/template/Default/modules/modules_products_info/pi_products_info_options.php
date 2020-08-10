@@ -40,7 +40,7 @@
       $CLICSHOPPING_Category = Registry::get('Category');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products']) ) {
+      if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Products'])) {
 
         $content_width = (int)MODULE_PRODUCTS_INFO_OPTIONS_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_INFO_OPTIONS_POSITION;
@@ -108,7 +108,7 @@
             $products_options_content_display .= '<div class="ModuleProductsInfoPositionOption">';
             $products_options_content_display .= '<span class="ModuleProductsInfoOptionsText"><h3>' . CLICSHOPPING::getDef('text_product_options') . '</h3></span>';
 
-            while ($QproductsOptionsName->fetch() ) {
+            while ($QproductsOptionsName->fetch()) {
               $products_options_array = [];
 
               $QproductsOptions = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($CLICSHOPPING_ProductsCommon->getID(), $QproductsOptionsName->valueInt('products_options_id'), null, $CLICSHOPPING_Language->getId());
@@ -125,7 +125,7 @@
                   $products_options_array_name[] = $QproductsOptions->value('products_options_values_name');
 
                   if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
-                    $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->displayPrice($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
+                    $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->displayPrice($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate($CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
 
                     if (PRICES_LOGGED_IN == 'False') {
                       $option_price_display_d = $option_price_display;
@@ -163,7 +163,7 @@
                                               ];
 
                   if ($QproductsOptions->valueDecimal('options_values_price') != '0') {
-                    $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->displayPrice($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate( $CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
+                    $option_price_display = ' (' . $QproductsOptions->value('price_prefix') . $CLICSHOPPING_Currencies->displayPrice($QproductsOptions->valueDecimal('options_values_price'), $CLICSHOPPING_Tax->getTaxRate($CLICSHOPPING_ProductsCommon->getProductsTaxClassId() )) .') ';
 
                     if (PRICES_LOGGED_IN == 'False') {
                       $option_price_display_d = $option_price_display;

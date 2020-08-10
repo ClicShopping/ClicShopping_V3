@@ -26,7 +26,7 @@
       $this->title = CLICSHOPPING::getDef('module_header_noscript_title');
       $this->description = CLICSHOPPING::getDef('module_header_noscript_description');
 
-      if ( defined('MODULE_HEADER_NOSCRIPT_STATUS') ) {
+      if (defined('MODULE_HEADER_NOSCRIPT_STATUS')) {
         $this->sort_order = MODULE_HEADER_NOSCRIPT_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_NOSCRIPT_STATUS == 'True');
       }

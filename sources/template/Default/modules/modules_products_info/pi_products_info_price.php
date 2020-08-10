@@ -50,12 +50,12 @@
 //possible bug avec shopping cart pour les produits qui ne sont pas dans les catégories _123 au lieu 0_123
         $cPath = $CLICSHOPPING_Category->getProductPath($CLICSHOPPING_ProductsCommon->getId());
 
-        if ( $CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
+        if ($CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
 
 // display the price/weight
            if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
              $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
-             $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol ;
+             $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol;
            } else {
              $product_price_kilo = '';
            }
@@ -95,15 +95,15 @@
           }
 
 // Display an input allowing for the customer to insert a quantity
-             $input_quantity =  CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+             $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
 
 // Quantity type
           if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
-            if (!empty( $CLICSHOPPING_ProductsCommon->getProductQuantityUnitType() )) {
+            if (!empty($CLICSHOPPING_ProductsCommon->getProductQuantityUnitType())) {
               $products_quantity_unit = CLICSHOPPING::getDef('text_products_quantity_type') . ' ' . $CLICSHOPPING_ProductsCommon->getProductQuantityUnitType();
             }
           } else {
-            if (!empty( $CLICSHOPPING_ProductsCommon->getProductQuantityUnitTypeCustomersGroup() )) {
+            if (!empty($CLICSHOPPING_ProductsCommon->getProductQuantityUnitTypeCustomersGroup())) {
               $products_quantity_unit = CLICSHOPPING::getDef('text_products_quantity_type') . ' ' . $CLICSHOPPING_ProductsCommon->getProductQuantityUnitTypeCustomersGroup();
             }
           }
@@ -124,7 +124,7 @@
                 if (isset($_GET['Description'])) $products_price_content .= HTML::hiddenField('url', 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getId());
               }
 
-              $products_price_content .= '<div class="contentText"  style="float:'. MODULE_PRODUCTS_INFO_PRICE_POSITION .';">';
+              $products_price_content .= '<div class="contentText"  style="float:' . MODULE_PRODUCTS_INFO_PRICE_POSITION .';">';
 
               if ($CLICSHOPPING_ProductsCommon->getProductsArchive() == 0) {
                 $products_price_content .= HTML::hiddenField('products_id', $CLICSHOPPING_ProductsCommon->getID());

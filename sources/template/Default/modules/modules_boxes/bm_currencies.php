@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_currencies_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_currencies_description');
 
-      if ( defined('MODULE_BOXES_CURRENCIES_STATUS') ) {
+      if (defined('MODULE_BOXES_CURRENCIES_STATUS')) {
         $this->sort_order = MODULE_BOXES_CURRENCIES_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_CURRENCIES_STATUS == 'True');
         $this->pages = MODULE_BOXES_CURRENCIES_DISPLAY_PAGES;
@@ -44,7 +44,7 @@
       if (!isset($_GET['Checkout'])) {
         $currencies_banner = '';
 
-        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+        if ($CLICSHOPPING_Service->isStarted('Banner')) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_CURRENCIES_BANNER_GROUP)) {
             $currencies_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }

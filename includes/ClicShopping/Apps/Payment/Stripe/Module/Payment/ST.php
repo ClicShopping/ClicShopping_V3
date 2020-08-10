@@ -84,12 +84,12 @@
         }
 
         if ( $this->enabled === true ) {
-          if ( isset($CLICSHOPPING_Order) && is_object($CLICSHOPPING_Order) ) {
+          if ( isset($CLICSHOPPING_Order) && is_object($CLICSHOPPING_Order)) {
             $this->update_status();
           }
         }
 
-        if (defined('CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY') && defined('CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY') ) {
+        if (defined('CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY') && defined('CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY')) {
           $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
           $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
         } else {
@@ -103,7 +103,7 @@
     public function update_status() {
       $CLICSHOPPING_Order = Registry::get('Order');
 
-      if ( ($this->enabled === true) && ((int)CLICSHOPPING_APP_STRIPE_ST_ZONE > 0) ) {
+      if ( ($this->enabled === true) && ((int)CLICSHOPPING_APP_STRIPE_ST_ZONE > 0)) {
         $check_flag = false;
 
         $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', ['geo_zone_id' => CLICSHOPPING_APP_STRIPE_ST_ZONE,
@@ -454,7 +454,7 @@ $(function() {
         }).click(function(event) {
             var target = $(event.target);
 
-            if ( !target.is('input:radio') ) {
+            if ( !target.is('input:radio')) {
                 $(this).find('input:radio').each(function() {
                     if ( $(this).prop('checked') == false ) {
                         $(this).prop('checked', true).trigger('change');

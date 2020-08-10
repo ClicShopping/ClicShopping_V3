@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_search_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_search_description');
 
-      if ( defined('MODULE_BOXES_SEARCH_STATUS') ) {
+      if (defined('MODULE_BOXES_SEARCH_STATUS')) {
         $this->sort_order = MODULE_BOXES_SEARCH_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SEARCH_STATUS == 'True');
         $this->pages = MODULE_BOXES_SEARCH_DISPLAY_PAGES;
@@ -45,7 +45,7 @@
 
       $search_banner = '';
 	
-      if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+      if ($CLICSHOPPING_Service->isStarted('Banner')) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SEARCH_BANNER_GROUP)) {
           $search_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
         } else {

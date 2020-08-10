@@ -176,7 +176,7 @@
                                                  where banners_group = :banners_group
                                                  and status = 1
                                                  and (customers_group_id = 0 or customers_group_id = 99)
-                                                 and (languages_id  = :languages_id or languages_id  = 0)
+                                                 and (languages_id  = :languages_id orlanguages_id = 0)
                                                  order by rand()
                                                  limit 1
                                               ');
@@ -207,7 +207,7 @@
                                                  where status = 1
                                                  and banners_group = :banners_group
                                                  and (customers_group_id = :customers_group_id or customers_group_id = 99)
-                                                 and (languages_id  = :languages_id or languages_id  = 0)
+                                                 and (languages_id  = :languages_id orlanguages_id = 0)
                                                  limit 1
                                                ');
             $Qbanner->bindValue(':banners_group', $identifier);
@@ -228,7 +228,7 @@
                                                  where status = 1
                                                  and banners_group = :banners_group
                                                  and (customers_group_id = 0 or customers_group_id = 99)
-                                                 and (languages_id  = :languages_id or languages_id  = 0)
+                                                 and (languages_id  = :languages_id orlanguages_id = 0)
                                                  limit 1
                                                ');
             $Qbanner->bindValue(':banners_group', $identifier);
@@ -317,7 +317,7 @@
                                                where banners_group = :banners_group
                                                and status = 1
                                                and (customers_group_id = 0 or customers_group_id = 99)
-                                               and (languages_id = :languages_id or languages_id  = 0)
+                                               and (languages_id = :languages_id orlanguages_id = 0)
                                                order by rand()
                                                limit 1
                                               ');
@@ -346,7 +346,7 @@
                                                 where status = 1
                                                 and banners_group = :banners_group
                                                 and (customers_group_id = :customers_group_id or customers_group_id = 99)
-                                                and (languages_id = :languages_id or languages_id  = 0)
+                                                and (languages_id = :languages_id orlanguages_id = 0)
                                               ');
 
 

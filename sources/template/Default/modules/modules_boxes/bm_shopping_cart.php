@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_shopping_cart_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_shopping_cart_description');
 
-      if ( defined('MODULE_BOXES_SHOPPING_CART_STATUS') ) {
+      if (defined('MODULE_BOXES_SHOPPING_CART_STATUS')) {
         $this->sort_order = MODULE_BOXES_SHOPPING_CART_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_SHOPPING_CART_STATUS == 'True');
         $this->pages = MODULE_BOXES_SHOPPING_CART_DISPLAY_PAGES;
@@ -97,7 +97,7 @@
         if ($CLICSHOPPING_ShoppingCart->getCountContents() > 0 || MODULE_BOXES_SHOPPING_CART_DISPLAY == 'True') {
           $shopping_cart_banner = '';
 
-          if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+          if ($CLICSHOPPING_Service->isStarted('Banner')) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_SHOPPING_CART_BANNER_GROUP)) {
               $shopping_cart_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
             } else {

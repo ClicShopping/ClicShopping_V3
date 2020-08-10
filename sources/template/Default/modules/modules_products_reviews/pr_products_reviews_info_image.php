@@ -29,7 +29,7 @@
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_info_image_description');
 
 
-      if ( defined('MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_STATUS') ) {
+      if (defined('MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_INFO_IMAGE_STATUS == 'True');
       }

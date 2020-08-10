@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('module_checkout_success_thank_you_title');
       $this->description = CLICSHOPPING::getDef('module_checkout_success_thank_you_description');
 
-      if ( defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS') ) {
+      if (defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS')) {
         $this->sort_order = defined('MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER') ? MODULE_CHECKOUT_SUCCESS_THANK_YOU_SORT_ORDER : 0;
         $this->enabled = (MODULE_CHECKOUT_SUCCESS_THANK_YOU_STATUS == 'True');
       }
@@ -41,7 +41,7 @@
       if (isset($_GET['Checkout']) && isset($_GET['Success'])) {
         if ($CLICSHOPPING_Customer->getCustomerGuestAccount($CLICSHOPPING_Customer->getID()) == 1) {
           $guest_account = 1;
-          $text_info =  CLICSHOPPING::getDef('module_checkout_success_create_account_success', ['store_name' => STORE_NAME,
+          $text_info = CLICSHOPPING::getDef('module_checkout_success_create_account_success', ['store_name' => STORE_NAME,
                                                                                                  'store_name_address' => STORE_NAME_ADDRESS,
                                                                                                 ]
                                               );

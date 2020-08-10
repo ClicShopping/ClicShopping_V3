@@ -43,7 +43,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $last_order = '';
 
-      if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
+      if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo'])) {
 // Get last order id for checkout_success
         $Qorders = $CLICSHOPPING_Db->get('orders', 'orders_id', ['customers_id' => $CLICSHOPPING_Customer->getID()], 'orders_id desc', 1);
 

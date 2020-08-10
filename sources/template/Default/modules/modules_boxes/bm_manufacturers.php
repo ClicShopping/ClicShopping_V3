@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_manufacturers_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_manufacturers_description');
 
-      if ( defined('MODULE_BOXES_MANUFACTURERS_STATUS') ) {
+      if (defined('MODULE_BOXES_MANUFACTURERS_STATUS')) {
         $this->sort_order = MODULE_BOXES_MANUFACTURERS_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_MANUFACTURERS_STATUS == 'True');
         $this->pages = MODULE_BOXES_MANUFACTURERS_DISPLAY_PAGES;
@@ -100,7 +100,7 @@
 
       $manufacturer_banner = '';
 	
-      if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+      if ($CLICSHOPPING_Service->isStarted('Banner')) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic', SITE_THEMA . '_manufacturer')) {
           $manufacturer_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
         }

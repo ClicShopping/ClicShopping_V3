@@ -108,7 +108,7 @@
 
 /*
             if ((defined('MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS') && MODULE_HEADER_TAGS_GRID_LIST_VIEW_STATUS == 'True') && (strpos(MODULE_HEADER_TAGS_GRID_LIST_VIEW_PAGES, CLICSHOPPING::getBaseNameIndex() !== false))) {
-              $link =  CLICSHOPPING::link(CLICSHOPPING::getIndex(), CLICSHOPPING::getAllGET(array('page', 'info', 'sort')));
+              $link = CLICSHOPPING::link(CLICSHOPPING::getIndex(), CLICSHOPPING::getAllGET(array('page', 'info', 'sort')));
               $new_prods_content .= '<strong>' . CLICSHOPPING::getDef('text_view') . '</strong>';
               $new_prods_content .= '<div class="btn-group">';
               $new_prods_content .= '<a href="' . $link . '" id="list" class="btn btn-default btn-sm"><span class="fa fa-th-list"></span>' . CLICSHOPPING::getDef('text_view_list') . '</a>';

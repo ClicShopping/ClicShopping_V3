@@ -111,7 +111,7 @@
 
                     $data .= '</td>';
 
-                    if ( ($n >= 1) || ($n2 >= 1) ) {
+                    if ( ($n >= 1) || ($n2 >= 1)) {
                       if(isset($_SESSION['shipping']['id'])) {
                         $checked = $quote['id'] . '_' . $quote['methods'][$j]['id'] === $_SESSION['shipping']['id'];
                       } ELSE {

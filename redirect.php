@@ -39,7 +39,7 @@
 
        if ($Qbanner->fetch() !== false) {
         if (!empty($Qbanner->value('banners_url'))) {
-          if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+          if ($CLICSHOPPING_Service->isStarted('Banner')) {
             $CLICSHOPPING_Banner->updateBannerClickCount($_GET['goto']);
             HTTP::redirect($Qbanner->value('banners_url'));
           }

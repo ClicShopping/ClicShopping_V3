@@ -41,7 +41,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-      if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo']) ) {
+      if (isset($_GET['Account']) &&  isset($_GET['HistoryInfo'])) {
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_HISTORY_INFO_INVOICE_CONTENT_WIDTH;
 

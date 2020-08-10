@@ -68,7 +68,7 @@
       $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_Category->getCategories(), $cPath, 'onchange="this.form.submit();"');
       $categories_dropdown .= '</form>';
 
-      if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+      if ($CLICSHOPPING_Service->isStarted('Banner')) {
         if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULES_HEADER_MULTI_MODULE_LOGO_BANNER_GROUP)) {
           $logo_header = $CLICSHOPPING_Banner->displayBanner('static', $banner);
         } else {

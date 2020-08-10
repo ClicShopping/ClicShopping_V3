@@ -39,7 +39,7 @@
 
     $CLICSHOPPING_Template = Registry::get('Template');
 
-    if (isset($_GET['Account']) && isset($_GET['Create']) && isset($_GET['Success']) ) {
+    if (isset($_GET['Account']) && isset($_GET['Create']) && isset($_GET['Success'])) {
 
       $origin_href = CreateAccount::getOriginHref();
 

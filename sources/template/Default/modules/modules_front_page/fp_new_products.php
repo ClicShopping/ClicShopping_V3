@@ -49,7 +49,7 @@
       if (CLICSHOPPING::getBaseNameIndex() && !$CLICSHOPPING_Category->getPath()) {
         if (MODULE_FRONT_PAGE_NEW_PRODUCTS_MAX_DISPLAY != 0) {
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-            if ( (!isset($new_products_category_id)) || ($new_products_category_id == 0) ) {
+            if ( (!isset($new_products_category_id)) || ($new_products_category_id == 0)) {
 // Display products no inside categories
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                             p.products_quantity as in_stock

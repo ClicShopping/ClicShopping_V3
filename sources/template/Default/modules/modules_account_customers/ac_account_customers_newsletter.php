@@ -40,7 +40,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Account']) && isset($_GET['Newsletters']) ) {
+      if (isset($_GET['Account']) && isset($_GET['Newsletters'])) {
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_NEWSLETTER_CONTENT_WIDTH;
 

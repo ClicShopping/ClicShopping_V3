@@ -435,7 +435,9 @@
       $Qparent->execute();
 
       while ($Qparent->fetch()) {
-        if ($Qparent->valueInt('parent_id') == 0) return true;
+        if ($Qparent->valueInt('parent_id') == 0) {
+          return true;
+        }
 
         $categories[count($categories)] = $Qparent->valueInt('parent_id');
 

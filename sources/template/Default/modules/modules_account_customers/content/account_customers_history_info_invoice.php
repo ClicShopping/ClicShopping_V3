@@ -47,7 +47,7 @@
       '            <td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
       '            <td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
 
-    if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0) ) {
+    if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
       for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
 
         if (!empty($CLICSHOPPING_Order->products[$j]['attributes'][$j]['reference'])) {

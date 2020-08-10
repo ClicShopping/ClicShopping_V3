@@ -96,7 +96,7 @@
 // - The file is present in the DOWNLOAD directory, AND EITHER
 // - No expiry date is enforced (maxdays == 0), OR
 // - The expiry date is not reached
-               if ( ($Qdownloads->valueInt('download_count') > 0) && (is_file($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $Qdownloads->value('orders_products_filename'))) && ( ($Qdownloads->valueInt('download_maxdays') == 0) || ($download_timestamp > time())) ) {
+               if ( ($Qdownloads->valueInt('download_count') > 0) && (is_file($CLICSHOPPING_Template->getPathDownloadShopDirectory('Private') . $Qdownloads->value('orders_products_filename'))) && ( ($Qdownloads->valueInt('download_maxdays') == 0) || ($download_timestamp > time()))) {
                  $download .=  '<td><a href="' . CLICSHOPPING::link(null,'Products&Download&order=' . $last_order . '&id=' . $Qdownloads->valueInt('orders_products_download_id')) . '"><strong>' . $Qdownloads->value('products_name') . '</a></strong></td>' . "\n";
               } else {
                 $download .=  '<td>' . $Qdownloads->value('products_name') . '</td>' . "\n";

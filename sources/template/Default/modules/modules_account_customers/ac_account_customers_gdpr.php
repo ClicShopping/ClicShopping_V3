@@ -39,7 +39,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (isset($_GET['Account']) && isset($_GET['Gdpr']) ) {
+      if (isset($_GET['Account']) && isset($_GET['Gdpr'])) {
 
         $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Account/';
 

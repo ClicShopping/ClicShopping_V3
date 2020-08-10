@@ -9796,7 +9796,7 @@ elFinder.prototype = {
 						$('head').append(script);
 						script.onload = script.onreadystatechange = function() {
 							if ( !done && (!this.readyState ||
-									this.readyState === 'loaded' || this.readyState === 'complete') ) {
+									this.readyState === 'loaded' || this.readyState === 'complete')) {
 								done = true;
 								results[i] = 'success';
 								(--cnt < 1) && success();
@@ -23381,7 +23381,7 @@ elFinder.prototype.commands.cut = function() {
 				});
 
 		$.each(this.files(hashes), function(i, file) {
-			if (!(file.read && ! file.locked && ! fm.isRoot(file)) ) {
+			if (!(file.read && ! file.locked && ! fm.isRoot(file))) {
 				return !dfrd.reject(['errCopy', file.name, 'errPerm']);
 			}
 			if (file.locked) {

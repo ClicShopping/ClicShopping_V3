@@ -37,7 +37,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Products']) && isset($_GET['Favorites']) ) {
+      if (isset($_GET['Products']) && isset($_GET['Favorites'])) {
         $content_width = (int)MODULE_PRODUCTS_FAVORITES_CONTENT_WIDTH;
         $text_position = MODULE_PRODUCTS_FAVORITES_POSITION;
 

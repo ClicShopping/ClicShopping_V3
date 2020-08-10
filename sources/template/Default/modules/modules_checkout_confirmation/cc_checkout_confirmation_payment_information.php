@@ -40,7 +40,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
+      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
         if (!Registry::exists('Payment')) {
           Registry::set('Payment', new Payment());
         }

@@ -180,7 +180,7 @@
       }
 
 // determine permissions
-      $owner= [];
+      $owner = [];
       $group = [];
       $world = [];
 

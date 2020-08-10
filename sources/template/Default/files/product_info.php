@@ -48,7 +48,7 @@
 // ---- Affiche la fiche produit selon les autorisations   ----
 // ------------------------------------------------------------
 
-    if ( $CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
+    if ($CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
       require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
       $CLICSHOPPING_ProductsCommon->countUpdateProductsView();
 ?>

@@ -20,7 +20,7 @@
   $CLICSHOPPING_Customer = Registry::get('Customer');
   $CLICSHOPPING_Address = Registry::get('Address');
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 
@@ -36,7 +36,7 @@
   <div class="contentContainer">
     <div class="contentText">
 <?php
-  if ( $CLICSHOPPING_Customer->hasDefaultAddress() ) {
+  if ($CLICSHOPPING_Customer->hasDefaultAddress()) {
 ?>
      <div class="separator"></div>
      <h3><?php echo CLICSHOPPING::getDef('table_heading_payment_address'); ?></h3>

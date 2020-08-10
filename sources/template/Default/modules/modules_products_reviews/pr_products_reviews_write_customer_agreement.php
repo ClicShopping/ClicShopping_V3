@@ -27,7 +27,7 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_write_customer_agreement_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_write_customer_agreement_description');
 
-      if ( defined('MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS') ) {
+      if (defined('MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_WRITE_CUSTOMER_AGREEMENT_STATUS == 'True');
       }

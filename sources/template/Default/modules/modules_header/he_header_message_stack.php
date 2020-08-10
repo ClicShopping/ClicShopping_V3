@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('module_header_message_stack_title');
       $this->description = CLICSHOPPING::getDef('module_header_message_stack_description');
 
-      if ( defined('MODULE_HEADER_MESSAGE_STACK_STATUS') ) {
+      if (defined('MODULE_HEADER_MESSAGE_STACK_STATUS')) {
         $this->sort_order = MODULE_HEADER_MESSAGE_STACK_SORT_ORDER;
         $this->enabled = (MODULE_HEADER_MESSAGE_STACK_STATUS == 'True');
       }
@@ -40,7 +40,7 @@
 
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if( (isset($_GET['error_message']) && !is_null($_GET['error_message'])) || (isset($_GET['info_message']) && !is_null($_GET['info_message'])) ) {
+      if( (isset($_GET['error_message']) && !is_null($_GET['error_message'])) || (isset($_GET['info_message']) && !is_null($_GET['info_message']))) {
 
         $content_width = (int)MODULE_HEADER_MESSAGE_STACK_CONTENT_WIDTH;
 

@@ -14,7 +14,7 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  if ( $CLICSHOPPING_MessageStack->exists('checkout_success') ) {
+  if ($CLICSHOPPING_MessageStack->exists('checkout_success')) {
    echo $CLICSHOPPING_MessageStack->get('main');
   }
 ?>

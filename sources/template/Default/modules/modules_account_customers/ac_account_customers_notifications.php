@@ -41,7 +41,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Account']) &&  isset($_GET['Notifications']) ) {
+      if (isset($_GET['Account']) &&  isset($_GET['Notifications'])) {
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_CONTENT_WIDTH;
         $global_notification = Notifications::getGlobalNotificationCustomer();

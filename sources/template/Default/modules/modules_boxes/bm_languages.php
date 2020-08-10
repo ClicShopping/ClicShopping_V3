@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_languages_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_languages_description');
 
-      if ( defined('MODULE_BOXES_LANGUAGES_STATUS') ) {
+      if (defined('MODULE_BOXES_LANGUAGES_STATUS')) {
         $this->sort_order = MODULE_BOXES_LANGUAGES_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_LANGUAGES_STATUS == 'True');
         $this->pages = MODULE_BOXES_LANGUAGES_DISPLAY_PAGES;
@@ -47,7 +47,7 @@
         $languages_string = $CLICSHOPPING_Language->getFlag();
         $languages_banner = '';
 
-        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+        if ($CLICSHOPPING_Service->isStarted('Banner')) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_LANGUAGES_BANNER_GROUP)) {
             $languages_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }

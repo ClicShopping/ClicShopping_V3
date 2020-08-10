@@ -50,7 +50,7 @@
   $iter = new DirectoryIterator(__DIR__ );
   $i = 0;
   foreach($iter as $file ) {
-    if ( !$file->isDot() ) {
+    if ( !$file->isDot()) {
       if ($file != 'index.php') {
         if ($file != '.htaccess') {
            $file =  $file->getFilename();

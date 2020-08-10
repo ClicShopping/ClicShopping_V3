@@ -29,7 +29,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_best_sellers_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_best_sellers_description');
 
-      if ( defined('MODULE_BOXES_BEST_SELLERS_STATUS') ) {
+      if (defined('MODULE_BOXES_BEST_SELLERS_STATUS')) {
         $this->sort_order = MODULE_BOXES_BEST_SELLERS_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_BEST_SELLERS_STATUS == 'True');
         $this->pages = MODULE_BOXES_BEST_SELLERS_DISPLAY_PAGES;
@@ -176,7 +176,7 @@
         $bestsellers_list .= '</ol>';
         $best_sellers_banner = '';
 
-        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+        if ($CLICSHOPPING_Service->isStarted('Banner')) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_BEST_SELLERS_BANNER_GROUP)) {
             $best_sellers_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }

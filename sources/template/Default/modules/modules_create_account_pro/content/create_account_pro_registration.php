@@ -21,7 +21,7 @@
   <div class="separator"></div>
   <div class="contentText">
 <?php
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 
@@ -294,7 +294,7 @@
           $Qcheck->execute();
 
 
-          while ($Qcheck->fetch() ) {
+          while ($Qcheck->fetch()) {
             $zones_array[] = ['id' => $Qcheck->value('zone_name'),
                               'text' => $Qcheck->value('zone_name')
                              ];

@@ -366,7 +366,7 @@
 
 
   <?php
-     if( isset($_POST['submit']) ) {
+     if( isset($_POST['submit'])) {
         include_once('SimpleImage.php');
         $image = new SimpleImage();
         $image->load($_FILES['uploaded_image']['tmp_name']);

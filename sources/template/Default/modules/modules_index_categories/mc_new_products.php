@@ -52,7 +52,7 @@
         if (MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_MAX_DISPLAY != 0) {
 
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-            if ( $CLICSHOPPING_Category->getParent() == 0) {
+            if ($CLICSHOPPING_Category->getParent() == 0) {
 //Depth = products
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                              p.products_quantity as in_stock
@@ -111,7 +111,7 @@
             }
           } else {
 
-            if (($CLICSHOPPING_Category->getParent() == 0) ) {
+            if (($CLICSHOPPING_Category->getParent() == 0)) {
               $Qproduct = $CLICSHOPPING_Db->prepare('select p.products_id,
                                                            p.products_quantity as in_stock
                                                       from :table_products p left join :table_specials s on p.products_id = s.products_id,

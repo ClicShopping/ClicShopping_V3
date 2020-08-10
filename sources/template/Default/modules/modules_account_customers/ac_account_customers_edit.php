@@ -42,7 +42,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      if (isset($_GET['Account']) && isset($_GET['Edit']) ) {
+      if (isset($_GET['Account']) && isset($_GET['Edit'])) {
         $account = Edit::getAccountEdit();
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_EDIT_CONTENT_WIDTH;

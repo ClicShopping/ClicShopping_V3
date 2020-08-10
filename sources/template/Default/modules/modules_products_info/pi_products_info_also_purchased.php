@@ -36,7 +36,7 @@
     }
 
     public function execute() {
-      if (isset($_GET['Description']) && isset($_GET['Products']) ) {
+      if (isset($_GET['Description']) && isset($_GET['Products'])) {
         $CLICSHOPPING_Customer = Registry::get('Customer');
         $CLICSHOPPING_Db = Registry::get('Db');
         $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
@@ -142,7 +142,7 @@
           $new_prods_content .= '<div class="ModuleProductsInfoAlsoPurchasedContainer">';
           $new_prods_content .= '<div class="d-flex flex-wrap">';
 
-            while ($Qproducts->fetch() ) {
+            while ($Qproducts->fetch()) {
               $products_id = $Qproducts->valueInt('products_id');
 
               $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products_id);

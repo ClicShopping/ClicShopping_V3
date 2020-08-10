@@ -224,7 +224,7 @@
                   <span class="col-md-3">
 
 <?php
-      if ($attributes = $Qattributes->fetch() ) {
+      if ($attributes = $Qattributes->fetch()) {
         echo $attributes['customers_group_price'] .' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
       } else {
         echo $attributes['customers_group_price'] . ' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';

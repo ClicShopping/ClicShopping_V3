@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_write_image_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_write_image_description');
 
-      if ( defined('MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_STATUS') ) {
+      if (defined('MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_WRITE_IMAGE_STATUS == 'True');
       }

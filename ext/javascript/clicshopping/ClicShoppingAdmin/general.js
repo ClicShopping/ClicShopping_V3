@@ -20,7 +20,7 @@ function SetFocus() {
                (field.elements[i].type != "reset") &&
                (field.elements[i].type != "button") &&
                (field.elements[i].type != "submit") &&
-               (field.elements[i].disabled != true) ) {
+               (field.elements[i].disabled != true)) {
 
             document.forms[f].elements[i].focus();
 

@@ -22,10 +22,10 @@ function SetFocus(TargetFormName) {
   var TargetForm = document.forms[target];
     
   for (i=0; i<TargetForm.length; i++) {
-    if ( (TargetForm.elements[i].type != "image") && (TargetForm.elements[i].type != "hidden") && (TargetForm.elements[i].type != "reset") && (TargetForm.elements[i].type != "submit") ) {
+    if ( (TargetForm.elements[i].type != "image") && (TargetForm.elements[i].type != "hidden") && (TargetForm.elements[i].type != "reset") && (TargetForm.elements[i].type != "submit")) {
       TargetForm.elements[i].focus();
 
-      if ( (TargetForm.elements[i].type == "text") || (TargetForm.elements[i].type == "password") ) {
+      if ( (TargetForm.elements[i].type == "text") || (TargetForm.elements[i].type == "password")) {
         TargetForm.elements[i].select();
       }
 

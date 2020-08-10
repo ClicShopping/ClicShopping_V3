@@ -50,7 +50,7 @@
 
   $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $_POST['CFG_STORE_OWNER_EMAIL_ADDRESS']], ['configuration_key' => 'SEND_EXTRA_ORDER_EMAILS_TO']);
 
-  if (!empty($_POST['CFG_ADMINISTRATOR_USERNAME']) ) {
+  if (!empty($_POST['CFG_ADMINISTRATOR_USERNAME'])) {
     $Qcheck = $CLICSHOPPING_Db->prepare('select user_name
                                          from :table_administrators
                                          where user_name = :user_name

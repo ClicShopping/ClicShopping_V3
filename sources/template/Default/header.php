@@ -36,7 +36,7 @@
       <div class="bodyWrapper" id="bodyWrapper">
         <header class="page-header" id="page_header">
 <?php
-  if  ( MODE_VENTE_PRIVEE == 'false' || (MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn() )) {
+  if  ( MODE_VENTE_PRIVEE == 'false' || (MODE_VENTE_PRIVEE == 'true' && $CLICSHOPPING_Customer->isLoggedOn())) {
     echo $CLICSHOPPING_Template->getBlocks('modules_header');
   }
 ?>

@@ -43,7 +43,7 @@
           $content_width = (int)MODULE_FRONT_PAGE_PAGE_MANAGER_CONTENT_WIDTH;
 
 // Recuperation de la page d'acceuil personnalisee
-         if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayFrontPage() )) {
+         if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayFrontPage())) {
            $page_manager_front_page = $CLICSHOPPING_PageManagerShop->pageManagerDisplayFrontPage();
 
            $page_manager_content = '<!-- page_manager_content start -->' . "\n";

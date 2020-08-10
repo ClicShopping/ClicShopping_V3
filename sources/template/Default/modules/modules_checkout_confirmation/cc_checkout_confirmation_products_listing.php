@@ -45,7 +45,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn() ) {
+      if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
 
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_CONTENT_WIDTH;
 
@@ -75,7 +75,7 @@
 
         } else {
           $confirmation .= '<div class="card moduleCheckoutConfirmationProductsListingCard">';
-          $confirmation .= '<div class="card-header moduleCheckoutConfirmationProductsListingHeader"><strong>' .  CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_products') . '</strong>';
+          $confirmation .= '<div class="card-header moduleCheckoutConfirmationProductsListingHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_products') . '</strong>';
           $confirmation .= HTML::link(CLICSHOPPING::link(null, 'Cart'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_text_edit') . ')</span>');
           $confirmation .= '</div>';
         }
@@ -94,7 +94,7 @@
             $data .=  $CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty']);
           }
 
-          if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0) ) {
+          if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
             for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
               $reference = '';
 

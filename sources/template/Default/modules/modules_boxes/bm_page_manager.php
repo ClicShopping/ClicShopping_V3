@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_page_manager_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_page_manager_description');
 
-      if ( defined('MODULE_BOXES_PAGE_MANAGER_STATUS') ) {
+      if (defined('MODULE_BOXES_PAGE_MANAGER_STATUS')) {
         $this->sort_order = MODULE_BOXES_PAGE_MANAGER_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_PAGE_MANAGER_STATUS == 'True');
         $this->pages = MODULE_BOXES_PAGE_MANAGER_DISPLAY_PAGES;
@@ -58,7 +58,7 @@
       if ( $Qpages->valueInt('count') > 0) {
         $page_manager_banner = '';
 
-        if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+        if ($CLICSHOPPING_Service->isStarted('Banner')) {
           if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_PAGE_MANAGER_BANNER_GROUP)) {
             $page_manager_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
           }

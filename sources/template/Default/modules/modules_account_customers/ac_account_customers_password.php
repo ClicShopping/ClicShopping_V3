@@ -39,7 +39,7 @@
     public function execute() {
       $CLICSHOPPING_Template = Registry::get('Template');
 
-      if (isset($_GET['Account']) &&  isset($_GET['Password']) ) {
+      if (isset($_GET['Account']) &&  isset($_GET['Password'])) {
 
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_PASSWORD_CONTENT_WIDTH;
 

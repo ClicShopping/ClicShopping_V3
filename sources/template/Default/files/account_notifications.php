@@ -11,7 +11,7 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  if ( $CLICSHOPPING_MessageStack->exists('notification') ) {
+  if ($CLICSHOPPING_MessageStack->exists('notification')) {
     echo $CLICSHOPPING_MessageStack->get('notification');
   }
 ?>

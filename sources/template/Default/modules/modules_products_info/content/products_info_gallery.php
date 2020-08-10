@@ -53,7 +53,7 @@
           }
         }
 
-        if ( !empty($pi_html) ) {
+        if ( !empty($pi_html)) {
           echo '    ' . implode('', $pi_html) . '';
         }
       }

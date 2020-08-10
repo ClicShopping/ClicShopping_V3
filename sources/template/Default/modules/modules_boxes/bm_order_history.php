@@ -28,7 +28,7 @@
       $this->title = CLICSHOPPING::getDef('module_boxes_order_history_title');
       $this->description = CLICSHOPPING::getDef('module_boxes_order_history_description');
 
-      if ( defined('MODULE_BOXES_ORDER_HISTORY_STATUS') ) {
+      if (defined('MODULE_BOXES_ORDER_HISTORY_STATUS')) {
         $this->sort_order = MODULE_BOXES_ORDER_HISTORY_SORT_ORDER;
         $this->enabled = (MODULE_BOXES_ORDER_HISTORY_STATUS == 'True');
         $this->pages = MODULE_BOXES_ORDER_HISTORY_DISPLAY_PAGES;
@@ -99,7 +99,7 @@
 
           $order_history_banner = '';
 
-          if ($CLICSHOPPING_Service->isStarted('Banner') ) {
+          if ($CLICSHOPPING_Service->isStarted('Banner')) {
             if ($banner = $CLICSHOPPING_Banner->bannerExists('dynamic',  MODULE_BOXES_ORDER_HISTORY_BANNER_GROUP)) {
               $order_history_banner = $CLICSHOPPING_Banner->displayBanner('static', $banner) . '<br /><br />';
             }

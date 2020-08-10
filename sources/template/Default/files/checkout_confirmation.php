@@ -12,7 +12,7 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
 
-  if ( $CLICSHOPPING_MessageStack->exists('main') ) {
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 

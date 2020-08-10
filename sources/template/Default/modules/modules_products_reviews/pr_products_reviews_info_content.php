@@ -30,7 +30,7 @@
       $this->title = CLICSHOPPING::getDef('modules_products_reviews_info_content_title');
       $this->description = CLICSHOPPING::getDef('modules_products_reviews_info_content_description');
 
-      if ( defined('MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS') ) {
+      if (defined('MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS')) {
         $this->sort_order = MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_SORT_ORDER;
         $this->enabled = (MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_STATUS == 'True');
       }
@@ -63,7 +63,7 @@
 
         if ($reviews !== false) {
           $reviews_text = $reviews['reviews_text'];
-          $reviews_rating  = $reviews['reviews_rating'];
+          $reviews_rating = $reviews['reviews_rating'];
 
           if ($reviews['customers_id'] == $CLICSHOPPING_Customer->getID()) {
             $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&ReviewsInfo&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $reviews_id), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
@@ -85,7 +85,7 @@
 
           $data .= '<!-- pr_products_reviews_info_content end -->' . "\n";
         } else {
-          $data = '<div class="alert alert-info" role="alert">' .  CLICSHOPPING::getDef('modules_products_reviews_info_content_text_no_review') . '</div>';
+          $data = '<div class="alert alert-info" role="alert">' . CLICSHOPPING::getDef('modules_products_reviews_info_content_text_no_review') . '</div>';
         }
 
         $CLICSHOPPING_Template->addBlock($data, $this->group);
