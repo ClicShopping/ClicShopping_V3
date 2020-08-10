@@ -74,7 +74,7 @@
 
   $title = $CLICSHOPPING_Template->setTitle($tile . ' ' . $CLICSHOPPING_Template->getTitle());
   $description = $CLICSHOPPING_Template->setDescription($description . ' ' . $CLICSHOPPING_Template->getDescription());
-  $keywords = $CLICSHOPPING_Template->setKeywords($tags_array['keywords'] . ' ' . $CLICSHOPPING_Template->getKeywords());
+  $keywords = $CLICSHOPPING_Template->setKeywords($keywords . ' ' . $CLICSHOPPING_Template->getKeywords());
 
   if (!empty($CLICSHOPPING_PageManagerShop->pageManagerDisplayPageIntro() )) {
     ob_start();
