@@ -42,7 +42,7 @@
           header('Location: /install/index.php');
           exit;
         } else {
-          echo 'Please look your install directory to begin your new installation like https://wwww.mydomain.com/MyDirectory/install';
+          echo 'Please look your install directory to begin your new installation like https://wwww.mydomain.com/install';
           exit;
         }
       }
