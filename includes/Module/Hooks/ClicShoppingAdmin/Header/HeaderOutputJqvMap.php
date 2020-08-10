@@ -26,7 +26,7 @@
         return false;
       }
 
-      $output ='';
+      $output = '';
 
       if (isset($_SESSION['admin'])) {
         $output .= '<! -- Start Jqvmap -->' . "\n";

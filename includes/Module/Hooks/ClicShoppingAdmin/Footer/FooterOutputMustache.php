@@ -18,7 +18,7 @@
      */
     public function display(): string
     {
-      $output ='';
+      $output = '';
 
       if (isset($_SESSION['admin'])) {
         $output .= '<!-- Mustache Script start-->' . "\n";
