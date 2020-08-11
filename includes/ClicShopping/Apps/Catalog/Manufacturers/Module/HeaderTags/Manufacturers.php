@@ -63,28 +63,28 @@
         return false;
       }
 
-        if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
-          Registry::set('ManufacturersShop', new ManufacturersShop());
+      if (isset($_GET['manufacturersId']) && is_numeric($_GET['manufacturersId'])) {
+        Registry::set('ManufacturersShop', new ManufacturersShop());
 
-          $this->manufacturers_shop = Registry::get('ManufacturersShop');
+        $this->manufacturers_shop = Registry::get('ManufacturersShop');
 
-          $id = $this->manufacturers_shop->getID();
+        $id = $this->manufacturers_shop->getID();
 
-          if (is_numeric($id) && !is_null($id)) {
-            $manufacturers_title = $this->manufacturers_shop->getTitle($id);
+        if (is_numeric($id) && !is_null($id)) {
+          $manufacturers_title = $this->manufacturers_shop->getTitle($id);
 
-            $QmetaInfo = $CLICSHOPPING_Db->prepare('select manufacturer_seo_title,
-                                                           manufacturer_seo_description,
-                                                           manufacturer_seo_keyword
-                                                   from :table_manufacturers_info
-                                                   where manufacturers_id = :manufacturers_id
-                                                   and languages_id = :language_id
-                                                 ');
-            $QmetaInfo->bindInt(':manufacturers_id', $id);
-            $QmetaInfo->bindInt(':language_id', $this->lang->getId());
-            $QmetaInfo->execute();
+          $QmetaInfo = $CLICSHOPPING_Db->prepare('select manufacturer_seo_title,
+                                                         manufacturer_seo_description,
+                                                         manufacturer_seo_keyword
+                                                 from :table_manufacturers_info
+                                                 where manufacturers_id = :manufacturers_id
+                                                 and languages_id = :language_id
+                                               ');
+          $QmetaInfo->bindInt(':manufacturers_id', $id);
+          $QmetaInfo->bindInt(':language_id', $this->lang->getId());
+          $QmetaInfo->execute();
 
-            $Qsubmit = $CLICSHOPPING_Db->prepare('select submit_id,
+          $Qsubmit = $CLICSHOPPING_Db->prepare('select submit_id,
                                                         language_id,
                                                         submit_defaut_language_title,
                                                         submit_defaut_language_keywords,
@@ -94,47 +94,47 @@
                                                and language_id = :language_id
                                               ');
 
-            $Qsubmit->bindInt(':language_id', $this->lang->getId());
+          $Qsubmit->bindInt(':language_id', $this->lang->getId());
 
-            if (!empty($QmetaInfo->value('manufacturer_seo_title'))) {
-              $title = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_title') . ', ' . HTML::outputProtected(STORE_NAME);
-            } elseif (!empty($Qsubmit->value('submit_defaut_language_title'))) {
-              $title = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
-            } else {
-              $title = $manufacturers_title . ', ' . HTML::outputProtected(STORE_NAME);
-            }
-
-            if (!empty($QmetaInfo->value('manufacturer_seo_description'))) {
-              $description = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_description') . ', ' . HTML::outputProtected(STORE_NAME);
-            } elseif (!empty($Qsubmit->value('submit_defaut_language_description'))) {
-              $description = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
-            } else {
-              $description = $manufacturers_title . ',' . HTML::outputProtected(STORE_NAME);
-            }
-
-            if (!empty($QmetaInfo->value('manufacturer_seo_keyword'))) {
-              $keywords = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_keyword');
-            } elseif (!empty($Qsubmit->value('submit_defaut_language_keywords'))) {
-              $keywords = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
-            } else {
-              $keywords = $manufacturers_title .  ',' . HTML::outputProtected(STORE_NAME);
-            }
-
-           $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
-           $description = $this->template->setDescription($description) . ' ' . $this->template->getDescription();
-            $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
-
-            $output =
-              <<<EOD
-      <title>{$title}</title>
-      <meta name="description" content="{$description}" />
-      <meta name="keywords"  content="{$keywords}" />
-      <meta name="news_keywords" content="{$keywords}" />
-  EOD;
-
-            return $output;
+          if (!empty($QmetaInfo->value('manufacturer_seo_title'))) {
+            $title = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_title') . ', ' . HTML::outputProtected(STORE_NAME);
+          } elseif (!empty($Qsubmit->value('submit_defaut_language_title'))) {
+            $title = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_title')) . ', ' . HTML::outputProtected(STORE_NAME);
+          } else {
+            $title = $manufacturers_title . ', ' . HTML::outputProtected(STORE_NAME);
           }
+
+          if (!empty($QmetaInfo->value('manufacturer_seo_description'))) {
+            $description = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_description') . ', ' . HTML::outputProtected(STORE_NAME);
+          } elseif (!empty($Qsubmit->value('submit_defaut_language_description'))) {
+            $description = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_description')) . ', ' . HTML::outputProtected(STORE_NAME);
+          } else {
+            $description = $manufacturers_title . ',' . HTML::outputProtected(STORE_NAME);
+          }
+
+          if (!empty($QmetaInfo->value('manufacturer_seo_keyword'))) {
+            $keywords = $manufacturers_title . ', ' . $QmetaInfo->value('manufacturer_seo_keyword');
+          } elseif (!empty($Qsubmit->value('submit_defaut_language_keywords'))) {
+            $keywords = $manufacturers_title . ', ' . HTML::sanitize($Qsubmit->value('submit_defaut_language_keywords'));
+          } else {
+            $keywords = $manufacturers_title .  ',' . HTML::outputProtected(STORE_NAME);
+          }
+
+         $title = $this->template->setTitle($title) . ' ' . $this->template->getTitle();
+         $description = $this->template->setDescription($description) . ' ' . $this->template->getDescription();
+          $keywords = $this->template->setKeywords($keywords) . ', ' . $this->template->getKeywords();
+
+          $output =
+            <<<EOD
+    <title>{$title}</title>
+    <meta name="description" content="{$description}" />
+    <meta name="keywords"  content="{$keywords}" />
+    <meta name="news_keywords" content="{$keywords}" />
+EOD;
+
+          return $output;
         }
+      }
     }
 
     public function Install()

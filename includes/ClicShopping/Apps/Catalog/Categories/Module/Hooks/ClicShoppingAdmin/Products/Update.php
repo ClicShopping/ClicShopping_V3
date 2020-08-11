@@ -76,7 +76,7 @@
 
       if (isset($_GET['Update'])) {
         if (isset($_POST['move_to_category_id'])) {
-        $new_category = HTML::sanitize($_POST['move_to_category_id']);
+          $new_category = HTML::sanitize($_POST['move_to_category_id']);
         } else {
           $new_category = null;
         }
@@ -103,7 +103,8 @@
 // just link the product another category
                     if ($this->productsLink == 'link') {
                       if ($this->currentCategoryId != $value_id) {
-                        $sql_array = ['products_id' => (int)$id,
+                        $sql_array = [
+                          'products_id' => (int)$id,
                           'categories_id' => (int)$value_id
                         ];
 

@@ -31,9 +31,9 @@
       $this->categoriesAdmin = Registry::get('CategoriesAdmin');
 
       if (isset($_GET['categories_id'])) {
-        $this->ID = HTML::sanitize($_GET['categories_id']); // insert
+        $this->Id = HTML::sanitize($_GET['categories_id']); // insert
       } elseif (isset($_POST['categories_id'])) {
-        $this->ID = HTML::sanitize($_POST['categories_id']); // update
+        $this->Id = HTML::sanitize($_POST['categories_id']); // update
       }
 
       $this->moveToCategoryID = HTML::sanitize($_POST['move_to_category_id']);
@@ -50,25 +50,27 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      if (isset($this->ID) && ($this->ID != $this->moveToCategoryID)) {
-        $categories_id = HTML::sanitize($this->ID);
+      if (isset($this->Id) && ($this->Id != $this->moveToCategoryID)) {
+        $categories_id = HTML::sanitize($this->Id);
         $new_parent_id = HTML::sanitize($this->moveToCategoryID);
 
         $path = explode('_', $this->categoriesAdmin->getGeneratedCategoryPathIds($new_parent_id));
 
-        if (in_array($this->categoryID, $path)) {
+        if (in_array($this->Id, $path)) {
           $CLICSHOPPING_MessageStack->add($this->app->getDef('error_cannot_move_directory_to_parent'), 'error');
 
           $this->app->redirect('Categories&cPath=' . $this->cPath . '&cID=' . $categories_id);
         } else {
-
-          $this->app->db->save('categories', [
+          $sql_array = [
             'parent_id' => (int)$new_parent_id,
             'last_modified' => 'now()'
-          ], [
-              'categories_id' => (int)$categories_id
-            ]
-          );
+          ];
+
+          $insert_array = [
+            'categories_id' => (int)$categories_id
+          ];
+
+          $this->app->db->save('categories', $sql_array, $insert_array);
 
           Cache::clear('categories');
           Cache::clear('products-also_purchased');

@@ -65,6 +65,8 @@
      */
     public function getTitle($id)
     {
+      $name = '';
+
       $Qmanufacturer = $this->db->prepare('select m.manufacturers_name as name
                                             from :table_manufacturers m,
                                                  :table_manufacturers_info mi
@@ -91,6 +93,8 @@
      */
     public function getImage($id)
     {
+      $image = '';
+
       $Qmanufacturer = $this->db->prepare('select manufacturers_image as image
                                       from :table_manufacturers
                                       where manufacturers_id = :manufacturers_id
@@ -113,6 +117,8 @@
      */
     public function getDescription($id)
     {
+      $description = '';
+
       $Qmanufacturer = $this->db->prepare('select mi.manufacturer_description as description
                                             from :table_manufacturers m,
                                                  :table_manufacturers_info mi
@@ -134,6 +140,8 @@
 
     public function getUrl($id)
     {
+      $url = '';
+
       $Qmanufacturer = $this->db->prepare('select mi.manufacturers_url as url
                                             from :table_manufacturers m,
                                                  :table_manufacturers_info mi
@@ -195,7 +203,8 @@
     public function setManufacturersByCategories()
     {
       $CLICSHOPPING_Category = Registry::get('Category');
-
+      $manufacturer_name_array = array();
+      
       $Qmanufacturer = $this->db->prepare('select distinct m.manufacturers_id as id,
                                                   m.manufacturers_name as name
                                       from :table_products p,
@@ -216,7 +225,8 @@
       $Qmanufacturer->execute();
 
       while ($Qmanufacturer->fetch() !== false) {
-        $manufacturer_name_array[] = ['id' => $Qmanufacturer->valueInt('id'),
+        $manufacturer_name_array[] = [
+          'id' => $Qmanufacturer->valueInt('id'),
           'text' => $Qmanufacturer->value('name')
         ];
       }

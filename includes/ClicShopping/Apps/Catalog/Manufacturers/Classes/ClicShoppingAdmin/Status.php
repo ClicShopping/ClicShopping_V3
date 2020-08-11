@@ -15,37 +15,35 @@
 
   class Status
   {
-
     protected $status;
     protected $manufacturers_id;
 
     /**
      * Status products manufacturers  - Sets the status of a product on manufacturers
-     *
-     * @param string manufacturers_id, status
-     * @return string status on or off
-     * @access public
+     * @param int $manufacturers_id
+     * @param int $status
+     * @return int
      */
-
     Public static function getManufacturersStatus(int $manufacturers_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if ($status == '1') {
-
-        return $CLICSHOPPING_Db->save('manufacturers', ['manufacturers_status' => 1,
+        $update_array = [
+          'manufacturers_status' => 1,
           'date_added' => 'null',
-          'last_modified' => 'null'],
-          ['manufacturers_id' => (int)$manufacturers_id]
-        );
+          'last_modified' => 'null'
+        ];
 
+        return $CLICSHOPPING_Db->save('manufacturers',  $update_array, ['manufacturers_id' => (int)$manufacturers_id]);
       } elseif ($status == '0') {
+        $update_array = [
+          'manufacturers_status' => 0,
+          'last_modified' => 'now()'
+        ];
 
-        return $CLICSHOPPING_Db->save('manufacturers', ['manufacturers_status' => 0,
-          'last_modified' => 'now()'],
-          ['manufacturers_id' => (int)$manufacturers_id]
+        return $CLICSHOPPING_Db->save('manufacturers', $update_array, ['manufacturers_id' => (int)$manufacturers_id]
         );
-
       } else {
         return -1;
       }
