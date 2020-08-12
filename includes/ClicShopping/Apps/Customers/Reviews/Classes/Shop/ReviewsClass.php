@@ -206,12 +206,10 @@
 
     /**
      * Get rewiews with specific reviews id
-     *
      * @param int|null $id
-     * @return array : $Qreviews : review informations
-     * @access public
+     * @return false
      */
-    public function getDataReviews(?int $id = null): array
+    public function getDataReviews(?int $id = null)
     {
       $reviews_id = HTML::sanitize($id);
 

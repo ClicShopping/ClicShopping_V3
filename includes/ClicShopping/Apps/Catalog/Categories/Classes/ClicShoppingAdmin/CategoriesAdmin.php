@@ -451,11 +451,11 @@
       return $category_tree_array;
     }
 
-    /*
+    /**
      * getPath
-     * @int : id of category
-     * @return $cPath_new, the new path
-    */
+     * @param string $current_category_id
+     * @return string
+     */
     public function getPath(string $current_category_id = ''): string
     {
       $cPath_array = $this->getPathArray();

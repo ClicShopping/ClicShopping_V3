@@ -204,7 +204,7 @@
     {
       $CLICSHOPPING_Category = Registry::get('Category');
       $manufacturer_name_array = array();
-      
+
       $Qmanufacturer = $this->db->prepare('select distinct m.manufacturers_id as id,
                                                   m.manufacturers_name as name
                                       from :table_products p,

@@ -2867,15 +2867,13 @@
     }
 
     /**
-     *  Calcul the new price in function the products Discount Quantity for shopping cart class
      * @param null $id
      * @param null $qty
      * @param null $products_price
-     * @return bool|float|int|null
+     * @return false|float|int|mixed
      */
     public function getProductsNewPriceByDiscountByQuantity($id = null, $qty = null, $products_price = null)
     {
-
       $QprodutsQuantityDiscount = $this->db->prepare('select discount_quantity,
                                                             discount_customer
                                                       from :table_products_discount_quantity
@@ -2913,14 +2911,12 @@
       }
     }
 
-
     /**
-     * Get the price by quantity discount for the shopping cart
+     *  Get the price by quantity discount for the shopping cart
      * @param null $id
      * @param null $qty
      * @param null $products_price
      * @return float|int
-     *
      */
     public function getInfoPriceDiscountByQuantityShoppingCart($id = null, $qty = null, $products_price = null)
     {

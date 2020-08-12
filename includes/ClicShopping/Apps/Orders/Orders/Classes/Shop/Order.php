@@ -737,21 +737,23 @@
           if ($products[$i]['attributes']) {
             $i = 0;
 
-            foreach ($products[$i]['attributes'] as $option => $value) {
-              $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
+            if (is_array($products[$i]['attributes'])) {
+              foreach ($products[$i]['attributes'] as $option => $value) {
+                $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
 
-              $this->products[$index]['attributes'][$i] = [
-                'option' => $Qattributes->value('products_options_name'),
-                'value' => $Qattributes->value('products_options_values_name'),
-                'option_id' => $option,
-                'value_id' => $value, //products_options_values_id
-                'prefix' => $Qattributes->value('price_prefix'),
-                'price' => $Qattributes->value('options_values_price'),
-                'reference' => $Qattributes->value('products_attributes_reference'),
-                'products_attributes_image' => $Qattributes->value('products_attributes_image')
-              ];
+                $this->products[$index]['attributes'][$i] = [
+                  'option' => $Qattributes->value('products_options_name'),
+                  'value' => $Qattributes->value('products_options_values_name'),
+                  'option_id' => $option,
+                  'value_id' => $value, //products_options_values_id
+                  'prefix' => $Qattributes->value('price_prefix'),
+                  'price' => $Qattributes->value('options_values_price'),
+                  'reference' => $Qattributes->value('products_attributes_reference'),
+                  'products_attributes_image' => $Qattributes->value('products_attributes_image')
+                ];
 
-              $i++;
+                $i++;
+              }
             }
           }
 
@@ -759,7 +761,9 @@
           if (is_object($this->coupon)) {
             $discount = $this->coupon->getCalculateDiscount($this->products[$index], $valid_products_count);
 
-            if ($discount['applied_discount'] > 0) $valid_products_count++;
+            if ($discount['applied_discount'] > 0) {
+              $valid_products_count++;
+            }
 
             $shown_price = $this->coupon->getCalculateShownPrice($discount, $this->products[$index]);
 

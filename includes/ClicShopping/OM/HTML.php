@@ -93,13 +93,13 @@
     /**
      * Generate a <a href> tag and link to an element
      *
-     * @param string $url The url to link to
-     * @param string $element The element to link to
-     * @param string $parameters Additional parameters for the a href tag
+     * @param $url The url to link to
+     * @param $element The element to link to
+     * @param $parameters Additional parameters for the a href tag
      * @return string
      */
 
-    public static function link(string $url, string $element, $parameters = null)
+    public static function link($url, $element, $parameters = null)
     {
       return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }

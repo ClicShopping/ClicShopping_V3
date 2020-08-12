@@ -83,6 +83,10 @@
       return $products_attributes['total'];
     }
 
+    /**
+     * @param null $id
+     * @return string
+     */
     Public function getCountProductsAttributes($id = null)
     {
       return $this->setCountProductsAttributes($id);
@@ -95,7 +99,6 @@
      */
     public function getHasProductAttributes($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->productsCommon->getID();
       }

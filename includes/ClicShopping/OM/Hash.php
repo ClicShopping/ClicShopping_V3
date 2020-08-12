@@ -16,14 +16,14 @@
   class Hash
   {
     /**
-     * @param string $plain
-     * @param string $algo
+     * @param $plain
+     * @param null $algo
      * @return bool|string
      * @throws \Exception
      */
-    public static function encrypt(string $plain, string $algo = '')
+    public static function encrypt(string $plain, $algo = null)
     {
-      if (!empty($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
+      if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         if (!isset($algo) || ($algo == 'default')) {
           $algo = PASSWORD_DEFAULT;
         } elseif ($algo == 'bcrypt') {
@@ -110,13 +110,13 @@
     }
 
     /**
-     * @param string $hash
-     * @param string $algo
+     * @param $hash
+     * @param null $algo
      * @return bool
      */
-    public static function needsRehash(string $hash, string $algo = '')
+    public static function needsRehash($hash, $algo = null)
     {
-      if (!empty($algo) || $algo == 'default') {
+      if (!isset($algo) || $algo == 'default') {
         $algo = PASSWORD_DEFAULT;
       } elseif ($algo == 'bcrypt') {
         $algo = PASSWORD_BCRYPT;
@@ -133,9 +133,9 @@
 
     /**
      * @param string $hash
-     * @return string
+     * @return string|null
      */
-    public static function getType(string $hash) :string
+    public static function getType(string $hash): ?string
     {
       $info = password_get_info($hash);
 
@@ -157,13 +157,13 @@
     }
 
     /**
-     * @param int|null $min
-     * @param int|null $max
+     * @param null $min
+     * @param null $max
      * @param bool $secure
      * @return int
      * @throws \Exception
      */
-    public static function getRandomInt(?int $min = null, ?int $max = null, bool $secure = true)
+    public static function getRandomInt($min = null, $max = null, bool $secure = true)
     {
       if (!isset($min)) {
         $min = 0;
@@ -192,7 +192,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getRandomString(int $length, string $type = 'mixed'): string
+    public static function getRandomString(int $length, $type = 'mixed'): string
     {
       if (!in_array($type, [
         'mixed',
