@@ -398,7 +398,6 @@ function selectAll(FormName, SelectBox) {
       }
 
       $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Mail = Registry::get('Mail');
 
       $audience = [];
 

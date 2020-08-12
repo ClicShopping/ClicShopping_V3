@@ -2559,8 +2559,10 @@
 
     public function setManufacturersDropDown()
     {
-
-      $manufacturers_array[] = ['id' => '',
+      $manufacturers_array = [];
+      
+      $manufacturers_array[] = [
+        'id' => '',
         'text' => CLICSHOPPING::getDef('modules_advanced_search_manufacturers_text_all_manufacturers')
       ];
 
@@ -2885,6 +2887,9 @@
       $QprodutsQuantityDiscount->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
       $QprodutsQuantityDiscount->execute();
+
+      $discount_quantity = [];
+      $discount_customer = [];
 
       while ($QprodutsQuantityDiscount->fetch()) {
         $discount_quantity[] = $QprodutsQuantityDiscount->valueInt('discount_quantity');

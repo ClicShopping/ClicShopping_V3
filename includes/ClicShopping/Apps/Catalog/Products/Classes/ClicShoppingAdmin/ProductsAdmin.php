@@ -353,9 +353,12 @@
       $template_directory = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/images/products/';
 
       $weeds = ['.', '..', '_notes'];
-      $directories = array_diff(scandir($template_directory), $weeds);
 
-      $directory_array[0] = ['id' => '',
+      $directories = array_diff(scandir($template_directory), $weeds);
+      $directory_array = [];
+
+      $directory_array[0] = [
+        'id' => '',
         'text' => CLICSHOPPING::getDef('select_datas')
       ];
 
@@ -722,6 +725,8 @@
      */
     public function cloneProductsInOtherCategory(int $id, int $categories_id)
     {
+      $multi_clone_categories_id_to = [];
+
       $multi_clone_categories_id_to[] = $categories_id;
 
       $Qproducts = $this->db->prepare('select *
