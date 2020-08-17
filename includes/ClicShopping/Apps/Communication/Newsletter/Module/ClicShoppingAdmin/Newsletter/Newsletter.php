@@ -444,6 +444,7 @@
       }
 
       if (FileSystem::isWritable(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter')) {
+//        if ($this->twitter == 1 && $this->createFile == 1 && $this->errorCreatingFile !== true) {
         if ($this->twitter == 1 && $this->createFile == 1) {
           $CLICSHOPPING_Hooks->call('Newsletter', 'SendTwitter');
         }

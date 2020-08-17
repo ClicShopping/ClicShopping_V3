@@ -36,11 +36,10 @@
       $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
       $languages_newsletter_id = HTML::sanitize($_POST['languages_id']);
       $newsletters_accept_file = HTML::sanitize($_POST['newsletters_accept_file']);
+      $nID = null;
 
       if (isset($_GET['nID'])) {
         $nID = HTML::sanitize($_GET['nID']);
-      } else {
-        $nID = null;
       }
 
       $newsletter_error = false;

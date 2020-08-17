@@ -66,9 +66,9 @@
     {
       if ($this->statCountCustomersB2C() > 0 && $this->statsCountCustomersNewsletter() > 0) {
         $Average = round(($this->statCountCustomersB2C() / $this->statsCountCustomersNewsletter()) * 100, 2) . ' %';
+        return $Average;
       }
-      return $Average;
-    }
+     }
 
 // Nbr de clients total
     private function statCountCustomersB2B()

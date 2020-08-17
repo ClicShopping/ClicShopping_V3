@@ -21,15 +21,18 @@
       $CLICSHOPPING_Newsletter = Registry::get('Newsletter');
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+      $nID = null;
 
-      if (isset($_GET['nID'])) $nID = HTML::sanitize($_GET['nID']);
+      if (isset($_GET['nID'])) {
+        $nID = HTML::sanitize($_GET['nID']);
+      }
 
       if (isset($_POST['selected'])) {
         foreach ($_POST['selected'] as $id) {
           $Qdelete = $CLICSHOPPING_Newsletter->db->prepare('delete
-                                                      from :table_newsletters
-                                                      where newsletters_id = :newsletters_id
-                                                    ');
+                                                            from :table_newsletters
+                                                            where newsletters_id = :newsletters_id
+                                                          ');
           $Qdelete->bindInt(':newsletters_id', $id);
           $Qdelete->execute();
         }
