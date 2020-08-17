@@ -18,7 +18,11 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (isset($_GET['cPath'])) $cPath = HTML::sanitize($_GET['cPath']) ?? $cPath = 0;
+  if (isset($_GET['cPath'])) {
+    $cPath = HTML::sanitize($_GET['cPath']) ?? $cPath = 0;
+  } else {
+    $cPath = 0;
+  }
 
   $Qproducts = $CLICSHOPPING_Products->db->prepare('select pd.*,
                                                             p.*
