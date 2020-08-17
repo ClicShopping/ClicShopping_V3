@@ -29,7 +29,7 @@
       $m = Registry::get('ProductsAdminConfig' . $current_module);
       $m->install();
 
-      static::installDbMenuAdministration();();
+      static::installDbMenuAdministration();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Products->getDef('alert_module_install_success'), 'success');
 

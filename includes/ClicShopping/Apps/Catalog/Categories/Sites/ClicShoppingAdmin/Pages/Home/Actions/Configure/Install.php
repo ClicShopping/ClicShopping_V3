@@ -30,7 +30,7 @@
       $m = Registry::get('CategoriesAdminConfig' . $current_module);
       $m->install();
 
-      static::installDbMenuAdministration();();
+      static::installDbMenuAdministration();
       static::installDb();
 
       $CLICSHOPPING_MessageStack->add($CLICSHOPPING_Categories->getDef('alert_module_install_success'), 'success', 'Categories');
