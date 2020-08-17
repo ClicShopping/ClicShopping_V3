@@ -1171,7 +1171,7 @@
      * adminOrdersStatusHistory : Status History order
      * @param $insert_id, order_id, $comment : customer order
      * @return array and save history
-     * @access public
+     *
     */
     public function adminOrdersStatusHistory($insert_id = null, $comment = null)
     {
@@ -1193,7 +1193,7 @@
      * sendCustomerEmail : sent email to customer
      * @param $insert_id
      * @return email
-     * @access public
+     *
     */
     public function sendCustomerEmail($insert_id)
     {

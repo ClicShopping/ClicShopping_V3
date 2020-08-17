@@ -68,7 +68,7 @@
      *
      * @param string $parameters , $selected
      * @return string $select_string, the drop down of the title class
-     * @access public
+     *
      *
      */
     public static function getClassesPullDown(): array
@@ -99,7 +99,7 @@
      *
      * @param int products_weight_class_id
      * @param string $result weight title
-     * @access public
+     *
      */
 
     public static function getWeightTitle($id = null): string

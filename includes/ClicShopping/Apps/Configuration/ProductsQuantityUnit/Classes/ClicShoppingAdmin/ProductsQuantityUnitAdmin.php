@@ -27,7 +27,7 @@
      *
      * @param string
      * @return string $products_quantity_unit_array, elements of product quantity unit
-     * @access public
+     *
      */
 
     public function productsQuantityUnitDropDown(): array

@@ -25,7 +25,7 @@
      *
      * @param string $current_category_id
      * @return string $cPath_new,
-     * @access public
+     *
      */
     public static function getPath($current_category_id = ''): string
     {
@@ -73,7 +73,7 @@
      * @param int $id
      * @param int $language_id
      * @return string $category['categories_name'],  name of the categorie
-     * @access public
+     *
      */
     public static function getActionsRecorderLabel(int $id, int $language_id): string
     {
@@ -93,7 +93,7 @@
      *
      * @param int $id
      * @return string
-     * @access public
+     *
      */
     public static function removeCategory(int $id)
     {
@@ -177,7 +177,7 @@
      *
      * @param string $id , $from,
      * @return string $calculated_category_path_string
-     * @access public
+     *
      */
 
     public static function getGeneratedActionsRecorderPathIds(int $id)
@@ -244,7 +244,7 @@
      * remove Administatrator Menu Category
      *
      * @param string $id
-     * @access public
+     *
      */
     public static function getRemoveActionsRecorderCategory(int $id)
     {
@@ -307,7 +307,7 @@
      * @param string $category_tree_array
      * @param bool $include_itself
      * @return string $category_tree_array, the tree of category
-     * @access public
+     *
      */
     public static function getActionsRecorderCategoryTree($parent_id = '0', $spacing = '', $exclude = '', $category_tree_array = '', bool $include_itself = false)
     {

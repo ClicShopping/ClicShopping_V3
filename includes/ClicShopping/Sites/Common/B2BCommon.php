@@ -21,7 +21,7 @@
      * Display the payment mode in different mode B2B or not
      *
      * @param string $product_price_d , the price of the product or not
-     * @access public
+     *
      */
 
     public static function getPaymentUnallowed(string $pay_check): bool
@@ -74,7 +74,7 @@
     /**
      * Not Display  the payment module if customer_group = 0
      * @param string $customer_group_id , the group of the customer
-     * @access public
+     *
      **/
     public static function getPaymentNotDisplayPayment(): int
     {
@@ -88,7 +88,7 @@
      * Display the shipping mode in different mode B2B or not
      *
      * @param string $product_price_d , the price of the product or not
-     * @access public
+     *
      */
     public static function getShippingUnallowed(string $shipping_check): bool
     {
@@ -144,7 +144,7 @@
      * Display the taxe or not mode in different mode B2B or not
      *
      * @param string $product_price_d , the price of the product or not
-     * @access public
+     *
      * $tax_check no variable
      */
     public static function getTaxUnallowed(): bool

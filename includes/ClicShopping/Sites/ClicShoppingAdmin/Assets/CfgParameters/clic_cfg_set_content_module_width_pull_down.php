@@ -16,7 +16,7 @@
    *
    * @param
    * @param return $content_width , boostrap width
-   * @access public
+   *
    */
   function clic_cfg_set_content_module_width_pull_down($id, $key = '')
   {

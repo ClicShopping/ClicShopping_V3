@@ -383,7 +383,7 @@
     /**
      * Customers Greeting
      * @return string $greeting_string
-     * @access public
+     *
      */
 
     public function customerGreeting(): string

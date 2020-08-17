@@ -53,7 +53,7 @@
     /**
      * Drop down of the class title
      *
-     * @access public
+     *
      * @param string $parameters , $selected
      * @return string $select_string, the drop down f the title class
      *
@@ -88,7 +88,7 @@
     /**
      * return value of taxe
      *
-     * @access public
+     *
      * @param string $class_id , class id
      * @return string  value of the taxe
      *

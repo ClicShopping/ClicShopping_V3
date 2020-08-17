@@ -200,7 +200,7 @@
      *
      * @param string $order_id , $restock
      * @return
-     * @access public
+     *
      */
     public static function removeOrder(int $order_id, bool $restock = false)
     {
@@ -246,7 +246,7 @@
      *
      * @param string
      * @return string orders_status_array,  name of the order status
-     * @access public
+     *
      */
 
     public static function getOrdersStatus(): array

@@ -742,7 +742,7 @@
      *
      * @param string $customer_group , $CLICSHOPPING_Language->getId()
      * @return string page_manager_general_condition, the text of the general condition of sales
-     * @access public
+     *
      */
     public function pageManagerGeneralCondition()
     {

@@ -26,7 +26,7 @@
      *
      * @param string products_id, status
      * @return string status on or off
-     * @access public
+     *
      */
     public static function getZonesStatus(int $zones_id, int $status)
     {

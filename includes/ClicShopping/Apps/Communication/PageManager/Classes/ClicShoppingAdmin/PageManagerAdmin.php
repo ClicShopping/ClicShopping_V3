@@ -24,7 +24,7 @@
      *
      * @param string $pages_id , $language_id
      * @return string product['products_head_title_tag'], description name
-     * @access public
+     *
      */
     public static function getPageManagerHeadTitleTag(int $pages_id, int $language_id)
     {
@@ -51,7 +51,7 @@
      *
      * @param string $pages_id , $language_id
      * @return string $page_manager['products_head_desc_tag'], description name
-     * @access public
+     *
      */
     public static function getPageManagerHeadDescTag(int $pages_id, int $language_id)
     {
@@ -78,7 +78,7 @@
      *
      * @param string $pages_id , $language_id
      * @return string $page_manager['products_head_keywords_tag'], keywords name
-     * @access public
+     *
      */
     public static function getPageManagerHeadKeywordsTag(int $pages_id, int $language_id)
     {

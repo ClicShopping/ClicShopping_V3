@@ -205,7 +205,7 @@
     /**
      * Check if the product  id
      * @param int $id , id of the product
-     * @access public
+     *
      */
     public function checkID($id)
     {
@@ -220,7 +220,7 @@
      * Check if the product  exist
      * @param int $id , id of the product
      * @return string $result
-     * @access public
+     *
      */
 
     public function checkEntry($id)
@@ -284,7 +284,7 @@
     /**
      * Update the the number of products view
      * @return update product views
-     * @access public
+     *
      */
     public function countUpdateProductsView()
     {
@@ -331,7 +331,7 @@
      *
      * @param string
      * @return string $product_check['total'], products total
-     * @access public
+     *
      */
     public function getProductsCount()
     {
@@ -376,7 +376,7 @@
      *
      * @param string
      * @return string $products_name, name of the product
-     * @access public
+     *
      */
     public function getProductsName($id = null)
     {
@@ -413,7 +413,7 @@
      *
      * @param string
      * @return string $products_image, image of the product
-     * @access public
+     *
      */
     public function getProductsImage($id = null)
     {
@@ -453,7 +453,7 @@
      *
      * @param string
      * @return string $products_image_medium, image medium of the product
-     * @access public
+     *
      */
     public function getProductsImageMedium($id = null)
     {
@@ -493,7 +493,7 @@
      *
      * @param string
      * @return string $products_name, name of the product
-     * @access public
+     *
      */
     public function getProductsDateAvailable($id = null)
     {
@@ -506,7 +506,7 @@
      *
      * @param string
      * @return string $products_name, name of the product
-     * @access public
+     *
      */
     public function getProductsEAN()
     {
@@ -539,7 +539,7 @@
      *
      * @param string
      * @return string $products_name, name of the product
-     * @access public
+     *
      */
     public function getProductsSKU($id = null): string
     {
@@ -576,7 +576,7 @@
      *
      * @param string
      * @return string bar code
-     * @access public
+     *
      */
     public function getProductsBarCode()
     {
@@ -640,7 +640,7 @@
      *
      * @param string
      * @return string $products_description, description of the product
-     * @access public
+     *
      */
     public function getProductsDescription($id = null)
     {
@@ -692,7 +692,7 @@
      * Display Short Description
      * @param $delete_word , number of the words to delete
      * @return $short_description , short description
-     * @access public
+     *
      */
     public function getProductsShortDescription($id = null, $delete_word, $products_short_description_number)
     {
@@ -754,7 +754,7 @@
      * @param int|null $id
      * @param string
      * @return string $products_dimension, dimension of the product
-     * @access public
+     *
      */
     public function getProductsDimension(?int $id = null, string $separator = ' x ') :string
     {
@@ -809,7 +809,7 @@
      *
      * @param int
      * @return string $products_manufacturer, manufacturer of the product
-     * @access public
+     *
      */
     public function getProductsManufacturer($id = null)
     {
@@ -821,7 +821,7 @@
      * display the button in function the boostrap size
      *
      * @param string $size_button , size could be sm, md ...
-     * @access public
+     *
      */
     public function getSizeButton($size_button)
     {
@@ -877,7 +877,7 @@
      *
      * @param string
      * @return string $icon_new_arrival_products, product new arrival
-     * @access public
+     *
      */
     public function getProductsNewArrival($id = null, $size_button = null)
     {
@@ -917,7 +917,7 @@
      *
      * @param string
      * @return string $products_only_shop, sell only the shop
-     * @access public
+     *
      */
     public function getProductsOnlyTheShop($id = null)
     {
@@ -929,7 +929,7 @@
      *
      * @param string
      * @return string $products_only_online, products only on the web site
-     * @access public
+     *
      */
     public function setProductsOnlyOnTheWebSite($id = null)
     {
@@ -953,7 +953,7 @@
      *
      * @param string
      * @return string $products_only_online, products only on the web site
-     * @access public
+     *
      */
     public function getProductsOnlyOnTheWebSite($id = null)
     {
@@ -989,7 +989,7 @@
      *
      * @param null|int
      * @return string $products_packaging, products packaging
-     * @access public
+     *
      */
     public function getProductsPackaging($id = null)
     {
@@ -1028,7 +1028,7 @@
      *
      * @param string
      * @return string $products_packaging, products packaging
-     * @access public
+     *
      */
     public function getProductsDateAdded($id = null)
     {
@@ -1072,7 +1072,7 @@
      *
      * @param string
      * @return string $products_quantity_unit['products_quantity_unit_title'], products quantity unit type
-     * @access public
+     *
      */
     public function getProductQuantityUnitType($id = null)
     {
@@ -1164,7 +1164,7 @@
      *
      * @param string
      * @return string $products_shipping_delay, delay of the shipping
-     * @access public
+     *
      */
     public function getProductsHeadTag()
     {
@@ -1248,7 +1248,7 @@
      *
      * @param string
      * @return string $products_web, sell web and in the shop
-     * @access public
+     *
      */
     public function getProductsWebAndShop($id = null)
     {
@@ -1282,7 +1282,7 @@
      *
      * @param string
      * @return string $products_volume, volume of the product
-     * @access public
+     *
      */
     public function getProductsVolume()
     {
@@ -1295,7 +1295,7 @@
      *
      * @param string
      * @return string $products_weight, weight of the product
-     * @access public
+     *
      */
     private function setProductsWeight($id = null)
     {
@@ -1330,7 +1330,7 @@
      *
      * @param string
      * @return string $products_weight, weight of the product
-     * @access public
+     *
      */
     public function getProductsWeight($id = null)
     {
@@ -1341,7 +1341,7 @@
      * Display the normal price by kilo
      *
      * @param string $product_price_kilo_display , the normal price by kilo
-     * @access public
+     *
      */
     private function setProductsPriceByWeight($id = null)
     {
@@ -1395,7 +1395,7 @@
      * Display the normal price by kilo
      *
      * @param string $product_price_kilo_display , the normal price by kilo
-     * @access public
+     *
      */
     public function getProductsPriceByWeight($id = null)
     {
@@ -1437,7 +1437,7 @@
      *
      * @param string $products_quantity_unit_id , $language_id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-     * @access public
+     *
      */
     public function getProductsQuantityByUnit($id = null)
     {
@@ -1455,7 +1455,7 @@
      *
      * @param string
      * @return string $products_model, model of the product
-     * @access public
+     *
      */
 
     private function setProductsModel($id = null)
@@ -1508,7 +1508,7 @@
      *
      * @param string
      * @return string $products_model, model of the product
-     * @access public
+     *
      */
     public function getProductsModel($id = null)
     {
@@ -1596,7 +1596,7 @@
      *
      * @param string
      * @return string $products_flash_discount, flash discount
-     * @access public
+     *
      */
     public function getProductsFlashDiscount($id = null)
     {
@@ -1791,7 +1791,7 @@
       * display Minimum quantity take an order for the client
       *
       * @param string $min_order_quantity_products_display, the min of order product qty
-      * @access public
+      *
     */
     public function getProductsMinimumQuantityToTakeAnOrder($id = null)
     {
@@ -1846,7 +1846,7 @@
      * Display the quantity for the customer
      *
      * @param string $input_quantity , the price of the product or not
-     * @access public
+     *
      */
     public function getProductsAllowingToInsertQuantity($id = null)
     {
@@ -1883,7 +1883,7 @@
      * Display a message in function the customer group applied
      *
      * @param string $product_price_d , the price of the product or not
-     * @access public
+     *
      */
     public function getProductsAllowingTakeAnOrderMessage()
     {
@@ -1942,7 +1942,7 @@
      * Button buy now
      *
      * @param string $submit_button , the button
-     * @access public
+     *
      */
     public function getProductsBuyButton()
     {
@@ -1953,7 +1953,7 @@
      * Return a products button exhausted
      * @param string $product_button_exhausted
      * @return $product_button_exhausted,the bootstrap item
-     * @access public
+     *
      */
     private function getProductButtonExhausted($button_type = null)
     {
@@ -1974,7 +1974,7 @@
      * If insufficent stock is available return a products exhausted image
      * @param string $product_exhausted , the button
      * @param $button_type , bootstrap button bootstrap item
-     * @access public
+     *
      */
 
     private function setProductsExhausted($id, $button_type = null): string
@@ -2013,7 +2013,7 @@
      *
      * @param string $product_exhausted , the button
      * @param string $button_type : bootstrap button bootstrap item
-     * @access public
+     *
      */
     public function getProductsExhausted($id = null, $button_type = null)
     {
@@ -2059,7 +2059,7 @@
      * Display the price in different mode B2B or not
      *
      * @param string $product_price_d , the price of the product or not
-     * @access public
+     *
      */
     public function getCustomersPrice($id = null)
     {
@@ -2070,7 +2070,7 @@
      * Return a product's special price B2B (returns nothing if there is no offer
      * @param string $product_id
      * @return $product['specials_new_products_price'] the special price
-     * @access public
+     *
      * TABLES: products B2B
      */
 
@@ -2112,7 +2112,7 @@
      *
      * @param string $product_id , id of the procduct
      * @return $products_price, the product group price
-     * @access public
+     *
      */
 
 
@@ -2167,7 +2167,7 @@
      *
      * @param
      * @return $products_price, the product price
-     * @access public
+     *
      */
     public function setDisplayPriceGroup($id = null)
     {
@@ -2189,7 +2189,7 @@
      *
      * @param string
      * @return $products_price, the product price
-     * @access public
+     *
      */
 
     public function getDisplayPriceGroupWithoutCurrencies($id = null): float
@@ -2277,7 +2277,7 @@
      * Return a product's stock
      * @param string $id , id product
      * @return the $stock_values['products_quantity']
-     * @access public
+     *
      */
 
     public function getProductsStock($id = null): string
@@ -2302,7 +2302,7 @@
      * @param string $id , id product
      * @param string $products_quantity
      * @return $out_of_stock
-     * @access public
+     *
      */
 
     public function getCheckStock($id, $products_quantity)
@@ -2328,7 +2328,7 @@
      * Return an image concerning the stock
      * @param string $id , id product
      * @return the $display_stock_values, the image value of stock
-     * @access public
+     *
      */
     public function getDisplayProductsStock($id)
     {
@@ -2349,7 +2349,7 @@
      *
      * @param string
      * @return string $products_attributes['total'], total of attributes
-     * @access public
+     *
      */
     private function setCountProductsAttributes($id = null)
     {
@@ -2479,7 +2479,7 @@
      *
      * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-     * @access public
+     *
      */
     public function getManufacturersName()
     {
@@ -2543,7 +2543,7 @@
      *
      * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-     * @access public
+     *
      */
     public function getManufacturersImage()
     {
@@ -2554,7 +2554,7 @@
      * Display a  manufacturers under an array
      *
      * @param string $manufacturers_array , an array of manufacturer
-     * @access public
+     *
      */
 
     public function setManufacturersDropDown()
@@ -2591,7 +2591,7 @@
      *
      * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-     * @access public
+     *
      */
     public function getManufacturersDropDown(): array
     {
@@ -2603,7 +2603,7 @@
      *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     * @access public
+     *
      */
     private function setProductsTickerProductsNew($id = null)
     {
@@ -2643,7 +2643,7 @@
      *
      * @param string
      * @return string $ticker, product new procust price ticker
-     * @access public
+     *
      */
     public function getProductsTickerProductsNew($id = null)
     {
@@ -2655,7 +2655,7 @@
      *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     * @access public
+     *
      */
     private function setProductsTickerSpecials($id = null)
     {
@@ -2703,7 +2703,7 @@
      *
      * @param string
      * @return string $ticker, specials price ticker
-     * @access public
+     *
      */
     public function getProductsTickerSpecials($id = null)
     {
@@ -2716,7 +2716,7 @@
      *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     * @access public
+     *
      */
     private function setProductsTickerSpecialsPourcentage($id, $tag = ' %')
     {
@@ -2733,7 +2733,7 @@
      *
      * @param string
      * @return string $ticker, specials price ticker
-     * @access public
+     *
      */
     public function getProductsTickerSpecialsPourcentage($id)
     {
@@ -2781,7 +2781,7 @@
      *
      * @param string
      * @return string $ticker, favorites ticker
-     * @access public
+     *
      */
     public function getProductsTickerFavorites($id = null)
     {
@@ -2793,7 +2793,7 @@
      *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     * @access public
+     *
      */
     private function setProductsTickerFeatured($id = null)
     {
@@ -2830,7 +2830,7 @@
      *
      * @param string
      * @return string $ticker, specials price ticker
-     * @access public
+     *
      */
     public function getProductsTickerFeatured($id = null)
     {
@@ -2861,7 +2861,7 @@
     *
     * @param string
     * @return string $save_money, the difference between real price and  specials
-    * @access public
+    *
     */
     public function getProductsSaveMoneyCustomer($id)
     {
@@ -2964,7 +2964,7 @@
     /*
     * Return table heading with sorting capabilities
     *
-    * @access public
+    *
     */
     public function createSortHeading($sortby, $column, $heading)
     {
@@ -2997,7 +2997,7 @@
     *
     * @param Int $id, id product
     * @return Int products_weight_class_id, Id of the weight class
-    * @access public
+    *
     */
     private function setWeightClassIdByProducts($id)
     {
@@ -3016,7 +3016,7 @@
     *
     * @param Int $id, id product
     * @return Int products_weight_class_id, Id of the weight class
-    * @access public
+    *
     */
     public function getWeightClassIdByProducts($id)
     {

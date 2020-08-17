@@ -323,7 +323,7 @@
      * Select a default template
      * to make : relation with the page and database
      * @param string $thema
-     * @access public
+     *
      */
     public function setSiteThema(string $thema_directory = null): string
     {
@@ -352,7 +352,7 @@
      *
      * @param string
      * DIR_WS_LANGUAGES - sources/langauges
-     * @access public
+     *
      */
 
     public function getSiteTemplateLanguageDirectory(): string
@@ -365,7 +365,7 @@
      *
      * @param string
      * DIR_WS_MODULES - includes/modules
-     * @access public
+     *
      */
     public function getModuleDirectory()
     {
@@ -377,7 +377,7 @@
      * get path download
      *
      * @param string $modules_directory ,directory of the module
-     * @access public
+     *
      * define('DIR_FS_DOWNLOAD_PUBLIC', $this->getPathRoot() . 'sources/public/');
      * @return string
      */
@@ -399,7 +399,7 @@
      *
      * @param string
      * DIR_WS_TEMPLATE . SITE_THEMA . DIR_WS_TEMPLATE_MODULES
-     * @access public
+     *
      */
 
     public function getSiteTemplateModuleDirectory(): string
@@ -411,7 +411,7 @@
      * Select the default template and verify if it exist
      *
      * @param string $thema
-     * @access public
+     *
      */
 
     public function getPathDirectoryTemplateThema(): string
@@ -443,7 +443,7 @@
      * @param array $needles
      * @param string $haystack
      * @return bool true / false
-     * @access public
+     *
      */
     public static function match(array $needles, string $haystack): bool
     {
@@ -643,7 +643,7 @@
      *
      * @param string $name , header or footer of the template
      * sources/template/Default/header.php
-     * @access public
+     *
      */
     public function getTemplateHeaderFooter(string $name): string
     {
@@ -661,7 +661,7 @@
      * Select the css in directory of the template by language
      *
      * @param string $themaGraphism , css directory in the template
-     * @access public
+     *
      */
     public function getTemplategraphism(): string
     {
@@ -686,7 +686,7 @@
      *
      * @param string $themaGraphism , file in this directory Files
      * sources/template/Default/modules/index_listing
-     * @access public
+     *
      */
     public function getTemplateFiles(string $name): string
     {
@@ -704,7 +704,7 @@
      *
      * @param string $themaGraphism , file in this directory module
      * sources/template/Default/modules/modules_header/content/header_page_manager_header_menu"
-     * @access public
+     *
      */
     public function getTemplateModules(string $name): string
     {
@@ -723,7 +723,7 @@
      *
      * @param string $themaFilename , filename in this module
      * ex: sources/template/Default/modules/modules_header/template_html/multi_template_test.php
-     * @access public
+     *
      */
     public function getTemplateModulesFilename(string $name): string
     {
@@ -741,7 +741,7 @@
      * Select the file language in function the the file for the template
      *
      * @param string $languagefiles , file language in function the the file for the template
-     * @access public
+     *
      */
 
     public function getPathDirectoryTemplatetLanguageFiles(string $name): string
@@ -796,7 +796,7 @@
      * @param string $filename , name of the file
      * @param string $ext , file extension
      * @return array|bool
-     * @access public
+     *
      */
     public function getSpecificFiles(string $source_folder, string $filename, string $ext = 'php'): array
     {

@@ -647,7 +647,7 @@
      * @param string $string
      * @param string $len
      * @param string $break_char
-     * @access public
+     *
      */
 
     public static function breakString($string, $len, $break_char = '-')

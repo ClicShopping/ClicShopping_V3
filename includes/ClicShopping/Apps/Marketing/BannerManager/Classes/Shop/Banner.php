@@ -54,7 +54,7 @@
      * Activate a banner that has been on schedule
      *
      * @param int $id The ID of the banner to activate
-     * @access public
+     *
      * @return boolean
      */
     public static function activateBanners()
@@ -81,7 +81,7 @@
      * Deactivate a banner
      *
      * @param int $id The ID of the banner to deactivate
-     * @access public
+     *
      * @return boolean
      */
     public static function expireBanners()
@@ -115,7 +115,7 @@
      *
      * @param int $action of the banner (dynamic or static)
      * @param The $identifier of the banner to show
-     * @access public
+     *
      * @return string
      */
     public static function displayBanner($action, $identifier)
@@ -264,7 +264,7 @@
      * Check if an existing banner is active
      *
      * @param int $id The ID of the banner to check
-     * @access public
+     *
      * @return boolean
      */
 

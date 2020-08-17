@@ -143,7 +143,7 @@
      * Return the zone code
      *
      * @param int $id The ID of the zone
-     * @access public
+     *
      * @return string
      */
 
@@ -213,7 +213,7 @@
      *  Returns an array with countries
      * @param string $countries_id
      * @param string $with_iso_codes
-     * @access public
+     *
      */
 
     public static function getCountries($countries_id = null, bool $with_iso_codes = false) :array
@@ -264,7 +264,7 @@
     /**
      * Retour the name of the country
      * @param $country_id
-     * @access public
+     *
      */
     public static function getCountryName(int $country_id) :string
     {
@@ -277,7 +277,7 @@
     /**
      *  Alias function to getCountries, which also returns the countries iso codes
      * @param string $countries_id
-     * @access public
+     *
      */
     public function getCountriesWithIsoCodes(int $countries_id)
     {
@@ -288,7 +288,7 @@
      * Return the zones belonging to a country, or all zones
      *
      * @param int $id The ID of the country
-     * @access public
+     *
      * @return array
      */
 
@@ -341,7 +341,7 @@
      *
      * @param $country_id , if ogf the country
      * @return array $zones_array, zone of the country
-     * @access public
+     *
      * Shop and Admin
      */
     public static function getCountryZones($country_id)
@@ -372,7 +372,7 @@
      *
      * @param $country_id , if ogf the country
      * @return array $zones_array, zone of the country
-     * @access public
+     *
      * Shop and Admin
      */
     public static function getPrepareCountryZonesPullDown($country_id = '') :array

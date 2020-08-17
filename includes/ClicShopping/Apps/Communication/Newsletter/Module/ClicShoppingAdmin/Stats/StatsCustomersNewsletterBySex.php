@@ -43,9 +43,9 @@
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
         $statAnalyseCustomersMan = $QstatAnalyseCustomersMan->valueDecimal('avgage');
-      }
 
-      return $statAnalyseCustomersMan;
+        return $statAnalyseCustomersMan;
+      }
     }
 
 

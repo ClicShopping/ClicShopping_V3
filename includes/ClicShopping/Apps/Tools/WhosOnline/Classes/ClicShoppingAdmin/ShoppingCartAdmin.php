@@ -153,7 +153,7 @@
     /**
      * @param string $prid , $params
      * @return string $uprid,
-     * @access public
+     *
      */
     public function getUprid($prid, $params)
     {
@@ -171,7 +171,7 @@
      *
      * @param string $uprid
      * @return string $pieces,
-     * @access public
+     *
      */
     public function getPrid($uprid)
     {

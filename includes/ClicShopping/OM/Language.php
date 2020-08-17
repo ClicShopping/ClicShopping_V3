@@ -241,7 +241,7 @@
      * Check the language
      *
      * @param return the code of the language
-     * @access public
+     *
      */
     public function exists($code)
     {
@@ -525,7 +525,7 @@
      * Get the code language to display (french english)
      *
      * @param return code of the language
-     * @access public
+     *
      *
      */
     public function getLanguageCode()
@@ -567,7 +567,7 @@
      *
      * @param string
      * @return string $languages_string, flag language
-     * @access public
+     *
      */
     public function getLanguageText($tag = ' - ')
     {
@@ -601,7 +601,7 @@
      *
      * @param string
      * @return string $flag, flag language
-     * @access public
+     *
      */
     public function getFlag()
     {
@@ -652,7 +652,7 @@
      *
      * @param string
      * @return string $languages_array,
-     * @access public
+     *
      */
     public function getLanguages()
     {
@@ -687,7 +687,7 @@
      *
      * @param string
      * @return string name, name of the language id
-     * @access public
+     *
      */
     public function getLanguagesName($id)
     {
@@ -705,7 +705,7 @@
      *
      * @param string $option to display all language or not true, false
      * @return array $values_languages_id,, languages
-     * @access public
+     *
      */
     public function getAllLanguage($option = false)
     {

@@ -326,7 +326,7 @@
      * @param int $manufacturers_id
      * @param int $language_id
      * @return string $manufacturer['manufacturers_seo_description']
-     * @access public
+     *
      */
     public static function getManufacturerSeoDescription(?int $manufacturers_id, int $language_id) :string
     {
@@ -351,7 +351,7 @@
      *
      * @param string $manufacturer_id , $language_id
      * @return string $manufacturer['manufacturers_seo_title'],  seo title of the manufacturer
-     * @access public
+     *
      */
     public static function getManufacturerSeoTitle(?int $manufacturers_id, int $language_id)
     {
@@ -376,7 +376,7 @@
      *
      * @param string $manufacturer_id , $language_id
      * @return string $manufacturer['manufacturers_seo_keyword'],  seo keyword of the manufacturer
-     * @access public
+     *
      */
     public static function getManufacturerSeoKeyword($manufacturers_id, $language_id)
     {
@@ -401,7 +401,7 @@
      *
      * @param string $product_id , $language_id
      * @return string product['products_head_title_tag'], description name
-     * @access public
+     *
      */
     public static function getProductsSeoTitle($product_id, $language_id)
     {
@@ -425,7 +425,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $product['products_head_desc_tag'], description name
-     * @access public
+     *
      */
     public static function getProductsSeoDescription($product_id, $language_id)
     {
@@ -449,7 +449,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $product['products_head_keywords_tag'], keywords name
-     * @access public
+     *
      */
     public static function getProductsSeoKeywords($product_id, $language_id)
     {
@@ -474,7 +474,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $product['products_head_tag'], keywords name
-     * @access public
+     *
      */
     public static function getProductsSeoTag($product_id, $language_id)
     {

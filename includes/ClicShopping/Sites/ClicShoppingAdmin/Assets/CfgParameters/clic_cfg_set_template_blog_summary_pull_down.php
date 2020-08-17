@@ -18,7 +18,7 @@
    *
    * @param string template_blog
    * @return string configuration_value., $filename_array,  $filename, hte file name in the directory
-   * @access public
+   *
    */
 
   function clic_cfg_set_template_blog_summary_pull_down($filename, $key = '')

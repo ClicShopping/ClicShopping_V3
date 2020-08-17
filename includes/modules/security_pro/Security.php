@@ -40,7 +40,7 @@
      *
      * @param string $file_to_exclude - file to exclude from cleansing
      *
-     * @access public
+     *
      * @return object _Security_Pro - allows chaining
      * @uses in_array()
      */
@@ -57,7 +57,7 @@
      *
      * @param array $args - files to exclude from cleansing
      *
-     * @access public
+     *
      * @return void
      * @uses foreach()
      */
@@ -74,7 +74,7 @@
      *
      * @param array $_GET - long array
      *
-     * @access public
+     *
      * @return void
      * @uses ini_get()
      * @see  _Security_Pro::cleanGlobals()
@@ -106,7 +106,7 @@
      *
      * @param array $get
      *
-     * @access public
+     *
      * @return void
      * @uses is_array()
      */
@@ -134,7 +134,7 @@
      * @return string - cleansed key string
      * @uses preg_replace()
      *
-     * @access public
+     *
      * @uses urldecode()
      */
     public function cleanseKeyString($string)
@@ -155,7 +155,7 @@
      * @return string - cleansed value string
      * @uses preg_replace()
      *
-     * @access public
+     *
      * @uses urldecode()
      */
     public function cleanseValueString($string)
@@ -185,7 +185,7 @@
      * @return void
      * @uses array_key_exists()
      *
-     * @access public
+     *
      */
     public function cleanGlobals()
     {

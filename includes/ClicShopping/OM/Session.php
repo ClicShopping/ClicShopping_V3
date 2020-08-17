@@ -18,7 +18,7 @@
      * Loads the session storage handler
      *
      * @param string $name The name of the session
-     * @access public
+     *
      */
 
     protected static string $driver;

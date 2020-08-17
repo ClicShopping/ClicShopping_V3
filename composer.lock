@@ -682,16 +682,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.46.1",
+            "version": "v7.47.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "fd57205d3e3a1dccab80538654128d5c46a1f5ac"
+                "reference": "b51656cb398d081fcee53a76f6edb8fd5c1a5306"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/fd57205d3e3a1dccab80538654128d5c46a1f5ac",
-                "reference": "fd57205d3e3a1dccab80538654128d5c46a1f5ac",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b51656cb398d081fcee53a76f6edb8fd5c1a5306",
+                "reference": "b51656cb398d081fcee53a76f6edb8fd5c1a5306",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +735,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-08-07T22:11:58+00:00"
+            "time": "2020-08-13T22:35:56+00:00"
         },
         {
             "name": "symfony/console",

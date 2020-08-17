@@ -33,7 +33,7 @@
      *
      * @param string products_favorites_id, status
      * @return string status on or off
-     * @access public
+     *
      * osc_set_products_favorites_status
      */
     Public static function getFavoritesProductsStatus($products_favorites_id, $status)

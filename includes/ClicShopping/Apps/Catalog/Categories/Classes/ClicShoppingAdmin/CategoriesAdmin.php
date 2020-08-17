@@ -101,7 +101,7 @@
     /**
      * Return the breadcrumb path of the assigned category
      *
-     * @access public
+     *
      * @return array
      */
     public function getPathArray(int $id = null): array
@@ -134,7 +134,7 @@
      *
      * @param string $category_id , $language_id
      * @return string $category['categories_name'],  name of the categorie
-     * @access public
+     *
      */
     public function getCategoryName(int $category_id, int $language_id): string
     {
@@ -151,7 +151,7 @@
      *
      * @param string $category_id , $language_id
      * @return string $category['blog_categories_name'],  description of the blog categorie
-     * @access public
+     *
      */
     public function getCategoryDescription(int $category_id, int $language_id) :string
     {
@@ -271,7 +271,7 @@
      *
      * @param string $category_id
      * @return string
-     * @access public
+     *
      */
     public function removeCategory(int $category_id)
     {
@@ -359,7 +359,7 @@
      *
      * @param string $current_category_id
      * @return string $cPath_new,
-     * @access public
+     *
      *
      */
     public function getCategoriesPath($current_category_id = '')
@@ -574,7 +574,7 @@
     }
 
     /**
-     * @access public
+     *
      * @param $id
      * @param string $from
      * @return bool|string

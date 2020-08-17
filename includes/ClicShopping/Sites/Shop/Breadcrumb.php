@@ -27,7 +27,7 @@
     /**
      * Resets the breadcrumb navigation path
      *
-     * @access public
+     *
      */
 
     public function reset()
@@ -40,7 +40,7 @@
      *
      * @param string $title The title of the breadcrumb navigation entry
      * @param string $link The link of the breadcrumb navigation entry
-     * @access public
+     *
      */
 
     public function add(string $title, string $link = '')
@@ -89,7 +89,7 @@
      * Returns the breadcrumb navigation path with the entries separated by $separator
      *
      * @param string $separator The string value to separate the breadcrumb navigation path entries with
-     * @access public
+     *
      * @return string
      */
 
@@ -105,7 +105,7 @@
     /**
      * Returns the breadcrumb navigation path array
      *
-     * @access public
+     *
      * @return array
      */
 
@@ -117,7 +117,7 @@
     /**
      * Returns the breadcrumb separator
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -130,7 +130,7 @@
      * Sets the breadcrumb string separator
      *
      * @param string $separator The string to separator breadcrumb entries with
-     * @access public
+     *
      * @return string
      */
 
@@ -142,7 +142,7 @@
     /**
      * Overloaded rewind iterator function
      *
-     * @access public
+     *
      */
 
     public function rewind()
@@ -153,7 +153,7 @@
     /**
      * Overloaded current iterator function
      *
-     * @access public
+     *
      */
 
     public function current(): string
@@ -164,7 +164,7 @@
     /**
      * Overloaded key iterator function
      *
-     * @access public
+     *
      */
 
     public function key(): string
@@ -175,7 +175,7 @@
     /**
      * Overloaded next iterator function
      *
-     * @access public
+     *
      */
 
     public function next(): string
@@ -186,7 +186,7 @@
     /**
      * Overloaded valid iterator function
      *
-     * @access public
+     *
      */
 
     public function valid(): string

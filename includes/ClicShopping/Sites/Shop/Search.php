@@ -208,7 +208,7 @@
       * Number of products result
       * @param
       * @return $this->_result['total'], total of products
-      * @access public
+      *
     */
     public function getNumberOfResults(): int
     {
@@ -219,7 +219,7 @@
      * Search keywords
      * @param
      * @return $this->_keywords, the keywords
-     * @access public
+     *
     */
 
     public function getKeywords(): string
@@ -238,7 +238,7 @@
     /*
      * Boolean True False
      * @return true or False
-     * @access public
+     *
     */
     public function hasKeywords(): bool
     {
@@ -253,7 +253,7 @@
      * explode keywords
      * @param $keywords, keywords
      * @return keywords under an array
-     * @access public
+     *
     */
     public function setKeywords(string $keywords)
     {
@@ -286,7 +286,7 @@
      * Search in description
      * @param
      * @return $this->_description, the keywords
-     * @access public
+     *
     */
     private function getDescription(): bool
     {
@@ -317,7 +317,7 @@
      * Search in category
      * @param
      * @return $this->_category, the categorie
-     * @access public
+     *
     */
     private function getCategory(): bool
     {
@@ -336,7 +336,7 @@
      * Category
      * Boolean true False
      * @return true or False
-     * @access public
+     *
     */
     private function hasCategory(): bool
     {
@@ -347,7 +347,7 @@
      * Category recusive
      * array id of recursive category
      * @return $this->_recursive, id fo categories
-     * @access public
+     *
     */
     private function isRecursive(): bool
     {
@@ -365,7 +365,7 @@
      * getCategoryID
      * id of category
      * @return $category_id, id fo category
-     * @access public
+     *
     */
     private function getCategoryID(): int
     {
@@ -381,7 +381,7 @@
     * Search in manufacturer
     * @param
     * @return $this->_manufacturer, the manufacturer
-    * @access public
+    *
     */
     private function getManufacturer(): bool
     {
@@ -413,7 +413,7 @@
     * Sort order list
     * String
     * @return array $define_list, sort order type
-    * @access public
+    *
     */
 
     public function sortListSearch(): array
@@ -444,7 +444,7 @@
      * Execute
      *
      * @return $result : sql sesult
-     * @access public
+     *
     */
     public function execute()
     {

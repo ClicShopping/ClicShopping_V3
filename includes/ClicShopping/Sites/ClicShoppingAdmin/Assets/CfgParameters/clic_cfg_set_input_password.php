@@ -16,7 +16,7 @@
    *
    * @param string $password
    * @return string  $password, the password
-   * @access public
+   *
    * clic_cfg_input_password
    */
 

@@ -23,7 +23,7 @@
      *
      * @param string suppliers_id, status
      * @return string status on or off
-     * @access public
+     *
      */
 
     public static function getSuppliersStatus(int $suppliers_id,int $status)

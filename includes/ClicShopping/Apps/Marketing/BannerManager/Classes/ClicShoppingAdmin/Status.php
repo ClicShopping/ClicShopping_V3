@@ -23,7 +23,7 @@
      *
      * @param string banners_id, status
      * @return string status on or off
-     * @access public
+     *
      *
      */
     public static function setBannerStatus(int $banners_id, int $status)

@@ -26,7 +26,7 @@
      * @param int $categories_id
      * @param int $status
      * @return string status on or off
-     * @access public
+     *
      */
 
     public static function getCategoriesStatus(int $categories_id, int $status)

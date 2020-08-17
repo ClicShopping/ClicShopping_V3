@@ -244,7 +244,7 @@
      * taxClassDropDown
      *
      * @return string $$tax_class_array, drop down with all tax title
-     * @access public
+     *
      */
 
     public static function taxClassDropDown(): array

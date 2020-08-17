@@ -18,7 +18,7 @@
    *
    * @param string  all_template
    * @return string configuration_value, $filename_array,  $template_directory, the directory name
-   * @access public
+   *
    */
 
   function clic_cfg_set_all_template_directory_list_pull_down($value)

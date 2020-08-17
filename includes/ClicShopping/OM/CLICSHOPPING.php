@@ -319,7 +319,7 @@
      *
      * @param string $v get the clicshopping_verion
      * @return string $url, url to redirect
-     * @access public
+     *
      */
     public static function redirect(): string
     {
@@ -519,7 +519,7 @@
     /**
      * Retrieve web server and database server information
      * return $data, array og php.ini information
-     * @access public
+     *
      */
     public static function getSystemInformation(): array
     {

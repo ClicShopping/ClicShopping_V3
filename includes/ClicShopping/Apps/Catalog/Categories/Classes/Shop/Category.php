@@ -34,7 +34,7 @@
      * Constructor
      *
      * @param int $id The ID of the category to retrieve information from
-     * @access public
+     *
      */
 
     public function __construct($id = null)
@@ -77,7 +77,7 @@
     /**
      * Return the ID of the assigned category
      *
-     * @access public
+     *
      * @return integer
      */
 
@@ -89,7 +89,7 @@
     /**
      * Return the description of the assigned category
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -102,7 +102,7 @@
     /**
      * Return the title of the assigned category
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -114,7 +114,7 @@
     /**
      * Check if the category has an image
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -126,7 +126,7 @@
     /**
      * Return the image of the assigned category
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -138,7 +138,7 @@
     /**
      * Check if the assigned category has a parent category
      *
-     * @access public
+     *
      * @return boolean
      */
 
@@ -150,7 +150,7 @@
     /**
      * Return the parent ID of the assigned category
      *
-     * @access public
+     *
      * @return integer
      */
 
@@ -162,7 +162,7 @@
     /**
      * Return the breadcrumb path of the assigned category
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -174,7 +174,7 @@
     /**
      * Return the the path about the subcategory
      *
-     * @access public
+     *
      * string current_category_id =  the current categry id
      * @return string the new path
      */
@@ -225,7 +225,7 @@
     /**
      * Return the breadcrumb path of the assigned category
      *
-     * @access public
+     *
      * @return string
      */
     public function getPathArray($id = null)
@@ -242,7 +242,7 @@
     /**
      * Return specific information from the assigned category
      *
-     * @access public
+     *
      * @return mixed
      */
 
@@ -255,7 +255,7 @@
     /**
      * Return deph the assigned category
      *
-     * @access public
+     *
      * @return mixed
      */
 
@@ -300,7 +300,7 @@
     /**
      * Return a numlber about listing related themain category
      *
-     * @access public
+     *
      * @return number of the product in the main category
      */
 
@@ -325,7 +325,7 @@
     /**
      * Return True False in function the category is sub or not
      * string , $category_id, id of category
-     * @access public
+     *
      * @return number of the product in the main category
      */
 
@@ -348,7 +348,7 @@
      * Return all sub categories
      * string , $subcategories_array, id of category
      * string  $parent_id, id of the parent category
-     * @access public
+     *
      */
     public function getSubcategories(&$subcategories_array, $parent_id = 0)
     {
@@ -374,7 +374,7 @@
      * string , $categories_array, id of category
      * string  $parent_id, id of the parent category
      * string $indent, options
-     * @access public
+     *
      * @param array $categories_array
      * @param string $parent_id
      * @param string $indent

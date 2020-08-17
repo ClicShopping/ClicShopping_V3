@@ -20,8 +20,10 @@
   class Currencies
   {
 
-    public $currencies = [];
+    public array $currencies = [];
     protected $db;
+    protected $show;
+    protected string $selected;
 
     public function __construct()
     {

@@ -65,7 +65,7 @@
     /**
      * Constructor; load the category structure relationship data from the database
      *
-     * @access public
+     *
      */
 
     public function __construct()
@@ -306,7 +306,7 @@
     /**
      * Return a formated string representation of the category structure relationship data
      *
-     * @access public
+     *
      * @return string
      */
 
@@ -316,7 +316,7 @@
     }
 
     /**
-     * @access public
+     *
      * Magic function; return a formated string representation of the category structure relationship data
      * This is used when echoing the class object, eg:
      *

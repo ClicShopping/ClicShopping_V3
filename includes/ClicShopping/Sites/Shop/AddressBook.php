@@ -222,7 +222,7 @@
      * Verify the address book entry belongs to the current customer
      *
      * @param int $id The ID of the address book entry to verify
-     * @access public
+     *
      * @return boolean
      */
 
@@ -258,7 +258,7 @@
      * Delete an address book entry
      *
      * @param int $id The ID of the address book entry to delete
-     * @access public
+     *
      * @return boolean
      */
 
@@ -283,7 +283,7 @@
      * count customer address book
      * @param string $id , $check_session
      * @param string $addresses ['total'], number of the address
-     * @access public
+     *
      */
     public static function countCustomerAddressBookEntries($id = '', bool $check_session = true)
     {
@@ -325,7 +325,7 @@
      * Count customer_order
      * @param string $id The id of the order
      * @param string $check_session of the session customer
-     * @access public
+     *
      */
 
     public static function countCustomerOrders($id = '', $check_session = true)
@@ -372,7 +372,7 @@
     /**
      * Returns the address book entries for the current customer
      *
-     * @access public
+     *
      * @return array
      */
 
@@ -413,7 +413,7 @@
      * Returns a specific address book entry for the current customer
      *
      * @param int $id The ID of the address book entry to return
-     * @access public
+     *
      * @return array
      */
 
@@ -471,7 +471,7 @@
     /**
      * Return the number of address book entries the current customer has
      *
-     * @access public
+     *
      * @return integer
      */
 
@@ -501,7 +501,7 @@
      * Set the address book entry as the primary address for the current customer
      *
      * @param int $id The ID of the address book entry
-     * @access public
+     *
      * @return boolean
      */
 

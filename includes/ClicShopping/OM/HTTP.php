@@ -179,7 +179,7 @@
     /**
      * Get the IP address of the client
      * @param string $ip , th ip of the client
-     * @access public
+     *
      *
      */
 
@@ -223,7 +223,7 @@
     /*
      * Get the provider name of the client
      * $isp_provider_client the provider name
-     * @access public
+     *
      */
     public static function getProviderNameCustomer(): string
     {

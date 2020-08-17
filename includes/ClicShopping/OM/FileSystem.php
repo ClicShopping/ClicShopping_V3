@@ -120,7 +120,7 @@
      * Recursively remove a directory or a single file
      *
      * @param string $source The source to remove
-     * @access public
+     *
      */
     public static function rmFile(string $source)
     {

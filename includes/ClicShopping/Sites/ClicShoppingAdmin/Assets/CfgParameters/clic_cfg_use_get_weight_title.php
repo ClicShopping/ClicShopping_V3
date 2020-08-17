@@ -17,7 +17,7 @@
    *
    * @param int id
    * @return string $orders_status['orders_status_name'],  name of the status
-   * @access public
+   *
    *
    */
 

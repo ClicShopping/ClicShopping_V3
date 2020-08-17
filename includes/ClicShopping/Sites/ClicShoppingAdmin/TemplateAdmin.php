@@ -33,7 +33,7 @@
      * Get the path for the default template HTML directory
      *
      * @param string $themaFilename , filename in this module
-     * @access public
+     *
      * @return string
      */
     public function getDirectoryPathShopDefaultTemplateHtml(): string
@@ -45,7 +45,7 @@
      * get the catalog modules directory
      *
      * @param string $language_directory ,directory of the language
-     * @access public
+     *
      *  define('parent::getPathRoot() 'sources/languages/');
      * @return string
      */
@@ -60,7 +60,7 @@
      * get path public download
      *
      * @param string $modules_directory ,directory of the module
-     * @access public
+     *
      * define('DIR_FS_DOWNLOAD_PUBLIC', parent::getPathRoot() . 'sources/download/');
      * @return string
      */
@@ -75,7 +75,7 @@
      * Verify if module directory exist in shop template
      *
      * @param string
-     * @access public
+     *
      * @return string
      */
 
@@ -94,7 +94,7 @@
      * Verify if the timage direcotyr exist in shop
      *
      * @param string
-     * @access public
+     *
      * @return string
      */
 
@@ -117,7 +117,7 @@
      * get the catalog modules directory
      *
      * @param string $language_directory ,directory of the language
-     * @access public
+     *
      * @return string
      */
     public function getDirectoryPathModuleShop(): string
@@ -152,7 +152,7 @@
      * get the Relative Path template directory
      *
      * @param string $themaFilename , filename in this module
-     * @access public
+     *
      * /sources/template
      * @return string
      */
@@ -165,7 +165,7 @@
     * get the Relative Path for dynamic template directory
     *
     * @param string $themaFilename , filename in this module
-    * @access public
+    *
     * //sources/template/SITE_THEMA
     * @return string
     */
@@ -178,7 +178,7 @@
     * get the Relative Path for image directory
     *
     * @param string $themaFilename , filename in this module
-    * @access public
+    *
     * @return string
     */
     public function getImageDirectory(): string
@@ -190,7 +190,7 @@
      * get the boxes directory
      *
      * @param string $language_directory ,directory of the language
-     * @access public
+     *
      * define('DIR_WS_BOXES', 'includes/boxes/');
      * @return string
      */
@@ -205,7 +205,7 @@
      * get the language directory
      *
      * @param string $language_directory ,directory of the language
-     * @access public
+     *
      * define('DIR_WS_LANGUAGES', 'includes/languages/');
      * @return string
      */
@@ -220,7 +220,7 @@
      * get the modules directory
      *
      * @param string $modules_directory ,directory of the module
-     * @access public
+     *
      *   define('DIR_WS_MODULES', 'includes/modules/');
      * @return string
      */
@@ -235,7 +235,7 @@
      * get the the shop image directory
      *
      * @param string
-     * @access public
+     *
      * @return string
      */
     public function getDirectoryShopTemplateImages(): string
@@ -249,7 +249,7 @@
      * get the the shop sources directory
      *
      * @param string
-     * @access public
+     *
      * @return string
      */
     public function getDirectoryShopSources(): string
@@ -263,7 +263,7 @@
      * All files about the catalog
      *
      * @string $catalog_files, string, nwe specific files
-     * @access public
+     *
      * @return array, file list
      */
     public static function getCatalogFiles(string $catalog_files = null): array

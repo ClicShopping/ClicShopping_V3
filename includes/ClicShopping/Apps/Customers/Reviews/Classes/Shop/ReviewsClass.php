@@ -49,7 +49,7 @@
      *
      * @param int $id , $id of the product
      * @return bool the numbeer of the review
-     * @access public
+     *
      */
     public function getTotalReviews(): int
     {
@@ -150,7 +150,7 @@
      * Count the total rows
      *
      * @return int : total row
-     * @access public
+     *
      */
     public function getPageSetTotalRows()
     {
@@ -161,7 +161,7 @@
      * Customers has purchased with comment
      *
      * @return array : $Qhaspurchased : purchased informations
-     * @access public
+     *
      */
     public function hasPurchasedProduct()
     {
@@ -263,7 +263,7 @@
      *
      * @param string
      * @return string
-     * @access public
+     *
      */
     public function saveEntry()
     {
@@ -309,7 +309,7 @@
      *
      * @param string
      * @return string
-     * @access public
+     *
      */
     public function sendEmail()
     {

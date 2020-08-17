@@ -1198,7 +1198,7 @@
      * Return a product ID with attributes
      * @param string $prid , $params
      * @return string $uprid,
-     * @access public
+     *
      */
 
     public function getUprid($prid, $params)
@@ -1303,7 +1303,7 @@
      * display minimum order quantiy
      * @param int $products_id ; id of the product
      * @return $min_order_qty_values, nimum order quantity
-     * @access public
+     *
      */
     public function getProductsMinOrderQtyShoppingCart(string $products_id) :int
     {
@@ -1343,7 +1343,7 @@
      * get the attributes price
      * @param string $products_id , the id of the products
      * @return $attributes_price the price of the attributes
-     * @access public
+     *
      */
     public function getAttributesPrice(string $products_id) :float
     {

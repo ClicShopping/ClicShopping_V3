@@ -14,7 +14,7 @@
    *
    * @param string $orders_status_id , $language_id
    * @return string $orders_status['orders_status_name'],  name of the status
-   * @access public
+   *
    */
 
   use ClicShopping\OM\Registry;
@@ -25,7 +25,7 @@
    *
    * @param string country_id
    * @return string $country['countries_name'] the country name
-   * @access public
+   *
    */
 
   function clic_cfg_use_function_get_country_name($country_id)

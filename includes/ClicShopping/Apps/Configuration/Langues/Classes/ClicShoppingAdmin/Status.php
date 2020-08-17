@@ -21,15 +21,12 @@
     protected $languages_id;
     protected $status;
 
-
-    /*
-    * Status language -  Sets the status of a language
-    *
-    * @param string languages_id, status
-    * @return string status on or off
-    * @access public
-    */
-
+    /**
+     * Status language -  Sets the status of a language
+     * @param int $languages_id
+     * @param int $status
+     * @return int
+     */
     Public static function getLanguageStatus(int $languages_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');

@@ -20,7 +20,7 @@
      *
      * @param string $id , reviews_id
      * @return string status on or off
-     * @access public
+     *
      */
 
     Public static function getReviewsStatus(int $id, ?string $status)

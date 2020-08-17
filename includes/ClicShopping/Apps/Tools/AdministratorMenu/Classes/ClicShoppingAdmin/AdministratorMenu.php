@@ -24,7 +24,7 @@
      *
      * @param string $current_category_id
      * @return string $cPath_new,
-     * @access public
+     *
      */
     public static function getPath(string $current_category_id = ''): string
     {
@@ -72,7 +72,7 @@
      * @param int $id
      * @param int $language_id
      * @return string $category['categories_name'],  name of the categorie
-     * @access public
+     *
      */
     public static function getAdministratorMenuLabel(int $id, int $language_id): string
     {
@@ -89,7 +89,7 @@
      *
      * @param string $category_id
      * @return string
-     * @access public
+     *
      */
     public static function removeCategory(int $id)
     {
@@ -163,7 +163,7 @@
      *
      * @param int $id
      * @return string $calculated_category_path_string
-     * @access public
+     *
      */
 
     public static function getGeneratedAdministratorMenuPathIds(int $id)
@@ -231,7 +231,7 @@
      * remove Administatrator Menu Category
      *
      * @param int $id
-     * @access public
+     *
      */
     public static function getRemoveAdministratorMenuCategory(int $id)
     {

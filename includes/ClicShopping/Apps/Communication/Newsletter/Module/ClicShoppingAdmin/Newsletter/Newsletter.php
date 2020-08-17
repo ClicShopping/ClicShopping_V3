@@ -33,6 +33,8 @@
     protected $customerGroupId;
     protected $createFile;
     protected $newsletterNoAccount;
+    protected $fileId;
+    protected $emailFrom;
 
     public function __construct($title, $content)
     {
@@ -47,9 +49,7 @@
       $this->show_chooseAudience = false;
       $this->title = $title;
       $this->content = $content;
-      $this->emailFrom = htmlentities($this->app->getDef('email_from'));
-
-
+      $this->emailFrom = $this->app->getDef('email_from');
       $this->twitter = HTML::sanitize($_GET['at']); // send to twitter
 
       if (isset($_GET['ana'])) {
@@ -303,9 +303,9 @@
 
 // delete all entry in the table
         $Qdelete = $this->app->db->prepare('delete
-                                              from :table_newsletters_customers_temp
-                                              where customers_email_address = :customers_email_address
-                                              ');
+                                            from :table_newsletters_customers_temp
+                                            where customers_email_address = :customers_email_address
+                                          ');
         $Qdelete->bindValue(':customers_email_address', $QmailNewsletterAccountTemp->value['customers_email_address']);
         $Qdelete->execute();
       } //end while
@@ -314,10 +314,10 @@
       $newsletter_id = HTML::sanitize($newsletter_id);
 
       $Qupdate = $this->app->db->prepare('update :table_newsletters
-                                            set date_sent = now(),
-                                            status = 1
-                                            where newsletters_id = :newsletters_id
-                                           ');
+                                          set date_sent = now(),
+                                          status = 1
+                                          where newsletters_id = :newsletters_id
+                                         ');
       $Qupdate->bindInt(':newsletters_id', $newsletter_id);
       $Qupdate->execute();
 
@@ -397,11 +397,13 @@
 
           if (preg_match("#^[-a-z0-9._]+@([-a-z0-9_]+\.)+[a-z]{2,6}$#i", $Qmail->value('customers_email_address'))) {
 
-            $this->app->db->save('newsletters_customers_temp', ['customers_firstname' => addslashes($Qmail->value('customers_firstname')),
-                'customers_lastname' => addslashes($Qmail->value('customers_lastname')),
-                'customers_email_address' => $Qmail->value('customers_email_address')
-              ]
-            );
+            $sql_array = [
+              'customers_firstname' => addslashes($Qmail->value('customers_firstname')),
+              'customers_lastname' => addslashes($Qmail->value('customers_lastname')),
+              'customers_email_address' => $Qmail->value('customers_email_address')
+            ];
+
+            $this->app->db->save('newsletters_customers_temp', $sql_array);
           }
         }  // end while
       } else {
@@ -442,7 +444,7 @@
       }
 
       if (FileSystem::isWritable(CLICSHOPPING::getConfig('dir_root', 'Shop') . 'sources/public/newsletter')) {
-        if ($this->twitter == 1 && $this->createFile == 1 && $this->errorCreatingFile !== true) {
+        if ($this->twitter == 1 && $this->createFile == 1) {
           $CLICSHOPPING_Hooks->call('Newsletter', 'SendTwitter');
         }
       } else {

@@ -148,7 +148,7 @@ class Server
      * character set.
      *
      * @param string $msg
-     * @access public
+     *
      */
     public static function xmlrpc_debugmsg($msg)
     {

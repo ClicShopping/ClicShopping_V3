@@ -21,7 +21,7 @@
      *
      * @param $country_id , if ogf the country
      * @return array $zones_array, zone of the country
-     * @access public
+     *
      */
     public static function getCountryZones($country_id)
     {
@@ -35,7 +35,7 @@
      *
      * @param
      * @return array $address_format_array, list of address_format_id's
-     * @access public
+     *
      */
 
     public static function getAddressFormats(): array
@@ -58,7 +58,7 @@
      *
      * @param
      * @return array $address_format_array, list of address_format_id's
-     * @access public
+     *
      *
      */
     public static function setAddressFormatArrayAdmin(): array
@@ -82,7 +82,7 @@
      *
      * @param $address_format_id ; id of the address
      * @return address format
-     * @access public
+     *
      *
      */
     public static function getAddressFormatRadio(int $address_format_id)
@@ -95,7 +95,7 @@
      *
      * @param string $geo_zone_id , if of the geo zone
      * @return string $geo_zone_name the drop down of the zone name
-     * @access public
+     *
      */
     public static function getGeoZoneName(int $geo_zone_id): ?int
     {
@@ -122,7 +122,7 @@
      *
      * @param string $parameters , $selected
      * @return string $select_string, the drop down of the zone name
-     * @access public
+     *
      *
      */
     public static function getGeoZonesPullDown(string $parameters, string $selected = '') :string
@@ -156,7 +156,7 @@
      *
      * @param $id , id of the customer
      * @return array $QaddressesBook, list of address_format_id's
-     * @access public
+     *
      */
     public static function getListingAdmin(int $id)
     {

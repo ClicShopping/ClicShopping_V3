@@ -21,7 +21,7 @@
      *
      * @param string  all_template
      * @return string configuration_value, $filename_array,  $template_directory, the directory name
-     * @access public
+     *
      */
 
     public static function cfgPullDownAllTemplateDirectorylist($value)

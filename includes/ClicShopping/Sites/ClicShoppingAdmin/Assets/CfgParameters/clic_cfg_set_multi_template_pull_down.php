@@ -17,7 +17,7 @@
    *
    * @param string $filename , $key
    * @return string $filename_array,  $filename, $name, the file name of directory
-   * @access public
+   *
    */
 
   function clic_cfg_set_multi_template_pull_down($filename, $key = '')

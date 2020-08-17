@@ -23,7 +23,7 @@
      *
      * @param string $string
      * @return string $string,
-     * @access public
+     *
      */
 
     public static function sanitizeReplace(string $string): string
@@ -37,7 +37,7 @@
      *
      * @param string $string
      * @return string $string,
-     * @access public
+     *
      *
      */
     public static function getCkeditor(): string
@@ -67,7 +67,7 @@
      * @param int $height The height of the textarea field
      * @param string $parameters Additional parameters for the textarea field
      * @param boolean $override Override the default value with the value found in the GET or POST scope
-     * @access public
+     *
      */
     public static function textAreaCkeditor(string $name, ?string $value = null, int $width = 750, int $height = 200, ?string $text = null, ?string $parameters = null, bool $override = true): string
     {
@@ -109,7 +109,7 @@
      * Create form textarea field with ckeditor for image icon and source only
      *
      * @param string $name The name and ID of the textarea field
-     * @access public
+     *
      */
 
     public static function fileFieldImageCkEditor(string $name, ?string $value = null, ?int $width = null, ?int $height = null): string
@@ -144,7 +144,7 @@
      *
      * @param string $image
      * @return string $image, without html
-     * @access public
+     *
      */
     public static function getCkeditorImageAlone(string $image): string
     {
@@ -174,7 +174,7 @@
      *
      * @param string $name , $parameters, $exclude
      * @return string $select_string, the pulldown value of products
-     * @access public
+     *
      */
     public static function selectMenuProductsPullDown(string $name, $parameters = '', $exclude = '', string $class = 'form-control'): string
     {

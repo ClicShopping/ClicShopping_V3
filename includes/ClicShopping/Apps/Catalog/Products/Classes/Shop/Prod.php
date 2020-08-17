@@ -82,7 +82,7 @@
      * Generate a numeric product ID without product attribute combinations
      *
      * @param string $id The product ID
-     * @access public
+     *
      */
 
     public static function getProductID(string $id)
@@ -102,7 +102,7 @@
      * Products  sort by
      *
      * @param string $field ,field of products, $direction, ascending descending
-     * @access public
+     *
      *
      */
     public function setSortBy(string $field, string $direction = '+')

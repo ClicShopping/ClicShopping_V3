@@ -33,7 +33,7 @@
      *
      * @param string products_featured_id, status
      * @return string status on or off
-     * @access public
+     *
      * osc_set_products_featured_status
      */
     Public static function getFeaturedProductsStatus($products_featured_id, $status)

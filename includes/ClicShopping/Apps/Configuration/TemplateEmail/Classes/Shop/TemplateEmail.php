@@ -23,7 +23,7 @@
      * @param int $template_email_id
      * @param int $language_id
      * @return string $template_email_name['template_name'],  name.of the template email
-     * @access public
+     *
      */
     public static function getTemplateEmailName(int $template_email_id, int $language_id) :string
     {
@@ -50,7 +50,7 @@
      * @param int $template_email_id
      * @param int $language_id
      * @return string $template_email['template_short_description'],  the short description of the template email
-     * @access public
+     *
      */
     public static function getTemplateEmailShortDescription(int $template_email_id, int $language_id) :string
     {
@@ -76,7 +76,7 @@
      * @param int $template_email_id
      * @param int $language_id
      * @return string $template_email['template_email_description'],  the description of the template email who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailDescription(int $template_email_id, int $language_id) :string
     {
@@ -101,7 +101,7 @@
      * the footer of email
      *
      * @return string $template_email_footer,  the footer of the email template who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailTextFooter() :string
     {
@@ -145,7 +145,7 @@
      * the signature of email
      *
      * @return string $template_email_signature,  the signature of the email template who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailSignature() :string
     {
@@ -188,7 +188,7 @@
      * the template email welcome catalog who is sent
      *
      * @return string $template_email_welcome_admin,  the description of the template email welcome admin who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailWelcomeCatalog()
     {
@@ -231,7 +231,7 @@
      * the template email coupon who is sent
      *
      * @return string $template_email_coupon_admin,  the description of the template email coupon who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailCouponCatalog() :string
     {
@@ -273,7 +273,7 @@
      * the template order intro command who is sent
      *
      * @return string $template_email_intro_command,  the description of the template email order intro command who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailIntroCommand() :string
     {
@@ -316,7 +316,7 @@
      *
      * @param string : email
      * @return array $emails, email
-     * @access public
+     *
      */
      public static function getExtractEmailAddress($string)
     {

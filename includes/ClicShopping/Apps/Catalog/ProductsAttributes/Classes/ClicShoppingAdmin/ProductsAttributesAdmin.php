@@ -36,7 +36,7 @@
      *
      * @param string $options_id
      * @return string $values_values['products_options_values_name'], the value of the option name
-     * @access public
+     *
      */
     public function getOptionsName(int $options_id): string
     {
@@ -54,7 +54,7 @@
      *
      * @param string $values_id
      * @return string $values_values['products_options_values_name'], the name value of the option name
-     * @access public
+     *
      */
     public function getValuesName(int $values_id): string
     {

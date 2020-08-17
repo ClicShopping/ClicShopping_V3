@@ -21,7 +21,7 @@
      *
      * @param string products_id, status
      * @return string status on or off
-     * @access public
+     *
      */
 
     public static function getProductStatus(int $products_id, int $status)

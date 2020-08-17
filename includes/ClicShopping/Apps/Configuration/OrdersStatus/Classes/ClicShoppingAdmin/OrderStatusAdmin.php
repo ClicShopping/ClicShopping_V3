@@ -26,7 +26,7 @@
      *
      * @param string $orders_status_id , $language_id
      * @return string $orders_status['orders_status_name'],  name of the status
-     * @access public
+     *
      */
     Public Static function getOrdersStatusName(int $orders_status_id, int $language_id): string
     {
@@ -45,8 +45,9 @@
      *
      * @param string countries_id, status
      * @return string status order
-     * @access public
+     *
      */
+
     Public Static function getDropDownOrderStatus(string $name = 'dropdown_status', $id = null, string $displays_all_orders_status = 'yes'): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -55,10 +56,10 @@
       $orders_statuses = [];
 
       $QordersStatus = $CLICSHOPPING_Db->prepare('select orders_status_id,
-                                                    orders_status_name
-                                            from :table_orders_status
-                                            where language_id = :language_id
-                                            ');
+                                                          orders_status_name
+                                                  from :table_orders_status
+                                                  where language_id = :language_id
+                                                  ');
       $QordersStatus->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId());
       $QordersStatus->execute();
 

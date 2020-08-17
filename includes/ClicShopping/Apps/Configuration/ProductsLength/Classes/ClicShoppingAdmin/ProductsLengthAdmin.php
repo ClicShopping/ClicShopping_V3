@@ -44,7 +44,7 @@
      *
      * @param string $parameters , $selected
      * @return string $select_string, the drop down of the title class
-     * @access public
+     *
      *
      */
     public static function getClassesPullDown(): array
@@ -75,7 +75,7 @@
      *
      * @param int $id the products_length_class_id
      * @param string $result length title
-     * @access public
+     *
      */
     public static function getLengthProductsTitle(int $id = null): string
     {

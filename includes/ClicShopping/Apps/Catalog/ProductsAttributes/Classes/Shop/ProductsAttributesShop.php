@@ -33,7 +33,7 @@
      *
      * @param string
      * @return string $products_attributes['total'], total of attributes
-     * @access public
+     *
      */
     private function setCountProductsAttributes($id = null)
     {

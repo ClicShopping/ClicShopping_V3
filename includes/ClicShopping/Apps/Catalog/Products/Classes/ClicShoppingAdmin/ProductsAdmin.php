@@ -41,7 +41,7 @@
      * Get all products information
      * @param $id products_id
      * @return array, table data
-     * @access public
+     *
      */
     public function get(int $id): array
     {
@@ -176,7 +176,7 @@
      * @param string $width
      * @param string $height
      * @return string $image, the image value
-     * @access public
+     *
      */
 
     public function getInfoImage($image, $alt, string $width = '130', string $height = '130'): string
@@ -195,7 +195,7 @@
      *
      * @param string
      * @return $product_packaging, the packaging selected
-     * @access public
+     *
      */
     public function getproductPackaging(int $id): string
     {
@@ -237,7 +237,7 @@
      *
      * @param string $products_quantity_unit_id , $language_id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-     * @access public
+     *
      */
     public function getProductsQuantityUnitTitle($products_quantity_unit_id = '', $language_id = '')
     {
@@ -263,7 +263,7 @@
      *
      * @param string $product_id
      * @return string $product['products_model'], products model
-     * @access public
+     *
      */
     public function getProductsModel($id = ''): string
     {
@@ -284,7 +284,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $product['products_shipping_delay'], url of the product
-     * @access public
+     *
      */
     public function getProductsShippingDelay($id = '', int $language_id)
     {
@@ -306,7 +306,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $product['products_description'], description name
-     * @access public
+     *
      */
     public function getProductsDescriptionSummary($product_id = '', int $language_id): string
     {
@@ -330,7 +330,7 @@
      *
      * @param string $product_id :id of the product
      * @return string  image of the product
-     * @access public
+     *
      */
 
     public function getProductsImage($product_id = ''): string
@@ -345,7 +345,7 @@
      *
      * @param string $filename : name of the file
      * @return string $directory_array, the directories name in css directory
-     * @access public
+     *
      */
 
     public function getDirectoryProducts(): array
@@ -378,7 +378,7 @@
      *
      * @param $product_id , int $language_id
      * @return string $product['products_name'], name of the product
-     * @access public
+     *
      */
     public function getProductsName($product_id = '', int $language_id = 0): string
     {
@@ -396,7 +396,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $product['products_description'], description name
-     * @access public
+     *
      */
     public function getProductsDescription($product_id = '', int $language_id): string
     {
@@ -415,7 +415,7 @@
      *
      * @param string
      * @return string $supplier, elements of supplier in dropdown
-     * @access public
+     *
      */
 
     public function supplierDropDown(): array
@@ -445,7 +445,7 @@
      *
      * @param string $product_id
      * @return
-     * @access public
+     *
      */
     public function removeProduct(int $product_id)
     {
@@ -656,7 +656,7 @@
      *
      * @param string $product_id , $language_id
      * @return string $Qproduct->value('products_url'), url of the product
-     * @access public
+     *
      */
     public function getProductsUrl($product_id = '', int $language_id): string
     {
@@ -671,7 +671,7 @@
      *
      * @param string $manufacturer_id , $language_id
      * @return string $Qmanufacturer->value('manufacturers_url'), url of manufacturers
-     * @access public
+     *
      */
     public function getManufacturerUrl($manufacturer_id = '', int $language_id): string
     {
@@ -685,7 +685,7 @@
     * getCountProductsToCategory count the products into category
     * @param $id - products id of the products
     * @param $categories_id - category id
-    * @access public
+    *
     */
     public function getCountProductsToCategory(int $id, int $categories_id): int
     {
@@ -721,7 +721,7 @@
      * cloneProductsInOtherCategory
      * @param $id - products id of the products
      * @param $categories_id - category id
-     * @access public
+     *
      */
     public function cloneProductsInOtherCategory(int $id, int $categories_id)
     {
@@ -974,7 +974,7 @@
      * Search products
      * @param, $keywords, keyword to search
      * @return $Qproducts, result of search
-     * @access public
+     *
      */
 
     public function getSearch($keywords = null)
@@ -1070,7 +1070,7 @@
      * save products
      * @param, $id, id of the products, $action, insert or update products
      * @return
-     * @access public
+     *
      */
 
     public function save($id = null, $action)

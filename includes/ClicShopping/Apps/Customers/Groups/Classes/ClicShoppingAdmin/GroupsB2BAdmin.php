@@ -96,7 +96,7 @@
      * Check the vat european
      *
      * @param string $iso , $piva, number of the company vat
-     * @access public
+     *
      */
     public function isoCheck(string $iso, string $piva): string
     {

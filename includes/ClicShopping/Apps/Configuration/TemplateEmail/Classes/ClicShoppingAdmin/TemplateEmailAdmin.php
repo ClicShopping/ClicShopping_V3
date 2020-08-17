@@ -24,7 +24,7 @@
      *
      * @param string $template_email_id , $language_id
      * @return string $template_email_name['template_name'],  name.of the template email
-     * @access public
+     *
      */
     public static function getTemplateEmailName($template_email_id, $language_id)
     {
@@ -52,7 +52,7 @@
      *
      * @param string $template_email_id , $language_id
      * @return string $template_email['template_short_description'],  the short description of the template email
-     * @access public
+     *
      */
     public static function getTemplateEmailShortDescription($template_email_id, $language_id)
     {
@@ -79,7 +79,7 @@
      *
      * @param string $template_email_id , $language_id
      * @return string $template_email['template_email_description'],  the description of the template email who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailDescription($template_email_id, $language_id)
     {
@@ -106,7 +106,7 @@
      *
      * @param string $template_email_footer
      * @return string $template_email_footer,  the footer of the email template who is sent
-     * @access public
+     *
      */
 
     public static function getTemplateEmailTextFooter()
@@ -151,7 +151,7 @@
      *
      * @param string $template_email_newsletter_footer
      * @return string $template_email_newsletter_ footer,  the footer of the newsletter email template who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailNewsletterTextFooter()
     {
@@ -195,7 +195,7 @@
      *
      * @param string $template_email_signature
      * @return string $template_email_signature,  the signature of the email template who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailSignature()
     {
@@ -241,7 +241,7 @@
      *
      * @param string $template_email_welcome_admin
      * @return string $template_email_welcome_admin,  the description of the template email welcome admin who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailWelcomeAdmin()
     {
@@ -285,7 +285,7 @@
      *
      * @param string $template_email_coupon_admin
      * @return string $template_email_coupon_admin,  the description of the template email coupon who is sent
-     * @access public
+     *
      */
     public static function getTemplateEmailCouponAdmin()
     {
@@ -328,7 +328,7 @@
      *
      * @param string $template_email_intro_command
      * @return string $template_email_intro_command,  the description of the template email order intro command who is sent
-     * @access public
+     *
      */
 
     public static function getTemplateEmailIntroCommand()

@@ -22,7 +22,7 @@
      *
      * @param string pages_id, status
      * @return string status on or off
-     * @access public
+     *
      */
     Public static function getPageManagerStatus(int $pages_id, int $status)
     {

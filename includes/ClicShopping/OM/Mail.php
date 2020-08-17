@@ -357,7 +357,7 @@
      * @param string $body The body text of the email
      * @param string $from_name The name of the sender
      * @param string $from_email_address The email address of the sender
-     * @access public
+     *
      */
     public function clicMail(string $to_name =  '', string $to_email_address, string $email_subject = '', string $email_text, string $from_email_name, string $from_email_address)
     {

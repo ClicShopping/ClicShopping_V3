@@ -35,7 +35,7 @@
      *
      * @param string products_specials_id, status
      * @return string status on or off
-     * @access public
+     *
      */
     Public static function getSpecialsStatus($specials_id, $status)
     {

@@ -182,7 +182,7 @@
      *
      * @param string $tracking , $CLICSHOPPING_Language->getId()
      * @return string tracking_url, the url of the tracking
-     * @access public
+     *
      */
     public static function getTrackingLink(): string
     {

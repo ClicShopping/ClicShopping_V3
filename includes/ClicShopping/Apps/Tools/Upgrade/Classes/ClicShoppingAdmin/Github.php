@@ -81,7 +81,7 @@
     * user agent in Header
     * @param
     * @return  user agent
-    * @access public
+    *
     */
     private function setContext()
     {
@@ -93,7 +93,7 @@
      * get ClicShopping Core Version from Github
      * @param
      * @return $version version of new clicshopping core
-     * @access public
+     *
      */
     public function getJsonCoreInformation()
     {
@@ -140,7 +140,7 @@
     * user open or Close the store during the upgrade process
     * @param $value,true / false
     * @return
-    * @access public
+    *
     */
     private function getCloseOpenStore($value)
     {
@@ -162,7 +162,7 @@
      * Check directory if exist or not
      * @param
      * @return Boolean true / false
-     * @access public
+     *
      */
     private function checkDirectoryOnlineUpdate()
     {
@@ -205,7 +205,7 @@
      * get all modules directories for template
      * @param
      * @return $module,values of array
-     * @access public
+     *
      */
     public function getModuleTemplateDirectory()
     {
@@ -231,7 +231,7 @@
      * get all modules directories (fix modules)
      * @param
      * @return $module,values of array
-     * @access public
+     *
      */
     public function getModuleDirectory()
     {
@@ -346,7 +346,7 @@
      * get the json file infromation about temporary directory
      * @param $module_name name of the module
      * @return  $file, file information
-     * @access public
+     *
      */
     public function getCacheFileTemp($module_name)
     {
@@ -366,7 +366,7 @@
      * get the json file information about file installed
      * @param $module_name name of the module
      * @return  $file, file information
-     * @access public
+     *
      */
     public function getCacheFile($module_name)
     {
@@ -391,7 +391,7 @@
     * take $_POST form about the search
     * @param
     * @return  $result search item
-    * @access public
+    *
     */
     public function getSearchModule()
     {
@@ -411,7 +411,7 @@
     * Search inside Github repo
     * @param
     * @return array $result : all ement about a github search on item search
-    * @access public
+    *
     */
 
     public function getSearchInsideRepo($name = null)
@@ -432,7 +432,7 @@
     * Cout the total research
     * @param
     * @return int $count  count of total research
-    * @access public
+    *
     */
     public function getSearchTotalCount()
     {
@@ -451,7 +451,7 @@
     * getGithubRepo : Gisthub repo
     * @param
     * @return string  $url url about the github repo
-     * @access public
+     *
     */
     private function getGithubRepo()
     {
@@ -463,7 +463,7 @@
      * get the version if exist on local
      * @param $module_name , string, module name
      * @return $version, string module verison
-     * @access public
+     *
      */
     public function getJsonModuleLocalVersion($module_name)
     {
@@ -490,7 +490,7 @@
      * get the json of module content repository
      * @param $module_name , string, module name
      * @return $result,values of array
-     * @access public
+     *
      */
     public function getJsonRepoContentInformationModule($module_name)
     {
@@ -507,7 +507,7 @@
      * Github module download
      * @param $module_name , string, module name
      * @return $url, json element
-     * @access public
+     *
      */
 
     public function getJsonModuleInformaton($url)
@@ -522,7 +522,7 @@
      * Github module download
      * @param $module_name , string, module name
      * @return $url, link to download the module
-     * @access public
+     *
      */
     public function getModuleMasterArchive($module_name)
     {
@@ -542,7 +542,7 @@
     /**
      * Extract ClicShopping Core Zip to install inside ClicShopping
      * @param $file , file to exptract
-     * @access public
+     *
      */
     public function getInstallModuleTemplate($file)
     {
@@ -589,7 +589,7 @@
      * Extract ClicShopping Core Zip to install inside ClicShopping
      * @param $file , rfile to exptract
      * @return $
-     * @access public
+     *
      */
 
     public function getInstallModuleFixe($file)
