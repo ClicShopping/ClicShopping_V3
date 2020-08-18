@@ -141,7 +141,7 @@
         }
       }
 
-      if ((!isset($_GET['bID']) || (isset($_GET['bID']) && ((int)$_GET['bID'] === $Qpages->valueInt('pages_id')))) && !isset($bInfo)) {
+      if (!isset($_GET['bID']) || ((isset($_GET['bID'])) && (int)$_GET['bID'] === $Qpages->valueInt('pages_id') && !isset($bInfo))) {
         $bInfo = new ObjectInfo($Qpages->toArray());
       }
 ?>

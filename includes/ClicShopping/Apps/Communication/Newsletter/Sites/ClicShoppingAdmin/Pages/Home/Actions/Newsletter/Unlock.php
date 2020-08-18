@@ -24,7 +24,11 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_GET['nID'])) $newsletter_id = HTML::sanitize($_GET['nID']);
+      if (isset($_GET['nID'])) {
+        $newsletter_id = HTML::sanitize($_GET['nID']);
+      } else {
+        $newsletter_id = null;
+      }
 
       $status = 0;
 
