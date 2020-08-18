@@ -120,7 +120,7 @@
       }
     }
 
-    private function installProductsFavoritesDb()
+    private static function installProductsFavoritesDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

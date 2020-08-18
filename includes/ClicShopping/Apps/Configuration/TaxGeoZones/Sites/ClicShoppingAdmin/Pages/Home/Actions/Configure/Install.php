@@ -87,7 +87,7 @@
     }
 
 
-    private function installProductsTaxGeoZonesDb()
+    private static function installProductsTaxGeoZonesDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

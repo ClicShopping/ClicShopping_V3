@@ -67,6 +67,8 @@
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent'))) {
         $numberByGenderPerCent = $QstatAnalyseCustomersMan->valueDecimal('numberByGenderPerCent');
+      } else {
+        $numberByGenderPerCent = '-- ';
       }
 
       if (!is_null($QstatAnalyseCustomersMan->valueDecimal('avgage'))) {
@@ -81,9 +83,7 @@
 
     private function statsAverageCustomersWomen()
     {
-      $avgage = '';
-
-      $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
+       $QstatAnalyseCustomersWoman = $this->app->db->prepare('SELECT ROUND(((COUNT(customers_gender)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS numberByGenderPerCent,
                                                                   ROUND(AVG(TIMESTAMPDIFF(YEAR,(customers_dob), now())),0) AS avgage
                                                              from :table_customers
                                                              where customers_gender = :customers_gender
@@ -95,6 +95,8 @@
 
       if ($stat_analyse_customers_woman['numberByGenderPerCent'] != 'null') {
         $numberByGenderPerCent = $stat_analyse_customers_woman['numberByGenderPerCent'];
+      } else {
+        $numberByGenderPerCent = '-- ';
       }
 
       if (!is_null($stat_analyse_customers_woman['avgage'])) {

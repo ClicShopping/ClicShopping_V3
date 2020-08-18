@@ -23,12 +23,13 @@
      *
      */
 
-    Public static function getReviewsStatus(int $id, ?string $status)
+    Public static function getReviewsStatus(int $id, ?int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if ($status === 1) {
-        return $CLICSHOPPING_Db->save('reviews', ['status' => 1,
+        return $CLICSHOPPING_Db->save('reviews', [
+          'status' => 1,
           'last_modified' => 'now()'
         ],
           ['reviews_id' => (int)$id]

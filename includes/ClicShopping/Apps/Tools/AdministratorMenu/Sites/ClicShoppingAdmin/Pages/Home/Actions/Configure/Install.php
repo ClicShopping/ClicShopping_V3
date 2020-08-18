@@ -87,7 +87,7 @@
     }
 
 
-    private function installProductsAdministratorMenuDb()
+    private static function installProductsAdministratorMenuDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
