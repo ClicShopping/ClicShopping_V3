@@ -41,11 +41,7 @@
 
     /**
      * Drop down of the class title
-     *
-     * @param string $parameters , $selected
-     * @return string $select_string, the drop down of the title class
-     *
-     *
+     * @return array
      */
     public static function getClassesPullDown(): array
     {
@@ -61,6 +57,8 @@
       $Qclasses->bindInt(':language_id', $CLICSHOPPING_Language->getID());
       $Qclasses->execute();
 
+      $classes = [];
+
       while ($Qclasses->fetch() !== false) {
         $classes[] = ['id' => $Qclasses->valueInt('products_length_class_id'),
           'text' => $Qclasses->value('products_length_class_title')
@@ -72,10 +70,8 @@
 
     /**
      * Display a products_length title
-     *
-     * @param int $id the products_length_class_id
-     * @param string $result length title
-     *
+     * @param int|null $id
+     * @return string
      */
     public static function getLengthProductsTitle(int $id = null): string
     {

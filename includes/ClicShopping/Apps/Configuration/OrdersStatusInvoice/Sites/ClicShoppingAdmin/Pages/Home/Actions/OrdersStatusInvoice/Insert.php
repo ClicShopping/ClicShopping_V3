@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Configuration\OrdersStatusInvoice\Sites\ClicShoppingAdmin\Pages\Home\Actions\OrdersStatusInvoice;
 
   use ClicShopping\OM\HTML;
@@ -33,19 +32,16 @@
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        $orders_status_invoice_name_array = $_POST['orders_status_invoice_name'];
+        $orders_status_invoice_name_array = HTML::sanitize($_POST['orders_status_invoice_name']);
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = ['orders_status_invoice_name' => HTML::sanitize($orders_status_invoice_name_array[$language_id])];
 
+        $Qnext = $this->app->db->get('orders_status_invoice', 'max(orders_status_invoice_id) as orders_status_invoice_id');
+        $orders_status_invoice_id = $Qnext->valueInt('orders_status_invoice_id') + 1;
 
-        if (empty($orders_status_invoice_id)) {
-
-          $Qnext = $this->app->db->get('orders_status_invoice', 'max(orders_status_invoice_id) as orders_status_invoice_id');
-          $orders_status_invoice_id = $Qnext->valueInt('orders_status_invoice_id') + 1;
-        }
-
-        $insert_sql_data = ['orders_status_invoice_id' => (int)$orders_status_invoice_id,
+        $insert_sql_data = [
+          'orders_status_invoice_id' => (int)$orders_status_invoice_id,
           'language_id' => (int)$language_id
         ];
 
@@ -58,7 +54,7 @@
         $this->app->db->save('configuration', [
           'configuration_value' => $orders_status_invoice_id
         ], [
-            'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
+          'configuration_key' => 'DEFAULT_ORDERS_STATUS_INVOICE_ID'
           ]
         );
       }

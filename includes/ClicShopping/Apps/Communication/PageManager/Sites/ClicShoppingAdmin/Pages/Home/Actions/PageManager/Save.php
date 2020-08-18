@@ -17,7 +17,6 @@
 
   class Save extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
@@ -26,12 +25,14 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+      $page_error = false;
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       if (isset($_POST['pages_id'])) {
         $pages_id = HTML::sanitize($_POST['pages_id']);
       }else {
+        $pages_id = null;
         $page_error = true;
       }
 
@@ -44,6 +45,7 @@
       if (isset($_POST['page_type'])) {
         $page_type = HTML::sanitize($_POST['page_type']);
       } else {
+        $page_type = '';
         $page_error = true;
       }
 
@@ -62,24 +64,28 @@
       if (isset($_POST['page_time'])) {
         $page_time = HTML::sanitize($_POST['page_time']);
       } else {
+        $page_time = null;
         $page_error = true;
       }
 
       if (isset($_POST['page_date_start'])) {
         $page_date_start = HTML::sanitize($_POST['page_date_start']);
       } else {
+        $page_date_start = null;
         $page_error = true;;
       }
 
       if (isset($_POST['page_date_closed'])) {
         $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
       } else {
+       $page_date_closed  = null;
         $page_error = true;;
       }
 
       if (isset($_POST['page_general_condition'])) {
         $page_general_condition = HTML::sanitize($_POST['page_general_condition']);
       } else {
+        $page_general_condition  = null;
         $page_error = true;;
       }
 

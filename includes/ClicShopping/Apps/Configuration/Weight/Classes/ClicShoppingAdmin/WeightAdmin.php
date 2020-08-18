@@ -65,11 +65,7 @@
 
     /**
      * Drop down of the class title
-     *
-     * @param string $parameters , $selected
-     * @return string $select_string, the drop down of the title class
-     *
-     *
+     * @return array
      */
     public static function getClassesPullDown(): array
     {
@@ -85,6 +81,8 @@
       $Qclasses->bindInt(':language_id', $CLICSHOPPING_Language->getID());
       $Qclasses->execute();
 
+      $classes = [];
+
       while ($Qclasses->fetch() !== false) {
         $classes[] = ['id' => $Qclasses->valueInt('weight_class_id'),
           'text' => $Qclasses->value('weight_class_title')
@@ -96,12 +94,9 @@
 
     /**
      * Display a weight class title
-     *
-     * @param int products_weight_class_id
-     * @param string $result weight title
-     *
+     * @param null $id
+     * @return string
      */
-
     public static function getWeightTitle($id = null): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');

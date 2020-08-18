@@ -45,7 +45,6 @@
             'language_id' => (int)$language_id
           ]
         );
-
       }
 
       if (isset($_POST['default'])) {
