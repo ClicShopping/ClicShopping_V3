@@ -40,7 +40,6 @@
             $count = count($value);
 
             for ($i = 0; $i < $count; $i++) {
-
               $pages = "$pages$value[$i]";
 
               $CLICSHOPPING_Db->save('configuration', ['configuration_value' => $pages], ['configuration_key' => $key]);

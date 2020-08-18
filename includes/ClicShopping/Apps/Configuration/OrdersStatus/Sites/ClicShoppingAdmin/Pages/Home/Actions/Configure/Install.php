@@ -87,7 +87,7 @@
     }
 
 
-    private function installProductsOrdersStatusDb()
+    private static function installProductsOrdersStatusDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

@@ -38,7 +38,7 @@
 
       $modules = $CLICSHOPPING_CfgModule->getAll();
 
-      $set = (isset($_GET['set']) ? $_GET['set'] : '');
+      $set = $_GET['set'] ?? '';
 
       if (empty($set) || !$CLICSHOPPING_CfgModule->exists($set)) {
         $set = $modules[0]['code'];
@@ -60,7 +60,6 @@
           $class = $_GET['module'];
         }
       } else {
-
         $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
         $class = basename($_GET['module']);
 
