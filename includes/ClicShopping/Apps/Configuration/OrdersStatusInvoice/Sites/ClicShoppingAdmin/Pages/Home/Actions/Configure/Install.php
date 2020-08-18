@@ -87,7 +87,7 @@
     }
 
 
-    private function installProductsOrdersStatusInvoiceDb()
+    private static function installProductsOrdersStatusInvoiceDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

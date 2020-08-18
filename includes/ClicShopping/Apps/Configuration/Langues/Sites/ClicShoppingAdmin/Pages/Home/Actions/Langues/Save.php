@@ -36,7 +36,8 @@
       $sort_order = (int)HTML::sanitize($_POST['sort_order']);
       $locale = HTML::sanitize($_POST['locale']);
 
-      $this->app->db->save('languages', ['name' => $name,
+      $this->app->db->save('languages', [
+        'name' => $name,
         'code' => $code,
         'image' => $image,
         'directory' => $directory,

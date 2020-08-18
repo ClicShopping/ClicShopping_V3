@@ -55,7 +55,6 @@
 
     public static function redirect(string $url, ?string $http_response_code = null)
     {
-
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
         if (strpos($url, '&amp;') !== false) {
           $url = str_replace('&amp;', '&', $url);
@@ -242,11 +241,7 @@
     }
 
     /**
-     *
-     * public function
-     * @param string  type of HTTP of domain
-     * @return $domain, type of HTTP of domain
-     *
+     * @return string
      */
     public static function typeUrlDomain(): string
     {
@@ -260,11 +255,7 @@
     }
 
     /**
-     *
-     * public function
-     * @param string  type of HTTP of domain
-     * @return $domain, type of HTTP of domain
-     *
+     * @return stringa
      */
     public static function getShopUrlDomain(): string
     {

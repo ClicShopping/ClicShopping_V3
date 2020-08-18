@@ -26,6 +26,7 @@
     protected array $detectors = [];
     protected bool $use_cache = false;
     protected $db;
+    public $code;
 
     /**
      * Language constructor.

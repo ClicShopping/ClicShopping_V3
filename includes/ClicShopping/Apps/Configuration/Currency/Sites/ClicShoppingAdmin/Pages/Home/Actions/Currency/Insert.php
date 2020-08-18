@@ -39,7 +39,8 @@
       $value = HTML::sanitize($_POST['value']);
       $surcharge = HTML::sanitize($_POST['surcharge']);
 
-      $sql_data_array = ['title' => $title,
+      $sql_data_array = [
+        'title' => $title,
         'code' => strtoupper($code),
         'symbol_left' => $symbol_left,
         'symbol_right' => $symbol_right,

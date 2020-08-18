@@ -138,13 +138,14 @@
 // -- insert datas
 // ---------------------------------------------------------
 
-      $this->app->db->save('languages', ['name' => $name,
-          'code' => $code,
-          'image' => $image,
-          'directory' => $directory,
-          'sort_order' => (int)$sort_order,
-          'status' => 0,
-          'locale' => $locale
+      $this->app->db->save('languages', [
+        'name' => $name,
+        'code' => $code,
+        'image' => $image,
+        'directory' => $directory,
+        'sort_order' => (int)$sort_order,
+        'status' => 0,
+        'locale' => $locale
         ]
       );
 

@@ -28,7 +28,9 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['oID'])) $orders_status_invoice_id = HTML::sanitize($_GET['oID']);
+      if (isset($_GET['oID'])) {
+        $orders_status_invoice_id = HTML::sanitize($_GET['oID']);
+      }
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();

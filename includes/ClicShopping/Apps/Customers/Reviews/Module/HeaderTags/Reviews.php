@@ -19,9 +19,9 @@
 
   class Reviews extends \ClicShopping\OM\Modules\HeaderTagsAbstract
   {
-
     protected $lang;
     protected $app;
+    protected $template;
     public $group;
 
     protected function init()

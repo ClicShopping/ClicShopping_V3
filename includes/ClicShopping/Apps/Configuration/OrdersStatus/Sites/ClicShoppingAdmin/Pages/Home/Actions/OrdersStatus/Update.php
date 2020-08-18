@@ -28,7 +28,9 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_GET['oID'])) $orders_status_id = HTML::sanitize($_GET['oID']);
+      if (isset($_GET['oID'])) {
+        $orders_status_id = HTML::sanitize($_GET['oID']);
+      }
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
       $languages = $CLICSHOPPING_Language->getLanguages();
@@ -37,7 +39,8 @@
         $orders_status_name_array = $_POST['orders_status_name'];
         $language_id = $languages[$i]['id'];
 
-        $sql_data_array = ['orders_status_name' => HTML::sanitize($orders_status_name_array[$language_id]),
+        $sql_data_array = [
+          'orders_status_name' => HTML::sanitize($orders_status_name_array[$language_id]),
           'public_flag' => ((isset($_POST['public_flag']) && ($_POST['public_flag'] == '1')) ? '1' : '0'),
           'downloads_flag' => ((isset($_POST['downloads_flag']) && ($_POST['downloads_flag'] == '1')) ? '1' : '0'),
           'support_orders_flag' => ((isset($_POST['support_orders_flag']) && ($_POST['support_orders_flag'] == '1')) ? '1' : '0')
