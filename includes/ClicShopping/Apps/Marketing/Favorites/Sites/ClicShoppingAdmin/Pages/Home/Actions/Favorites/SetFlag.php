@@ -40,7 +40,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status == 1) {
+      if ($status === 1) {
 
         return $CLICSHOPPING_Db->save('products_favorites', ['status' => 1,
           'scheduled_date' => 'null',
@@ -50,7 +50,7 @@
           ['products_favorites_id' => (int)$products_favorites_id]
         );
 
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
 
         return $CLICSHOPPING_Db->save('products_favorites', ['status' => 0,
           'date_status_change' => 'now()'

@@ -41,7 +41,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status == 1) {
+      if ($status === 1) {
         return $CLICSHOPPING_Db->save('specials', ['status' => 1,
           'specials_date_added' => 'null',
           'specials_last_modified' => 'null',
@@ -51,7 +51,7 @@
           ['specials_id' => (int)$specials_id]
         );
 
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
         return $CLICSHOPPING_Db->save('specials', ['status' => 0,
           'specials_last_modified' => 'now()'
         ],

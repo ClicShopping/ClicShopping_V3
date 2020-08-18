@@ -659,7 +659,7 @@
      */
     private function setPageManagerStatus($pages_id, $status)
     {
-      if ($status == 1) {
+      if ($status === 1) {
         $Qupdate = $this->db->prepare('update :table_pages_manager
                                         set status = 1,
                                             date_status_change =  now(),
@@ -671,7 +671,7 @@
         $this->getClearCache();
 
         return $Qupdate->execute();
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
         $Qupdate = $this->db->prepare('update :table_pages_manager
                                         set status = 0,
                                             date_status_change = now(),

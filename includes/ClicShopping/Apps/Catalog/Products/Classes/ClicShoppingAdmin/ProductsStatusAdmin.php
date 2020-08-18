@@ -28,14 +28,14 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status == 1) {
+      if ($status === 1) {
         return $CLICSHOPPING_Db->save('products', ['products_status' => 1,
           'products_last_modified' => 'now()'
         ],
           ['products_id' => (int)$products_id]
         );
 
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
         return $CLICSHOPPING_Db->save('products', ['products_status' => 0,
           'products_last_modified' => 'now()'
         ],

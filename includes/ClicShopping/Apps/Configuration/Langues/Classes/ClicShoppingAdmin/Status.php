@@ -31,12 +31,12 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status == 1) {
+      if ($status === 1) {
         return $CLICSHOPPING_Db->save('languages', ['status' => 1],
           ['languages_id' => (int)$languages_id]
         );
 
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
         $Qcheck = $CLICSHOPPING_Db->prepare('select code
                                              from :table_languages
                                              where languages_id = :languages_id

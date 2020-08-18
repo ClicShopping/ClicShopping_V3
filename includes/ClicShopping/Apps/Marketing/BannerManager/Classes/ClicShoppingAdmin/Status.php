@@ -30,7 +30,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status == 1) {
+      if ($status === 1) {
         return $CLICSHOPPING_Db->save('banners', ['status' => 1,
           'expires_impressions' => NULL,
           'expires_date' => NULL,
@@ -39,7 +39,7 @@
           ['banners_id' => (int)$banners_id]
         );
 
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
         return $CLICSHOPPING_Db->save('banners', ['status' => 0,
           'date_status_change' => 'now()'
         ],

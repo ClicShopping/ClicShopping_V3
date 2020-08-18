@@ -23,12 +23,12 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status == 1) {
+      if ($status === 1) {
         return $CLICSHOPPING_Db->save('currencies', ['status' => 1],
           ['currencies_id' => (int)$currencies_id]
         );
 
-      } elseif ($status == 0) {
+      } elseif ($status === 0) {
 
         return $CLICSHOPPING_Db->save('currencies', ['status' => 0],
           ['currencies_id' => (int)$currencies_id]
