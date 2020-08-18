@@ -55,9 +55,7 @@
      */
     public function pageManagerDisplayPageIntroTime()
     {
-
       if ($this->pageManagerDisplayPageIntroCount() > 0) {
-
         $Qpages = $this->db->prepare('select p.pages_id,
                                                p.page_time
                                         from :table_pages_manager p
@@ -67,12 +65,13 @@
                                        ');
         $Qpages->execute();
 
-        $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
+        $pages = [
+          'pages_id' => $Qpages->valueInt('pages_id'),
           'page_time' => $Qpages->value('page_time')
         ];
       } else {
-
-        $pages = ['pages_id' => 0,
+        $pages = [
+          'pages_id' => 0,
           'page_time' => 0
         ];
       }
@@ -87,7 +86,6 @@
     public function pageManagerDisplayPageIntro()
     {
       if ($this->pageManagerDisplayPageIntroCount() > 0) {
-
         $Qpages = $this->db->prepare('select p.pages_id,
                                               s.pages_html_text
                                        from :table_pages_manager p,
@@ -106,7 +104,8 @@
           'pages_html_text' => $Qpages->value('pages_html_text')
         ];
       } else {
-        $pages = ['pages_id' => 0,
+        $pages = [
+          'pages_id' => 0,
           'pages_html_text' => ''
         ];
       }
@@ -129,7 +128,6 @@
       $Qpages->execute();
 
       if ($Qpages->valueInt('count') > 0) {
-
         $Qpages = $this->db->prepare('select p.pages_id,
                                               s.pages_html_text
                                        from :table_pages_manager p,
@@ -150,11 +148,13 @@
         $Qpages->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
         $Qpages->execute();
 
-        $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
+        $pages = [
+          'pages_id' => $Qpages->valueInt('pages_id'),
           'pages_html_text' => $Qpages->value('pages_html_text')
         ];
       } else {
-        $pages = ['pages_id' => 0,
+        $pages = [
+          'pages_id' => 0,
           'pages_html_text' => ''
         ];
       }
@@ -185,11 +185,13 @@
       $Qpages->execute();
 
       if ($Qpages->fetch() !== true) {
-        $pages = ['pages_id' => $Qpages->valueInt('pages_id'),
+        $pages = [
+          'pages_id' => $Qpages->valueInt('pages_id'),
           'pages_html_text' => $Qpages->value('pages_html_text')
         ];
       } else {
-        $pages = ['pages_id' => 0,
+        $pages = [
+          'pages_id' => 0,
           'pages_html_text' => ''
         ];
       }
@@ -206,7 +208,6 @@
      */
     public function pageManagerDisplayBox($start_class = '<div class="pageManagerDisplayBox">', $end_class = '</div>', $separation = '')
     {
-
       $QPage = $this->db->prepare('select  p.pages_id,
                                             p.sort_order,
                                             p.status,
@@ -352,9 +353,9 @@
         $page_liste_box_secondary .= '</div>';
 
         $pages_liste_info_box_secondary = ['text' => $page_liste_box_secondary];
-      }
 
-      return $pages_liste_info_box_secondary['text'];
+        return $pages_liste_info_box_secondary['text'];
+      }
     }
 
     /**
@@ -396,7 +397,6 @@
 // -------- menu header -----------
 //***********************************
       while ($QPage->fetch() !== false) {
-
         $rows++;
 
         if ($rows != 1) {
@@ -524,7 +524,6 @@
       $page_liste_footer = '<div class="footerPageManager">';
 
       while ($QPage->fetch() !== false) {
-
         $rows++;
 
         if ($rows != 1) {
@@ -588,11 +587,14 @@
 
       $QPage->setCache('boxe_page_manager_display_information-lang' . $this->lang->getId());
 
+      $pages = [];
+
       if ($QPage->fetch() !== false) {
         if ($QPage->value('page_type') == 3) {
           CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
         } else {
-          $pages = ['pages_id' => $QPage->valueInt('pages_id'),
+          $pages = [
+            'pages_id' => $QPage->valueInt('pages_id'),
             'pages_title' => $QPage->value('pages_title'),
             'pages_html_text' => $QPage->value('pages_html_text')
           ];
@@ -632,11 +634,14 @@
 
       $QPage->setCache('boxe_page_manager_display_title-lang' . $this->lang->getId());
 
+      $pages = [];
+
       if ($QPage->fetch() !== false) {
         if ($QPage->valueInt('page_type') == 3) {
           CLICSHOPPING::redirect(HTTP::getShopUrlDomain() . 'index.php?Info&Contact');
         } else {
-          $pages = ['pages_id' => $QPage->valueInt('pages_id'),
+          $pages = [
+            'pages_id' => $QPage->valueInt('pages_id'),
             'pages_title' => $QPage->value('pages_title')
           ];
         }
@@ -655,7 +660,6 @@
     private function setPageManagerStatus($pages_id, $status)
     {
       if ($status == 1) {
-
         $Qupdate = $this->db->prepare('update :table_pages_manager
                                         set status = 1,
                                             date_status_change =  now(),
@@ -667,9 +671,7 @@
         $this->getClearCache();
 
         return $Qupdate->execute();
-
       } elseif ($status == 0) {
-
         $Qupdate = $this->db->prepare('update :table_pages_manager
                                         set status = 0,
                                             date_status_change = now(),
@@ -683,7 +685,6 @@
         $this->getClearCache();
 
         return $Qupdate->execute();
-
       } else {
         return -1;
       }
@@ -694,7 +695,6 @@
      */
     public function activatePageManager()
     {
-
       $QPages = $this->db->query('select pages_id
                                   from :table_pages_manager
                                   where page_date_start is not null
@@ -740,12 +740,14 @@
     /**
      * Get the general condition to include in the order
      *
-     * @param string $customer_group , $CLICSHOPPING_Language->getId()
+     * @param string $customer_group
      * @return string page_manager_general_condition, the text of the general condition of sales
      *
      */
     public function pageManagerGeneralCondition()
     {
+      $general_condition = '';
+
       $QpageManagerGeneralGroup = $this->db->prepare('select pages_id,
                                                               customers_group_id
                                                        from :table_pages_manager
@@ -806,9 +808,7 @@
 
 
           $QpageManagerGeneralCondition->execute();
-
         } else {
-
           $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text,
                                                                       pm.customers_group_id
                                                                from :table_pages_manager pm,
@@ -854,5 +854,4 @@
       Cache::clear('boxe_page_manager_display_information-lang');
       Cache::clear('boxe_page_manager_display_title-lang');
     }
-
   }

@@ -120,6 +120,8 @@
 
               if ($CLICSHOPPING_Customer->isLoggedOn() && !empty($order_id)) {
                 $message_info_admin = $CLICSHOPPING_PageManager->getDef('entry_information_admin');
+              } else {
+                $message_info_admin = '';
               }
 
               $message_to_admin = $email_subject . ' ' . STORE_NAME . "\n\n" . $message_info_admin . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_date') . ' ' . $today . "\n" . $num_customer_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_order') . ' ' . $order_id . "\n" . $CLICSHOPPING_PageManager->getDef('entry_name') . ' ' . $name . "\n" . $CLICSHOPPING_PageManager->getDef('entry_email') . ' ' . $email_address . "\n" . $CLICSHOPPING_PageManager->getDef('entry_enquiry_customer_information') . ' ' . $enquiry . "\n\n" . $CLICSHOPPING_PageManager->getDef('entry_admin_read_message') . "\n\n";

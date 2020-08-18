@@ -43,9 +43,10 @@
     /**
      * Get DropDown orders Status
      *
-     * @param string countries_id, status
+     * @param string $name
+     * @param null $id
+     * @param string $displays_all_orders_status
      * @return string status order
-     *
      */
 
     Public Static function getDropDownOrderStatus(string $name = 'dropdown_status', $id = null, string $displays_all_orders_status = 'yes'): string

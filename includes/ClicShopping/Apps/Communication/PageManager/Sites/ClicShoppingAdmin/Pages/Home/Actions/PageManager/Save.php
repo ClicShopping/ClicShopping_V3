@@ -60,8 +60,17 @@
       }
 
 
-      if (isset($_POST['page_date_start'])) $page_date_start = HTML::sanitize($_POST['page_date_start']);
-      if (isset($_POST['page_date_closed'])) $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
+      if (isset($_POST['page_date_start'])) {
+        $page_date_start = HTML::sanitize($_POST['page_date_start']);
+      } else {
+        $page_date_start = null;
+      }
+
+      if (isset($_POST['page_date_closed'])) {
+        $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
+      } else {
+        $page_date_closed = null;
+      }
 
       if (isset($_POST['page_general_condition'])) {
         $page_general_condition = HTML::sanitize($_POST['page_general_condition']);
@@ -69,7 +78,11 @@
         $page_general_condition = 0;
       }
 
-      if (isset($_POST['customers_group_id'])) $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+      if (isset($_POST['customers_group_id'])) {
+        $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+      } else {
+        $customers_group_id = 0;
+      }
 
       $page_error = false;
 
@@ -133,6 +146,8 @@
 
           if (isset($_POST['pages_title_' . $languages[$i]['id']])) {
             $pages_title = HTML::sanitize($_POST['pages_title_' . $languages[$i]['id']]);
+          } else {
+            $pages_title = '';
           }
 
           if (isset($_POST['pages_html_text_' . $languages[$i]['id']])) {
@@ -166,7 +181,8 @@
           }
 
           if (isset($_GET['Insert'])) {
-            $sql_data_array = ['pages_id' => $pages_id,
+            $sql_data_array = [
+              'pages_id' => $pages_id,
               'pages_title' => $pages_title,
               'pages_html_text' => $pages_html_text,
               'externallink' => $externallink,
@@ -178,7 +194,8 @@
 
             $CLICSHOPPING_PageManager->db->save('pages_manager_description', $sql_data_array);
           } else {
-            $sql_data_array = ['pages_title' => $pages_title,
+            $sql_data_array = [
+              'pages_title' => $pages_title,
               'pages_html_text' => $pages_html_text,
               'externallink' => $externallink,
               'page_manager_head_title_tag' => $page_manager_head_title_tag,
@@ -186,7 +203,8 @@
               'page_manager_head_desc_tag' => $page_manager_head_desc_tag
             ];
 
-            $insert_sql_data = ['pages_id' => $pages_id,
+            $insert_sql_data = [
+              'pages_id' => $pages_id,
               'language_id' => $language_id
             ];
 

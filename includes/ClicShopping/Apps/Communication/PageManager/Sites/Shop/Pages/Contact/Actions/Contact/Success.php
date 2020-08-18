@@ -16,14 +16,12 @@
 
   class Success extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Breadcrumb = Registry::get('Breadcrumb');
       $CLICSHOPPING_PageManager = Registry::get('PageManager');
 
-      exit;
 // templates
       $this->page->setFile('success.php');
 //Content
