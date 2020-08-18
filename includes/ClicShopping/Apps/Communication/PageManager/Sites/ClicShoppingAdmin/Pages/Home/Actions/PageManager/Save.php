@@ -31,14 +31,20 @@
 
       if (isset($_POST['pages_id'])) {
         $pages_id = HTML::sanitize($_POST['pages_id']);
+      }else {
+        $page_error = true;
       }
 
       if (isset($_POST['sort_order'])) {
         $sort_order = HTML::sanitize($_POST['sort_order']);
+      } else {
+        $sort_order = 0;
       }
 
       if (isset($_POST['page_type'])) {
         $page_type = HTML::sanitize($_POST['page_type']);
+      } else {
+        $page_error = true;
       }
 
       if (isset($_POST['links_target'])) {
@@ -56,35 +62,32 @@
       if (isset($_POST['page_time'])) {
         $page_time = HTML::sanitize($_POST['page_time']);
       } else {
-        $page_time = '';
+        $page_error = true;
       }
-
 
       if (isset($_POST['page_date_start'])) {
         $page_date_start = HTML::sanitize($_POST['page_date_start']);
       } else {
-        $page_date_start = null;
+        $page_error = true;;
       }
 
       if (isset($_POST['page_date_closed'])) {
         $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
       } else {
-        $page_date_closed = null;
+        $page_error = true;;
       }
 
       if (isset($_POST['page_general_condition'])) {
         $page_general_condition = HTML::sanitize($_POST['page_general_condition']);
       } else {
-        $page_general_condition = 0;
+        $page_error = true;;
       }
 
       if (isset($_POST['customers_group_id'])) {
         $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
       } else {
-        $customers_group_id = 0;
+        $page_error = true;;
       }
-
-      $page_error = false;
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $title_field_name = $_POST['pages_title_' . $languages[$i]['id']];
@@ -96,7 +99,6 @@
       }
 
       if ($page_error === false) {
-
         $sql_data_array_pages = [
           'links_target' => $links_target,
           'sort_order' => (int)$sort_order,

@@ -21,7 +21,8 @@
 
   use Stripe\PaymentIntent;
 
-  class ST implements \ClicShopping\OM\Modules\PaymentInterface  {
+  class ST implements \ClicShopping\OM\Modules\PaymentInterface
+  {
     public $code;
     public $title;
     public $description;
@@ -30,6 +31,7 @@
     public $sort_order;
     protected $currency;
     public $group;
+    public $signature;
 
     protected $intent;
     protected $private_key;

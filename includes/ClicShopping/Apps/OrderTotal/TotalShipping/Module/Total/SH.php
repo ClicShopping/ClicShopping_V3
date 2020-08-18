@@ -20,7 +20,6 @@
 
   class SH implements \ClicShopping\OM\Modules\OrderTotalInterface
   {
-
     public $code;
     public $title;
     public $description;
@@ -30,6 +29,7 @@
     public $app;
     public $surcharge;
     public $maximum;
+    public $signature;
 
     public function __construct()
     {

@@ -19,13 +19,13 @@
 
   class CO implements \ClicShopping\OM\Modules\PaymentInterface
   {
-
     public $code;
     public $title;
     public $description;
     public $enabled;
     public $app;
     public $group;
+    public $signature;
 
     public function __construct()
     {

@@ -19,7 +19,6 @@
 
   class IT implements \ClicShopping\OM\Modules\ShippingInterface
   {
-
     public $code;
     public $title;
     public $description;
@@ -28,6 +27,7 @@
     public $app;
     public $quotes;
     public $group;
+    public $signature;
 
     public function __construct()
     {
@@ -43,7 +43,6 @@
 
       $this->app = Registry::get('Item');
       $this->app->loadDefinitions('Module/Shop/IT/IT');
-
 
       $this->signature = 'Item|' . $this->app->getVersion() . '|1.0';
       $this->api_version = $this->app->getApiVersion();

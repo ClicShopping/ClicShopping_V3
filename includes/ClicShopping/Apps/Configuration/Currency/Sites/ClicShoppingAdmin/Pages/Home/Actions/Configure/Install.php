@@ -87,7 +87,7 @@
       }
     }
 
-    private function installCurrencyDb()
+    private static function installCurrencyDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

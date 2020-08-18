@@ -20,7 +20,6 @@
 
   class TO implements \ClicShopping\OM\Modules\OrderTotalInterface
   {
-
     public $code;
     public $title;
     public $description;
@@ -28,6 +27,7 @@
     public $output;
     public $sort_order = 0;
     public $app;
+    public $signature;
 
     public function __construct()
     {

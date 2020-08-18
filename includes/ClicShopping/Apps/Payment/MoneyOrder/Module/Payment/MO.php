@@ -13,7 +13,6 @@
 
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Payment\MoneyOrder\MoneyOrder as MoneyOrderApp;
   use ClicShopping\Sites\Common\B2BCommon;
@@ -21,7 +20,6 @@
 
   class MO implements \ClicShopping\OM\Modules\PaymentInterface
   {
-
     public $code;
     public $title;
     public $description;
@@ -29,6 +27,7 @@
     public $app;
     public $title_selection;
     public $group;
+    public $signature;
 
     public function __construct()
     {
@@ -44,7 +43,6 @@
 
       $this->app = Registry::get('MoneyOrder');
       $this->app->loadDefinitions('Module/Shop/MO/MO');
-
 
       $this->signature = 'MoneyOrder|' . $this->app->getVersion() . '|1.0';
       $this->api_version = $this->app->getApiVersion();
