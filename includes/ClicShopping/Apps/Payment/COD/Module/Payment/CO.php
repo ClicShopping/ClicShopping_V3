@@ -25,7 +25,9 @@
     public $enabled;
     public $app;
     public $group;
-    public $signature;
+    protected $signature;
+    protected $api_version;
+    public $public_title;
 
     public function __construct()
     {

@@ -28,6 +28,7 @@
     public $title_selection;
     public $group;
     public $signature;
+    public $public_title;
 
     public function __construct()
     {

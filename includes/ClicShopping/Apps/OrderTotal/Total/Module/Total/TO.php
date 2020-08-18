@@ -28,6 +28,7 @@
     public $sort_order = 0;
     public $app;
     public $signature;
+    public $public_title;
 
     public function __construct()
     {

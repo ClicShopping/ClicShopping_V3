@@ -28,6 +28,7 @@
     public $quotes;
     public $group;
     public $signature;
+    public $public_title;
 
     public function __construct()
     {

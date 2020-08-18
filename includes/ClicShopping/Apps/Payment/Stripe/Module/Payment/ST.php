@@ -32,6 +32,7 @@
     protected $currency;
     public $group;
     public $signature;
+    public $public_title;
 
     protected $intent;
     protected $private_key;
