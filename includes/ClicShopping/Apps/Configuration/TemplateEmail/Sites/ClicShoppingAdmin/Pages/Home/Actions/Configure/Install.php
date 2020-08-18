@@ -48,7 +48,8 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 3,
+        $sql_data_array = [
+          'sort_order' => 3,
           'link' => 'index.php?A&Configuration\TemplateEmail&TemplateEmail',
           'image' => 'mail.gif',
           'b2b_menu' => 0,
@@ -87,7 +88,7 @@
     }
 
 
-    private function installProductsTemplateEmailDb()
+    private static function installProductsTemplateEmailDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

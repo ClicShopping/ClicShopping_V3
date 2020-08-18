@@ -87,7 +87,7 @@
     }
 
 
-    private function installProductsTaxClassDb()
+    private static function installProductsTaxClassDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

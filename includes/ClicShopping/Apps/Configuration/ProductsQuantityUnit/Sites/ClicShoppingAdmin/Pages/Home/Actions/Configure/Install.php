@@ -86,7 +86,7 @@
     }
 
 
-    private function installProductsProductsQuantityUnitDb()
+    private static function installProductsProductsQuantityUnitDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

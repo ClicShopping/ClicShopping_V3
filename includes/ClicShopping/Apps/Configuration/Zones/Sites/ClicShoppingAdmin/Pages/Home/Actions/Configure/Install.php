@@ -72,7 +72,8 @@
 
           $sql_data_array = ['label' => $CLICSHOPPING_Zones->getDef('title_menu')];
 
-          $insert_sql_data = ['id' => (int)$id,
+          $insert_sql_data = [
+            'id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 
@@ -87,7 +88,7 @@
     }
 
 
-    private function installProductsZonesDb()
+    private static function installProductsZonesDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
