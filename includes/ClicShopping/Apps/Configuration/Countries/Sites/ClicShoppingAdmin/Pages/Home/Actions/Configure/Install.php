@@ -86,8 +86,7 @@
       }
     }
 
-
-    private function installCountriesDb()
+    private static function installCountriesDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

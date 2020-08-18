@@ -21,6 +21,7 @@
 
     protected $app;
     protected $id;
+    protected $currentCategoryId;
 
     public function __construct()
     {
@@ -61,7 +62,6 @@
       $QcustomersGroup->execute();
 
       if (isset($_GET['Insert']) && isset($_GET['Products'])) {
-
         $products_price = HTML::sanitize($_POST['products_price']);
 
         while ($QcustomersGroup->fetch()) {
