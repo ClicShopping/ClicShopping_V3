@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Orders\Orders\Sites\ClicShoppingAdmin\Pages\Home\Actions\Orders;
 
   use ClicShopping\OM\Registry;
@@ -53,7 +52,8 @@
 
     private function getCheckStatus()
     {
-      $data_array = ['customers_name',
+      $data_array = [
+        'customers_name',
         'customers_email_address',
         'orders_status',
         'date_purchased',
@@ -96,7 +96,7 @@
       $message = html_entity_decode($email_text);
       $message = str_replace('src="/', 'src="' . CLICSHOPPING::getConfig('http_server', 'Shop') . '/', $message);
       $CLICSHOPPING_Mail->addHtmlCkeditor($message);
-      ;
+
       $from = STORE_OWNER_EMAIL_ADDRESS;
       $CLICSHOPPING_Mail->send($check['customers_name'], $check['customers_email_address'], '', $from, $email_subject);
 
@@ -110,12 +110,13 @@
       if (isset($_GET['Update'])) {
         $order_updated = false;
 
-        $check = $this->getCheckStatus();
-
         if ($this->oID != 0) {
+
+          $check = $this->getCheckStatus();
 // verify and update the status if changed
           if (($check['orders_status'] != $this->status) || ($check['orders_status_invoice'] != $this->statusInvoice) || !is_null($this->comments)) {
-            $data_array = ['orders_status' => (int)$this->status,
+            $data_array = [
+              'orders_status' => (int)$this->status,
               'orders_status_invoice' => (int)$this->statusInvoice,
               'last_modified' => 'now()'
             ];
@@ -128,7 +129,8 @@
               $customer_notified = 1;
             }
 
-            $data_array = ['orders_id' => (int)$this->oID,
+            $data_array = [
+              'orders_id' => (int)$this->oID,
               'orders_status_id' => (int)$this->status,
               'orders_status_invoice_id' => (int)$this->statusInvoice,
               'admin_user_name' => AdministratorAdmin::getUserAdmin(),
