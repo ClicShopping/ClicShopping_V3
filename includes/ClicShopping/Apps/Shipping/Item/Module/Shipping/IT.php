@@ -29,6 +29,9 @@
     public $group;
     public $signature;
     public $public_title;
+    protected $sort_order;
+    protected $api_version;
+    public $tax_class;
 
     public function __construct()
     {

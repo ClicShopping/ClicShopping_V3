@@ -81,7 +81,8 @@
           $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
         }
 
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 1,
           'link' => 'index.php?A&Marketing\Featured&Featured',
           'link' => 'index.php?A&Configuration\Modules&Modules&set=modules_products_featured',
           'image' => 'products_featured.png',
@@ -119,7 +120,7 @@
       }
     }
 
-    private function installProductsFeaturedDb()
+    private static function installProductsFeaturedDb()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 

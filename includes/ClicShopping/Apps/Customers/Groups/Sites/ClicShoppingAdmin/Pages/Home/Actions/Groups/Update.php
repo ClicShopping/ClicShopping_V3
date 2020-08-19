@@ -23,11 +23,25 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
-      if (isset($_POST['customer_group_id'])) $customers_groups_id = HTML::sanitize($_POST['customer_group_id']);
-      if (isset($_POST['customers_group_name'])) $customers_groups_name = HTML::sanitize($_POST['customers_group_name']);
-      if (isset($_POST['customers_group_discount'])) $customers_groups_discount = HTML::sanitize($_POST['customers_group_discount']);
-      if (isset($_POST['color_bar'])) $color_bar = HTML::sanitize($_POST['color_bar']);
-      if (isset($_POST['customers_group_quantity_default'])) $customers_group_quantity_default = HTML::sanitize($_POST['customers_group_quantity_default']);
+      if (isset($_POST['customer_group_id'])) {{
+        $customers_groups_id = HTML::sanitize($_POST['customer_group_id']);
+      }
+
+      if (isset($_POST['customers_group_name'])) {
+        $customers_groups_name = HTML::sanitize($_POST['customers_group_name']);
+      }
+
+      if (isset($_POST['customers_group_discount'])) {
+        $customers_groups_discount = HTML::sanitize($_POST['customers_group_discount']);
+      }
+
+      if (isset($_POST['color_bar'])) {
+        $color_bar = HTML::sanitize($_POST['color_bar']);
+      }
+
+      if (isset($_POST['customers_group_quantity_default'])) {
+        $customers_group_quantity_default = HTML::sanitize($_POST['customers_group_quantity_default']);
+      }
 
       $group_payment_unallowed = '';
       $group_shipping_unallowed = '';
@@ -73,7 +87,6 @@
 
 // Assujetti ou non a la TVA
         $group_order_taxe = HTML::sanitize($_POST['group_order_taxe']);
-
 
 // Affichage des prix en HT ou en TTC (Mis automatiquement en false "HT" si l'on coche non-assujetti a la TVA)
         if ($group_order_taxe == 1) {

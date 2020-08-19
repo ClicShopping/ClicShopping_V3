@@ -116,6 +116,7 @@
         $Qtax->bindInt(':zone_country_id', $CLICSHOPPING_Order->delivery['country']['id']);
         $Qtax->bindInt(':zone_id', $zone_id);
         $Qtax->execute();
+
         if ($QtaxPriority->fetch()) {
           $hst_total = 0;
 
@@ -176,7 +177,6 @@
               $j = 0;
 
               while ($Qtax->fetch()) {
-
                 if ($j == 0) {
                   $gst_description = $Qtax->value('tax_description');
                   $gst_rate = $Qtax->valueDecimal('tax_rate') / 100;
@@ -246,7 +246,8 @@
 
         foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
           if ($value > 0) {
-            $this->output[] = ['title' => $key,
+            $this->output[] = [
+              'title' => $key,
               'text' => $CLICSHOPPING_Currencies->format($value, true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']),
               'value' => $value
             ];

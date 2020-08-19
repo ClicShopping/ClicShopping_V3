@@ -224,6 +224,8 @@
           $Qupdate->bindInt(':products_id', $Qproducts->valueInt('products_id'));
           $Qupdate->execute();
         }
+
+        $CLICSHOPPING_Db->delete('products_groups', ['products_id' => (int)$Qproducts->value('products_id')]);
       }
 
       $CLICSHOPPING_Db->delete('orders', ['orders_id' => (int)$order_id]);
@@ -232,10 +234,6 @@
       $CLICSHOPPING_Db->delete('orders_status_history', ['orders_id' => (int)$order_id]);
       $CLICSHOPPING_Db->delete('orders_total', ['orders_id' => (int)$order_id]);
       $CLICSHOPPING_Db->delete('orders_pages_manager', ['orders_id' => (int)$order_id]);
-
-      if ($restock == 'on') {
-        $CLICSHOPPING_Db->delete('products_groups', ['products_id' => (int)$Qproducts->value('products_id')]);
-      }
 
       $CLICSHOPPING_Hooks->call('OrderAdmin', 'removeOrder');
     }

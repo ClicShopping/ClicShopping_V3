@@ -28,6 +28,7 @@
     protected $signature;
     protected $api_version;
     public $public_title;
+    public $order_status;
 
     public function __construct()
     {

@@ -18,6 +18,7 @@
   {
     protected $name;
     protected bool $force_cookies = true;
+    public $sameSite;
 
     /**
      * Checks if a session exists

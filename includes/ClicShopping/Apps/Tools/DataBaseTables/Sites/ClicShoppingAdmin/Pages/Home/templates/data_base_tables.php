@@ -222,8 +222,6 @@
             class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/database_analyse.gif', $CLICSHOPPING_DataBaseTables->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_DataBaseTables->getDef('heading_title'); ?></span>
-
-
           <?php
             if (isset($_GET['action'])) {
               $actions = HTML::sanitize($_GET['action']);
@@ -231,7 +229,6 @@
 
             if (!isset($POST['dryrun'])) {
               if (isset($action)) {
-
                 ?>
                 <span
                   class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_back'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'primary'); ?></span>
