@@ -15,28 +15,27 @@
 
   class ProductsStatusAdmin
   {
-
     /**
      * Status products - Sets the status of a product
-     *
-     * @param string products_id, status
-     * @return string status on or off
-     *
+     * @param int $products_id
+     * @param int $status
+     * @return int
      */
-
     public static function getProductStatus(int $products_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status === 1) {
-        return $CLICSHOPPING_Db->save('products', ['products_status' => 1,
+      if ($status == 1) {
+        return $CLICSHOPPING_Db->save('products', [
+          'products_status' => 1,
           'products_last_modified' => 'now()'
         ],
           ['products_id' => (int)$products_id]
         );
 
-      } elseif ($status === 0) {
-        return $CLICSHOPPING_Db->save('products', ['products_status' => 0,
+      } elseif ($status == 0) {
+        return $CLICSHOPPING_Db->save('products', [
+          'products_status' => 0,
           'products_last_modified' => 'now()'
         ],
           ['products_id' => (int)$products_id]

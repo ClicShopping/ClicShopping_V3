@@ -17,27 +17,24 @@
 
   class Status
   {
-
     protected $zones_id;
     protected $status;
 
     /**
-     * Status zones - Sets the status of a zone
-     *
-     * @param string products_id, status
-     * @return string status on or off
-     *
+     * @param int $zones_id
+     * @param int $status
+     * @return int
      */
     public static function getZonesStatus(int $zones_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status === 1) {
+      if ($status == 1) {
         return $CLICSHOPPING_Db->save('zones', ['zone_status' => 1],
           ['zone_id' => (int)$zones_id]
         );
 
-      } elseif ($status === 0) {
+      } elseif ($status == 0) {
         return $CLICSHOPPING_Db->save('zones', ['zone_status' => 0],
           ['zone_id' => (int)$zones_id]
         );

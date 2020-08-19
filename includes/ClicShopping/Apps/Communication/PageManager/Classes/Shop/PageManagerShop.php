@@ -561,10 +561,10 @@
 
     /**
      * display the content information
-     * @param $id
+     * @param int $id
      * @return mixed
      */
-    public function pageManagerDisplayInformation($id)
+    public function pageManagerDisplayInformation(int $id)
     {
       $QPage = $this->db->prepare('select p.pages_id,
                                           p.page_type,
@@ -606,13 +606,11 @@
       return $pages['pages_html_text'];
     }
 
-
     /**
-     *
-     * @param $id
+     * @param int $id
      * @return mixed
      */
-    public function pageManagerDisplayTitle($id)
+    public function pageManagerDisplayTitle(int $id)
     {
       $QPage = $this->db->prepare('select p.pages_id,
                                           p.page_type,
@@ -650,7 +648,6 @@
       return $pages['pages_title'];
     }
 
-
     /**
      * Index and information status
      * @param $pages_id
@@ -659,7 +656,7 @@
      */
     private function setPageManagerStatus($pages_id, $status)
     {
-      if ($status === 1) {
+      if ($status == 1) {
         $Qupdate = $this->db->prepare('update :table_pages_manager
                                         set status = 1,
                                             date_status_change =  now(),
@@ -671,7 +668,7 @@
         $this->getClearCache();
 
         return $Qupdate->execute();
-      } elseif ($status === 0) {
+      } elseif ($status == 0) {
         $Qupdate = $this->db->prepare('update :table_pages_manager
                                         set status = 0,
                                             date_status_change = now(),

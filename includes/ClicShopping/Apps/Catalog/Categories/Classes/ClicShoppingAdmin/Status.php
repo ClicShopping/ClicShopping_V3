@@ -28,7 +28,6 @@
      * @return string status on or off
      *
      */
-
     public static function getCategoriesStatus(int $categories_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -40,7 +39,7 @@
         Registry::set('CategoryTree', $CLICSHOPPING_CategoryTree);
       }
 
-      if ($status === 1) {
+      if ($status == 1) {
         $data = ['id' => $categories_id];
 
         foreach (array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c) {
@@ -53,12 +52,12 @@
           $CLICSHOPPING_Db->save('categories', $sql_array, $update_array);
         }
 
-      } elseif ($status === 0) {
+      } elseif ($status == 0) {
         $data = ['id' => $categories_id];
 
         foreach (array_merge(array($data['id']), $CLICSHOPPING_CategoryTree->getChildren($data['id'])) as $c) {
-
-          $sql_array = ['status' => 0,
+          $sql_array = [
+            'status' => 0,
             'last_modified' => 'now()'
           ];
 

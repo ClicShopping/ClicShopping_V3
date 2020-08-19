@@ -29,20 +29,18 @@
       $CLICSHOPPING_Specials->redirect('Specials&page=' . $page . 'sID=' . (int)$_GET['id']);
     }
 
-
     /**
-     * Status products specials products -  Sets the status of a favrite product
-     *
-     * @param string products_specials_id, status
-     * @return string status on or off
-     *
+     * @param int $specials_id
+     * @param int $status
+     * @return int
      */
-    Public static function getSpecialsStatus($specials_id, $status)
+    Public static function getSpecialsStatus(int $specials_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status === 1) {
-        return $CLICSHOPPING_Db->save('specials', ['status' => 1,
+      if ($status == 1) {
+        return $CLICSHOPPING_Db->save('specials', [
+          'status' => 1,
           'specials_date_added' => 'null',
           'specials_last_modified' => 'null',
           'scheduled_date' => 'null',
@@ -51,13 +49,13 @@
           ['specials_id' => (int)$specials_id]
         );
 
-      } elseif ($status === 0) {
-        return $CLICSHOPPING_Db->save('specials', ['status' => 0,
+      } elseif ($status == 0) {
+        return $CLICSHOPPING_Db->save('specials', [
+          'status' => 0,
           'specials_last_modified' => 'now()'
         ],
           ['specials_id' => (int)$specials_id]
         );
-
       } else {
         return -1;
       }

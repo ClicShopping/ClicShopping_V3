@@ -21,16 +21,21 @@
     protected $countries_id;
     protected $status;
 
+    /**
+     * @param int $countries_id
+     * @param int $status
+     * @return int
+     */
     Public static function getCountriesStatus(int $countries_id, int $status)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      if ($status === 1) {
+      if ($status == 1) {
         return $CLICSHOPPING_Db->save('countries', ['status' => 1],
           ['countries_id' => (int)$countries_id]
         );
 
-      } elseif ($status === 0) {
+      } elseif ($status == 0) {
 
         return $CLICSHOPPING_Db->save('countries', ['status' => 0],
           ['countries_id' => (int)$countries_id]
