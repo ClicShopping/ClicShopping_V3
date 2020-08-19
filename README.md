@@ -18,10 +18,11 @@
   - [Fantastico](https://github.com/ClicShopping#Support)
 * [Official Apps, modules, adds on](https://github.com/ClicShoppingOfficialModulesV3)
 * [Community Apps, modules, adds on](https://github.com/ClicShoppingV3Community)
+* [Marketplace Apps, modules, adds on](https://clicshopping.org)
 * [Donation](https://github.com/ClicShopping#Donation)
 * [Trademark - Licence](https://github.com/ClicShopping#Trademark)
 * [Functionnalities](https://github.com/ClicShopping#Functionnalities)
-* [Functionnalities](https://github.com/ClicShopping#Images)
+* [Images](https://github.com/ClicShopping#Images)
 * [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
 
 # ClicShopping
@@ -36,15 +37,16 @@ Easy to install in just some clicks on a server or on your computer, you can use
  All informations are available at the forum https://www.clicshopping.org
  The modules are available on Github (Official and Community) or by an internal install.
 
-#Requirement
+#Requirement (more information in the wiki)
 Apache 2.4<br>
-MYSQL 7 / MariaDb / Postgres<br>
+MYSQL 7 / MariaDb 10.3 / Postgres<br>
 PHP > 7.4.3
+More information in the Wiki
 
 #Installation
  Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
  Step2 : Install Clicshopping : https://www.mysite.com/install
-More information in the Wiki on the forum
+More information in the Wiki
 
 #Checklist
 - [x] read this README document
@@ -62,7 +64,7 @@ More information in the Wiki on the forum
 - [ ] Create your catalog
 - [ ] Perform a test checkout
 
-More information on the community : https://www.clicshopping.org
+More information in the Wiki
 
 #Support
   <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)<br><br>  
@@ -78,7 +80,7 @@ More information on the community : https://www.clicshopping.org
 License GPL2 - MIT
 ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
 
-#Functionnalities
+#Functionnalities (some)
 - B2B - B2C  full functionalities
 - WYSIWYG to create your products description, content with CKeditor4.x
 - Image Editor management with El-Finder 2.x - drag and drop - webp
