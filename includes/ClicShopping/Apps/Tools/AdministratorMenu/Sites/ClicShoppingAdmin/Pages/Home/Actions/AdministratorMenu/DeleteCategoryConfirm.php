@@ -21,20 +21,22 @@
   class DeleteCategoryConfirm extends \ClicShopping\OM\PagesActionsAbstract
   {
     protected $app;
+    protected $cPath;
+    protected $Id;
 
     public function __construct()
     {
       $this->app = Registry::get('AdministratorMenu');
 
-      $this->ID = HTML::sanitize($_GET['id']);
+      $this->Id = HTML::sanitize($_GET['id']);
       $this->cPath = HTML::sanitize($_GET['cPath']);
     }
 
     public function execute()
     {
 
-      if (isset($this->ID)) {
-        $categories = AdministratorMenu::getAdministratorMenuCategoryTree($this->ID, '', '0', '', true);
+      if (isset($this->Id)) {
+        $categories = AdministratorMenu::getAdministratorMenuCategoryTree($this->Id, '', '0', '', true);
 
         for ($i = 0, $n = count($categories); $i < $n; $i++) {
           AdministratorMenu::getRemoveAdministratorMenuCategory($categories[$i]['id']);

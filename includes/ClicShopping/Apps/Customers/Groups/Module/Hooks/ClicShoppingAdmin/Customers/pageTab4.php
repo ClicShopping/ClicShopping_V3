@@ -167,7 +167,7 @@
           if ($cInfo->customers_group_id != 0 && $customer_group['group_payment_unallowed']) {
             $payments_unallowed = explode(',', $customer_group['group_payment_unallowed']);
           } else {
-            $payments_unallowed = '';
+            $payments_unallowed = [];
           }
 
           $module_key = 'MODULE_PAYMENT_INSTALLED';

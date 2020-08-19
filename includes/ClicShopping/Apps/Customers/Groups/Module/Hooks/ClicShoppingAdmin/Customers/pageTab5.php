@@ -83,7 +83,7 @@
         if ($cInfo->customers_group_id != 0) {
           $shipping_unallowed = explode(',', $cInfo_group->group_shipping_unallowed);
         } else {
-          $shipping_unallowed = '';
+          $shipping_unallowed = [];
         }
 
         $module_key = 'MODULE_SHIPPING_INSTALLED';
