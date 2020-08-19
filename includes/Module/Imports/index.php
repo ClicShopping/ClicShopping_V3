@@ -9,5 +9,4 @@
    *
    */
 
-  header("Location: https://" . $_SERVER['HTTP_HOST'] . "/");
-?>
+     header("Location: https://" . $_SERVER['HTTP_HOST'] . "/");
