@@ -194,6 +194,7 @@
 // rebuild url
       $query_result = http_build_query($query);
       $query_result = str_replace('%3F', '&', $query_result);
+      $split_complete =  [];
 
       $split_parameters = explode('&', $query_result);
 
