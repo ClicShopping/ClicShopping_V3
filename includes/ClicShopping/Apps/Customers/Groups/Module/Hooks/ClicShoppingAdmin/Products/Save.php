@@ -89,21 +89,25 @@
             if ($_POST['products_percentage'] == 1) {
               if ($products_price > 0) {
                 if (B2B == 'true') {
-                  if ($group_discount > 0){
+                  if ($group_discount > 0) {
                     $newprice = $products_price + ($products_price / 100) * $group_discount;
-                  }
-                  if ($group_discount == 0) {
+                  } elseif ($group_discount == 0) {
                     $newprice = $products_price;
                   }
                 }
 
                 if (B2B == 'false') {
-                  if ($group_discount > 0) $newprice = $products_price - ($products_price / 100) * $group_discount;
-                  if ($group_discount == 0) $newprice = $products_price;
-                }
+                  if ($group_discount > 0) {
+                    $newprice = $products_price - ($products_price / 100) * $group_discount;
+                  }
 
-                $group_customer_price = $newprice;
-              } else {
+                  if ($group_discount == 0) {
+                    $newprice = $products_price;
+                  }
+                  
+                  $group_customer_price = $newprice;
+                }
+               } else {
                 $group_customer_price = $products_price;
               }
             } else {

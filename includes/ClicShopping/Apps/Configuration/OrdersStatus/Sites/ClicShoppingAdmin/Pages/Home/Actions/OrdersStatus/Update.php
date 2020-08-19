@@ -27,43 +27,44 @@
     public function execute()
     {
       $CLICSHOPPING_Language = Registry::get('Language');
+      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       if (isset($_GET['oID'])) {
         $orders_status_id = HTML::sanitize($_GET['oID']);
+
+        $languages = $CLICSHOPPING_Language->getLanguages();
+
+        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+          $orders_status_name_array = $_POST['orders_status_name'];
+          $language_id = $languages[$i]['id'];
+
+          $sql_data_array = [
+            'orders_status_name' => HTML::sanitize($orders_status_name_array[$language_id]),
+            'public_flag' => (isset($_POST['public_flag']) && ($_POST['public_flag'] == '1') ? '1' : '0'),
+            'downloads_flag' => (isset($_POST['downloads_flag']) && ($_POST['downloads_flag'] == '1') ? '1' : '0'),
+            'support_orders_flag' => (isset($_POST['support_orders_flag']) && ($_POST['support_orders_flag'] == '1') ? '1' : '0')
+          ];
+
+          $this->app->db->save('orders_status', $sql_data_array, ['orders_status_id' => (int)$orders_status_id,
+              'language_id' => (int)$language_id
+            ]
+          );
+        }
+
+        if (isset($_POST['default'])) {
+          $this->app->db->save('configuration', [
+            'configuration_value' => $orders_status_id
+          ], [
+              'configuration_key' => 'DEFAULT_ORDERS_STATUS_ID'
+            ]
+          );
+        }
+
+        Cache::clear('configuration');
+
+        $this->app->redirect('OrdersStatus&page=' . $page . '&oID=' . $orders_status_id);
+      } else {
+        $this->app->redirect('OrdersStatus&page=' . $page);
       }
-
-      $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
-      $languages = $CLICSHOPPING_Language->getLanguages();
-
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        $orders_status_name_array = $_POST['orders_status_name'];
-        $language_id = $languages[$i]['id'];
-
-        $sql_data_array = [
-          'orders_status_name' => HTML::sanitize($orders_status_name_array[$language_id]),
-          'public_flag' => ((isset($_POST['public_flag']) && ($_POST['public_flag'] == '1')) ? '1' : '0'),
-          'downloads_flag' => ((isset($_POST['downloads_flag']) && ($_POST['downloads_flag'] == '1')) ? '1' : '0'),
-          'support_orders_flag' => ((isset($_POST['support_orders_flag']) && ($_POST['support_orders_flag'] == '1')) ? '1' : '0')
-        ];
-
-        $this->app->db->save('orders_status', $sql_data_array, ['orders_status_id' => (int)$orders_status_id,
-            'language_id' => (int)$language_id
-          ]
-        );
-      }
-
-
-      if (isset($_POST['default'])) {
-        $this->app->db->save('configuration', [
-          'configuration_value' => $orders_status_id
-        ], [
-            'configuration_key' => 'DEFAULT_ORDERS_STATUS_ID'
-          ]
-        );
-      }
-
-      Cache::clear('configuration');
-
-      $this->app->redirect('OrdersStatus&page=' . $page . '&oID=' . $orders_status_id);
     }
   }

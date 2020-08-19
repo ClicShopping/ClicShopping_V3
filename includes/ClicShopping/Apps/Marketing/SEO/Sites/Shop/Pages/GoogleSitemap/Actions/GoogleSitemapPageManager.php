@@ -43,7 +43,7 @@
         $QpageManager->execute();
 
         while ($QpageManager->fetch()) {
-          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getPageManagerContentUrl($QpageManager->valueInt('pages_id'))));
+          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getPageManagerContentUrl($QpageManager->valueInt('pages_id'))), ENT_QUOTES | ENT_HTML5);
           $page_manager_array[$QpageManager->valueInt('pages_id')]['loc'] = $location;
           $page_manager_array[$QpageManager->valueInt('pages_id')]['lastmod'] = $QpageManager->value('last_modified');
           $page_manager_array[$QpageManager->valueInt('pages_id')]['changefreq'] = 'weekly';

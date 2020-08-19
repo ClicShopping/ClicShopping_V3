@@ -18,6 +18,10 @@
   {
     protected string $iso;
 
+    /**
+     * @param int $id
+     * @return string
+     */
     public static function getCustomersGroupName(int $id): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -69,22 +73,28 @@
       return $customers_group_array;
     }
 
-// Returns an array with all customers_groups
+    /**
+     * Returns an array with all customers_groups
+     * @return array
+     */
     public static function getAllGroups(): array
     {
-
       $customers_group = static::getCustomersGroup();
+      $values_customers_group_id = [];
 
-      $customers_group[] = ['id' => '99',
+      $customers_group[] = [
+        'id' => '99',
         'text' => CLICSHOPPING::getDef('text_all_groups')
       ];
 
-      $values_customers_group_id[0] = ['id' => 0,
+      $values_customers_group_id[0] = [
+        'id' => 0,
         'text' => CLICSHOPPING::getDef('visitor_name')
       ];
 
       for ($i = 0, $n = count($customers_group); $i < $n; $i++) {
-        $values_customers_group_id[$i + 1] = ['id' => $customers_group[$i]['id'],
+        $values_customers_group_id[$i + 1] = [
+          'id' => $customers_group[$i]['id'],
           'text' => $customers_group[$i]['text']
         ];
       }
@@ -93,10 +103,10 @@
     }
 
     /**
-     * Check the vat european
-     *
-     * @param string $iso , $piva, number of the company vat
-     *
+     * heck the vat european
+     * @param string $iso
+     * @param string $piva
+     * @return string
      */
     public function isoCheck(string $iso, string $piva): string
     {

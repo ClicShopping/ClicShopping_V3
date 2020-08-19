@@ -49,25 +49,26 @@
                                                         ');
       $Qcustomers->bindInt(':customers_id', $_GET['cID']);
       $Qcustomers->execute();
+
       $cInfo = new ObjectInfo($Qcustomers->toArray());
 
 // Lecture sur la base de données des informations facturations et livraison du groupe client
      if ($cInfo->customers_group_id != 0) {
-        $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
-                                                                        group_order_taxe,
-                                                                        group_payment_unallowed,
-                                                                        group_shipping_unallowed
-                                                                 from :table_customers_groups
-                                                                 where customers_group_id = :customers_group_id
-                                                                ');
-        $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id);
-        $QcustomersGroup->execute();
+      $QcustomersGroup = $CLICSHOPPING_Customers->db->prepare('select customers_group_name,
+                                                                      group_order_taxe,
+                                                                      group_payment_unallowed,
+                                                                      group_shipping_unallowed
+                                                               from :table_customers_groups
+                                                               where customers_group_id = :customers_group_id
+                                                              ');
+      $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id);
+      $QcustomersGroup->execute();
 
-        $customer_group = $QcustomersGroup->toArray();
-        $group_order_taxe = $QcustomersGroup->value('group_order_taxe');
+      $customer_group = $QcustomersGroup->toArray();
+      $group_order_taxe = $QcustomersGroup->value('group_order_taxe');
      } else {
        $group_order_taxe = 0;
-     }
+      }
 
       if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True') {
         switch ($group_order_taxe) {
@@ -156,7 +157,6 @@
             $content .= '<span class="col-md-3">' . $this->app->getDef('category_order_customer') . '</span>';
           } // end customers_group_id
 
-
           $content .= '</div>';
 
           $content .= '<div class="adminformTitle">';
@@ -166,6 +166,8 @@
 // Search payment module
           if ($cInfo->customers_group_id != 0 && $customer_group['group_payment_unallowed']) {
             $payments_unallowed = explode(',', $customer_group['group_payment_unallowed']);
+          } else {
+            $payments_unallowed = '';
           }
 
           $module_key = 'MODULE_PAYMENT_INSTALLED';
@@ -185,7 +187,8 @@
             if (strpos($value, '\\') !== false) {
               $class = Apps::getModuleClass($value, 'Payment');
 
-              $include_modules[] = ['class' => $value,
+              $include_modules[] = [
+                'class' => $value,
                 'file' => $class
               ];
             }

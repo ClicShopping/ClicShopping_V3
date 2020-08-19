@@ -1,5 +1,5 @@
 <?php
-  /**
+/**
    *
    * @copyright 2008 - https://www.clicshopping.org
    * @Brand : ClicShopping(Tm) at Inpi all right Reserved
@@ -17,7 +17,6 @@
 
   use ClicShopping\Apps\OrderTotal\TotalTax\TotalTax as TotalTaxApp;
 
-
   class TX implements \ClicShopping\OM\Modules\OrderTotalInterface
   {
     public $code;
@@ -31,10 +30,10 @@
     public $maximum;
     public $signature;
     public $public_title;
+    protected $api_version;
 
     public function __construct()
     {
-
       if (!Registry::exists('TotalTax')) {
         Registry::set('TotalTax', new TotalTaxApp());
       }

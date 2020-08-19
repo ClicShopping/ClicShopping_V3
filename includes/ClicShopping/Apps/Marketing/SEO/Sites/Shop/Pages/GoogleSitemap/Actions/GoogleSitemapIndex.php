@@ -26,63 +26,63 @@
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapCategories');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapProducts');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapSpecials');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapFavorites');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapManufacturers');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapBlogCategories');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapBlogContent');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapPageManager');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');
 
         $location = CLICSHOPPING::link(null, 'Sitemap&GoogleSitemapFeatured');
         $url = $xml->addChild('url');
-        $url->addChild('loc', htmlspecialchars(utf8_encode($location)));
+        $url->addChild('loc', htmlspecialchars(utf8_encode($location), ENT_QUOTES | ENT_HTML5));
         $url->addChild('lastmod', date("Y-m-d", strtotime("now")));
         $url->addChild('changefreq', 'weekly');
         $url->addChild('priority', '0.5');

@@ -207,7 +207,7 @@
             $banner_language['name'] = $CLICSHOPPING_BannerManager->getDef('text_all_languages');
           }
 
-          if ((!isset($_GET['bID']) || (isset($_GET['bID']) && ((int)$_GET['bID'] == $Qbanner->valueInt('banners_id'))))) {
+          if (!isset($_GET['bID']) || ((isset($_GET['bID'])) && (int)$_GET['bID']) == $Qbanner->valueInt('banners_id')) {
             $bInfo_array = array_merge($Qbanner->toArray(), $Qinfo->toArray());
             $bInfo = new ObjectInfo($bInfo_array);
           }
@@ -242,6 +242,8 @@
                 echo '<a href="' . $CLICSHOPPING_BannerManager->link('Update&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_BannerManager->getDef('icon_edit')) . '</a>';
                 echo '&nbsp;';
                 echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_BannerManager->getDef('icon_copy_to')) . '</a>';
+                echo '&nbsp;';
+                echo '<a data-banner-id="' . $id . '" data-toggle="modal" data-target="#statsModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/statistics.gif', $CLICSHOPPING_BannerManager->getDef('icon_statistics')) . '</a>';
                 echo '&nbsp;';
                 echo '&nbsp;';
                 echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_BannerManager->getDef('icon_delete')) . '</a>';

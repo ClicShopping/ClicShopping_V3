@@ -20,6 +20,8 @@
   class pageTab5 implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
+    protected string $customers_group_name;
+    protected int $customers_group_id;
 
     public function __construct()
     {
@@ -41,9 +43,9 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Customers/page_tab_5');
 
       $Qcustomers = $this->app->db->prepare('select customers_group_id
-                                                from :table_customers
-                                                where customers_id = :customers_id
-                                              ');
+                                              from :table_customers
+                                              where customers_id = :customers_id
+                                            ');
       $Qcustomers->bindInt(':customers_id', $_GET['cID']);
       $Qcustomers->execute();
 
@@ -52,12 +54,12 @@
 // Lecture sur la base de données des informations facturations et livraison du groupe client
       if ($cInfo->customers_group_id != 0) {
         $QcustomersGroup = $this->app->db->prepare('select customers_group_name,
-                                                                        group_order_taxe,
-                                                                        group_payment_unallowed,
-                                                                        group_shipping_unallowed
-                                                                 from :table_customers_groups
-                                                                 where customers_group_id = :customers_group_id
-                                                                ');
+                                                            group_order_taxe,
+                                                            group_payment_unallowed,
+                                                            group_shipping_unallowed
+                                                     from :table_customers_groups
+                                                     where customers_group_id = :customers_group_id
+                                                    ');
         $QcustomersGroup->bindInt(':customers_group_id', $cInfo->customers_group_id);
         $QcustomersGroup->execute();
 
@@ -80,6 +82,8 @@
 // Search Shipping Module
         if ($cInfo->customers_group_id != 0) {
           $shipping_unallowed = explode(',', $cInfo_group->group_shipping_unallowed);
+        } else {
+          $shipping_unallowed = '';
         }
 
         $module_key = 'MODULE_SHIPPING_INSTALLED';
@@ -100,7 +104,8 @@
           if (strpos($value, '\\') !== false) {
             $class = Apps::getModuleClass($value, 'Shipping');
 
-            $include_modules[] = ['class' => $value,
+            $include_modules[] = [
+              'class' => $value,
               'file' => $class
             ];
           }

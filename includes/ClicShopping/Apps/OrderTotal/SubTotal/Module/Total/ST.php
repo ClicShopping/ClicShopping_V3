@@ -30,6 +30,7 @@
     public $surcharge;
     public $maximum;
     public $signature;
+    protected $api_version;
     public $public_title;
 
     public function __construct()

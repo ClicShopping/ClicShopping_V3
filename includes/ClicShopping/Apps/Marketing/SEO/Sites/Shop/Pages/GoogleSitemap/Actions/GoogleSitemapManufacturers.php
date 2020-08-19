@@ -40,7 +40,7 @@
         $Qmanufacturers->execute();
 
         while ($Qmanufacturers->fetch()) {
-          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))));
+          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'))), ENT_QUOTES | ENT_HTML5);
 
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['loc'] = $location;
           $manufacturer_array[$Qmanufacturers->valueInt('manufacturers_id')]['lastmod'] = $Qmanufacturers->value('last_modified');

@@ -35,40 +35,41 @@
         $CLICSHOPPING_Customers = Registry::get('Customers');
 
         if (isset($_POST['customers_group_id'])) {
-          $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+          if (isset($_POST['customers_id'])) {
+            $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
+            if (empty($customers_group_id)) $customers_group_id = 0;
 
-          if (empty($customers_group_id)) $customers_group_id = 0;
+            $customers_id = HTML::sanitize($_POST['customers_id']);
 
-          if (isset($_POST['customers_id'])) $customers_id = HTML::sanitize($_POST['customers_id']);
+            $QmultipleGroups = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
+                                                                     from :table_products_groups
+                                                                   ');
 
-          $QmultipleGroups = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
-                                                                   from :table_products_groups
-                                                                 ');
+            $QmultipleGroups->execute();
 
-          $QmultipleGroups->execute();
+            while ($QmultipleGroups->fetch()) {
+              $QmultipleCustomers = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
+                                                                          from :table_customers_groups
+                                                                          where customers_group_id = :customers_group_id
+                                                                        ');
+              $QmultipleCustomers->bindInt(':customers_group_id', $QmultipleGroups->valueInt('customers_group_id'));
+              $QmultipleCustomers->execute();
 
-          while ($QmultipleGroups->fetch()) {
-            $QmultipleCustomers = $CLICSHOPPING_Customers->db->prepare('select distinct customers_group_id
-                                                                        from :table_customers_groups
-                                                                        where customers_group_id = :customers_group_id
-                                                                      ');
-            $QmultipleCustomers->bindInt(':customers_group_id', $QmultipleGroups->valueInt('customers_group_id'));
-            $QmultipleCustomers->execute();
+              if (!($QmultipleCustomers->fetch())) {
+                $Qdelete = $CLICSHOPPING_Customers->db->prepare('delete
+                                                                from :table_products_groups
+                                                                where customers_group_id = :customers_group_id
+                                                               ');
+                $Qdelete->bindInt(':customers_group_id', $QmultipleGroups->valueInt('customers_group_id'));
 
-            if (!($QmultipleCustomers->fetch())) {
-              $Qdelete = $CLICSHOPPING_Customers->db->prepare('delete
-                                                              from :table_products_groups
-                                                              where customers_group_id = :customers_group_id
-                                                             ');
-              $Qdelete->bindInt(':customers_group_id', $QmultipleGroups->valueInt('customers_group_id'));
+                $Qdelete->execute();
+              }
+            } // end while
 
-              $Qdelete->execute();
-            }
-          } // end while
+            $sql_data_array = ['customers_group_id' => $customers_group_id];
 
-          $sql_data_array = ['customers_group_id' => $customers_group_id];
-
-          $this->app->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id]);
+            $this->app->db->save('customers', $sql_data_array, ['customers_id' => (int)$customers_id]);
+          }
         }
       }
     }

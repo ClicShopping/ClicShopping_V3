@@ -31,6 +31,7 @@
     public $maximum;
     public $signature;
     public $public_title;
+    protected $api_version;
 
     public function __construct()
     {

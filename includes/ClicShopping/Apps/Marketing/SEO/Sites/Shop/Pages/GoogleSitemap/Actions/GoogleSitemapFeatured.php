@@ -41,7 +41,7 @@
         $QproductsFeatured->execute();
 
         while ($QproductsFeatured->fetch()) {
-          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($QproductsFeatured->valueInt('products_id'))));
+          $location = htmlspecialchars(utf8_encode($this->rewriteUrl->getProductNameUrl($QproductsFeatured->valueInt('products_id'))), ENT_QUOTES | ENT_HTML5);
 
           $products_array[$QproductsFeatured->valueInt('products_id')]['loc'] = $location;
           $products_array[$QproductsFeatured->valueInt('products_id')]['lastmod'] = $QproductsFeatured->valueInt('last_modified');

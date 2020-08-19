@@ -92,6 +92,7 @@
       if (isset($_POST['customers_group_id'])) {
         $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
       } else {
+        $customers_group_id = 0;
         $page_error = true;;
       }
 
