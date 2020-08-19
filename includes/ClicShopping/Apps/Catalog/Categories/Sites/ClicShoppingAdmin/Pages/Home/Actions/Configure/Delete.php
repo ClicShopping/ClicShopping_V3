@@ -81,6 +81,4 @@
         $Qdelete->execute();
       }
     }
-
-
   }

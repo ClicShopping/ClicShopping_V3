@@ -63,6 +63,4 @@
         $CLICSHOPPING_Db->delete('administrator_menu', ['app_code' => 'app_configuration_langues']);
       }
     }
-
-
   }

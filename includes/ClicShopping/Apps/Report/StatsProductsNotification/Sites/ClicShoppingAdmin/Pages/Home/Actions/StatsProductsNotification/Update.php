@@ -43,7 +43,5 @@
         $Qupdate->bindInt(':products_id', (int)$products_id);
         $Qupdate->execute();
       }
-
-
-    }
+  }
   }

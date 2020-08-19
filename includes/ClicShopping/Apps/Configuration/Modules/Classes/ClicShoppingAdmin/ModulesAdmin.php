@@ -47,6 +47,4 @@
 
       return $appModuleType;
     }
-
-
   }
