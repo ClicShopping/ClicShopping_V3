@@ -21,7 +21,7 @@
 
     protected $countMyFeedback;
     protected $deleteMyFeedback;
-
+    protected $count;
     /**
      * @return mixed
      */

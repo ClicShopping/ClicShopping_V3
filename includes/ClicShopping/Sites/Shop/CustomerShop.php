@@ -20,6 +20,8 @@
   {
     protected bool $_is_logged_on = false;
     protected array $_data = [];
+    protected array $_data1 = [];
+
     protected $db;
 
     public function __construct()

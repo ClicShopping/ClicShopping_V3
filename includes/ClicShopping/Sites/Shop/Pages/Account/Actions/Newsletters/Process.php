@@ -24,23 +24,15 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
-      if (isset($_POST['newsletter_general']) && is_numeric($_POST['newsletter_general'])) {
-        $newsletter_general = (int)$_POST['newsletter_general'];
-      } else {
-        $newsletter_general = 0;
-      }
-
       $Qnewsletter = $CLICSHOPPING_Db->prepare('select customers_newsletter
-                                               from :table_customers
-                                               where customers_id = :customers_id
+                                                from :table_customers
+                                                where customers_id = :customers_id
                                               ');
       $Qnewsletter->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
       $Qnewsletter->execute();
 
-
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-
-        $newsletter_general = (isset($_POST['newsletter_general']) && ($_POST['newsletter_general'] == 1)) ? 1 : 0;
+        $newsletter_general = isset($_POST['newsletter_general']) && ($_POST['newsletter_general'] == 1) ? 1 : 0;
 
         if ($newsletter_general !== $Qnewsletter->valueInt('customers_newsletter')) {
           $newsletter_general = ($Qnewsletter->valueInt('customers_newsletter') === 1) ? 0 : 1;

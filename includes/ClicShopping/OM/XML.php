@@ -13,6 +13,10 @@
 
   class XML
   {
+    /**
+     * @param $xml
+     * @return string
+     */
     public static function toArray($xml)
     {
       if ($xml instanceof \SimpleXMLElement) {

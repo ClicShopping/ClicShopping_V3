@@ -23,6 +23,7 @@
     private array $_path = [];
     private string $_separator = ' &raquo; ';
     private $rewriteUrl;
+    private array $_pathArray;
 
     /**
      * Resets the breadcrumb navigation path
@@ -85,14 +86,11 @@
       return $data;
     }
 
-    /**
+   /**
      * Returns the breadcrumb navigation path with the entries separated by $separator
-     *
-     * @param string $separator The string value to separate the breadcrumb navigation path entries with
-     *
+     * @param string|null $separator
      * @return string
      */
-
     public function get(string $separator = null): string
     {
       if (is_null($separator)) {
@@ -104,8 +102,6 @@
 
     /**
      * Returns the breadcrumb navigation path array
-     *
-     *
      * @return array
      */
 
@@ -116,7 +112,6 @@
 
     /**
      * Returns the breadcrumb separator
-     *
      *
      * @return string
      */
@@ -130,7 +125,6 @@
      * Sets the breadcrumb string separator
      *
      * @param string $separator The string to separator breadcrumb entries with
-     *
      * @return string
      */
 
@@ -151,11 +145,9 @@
     }
 
     /**
-     * Overloaded current iterator function
-     *
-     *
+     *  Overloaded current iterator function
+     * @return string
      */
-
     public function current(): string
     {
       return current($this->_path);
@@ -163,40 +155,36 @@
 
     /**
      * Overloaded key iterator function
-     *
+     * @return string
      *
      */
-
     public function key(): string
     {
       return key($this->_path);
     }
 
+
     /**
      * Overloaded next iterator function
-     *
-     *
+     * @return string
      */
-
     public function next(): string
     {
       return next($this->_path);
     }
 
     /**
-     * Overloaded valid iterator function
-     *
-     *
+     * Overloaded next iterator function
+     * @return string
      */
-
     public function valid(): string
     {
       return (current($this->_path) !== false);
     }
 
     /**
-     * get manufacturer (brand) inside the categories
-     * @return mixed
+     *  get manufacturer (brand) inside the categories
+     * @return string
      */
     public function getCategoriesManufacturer(): string
     {

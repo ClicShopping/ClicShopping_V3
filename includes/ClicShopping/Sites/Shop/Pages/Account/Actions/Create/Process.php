@@ -204,7 +204,6 @@
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
             $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
           } else {
-            $email_coupon_catalog = '';
             $email_coupon = '';
           }
 

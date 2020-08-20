@@ -17,10 +17,7 @@
 
   class PDF extends FPDF
   {
-
-    private $pdf;
-
-    private static function getGlobalPdf()
+   private static function getGlobalPdf()
     {
       if (isset($_SESSION['pdf'])) {
         return $_SESSION['pdf'];

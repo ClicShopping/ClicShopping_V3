@@ -50,12 +50,10 @@
         exec($cmd, $output, $return); // update dependencies
 
         if ($return === 0) {
-          $result = true;
+          return true;
         } else {
-          $return = false;
+          return false;
         }
-
-        return $result;
       } else {
         return false;
       }

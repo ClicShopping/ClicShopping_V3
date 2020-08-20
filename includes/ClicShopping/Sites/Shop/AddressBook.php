@@ -69,7 +69,6 @@
      * @param string $eoln
      * @return mixed
      */
-
     public static function addressLabel(int $customers_id, ?int $address_id = 1, bool $html = false, string $boln = '', string $eoln = "\n")
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -103,11 +102,12 @@
       return $CLICSHOPPING_Address->addressFormat($format_id, $Qaddress->toArray(), $html, $boln, $eoln);
     }
 
-
     /**
      * Controle autorisation au client de modifier son adresse par defaut
+     * @param string $id
+     * @param bool $check_session
+     * @return string
      */
-
     public static function countCustomersModifyAddressDefault($id = '', bool $check_session = true) :string
     {
 
@@ -129,7 +129,6 @@
       }
 
       if (ACCOUNT_MODIFY_ADRESS_DEFAULT_PRO == 'true' || $CLICSHOPPING_Customer->getCustomersGroupID() == '0') {
-
         $QcustomersModifyAddressDefault = $CLICSHOPPING_Db->prepare('select customers_modify_address_default
                                                                      from :table_customers
                                                                      where customers_id = :customers_id
@@ -137,17 +136,17 @@
         $QcustomersModifyAddressDefault->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
 
         $QcustomersModifyAddressDefault->execute();
-        $customers_modify_address_default = $QcustomersModifyAddressDefault->fetch();
 
+        return $QcustomersModifyAddressDefault->value('customers_modify_address_default');
       }
-
-      return $customers_modify_address_default['customers_modify_address_default'];
     }
 
     /**
-     * Controle autorisation d'ajouter une adresse selon la fiche client
+     *  Controle autorisation d'ajouter une adresse selon la fiche client
+     * @param null $id
+     * @param bool $check_session
+     * @return string|null
      */
-
     public static function countCustomersAddAddress($id = null, bool $check_session = true) :?string
     {
 
@@ -184,11 +183,13 @@
 
     /**
      * Controle autorisation au client B2B de modifier ses informations sur la societe
+     * @param string $id
+     * @param bool $check_session
+     * @return string
+     *
      */
-
     public static function countCustomersModifyCompany($id = '', bool $check_session = true) :string
     {
-
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');
 
@@ -220,12 +221,9 @@
 
     /**
      * Verify the address book entry belongs to the current customer
-     *
-     * @param int $id The ID of the address book entry to verify
-     *
-     * @return boolean
+     * @param int $id
+     * @return bool
      */
-
     public static function checkEntry(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -256,12 +254,9 @@
 
     /**
      * Delete an address book entry
-     *
-     * @param int $id The ID of the address book entry to delete
-     *
-     * @return boolean
+     * @param int $id
+     * @return bool
      */
-
     public static function deleteEntry(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -278,12 +273,11 @@
       return ($Qdelete->rowCount() === 1);
     }
 
-
     /**
-     * count customer address book
-     * @param string $id , $check_session
-     * @param string $addresses ['total'], number of the address
-     *
+     *  count customer address book
+     * @param string $id
+     * @param bool $check_session
+     * @return int
      */
     public static function countCustomerAddressBookEntries($id = '', bool $check_session = true)
     {
@@ -323,11 +317,10 @@
 
     /**
      * Count customer_order
-     * @param string $id The id of the order
-     * @param string $check_session of the session customer
-     *
+     * @param string $id
+     * @param bool $check_session
+     * @return int
      */
-
     public static function countCustomerOrders($id = '', $check_session = true)
     {
 
@@ -371,11 +364,8 @@
 
     /**
      * Returns the address book entries for the current customer
-     *
-     *
-     * @return array
+     * @return mixed
      */
-
     public static function getListing()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -408,15 +398,11 @@
       return $Qaddresses;
     }
 
-
     /**
      * Returns a specific address book entry for the current customer
-     *
-     * @param int $id The ID of the address book entry to return
-     *
-     * @return array
+     * @param int $id
+     * @return mixed
      */
-
     public static function getEntry(int $id)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -467,14 +453,11 @@
       }
     }
 
-
     /**
      * Return the number of address book entries the current customer has
-     *
-     *
-     * @return integer
+     * @param $total_entries
+     * @return int
      */
-
     public static function numberOfEntries($total_entries) :int
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -499,12 +482,9 @@
 
     /**
      * Set the address book entry as the primary address for the current customer
-     *
-     * @param int $id The ID of the address book entry
-     *
-     * @return boolean
+     * @param int $id
+     * @return bool
      */
-
     public static function setPrimaryAddress(int $id)
     {
       $CLICSHOPPING_Db = Registry::get('Db');

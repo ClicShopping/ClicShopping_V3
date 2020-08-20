@@ -89,7 +89,6 @@
             CLICSHOPPING::redirect(null, 'Account&Password');
           } else {
             $error = true;
-
             $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_current_password_not_matching'), 'error');
           }
         }

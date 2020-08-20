@@ -73,6 +73,8 @@
             }
 
             if (isset($CLICSHOPPING_SM) || ($_SESSION['shipping'] == 'free_free')) {
+              $quote = [];
+
               if ($_SESSION['shipping'] == 'free_free') {
                 $quote[0]['methods'][0]['title'] = CLICSHOPPING::getDef('free_shipping_title');
                 $quote[0]['methods'][0]['cost'] = '0';
@@ -83,7 +85,6 @@
               if (isset($quote['error'])) {
                 unset($_SESSION['shipping']);
               } else {
-
                 for ($i = 0, $n = count($quote[0]['methods']); $i < $n; $i++) {
                   if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
                     $_SESSION['shipping'] = ['id' => $_SESSION['shipping'],

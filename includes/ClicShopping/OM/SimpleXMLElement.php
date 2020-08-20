@@ -13,12 +13,19 @@
 
   class SimpleXMLElement extends \SimpleXMLElement
   {
+    /**
+     * @param string $name
+     * @param string $value
+     */
     public function addChildCData(string $name, string $value)
     {
-      $child = $this->addChild($name);
-      $this->addCData($value);
+//      $child = $this->addChild($name);
+      static::addCData($value);
     }
 
+    /**
+     * @param string $value
+     */
     protected function addCData(string $value)
     {
       $node = dom_import_simplexml($this);
