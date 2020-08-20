@@ -28,9 +28,17 @@
     {
       $CLICSHOPPING_Language = Registry::get('Language');
 
-      if (isset($_POST['sort_order'])) $sort_order = HTML::sanitize($_POST['sort_order']);
-      if (isset($_POST['link'])) $link = HTML::sanitize($_POST['link']);
-      if (isset($_POST['image'])) $image = HTML::sanitize($_POST['image']);
+      if (isset($_POST['sort_order'])) {
+        $sort_order = HTML::sanitize($_POST['sort_order']);
+      }
+
+      if (isset($_POST['link'])) {
+        $link = HTML::sanitize($_POST['link']);
+      }
+
+      if (isset($_POST['image'])) {
+        $image = HTML::sanitize($_POST['image']);
+      }
 
       if (isset($_POST['b2b_menu'])) {
         $b2b_menu = HTML::sanitize($_POST['b2b_menu']);
@@ -56,7 +64,8 @@
         'status' => 1
       ];
 
-      $insert_sql_data = ['parent_id' => (int)$current_category_id,
+      $insert_sql_data = [
+        'parent_id' => (int)$current_category_id,
         'app_code' => Null
       ];
 
@@ -69,14 +78,13 @@
       $languages = $CLICSHOPPING_Language->getLanguages();
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-
         $label_array = HTML::sanitize($_POST['label']);
-
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = ['label' => HTML::sanitize($label_array[$language_id])];
 
-        $insert_sql_data = ['id' => $id,
+        $insert_sql_data = [
+          'id' => $id,
           'language_id' => $languages[$i]['id']
         ];
 

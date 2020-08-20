@@ -54,8 +54,13 @@
         $b2b_menu = false;
       }
 
-      if (isset($_POST['access_administrator'])) $access = $_POST['access_administrator'];
-      if (isset($_POST['move_to_category_id'])) $move_to_category_id = $_POST['move_to_category_id'];
+      if (isset($_POST['access_administrator'])) {
+        $access = $_POST['access_administrator'];
+      }
+
+      if (isset($_POST['move_to_category_id'])) {
+        $move_to_category_id = $_POST['move_to_category_id'];
+      }
 
       if (isset($_POST['label'])) {
         $label_array = HTML::sanitize($_POST['label']);
@@ -86,7 +91,6 @@
         $insert_array = ['id' => (int)$id,
           'language_id' => (int)$languages[$i]['id']
         ];
-
 
         $this->app->db->save('administrator_menu_description', $sql_data_array, $insert_array);
       }

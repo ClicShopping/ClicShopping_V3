@@ -53,10 +53,12 @@
             $i = strpos($restore_query, ';') - 1;
             continue;
           }
+
           if ($restore_query[($i + 1)] == "\n") {
             for ($j = ($i + 2); $j < $sql_length; $j++) {
               if (trim($restore_query[$j]) != '') {
                 $next = substr($restore_query, $j, 6);
+
                 if ($next[0] == '#') {
 // find out where the break position is so we can remove this line (#comment line)
                   for ($k = $j; $k < $sql_length; $k++) {
@@ -73,9 +75,11 @@
                 break;
               }
             }
-            if ($next == '') { // get the last insert query
+
+            if (empty($next)) { // get the last insert query
               $next = 'insert';
             }
+
             if ((preg_match('/create/i', $next)) || (preg_match('/insert/i', $next)) || (preg_match('/drop t/i', $next))) {
               $query = substr($restore_query, 0, $i);
 

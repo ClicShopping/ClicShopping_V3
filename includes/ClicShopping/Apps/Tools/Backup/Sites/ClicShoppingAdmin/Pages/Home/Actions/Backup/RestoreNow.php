@@ -75,6 +75,7 @@
             $i = strpos($restore_query, ';') - 1;
             continue;
           }
+          
           if ($restore_query[($i + 1)] == "\n") {
             for ($j = ($i + 2); $j < $sql_length; $j++) {
               if (trim($restore_query[$j]) != '') {
@@ -84,6 +85,7 @@
                   for ($k = $j; $k < $sql_length; $k++) {
                     if ($restore_query[$k] == "\n") break;
                   }
+
                   $query = substr($restore_query, 0, $i + 1);
                   $restore_query = substr($restore_query, $k);
 // join the query before the comment appeared, with the rest of the dump
@@ -95,9 +97,11 @@
                 break;
               }
             }
-            if ($next == '') { // get the last insert query
+
+            if (empty($next)) { // get the last insert query
               $next = 'insert';
             }
+
             if ((preg_match('/create/i', $next)) || (preg_match('/insert/i', $next)) || (preg_match('/drop t/i', $next))) {
               $query = substr($restore_query, 0, $i);
 
