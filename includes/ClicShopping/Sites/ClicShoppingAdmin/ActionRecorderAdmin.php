@@ -18,7 +18,6 @@
 
   class ActionRecorderAdmin extends \ClicShopping\Apps\Tools\ActionsRecorder\Classes\Shop\ActionRecorder
   {
-
     protected $lang;
 
     public function __construct(string $module, string $user_id = null, string $user_name = null)
@@ -29,7 +28,7 @@
 
       $this->_module = $module;
 
-      static::isInstalled();
+      $this->isInstalled();
 
       if (!empty($user_id) && is_numeric($user_id)) {
         $this->_user_id = $user_id;
