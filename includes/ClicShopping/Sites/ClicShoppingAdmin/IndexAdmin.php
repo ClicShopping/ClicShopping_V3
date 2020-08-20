@@ -26,11 +26,12 @@
     Public Static function getSizeReadable(int $size, int $max = null, string $system = 'si', string $retstring = '%01.2f %s'): string
     {
       // Pick units
-      $systems['si']['prefix'] = array('B', 'K', 'MB', 'GB', 'TB', 'PB');
+      $systems = [];
+      $systems['si']['prefix'] = ['B', 'K', 'MB', 'GB', 'TB', 'PB'];
       $systems['si']['size'] = 1000;
-      $systems['bi']['prefix'] = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');
+      $systems['bi']['prefix'] = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
       $systems['bi']['size'] = 1024;
-      $sys = isset($systems[$system]) ? $systems[$system] : $systems['si'];
+      $sys = $systems[$system] ?? $systems['si'];
 
       // Max unit to display
       $depth = count($sys['prefix']) - 1;

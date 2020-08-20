@@ -16,6 +16,12 @@
 
   class Tax extends \ClicShopping\Sites\Shop\Tax
   {
+    /**
+     * @param int $class_id
+     * @param null $country_id
+     * @param null $zone_id
+     * @return mixed
+     */
     public function getTaxRate($class_id, $country_id = null, $zone_id = null)
     {
       if (!isset($country_id) && !isset($zone_id)) {
@@ -26,6 +32,9 @@
       return parent::getTaxRate($class_id, $country_id, $zone_id);
     }
 
+    /**
+     * @return array
+     */
     public static function getClasses(): array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -40,7 +49,13 @@
       return $Qtc->fetchAll();
     }
 
-// Add tax to a products price
+    /**
+     *  Add tax to a products price
+     * @param float $price
+     * @param float|null $tax
+     * @param false $override
+     * @return float
+     */
     public static function addTax($price, $tax, $override = false)
     {
       if (((DISPLAY_PRICE_WITH_TAX == 'true') || ($override === true)) && ($tax > 0)) {
@@ -52,7 +67,6 @@
 
     /**
      * Drop down of the class title
-     *
      *
      * @param string $parameters , $selected
      * @return string $select_string, the drop down f the title class
@@ -88,25 +102,29 @@
     /**
      * return value of taxe
      *
-     *
      * @param string $class_id , class id
      * @return string  value of the taxe
      *
      */
     public function getTaxRateValue(int $class_id): string
     {
-      return self::getTaxRate($class_id, -1, -1);
+      return $this->getTaxRate($class_id, -1, -1);
     }
 
     /**
      * return drop down
-     *
+     * @return array
      */
     public static function taxClassDropDown(): array
     {
       return parent::taxClassDropDown();
     }
 
+    /**
+     * @param float $value
+     * @param string|null $padding
+     * @return string
+     */
     public static function displayTaxRateValue(float $value, string $padding = null): string
     {
       return parent::displayTaxRateValue($value, $padding);

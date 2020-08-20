@@ -15,12 +15,10 @@
 
   /**
    * Directory list file with a drop down for blog
-   *
-   * @param string template_blog
-   * @return string configuration_value., $filename_array,  $filename, hte file name in the directory
-   *
+   * @param $filename
+   * @param string $key
+   * @return string
    */
-
   function clic_cfg_set_template_blog_summary_pull_down($filename, $key = '')
   {
 
@@ -32,7 +30,6 @@
     $template_directory = $CLICSHOPPING_Template->getDirectoryPathModuleShopTemplateHtml($module);
 
     if ($contents = @scandir($template_directory)) {
-      $found = []; //initialize an array for matching files
       $fileTypes = array('php'); // Create an array of file types
       $found = []; // Traverse the folder, and add filename to $found array if type matches
 
@@ -48,9 +45,12 @@
       if ($found) { // Check the $found array is not empty
         natcasesort($found); // Sort in natural, case-insensitive order, and populate menu
         $filename_array = [];
+
         foreach ($found as $filename) {
-          $filename_array[] = array('id' => $filename,
-            'text' => $filename);
+          $filename_array[] = [
+            'id' => $filename,
+            'text' => $filename
+          ];
         }
       }
     }
@@ -63,7 +63,7 @@
 
     $QfileName->execute();
     $fileName_result = $QfileName->fetch();
-    $filename = $fileName_result['configuration_value'];
+    $filename_value = $fileName_result['configuration_value'];
 
-    return HTML::selectMenu($name, $filename_array, $filename);
+    return HTML::selectMenu($name, $filename_array, $filename_value);
   }

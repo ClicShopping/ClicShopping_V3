@@ -22,6 +22,7 @@
     protected function addCData(string $value)
     {
       $node = dom_import_simplexml($this);
+
       if ($node !== false) {
         $no = $node->ownerDocument;
         $node->appendChild($no->createCDATASection($value));

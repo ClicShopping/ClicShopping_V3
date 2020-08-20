@@ -341,11 +341,11 @@
       return $result;
     }
 
-    /*
+    /**
      * get all files inside a multi template directory
-     * @params : $filename ! filename of the template
-     * @params : module, module about the template
-     * $@return = return an array
+     * @param string $filename
+     * @param string $module
+     * @return array
      */
     public function getMultiTemplatePullDown(string $filename, string $module): array
     {
@@ -371,7 +371,8 @@
           $filename_array = [];
 
           foreach ($found as $filename) {
-            $filename_array[] = ['id' => $filename,
+            $filename_array[] = [
+              'id' => $filename,
               'text' => $filename
             ];
           }

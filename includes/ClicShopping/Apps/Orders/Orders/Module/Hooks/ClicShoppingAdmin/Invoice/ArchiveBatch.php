@@ -40,7 +40,6 @@
 
     public function execute()
     {
-
       if (!defined('CLICSHOPPING_APP_ORDERS_OD_STATUS')) {
         return false;
       }
@@ -77,10 +76,8 @@
                 </div>
               </div>
         ';
-      }
 
-      return $output;
+        return $output;
+      }
     }
   }
-
-  ;

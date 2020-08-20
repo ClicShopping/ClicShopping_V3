@@ -56,10 +56,14 @@
       return $Qvalues->value('products_options_values_name');
     }
 
-////
-// Alias function for module configuration keys
-//atributes
-    public static function getModSelectOption(string $select_array, string $key_name, string $key_value): string
+    /**
+     * Alias function for module configuration keys
+     * @param array $select_array
+     * @param string $key_name
+     * @param string $key_value
+     * @return string
+     */
+    public static function getModSelectOption(array $select_array, string $key_name, string $key_value): string
     {
       $string = '';
 

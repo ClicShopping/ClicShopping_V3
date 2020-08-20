@@ -548,10 +548,11 @@
       }
     }
 
-
-    /* Get the language value of the URL when Search engine is activate
+    /**
+     * Get the language value of the URL when Search engine is activate
      * @return $value_language, the value of the language
-    */
+     * @return mixed|null
+     */
     public function getUrlValueLanguage()
     {
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && (SEARCH_ENGINE_FRIENDLY_URLS == 'true' && SEFU::start())) {

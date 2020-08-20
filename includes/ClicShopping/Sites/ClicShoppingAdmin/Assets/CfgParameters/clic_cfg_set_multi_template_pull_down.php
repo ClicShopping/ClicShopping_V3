@@ -14,15 +14,12 @@
 
   /**
    * Directory list file with a drop down for products_favorites
-   *
-   * @param string $filename , $key
-   * @return string $filename_array,  $filename, $name, the file name of directory
-   *
+   * @param $filename
+   * @param string $key
+   * @return string
    */
-
   function clic_cfg_set_multi_template_pull_down($filename, $key = '')
   {
-
     $module = $_GET['set'];
 
     $CLICSHOPPING_Db = Registry::get('Db');
@@ -31,8 +28,6 @@
     $template_directory = $CLICSHOPPING_Template->getDirectoryPathModuleShopTemplateHtml($module);
 
     if ($contents = @scandir($template_directory)) {
-
-      $found = []; //initialize an array for matching files
       $fileTypes = ['php']; // Create an array of file types
       $found = []; // Traverse the folder, and add filename to $found array if type matches
 
@@ -48,8 +43,10 @@
       if ($found) { // Check the $found array is not empty
         natcasesort($found); // Sort in natural, case-insensitive order, and populate menu
         $filename_array = [];
+
         foreach ($found as $filename) {
-          $filename_array[] = ['id' => $filename,
+          $filename_array[] = [
+            'id' => $filename,
             'text' => $filename
           ];
         }
@@ -57,14 +54,14 @@
     }
 
     $QfileName = $CLICSHOPPING_Db->prepare('select configuration_value
-                                      from :table_configuration
-                                      where configuration_key = :configuration_key
-                                     ');
+                                            from :table_configuration
+                                            where configuration_key = :configuration_key
+                                           ');
     $QfileName->bindValue(':configuration_key', $key);
 
     $QfileName->execute();
 
-    $filename = $QfileName->value('configuration_value');
+    $filename_value = $QfileName->value('configuration_value');
 
-    return HTML::selectMenu($name, $filename_array, $filename);
+    return HTML::selectMenu($name, $filename_array, $filename_value);
   }

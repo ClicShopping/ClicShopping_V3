@@ -38,12 +38,14 @@
             $this->app->redirect('Orders');
           }
 
-          $between_orders_id = 'orders_id between ' . $orders_id_start . ' and ' . $orders_id_end;
+          $between_orders_id = ' where orders_id between ' . $orders_id_start . ' and ' . $orders_id_end;
+        } else {
+          $between_orders_id = '';
         }
 
         $QordersInfo = $this->app->db->prepare('select orders_id
                                                 from :table_orders
-                                                where ' . $between_orders_id . '
+                                                 ' . $between_orders_id . '
                                                ');
 
         $QordersInfo->execute();
