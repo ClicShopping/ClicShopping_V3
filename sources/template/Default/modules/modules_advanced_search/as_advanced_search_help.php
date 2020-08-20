@@ -20,6 +20,7 @@
     public $sort_order;
     public $enabled = false;
 
+
     public function __construct() {
       $this->code = get_class($this);
       $this->group = basename(__DIR__);

@@ -24,6 +24,7 @@
     public $attempts = 3;
     public $identifier;
     public $enabled = true;
+    public $group;
 
     public function __construct()
     {
