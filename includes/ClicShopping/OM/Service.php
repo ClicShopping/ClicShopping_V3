@@ -19,6 +19,8 @@
     protected array $_started_services = [];
     protected array $_call_before_page_content = [];
     protected array $_call_after_page_content = [];
+    protected string $directory;
+    protected string $directoryAdmin;
 
     public function __construct()
     {

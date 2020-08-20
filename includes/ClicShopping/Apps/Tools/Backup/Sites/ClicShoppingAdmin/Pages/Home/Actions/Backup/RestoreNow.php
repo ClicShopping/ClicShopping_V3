@@ -75,7 +75,7 @@
             $i = strpos($restore_query, ';') - 1;
             continue;
           }
-          
+
           if ($restore_query[($i + 1)] == "\n") {
             for ($j = ($i + 2); $j < $sql_length; $j++) {
               if (trim($restore_query[$j]) != '') {

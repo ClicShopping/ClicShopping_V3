@@ -22,7 +22,7 @@
      */
 
     protected static string $driver;
-    private static string $default_driver = 'File';
+    protected static string $default_driver = 'File';
 
     /**
      * @param string|null $name
