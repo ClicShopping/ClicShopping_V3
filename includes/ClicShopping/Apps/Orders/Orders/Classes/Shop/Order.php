@@ -39,6 +39,8 @@
     protected $db;
     protected $lang;
     protected $mail;
+    protected $_id;
+    protected $insertID;
 
     public function __construct(?int $order_id = null)
     {
@@ -63,6 +65,9 @@
       }
     }
 
+    /**
+     * @param $order_id
+     */
     public function query($order_id)
     {
 
@@ -1335,9 +1340,10 @@
           $email_text_subject = html_entity_decode($email_text_subject);
 
           $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
-
-          foreach ($text as $key => $email) {
-            $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+          if (is_array($text)) {
+            foreach ($text as $key => $email) {
+              $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            }
           }
         }
       }

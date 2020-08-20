@@ -31,6 +31,8 @@
     protected $column_list;
     protected $db;
     protected bool $checkManufacturer = false;
+    protected bool $_recursive = false;
+    protected $listing;
 
     public function __construct()
     {

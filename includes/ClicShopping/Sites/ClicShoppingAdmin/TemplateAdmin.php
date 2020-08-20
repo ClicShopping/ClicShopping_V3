@@ -25,6 +25,9 @@
     protected string $directoryAdminIncludes = 'includes/';
     protected string $directoryAdminModules = 'modules/';
     protected string $directoryAdminSources = 'sources/';
+    public $default;
+    public $key;
+
     /**********************************************
      * Path
      ************************************************/
@@ -84,7 +87,7 @@
       if (file_exists(parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/')) {
         $template_directory = parent::getPathRoot() . parent::getDynamicTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/';
       } else {
-        $template_directory = parent::getPathRoot() . static::getDefaultTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/';
+        $template_directory = parent::getPathRoot() . $this->getDefaultTemplateDirectory() . '/'. $this->directoryAdminModules . $name . '/template_html/';
       }
 
       return $template_directory;

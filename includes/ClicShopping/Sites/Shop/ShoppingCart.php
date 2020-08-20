@@ -25,7 +25,7 @@
     protected float $weight;
     protected string $content_type;
     protected int $min_quantity;
-    protected int $quantity;
+    protected $quantity;
     protected string $productsId;
     protected bool $products_in_stock = true;
 
@@ -36,6 +36,7 @@
     protected $prod;
     protected $tax;
     protected $productsAttributes;
+    protected $order_totals;
 
     public function __construct()
     {
@@ -65,7 +66,6 @@
         ];
 
       }
-
 
       $this->contents =& $_SESSION['ClicShoppingCart']['contents'];
       $this->sub_total =& $_SESSION['ClicShoppingCart']['sub_total_cost'];
@@ -1162,10 +1162,10 @@
                                     from :table_products 
                                     where products_id = :products_id
                                     ');
-      $Qstock->bindInt(':products_id', $this->_contents[$item_id]['id']);
+      $Qstock->bindInt(':products_id', $this->contents[$item_id]['id']);
       $Qstock->execute();
 
-      if ( ($Qstock->valueInt('products_quantity') - $this->_contents[$item_id]['quantity']) >= 0 ) {
+      if ( ($Qstock->valueInt('products_quantity') - $this->contents[$item_id]['quantity']) >= 0 ) {
         return true;
       } elseif ( $this->products_in_stock === true ) {
         $this->products_in_stock = false;
@@ -1286,7 +1286,7 @@
         $qty = (int)MAX_QTY_IN_CART;
       }
 
-      if (($this->getProductsMinOrderQtyShoppingCart($products_id) > 1) & ((int)$qty < $this->getProductsMinOrderQtyShoppingCart($products_id))) {
+      if (($this->getProductsMinOrderQtyShoppingCart($products_id) > 1) && ((int)$qty < $this->getProductsMinOrderQtyShoppingCart($products_id))) {
         $qty = $this->getProductsMinOrderQtyShoppingCart($products_id);
       }
 

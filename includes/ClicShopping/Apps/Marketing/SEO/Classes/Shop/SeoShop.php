@@ -38,6 +38,14 @@
     protected string $seoDefaultSeoFeaturedTitle;
     protected string $seoDefaultFeaturedDescription;
     protected string $seoDefaultFeaturedKeywords;
+    protected string $keywordsAdvancedPage;
+    protected string $descriptionAdvancedPage;
+    protected string $titleAdvancedPage;
+    protected string $seoDefaultFavoritesDescription;
+    protected string $seoDefaultSeoFavoritesTitle;
+    protected string $seoDefaultReviewssKeywords;
+    protected string $seoDefaultSpeciasDescription;
+    protected string $seoDefaultSpecialsTitle;
 
     public function __construct()
     {

@@ -15,6 +15,7 @@
   class securityCheckExtended_admin_http_authentication
   {
     public $type = 'warning';
+    public $itle;
 
     public function __construct()
     {
