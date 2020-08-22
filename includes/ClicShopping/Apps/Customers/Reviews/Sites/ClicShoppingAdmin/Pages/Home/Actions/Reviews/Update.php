@@ -22,26 +22,44 @@
 
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-      if (isset($_GET['id'])) $id = $_GET['id'];
-      if (isset($_GET['rID'])) $reviews_id = HTML::sanitize($_GET['rID']);
-      if (isset($_POST['reviews_rating'])) $reviews_rating = HTML::sanitize($_POST['reviews_rating']);
-      if (isset($_POST['reviews_text'])) $reviews_text = HTML::sanitize($_POST['reviews_text']);
-      if (isset($_POST['status'])) $reviews_status = HTML::sanitize($_POST['status']);
-      if (isset($_POST['languages_id'])) $languages_id = HTML::sanitize($_POST['languages_id']);
+      if (isset($_GET['rID'])) {
+        $reviews_id = HTML::sanitize($_GET['rID']);
 
-      $sql_array = ['reviews_rating' => (int)$reviews_rating,
-        'status' => (int)$reviews_status,
-        'last_modified' => 'now()'
-      ];
+        if (isset($_GET['id'])) {
+          $id = $_GET['id'];
+        }
 
-      $CLICSHOPPING_Reviews->db->save('reviews', $sql_array, ['reviews_id' => (int)$reviews_id]);
+        if (isset($_POST['reviews_rating'])) {
+          $reviews_rating = HTML::sanitize($_POST['reviews_rating']);
+        }
 
-      $sql_array = ['reviews_text' => $reviews_text,
-        'languages_id' => (int)$languages_id,
-      ];
+        if (isset($_POST['reviews_text'])) {
+          $reviews_text = HTML::sanitize($_POST['reviews_text']);
+        }
 
-      $CLICSHOPPING_Reviews->db->save('reviews_description', $sql_array, ['reviews_id' => (int)$reviews_id]);
+        if (isset($_POST['status'])) {
+          $reviews_status = HTML::sanitize($_POST['status']);
+        }
 
-      $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page . '&rID=' . $id);
+        if (isset($_POST['languages_id'])) {
+          $languages_id = HTML::sanitize($_POST['languages_id']);
+        }
+
+        $sql_array = [
+          'reviews_rating' => (int)$reviews_rating,
+          'status' => (int)$reviews_status,
+          'last_modified' => 'now()'
+        ];
+
+        $CLICSHOPPING_Reviews->db->save('reviews', $sql_array, ['reviews_id' => (int)$reviews_id]);
+
+        $sql_array = ['reviews_text' => $reviews_text,
+          'languages_id' => (int)$languages_id,
+        ];
+
+        $CLICSHOPPING_Reviews->db->save('reviews_description', $sql_array, ['reviews_id' => (int)$reviews_id]);
+
+        $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page . '&rID=' . $id);
+      }
     }
   }
