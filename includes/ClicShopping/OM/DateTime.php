@@ -350,8 +350,6 @@
      */
     public static function validate(string $date_to_check, string $format_string, array &$date_array): bool
     {
-      $separator_idx = -1;
-
       $separators = ['-', ' ', '/', '.'];
       $month_abbr = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
       $no_of_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

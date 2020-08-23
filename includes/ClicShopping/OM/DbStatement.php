@@ -31,6 +31,8 @@
     protected bool $cache_read = false;
     protected bool $cache_empty_results = false;
     protected $query_call;
+    protected $page_set_total_rows;
+    protected $result;
 
     /**
      * @param mixed $parameter
@@ -358,12 +360,12 @@
     /**
      * @param $type
      */
-    public function setQueryCall($type)
+    public function setQueryCall(string $type)
     {
       $this->query_call = $type;
     }
 
-    public function getQueryCall()
+    public function getQueryCall() :string
     {
       return $this->query_call;
     }

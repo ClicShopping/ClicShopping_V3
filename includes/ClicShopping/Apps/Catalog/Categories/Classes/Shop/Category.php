@@ -190,13 +190,15 @@
         } else {
           $cPath_new = '';
 
-          $Qlast = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$cPath_array[(count($cPath_array) - 1)],
-              'status' => 1
+          $Qlast = $this->db->get('categories', 'parent_id', [
+            'categories_id' => (int)$cPath_array[(count($cPath_array) - 1)],
+            'status' => 1
             ]
           );
 
-          $Qcurrent = $this->db->get('categories', 'parent_id', ['categories_id' => (int)$current_category_id,
-              'status' => 1
+          $Qcurrent = $this->db->get('categories', 'parent_id', [
+            'categories_id' => (int)$current_category_id,
+            'status' => 1
             ]
           );
 
@@ -387,17 +389,17 @@
 
       $Qcategories = $this->db->prepare('select c.categories_id,
                                                 cd.categories_name
-                                        from :table_categories c,
-                                             :table_categories_description cd
-                                        where parent_id = :parent_id
-                                        and c.categories_id = cd.categories_id
-                                        and cd.language_id = :language_id
-                                        and c.virtual_categories = 0
-                                        and c.status = 1
-                                        order by sort_order,
+                                          from :table_categories c,
+                                               :table_categories_description cd
+                                          where parent_id = :parent_id
+                                          and c.categories_id = cd.categories_id
+                                          and cd.language_id = :language_id
+                                          and c.virtual_categories = 0
+                                          and c.status = 1
+                                          order by sort_order,
                                                  cd.categories_name
-                                       ');
-      $Qcategories->bindInt(':parent_id', (int)$parent_id);
+                                        ');
+      $Qcategories->bindInt(':parent_id', $parent_id);
       $Qcategories->bindInt(':language_id', $this->lang->getId());
       $Qcategories->execute();
 
@@ -424,11 +426,10 @@
      */
     public function getParentCategories(&$categories, $categories_id)
     {
-
       $Qparent = $this->db->prepare('select parent_id
-                                    from :table_categories
-                                    where categories_id = :categories_id
-                                    and status = 1
+                                      from :table_categories
+                                      where categories_id = :categories_id
+                                      and status = 1
                                     ');
 
       $Qparent->bindInt(':categories_id', $categories_id);
@@ -457,13 +458,13 @@
       $cPath = '';
 
       $Qcategory = $this->db->prepare('select p2c.categories_id
-                                      from :table_products p,
-                                           :table_products_to_categories p2c
-                                      where p.products_id = :products_id
-                                      and p.products_status = 1
-                                      and p.products_id = p2c.products_id
-                                      and p.products_archive = 0
-                                      limit 1
+                                        from :table_products p,
+                                             :table_products_to_categories p2c
+                                        where p.products_id = :products_id
+                                        and p.products_status = 1
+                                        and p.products_id = p2c.products_id
+                                        and p.products_archive = 0
+                                        limit 1
                                       ');
       $Qcategory->bindInt(':products_id', $products_id);
 

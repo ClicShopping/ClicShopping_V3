@@ -27,7 +27,6 @@
 
     public static function output(?string $string, array $translate = null): string
     {
-
       if (is_null($string) || empty($string)) {
         return '';
       }

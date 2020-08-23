@@ -154,7 +154,6 @@
         ]
       );
 
-      $category_tree_array = [];
 
       while ($Qcategories->fetch()) {
         if ($exclude != $Qcategories->valueInt('id'))
@@ -228,8 +227,6 @@
         ]
       );
 
-      $categories_array = [];
-
       $categories_array[$index][] = [
         'id' => (int)$id,
         'text' => $Qcategory->value('label')
@@ -243,7 +240,10 @@
     }
 
     /**
+     * remove Administatrator Menu Category
+     *
      * @param int $id
+     *
      */
     public static function getRemoveAdministratorMenuCategory(int $id)
     {

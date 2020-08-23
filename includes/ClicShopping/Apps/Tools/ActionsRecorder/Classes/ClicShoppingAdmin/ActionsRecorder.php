@@ -126,7 +126,9 @@
       }
 
       if ((count($category_tree_array) < 1) && ($exclude != '0')) {
-        $category_tree_array[] = ['id' => '0', 'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
+        $category_tree_array = [
+          'id' => '0',
+          'text' => $CLICSHOPPING_ActionsRecorder->getDef('text_top')];
       }
 
       if ($include_itself) {
@@ -136,7 +138,7 @@
           ]
         );
 
-        $category_tree_array[] = [
+        $category_tree_array = [
           'id' => $parent_id,
           'text' => $Qcategory->value('label')
         ];
@@ -163,7 +165,9 @@
 
       while ($Qcategories->fetch()) {
         if ($exclude != $Qcategories->valueInt('id')) {
-          $category_tree_array[] = ['id' => $Qcategories->valueInt('id'), 'text' => $spacing . $Qcategories->value('label')];
+          $category_tree_array = [
+            'id' => $Qcategories->valueInt('id'),
+            'text' => $spacing . $Qcategories->value('label')];
         }
 
         $category_tree_array = static::getLabelTree($Qcategories->valueInt('id'), $spacing . '&nbsp;&nbsp;&nbsp;', $exclude, $category_tree_array);
