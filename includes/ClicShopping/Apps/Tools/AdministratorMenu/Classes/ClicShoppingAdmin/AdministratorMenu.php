@@ -154,9 +154,15 @@
         ]
       );
 
+      $category_tree_array = [];
 
       while ($Qcategories->fetch()) {
-        if ($exclude != $Qcategories->valueInt('id')) $category_tree_array[] = ['id' => $Qcategories->valueInt('id'), 'text' => $spacing . $Qcategories->value('label')];
+        if ($exclude != $Qcategories->valueInt('id'))
+          $category_tree_array[] = [
+            'id' => $Qcategories->valueInt('id'),
+            'text' => $spacing . $Qcategories->value('label')
+          ];
+
         $category_tree_array = static::getLabelTree($Qcategories->valueInt('id'), $spacing . '&nbsp;&nbsp;&nbsp;', $exclude, $category_tree_array);
       }
 
@@ -221,6 +227,8 @@
           'cd.language_id' => (int)$CLICSHOPPING_Language->getId()
         ]
       );
+
+      $categories_array = [];
 
       $categories_array[$index][] = [
         'id' => (int)$id,

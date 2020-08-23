@@ -30,6 +30,14 @@
       $this->site = basename($site);
     }
 
+    /**
+     * @param string $group
+     * @param string $hook
+     * @param array|null $parameters
+     * @param string|null $action
+     * @return array
+     * @throws \ReflectionException
+     */
     public function call(string $group, string $hook, ?array $parameters = null, ?string $action = null): array
     {
       if (!isset($action)) {
@@ -77,6 +85,9 @@
       return $result;
     }
 
+    /**
+     * @return string
+     */
     public function output(): string
     {
       return implode('', call_user_func_array([$this, 'call'], func_get_args()));
@@ -87,6 +98,11 @@
       $this->watches[$this->site][$group][$hook][$action][] = $code;
     }
 
+    /**
+     * @param string $group
+     * @param string $hook
+     * @param string $action
+     */
     protected function register(string $group, string $hook, string $action)
     {
       $group = basename($group);
