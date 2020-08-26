@@ -17,7 +17,6 @@
 
   use ClicShopping\Apps\OrderTotal\TotalShipping\TotalShipping as TotalShippingApp;
 
-
   class SH implements \ClicShopping\OM\Modules\OrderTotalInterface
   {
     public $code;

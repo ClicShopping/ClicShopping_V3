@@ -20,13 +20,15 @@
 
   class ComposerVulnerabilities extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = 0;
+    public bool $enabled;
 
     protected function init()
     {
-
       if (!Registry::exists('SecurityCheck')) {
         Registry::set('SecurityCheck', new SecurityCheckApp());
       }

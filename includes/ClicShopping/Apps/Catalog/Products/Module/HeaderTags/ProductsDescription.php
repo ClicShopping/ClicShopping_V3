@@ -21,6 +21,10 @@
     protected $lang;
     protected $app;
     public $group;
+    public $title;
+    public $description;
+    public $sort_order = 0;
+    public $enabled;
 
     protected function init()
     {

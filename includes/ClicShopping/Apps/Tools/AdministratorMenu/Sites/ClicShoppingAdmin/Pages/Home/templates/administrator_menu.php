@@ -22,8 +22,6 @@
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_CategoriesAdmin = Registry::get('CategoriesAdmin');
-  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
-  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $Qaccess = $CLICSHOPPING_Db->prepare('select access,
                                               id

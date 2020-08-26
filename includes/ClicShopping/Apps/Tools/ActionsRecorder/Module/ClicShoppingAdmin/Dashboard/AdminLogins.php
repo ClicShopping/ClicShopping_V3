@@ -20,13 +20,15 @@
 
   class AdminLogins extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = 0;
+    public bool $enabled;
 
     protected function init()
     {
-
       if (!Registry::exists('ActionsRecorder')) {
         Registry::set('ActionsRecorder', new ActionsRecorderApp());
       }

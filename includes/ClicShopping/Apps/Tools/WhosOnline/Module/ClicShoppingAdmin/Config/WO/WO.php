@@ -21,6 +21,10 @@
 
     public $is_uninstallable = true;
     public $sort_order = 400;
+    public $title;
+    public $short_title;
+    public $introduction;
+    public $is_installed;
 
     protected function init()
     {

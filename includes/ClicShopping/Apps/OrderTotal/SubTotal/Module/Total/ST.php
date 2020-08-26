@@ -17,7 +17,6 @@
 
   use ClicShopping\Apps\OrderTotal\SubTotal\SubTotal as SubTotalApp;
 
-
   class ST implements \ClicShopping\OM\Modules\OrderTotalInterface
   {
     public $code;

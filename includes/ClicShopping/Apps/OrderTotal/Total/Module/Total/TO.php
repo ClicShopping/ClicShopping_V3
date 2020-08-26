@@ -17,7 +17,6 @@
 
   use ClicShopping\Apps\OrderTotal\Total\Total as TotalApp;
 
-
   class TO implements \ClicShopping\OM\Modules\OrderTotalInterface
   {
     public $code;

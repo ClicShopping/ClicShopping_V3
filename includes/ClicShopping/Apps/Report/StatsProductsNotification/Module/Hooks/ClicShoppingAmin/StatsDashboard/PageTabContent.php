@@ -43,10 +43,8 @@
       return $customers_total_notification;
     }
 
-
     public function display()
     {
-
       if (!defined('CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS') || CLICSHOPPING_APP_STATS_PRODUCTS_NOTIFICATION_PN_STATUS == 'False') {
         return false;
       }
