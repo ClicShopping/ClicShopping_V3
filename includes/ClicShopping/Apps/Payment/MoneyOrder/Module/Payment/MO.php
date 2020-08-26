@@ -26,9 +26,10 @@
     public $enabled;
     public $app;
     public $title_selection;
-    public $group;
     public $signature;
     public $public_title;
+    public $sort_order = 0;
+    protected $api_version;
 
     public function __construct()
     {

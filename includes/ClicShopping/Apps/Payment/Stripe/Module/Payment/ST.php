@@ -28,11 +28,11 @@
     public $description;
     public $enabled;
     public $app;
-    public $sort_order;
     protected $currency;
-    public $group;
     public $signature;
     public $public_title;
+    public $sort_order = 0;
+    protected $api_version;
 
     protected $intent;
     protected $private_key;

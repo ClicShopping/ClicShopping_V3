@@ -24,11 +24,11 @@
     public $description;
     public $enabled;
     public $app;
-    public $group;
     protected $signature;
     protected $api_version;
     public $public_title;
     public $order_status;
+    public $sort_order = 0;
 
     public function __construct()
     {
