@@ -243,8 +243,6 @@
                 echo '&nbsp;';
                 echo '<a href="' . $CLICSHOPPING_BannerManager->link('BannerManager&CopyTo&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_BannerManager->getDef('icon_copy_to')) . '</a>';
                 echo '&nbsp;';
-                echo '<a data-banner-id="' . $id . '" data-toggle="modal" data-target="#statsModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/statistics.gif', $CLICSHOPPING_BannerManager->getDef('icon_statistics')) . '</a>';
-                echo '&nbsp;';
                 echo '&nbsp;';
                 echo '<a href="' . $CLICSHOPPING_BannerManager->link('Delete&page=' . $page . '&bID=' . $Qbanner->valueInt('banners_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_BannerManager->getDef('icon_delete')) . '</a>';
                 echo '&nbsp;';
