@@ -30,6 +30,7 @@
     public $public_title;
     public $sort_order = 0;
     protected $api_version;
+    public $group;
 
     public function __construct()
     {

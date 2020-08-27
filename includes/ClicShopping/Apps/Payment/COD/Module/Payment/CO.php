@@ -29,6 +29,7 @@
     public $public_title;
     public $order_status;
     public $sort_order = 0;
+    public $group;
 
     public function __construct()
     {

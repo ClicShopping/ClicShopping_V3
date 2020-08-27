@@ -27,6 +27,7 @@
     public $is_uninstallable = false;
     public $is_migratable = false;
     public $sort_order = 0;
+    public $group;
 
     abstract protected function init();
 
