@@ -34,7 +34,7 @@
 
       $exclude = ['.', '..', '_htaccess', '.htaccess'];
 
-      if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
+      if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
         $files = array_diff(scandir($this->directoryAdmin), $exclude);
       } else {
         $files = array_diff(scandir($this->directory), $exclude);
@@ -57,7 +57,7 @@
         stopped last to make sure all content in the buffer is compressed and sent
         to the client
       */
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         if ($this->isStarted('output_compression')) {
           $key = array_search('output_compression', $this->_started_services);
           unset($this->_started_services[$key]);
@@ -73,7 +73,7 @@
 
     public function startService(string $service)
     {
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         if (class_exists('ClicShopping\\Service\\Shop\\' . $service)) {
           if (call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'start'))) {
             $this->_started_services[] = $service;
@@ -94,7 +94,7 @@
 
     public function stopService($service)
     {
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         if ($this->isStarted($service)) {
           call_user_func(array('ClicShopping\\Service\\Shop\\' . $service, 'stop'));
         }

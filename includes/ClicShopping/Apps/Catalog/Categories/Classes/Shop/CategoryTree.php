@@ -79,7 +79,7 @@
         $this->_data = $_category_tree_data;
       } else {
 
-        if (CLICSHOPPING::getSite() == 'Shop') {
+        if (CLICSHOPPING::getSite() === 'Shop') {
           $Qcategories = $this->db->prepare('select c.categories_id,
                                                      c.parent_id,
                                                      c.categories_image,

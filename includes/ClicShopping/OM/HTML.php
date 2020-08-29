@@ -135,7 +135,7 @@
         return false;
       }
 
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         $CLICSHOPPING_Template = Registry::get('Template');
 
         if ((empty($src) || is_null($src) || static::getUrlFileExists($src) === false) && IMAGE_REQUIRED == 'true') {
@@ -153,7 +153,7 @@
         }
       }
 
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         $image = '<img data-src="' . static::output(CLICSHOPPING::getConfig('http_server') . CLICSHOPPING::getConfig('http_path', 'Shop') . $src) . '" alt="' . static::output($alt) . '"';
       } else {
         $image = '<img src="' . static::output($src) . '" alt="' . static::output($alt) . '"';
@@ -173,7 +173,7 @@
 
       $class = [];
 
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         $class[] = 'lozad media-object';
       } else {
         $class[] = 'media-object';

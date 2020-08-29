@@ -36,7 +36,7 @@
     {
       $this->db = Registry::get('Db');
 
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         $Qlanguages = $this->db->prepare('select languages_id,
                                                   name,
                                                   code,
@@ -266,7 +266,7 @@
         $height = 24;
       }
 
-      if (CLICSHOPPING::getSite() == 'Shop') {
+      if (CLICSHOPPING::getSite() === 'Shop') {
         $image = HTML::image('sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', $this->get('name', $language_code), $width, $height);
       } else {
         $image = HTML::image('../sources/third_party/flag-icon-css/flags/4x3/' . $this->get('image', $language_code) . '.svg', $this->get('name', $language_code), $width, $height);

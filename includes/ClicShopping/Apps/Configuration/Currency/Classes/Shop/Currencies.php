@@ -77,11 +77,11 @@
      */
     public function format(float $number, $calculate_currency_value = true, string $currency_type = '', $currency_value = null) :string
     {
-      if (empty($currency_type) && CLICSHOPPING::getSite() == 'Shop') {
+      if (empty($currency_type) && CLICSHOPPING::getSite() === 'Shop') {
         $currency_type = $_SESSION['currency'];
       }
 
-      if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
+      if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
         $currency_type = DEFAULT_CURRENCY;
       }
 

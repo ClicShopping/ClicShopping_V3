@@ -40,7 +40,7 @@
       $this->lang = Registry::get('Language');
       $this->group = 'header_tags'; // could be header_tags or footer_scripts
 
-      if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
+      if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
         $this->app->loadDefinitions('Module/HeaderTags/manufacturers');
 
         $this->title = $this->app->getDef('module_header_tags_manufacturers_title');

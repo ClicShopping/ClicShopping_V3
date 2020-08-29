@@ -69,7 +69,7 @@
           $replace['$state'] = static::getZoneName($address['country_id'], $address['zone_id'], $replace['$state']);
         }
       } elseif (isset($address['country']) && !empty($address['country'])) {
-        if (CLICSHOPPING::getSite() == 'ClicShoppingAdmin') {
+        if (CLICSHOPPING::getSite() === 'ClicShoppingAdmin') {
           $replace['$country'] = HTML::outputProtected($address['country']);
         } else {
           $replace['$country'] = HTML::outputProtected($address['country']['title']); // bug osc à tester

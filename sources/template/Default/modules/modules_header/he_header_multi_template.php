@@ -205,10 +205,6 @@
         ]
       );
 
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-        ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-      );
-
     }
 
     public function remove() {
