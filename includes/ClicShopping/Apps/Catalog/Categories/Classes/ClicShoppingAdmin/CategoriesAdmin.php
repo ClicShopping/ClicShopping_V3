@@ -99,9 +99,7 @@
     }
 
     /**
-     * Return the breadcrumb path of the assigned category
-     *
-     *
+     * @param int|null $id
      * @return array
      */
     public function getPathArray(int $id = null): array

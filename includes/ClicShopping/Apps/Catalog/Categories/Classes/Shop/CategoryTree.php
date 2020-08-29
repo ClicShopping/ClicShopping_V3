@@ -148,9 +148,6 @@
       return ($Qcategories->valueInt('count'));
     }
 
-    /**
-     *  reset
-     */
     public function reset()
     {
       $this->root_category_id = 0;

@@ -25,10 +25,10 @@
     protected $app;
     protected $template;
     public $group;
-    public $title;
-    public $description;
-    public $sort_order = 0;
-    public $enabled;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = 0;
+    public bool $enabled = false;
 
     protected function init()
     {
