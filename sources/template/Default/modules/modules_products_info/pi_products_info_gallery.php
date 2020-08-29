@@ -16,10 +16,10 @@
   class pi_products_info_gallery {
     public $code;
     public $group;
-    public $title;
-    public $description;
-    public $sort_order;
-    public $enabled = false;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = 0;
+    public bool $enabled = false;
     protected $lang;
 
     public function __construct() {

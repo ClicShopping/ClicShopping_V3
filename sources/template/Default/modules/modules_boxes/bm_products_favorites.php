@@ -16,10 +16,10 @@
   class bm_products_favorites {
     public $code;
     public $group;
-    public $title;
-    public $description;
-    public $sort_order;
-    public $enabled = false;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = 0;
+    public bool $enabled = false;
     public $pages;
 
     public function  __construct() {

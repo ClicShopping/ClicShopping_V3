@@ -16,10 +16,10 @@
   class ml_login_password_reset {
     public $code;
     public $group;
-    public $title;
-    public $description;
-    public $sort_order;
-    public $enabled = false;
+    public string $title;
+    public string $description;
+    public ?int $sort_order = 0;
+    public bool $enabled = false;
     protected $email_address;
     protected $password_key;
 
