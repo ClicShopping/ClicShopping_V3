@@ -135,6 +135,7 @@
                 }
               }
             }
+
             CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
         }

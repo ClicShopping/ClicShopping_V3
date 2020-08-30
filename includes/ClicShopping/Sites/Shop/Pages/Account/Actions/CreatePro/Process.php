@@ -503,19 +503,14 @@
 // build the message content
           $name = $firstname . ' ' . $lastname;
 
-          if (defined('COUPON_CUSTOMER_B2B') && !empty(COUPON_CUSTOMER_B2B)) {
-            $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
-          }
-
           if (MEMBER == 'false') {
             $template_email_welcome_catalog = TemplateEmail::getTemplateEmailWelcomeCatalog();
           } else {
             $template_email_welcome_catalog = CLICSHOPPING::getDef('email_welcome', ['store_name' => STORE_NAME, 'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS]);
           }
 
-          if (defined('COUPON_CUSTOMER') && !empty(COUPON_CUSTOMER)) {
-            $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
-            $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
+          if (defined('COUPON_CUSTOMER_B2B') && !empty(COUPON_CUSTOMER_B2B)) {
+            $email_coupon = CLICSHOPPING::getDef('email_text_coupon') . ' ' . COUPON_CUSTOMER_B2B;
           } else {
             $email_coupon = '';
           }
