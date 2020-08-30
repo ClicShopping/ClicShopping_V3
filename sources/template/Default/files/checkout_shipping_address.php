@@ -24,6 +24,8 @@
     echo $CLICSHOPPING_MessageStack->get('main');
   }
 
+  $process = false;
+
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
   echo HTML::form('checkout_shipping_address', CLICSHOPPING::link(null, 'Checkout&ShippingAddress&Process'), 'post', 'role="form" id="usrForm"', ['tokenize' => true, 'action' => 'process']);

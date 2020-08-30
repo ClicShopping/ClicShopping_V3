@@ -193,7 +193,7 @@
             $Qupdate->execute();
 
             $body_subject = CLICSHOPPING::getDef('email_password_reminder_subject', ['store_name' => STORE_NAME]);
-            $email_body .= CLICSHOPPING::getDef('email_password_reminder_body', ['store_name' => STORE_NAME, 'remote_address' => $_SERVER['REMOTE_ADDR'], 'new_password' => $new_password]) . "\n";
+            $email_body = CLICSHOPPING::getDef('email_password_reminder_body', ['store_name' => STORE_NAME, 'remote_address' => $_SERVER['REMOTE_ADDR'], 'new_password' => $new_password]) . "\n";
             $email_body .= TemplateEmailAdmin::getTemplateEmailSignature() . "\n";
             $email_body .= TemplateEmailAdmin::getTemplateEmailTextFooter();
 
@@ -408,7 +408,20 @@
       <path data-country-code="ZW" fill="#eeeeee" d="M498.91, 341.09l-1.11, -0.22l-0.92, 0.28l-2.09, -0.44l-1.5, -1.11l-1.89, -0.43l-0.62, -1.4l-0.01, -0.84l-0.3, -0.38l-0.97, -0.25l-2.71, -2.74l-1.92, -3.32l3.83, 0.45l3.73, -3.82l1.08, -0.44l0.26, -0.77l1.25, -0.9l1.41, -0.26l0.5, 0.89l1.99, -0.05l1.72, 1.17l1.11, 0.17l1.05, 0.66l0.01, 2.99l-0.59, 3.76l0.38, 0.86l-0.23, 1.23l-0.39, 0.35l-0.63, 1.81l-2.43, 2.75Z"></path>
     </g>
   </svg>
-  <script>$('svg path[data-country-code="<?php echo $country ?>"]').attr('fill', '#197ac6').attr('fill-opacity', '0.15');</script>
+<?php
+  $ip = HTTP::getIpAddress();
+
+  if (Is::IpAddress($ip)) {
+    $details = file_get_contents("https://ipinfo.io/{$ip}/geo");
+
+    if ($details !== false) {
+      $details = json_decode($details);
+
+      $country = $details->country;
+    }
+  }
+?>
+  <script>$('svg path[data-country-code="<?php echo $country; ?>"]').attr('fill', '#197ac6').attr('fill-opacity', '0.15');</script>
   <div class="loader-wrapper"></div>
 <?php
   if ($Qcheck->check()) {
