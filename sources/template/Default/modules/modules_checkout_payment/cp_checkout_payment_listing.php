@@ -109,8 +109,6 @@
         $data .= '</tbody>';
         $data .= '</table>';
 
-
-
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/checkout_payment_listing'));
 
@@ -168,7 +166,6 @@
           'date_added' => 'now()'
         ]
       );
-
     }
 
     public function remove() {

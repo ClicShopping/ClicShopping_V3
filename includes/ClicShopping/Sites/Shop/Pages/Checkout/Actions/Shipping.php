@@ -49,8 +49,8 @@
                                                       where customers_id = :customers_id
                                                       and address_book_id = :address_book_id
                                                     ');
-      $QaddressCustomer->bindInt(':customers_id', (int)$CLICSHOPPING_Customer->getID());
-      $QaddressCustomer->bindInt(':address_book_id', (int)$CLICSHOPPING_Customer->getDefaultAddressID());
+      $QaddressCustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
+      $QaddressCustomer->bindInt(':address_book_id', $CLICSHOPPING_Customer->getDefaultAddressID());
       $QaddressCustomer->execute();
 
 //check if we need to continue the address creation
@@ -69,7 +69,6 @@
       } else {
 // verify the selected shipping address
         if ((is_array($_SESSION['sendto']) && empty($_SESSION['sendto'])) || is_numeric($_SESSION['sendto'])) {
-
           $QcheckAddress = $CLICSHOPPING_Db->prepare('select address_book_id
                                                       from :table_address_book
                                                       where customers_id = :customers_id
@@ -110,12 +109,12 @@
 
         switch (MODULE_ORDER_TOTAL_SHIPPING_DESTINATION) {
           case 'national':
-            if ($CLICSHOPPING_Order->delivery['country_id'] == STORE_COUNTRY) {
+            if ($CLICSHOPPING_Order->delivery['country_id'] === STORE_COUNTRY) {
               $pass = true;
             }
             break;
           case 'international':
-            if ($CLICSHOPPING_Order->delivery['country_id'] != STORE_COUNTRY) {
+            if ($CLICSHOPPING_Order->delivery['country_id'] !== STORE_COUNTRY) {
               $pass = true;
             }
             break;

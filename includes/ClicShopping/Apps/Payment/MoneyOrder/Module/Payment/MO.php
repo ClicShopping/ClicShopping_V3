@@ -23,7 +23,7 @@
     public $code;
     public $title;
     public $description;
-    public $enabled;
+    public $enabled = false;
     public $app;
     public $title_selection;
     public $signature;

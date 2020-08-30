@@ -22,7 +22,7 @@
     public $code;
     public $title;
     public $description;
-    public $enabled;
+    public $enabled = false;
     public $icon;
     public $app;
     public $quotes;

@@ -19,7 +19,6 @@
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');

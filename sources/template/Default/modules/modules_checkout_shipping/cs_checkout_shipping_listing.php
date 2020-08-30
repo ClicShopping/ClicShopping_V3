@@ -80,10 +80,10 @@
               $data .= '<div style="padding-left: 15px;">';
               $data .= CLICSHOPPING::getDef('module_checkout_shipping_free_shipping_description', ['free_shipping_amount' => $CLICSHOPPING_Currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)]) .  HTML::hiddenField('shipping', 'free_free');
               $data .= '</div>';
-
             } else {
   // load the selected shipping module
               $radio_buttons = 0;
+
               foreach ($quotes as $n => $quote) {
                 if (is_array($quote['methods'])) {
                   for ($j=0, $n2=count($quote['methods']); $j<$n2; $j++) {
@@ -129,7 +129,6 @@
 
                       $data .= '</td>';
                       $data .= '</tr>';
-
                     } else {
                       $data .= '<td class="text-md-right">';
                       $data .=  $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], $quote['tax'] ?? 0)) .  HTML::hiddenField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id']);

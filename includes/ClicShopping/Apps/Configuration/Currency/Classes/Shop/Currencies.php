@@ -19,7 +19,6 @@
 
   class Currencies
   {
-
     public array $currencies = [];
     protected $db;
     protected $show;

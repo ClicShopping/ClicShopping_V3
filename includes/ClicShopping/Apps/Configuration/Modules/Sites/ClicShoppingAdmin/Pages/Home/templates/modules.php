@@ -22,7 +22,7 @@
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
-  $set = (isset($_GET['set']) ? $_GET['set'] : '');
+  $set = $_GET['set'] ?? '';
 
   $modules = $CLICSHOPPING_CfgModule->getAll();
 
@@ -209,8 +209,9 @@
       }
     }
 
-    if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
-      $module_info = ['code' => $module->code,
+    if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] === $class))) && !isset($mInfo)) {
+      $module_info = [
+        'code' => $module->code,
         'title' => $module->title,
         'description' => $module->description,
         'group' => $module->group,

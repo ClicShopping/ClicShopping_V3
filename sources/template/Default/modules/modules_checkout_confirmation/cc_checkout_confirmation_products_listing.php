@@ -46,7 +46,6 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
-
         $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_PRODUCTS_LISTING_CONTENT_WIDTH;
 
         $confirmation = '  <!-- cc_checkout_confirmation_products_listing start -->' . "\n";

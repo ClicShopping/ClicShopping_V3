@@ -18,7 +18,6 @@
 
   class Process extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -87,7 +86,8 @@
               } else {
                 for ($i = 0, $n = count($quote[0]['methods']); $i < $n; $i++) {
                   if ((isset($quote[0]['methods'][$i]['title'])) && (isset($quote[0]['methods'][$i]['cost'])) && ($quote[0]['methods'][$i]['id'] == $method || $_SESSION['shipping'] == 'free_free')) {
-                    $_SESSION['shipping'] = ['id' => $_SESSION['shipping'],
+                    $_SESSION['shipping'] = [
+                      'id' => $_SESSION['shipping'],
                       'title' => (($_SESSION['free_shipping'] === true) ? $quote[0]['methods'][$i]['title'] : $quote[0]['module'] . (isset($quote[0]['methods'][$i]['title']) && !empty($quote[0]['methods'][0]['title']) ? ' ' . $quote[0]['methods'][$i]['title'] . '' : '')),
                       'cost' => $quote[0]['methods'][$i]['cost']
                     ];
@@ -115,7 +115,6 @@
             } else {
               unset($_SESSION['shipping']);
             }
-
           }
         } else {
           if (defined('SHIPPING_ALLOW_UNDEFINED_ZONES') && (SHIPPING_ALLOW_UNDEFINED_ZONES == 'False')) {
@@ -136,7 +135,6 @@
                 }
               }
             }
-
             CLICSHOPPING::redirect(null, 'Checkout&Billing');
           }
         }
