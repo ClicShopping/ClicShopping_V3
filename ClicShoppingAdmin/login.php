@@ -411,7 +411,7 @@
 <?php
   $ip = HTTP::getIpAddress();
 
-  if (Is::IpAddress($ip)) {
+  if (Is::IpAddress($ip) && (!empty($ip) || !is_null($ip))) {
     $details = file_get_contents("https://ipinfo.io/{$ip}/geo");
 
     if ($details !== false) {
