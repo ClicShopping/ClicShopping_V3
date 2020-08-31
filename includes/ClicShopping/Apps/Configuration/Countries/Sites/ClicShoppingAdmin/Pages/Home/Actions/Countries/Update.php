@@ -25,7 +25,6 @@
 
     public function execute()
     {
-
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       $countries_id = HTML::sanitize($_GET['cID']);
@@ -33,9 +32,10 @@
       $countries_iso_code_2 = HTML::sanitize($_POST['countries_iso_code_2']);
       $countries_iso_code_3 = HTML::sanitize($_POST['countries_iso_code_3']);
       $address_format_id = HTML::sanitize($_POST['address_format_id']);
-      $countries_status = HTML::sanitize($_POST['status']);
+      $countries_status = 1;
 
-      $sql_array = ['countries_name' => $countries_name,
+      $sql_array = [
+        'countries_name' => $countries_name,
         'countries_iso_code_2' => $countries_iso_code_2,
         'countries_iso_code_3' => $countries_iso_code_3,
         'address_format_id' => (int)$address_format_id,

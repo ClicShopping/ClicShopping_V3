@@ -68,13 +68,13 @@
     }
 
     /**
-     * @param $number
+     * @param float $number
      * @param bool $calculate_currency_value
      * @param string $currency_type
-     * @param null $currency_value
-     * @return string
+     * @param float|null $currency_value
+     * @return string|null
      */
-    public function format(float $number, $calculate_currency_value = true, string $currency_type = '', $currency_value = null) :string
+    public function format(float $number, bool $calculate_currency_value = true, string $currency_type = '', $currency_value = null) :?string
     {
       if (empty($currency_type) && CLICSHOPPING::getSite() === 'Shop') {
         $currency_type = $_SESSION['currency'];
@@ -100,10 +100,10 @@
     }
 
     /**
-     * @param $products_price
+     * @param float $products_price
      * @param $products_tax
      * @param int $quantity
-     * @return float|int
+     * @return float
      */
     public function calculatePrice(float $products_price, $products_tax, int $quantity = 1) :float
     {

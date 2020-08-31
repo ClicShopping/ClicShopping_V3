@@ -18,51 +18,49 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
 
-  if (isset($_GET['cPath'])) {
-    $cPath = HTML::sanitize($_GET['cPath']) ?? $cPath = 0;
-  } else {
-    $cPath = 0;
-  }
+  if (isset($_GET['pID']) && $_GET['pID'] > 0) {
+      if (isset($_GET['cPath'])) {
+        $cPath = HTML::sanitize($_GET['cPath']) ?? $cPath = 0;
+      } else {
+        $cPath = 0;
+      }
 
-  $Qproducts = $CLICSHOPPING_Products->db->prepare('select pd.*,
-                                                            p.*
-                                                    from :table_products p,
-                                                        :table_products_description pd
-                                                    where p.products_id = :products_id
-                                                    and pd.language_id = :language_id
-                                                    and p.products_id = pd.products_id
-                                                   ');
-  $Qproducts->bindInt(':products_id', (int)$_GET['pID'] );
-  $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
-  $Qproducts->execute();
+      $Qproducts = $CLICSHOPPING_Products->db->prepare('select pd.*,
+                                                                p.*
+                                                        from :table_products p,
+                                                            :table_products_description pd
+                                                        where p.products_id = :products_id
+                                                        and pd.language_id = :language_id
+                                                        and p.products_id = pd.products_id
+                                                       ');
+      $Qproducts->bindInt(':products_id', (int)$_GET['pID'] );
+      $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
+      $Qproducts->execute();
 
-  $products = $Qproducts->fetch();
+      $products = $Qproducts->fetch();
 
-  $Qmanufacturer = $CLICSHOPPING_Products->db->prepare('select m.manufacturers_id,
-                                                               m.manufacturers_name,
-                                                               p.products_id
-                                                         from :table_products p,
-                                                              :table_manufacturers m
-                                                         where p.products_id = :products_id
-                                                         and m.manufacturers_id = p.manufacturers_id
-                                                      ');
-  $Qmanufacturer->bindInt(':products_id', (int)$_GET['pID'] );
-  $Qmanufacturer->execute();
+      $Qmanufacturer = $CLICSHOPPING_Products->db->prepare('select m.manufacturers_id,
+                                                                   m.manufacturers_name,
+                                                                   p.products_id
+                                                             from :table_products p,
+                                                                  :table_manufacturers m
+                                                             where p.products_id = :products_id
+                                                             and m.manufacturers_id = p.manufacturers_id
+                                                          ');
+      $Qmanufacturer->bindInt(':products_id', (int)$_GET['pID'] );
+      $Qmanufacturer->execute();
 
-  $manufacturer = $Qmanufacturer->fetch();
 
-  $Qsupplier = $CLICSHOPPING_Products->db->prepare('select s.suppliers_id,
-                                                            s.suppliers_name,
-                                                            p.products_id
-                                                   from :table_products p,
-                                                        :table_suppliers s
-                                                   where p.products_id = :products_id
-                                                   and p.suppliers_id = s.suppliers_id
-                                                   ');
-  $Qsupplier->bindInt(':products_id', (int)$_GET['pID'] );
-  $Qsupplier->execute();
-
-  $supplier = $Qsupplier->fetch();
+      $Qsupplier = $CLICSHOPPING_Products->db->prepare('select s.suppliers_id,
+                                                                s.suppliers_name,
+                                                                p.products_id
+                                                       from :table_products p,
+                                                            :table_suppliers s
+                                                       where p.products_id = :products_id
+                                                       and p.suppliers_id = s.suppliers_id
+                                                       ');
+      $Qsupplier->bindInt(':products_id', (int)$_GET['pID'] );
+      $Qsupplier->execute();
 ?>
 
   <div class="contentBody">
@@ -133,8 +131,8 @@
   }
 ?>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'). ' ' . HTML::checkboxField('products_only_online', '', $check_products_only_online); ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer') . ' ' . $manufacturer['manufacturers_name']; ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers') . ' ' . $supplier['suppliers_name']; ?></div>
+          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer') . ' ' . $Qmanufacturer->value['manufacturers_name']; ?></div>
+          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers') . ' ' . $Qsupplier->value['suppliers_name']; ?></div>
 
 <?php
   if ($products['products_packaging'] == 0) $products_packaging = '';
@@ -320,5 +318,12 @@
       </div>
  </div>
 <?php
-    echo $CLICSHOPPING_Hooks->output('Preview', 'PreviewContent', null, 'display');
+      echo $CLICSHOPPING_Hooks->output('Preview', 'PreviewContent', null, 'display');
+    }
+    } else {
+?>
+    <div class="contentBody">
+      <div class="pageHeading text-md-center" valign="center" height="300"><?php echo  $CLICSHOPPING_Products->getDef('text_no_products'); ?></div>
+    </div>
+<?php
   }
