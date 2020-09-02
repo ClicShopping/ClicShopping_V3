@@ -65,35 +65,30 @@
         $page_time = HTML::sanitize($_POST['page_time']);
       } else {
         $page_time = null;
-        $page_error = true;
       }
 
       if (isset($_POST['page_date_start'])) {
         $page_date_start = HTML::sanitize($_POST['page_date_start']);
       } else {
         $page_date_start = null;
-        $page_error = true;;
       }
 
       if (isset($_POST['page_date_closed'])) {
         $page_date_closed = HTML::sanitize($_POST['page_date_closed']);
       } else {
        $page_date_closed  = null;
-        $page_error = true;;
       }
 
       if (isset($_POST['page_general_condition'])) {
         $page_general_condition = HTML::sanitize($_POST['page_general_condition']);
       } else {
         $page_general_condition  = null;
-        $page_error = true;;
       }
 
       if (isset($_POST['customers_group_id'])) {
         $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
       } else {
         $customers_group_id = 0;
-        $page_error = true;;
       }
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
@@ -126,7 +121,6 @@
           $pages_id = $CLICSHOPPING_PageManager->db->lastInsertId();
 
           $_POST['pages_id'] = $pages_id;
-
         } else {
           $insert_sql_data_pages = ['last_modified' => 'now()'];
           $sql_data_array_pages = array_merge($sql_data_array_pages, $insert_sql_data_pages);

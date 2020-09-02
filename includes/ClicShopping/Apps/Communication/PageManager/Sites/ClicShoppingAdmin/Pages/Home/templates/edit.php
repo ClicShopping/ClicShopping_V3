@@ -27,7 +27,8 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  $parameters = ['pages_title' => '',
+  $parameters = [
+    'pages_title' => '',
     'page_time' => '',
     'page_date_start' => '',
     'page_date_closed' => '',
@@ -113,7 +114,6 @@
   } else {
     $bInfo->ObjectInfo($_POST);
   }
-
 
   $bIDif = '';
 
