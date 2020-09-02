@@ -20,6 +20,7 @@
 <!DOCTYPE html>
 <html <?php echo CLICSHOPPING::getDef('html_params'); ?>>
   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 // Meta Tag
      $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/Shop/Header/';
