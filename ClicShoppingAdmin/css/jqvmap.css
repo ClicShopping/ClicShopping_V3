@@ -1,0 +1,13 @@
+.jqvmap-label {
+    z-index: 999;
+}
+
+#vmap {
+    width: 100%;
+    height: 270px;
+}
+
+.jqvmap-zoomin, .jqvmap-zoomout {
+    width: 15px !important;
+    height: 15px !important;
+}

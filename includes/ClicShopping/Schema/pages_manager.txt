@@ -1,0 +1,20 @@
+pages_id int(11) not_null auto_increment
+links_target varchar(6) default('_self') not null
+sort_order int(3)
+status int(1) default(1) not_null
+page_type int(1) default(0) not_null
+page_box int(1) default(0) not_null
+page_time varchar(4) not_null
+page_date_start datetime
+page_date_closed datetime
+date_added datetime not_null
+last_modified datetime
+date_status_change datetime
+customers_group_id int default(0) not_null
+page_general_condition int(1) default(0) not_null
+--
+primary pages_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

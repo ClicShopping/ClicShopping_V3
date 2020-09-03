@@ -1,0 +1,59 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+.inputContacUsFormName {
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.27); 
+  padding-right: 1.875rem;
+  height:30px; 
+}
+
+.inputContacUsFormEmail {
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.27); 
+  padding-right: 1.875rem;
+  height:30px; 
+}
+
+.inputContacUsFormEmailConfirmation{
+  background-color: #eeeeee;
+}
+
+.inputContacUsFormTextArea {
+  /*background-color: #eeeeee;*/
+}
+
+
+.inputContacUsPullDownMenu {
+    background-color: #ffffff;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.27); 
+  padding-right: 1.875rem;
+  height:30px;     
+}
+
+.inputContacUsFormTelephone {
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.27);
+  padding-right: 1.875rem;
+  height:30px;
+}
+
+.inputContacUsFormSubject {
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.27);
+  padding-right: 1.875rem;
+  height:30px;
+}

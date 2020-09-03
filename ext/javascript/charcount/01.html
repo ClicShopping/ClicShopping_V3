@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dynamic character count for textareas and input fields</title>
+<meta name="description" content="jQuery plugin: Simplest Twitter-like dynamic character count for textareas and input fields" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="charCount.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+		//default usage
+		$("#message1").charCount();
+		//custom usage
+		$("#message2").charCount({
+			allowed: 50,		
+			warning: 20,
+			counterText: 'Characters left: '	
+		});
+	});
+</script>
+
+<style>
+body {
+	margin:0;
+	padding:20px 40px;
+	background:#fff;
+	font:80% Arial, Helvetica, sans-serif;
+	color:#555;
+	line-height:180%;
+}
+h1{
+	font-size:180%;
+	font-weight:normal;
+	}
+h2{
+	font-size:160%;
+	font-weight:normal;
+	}	
+h3{
+	font-size:140%;
+	font-weight:normal;
+	}	
+pre{
+	display:block;
+	font:12px "Courier New", Courier, monospace;
+	padding:10px;
+	border:1px solid #bae2f0;
+	background:#e3f4f9;	
+	margin:.5em 0;
+	width:500px;
+	}		
+.clear{
+	clear:both;
+	}	
+img{border:none;}
+	
+/* Character Count styles */	
+
+form{width:500px;}
+label{
+	display:block;
+	font-size:14px;
+	}
+textarea{
+	width:490px;
+	height:60px;
+	border:2px solid #ccc;
+	padding:3px;
+	color:#555;
+	font:16px Arial, Helvetica, sans-serif;
+	}
+form div{position:relative;margin:1em 0;}
+form .counter{
+	position:absolute;
+	right:0;
+	top:0;
+	font-size:20px;
+	font-weight:bold;
+	color:#ccc;
+	}
+form .warning{color:#600;}	
+form .exceeded{color:#e00;}	
+
+</style>
+</head>
+<body>
+
+	<h1>jQuery plugin: Simplest Twitter-like dynamic character count for textareas and input fields</h1>
+    
+	<p>Test the plugin by typing into fields below.</p>
+    
+   
+    <form id="form" method="post" action="">  
+
+		<h2>Default Usage</h2>
+        <div>
+        	<label for="message">Type your message</label>
+        	<textarea id="message1" name="message1"></textarea>
+        </div>
+
+		<h2>Custom Usage</h2>
+    	<div>
+        	<label for="message">Another message (limited to 50, warning at 20)</label>
+            <textarea id="message2" name="message2"></textarea>
+        </div>	
+    
+
+    </form>
+
+
+<p><a href="http://cssglobe.com/post/7161/jquery-plugin-simplest-twitterlike-dynamic-character-count-for-textareas" title="read more about this plugin">back to the article</a></p>
+
+<p><strong>Character Count plugin</strong> is brought to you by <a href="http://cssglobe.com" title="web standards magazine and css news">Css Globe</a>, <a href="http://easyframework.com">Easy front-end framework</a> and supported by <a href="http://templatica.com">Css Templates</a> by Templatica</p>
+
+</body>
+</html>
+
+

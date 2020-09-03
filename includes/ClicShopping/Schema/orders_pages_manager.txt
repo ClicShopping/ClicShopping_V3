@@ -1,0 +1,10 @@
+orders_page_manager_id int not_null auto_increment
+orders_id int not_null
+customers_id int not_null
+page_manager_general_condition longtext not_null
+--
+primary orders_page_manager_id orders_id
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

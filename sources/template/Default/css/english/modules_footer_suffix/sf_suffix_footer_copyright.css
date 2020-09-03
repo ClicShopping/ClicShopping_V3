@@ -1,0 +1,55 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+div.footerSuffix {
+  background-color: #eee;
+}
+
+div.footerCopyright, span.footerCopyright {
+   padding-top:2px;
+   font-size: 0.625rem;
+   color: #000;
+}
+
+.footerCopyright A {
+  color:#000!important;
+}
+
+.footerCopyright a:hover {
+  color:#000!important;
+}
+
+
+div.footerTrademark, span.footerTrademark {
+   font-size: 0.625rem;
+   color: #000;
+}
+
+.footerTrademark A {
+   color: #000!important;
+}
+
+.footerTrademark a:hover {
+}
+
+div.footerClicShopping {
+   color: #000;
+   font-size:0.6875rem;
+}
+
+.footerSuffixCopyright {
+  color: #000;
+  font-size:0.6875rem;
+}
+
+.footerSuffixTrademark {
+  color: #000;
+  font-size:0.6875rem;
+}

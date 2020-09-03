@@ -1,0 +1,86 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+.card.boxeContainerSpecials {
+  margin-top: 0.625rem;
+  border-radius: 0.25rem;
+}
+
+.card-img-top.boxeBannerContentsSpecials {
+  text-align: center;
+}
+
+.card-header.boxeHeadingSpecials {
+
+
+  padding-left: 3px;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.card-header.boxeHeadingSpecials A {
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  font-weight: normal;
+}
+
+.card-title.boxeTitleSpecials  {
+  overflow: hidden;
+  padding: 3px;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  font-weight: normal;
+}
+
+.card-title.boxeTitleSpecials A {
+}
+
+span.boxeTitleSpecials {
+  font-size: 0.375rem;
+}
+
+.card-text.boxeContentSpecials {
+  overflow: hidden;
+  font-size: 0.75rem;
+  text-align: center;
+  padding-bottom: 0.625rem;
+  padding-top: 0.625rem;
+  padding-right:0.1rem;
+}
+
+.card-text.boxeContentsWhatsNewSpecials a {
+  text-decoration: none ;
+  text-align: center;
+}
+
+.card-footer.boxeBottomContentsSpecials {
+  border-top: none;
+  padding: 0rem 0rem;
+}
+
+
+.card-block.boxeContentArroundSpecials {
+  overflow: hidden;
+  padding-right:0.1rem;
+  padding-left:0.1rem;
+  text-align: center;
+}
+
+.card-img-top.boxeImageSpecials {
+}
+
+div.boxeProductTitleSpecials {
+  text-align: center;
+}
+
+div.boxeProductTitleSpecials A {
+  text-transform: none;
+}

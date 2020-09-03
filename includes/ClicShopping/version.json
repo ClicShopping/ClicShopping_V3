@@ -1,0 +1,5 @@
+{
+ "version": "3.22",
+ "description": "This release is compatible with php 7.4 and it introduces some fix. The next release will be focus files optimization.",
+ "date": "November 2020"
+}

@@ -1,0 +1,61 @@
+heading_title = Statut du type d'édition de fichier PDF commandes / factures
+module_oi_title = Statut du type d'édition de fichier PDF commandes / factures
+module_oi_short_title = Statut du type d'édition de fichier PDF commandes / factures
+
+text_orders_status_invoice = Statut du type d'édition de fichier PDF commandes / factures
+text_configure =  Configurer App Module
+
+text_intro = Cette app vous permet d'inclure un statut du support client pour les commandes des produits <br /><br />
+- Activer ce module qui est situé dans le menu Configuration
+
+module_oi_introduction = Le processus d'installation installe la base de données et le menu
+module_oi_short_title = Products quantities units
+
+button_install_title = Installer
+button_configure = Configurer
+button_save = Sauver
+button_dialog_uninstall =  Désinstaller
+button_uninstall =  Désinstaller
+button_delete = Supprimer
+button_orders_status_invoice = Statut PDF commandes / factures
+button_cancel = Annuler
+button_new = Nouveau
+button_insert =  Insérer
+button_back = Retour
+button_reset = Réinitialiser
+button_update = Mettre à jour
+
+dialog_uninstall_title = Désinstaller
+dialog_uninstall_body = Souhaitez-vous installer cette App ?
+dialog_uninstall_title = Désinstaller le module?
+dialog_uninstall_body = Etes vous sur de désinstaller ce module?
+
+alert_module_install_success = Le module a été installée.
+alert_module_uninstall_success = Le module a été désinstallée.
+alert_cfg_saved_success = les paramètres de configuration ont été mises à jour.
+
+text_result_page = Page {{listing_from}}  sur{{listing_total}}
+text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+
+icon_edit = Edit
+icon_delete = delete
+text_set_default = Default
+
+text_info_delete_info = Souhaitez-vous supprimer ce status ?
+text_default = Défaut
+
+table_heading_invoice_status = Statut du type d'édition de fichier PDF commandes / factures
+table_heading_action = Action
+
+text_info_edit_intro = Merci de faire les changements nécessaires
+text_info_orders_status_name = Statuts :
+text_info_insert_intro = Merci de compléter cette nouvelle demande avec les données liées
+text_info_delete_intro = Etes vous sur de vouloir supprimer ce statut ?
+
+text_info_heading_new_orders_status = Nouveau statut
+text_info_heading_edit_orders_status = Editer statut
+text_info_heading_delete_orders_status = Supprimer ce statut
+
+error_remove_default_order_status = Erreur : Le statut par défaut ne peut pas être supprimé. Merci de choisir un autre statut par défaut et de réessayer
+error_status_used_in_orders = Erreur : Ce statut est actuellement utilisé.
+error_status_used_in_history = Erreur : Ce statut est déjà utilisé dans l'historique de commande.

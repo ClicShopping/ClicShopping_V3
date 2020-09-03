@@ -1,0 +1,41 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+.footer{
+  vertical-align:middle;
+  background-color:#F0EDEC;
+}
+
+footer A{
+   color: #524169;
+}
+
+div.footerHr {
+  height:2px;
+  overflow:hidden;
+  background-color: #edac27;
+}
+
+.footerMailchimpTitle h2 {
+  font-size: 1rem;
+}
+
+.footerMailchimp {
+  background-color: #F0EDEC;
+}
+
+.footerMailchimpPrivacy {
+  text-align: center;
+}
+
+.footerMailchimpMessage {
+}
+
+

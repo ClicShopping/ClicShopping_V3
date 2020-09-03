@@ -1,0 +1,14 @@
+module_stripe_title = Paiement par Stripe
+module_stripe_short_title = Paiement par Stripe
+module_stripe_public_title = Paiement par Stripe
+
+text_stripe_title = Stripe paiement : Veuillez remplir les champs
+text_stripe_credit_card_owner = Nom du propriétaire
+text_stripe_credit_card_type = Type de carte
+text_stripe_alert_mode_test = Mode test sélectionné
+
+text_reference_transaction = Stripe paiement
+module_stripe_error_general = Une erreur a été détectée, veuillez réessayer
+module_stripe_error_stripe = Erreur durant le process via Stripe paiement
+module_stripe_error_title = Stripe erreur
+text_stripe_confirm_order = Payer et confirmer votre commande

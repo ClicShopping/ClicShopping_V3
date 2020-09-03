@@ -1,0 +1,15 @@
+pages_id int default(0) not_null
+pages_title varchar(255) not_null
+pages_html_text longtext
+externallink varchar(255)
+language_id int default(1) not_null
+page_manager_head_title_tag varchar(255)
+page_manager_head_desc_tag varchar(255)
+page_manager_head_keywords_tag varchar(255)
+--
+primary pages_id language_id
+idx_pages_title pages_title
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

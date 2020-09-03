@@ -1,0 +1,50 @@
+<?php
+/**
+ * This file is generated automatically by Preloader.
+ *
+ * This script uses Composer Autoload file and `require_once` to preload the files in this
+ * list. Add this file to your `php.ini` in `opcache.preload` to preload this list into
+ * PHP at startup. Additionally, this file also includes information about Opcache.
+ *
+ *
+ * Add (or update) this line in `php.ini`:
+ *
+ *     opcache.preload=@output
+ *
+ *
+ * --- Config ---
+ * Generated at: @generated_at
+ * Opcache
+ *     - Used Memory: @opcache_memory_used MB
+ *     - Free Memory: @opcache_memory_free MB
+ *     - Wasted Memory: @opcache_memory_wasted MB
+ *     - Cached files: @opcache_files
+ *     - Hit rate: @opcache_hit_rate%
+ *     - Misses: @opcache_misses
+ * Preloader config
+ *     - Memory limit: @preloader_memory_limit MB
+ *     - Overwrite: @preloader_overwrite
+ *     - Files excluded: @preloader_excluded
+ *     - Files appended: @preloader_appended
+ *
+ *
+ * For more information:
+ * @see https://github.com/darkghosthunter/preloader
+ */
+
+require_once '@autoload';
+
+$files = [@list];
+
+foreach ($files as $file) {
+    try {
+        if (!(is_file($file) && is_readable($file))) {
+            throw new \Exception("{$file} does not exist or unreadable.");
+        }
+        @mechanism;
+    } catch (\Throwable $e) {
+        echo 'Message: ' . $e->getMessage() . \PHP_EOL;
+        echo 'File: ' . $file . \PHP_EOL;
+    }
+}
+

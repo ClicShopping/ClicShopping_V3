@@ -1,0 +1,36 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+
+.passwordLogin a {
+  color: #c0007a;
+  font-size:0.75rem;
+}
+
+.passwordLogin a:hover {
+  color: #c0007a;
+  text-decoration:none;
+  font-size:0.75rem;
+}
+
+h3.loginText{
+  font-weight:bold;
+}
+
+.loginSeparator {
+  width: 45%;
+  float: left;
+  border-left: 1px dashed #ccc;
+  padding-left: 3%;
+  margin-left: 3%;
+}
+
+.passwordForgotten{
+}

@@ -1,0 +1,3 @@
+cfg_stripe_private_key_title = Clef privée
+cfg_stripe_private_key_desc = Clef privée du compte que vous utilisez <br />
+More information : https://stripeup.com/

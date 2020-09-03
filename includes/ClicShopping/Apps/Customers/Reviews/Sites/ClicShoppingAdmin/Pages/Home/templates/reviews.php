@@ -1,0 +1,226 @@
+<?php
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
+
+  use ClicShopping\OM\HTML;
+  use ClicShopping\OM\DateTime;
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\Registry;
+  use ClicShopping\OM\ObjectInfo;
+
+  $CLICSHOPPING_Reviews = Registry::get('Reviews');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
+  $CLICSHOPPING_Language = Registry::get('Language');
+
+  if ($CLICSHOPPING_MessageStack->exists('main')) {
+    echo $CLICSHOPPING_MessageStack->get('main');
+  }
+
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+?>
+
+<!-- body //-->
+<div class="contentBody">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-block headerCard">
+        <div class="row">
+          <span
+            class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/reviews.gif', $CLICSHOPPING_Reviews->getDef('heading_title'), '40', '40'); ?></span>
+          <span
+            class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <!-- ################# -->
+  <!-- Hooks Stats - just use execute function to display the hook-->
+  <!-- ################# -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck">
+        <?php echo $CLICSHOPPING_Hooks->output('Reviews', 'StatsReviews'); ?>
+      </div>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <!-- //################################################################################################################ -->
+  <!-- //                                            LISTING DES AVIS CLIENTS                                             -->
+  <!-- //################################################################################################################ -->
+  <?php  echo HTML::form('delete_all', $CLICSHOPPING_Reviews->link('Reviews&DeleteAll&page=' . $page));  ?>
+
+  <div id="toolbar">
+    <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Reviews->getDef('button_delete'); ?></button>
+  </div>
+
+  <table
+    id="table"
+    data-toggle="table"
+    data-id-field="selected"
+    data-select-item-name="selected[]"
+    data-click-to-select="true"
+    data-sort-order="asc"
+    data-sort-name="selected"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+        <th data-checkbox="true" data-field="state"></th>
+        <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Reviews->getDef('id'); ?></th>
+        <th data-switchable="false"></th>
+        <th data-switchable="false"></th>
+        <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products'); ?></th>
+        <th data-field="rating" data-sortable="true"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_rating'); ?></th>
+        <th data-field="author" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_author'); ?></th>
+        <th data-field="average_rating" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_products_average_rating'); ?></th>
+        <th data-field="review_read" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_read'); ?></th>
+        <th data-field="review_group" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_review_group'); ?></th>
+        <th data-field="last_modified" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_last_modified'); ?></th>
+        <th data-field="approved" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_approved'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Reviews->getDef('table_heading_action'); ?>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Qreviews = $CLICSHOPPING_Reviews->db->prepare('select SQL_CALC_FOUND_ROWS  r.reviews_id,
+                                                                                 r.products_id,
+                                                                                 r.date_added,
+                                                                                 r.last_modified,
+                                                                                 r.reviews_rating,
+                                                                                 r.status,
+                                                                                 r.customers_group_id,
+                                                                                 r.customers_name,
+                                                                                 p.products_image
+                                                  from :table_reviews r,
+                                                       :table_products p
+                                                  where p.products_id = r.products_id
+                                                  order by r.date_added desc
+                                                  limit :page_set_offset, :page_set_max_results
+                                                  ');
+
+      $Qreviews->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+      $Qreviews->execute();
+
+      $listingTotalRow = $Qreviews->getPageSetTotalRows();
+
+      if ($listingTotalRow > 0) {
+        while ($Qreviews->fetch()) {
+          if ((!isset($_GET['rID']) || (isset($_GET['rID']) && ((int)$_GET['rID'] === $Qreviews->valueInt('reviews_id')))) && !isset($rInfo)) {
+            $QreviewsText = $CLICSHOPPING_Reviews->db->get(['reviews r',
+              'reviews_description rd',
+            ], [
+              'r.reviews_read',
+              'r.customers_name',
+              'length(rd.reviews_text) as reviews_text_size',
+            ], [
+                'r.reviews_id' => [
+                  'val' => $Qreviews->valueInt('reviews_id'),
+                  'ref' => 'rd.reviews_id'
+                ]
+              ]
+            );
+
+            $Qproducts_image = $CLICSHOPPING_Reviews->db->prepare('select products_image
+                                                                   from :table_products
+                                                                   where products_id = :products_id
+                                                                  ');
+            $Qproducts_image->bindInt(':products_id', $Qreviews->valueInt('products_id'));
+            $Qproducts_image->execute();
+
+            $Qproducts = $CLICSHOPPING_Reviews->db->prepare('select products_name
+                                                             from :table_products_description
+                                                             where products_id = :products_id
+                                                             and language_id = :language_id
+                                                             ');
+            $Qproducts->bindInt(':products_id', $Qreviews->valueInt('products_id'));
+            $Qproducts->bindint(':language_id', $CLICSHOPPING_Language->getId());
+            $Qproducts->execute();
+
+            $Qaverage = $CLICSHOPPING_Reviews->db->get('reviews', ['(avg(reviews_rating) / 5 * 100) as average_rating'],
+              ['products_id' => $Qreviews->valueInt('products_id')]
+            );
+
+            $review_info = array_merge($QreviewsText->toArray(), $Qaverage->toArray(), $Qproducts->toArray());
+
+            if ($Qproducts_image->fetch()) {
+              $rInfo_array = array_merge($Qreviews->toArray(), (array)$review_info, $Qproducts_image->toArray());
+            } else {
+              $rInfo_array = array_merge($Qreviews->toArray(), (array)$review_info);
+            }
+
+            $rInfo = new ObjectInfo($rInfo_array);
+          }
+
+          $QcustomerGroup = $CLICSHOPPING_Reviews->db->prepare('select customers_group_id,
+                                                                       customers_group_name
+                                                                 from :table_customers_groups
+                                                                 where customers_group_id = :customers_group_id
+                                                                ');
+          $QcustomerGroup->bindInt(':customers_group_id', $Qreviews->valueInt('customers_group_id'));
+          $QcustomerGroup->execute();
+
+          if ($QcustomerGroup->valueInt('customers_group_id') == 0) {
+            $customer_group['customers_group_name'] = $CLICSHOPPING_Reviews->getDef('visitor_name');
+          }
+
+          ?>
+          <td></td>
+          <td><?php echo $Qreviews->valueInt('products_id'); ?></td>
+          <td scope="row"
+              width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qreviews->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Reviews->getDef('icon_preview_comment'))); ?></td>
+          <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $Qreviews->value('products_image'), $Qreviews->value('products_name'), (int)SMALL_IMAGE_WIDTH_ADMIN, (int)SMALL_IMAGE_HEIGHT_ADMIN); ?></td>
+          <td><?php echo $CLICSHOPPING_ProductsAdmin->getProductsName($Qreviews->valueInt('products_id')); ?></td>
+          <td><?php echo '<i>' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</i>'; ?></td>
+          <td class="text-md-center"><?php echo $Qreviews->value('customers_name'); ?></td>
+          <td class="text-md-center"><?php echo number_format($Qreviews->valueDecimal('average_rating'), 2) . '%'; ?></td>
+          <td class="text-md-center"><?php echo number_format($Qreviews->valueInt('reviews_read', 2)); ?></td>
+          <td class="text-md-center"><?php echo $customer_group['customers_group_name']; ?></td>
+          <td class="text-md-center"><?php echo DateTime::toLong($Qreviews->value('last_modified')); ?></td>
+          <td class="text-md-center">
+            <?php
+              if ($Qreviews->valueInt('status') == 1) {
+                echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=0&id=' . $Qreviews->valueInt('reviews_id')), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+              } else {
+                echo HTML::link($CLICSHOPPING_Reviews->link('Reviews&SetFlag&flag=1&id=' . $Qreviews->valueInt('reviews_id')), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+              }
+            ?>
+          </td>
+          <td
+            class="text-md-right"><?php echo HTML::link($CLICSHOPPING_Reviews->link('&Edit&page=' . $page . '&rID=' . $Qreviews->valueInt('reviews_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Reviews->getDef('icon_edit'))); ?></td>
+          </tr>
+          <?php
+        } //end while
+      } //end $listingTotalRow
+    ?>
+    </tbody>
+  </table>
+  </form><!-- end form delete all -->
+  <?php
+    if ($listingTotalRow > 0) {
+      ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qreviews->getPageSetLabel($CLICSHOPPING_Reviews->getDef('text_display_number_of_link')); ?></div>
+          <div
+            class="float-md-right text-md-right"><?php echo $Qreviews->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+        </div>
+      </div>
+      <?php
+    } // end $listingTotalRow
+  ?>
+</div>

@@ -1,0 +1,10 @@
+orders_status_invoice_id int default(0) not_null
+language_id int default(1) not_null
+orders_status_invoice_name varchar(32) not_null
+--
+primary orders_status_invoice_id language_id
+idx_orders_status_invoice_name orders_status_invoice_name
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci

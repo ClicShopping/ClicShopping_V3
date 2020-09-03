@@ -1,0 +1,37 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+span.ModulesShoppingCartBootstrapTickerPourcentage {
+  font: 700 14px/12px Arial,Helvetica,sans-serif;
+  color: #FFF;
+  background: #FF6600 none repeat scroll 0% 0%;
+  text-transform: uppercase;
+  padding: 0.375rem 0px 0.4375rem;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
+  width: 3.125rem;
+  text-align: center;
+  display: block;
+  float:right;
+  position: relative;
+  right:1rem;
+  z-index: 9999999;
+}
+
+div.shoppingCartInformationSave {
+  text-align:center;
+}
+
+div.shoppingCartSubTotal {
+  font-weight: bold;
+}
+
+.ShoppingCardHeading {
+}
+

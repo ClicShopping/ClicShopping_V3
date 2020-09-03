@@ -1,0 +1,69 @@
+/*
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+div.ModulesProductsInfoBackground {
+  background-color: #f5f5f5;
+  margin-top: 0.9375rem;
+  margin-left: 0.625rem;
+  padding: 10px 10px 0 10px;
+}
+
+div.ModulesProductsInfoPrice, span.ModulesProductsInfoPrice h2 {
+  font-size: 1.5625rem;
+  color: #edac27;
+  text-align:right;
+  float:none;
+  padding-bottom:0.9375rem;
+}
+
+#btn_submitproduct{
+  font-weight: normal !important;
+  text-transform: uppercase !important;
+}
+
+
+div.modulesProductsInfoModulesProductsInfosubmitButton, span.modulesProductsInfoModulesProductsInfosubmitButton  {
+  float:right;
+  padding-bottom: 0.625rem;
+}
+
+
+div.ModulesProductsInfoQuantityOrder, span.ModulesProductsInfoQuantityOrder h3 {
+  font-size: 13px;
+  color: #A39993;
+  font-weight: bold;
+  padding-left: 0.3125rem;
+  height: 0rem;
+}
+
+div.ModulesProductsInfokiloPrice, span.ModulesProductsInfokiloPrice h3 {
+  font-size: 1rem;
+  color: #A39993;
+  height: 0rem;
+}
+
+div.ModulesProductsInfoMinOrderQuandityProductsDisplay, span.ModulesProductsInfoMinOrderQuandityProductsDisplay h3 {
+  height: 0rem;
+
+  color: #A39993;
+  padding-bottom: 0.625rem;
+}
+
+
+div.ModulesProductsInfoQuantityMinOrder {
+
+  float:left;
+  padding-bottom : 0.625rem;
+}
+
+div.ModulesProductsInfoProductsQuantityUnit, span.ModulesProductsInfoProductsQuantityUnit h3 {
+
+  color: #A39993;
+}

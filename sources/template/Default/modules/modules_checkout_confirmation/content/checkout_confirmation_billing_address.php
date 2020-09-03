@@ -1,0 +1,54 @@
+<?php
+/**
+ *
+ *  @copyright 2008 - https://www.clicshopping.org
+ *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
+ *  @Licence GPL 2 & MIT
+ *  @licence MIT - Portion of osCommerce 2.4
+ *  @Info : https://www.clicshopping.org/forum/trademark/
+ *
+ */
+
+use ClicShopping\OM\CLICSHOPPING;
+?>
+<div class="col-md-<?php echo $content_width; ?>">
+  <div class="separator"></div>
+  <div class="page-title moduleCheckoutConfirmationBillingAddressPageHeader"><h3><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_heading_billing_information'); ?></h3></div>
+
+  <span class="col-md-6 float-md-left">
+    <div class="card moduleCheckoutConfirmationBillingAddressCard">
+      <div class="card-header moduleCheckoutConfirmationBillingAddressHeader">
+<?php
+// Controle autorisation au client de modifier son adresse par defaut
+  if ($modify_address == 1) {
+?>
+          <div class="moduleCheckoutConfirmationBillingAddressDeliveryAddress"><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_delivery_address'); ?></strong><?php echo $edit_payment_address; ?></div>
+<?php
+  } else {
+?>
+          <div class="moduleCheckoutConfirmationBillingAddressBillingTitle"><?php echo '<strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_text_billing_title') . '</strong>'; ?></div>
+<?php
+  }
+?>
+      </div>
+      <div class="card-block moduleCheckoutConfirmationBillingAddressCardBlock">
+        <div class="separator"></div>
+        <div><?php echo $billing_address; ?></div>
+      </div>
+    </div>
+    <div class="separator"></div>
+  </span>
+
+  <span class="col-md-6 float-md-right">
+    <div class="card moduleCheckoutConfirmationBillingAddressCard">
+      <div class="card-header moduleCheckoutConfirmationBillingAddressHeader">
+        <div><strong><?php echo CLICSHOPPING::getDef('module_checkout_confirmation_billing_address_heading_payment_method'); ?></strong><?php echo $payment_method; ?></div>
+      </div>
+      <div class="card-block moduleCheckoutConfirmationBillingAddressCardBlock">
+        <div class="separator"></div>
+        <div><?php echo $type_payment; ?></div>
+      </div>
+    </div>
+    <div class="separator"></div>
+  </span>
+</div>

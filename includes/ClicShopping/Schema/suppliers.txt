@@ -1,0 +1,24 @@
+suppliers_id int not_null auto_increment
+suppliers_name varchar(32) not_null
+suppliers_image varchar(255)
+date_added datetime
+last_modified datetime
+suppliers_manager varchar(64)
+suppliers_phone varchar(32)
+suppliers_email_address varchar(96)
+suppliers_fax varchar(32)
+suppliers_address varchar(64)
+suppliers_suburb varchar(32)
+suppliers_postcode varchar(10)
+suppliers_city varchar(32)
+suppliers_states varchar(32)
+suppliers_country_id int default(0) not_null
+suppliers_notes text
+suppliers_status int(1) default(0) not_null
+--
+primary suppliers_id
+idx_suppliers_name suppliers_name
+##
+engine innodb
+character_set utf8mb4
+collate utf8mb4_unicode_ci
