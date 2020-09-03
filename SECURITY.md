@@ -19,6 +19,6 @@ https://github.com/ClicShopping/ClicShopping_V3/issues
 - add a detail example that can be reproduced
 - If you know a solution, propose your idea to solve
 
-We will check your post, test and remove 
+We will check your post, test and remove.
 
 
