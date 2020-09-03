@@ -1,8 +1,0 @@
-id int not_null auto_increment
-directory varchar(255) not_null
---
-primary id
-##
-engine innodb
-character_set utf8mb4
-collate utf8mb4_unicode_ci

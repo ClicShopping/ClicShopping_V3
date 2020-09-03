@@ -1,2 +1,0 @@
-text_newsletter = Abonnement newsletter
-text_view = - Plus d'informations

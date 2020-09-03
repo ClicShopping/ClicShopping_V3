@@ -1,4 +1,0 @@
-
-navbar_title = Cartographie du site
-heading_title = Cartographie du site
-

@@ -1,9 +1,0 @@
-address_format_id int not_null auto_increment
-address_format varchar(255) not_null
-address_summary varchar(255) not_null
---
-primary address_format_id
-##
-engine innodb
-character_set utf8mb4
-collate utf8mb4_unicode_ci

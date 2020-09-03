@@ -1,3 +1,0 @@
-module_to_title = Total
-module_to_short_title = Total
-module_to_public_title = Total

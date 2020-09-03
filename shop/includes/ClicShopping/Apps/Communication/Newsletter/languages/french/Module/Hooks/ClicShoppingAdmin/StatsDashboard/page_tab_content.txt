@@ -1,2 +1,0 @@
-box_entry_newsletter_b2c = Nombre de souscriptions à la Newsletter (B2C)
-box_entry_newsletter_b2b = Nombre de souscriptions à la Newsletter (B2B)

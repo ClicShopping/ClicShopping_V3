@@ -1,70 +1,88 @@
+<p align="center">
+  <img src="https://www.clicshopping.org/images/logonew.png">
+</p>
+
+
+## Table of Contents
+
+* [What is ClicShopping](https://github.com/ClicShopping#ClicShopping)
+  - [Demo Site](https://www.clicshopping.org)
+* [Solution](https://github.com/ClicShopping#Solution) 
+* [Requirement](https://github.com/ClicShopping#Requirement)
+* [Installation](https://github.com/ClicShopping#Installation)
+  - [User Checklist](https://github.com/ClicShopping#Checklist) 
+  - [Language Packs](https://github.com/ClicShoppingV3Community?q=language&type=&language=)
+* [Supporting the Project](https://github.com/ClicShopping#Support)
+  - [Join the ClicShopping community](https://www.clicshopping.org)
+  - [Softaculous](https://github.com/ClicShopping#Support)
+  - [Fantastico](https://github.com/ClicShopping#Support)
+* [Official Apps, modules, adds on](https://github.com/ClicShoppingOfficialModulesV3)
+* [Community Apps, modules, adds on](https://github.com/ClicShoppingV3Community)
+* [Marketplace Apps, modules, adds on](https://clicshopping.org)
+* [Donation](https://github.com/ClicShopping#Donation)
+* [Trademark - Licence](https://github.com/ClicShopping#Trademark)
+* [Functionnalities](https://github.com/ClicShopping#Functionnalities)
+* [Images](https://github.com/ClicShopping#Images)
+* [Wiki](https://github.com/ClicShopping/ClicShopping_V3/wiki)
+
 # ClicShopping
+ClicShopping(tm) is an Ecommerce OpenSource and powerfull Solution e-commerce B2B / B2C / B2B-B2C. 
+The solution is based on a modern, responsive design that will allow you to have a great website on all mobile device, desktop but also perform at speed !
+Easy to install in just some clicks on a server or on your computer, you can use ClicShopping 
 
- Community : https://www.clicshopping.org
-
- ClicShopping(tm) is an Ecommerce OpenSource Solution B2B / B2C / B2B-B2C. Several configurations can be used.
+#Solution
  The solution is built on modules and APP to have a very big flexibility.
  The approach is completely modular on the catalog / administration with simple code to understand, to customize and to update at need.
 
- All informations are available at the forum clicshopping.org
+ All informations are available at the forum https://www.clicshopping.org
  The modules are available on Github (Official and Community) or by an internal install.
 
+#Requirement (more information in the wiki)
+Apache 2.4<br>
+MYSQL 7 / MariaDb 10.3 / Postgres<br>
+PHP > 7.4.3
+More information in the Wiki
 
- I am looking for a team to continue to develop this application. Programmers, community managers, translators ... All help is welcome.
- If you are interested, contact me and you are welcome in this crazy project :)
+#Installation
+ Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
+ Step2 : Install Clicshopping : https://www.mysite.com/install
+More information in the Wiki
 
- - How to install.
+#Checklist
+- [x] read this README document
+- [x] Check the server requirement
+- [ ] Download ClicShopping & perform installation
+- [ ] Check security page in administrative area;  
+      Tools > Security
+- [ ] join the community
+- [ ] install your Apps, modules;  
+      Configuration > My administration > Dasboard<br>
+      Configuration > shipping<br>
+      Configuration > payment<br>
+- [ ] Choose your own Apps, modules;        
+      Tools > Extension
+- [ ] Create your catalog
+- [ ] Perform a test checkout
 
- Step1 : Download ClicShopping
+More information in the Wiki
 
- Step2 : Install Clicshopping : https://www.mysite.com/shop/install
+#Support
+  <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)<br><br>  
 
+  <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)<br><br>
 
- - All informations about the ClicShopping(tm)
-
- Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
- 
- Access demo Administration : https://www.clicshopping.org
-  
- Community : https://www.clicshopping.org
-
- Software : https://github.com/ClicShopping
-
- Official add on : https://github.com/ClicShoppingOfficialModulesV3
-
- Community add on : https://github.com/ClicShoppingV3Community
-
- trademark License info : https://www.clicshopping.org/forum/trademark/
-
- Information / technical documents : See the community
-
- - Required configuration:
-
- Apache 2.4
-
- MYSQL 7 / MariaDb
-
- PHP 7.3.3, 7.4 
-
- License GPL2 - MIT
-
+#Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a>
-
  - Donation can help to continue the work and to finance the infrastructure.
-
  - More information are available on the community website.
 
- - ClicShopping(tm) has a trademark deposed
+#trademark
+License GPL2 - MIT
+ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
 
-
-
-- Some functionnalities included
-
-- PHP 7.x and Mariadb /Mysql
-
+#Functionnalities (some)
 - B2B - B2C  full functionalities
 - WYSIWYG to create your products description, content with CKeditor4.x
-
 - Image Editor management with El-Finder 2.x - drag and drop - webp
 - Full SEO functionalities optimization ad url
 - Payment and Shipping modules included inside the application with Paypal
@@ -86,9 +104,7 @@
 
  [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
 
-  
- Thank you for your support
-
+#Images
  ![image2](https://www.clicshopping.org/images/frontoffice.png)
 
  ![image3](https://www.clicshopping.org/images/order.png)

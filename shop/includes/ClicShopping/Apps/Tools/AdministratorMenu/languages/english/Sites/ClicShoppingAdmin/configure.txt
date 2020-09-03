@@ -1,1 +1,0 @@
-module_am_short_title = AdministratorMenu

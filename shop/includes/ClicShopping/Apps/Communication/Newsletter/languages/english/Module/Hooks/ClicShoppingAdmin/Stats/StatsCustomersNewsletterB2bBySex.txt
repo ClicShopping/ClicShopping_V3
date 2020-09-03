@@ -1,3 +1,0 @@
-text_average_newsletter = B2B by sex
-text_male = Men
-text_female = Women

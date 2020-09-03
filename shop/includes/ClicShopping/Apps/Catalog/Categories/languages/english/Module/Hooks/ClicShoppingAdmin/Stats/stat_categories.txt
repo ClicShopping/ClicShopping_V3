@@ -1,3 +1,0 @@
-text_categories_alert = Categories Alert
-text_categories_on = Categories On
-text_categories_off = Categories Off

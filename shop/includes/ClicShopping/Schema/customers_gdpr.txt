@@ -1,9 +1,0 @@
-id int not_null auto_increment
-customers_id int(11) not_null
-no_ip_address tinyint(1) default(0) not_null
---
-primary id
-##
-engine innodb
-character_set utf8mb4
-collate utf8mb4_unicode_ci

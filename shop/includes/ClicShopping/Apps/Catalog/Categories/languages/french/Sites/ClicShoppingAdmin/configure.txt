@@ -1,1 +1,0 @@
-module_ct_short_title = Catégories

@@ -1,1 +1,0 @@
-module_lg_short_title = Languages

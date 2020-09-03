@@ -1,3 +1,0 @@
-error_no_default_language_defined = Erreur: La langue par défaut n\a pas été sélectionnée. Veuillez faire la rectification: Configuration / Divers / Langues
-default_language = langue par défaut
-

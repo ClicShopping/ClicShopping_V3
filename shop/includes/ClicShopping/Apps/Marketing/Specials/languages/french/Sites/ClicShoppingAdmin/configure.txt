@@ -1,1 +1,0 @@
-module_sp_short_title = Promotions

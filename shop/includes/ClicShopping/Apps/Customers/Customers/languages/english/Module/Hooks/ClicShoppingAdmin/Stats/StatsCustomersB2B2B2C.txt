@@ -1,3 +1,0 @@
-text_customers = Customers
-text_b2c = B2C
-text_b2b = B2B

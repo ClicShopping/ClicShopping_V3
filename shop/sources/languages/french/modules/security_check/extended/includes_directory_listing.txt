@@ -1,3 +1,0 @@
-module_security_check_extended_admin_images_directory_listing_title = includes/ Directory Listing
-module_security_check_extended_includes_directory_listing_http_200 = Le répertoire includes est accessibles et/ou navigable - veuzillez insérer rectifier dans votre serveur web cet éléments
-includes_directory_listing = includes

@@ -11,3 +11,4 @@ Remove Paypal
 update SEO
 remove duplication content checkout confirmation template
 some language fix
+fix bug on typo Login be LogIn

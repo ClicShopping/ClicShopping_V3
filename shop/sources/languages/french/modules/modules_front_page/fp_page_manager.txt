@@ -1,2 +1,0 @@
-module_front_page_manager_title = Souhaitez-vous afficher sur la page d'accueil Gestionnaire de Page ?
-module_front_page_manager_description = Affiche les articles issus du gestionnaire de page

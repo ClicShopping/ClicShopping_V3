@@ -1,1 +1,0 @@
-module_te_short_title = Template Email

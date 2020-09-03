@@ -1,4 +1,0 @@
-
-navbar_title_1 = Création du comtpe
-navbar_title_2 = Succès
-heading_title = Votre compte a été créé !

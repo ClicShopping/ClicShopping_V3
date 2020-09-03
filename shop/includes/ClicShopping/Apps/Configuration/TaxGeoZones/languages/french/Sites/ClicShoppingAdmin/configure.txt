@@ -1,1 +1,0 @@
-module_tg_short_title = Taxes par zones géographiques

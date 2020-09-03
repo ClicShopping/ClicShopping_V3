@@ -61,14 +61,14 @@ RewriteEngine On
 #    RewriteCond %{HTTP_HOST} !^www.mysite.org$ [NC]
 #    RewriteRule ^(.*)$ https://www.mysite.org/$1 [L,R=301]
 
-##to change in function your website
-#RewriteBase /shop/
+#to change in function your website
+#RewriteBase /
 
 #    RewriteCond %{REQUEST_FILENAME} !-f
 #    RewriteCond %{REQUEST_FILENAME} !-d
 
 #to change in function your website
-#RewriteRule . /shop/index.php [L]
+#RewriteRule . /index.php [L]
 </IfModule>
 
 ##################################

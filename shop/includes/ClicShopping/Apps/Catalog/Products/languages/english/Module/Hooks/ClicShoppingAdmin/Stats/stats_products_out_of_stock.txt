@@ -1,3 +1,0 @@
-text_products_stock = Stock
-text_products_out_of_stock = Out of Stock
-text_products_offline = Products off line

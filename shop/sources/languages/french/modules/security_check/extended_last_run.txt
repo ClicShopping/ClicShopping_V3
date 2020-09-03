@@ -1,3 +1,0 @@
-module_security_check_extended_last_run_old = Cela fait plus de 30 jours depuis la dernière vérification a été faite. Veuillez effectuer une vérification de votre système (Outils / Informations sécurité / Information ClicShopping.
-extended_last_run = Dernireè vérification
-

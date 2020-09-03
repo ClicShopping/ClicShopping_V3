@@ -1,8 +1,0 @@
-customers_firstname varchar(255)  not_null
-customers_lastname varchar(255) not_null
-customers_email_address varchar(255) not_null
---
-##
-engine innodb
-character_set utf8mb4
-collate utf8mb4_unicode_ci
