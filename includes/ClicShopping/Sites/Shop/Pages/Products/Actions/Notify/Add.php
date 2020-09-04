@@ -26,7 +26,7 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if ($CLICSHOPPING_Customer->isLoggedOn()) {
-        if (isset($_GET['products_id'])) {
+        if ($CLICSHOPPING_ProductsCommon->getID()) {
           $notify = (int)$CLICSHOPPING_ProductsCommon->getID();
         } elseif (isset($_GET['notify'])) {
           $notify = $_GET['notify'];

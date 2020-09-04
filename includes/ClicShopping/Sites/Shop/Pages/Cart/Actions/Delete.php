@@ -16,15 +16,14 @@
 
   class delete extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
-      if (isset($_GET['products_id'])) {
-        $CLICSHOPPING_ShoppingCart->remove($_GET['products_id']);
+      if ($CLICSHOPPING_ProductsCommon->getID()) {
+        $CLICSHOPPING_ShoppingCart->remove($CLICSHOPPING_ProductsCommon->getID());
       }
 
       $CLICSHOPPING_Hooks->call('Cart', 'Delete');

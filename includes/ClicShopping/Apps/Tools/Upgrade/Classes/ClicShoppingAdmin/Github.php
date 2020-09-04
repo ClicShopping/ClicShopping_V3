@@ -254,7 +254,6 @@
         array('id' => 'tools', 'text' => 'Modules Apps Tools'),
         array('id' => 'service', 'text' => 'Modules Apps Web service'),
         array('id' => 'other', 'text' => 'Modules Apps Others'),
-        array('id' => 'bookmarks', 'text' => 'Modules Social Bookmarks'),
         array('id' => 'template', 'text' => 'Template Design'),
         array('id' => 'language', 'text' => 'Language'),
       );
