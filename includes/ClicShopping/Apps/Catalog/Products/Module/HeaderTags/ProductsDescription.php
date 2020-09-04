@@ -62,7 +62,7 @@
       }
 
       if (isset($_GET['Products']) && isset($_GET['Description'])) {
-        if (isset($_GET['products_id'])) {
+        if ($CLICSHOPPING_ProductsCommon->getID()) {
           $products_id = $CLICSHOPPING_ProductsCommon->getID();
 
           $Qsubmit = $this->app->db->prepare('select submit_id,

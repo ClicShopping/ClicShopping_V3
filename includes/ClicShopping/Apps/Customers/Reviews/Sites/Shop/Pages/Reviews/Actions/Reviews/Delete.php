@@ -31,7 +31,7 @@
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $review_id = HTML::sanitize($_GET['reviews_id']);
-        $products_id = HTML::sanitize($_GET['products_id']);
+        $products_id = $CLICSHOPPING_ProductsCommon->getId();
 
         $Ocheck = $CLICSHOPPING_Db->prepare('select reviews_id
                                       from :table_reviews

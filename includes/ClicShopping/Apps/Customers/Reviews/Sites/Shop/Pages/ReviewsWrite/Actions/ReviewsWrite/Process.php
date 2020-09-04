@@ -22,6 +22,7 @@
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Reviews = Registry::get('Reviews');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
+      $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
         $error = false;
@@ -56,15 +57,11 @@
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('message_customer'), 'success', 'rewiews_write');
 
-          $products_id = HTML::sanitize($_GET['products_id']);
-
-          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&Success&products_id=' . $products_id);
+          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&Success&products_id=' . $CLICSHOPPING_ProductsCommon->getID());
         }
 
         if ($error === true) {
-          $products_id = HTML::sanitize($_GET['products_id']);
-
-          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&products_id=' . $products_id);
+          CLICSHOPPING::redirect(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID());
         }
       }
     }
