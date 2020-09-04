@@ -2,7 +2,6 @@
   <img src="https://www.clicshopping.org/images/logonew.png">
 </p>
 
-
 ## Table of Contents
 
 * [What is ClicShopping](https://github.com/ClicShopping#ClicShopping)
@@ -72,7 +71,9 @@ More information in the Wiki
   <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)<br><br>
 
 #Donation
- - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a>
+ - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.<br >
+ [![Donate Paypal(nao-pon)](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/LoicRichardCanada?locale.x=fr_CA)
+ [![Donate Bitcoin(nao-pon)](https://img.shields.io/badge/Donate-Bitcoin-orange.svg)](https://www.clicshopping.org/donation/index.html)
  - Donation can help to continue the work and to finance the infrastructure.
  - More information are available on the community website.
 
@@ -102,8 +103,7 @@ ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/tr
 - Free Apps osCommerce, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 
 
- [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
-
+[![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
 #Images
  ![image2](https://www.clicshopping.org/images/frontoffice.png)
 
