@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 New release
+=======
+New release 3.22
+>>>>>>> v3.2146
 
 update composer libraries
 new ckeditor version
@@ -11,7 +15,12 @@ add email domain exclusion
 fix error message error create customer
 coding style fix
 refactoring
+<<<<<<< HEAD
 
+=======
+Remove social bookmark
+Remove Shop directory
+>>>>>>> v3.2146
 
 #sql update
 ALTER TABLE `clic_submit_description` ADD `submit_language_favorites_title` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_reviews_description`, ADD `submit_language_favorites_description` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_favorites_title`, ADD `submit_language_favorites_keywords` VARCHAR(255) NOT NULL AFTER `submit_language_favorites_description`;

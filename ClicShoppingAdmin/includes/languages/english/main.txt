@@ -31,7 +31,6 @@ box_modules_admin_dashboard = Dashboard Administration
 box_heading_modules = Modules
 box_modules_action_recorder = Action Recorder
 box_modules_header_tags = Header Tags
-box_modules_social_bookmarks = Social Networks
 box_modules_contact_customers = Customers contact
 box_entry_newsletter_b2c = Newsletter subscription number (B2C)
 box_entry_recover_shopping_cart = Cart to recover

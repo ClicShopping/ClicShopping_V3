@@ -21,7 +21,6 @@
 
     protected function init()
     {
-
       if (!Registry::exists('ReviewsApp')) {
         Registry::set('ReviewsApp', new ReviewsApp());
       }

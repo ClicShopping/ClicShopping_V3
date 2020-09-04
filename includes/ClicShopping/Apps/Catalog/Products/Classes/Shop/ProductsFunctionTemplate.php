@@ -321,8 +321,9 @@
       }
     }
 
-    /*
-     *
+    /**
+     * @param $products_id
+     * @return string
      */
     public function getProductsOnlyTheShop($products_id): string
     {

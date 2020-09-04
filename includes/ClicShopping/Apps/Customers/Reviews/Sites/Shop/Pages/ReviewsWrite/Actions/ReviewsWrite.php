@@ -34,7 +34,7 @@
         CLICSHOPPING::redirect(null, 'Account&LogIn');
       }
 
-      if (!isset($_GET['products_id'])) {
+      if (!$CLICSHOPPING_ProductsCommon->getID()) {
         CLICSHOPPING::redirect(null, CLICSHOPPING::getAllGET(array('action')));
       }
 
