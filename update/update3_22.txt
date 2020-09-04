@@ -1,0 +1,26 @@
+New release 3.22
+
+update composer libraries
+new ckeditor version
+new elfinder version
+mew boostrap version
+add featured and favorites in SEO header tags
+Go only php 7.4 and more
+fix reset password
+add email domain exclusion
+fix error message error create customer
+coding style fix
+refactoring
+Remove social bookmark
+Remove Shop directory
+
+#sql update
+ALTER TABLE `clic_submit_description` ADD `submit_language_favorites_title` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_reviews_description`, ADD `submit_language_favorites_description` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_favorites_title`, ADD `submit_language_favorites_keywords` VARCHAR(255) NOT NULL AFTER `submit_language_favorites_description`;
+ALTER TABLE `clic_submit_description` ADD `submit_language_featured_title` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_reviews_description`, ADD `submit_language_featured_description` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_featured_title`, ADD `submit_language_featured_keywords` VARCHAR(255) NOT NULL AFTER `submit_language_featured_description`;
+
+#english
+INSERT INTO `clic_configuration` VALUES(1543, 'Exclude specific email domains', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'If the domain is caught, the email will not be sent. Please separate your domains with a comma "," <br> <br> <i> example: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+
+
+#french
+INSERT INTO configuration VALUES(1543, 'Exclure des domaines d\'emails spécifiques', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'Si le domaine est attrapée, l\'email de ne sera pas envoyé. Veuillez séparer vos domaines par une virgule ","<br><br><i>exemple: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
