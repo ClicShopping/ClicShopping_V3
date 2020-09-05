@@ -13,6 +13,7 @@ coding style fix
 refactoring
 Remove social bookmark
 Remove Shop directory
+Update SEO URL
 
 #sql update
 ALTER TABLE `clic_submit_description` ADD `submit_language_favorites_title` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_reviews_description`, ADD `submit_language_favorites_description` VARCHAR(255) NULL DEFAULT NULL AFTER `submit_language_favorites_title`, ADD `submit_language_favorites_keywords` VARCHAR(255) NOT NULL AFTER `submit_language_favorites_description`;
