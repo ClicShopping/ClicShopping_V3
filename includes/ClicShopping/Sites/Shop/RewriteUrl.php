@@ -863,18 +863,16 @@
 
     public function getProductNameUrl($products_id, string $parameters = ''): string
     {
-
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if (defined('SEARCH_ENGINE_FRIENDLY_URLS') && SEARCH_ENGINE_FRIENDLY_URLS == 'true' && CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
         if (defined('SEARCH_ENGINE_FRIENDLY_URLS_PRO') && SEARCH_ENGINE_FRIENDLY_URLS_PRO == 'true') {
           $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($products_id);
           $products_name = $this->replaceString($products_name);
-          $products_url_rewrited = 'Products&Description&' . $products_name . '&products_id=' . $products_id;
+          $products_url_rewrited = 'Products&Description&' . $products_name . '&productsId=' . $products_id;
         } else {
           $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
         }
-
       } else {
         $products_url_rewrited = 'Products&Description&products_id=' . $products_id;
       }

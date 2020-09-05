@@ -41,7 +41,7 @@
           }
         }
 
-        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules, true) || in_array($code, $this->modules))) {
+        if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($code, $this->modules))) {
           if (strpos($code, '\\') !== false) {
             $class = Apps::getModuleClass($code, 'Shipping');
 

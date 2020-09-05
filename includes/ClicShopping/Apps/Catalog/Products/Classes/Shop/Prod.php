@@ -29,15 +29,22 @@
     public function getID()
     {
 // products description
-      $id = empty($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
-
+      if (isset($_GET['productsId'])) {
+        $id = empty($_GET['productsId']) ? null : HTML::sanitize($_GET['productsId']);
+      } else {
+        $id = empty($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
+      }
 // products listing
       if (empty($id) && !isset($_GET['Search']) && !isset($_GET['Q'])) {
-        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+        if (isset($_POST['productsId']) && is_numeric($_POST['productsId']) && !empty(HTML::sanitize($_POST['productsId']))) {
+          $id = empty($_POST['productsId']) ? null : HTML::sanitize($_POST['productsId']);
+        } elseif (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
           $id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
         }
       } elseif (isset($_GET['Search']) && isset($_GET['Q'])) {
-        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+        if (isset($_POST['productsId']) && is_numeric($_POST['productsId']) && !empty(HTML::sanitize($_POST['productsId']))) {
+          $id = HTML::sanitize($_POST['productsId']);
+        }elseif (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
           $id = HTML::sanitize($_POST['products_id']);
         }
       }
