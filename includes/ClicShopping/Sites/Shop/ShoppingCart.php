@@ -25,7 +25,7 @@
     protected float $weight;
     protected string $content_type;
     protected int $min_quantity;
-    protected $quantity;
+    protected int $quantity;
     protected string $productsId;
     protected bool $products_in_stock = true;
 
@@ -59,7 +59,8 @@
           'sub_total_cost' => 0,
           'total_cost' => 0,
           'total_weight' => 0,
-          'shipping_address' => ['zone_id' => STORE_ZONE,
+          'shipping_address' => [
+            'zone_id' => STORE_ZONE,
             'country_id' => STORE_COUNTRY
           ],
           'order_totals' => []
@@ -159,7 +160,7 @@
           } else {
             $this->db->save('customers_basket', ['customers_basket_quantity' => (int)$qty],
               ['customers_id' => (int)$this->customer->getID(),
-                'products_id' => $item_id
+               'products_id' => $item_id
               ]
             );
           }
@@ -1165,7 +1166,7 @@
       $Qstock->bindInt(':products_id', $this->contents[$item_id]['id']);
       $Qstock->execute();
 
-      if ( ($Qstock->valueInt('products_quantity') - $this->contents[$item_id]['quantity']) >= 0 ) {
+      if ( ($Qstock->valueInt('products_quantity') - $this->contents[$item_id]['quantity']) >= 0) {
         return true;
       } elseif ( $this->products_in_stock === true ) {
         $this->products_in_stock = false;

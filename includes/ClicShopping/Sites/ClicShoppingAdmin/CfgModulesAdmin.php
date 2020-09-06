@@ -16,7 +16,6 @@
 
   class CfgModulesAdmin
   {
-
     public array $_modules = [];
     protected $lang;
 
@@ -30,7 +29,7 @@
       if ($dir = @dir($directory)) {
         while ($file = $dir->read()) {
           if (!is_dir($directory . $file)) {
-            if (substr($file, strrpos($file, '.')) == $file_extension) {
+            if (substr($file, strrpos($file, '.')) === $file_extension) {
               $class = substr($file, 0, strrpos($file, '.'));
 
               include($CLICSHOPPING_Template->getModulesDirectory() . '/Module/CfgModules/' . $class . '.php');
@@ -38,7 +37,8 @@
               $m = new $class();
 
               if (is_object($m)) {
-                $this->_modules[] = ['code' => $m->code,
+                $this->_modules[] = [
+                  'code' => $m->code,
                   'directory' => $m->directory,
                   'language_directory' => $m->language_directory,
                   'key' => $m->key,
@@ -53,11 +53,19 @@
       }
     }
 
+    /**
+     * @return array
+     */
     public function getAll()
     {
       return $this->_modules;
     }
 
+    /**
+     * @param string $code
+     * @param string $key
+     * @return mixed
+     */
     public function get(string $code, string $key)
     {
       if (is_array($this->_modules)) {
@@ -69,6 +77,10 @@
       }
     }
 
+    /**
+     * @param $code
+     * @return bool
+     */
     public function exists($code): bool
     {
       if (is_array($this->_modules)) {
@@ -82,7 +94,10 @@
       return false;
     }
 
-
+    /**
+     * @param string $modules
+     * @return int
+     */
     public function countModules(string $modules = ''): int
     {
       $count = 0;

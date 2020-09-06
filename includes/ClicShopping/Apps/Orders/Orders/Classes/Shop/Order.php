@@ -248,6 +248,9 @@
       }
     }
 
+    /**
+     *  Cart
+     */
     public function cart()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -688,15 +691,16 @@
           $attributes_price = $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']);
           $final_price = $products[$i]['price'] + $attributes_price;
 
-           $this->products[$index] = ['qty' => $products[$i]['quantity'],
-            'name' => $products[$i]['name'],
-            'model' => $model[$i],
-            'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-            'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
-            'price' => $products[$i]['price'],
-            'final_price' => $final_price,
-            'weight' => $products[$i]['weight'],
-            'id' => $products[$i]['id']
+           $this->products[$index] = [
+             'qty' => $products[$i]['quantity'],
+             'name' => $products[$i]['name'],
+             'model' => $model[$i],
+             'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+             'tax_description' => $CLICSHOPPING_Tax->getTaxRateDescription($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
+             'price' => $products[$i]['price'],
+             'final_price' => $final_price,
+             'weight' => $products[$i]['weight'],
+             'id' => $products[$i]['id']
           ];
 
   // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
@@ -712,7 +716,6 @@
             $QordersCustomersPrice->execute();
 
             if ($QordersCustomersPrice->fetch()) {
-
   // Marketing : price is update by discount of the quantity and in function the product
   //Display only in shoppingCart
               $products_price = $QordersCustomersPrice->valueDecimal('customers_group_price');

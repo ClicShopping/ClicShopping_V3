@@ -21,7 +21,7 @@
 // ----------------------------------------------------------------//
 
   if ($CLICSHOPPING_ProductsCommon->getProductsCount() < 1 || (is_null($CLICSHOPPING_ProductsCommon->getID())) || $CLICSHOPPING_ProductsCommon->getID() === false ) {
-  header('HTTP/1.0 404 Not Found');
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 ?>
  <section class="product" id="product">
   <div class="contentContainer">
@@ -43,14 +43,12 @@
   </div>
  </section>
 <?php
-  }
+  } elseif ($CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
 // ----------------------------------------------------------------
-// ---- Affiche la fiche produit selon les autorisations   ----
+// ---- Display products with autorization  ----
 // ------------------------------------------------------------
-
-    if ($CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
-      require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
-      $CLICSHOPPING_ProductsCommon->countUpdateProductsView();
+    require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
+    $CLICSHOPPING_ProductsCommon->countUpdateProductsView();
 ?>
 <section class="product" id="product">
   <div class="contentContainer">
@@ -62,4 +60,4 @@
   </div>
 </section>
 <?php
-    }
+  }
