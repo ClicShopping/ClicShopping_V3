@@ -53,7 +53,8 @@
                                                         'products_image_zoom',
                                                         'products_image_medium'
                                                         ],
-                                                        ['products_id' => $CLICSHOPPING_ProductsCommon->getID(), 'products_status' => 1
+                                                        ['products_id' => $CLICSHOPPING_ProductsCommon->getID(), 
+                                                         'products_status' => 1
                                                         ]
                                           );
 

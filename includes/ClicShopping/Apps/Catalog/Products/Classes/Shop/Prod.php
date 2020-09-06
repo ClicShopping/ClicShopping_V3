@@ -60,10 +60,8 @@
      * @return string
      */
 
-    public static function getProductIDString(string $id, $params)
+    public static function getProductIDString($string, $params)
     {
-      $string = $id;
-
       if (is_array($params) && !empty($params)) {
         $attributes_check = true;
         $attributes_ids = [];
@@ -89,10 +87,10 @@
      * Generate a numeric product ID without product attribute combinations
      *
      * @param string $id The product ID
-     *
+     * @return int
      */
 
-    public static function getProductID(string $id)
+    public static function getProductID($id)
     {
       if (is_numeric($id)) {
         return $id;
@@ -107,11 +105,8 @@
 
     /**
      * Products  sort by
-     *
      * @param string $field ,field of products, $direction, ascending descending
-     *
-     *
-     */
+    */
     public function setSortBy(string $field, string $direction = '+')
     {
       switch ($field) {
@@ -138,6 +133,9 @@
       $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
     }
 
+    /**
+     * @param string $direction
+     */
     public function setSortByDirection(string $direction)
     {
       $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
