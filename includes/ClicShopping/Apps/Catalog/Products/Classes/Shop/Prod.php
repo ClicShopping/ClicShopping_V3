@@ -29,15 +29,22 @@
     public function getID()
     {
 // products description
-      $id = empty($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
-
+      if (isset($_GET['Id'])) {
+        $id = empty($_GET['Id']) ? null : HTML::sanitize($_GET['Id']);
+      } else {
+        $id = empty($_GET['products_id']) ? null : HTML::sanitize($_GET['products_id']);
+      }
 // products listing
       if (empty($id) && !isset($_GET['Search']) && !isset($_GET['Q'])) {
-        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+        if (isset($_POST['Id']) && is_numeric($_POST['Id']) && !empty(HTML::sanitize($_POST['Id']))) {
+          $id = empty($_POST['Id']) ? null : HTML::sanitize($_POST['Id']);
+        } elseif (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
           $id = empty($_POST['products_id']) ? null : HTML::sanitize($_POST['products_id']);
         }
       } elseif (isset($_GET['Search']) && isset($_GET['Q'])) {
-        if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
+        if (isset($_POST['Id']) && is_numeric($_POST['Id']) && !empty(HTML::sanitize($_POST['Id']))) {
+          $id = HTML::sanitize($_POST['Id']);
+        }elseif (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && !empty(HTML::sanitize($_POST['products_id']))) {
           $id = HTML::sanitize($_POST['products_id']);
         }
       }
@@ -53,10 +60,8 @@
      * @return string
      */
 
-    public static function getProductIDString(string $id, $params)
+    public static function getProductIDString($string, $params)
     {
-      $string = $id;
-
       if (is_array($params) && !empty($params)) {
         $attributes_check = true;
         $attributes_ids = [];
@@ -82,10 +87,10 @@
      * Generate a numeric product ID without product attribute combinations
      *
      * @param string $id The product ID
-     *
+     * @return int
      */
 
-    public static function getProductID(string $id)
+    public static function getProductID($id)
     {
       if (is_numeric($id)) {
         return $id;
@@ -100,11 +105,8 @@
 
     /**
      * Products  sort by
-     *
      * @param string $field ,field of products, $direction, ascending descending
-     *
-     *
-     */
+    */
     public function setSortBy(string $field, string $direction = '+')
     {
       switch ($field) {
@@ -131,6 +133,9 @@
       $this->_sort_by_direction = ($direction == '-') ? '-' : '+';
     }
 
+    /**
+     * @param string $direction
+     */
     public function setSortByDirection(string $direction)
     {
       $this->_sort_by_direction = ($direction == '-') ? '-' : '+';

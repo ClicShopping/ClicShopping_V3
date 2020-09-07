@@ -528,6 +528,9 @@ EOD;
       return $output;
     }
 
+    /**
+     * destruct
+     */
     public function __destruct()
     {
       if (($this->cache_read === false) && isset($this->cache) && is_array($this->cache_data)) {

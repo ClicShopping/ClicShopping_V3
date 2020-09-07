@@ -105,7 +105,7 @@
     if ($dir = @dir($module_directory)) {
       while ($file = $dir->read()) {
         if (!is_dir($module_directory . $file)) {
-          if (substr($file, strrpos($file, '.')) == $file_extension) {
+          if (substr($file, strrpos($file, '.')) === $file_extension) {
             if (isset($_GET['list']) && ($_GET['list'] == 'new')) {
               if (!in_array($file, $modules_installed)) {
                 $directory_array[] = $file;
@@ -286,7 +286,8 @@
 
       if ($Qcheck->fetch() !== false) {
         if ($Qcheck->value('configuration_value') != implode(';', $installed_modules)) {
-          Registry::get('Db')->save('configuration', ['configuration_value' => implode(';', $installed_modules),
+          Registry::get('Db')->save('configuration', [
+            'configuration_value' => implode(';', $installed_modules),
             'last_modified' => 'now()'
           ],
             ['configuration_key' => $module_key]
@@ -294,7 +295,8 @@
         }
       } else {
 
-        $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Modules',
+        $CLICSHOPPING_Db->save('configuration', [
+            'configuration_title' => 'Installed Modules',
             'configuration_key' => $module_key,
             'configuration_value' => implode(';', $installed_modules),
             'configuration_description' => 'This is automatically updated. No need to edit.',
@@ -315,14 +317,16 @@
             $tbgroups_array[] = $module_type;
             sort($tbgroups_array);
 
-            $CLICSHOPPING_Db->save('configuration', ['configuration_value' => implode(';', $tbgroups_array),
+            $CLICSHOPPING_Db->save('configuration', [
+              'configuration_value' => implode(';', $tbgroups_array),
               'last_modified' => 'now()'
             ],
               ['configuration_key' => 'TEMPLATE_BLOCK_GROUPS']
             );
           }
         } else {
-          $CLICSHOPPING_Db->save('configuration', ['configuration_title' => 'Installed Template Block Groups',
+          $CLICSHOPPING_Db->save('configuration', [
+              'configuration_title' => 'Installed Template Block Groups',
               'configuration_key' => 'TEMPLATE_BLOCK_GROUPS',
               'configuration_value' => $module_type,
               'configuration_description' => 'This is automatically updated. No need to edit.',

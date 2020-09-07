@@ -28,11 +28,10 @@
   class Shop extends \ClicShopping\OM\SitesAbstract
   {
     protected static ?string $_application;
+    protected  array $ignored_actions;
 
     protected function init()
     {
-//     error_reporting(E_ALL & ~E_NOTICE);
-
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);
 

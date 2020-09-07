@@ -66,11 +66,10 @@
     }
 
     /**
-     * @param $order_id
+     * @param int $order_id
      */
-    public function query($order_id)
+    public function query(int $order_id)
     {
-
       $order_total = $shipping_title = '';
 
       $Qorder = $this->db->prepare('select *
@@ -91,7 +90,8 @@
       $Qtotals->execute();
 
       while ($Qtotals->fetch()) {
-        $this->totals[] = ['title' => $Qtotals->value('title'),
+        $this->totals[] = [
+          'title' => $Qtotals->value('title'),
           'text' => $Qtotals->value('text')
         ];
 
@@ -159,7 +159,8 @@
         'email_address' => $Qorder->value('customers_email_address')
       ];
 
-      $this->delivery = ['name' => $Qorder->value('delivery_name'),
+      $this->delivery = [
+        'name' => $Qorder->value('delivery_name'),
         'company' => $Qorder->value('delivery_company'),
         'street_address' => $Qorder->value('delivery_street_address'),
         'suburb' => $Qorder->value('delivery_suburb'),
@@ -248,6 +249,84 @@
       }
     }
 
+    /**
+     * @return array
+     */
+    protected function getCustomerArrayInitialization() :array
+    {
+      $customer_address = [
+        'customers_firstname' => null,
+        'customers_lastname' => null,
+        'customers_telephone' => null,
+        'customers_cellular_phone' => null,
+        'customers_email_address' => null,
+        'customers_siret' => null,
+        'customers_ape' => null,
+        'customers_tva_intracom' => null,
+        'entry_company' => null,
+        'entry_street_address' => null,
+        'entry_suburb' => null,
+        'entry_postcode' => null,
+        'entry_city' => null,
+        'entry_zone_id' => null,
+        'zone_name' => null,
+        'countries_id' => null,
+        'countries_name' => null,
+        'countries_iso_code_2' => null,
+        'countries_iso_code_3' => null,
+        'address_format_id' => 0,
+        'entry_state' => null
+      ];
+
+      return $customer_address;
+    }
+
+    /**
+     * get customer information
+     * @param int $id
+     * @return mixed
+     */
+    protected function getcustomer(int $id) :array
+    {
+      $Qcustomer = $this->db->prepare('select c.customers_firstname,
+                                               c.customers_lastname,
+                                               c.customers_group_id,
+                                               c.customers_company,
+                                               c.customers_telephone,
+                                               c.customers_cellular_phone,
+                                               c.customers_email_address,
+                                               c.customers_siret,
+                                               c.customers_ape,
+                                               c.customers_tva_intracom,
+                                               ab.entry_company,
+                                               ab.entry_street_address,
+                                               ab.entry_suburb,
+                                               ab.entry_postcode,
+                                               ab.entry_city,
+                                               ab.entry_zone_id,
+                                               z.zone_name,
+                                               co.countries_id,
+                                               co.countries_name,
+                                               co.countries_iso_code_2,
+                                               co.countries_iso_code_3,
+                                               co.address_format_id,
+                                               ab.entry_state
+                                     from :table_customers c,
+                                          :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id)
+                                                                 left join :table_countries co on (ab.entry_country_id = co.countries_id)
+                                    where c.customers_id = :customers_id
+                                    and ab.customers_id = :customers_id
+                                    and c.customers_default_address_id = ab.address_book_id
+                                    ');
+      $Qcustomer->bindInt(':customers_id', $id);
+      $Qcustomer->execute();
+
+      return  $Qcustomer->toArray();
+    }
+
+    /**
+     * Cart
+     */
     public function cart()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -263,124 +342,19 @@
       }
 
 // recuperation des informations clients B2B pour enregistrement commandes
-
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
-        $customer_address = [
-          'customers_firstname' => null,
-          'customers_lastname' => null,
-          'customers_telephone' => null,
-          'customers_cellular_phone' => null,
-          'customers_email_address' => null,
-          'customers_siret' => null,
-          'customers_ape' => null,
-          'customers_tva_intracom' => null,
-          'entry_company' => null,
-          'entry_street_address' => null,
-          'entry_suburb' => null,
-          'entry_postcode' => null,
-          'entry_city' => null,
-          'entry_zone_id' => null,
-          'zone_name' => null,
-          'countries_id' => null,
-          'countries_name' => null,
-          'countries_iso_code_2' => null,
-          'countries_iso_code_3' => null,
-          'address_format_id' => 0,
-          'entry_state' => null
-        ];
+      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+        $customer_address = $this->getCustomerArrayInitialization();
 
         if ($CLICSHOPPING_Customer->getID()) {
-          $Qcustomer = $this->db->prepare('select c.customers_firstname,
-                                                   c.customers_lastname,
-                                                   c.customers_group_id,
-                                                   c.customers_company,
-                                                   c.customers_telephone,
-                                                   c.customers_cellular_phone,
-                                                   c.customers_email_address,
-                                                   c.customers_siret,
-                                                   c.customers_ape,
-                                                   c.customers_tva_intracom,
-                                                   ab.entry_company,
-                                                   ab.entry_street_address,
-                                                   ab.entry_suburb,
-                                                   ab.entry_postcode,
-                                                   ab.entry_city,
-                                                   ab.entry_zone_id,
-                                                   z.zone_name,
-                                                   co.countries_id,
-                                                   co.countries_name,
-                                                   co.countries_iso_code_2,
-                                                   co.countries_iso_code_3,
-                                                   co.address_format_id,
-                                                   ab.entry_state
-                                         from :table_customers c,
-                                              :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id)
-                                                                     left join :table_countries co on (ab.entry_country_id = co.countries_id)
-                                        where c.customers_id = :customers_id
-                                        and ab.customers_id = :customers_id
-                                        and c.customers_default_address_id = ab.address_book_id
-                                            ');
-          $Qcustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-          $Qcustomer->execute();
-          $customer_address = $Qcustomer->toArray();
+          $customer_address = $this->getcustomer($CLICSHOPPING_Customer->getID());
         }
 
 // recuperation des informations clients normaux pour enregistrement commandes avec en plus infos sur customers_group_id
       } else {
-        $customer_address = [
-          'customers_firstname' => null,
-          'customers_lastname' => null,
-          'customers_group_id' => null,
-          'customers_telephone' => null,
-          'customers_cellular_phone' => null,
-          'customers_email_address' => null,
-          'customers_tva_intracom' => null,
-          'entry_company' => null,
-          'entry_street_address' => null,
-          'entry_suburb' => null,
-          'entry_postcode' => null,
-          'entry_city' => null,
-          'entry_zone_id' => null,
-          'zone_name' => null,
-          'countries_id' => null,
-          'countries_name' => null,
-          'countries_iso_code_2' => null,
-          'countries_iso_code_3' => null,
-          'address_format_id' => 0,
-          'entry_state' => null
-        ];
+        $customer_address = $this->getCustomerArrayInitialization();
 
         if ($CLICSHOPPING_Customer->getID()) {
-          $Qcustomer = $this->db->prepare('select c.customers_firstname,
-                                                   c.customers_lastname,
-                                                   c.customers_group_id,
-                                                   c.customers_telephone,
-                                                   c.customers_cellular_phone,
-                                                   c.customers_email_address,
-                                                   c.customers_tva_intracom,
-                                                   ab.entry_company,
-                                                   ab.entry_street_address,
-                                                   ab.entry_suburb,
-                                                   ab.entry_postcode,
-                                                   ab.entry_city,
-                                                   ab.entry_zone_id,
-                                                   z.zone_name,
-                                                   co.countries_id,
-                                                   co.countries_name,
-                                                   co.countries_iso_code_2,
-                                                   co.countries_iso_code_3,
-                                                   co.address_format_id,
-                                                   ab.entry_state
-                                           from :table_customers c,
-                                                :table_address_book ab left join :table_zones z on (ab.entry_zone_id = z.zone_id)
-                                                                      left join :table_countries co on (ab.entry_country_id = co.countries_id)
-                                           where c.customers_id = :customers_id
-                                           and ab.customers_id = :customers_id
-                                           and c.customers_default_address_id = ab.address_book_id
-                                      ');
-          $Qcustomer->bindInt(':customers_id', $CLICSHOPPING_Customer->getID());
-          $Qcustomer->execute();
-          $customer_address = $Qcustomer->toArray();
+          $customer_address = $this->getcustomer($CLICSHOPPING_Customer->getID());
         }
       }
 
@@ -593,7 +567,7 @@
         ];
 
 // recuperation des informations societes pour les clients B2B qui est transmit au fichier checkout_process.php
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $this->customer['siret'] = $customer_address['customers_siret'];
           $this->customer['ape'] = $customer_address['customers_ape'];
           $this->customer['tva_intracom'] = $customer_address['customers_tva_intracom'];
@@ -648,7 +622,7 @@
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
       // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 //Group tax
         $QgroupTax = $this->db->prepare('select group_order_taxe,
                                                 group_tax
@@ -688,7 +662,8 @@
           $attributes_price = $CLICSHOPPING_ShoppingCart->getAttributesPrice($products[$i]['id']);
           $final_price = $products[$i]['price'] + $attributes_price;
 
-           $this->products[$index] = ['qty' => $products[$i]['quantity'],
+           $this->products[$index] = [
+             'qty' => $products[$i]['quantity'],
             'name' => $products[$i]['name'],
             'model' => $model[$i],
             'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
@@ -700,7 +675,7 @@
           ];
 
   // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
-          if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
   // order customers price
             $QordersCustomersPrice = $this->db->prepare('select customers_group_price
                                                          from :table_products_groups
@@ -783,7 +758,7 @@
           $products_tax = $this->products[$index]['tax'];
 
 // tax control for B2B group setting
-          if ((DISPLAY_PRICE_WITH_TAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() === 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0 && $group_tax['group_tax'] == 'true')) {
+          if ((DISPLAY_PRICE_WITH_TAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && $group_tax['group_tax'] == 'true')) {
             $this->info['tax'] += $shown_price - ($shown_price / (($products_tax < 10) ? '1.0' . str_replace('.', '', $products_tax) : '1.' . str_replace('.', '', $products_tax)));
 
             if (isset($this->info['tax_groups']['products_tax_description'])) {
@@ -805,7 +780,9 @@
         }
       }
 
-      if ((DISPLAY_PRICE_WITH_TAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() === 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0 && $group_tax['group_tax'] == 'true') || ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0 && $group_tax['group_order_taxe'] === 1)) {
+      if ((DISPLAY_PRICE_WITH_TAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) ||
+        ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && $group_tax['group_tax'] == 'true') ||
+        ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && $group_tax['group_order_taxe'] == 1)) {
         $this->info['total'] = $this->info['subtotal'] + $this->info['shipping_cost'];
       } else {
         $this->info['total'] = $this->info['subtotal'] + $this->info['tax'] + $this->info['shipping_cost'];
@@ -818,6 +795,9 @@
     /***********************************************************
      * Insert
      ***********************************************************/
+    /**
+     * @return mixed
+     */
     public function Insert()
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -902,7 +882,7 @@
       ];
 
 // recuperation des informations societes pour les clients B2B (voir fichier la classe OrderAdmin)
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
         $sql_data_array['customers_siret'] = $this->customer['siret'];
         $sql_data_array['customers_ape'] = $this->customer['ape'];
         $sql_data_array['customers_tva_intracom'] = $this->customer['tva_intracom'];
@@ -932,7 +912,7 @@
       for ($i = 0, $n = count($this->products); $i < $n; $i++) {
 
 // search the good model
-        if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
                                                               from :table_products_groups
                                                               where products_id = :products_id
@@ -1015,7 +995,7 @@
      * @param int $last_order_id
      * @param int $customer_id
      */
-    public function saveGdpr($last_order_id, $customer_id)
+    public function saveGdpr(int $last_order_id, int  $customer_id)
     {
       $Qgdpr = $this->db->prepare('select no_ip_address
                                    from :table_customers_gdpr
@@ -1035,7 +1015,8 @@
 
       $update_array = ['orders_id' => $last_order_id];
 
-      $array = ['client_computer_ip' => $ip_address,
+      $array = [
+        'client_computer_ip' => $ip_address,
         'provider_name_client' => $provider_name,
       ];
 
@@ -1045,8 +1026,11 @@
     /***********************************************************
      * Process
      ***********************************************************/
-
-    public function process($order_id = null)
+    /**
+     * order process
+     * @param int $order_id
+     */
+    public function process(int $order_id)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Prod = Registry::get('Prod');
@@ -1066,7 +1050,6 @@
 // Stock Update
         if (STOCK_LIMITED == 'true') {
           if (DOWNLOAD_ENABLED == 'true') {
-
             $stock_query_sql = 'select p.products_quantity,
                                       pad.products_attributes_filename
                                 from :table_products p
@@ -1074,7 +1057,7 @@
                                 left join :table_products_attributes_download pad on pa.products_attributes_id = pad.products_attributes_id
                                 where p.products_id = :products_id';
 
-            $products_attributes = (isset($this->products['attributes'])) ? $this->products['attributes'] : '';
+            $products_attributes = $this->products['attributes'] ?? '';
 
             if (is_array($products_attributes)) {
               $stock_query_sql .= ' and pa.options_id = :options_id
@@ -1107,7 +1090,7 @@
 // do not decrement quantities if products_attributes_filename exists
             if ((DOWNLOAD_ENABLED != 'true') || !is_null($Qstock->value('products_attributes_filename'))) {
 // select the good qty in B2B ti decrease the stock. See shopping_cart top display out stock or not
-              if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+              if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
                 $QproductsQuantityCustomersGroup = $this->db->prepare('select products_quantity_fixed_group
                                                                         from :table_products_groups
                                                                         where products_id = :products_id
@@ -1172,17 +1155,17 @@
       $CLICSHOPPING_Hooks->call('Orders', 'Process');
     }
 
-    /*
-     * adminOrdersStatusHistory : Status History order
-     * @param $insert_id, order_id, $comment : customer order
-     * @return array and save history
-     *
-    */
-    public function adminOrdersStatusHistory($insert_id = null, $comment = null)
+    /**
+     *  Status History order
+     * @param int $insert_id
+     * @param string|null $comment
+     */
+    public function adminOrdersStatusHistory(int $insert_id, string $comment  = '')
     {
       $customer_notification = (SEND_EMAILS == 'true') ? '1' : '0';
 
-      $sql_data_array = ['orders_id' => (int)$insert_id,
+      $sql_data_array = [
+        'orders_id' => (int)$insert_id,
         'orders_status_id' => (int)$this->info['order_status'],
         'orders_status_invoice_id' => (int)$this->info['order_status_invoice'],
         'admin_user_name' => '',
@@ -1194,13 +1177,11 @@
       $this->db->save('orders_status_history', $sql_data_array);
     }
 
-    /*
+    /**
      * sendCustomerEmail : sent email to customer
-     * @param $insert_id
-     * @return email
-     *
-    */
-    public function sendCustomerEmail($insert_id)
+     * @param int $insert_id
+     */
+    public function sendCustomerEmail(int $insert_id)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
@@ -1249,8 +1230,7 @@
         $email_order .= html_entity_decode($message_order) . "\n" . CLICSHOPPING::getDef('email_separator') . "\n";
 
         while ($Qproducts->fetch()) {
-
-          if ($CLICSHOPPING_Customer->getCustomersGroupID() !== 0) {
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
             $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
                                                                   from :table_products_groups
                                                                   where products_id = :products_id
@@ -1263,7 +1243,9 @@
 
             $products_model = $QproductsModuleCustomersGroup->value('products_model_group');
 
-            if (empty($products_model)) $products_model = $Qproducts->value('products_model');
+            if (empty($products_model)) {
+              $products_model = $Qproducts->value('products_model');
+            }
 
           } else {
             $products_model = $Qproducts->value('products_model');
@@ -1349,8 +1331,11 @@
       }
     }
 
-// Alert by mail product exhausted if a product is 0 or < 0
-    public function sendEmailAlertProductsExhausted($insert_id)
+    /**
+     * Alert by mail product exhausted if a product is 0 or < 0
+     * @param int $insert_id
+     */
+    public function sendEmailAlertProductsExhausted(int $insert_id)
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
@@ -1392,7 +1377,10 @@
       }
     }
 
-    public function sendEmailAlertStockWarning($insert_id)
+    /**
+     * @param int $insert_id
+     */
+    public function sendEmailAlertStockWarning(int $insert_id)
     {
       $CLICSHOPPING_Prod = Registry::get('Prod');
 
@@ -1450,16 +1438,13 @@
       }
     }
 
-    /*
+    /**
      * Verify the coupon
-     * @param
-     * @return
-     * @access private
-    */
-
+     */
     private function getCodeCoupon()
     {
       $CLICSHOPPING_ShoppingCart = Registry::get('ShoppingCart');
+
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
       if (isset($_POST['coupon'])) {
@@ -1483,16 +1468,15 @@
       }
     }
 
-    /*
+    /**
      * finalize the coupon discount processs
-     * @param
-     * @return array with the coupon discount
-     * @access private
-    */
+     * @return mixed
+     */
     private function getFinalizeCouponDiscount()
     {
       if (is_object($this->coupon)) {
         $this->info['total'] = $this->coupon->getFinalizeDiscount($this->info);
+
         return $this->info['total'];
       }
     }

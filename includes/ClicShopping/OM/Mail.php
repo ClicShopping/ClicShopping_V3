@@ -234,7 +234,7 @@
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send(string $to_name = '', string $to_addr, string $from_name, string $from_addr, string $subject = '', bool $reply_to = false): bool
+    public function send(string $to_name = '', ?string $to_addr, ?string $from_name, ?string $from_addr, string $subject = '', bool $reply_to = false): bool
     {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
@@ -324,12 +324,12 @@
 
     /**
      * Do not send en email if it'excluded by the admin
-     * @param string $email
+     * @param string|null $email
      * @return bool
      */
-    private static function excludeEmailDomain(string $email) :bool
+    public static function excludeEmailDomain(?string $email = '')
     {
-      if( filter_var( $email, FILTER_VALIDATE_EMAIL)) {
+      if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
         $array_domain = explode('@', $email);
         $domain = array_pop($array_domain);
         $exlude_domain = explode(',', CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN);
@@ -352,14 +352,15 @@
      * Send email (text/html) using MIME
      * This is the central mail function. The SMTP Server should be configured
      * @param string $to_name The name of the recipient
-     * @param string $to_email_address The email address of the recipient
-     * @param string $subject The subject of the email
-     * @param string $body The body text of the email
-     * @param string $from_name The name of the sender
-     * @param string $from_email_address The email address of the sender
-     *
+     * @param string|null $to_email_address The email address of the recipient
+     * @param string $email_subject
+     * @param string $email_text
+     * @param string|null $from_email_name
+     * @param string|null $from_email_address The email address of the sender
+     * @return false
+     * @throws Exception
      */
-    public function clicMail(string $to_name =  '', string $to_email_address, string $email_subject = '', string $email_text, string $from_email_name, string $from_email_address)
+    public function clicMail(string $to_name = '', ?string $to_email_address, string $email_subject = '', string $email_text = '', ?string$from_email_name, ?string $from_email_address)
     {
       if (SEND_EMAILS != 'true') {
         return false;
@@ -383,12 +384,11 @@
       $this->send($to_name, $to_email_address, $from_email_name, $from_email_address, $email_subject);
     }
 
-    /*
+    /**
      * Analyse the customer email  domain and validate or not the email
-     * @param string : $email : mail of the customer
-     * @param string return : value 0,1 the value of the test result
-    */
-
+     * @param string $email
+     * @return bool
+     */
     public function validateDomainEmail(string $email): bool
     {
       if (Is::EmailAddress($email, true) === false) {

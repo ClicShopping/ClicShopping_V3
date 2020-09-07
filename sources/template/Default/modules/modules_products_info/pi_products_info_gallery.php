@@ -48,7 +48,15 @@
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_Db = Registry::get('Db');
 
-        $Qproducts = $CLICSHOPPING_Db->get('products', ['products_id',  'products_image', 'products_image_zoom', 'products_image_medium'], ['products_id' => $CLICSHOPPING_ProductsCommon->getID(), 'products_status' => 1]);
+        $Qproducts = $CLICSHOPPING_Db->get('products', ['products_id',
+                                                        'products_image',
+                                                        'products_image_zoom',
+                                                        'products_image_medium'
+                                                        ],
+                                                        ['products_id' => $CLICSHOPPING_ProductsCommon->getID(), 
+                                                         'products_status' => 1
+                                                        ]
+                                          );
 
         $products_small_image = $Qproducts->value('products_image');
         $products_image_zoom = $Qproducts->value('products_image_zoom');

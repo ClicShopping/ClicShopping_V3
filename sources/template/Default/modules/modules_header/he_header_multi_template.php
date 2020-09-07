@@ -204,7 +204,6 @@
           'date_added' => 'now()'
         ]
       );
-
     }
 
     public function remove() {
