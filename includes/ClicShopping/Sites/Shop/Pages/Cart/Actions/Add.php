@@ -13,6 +13,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   class Add extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -26,11 +27,13 @@
         $parameters = '';
 
         if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && is_numeric($_POST['cart_quantity'])) {
-          $attributes = isset($_POST['id']) ? $_POST['id'] : '';
+          $attributes = HTML::sanitize($_POST['id']) ?? '';
 
-          if (!isset($_POST['cart_quantity'])) $_POST['cart_quantity'] = 1;
+          if (!isset($_POST['cart_quantity'])) {
+            $_POST['cart_quantity'] = 1;
+          }
 
-          $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->getQuantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes)) + ($_POST['cart_quantity']), $attributes);
+          $CLICSHOPPING_ShoppingCart->addCart($_POST['products_id'], $CLICSHOPPING_ShoppingCart->getQuantity($CLICSHOPPING_Prod::getProductIDString($_POST['products_id'], $attributes)) + ((int)$_POST['cart_quantity']), $attributes);
 
           if (DISPLAY_CART == 'true') {
             $goto = CLICSHOPPING::getConfig('bootstrap_file');
