@@ -15,13 +15,6 @@
 
   class Prod
   {
-    protected $products_id;
-    protected $id;
-
-    Public function __construct()
-    {
-    }
-
     /**
      * get this if of the products
      * @return null|int products_id
