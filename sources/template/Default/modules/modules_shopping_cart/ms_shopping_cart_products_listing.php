@@ -99,7 +99,7 @@
           $remove_product_id = 'remove_product_' . $products[$i]['id'];
 
           $trash = '
-          <a href="#" data-toggle="modal" data-target="#' . $remove_product_id[$i] . '"><i class="fas fa-trash"></i></a>
+          <a href="#" data-toggle="modal" data-target="#' . $remove_product_id[$i]  . '"><i class="fas fa-trash"></i></a>
           <div class="modal hide fade active' . $remove_product_id[$i] . '" tabindex="-1" role="dialog" aria-labelledby="' . $remove_product_id[$i] . '" aria-hidden="true" id="' . $remove_product_id[$i] . '">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
@@ -153,17 +153,12 @@
           if (isset($products[$i]['attributes'])) {
             if  (is_array($products[$i]['attributes'])) {
               foreach($products[$i]['attributes'] as $option => $value) {
-                $products_attributes_values_name = '';
-                $products_attributes_reference = '';
-                $products_attributes_image = '';
-
                 if (is_array($products[$i][$option]) && isset($products[$i][$option])) {
                   $products_attributes_values_name = $products[$i][$option]['products_attributes_values_name'];
                   $products_attributes_reference = $products[$i][$option]['products_attributes_reference'];
                   $products_attributes_image = $products[$i][$option]['products_attributes_image'];
 
                   if (!is_null($products[$i][$option]['products_attributes_image'])) {
-
                     if (is_file(CLICSHOPPING::getConfig('Shop') . $CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_attributes_image)) {
                       $products_attributes_image = HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $products_attributes_image, $products_attributes_values_name . '   ', 30, 30);
                     } else {

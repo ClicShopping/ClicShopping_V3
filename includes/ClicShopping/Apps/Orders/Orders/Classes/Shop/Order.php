@@ -58,7 +58,7 @@
         $this->_id = HTML::sanitize($_GET['order_id']);
         $this->query($this->_id);
       } elseif (!is_null($order_id)) {
-        $this->query(HTML::sanitize($order_id));
+        $this->query((int) $order_id);
       } else {
         $this->cart();
       }
@@ -224,20 +224,22 @@
                                            and orders_products_id = :orders_products_id
                                          ');
 
-        $Qattributes->bindInt(':orders_id', (int)$order_id);
+        $Qattributes->bindInt(':orders_id', $order_id);
         $Qattributes->bindInt(':orders_products_id', $QOrdersProducts->valueInt('orders_products_id'));
         $Qattributes->execute();
 
         if ($Qattributes->fetch() !== false) {
           do {
-            $this->products[$index]['attributes'][$i] = [
+            $this->products[$index]['attributes'][$subindex] = [
               'option' => $Qattributes->value('products_options'),
               'value' => $Qattributes->value('products_options_values'),
               'prefix' => $Qattributes->value('price_prefix'),
               'price' => $Qattributes->valueDecimal('options_values_price'),
               'reference' => $Qattributes->value('products_attributes_reference')
             ];
+
             $subindex++;
+
           } while ($Qattributes->fetch());
         }
 
