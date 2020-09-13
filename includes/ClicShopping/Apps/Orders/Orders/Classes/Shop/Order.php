@@ -58,7 +58,7 @@
         $this->_id = HTML::sanitize($_GET['order_id']);
         $this->query($this->_id);
       } elseif (!is_null($order_id)) {
-        $this->query(HTML::sanitize($order_id));
+        $this->query((int) $order_id);
       } else {
         $this->cart();
       }

@@ -555,13 +555,13 @@
         'error_reporting' => error_reporting(),
         'display_errors' => (int)@ini_get('display_errors'),
         'allow_url_fopen' => (int)@ini_get('allow_url_fopen'),
-        'allow_url_include' => (int)@ini_get('allow_url_include'),
+
         'file_uploads' => (int)@ini_get('file_uploads'),
         'upload_max_filesize' => @ini_get('upload_max_filesize'),
         'post_max_size' => @ini_get('post_max_size'),
         'disable_functions' => @ini_get('disable_functions'),
         'disable_classes' => @ini_get('disable_classes'),
-        'enable_dl' => (int)@ini_get('enable_dl'),
+
         'filter.default' => @ini_get('filter.default'),
         'unicode.semantics' => (int)@ini_get('unicode.semantics'),
         'zend_thread_safty' => (int)function_exists('zend_thread_id'),

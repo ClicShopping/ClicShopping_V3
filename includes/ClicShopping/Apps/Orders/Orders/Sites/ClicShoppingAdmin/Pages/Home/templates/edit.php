@@ -54,7 +54,7 @@
 
   if (isset($order_id) && is_numeric($order_id) && ($order_id > 0)) {
 
-    $oID = HTML::sanitize($order_id);
+    $oID = (int) $order_id;
 
     $Qorders = $CLICSHOPPING_Orders->db->get('orders', 'orders_id', ['orders_id' => (int)$oID]);
 

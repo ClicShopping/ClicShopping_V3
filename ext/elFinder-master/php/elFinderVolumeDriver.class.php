@@ -1450,7 +1450,7 @@ abstract class elFinderVolumeDriver
 
         // set tmpLinkPath
         if (elFinder::$tmpLinkPath && !$this->options['tmpLinkPath']) {
-            if (is_writeable(elFinder::$tmpLinkPath)) {
+            if (is_writable(elFinder::$tmpLinkPath)) {
                 $this->options['tmpLinkPath'] = elFinder::$tmpLinkPath;
             } else {
                 elFinder::$tmpLinkPath = '';
