@@ -32,15 +32,14 @@
     public array $billing;
     public int $order_id;
     public string $comment;
-    public int $insert_id;
+    protected int $_id;
+    protected int $insertID;
     public $coupon;
     public $content_type;
 
     protected $db;
     protected $lang;
     protected $mail;
-    protected $_id;
-    protected $insertID;
 
     public function __construct(?int $order_id = null)
     {
@@ -321,7 +320,7 @@
       $Qcustomer->bindInt(':customers_id', $id);
       $Qcustomer->execute();
 
-      return  $Qcustomer->toArray();
+      return $Qcustomer->toArray();
     }
 
     /**
@@ -377,7 +376,6 @@
           'address_format_id' => $_SESSION['sendto']['address_format_id'],
           'entry_state' => $_SESSION['sendto']['zone_name']
         ];
-
       } elseif (is_numeric($_SESSION['sendto'])) {
         $Qaddress = $this->db->prepare('select ab.entry_firstname,
                                                ab.entry_lastname,
@@ -405,7 +403,6 @@
         $Qaddress->execute();
 
         $shipping_address = $Qaddress->toArray();
-
       } else {
         $shipping_address = [
           'entry_firstname' => null,
@@ -473,15 +470,16 @@
         $Qaddress->execute();
 
         $billing_address = $Qaddress->toArray();
-
       }
 
       if ($this->content_type == 'virtual') {
-        $tax_address = ['entry_country_id' => $billing_address['entry_country_id'],
+        $tax_address = [
+          'entry_country_id' => $billing_address['entry_country_id'],
           'entry_zone_id' => $billing_address['entry_zone_id']
         ];
       } else {
-        $tax_address = ['entry_country_id' => $shipping_address['entry_country_id'],
+        $tax_address = [
+          'entry_country_id' => $shipping_address['entry_country_id'],
           'entry_zone_id' => $shipping_address['entry_zone_id']
         ];
       }
@@ -621,7 +619,7 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-      // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
+// Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
       if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
 //Group tax
         $QgroupTax = $this->db->prepare('select group_order_taxe,
@@ -654,7 +652,7 @@
           $products_quantity_unit_id = $QproductsQuantityUnitId->valueInt('products_quantity_unit_id_group');
 
           if ($products_quantity_unit_id > 0) {
-            $model[$i] = CONFIGURATION_PREFIX_MODEL . $products[$i]['model'];
+            $model[$i] = HTML::sanitize(CONFIGURATION_PREFIX_MODEL) . $products[$i]['model'];
           } else {
             $model[$i] = $products[$i]['model'];
           }
@@ -663,7 +661,7 @@
           $final_price = $products[$i]['price'] + $attributes_price;
 
            $this->products[$index] = [
-             'qty' => $products[$i]['quantity'],
+            'qty' => $products[$i]['quantity'],
             'name' => $products[$i]['name'],
             'model' => $model[$i],
             'tax' => $CLICSHOPPING_Tax->getTaxRate($products[$i]['tax_class_id'], $tax_address['entry_country_id'], $tax_address['entry_zone_id']),
@@ -676,7 +674,6 @@
 
   // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
           if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-  // order customers price
             $QordersCustomersPrice = $this->db->prepare('select customers_group_price
                                                          from :table_products_groups
                                                          where customers_group_id = :customers_group_id
@@ -687,7 +684,6 @@
             $QordersCustomersPrice->execute();
 
             if ($QordersCustomersPrice->fetch()) {
-
   // Marketing : price is update by discount of the quantity and in function the product
   //Display only in shoppingCart
               $products_price = $QordersCustomersPrice->valueDecimal('customers_group_price');
@@ -910,7 +906,6 @@
 
 // initialized for the email confirmation
       for ($i = 0, $n = count($this->products); $i < $n; $i++) {
-
 // search the good model
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
@@ -924,8 +919,11 @@
 
           $products_model = $QproductsModuleCustomersGroup->value('products_model_group');
 
-          if (empty($products_model)) $products_model = $this->products[$i]['model'];
-
+          if (empty($products_model)) {
+            $products_model = $this->products[$i]['model'];
+          } else {
+            $products_model = 'no model';
+          }
         } else {
           $products_model = $this->products[$i]['model'];
         }
@@ -962,7 +960,6 @@
             $this->db->save('orders_products_attributes', $sql_data_array);
 
             if ((DOWNLOAD_ENABLED == 'true') && $Qattributes->hasValue('products_attributes_filename') && !is_null($Qattributes->value('products_attributes_filename'))) {
-
               $sql_data_array = [
                 'orders_id' => (int)$this->insertID,
                 'orders_products_id' => (int)$order_products_id,
@@ -1118,17 +1115,11 @@
             }
 
             if ($stock_left != $Qstock->valueInt('products_quantity')) {
-              $this->db->save('products', ['products_quantity' => $stock_left],
-                ['products_id' => $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id'))
-                ]
-              );
+              $this->db->save('products', ['products_quantity' => $stock_left], ['products_id' => $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id'))]);
             }
 
             if (($stock_left < 1) && (STOCK_ALLOW_CHECKOUT == 'false')) {
-              $this->db->save('products', ['products_status' => 0],
-                ['products_id' => $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id'))
-                ]
-              );
+              $this->db->save('products', ['products_status' => 0], ['products_id' => $CLICSHOPPING_Prod::getProductID($Qproducts->valueInt('products_id'))]);
             }
 
 // alert an email if the product stock is < stock reorder level
@@ -1136,7 +1127,6 @@
             $this->sendEmailAlertStockWarning($order_id);
 // Email alert when a product is exahuted
             $this->sendEmailAlertProductsExhausted($order_id);
-
           }
         }
 

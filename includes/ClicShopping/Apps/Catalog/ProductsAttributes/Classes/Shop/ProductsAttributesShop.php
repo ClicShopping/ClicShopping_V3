@@ -30,10 +30,8 @@
 
     /**
      * Count the number of attributes on product
-     *
-     * @param string
-     * @return string $products_attributes['total'], total of attributes
-     *
+     * @param null $id
+     * @return mixed
      */
     private function setCountProductsAttributes($id = null)
     {
@@ -59,8 +57,6 @@
         $QproductsAttributes->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
 
         $QproductsAttributes->execute();
-
-        $products_attributes = $QproductsAttributes->fetch();
       } else {
         $QproductsAttributes = $this->db->prepare('select count(*) as total
                                                    from :table_products_options popt,
@@ -76,16 +72,14 @@
         $QproductsAttributes->bindInt(':language_id', $language_id);
 
         $QproductsAttributes->execute();
-
-        $products_attributes = $QproductsAttributes->fetch();
       }
 
-      return $products_attributes['total'];
+      return $QproductsAttributes->valueDecimal('total');
     }
 
     /**
      * @param null $id
-     * @return string
+     * @return int
      */
     Public function getCountProductsAttributes($id = null)
     {
@@ -94,8 +88,8 @@
 
     /**
      * Check if product has attributes
-     * @param string $products_id
-     * @return the checking of the products attributbes
+     * @param null $id
+     * @return bool
      */
     public function getHasProductAttributes($id = null)
     {

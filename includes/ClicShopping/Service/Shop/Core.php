@@ -26,10 +26,8 @@
 
   class Core implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       Registry::set('Customer', new CustomerClass());
       Registry::set('Tax', new TaxClass());
       Registry::set('Prod', new ProdClass());

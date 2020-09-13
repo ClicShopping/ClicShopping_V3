@@ -18,7 +18,6 @@
 
   class Order implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Orders/Orders/Classes/Shop/Order.php')) {

@@ -43,7 +43,8 @@
       $QdefaultCustomerGroup->bindInt(':customers_group_id', $customers_group_id);
       $QdefaultCustomerGroup->execute();
 
-      $sql_data_array = ['member_level' => '1',
+      $sql_data_array = [
+        'member_level' => '1',
         'customers_group_id' => (int)$customers_group_id,
         'customers_options_order_taxe' => $QdefaultCustomerGroup->valueInt('group_order_taxe')
       ];
@@ -83,11 +84,12 @@
         $email_coupon = '';
       }
 
-      $text_password_body = html_entity_decode($CLICSHOPPING_Members->getDef('email_password_reminder_body', ['store_name' => STORE_NAME,
-          'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
-          'url' => HTTP::getShopUrlDomain(),
-          'password' => $newpass,
-          'username' => $QcheckCustomer->value('customers_email_address')
+      $text_password_body = html_entity_decode($CLICSHOPPING_Members->getDef('email_password_reminder_body', [
+        'store_name' => STORE_NAME,
+        'store_owner_email_address' => STORE_OWNER_EMAIL_ADDRESS,
+        'url' => HTTP::getShopUrlDomain(),
+        'password' => $newpass,
+        'username' => $QcheckCustomer->value('customers_email_address')
         ]
       )
       );

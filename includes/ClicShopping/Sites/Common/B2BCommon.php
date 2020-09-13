@@ -153,11 +153,9 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       if (CLICSHOPPING::getSite() != 'ClicShoppingAdmin') {
-
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
 
         if (($CLICSHOPPING_Customer->isLoggedOn()) && ($customer_group_id != 0)) {
-
           $Qtaxb2b = $CLICSHOPPING_Db->prepare('select group_order_taxe
                                                 from :table_customers_groups
                                                 where customers_group_id = :customers_group_id
