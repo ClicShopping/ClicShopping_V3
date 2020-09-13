@@ -213,7 +213,7 @@
           'final_price' => $QOrdersProducts->valueDecimal('final_price')
         ];
 
-        $i = 0;
+        $subindex = 0;
 
 //*********************
 // attributes
@@ -237,8 +237,7 @@
               'price' => $Qattributes->valueDecimal('options_values_price'),
               'reference' => $Qattributes->value('products_attributes_reference')
             ];
-
-            $i++;
+            $subindex++;
           } while ($Qattributes->fetch());
         }
 
@@ -711,25 +710,23 @@
           }
 
           if ($products[$i]['attributes']) {
-            $i = 0;
+            $subindex = 0;
 
-            if (is_array($products[$i]['attributes'])) {
-              foreach ($products[$i]['attributes'] as $option => $value) {
-                $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
+            foreach ($products[$i]['attributes'] as $option => $value) {
 
-                $this->products[$index]['attributes'][$i] = [
-                  'option' => $Qattributes->value('products_options_name'),
-                  'value' => $Qattributes->value('products_options_values_name'),
-                  'option_id' => $option,
-                  'value_id' => $value, //products_options_values_id
-                  'prefix' => $Qattributes->value('price_prefix'),
-                  'price' => $Qattributes->value('options_values_price'),
-                  'reference' => $Qattributes->value('products_attributes_reference'),
-                  'products_attributes_image' => $Qattributes->value('products_attributes_image')
-                ];
+              $Qattributes = $CLICSHOPPING_ProductsAttributes->getProductsAttributesInfo($products[$i]['id'], $option, $value, $this->lang->getId());
 
-                $i++;
-              }
+              $this->products[$index]['attributes'][$subindex] = ['option' => $Qattributes->value('products_options_name'),
+                'value' => $Qattributes->value('products_options_values_name'),
+                'option_id' => $option,
+                'value_id' => $value, //products_options_values_id
+                'prefix' => $Qattributes->value('price_prefix'),
+                'price' => $Qattributes->value('options_values_price'),
+                'reference' => $Qattributes->value('products_attributes_reference'),
+                'products_attributes_image' => $Qattributes->value('products_attributes_image')
+              ];
+
+              $subindex++;
             }
           }
 

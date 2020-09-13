@@ -65,7 +65,6 @@
           ],
           'order_totals' => []
         ];
-
       }
 
       $this->contents =& $_SESSION['ClicShoppingCart']['contents'];
@@ -104,10 +103,11 @@
       return $qty;
     }
 
-    /*
-     *  Restore the the cart content
-     *
-    */
+    /**
+     * Restore the the cart content
+     * @return false
+     * @throws \Exception
+     */
     public function getRestoreContents()
     {
       if (!$this->customer->isLoggedOn()) {
@@ -122,7 +122,6 @@
           $qty = $data['qty'];
           $this->productsId = $item_id;
           $restore_qty = $this->getRestoreQty($qty, $item_id);
-
 
           if ($qty < $restore_qty) $qty = $this->getRestoreQty();
           if ($qty > $restore_qty) $qty = $data['qty'];
@@ -436,10 +435,11 @@
 // insert into database
             if ($this->customer->isLoggedOn()) {
 
-              $this->db->save('customers_basket', ['customers_id' => (int)$this->customer->getID(),
-                  'products_id' => $products_id_string,
-                  'customers_basket_quantity' => (int)$qty,
-                  'customers_basket_date_added' => date('Ymd')
+              $this->db->save('customers_basket', [
+                'customers_id' => (int)$this->customer->getID(),
+                'products_id' => $products_id_string,
+                'customers_basket_quantity' => (int)$qty,
+                'customers_basket_date_added' => date('Ymd')
                 ]
               );
 
@@ -451,10 +451,11 @@
 // insert into database
                 if ($this->customer->isLoggedOn()) {
 
-                  $this->db->save('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID(),
-                      'products_id' => $products_id_string,
-                      'products_options_id' => (int)$option,
-                      'products_options_value_id' => (int)$value
+                  $this->db->save('customers_basket_attributes', [
+                    'customers_id' => (int)$this->customer->getID(),
+                    'products_id' => $products_id_string,
+                    'products_options_id' => (int)$option,
+                    'products_options_value_id' => (int)$value
                     ]
                   );
                 }
@@ -470,7 +471,13 @@
       }
     }
 
-
+    /**
+     * @param string $products_id
+     * @param int $qty
+     * @param array $attributes
+     * @param bool $notify
+     * @throws \Exception
+     */
     public function addCart(string $products_id,int $qty = 1, $attributes = '', bool $notify = true)
     {
       $products_id_string = $this->getUprid($products_id, $attributes);
@@ -562,9 +569,9 @@
 //************************************************
     /**
      * Update product quantity
-     * @param $products_id string
-     * @param string $quantity int
-     * @param string $attributes string
+     * @param $products_id
+     * @param string $quantity
+     * @param array $attributes
      * @throws \Exception
      */
     public function updateQuantity(string $products_id, int $quantity, $attributes = '')
@@ -636,7 +643,8 @@
           unset($this->contents[$item_id]);
 // remove from database
           if ($this->customer->isLoggedOn()) {
-            $array = ['customers_id' => $this->customer->getID(),
+            $array = [
+              'customers_id' => $this->customer->getID(),
               'products_id' => $item_id
             ];
 
@@ -660,9 +668,9 @@
       }
     }
     
-    /*
+    /**
      * get total number of items in cart
-     * @return : int sum of item number
+     * @return int
      */
     public function getCountContents() :int
     {
@@ -680,7 +688,7 @@
 
     /**
      * get total quantity on each items in cart
-     * @param $item_id
+     * @param string $item_id
      * @return int
      */
     public function getQuantity(string $item_id)
@@ -713,13 +721,15 @@
 // remove from database
       if ($this->customer->isLoggedOn()) {
 
-        $this->db->delete('customers_basket', ['customers_id' => (int)$this->customer->getID(),
-            'products_id' => $item_id
+        $this->db->delete('customers_basket', [
+          'customers_id' => (int)$this->customer->getID(),
+          'products_id' => $item_id
           ]
         );
 
-        $this->db->delete('customers_basket_attributes', ['customers_id' => (int)$this->customer->getID(),
-            'products_id' => $item_id
+        $this->db->delete('customers_basket_attributes', [
+          'customers_id' => (int)$this->customer->getID(),
+          'products_id' => $item_id
           ]
         );
       }
@@ -747,8 +757,6 @@
     }
 
     /**
-     *
-     * @return int
      * @throws \Exception
      */
     private function calculate()
@@ -1104,7 +1112,6 @@
       $this->content_type = false;
 
       if ((DOWNLOAD_ENABLED == 'true') && ($this->getCountContents() > 0)) {
-
         foreach ($this->contents as $item_id => $data) {
           if (isset($data['attributes'])) {
             foreach ($data['attributes'] as $value) {
@@ -1162,11 +1169,11 @@
       $Qstock = $this->db->prepare('select products_quantity 
                                     from :table_products 
                                     where products_id = :products_id
-                                    ');
+                                   ');
       $Qstock->bindInt(':products_id', $this->contents[$item_id]['id']);
       $Qstock->execute();
 
-      if ( ($Qstock->valueInt('products_quantity') - $this->contents[$item_id]['quantity']) >= 0) {
+      if (($Qstock->valueInt('products_quantity') - $this->contents[$item_id]['quantity']) >= 0) {
         return true;
       } elseif ( $this->products_in_stock === true ) {
         $this->products_in_stock = false;
@@ -1178,7 +1185,8 @@
     /**
      * @return mixed
      */
-    public function hasStock() {
+    public function hasStock()
+    {
       return $this->products_in_stock;
     }
 
@@ -1199,9 +1207,7 @@
      * Return a product ID with attributes
      * @param string $prid , $params
      * @return string $uprid,
-     *
      */
-
     public function getUprid($prid, $params)
     {
       if (is_numeric($prid)) {
@@ -1258,13 +1264,10 @@
       return $uprid;
     }
 
-
     /**
-     * Return a product ID from a product ID with attributes
      * @param $uprid
-     * @return bool|int
+     * @return false|int
      */
-
     public function getPrid($uprid)
     {
       $pieces = explode('{', $uprid);
