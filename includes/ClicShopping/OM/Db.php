@@ -24,6 +24,7 @@
     protected ?int $port;
     protected array $driver_options = [];
     protected array $options = [];
+    protected $query_call;
 
     public static function initialize(
       $server = null,
