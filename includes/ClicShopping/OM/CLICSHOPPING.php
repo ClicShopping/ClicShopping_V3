@@ -408,7 +408,7 @@
      * @param string|null $group
      * @return mixed
      */
-    public static function getConfig(string $key, string $group = null)
+    public static function getConfig(string $key, ?string $group = null)
     {
       if (!isset($group)) {
         $group = static::getSite();

@@ -84,7 +84,6 @@
         $confirmation .= '<table width="100%">';
 
         for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
-
           $data = '<tr>' . "\n";
           $data .= '<td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
           $data .= '<td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
