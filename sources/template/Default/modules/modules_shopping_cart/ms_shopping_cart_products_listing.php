@@ -99,8 +99,8 @@
           $remove_product_id = 'remove_product_' . $products[$i]['id'];
 
           $trash = '
-          <a href="#" data-toggle="modal" data-target="#' . $remove_product_id . '"><i class="fas fa-trash"></i></a>
-          <div class="modal hide fade active' . $remove_product_id . '" tabindex="-1" role="dialog" aria-labelledby="' . $remove_product_id . '" aria-hidden="true" id="' . $remove_product_id . '">
+          <a href="#" data-toggle="modal" data-target="#' . $remove_product_id[$i] . '"><i class="fas fa-trash"></i></a>
+          <div class="modal hide fade active' . $remove_product_id[$i] . '" tabindex="-1" role="dialog" aria-labelledby="' . $remove_product_id[$i] . '" aria-hidden="true" id="' . $remove_product_id[$i] . '">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
                 <div class="modal-content">
