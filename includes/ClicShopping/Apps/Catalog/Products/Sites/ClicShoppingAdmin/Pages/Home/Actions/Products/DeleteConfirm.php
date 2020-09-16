@@ -41,7 +41,8 @@
 
         for ($i = 0, $n = $products_categories_id; $i < $n; $i++) {
 // delete product of categorie
-          $sql_array = ['products_id' => (int)$this->ID,
+          $sql_array = [
+            'products_id' => (int)$this->ID,
             'categories_id' => (int)$this->productCategoriesId[$i]
           ];
 

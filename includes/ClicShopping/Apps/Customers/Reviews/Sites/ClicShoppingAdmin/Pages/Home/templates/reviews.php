@@ -20,6 +20,7 @@
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');

@@ -49,7 +49,6 @@
         }
 
         if ($error === false) {
-// save data
           $CLICSHOPPING_Reviews->saveEntry();
           $CLICSHOPPING_Reviews->sendEmail();
 
