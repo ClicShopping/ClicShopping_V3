@@ -21,6 +21,7 @@
   {
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {

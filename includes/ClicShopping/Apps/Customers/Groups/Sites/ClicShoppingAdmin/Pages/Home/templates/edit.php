@@ -41,7 +41,9 @@
   $error = false;
 
   // Affichage des prix de la boutique pour le groupe avec une taxe inclus ou exclus
-  if (!isset($cInfo->group_tax)) $cInfo->group_tax = 'true';
+  if (!$cInfo->group_tax) {
+    $cInfo->group_tax = 'true';
+  }
 
   switch ($cInfo->group_tax) {
     case 'false':
@@ -55,7 +57,10 @@
   } // end !isset
 
   // Affiche la case coche par defaut pour le mode de facturation utilisee avec taxe ou non
-  if (!isset($cInfo->group_order_taxe)) $cInfo->group_order_taxe = '0';
+  if (!$cInfo->group_order_taxe) {
+      $cInfo->group_order_taxe = '0';
+  }
+
   switch ($cInfo->group_order_taxe) {
     case '0':
       $status_order_taxe = true;

@@ -23,10 +23,10 @@
   {
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
-
       if (!Registry::exists('Upgrade')) {
         Registry::set('Upgrade', new UpgradeApp());
       }
