@@ -20,10 +20,10 @@
   {
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
-
       if (!Registry::exists('SecurityCheck')) {
         Registry::set('SecurityCheck', new SecurityCheckApp());
       }

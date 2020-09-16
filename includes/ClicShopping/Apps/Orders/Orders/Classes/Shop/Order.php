@@ -262,6 +262,7 @@
         'customers_email_address' => null,
         'customers_siret' => null,
         'customers_ape' => null,
+        'customers_group_id' => null,
         'customers_tva_intracom' => null,
         'entry_company' => null,
         'entry_street_address' => null,
