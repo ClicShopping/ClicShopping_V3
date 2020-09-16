@@ -29,11 +29,11 @@
       $this->app = Registry::get('Reviews');
     }
 
-    private function removeReviews($id)
+    private function removeReviews(int $id)
     {
-      $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => (int)$id]);
+      $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => id]);
 
-      $this->app->db->delete('reviews', ['products_id' => (int)$id]);
+      $this->app->db->delete('reviews', ['products_id' => $id]);
 
       while ($Qreviews->fetch()) {
         $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
@@ -42,7 +42,7 @@
 
     public function execute()
     {
-      $id = HTML::sanitize($_POST['remove_id']);
+      $id = HTML::sanitize($_POST['products_id']);
       $this->removeReviews($id);
     }
   }

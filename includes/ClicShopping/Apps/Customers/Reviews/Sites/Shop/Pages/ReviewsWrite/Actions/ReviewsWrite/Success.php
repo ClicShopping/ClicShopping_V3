@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\Apps\Customers\Reviews\Sites\Shop\Pages\ReviewsWrite\Actions\ReviewsWrite;
 
   use ClicShopping\OM\CLICSHOPPING;
@@ -17,10 +16,8 @@
 
   class Success extends \ClicShopping\OM\PagesActionsAbstract
   {
-
     public function execute()
     {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Language = Registry::get('Language');
