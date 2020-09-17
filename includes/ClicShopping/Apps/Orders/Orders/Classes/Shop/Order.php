@@ -1311,10 +1311,13 @@
           $email_text_subject = stripslashes(CLICSHOPPING::getDef('email_text_subject', ['store_name' => STORE_NAME]));
           $email_text_subject = html_entity_decode($email_text_subject);
 
-          $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
-          if (is_array($text)) {
-            foreach ($text as $key => $email) {
-              $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+          if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
+            $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
+            
+            if (is_array($text)) {
+              foreach ($text as $key => $email) {
+                $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              }
             }
           }
         }
