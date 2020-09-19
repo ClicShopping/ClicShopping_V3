@@ -602,7 +602,7 @@
         }
       }
 
-      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check == true)) {
+      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check === true)) {
         $this->contents[$products_id_string] = ['qty' => (int)$quantity];
 // update database
         if ($this->customer->isLoggedOn()) {

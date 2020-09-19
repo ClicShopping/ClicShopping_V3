@@ -12,15 +12,33 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\ObjectInfo;
+  use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_Backup = Registry::get('Backup');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+
+  $file = basename($_GET['file']);
+
+  $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
+
+  $dir_ok = false;
+
+  if (is_dir($backup_directory)) {
+    if (FileSystem::isWritable($backup_directory)) {
+      $dir_ok = true;
+    } else {
+      $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_backup_directory_not_writeable'), 'error');
+    }
+  } else {
+   $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('error_backup_directory_does_not_exist'), 'error');
+  }
 
   $info = [
     'file' => $file,
     'date' => date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $file)),
-    'size' => number_format(filesize($backup_directory . $entry)) . ' file',
+    'size' => number_format(filesize($backup_directory . $file)) . ' file',
   ];
 
   switch (substr($info['file'], -3)) {
@@ -51,7 +69,9 @@
     </div>
   </div>
   <div class="separator"></div>
-
+  <?php
+  if (FileSystem::isWritable($backup_directory)) {
+  ?>
   <div class="col-md-12 mainTitle"><strong><?php echo $buInfo->date; ?></strong></div>
   <?php echo HTML::form('delete', $CLICSHOPPING_Backup->link('Backup&DeleteConfirm&file=' . $_GET['file'])); ?>
   <div class="adminformTitle">
@@ -66,6 +86,9 @@
     </div>
   </div>
   </form>
+  <?php
+  }
+  ?>
 </div>
 
 

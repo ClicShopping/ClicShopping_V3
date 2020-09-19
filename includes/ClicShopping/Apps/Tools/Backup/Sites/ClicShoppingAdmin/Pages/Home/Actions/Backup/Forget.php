@@ -22,7 +22,6 @@
       $this->app = Registry::get('Backup');
     }
 
-
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -32,6 +31,5 @@
       $CLICSHOPPING_MessageStack->add($this->app->getDef('success_last_restore_cleared'), 'success');
 
       $this->app->redirect('Backup');
-
     }
   }

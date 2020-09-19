@@ -17,6 +17,9 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
+  $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
+  $file = basename($_GET['file']);
+
   $info = [
     'file' => $file,
     'date' => date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $file)),
@@ -50,8 +53,10 @@
       </div>
     </div>
   </div>
+  <?php
+  if (is_file($backup_directory . $_GET['file'])) {
+    ?>
   <div class="separator"></div>
-
   <div class="col-md-12 mainTitle">
     <strong><?php echo $CLICSHOPPING_Backup->getDef('text_info_hadingg_restore_local'); ?></strong></div>
   <?php echo HTML::form('restore', $CLICSHOPPING_Backup->link('Backup&RestoreLocalNow'), 'post', 'enctype="multipart/form-data"'); ?>
@@ -68,8 +73,10 @@
       </div>
     </div>
   </div>
-
   </form>
+    <?php
+  }
+  ?>
 </div>
 
 
