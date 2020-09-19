@@ -18,6 +18,7 @@
   $CLICSHOPPING_Backup = Registry::get('Backup');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+  $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
 
   $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
   // check if the backup directory exists
@@ -93,7 +94,6 @@
             $entry = $contents[$i];
 
             if ((!isset($_GET['file']) || (isset($_GET['file']) && ($_GET['file'] == $entry)))) {
-
               if (is_file($backup_directory . $file)) {
                 $info = [
                   'file' => $file,
@@ -116,12 +116,9 @@
                 $buInfo = new ObjectInfo($info);
               }
               ?>
-              <th scope="row"
-                  onclick="document.location.href='<?php echo $CLICSHOPPING_Backup->link($onclick_link); ?>'"><?php echo $entry; ?></th>
-              <td class="text-md-center"
-                  onclick="document.location.href='<?php echo $CLICSHOPPING_Backup->link($onclick_link); ?>'"><?php echo date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $entry)); ?></td>
-              <td class="text-md-right"
-                  onclick="document.location.href='<?php echo $CLICSHOPPING_Backup->link($onclick_link); ?>'"><?php echo number_format(filesize($backup_directory . $entry)); ?>
+              <th scope="row"><?php echo $entry; ?></th>
+              <td class="text-md-center"><?php echo date($CLICSHOPPING_Backup->getDef('php_date_time_format'), filemtime($backup_directory . $entry)); ?></td>
+              <td class="text-md-right"><?php echo number_format(filesize($backup_directory . $entry)); ?>
                 bytes
               </td>
               <td class="text-md-center" onclick="document.location.href='<?php echo $buInfo->compression; ?>'"></td>
@@ -152,7 +149,7 @@
       <div><?php echo $CLICSHOPPING_Backup->getDef('text_last_restoration') . ' ' . DB_LAST_RESTORE . ' <a href="' . $CLICSHOPPING_Backup->link('Backup.php&Forget') . '">' . $CLICSHOPPING_Backup->getDef('text_forget') . '</a>'; ?></div>
       <?php
     }
-    }
+  }
   ?>
 </div>
 

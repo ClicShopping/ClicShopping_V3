@@ -25,7 +25,6 @@
       $this->app = Registry::get('Backup');
     }
 
-
     public function execute()
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
@@ -38,7 +37,6 @@
         $restore_query = fread(fopen(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $sql_file->getFilename(), 'r'), filesize(CLICSHOPPING::getConfig('dir_root', 'ClicShoppingAdmin') . 'includes/backups/' . $sql_file->getFilename()));
         $read_from = CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $sql_file->getFilename();
       }
-
 
       if (isset($restore_query)) {
         $sql_array = [];
