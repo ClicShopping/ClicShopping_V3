@@ -53,33 +53,6 @@
                                         ');
   $Qseo->execute();
   $seo = new ObjectInfo($Qseo->toArray());
-/*
-  while ($Qseo->fetch()) {
-    $languageid = $Qseo->valueInt('language_id');
-    $submit_defaut_language_title[$languageid] = $Qseo->value('submit_defaut_language_title');
-    $submit_defaut_language_keywords[$languageid] = $Qseo->value('submit_defaut_language_keywords');
-    $submit_defaut_language_description[$languageid] = $Qseo->value('submit_defaut_language_description');
-    $submit_defaut_language_footer[$languageid] = $Qseo->value('submit_defaut_language_footer');
-    $submit_language_products_info_title[$languageid] = $Qseo->value('submit_language_products_info_title');
-    $submit_language_products_info_keywords[$languageid] = $Qseo->value('submit_language_products_info_keywords');
-    $submit_language_products_info_description[$languageid] = $Qseo->value('submit_language_products_info_description');
-    $submit_language_products_new_title[$languageid] = $Qseo->value('submit_language_products_new_title');
-    $submit_language_products_new_keywords[$languageid] = $Qseo->value('submit_language_products_new_keywords');
-    $submit_language_products_new_description[$languageid] = $Qseo->value('submit_language_products_new_description');
-    $submit_language_special_title[$languageid] = $Qseo->value('submit_language_special_title');
-    $submit_language_special_keywords[$languageid] = $Qseo->value('submit_language_special_keywords');
-    $submit_language_special_description[$languageid] = $Qseo->value('submit_language_special_description');
-    $submit_language_reviews_title[$languageid] = $Qseo->value('submit_language_reviews_title');
-    $submit_language_reviews_keywords[$languageid] = $Qseo->value('submit_language_reviews_keywords');
-    $submit_language_reviews_description [$languageid] = $Qseo->value('submit_language_reviews_description');
-    $submit_language_favorites_title[$languageid] = $Qseo->value('submit_language_favorites_title');
-    $submit_language_favorites_keywords[$languageid] = $Qseo->value('submit_language_favorites_keywords');
-    $submit_language_favorites_description [$languageid] = $Qseo->value('submit_language_favorites_description');
-    $submit_language_featured_title[$languageid] = $Qseo->value('submit_language_featured_title');
-    $submit_language_featured_keywords[$languageid] = $Qseo->value('submit_language_featured_keywords');
-    $submit_language_featured_description [$languageid] = $Qseo->value('submit_language_featured_description');
-  }
-*/
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 

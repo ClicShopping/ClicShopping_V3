@@ -129,7 +129,7 @@
     * @return string
     */
 
-    public static function image(string $src= '',  ?string $alt = null,  ?int $width = null,  ?int $height = null, ?string $parameters = '', bool $responsive = true, string $bootstrap_css = '') :string
+    public static function image(string $src= '', ?string $alt = null, ?string $width = null, ?string $height = null, ?string $parameters = '', bool $responsive = true, string $bootstrap_css = '') :string
     {
       if ((empty($src) || ($src == CLICSHOPPING::linkImage(''))) && (IMAGE_REQUIRED == 'false')) {
         return false;
@@ -738,9 +738,8 @@
 
       foreach ($ci as $v) {
         if (isset($v['group'])) {
-          if ($group != $v['group']) {
+          if ($group !== $v['group']) {
             $group = $v['group'];
-
             $field .= '<optgroup label="' . static::output($v['group']) . '">';
           }
         }

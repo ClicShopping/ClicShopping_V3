@@ -41,11 +41,6 @@
     protected string $keywordsAdvancedPage;
     protected string $descriptionAdvancedPage;
     protected string $titleAdvancedPage;
-    protected string $seoDefaultFavoritesDescription;
-    protected string $seoDefaultSeoFavoritesTitle;
-    protected string $seoDefaultReviewssKeywords;
-    protected string $seoDefaultSpeciasDescription;
-    protected string $seoDefaultSpecialsTitle;
 
     public function __construct()
     {
@@ -214,10 +209,10 @@
      */
     public function getSeoSpecialsTitle(): ?string
     {
-      if (empty($this->seoDefaultSpecialsTitle)) {
+      if (empty($this->getSeoSpecialsTitle)) {
         $result = CLICSHOPPING::getDef('text_specials_seo_title') . ', ' . HTML::outputProtected(STORE_NAME);
       } else {
-        $result = HTML::outputProtected($this->seoDefaultSpecialsTitle) . ', ' . HTML::outputProtected(STORE_NAME);
+        $result = HTML::outputProtected($this->getSeoSpecialsTitle) . ', ' . HTML::outputProtected(STORE_NAME);
       }
 
       return $result;
@@ -229,10 +224,10 @@
      */
     public function getSeoSpecialsDescription(): ?string
     {
-      if (empty($this->seoDefaultSpeciasDescription)) {
+      if (empty($this->seoDefaultSpecialsKeywords)) {
         $result = HTML::outputProtected(STORE_NAME);
       } else {
-        $result = HTML::outputProtected($this->seoDefaultSpeciasDescription);
+        $result = HTML::outputProtected($this->seoDefaultSpecialsKeywords);
       }
 
       return $result;
@@ -244,10 +239,10 @@
      */
     public function getSeoSpecialsKeywords(): ?string
     {
-      if (empty($this->seoDefaultSpecialsKeywords)) {
+      if (empty($this->seoDefaultSpecialsDescription)) {
         $result = HTML::outputProtected(STORE_NAME);
       } else {
-        $result = HTML::outputProtected($this->seoDefaultSpecialsKeywords);
+        $result = HTML::outputProtected($this->seoDefaultSpecialsDescription);
       }
 
       return $result;
@@ -312,7 +307,7 @@
       if (empty($this->seoDefaultReviewsKeywords)) {
         $result = HTML::outputProtected(STORE_NAME);
       } else {
-        $result = HTML::outputProtected($this->seoDefaultReviewssKeywords);
+        $result = HTML::outputProtected($this->seoDefaultReviewsKeywords);
       }
 
       return $result;

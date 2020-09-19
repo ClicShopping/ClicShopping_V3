@@ -27,7 +27,11 @@
         $parameters = '';
 
         if (isset($_POST['products_id']) && is_numeric($_POST['products_id']) && is_numeric($_POST['cart_quantity'])) {
-          $attributes = HTML::sanitize($_POST['id']) ?? '';
+          if (!empty($_POST['id'])) {
+            $attributes = HTML::sanitize($_POST['id']);
+          } else {
+            $attributes = '';
+          }
 
           if (!isset($_POST['cart_quantity'])) {
             $_POST['cart_quantity'] = 1;
