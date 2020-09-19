@@ -18,6 +18,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+
 // check if the backup directory exists
    $dir_ok = false;
    $backup_directory = CLICSHOPPING::BASE_DIR . 'Work/Backups/';
