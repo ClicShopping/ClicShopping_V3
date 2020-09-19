@@ -602,7 +602,7 @@
         }
       }
 
-      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check === true)) {
+      if (is_numeric($products_id) && isset($this->contents[$products_id_string]) && is_numeric($quantity) && ($attributes_pass_check == true)) {
         $this->contents[$products_id_string] = ['qty' => (int)$quantity];
 // update database
         if ($this->customer->isLoggedOn()) {
@@ -661,9 +661,11 @@
      */
     public function getBasketID($product_id)
     {
-      foreach ( $this->contents as $item_id => $product ) {
-        if ( $product['id'] == $product_id ) {
-          return $item_id;
+      if (is_array($this->contents)) {
+        foreach ($this->contents as $item_id => $product) {
+          if ($product['id'] === $product_id) {
+            return $item_id;
+          }
         }
       }
     }
@@ -693,7 +695,7 @@
      */
     public function getQuantity(string $item_id)
     {
-      return ( isset($this->contents[$item_id]) ) ? $this->contents[$item_id]['qty'] : 0;
+      return (isset($this->contents[$item_id]) ) ? $this->contents[$item_id]['qty'] : 1;
     }
 
     /*
@@ -914,10 +916,9 @@
     }
 
     /**
-     * get_products
-     * @return array|null
+     * @return array
      */
-    public function get_products() :?array
+    public function get_products()
     {
       if ($this->hasContents()) {
         $products_array = [];
@@ -1042,20 +1043,21 @@
 
             $finale_price = $products_price + $attributes_price;
 
-            $products_array[] = ['id' => $item_id,
+            $products_array[] = [
+              'id' => $item_id,
               'name' => $Qproducts->value('products_name'),
               'model' => $model,
               'image' => $Qproducts->value('products_image'),
-              'price' => $products_price,
+              'price' => (float)$products_price,
               'quantity' => (int)$data['qty'],
-              'weight' => $Qproducts->valueDecimal('products_weight'),
+              'weight' => (float)$Qproducts->valueDecimal('products_weight'),
               'products_weight_class_id' => (int)$Qproducts->valueint('products_weight_class_id'),
-              'products_dimension_width' => $Qproducts->valueDecimal('products_dimension_width'),
-              'products_dimension_height' => $Qproducts->valueDecimal('products_dimension_height'),
-              'products_dimension_depth' => $Qproducts->valueDecimal('products_dimension_depth'),
-              'final_price' => $finale_price,
+              'products_dimension_width' => (float)$Qproducts->valueDecimal('products_dimension_width'),
+              'products_dimension_height' => (float)$Qproducts->valueDecimal('products_dimension_height'),
+              'products_dimension_depth' => (float)$Qproducts->valueDecimal('products_dimension_depth'),
+              'final_price' => (float)$finale_price,
               'tax_class_id' => (int)$Qproducts->valueInt('products_tax_class_id'),
-              'attributes' => (isset($data['attributes']) ? $data['attributes'] : '')
+              'attributes' => $data['attributes'] ?? ''
             ];
           }
         }
@@ -1065,7 +1067,7 @@
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getSubTotal() :float
     {
@@ -1183,7 +1185,7 @@
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function hasStock()
     {
@@ -1213,7 +1215,7 @@
       if (is_numeric($prid)) {
         $uprid = (int)$prid;
 
-        if (is_array($params) && (!empty($params))) {
+        if (is_array($params) && (!is_null($params) || !empty($params))) {
           $attributes_check = true;
           $attributes_ids = '';
 

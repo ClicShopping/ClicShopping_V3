@@ -19,10 +19,10 @@
   {
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
-
       if (!Registry::exists('SEO')) {
         Registry::set('SEO', new SEOApp());
       }
@@ -43,7 +43,6 @@
 
     public function getOutput()
     {
-
       $url_adsense = 'https://google.com/adsense';
       $url_analytics = 'https://www.google.com/analytics/';
       $url_adwords = 'https://adwords.google.com';
@@ -96,8 +95,6 @@
 
     public function Install()
     {
-
-
       $this->app->db->save('configuration', [
           'configuration_title' => 'Enable Summary google Links SEO',
           'configuration_key' => 'MODULE_ADMIN_DASHBOARD_GOOGLELINKS_APP_STATUS',

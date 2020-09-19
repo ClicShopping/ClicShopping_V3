@@ -499,7 +499,6 @@
 // bug : create <br /> at the first line on html content code. Don't find solution to resolve that. come from $module
 // Could a problem for example on the xml files but pass with google sitemap analyse but not all
               $class = basename($module, '.php');
-
 // module language
               if (!class_exists($class)) {
                 If (CLICSHOPPING::getSite('ClicShoppingAdmin')) {
