@@ -71,7 +71,7 @@
 
   echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
 ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css" rel="preload">
 
 <!-- body //-->
 <div class="contentBody">

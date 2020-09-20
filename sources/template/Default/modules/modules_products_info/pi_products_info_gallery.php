@@ -69,7 +69,7 @@
         $products_name = $CLICSHOPPING_ProductsCommon->getProductsName($id);
 
         $head = '<!--magnificPopup start  -->' . "\n";
-        $head .= '<link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">' . "\n";
+        $head .= '<link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="preload">' . "\n";
         $head .= '<!--magnificPopup  end  -->' . "\n";
 
         $CLICSHOPPING_Template->addBlock($head, 'header_tags');
