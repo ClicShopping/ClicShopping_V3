@@ -22,10 +22,10 @@
 /* Add your CSS files to this array (THESE ARE ONLY EXAMPLES) */
 /* all the css doesn't work fine */
 
- function get_files($root_dir, $all_data = array()) {
+ function get_files($root_dir, $all_data = []) {
 
 // only include files with these extensions
-   $allow_extensions = ["css"];
+   $allow_extensions = ['css'];
 // make any specific files  you want to be excluded
    $ignore_files = ['general/stylesheet.css',
                     'general/stylesheet_responsive.css',
@@ -87,7 +87,7 @@
  } // end get_files()
 
 
-  $root_dir = realpath( dirname( __FILE__ ) );
+$root_dir = realpath(__DIR__);
 
   $files_array = get_files($root_dir);
   $files_css_replace = str_replace ( $root_dir .'/', '', $files_array);
@@ -150,10 +150,10 @@
   $tsstring = gmdate('D, d M Y H:i:s ', $timestamp) . 'GMT';
   $etag = md5($timestamp);
 
-  $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
-  $if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? $_SERVER['HTTP_IF_NONE_MATCH'] : false;
-  if ((($if_none_match && $if_none_match == $etag) || (!$if_none_match)) &&
-    ($if_modified_since && $if_modified_since == $tsstring)) {
+  $if_modified_since = $_SERVER['HTTP_IF_MODIFIED_SINCE'] ?? false;
+  $if_none_match = $_SERVER['HTTP_IF_NONE_MATCH'] ?? false;
+  if ((($if_none_match && $if_none_match === $etag) || (!$if_none_match)) &&
+    ($if_modified_since && $if_modified_since === $tsstring)) {
     header('HTTP/1.1 304 Not Modified');
     exit();
   }  else {

@@ -664,7 +664,7 @@
      * @param string $themaGraphism , css directory in the template
      *
      */
-    public function getTemplategraphism(): string
+    public function getTemplateCSS(): string
     {
       $CLICSHOPPING_Language = Registry::get('Language');
       if (is_file($this->getPathRoot() . '/' . $this->getPathDirectoryTemplateThema() . $this->_directoryTemplateCss . $CLICSHOPPING_Language->get('directory') . '/' . 'compressed_css.php')) {
