@@ -102,7 +102,8 @@
           $success = 0;
         }
 
-        $sql_array = ['module' => $this->_module,
+        $sql_array = [
+          'module' => $this->_module,
           'user_id' => (int)$this->_user_id,
           'user_name' => $this->_user_name,
           'identifier' => $this->getIdentifier(),

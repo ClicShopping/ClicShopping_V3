@@ -15,7 +15,7 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
 
-  use ClicShopping\Apps\Tools\ActionsRecorder\Classes\ClicShoppingAdmin\ActionsRecorder;
+  use ClicShopping\Apps\Tools\ActionsRecorder\Classes\ClicShoppingAdmin\ActionsRecorder as ActionsRecorderClass;
 
   class Expire extends \ClicShopping\OM\PagesActionsAbstract
   {
@@ -30,6 +30,9 @@
     {
       $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
+
+      Registry::set('ActionsRecorderClass', new ActionsRecorderClass());
+      $CLICSHOPPING_ActionsRecorderClass = Registry::get('ActionsRecorderClass');
 
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
       $directory_array = [];
@@ -51,10 +54,7 @@
 
         include($CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/action_recorder/' . $file);
 
-        $class = substr($file, 0, strrpos($file, '.'));
-        if (class_exists($class)) {
-          $GLOBALS[$class] = new $class;
-        }
+        $CLICSHOPPING_ActionsRecorderClass->getClass($file);
       }
 
       $modules_array = [];
@@ -68,16 +68,19 @@
       $expired_entries = 0;
 
       if (isset($_GET['module']) && in_array($_GET['module'], $modules_array)) {
-        if (is_object($GLOBALS[$_GET['module']])) {
-          $expired_entries += $GLOBALS[$_GET['module']]->expireEntries();
+        $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($_GET['module']);
+
+        if (is_object($get_module_class)) {
+          $expired_entries += $get_module_class->expireEntries();
         } else {
           $expired_entries = $this->app->db->delete('action_recorder', ['module' => $_GET['module']]);
         }
       } else {
         if (is_array($modules_array)) {
           foreach ($modules_array as $module) {
-            if (isset($GLOBALS[$module]) && is_object($GLOBALS[$module])) {
-              $expired_entries += $GLOBALS[$module]->expireEntries();
+            $get_module_class = $CLICSHOPPING_ActionsRecorderClass->getClassModule($module);
+            if (isset($get_module_class) && is_object($get_module_class)) {
+              $expired_entries += $get_module_class->expireEntries();
             }
           }
         }
