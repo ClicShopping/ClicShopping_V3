@@ -59,10 +59,22 @@
       $GLOBALS[$this->_module]->setIdentifier();
     }
 
+    /**
+     * @param $module
+     * @return mixed
+     */
+    public function getModule()
+    {
+      return $GLOBALS[$this->_module];
+    }
+
+    /**
+     * @return false
+     */
     public function canPerform()
     {
       if (!is_null($this->_module)) {
-        return $GLOBALS[$this->_module]->canPerform($this->_user_id, $this->_user_name);
+        return $this->getModule()->canPerform($this->_user_id, $this->_user_name);
       }
 
       return false;
@@ -74,7 +86,7 @@
     public function getTitle()
     {
       if (!is_null($this->_module)) {
-        return $GLOBALS[$this->_module]->title;
+        return $this->getModule()->title;
       }
     }
 
@@ -84,7 +96,7 @@
     public function getIdentifier()
     {
       if (!is_null($this->_module)) {
-        return $GLOBALS[$this->_module]->identifier;
+        return $this->getModule()->identifier;
       }
     }
 
@@ -115,13 +127,13 @@
       }
     }
 
-    /*
-     *
+    /**
+     * @return mixed
      */
     public function expireEntries()
     {
       if (!is_null($this->_module)) {
-        return $GLOBALS[$this->_module]->expireEntries();
+        return $this->getModule()->expireEntries();
       }
     }
   }

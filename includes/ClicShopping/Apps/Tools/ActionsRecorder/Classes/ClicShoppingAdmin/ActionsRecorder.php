@@ -410,7 +410,7 @@
     public function getClass(string $file) {
       $class = substr($file, 0, strrpos($file, '.'));
 
-      if (class_exists($class)) {
+      if (class_exists($class) && !is_null($class)) {
         $GLOBALS[$class] = new $class;
 
         return $GLOBALS[$class];
