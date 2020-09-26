@@ -20,9 +20,10 @@
     public $description;
     public $sort_order = 0;
     public $minutes = 90;
-    public $attempts = 10;
+    public $attempts = 4;
     public $identifier;
     public $enabled = true;
+    public $group;
 
     public function __construct()
     {
@@ -35,7 +36,6 @@
       if ($this->check()) {
         if (defined('MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES')) {
           $this->minutes = (int)MODULE_ACTION_RECORDER_CREATE_ACCOUNT_EMAIL_MINUTES;
-          $this->attempts = 6; // nbr de possiblite d'envoi d'email
         }
       }
     }
@@ -60,10 +60,9 @@
         $sql_query .= ' and identifier = :identifier';
       }
 
-      $sql_query .= ' and date_added >= date_sub(now(),
-                      interval :limit_minutes minute)
+      $sql_query .= ' and date_added >= date_sub(now(), interval :limit_minutes minute)
                       and success = 1
-                      limit 1
+                      limit :limit_attempts
                       ';
 
       $Qcheck = $CLICSHOPPING_Db->prepare($sql_query);
@@ -75,9 +74,10 @@
 
       $Qcheck->bindValue(':identifier', $this->identifier);
       $Qcheck->bindInt(':limit_minutes', $this->minutes);
+      $Qcheck->bindInt(':limit_attempts', $this->attempts);
       $Qcheck->execute();
 
-      if ($Qcheck->fetch() !== false) {
+      if (count($Qcheck->fetchAll()) == $this->attempts) {
         return false;
       }
 
@@ -89,8 +89,7 @@
       $Qdel = Registry::get('Db')->prepare('delete
                                             from :table_action_recorder
                                             where module = :module
-                                            and date_added < date_sub(now(),
-                                            interval :limit_minutes minute)
+                                            and date_added < date_sub(now(), interval :limit_minutes minute)
                                           ');
       $Qdel->bindValue(':module', $this->code);
       $Qdel->bindInt(':limit_minutes', $this->minutes);

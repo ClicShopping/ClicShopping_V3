@@ -16,7 +16,6 @@
 
   class Tax
   {
-
     protected array $tax_rates = [];
     public static string $tag;
 

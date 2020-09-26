@@ -7,9 +7,6 @@
  *  @licence MIT - Portion of osCommerce 2.4
  *  @Info : https://www.clicshopping.org/forum/trademark/
  *
- */
-
-/**
  *
  * In order to minimize the number and size of HTTP requests for CSS content,
  * this script combines multiple CSS files into a single file and compresses
@@ -83,7 +80,6 @@
     return $all_data;
  } // end get_files()
 
-
   $root_dir = realpath(__DIR__);
 
   $files_array = get_files($root_dir);
@@ -117,13 +113,11 @@
 
   $cssFiles = array_merge($cssFiles, $cssFilesaddon);
 
-
-  $buffer = "";
+  $buffer = '';
 
   foreach ($cssFiles as $cssFile) {
     $buffer .= file_get_contents($cssFile);
   }
-
 
 // Remove comments
   $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
@@ -151,7 +145,7 @@
     ($if_modified_since && $if_modified_since === $tsstring)) {
     header('HTTP/1.1 304 Not Modified');
     exit();
-  }  else {
+  } else {
     header("Last-Modified: $tsstring");
     header("ETag: \"{$etag}\"");
   }

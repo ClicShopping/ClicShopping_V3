@@ -9,13 +9,12 @@
  *
  */
 
-  use ClicShopping\OM\HTML;
-  use ClicShopping\OM\HTTP;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Template = Registry::get('Template');
+  $CLICSHOPPING_Customer = Registry::get('Customer');
 ?>
 <!DOCTYPE html>
 <html <?php echo CLICSHOPPING::getDef('html_params'); ?>>

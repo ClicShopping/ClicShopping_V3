@@ -90,7 +90,7 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       $header_tag = '<!--   Rate Yo start -->' . "\n";
-      $header_tag .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css">' . "\n";
+      $header_tag .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css" rel="preload">' . "\n";
       $header_tag .= '<!--   Rate Yo  end -->' . "\n";
       $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
 

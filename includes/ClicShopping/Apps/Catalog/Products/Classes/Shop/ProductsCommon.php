@@ -201,11 +201,9 @@
       return $this->get('customers_group_price');
     }
 
-
     /**
      * Check if the product  id
      * @param int $id , id of the product
-     *
      */
     public function checkID($id)
     {
@@ -220,9 +218,7 @@
      * Check if the product  exist
      * @param int $id , id of the product
      * @return string $result
-     *
      */
-
     public function checkEntry($id)
     {
       if ($this->checkID($id) === false) {
@@ -284,7 +280,6 @@
     /**
      * Update the the number of products view
      * @return update product views
-     *
      */
     public function countUpdateProductsView()
     {
@@ -301,14 +296,11 @@
 
     /**
      * Number of products
-     *
-     * @param string
      * @return string $product_check['total'], products total
      * @access private
      */
     private function setProductsCount()
     {
-
       $QproductCheck = $this->db->prepare('select count(*) as total
                                           from :table_products p,
                                                :table_products_description pd
@@ -328,8 +320,6 @@
 
     /**
      * Number of products
-     *
-     * @param string
      * @return string $product_check['total'], products total
      *
      */
@@ -340,12 +330,11 @@
 
     /**
      * products name
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_name, name of the product
      * @access private
      */
-    private function setProductsName($id = null)
+    private function setProductsName(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -370,28 +359,24 @@
       return $products_name;
     }
 
-
     /**
      * Display products name
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_name, name of the product
      *
      */
-    public function getProductsName($id = null)
+    public function getProductsName(?int $id = null)
     {
       return $this->setProductsName($id);
     }
 
-
     /**
      * products image
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_image, image of the product
      * @access private
      */
-    private function setProductsImage($id = null)
+    private function setProductsImage(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -410,14 +395,13 @@
 
     /**
      * display products image
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_image, image of the product
      *
      */
-    public function getProductsImage($id = null)
+    public function getProductsImage(?int $id = null)
     {
-      if ($this->setProductsImage($id) == '') {
+      if (is_null($this->setProductsImage($id))) {
         return false;
       } else {
         return $this->setProductsImage($id);
@@ -426,12 +410,11 @@
 
     /**
      * products image medium
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_image_medium, image medium of the product
      * @access private
      */
-    private function setProductsImageMedium($id = null)
+    private function setProductsImageMedium(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -450,14 +433,12 @@
 
     /**
      * display products image medium
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_image_medium, image medium of the product
-     *
      */
-    public function getProductsImageMedium($id = null)
+    public function getProductsImageMedium(?int $id = null)
     {
-      if ($this->setProductsImageMedium($id) == '') {
+      if (is_null($this->setProductsImageMedium($id))) {
         return false;
       } else {
         return $this->setProductsImageMedium($id);
@@ -466,12 +447,11 @@
 
     /**
      * display date available
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_date_available,  product date available
      * @access private
      */
-    private function setProductsDateAvailable($id = null)
+    private function setProductsDateAvailable(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -490,23 +470,18 @@
 
     /**
      * display date available
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_name, name of the product
-     *
      */
-    public function getProductsDateAvailable($id = null)
+    public function getProductsDateAvailable(?int $id = null)
     {
       return $this->setProductsDateAvailable($id);
     }
 
-
     /**
      * display products ean / sku
-     *
      * @param string
      * @return string $products_name, name of the product
-     *
      */
     public function getProductsEAN()
     {
@@ -515,7 +490,6 @@
 
     /**
      * display products ean
-     *
      * @param string
      * @return string $products_date_available,  product date available
      * @access private
@@ -533,23 +507,19 @@
       return $products_ean;
     }
 
-
     /**
      * display products sku
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_name, name of the product
-     *
      */
-    public function getProductsSKU($id = null): string
+    public function getProductsSKU(?int $id = null): string
     {
       return $this->setProductsSKU($id);
     }
 
     /**
      * display products sku
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_date_available,  product date available
      * @access private
      */
@@ -570,13 +540,10 @@
       return $products_sku;
     }
 
-
     /**
      * display products bacode
-     *
      * @param string
      * @return string bar code
-     *
      */
     public function getProductsBarCode()
     {
@@ -585,14 +552,12 @@
 
     /**
      * display products barcode
-     *
      * @param string
      * @return string $products_barcode,  bar code
      * @access private
      */
     private function setProductsBarCode()
     {
-
       $Qproducts = $this->db->get('products', ['products_barcode'],
         ['products_status' => 1,
           'products_id' => (int)$this->getID()
@@ -604,11 +569,9 @@
       return $products_barcode;
     }
 
-
     /**
      * products description
-     *
-     * @param string
+     * @param int|null $id
      * @return string description
      * @access private
      */
@@ -637,12 +600,11 @@
 
     /**
      * display products description
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_description, description of the product
      *
      */
-    public function getProductsDescription($id = null)
+    public function getProductsDescription(?int $id = null)
     {
       return $this->setProductsDescription($id);
     }
@@ -650,13 +612,13 @@
 
     /**
      * Display Short Description
-     * @param $id , id of the products
+     * @param int|null $id , id of the products
      * @param $delete_word , number of the words to delete
      * @param $delete_word , number of the short description
      * @return $short_description , short description
      * @access private
      */
-    private function setProductsShortDescription($id = null, $delete_word, $products_short_description_number)
+    private function setProductsShortDescription(?int $id = null, $delete_word, $products_short_description_number)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -690,11 +652,12 @@
 
     /**
      * Display Short Description
+     * @param int|null $id
      * @param $delete_word , number of the words to delete
-     * @return $short_description , short description
-     *
+     * @param $products_short_description_number
+     * @return string $short_description , short description
      */
-    public function getProductsShortDescription($id = null, $delete_word, $products_short_description_number)
+    public function getProductsShortDescription(?int $id = null, $delete_word, $products_short_description_number)
     {
       $delete_word = HTML::sanitize($delete_word);
       $products_short_description_number = HTML::sanitize($products_short_description_number);
@@ -704,8 +667,7 @@
 
     /**
      * products dimension
-     *
-     * @param Int | null
+     * @param int|null $id
      * @param string
      * @return string $products_dimension, dimension of the product
      * @access private
@@ -750,11 +712,9 @@
 
     /**
      * display products dimension
-     *
      * @param int|null $id
      * @param string
      * @return string $products_dimension, dimension of the product
-     *
      */
     public function getProductsDimension(?int $id = null, string $separator = ' x ') :string
     {
@@ -763,12 +723,10 @@
 
     /**
      * products Manufacturer
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_manuacturer, manufacturer of the product
      * @access private
      */
-
     private function setProductsManufacturer(?int $id): string
     {
       $manufacturer_search = '';
@@ -806,22 +764,17 @@
 
     /**
      * display products manufacturer
-     *
-     * @param int
+     * @param int|null $id
      * @return string $products_manufacturer, manufacturer of the product
-     *
      */
-    public function getProductsManufacturer($id = null)
+    public function getProductsManufacturer(?int $id = null)
     {
       return $this->setProductsManufacturer($id);
     }
 
-
     /**
      * display the button in function the boostrap size
-     *
      * @param string $size_button , size could be sm, md ...
-     *
      */
     public function getSizeButton($size_button)
     {
@@ -830,17 +783,16 @@
       return $size_button;
     }
 
-
     /**
      * display an message for the product new arrival
-     *
-     * @param string $icon_new_arrival_products , the image for the new arrival
+     * @param int|null $id
+     * @param null $size_button
+     * @return string
      * @access private
      */
 
-    private function setProductsNewArrival($id = null, $size_button = null)
+    private function setProductsNewArrival(?int $id = null, $size_button = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -862,7 +814,6 @@
       $today_time = time();
 
       if (($today_time - strtotime($products_date_added)) < $day_new_products) {
-
         $product_button_new_arrival = HTML::button(CLICSHOPPING::getDef('button_new_product'), null, null, 'new', null, $size_button);
 
         $icon_new_arrival_products = '&nbsp' . $product_button_new_arrival;
@@ -871,30 +822,25 @@
       }
     }
 
-
     /**
      * display image ou button type products new arrival (news)
-     *
-     * @param string
+     * @param int|null $id
      * @return string $icon_new_arrival_products, product new arrival
-     *
      */
-    public function getProductsNewArrival($id = null, $size_button = null)
+    public function getProductsNewArrival(?int $id = null, $size_button = null)
     {
       $size_button = HTML::sanitize($size_button);
 
       return $this->setProductsNewArrival($id, $size_button);
     }
 
-
     /**
      * products only shop in product info
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_only_shop, only shop concerning the product
      * @access private
      */
-    private function setProductsOnlyTheShop($id = null)
+    private function setProductsOnlyTheShop(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -911,27 +857,22 @@
       return $products_only_shop;
     }
 
-
     /**
      * display sell only the shop
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_only_shop, sell only the shop
-     *
      */
-    public function getProductsOnlyTheShop($id = null)
+    public function getProductsOnlyTheShop(?int $id = null)
     {
       return $this->setProductsOnlyTheShop($id);
     }
 
     /**
      * products only on the web site
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_only_online, products only on the web site
-     *
      */
-    public function setProductsOnlyOnTheWebSite($id = null)
+    public function setProductsOnlyOnTheWebSite(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -950,19 +891,16 @@
 
     /**
      * display sell only the shop
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_only_online, products only on the web site
-     *
      */
-    public function getProductsOnlyOnTheWebSite($id = null)
+    public function getProductsOnlyOnTheWebSite(?int $id = null)
     {
       return $this->setProductsOnlyOnTheWebSite($id);
     }
 
     /**
      * products packaging
-     *
      * @param null|int
      * @return string $products_packaging, packaging concerning the product
      * @access private
@@ -986,24 +924,21 @@
 
     /**
      * display products packaging
-     *
      * @param null|int
      * @return string $products_packaging, products packaging
-     *
      */
-    public function getProductsPackaging($id = null)
+    public function getProductsPackaging(?int $id = null)
     {
       return $this->setProductsPackaging($id);
     }
 
     /**
      * products products Date Added
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_packaging, packaging concerning the product
      * @access private
      */
-    private function setProductsDateAdded($id = null)
+    private function setProductsDateAdded(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -1025,25 +960,22 @@
 
     /**
      * display products  Date Added
-     *
      * @param string
      * @return string $products_packaging, products packaging
-     *
      */
-    public function getProductsDateAdded($id = null)
+    public function getProductsDateAdded(?int $id = null)
     {
       return $this->setProductsDateAdded($id);
     }
 
     /**
      * the products quantity unit type
-     *
-     * @param string $products_quantity_unit_id , $language_id
+     * @param int|null $id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
      * @access private
      */
 
-    private function setProductQuantityUnitType($id = null)
+    private function setProductQuantityUnitType(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -1069,21 +1001,16 @@
 
     /**
      * display products quantity unit type
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_quantity_unit['products_quantity_unit_title'], products quantity unit type
-     *
      */
-    public function getProductQuantityUnitType($id = null)
+    public function getProductQuantityUnitType(?int $id = null)
     {
       return $this->setProductQuantityUnitType($id);
     }
 
-
     /**
      * products_shipping_delay in product info
-     *
-     * @param string
      * @return string $products_shipping_delay, delay of the shipping
      * @access private
      */
@@ -1114,10 +1041,8 @@
       return $products_shipping_delay;
     }
 
-
     /**
      * products_shipping_delay in product info
-     *
      * @param string
      * @return string $products_shipping_delay, delay of the shipping
      * @access private
@@ -1127,10 +1052,8 @@
       return $this->setProductsShippingDelay();
     }
 
-
     /**
      * products_head_tag
-     *
      * @param string
      * @return string $products_head_tag, tag of the product
      * @access private
@@ -1158,10 +1081,8 @@
       return $products_head_tag;
     }
 
-
     /**
      * products_shipping_delay in product info
-     *
      * @param string
      * @return string $products_shipping_delay, delay of the shipping
      *
@@ -1171,10 +1092,8 @@
       return $this->setProductsHeadTag();
     }
 
-
     /**
      * products_url in product info
-     *
      * @param string
      * @return string $products_url, url of the product (manufacturer)
      * @access private
@@ -1200,10 +1119,8 @@
       return $Qproducts->value('products_url');
     }
 
-
     /**
      * Display products_url in product info
-     *
      * @param string
      * @return string $products_url, url of the product (manufacturer)
      * @access private
@@ -1213,17 +1130,14 @@
       return $this->setProductsURLManufacturer();
     }
 
-
     /**
      * products in shop and web
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_web, sell web and shop
      * @access private
      */
-    private function sepProductsWebAndShop($id = null)
+    private function sepProductsWebAndShop(?int $id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -1242,30 +1156,25 @@
       return $products_web;
     }
 
-
     /**
      * Display products in shop and web
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_web, sell web and in the shop
      *
      */
-    public function getProductsWebAndShop($id = null)
+    public function getProductsWebAndShop(?int $id = null)
     {
       return $this->sepProductsWebAndShop($id);
     }
 
-
     /**
      * products_volume
-     *
      * @param string
      * @return string $products_volume, volume of the product
      * @access private
      */
     private function setproductsVolume()
     {
-
       $Qproducts = $this->db->get('products', ['products_volume'],
         ['products_status' => 1,
           'products_id' => (int)$this->getID()
@@ -1279,25 +1188,20 @@
 
     /**
      * Display products_volume
-     *
      * @param string
      * @return string $products_volume, volume of the product
-     *
      */
     public function getProductsVolume()
     {
       return $this->setproductsVolume();
     }
 
-
     /**
      * products_weight
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_weight, weight of the product
-     *
      */
-    private function setProductsWeight($id = null)
+    private function setProductsWeight(?int $id = null)
     {
       $CLICSHOPPING_Weight = Registry::get('Weight');
 
@@ -1327,23 +1231,20 @@
 
     /**
      * Display products_weight
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_weight, weight of the product
-     *
      */
-    public function getProductsWeight($id = null)
+    public function getProductsWeight(?int $id = null)
     {
       return $this->setProductsWeight($id);
     }
 
     /**
      * Display the normal price by kilo
-     *
-     * @param string $product_price_kilo_display , the normal price by kilo
-     *
+     * @param int|null $id
+     * @return string
      */
-    private function setProductsPriceByWeight($id = null)
+    private function setProductsPriceByWeight(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -1393,23 +1294,21 @@
 
     /**
      * Display the normal price by kilo
-     *
-     * @param string $product_price_kilo_display , the normal price by kilo
-     *
+     * @param int|null $id
+     * @return string
      */
-    public function getProductsPriceByWeight($id = null)
+    public function getProductsPriceByWeight(?int $id = null)
     {
       return $this->setProductsPriceByWeight($id);
     }
 
     /**
      * the products quantity unit title
-     *
-     * @param string $products_quantity_unit_id , $language_id
+     * @param int|null $id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
      * @access private
      */
-    private function setProductsQuantityByUnit($id = null)
+    private function setProductsQuantityByUnit(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -1428,16 +1327,13 @@
       $QproductsQuantityUnit->bindInt(':products_id', $id);
       $QproductsQuantityUnit->execute();
 
-
       return $QproductsQuantityUnit->value('products_quantity_unit_title');
     }
 
     /**
      * the products quantity unit title
-     *
      * @param string $products_quantity_unit_id , $language_id
      * @return string $products_quantity_unit_['products quantity unit_title'],  name of the he products quantity unit
-     *
      */
     public function getProductsQuantityByUnit($id = null)
     {
@@ -1449,16 +1345,13 @@
 // B2B
 // ---------------------------------------------------------------------------------------------------------------------------------------
 
-
     /**
      * products model
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_model, model of the product
-     *
      */
 
-    private function setProductsModel($id = null)
+    private function setProductsModel(?int $id = null)
     {
       if (is_null($id)) {
         $id = $this->getID();
@@ -1505,26 +1398,22 @@
 
     /**
      * Display products model
-     *
-     * @param string
+     * @param int
      * @return string $products_model, model of the product
-     *
      */
-    public function getProductsModel($id = null)
+    public function getProductsModel(?int $id = null)
     {
       return $this->setProductsModel($id);
     }
 
     /**
      * Auto activate flash discount in product info if avalaible
-     *
-     * @param string
+     * @param int|null $id
      * @return string $flash_discount, the product flash discount based on end special end date
      * @access private
      */
-    private function setProductsFlashDiscount($id = null)
+    private function setProductsFlashDiscount(?int $id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -1547,7 +1436,6 @@
         $QflashDiscount->bindInt(':customers_group_id', (int)$this->customer->getCustomersGroupID());
 
       } else {
-
         $QflashDiscount = $this->db->prepare('select specials_id,
                                                       products_id,
                                                       scheduled_date,
@@ -1593,12 +1481,10 @@
 
     /**
      * Display flash discount
-     *
-     * @param string
+     * @param int|null $id
      * @return string $products_flash_discount, flash discount
-     *
      */
-    public function getProductsFlashDiscount($id = null)
+    public function getProductsFlashDiscount (?int $id = null)
     {
       return $this->setProductsFlashDiscount($id);
     }
@@ -1609,23 +1495,20 @@
 //----------------------------------------------------------------------------------------------------------------------------
 
 
-    /**
-     * Display the product quantity unit title of the customer group
-     *
-     * @param string $products_quantity_unit_title
-     * @return $products_group_quantity_unit_title, the title of the product unit group (unite,douzaine....)
-     * @access private
-     */
+  /**
+   * Display the product quantity unit title of the customer group
+   * @param int|null $id
+   * @return string $products_group_quantity_unit_title, the title of the product unit group (unite,douzaine....)
+   * @access private
+   */
 
-    private function setProductQuantityUnitTypeCustomersGroup($id = null)
+    private function setProductQuantityUnitTypeCustomersGroup(?int $id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
 
       if ($this->customer->getCustomersGroupID() != 0) {
-
         $QcustomerGroupPrice = $this->db->prepare('select products_quantity_unit_id_group,
                                                            products_quantity_fixed_group
                                                     from :table_products_groups
@@ -1679,7 +1562,6 @@
 
     /**
      * Display the product quantity unit title of the customer group
-     *
      * @param string
      * @return $products_group_quantity_unit_title,, the title of the product unit group
      * @access private
@@ -1693,13 +1575,11 @@
     /**
      * Return a product's minimum order quantity if available and min order quantity > 1
      * in different formular ormis shopping cart -function included in application_top
-     *
      * @param string $min_quantity_order ,
      * @access private
      */
     private function setProductsMinimumQuantity($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -1720,7 +1600,6 @@
           }
         }
       } else {
-
         $QcustomersGroupMinOrder = $this->db->get('customers_groups', ['customers_group_quantity_default'],
           ['customers_group_id' => (int)$customers_group_id]
         );
@@ -1741,11 +1620,9 @@
       return $min_quantity_order;
     }
 
-
     /**
      * Display a product's minimum order quantity if available and min order quantity > 1
      * in different formular ormis shopping cart -function included in application_top
-     *
      * @param string $min_quantity_order ,
      * @access private
      */
@@ -1756,13 +1633,11 @@
 
     /*
       * Minimum quantity take an order for the client
-      *
       * @param string $min_order_quantity_products_display, the min of order product qty
       * @access private
     */
     private function setProductsMinimumQuantityToTakeAnOrder($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -1789,9 +1664,7 @@
 
     /*
       * display Minimum quantity take an order for the client
-      *
       * @param string $min_order_quantity_products_display, the min of order product qty
-      *
     */
     public function getProductsMinimumQuantityToTakeAnOrder($id = null)
     {
@@ -1800,7 +1673,6 @@
 
     /**
      * Display the quantity for the customer
-     *
      * @param string $input_quantity , the quantity for the customer
      * @access private
      */
@@ -1841,12 +1713,9 @@
       return $input_quantity;
     }
 
-
     /**
      * Display the quantity for the customer
-     *
      * @param string $input_quantity , the price of the product or not
-     *
      */
     public function getProductsAllowingToInsertQuantity($id = null)
     {
@@ -1857,10 +1726,8 @@
 // Message && button
 // ------------------------------------------------------------------------------------------------------
 
-
     /**
      * Display a message in function the customer group applied
-     *
      * @param string $product_price_d , the price of the product or not
      * @access private
      */
@@ -1881,9 +1748,7 @@
 
     /**
      * Display a message in function the customer group applied
-     *
      * @param string $product_price_d , the price of the product or not
-     *
      */
     public function getProductsAllowingTakeAnOrderMessage()
     {
@@ -1902,7 +1767,6 @@
 
     /**
      * Button buy now
-     *
      * @param string $submit_button , the button
      * @access private
      */
@@ -1940,9 +1804,7 @@
 
     /**
      * Button buy now
-     *
      * @param string $submit_button , the button
-     *
      */
     public function getProductsBuyButton()
     {
@@ -1953,11 +1815,9 @@
      * Return a products button exhausted
      * @param string $product_button_exhausted
      * @return $product_button_exhausted,the bootstrap item
-     *
      */
     private function getProductButtonExhausted($button_type = null)
     {
-
       if (is_null($button_type)) {
         $button_type = 'btn-warning btn-sm';
       }
@@ -1974,7 +1834,6 @@
      * If insufficent stock is available return a products exhausted image
      * @param string $product_exhausted , the button
      * @param $button_type , bootstrap button bootstrap item
-     *
      */
 
     private function setProductsExhausted($id, $button_type = null): string
@@ -2010,10 +1869,8 @@
 
     /**
      * Display Products exhausted
-     *
      * @param string $product_exhausted , the button
      * @param string $button_type : bootstrap button bootstrap item
-     *
      */
     public function getProductsExhausted($id = null, $button_type = null)
     {
@@ -2025,10 +1882,8 @@
 // Price & tax
 //=======================================================================================================================================================
 
-
     /**
      * Display the price in different mode B2B or not
-     *
      * @param string $product_price_d , the price of the product or not
      * @access private
      */
@@ -2046,7 +1901,6 @@
         $product_price = $this->setCalculPrice($id);
       }
 
-
       if ($this->getPriceGroupView() == 0 && $this->customer->getCustomersGroupID() != 0) {
         $product_price = '';
       }
@@ -2054,12 +1908,9 @@
       return $product_price;
     }
 
-
     /**
      * Display the price in different mode B2B or not
-     *
      * @param string $product_price_d , the price of the product or not
-     *
      */
     public function getCustomersPrice($id = null)
     {
@@ -2070,7 +1921,6 @@
      * Return a product's special price B2B (returns nothing if there is no offer
      * @param string $product_id
      * @return $product['specials_new_products_price'] the special price
-     *
      * TABLES: products B2B
      */
 
@@ -2109,12 +1959,9 @@
 
     /**
      * Product price and price groupwithouth taxe and symbol
-     *
      * @param string $product_id , id of the procduct
      * @return $products_price, the product group price
-     *
      */
-
 
     private function setPrice($id = null)
     {
@@ -2161,13 +2008,10 @@
       return $products_price;
     }
 
-
     /**
      * Product group price with taxe and symbol (if authorize)
-     *
      * @param
      * @return $products_price, the product price
-     *
      */
     public function setDisplayPriceGroup($id = null)
     {
@@ -2186,10 +2030,8 @@
 
     /**
      * Product group price withiout taxe
-     *
      * @param string
      * @return $products_price, the product price
-     *
      */
 
     public function getDisplayPriceGroupWithoutCurrencies($id = null): float
@@ -2205,7 +2047,6 @@
 
     /**
      * Calcul the different price in function the group
-     *
      * @param string $products_price , the price of the product
      * @access private
      */
@@ -2237,7 +2078,8 @@
         $Qproducts->execute();
 
         $price_group_view = $Qproducts->valueInt('price_group_view');
-
+        
+//do not change
         if ($new_price = $this->setSpecialPriceGroup($id)) {
           if ($price_group_view == 1) {
             $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
@@ -2252,9 +2094,11 @@
       }
 
       if (($this->customer->getCustomersGroupID() == 0) || ($normal_price == 1)) {
+//do not change
         if ($new_price = $this->setSpecialPriceGroup($id)) {
           $products_price = '<span class="normalPrice"><del>' . $this->setDisplayPriceGroup($id) . '</del></span><span class="specialPrice">' . $CLICSHOPPING_Currencies->displayPrice($new_price, $CLICSHOPPING_Tax->getTaxRate($this->getProductsTaxClassId())) . '</span>';
         } else {
+
           $products_price = $this->setDisplayPriceGroup($id);
         }
       }
@@ -2264,8 +2108,7 @@
 
     /**
      * Display the price in function the group
-     *
-     * @param string $products_price , the price of the product
+      * @param string $products_price , the price of the product
      * @access private
      */
     public function getCalculPrice($id = null)
@@ -2277,7 +2120,6 @@
      * Return a product's stock
      * @param string $id , id product
      * @return the $stock_values['products_quantity']
-     *
      */
 
     public function getProductsStock($id = null): string
@@ -2302,7 +2144,6 @@
      * @param string $id , id product
      * @param string $products_quantity
      * @return $out_of_stock
-     *
      */
 
     public function getCheckStock($id, $products_quantity)
@@ -2328,7 +2169,6 @@
      * Return an image concerning the stock
      * @param string $id , id product
      * @return the $display_stock_values, the image value of stock
-     *
      */
     public function getDisplayProductsStock($id)
     {
@@ -2346,14 +2186,11 @@
 
     /**
      * Count the number of attributes on product
-     *
      * @param string
      * @return string $products_attributes['total'], total of attributes
-     *
      */
     private function setCountProductsAttributes($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -2390,7 +2227,6 @@
      */
     public function getHasProductAttributes($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -2408,7 +2244,6 @@
       return $Qattributes->fetch() !== false;
     }
 
-
     /**
      *  Return a product's special price (returns nothing if there is no offer)
      * @param int $product_id the id of product
@@ -2416,7 +2251,6 @@
      */
     private function setProductsSpecialPrice($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -2453,7 +2287,6 @@
 
     /**
      * Display the name of manufacturer
-     *
      * @param string $manufacturers ['manufacturer_name'], The name of manufacturer
      * @access private
      */
@@ -2476,10 +2309,7 @@
 
     /**
      * Display the name of manufacturer
-     *
-     * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-     *
      */
     public function getManufacturersName()
     {
@@ -2488,8 +2318,6 @@
 
     /**
      * Display a description of manufacturer
-     *
-     * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
      * @access private
      */
@@ -2518,7 +2346,6 @@
 
     /**
      * Display a description of manufacturer
-     *
      * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
      * @access private
@@ -2526,7 +2353,6 @@
      */
     private function setManufacturersImage(): string
     {
-
       $Qmanufacturers = $this->db->prepare('select manufacturer_image
                                              from :table_manufacturers
                                              where manufacturers_id = :manufacturers_id
@@ -2540,10 +2366,7 @@
 
     /**
      * Display a description of manufacturer
-     *
-     * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-     *
      */
     public function getManufacturersImage()
     {
@@ -2552,9 +2375,7 @@
 
     /**
      * Display a  manufacturers under an array
-     *
      * @param string $manufacturers_array , an array of manufacturer
-     *
      */
 
     public function setManufacturersDropDown()
@@ -2577,7 +2398,8 @@
       $Qmanufacturers->execute();
 
       while ($Qmanufacturers->fetch()) {
-        $manufacturers_array[] = ['id' => $Qmanufacturers->valueInt('manufacturersId'),
+        $manufacturers_array[] = [
+          'id' => $Qmanufacturers->valueInt('manufacturersId'),
           'text' => $Qmanufacturers->value('manufacturers_name')
         ];
       }
@@ -2585,13 +2407,10 @@
       return $manufacturers_array;
     }
 
-
     /**
      * Display a manufacturer in dropdown
-     *
      * @param int $_GET ['manufacturers_id']) the id of manufacturer
      * @param string $manufacturers ['manufacturer_description'], The description of manufacturer
-     *
      */
     public function getManufacturersDropDown(): array
     {
@@ -2600,14 +2419,11 @@
 
     /**
      * Display a a ticker on products new (text)
-     *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     *
      */
     private function setProductsTickerProductsNew($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -2640,10 +2456,8 @@
 
     /**
      * display a ticker css for new price
-     *
      * @param string
      * @return string $ticker, product new procust price ticker
-     *
      */
     public function getProductsTickerProductsNew($id = null)
     {
@@ -2652,14 +2466,11 @@
 
     /**
      * Display a ticker on special price (text)
-     *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     *
      */
     private function setProductsTickerSpecials($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -2700,23 +2511,18 @@
 
     /**
      * display a ticker css for specials price
-     *
      * @param string
      * @return string $ticker, specials price ticker
-     *
      */
     public function getProductsTickerSpecials($id = null)
     {
       return $this->setProductsTickerSpecials($id);
     }
 
-
     /**
      * Display a ticker on special price (pourcentage)
-     *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     *
      */
     private function setProductsTickerSpecialsPourcentage($id, $tag = ' %')
     {
@@ -2742,15 +2548,13 @@
 
     /**
      * Display a a ticker on product favorites
-     *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
      * @access private
      */
     private function setProductsTickerFavorites($id = null)
     {
-
-      if (is_null($id)) {
+     if (is_null($id)) {
         $id = $this->getID();
       }
 
@@ -2778,10 +2582,8 @@
 
     /**
      * display a ticker css for specials price
-     *
      * @param string
      * @return string $ticker, favorites ticker
-     *
      */
     public function getProductsTickerFavorites($id = null)
     {
@@ -2790,14 +2592,11 @@
 
     /**
      * Display a a ticker on product featured
-     *
      * @param int products_id, id of the product
      * @return  $ticker (true or false)
-     *
      */
     private function setProductsTickerFeatured($id = null)
     {
-
       if (is_null($id)) {
         $id = $this->getID();
       }
@@ -2827,10 +2626,8 @@
 
     /**
      * display a ticker css for featured
-     *
      * @param string
      * @return string $ticker, specials price ticker
-     *
      */
     public function getProductsTickerFeatured($id = null)
     {
@@ -2840,7 +2637,6 @@
 
     /*
     * display Save Money by the customer
-    *
     * @param string
     * @return string $save_money, the difference between real price and  specials
     * @access private
@@ -2858,10 +2654,8 @@
 
     /*
     * display a save Money by the customer
-    *
     * @param string
     * @return string $save_money, the difference between real price and  specials
-    *
     */
     public function getProductsSaveMoneyCustomer($id)
     {
@@ -2960,11 +2754,8 @@
       return $discount;
     }
 
-
     /*
     * Return table heading with sorting capabilities
-    *
-    *
     */
     public function createSortHeading($sortby, $column, $heading)
     {
@@ -2994,10 +2785,8 @@
 
     /*
     * Return the class_id of the product
-    *
     * @param Int $id, id product
     * @return Int products_weight_class_id, Id of the weight class
-    *
     */
     private function setWeightClassIdByProducts($id)
     {
@@ -3013,10 +2802,8 @@
 
     /*
     * Display the class_id of the product
-    *
     * @param Int $id, id product
     * @return Int products_weight_class_id, Id of the weight class
-    *
     */
     public function getWeightClassIdByProducts($id)
     {
@@ -3025,11 +2812,10 @@
     }
 
     /**
-     *
      * @param int $weight_class_id
-     * @return mixed
+     * @return string
      */
-    private function setSymbolByProducts($weight_class_id)
+    private function setSymbolByProducts(int $weight_class_id) :string
     {
       $QweightSymbol = $this->db->prepare('select weight_class_key
                                            from :table_weight_classes
@@ -3047,7 +2833,7 @@
      * @param int $weight_class_id
      * @return mixed
      */
-    public function getSymbolbyProducts($weight_class_id)
+    public function getSymbolbyProducts(int $weight_class_id)
     {
       $weight_class_id = HTML::sanitize($weight_class_id);
 

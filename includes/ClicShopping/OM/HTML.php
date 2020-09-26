@@ -312,7 +312,7 @@
      * @return string
      */
 
-    protected static function selectionField(string $name, string $type, $values = null, $default = null, $parameters = null, string $separator = '&nbsp;&nbsp;')
+    protected static function selectionField($name, $type, $values = null, $default = null, $parameters = null, $separator = '&nbsp;&nbsp;')
     {
       if (!is_array($values)) {
         $values = array($values);
@@ -702,7 +702,7 @@
      * @param $class : css class
      * @return string $field, result of dropdown
      */
-    public static function selectField($name, array $values, $default = null, $parameters = '', $required = false, $class = 'form-control')
+    public static function selectField($name, $values, $default = null, $parameters = '', $required = false, $class = 'form-control')
     {
       $group = false;
 

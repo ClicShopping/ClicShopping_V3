@@ -48,7 +48,6 @@
       $this->title = $this->app->getDef('module_tx_title');
       $this->public_title = $this->app->getDef('module_tx_public_title');
 
-
 // Controle en B2B l'assujetti a la TVA (valeur true par defaut en mode B2C)
       if (B2BCommon::getTaxUnallowed($this->code)) {
         $this->enabled = defined('CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS') && (CLICSHOPPING_APP_ORDER_TOTAL_TAX_TX_STATUS == 'True') ? true : false;

@@ -44,6 +44,7 @@
       $this->page->data['action'] = 'Process';
 //language
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Contact/contact');
+      $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/main');
 
       $CLICSHOPPING_Breadcrumb->add($CLICSHOPPING_PageManager->getDef('navbar_title'), CLICSHOPPING::link(null, 'Info&Contact'));
     }

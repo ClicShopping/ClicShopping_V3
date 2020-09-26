@@ -52,6 +52,7 @@
                                          where p.submit_id = 1
                                         ');
   $Qseo->execute();
+
   $seo = new ObjectInfo($Qseo->toArray());
 
   $languages = $CLICSHOPPING_Language->getLanguages();
