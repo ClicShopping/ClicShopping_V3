@@ -21,7 +21,6 @@
 
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/BannerManager/Classes/Shop/Banner.php')) {
         Registry::set('Banner', new BannerClass());
 

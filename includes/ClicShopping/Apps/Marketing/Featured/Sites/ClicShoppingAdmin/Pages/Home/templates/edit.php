@@ -138,7 +138,7 @@
 
         $QcustomerGroupPrice->execute();
 
-        if ($customer_group_price = $QcustomerGroupPrice->fetch()) {
+        if ($customer_group_price === $QcustomerGroupPrice->fetch()) {
           $sInfo->products_price = $customer_group_price['customers_group_price'];
         }
       }

@@ -11,7 +11,7 @@
 /***************************
 résolution 320
  ****************************/
-@media (max-width: 320px) { 
+@media (max-width: 320px) {
    div.footerPageManager, span.footerPageManager {
        font-size: xx-small;
     }

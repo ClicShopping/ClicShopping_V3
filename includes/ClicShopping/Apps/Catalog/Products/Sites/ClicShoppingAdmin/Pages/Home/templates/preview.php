@@ -19,6 +19,8 @@
   $CLICSHOPPING_Language = Registry::get('Language');
 
   if (isset($_GET['pID']) && $_GET['pID'] > 0) {
+      $id = HTML::sanitize($_GET['pID']);
+
       if (isset($_GET['cPath'])) {
         $cPath = HTML::sanitize($_GET['cPath']) ?? $cPath = 0;
       } else {
@@ -33,7 +35,7 @@
                                                         and pd.language_id = :language_id
                                                         and p.products_id = pd.products_id
                                                        ');
-      $Qproducts->bindInt(':products_id', (int)$_GET['pID'] );
+      $Qproducts->bindInt(':products_id', (int)$id );
       $Qproducts->bindInt(':language_id', (int)$CLICSHOPPING_Language->getId() );
       $Qproducts->execute();
 
@@ -47,7 +49,7 @@
                                                              where p.products_id = :products_id
                                                              and m.manufacturers_id = p.manufacturers_id
                                                           ');
-      $Qmanufacturer->bindInt(':products_id', (int)$_GET['pID'] );
+      $Qmanufacturer->bindInt(':products_id', (int)$id );
       $Qmanufacturer->execute();
 
 
@@ -59,7 +61,7 @@
                                                        where p.products_id = :products_id
                                                        and p.suppliers_id = s.suppliers_id
                                                        ');
-      $Qsupplier->bindInt(':products_id', (int)$_GET['pID'] );
+      $Qsupplier->bindInt(':products_id', (int)$id );
       $Qsupplier->execute();
 ?>
 
@@ -89,7 +91,6 @@
         </div>
       </div>
       <div class="separator"></div>
-
       <div class="row" id="tab1ContentRow2">
         <div class="col-md-12">
           <span class="col-md-5 pageHeading float-md-left"><?php echo $CLICSHOPPING_Products->getDef('text_products_name')  . ' - '  . $products['products_name']; ?></span>
@@ -106,9 +107,6 @@
         <div class="separator"></div>
         <div class="col-md-12"><?php echo $products['products_description']; ?></div>
       </div>
-
-
-
 <?php
 // ##############################################
 // affichage presentation produit                               //
@@ -131,7 +129,7 @@
   }
 ?>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'). ' ' . HTML::checkboxField('products_only_online', '', $check_products_only_online); ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer') . ' ' . $Qmanufacturer->value['manufacturers_name']; ?></div>
+          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer') . ' ' . $Qmanufacturer->value['manufacturers_name'] ?? ''; ?></div>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers') . ' ' . $Qsupplier->value['suppliers_name']; ?></div>
 
 <?php
@@ -198,9 +196,9 @@
   if  (MODE_B2B_B2C == 'true') {
   //inserer les informations concernant la B2B
     while ($customers_group = $QcustomersGroup->fetch()) {
+      $attributes_price = '';
 
       if ($QcustomersGroup->rowCount() > 0) {
-
         $Qattributes= $CLICSHOPPING_Products->db->prepare('select g.customers_group_id,
                                                                  g.customers_group_price,
                                                                  g.price_group_view,
@@ -215,26 +213,25 @@
                                                           and g.customers_group_id = :customers_group_id
                                                           order by g.customers_group_id
                                                           ');
-        $Qattributes->bindInt(':products_id', (int)$_GET['pID'] );
-        $Qattributes->bindInt(':customers_group_id', (int)$customers_group['customers_group_id'] );
+        $Qattributes->bindInt(':products_id', (int)$id );
+        $Qattributes->bindInt(':customers_group_id', (int)$QcustomersGroup->valueInt('customers_group_id'));
 
         $Qattributes->execute();
 
+        if ($Qattributes->fetch()) {
+          $attributes_price = $Qattributes->value('customers_group_price') .' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
+        } else {
+          $attributes_price =  $Qattributes->value('customers_group_price') . ' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
+        }
       }
 ?>
                   <span class="col-md-1"><?php echo $customers_group['customers_group_name']; ?></span>
                   <span class="col-md-3">
 
 <?php
-      if ($attributes = $Qattributes->fetch()) {
-        echo $attributes['customers_group_price'] .' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
-      } else {
-        echo $attributes['customers_group_price'] . ' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
-      }
+      echo $attributes_price;
 ?>
                   </span>
-
-
 <?php
     } // end while
 ?>
@@ -243,27 +240,25 @@
 
                 <div class="col-md-2"><?php echo $CLICSHOPPING_Products->getDef('products_view'); ?></div>
 <?php
-    if (isset($_GET['pID'])) {
-  // Si c'est un nouveau produit case coche par defaut
-
       if ($products['products_view'] == '1') {
         $check_product_view = true;
       } else {
         $check_product_view = false;
       }
 
-      if ($products['orders_view'] == '1') {
-        $check_product_order_view = true;
-      } else {
-        $check_product_order_view = false;
-      }
+    if ($products['orders_view'] == '1') {
+      $check_product_order_view = true;
+    } else {
+      $check_product_order_view = false;
+    }
 
-      if ($products['products_price_kilo'] == '1') {
-        $check_products_price_kilo = true;
-      } else {
-        $check_products_price_kilo = false;
-      }
+    if ($products['products_price_kilo'] == '1') {
+      $check_products_price_kilo = true;
+    } else {
+      $check_products_price_kilo = false;
+    }
 
+    if (isset($id)) {
 ?>
       <div><?php echo HTML::checkboxField('products_view', '', $check_product_view) . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/last.png', $CLICSHOPPING_Products->getDef('text_products_view')) . '&nbsp;&nbsp;' . HTML::checkboxField('product_order_view', '', $check_product_order_view)  . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/orders-up.gif', $CLICSHOPPING_Products->getDef('tab_orders_view')); ?>&nbsp;</div>
 <?php
@@ -277,7 +272,7 @@
 <?php
   }
 
-  if (isset($_GET['pID'])) {
+  if (isset($id)) {
     if ($products['products_price_kilo'] == '1') {
       $check_products_price_kilo = true;
     } else {

@@ -150,7 +150,7 @@
               $content .= '<div>';
               $content .= $QcustomersGroup->value('customers_group_name') . ' ';
 
-              if ($attributes = $Qattributes->fetch()) {
+              if ($attributes === $Qattributes->fetch()) {
                 $content .= HTML::inputField('price' . $QcustomersGroup->valueInt('customers_group_id'), $Qattributes->valueDecimal('customers_group_price'), 'onchange="updateGross()" placeholder="' . $this->app->getDef('tax_excluded') . '"') . '<strong>' . $this->app->getDef('tax_included') . '</strong>';
                 $attributes['customers_group_price'] = $Qattributes->valueDecimal('customers_group_price');
               } else {

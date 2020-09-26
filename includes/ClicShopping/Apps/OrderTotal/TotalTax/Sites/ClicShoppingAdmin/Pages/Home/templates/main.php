@@ -15,6 +15,7 @@
 
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
   $CLICSHOPPING_TotalTax = Registry::get('TotalTax');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   if ($CLICSHOPPING_MessageStack->exists('TotalTax')) {
     echo $CLICSHOPPING_MessageStack->get('TotalTax');

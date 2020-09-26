@@ -145,7 +145,7 @@
     ($if_modified_since && $if_modified_since === $tsstring)) {
     header('HTTP/1.1 304 Not Modified');
     exit();
-  }  else {
+  } else {
     header("Last-Modified: $tsstring");
     header("ETag: \"{$etag}\"");
   }

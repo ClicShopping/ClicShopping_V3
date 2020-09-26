@@ -113,7 +113,7 @@
 
             if ($status_order_taxe === false) {
               $class_option_order_taxe = 'fas fa-times fa-lg';
-            }  else {
+            } else {
               $class_option_order_taxe ='fas fa-check fa-lg';
             }
 

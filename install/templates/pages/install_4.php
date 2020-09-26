@@ -78,7 +78,7 @@
 
       if ($smtp_port == '25') {
         $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'no'], ['configuration_key' => 'EMAIL_SMTP_SECURE']);
-      } elseif ($smtp_port = '465') {
+      } elseif ($smtp_port == '465') {
         $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'ssl'], ['configuration_key' => 'EMAIL_SMTP_SECURE']);
       } else {
         $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'tls'], ['configuration_key' => 'EMAIL_SMTP_SECURE']);
@@ -91,7 +91,7 @@
 
       if ($smtp_port == 'smtp') {
         $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'smtp'], ['configuration_key' => 'EMAIL_TRANSPORT']);
-      } elseif ($smtp_port = 'gmail') {
+      } elseif ($smtp_port == 'gmail') {
         $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'gmail'], ['configuration_key' => 'EMAIL_TRANSPORT']);
       } else {
         $CLICSHOPPING_Db->save('configuration', ['configuration_value' => 'sendmail'], ['configuration_key' => 'EMAIL_TRANSPORT']);
