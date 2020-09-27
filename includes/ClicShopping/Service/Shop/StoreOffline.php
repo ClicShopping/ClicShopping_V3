@@ -37,7 +37,7 @@
         }
 
         if ($allowed_ip === false) {
-          CLICSHOPPING::redirect('offline.html');
+          CLICSHOPPING::redirect('offline.php');
         }
       }
 
