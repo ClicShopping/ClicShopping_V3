@@ -583,7 +583,7 @@
     /**
      * @param string|null $application
      */
-    protected static function setSiteApplication(string $application = null)
+    protected static function setSiteApplication(?string $application = null)
     {
       if (isset($application)) {
         if (!static::siteApplicationExists($application)) {
