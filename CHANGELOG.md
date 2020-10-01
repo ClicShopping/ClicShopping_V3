@@ -1,5 +1,7 @@
-Version 3.22 (on the way)
 
+version beta 4.22
+
+upgrade bootstrap 4.5.2
 php8 compatibilities and 7.4.3
 update composer libraries
 new ckeditor version
