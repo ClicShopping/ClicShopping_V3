@@ -1,9 +1,0 @@
-Update for 3.2110
-Inscrease theme system flexibility
-refactoring image
-new ckeditor version
-Add hooks for header and Footer
-fix bug define languages
-add composer class
-little fix language
-change design checkbox agreement
