@@ -29,14 +29,19 @@
       $this->app = Registry::get('Reviews');
     }
 
+    /**
+     * @param int $id
+     */
     private function removeReviews(int $id)
     {
       $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => id]);
 
-      $this->app->db->delete('reviews', ['products_id' => $id]);
+      if ($Qreviews->fetch()) {
+        $this->app->db->delete('reviews', ['products_id' => $id]);
 
-      while ($Qreviews->fetch()) {
-        $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
+        while ($Qreviews->fetch()) {
+          $this->app->db->delete('reviews_description', ['reviews_id' => $Qreviews->valueInt('reviews_id')]);
+        }
       }
     }
 

@@ -1,5 +1,4 @@
-
-version beta 4.22
+Version beta 3.22 (on the way)
 
 upgrade bootstrap 4.5.2
 php8 compatibilities and 7.4.3
@@ -8,6 +7,7 @@ new ckeditor version
 new elfinder version
 remove shop rootdirectory
 fix bug on typo Login be LogIn
+fix bug remove products on reviews
 some language translation fix
 fix some little bugs : products stock, dimension
 fix email function on string management
