@@ -9,13 +9,18 @@
    *
    */
 
-
   namespace ClicShopping\OM\Modules;
 
   use ClicShopping\OM\Apps;
 
   class Hooks extends \ClicShopping\OM\ModulesAbstract
   {
+    /**
+     * @param $app
+     * @param $key
+     * @param $data
+     * @return array
+     */
     public function getInfo($app, $key, $data)
     {
       $result = [];
@@ -31,9 +36,13 @@
       return $result;
     }
 
+    /**
+     * @param $module
+     * @return false|string
+     */
     public function getClass($module)
     {
-      if (strpos($module, '/') === false) {
+      if (!str_contains($module, '/')) { // TODO core hook compatibility; to remove
         return $module;
       }
 
@@ -48,12 +57,17 @@
       }
     }
 
+    /**
+     * @param $modules
+     * @param $filter
+     * @return array|mixed
+     */
     public function filter($modules, $filter)
     {
       $result = [];
 
       foreach ($modules as $key => $data) {
-        if (($key == $filter['site'] . '/' . $filter['group']) && isset($data[$filter['hook']])) {
+        if (($key === $filter['site'] . '/' . $filter['group']) && isset($data[$filter['hook']])) {
           $result[$key] = $data;
         }
       }

@@ -169,7 +169,6 @@
      */
     public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
     {
-
       if (is_null($page)) {
         $page = static::getConfig('bootstrap_file');
       }
@@ -178,7 +177,7 @@
 
       $site = $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+      if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -248,6 +247,9 @@
       return $link;
     }
 
+    /**
+     * @return string
+     */
     public static function linkImage(): string
     {
       $args = func_get_args();
@@ -265,7 +267,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+      if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -277,13 +279,8 @@
       return $url;
     }
 
-    /**
-     * Return an internal URL address for public objects.
-     *
-     * @param string $url The object location from the public/sites/SITE/ directory.
-     * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
-     * @param string $site Get a public link from a specific Site
-     * @return string The URL address.
+     /**
+     * @return string
      */
     public static function linkPublic(): string
     {
@@ -302,7 +299,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+      if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }

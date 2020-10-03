@@ -114,11 +114,14 @@
 <?php
     if ($count_file > 0) {
       for ($i = 0, $n = $count_file; $i < $n;  $i++) {
-
         if ($result->items[$i] === null) {
-          $item = $result[$i];
-          $module_real_name = $item->title;
-          $link_html = 'https://github.com/ClicShoppingOfficialModulesV3/' . $item->title;
+            if ($result[$i]) {
+              $item = $result[$i];
+              $module_real_name = $item->title;
+              $link_html = 'https://github.com/ClicShoppingOfficialModulesV3/' . $item->title;
+            } else {
+              ClicShopping::redirect();
+            }
         } else {
           $item = $result->items[$i];
           $module_real_name = $item->name;

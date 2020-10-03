@@ -319,7 +319,7 @@
 
       $site = CLICSHOPPING::getSite();
 
-      if ((strpos($group, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
+      if ((str_contains($group, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
         $site = $matches[1];
         $group = $matches[2];
       }
@@ -361,7 +361,7 @@
 
       $site = CLICSHOPPING::getSite();
 
-      if ((strpos($group, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
+      if ((str_contains($group, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $group, $matches) === 1) && CLICSHOPPING::siteExists($matches[1])) {
         $site = $matches[1];
         $group = $matches[2];
       }
