@@ -69,7 +69,7 @@
     public static function write(string $message, string $type)
     {
       if ( STORE_PAGE_PARSE_TIME == 'True') {
-        if (is_file(STORE_PAGE_PARSE_TIME_LOG)) {
+        if (is_file(STORE_PAGE_PARSE_TIME_LOG) && is_writable(STORE_PAGE_PARSE_TIME_LOG)) {
           return '<div class="alert alert-warning text-md-center">' . strftime(STORE_PARSE_DATE_TIME_FORMAT) . ' [' . $type . '] ' . $message . "\n" . STORE_PAGE_PARSE_TIME_LOG . '</div>';
         } else {
           return '<div class="alert alert-warning text-md-center">The time log directory or file is not found</div>';
