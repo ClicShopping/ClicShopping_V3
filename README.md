@@ -67,8 +67,14 @@ More information in the Wiki
 
 #Support
   <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)<br><br>  
-
+  
   <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)<br><br>
+
+#Analyse
+   [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
+   [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
+   ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
+   ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
 
 #Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.<br >
@@ -77,7 +83,7 @@ More information in the Wiki
  - Donation can help to continue the work and to finance the infrastructure.
  - More information are available on the community website.
 
-#trademark
+#Trademark
 License GPL2 - MIT
 ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/trademark/
 
@@ -102,8 +108,6 @@ ClicShopping(tm) has a trademark deposed : https://www.clicshopping.org/forum/tr
 - Lazy load image optimization
 - Free Apps osCommerce, OpenCart, ZenCart, Crealoaded, Prestashop .... database migration available on the marketplace
 
-
-[![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
 #Images
  ![image2](https://www.clicshopping.org/images/frontoffice.png)
 
