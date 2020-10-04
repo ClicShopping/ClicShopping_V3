@@ -1,7 +1,0 @@
-Add preaction
-Add hooks for reviews write
-Add latest modules / apps
-fix deprecated function pdf
-fix object o page tab customer (group)
-update Json Ltd
-language synthax

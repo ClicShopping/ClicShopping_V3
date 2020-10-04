@@ -2078,7 +2078,7 @@
         $Qproducts->execute();
 
         $price_group_view = $Qproducts->valueInt('price_group_view');
-        
+
 //do not change
         if ($new_price = $this->setSpecialPriceGroup($id)) {
           if ($price_group_view == 1) {

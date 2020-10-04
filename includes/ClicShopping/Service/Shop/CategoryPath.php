@@ -21,7 +21,6 @@
   {
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/Shop/Category.php')) {
         Registry::set('CategoryTree', new CategoryTreeClass());
         Registry::set('Category', new CategoryClass());

@@ -15,10 +15,8 @@
   use ClicShopping\OM\FileSystem;
   use ClicShopping\OM\ErrorHandler as ErrorHandlerClass;
 
-
   class ErrorHandler implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       if (!FileSystem::isWritable(ErrorHandlerClass::getDirectory())) {

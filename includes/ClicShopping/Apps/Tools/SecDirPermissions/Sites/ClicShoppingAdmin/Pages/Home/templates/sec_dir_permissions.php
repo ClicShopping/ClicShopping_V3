@@ -16,7 +16,8 @@
 
   $CLICSHOPPING_SecDirPermissions = Registry::get('SecDirPermissions');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
-
+  $CLICSHOPPING_Language = Registry::get('Language');
+  
   $CLICSHOPPING_Language->loadDefinitions('sec_dir_permissions');
 
   function getOpenDir($path)

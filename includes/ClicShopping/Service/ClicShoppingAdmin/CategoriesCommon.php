@@ -18,10 +18,8 @@
 
   class CategoriesCommon implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/Common/CategoryCommon.php')) {
         Registry::set('CategoryCommon', new CategoryCommonClass());
 

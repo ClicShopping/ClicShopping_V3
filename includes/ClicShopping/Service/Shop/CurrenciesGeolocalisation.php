@@ -15,10 +15,8 @@
 
   class CurrenciesGeolocalisation implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
 // hook has impact in all shop
       Registry::get('Hooks')->call('AllShop', 'CurrenciesGeolocalisation');
 

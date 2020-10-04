@@ -1,6 +1,0 @@
-update header with autocomplete
-icon flag size
-fix define language on save data
-update HTML template
-fix value got reviews evaluation
-improve Json Ltd

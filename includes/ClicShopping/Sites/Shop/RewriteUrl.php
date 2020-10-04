@@ -16,7 +16,6 @@
 
   class RewriteUrl
   {
-
     protected $title;
 
     public function __construct()

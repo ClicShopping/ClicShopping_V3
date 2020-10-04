@@ -26,12 +26,15 @@
 // select multiple contact for the form
       if (!empty(CONTACT_DEPARTMENT_LIST)) {
         $send_to_array = [];
+        $contact_department_list = explode(",", CONTACT_DEPARTMENT_LIST);
 
-        foreach (explode(",", CONTACT_DEPARTMENT_LIST) as $k => $v) {
-          $send_to_array[] = [
-            'id' => $k,
-            'text' => preg_replace('/\<[^*]*/', '', $v)
-          ];
+        if(is_array($contact_department_list)) {
+          foreach (explode(",", CONTACT_DEPARTMENT_LIST) as $k => $v) {
+            $send_to_array[] = [
+              'id' => $k,
+              'text' => preg_replace('/\<[^*]*/', '', $v)
+            ];
+          }
         }
 
         $_POST['send_to_array'] = $send_to_array;

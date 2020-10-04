@@ -17,7 +17,6 @@
 
   class Mail implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       Registry::set('Mail', new MailClass());

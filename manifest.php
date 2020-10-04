@@ -44,7 +44,6 @@
   if(empty($title)) {
     $store_name = HTML::removeFileAccents(STORE_NAME);
     $shortName = substr($store_name, 0, 30);
-
   } else {
     $shortName = substr($title, 0, 30);
   }
@@ -58,7 +57,7 @@
 
   $image_192 =  HTTP::getShopUrlDomain() . 'sources/images/logos/manifest/logo_192.png';
   $image_512 =  HTTP::getShopUrlDomain() . 'sources/images/logos/manifest/logo_512.png';
-
+  
   $code_langue = $CLICSHOPPING_Language->getCode();
 
   $manifest = [
@@ -73,15 +72,16 @@
     "theme_color" => "#317EFB",
     "orientation" => "any",
     "background_color" => "#fff",
-    "related_applications" => "",
-    "prefer_related_applications" => "false",
+    "related_applications" => [],
+    "prefer_related_applications" => false,
     "screenshots" => [],
     "generated" => "true",
-    "icons" => [
+    "icons" => [[
       "src" => "{$image_512}",
       "sizes"=> "192x192 512x512",
-      "type" => "image/png"
-    ],
+      "type" => "image/png",
+      "purpose" => "maskable"
+    ]],
     "src" => "{$image_512}",
     "sizes" => "512x512",
     "type" => "image/png"

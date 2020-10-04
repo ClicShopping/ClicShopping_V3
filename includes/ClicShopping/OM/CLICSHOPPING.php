@@ -22,8 +22,8 @@
 
   class CLICSHOPPING
   {
-    const BASE_DIR = CLICSHOPPING_BASE_DIR;
-    const VALID_CLASS_NAME_REGEXP = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/'; // https://php.net/manual/en/language.oop5.basic.php
+    public const BASE_DIR = CLICSHOPPING_BASE_DIR;
+    public const VALID_CLASS_NAME_REGEXP = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/'; // https://php.net/manual/en/language.oop5.basic.php
 
     protected static string $version;
     protected static string $site = 'Shop';
@@ -93,7 +93,6 @@
      */
     public static function setSite(string $site)
     {
-
       if (!static::siteExists($site)) {
         $site = static::$site;
       }
@@ -169,7 +168,6 @@
      */
     public static function link(string $page = null, string $parameters = null, bool $add_session_id = true, bool $search_engine_safe = true): string
     {
-
       if (is_null($page)) {
         $page = static::getConfig('bootstrap_file');
       }
@@ -178,7 +176,7 @@
 
       $site = $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+      if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -248,6 +246,9 @@
       return $link;
     }
 
+    /**
+     * @return string
+     */
     public static function linkImage(): string
     {
       $args = func_get_args();
@@ -265,7 +266,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+      if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -277,13 +278,8 @@
       return $url;
     }
 
-    /**
-     * Return an internal URL address for public objects.
-     *
-     * @param string $url The object location from the public/sites/SITE/ directory.
-     * @param string $parameters Parameters to add to the link. Example: key1=value1&key2=value2
-     * @param string $site Get a public link from a specific Site
-     * @return string The URL address.
+     /**
+     * @return string
      */
     public static function linkPublic(): string
     {
@@ -302,7 +298,7 @@
       $page = $args[0];
       $req_site = static::$site;
 
-      if ((strpos($page, '/') !== false) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
+      if ((str_contains($page, '/')) && (preg_match('/^([A-Z][A-Za-z0-9-_]*)\/(.*)$/', $page, $matches) === 1) && static::siteExists($matches[1])) {
         $req_site = $matches[1];
         $page = $matches[2];
       }
@@ -461,7 +457,6 @@
       $prefix = 'ClicShopping\\';
 
       if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
-
         $class_path = str_replace('\\', '/', $class);
 
         $file = CLICSHOPPING_BASE_DIR . '/' . 'External' . '/' . $class_path . '.php';
@@ -531,7 +526,8 @@
 
       $data['clicshopping'] = ['version' => static::getVersion()];
 
-      $data['system'] = ['date' => date('Y-m-d H:i:s O T'),
+      $data['system'] = [
+        'date' => date('Y-m-d H:i:s O T'),
         'system' => $system,
         'host' => $host,
         'os' => PHP_OS,
@@ -540,11 +536,13 @@
         'http_server' => $_SERVER['SERVER_SOFTWARE']
       ];
 
-      $data['mysql'] = ['version' => $CLICSHOPPING_Db->getAttribute(\PDO::ATTR_SERVER_VERSION),
+      $data['mysql'] = [
+        'version' => $CLICSHOPPING_Db->getAttribute(\PDO::ATTR_SERVER_VERSION),
         'date' => $Qdate->value('datetime')
       ];
 
-      $data['php'] = ['version' => PHP_VERSION,
+      $data['php'] = [
+        'version' => PHP_VERSION,
         'zend' => zend_version(),
         'sapi' => PHP_SAPI,
         'int_size' => defined('PHP_INT_SIZE') ? PHP_INT_SIZE : '',
@@ -553,13 +551,11 @@
         'error_reporting' => error_reporting(),
         'display_errors' => (int)@ini_get('display_errors'),
         'allow_url_fopen' => (int)@ini_get('allow_url_fopen'),
-
         'file_uploads' => (int)@ini_get('file_uploads'),
         'upload_max_filesize' => @ini_get('upload_max_filesize'),
         'post_max_size' => @ini_get('post_max_size'),
         'disable_functions' => @ini_get('disable_functions'),
         'disable_classes' => @ini_get('disable_classes'),
-
         'filter.default' => @ini_get('filter.default'),
         'unicode.semantics' => (int)@ini_get('unicode.semantics'),
         'zend_thread_safty' => (int)function_exists('zend_thread_id'),
@@ -583,7 +579,7 @@
     /**
      * @param string|null $application
      */
-    protected static function setSiteApplication(string $application = null)
+    protected static function setSiteApplication(?string $application = null)
     {
       if (isset($application)) {
         if (!static::siteApplicationExists($application)) {
@@ -625,7 +621,6 @@
       return static::$_application;
     }
 
-
     /**
      * Get all parameters in the GET scope
      *
@@ -654,7 +649,7 @@
       $exclude = array_merge($exclude, $array);
 
       foreach ($_GET as $key => $value) {
-        if (!in_array($key, $exclude)) {
+        if (!in_array($key, $exclude, true)) {
           $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
         }
       }

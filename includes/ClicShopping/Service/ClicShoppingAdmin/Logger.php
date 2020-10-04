@@ -17,7 +17,6 @@
 
   class Logger implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       Registry::set('LoggerAdmin', new LoggerAdmin());

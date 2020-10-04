@@ -46,7 +46,7 @@
         $dsn_array[] = 'dbname=' . $this->database;
       }
 
-      if ((strpos($this->server, '/') !== false) || (strpos($this->server, '\\') !== false)) {
+      if ((str_contains($this->server, '/')) || (str_contains($this->server, '\\'))) {
         $dsn_array[] = 'unix_socket=' . $this->server;
       } else {
         $dsn_array[] = 'host=' . $this->server;

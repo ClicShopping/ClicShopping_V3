@@ -13,7 +13,6 @@
 
   class Session
   {
-
     /**
      * Loads the session storage handler
      *

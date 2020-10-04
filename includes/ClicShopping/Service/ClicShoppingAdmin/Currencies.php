@@ -17,7 +17,6 @@
 
   class Currencies implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       Registry::set('Currencies', new CurrenciesClass());

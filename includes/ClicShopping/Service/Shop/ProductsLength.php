@@ -18,10 +18,8 @@
 
   class ProductsLength implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/ProductsLength/Classes/Shop/ProductsLength.php')) {
         Registry::set('ProductsLength', new ProductsLengthShop());
 

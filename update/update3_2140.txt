@@ -1,3 +1,0 @@
-fix quick update customer group price for update all prices.
-Fix vocabulary
-Fix Suppliers

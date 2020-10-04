@@ -1,5 +1,22 @@
 # Changelog
 
+## 7.56.0 - 2020-09-25
+* [#1019](https://github.com/stripe/stripe-php/pull/1019) Update PHPDocs
+
+## 7.55.0 - 2020-09-24
+* [#1018](https://github.com/stripe/stripe-php/pull/1018) Multiple API changes
+  * Updated PHPDocs
+  * Added `TYPE_CONTRIBUTION` as a constant on `BalanceTransaction`
+
+## 7.54.0 - 2020-09-23
+* [#1017](https://github.com/stripe/stripe-php/pull/1017) Updated PHPDoc
+
+## 7.53.1 - 2020-09-22
+* [#1015](https://github.com/stripe/stripe-php/pull/1015) Bugfix: don't error on systems with php_uname in disablefunctions with whitespace
+
+## 7.53.0 - 2020-09-21
+* [#1016](https://github.com/stripe/stripe-php/pull/1016) Updated PHPDocs
+
 ## 7.52.0 - 2020-09-08
 * [#1010](https://github.com/stripe/stripe-php/pull/1010) Update PHPDocs
 

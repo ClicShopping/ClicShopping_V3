@@ -18,7 +18,6 @@
 
   class Core implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
 

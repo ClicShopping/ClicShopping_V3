@@ -18,10 +18,8 @@
 
   class Favorites implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Marketing/Favorites/Classes/Shop/FavoritesClass.php')) {
         Registry::set('FavoritesClass', new FavoritesClass());
 

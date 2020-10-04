@@ -17,7 +17,6 @@
 
   class Composer implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
         if (!Registry::exists('Composer')) {
