@@ -42,7 +42,7 @@
      */
     public function getClass($module)
     {
-      if (!str_contains($module, '/')) { // TODO core hook compatibility; to remove
+      if (!str_contains($module, '/')) {
         return $module;
       }
 
