@@ -13,10 +13,8 @@
 
   class SEFU implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '');
 
       if (isset($path_info) && (strlen($path_info) > 1)) {
@@ -32,7 +30,7 @@
             $param_array[1] = '';
           }
 
-          if (strpos($param_array[0], '[]') !== false) {
+          if (str_contains($param_array[0], '[]')) {
             $GET_array[substr($param_array[0], 0, -2)][] = $param_array[1];
           } else {
             $_GET[$param_array[0]] = $param_array[1];
@@ -54,7 +52,9 @@
       return true;
     }
 
-
+    /**
+     * @return mixed|null
+     */
     public static function getUrlValue()
     {
       $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '');

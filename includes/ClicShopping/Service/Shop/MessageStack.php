@@ -18,7 +18,6 @@
 
   class MessageStack implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
 // initialize the message stack for output messages

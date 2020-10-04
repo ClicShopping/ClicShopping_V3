@@ -18,10 +18,8 @@
 
   class Weight implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Configuration/Weight/Classes/Shop/Weight.php')) {
         Registry::set('Weight', new WeightShop());
 

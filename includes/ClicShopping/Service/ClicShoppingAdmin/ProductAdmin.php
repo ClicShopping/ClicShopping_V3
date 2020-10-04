@@ -17,7 +17,6 @@
 
   class ProductAdmin implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       Registry::set('ProductsAdmin', new ProductAdminClass());

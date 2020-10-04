@@ -18,10 +18,8 @@
 
   class CategoriesAdmin implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Catalog/Categories/Classes/ClicShoppingAdmin/CategoriesAdmin.php')) {
         Registry::set('CategoriesAdmin', new CategoriesAdminClass());
 

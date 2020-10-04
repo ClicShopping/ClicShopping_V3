@@ -18,10 +18,8 @@
 
   class PageManager implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Communication/PageManager/Classes/Shop/PageManagerShop.php')) {
         Registry::set('PageManagerShop', new PageManagerShopClass());
 

@@ -18,10 +18,8 @@
 
   class Address implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Sites/Shop/Address.php')) {
         Registry::set('Address', new AddressClass());
 

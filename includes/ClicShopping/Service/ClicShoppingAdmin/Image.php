@@ -17,7 +17,6 @@
 
   class Image implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
       Registry::set('Image', new ImageClass());

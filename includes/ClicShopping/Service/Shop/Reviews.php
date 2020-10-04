@@ -18,10 +18,8 @@
 
   class Reviews implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
-
       if (is_file(CLICSHOPPING::BASE_DIR . 'Apps/Customers/Reviews/Classes/Shop/ReviewsClass.php')) {
         Registry::set('Reviews', new NewReviews());
 

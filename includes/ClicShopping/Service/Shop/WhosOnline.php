@@ -58,7 +58,7 @@
               if (is_array($file_array)) {
                 foreach ($file_array as $spider) {
                   if (!empty($spider)) {
-                    if (strpos($user_agent, $spider) !== false) {
+                    if (str_contains($user_agent, $spider)) {
                       $wo_full_name = $spider;
                       self::$spider_flag = true;
 
@@ -88,13 +88,15 @@
         $Qsession->execute();
 
         if ($Qsession->fetch() !== false) {
-          $CLICSHOPPING_Db->save('whos_online', ['customer_id' => (int)$wo_customer_id,
+          $insert_array = [
+            'customer_id' => (int)$wo_customer_id,
             'full_name' => $wo_full_name,
             'ip_address' => $wo_ip_address,
             'time_last_click' => $current_time,
             'last_page_url' => $wo_last_page_url
-          ],
-            ['session_id' => $wo_session_id]
+          ];
+
+            $CLICSHOPPING_Db->save('whos_online', $insert_array, ['session_id' => $wo_session_id]
           );
 
         } else {
@@ -104,23 +106,28 @@
             $http_referer = $_SERVER['HTTP_REFERER'];
           }
 
-          $CLICSHOPPING_Db->save('whos_online', ['customer_id' => (int)$wo_customer_id,
-              'full_name' => $wo_full_name,
-              'session_id' => $wo_session_id,
-              'ip_address' => $wo_ip_address,
-              'time_entry' => $current_time,
-              'time_last_click' => $current_time,
-              'last_page_url' => $wo_last_page_url,
-              'http_referer' => $http_referer,
-              'user_agent' => $user_agent
-            ]
-          );
+          $update_array = [
+            'customer_id' => (int)$wo_customer_id,
+            'full_name' => $wo_full_name,
+            'session_id' => $wo_session_id,
+            'ip_address' => $wo_ip_address,
+            'time_entry' => $current_time,
+            'time_last_click' => $current_time,
+            'last_page_url' => $wo_last_page_url,
+            'http_referer' => $http_referer,
+            'user_agent' => $user_agent
+          ];
+
+          $CLICSHOPPING_Db->save('whos_online', $update_array);
         }
       } else {
         return false;
       }
     }
 
+    /**
+     * @return mixed
+     */
     public static function getResultSpiderFlag()
     {
       return self::$spider_flag;

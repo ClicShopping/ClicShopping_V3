@@ -13,7 +13,6 @@
 
   class OutputCompression implements \ClicShopping\OM\ServiceInterface
   {
-
     public static function start(): bool
     {
 // configure gzip compression if it is enabled
