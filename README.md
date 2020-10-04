@@ -67,7 +67,7 @@ More information in the Wiki
 
 #Support
   <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)<br><br>  
-
+  
   <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)<br><br>
 
 #Analyse
@@ -75,7 +75,7 @@ More information in the Wiki
    [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
    ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
    ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
-   
+
 #Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.<br >
  [![Donate Paypal(nao-pon)](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/LoicRichardCanada?locale.x=fr_CA)
