@@ -48,3 +48,5 @@ table_heading_sort_order = Sort order
 table_heading_status = Status
 table_heading_action = Action
 table_heading_group = Group
+
+text_info_module = ALL Sort Order numbers MUST be UNIQUE.<br />Any Group with no active module(s) will NOT display.

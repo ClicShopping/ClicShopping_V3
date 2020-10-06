@@ -263,12 +263,11 @@
                   } else {
                     $marketplace_link = $item->website_link_to_sell;
                   }
-                }
-
-                if ($error === true) {
-                  echo '<span class="text-md-right"> ' . $message . '</span>';
-                } else {
-                  echo '<span class="text-md-right"><a href="' . $marketplace_link . '" target="_blank" rel="noreferrer" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
+                  if ($error === true) {
+                    echo '<span class="text-md-right"> ' . $message . '</span>';
+                  } else {
+                    echo '<span class="text-md-right"><a href="' . $marketplace_link . '" target="_blank" rel="noreferrer" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
+                  }
                 }
               } else {
                 echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));

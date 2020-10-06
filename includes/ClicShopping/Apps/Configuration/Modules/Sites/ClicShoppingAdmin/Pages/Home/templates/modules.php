@@ -342,4 +342,7 @@
     ?>
     </tbody>
   </table>
+  <div class="alert alert-danger">
+    <?php echo $CLICSHOPPING_Modules->getDef('text_info_module'); ?>
+  </div>
 </div>
