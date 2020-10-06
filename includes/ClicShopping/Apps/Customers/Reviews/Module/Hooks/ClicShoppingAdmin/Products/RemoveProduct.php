@@ -34,7 +34,7 @@
      */
     private function removeReviews(int $id)
     {
-      $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => id]);
+      $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => $id]);
 
       if ($Qreviews->fetch()) {
         $this->app->db->delete('reviews', ['products_id' => $id]);
@@ -47,7 +47,13 @@
 
     public function execute()
     {
-      $id = HTML::sanitize($_POST['products_id']);
-      $this->removeReviews($id);
+      if (isset($_POST['selected'])) {
+        foreach ($_POST['selected'] as $id) {
+          $this->removeReviews($id);
+        }
+      } else {
+        $id = HTML::sanitize($_POST['products_id']);
+        $this->removeReviews($id);
+      }
     }
   }
