@@ -115,15 +115,13 @@ trait ResponseTrait
                 return $content;
             }
 
-            if ('HEAD' === $this->info['http_method'] || \in_array($this->info['http_code'], [204, 304], true)) {
-                return '';
+            if (null === $this->content) {
+                throw new TransportException('Cannot get the content of the response twice: buffering is disabled.');
             }
-
-            throw new TransportException('Cannot get the content of the response twice: buffering is disabled.');
-        }
-
-        foreach (self::stream([$this]) as $chunk) {
-            // Chunks are buffered in $this->content already
+        } else {
+            foreach (self::stream([$this]) as $chunk) {
+                // Chunks are buffered in $this->content already
+            }
         }
 
         rewind($this->content);
@@ -151,12 +149,12 @@ trait ResponseTrait
         }
 
         try {
-            $content = json_decode($content, true, 512, JSON_BIGINT_AS_STRING | (\PHP_VERSION_ID >= 70300 ? JSON_THROW_ON_ERROR : 0));
+            $content = json_decode($content, true, 512, \JSON_BIGINT_AS_STRING | (\PHP_VERSION_ID >= 70300 ? \JSON_THROW_ON_ERROR : 0));
         } catch (\JsonException $e) {
             throw new JsonException($e->getMessage().sprintf(' for "%s".', $this->getInfo('url')), $e->getCode());
         }
 
-        if (\PHP_VERSION_ID < 70300 && JSON_ERROR_NONE !== json_last_error()) {
+        if (\PHP_VERSION_ID < 70300 && \JSON_ERROR_NONE !== json_last_error()) {
             throw new JsonException(json_last_error_msg().sprintf(' for "%s".', $this->getInfo('url')), json_last_error());
         }
 
@@ -270,7 +268,7 @@ trait ResponseTrait
         $debug .= "< \r\n";
 
         if (!$info['http_code']) {
-            throw new TransportException('Invalid or missing HTTP status line.');
+            throw new TransportException(sprintf('Invalid or missing HTTP status line for "%s".', implode('', $info['url'])));
         }
     }
 
@@ -321,7 +319,7 @@ trait ResponseTrait
         while (true) {
             $hasActivity = false;
             $timeoutMax = 0;
-            $timeoutMin = $timeout ?? INF;
+            $timeoutMin = $timeout ?? \INF;
 
             /** @var ClientState $multi */
             foreach ($runningResponses as $i => [$multi]) {
@@ -350,7 +348,7 @@ trait ResponseTrait
 
                         if (\is_string($chunk = array_shift($multi->handlesActivity[$j]))) {
                             if (null !== $response->inflate && false === $chunk = @inflate_add($response->inflate, $chunk)) {
-                                $multi->handlesActivity[$j] = [null, new TransportException('Error while processing content unencoding.')];
+                                $multi->handlesActivity[$j] = [null, new TransportException(sprintf('Error while processing content unencoding for "%s".', $response->getInfo('url')))];
                                 continue;
                             }
 
@@ -376,6 +374,10 @@ trait ResponseTrait
 
                                 $chunk = new ErrorChunk($response->offset, $e);
                             } else {
+                                if (0 === $response->offset && null === $response->content) {
+                                    $response->content = fopen('php://memory', 'w+');
+                                }
+
                                 $chunk = new LastChunk($response->offset);
                             }
                         } elseif ($chunk instanceof ErrorChunk) {
@@ -387,7 +389,7 @@ trait ResponseTrait
                                 $response->logger->info(sprintf('Response: "%s %s"', $info['http_code'], $info['url']));
                             }
 
-                            $response->inflate = \extension_loaded('zlib') && $response->inflate && 'gzip' === ($response->headers['content-encoding'][0] ?? null) ? inflate_init(ZLIB_ENCODING_GZIP) : null;
+                            $response->inflate = \extension_loaded('zlib') && $response->inflate && 'gzip' === ($response->headers['content-encoding'][0] ?? null) ? inflate_init(\ZLIB_ENCODING_GZIP) : null;
 
                             if ($response->shouldBuffer instanceof \Closure) {
                                 try {
