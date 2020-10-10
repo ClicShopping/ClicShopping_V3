@@ -60,7 +60,6 @@
 
       $product_length = $this->getProductsProductsLength();
 
-      if (is_array($product_length)) {
         $products_length_class_id = $product_length['products_length_class_id'];
         $products_dimension_width = $product_length['products_dimension_width'];
         $products_dimension_height = $product_length['products_dimension_height'];
@@ -121,6 +120,5 @@ $('#tab1ContentRow6').append(
 
 EOD;
         return $output;
-      }
     }
   }
