@@ -61,9 +61,11 @@
       $result = true;
 
       if (isset($backup_file)) {
-        $request = $this->getHttpRequest(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $backup_file);
+        if (is_file(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $backup_file)) {
+          $request = $this->getHttpRequest(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $backup_file);
 
-        $result = ($request['http_code'] != 200);
+          $result = ($request['http_code'] != 200);
+        }
       }
 
       return $result;
