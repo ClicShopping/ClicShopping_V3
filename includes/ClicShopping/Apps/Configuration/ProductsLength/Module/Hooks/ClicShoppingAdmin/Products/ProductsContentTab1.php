@@ -49,6 +49,8 @@
         $result = $Qproducts->toArray();
 
         return $result;
+      } else {
+        return 0.00;
       }
     }
 
