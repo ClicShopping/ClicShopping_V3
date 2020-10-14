@@ -26,11 +26,11 @@
       $CLICSHOPPING_Language = Registry::get('Language');
 
       if (isset($_SESSION['admin']['access'])) {
-        if ($_SESSION['admin']['access'] == 1) {
+        if ($_SESSION['admin']['access'] === 1) {
           $access_level = 0;
-        } elseif ($_SESSION['admin']['access'] == 2) {
+        } elseif ($_SESSION['admin']['access'] === 2) {
           $access_level = 2;
-        } elseif ($_SESSION['admin']['access'] == 3) {
+        } elseif ($_SESSION['admin']['access'] === 3) {
           $access_level = 2;
         } else {
           $access_level = 0;
