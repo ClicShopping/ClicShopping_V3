@@ -1,3 +1,7 @@
 files:
   - source: /sources/languages/english
+<<<<<<< HEAD
     translation: /sources/languages/%language%
+=======
+    translation: /sources/languages/%language%
+>>>>>>> 02cc3ba2b510a81b9cbf33199948f9fca4286564
