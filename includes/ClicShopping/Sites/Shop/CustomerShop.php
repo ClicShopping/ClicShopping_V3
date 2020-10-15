@@ -41,6 +41,9 @@
       $this->db = Registry::get('Db');
     }
 
+    /**
+     * @param bool $state
+     */
     public function setIsLoggedOn(bool $state)
     {
       if ($state === true) {
@@ -50,6 +53,9 @@
       }
     }
 
+    /**
+     * @return bool
+     */
     public function isLoggedOn(): bool
     {
       if ($this->_is_logged_on === true) {
@@ -59,6 +65,10 @@
       return false;
     }
 
+    /**
+     * @param string|null $key
+     * @return array|mixed
+     */
        public function get(string $key = null)
     {
       if (isset($key)) {
@@ -68,6 +78,9 @@
       }
     }
 
+    /**
+     * @return int
+     */
     public function getID(): int
     {
       if (isset($this->_data['id']) && is_numeric($this->_data['id'])) {
@@ -77,6 +90,9 @@
       return 0;
     }
 
+    /**
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
       if (isset($this->_data['first_name'])) {
@@ -86,6 +102,9 @@
       return false;
     }
 
+    /**
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
       if (isset($this->_data['last_name'])) {
@@ -95,6 +114,9 @@
       return false;
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
       $name = '';
@@ -114,6 +136,9 @@
       return $name;
     }
 
+    /**
+     * @return string|null
+     */
     public function getGender(): ?string
     {
       if (isset($this->_data['gender'])) {
@@ -123,11 +148,17 @@
       return false;
     }
 
+    /**
+     * @return bool
+     */
     public function hasEmailAddress(): bool
     {
       return isset($this->_data['email_address']);
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmailAddress(): ?string
     {
       if (isset($this->_data['email_address'])) {
@@ -137,11 +168,17 @@
       return false;
     }
 
+    /**
+     * @param string|null $telephone
+     */
     public function setTelephone(?string $telephone)
     {
       $this->_data['telephone'] = $telephone;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTelephone(): ?string
     {
       if (isset($this->_data['telephone'])) {
@@ -151,6 +188,9 @@
       return false;
     }
 
+    /**
+     * @return int|null
+     */
     public function getCountryID(): ?int
     {
       static $country_id = null;
@@ -164,6 +204,9 @@
       return $country_id;
     }
 
+    /**
+     * @return int|null
+     */
     public function getZoneID(): ?int
     {
       static $zone_id = null;
@@ -177,6 +220,9 @@
       return $zone_id;
     }
 
+    /**
+     * @return int|null
+     */
     public function getDefaultAddressID(): ?int
     {
       static $id = null;
@@ -190,7 +236,10 @@
       return $id;
     }
 
-// B2B
+    /**
+    * B2B
+     * @return int
+     */
     public function getCustomersGroupID(): int
     {
       $customersgroupid = 0;
@@ -271,6 +320,9 @@
       return !empty($this->_data);
     }
 
+    /**
+     * @param int $id
+     */
     public function setID(int $id)
     {
       if (is_numeric($id) && ($id > 0)) {
@@ -280,6 +332,9 @@
       }
     }
 
+    /**
+     * @param int $id
+     */
     public function setDefaultAddressID(int $id)
     {
       if (is_numeric($id) && ($id > 0)) {
@@ -301,6 +356,9 @@
       }
     }
 
+    /**
+     * @return bool
+     */
     public function hasDefaultAddress() :bool
     {
 
@@ -311,6 +369,9 @@
       return false;
     }
 
+    /**
+     * @param string|null $gender
+     */
     public function setGender(?string $gender)
     {
       if ((strtolower($gender) == 'm') || (strtolower($gender) == 'f')) {
@@ -320,24 +381,36 @@
       }
     }
 
+    /**
+     * @param string|null $first_name
+     */
     public function setFirstName(?string $first_name)
     {
       $this->_data['first_name'] = $first_name;
     }
 
+    /**
+     * @param string|null $last_name
+     */
     public function setLastName(?string $last_name)
     {
       $this->_data['last_name'] = $last_name;
     }
 
+    /**
+     * @param string $email_address
+     */
     public function setEmailAddress(string $email_address)
     {
       $this->_data['email_address'] = $email_address;
     }
 
+    /**
+     * @param int $id
+     * @return int|null
+     */
     public function getCustomerGuestAccount(int $id): ?int
     {
-
       $Qcustomer = $this->db->prepare('select customer_guest_account
                                         from :table_customers
                                         where customers_id = :customers_id
@@ -349,23 +422,34 @@
       return $Qcustomer->valueInt('customer_guest_account');
     }
 
+    /**
+     * @param int $id
+     */
     public function setCountryID(int $id)
     {
       $this->_data['country_id'] = $id;
     }
 
+    /**
+     * @param int $id
+     */
     public function setZoneID(int $id)
     {
       $this->_data['zone_id'] = $id;
     }
 
-// B2B
+    /**
+     * B2B
+     * @param int $id
+     */
     public function setCustomersgroupID(int $id)
     {
       $this->_data1['customers_group_id'] = $id;
     }
 
-
+    /**
+     *
+     */
     public function reset()
     {
       $this->_is_logged_on = false;
@@ -385,9 +469,7 @@
     /**
      * Customers Greeting
      * @return string $greeting_string
-     *
      */
-
     public function customerGreeting(): string
     {
       if ($this->isLoggedOn()) {
@@ -414,6 +496,9 @@
       return $greeting_string;
     }
 
+    /**
+     * @return bool
+     */
     public function hasProductNotifications(): bool
     {
       $Qcheck = $this->db->prepare('select products_id
@@ -427,6 +512,9 @@
       return ($Qcheck->fetch() !== false);
     }
 
+    /**
+     * @return mixed
+     */
     public function getProductNotifications()
     {
       $CLICSHOPPING_Language = Registry::get('Language');

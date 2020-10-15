@@ -61,7 +61,7 @@
      * @param $value
      * @return bool
      */
-    public function bindBool($parameter, $value)
+    public function bindBool($parameter, bool $value)
     {
 // force type to bool (see http://bugs.php.net/bug.php?id=44639)
       return $this->bindValue($parameter, (bool)$value, \PDO::PARAM_BOOL);
@@ -72,7 +72,7 @@
      * @param $value
      * @return bool
      */
-    public function bindDecimal($parameter, $value)
+    public function bindDecimal($parameter, float $value)
     {
       return $this->bindValue($parameter, (float)$value); // there is no \PDO::PARAM_FLOAT
     }
@@ -92,7 +92,7 @@
      * @param string $placeholder_offset
      * @param string $placeholder_max_results
      */
-    public function setPageSet($max_results, $page_set_keyword = null, $placeholder_offset = 'page_set_offset', $placeholder_max_results = 'page_set_max_results')
+    public function setPageSet($max_results, $page_set_keyword = null, string $placeholder_offset = 'page_set_offset', string $placeholder_max_results = 'page_set_max_results')
     {
       if (!empty($page_set_keyword)) {
         $this->page_set_keyword = $page_set_keyword;
@@ -208,11 +208,12 @@
     /**
      * @return bool
      */
-    public function check()
+    public function check() :bool
     {
       if (!isset($this->result)) {
         $this->fetch();
       }
+
       return $this->result !== false;
     }
 
@@ -233,7 +234,7 @@
      * @param null $expire
      * @param bool $cache_empty_results
      */
-    public function setCache($key, $expire = null, $cache_empty_results = false)
+    public function setCache($key, $expire = null, bool $cache_empty_results = false)
     {
       if (!is_numeric($expire)) {
         $expire = 0;
@@ -407,10 +408,10 @@
     }
 
     /**
-     * @param $text
+     * @param string $text
      * @return string
      */
-    public function getPageSetLabel($text)
+    public function getPageSetLabel(string $text) :string
     {
       if ($this->page_set_total_rows < 1) {
         $from = 0;
@@ -438,7 +439,7 @@
      * @param null $site
      * @return string
      */
-    public function getPageSetLinks($parameters = null, $site = null)
+    public function getPageSetLinks($parameters = null, $site = null) :string
     {
       $number_of_pages = ceil($this->page_set_total_rows / $this->page_set_results_per_page);
 

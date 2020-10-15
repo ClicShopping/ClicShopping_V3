@@ -64,7 +64,7 @@
     /**
      * @param string $entries
      */
-    public function setExcludeEntries($entries)
+    public function setExcludeEntries(?array $entries)
     {
       if (is_array($entries)) {
         foreach ($entries as $value) {
@@ -142,19 +142,22 @@
             if (($this->_include_files === true) && is_file($dir->path . '/' . $entry)) {
               if (empty($this->_check_extension) || in_array(strtolower(substr($entry, strrpos($entry, '.') + 1)), $this->_check_extension)) {
                 if ($this->_add_directory_to_filename === true) {
-                  if ($dir->path != $this->_directory) {
+                  if ($dir->path !== $this->_directory) {
                     $entry = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
                   }
                 }
 
-                $this->_listing[] = array('name' => $entry,
-                  'is_directory' => false);
+                $this->_listing[] = array('name' => $entry, 'is_directory' => false);
+
                 if ($this->_stats === true) {
-                  $stats = array('size' => filesize($dir->path . '/' . $entry),
+                  $stats = array(
+                    'size' => filesize($dir->path . '/' . $entry),
                     'permissions' => fileperms($dir->path . '/' . $entry),
                     'user_id' => fileowner($dir->path . '/' . $entry),
                     'group_id' => filegroup($dir->path . '/' . $entry),
-                    'last_modified' => filemtime($dir->path . '/' . $entry));
+                    'last_modified' => filemtime($dir->path . '/' . $entry)
+                  );
+
                   $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
                 }
               }
@@ -163,15 +166,16 @@
                 $entry_name = $entry;
 
                 if ($this->_add_directory_to_filename === true) {
-                  if ($dir->path != $this->_directory) {
+                  if ($dir->path !== $this->_directory) {
                     $entry_name = substr($dir->path, strlen($this->_directory) + 1) . '/' . $entry;
                   }
                 }
 
-                $this->_listing[] = array('name' => $entry_name,
-                  'is_directory' => true);
+                $this->_listing[] = array('name' => $entry_name, 'is_directory' => true);
+
                 if ($this->_stats === true) {
-                  $stats = array('size' => filesize($dir->path . '/' . $entry),
+                  $stats = array(
+                    'size' => filesize($dir->path . '/' . $entry),
                     'permissions' => fileperms($dir->path . '/' . $entry),
                     'user_id' => fileowner($dir->path . '/' . $entry),
                     'group_id' => filegroup($dir->path . '/' . $entry),

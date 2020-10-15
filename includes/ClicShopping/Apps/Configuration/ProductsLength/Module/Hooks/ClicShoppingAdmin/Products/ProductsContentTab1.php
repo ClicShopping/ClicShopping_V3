@@ -49,6 +49,8 @@
         $result = $Qproducts->toArray();
 
         return $result;
+      } else {
+        return 0.00;
       }
     }
 
@@ -60,11 +62,11 @@
 
       $product_length = $this->getProductsProductsLength();
 
-        $products_length_class_id = $product_length['products_length_class_id'];
-        $products_dimension_width = $product_length['products_dimension_width'];
-        $products_dimension_height = $product_length['products_dimension_height'];
-        $products_dimension_depth = $product_length['products_dimension_depth'];
-        $products_volume = $product_length['products_volume'];
+        $products_length_class_id = $product_length['products_length_class_id'] ?? '0.00';
+        $products_dimension_width = $product_length['products_dimension_width'] ?? '0.00';
+        $products_dimension_height = $product_length['products_dimension_height'] ?? '0.00';
+        $products_dimension_depth = $product_length['products_dimension_depth'] ?? '0.00';
+        $products_volume = $product_length['products_volume'] ?? '0.00';
 
         if ($products_length_class_id === 0) {
           $products_length_class_id = PRODUCTS_LENGTH_UNIT;

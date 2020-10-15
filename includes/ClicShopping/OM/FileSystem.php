@@ -9,7 +9,6 @@
    *
    */
 
-
   namespace ClicShopping\OM;
 
   class FileSystem
@@ -115,12 +114,9 @@
       return str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $pathname);
     }
 
-
     /**
      * Recursively remove a directory or a single file
-     *
      * @param string $source The source to remove
-     *
      */
     public static function rmFile(string $source)
     {

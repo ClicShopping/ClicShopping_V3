@@ -77,7 +77,7 @@ text_subscription_twitter = Take a subscription on <a href="https://www.twitter.
 
 linkedin_certificate_clicshopping = Get Your ClicShopping Certification !
 
-text_install_dashboard = Click here to install the dashboard modules (first learning to know the tools)
+text_install_dashboard = Click here to install the dashboard modules (first learning to know the tools) and the meta tag (menu Configuration/SEO)
 text_install_upgrade =  Click here to install a new extension
 text_good_luck = We wish you a good business with ClicShopping. The team
 text_follow_us = Follow us on :

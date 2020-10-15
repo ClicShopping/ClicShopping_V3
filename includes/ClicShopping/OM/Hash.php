@@ -17,11 +17,11 @@
   {
     /**
      * @param $plain
-     * @param null $algo
+     * @param null|string $algo
      * @return bool|string
      * @throws \Exception
      */
-    public static function encrypt(string $plain, $algo = null)
+    public static function encrypt(string $plain, ?string $algo = null)
     {
       if (!isset($algo) || $algo == 'default' || $algo == 'bcrypt' || $algo == 'argon2id') {
         if (!isset($algo) || ($algo == 'default')) {
@@ -92,7 +92,7 @@
             $stack = explode(':', $hash, 2);
 
             if (count($stack) === 2) {
-              $result = (md5($stack[1] . $plain) == $stack[0]);
+              $result = (md5($stack[1] . $plain) === $stack[0]);
             } else {
               $result = false;
             }
@@ -110,11 +110,11 @@
     }
 
     /**
-     * @param $hash
-     * @param null $algo
+     * @param string $hash
+     * @param string|null $algo
      * @return bool
      */
-    public static function needsRehash($hash, $algo = null)
+    public static function needsRehash(string $hash, ?string $algo = null)
     {
       if (!isset($algo) || $algo == 'default') {
         $algo = PASSWORD_DEFAULT;
@@ -192,7 +192,7 @@
      * @return bool|string
      * @throws \Exception
      */
-    public static function getRandomString(int $length, $type = 'mixed'): string
+    public static function getRandomString(int $length, string  $type = 'mixed') :string
     {
       if (!in_array($type, [
         'mixed',
