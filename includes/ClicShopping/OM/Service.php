@@ -28,6 +28,9 @@
       $this->directoryAdmin = CLICSHOPPING::BASE_DIR . 'Service/ClicShoppingAdmin/';
     }
 
+    /**
+     *
+     */
     public function start()
     {
       $this->_started_services = [];
@@ -50,6 +53,9 @@
       }
     }
 
+    /**
+     *
+     */
     public function stop()
     {
       /*
@@ -71,6 +77,9 @@
       }
     }
 
+    /**
+     * @param string $service
+     */
     public function startService(string $service)
     {
       if (CLICSHOPPING::getSite() === 'Shop') {
@@ -92,7 +101,10 @@
       }
     }
 
-    public function stopService($service)
+    /**
+     * @param string $service
+     */
+    public function stopService(string $service)
     {
       if (CLICSHOPPING::getSite() === 'Shop') {
         if ($this->isStarted($service)) {

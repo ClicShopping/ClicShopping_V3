@@ -33,27 +33,42 @@
       return $this->init();
     }
 
-    public function getCode()
+    /**
+     * @return string
+     */
+    public function getCode() :string
     {
       return $this->code;
     }
 
-    public function hasPage()
+    /**
+     * @return bool
+     */
+    public function hasPage() :bool
     {
       return isset($this->page);
     }
 
+    /**
+     * @return mixed
+     */
     public function getPage()
     {
-
       return $this->page;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRoute()
     {
       return $this->route;
     }
 
+    /**
+     * @param array $route
+     * @param array $routes
+     */
     public static function resolveRoute(array $route, array $routes)
     {
     }

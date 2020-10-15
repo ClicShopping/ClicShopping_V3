@@ -34,7 +34,7 @@
      * @return boolean
      */
 
-    public function start()
+    public function start() :bool
     {
       $CLICSHOPPING_Cookies = Registry::get('Cookies');
 
@@ -103,32 +103,37 @@
       return false;
     }
 
+    /**
+     * @param bool $force_cookies
+     */
     public function setForceCookies(bool $force_cookies)
     {
       $this->force_cookies = $force_cookies;
     }
 
-    public function isForceCookies()
+    /**
+     * @return bool
+     */
+    public function isForceCookies() :bool
     {
       return $this->force_cookies;
     }
 
     /**
      * Checks if the session has been started or not
-     *
      * @return boolean
      */
 
-    public function hasStarted()
+    public function hasStarted() :bool
     {
       return session_status() === PHP_SESSION_ACTIVE;
     }
 
     /**
      * Deletes an existing session
+     * @return bool
      */
-
-    public function kill()
+    public function kill() :bool
     {
       $CLICSHOPPING_Cookies = Registry::get('Cookies');
 
@@ -149,9 +154,9 @@
 
     /**
      * Delete an existing session and move the session data to a new session with a new session ID
+     * @return bool
      */
-
-    public function recreate()
+    public function recreate() :bool
     {
       $delete_flag = true;
 
@@ -187,7 +192,6 @@
 
     /**
      * Sets the life time of the session (in seconds)
-     *
      * @param int $time The life time of the session (in seconds)
      */
 

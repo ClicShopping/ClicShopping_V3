@@ -177,9 +177,8 @@
 
     /**
      * Get the IP address of the client
-     * @param string $ip , th ip of the client
-     *
-     *
+     * @param bool $to_int
+     * @return string
      */
 
     public static function getIpAddress(bool $to_int = false): string
@@ -222,7 +221,7 @@
     /*
      * Get the provider name of the client
      * $isp_provider_client the provider name
-     *
+     * return string
      */
     public static function getProviderNameCustomer(): string
     {
@@ -255,7 +254,7 @@
     }
 
     /**
-     * @return stringa
+     * @return string
      */
     public static function getShopUrlDomain(): string
     {

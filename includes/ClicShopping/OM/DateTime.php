@@ -15,7 +15,6 @@
 
   class DateTime
   {
-
     protected $datetime = false;
 
     protected string $raw_pattern_date = 'Y-m-d';
@@ -162,7 +161,7 @@
      * @param bool $strict
      * @return string
      */
-    public static function toLong(string $raw_datetime, $strict = true)
+    public static function toLong(string $raw_datetime, bool $strict = true) :string
     {
       $result = '';
 
@@ -286,7 +285,7 @@
      * @param bool $strict
      * @return string
      */
-    public static function toDateReferenceShort(string $raw_datetime, $strict = true): string
+    public static function toDateReferenceShort(string $raw_datetime, bool $strict = true): string
     {
 
       $result = '';

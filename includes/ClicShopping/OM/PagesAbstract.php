@@ -41,11 +41,18 @@
     {
     }
 
+    /**
+     * @return string
+     */
     public function getCode()
     {
       return $this->code;
     }
 
+    /**
+     * @return false|string
+     * @throws \ReflectionException
+     */
     public function getFile()
     {
       if (isset($this->file)) {
@@ -55,23 +62,34 @@
       }
     }
 
-    public function setUseSiteTemplate($bool)
+    /**
+     * @param bool $bool
+     */
+    public function setUseSiteTemplate(bool $bool)
     {
       $this->use_site_template = ($bool === true);
     }
 
-    public function useSiteTemplate()
+    /**
+     * @return bool
+     */
+    public function useSiteTemplate() :bool
     {
       return $this->use_site_template;
     }
 
-
+    /**
+     * @param $file
+     */
     public function setFile($file)
     {
       $this->file = $file;
     }
 
-    public function isActionRequest()
+    /**
+     * @return bool
+     */
+    public function isActionRequest() :bool
     {
       $furious_pete = [];
 
@@ -90,6 +108,9 @@
       return false;
     }
 
+    /**
+     * @param $actions
+     */
     public function runAction($actions)
     {
       if (!is_array($actions)) {
@@ -131,6 +152,9 @@
       }
     }
 
+    /**
+     *
+     */
     public function runActions()
     {
       $actions = $furious_pete = [];
@@ -156,6 +180,10 @@
       }
     }
 
+    /**
+     * @param $action
+     * @return bool
+     */
     public function actionExists($action)
     {
       if (!is_array($action)) {
@@ -177,16 +205,27 @@
       return false;
     }
 
+    /**
+     * @return array
+     */
     public function getActionsRun()
     {
       return $this->actions_run;
     }
 
-    public function isRPC()
+    /**
+     * @return bool
+     */
+    public function isRPC() :bool
     {
       return ($this->is_rpc === true);
     }
 
+    /**
+     * @param $action
+     * @return string
+     * @throws \ReflectionException
+     */
     protected function getActionClassName($action)
     {
       if (!is_array($action)) {

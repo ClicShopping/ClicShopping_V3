@@ -57,11 +57,9 @@
 
     /**
      * Sanitize a user submited value
-     *
-     * @param string $string The string to sanitize
-     * @return string
+     * @param $string
+     * @return string|string[]
      */
-
     public static function sanitize($string)
     {
       if (is_null($string) || empty($string)) {
@@ -630,7 +628,8 @@
 
       foreach (DateTime::getTimeZones() as $zone => $zones_array) {
         foreach ($zones_array as $key => $value) {
-          $result[] = array('id' => $key,
+          $result[] = array(
+            'id' => $key,
             'text' => $value,
             'group' => $zone
           );

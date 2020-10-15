@@ -13,10 +13,8 @@
 
   class Zip extends \ZipArchive
   {
-
     public static function zipStatusString($status)
     {
-
       switch ((int)$status) {
         case \ZipArchive::ER_OK           :
           return 'N No error';
