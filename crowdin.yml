@@ -1,0 +1,3 @@
+files:
+  - source: /sources/languages/english
+    translation: /sources/languages/%language%
