@@ -1,36 +1,36 @@
-navbar_title_1 = Mon compte
-navbar_title_2 = Carnet d'adresses
+navbar_title_1 = My Account
+navbar_title_2 = Address Book
 
-heading_title = Gestion des adresses
+heading_title = Address management
 
-navbar_title_add_entry = Nouvelle entrée
-navbar_title_modify_entry = Mise à jour entrée
-navbar_title_delete_entry = Supprimer entrée
+navbar_title_add_entry = New Entry
+navbar_title_modify_entry = Update Entry
+navbar_title_delete_entry = Delete Entry
 
-heading_title_add_entry = Ajouter une nouvelle adresse
-heading_title_modify_entry = Modification de l'adresse
-heading_title_delete_entry = Supprimer une adresse de votre carnet
+heading_title_add_entry = New Address Book Entry
+heading_title_modify_entry = Update Address Book Entry
+heading_title_delete_entry = Delete Address Book Entry
 
-delete_address_title = Adresse à supprimer
-delete_address_description = Etes-vous sûr de vouloir supprimer cette adresse ?
+delete_address_title = Delete Address
+delete_address_description = Are you sure you would like to delete the selected address from your address book?
 
-new_address_title = Nouvelle adresse
+new_address_title = New Address Book Entry
 
-selected_address = Adresse choisie
-set_as_primary = Sélectionner comme adresse principale.
+selected_address = Selected Address
+set_as_primary = Set as primary address.
 
-success_address_book_entry_deleted = L'adresse sélectionnée a été supprimée avec succès de votre carnet d'adresses.
-success_address_book_entry_updated = Votre carnet d'adresses a été mis à jour avec succès.
+success_address_book_entry_deleted = The selected address has been successfully removed from your address book.
+success_address_book_entry_updated = Your address book has been successfully updated.
 
-warning_primary_address_deletion = L'adresse principale ne peut pas etre suprimée. Veuillez sélectionner une autre adresse comme adresse principale et réessayez.
+warning_primary_address_deletion = The primary address cannot be deleted. Please set another address as the primary address and try again.
 
-error_address_book_entry = Une erreur a été détectée, veuillez vérifier vos informations.
-error_nonexisting_address_book_entry = L'entrée du carnet d'adresses n'existe pas.
-error_address_book_full = Votre carnet d'adresses est plein. Veuillez supprimer une adresse inutile pour en enregistrer une nouvelle.
-error_address_book_no_add = Vous n'etes pas autorisé à ajouter une nouvelle adresse dans votre carnet personnel. N'hésitez pas à nous contacter pour recevoir plus d'informations sur cette impossibilité.
-error_address_book_no_modify_default = Vous n'etes pas autorisé à modifier l'adresse principale de votre carnet personnel. N'hésitez pas à nous contacter pour recevoir plus d'informations sur cette impossibilité.
+error_address_book_entry = An error has been detected, please check your informations.
+error_nonexisting_address_book_entry = The address book entry does not exist.
+error_address_book_full = Your address book is full. Please delete an unneeded address to save a new one.
+error_address_book_no_add = You are not authorized to add a new address in your personal notebook. Do not hesitate to contact us to receive more information over this impossibility.
+error_address_book_no_modify_default = You are not authorized to modify the principal address of your personal notebook. Do not hesitate to contact us to receive more information over this impossibility.
 
-button_delete = Supprimer
-button_back = Retour
-button_update = Mettre à jour
-button_continue = Continuer
+button_delete = Delete
+button_back = Back
+button_update = Update
+button_continue = Continue
