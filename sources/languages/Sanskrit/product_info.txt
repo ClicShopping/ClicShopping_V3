@@ -1,10 +1,9 @@
-heading_title =
-navbar_title = Description
-products_not_sell = Ce produit n'est plus en vente
+ heading_title =
+ navbar_title = Description
+ products_not_sell = Product no available
 
-text_also_purchased_products = Nos clients ont acheté cet article puis ont craqué pour ceux-là
+ text_also_purchased_products = Our customers have also purchased theses items
 
-text_product_not_found = Produit non trouvé !
+ text_product_not_found = Product not found !
 
-success_notifications_updated = Votre de demande de notification a été inséré dans votre compte client
-
+ success_notifications_updated = Products Notification added in your account
