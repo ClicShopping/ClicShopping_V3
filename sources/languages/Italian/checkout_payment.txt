@@ -1,9 +1,9 @@
 
-navbar_title_1 = Expédition
-navbar_title_2 = Méthode de paiement
+navbar_title_1 = Checkout Shipping
+navbar_title_2 = Payment Method
 
-heading_title_Payment = Information paiement
+heading_title_Payment = Payment Information
 
-text_conditions_description = Veuillez accepter les conditions de paiement
-text_conditions_confirm = Veuillez confirmer votre acceptation des conditions de paiement
+text_conditions_description = Please, agree the paiement conditions
+text_conditions_confirm = Please confirm your paiement conditions agreement
 entry_discount_coupon = Coupon
