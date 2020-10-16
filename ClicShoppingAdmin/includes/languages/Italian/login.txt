@@ -1,34 +1,35 @@
+heading_title = Panel d'Administration
 
-heading_title = Administrator Login
+text_username = Pseudonyme:
+text_password = Mot de passe:
+text_name = Nom de l'administrateur:
+text_firstname = Prénenom de l'administrateur:
+text_create_first_administrator = Il n'y a aucun administrateur actuellement dans la base de données. Veuillez remplir les informations suivantes pour créer un Administrateur. (Une connexion manuelle est requise après cette étape)
+heading_title_sent_password = Récupération de mot de passe perdue
+text_sent_password = Si vous avez oublié votre mot de passe, veuillez insérer votre email ci-dessous afin d'obtenir un nouveau mot de passe.
+text_no_email_address_found = Aucune adresse email ou pseudo n'a été trouvé
 
-text_username = Username:
-text_password = Password:
-text_name = Administrator name:
-text_firstname = Administrator First name:
-text_create_first_administrator = No administrators exist in the database table. Please fill in the following information to create the first administrator. (A manual login is still required after this step)
-heading_title_sent_password = Recovery lost password
-text_sent_password = If you've forgotten your password, enter your e-mail address below and we will send you an e-mail message containing your new password.
-text_no_email_address_found = Error: The E-Mail Address  or pseudo was not found in our records, please try again.
+email_password_reminder_subject = {{store_name}} (Panel d'administration) - Nouveau mot de passe
+email_password_reminder_body = Un nouveau mot de passe vous a été envoyé à partir de cette adresse IP : {{remote_address}}. <br /><br />
+Votre nouveau mode passe pour accéder au panneau d'administration de {{store_name}} est :{{new_password}}<br /><br />
 
-email_password_reminder_subject =  {{store_name}} - Administrator Control Panel) - New Password
-email_password_reminder_body = A new password was requested from {{remote_address}} <br /><br /> Your new password to {{store_name}} (Administrator Control Panel) is :<strong>  {{new_password}} </strong>.<br /><br />
+success_password_sent = Succès: un nouveau de passe a été envoyé à votre adresse email.
+button_submit = Envoyer
+text_new_text_password = Nouveau mot de passe
+text_administration_panel = Panneau d'administration
+text_email_lost_password = Votre email
+error_invalid_administrator = Erreur: Connexion invalide, veuillez recommencer.
+button_login = Se connecter
+button_create_administrator = Créer un administrateur
 
-success_password_sent = Success: A new password has been sent to your e-mail address.
-button_submit = Submit
-text_new_text_password = New password
-text_administration_panel = Administration panel
-text_email_lost_password = Your email
-error_invalid_administrator = Error: Invalid administrator login attempt.
-button_login = Login
-button_create_administrator = Create Administrator
 
-error_action_recorder = Error: The maximum number of login attempts has been reached. Please try again in {{module_action_recorder_admin_login_minutes}} minutes. An email has been sent to the administrator with your contact information (geolocation). You can try to connect again one time after the administration panel before being permanently blocked
+error_action_recorder = Erreur: Le nombre maximum de login a été atteint. Veuillez recommencer dans {{module_action_recorder_admin_login_minutes}}  minutes. Un email a été envoyé à l'administrateur avec l'ensemble de vos informations de provenance (géolocalisation). Vous avez droit encore à une tentative avant d'être définitivement bloqué
 
-report_email_subject = Intempestive connexion on ClicShopping
-report_access_login = Qualcuno tenta di connettersi al tuo amministratore, sotto le informazioni. <br />
-Ulteriori informazioni possono essere trovate lì: https://ipinfo.io/ (copia IP : {{IP}})
-
-report_sender_ip_address = Indirizzo ip dei mittenti: {{IP}}
-report_sender_host_name = Nome host mittente : {{HOST}}
-report_subject_email = [Report] Errore di connessione Admin-Login
-report_sender_username = Username : {{USERNAME}}
+report_email_subject = Connexion intempestive ClicShopping
+report_access_login = Quelqu'un essaye de se connecter a l'administration de votre boutique de vente en ligne. Il s'agit peut etre d'une erreur de connexion. Veuillez vous connecter dans votre administration pour avoir des informations complementaires dans la section Outil / Surveillance des actions.
+Ci-dessous les elements initiaux a notre connaissance. S'il y a plusieurs tentatives, l'adresse sera bloquee pendant un periode de temps. <br />
+Plus d'infos peuvent trouvé ici (copier l'IP : {{IP}})  https://ipinfo.io/
+report_sender_ip_address = Adresse IP : {{IP}}
+report_sender_host_name = Nom du serveur ou provider : {{HOST}}
+report_subject_email = [Rapport] Erreur de connexion pour acceder a votre administration
+report_sender_username = Nom du utilsateur : {{USERNAME}}
