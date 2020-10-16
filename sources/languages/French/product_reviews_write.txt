@@ -1,12 +1,12 @@
-navbar_title = Commentaires
-navbar_title_1 = Rédaction
+ navbar_title = Reviews
+ navbar_title_1 = Write
 
-heading_title_reviews = Voulez-vous nous faire part de vos impressions ?
+ heading_title_reviews = Do you want to let a comments ?
 
-email_subject_customer = Votre commentaire sur {{store_name}}
-email_text_customer = Bonjour, <br /><br />Nous vous remercions d'avoir insérer un commentaire. Nous allons le réviser et le valider. Veuillez noter que tout commentaire ne répondant pas à notre charte éthique ne sera pas validé. <br /><br />. Cordialement, Le service client.
+ email_subject_customer = Your comment on {{store_name}}
+ email_text_customer = Hello, <br /><br />Thank you to let us your comment. We will check and valid. Please, note than all comment not responding at our ethic chart will not validate. <br /><br />. Regards, Customer services.
 
-email_subject = Nouveau commentaire proposé par un client sur {{store_name}}
-email_text = Un nouveau commentaire a été inséré par un client concernant un produit. Veuillez consulter votre administration pour valider ou non le commentaire du client
+ email_subject = New comment by a customer on {{store_name}}
+ email_text = A new comment has been inserted by a customer concerning a product. You can consult your administration to validate or not this comment
 
-message_customer = Merci, Votre commentaire a été pris en compte et sera mis en ligne sous peu s'il répond à notre charte éthique
+ message_customer = Thank you; your comment a been taken and online soon if it meets our ethical charter
