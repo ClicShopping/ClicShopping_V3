@@ -1,13 +1,13 @@
 heading_title =
-text_no_products = There are no products to list in this category.
-text_no_products2 = There is no product available from this manufacturer.
-text_number_of_products = Number of Products:
-text_show = <strong>Show:</strong>
-text_buy = Buy
-text_now = now
-text_all_categories = All Categories
-text_all_manufacturers = All Manufacturers
+text_no_products = Il n'y a aucun articles dans cette catégorie.
+text_no_products2 = Aucun article de cette marque n'est disponible.
+text_number_of_products = Nombre d'articles:
+text_show =
+text_buy = Acheter
+text_now = maintenant
+text_all_categories = Toutes les catégories
+text_all_manufacturers = Nos Marques
 
-min_qty_order_product = Qty min :
-text_price =
-min_qty_order_product = To achieve an order it is necessary to have at least a minimum quantity in your basket for each product. Your quantity of product is updated automatically if your order is less than the quantity authorized Low.
+min_qty_order_product = Qté min :
+text_price = Tarif :
+min_qty_order_product = Pour réaliser une commande, vous devez respecter les quantités; minimum.
