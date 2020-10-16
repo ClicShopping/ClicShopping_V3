@@ -1,0 +1,34 @@
+
+heading_title = Administrator Login
+
+text_username = Username:
+text_password = Password:
+text_name = Administrator name:
+text_firstname = Administrator First name:
+text_create_first_administrator = No administrators exist in the database table. Please fill in the following information to create the first administrator. (A manual login is still required after this step)
+heading_title_sent_password = Recovery lost password
+text_sent_password = If you've forgotten your password, enter your e-mail address below and we will send you an e-mail message containing your new password.
+text_no_email_address_found = Error: The E-Mail Address  or pseudo was not found in our records, please try again.
+
+email_password_reminder_subject =  {{store_name}} - Administrator Control Panel) - New Password
+email_password_reminder_body = A new password was requested from {{remote_address}} <br /><br /> Your new password to {{store_name}} (Administrator Control Panel) is :<strong>  {{new_password}} </strong>.<br /><br />
+
+success_password_sent = Success: A new password has been sent to your e-mail address.
+button_submit = Submit
+text_new_text_password = New password
+text_administration_panel = Administration panel
+text_email_lost_password = Your email
+error_invalid_administrator = Error: Invalid administrator login attempt.
+button_login = Login
+button_create_administrator = Create Administrator
+
+error_action_recorder = Error: The maximum number of login attempts has been reached. Please try again in {{module_action_recorder_admin_login_minutes}} minutes. An email has been sent to the administrator with your contact information (geolocation). You can try to connect again one time after the administration panel before being permanently blocked
+
+report_email_subject = Intempestive connexion on ClicShopping
+report_access_login = Someone try to connect at your admin, below the information. <br />
+More information can be found there : https://ipinfo.io/ (copy IP : {{IP}})
+
+report_sender_ip_address = Senders ip address : {{IP}}
+report_sender_host_name = Senders host name : {{HOST}}
+report_subject_email = [Report] Admin-Login connexion error
+report_sender_username = Username : {{USERNAME}}
