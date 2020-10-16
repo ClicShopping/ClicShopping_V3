@@ -1,8 +1,8 @@
 
-navbar_title_1 = Expédition
-navbar_title_2 = Livraison
+ navbar_title_1 = Cart
+ navbar_title_2 = Shipping Method
 
-heading_title_checkout_shipping = Information expédition
+ heading_title_checkout_shipping = Delivery Information
 
-error_no_shipping_available_to_shipping_address = Erreur : aucune méthode d'envoie disponible à cette addresse
-error_during_process = Erreur : une erreur s\est produite durant le processus de traitement des frais d'envoies
+ error_no_shipping_available_to_shipping_address = Error : No shipping available to shipping address
+ error_during_process = Error : An error is realised during the shipping process
