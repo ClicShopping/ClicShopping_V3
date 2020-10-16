@@ -5,51 +5,51 @@ date_format = m/d/Y
 php_date_time_format = m/d/Y H:i:s
 date_time_format = %m/%d/%Y %H:%M:%S
 jquery_datepicker_format = yyyy-mm-dd
-jquery_datepicker_language = en
+jquery_datepicker_language = it
 js_date_format = dd/mm/yyyy
 
-html_params = dir="ltr" lang="en"
+html_params = dir="ltr" lang="it"
 charset = utf-8
 date_format_reference = Ym
 dob_format_string = mm/dd/yyyy
 
-title = Administration {{store_name}}
+title = Amministrazione {{store_name}}
 
-header_title_top = Administration
-header_title_support_site = Support
+header_title_top = Amministrazione
+header_title_support_site = Supporto
 header_title_online_catalog = Online Catalog
-header_title_administration = Administration
+header_title_administration = Amministrazione
 header_title_logoff = Log Off
 
-male = Male
-female = Female
+male = Maschio
+female = femmina
 
-box_configuration_mystore = My Store
-box_configuration_logging = Logging
+box_configuration_mystore = Mio Negozio
+box_configuration_logging = Registrazione
 box_configuration_cache = Cache
-box_modules_admin_dashboard = Dashboard Administration
-box_heading_modules = Modules
-box_modules_action_recorder = Action Recorder
+box_modules_admin_dashboard = Amministrazione dashboard
+box_heading_modules = Moduli
+box_modules_action_recorder = Registratore di azioni
 box_modules_header_tags = Header Tags
-box_modules_contact_customers = Customers contact
-box_entry_newsletter_b2c = Newsletter subscription number (B2C)
-box_entry_recover_shopping_cart = Cart to recover
+box_modules_contact_customers = contatto clienti
+box_entry_newsletter_b2c = Numero di abbonamento alla newsletter (B2C)
+box_entry_recover_shopping_cart = Carrello da recuperare
 
-box_modules_payment = Payment
-box_modules_shipping = Shipping
-box_modules_order_total = Order total
-box_catalog_manufacturers = Brands
-box_customers_customers = Customers
-box_customers_orders = Orders
-box_taxes_countries = Countries
-box_taxes_geo_zones = Tax Zones
-box_localization_currencies = Currencies
-box_localization_languages = Languages
+box_modules_payment = Pagamento
+box_modules_shipping = Spedizione
+box_modules_order_total = totale dell'ordine
+box_catalogo_produttori = Marchi
+box_customers_customers = Clienti
+box_customers_orders = Ordini
+box_taxes_countries = Paesi
+box_taxes_geo_zones = Zone fiscali
+box_localization_currencies = Valute
+box_localization_languages = Lingue
 box_newsletter = Newsletter
-box_heading_help = Support
+box_heading_help = Supporto
 
 
-box_catalog_categories_priceupdate = Quick update
+box_catalog_categories_priceupdate = Aggiornamento rapido
 box_customers_approval = Waiting approval
 box_customers_groups = Groups
 
@@ -105,25 +105,25 @@ category_newsletter = Inscription with the newsletters
 category_group_customer = Type of customer
 category_order_taxe = Mode of invoicing
 category_order_taxe_group = Mode of invoicing authorized on the group
-category_shipping_customer = Mode of delivery authorized
-category_shipping_customer_group = Mode of delivery authorized on the group
-category_order_customer = Mode of payment authorized
-category_order_customer_group = Mode of payment authorized on the group
+category_shipping_customer = Modalità di consegna autorizzata
+category_shipping_customer_group = Modalità di consegna autorizzata nel gruppo
+category_order_customer = Modalità di pagamento autorizzata
+category_order_customer_group = Modalità di pagamento autorizzata nel gruppo
 
-entry_gender = Gender:
-entry_gender_error = &nbsp;<span class="errorText">required</span>
-entry_first_name = First Name
-entry_first_name_error = &nbsp;<span class="errorText">min {{min_length}} chars</span>
-entry_last_name = Last Name
-entry_last_name_error = &nbsp;<span class="errorText">min {{min_length}} chars</span>
-entry_date_of_birth = Date of Birth
-entry_date_of_birth_error = &nbsp;<span class="errorText">(eg. 05/21/1970)</span>
-entry_email_address = E-Mail Address:
-entry_email_address_error = &nbsp;<span class="errorText">The email address is not correct</span>
-entry_email_address_check_error = &nbsp;<span class="errorText">The email address doesn't appear to be valid!</span>
-entry_email_address_error_exists = &nbsp;<span class="errorText">This email address already exists!</span>
-entry_company = Company name
-entry_company_error = &nbsp;<span class="errorText">min {{min_length}} chars</span>
+entry_gender = Sesso:
+entry_gender_error = &nbsp;<span class="errorText">richiesto</span>
+entry_first_name = Nome
+entry_first_name_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_last_name = Cognome
+entry_last_name_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_date_of_birth = Data di nascita
+entry_date_of_birth_error = &nbsp;<span class="errorText">(es. 05/21/1970)</span>
+entry_email_address = Indirizzo e-mail:
+entry_email_address_error = &nbsp;<span class="errorText">L'indirizzo email non è corretto</span>
+entry_email_address_check_error = &nbsp;<span class="errorText">L'indirizzo email non sembra essere valido!</span>
+entry_email_address_error_exists = &nbsp;<span class="errorText">Questo indirizzo email esiste già!</span>
+entry_company = Nome della società
+entry_company_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
 entry_street_address = Street Address:
 entry_street_address_error = &nbsp;<span class="errorText">min {{min_length}} chars</span>
 entry_suburb = Suburb
