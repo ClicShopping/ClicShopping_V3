@@ -1,63 +1,63 @@
 
-heading_title = Home
-heading_short_orders = Orders shortcut
-heading_short_products = Products shortcut
-heading_short_categories = Categories shortcut
-heading_short_customers = Customer shortcut
-heading_short_support = Support shortcut
+titolo_intestazione = Home
+heading_short_orders = scorciatoia ordini
+heading_short_products = Scorciatoia prodotti
+heading_short_categories = Scorciatoia categorie
+heading_short_customers = Scorciatoia cliente
+heading_short_customers = Scorciatoia cliente
 
-heading_title_orders = Orders
-heading_title_divers = Miscelleaneous
+heading_title_orders = ordini
+heading_title_divers = Varie
 
-box_title_orders = Orders
-box_title_statistics = Statistics
-box_entry_stock_expecting = Products expected number
+box_title_orders = ordini
+box_title_statistics = Statistiche
+box_entry_stock_expected = Numero previsto dei prodotti
 box_entry_customer_basket = Recover cart sales number
-box_entry_contact_demand_no_archive = Contact requests to analyse
-box_entry_products_no_purchase = Products not sold / products sold
+box_entry_contact_demand_no_archive = Richieste di contatto da analizzare
+box_entry_products_no_purchase = Prodotti non venduti / prodotti venduti
 
-text_number_support = Order support Request
-text_view = More informations
+text_number_support = Richiesta di supporto ordine
+text_view = Maggiori informazioni
 
-catalog_contents = Content
-reports_products = Products
-reports_orders = Orders
+catalog_contents = Contenuto
+reports_products = Prodotti
+reports_orders = Ordini
 title_twitter = Tweet ClicShopping
 
-title_db_index = Size of Data Base
+title_db_index = Dimensione della base dati
 title_web_site_size = Taille du site internet
-title_system_memory = System Memory (get usage)
-title_core_memory = Bootstrap Core Memory Usage
-title_customer_information = Informations sur le compte client
-title_index_order = Order situation
+title_system_memory = Memoria di sistema (ottenere l'uso)
+title_core_memory = Utilizzo Memoria Core Bootstrap
+title_customer_information = Informazioni sur le compte client
+title_index_order = situazione dell'ordine
 
 tab_twitter = ClicShopping Tweets
-tab_statisitics = Statistics
+box_title_statistics = Statistiche
 tab_customer = Account & Server
 
 pack = Pack :
-contract_date = Birthday date :
-email_size = Mailbox size :
+contract_date = data di compleanno:
+email_size = Dimensione cassetta postale:
 email_size_info = 20 Mo
-contract_renewal = Contract Renewal :
-contract_renewal_info = Automatic renewal anniversary
-notice_termination = Notice of termination :
-notice_termination_info = 2 months before deadline
-space = Total storage space :
-backup_site = backup Site :
-backup_site_info = Daily
-ask_informations = Request Information :
-bandwidth = Band width by month
+contract_renewal = Rinnovo del contratto :
+contract_renewal_info = anniversario di rinnovo automatico
+notice_termination = Avviso di recesso:
+notice_termination_info = 2 mesi prima della scadenza
+spazio = spazio di archiviazione totale:
+backup_site = backup del sito:
+backup_site_info = Giornaliero
+ask_informations = Richiesta di informazioni :
+bandwidth = larghezza di banda per mese
 
-onglet_stat_generales = General statistics
+onglet_stat_generales = Statistiche generali
 onglet_stat_ca = Turn Over
 onglet_mon_compte = My account
 onglet_commerce = Infos RSS
-onglet_options = Options
+onglet_options = Opzioni
 
-title_stat_ca_evolution = Turnover cumulative per month (delivery status)
-title_stats_growth_ca = Growth of your Turn Over
-title_stats_average_sales = Annual Average growth of your basket
+title_stat_ca_evolution = Fatturato cumulativo al mese (stato della consegna)
+title_stats_growth_ca = Crescita del tuo turno
+title_stats_average_sales = Crescita media annuale del tuo carrello
 status = Orders status total
 statistics = Main Statistics
 
