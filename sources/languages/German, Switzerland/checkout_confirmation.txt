@@ -1,6 +1,5 @@
 
+ navbar_title_1 = Checkout
+ navbar_title_2 = Confirmation
 
-navbar_title_1 = Commande
-navbar_title_2 = Confirmation
-
-heading_title_Confirmation = Confirmation commande
+ heading_title_Confirmation = Order Confirmation
