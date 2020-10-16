@@ -1,15 +1,14 @@
-
-date_format_short = %d/%m/%Y
+date_format_short = %m/%d/%Y
 date_format_short_sql = %Y-%m-%d
 date_format_long = %A %d %B, %Y
-date_format = d/m/Y
-php_date_time_format = d/m/Y H:i:s
+date_format = m/d/Y
+php_date_time_format = m/d/Y H:i:s
 date_time_format = %m/%d/%Y %H:%M:%S
 jquery_datepicker_format = yyyy-mm-dd
-jquery_datepicker_language = fr
+jquery_datepicker_language = it
 js_date_format = dd/mm/yyyy
 
-html_params = dir="ltr" lang="fr"
+html_params = dir="ltr" lang="it"
 charset = utf-8
 date_format_reference = Ym
 dob_format_string = mm/dd/yyyy
@@ -18,443 +17,449 @@ title = Amministrazione {{store_name}}
 
 header_title_top = Amministrazione
 header_title_support_site = Supporto
-header_title_online_catalog = Catalogue en ligne
+header_title_online_catalog = Online Catalog
 header_title_administration = Amministrazione
-header_title_logoff = Quitter
+header_title_logoff = Log Off
 
-male = Mr.
-female = Mme.
+male = Maschio
+female = femmina
 
-box_configuration_mystore = Ma Boutique
-box_configuration_logging = Se connecter
+box_configuration_mystore = Mio Negozio
+box_configuration_logging = Registrazione
 box_configuration_cache = Cache
-box_modules_admin_dashboard = Tableau de bord
+box_modules_admin_dashboard = Amministrazione dashboard
 box_heading_modules = Moduli
-box_modules_action_recorder = Enregistrement des actions
-box_modules_header_tags = Référencement
-box_modules_contact_customers = Contacts clients
-box_entry_newsletter_b2c = Nbr souscription Newsletter (B2C)
-box_entry_recover_shopping_cart = Paniers abandonnés
+box_modules_action_recorder = Registratore di azioni
+box_modules_header_tags = Header Tags
+box_modules_contact_customers = contatto clienti
+box_entry_newsletter_b2c = Numero di abbonamento alla newsletter (B2C)
+box_entry_recover_shopping_cart = Carrello da recuperare
 
-box_modules_payment = Paiement
-box_modules_shipping = Expédition
-box_modules_order_total = Montant Total
-box_catalog_manufacturers = Marques
-box_customers_customers = Clients
-box_customers_orders = Commandes
-box_taxes_countries = Pays
-box_taxes_geo_zones = Zones fiscales
-box_localization_currencies = Devises
-box_localization_languages = Langues
-box_newsletter = Bulletin d'information
+box_modules_payment = Pagamento
+box_modules_shipping = Spedizione
+box_modules_order_total = totale dell'ordine
+box_catalogo_produttori = Marchi
+box_customers_customers = Clienti
+box_customers_orders = Ordini
+box_taxes_countries = Paesi
+box_taxes_geo_zones = Zone fiscali
+box_localization_currencies = Valute
+box_localization_languages = Lingue
+box_newsletter = Newsletter
 box_heading_help = Supporto
 
-box_catalog_categories_priceupdate = Mise à jour rapide
-box_customers_approval = Clients en attente
-box_customers_groups = Groupes clients
+
+box_catalog_categories_priceupdate = Aggiornamento rapido
+box_customers_approval = Waiting approval
+box_customers_groups = Groups
 
 text_box_heading_module = Module
-text_selected = -- Sélectionner --
-text_all_right = Tous
-text_all_rights_admin =  Droits administration
-text_rights_employee = Droits des employés
-text_rights_visitor =  Droits des visiteurs
+text_selected = -- Select --
+text_all_right = All
+text_all_rights_admin = Admin Rights
+text_rights_employee = Employee Rights
+text_rights_visitor = Visitor Rights
 
-js_error = Des erreurs sont survenues durant le traitement de votre formulaire !\nMerci de faire les corrections suivantes
+js_error = Errors have occured during the process of your form!<br />Please make the following corrections:
 
-js_options_value_price = * Le nouvel attribut produit nécessite un prix
-js_options_value_price_prefix = * Le nouvel attribut produit nécessite un préfixe de prix
+js_options_value_price = * The new product atribute needs a price value
+js_options_value_price_prefix = * The new product atribute needs a price prefix
 
-js_products_name = *  Le nouveau produit nécessite un nom
-js_products_description = * Le nouveau produit nécessite une description
-js_products_price = * Le nouveau produit nécessite un prix
-js_products_weight = * Le nouveau produit nécessite un poids
-js_products_quantity = * Le nouveau produit nécessite une quantité
-js_products_model = * Le nouveau produit nécessite un modèle
-js_products_image = * Le nouveau produit nécessite une image
+js_products_name = * The new product needs a name
+js_products_description = * The new product needs a description
+js_products_price = * The new product needs a price value
+js_products_weight = * The new product needs a weight value
+js_products_quantity = * The new product needs a quantity value
+js_products_model = * The new product needs a model value
+js_products_image = * The new product needs an image value
 
-js_specials_products_price = * Un nouveau prix pour ce produit doit être fixé
+js_specials_products_price = * A new price for this product needs to be set
 
-js_gender = * Le champ GENRE ne peut être vide.\n
-js_first_name = * Le champ PRENOM doit avoir au moins {{min_length}} caractères.
-js_last_name = * Le champ NOM doit avoir au moins {{min_length}} caractères.
-js_dob = * Le champ  DATE DE NAISSANCE doit être au format xx/xx/xxxx (Jour/Mois/Année).
+js_gender = * The 'Gender' value must be chosen.
+js_first_name = * The 'First Name' entry must have at least {{min_length}} characters.
+js_last_name = * The 'Last Name' entry must have at least {{min_length}} characters.
+js_dob = * The 'Date of Birth' entry must be in the format: xx/xx/xxxx (month/date/year).
 
-js_email_address = * Le champ ADRESSE E-MAIL n'est pas correcte.
-js_address = * Le champ ADRESSE POSTALE doit avoir au moins {{min_length}} caractères.
-js_post_code = * Le champ CODE POSTAL doit avoir au moins {{min_length}} caractères.
-js_city = * Le champ VILLE doit avoir au moins {{min_length}} caractères.
-js_state = * Le champ DEPARTEMENT doit être précisé.
-js_state_select = -- Sélectionnez --
-js_zone = * L'entrée Etat doit être choisie parmi la liste pour ce pays.
-js_country = * Le champ PAYS doit être précisé.
-js_telephone = * Le champ NUMERO DE TELEPHONE doit avoir au moins {{min_length}} caractères.\n
-js_cellular_phone = * Le champ NUMERO DE CELLULAIRE doit avoir au moins {{min_length}} caractères.\n
+js_email_address = * The E-Mail Address is not correct.
+js_address = * The Street Address entry must have at least {{min_length}} characters.
+js_post_code = * The Post Code entry must have at least {{min_length}} characters.
+js_city = * The City entry must have at least {{min_length}} characters.
+js_state = * The State entry is must be selected.
+js_state_select = -- Select Above --
+js_zone = * The State entry must be selected from the list for this country.
+js_country = * The Country value must be chosen.
+js_telephone = * The Telephone Number entry must have at least {{min_length}} characters.
+js_cellular_phone = * The Cellular phone Number entry must have at least {{min_length}} characters.
 
-js_password = * Le champ MOT DE PASSE et Confirmation doivent avoir au moins {{min_length}} caractères.\n
+js_password = * The Password and Confirmation entries must match amd have at least{{min_length}} characters.
 
-js_order_does_not_exist = Le numéro de commande %s n'existe pas !
+js_order_does_not_exist = Order Number %s does not exist!
 
-category_personal = Données personnelles
-category_address = Adresse
-category_address_default = Adresse principale
-category_contact = Contact téléphoniques
-category_company = Détail sur la société
+category_personal = Personal
+category_address = Address
+category_address_default = Adress principal
+category_contact = Contact
+category_company = Detail on the company
 category_options = Options
-category_newsletter = Inscription aux newsletters
-category_group_customer = Type de client
-category_order_taxe = Mode de facturation
-category_order_taxe_group = Mode de facturation autorisé sur le groupe
-category_shipping_customer = Mode de livraison autorisé
-category_shipping_customer_group = Mode de livraison autorisé sur le groupe
-category_order_customer = Mode de paiement autorisé
-category_order_customer_group = Mode de paiement autorisé sur le groupe
+category_newsletter = Inscription with the newsletters
+category_group_customer = Type of customer
+category_order_taxe = Mode of invoicing
+category_order_taxe_group = Mode of invoicing authorized on the group
+category_shipping_customer = Modalità di consegna autorizzata
+category_shipping_customer_group = Modalità di consegna autorizzata nel gruppo
+category_order_customer = Modalità di pagamento autorizzata
+category_order_customer_group = Modalità di pagamento autorizzata nel gruppo
 
-entry_gender = Civilité :
-entry_gender_error = &nbsp;<span class="errorText">requis</span>
-entry_first_name = Prénom :
-entry_first_name_error = &nbsp;<span class="errorText">min. {{min_length}} caractères.</span>
-entry_last_name = Nom :
-entry_last_name_error = &nbsp;<span class="errorText">min. {{min_length}} caractères.</span>
-entry_date_of_birth = Date de naissance :
-entry_date_of_birth_error = &nbsp;<span class="errorText">Format : JJ/MM/AAAA</span>
-entry_email_address = E-Mail :
-entry_email_address_error = &nbsp;<span class="errorText">Votre adresse email n'est pas correcte </span>
-entry_email_address_check_error = &nbsp;<span class="errorText">L'adresse électronique ne semble pas être valide!</span>
-entry_email_address_error_exists = &nbsp;<span class="errorText">Cette adresse électronique existe déjà!</span>
-entry_company = Nom de la société :
-entry_company_error = &nbsp;<span class="errorText">min. {{min_length}} caractères.</span>
-entry_street_address = Adresse :
-entry_street_address_error = &nbsp;<span class="errorText">min. {{min_length}} caractères.</span>
-entry_suburb = Complément d'adresse :
+entry_gender = Sesso:
+entry_gender_error = &nbsp;<span class="errorText">richiesto</span>
+entry_first_name = Nome
+entry_first_name_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_last_name = Cognome
+entry_last_name_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_date_of_birth = Data di nascita
+entry_date_of_birth_error = &nbsp;<span class="errorText">(es. 05/21/1970)</span>
+entry_email_address = Indirizzo e-mail:
+entry_email_address_error = &nbsp;<span class="errorText">L'indirizzo email non è corretto</span>
+entry_email_address_check_error = &nbsp;<span class="errorText">L'indirizzo email non sembra essere valido!</span>
+entry_email_address_error_exists = &nbsp;<span class="errorText">Questo indirizzo email esiste già!</span>
+entry_company = Nome della società
+entry_company_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_street_address = Indirizzo via:
+entry_street_address_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_suburb = Periferia
 entry_suburb_error =
-entry_post_code = Code postal :
-entry_post_code_error = &nbsp;<span class="errorText">min. {{min_length}} caractères.</span>
-entry_city = Ville :
-entry_city_error = &nbsp;<span class="errorText">min. {{min_length}} caractères</span>
-entry_state = Département ou Etat :
-entry_state_error = &nbsp;<span class="errorText">requis</span>
-entry_country = Pays :
+entry_post_code = Codice postale
+entry_post_code_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_city = Città
+entry_city_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
+entry_state = Stato
+entry_state_error = &nbsp;<span class="errorText">richiesto</span>
+entry_country = Paese
 entry_country_error =
-entry_telephone_number = Numéro de téléphone:
-entry_telephone_number_error = &nbsp;<span class="errorText">min. {{min_length}} caractères.</span>
+entry_telephone_number = Numero di telefono
+entry_telephone_number_error = &nbsp;<span class="errorText">min {{min_length}} caratteri</span>
 
-entry_cellular_phone_number = Numéro de téléphone cellulaire:
+entry_cellular_phone_number = Numero cellulare
 entry_cellular_phone_number_error =
-entry_fax_number = Numéro de fax:
+entry_fax_number = Numero di fax
 entry_fax_number_error =
-entry_telephone = Téléphone
+entry_phone = Numero di telefono
 
-entry_newsletter = Bulletin d'informations :
-entry_newsletter_yes = Abonné
-entry_newsletter_no = Non abonné
+entry_newsletter = Newsletter:
+entry_newsletter_yes = Iscritto
+entry_newsletter_no = Cancellato
 entry_newsletter_error =
-entry_newsletter_language = Langue de correspondance
+entry_newsletter_language = Lingua:
 
-entry_address_number = Adresse No
-entry_adress_default = (Adresse principale)
-entry_siret = Numéro d'immatriculation :
-entry_siret_exemple = (ex : No immatricultion de la société)
-entry_ape = Numéro de nomenclature (ou autre) :
-entry_ape_exemple = (ex : Autre numeacute;ro immatriculation (ex code APE)
-entry_tva = Numéro de TVA Intracom (Europe) :
-entry_tva_iso_error = &nbsp;<span class="errorText">Le code pays de deux lettres ne semble pas être correct.</span>
+entry_address_number = Indirizzo n
+entry_adress_default = (Indirizzo principale)
+entry_siret = Codice di registrazione :
+entry_siret_exemple = (ex : codice RCS per la società francese)
+entry_ape = Nomenclatur Number :
+entry_ape_exemple = (ex : Codice APE per la società francese)
+entry_tva = No IVA Intracom :
+entry_tva_iso_error = &nbsp;<span class="errorText">The code country of two letters does not seem to be correct.</span>
 
-entry_customers_group_name = Groupe client :
-entry_groups_name = Nom :
+entry_customers_group_name = Customer Group:
+entry_groups_name = Name:
 
-image_ani_send_email = Envoyer un courrier électronique
-image_archive = Archiver
-image_archive_to = Archiver
-image_back = Retour
-image_backup = Sauvegarde
-image_batch_print_order = Impressions en masse
-image_cancel = Annuler
-image_confirm = Confirmer
-image_copy = Copier
-image_copy_to = Copier vers
-image_details = Détails
-image_delete = Supprimer
-image_edit = Editer
-image_email = Courrier électronique
-image_file_manager = Gestionnaire de fichiers
-image_help = Aide
-icon_edit_customer = Editer le client
+image_ani_send_email = Sending E-Mail
+image_archive = Archive
+image_archive_to = Archive
+image_back = Back
+image_backup = Backup
+image_batch_print_order = Batch Print
+image_cancel = Cancel
+image_confirm = Confirm
+image_copy = Copy
+image_copy_to = Copy To
+image_details = Details
+image_delete = Delete
+image_edit = Edit
+image_email = Email
+image_file_manager = File Manager
+image_help = Help
+icon_edit_customer = Customer edit
 icon_edit_order = Editer la commande
 
-image_icons = Activer
-image_insert = Insérer
-image_lock = Vérrouilller
-image_module_install = Installer le module
-image_module_remove = Supprimer le module
-image_move = Déplacer
-image_new_banner = Nouvelle bannière
-image_new_blog = Nouvel Article
-image_new_category = Nouvelle catégorie
-image_new_country = Nouveau pays
-image_new_currency = Nouvelle devise
-image_new_file = Nouveau fichier
-image_new_folder = Nouveau dossier
-image_new_language = Nouvelle Langue
-image_new_newsletter = Nouveau bulletin d'informations
-image_new_product = Nouveau Produit
-image_new_tax_class = Nouvelle classe fiscale
-image_new_tax_rate = Nouveau taux fiscal
-image_new_tax_zone = Nouvelle zone fiscale
-image_new_zone = Nouvelle zone
-image_orders = Commandes
-image_orders_erp = Commande enregistrée dans ERP
-image_orders_invoice_erp = Facture comptabilisée dans ERP
-image_orders_invoice_manual_erp = Facture enrgistrée dans ERP
-image_orders_invoice_cancel_erp = Facture annulée dans ERP
-image_orders_history = Historique
-image_orders_invoice = Facture
-image_orders_packingslip = Bon de Livraison
-image_customers = Clients
+image_icons = Activate
+image_insert = Insert
+image_lock = Lock
+image_module_install = Install Module
+image_module_remove = Remove Module
+image_move = Move
+image_new_banner = New Banner
+image_new_blog = New article
+image_new_category = New Category
+image_new_country = New Country
+image_new_currency = New Currency
+image_new_file = New File
+image_new_folder = New Folder
+image_new_language = New Language
+image_new_newsletter = New Newsletter
+image_new_product = New Product
+image_new_tax_class = New Tax Class
+image_new_tax_rate = New Tax Rate
+image_new_tax_zone = New Tax Zone
+image_new_zone = New Zone
+image_orders = Orders
+image_orders_erp = Order registred in ERP
+image_orders_invoice_erp = Invoice Registred in ERP
+image_orders_invoice_manual_erp = Invoice saved in ERP
+image_orders_invoice_cancel_erp = Invoice cancelled in ERP
+image_orders_history = History
+image_orders_invoice = Invoice
+image_orders_packingslip = Packing Slip
+image_customers = Clienti
 image_newsletter = Newsletters
-image_reviews = Avis des clients
-image_preview = Prévisualiser
-icon_preview = Prévisualisation Catalogue
-image_restore = Restaurer
-image_reset = Réinitialiser
-image_save = Sauvegarder
-image_search = rechercher
-image_select = Choisir
-image_send = Envoyer
-image_send_email = Envoyer un courrier électronique
-image_undo = Annuler
-image_unlock = Déverrouiller
-image_update = Mettre à jour
-image_update_currencies = Mettre à jour le taux de change
-image_upload = Transférer
-image_categories = Catégories
-image_specials = Promotions produits
-image_manufacturers = Gestion des marques
-image_products_expected = Gestion des arrivées en stock
-image_unpack = Désarchiver
-image_backup_db = Sauvegarder la base de données
-image_banner = Gestion des bannières
-image_whos_online = Clients en ligne
-image_filter = filtre
-image_new_group = Nouveau groupe
-image_updateallprice = Mettre à jour tous les prix du groupe
+image_reviews = Parere dei clienti
+image_preview = Anteprima
+icon_preview = Anteprima catalogo
+image_restore = Restore
+image_reset = Reset
+image_save = Salva
+image_search = Ricerca
+image_select = Seleziona
+image_send = Invia
+image_send_email = Invia email
+image_undo = Annulla
+image_unlock = Sblocca
+image_update = Aggiorna
+image_update_currencies = Aggiornamento tasso di cambio
+image_upload = Caricamento
+image_categories = Categorie
+image_specials = Speciali
+image_manufacturers = Marche
+image_products_expected = Gestione degli arrivi in magazzino
+image_unpack = Scompatta
+image_backup_db = Backup della base dati
+image_banner = Gestore banner
+image_whos_online = Whos online
 
-button_actualise = Actualiser
-button_activate = Activer
-button_analyse = Analyser
+image_new_group = Nuovo gruppo
+image_updateallprice = Aggiorna tutto il prezzo del gruppo
+
+button_actualise = Attualizza
+attiva_pulsante = attivo
+button_analyse = Analizza
 button_archive = Archivi
-button_back = Retour
-button_backup = Sauvegarder
-button_cancel = Annuler
-button_confirm = Confirmer
-button_copy = Copier
-button_delete = Supprimer
-button_edit = Edit
-button_error_log = Log des erreurs
-button_flag = Mettre à jour statuts
-button_insert = Insérer
-button_create_account = Créer un compte
-button_history =  Historique
-button_invoice = Facture PDF
-button_module_install = installer un module
-button_move = Déplacer
-button_new = Nouveau
-button_new_banner = Nouvelle bannière
-button_new_products = Nouveau produit
-button_new_ticket = Nouveau Ticket
-button_new_category = Nouvelle catégorie
-button_new_product = Nouveau Produit
-button_packingslip = Bon expédition
-button_preview = Prévisualiser
-button_print_text = Imprimer
-button_reset = Réinitialiser
-button_restore = Importer
-button_send = Envoyer
-button_save = Sauvergarder
-button_unpack = Désarchiver
-button_update = Valider
+button_back = Indietro
+button_backup = Backup
+button_cancel = Annulla
+conferma_bottone = Conferma
+button_copy = Copia
+button_delete = Elimina
+button_edit = Modifica
+button_error_log = Erros log
+button_flag = Aggiorna stato
+button_insert = Inserisci
+button_create_account = Crea conto
+pulsante_cronologia = Cronologia
+fattura_pulsante = fattura PDF
+pulsante_module_install = installazione del modulo
+pulsante_sposta = Sposta
+pulsante_nuovo = nuovo
+button_new_banner = Nuovo banner
+button_new_products = Nuovo prodotto
+button_new_ticket = Nuovo Ticket
+button_new_category = New category
+button_new_product = New Product
+button_packingslip = Packingslip
+button_preview = Preview
+button_print_text = Print
+button_reset = Reset
+button_restore = Import
+button_send = Send
+button_save = Save
+button_unpack = Unpack
+button_update = Update
 
-icon_edit = Editer
-icon_cross = Faux
-icon_current_folder = Dossier courant
-icon_delete = Supprimer
-icon_error = Erreur
-icon_file = Fichier
-icon_file_download = Télécharger
-icon_folder = Répertoire
-icon_locked = Vérrouiller
-icon_previous_level = Niveau précédent
-icon_preview = Prévisualiser
-icon_statistics = Statistiques
-icon_success = Succès
-icon_tick = Vrai
-icon_unlocked = Déverrouiller
-icon_warning = Attention
-icon_help = Aide
+icon_edit = Edit
+icon_cross = False
+icon_current_folder = Current Folder
+icon_delete = Delete
+icon_error = Error
+icon_file = File
+icon_file_download = Download
+icon_folder = Folder
+icon_locked = Locked
+icon_previous_level = Previous Level
+icon_preview = Preview
+icon_statistics = Statistics
+icon_success = Success
+icon_tick = True
+icon_unlocked = Unlocked
+icon_warning = Warning
+icon_help = help
+image_filter = filter
 
-text_result_page = Page {{listing_from}}  sur{{listing_total}}
-text_display_number_of_link = Affiche <strong>{{listing_from}}</strong> à <strong>{{listing_to}}</strong> (sur <strong>{{listing_total}}</strong>)
+text_result_page = Page {{listing_from}} of {{listing_total}}
+text_display_number_of_link = Displaying <strong>{{listing_from}}</strong> to <strong>{{listing_to}}</strong> (of <strong>{{listing_total}}</strong>)
 
 prevnext_button_prev = &lt;&lt;
 prevnext_button_next = &gt;&gt;
 
-prevnext_title_previous_page = Page précédente
-prevnext_title_next_page = Nouvelle page
+prevnext_title_previous_page = Previous Page
+prevnext_title_next_page = Next Page
 prevnext_title_page_no = Page %d
 prevnext_title_next_set_of_no_page = Next Set of %d Pages
 
-text_search = Rechercher
-text_default = Défaut
-text_set_default = Mettre par défaut
-text_field_required = &nbsp;<span class="fieldRequired">* Requis</span>
-text_sort_all = Tri
-text_sort_by = Trier par
-text_descendingly = descendant
-text_ascendingly = ascendant
-text_image_preview = Prévisualiser
-text_other = Autres
-text_legend = Légende
-text_all_groups = Tous les groupes clients
-text_all_languages = Tous les langages
+text_search = Search
+text_default = Default
+text_set_default = Set as default
+text_field_required = &nbsp;<span class="fieldRequired">* Required</span>
+text_sort_all = Sort
+text_sort_by = Sort by
+text_descendingly = descendingly
+text_ascendingly = ascendingly
+text_image_preview = Preview
+text_other = Others
+text_legend = Legenda :
+text_all_group = Tutti i gruppi di clienti
+text_all_languages = Tutte le lingue
 
-text_cache_categories = Boite catégories
-text_cache_manufacturers = Boite marques
-text_cache_also_purchased = Module d'achat supplémentaire
-text_cache_products_related = Module des produits complémentaires
-text_cache_products_cross_sell = Module des produits croisés
-text_cache_new = Nouveaux produits
-text_cache_upcoming = Produits à venir
+text_cache_categories = Casella categorie
+text_cache_manufacturers = Marche Box
+text_cache_also_purchased = Anche Modulo Acquistato
+text_cache_products_related = modulo prodotti correlati
+text_cache_products_cross_sell = Modulo prodotti di vendita incrociata
+text_cache_new = Nuovi prodotti
+text_cache_in arrivo = Prodotti in arrivo
 
-text_none = --Aucun--
-text_top = Haut
+testo_none = --none--
+text_top = Alto
 
-text_twitter_message = Votre message a bien été envoyé sur twitter<br />
-text_twitter_profile =  Voir votre profil
-text_error_twitter_post = Erreur, veuillez insérer un message et réessayer.<br />
+text_twitter_message = Il tuo messaggio è stato inviato su Twitter!.<br />
+text_twitter_profile = Vedi il tuo profil
+text_error_twitter_post = Errore, inserire un messaggio e riprovare.<br />
 
-text_header_user_administrator = Administrateur
-text_header_logoff_administrator = Déconnexion
-text_header_online_customers = Client(s)
-text_header_number_of_customers = {{online_customer}} en ligne
-text_header_icon_number_of_customers = Afficher les clients en ligne
-text_help_wysiwyg = Information sur l'aide à l'utilisation du Wysiwyg en image
-text_close = Fermer
+text_header_user_administrator = Amministratore
+text_header_logoff_administrator = Disconnetti
 
-text_image_nonexistent = Pas d'image
-error_destination_does_not_exist = Erreur : le chemin cible n'existe pas.
-error_destination_not_writeable = Erreur : Impossible d'écrire dans le répertoire cible.
-error_file_not_saved = Erreur : fichier transférer non sauvegardé.
-error_filetype_not_allowed = Erreur : type de fichier transféré non-permis.
-success_file_saved_successfully = Succès : Le fichier transféré a été sauvegardé avec succès.
-warning_no_file_uploaded = Informations : Aucune image ou fichier de transféré sur le serveur.
-warning_edit_customers = Des champs comportent des erreurs, veuillez rectifier.
-error_file_not_writeable = Impossible d'écrire dans ce fichier
-error_banner_title = Erreur: Titre de la bannière requis
-error_banner_group = Erreur: Groupe de la bannière requis
-error_no_default_language_defined = Erreur: Il n'y a pas de langue par défaut. Merci d'en choisir une dans: Administration Outils->Localisation->Langues
-error_log =  'Erreurs ont été détectés. Veuillez vérifier les fichiers se trouvant dans :
+text_header_online_customers = Clienti
+text_header_number_of_customers = {{online_customer}} online
+
+text_header_icon_number_of_customers = Visualizza i clienti online
+text_help_wysiwyg = Informazioni su come supportare l'uso di WYSIWYG nelle immagini
+text_close = Chiudi
+
+text_image_nonexistent = Nessuna immagine
+error_destination_does_not_exist = Error: La destinazione non esiste.
+error_destination_not_writeable = Errore: Destinazione non scrivibile.
+error_file_not_saved = Errore: Caricamento file non salvato.
+error_filetype_not_allowed = Errore: tipo di caricamento file non consentito.
+success_file_saved_successfully = Successo: Caricamento file salvato con successo.
+warning_no_file_uploaded = Informazioni: Nessuna immagine o file di trasferito sul cameriere.
+warning_edit_customers = I campi comprendono errori per non rendere più possibile registrare le modifiche.
+error_file_not_writeable = Impossibile scrivere in questo file
+error_banner_title = Errore: è richiesto il titolo del banner
+error_banner_group = È richiesto un gruppo di banner di errore
+error_no_default_language_defined = Errorr: la lingua non esiste.Si prega di sceglierne una in Strumenti di amministrazione->Localizzazione->Lingue
+error_log = sono stati rilevati errori ahs, si prega di verificare la directory di registro :
 
 
-error_image_directory_does_not_exist = Erreur: le répertoire cible n'exite pas
-error_image_directory_not_writeable = Erreur: le répertoire cible n'est pas en mode écriture
-error_image_does_not_exist = Erreur: l'imagen'existe pas
-error_image_is_not_writeable = Error: l'image ne peut pas etre supprimée
-error_suppliers =  'Veuillez selectionner un fournisseur dans la liste
-error_orders =  'Veuillez selectionner correctement vos N° de commande
+error_image_directory_does_not_exist = Error: La directory destinazione non esiste:
+error_image_directory_not_writeable = Errore: la directory destinazione non è scrivibile:
+error_image_does_not_exist = Error: Image does not exist.
+error_image_is_not_writeable = Errore: L'immagine non può essere rimossa.
 
-options_order = Facturation :
-options_order_national = National
-options_order_cee = Union Européenne
-options_order_international = International
-options_order_taxe = Assujetti à la taxe
-options_order_no_taxe = Non assujetti à la taxe
+error_suppliers = Selezionare un fornitore nell'elenco
+error_orders = Per favore seleziona correttamente il tuo numero d'ordine
 
-visitor_name = Client Normal
+options_order = Fatturazione :
+options_order_national = Nazionale
+options_order_cee = Unione europea
+options_order_international = Internazionale
+options_order_taxe = Inc. alla tassa
+options_order_no_taxe = Ex. alla tassa
 
-tax_included = Toutes taxes
-tax_excluded = Hors taxes
+visitor_name = Nuovo Client
 
-tab_general = Général
-tab_orders = Facturation
-tab_shipping = Livraison
-tab_categorie = Catégorie
-tab_price = Prix
+tax_included = TAX inc.
+tax_excluded = TAX exc.
+
+tab_general = General
+tab_orders = Invoicing
+tab_shipping = Delivery
+tab_categorie = Categories
+tab_description = Description
+tab_price = Price
 tab_desc = Description
-tab_img = Visuel
-tab_ref = Metadonnées
-tab_societe = Société
-tab_adresse_book = Carnet
+tab_img = Images
+tab_ref = Meta Data
+tab_societe = Companies
+tab_adresse_book = book
 tab_code_html = Code HTML
-tab_orders_details = Commande
-tab_statut = Statut
+tab_orders_details = Order
+tab_statut = Status
 tab_options = Options
 tab_quantity_discount = Qty discount
 tab_statistics =  Statistics
 
-fixed_amount = Montant fixe
-percentage_discount =  Remise sur pourcentage
-price_total = Total du prix
-product_quantity = Quantité de produit
+fixed_amount = Fixed Amount
+percentage_discount = Percentage discount
+price_total = Price total
+product_quantity = Product quantity
 
-keywords_google_trend = Tendance des mots clefs selon Google
+keywords_google_trend = Keywords Google trend
 
 
-success_status_updated = Mise à jour fait avec succès
-error_unknown_status_flag = Erreur Inconnue
-error_no_access = Aucun accès autorisé
+success_status_updated = Success update
+error_unknown_status_flag = Error unknown
+error_no_access = No access authorized
 
-all_pages = Toutes les pages.
-one_by_one = Ou une par une :
-check_all = Tout selectionner
-deselect_all = Tout Supprimer
+all_pages = All pages.
+one_by_one = Or one by one :
+check_all = Check All
+deselect_all = Uncheck All
 
-select_datas = --- Séléctionner ---
-text_select =  --- Selectionner ---
-text_all_orders = Tous les statuts
+select_datas = --- Select ---
+text_select =  --- Select ---
+text_all_orders = All status
 
-no_script_text = <strong>JavaScript ne semble pas activé ou a été désactivé par un bloquer de publicité.</strong><br />Vous devez activer le javascript dans votre navigateur pour utiliser correctement ClicShopping. <a href="https://www.enable-javascript.com/" target="_blank" rel="noreferrer">Veuillez cliquez-ici pour une aide en ligne</a>.';
+no_script_text = <strong>JavaScript seems to be disabled in your browser or has been deactivated by an add-block.</strong><br />You must have JavaScript enabled in your browser to utilize the functionality of this website. <a href="https://www.enable-javascript.com/" target="_blank" rel="noreferrer">Click here for instructions on enabling javascript in your browser</a>.
 
-title_help_general = Aide
+title_help_general = Help
 
-text_top = --- Haut ---
-text_all_pages = Toutes les pages
-text_one_by_one =  Une par une
-text_chek_all = Tout cocher
-text_deselect_all = Tout décocher
+text_top = --- Top ---
+text_all_pages = all Pages
+text_one_by_one =  One by one
+text_chek_all = Check All
+text_deselect_all = Deselect all
 
-text_address_first_name = Prénom
-text_address_last_name = Nom
-text_address_company = Société
-text_address_street_address = Adresse
-text_address_suburb = Adresse 2
-text_address_city = Ville
-text_address_state = Etat / Département
-text_address_postcode = Code postal
-text_address_country = Pays
+text_address_first_name = First Name
+text_address_last_name = Last Name
+text_address_company = Company
+text_address_street_address = Street Address
+text_address_suburb = Suburb
+text_address_city = City
+text_address_state = State
+text_address_postcode = Postcode
+text_address_country = Paese
 
-table_heading_qte = Qte
-table_heading_products_model = Reference
-table_heading_products = Produits
-table_heading_tax = Taxes
+table_heading_qte = Qtà
+table_heading_products_model = Modello
+table_heading_products = Prodotti
+table_heading_tax = Tax
 table_heading_total = Total
-table_heading_price_excluding_tax = Prix (HT)
-table_heading_price_including_tax = Prix (TTC)
-table_heading_total_excluding_tax = Total (HT)
-table_heading_total_including_tax = Total (TTC)
+table_heading_price_excluing_tax = Prezzo (ex)
+table_heading_price_including_tax = Price (inc)
+table_heading_total_excluding_tax = Totale (ex)
+table_heading_total_including_tax = Total (inc)
 
 table_heading_customers_id = Id client
-table_heading_customers_name = Nom
-table_heading_options = Options
+table_heading_customers_name = Nome
+table_heading_options = Opzioni
 
-visitor_name = Client normal
+visitor_name = Cliente normale
 
-text_error_upload_file = Erreur lors du téléchargement du fichier
-error_file_cannot_process = Impossible de procéder au téléchargement du fichier
+text_error_upload_file = Errore : caricamento del file non riuscito
+error_file_cannot_process = Impossibile elaborare per caricare il file
 
-text_number_support = Commande support
-text_number_of_item = Nombre d'items
-text_success_import = Succès Importation
-button_continue = Continuer
+text_number_support = Supporto ordine
+text_number_of_item = numero articolo
+text_success_import = Importazione riuscita
+pulsante continua = Continua
 
-error_phpmailer = Si vous avez ce message : escapeshellcmd() has been disabled for security reasons, vous devez configurer votre  smtp dans l'administration et ne pas utiliser sendmail par défaut<br />
-Message could not be sent. Mailer Error:  {{phpmailer_error}}
+error_phpmailer = Se hai questo messaggio : escapeshellcmd() è stato disabilitato per motivi di sicurezza, è necessario configurare la posta in smtp e non utilizzare sendmail per impostazione predefinita<br />
+Messaggio non inviato. Errore Mailer:  {{phpmailer_error}}
