@@ -1,21 +1,21 @@
 
-navbar_title_1 = Commande
-navbar_title_2 = Changer l'adresse d'expédition
+ navbar_title_1 = Checkout
+ navbar_title_2 = Change Shipping Address
 
-heading_title = Information expédition
+ heading_title = Delivery Information
 
-table_heading_shipping_address = Adresse d'expédition
-text_selected_shipping_destination = Veuillez choisir dans votre carnet d'adresses l'adresse o&ucirc; vous voudriez que les articles soient livrés.
-title_shipping_address = Adresse d'expédition :
+ table_heading_shipping_address = Shipping Address
+ text_selected_shipping_destination = This is the currently selected shipping address where the items in this order will be delivered to.
+ title_shipping_address = Shipping Address:
 
-table_heading_address_book_entries = Carnet d'adresses
-text_select_other_shipping_destination = Veuillez choisir l'adresse d'expédition  si les articles de cette commande doivent être livrés ailleurs.
-title_please_select = Veuillez choisir
+ table_heading_address_book_entries = Address Book Entries
+ text_select_other_shipping_destination = Please select the preferred shipping address if the items in this order are to be delivered elsewhere.
+ title_please_select = Please Select
 
-table_heading_new_shipping_address = Nouvelle adresse d'expédition
-text_create_new_shipping_address = Veuillez utiliser ce formulaire pour créer une nouvelle adresse d'expédition pour cette commande.
+ table_heading_new_shipping_address = New Shipping Address
+ text_create_new_shipping_address = Please use the following form to create a new shipping address to use for this order.
 
-table_heading_new_shipping_address_problem = Erreur sur la nouvelle adresse de livraison
+ table_heading_new_shipping_address_problem = Error on the new shipping address
 
-title_continue_checkout_procedure = Continuer la commande
-text_continue_checkout_procedure = pour choisir la méthode préférée d'expédition
+ title_continue_checkout_procedure = Continue Checkout Procedure
+ text_continue_checkout_procedure = to select the preferred shipping method.
