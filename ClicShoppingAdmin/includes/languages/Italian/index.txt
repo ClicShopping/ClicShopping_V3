@@ -1,11 +1,11 @@
-heading_title = Accueil
-heading_short_orders = Raccourci commandes
-heading_short_products = Raccourci Produits
+titolo_intestazione = Accueile
+heading_short_orders = Commandi Raccourci
+heading_short_products = Raccourci Prodotti
 heading_short_categories = Raccourci catégories
-heading_short_customers = Raccourci clients
+heading_short_customers = clienti Raccourci
 heading_short_support = Raccourci support clients
 
-heading_title_orders = Commandes
+heading_title_orders = ordini
 heading_title_divers = Divers
 
 box_title_orders = Commandes
