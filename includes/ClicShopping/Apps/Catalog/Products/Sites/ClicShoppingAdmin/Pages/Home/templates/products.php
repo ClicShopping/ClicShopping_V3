@@ -217,13 +217,12 @@
   }
 ?>
                <?php echo HTML::link($CLICSHOPPING_Products->link('Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page . '&cPath=' . $cPath), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?>
-
                <?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?>
               </td>
-              <td class="text-md-left"><?php echo $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'; ?></td>
+              <td class="text-md-left"><?php echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'); ?></td>
               <td class="text-md-center">
                 <?php
-                  if ($Qproducts->valueInt('products_status') == 1) {
+                  if ($Qproducts->valueInt('products_status') === 1) {
                     echo HTML::link($CLICSHOPPING_Products->link('Products&SetFlag&flag=0&pID=' . $Qproducts->valueInt('products_id') . '&cPath=' . $cPath), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
                   } else {
                     echo HTML::link($CLICSHOPPING_Products->link('Products&SetFlag&flag=1&pID=' . $Qproducts->valueInt('products_id') . '&cPath=' . $cPath), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
@@ -243,8 +242,6 @@
               <td class="text-md-right"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
               <td class="text-md-right">
                 <?php
-                  echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit')));
-                  echo '&nbsp;';
                   echo HTML::link($CLICSHOPPING_Products->link('CopyTo&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/copy.gif', $CLICSHOPPING_Products->getDef('icon_copy_to')));
                   echo '&nbsp;';
                   echo HTML::link($CLICSHOPPING_Products->link('Move&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/move.gif', $CLICSHOPPING_Products->getDef('icon_move')));
