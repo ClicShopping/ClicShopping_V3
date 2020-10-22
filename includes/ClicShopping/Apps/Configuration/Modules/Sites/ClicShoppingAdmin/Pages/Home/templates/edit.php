@@ -122,7 +122,6 @@
 
     $installed_modules = [];
 
-
     for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
       $file = $directory_array[$i];
 
@@ -135,7 +134,6 @@
         $module->code = $file;
 
         $class = $file;
-
       } else {
         $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));
 
@@ -158,7 +156,8 @@
         }
 
         if ((!isset($_GET['module']) || (isset($_GET['module']) && ($_GET['module'] == $class))) && !isset($mInfo)) {
-          $module_info = ['code' => $module->code,
+          $module_info = [
+            'code' => $module->code,
             'title' => $module->title,
             'description' => $module->description,
             'status' => $module->check(),
@@ -197,8 +196,7 @@
       }
     }
 
-
-    if (isset($mInfo) && (strpos($mInfo->code, '\\') !== false)) {
+    if (isset($mInfo) && (str_contains($mInfo->code, '\\'))) {
       $file_extension = '';
     } else {
       $file_extension = substr(CLICSHOPPING::getIndex(), strrpos(CLICSHOPPING::getIndex(), '.'));

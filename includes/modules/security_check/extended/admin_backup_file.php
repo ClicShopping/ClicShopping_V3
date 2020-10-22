@@ -11,6 +11,7 @@
 
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTTP;
 
   class securityCheckExtended_admin_backup_file
   {
@@ -35,6 +36,7 @@
       if (is_dir($backup_directory)) {
         $dir = dir($backup_directory);
         $contents = [];
+
         while ($file = $dir->read()) {
           if (!is_dir($backup_directory . $file)) {
             $ext = substr($file, strrpos($file, '.') + 1);
@@ -62,28 +64,32 @@
 
       if (isset($backup_file)) {
         if (is_file(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $backup_file)) {
-          $request = $this->getHttpRequest(CLICSHOPPING::BASE_DIR . 'Work/Backups/' . $backup_file);
+          $request = $this->getHttpRequest(CLICSHOPPING::getConfig('http_server', 'Shop') . CLICSHOPPING::getConfig('http_path', 'Shop') . 'includes/Work/Backups/' . $backup_file);
 
-          $result = ($request['http_code'] != 200);
+          $result = ($request['http_code'] !== 200);
         }
       }
 
       return $result;
     }
 
-    public function getMessage()
+    /**
+     * @return string
+     */
+    public function getMessage() :string
     {
       return CLICSHOPPING::getDef('module_security_check_extended_admin_backup_file_http_200', [
         'backups_path' => CLICSHOPPING::getConfig('http_path', 'Shop') . 'includes/ClicShopping/Work/Backups/'
       ]);
     }
 
-    public function getHttpRequest($url)
+    /**
+     * @param $url
+     * @return mixed|bool|string
+     */
+    public function getHttpRequest(?string $url)
     {
-
       $server = parse_url($url);
-
-      $server['scheme'] = '';
 
       if (isset($server['port']) === false) {
         $server['port'] = ($server['scheme'] == 'https') ? 443 : 80;

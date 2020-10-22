@@ -114,6 +114,10 @@
                 }
 
                 $buInfo = new ObjectInfo($info);
+
+                $compression = $buInfo->compression;
+              } else {
+                $compression = '';
               }
               ?>
               <th scope="row"><?php echo $entry; ?></th>
@@ -121,7 +125,7 @@
               <td class="text-md-right"><?php echo number_format(filesize($backup_directory . $entry)); ?>
                 bytes
               </td>
-              <td class="text-md-center" onclick="document.location.href='<?php echo $buInfo->compression; ?>'"></td>
+              <td class="text-md-center" onclick="document.location.href='<?php $compression; ?>'"></td>
               <td class="text-md-right">
                 <?php
                   echo '<a href="' . $CLICSHOPPING_Backup->link('Backup&Download&file=' . $entry) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/file_download.gif', $CLICSHOPPING_Backup->getDef('icon_file_downlad')) . '</a>';
