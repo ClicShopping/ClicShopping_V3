@@ -23,6 +23,7 @@
     public $title;
     public $description;
     public $enabled;
+    public $group;
     public $output;
     public $sort_order = 0;
     public $app;
