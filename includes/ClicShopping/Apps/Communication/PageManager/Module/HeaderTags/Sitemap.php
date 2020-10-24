@@ -33,7 +33,7 @@
       $this->lang = Registry::get('Language');
       $this->group = 'header_tags'; // could be header_tags or footer_scripts
 
-      $this->app->loadDefinitions('Module/HeaderTags/Sitemap');
+      $this->app->loadDefinitions('Module/HeaderTags/sitemap');
 
       $this->title = $this->app->getDef('module_header_tags_Sitemap_title');
       $this->description = $this->app->getDef('module_header_tags_Sitemap_description');
