@@ -174,7 +174,8 @@
       <div class="tab-content">
         <?php
           // packaging
-          $products_packaging_array = array(array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
+          $products_packaging_array = array(
+            array('id' => '0', 'text' => $CLICSHOPPING_Products->getDef('text_choose')),
             array('id' => '1', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_new')),
             array('id' => '2', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_repackaged')),
             array('id' => '3', 'text' => $CLICSHOPPING_Products->getDef('text_products_packaging_used'))
@@ -203,7 +204,7 @@
                 ?>
                 <div class="form-group row">
                   <label for="code"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?></label>
+                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Language->getImage($languages[$i]['code']); ?> <bold>*</bold></label>
                   <div
                     class="col-md-5"><?php echo HTML::inputField('products_name[' . $languages[$i]['id'] . ']', ($products_name[$languages[$i]['id']] ?? $CLICSHOPPING_ProductsAdmin->getProductsName($pInfo->products_id, $languages[$i]['id'])), 'required aria-required="true" id="' . 'products_name[' . $languages[$i]['id'] . ']' . '" placeholder="' . $CLICSHOPPING_Products->getDef('text_products_name') . '"', true) . '&nbsp;'; ?></div>
                 </div>

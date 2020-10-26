@@ -153,6 +153,7 @@
         <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Products->getDef('id'); ?></th>
         <th data-switchable="false"></th>
         <th data-field="products" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_categories_products'); ?></th>
+        <th data-field="sku" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_sku'); ?></th>
         <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_status'); ?></th>
         <th data-field="price" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_price'); ?></th>
         <th data-field="quantity" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_qty'); ?></th>
@@ -220,6 +221,7 @@
                <?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?>
               </td>
               <td class="text-md-left"><?php echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'); ?></td>
+              <td class="text-md-left"><?php echo $Qproducts->value('products_sku'); ?></td>
               <td class="text-md-center">
                 <?php
                   if ($Qproducts->valueInt('products_status') === 1) {

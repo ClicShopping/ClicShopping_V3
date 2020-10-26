@@ -82,7 +82,7 @@ table_heading_price = Prix
 table_heading_qty = Stock
 table_heading_last_modified = Dernière modification
 table_heading_created = Créé / modifié
-
+table_heading_sku = SKU
 text_new_product = Nouveau produit dans {{new_products}}
 text_divers_title = Divers
 
