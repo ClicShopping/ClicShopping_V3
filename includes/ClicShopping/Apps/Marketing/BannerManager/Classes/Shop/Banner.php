@@ -17,7 +17,6 @@
 
   class Banner
   {
-
     /**
      * Sets the status of a banner
      *
@@ -33,7 +32,8 @@
 
       if ($status == '1') {
 
-        return $CLICSHOPPING_Db->save('banners', ['status' => 1,
+        return $CLICSHOPPING_Db->save('banners', [
+          'status' => 1,
           'date_status_change' => 'now()',
           'date_scheduled' => 'null'],
           ['banners_id' => (int)$banners_id]
@@ -41,7 +41,8 @@
 
 
       } elseif ($status == '0') {
-        return $CLICSHOPPING_Db->save('banners', ['status' => 0,
+        return $CLICSHOPPING_Db->save('banners', [
+          'status' => 0,
           'date_status_change' => 'now()'],
           ['banners_id' => (int)$banners_id]
         );
@@ -247,7 +248,7 @@
           $output = $banner['banners_html_text'];
         } else {
           if (is_numeric($banner['banners_id'])) {
-            $output = HTML::link(CLICSHOPPING::link('redirect.php', 'action=banner&goto=' . (int)$banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
+           $output = HTML::link(CLICSHOPPING::link('redirect.php', 'action=banner&goto=' . (int)$banner['banners_id']) . '" target="' . $banner['banners_target'], HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $banner['banners_image'], HTML::outputProtected($banner['banners_title'])));
           }
         }
 
@@ -305,7 +306,6 @@
           return $result;
 
         } else {
-
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                         banners_title,
                                                         banners_image,
@@ -332,9 +332,7 @@
           return $result;
         }
       } elseif ($action == 'static') {
-
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                        banners_title,
                                                        banners_image,
