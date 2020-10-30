@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return array (
   'A' => 'a',
   'B' => 'b',
   'C' => 'c',

@@ -313,7 +313,6 @@
       $rss_item = $this->setListRSS();
 
       for ($i = 0, $n = count($rss_item); $i < $n; $i++) {
-
         $products_id = $rss_item[$i]['products_id'];
         $date_added = date('Y-m-d', strtotime($rss_item[$i]['products_date_added']));
 

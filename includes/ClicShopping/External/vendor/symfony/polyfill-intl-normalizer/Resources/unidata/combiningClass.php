@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return array (
   '̀' => 230,
   '́' => 230,
   '̂' => 230,

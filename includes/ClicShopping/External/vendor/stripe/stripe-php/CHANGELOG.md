@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.61.0 - 2020-10-20
+* [#1030](https://github.com/stripe/stripe-php/pull/1030) Add support for `jp_rn` and `ru_kpp` as a `type` on `TaxId`
+
+## 7.60.0 - 2020-10-15
+* [#1027](https://github.com/stripe/stripe-php/pull/1027) Warn if opts are in params
+
 ## 7.58.0 - 2020-10-14
 * [#1026](https://github.com/stripe/stripe-php/pull/1026) Add support for the Payout Reverse API
 

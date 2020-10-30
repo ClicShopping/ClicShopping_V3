@@ -37,6 +37,7 @@ trait ResponseTrait
 {
     private $logger;
     private $headers = [];
+    private $canary;
 
     /**
      * @var callable|null A callback that initializes the two previous properties
@@ -142,12 +143,6 @@ trait ResponseTrait
             return $this->jsonData;
         }
 
-        $contentType = $this->headers['content-type'][0] ?? 'application/json';
-
-        if (!preg_match('/\bjson\b/i', $contentType)) {
-            throw new JsonException(sprintf('Response content-type is "%s" while a JSON-compatible one was expected for "%s".', $contentType, $this->getInfo('url')));
-        }
-
         try {
             $content = json_decode($content, true, 512, \JSON_BIGINT_AS_STRING | (\PHP_VERSION_ID >= 70300 ? \JSON_THROW_ON_ERROR : 0));
         } catch (\JsonException $e) {
@@ -207,7 +202,11 @@ trait ResponseTrait
     /**
      * Closes the response and all its network handles.
      */
-    abstract protected function close(): void;
+    private function close(): void
+    {
+        $this->canary->cancel();
+        $this->inflate = null;
+    }
 
     /**
      * Adds pending responses to the activity list.

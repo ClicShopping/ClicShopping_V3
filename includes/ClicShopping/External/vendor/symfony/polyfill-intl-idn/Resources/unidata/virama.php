@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return array (
   2381 => 9,
   2509 => 9,
   2637 => 9,

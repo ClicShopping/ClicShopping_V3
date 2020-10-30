@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return array (
   888 => true,
   889 => true,
   896 => true,
