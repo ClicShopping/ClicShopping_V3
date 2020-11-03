@@ -418,11 +418,11 @@
       $details = json_decode($details);
       if(isset($details->country)) {
         $country = $details->country;
+        echo "<script>$('svg path[data-country-code={$country}]').attr('fill', '#197ac6').attr('fill-opacity', '0.15');</script>";
       }
     }
   }
 ?>
-  <script>$('svg path[data-country-code="<?php echo $country; ?>"]').attr('fill', '#197ac6').attr('fill-opacity', '0.15');</script>
   <div class="loader-wrapper"></div>
 <?php
   if ($Qcheck->check()) {

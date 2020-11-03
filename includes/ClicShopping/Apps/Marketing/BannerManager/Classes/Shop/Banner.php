@@ -215,9 +215,7 @@
             $Qbanner->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
             $Qbanner->bindInt(':languages_id', (int)$CLICSHOPPING_Language->getId());
             $Qbanner->execute();
-
           } else {
-
             $Qbanner = $CLICSHOPPING_Db->prepare('select banners_id,
                                                          banners_title,
                                                          banners_image,
@@ -304,7 +302,6 @@
           $result = $Qbanners->toArray();
 
           return $result;
-
         } else {
           $Qbanners = $CLICSHOPPING_Db->prepare('select banners_id,
                                                         banners_title,

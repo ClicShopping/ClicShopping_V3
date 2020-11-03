@@ -33,7 +33,6 @@
     private function saveProductCategory($current_category_id)
     {
       if (isset($_GET['Insert'])) {
-
         $current_category_id = $current_category_id[0];
 
         $Qproducts = $this->app->db->prepare('select products_id
@@ -45,7 +44,8 @@
 
         $id = $Qproducts->valueInt('products_id');
 
-        $sql_array = ['products_id' => (int)$id,
+        $sql_array = [
+          'products_id' => (int)$id,
           'categories_id' => (int)$current_category_id
         ];
 

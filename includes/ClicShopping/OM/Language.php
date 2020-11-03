@@ -608,7 +608,6 @@
     public function getFlag()
     {
       if (!isset($_GET['Checkout'])) {
-
 // If only one language is selected
         if (CLICSHOPPING::getSite('Shop') == 'Shop') {
           $Qlanguages = $this->db->prepare('select languages_id,

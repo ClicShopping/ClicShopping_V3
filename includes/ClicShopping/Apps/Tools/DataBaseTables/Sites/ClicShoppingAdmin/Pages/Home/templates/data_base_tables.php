@@ -30,7 +30,7 @@
     ]
   ];
 
-  $Qcharsets = $CLICSHOPPING_DataBaseTables->db->query('show character set');
+  $Qcharsets = $CLICSHOPPING_DataBaseTables->db->query('SHOW CHARACTER SET');
 
   while ($Qcharsets->fetch()) {
     $mysql_charsets[] = [
@@ -140,7 +140,7 @@
 
         $queries = [];
 
-        $Qcols = $CLICSHOPPING_DataBaseTables->db->query('show full columns from ' . $table);
+        $Qcols = $CLICSHOPPING_DataBaseTables->db->query('SHOW FULL COLUMNS FROM ' . $table);
 
         while ($Qcols->fetch()) {
           if ($Qcols->hasValue('Collation') && !is_null($Qcols->value('Collation'))) {
@@ -197,7 +197,7 @@
 
       $table_data = [];
 
-      $Qstatus = $CLICSHOPPING_DataBaseTables->db->query('show table status');
+      $Qstatus = $CLICSHOPPING_DataBaseTables->db->query('SHOW TABLE STATUS');
 
       while ($Qstatus->fetch()) {
         $table_data[] = [

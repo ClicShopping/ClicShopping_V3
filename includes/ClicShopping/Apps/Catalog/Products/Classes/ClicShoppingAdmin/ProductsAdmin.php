@@ -77,7 +77,8 @@
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
 
-        $sql_data_array = ['products_name' => HTML::sanitize($_POST['products_name'][$language_id]),
+        $sql_data_array = [
+          'products_name' => HTML::sanitize($_POST['products_name'][$language_id]),
           'products_description' => $_POST['products_description'][$language_id],
           'products_head_title_tag' => HTML::sanitize($_POST['products_head_title_tag'][$language_id]),
           'products_head_desc_tag' => HTML::sanitize($_POST['products_head_desc_tag'][$language_id]),
@@ -89,21 +90,22 @@
         ];
 
         if (is_numeric($id) && $action == 'Insert') {
-
-          $insert_sql_data = ['products_id' => (int)$id,
+          $insert_sql_data = [
+            'products_id' => (int)$id,
             'language_id' => (int)$language_id
           ];
 
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
           $this->db->save('products_description', $sql_data_array);
-
 //update products
         } else {
-          $this->db->save('products_description', $sql_data_array, ['products_id' => (int)$id,
-              'language_id' => (int)$language_id
-            ]
-          );
+          $update_sql_data = [
+            'products_id' => (int)$id,
+            'language_id' => (int)$language_id
+          ];
+
+          $this->db->save('products_description', $sql_data_array, $update_sql_data);
         } // end action
       } //end for
     }
@@ -382,7 +384,6 @@
      */
     public function getProductsName($product_id = '', int $language_id = 0): string
     {
-
       if ($language_id == 0) $language_id = $this->lang->getId();
       $Qproduct = Registry::get('Db')->get('products_description', 'products_name', ['products_id' => (int)$product_id,
           'language_id' => (int)$language_id]
@@ -400,7 +401,6 @@
      */
     public function getProductsDescription($product_id = '', int $language_id): string
     {
-
       if ($language_id == 0) $language_id = $this->lang->getId();
       $Qproduct = Registry::get('Db')->get('products_description', 'products_description', ['products_id' => (int)$product_id,
           'language_id' => (int)$language_id
@@ -836,7 +836,8 @@
 // ---------------------
 // insertion table
 // ----------------------
-        $sql_array = ['products_id' => (int)$dup_products_id,
+        $sql_array = [
+          'products_id' => (int)$dup_products_id,
           'categories_id' => (int)$clone_categories_id_to
         ];
 
@@ -898,7 +899,6 @@
               $products_quantity_unit_id_group = HTML::sanitize($_POST['products_quantity_unit_id_group' . $QcustomersGroup->valueInt('customers_group_id')]);
               $products_model_group = HTML::sanitize($_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')]);
               $products_quantity_fixed_group = HTML::sanitize($_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')]);
-
             } else {
               $price_group_view = 1;
               $products_group_view = 1;
@@ -950,7 +950,8 @@
             }
 // Prix + Afficher Prix public + Afficher Produit + Autoriser Commande
           } elseif ($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] != '') {
-            $sql_array = ['products_id' => (int)$clone_products_id,
+            $sql_array = [
+              'products_id' => (int)$clone_products_id,
               'products_price' => (float)$_POST['products_price'],
               'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
               'customers_group_price' => (float)$_POST['price' . $QcustomersGroup->valueInt('customers_group_id')],
@@ -1143,7 +1144,8 @@
         $products_status = 0;
       }
 
-      $sql_data_array = ['products_quantity' => (int)HTML::sanitize($_POST['products_quantity']),
+      $sql_data_array = [
+        'products_quantity' => (int)HTML::sanitize($_POST['products_quantity']),
         'products_ean' => HTML::sanitize($products_ean),
         'products_model' => HTML::sanitize($products_model),
         'products_sku' => HTML::sanitize($products_sku),

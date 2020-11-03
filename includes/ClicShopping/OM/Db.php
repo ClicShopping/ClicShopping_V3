@@ -101,7 +101,7 @@
      * @param string $statement
      * @return int
      */
-    public function exec($statement)
+    public function exec($statement) :int
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -158,7 +158,7 @@
      * @param array|null $options
      * @return bool|\PDOStatement
      */
-    public function get($table, $fields, array $where = null, $order = null, $limit = null, $cache = null, array $options = null)
+    public function get($table, $fields, array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
       if (!is_array($table)) {
         $table = [$table];
@@ -289,7 +289,7 @@
      * @param array|null $options
      * @return bool|int
      */
-    public function save($table, array $data, array $where_condition = null, array $options = null)
+    public function save(string $table, array $data, array $where_condition = null, ?array $options = null)
     {
       if (empty($data)) {
         return false;
@@ -387,7 +387,7 @@
      * @param array|null $options
      * @return int
      */
-    public function delete($table, array $where_condition = [], array $options = null)
+    public function delete(string $table, array $where_condition = [], ?array $options = null)
     {
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
         if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {
@@ -835,7 +835,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qresult = $CLICSHOPPING_Db->query('show table status from ' . CLICSHOPPING::getConfig('db_database'));
+      $Qresult = $CLICSHOPPING_Db->query('SHOW table status FROM ' . CLICSHOPPING::getConfig('db_database'));
 
       $size = 0;
 

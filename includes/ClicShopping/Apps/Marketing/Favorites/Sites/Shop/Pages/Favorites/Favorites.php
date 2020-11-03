@@ -21,7 +21,6 @@
 
     protected function init()
     {
-
       if (!Registry::exists('Favorites')) {
         Registry::set('Favorites', new FavoritesApp());
       }
