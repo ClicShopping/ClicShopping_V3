@@ -101,7 +101,7 @@
      * @param string $statement
      * @return int
      */
-    public function exec($statement) :int
+    public function exec(string $statement) :int
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -156,9 +156,9 @@
      * @param null $limit
      * @param null $cache
      * @param array|null $options
-     * @return bool|\PDOStatement
+     * @return bool|mixed|\PDOStatement
      */
-    public function get($table, $fields, array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
+    public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
       if (!is_array($table)) {
         $table = [$table];
