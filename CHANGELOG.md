@@ -1,7 +1,7 @@
 Version beta 3.22 (on the way)
 
 upgrade bootstrap 4.5.2
-php8 compatibilities and 7.4.3
+fix and more strict compatibilities and php > 7.4.3
 update composer libraries
 new ckeditor version
 new elfinder version
