@@ -134,7 +134,7 @@
      * @return bool
      * @throws \ReflectionException
      */
-    final private function setInfo()
+    private function setInfo()
     {
       $r = new \ReflectionClass($this);
 

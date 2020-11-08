@@ -11,8 +11,6 @@
 
   namespace ClicShopping\OM;
 
-  use ClicShopping\OM\Cache;
-
   class Db extends \PDO
   {
     protected bool $connected = false;
@@ -128,7 +126,7 @@
      * @param string $statement
      * @return bool|mixed|\PDOStatement
      */
-    public function query($statement)
+    public function query($statement, ...$params)
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -158,7 +156,7 @@
      * @param array|null $options
      * @return bool|\PDOStatement
      */
-    public function get($table, $fields, array $where = null, $order = null, $limit = null, $cache = null, array $options = null)
+    public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
       if (!is_array($table)) {
         $table = [$table];
@@ -289,7 +287,7 @@
      * @param array|null $options
      * @return bool|int
      */
-    public function save($table, array $data, array $where_condition = null, array $options = null)
+    public function save($table, ?array $data, ?array $where_condition = null, ?array $options = null)
     {
       if (empty($data)) {
         return false;
@@ -305,7 +303,6 @@
         $statement = 'update ' . $table . ' set ';
 
         foreach ($data as $c => $v) {
-
           if (is_null($v)) {
             $v = 'null';
           }
@@ -387,7 +384,7 @@
      * @param array|null $options
      * @return int
      */
-    public function delete($table, array $where_condition = [], array $options = null)
+    public function delete($table, array $where_condition = [], ?array $options = null)
     {
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
         if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {

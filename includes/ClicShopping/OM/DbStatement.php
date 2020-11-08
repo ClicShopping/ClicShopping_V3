@@ -31,7 +31,7 @@
     protected bool $cache_read = false;
     protected bool $cache_empty_results = false;
     protected $query_call;
-    protected $page_set_total_rows;
+    protected ?int $page_set_total_rows;
     protected $result;
 
     /**
@@ -184,7 +184,7 @@
      * @param array $ctor_args
      * @return array
      */
-    public function fetchAll($fetch_style = \PDO::FETCH_ASSOC, $fetch_argument = null, $ctor_args = [])
+    public function fetchAll($fetch_style = \PDO::FETCH_BOTH, $fetch_argument = null, $ctor_args = [])
     {
       if ($this->cache_read === true) {
         $this->result = $this->cache_data;
@@ -258,7 +258,7 @@
      * @param string $type
      * @return float|int|string
      */
-    protected function valueMixed($column, $type = 'string')
+    protected function valueMixed($column, string $type = 'string')
     {
       if (!isset($this->result)) {
         $this->fetch();

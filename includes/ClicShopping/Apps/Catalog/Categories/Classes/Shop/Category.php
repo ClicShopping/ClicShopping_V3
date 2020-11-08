@@ -355,7 +355,7 @@
        * @return array
        */
 
-    public function getCategories(?array $categories_array = null, ?int $parent_id = 0, string $indent = '') :array
+    public function getCategories(?array $categories_array = null, ?int $parent_id = 0, string $indent = '') :?array
     {
       $Qcategories = $this->db->prepare('select c.categories_id,
                                                 cd.categories_name
