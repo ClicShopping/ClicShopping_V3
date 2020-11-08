@@ -2641,9 +2641,9 @@
     * @return string $save_money, the difference between real price and  specials
     * @access private
     */
-    private function setProductsSaveMoneyCustomer($id)
+    private function setProductsSaveMoneyCustomer(int $id) :?float
     {
-      $savemoney = '';
+      $savemoney = 0;
 
       if ($this->setSpecialPriceGroup($id) != 0 && $this->setPrice($id) != 0) {
         $savemoney = (round((($this->setPrice($id) - $this->setSpecialPriceGroup($id))), 4));
@@ -2657,7 +2657,7 @@
     * @param string
     * @return string $save_money, the difference between real price and  specials
     */
-    public function getProductsSaveMoneyCustomer($id)
+    public function getProductsSaveMoneyCustomer(int $id)
     {
       return $this->setProductsSaveMoneyCustomer($id);
     }

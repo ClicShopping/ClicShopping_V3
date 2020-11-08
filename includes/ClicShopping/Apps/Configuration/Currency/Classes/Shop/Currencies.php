@@ -74,7 +74,7 @@
      * @param float|null $currency_value
      * @return string|null
      */
-    public function format(float $number, bool $calculate_currency_value = true, string $currency_type = '', $currency_value = null) :?string
+    public function format(?float $number, bool $calculate_currency_value = true, string $currency_type = '', $currency_value = null) :?string
     {
       if (empty($currency_type) && CLICSHOPPING::getSite() === 'Shop') {
         $currency_type = $_SESSION['currency'];
@@ -105,7 +105,7 @@
      * @param int $quantity
      * @return float
      */
-    public function calculatePrice(?float $products_price, $products_tax, int $quantity = 1) :float
+    public function calculatePrice(?float $products_price, $products_tax, int $quantity = 1)
     {
       return round(Tax::addTax($products_price, $products_tax), $this->currencies[$_SESSION['currency']]['decimal_places']) * $quantity;
     }
@@ -167,7 +167,7 @@
      * @param int $quantity
      * @return string
      */
-    public function displayPrice(?float $products_price, $products_tax, int $quantity = 1)
+    public function displayPrice(?float $products_price, ?float $products_tax, int $quantity = 1)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');

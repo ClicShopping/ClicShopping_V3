@@ -118,7 +118,7 @@
      * @param int $language_id
      * @return mixed
      */
-    public function getProductsAttributesInfo($products_id, $option_id, $options_values_id = null, int $language_id)
+    public function getProductsAttributesInfo($products_id, $option_id, ?int $options_values_id = null, ?int $language_id)
     {
       if (!is_null($options_values_id)) {
         if ($this->customer->getCustomersGroupID() != 0) {
