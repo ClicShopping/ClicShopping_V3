@@ -80,7 +80,7 @@ More information in the Wiki
 
 #Donation
  - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.<br >
- [![Donate Paypal(nao-pon)](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/LoicRichardCanada?locale.x=fr_CA)
+ - [![On clicShopping Page :)](https://www.clicshopping.org/forum/clients/donations/); 
  [![Donate Bitcoin(nao-pon)](https://img.shields.io/badge/Donate-Bitcoin-orange.svg)](https://www.clicshopping.org/donation/index.html)
  - Donation can help to continue the work and to finance the infrastructure.
  - More information are available on the community website.
