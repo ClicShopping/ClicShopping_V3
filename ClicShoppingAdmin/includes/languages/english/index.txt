@@ -1,4 +1,3 @@
-
 heading_title = Home
 heading_short_orders = Orders shortcut
 heading_short_products = Products shortcut
@@ -7,7 +6,7 @@ heading_short_customers = Customer shortcut
 heading_short_support = Support shortcut
 
 heading_title_orders = Orders
-heading_title_divers = Miscelleaneous
+heading_title_divers = Miscellaneous
 
 box_title_orders = Orders
 box_title_statistics = Statistics
@@ -17,7 +16,7 @@ box_entry_contact_demand_no_archive = Contact requests to analyse
 box_entry_products_no_purchase = Products not sold / products sold
 
 text_number_support = Order support Request
-text_view = More informations
+text_view = More information
 
 catalog_contents = Content
 reports_products = Products
@@ -25,20 +24,20 @@ reports_orders = Orders
 title_twitter = Tweet ClicShopping
 
 title_db_index = Size of Data Base
-title_web_site_size = Taille du site internet
+title_web_site_size = Website Size
 title_system_memory = System Memory (get usage)
 title_core_memory = Bootstrap Core Memory Usage
-title_customer_information = Informations sur le compte client
-title_index_order = Order situation
+title_customer_information = Customer Information
+title_index_order = Order Status
 
 tab_twitter = ClicShopping Tweets
 tab_statisitics = Statistics
 tab_customer = Account & Server
 
 pack = Pack :
-contract_date = Birthday date :
+contract_date = Start date :
 email_size = Mailbox size :
-email_size_info = 20 Mo
+email_size_info = 20 Mb
 contract_renewal = Contract Renewal :
 contract_renewal_info = Automatic renewal anniversary
 notice_termination = Notice of termination :
@@ -47,12 +46,12 @@ space = Total storage space :
 backup_site = backup Site :
 backup_site_info = Daily
 ask_informations = Request Information :
-bandwidth = Band width by month
+bandwidth = Bandwidth by month
 
 onglet_stat_generales = General statistics
 onglet_stat_ca = Turn Over
 onglet_mon_compte = My account
-onglet_commerce = Infos RSS
+onglet_commerce = Info RSS
 onglet_options = Options
 
 title_stat_ca_evolution = Turnover cumulative per month (delivery status)
@@ -68,17 +67,17 @@ year_n3 = Year n-3
 
 icon_edit_order = Edit order
 icon_edit_customer = Edit customer
-icon_view_customers_all_orders = See all customer orders
-icon_view_order = See the customer order
+icon_view_customers_all_orders = View all customer orders
+icon_view_order = View customer order
 
 
 text_error_twitter = Error, Please insert a message.<br />
-text_subscription_twitter = Take a subscription on <a href="https://www.twitter.com" target="_blank" rel="noreferrer">Twitter</a> to benefit the power of social web for your marketing development.<br />After configure ClicShopping (Configuration / my administration / Web social configuration) to use Twitter.
+text_subscription_twitter = Take a subscription on <a href="https://www.twitter.com" target="_blank" rel="noreferrer">Twitter</a> to benefit from the power of social web for your marketing development.<br />After configuring ClicShopping (Configuration / my administration / Web social configuration) to use Twitter.
 
 linkedin_certificate_clicshopping = Get Your ClicShopping Certification !
 
-text_install_dashboard = Click here to install the dashboard modules (first learning to know the tools) and the meta tag (menu Configuration/SEO)
+text_install_dashboard = Click here to install the dashboard modules (after first learning to know the tools) and the meta tag (menu Configuration/SEO)
 text_install_upgrade =  Click here to install a new extension
-text_good_luck = We wish you a good business with ClicShopping. The team
+text_good_luck = We wish you good business with ClicShopping. The team.
 text_follow_us = Follow us on :
 text_donate = Click here to help us to continue by a donation !
