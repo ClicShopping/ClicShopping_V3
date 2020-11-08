@@ -8,7 +8,7 @@ text_firstname = Administrator First name:
 text_create_first_administrator = No administrators exist in the database table. Please fill in the following information to create the first administrator. (A manual login is still required after this step)
 heading_title_sent_password = Recovery lost password
 text_sent_password = If you've forgotten your password, enter your e-mail address below and we will send you an e-mail message containing your new password.
-text_no_email_address_found = Error: The E-Mail Address  or pseudo was not found in our records, please try again.
+text_no_email_address_found = Error: The E-Mail Address or user was not found in our records, please try again.
 
 email_password_reminder_subject =  {{store_name}} - Administrator Control Panel) - New Password
 email_password_reminder_body = A new password was requested from {{remote_address}} <br /><br /> Your new password to {{store_name}} (Administrator Control Panel) is :<strong>  {{new_password}} </strong>.<br /><br />
