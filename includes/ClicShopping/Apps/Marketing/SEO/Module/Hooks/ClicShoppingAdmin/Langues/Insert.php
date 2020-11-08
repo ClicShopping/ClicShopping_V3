@@ -12,14 +12,14 @@
   namespace ClicShopping\Apps\Marketing\SEO\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Marketing\SEO\SEO as SEOApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $insert_language_id;
+    protected $lang;
 
     public function __construct()
     {
@@ -28,28 +28,26 @@
       }
 
       $this->app = Registry::get('SEO');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
-        $QsubmitDescription = $this->app->db->get('submit_description', '*', ['language_id' => $this->lang->getId()]);
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
+      $QsubmitDescription = $this->app->db->get('submit_description', '*', ['language_id' => $this->lang->getId()]);
 
-        while ($QsubmitDescription->fetch()) {
-          $cols = $QsubmitDescription->toArray();
+      while ($QsubmitDescription->fetch()) {
+        $cols = $QsubmitDescription->toArray();
 
-          $cols['language_id'] = $this->insert_language_id;
+        $cols['language_id'] = (int)$insert_language_id;
 
-          $this->app->db->save('submit_description', $cols);
-        }
+        $this->app->db->save('submit_description', $cols);
       }
     }
 
     public function execute()
     {
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

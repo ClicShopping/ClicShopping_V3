@@ -150,13 +150,10 @@
       );
 
       $insert_id = $this->app->db->lastInsertId();
-      $_POST['insert_id'] = $insert_id;
 
 // create additional default configuration
       if (isset($_POST['default'])) {
-        $this->app->db->save('configuration', ['configuration_value' => $code],
-          ['configuration_key' => 'DEFAULT_LANGUAGE']
-        );
+        $this->app->db->save('configuration', ['configuration_value' => $code], ['configuration_key' => 'DEFAULT_LANGUAGE']);
       }
 
 // create additional products_options records
@@ -172,6 +169,7 @@
 
 // create additional products_options_values records
       $Qvalues = $this->app->db->get('products_options_values', '*', ['language_id' => (int)$this->lang->getId()]);
+
       while ($Qvalues->fetch()) {
         $cols = $Qvalues->toArray();
 
@@ -185,7 +183,6 @@
       Cache::clear('languages-system-shop');
       Cache::clear('languages-system-admin');
 
-      $this->app->redirect('languages.php', 'page=' . $page . '&lID=' . $insert_id);
-
+      $this->app->redirect('Langues&page' . $page . '&lID=' . $_GET['lid']);
     }
   }

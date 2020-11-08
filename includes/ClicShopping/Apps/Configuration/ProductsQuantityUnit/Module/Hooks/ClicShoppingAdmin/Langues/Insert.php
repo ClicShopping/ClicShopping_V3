@@ -12,14 +12,14 @@
   namespace ClicShopping\Apps\Configuration\ProductsQuantityUnit\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Configuration\ProductsQuantityUnit\ProductsQuantityUnit as ProductsQuantityUnitApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $insert_language_id;
+    protected $lang;
 
     public function __construct()
     {
@@ -28,29 +28,27 @@
       }
 
       $this->app = Registry::get('ProductsQuantityUnit');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-        $QproductsQuantityUnit = $this->app->db->get('products_quantity_unit', '*', ['language_id' => $this->lang->getId()]);
+      $QproductsQuantityUnit = $this->app->db->get('products_quantity_unit', '*', ['language_id' => $this->lang->getId()]);
 
-        while ($QproductsQuantityUnit->fetch()) {
-          $cols = $QproductsQuantityUnit->toArray();
+      while ($QproductsQuantityUnit->fetch()) {
+        $cols = $QproductsQuantityUnit->toArray();
 
-          $cols['language_id'] = $this->insert_language_id;
+        $cols['language_id'] = (int)$insert_language_id;
 
-          $this->app->db->save('products_quantity_unit', $cols);
-        }
+        $this->app->db->save('products_quantity_unit', $cols);
       }
     }
 
     public function execute()
     {
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

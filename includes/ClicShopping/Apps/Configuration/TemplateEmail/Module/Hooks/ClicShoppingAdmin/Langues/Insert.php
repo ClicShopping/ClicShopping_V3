@@ -12,14 +12,14 @@
   namespace ClicShopping\Apps\Configuration\TemplateEmail\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Configuration\TemplateEmail\TemplateEmail as TemplateEmail;
+  use ClicShopping\Apps\Configuration\TemplateEmail\TemplateEmail;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $insert_language_id;
+    protected $lang;
 
     public function __construct()
     {
@@ -28,13 +28,12 @@
       }
 
       $this->app = Registry::get('TemplateEmail');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
         $QtemplateEmailDescription = $this->app->db->prepare('select t.template_email_id as orig_template_email_id,
                                                                      te.*
                                                               from :table_template_email t left join :table_template_email_description te on t.template_email_id = te.template_email_id
@@ -44,22 +43,21 @@
         $QtemplateEmailDescription->bindInt(':language_id', (int)$this->lang->getId());
         $QtemplateEmailDescription->execute();
 
-        while ($QtemplateEmailDescription->fetch()) {
-          $cols = $QtemplateEmailDescription->toArray();
+      while ($QtemplateEmailDescription->fetch()) {
+        $cols = $QtemplateEmailDescription->toArray();
 
-          $cols['template_email_id'] = $cols['orig_template_email_id'];
-          $cols['language_id'] = $this->insert_language_id;
+        $cols['template_email_id'] = $cols['orig_template_email_id'];
+        $cols['language_id'] = (int)$insert_language_id;
 
-          unset($cols['orig_template_email_id']);
+        unset($cols['orig_template_email_id']);
 
-          $this->app->db->save('template_email_description', $cols);
-        }
+        $this->app->db->save('template_email_description', $cols);
       }
     }
 
     public function execute()
     {
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

@@ -12,12 +12,10 @@
   namespace ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Cache;
 
   class Status
   {
-
     protected $languages_id;
     protected $status;
 
@@ -35,6 +33,7 @@
         return $CLICSHOPPING_Db->save('languages', ['status' => 1],
           ['languages_id' => (int)$languages_id]
         );
+
       } elseif ($status == 0) {
         $Qcheck = $CLICSHOPPING_Db->prepare('select code
                                              from :table_languages

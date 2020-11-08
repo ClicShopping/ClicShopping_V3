@@ -28,13 +28,14 @@
       }
 
       $this->app = Registry::get('Suppliers');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
+      if (isset($this->insert_language_id) && isset($_GET['Langues']) && isset($_GET['Insert'])) {
+        $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
+
         $Qsuppliers = $this->app->db->prepare('select m.suppliers_id as orig_suppliers_id,
                                                       mi.*
                                               from :table_suppliers m left join :table_suppliers_info mi on m.suppliers_id = mi.suppliers_id

@@ -12,15 +12,14 @@
   namespace ClicShopping\Apps\Catalog\Categories\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
-  use ClicShopping\Apps\Catalog\Categories\Categories as CategoriesApp;
+  use ClicShopping\ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdminApps\Catalog\Categories\Categories as CategoriesApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
     protected $lang;
-    protected $insert_language_id;
 
     public function __construct()
     {
@@ -30,32 +29,30 @@
 
       $this->app = Registry::get('Categories');
       $this->lang = Registry::get('Language');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
     }
 
     private function insert()
     {
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-      if (isset($this->insert_language_id)) {
-        $Qcategories = $this->app->db->prepare('select c.categories_id as orig_category_id,
-                                                       cd.*
-                                                from :table_categories c left join :table_categories_description cd on c.categories_id = cd.categories_id
-                                                where cd.language_id = :language_id
-                                                ');
+      $Qcategories = $this->app->db->prepare('select c.categories_id as orig_category_id,
+                                                     cd.*
+                                              from :table_categories c left join :table_categories_description cd on c.categories_id = cd.categories_id
+                                              where cd.language_id = :language_id
+                                              ');
 
-        $Qcategories->bindInt(':language_id', (int)$this->lang->getId());
-        $Qcategories->execute();
+      $Qcategories->bindInt(':language_id', (int)$this->lang->getId());
+      $Qcategories->execute();
 
-        while ($Qcategories->fetch()) {
-          $cols = $Qcategories->toArray();
+      while ($Qcategories->fetch()) {
+        $cols = $Qcategories->toArray();
 
-          $cols['categories_id'] = $cols['orig_category_id'];
-          $cols['language_id'] = $this->insert_language_id;
+        $cols['categories_id'] = $cols['orig_category_id'];
+        $cols['language_id'] = (int)$insert_language_id;
 
-          unset($cols['orig_category_id']);
+        unset($cols['orig_category_id']);
 
-          $this->app->db->save('categories_description', $cols);
-        }
+        $this->app->db->save('categories_description', $cols);
       }
     }
 
@@ -66,7 +63,7 @@
         return false;
       }
 
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

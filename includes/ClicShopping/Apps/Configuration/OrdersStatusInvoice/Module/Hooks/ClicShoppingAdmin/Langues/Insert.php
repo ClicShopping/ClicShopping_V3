@@ -12,14 +12,14 @@
   namespace ClicShopping\Apps\Configuration\OrdersStatusInvoice\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Configuration\OrdersStatusInvoice\OrdersStatusInvoice as OrdersStatusInvoiceApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $insert_language_id;
+    protected $lang;
 
     public function __construct()
     {
@@ -28,28 +28,27 @@
       }
 
       $this->app = Registry::get('OrdersStatusInvoice');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
-        $QordersStatusInvoice = $this->app->db->get('orders_status_invoice', '*', ['language_id' => $this->lang->getId()]);
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-        while ($QordersStatusInvoice->fetch()) {
-          $cols = $QordersStatusInvoice->toArray();
+      $QordersStatusInvoice = $this->app->db->get('orders_status_invoice', '*', ['language_id' => $this->lang->getId()]);
 
-          $cols['language_id'] = $this->insert_language_id;
+      while ($QordersStatusInvoice->fetch()) {
+        $cols = $QordersStatusInvoice->toArray();
 
-          $this->app->db->save('orders_status_invoice', $cols);
-        }
+        $cols['language_id'] = (int)$insert_language_id;
+
+        $this->app->db->save('orders_status_invoice', $cols);
       }
     }
 
     public function execute()
     {
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

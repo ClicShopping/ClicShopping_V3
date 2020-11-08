@@ -12,14 +12,14 @@
   namespace ClicShopping\Apps\Tools\AdministratorMenu\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Tools\AdministratorMenu\AdministratorMenu as AdministratorMenuApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-    protected $insert_language_id;
+    protected $lang;
 
     public function __construct()
     {
@@ -28,39 +28,37 @@
       }
 
       $this->app = Registry::get('AdministratorMenu');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
-// administrator_description records
-        $QadministratorMenu = $this->app->db->prepare('select a.id as orig_id,
-                                                              amd.*
-                                                       from :table_administrator_menu a left join :table_administrator_menu_description amd on a.id = amd.id
-                                                       where amd.language_id = :language_id
-                                                      ');
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-        $QadministratorMenu->bindInt(':language_id', (int)$this->lang->getId());
-        $QadministratorMenu->execute();
+      $QadministratorMenu = $this->app->db->prepare('select a.id as orig_id,
+                                                            amd.*
+                                                     from :table_administrator_menu a left join :table_administrator_menu_description amd on a.id = amd.id
+                                                     where amd.language_id = :language_id
+                                                    ');
 
-        while ($QadministratorMenu->fetch()) {
-          $cols = $QadministratorMenu->toArray();
+      $QadministratorMenu->bindInt(':language_id', (int)$this->lang->getId());
+      $QadministratorMenu->execute();
 
-          $cols['id'] = $cols['orig_id'];
-          $cols['language_id'] = $this->insert_language_id;
+      while ($QadministratorMenu->fetch()) {
+        $cols = $QadministratorMenu->toArray();
 
-          unset($cols['orig_id']);
+        $cols['id'] = $cols['orig_id'];
+        $cols['language_id'] = (int)$insert_language_id;
 
-          $this->app->db->save('administrator_menu_description', $cols);
-        }
+        unset($cols['orig_id']);
+
+        $this->app->db->save('administrator_menu_description', $cols);
       }
     }
 
     public function execute()
     {
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

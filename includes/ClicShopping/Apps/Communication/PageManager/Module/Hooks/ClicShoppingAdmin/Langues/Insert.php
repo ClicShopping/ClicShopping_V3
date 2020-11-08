@@ -12,9 +12,9 @@
   namespace ClicShopping\Apps\Communication\PageManager\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Communication\PageManager\PageManager as PageManagerApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -28,33 +28,31 @@
       }
 
       $this->app = Registry::get('PageManager');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
-        $QpageManagerDescription = $this->app->db->prepare('select pm.pages_id as orig_pages_id,
-                                                                   pmd.*
-                                                            from :table_pages_manager pm left join :table_pages_manager_description pmd on pm.pages_id = pmd.pages_id
-                                                            where pmd.language_id = :language_id
-                                                          ');
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-        $QpageManagerDescription->bindInt(':language_id', (int)$this->lang->getId());
-        $QpageManagerDescription->execute();
+      $QpageManagerDescription = $this->app->db->prepare('select pm.pages_id as orig_pages_id,
+                                                                 pmd.*
+                                                          from :table_pages_manager pm left join :table_pages_manager_description pmd on pm.pages_id = pmd.pages_id
+                                                          where pmd.language_id = :language_id
+                                                        ');
 
-        while ($QpageManagerDescription->fetch()) {
-          $cols = $QpageManagerDescription->toArray();
+      $QpageManagerDescription->bindInt(':language_id', (int)$this->lang->getId());
+      $QpageManagerDescription->execute();
 
-          $cols['pages_id'] = $cols['orig_pages_id'];
-          $cols['language_id'] = $this->insert_language_id;
+      while ($QpageManagerDescription->fetch()) {
+        $cols = $QpageManagerDescription->toArray();
 
-          unset($cols['orig_pages_id']);
+        $cols['pages_id'] = $cols['orig_pages_id'];
+        $cols['language_id'] = (int)$insert_language_id;
 
-          $this->app->db->save('pages_manager_description', $cols);
-        }
+        unset($cols['orig_pages_id']);
 
+        $this->app->db->save('pages_manager_description', $cols);
       }
     }
 
@@ -64,7 +62,7 @@
         return false;
       }
 
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }

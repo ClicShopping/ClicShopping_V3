@@ -12,9 +12,9 @@
   namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Langues;
 
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
+  use ClicShopping\Apps\Configuration\Langues\Classes\ClicShoppingAdmin\LanguageAdmin;
 
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -28,34 +28,33 @@
       }
 
       $this->app = Registry::get('Manufacturers');
-      $this->insert_language_id = HTML::sanitize($_POST['insert_id']);
       $this->lang = Registry::get('Language');
     }
 
     private function insert()
     {
-      if (isset($this->insert_language_id)) {
-        $Qmanufacturers = $this->app->db->prepare('select m.manufacturers_id as orig_manufacturer_id,
-                                                          mi.*
-                                                    from :table_manufacturers m left join :table_manufacturers_info mi on m.manufacturers_id = mi.manufacturers_id
-                                                    where mi.languages_id = :languages_id
-                                                  ');
+      $insert_language_id = LanguageAdmin::getLatestLanguageID();
 
-        $Qmanufacturers->bindInt(':languages_id', $this->lang->getId());
-        $Qmanufacturers->execute();
+      $Qmanufacturers = $this->app->db->prepare('select m.manufacturers_id as orig_manufacturer_id,
+                                                        mi.*
+                                                  from :table_manufacturers m left join :table_manufacturers_info mi on m.manufacturers_id = mi.manufacturers_id
+                                                  where mi.languages_id = :languages_id
+                                                ');
 
-        while ($Qmanufacturers->fetch()) {
-          $cols = $Qmanufacturers->toArray();
+      $Qmanufacturers->bindInt(':languages_id', $this->lang->getId());
+      $Qmanufacturers->execute();
 
-          $cols['manufacturers_id'] = $cols['orig_manufacturer_id'];
-          $cols['languages_id'] = $this->insert_language_id;
+      while ($Qmanufacturers->fetch()) {
+        $cols = $Qmanufacturers->toArray();
 
-          unset($cols['orig_manufacturer_id']);
-          unset($cols['url_clicks']);
-          unset($cols['date_last_click']);
+        $cols['manufacturers_id'] = $cols['orig_manufacturer_id'];
+        $cols['languages_id'] = (int)$insert_language_id;
 
-          $this->app->db->save('manufacturers_info', $cols);
-        }
+        unset($cols['orig_manufacturer_id']);
+        unset($cols['url_clicks']);
+        unset($cols['date_last_click']);
+
+        $this->app->db->save('manufacturers_info', $cols);
       }
     }
 
@@ -65,7 +64,7 @@
         return false;
       }
 
-      if (isset($_GET['Insert'])) {
+      if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }
     }
