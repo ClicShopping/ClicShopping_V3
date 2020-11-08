@@ -155,7 +155,7 @@
      * @param int $cursor_offset
      * @return mixed
      */
-    public function fetch(
+    public function fetch (
       $fetch_style = \PDO::FETCH_ASSOC,
       $cursor_orientation = \PDO::FETCH_ORI_NEXT,
       $cursor_offset = 0

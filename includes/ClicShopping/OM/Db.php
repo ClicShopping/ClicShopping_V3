@@ -835,7 +835,7 @@
     {
       $CLICSHOPPING_Db = Registry::get('Db');
 
-      $Qresult = $CLICSHOPPING_Db->query('show table status from ' . CLICSHOPPING::getConfig('db_database'));
+      $Qresult = $CLICSHOPPING_Db->query('SHOW table status FROM ' . CLICSHOPPING::getConfig('db_database'));
 
       $size = 0;
 
