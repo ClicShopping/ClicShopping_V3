@@ -58,6 +58,10 @@
 
     public function execute()
     {
+      if (!defined('CLICSHOPPING_APP_ADMINISTRATOR_MENU_AM_STATUS') || CLICSHOPPING_APP_ADMINISTRATOR_MENU_AM_STATUS == 'False') {
+       return false;
+      }
+
       if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }

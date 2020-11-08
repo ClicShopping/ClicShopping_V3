@@ -47,6 +47,10 @@
 
     public function execute()
     {
+     if (!defined('CLICSHOPPING_APP_SEO_SE_STATUS') || CLICSHOPPING_APP_SEO_SE_STATUS == 'False') {
+       return false;
+     }
+
       if (isset($_GET['Langues']) && isset($_GET['Insert'])) {
         $this->insert();
       }

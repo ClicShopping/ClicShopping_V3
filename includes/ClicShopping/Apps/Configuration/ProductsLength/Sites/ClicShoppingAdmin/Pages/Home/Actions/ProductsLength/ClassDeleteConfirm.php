@@ -27,16 +27,17 @@
 
     public function execute()
     {
-
       $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
       $products_length_class_from_id = HTML::sanitize($_GET['wID']);
       $products_length_class_to_id = HTML::sanitize($_GET['tID']);
 
-      $this->app->db->delete('products_length_classes_rules', ['products_length_class_from_id' => (int)$products_length_class_from_id,
-          'products_length_class_from_id' => (int)$products_length_class_to_id,
-        ]
-      );
+      $sql_array =  [
+        'products_length_class_from_id' => (int)$products_length_class_from_id,
+        'products_length_class_from_id' => (int)$products_length_class_to_id,
+      ];
+
+      $this->app->db->delete('products_length_classes_rules', $sql_array);
 
       $this->app->db->delete('products_length_classes', ['products_length_class_id' => (int)$products_length_class_from_id]);
 
