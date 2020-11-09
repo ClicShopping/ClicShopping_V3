@@ -34,7 +34,7 @@
 
       $sql_array =  [
         'products_length_class_from_id' => (int)$products_length_class_from_id,
-        'products_length_class_from_id' => (int)$products_length_class_to_id,
+        'products_length_class_from_id' => (int)$products_length_class_to_id
       ];
 
       $this->app->db->delete('products_length_classes_rules', $sql_array);
