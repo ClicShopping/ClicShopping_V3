@@ -14,7 +14,6 @@
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\CLICSHOPPING;
-  use ClicShopping\OM\HTTP;
 
   class HeaderTags
   {
@@ -56,7 +55,6 @@
       }
     }
 
-
     /*
      * Function to return the canonical URL    
      * @version 1.0
@@ -66,8 +64,8 @@
      */
     public static function getCanonicalUrl(): string
     {
+      $domain = CLICSHOPPING::getConfig('http_server', 'Shop');
 
-      $domain = HTTP::typeUrlDomain(); // gets the base URL minus the trailing slash
       $string = $_SERVER['REQUEST_URI'];   // gets the url
       $search = '\&clicshopid.*|\?clicshopid.*'; // searches for the session id in the url
       $replace = '';   // replaces with nothing i.e. deletes
