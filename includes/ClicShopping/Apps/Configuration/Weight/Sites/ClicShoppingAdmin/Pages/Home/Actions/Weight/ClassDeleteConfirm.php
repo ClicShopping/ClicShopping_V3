@@ -31,11 +31,7 @@
       $weight_class_from_id = HTML::sanitize($_GET['wID']);
       $weight_class_to_id = HTML::sanitize($_GET['tID']);
 
-      $this->app->db->delete('weight_classes_rules', ['weight_class_from_id' => (int)$weight_class_from_id,
-          'weight_class_from_id' => (int)$weight_class_to_id,
-        ]
-      );
-
+      $this->app->db->delete('weight_classes_rules', ['weight_class_from_id' => (int)$weight_class_from_id,  'weight_class_from_id' => (int)$weight_class_to_id]);
       $this->app->db->delete('weight_classes', ['weight_class_id' => (int)$weight_class_from_id]);
 
       Cache::clear('weight-classes');
