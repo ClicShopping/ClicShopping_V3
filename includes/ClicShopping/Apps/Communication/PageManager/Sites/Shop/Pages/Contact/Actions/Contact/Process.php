@@ -36,14 +36,32 @@
       $CLICSHOPPING_PageManager->loadDefinitions('Sites/Shop/Contact/contact');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-        $error = false;
-
         $CLICSHOPPING_Hooks->call('Contact', 'PreAction');
 
         $name = HTML::sanitize($_POST['name']);
         $email_address = HTML::sanitize($_POST['email']);
         $enquiry = HTML::sanitize($_POST['enquiry']);
         $email_subject = HTML::sanitize($_POST['email_subject']);
+
+        $error = false;
+
+        if (isset($_POST['name'])) {
+          $name = HTML::sanitize($_POST['name']);
+        } else {
+          $error = true;
+        }
+
+        if (isset($_POST['enquiry'])) {
+          $enquiry = HTML::sanitize($_POST['enquiry']);
+        } else {
+          $error = true;
+        }
+
+        if (isset($_POST['email_subject'])) {
+          $email_subject = HTML::sanitize($_POST['email_subject']);
+        } else {
+          $error = true;
+        }
 
         if (isset($_POST['order_id'])) {
           $order_id = HTML::sanitize($_POST['order_id']);
