@@ -39,10 +39,9 @@ text_display_number_of_link = Display <strong>{{listing_from}}</strong> to <stro
 
 icon_edit = Edit
 icon_delete = delete
-text_default = Default
+text_set_default = Default
 
 text_info_delete_info = Delete this status ?
-
 
 table_heading_orders_status = Orders Status
 table_heading_public_status = Orders Public Status :
@@ -60,6 +59,8 @@ text_info_heading_delete_orders_status = Delete Orders Status
 text_set_public_status = Show the order to the customer at this order status level
 text_set_downloads_status = Allow downloads of virtual products at this order status level
 text_set_support_orders_flag = Delete the invoice PDF display at the customer (To apply only the customer support status)
+text_set_authorize_to_delete_status = Authorize to delete the order
+
 table_heading_public_status_download = Download Statut :
 text_info_edit_public_status_view = Visible
 text_info_edit_public_status_noview = Invisible

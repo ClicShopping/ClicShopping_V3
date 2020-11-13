@@ -35,17 +35,19 @@
         $languages = $CLICSHOPPING_Language->getLanguages();
 
         for ($i = 0, $n = count($languages); $i < $n; $i++) {
-          $orders_status_name_array = $_POST['orders_status_name'];
+          $orders_status_name_array = HTML::sanitize($_POST['orders_status_name']);
           $language_id = $languages[$i]['id'];
 
           $sql_data_array = [
             'orders_status_name' => HTML::sanitize($orders_status_name_array[$language_id]),
             'public_flag' => (isset($_POST['public_flag']) && ($_POST['public_flag'] == '1') ? '1' : '0'),
             'downloads_flag' => (isset($_POST['downloads_flag']) && ($_POST['downloads_flag'] == '1') ? '1' : '0'),
-            'support_orders_flag' => (isset($_POST['support_orders_flag']) && ($_POST['support_orders_flag'] == '1') ? '1' : '0')
+            'support_orders_flag' => (isset($_POST['support_orders_flag']) && ($_POST['support_orders_flag'] == '1') ? '1' : '0'),
+            'authorize_to_delete_order' => (isset($_POST['authorize_to_delete_order']) && ($_POST['authorize_to_delete_order'] == '1') ? '1' : '0')
           ];
 
-          $this->app->db->save('orders_status', $sql_data_array, ['orders_status_id' => (int)$orders_status_id,
+          $this->app->db->save('orders_status', $sql_data_array, [
+              'orders_status_id' => (int)$orders_status_id,
               'language_id' => (int)$language_id
             ]
           );

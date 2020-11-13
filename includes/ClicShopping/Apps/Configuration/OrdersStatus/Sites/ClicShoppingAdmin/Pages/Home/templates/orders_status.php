@@ -12,18 +12,15 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
-  ;
-
   use ClicShopping\OM\ObjectInfo;
   use ClicShopping\OM\CLICSHOPPING;
 
   $CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-  if (!isset($_GET['page']) || !is_numeric($_GET['page'])) {
-    $_GET['page'] = 1;
-  }
+  $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>
 <!-- body //-->
 <div class="contentBody">
@@ -89,7 +86,7 @@
           echo '<tr>';
 
           if (DEFAULT_ORDERS_STATUS_ID == $Qstatus->value('orders_status_id')) {
-            echo '                <th scope="row"><strong>' . $Qstatus->value('orders_status_name') . ' (' . $CLICSHOPPING_OrdersStatus->getDef('text_default') . ')</strong></th>' . "\n";
+            echo '                <th scope="row"><strong>' . $Qstatus->value('orders_status_name') . ' (' . $CLICSHOPPING_OrdersStatus->getDef('text_set_default') . ')</strong></th>' . "\n";
           } else {
             echo '                <th scope="row">' . $Qstatus->value('orders_status_name') . '</th>' . "\n";
           }

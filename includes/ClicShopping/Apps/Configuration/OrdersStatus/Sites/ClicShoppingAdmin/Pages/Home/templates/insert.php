@@ -16,6 +16,7 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_OrdersStatus = Registry::get('OrdersStatus');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $orders_status_inputs_string = '';
   $languages = $CLICSHOPPING_Language->getLanguages();
@@ -82,7 +83,7 @@
       }
     ?>
     <div class="separator"></div>
-    <div class="col-md-12">
+    <div class="col-md-12" id="public_flag">
       <span class="col-md-3"></span>
       <ul class="list-group-slider list-group-flush">
         <li class="list-group-item-slider">
@@ -94,7 +95,7 @@
         <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_public_status'); ?></span>
       </ul>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" id="downloads_flag">
       <span class="col-md-3"></span>
       <ul class="list-group-slider list-group-flush">
         <li class="list-group-item-slider">
@@ -106,7 +107,7 @@
         <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_downloads_status'); ?></span>
       </ul>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" id="support_orders_flag">
       <span class="col-md-3"></span>
       <ul class="list-group-slider list-group-flush">
         <li class="list-group-item-slider">
@@ -115,10 +116,24 @@
             <span class="slider"></span>
           </label>
         </li>
-        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_support_orders_status'); ?></span>
+        <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_support_orders_flag'); ?></span>
       </ul>
     </div>
-    <div class="col-md-12">
+
+      <div class="col-md-12" id="authorize_to_delete_order">
+          <span class="col-md-3"></span>
+          <ul class="list-group-slider list-group-flush">
+              <li class="list-group-item-slider">
+                  <label class="switch">
+                    <?php echo HTML::checkboxField('authorize_to_delete_order', '0', null, 'class="success"'); ?>
+                      <span class="slider"></span>
+                  </label>
+              </li>
+              <span class="text-slider"><?php echo $CLICSHOPPING_OrdersStatus->getDef('text_set_authorize_to_delete_status'); ?></span>
+          </ul>
+      </div>
+
+    <div class="col-md-12" id="default">
       <span class="col-md-3"></span>
       <ul class="list-group-slider list-group-flush">
         <li class="list-group-item-slider">

@@ -13,7 +13,6 @@
   use ClicShopping\OM\DateTime;
   use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
-  use ClicShopping\OM\ObjectInfo;
 
   use ClicShopping\Apps\Orders\Orders\Classes\ClicShoppingAdmin\OrderAdmin;
   use ClicShopping\Apps\Customers\Groups\Classes\ClicShoppingAdmin\GroupsB2BAdmin;
@@ -32,7 +31,8 @@
   $orders_status_array = [];
 
   $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select orders_status_id,
-                                                             orders_status_name
+                                                             orders_status_name,
+                                                             authorize_to_delete_order
                                                       from :table_orders_status
                                                       where language_id = :language_id
                                                       ');
@@ -40,7 +40,8 @@
   $QordersStatus->execute();
 
   while ($QordersStatus->fetch() !== false) {
-    $orders_statuses[] = ['id' => $QordersStatus->valueInt('orders_status_id'),
+    $orders_statuses[] = [
+      'id' => $QordersStatus->valueInt('orders_status_id'),
       'text' => $QordersStatus->value('orders_status_name')
     ];
 
@@ -202,7 +203,6 @@
         $Qorders->bindValue(':class1', 'TO'); //total order
 
       } elseif (isset($_POST['customers_group_id'])) {
-
         $customers_group_id = (int)$_POST['customers_group_id'];
 
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
@@ -240,7 +240,6 @@
         $status = HTML::sanitize($_POST['status']);
 
         if ($status == 0) {
-
           $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                                   o.customers_id,
                                                                                   o.customers_name,
@@ -270,7 +269,6 @@
           $Qorders->bindValue(':class', 'ot_total');
           $Qorders->bindValue(':class1', 'TO');
         } else {
-
           $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                                     o.customers_id,
                                                                                     o.customers_name,
@@ -337,7 +335,6 @@
         $Qorders->bindValue(':class1', 'TO');
 
       } else {
-
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
                                                                                   o.customers_id,
                                                                                   o.customers_name,
@@ -375,9 +372,7 @@
       $listingTotalRow = $Qorders->getPageSetTotalRows();
 
       if ($listingTotalRow > 0) {
-
         while ($Qorders->fetch()) {
-
           $Qcustomers = $CLICSHOPPING_Orders->db->prepare('select customers_id,
                                                                   customers_group_id,
                                                                   customer_guest_account
@@ -391,6 +386,7 @@
           $Qhistory = $CLICSHOPPING_Orders->db->prepare('select osh.admin_user_name,
                                                                 osh.orders_id,
                                                                 o.orders_id,
+                                                                osh.orders_status_id,
                                                                 osh.orders_status_support_id
                                                          from :table_orders_status_history osh,
                                                               :table_orders o
@@ -550,6 +546,18 @@
                 echo HTML::link($CLICSHOPPING_Orders->link('Orders&Unpack&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Orders->getDef('icon_archive_to')));
               }
 
+              $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select authorize_to_delete_order
+                                                        from :table_orders_status
+                                                        where orders_status_id = :orders_status_id    
+                                                        ');
+              $QordersStatus->bindInt(':orders_status_id', $Qhistory->valueInt('orders_status_id'));
+              $QordersStatus->execute();
+
+              if ($QordersStatus->valueInt('authorize_to_delete_order') == 1) {
+                echo HTML::link($CLICSHOPPING_Orders->link('Delete&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Orders->getDef('icon_delete')));
+              } else {
+                echo '&nbsp;&nbsp;';
+              }
               echo '&nbsp;';
             ?>
           </td>
