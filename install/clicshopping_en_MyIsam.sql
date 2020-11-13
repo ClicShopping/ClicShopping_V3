@@ -2499,7 +2499,8 @@ CREATE TABLE `clic_orders_status` (
   `orders_status_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `public_flag` int(1) DEFAULT '1',
   `downloads_flag` int(1) DEFAULT '0',
-  `support_orders_flag` int(1) DEFAULT '0'
+  `support_orders_flag` int(1) DEFAULT '0',
+  `authorize_to_delete_order` tinyint(1) DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
