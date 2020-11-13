@@ -2505,7 +2505,6 @@ CREATE TABLE `clic_orders_status` (
 --
 -- Déchargement des données de la table `clic_orders_status`
 --
-
 INSERT INTO `clic_orders_status` VALUES(1, 1, 'Pending', 1, 0, 0, 1);
 INSERT INTO `clic_orders_status` VALUES(1, 2, 'En instance', 1, 0, 0, 1);
 INSERT INTO `clic_orders_status` VALUES(2, 1, 'processing', 1, 0, 0, 1);

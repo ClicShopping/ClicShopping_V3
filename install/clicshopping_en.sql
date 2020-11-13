@@ -1806,8 +1806,8 @@ INSERT INTO geo_zones VALUES(15, 'Taxe hamonisée Québec', 'Taxe hamonisée Qu�
 INSERT INTO languages VALUES(1, 'Anglais', 'en', 'gb', 'english', 1, 1, 'en_US.UTF-8;en_US.UTF8;enu_usa');
 INSERT INTO languages VALUES(2, 'Francais', 'fr', 'fr', 'french', 2, 1,'fr_FR.UTF-8;fr_FR.UTF8;enu_fra');
 
-
 INSERT INTO orders_status VALUES(1, 1, 'Pending', 1, 0, 0, 1);
+INSERT INTO orders_status VALUES(1, 2, 'En instance', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(2, 2, 'Traitement en cours', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(2, 1, 'processing', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(3, 2, 'Livré', 1, 0, 0, 0);
