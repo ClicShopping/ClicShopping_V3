@@ -21,3 +21,4 @@ add changelog files (remover update directory), secuties.md, help.md
 add wiki on Github
 add new seo system based on page and header tag
 add sitemap header tag
+add a new option for odersm status

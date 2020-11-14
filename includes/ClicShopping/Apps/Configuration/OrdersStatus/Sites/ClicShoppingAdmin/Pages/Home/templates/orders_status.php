@@ -94,11 +94,11 @@
       <td class="text-md-right">
         <?php
           if ($Qstatus->valueInt('orders_status_id') > 5) {
-            echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Delete&page=' . (int)$_GET['page'] . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatus->getDef('image_delete')) . '</a>';
+            echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Delete&page=' . (int)$page . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatus->getDef('image_delete')) . '</a>';
           }
 
           echo '&nbsp;';
-          echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Edit&page=' . (int)$_GET['page'] . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatus->getDef('icon_edit')) . '</a>';
+          echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Edit&page=' . (int)$page . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_OrdersStatus->getDef('icon_edit')) . '</a>';
           echo '&nbsp;';
         ?>
       </td>
