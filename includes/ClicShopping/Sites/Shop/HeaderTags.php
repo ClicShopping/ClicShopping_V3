@@ -73,6 +73,9 @@
       $chars = preg_split('/&/', $str, -1);
 
       foreach ($chars as $value) {
+        if( !isset($value[1]) ) $value[1] = 'NULL' ;
+        if( !isset($value[2]) ) $value[2] = 'NULL' ;
+
         if (!is_null($value[1])) {
           $newstring = "?" . $value[1];
         }
