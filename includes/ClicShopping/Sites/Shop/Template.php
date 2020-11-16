@@ -258,7 +258,7 @@
     public function getBlocks($group)
     {
       if ($this->hasBlocks($group)) {
-        return implode("\n", $this->_blocks[$group]);
+        return "\n" . '<!-- block ' . $group . ' -->' . "\n" . implode("\n", $this->_blocks[$group]) . "\n" . '<!-- end block ' . $group . ' -->' . "\n";
       }
     }
 
