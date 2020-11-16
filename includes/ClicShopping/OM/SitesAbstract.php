@@ -13,13 +13,12 @@
 
   abstract class SitesAbstract implements \ClicShopping\OM\SitesInterface
   {
-
-    protected $code;
-    protected $default_page = 'Home'; // else white page
+    protected string $code;
+    protected string $default_page = 'Home'; // else white page
     protected $page;
     protected $app;
     protected $route;
-    public $actions_index = 1;
+    public int $actions_index = 1;
 
     abstract protected function init();
 

@@ -713,13 +713,15 @@
       $languages = $this->getLanguages();
 
       if ($option === true) {
-        $values_languages_id[0] = ['id' => '0',
+        $values_languages_id[0] = [
+          'id' => '0',
           'text' => CLICSHOPPING::getDef('text_all_languages')
         ];
       }
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
-        $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
+        $values_languages_id[$i + 1] = [
+          'id' => $languages[$i]['id'],
           'text' => $languages[$i]['name']
         ];
       }
