@@ -56,7 +56,8 @@
         $b2b_menu = 0;
       }
 
-      $sql_data_array = ['sort_order' => (int)$sort_order,
+      $sql_data_array = [
+        'sort_order' => (int)$sort_order,
         'link' => $link,
         'image' => $image,
         'b2b_menu' => (int)$b2b_menu,
