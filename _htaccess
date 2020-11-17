@@ -1,6 +1,6 @@
-Options -Indexes
-Options +FollowSymlinks
-Options -MultiViews
+#Options -Indexes
+#Options +FollowSymlinks
+#Options -MultiViews
 
 #AcceptPathInfo on
 

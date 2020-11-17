@@ -38,15 +38,15 @@
         $server = CLICSHOPPING::getConfig('db_server');
       }
 
-      if (!isset($username)) {
+        if (!isset($username) && CLICSHOPPING::configExists('db_server_username')) {
         $username = CLICSHOPPING::getConfig('db_server_username');
       }
 
-      if (!isset($password)) {
+        if (!isset($password) && CLICSHOPPING::configExists('db_server_password')) {
         $password = CLICSHOPPING::getConfig('db_server_password');
       }
 
-      if (!isset($database)) {
+        if (!isset($database) && CLICSHOPPING::configExists('db_database')) {
         $database = CLICSHOPPING::getConfig('db_database');
       }
 
@@ -124,6 +124,7 @@
 
     /**
      * @param string $statement
+     * @param mixed ...$params
      * @return bool|mixed|\PDOStatement
      */
     public function query($statement, ...$params)
@@ -158,9 +159,11 @@
      */
     public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
-      if (!is_array($table)) {
-        $table = [$table];
-      }
+        if (!is_array($table)) {
+          $table = [
+              $table
+          ];
+        }
 
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
         array_walk($table, function (&$v, &$k) {
@@ -171,13 +174,17 @@
         );
       }
 
-      if (!is_array($fields)) {
-        $fields = [$fields];
-      }
+        if (!is_array($fields)) {
+          $fields = [
+              $fields
+          ];
+        }
 
-      if (isset($order) && !is_array($order)) {
-        $order = [$order];
-      }
+        if (isset($order) && !is_array($order)) {
+          $order = [
+              $order
+          ];
+        }
 
       if (isset($limit)) {
         if (is_array($limit) && (count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
@@ -281,13 +288,13 @@
     }
 
     /**
-     * @param $table
+     * @param string $table
      * @param array $data
      * @param array|null $where_condition
      * @param array|null $options
      * @return bool|int
      */
-    public function save($table, ?array $data, ?array $where_condition = null, ?array $options = null)
+    public function save(string $table, ?array $data, ?array $where_condition = null, ?array $options = null)
     {
       if (empty($data)) {
         return false;
@@ -307,7 +314,7 @@
             $v = 'null';
           }
 
-          if ($v == 'now()' || $v == 'null') {
+          if ($v == 'now()' || $v === 'null') {
             $statement .= $c . ' = ' . $v . ', ';
           } else {
             $statement .= $c . ' = :new_' . $c . ', ';
@@ -325,7 +332,7 @@
         $Q = $this->prepare($statement);
 
         foreach ($data as $c => $v) {
-          if ($v != 'now()' && $v != 'null' && !is_null($v)) {
+          if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
             $Q->bindValue(':new_' . $c, $v);
           }
         }
@@ -347,7 +354,7 @@
             $v = 'null';
           }
 
-          if ($v == 'now()' || $v == 'null') {
+          if ($v == 'now()' || $v === 'null') {
             $statement .= $v . ', ';
           } else {
             if ($is_prepared === false) {
@@ -364,7 +371,7 @@
           $Q = $this->prepare($statement);
 
           foreach ($data as $c => $v) {
-            if ($v != 'now()' && $v != 'null' && !is_null($v)) {
+            if ($v != 'now()' && $v !== 'null' && !is_null($v)) {
               $Q->bindValue(':' . $c, $v);
             }
           }
@@ -379,12 +386,12 @@
     }
 
     /**
-     * @param $table
+     * @param string $table
      * @param array $where_condition
      * @param array|null $options
      * @return int
      */
-    public function delete($table, array $where_condition = [], ?array $options = null)
+    public function delete(string $table, array $where_condition = [], ?array $options = null) :int
     {
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
         if ((strlen($table) < 7) || (substr($table, 0, 7) != ':table_')) {

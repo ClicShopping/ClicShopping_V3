@@ -40,7 +40,7 @@
      * @param int $data_type
      * @return bool
      */
-    public function bindValue($parameter, $value, $data_type = \PDO::PARAM_STR)
+    public function bindValue($parameter, $value, $data_type = \PDO::PARAM_STR) :bool
     {
       return parent::bindValue($parameter, $value, $data_type);
     }
@@ -50,7 +50,7 @@
      * @param $value
      * @return bool
      */
-    public function bindInt($parameter, $value)
+    public function bindInt($parameter, $value) :bool
     {
 // force type to int (see http://bugs.php.net/bug.php?id=44639)
       return $this->bindValue($parameter, (int)$value, \PDO::PARAM_INT);
@@ -61,7 +61,7 @@
      * @param $value
      * @return bool
      */
-    public function bindBool($parameter, bool $value)
+    public function bindBool($parameter, bool $value) :bool
     {
 // force type to bool (see http://bugs.php.net/bug.php?id=44639)
       return $this->bindValue($parameter, (bool)$value, \PDO::PARAM_BOOL);
@@ -72,7 +72,7 @@
      * @param $value
      * @return bool
      */
-    public function bindDecimal($parameter, float $value)
+    public function bindDecimal($parameter, float $value) :bool
     {
       return $this->bindValue($parameter, (float)$value); // there is no \PDO::PARAM_FLOAT
     }
@@ -81,7 +81,7 @@
      * @param $parameter
      * @return bool
      */
-    public function bindNull($parameter)
+    public function bindNull($parameter) :bool
     {
       return $this->bindValue($parameter, null, \PDO::PARAM_NULL);
     }
@@ -234,7 +234,7 @@
      * @param null $expire
      * @param bool $cache_empty_results
      */
-    public function setCache($key, $expire = null, bool $cache_empty_results = false)
+    public function setCache(string $key, ?int $expire = null, bool $cache_empty_results = false)
     {
       if (!is_numeric($expire)) {
         $expire = 0;
@@ -258,7 +258,7 @@
      * @param string $type
      * @return float|int|string
      */
-    protected function valueMixed($column, string $type = 'string')
+    protected function valueMixed(string $column, string $type = 'string')
     {
       if (!isset($this->result)) {
         $this->fetch();
@@ -297,7 +297,7 @@
      * @param $column
      * @return float|int|string
      */
-    public function value($column)
+    public function value(string $column) :string
     {
       return $this->valueMixed($column, 'string');
     }
@@ -306,7 +306,7 @@
      * @param $column
      * @return float|int|string
      */
-    public function valueProtected($column)
+    public function valueProtected(string $column) :string
     {
       return $this->valueMixed($column, 'protected');
     }
@@ -315,7 +315,7 @@
      * @param $column
      * @return float|int|string
      */
-    public function valueInt($column)
+    public function valueInt(string $column) :int
     {
       return $this->valueMixed($column, 'int');
     }
@@ -324,7 +324,7 @@
      * @param $column
      * @return float|int|string
      */
-    public function valueDecimal($column)
+    public function valueDecimal(string $column) :float
     {
       return $this->valueMixed($column, 'decimal');
     }
@@ -333,7 +333,7 @@
      * @param $column
      * @return bool
      */
-    public function hasValue($column)
+    public function hasValue(string $column) :bool
     {
       if (!isset($this->result)) {
         $this->fetch();
@@ -345,7 +345,7 @@
     /**
      * @return bool
      */
-    public function isError()
+    public function isError() :bool
     {
       return $this->is_error;
     }
@@ -353,7 +353,7 @@
     /**
      * @return string
      */
-    public function getQuery()
+    public function getQuery() :string
     {
       return $this->queryString;
     }
