@@ -18,7 +18,6 @@
 
   class Save implements \ClicShopping\OM\Modules\HooksInterface
   {
-
     protected $app;
     protected $id;
     protected $currentCategoryId;
@@ -41,6 +40,7 @@
                                             ');
 
         $Qproducts->execute();
+
         $this->id = $Qproducts->valueInt('products_id');
       }
 
@@ -84,7 +84,6 @@
 
           if (MODE_B2B_B2C == 'false' && !isset($_POST['products_percentage'])) {
             $group_customer_price = $products_price;
-
           } elseif (isset($_POST['products_percentage'])) {
             if ($_POST['products_percentage'] == 1) {
               if ($products_price > 0) {
@@ -125,17 +124,47 @@
             $group_customer_price = $products_price;
           }
 
+          if (isset($_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
+            $products_model_group = HTML::sanitize($_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')]);
+          } else {
+            $products_model_group = '';
+          }
+
+          If (isset($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')])) {
+            $price_group_view =  HTML::sanitize($_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')]);
+          } else {
+            $price_group_view = 1;
+          }
+
+          If (isset($_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')])) {
+            $orders_group_view = HTML::sanitize($_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')]);
+          } else {
+            $orders_group_view = 1;
+          }
+
+          if (isset($_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')])) {
+            $products_group_view = HTML::sanitize($_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')]);
+          } else {
+            $products_group_view = 1;
+          }
+
+          if (isset($_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')])) {
+            $products_quantity_fixed_group = HTML::sanitize($_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')]);
+          } else {
+            $products_quantity_fixed_group = 0;
+          }
+
           $sql_array = [
             'products_id' => (int)$this->id,
             'products_price' => (float)$products_price,
             'customers_group_id' => (int)$QcustomersGroup->valueInt('customers_group_id'),
             'customers_group_price' => (float)$group_customer_price,
-            'price_group_view' => (int)$_POST['price_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_group_view' => (int)$_POST['products_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
-            'orders_group_view' => (int)$_POST['orders_group_view' . $QcustomersGroup->valueInt('customers_group_id')],
+            'price_group_view' => (int)$price_group_view,
+            'products_group_view' => (int)$products_group_view,
+            'orders_group_view' => (int)$orders_group_view,
             'products_quantity_unit_id_group' => (int)$products_quantity_unit_id_group,
-            'products_model_group' => $_POST['products_model_group' . $QcustomersGroup->valueInt('customers_group_id')],
-            'products_quantity_fixed_group' => (int)$_POST['products_quantity_fixed_group' . $QcustomersGroup->valueInt('customers_group_id')]
+            'products_model_group' => $products_model_group,
+            'products_quantity_fixed_group' => (int)$products_quantity_fixed_group
           ];
 
           $this->app->db->save('products_groups', $sql_array);

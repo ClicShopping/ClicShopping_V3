@@ -52,26 +52,29 @@
         $Qproducts->execute();
 
         return $Qproducts->fetchAll();
+      } else {
+        return false;
       }
     }
 
     public function display()
     {
-      $products_array = $this->getProducts();
-
-      if (is_array($products_array)) {
-        $products_id = $products_array[0]['products_id'];
-        $products_percentage = $products_array[0]['products_percentage'];
-
         $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
         if (!defined('CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS') || CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'False') {
           return false;
         }
 
-        $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/CustomerGroup/customer_group');
-
         if (CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS == 'True' && !empty(CLICSHOPPING_APP_CUSTOMERS_GROUPS_GR_STATUS)) {
+          $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/CustomerGroup/customer_group');
+
+          $products_array = $this->getProducts();
+
+          if (is_array($products_array) && $products_array !== false) {
+            $products_id = $products_array[0]['products_id'];
+            $products_percentage = $products_array[0]['products_percentage'];
+          }
+
           if (MODE_B2B_B2C == 'true') {
             if (!isset($products_percentage)) {
               $products_percentage = 1;
@@ -123,7 +126,7 @@
               $content .= '<div class="col-md-4">';
               $content .= '<div class="card cardPrice">';
 
-              if ($QcustomersGroup->rowCount() > 0) {
+              if ($QcustomersGroup->rowCount() > 0 && $products_array !== false) {
                 $Qattributes = $this->app->db->prepare('select g.customers_group_id,
                                                                  g.customers_group_price,
                                                                  g.price_group_view,
@@ -156,7 +159,7 @@
                   $products_quantity_unit_id_group = $Qattributes->valueInt('products_quantity_unit_id_group');
                 } else {
                   $content_attibutes = HTML::inputField('price' . $QcustomersGroup->valueInt('customers_group_id'), '0', 'onchange="updateGross()" size="7" placeholder="' . $this->app->getDef('tax_included') . '"') . '<strong>' . $this->app->getDef('tax_included') . '</strong>';
-                  // Permet de cocher par defaut la case Afficher Prix Public, Afficher Produit et Autoriser commande
+// Allow to display options
                   $price_group_view = 1;
                   $products_group_view = 1;
                   $orders_group_view = 1;
@@ -165,6 +168,16 @@
                   $customers_group_price = 0;
                   $products_quantity_unit_id_group =  0;
                 }
+              } else {
+                $content_attibutes = HTML::inputField('price' . $QcustomersGroup->valueInt('customers_group_id'), '0', 'onchange="updateGross()" size="7" placeholder="' . $this->app->getDef('tax_included') . '"') . '<strong>' . $this->app->getDef('tax_included') . '</strong>';
+// Allow to display options
+                $price_group_view = 1;
+                $products_group_view = 1;
+                $orders_group_view = 1;
+                $products_quantity_fixed_group = 1;
+                $products_model_group = '';
+                $customers_group_price = 0;
+                $products_quantity_unit_id_group =  0;
               }
 
               $content .= '<div class="card-header">' . $QcustomersGroup->value('customers_group_name') . '</div>';
@@ -180,7 +193,6 @@
               }
 
               $content .= '<div class="separator"></div>';
-// Autorisation affichage prix public et produit + autorisation commande
               $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/euro.png', $this->app->getDef('tab_price_group_view')) . ' ' . HTML::checkboxField('price_group_view' . $QcustomersGroup->valueInt('customers_group_id'), 1, $price_group_view) . '&nbsp;&nbsp;&nbsp;';
               $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/last.png', $this->app->getDef('tab_products_group_view')) . ' ' . HTML::checkboxField('products_group_view' . $QcustomersGroup->valueInt('customers_group_id'), '1', $products_group_view) . '&nbsp;&nbsp;&nbsp;';
               $content .= HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/orders-up.gif', $this->app->getDef('tab_orders_group_view')) . ' ' . HTML::checkboxField('orders_group_view' . $QcustomersGroup->valueInt('customers_group_id'), '1', $orders_group_view) . '<br /><br />';
@@ -246,6 +258,5 @@ EOD;
             return $output;
           }
         }
-      }
     }
   }
