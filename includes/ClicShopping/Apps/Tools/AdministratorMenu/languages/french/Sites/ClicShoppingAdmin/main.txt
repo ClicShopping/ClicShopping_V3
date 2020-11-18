@@ -47,7 +47,7 @@ table_heading_action = Action
 table_heading_status = Statut
 table_heading_categories = Menus administration
 table_heading_sort_order = Ordre de tri
-table_heading_rights_access = Droitsd accès
+table_heading_rights_access = Droits d'accès
 table_heading_app = APP
 
 text_info_heading_delete_category = Supprimer une catgorie
