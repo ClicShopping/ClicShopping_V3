@@ -1,0 +1,12 @@
+ALTER TABLE `clic_orders_status` ADD `authorize_to_delete_order` TINYINT(1) NOT NULL DEFAULT '1' AFTER `support_orders_flag`;
+UPDATE `clic_orders_status` SET `authorize_to_delete_order` = '0' WHERE `clic_orders_status`.`orders_status_id` = 3 AND `clic_orders_status`.`language_id` = 1;
+
+ALTER TABLE `submit_description` ADD `submit_language_favorites_title` varchar(255)  AFTER `submit_language_reviews_description`;
+ALTER TABLE `submit_description` ADD `submit_language_favorites_keywords` text  AFTER `submit_language_favorites_title`;
+ALTER TABLE `submit_description` ADD `submit_language_favorites_description` varchar(255)  AFTER `submit_language_favorites_keywords`;
+ALTER TABLE `submit_description` ADD `submit_language_featured_title` varchar(255)  AFTER `submit_language_favorites_description`;
+ALTER TABLE `submit_description` ADD `submit_language_featured_keywords` text  AFTER `submit_language_featured_title`;
+ALTER TABLE `submit_description` ADD `submit_language_featured_description` varchar(255)  AFTER `submit_language_featured_keywords`;
+
+
+
