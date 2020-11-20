@@ -28,18 +28,28 @@
       $this->prepareRules();
     }
 
-    public static function getNumericDecimalSeparator()
+    /**
+     * @return string
+     */
+    public static function getNumericDecimalSeparator() :string
     {
       return '.';
     }
 
-    public static function getNumericThousandsSeparator()
+    /**
+     * @return string
+     */
+    public static function getNumericThousandsSeparator() :string
     {
       return ' ';
     }
 
-
-    public static function getTitle($id, $language_id = null)
+    /**
+     * @param int $id
+     * @param null|int $language_id
+     * @return string
+     */
+    public static function getTitle(int $id, ?int $language_id = null) :string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
@@ -67,6 +77,9 @@
       return $Qweight->value('weight_class_title');
     }
 
+    /**
+     *
+     */
     public function prepareRules()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -102,13 +115,19 @@
       }
     }
 
+    /**
+     * @param $value
+     * @param $unit_from
+     * @param $unit_to
+     * @return false|string
+     */
     public function convert($value,  $unit_from, $unit_to)
     {
       if (!is_null($value)) {
-        if ($unit_from == $unit_to) {
+        if ($unit_from === $unit_to) {
           $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
         } else {
-          if ($unit_from !== false && $unit_to !== false && $value !== false) {
+          if ($unit_from !== false && $unit_to !== false && $value !== false && is_numeric($value)) {
             $convert = number_format($value * $this->weight_classes[(int)$unit_from][(int)$unit_to], $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
           } else {
             $convert = false;
@@ -119,12 +138,20 @@
       }
     }
 
-    public function display($value, $class)
+    /**
+     * @param $value
+     * @param $class
+     * @return string
+     */
+    public function display($value, $class) :string
     {
       return number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator()) . $this->weight_classes[$class]['key'];
     }
 
-    public static function getClasses()
+    /**
+     * @return array
+     */
+    public static function getClasses() :array
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');

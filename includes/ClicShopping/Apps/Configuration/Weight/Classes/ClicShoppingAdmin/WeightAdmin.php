@@ -29,7 +29,7 @@
      * @param null $language_id
      * @return mixed
      */
-    public static function getTitle($id, $language_id = null)
+    public static function getTitle(int $id, ?int $language_id = null) :string
     {
       return parent::getTitle($id, $language_id);
     }
@@ -37,7 +37,7 @@
     /**
      * @return array
      */
-    public static function getClasses()
+    public static function getClasses() :array
     {
       return parent::getClasses();
     }
@@ -47,7 +47,7 @@
      * @param $class
      * @return string
      */
-    public function display($value, $class)
+    public function display($value, $class)  :string
     {
       return parent::display($value, $class);
     }
@@ -84,7 +84,8 @@
       $classes = [];
 
       while ($Qclasses->fetch() !== false) {
-        $classes[] = ['id' => $Qclasses->valueInt('weight_class_id'),
+        $classes[] = [
+          'id' => $Qclasses->valueInt('weight_class_id'),
           'text' => $Qclasses->value('weight_class_title')
         ];
       }
@@ -97,7 +98,7 @@
      * @param null $id
      * @return string
      */
-    public static function getWeightTitle($id = null): string
+    public static function getWeightTitle(?int $id = null): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Language = Registry::get('Language');
