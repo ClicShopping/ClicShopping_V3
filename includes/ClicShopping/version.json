@@ -1,5 +1,5 @@
 {
  "version": "3.22",
- "description": "This release is compatible with php 7.4 and it introduces some fix. The next release will be focus files optimization.",
+ "description": "This release is compatible with php > 7.4.3 and < php 8.0, it introduces some fix. The next release will be focus on bootstrap 5 and php 8.",
  "date": "November 2020"
 }

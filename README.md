@@ -30,21 +30,21 @@ The solution is based on a modern, responsive design that will allow you to have
 Easy to install in just some clicks on a server or on your computer, you can use ClicShopping 
 
 #Solution
- The solution is built on modules and APP to have a very big flexibility.
- The approach is completely modular on the catalog / administration with simple code to understand, to customize and to update at need.
+ - The solution is built on modules and APP to have a very big flexibility.
+ - The approach is completely modular on the catalog / administration with simple code to understand, to customize and to update at need.
 
- All informations are available at the forum https://www.clicshopping.org
- The modules are available on Github (Official and Community) or by an internal install.
+ - All informations are available at the forum https://www.clicshopping.org
+ - The modules are available on Github (Official and Community) or by an internal install.
 
 #Requirement (more information in the wiki)
-Apache 2.4<br>
-MYSQL 7 / MariaDb 10.3 / Postgres<br>
-PHP > 7.4.3
-More information in the Wiki
+ - Apache 2.4<br>
+ - MYSQL 7 / MariaDb 10.3 - 10.4 / Postgres<br>
+ - PHP > 7.4.3 and PHP < 8.0
+ - More information in the Wiki
 
 #Installation
- Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
- Step2 : Install Clicshopping : https://www.mysite.com/install
+ - Step1 : Download ClicShopping : https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip
+ - Step2 : Install Clicshopping : https://www.mysite.com/install
 More information in the Wiki
 
 #Checklist
@@ -67,21 +67,20 @@ More information in the Wiki
 
 #Support
 
-  <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)<br><br>  
-  
-  <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)<br><br>
+  - <img align="left" src="https://www.softaculous.com/website/images/softac_products.gif"><br>ClicShopping can now be installed easily with just one click via [Softaculous](https://www.softaculous.com/apps/ecommerce/ClicShopping)  
+  - <img align="left" src="https://netenberg.com/images/logo.png"><br>ClicShopping can now be installed on Fantastico F3 of Neterberg [Netenberg](https://netenberg.com/)
 
 #Analyse
 
-   [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
-   [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
-   ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
-   ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
+    [![SymfonyInsight](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd/small.svg)](https://insight.symfony.com/projects/04cd44dc-8f83-4b7c-a742-65b8387be9bd)
+    [![php](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen])](https://img.shields.io/badge/PHP%20-%3E%207.3.4-brightgreen)
+    ![GitHub repo size](https://img.shields.io/github/repo-size/ClicShopping/ClicShopping_v3)
+    ![GitHub top language](https://img.shields.io/github/languages/top/ClicShopping/ClicShopping_v3)
 
 #Donation
- - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.<br >
- - [![On clicShopping Page :)](https://www.clicshopping.org/forum/clients/donations/); 
- [![Donate Bitcoin(nao-pon)](https://img.shields.io/badge/Donate-Bitcoin-orange.svg)](https://www.clicshopping.org/donation/index.html)
+ - If you want to make a donation, you can click on this link : <a href="https://www.clicshopping.org/forum/clients/donations/">make a donation</a> or use the button below.
+    - Via the forum https://www.clicshopping.org/forum/clients/donations/ 
+    - A donation via Bitcoin : [![Donate Bitcoin(nao-pon)](https://img.shields.io/badge/Donate-Bitcoin-orange.svg)](https://www.clicshopping.org/donation/index.html)
  - Donation can help to continue the work and to finance the infrastructure.
  - More information are available on the community website.
 
