@@ -1863,7 +1863,7 @@ INSERT INTO manufacturers_info VALUES(3, 2, '', 0, NULL, '', '', '', '');
 INSERT INTO manufacturers_info VALUES(4, 1, '', 0, NULL, '', '', '', '');
 INSERT INTO manufacturers_info VALUES(4, 2, '', 0, NULL, '', '', '', '');
 
-INSERT INTO orders_status VALUES(1, 1, 'Pending', 1, 0, 0, 1)
+INSERT INTO orders_status VALUES(1, 1, 'Pending', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(1, 2, 'En instance', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(2, 2, 'Traitement en cours', 1, 0, 0, 1);
 INSERT INTO orders_status VALUES(2, 1, 'processing', 1, 0, 0, 1);
