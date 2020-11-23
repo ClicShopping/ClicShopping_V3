@@ -445,7 +445,8 @@
       if (!isset($group)) {
         $group = 'global';
       }
-        static::$cfg[$group][$key] = $value;
+
+      static::$cfg[$group][$key] = $value;
     }
 
     /**
