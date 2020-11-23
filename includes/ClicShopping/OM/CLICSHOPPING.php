@@ -28,7 +28,7 @@
     protected static string $version;
     protected static string $site = 'Shop';
     protected static array $cfg = [];
-    protected static ?string $_application;
+    protected static ?string $application;
 
     public static function initialize()
     {
@@ -365,8 +365,7 @@
 
       foreach (glob(static::BASE_DIR . 'Sites/*', GLOB_ONLYDIR) as $s) {
         $s = basename($s);
-
-        if (static::siteExists($s) && is_file(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php')) {
+        if (static::siteExists($s, false) && is_file(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php')) {
           static::loadConfigFile(static::BASE_DIR . 'Sites/' . $s . '/site_conf.php', $s);
 
           if (is_file(static::BASE_DIR . 'Custom/Sites/' . $s . '/site_conf.php')) {
@@ -413,7 +412,9 @@
         return static::$cfg[$group][$key];
       }
 
-      return static::$cfg['global'][$key];
+      if (isset(static::$cfg['global'][$key])) {
+        return static::$cfg['global'][$key];
+      } 
     }
 
     /**
@@ -421,7 +422,7 @@
      * @param string|null $group
      * @return bool
      */
-    public static function configExists(string $key, string $group = null): bool
+    public static function configExists(string $key, ?string $group = null): bool
     {
       if (!isset($group)) {
         $group = static::getSite();
@@ -439,13 +440,12 @@
      * @param $value
      * @param string|null $group
      */
-    public static function setConfig(string $key, $value, string $group = null)
+    public static function setConfig(string $key, $value, ?string $group = null)
     {
       if (!isset($group)) {
         $group = 'global';
       }
-
-      static::$cfg[$group][$key] = $value;
+        static::$cfg[$group][$key] = $value;
     }
 
     /**
@@ -511,6 +511,161 @@
     }
 
     /**
+     * @param string $application
+     * @return string
+     */
+    protected static function siteApplicationExists(string $application): bool
+    {
+      $class = static::isValidClassName($application) && class_exists('ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application);
+
+      return $class;
+    }
+
+    /**
+     * @param string|null $application
+     */
+    protected static function setSiteApplication(?string $application = null)
+    {
+      if (isset($application)) {
+        if (!static::siteApplicationExists($application)) {
+          trigger_error('Apps \'' . $application . '\' does not exist for Site \'' . static::getSite());
+
+          $application = null;
+        }
+      } else {
+        if (!empty($_GET)) {
+          $key = key(array_slice($_GET, 0, 1, true));
+
+          if (isset($key)) {
+            $requested_application = HTML::sanitize(basename($key));
+
+            if ($requested_application == static::getSite()) {
+              $key = key(array_slice($_GET, 1, 1, true));
+
+              if (isset($key)) {
+
+                $requested_application = HTML::sanitize(basename($key));
+              }
+            }
+
+            if ((preg_match('/^[A-Za-z0-9-_]+$/', $requested_application) === 1) && static::siteApplicationExists($requested_application)) {
+              $application = $requested_application;
+            }
+          }
+        }
+      }
+
+      static::$application = $application;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getSiteApplication(): ?string
+    {
+      return static::$application;
+    }
+
+    /**
+     * Get all parameters in the GET scope
+     *
+     * @param array $exclude A list of parameters to exclude
+     * @return string
+     */
+    public static function getAllGET($exclude = null)
+    {
+      if (!is_array($exclude)) {
+        if (!empty($exclude)) {
+          $exclude = [$exclude];
+        } else {
+          $exclude = [];
+        }
+      }
+
+      $params = '';
+
+      $array = [
+        static::getSite(),
+        Registry::get('Session')->getName(),
+        'error',
+        'x',
+        'y'
+      ];
+
+      $exclude = array_merge($exclude, $array);
+
+      foreach ($_GET as $key => $value) {
+        if (!in_array($key, $exclude, true)) {
+          $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
+        }
+      }
+
+      if (!empty($params)) {
+        $params = substr($params, 0, -1);
+      }
+
+      return $params;
+    }
+
+    /*  the global scope
+    *   @return String : element of url like ClicShoppingAdmin/index.php or Shop/index.php
+    */
+    public static function getIndex(): string
+    {
+      $req = parse_url($_SERVER['SCRIPT_NAME']);
+      $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
+
+      return $result;
+    }
+
+
+    /**
+      * @return string
+     */
+    public static function getBaseNameIndex(): string
+    {
+      return basename(static::getIndex());
+    }
+
+
+    /**
+     * @param $array
+     * @param string $exclude
+     * @param string $equals
+     * @param string $separator
+     * @return bool|string
+     * 
+     */
+    public static function arrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
+    {
+      if (!is_array($exclude)) $exclude = [];
+
+      $get_string = '';
+
+      if (is_array($array)) {
+        foreach ($array as $key => $value) {
+          if ((!in_array($key, $exclude)) && ($key != 'x') && ($key != 'y')) {
+            $get_string .= $key . $equals . $value . $separator;
+          }
+        }
+
+        $remove_chars = strlen($separator);
+        $get_string = substr($get_string, 0, -$remove_chars);
+      }
+
+      return $get_string;
+    }
+
+    /**
+     * @param string $classname
+     * @return bool
+     */
+    public static function isValidClassName(string $classname): bool
+    {
+      return preg_match(static::VALID_CLASS_NAME_REGEXP, $classname) === 1;
+    }
+
+    /**
      * Retrieve web server and database server information
      * return $data, array og php.ini information
      */
@@ -563,160 +718,5 @@
       ];
 
       return $data;
-    }
-
-    /**
-     * @param string $application
-     * @return string
-     */
-    protected static function siteApplicationExists(string $application): bool
-    {
-      $class = static::isValidClassName($application) && class_exists('ClicShopping\\Sites\\' . static::getSite() . '\\Pages\\' . $application . '\\' . $application);
-
-      return $class;
-    }
-
-    /**
-     * @param string|null $application
-     */
-    protected static function setSiteApplication(?string $application = null)
-    {
-      if (isset($application)) {
-        if (!static::siteApplicationExists($application)) {
-          trigger_error('Apps \'' . $application . '\' does not exist for Site \'' . static::getSite());
-
-          $application = null;
-        }
-      } else {
-        if (!empty($_GET)) {
-          $key = key(array_slice($_GET, 0, 1, true));
-
-          if (isset($key)) {
-            $requested_application = HTML::sanitize(basename($key));
-
-            if ($requested_application == static::getSite()) {
-              $key = key(array_slice($_GET, 1, 1, true));
-
-              if (isset($key)) {
-
-                $requested_application = HTML::sanitize(basename($key));
-              }
-            }
-
-            if ((preg_match('/^[A-Za-z0-9-_]+$/', $requested_application) === 1) && static::siteApplicationExists($requested_application)) {
-              $application = $requested_application;
-            }
-          }
-        }
-      }
-
-      static::$_application = $application;
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getSiteApplication(): ?string
-    {
-      return static::$_application;
-    }
-
-    /**
-     * Get all parameters in the GET scope
-     *
-     * @param array $exclude A list of parameters to exclude
-     * @return string
-     */
-    public static function getAllGET($exclude = null)
-    {
-      if (!is_array($exclude)) {
-        if (!empty($exclude)) {
-          $exclude = [$exclude];
-        } else {
-          $exclude = [];
-        }
-      }
-
-      $params = '';
-
-      $array = [static::getSite(),
-        Registry::get('Session')->getName(),
-        'error',
-        'x',
-        'y'
-      ];
-
-      $exclude = array_merge($exclude, $array);
-
-      foreach ($_GET as $key => $value) {
-        if (!in_array($key, $exclude, true)) {
-          $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
-        }
-      }
-
-      if (!empty($params)) {
-        $params = substr($params, 0, -1);
-      }
-
-      return $params;
-    }
-
-    /*  the global scope
-    *   @return String : element of url like ClicShoppingAdmin/index.php or Shop/index.php
-    */
-    public static function getIndex(): string
-    {
-      $req = parse_url($_SERVER['SCRIPT_NAME']);
-      $result = substr($req['path'], strlen(static::getConfig('http_path', 'Shop')));
-
-      return $result;
-    }
-
-
-    /**
-     *
-     * @return string
-     */
-    public static function getBaseNameIndex(): string
-    {
-      return basename(static::getIndex());
-    }
-
-
-    /**
-     * @param $array
-     * @param string $exclude
-     * @param string $equals
-     * @param string $separator
-     * @return bool|string
-     * 
-     */
-    public static function arrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
-    {
-      if (!is_array($exclude)) $exclude = [];
-
-      $get_string = '';
-
-      if (is_array($array)) {
-        foreach ($array as $key => $value) {
-          if ((!in_array($key, $exclude)) && ($key != 'x') && ($key != 'y')) {
-            $get_string .= $key . $equals . $value . $separator;
-          }
-        }
-
-        $remove_chars = strlen($separator);
-        $get_string = substr($get_string, 0, -$remove_chars);
-      }
-
-      return $get_string;
-    }
-
-    /**
-     * @param string $classname
-     * @return bool
-     */
-    public static function isValidClassName(string $classname): bool
-    {
-      return preg_match(static::VALID_CLASS_NAME_REGEXP, $classname) === 1;
     }
   }

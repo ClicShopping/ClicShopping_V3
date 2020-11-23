@@ -2641,7 +2641,7 @@
     * @return string $save_money, the difference between real price and  specials
     * @access private
     */
-    private function setProductsSaveMoneyCustomer(int $id) :?float
+    private function setProductsSaveMoneyCustomer(int|string $id) :?float
     {
       $savemoney = 0;
 
@@ -2654,10 +2654,10 @@
 
     /*
     * display a save Money by the customer
-    * @param string
+    * @param int|string
     * @return string $save_money, the difference between real price and  specials
     */
-    public function getProductsSaveMoneyCustomer(int $id)
+    public function getProductsSaveMoneyCustomer(int|string $id) :?float
     {
       return $this->setProductsSaveMoneyCustomer($id);
     }

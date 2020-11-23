@@ -11,6 +11,7 @@
 
   namespace ClicShopping\OM;
 
+
   class Db extends \PDO
   {
     protected bool $connected = false;
@@ -20,8 +21,8 @@
     protected string $database;
     protected string $table_prefix;
     protected ?int $port;
-    protected array $driver_options = [];
-    protected array $options = [];
+    protected ?array $driver_options = null;
+    protected ?array $options = null;
     protected $query_call;
 
     public static function initialize(
@@ -99,7 +100,7 @@
      * @param string $statement
      * @return int
      */
-    public function exec($statement)
+    public function exec(string $statement) :int
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -111,7 +112,7 @@
      * @param null $driver_options
      * @return bool|\PDOStatement
      */
-    public function prepare($statement, $driver_options = null)
+    public function prepare(string $statement, ?array $driver_options = null) //php8
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -127,7 +128,7 @@
      * @param mixed ...$params
      * @return bool|mixed|\PDOStatement
      */
-    public function query($statement, ...$params)
+    public function query(string $statement, ...$params)
     {
       $statement = $this->autoPrefixTables($statement);
 
@@ -148,25 +149,25 @@
     }
 
     /**
-     * @param $table
-     * @param $fields
+     * @param string|array $table
+     * @param string|array $fields
      * @param array|null $where
      * @param null $order
      * @param null $limit
      * @param null $cache
      * @param array|null $options
-     * @return bool|\PDOStatement
+     * @return bool|mixed|\PDOStatement
      */
     public function get($table, $fields, ?array $where = null, $order = null, $limit = null, $cache = null, ?array $options = null)
     {
-        if (!is_array($table)) {
-          $table = [
-              $table
-          ];
-        }
+      if (!is_array($table)) {
+        $table = [
+            $table
+        ];
+      }
 
       if (!isset($options['prefix_tables']) || ($options['prefix_tables'] === true)) {
-        array_walk($table, function (&$v, &$k) {
+        array_walk($table, function (&$v) {
           if ((strlen($v) < 7) || (substr($v, 0, 7) != ':table_')) {
             $v = ':table_' . $v;
           }
@@ -174,17 +175,17 @@
         );
       }
 
-        if (!is_array($fields)) {
-          $fields = [
-              $fields
-          ];
-        }
+      if (!is_array($fields)) {
+        $fields = [
+            $fields
+        ];
+      }
 
-        if (isset($order) && !is_array($order)) {
-          $order = [
-              $order
-          ];
-        }
+      if (isset($order) && !is_array($order)) {
+        $order = [
+            $order
+        ];
+      }
 
       if (isset($limit)) {
         if (is_array($limit) && (count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
@@ -429,7 +430,7 @@
      * @param string|null $table_prefix
      * @return bool
      */
-    public function importSQL(string $sql_file, ?string $table_prefix = null): bool
+    public function importSQL(string $sql_file, ?string $table_prefix = null) :bool
     {
       try {
         if (is_file($sql_file)) {
@@ -773,7 +774,6 @@
 
       return $sql;
     }
-
 
     /**
      * @param string $string

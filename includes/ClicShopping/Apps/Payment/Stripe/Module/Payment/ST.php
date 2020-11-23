@@ -110,7 +110,8 @@
       if ( ($this->enabled === true) && ((int)CLICSHOPPING_APP_STRIPE_ST_ZONE > 0)) {
         $check_flag = false;
 
-        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', ['geo_zone_id' => CLICSHOPPING_APP_STRIPE_ST_ZONE,
+        $Qcheck = $this->app->db->get('zones_to_geo_zones', 'zone_id', [
+          'geo_zone_id' => CLICSHOPPING_APP_STRIPE_ST_ZONE,
           'zone_country_id' => $CLICSHOPPING_Order->delivery['country']['id']
         ],
           'zone_id'
@@ -146,7 +147,8 @@
         }
       }
 
-      return ['id' => $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code,
+      return [
+        'id' => $this->app->vendor . '\\' . $this->app->code . '\\' . $this->code,
         'module' => $this->public_title
       ];
     }
@@ -225,10 +227,12 @@ pre_confirmation_check()
       if (!isset($stripe_payment_intent_id)) {
         $description = STORE_NAME . ' - Order date time : ' . date('Y-m-d H:i:s');
 
+        $token  = $_POST['stripeToken'];
+
         $params = [
             'amount' => $total_amount,
             'currency' => $currency,
-            'source' => $_POST['stripeToken'],
+            'source' => $token,
             'setup_future_usage' => 'off_session',
             'description' => $description,
             'capture_method' => $capture_method,
@@ -472,7 +476,6 @@ $(function() {
         }
     }
     function stripeShowNewCardFields() {
-
         $('#card-element').attr('id','save-card-element');
         $('#new-card-element').attr('id','card-element');
 

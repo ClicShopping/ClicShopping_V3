@@ -22,7 +22,6 @@
 //Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
       $output = '<! -- Start BootStrap -->';
 
-
       $output .= '<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>' . "\n";
       $output .= '<!-- End bootstrap  -->' . "\n";
 

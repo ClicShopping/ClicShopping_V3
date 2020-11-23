@@ -184,7 +184,7 @@
      * @param array $ctor_args
      * @return array
      */
-    public function fetchAll($fetch_style = \PDO::FETCH_BOTH, $fetch_argument = null, $ctor_args = [])
+    public function fetchAll(int $fetch_style = \PDO::FETCH_BOTH, mixed ...$args) //php8
     {
       if ($this->cache_read === true) {
         $this->result = $this->cache_data;

@@ -16,7 +16,6 @@
 
   class WeightAdmin extends \ClicShopping\Apps\Configuration\Weight\Classes\Shop\Weight
   {
-
     protected $weight_classes = [];
     protected $precision = 2;
 
@@ -47,7 +46,7 @@
      * @param $class
      * @return string
      */
-    public function display($value, $class)  :string
+    public function display($value, $class) :string
     {
       return parent::display($value, $class);
     }
@@ -58,7 +57,7 @@
      * @param $unit_to
      * @return string|void
      */
-    public function convert($value, $unit_from, $unit_to)
+    public function convert(float $value, $unit_from, $unit_to) :false|string
     {
       parent::convert($value, $unit_from, $unit_to);
     }

@@ -1312,12 +1312,14 @@
           $email_text_subject = html_entity_decode($email_text_subject);
 
           if (!empty(SEND_EXTRA_ORDER_EMAILS_TO)) {
-            $text[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
-            
-            if (is_array($text)) {
-              foreach ($text as $key => $email) {
-                $this->mail->clicMail('', $email[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+            $email[] = TemplateEmail::getExtractEmailAddress(SEND_EXTRA_ORDER_EMAILS_TO);
+
+            if (is_array($email)) {
+              foreach ($email as $key => $value) {
+                $this->mail->clicMail('', $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
+            } else {
+              $this->mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           }
         }

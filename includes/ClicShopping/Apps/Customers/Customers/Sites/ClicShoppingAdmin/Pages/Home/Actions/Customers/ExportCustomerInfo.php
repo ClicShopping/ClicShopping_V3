@@ -66,7 +66,7 @@
       $content = $head . $output . $foot;
 
       header('Content-Type: application/csv; charset=utf-8');
-      header('Content-Disposition: attachment; filename=products_purchased.csv');
+      header('Content-Disposition: attachment; filename=customer.csv');
 
       echo $content;
 

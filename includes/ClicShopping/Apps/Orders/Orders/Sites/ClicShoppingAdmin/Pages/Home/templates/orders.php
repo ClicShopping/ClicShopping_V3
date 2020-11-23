@@ -409,7 +409,7 @@
           }
           ?>
           <th scope="row"><?php echo $Qorders->valueInt('orders_id'); ?></th>
-          <td><?php echo $Qorders->value('customers_name') . '&nbsp;(' . $Qorders->value('customers_company') . ')'; ?></td>
+          <td><?php echo  HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), $Qorders->value('customers_name') . '&nbsp;(' . $Qorders->value('customers_company') . ')'); ?></td>
           <?php
           if ($Qhistory->valueInt('orders_status_support_id') > 1) {
             $QCustomerSupport = $CLICSHOPPING_Orders->db->prepare('select oss.orders_status_support_name
@@ -533,8 +533,6 @@
             <?php
               echo HTML::link(ClicShopping::link('index.php?A&Customers\Customers&Edit&cID=' . $Qorders->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Orders->getDef('icon_edit_customer')));
               echo '&nbsp;';
-              echo HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Orders->getDef('icon_edit_order')));
-              echo '&nbsp;';
               echo HTML::link($CLICSHOPPING_Orders->link('Invoice&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/invoice.gif', $CLICSHOPPING_Orders->getDef('icon_invoice')), 'target="_blank" rel="noreferrer"');
               echo '&nbsp;';
               echo HTML::link($CLICSHOPPING_Orders->link('PackingSlip&oID=' . $Qorders->valueInt('orders_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/packingslip.gif', $CLICSHOPPING_Orders->getDef('icon_packingslip')), 'target="_blank" rel="noreferrer"');
@@ -547,9 +545,9 @@
               }
 
               $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select authorize_to_delete_order
-                                                        from :table_orders_status
-                                                        where orders_status_id = :orders_status_id    
-                                                        ');
+                                                                  from :table_orders_status
+                                                                  where orders_status_id = :orders_status_id    
+                                                                  ');
               $QordersStatus->bindInt(':orders_status_id', $Qhistory->valueInt('orders_status_id'));
               $QordersStatus->execute();
 

@@ -19,7 +19,7 @@
     protected $weight_classes = [];
     protected $precision = 2;
 
-    public function __construct($precision = null)
+    public function __construct(?int $precision = null)
     {
       if (is_int($precision)) {
         $this->precision = $precision;
@@ -116,15 +116,15 @@
     }
 
     /**
-     * @param $value
+     * @param float $value
      * @param $unit_from
      * @param $unit_to
      * @return false|string
      */
-    public function convert($value,  $unit_from, $unit_to)
+    public function convert(float $value, $unit_from, $unit_to) :false|string
     {
       if (!is_null($value)) {
-        if ($unit_from === $unit_to) {
+        if ($unit_from == $unit_to) {
           $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
         } else {
           if ($unit_from !== false && $unit_to !== false && $value !== false && is_numeric($value)) {

@@ -360,13 +360,13 @@
      * @return false
      * @throws Exception
      */
-    public function clicMail(string $to_name = '', ?string $to_email_address, string $email_subject = '', string $email_text = '', ?string$from_email_name, ?string $from_email_address)
+    public function clicMail(string $to_name = '', string|null $to_email_address, string $email_subject = '', string $email_text = '', ?string$from_email_name, ?string $from_email_address)
     {
       if (SEND_EMAILS != 'true') {
         return false;
       }
 
-      if ($this->validateDomainEmail($to_email_address === false) || static::excludeEmailDomain($to_email_address) === false) {
+      if ($this->validateDomainEmail($to_email_address) === false || static::excludeEmailDomain($to_email_address) === false) {
         return false;
       }
       
@@ -386,13 +386,15 @@
 
     /**
      * Analyse the customer email  domain and validate or not the email
-     * @param string $email
+     * @param string|null $email
      * @return bool
      */
-    public function validateDomainEmail(string $email): bool
+    public function validateDomainEmail(?string $email) :bool
     {
       if (Is::EmailAddress($email, true) === false) {
         return false;
+      } else {
+        return true;
       }
     }
   }
