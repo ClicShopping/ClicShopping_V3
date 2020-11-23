@@ -1,4 +1,8 @@
-Version beta 3.22 (on the way)
+Version 3.2201
+Change ClicShopping version
+little quickly fix
+
+Version 3.22
 
 See SQL upgrade directory to update your database from v3.2145
 

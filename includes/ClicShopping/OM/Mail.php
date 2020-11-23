@@ -366,7 +366,7 @@
         return false;
       }
 
-      if ($this->validateDomainEmail($to_email_address === false) || static::excludeEmailDomain($to_email_address) === false) {
+      if ($this->validateDomainEmail($to_email_address) === false || static::excludeEmailDomain($to_email_address) === false) {
         return false;
       }
       

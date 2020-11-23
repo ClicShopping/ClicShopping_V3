@@ -312,28 +312,20 @@
     }
 
     /**
-     * Extract email to send more one email
-     *
-     * @param string : email
-     * @return array $emails, email
-     *
+     * Extract email to send more
+     * @param string $contactString
+     * @return array
      */
-     public static function getExtractEmailAddress($string)
+    public static function getExtractEmailAddress(string $contactString): array
     {
-       $pattern = '/(?<=<)(.*?)+(?=\>)/';
-
-        $result = preg_match_all($pattern , $string , $emails);
-
-        if (is_array($result)) {
-         foreach ($result as $token) {
-          $email = filter_var(filter_var($token, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
-
-          if ($email !== false) {
-            $emails[] = $email;
-          }
-        }
+      if (!preg_match_all('/<(?<emails>[^>]+)>/', $contactString, $matches)) {
+        return [];
       }
 
-      return $emails[0];
+      return array_filter(array_map(static function (string $email): ?string {
+        $sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+        return filter_var($sanitizedEmail, FILTER_VALIDATE_EMAIL) ? $sanitizedEmail : null;
+      }, $matches['emails']));
     }
   }

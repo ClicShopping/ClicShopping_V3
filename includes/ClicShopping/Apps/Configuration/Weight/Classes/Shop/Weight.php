@@ -124,7 +124,7 @@
     public function convert($value,  $unit_from, $unit_to)
     {
       if (!is_null($value)) {
-        if ($unit_from === $unit_to) {
+        if ($unit_from == $unit_to) {
           $convert = number_format($value, $this->precision, static::getNumericDecimalSeparator(), static::getNumericThousandsSeparator());
         } else {
           if ($unit_from !== false && $unit_to !== false && $value !== false && is_numeric($value)) {

@@ -421,7 +421,7 @@
      * @param string|null $group
      * @return bool
      */
-    public static function configExists(string $key, string $group = null): bool
+    public static function configExists(string $key, ?string $group = null): bool
     {
       if (!isset($group)) {
         $group = static::getSite();
@@ -439,7 +439,7 @@
      * @param $value
      * @param string|null $group
      */
-    public static function setConfig(string $key, $value, string $group = null)
+    public static function setConfig(string $key, $value, ?string $group = null)
     {
       if (!isset($group)) {
         $group = 'global';
