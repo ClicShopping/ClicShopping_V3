@@ -16,6 +16,7 @@
   $CLICSHOPPING_SecurityCheck = Registry::get('SecurityCheck');
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_MessageStack = Registry::get('MessageStack');
+  $CLICSHOPPING_Language = Registry::get('Language');
 
   $CLICSHOPPING_Language->loadDefinitions('security_check', null, null, 'Shop');
 

@@ -11,7 +11,6 @@
 
   namespace ClicShopping\OM;
 
-
   class Db extends \PDO
   {
     protected bool $connected = false;

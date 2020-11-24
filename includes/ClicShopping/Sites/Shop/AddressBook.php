@@ -19,12 +19,12 @@
 
     /*
     * Return a pecific customer address
-    * @param : $id customer_id
-    * @param : $address_book_id , id of address book
+    * @param : int|null $id customer_id
+    * @param : int|null$address_book_id , id of address book
     * @return array $Qaddresses
     * public
     */
-    public static function getAddressCustomer($customers_id = null, int $address_book_id)
+    public static function getAddressCustomer(int|null $customers_id = null, int|null $address_book_id = null)
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');

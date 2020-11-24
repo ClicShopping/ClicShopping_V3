@@ -1,4 +1,12 @@
-Version beta 3.22 (on the way)
+Version 3.3 beta
+
+fix deprecated sql access
+fix session error (utf8)
+fix some strict element
+
+
+
+Version 3.2201
 
 See SQL upgrade directory to update your database from v3.2145
 

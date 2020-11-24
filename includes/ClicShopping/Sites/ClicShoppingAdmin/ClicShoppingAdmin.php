@@ -8,7 +8,6 @@
    * @Info : https://www.clicshopping.org/forum/trademark/
    *
    */
-//  declare(strict_types=1);
 
   namespace ClicShopping\Sites\ClicShoppingAdmin;
 
@@ -31,8 +30,6 @@
     protected function init()
     {
       global $login_request;
-
-      error_reporting(E_ALL & ~E_NOTICE);
 
       $CLICSHOPPING_Cookies = new Cookies();
       Registry::set('Cookies', $CLICSHOPPING_Cookies);

@@ -152,7 +152,7 @@
     public static function displayTaxRateValue(float $value, string $padding = null): string
     {
       if (!is_numeric($padding)) {
-        $padding = TAX_DECIMAL_PLACES;
+        $padding = (int)TAX_DECIMAL_PLACES;
       }
 
       if (strpos($value, '.') !== false) {
@@ -192,9 +192,9 @@
      * Add tax to a products price
      * symbol tax :display information after currency (ex : HT / TTC)
      * @param $price
-     * @param $tax
+     * @param ?float $tax
      */
-    public static function addTax(?float $price, ?float $tax)
+    public static function addTax($price, ?float $tax)
     {
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Db = Registry::get('Db');

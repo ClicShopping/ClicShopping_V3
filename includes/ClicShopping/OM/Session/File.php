@@ -74,7 +74,7 @@
 
     public function write($session_id, $session_data)
     {
-      $id = basename($session_id);
+      $id = basename(utf8_encode($session_id));
       return file_put_contents($this->path . '/sess_' . $id, $session_data) !== false;
     }
 
