@@ -121,7 +121,7 @@
      * @param $unit_to
      * @return false|string
      */
-    public function convert(float $value, $unit_from, $unit_to) :false|string
+    public function convert($value, $unit_from, $unit_to) :false|string
     {
       if (!is_null($value)) {
         if ($unit_from == $unit_to) {

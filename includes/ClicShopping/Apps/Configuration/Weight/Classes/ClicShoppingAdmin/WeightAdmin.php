@@ -57,7 +57,7 @@
      * @param $unit_to
      * @return string|void
      */
-    public function convert(float $value, $unit_from, $unit_to) :false|string
+    public function convert($value, $unit_from, $unit_to) :false|string
     {
       parent::convert($value, $unit_from, $unit_to);
     }

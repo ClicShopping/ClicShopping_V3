@@ -409,7 +409,7 @@
           }
           ?>
           <th scope="row"><?php echo $Qorders->valueInt('orders_id'); ?></th>
-          <td><?php echo  HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), $Qorders->value('customers_name') . '&nbsp;(' . $Qorders->value('customers_company') . ')'); ?></td>
+          <td><strong><?php echo  HTML::link($CLICSHOPPING_Orders->link('Edit&oID=' . $Qorders->valueInt('orders_id')), $Qorders->value('customers_name') . '&nbsp;(' . $Qorders->value('customers_company') . ')'); ?></strong></td>
           <?php
           if ($Qhistory->valueInt('orders_status_support_id') > 1) {
             $QCustomerSupport = $CLICSHOPPING_Orders->db->prepare('select oss.orders_status_support_name

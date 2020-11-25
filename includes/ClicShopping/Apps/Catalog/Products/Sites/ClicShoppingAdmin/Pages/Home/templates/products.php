@@ -220,7 +220,7 @@
                <?php echo HTML::link($CLICSHOPPING_Products->link('Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page . '&cPath=' . $cPath), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Products->getDef('icon_preview'))); ?>
                <?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?>
               </td>
-              <td class="text-md-left"><?php echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'); ?></td>
+              <td class="text-md-left"><strong><?php echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'); ?></strong></td>
               <td class="text-md-left"><?php echo $Qproducts->value('products_sku'); ?></td>
               <td class="text-md-center">
                 <?php

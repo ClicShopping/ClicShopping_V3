@@ -26,6 +26,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
 
@@ -1176,14 +1177,14 @@
             <div class="separator"></div>
             <div><?php echo $CLICSHOPPING_ProductsAttributes->getDef('text_help_clone'); ?></div>
           </div>
-          <?php
-            //***********************************
-            // extension
-            //***********************************
-            echo $CLICSHOPPING_Hooks->output('ProductsAttributes', 'PageTab', null, 'display');
-          ?>
         </div>
       </div>
+      <?php
+      //***********************************
+      // extension
+      //***********************************
+      echo $CLICSHOPPING_Hooks->output('ProductsAttributes', 'PageContent', null, 'display');
+      ?>
     </div>
   </div>
   </form><!-- end form delete all -->

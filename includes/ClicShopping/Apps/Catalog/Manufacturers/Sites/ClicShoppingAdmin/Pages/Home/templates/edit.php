@@ -347,7 +347,7 @@
         <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab4', null, 'display'); ?>
       </div>
     </div>
-    <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'ManufacturersTab5', null, 'display'); ?>
+    <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'PageContent', null, 'display'); ?>
   </div>
 </div>
 </form>

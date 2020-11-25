@@ -61,7 +61,7 @@
         }
 
 // Module de paiement autorise
-        if ($_POST['payment_unallowed']) {
+        if (isset($_POST['payment_unallowed'])) {
           $group_payment_unallowed = '';
 
           foreach ($_POST['payment_unallowed'] as $key => $val) {
@@ -74,7 +74,7 @@
         }
 
 // Module de livraison autorise
-        if ($_POST['shipping_unallowed']) {
+        if (isset($_POST['shipping_unallowed'])) {
           $group_shipping_unallowed = '';
 
           foreach ($_POST['shipping_unallowed'] as $key => $val) {

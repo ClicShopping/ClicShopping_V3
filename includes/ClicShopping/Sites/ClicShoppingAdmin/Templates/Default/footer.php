@@ -14,7 +14,7 @@
 
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
-  $CLICSHOPPING_language = Registry::get('Language');
+  $CLICSHOPPING_Language = Registry::get('Language');
 ?>
           </div>
         </div>

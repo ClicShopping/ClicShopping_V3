@@ -378,7 +378,7 @@
           //***********************************
           // extension
           //***********************************
-          echo $CLICSHOPPING_Hooks->output('Categories', 'Page', null, 'display');
+          echo $CLICSHOPPING_Hooks->output('Categories', 'PageContent', null, 'display');
         ?>
       </div>
     </div>

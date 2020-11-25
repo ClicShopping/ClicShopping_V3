@@ -18,7 +18,6 @@
      */
     public function display(): string
     {
-
 //Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
       $output = '<! -- Start BootStrap -->';
 

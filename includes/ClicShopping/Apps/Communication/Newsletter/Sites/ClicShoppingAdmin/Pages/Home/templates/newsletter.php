@@ -127,7 +127,6 @@
         while ($Qnewsletters->fetch()) {
 // Permettre l'affichage des groupes en mode B2B
           if (MODE_B2B_B2C == 'true') {
-
             $QcustomersGroup = $CLICSHOPPING_Newsletter->db->prepare('select customers_group_name
                                                                       from :table_customers_groups
                                                                       where customers_group_id = :customers_group_id
@@ -135,15 +134,12 @@
             $QcustomersGroup->bindInt(':customers_group_id', $Qnewsletters->valueInt('customers_group_id'));
             $QcustomersGroup->execute();
 
-            $customers_group = $QcustomersGroup->fetch();
-
-            if ($customers_group['customers_group_name'] == '') {
+            if (empty($QcustomersGroup->value('customers_group_name'))) {
               $customers_group['customers_group_name'] = $CLICSHOPPING_Newsletter->getDef('text_all_customers');
             }
           }
 
           if ($Qnewsletters->valueInt('languages_id') != 0) {
-
             $QnewslettersLanguages = $CLICSHOPPING_Newsletter->db->prepare('select name
                                                                              from :table_languages
                                                                              where languages_id = :language_id
@@ -165,7 +161,7 @@
            <td></td>
            <td><?php echo $Qnewsletters->valueInt('newsletters_id'); ?></td>
            <td></td>
-          <td scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></td>
+          <td scope="row"><strong><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></strong></td>
           <td class="text-md-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
           <td class="text-md-center"><?php echo $Qnewsletters->value('module'); ?></td>
           <td class="text-md-center"><?php echo $newsletters_language['name']; ?></td>

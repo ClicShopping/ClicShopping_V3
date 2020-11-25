@@ -313,7 +313,7 @@
       </div>
  </div>
 <?php
-      echo $CLICSHOPPING_Hooks->output('Preview', 'PreviewContent', null, 'display');
+      echo $CLICSHOPPING_Hooks->output('Preview', 'PageContent', null, 'display');
     }
     } else {
 ?>
