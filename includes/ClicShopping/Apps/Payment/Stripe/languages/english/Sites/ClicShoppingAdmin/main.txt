@@ -29,5 +29,6 @@ alert_module_install_success = Module has been successfully installed.
 alert_module_uninstall_success = Module has been successfully uninstalled.
 alert_cfg_saved_success = Configuration parameters have been successfully saved.
 
-
+text_error_composer = Please check if composer is installed
+text_error_exec = Error Exec Please check
 text_warning = Do not forget to activate the Stripe  module in Header tag section  SEO / Meta

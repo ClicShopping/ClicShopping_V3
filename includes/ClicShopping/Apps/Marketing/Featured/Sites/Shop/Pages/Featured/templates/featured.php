@@ -12,6 +12,7 @@
   use ClicShopping\OM\Registry;
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+  $CLICSHOPPING_Template = Registry::get('Template');
 
   require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('header'));
 

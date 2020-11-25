@@ -17,6 +17,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
+  $CLICSHOPPING_Hooks =Registry::get('Hooks');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 ?>

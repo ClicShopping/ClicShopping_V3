@@ -23,6 +23,8 @@
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Address = Registry::get('Address');
   $CLICSHOPPING_Suppliers = Registry::get('Suppliers');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
 
@@ -306,7 +308,7 @@
         </div>
       </div>
       <div class="separator"></div>
-      <?php echo $CLICSHOPPING_Hooks->output('Catalog', 'SuppliersTab4', null, 'display'); ?>
+      <?php echo $CLICSHOPPING_Hooks->output('Suppliers', 'PageContent', null, 'display'); ?>
     </div>
   </div>
 </div>

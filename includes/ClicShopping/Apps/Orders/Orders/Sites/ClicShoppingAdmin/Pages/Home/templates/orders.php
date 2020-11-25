@@ -547,9 +547,9 @@
               }
 
               $QordersStatus = $CLICSHOPPING_Orders->db->prepare('select authorize_to_delete_order
-                                                        from :table_orders_status
-                                                        where orders_status_id = :orders_status_id    
-                                                        ');
+                                                                  from :table_orders_status
+                                                                  where orders_status_id = :orders_status_id    
+                                                                  ');
               $QordersStatus->bindInt(':orders_status_id', $Qhistory->valueInt('orders_status_id'));
               $QordersStatus->execute();
 

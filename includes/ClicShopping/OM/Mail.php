@@ -386,13 +386,15 @@
 
     /**
      * Analyse the customer email  domain and validate or not the email
-     * @param string $email
+     * @param string|null $email
      * @return bool
      */
-    public function validateDomainEmail(string $email): bool
+    public function validateDomainEmail(?string $email) :bool
     {
       if (Is::EmailAddress($email, true) === false) {
         return false;
+      } else {
+        return true;
       }
     }
   }

@@ -37,6 +37,7 @@
     <div class="contentText">
 <?php
   if ($CLICSHOPPING_Customer->hasDefaultAddress()) {
+    $process = false;
 ?>
      <div class="separator"></div>
      <h3><?php echo CLICSHOPPING::getDef('table_heading_payment_address'); ?></h3>

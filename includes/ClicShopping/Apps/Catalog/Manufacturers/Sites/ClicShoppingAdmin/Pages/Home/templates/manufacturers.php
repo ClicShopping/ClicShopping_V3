@@ -18,6 +18,7 @@
   $CLICSHOPPING_Manufacturers = Registry::get('Manufacturers');
   $CLICSHOPPING_Page = Registry::get('Site')->getPage();
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
@@ -46,7 +47,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card-deck">
-        <?php echo $CLICSHOPPING_Hooks->output('Manufacturers', 'StatsManufacturers'); ?>
+          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsManufacturers', null, 'display'); ?>
       </div>
     </div>
   </div>

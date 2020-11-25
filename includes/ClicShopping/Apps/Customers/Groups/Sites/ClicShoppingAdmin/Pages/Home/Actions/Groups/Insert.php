@@ -61,7 +61,7 @@
         }
 
 // Module de paiement autorise
-        if ($_POST['payment_unallowed']) {
+        if (isset($_POST['payment_unallowed'])) {
           $group_payment_unallowed = '';
 
           foreach ($_POST['payment_unallowed'] as $key => $val) {
@@ -74,7 +74,7 @@
         }
 
 // Module de livraison autorise
-        if ($_POST['shipping_unallowed']) {
+        if (isset($_POST['shipping_unallowed'])) {
           $group_shipping_unallowed = '';
 
           foreach ($_POST['shipping_unallowed'] as $key => $val) {
@@ -86,14 +86,15 @@
           $group_shipping_unallowed = substr($group_shipping_unallowed, 0, strlen($group_shipping_unallowed) - 1);
         }
 
-        $CLICSHOPPING_Groups->db->save('customers_groups', ['customers_group_name' => $customers_groups_name,
-            'customers_group_discount' => (float)$customers_groups_discount,
-            'color_bar' => $color_bar,
-            'group_payment_unallowed' => $group_payment_unallowed,
-            'group_shipping_unallowed' => $group_shipping_unallowed,
-            'group_tax' => $group_tax,
-            'group_order_taxe' => (int)$group_order_taxe,
-            'customers_group_quantity_default' => (int)$customers_group_quantity_default
+        $CLICSHOPPING_Groups->db->save('customers_groups', [
+          'customers_group_name' => $customers_groups_name,
+          'customers_group_discount' => (float)$customers_groups_discount,
+          'color_bar' => $color_bar,
+          'group_payment_unallowed' => $group_payment_unallowed,
+          'group_shipping_unallowed' => $group_shipping_unallowed,
+          'group_tax' => $group_tax,
+          'group_order_taxe' => (int)$group_order_taxe,
+          'customers_group_quantity_default' => (int)$customers_group_quantity_default
           ]
         );
 

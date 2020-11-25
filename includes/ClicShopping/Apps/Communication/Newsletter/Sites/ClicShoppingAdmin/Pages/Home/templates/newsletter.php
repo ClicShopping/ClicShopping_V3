@@ -127,7 +127,6 @@
         while ($Qnewsletters->fetch()) {
 // Permettre l'affichage des groupes en mode B2B
           if (MODE_B2B_B2C == 'true') {
-
             $QcustomersGroup = $CLICSHOPPING_Newsletter->db->prepare('select customers_group_name
                                                                       from :table_customers_groups
                                                                       where customers_group_id = :customers_group_id
@@ -135,15 +134,12 @@
             $QcustomersGroup->bindInt(':customers_group_id', $Qnewsletters->valueInt('customers_group_id'));
             $QcustomersGroup->execute();
 
-            $customers_group = $QcustomersGroup->fetch();
-
-            if ($customers_group['customers_group_name'] == '') {
+            if (empty($QcustomersGroup->value('customers_group_name'))) {
               $customers_group['customers_group_name'] = $CLICSHOPPING_Newsletter->getDef('text_all_customers');
             }
           }
 
           if ($Qnewsletters->valueInt('languages_id') != 0) {
-
             $QnewslettersLanguages = $CLICSHOPPING_Newsletter->db->prepare('select name
                                                                              from :table_languages
                                                                              where languages_id = :language_id

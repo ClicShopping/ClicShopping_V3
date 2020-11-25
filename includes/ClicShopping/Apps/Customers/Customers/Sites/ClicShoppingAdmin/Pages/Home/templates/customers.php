@@ -104,9 +104,7 @@
         <th data-checkbox="true" data-field="state"></th>
         <th data-field="selected" data-sortable="true" data-visible="false"  data-switchable="false"><?php echo $CLICSHOPPING_Customers->getDef('id'); ?></th>
         <th data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_customers_id'); ?></th>
-
         <th data-field="lastname"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_lastname'); ?></th>
-        <th data-field="firstname"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_firstname'); ?></th>
         <th data-field="company"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_company'); ?></th>
         <?php
           // Permettre le changement de groupe en mode B2B
@@ -161,7 +159,6 @@
 
         $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qcustomers->execute();
-
       } else {
         $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select SQL_CALC_FOUND_ROWS c.customers_id,
                                                                               c.customers_company,
@@ -188,87 +185,86 @@
 
       if ($listingTotalRow > 0) {
 
-      while ($Qcustomers->fetch()) {
+        while ($Qcustomers->fetch()) {
 // suppression du membre non approuvé
-        $Qinfo = $CLICSHOPPING_Customers->db->prepare('select customers_info_date_account_created as date_account_created,
-                                                               customers_info_date_account_last_modified as date_account_last_modified,
-                                                               customers_info_date_of_last_logon as date_last_logon,
-                                                               customers_info_number_of_logons as number_of_logons
-                                                         from :table_customers_info
-                                                         where customers_info_id = :customers_id
-                                                        ');
-        $Qinfo->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
-        $Qinfo->execute();
-
-        $info = $Qinfo->fetch();
-
-        $QcustColl = $CLICSHOPPING_Customers->db->prepare('select customers_group_id,
-                                                                   customers_group_name
-                                                           from :table_customers_groups
-                                                           where customers_group_id = :customers_group_id
+          $Qinfo = $CLICSHOPPING_Customers->db->prepare('select customers_info_date_account_created as date_account_created,
+                                                                 customers_info_date_account_last_modified as date_account_last_modified,
+                                                                 customers_info_date_of_last_logon as date_last_logon,
+                                                                 customers_info_number_of_logons as number_of_logons
+                                                           from :table_customers_info
+                                                           where customers_info_id = :customers_id
                                                           ');
-        $QcustColl->bindInt(':customers_group_id', $Qcustomers->valueInt('customers_group_id'));
-        $QcustColl->execute();
+          $Qinfo->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
+          $Qinfo->execute();
 
-        $cust_ret = $QcustColl->fetch();
+          $info = $Qinfo->fetch();
 
-        if ($QcustColl->valueInt('customers_group_id') == 0) {
-          $cust_ret['customers_group_name'] = $CLICSHOPPING_Customers->getDef('visitor_name');
-        }
+          $QcustColl = $CLICSHOPPING_Customers->db->prepare('select customers_group_id,
+                                                                     customers_group_name
+                                                             from :table_customers_groups
+                                                             where customers_group_id = :customers_group_id
+                                                            ');
+          $QcustColl->bindInt(':customers_group_id', $Qcustomers->valueInt('customers_group_id'));
+          $QcustColl->execute();
 
-        if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcustomers->valueInt('customers_id')))) && !isset($cInfo)) {
+          $cust_ret = $QcustColl->fetch();
 
-          $Qcountry = $CLICSHOPPING_Customers->db->prepare('select countries_name
-                                                           from :table_countries
-                                                           where countries_id = :countries_id
-                                                          ');
+          if ($QcustColl->valueInt('customers_group_id') == 0) {
+            $cust_ret['customers_group_name'] = $CLICSHOPPING_Customers->getDef('visitor_name');
+          }
 
-          $Qcountry->bindInt(':countries_id', $Qcustomers->valueInt('entry_country_id'));
-          $Qcountry->execute();
-          $country = $Qcountry->fetch();
+          if ((!isset($_GET['cID']) || (isset($_GET['cID']) && ((int)$_GET['cID'] === $Qcustomers->valueInt('customers_id')))) && !isset($cInfo)) {
 
-          $Qreviews = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_reviews
-                                                             from :table_reviews
-                                                             where customers_id = :customers_id
+            $Qcountry = $CLICSHOPPING_Customers->db->prepare('select countries_name
+                                                             from :table_countries
+                                                             where countries_id = :countries_id
                                                             ');
 
-          $Qreviews->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
-          $Qreviews->execute();
-          $reviews = $Qreviews->fetch();
+            $Qcountry->bindInt(':countries_id', $Qcustomers->valueInt('entry_country_id'));
+            $Qcountry->execute();
+            $country = $Qcountry->fetch();
 
-          // recover from bad records
-          if (!is_array($Qcountry->fetch())) {
-            $country = array('Country is NULL');
+            $Qreviews = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_reviews
+                                                               from :table_reviews
+                                                               where customers_id = :customers_id
+                                                              ');
+
+            $Qreviews->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
+            $Qreviews->execute();
+            $reviews = $Qreviews->fetch();
+
+            // recover from bad records
+            if (!is_array($Qcountry->fetch())) {
+              $country = array('Country is NULL');
+            }
+
+            if (!is_array($Qinfo->fetch())) {
+              $info = ['Info is NULL'];
+            }
+
+            if (!is_array($Qreviews->fetch())) {
+              $reviews = ['Customers is NULL'];
+            }
+
+            $Qorders = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_orders
+                                                            from :table_orders
+                                                            where customers_id = :customers_id
+                                                           ');
+
+            $Qorders->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
+            $Qorders->execute();
+
+            $customer_info = array_merge(array($country), array($info), array($reviews), $Qorders->toArray());
+            $cInfo_array = array_merge($Qcustomers->toArray(), (array)$customer_info, (array)$cust_ret);
+
+            $cInfo = new ObjectInfo($cInfo_array);
           }
-
-          if (!is_array($Qinfo->fetch())) {
-            $info = ['Info is NULL'];
-          }
-
-          if (!is_array($Qreviews->fetch())) {
-            $reviews = ['Customers is NULL'];
-          }
-
-          $Qorders = $CLICSHOPPING_Customers->db->prepare('select count(*) as number_of_orders
-                                                          from :table_orders
-                                                          where customers_id = :customers_id
-                                                         ');
-
-          $Qorders->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
-          $Qorders->execute();
-
-          $customer_info = array_merge(array($country), array($info), array($reviews), $Qorders->toArray());
-          $cInfo_array = array_merge($Qcustomers->toArray(), (array)$customer_info, (array)$cust_ret);
-
-          $cInfo = new ObjectInfo($cInfo_array);
-        }
         ?>
         <td></td>
         <td><?php echo $Qcustomers->valueInt('customers_id'); ?></td>
 
         <th scope="row"><?php echo $Qcustomers->valueInt('customers_id'); ?></th>
-        <td><?php echo $Qcustomers->value('customers_lastname'); ?></td>
-        <td><?php echo $Qcustomers->value('customers_firstname'); ?></td>
+        <td><?php echo $Qcustomers->value('customers_lastname') . ' ' . $Qcustomers->value('customers_firstname'); ?></td>
         <td><?php echo $Qcustomers->value('entry_company'); ?></td>
         <?php
 // Permettre le changement de groupe en mode B2B

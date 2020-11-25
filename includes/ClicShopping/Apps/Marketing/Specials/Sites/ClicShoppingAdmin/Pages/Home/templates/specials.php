@@ -25,6 +25,7 @@
   $CLICSHOPPING_Currencies = Registry::get('Currencies');
   $CLICSHOPPING_Language = Registry::get('Language');
   $CLICSHOPPING_Image = Registry::get('Image');
+  $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
@@ -117,7 +118,6 @@
       <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Specials->getDef('id'); ?></th>
       <th data-switchable="false"></th>
       <th data-switchable="false"></th>
-      <th data-field="model" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_model'); ?></th>
       <th data-field="heading_products" data-sortable="true"><?php echo $CLICSHOPPING_Specials->getDef('table_heading_products'); ?></th>
       <?php
         if (MODE_B2B_B2C == 'true') {
@@ -234,12 +234,10 @@
           ?>
           <td></td>
           <td><?php echo $Qspecials->valueInt('specials_id'); ?></td>
-
           <td scope="row"
               width="50px"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qspecials->valueInt('products_id') . '?page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview.gif', $CLICSHOPPING_Specials->getDef('icon_preview'))); ?></td>
           <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qspecials->valueInt('products_id')); ?></td>
-          <td><?php echo $Qspecials->value('products_model'); ?></td>
-          <td><?php echo $Qspecials->value('products_name'); ?></td>
+          <td><?php echo $Qspecials->value('products_name') . ' ['. $Qspecials->value('products_model') . ']'; ?></td>
           <?php
           if (MODE_B2B_B2C == 'true') {
             if ($Qspecials->valueInt('customers_group_id') != 0 && $Qspecials->valueInt('customers_group_id') != 99) {

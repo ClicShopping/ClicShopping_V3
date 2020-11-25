@@ -26,6 +26,7 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_ProductsAdmin = Registry::get('ProductsAdmin');
   $CLICSHOPPING_Language = Registry::get('Language');
+  $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
   $CLICSHOPPING_ProductsAttributesAdmin = new ProductsAttributesAdmin;
 
