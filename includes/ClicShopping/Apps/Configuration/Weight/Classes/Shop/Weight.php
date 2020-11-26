@@ -116,7 +116,7 @@
     }
 
     /**
-     * @param float $value
+     * @param $value
      * @param $unit_from
      * @param $unit_to
      * @return false|string

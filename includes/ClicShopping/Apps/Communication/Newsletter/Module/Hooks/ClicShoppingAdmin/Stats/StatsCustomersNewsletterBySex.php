@@ -29,7 +29,10 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersNewsletterBySex');
     }
 
-    private function statsNewsletterCustomersMen()
+    /**
+     * @return float|null
+     */
+    private function statsNewsletterCustomersMen() :?float
     {
       $QstatAnalyseCustomersMan = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS avgage
                                                            from :table_customers
@@ -47,8 +50,10 @@
       return $statAnalyseCustomersMan;
     }
 
-
-    private function statsNewsletterCustomersWomen()
+    /**
+     * @return float|null
+     */
+    private function statsNewsletterCustomersWomen() :?float
     {
       $QstatAnalyseCustomersWomen = $this->app->db->prepare('select ROUND(((COUNT(customers_id)/(SELECT COUNT(customers_id) FROM :table_customers))*100),2) AS avgage
                                                               from :table_customers
@@ -66,8 +71,10 @@
       return $statAnalyseCustomersWomen;
     }
 
-
-    public function execute()
+    /**
+     * @return string
+     */
+    public function display() :string
     {
       if (!defined('CLICSHOPPING_APP_NEWSLETTER_NL_STATUS') || CLICSHOPPING_APP_NEWSLETTER_NL_STATUS == 'False') {
         return false;

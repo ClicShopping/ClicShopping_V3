@@ -11,19 +11,20 @@
 
   namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
 
-  class HeaderOutputChartist
+  class HeaderOutputChart
   {
     /**
-     * @return bool|string
+     * @return string
      */
     public function display(): string
     {
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output = '<! -- Start Chartist -->' . "\n";
-        $output .= '<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.css" media="screen, print"/>' . "\n";
-        $output .= '<!-- End Chartist  -->' . "\n";
+        $output = '<! -- Start Chart -->' . "\n";
+        $output .= '<link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet" crossorigin="anonymous">';
+        $output .= '<script async src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>';
+        $output .= '<!-- End Chart  -->' . "\n";
       }
 
       return $output;

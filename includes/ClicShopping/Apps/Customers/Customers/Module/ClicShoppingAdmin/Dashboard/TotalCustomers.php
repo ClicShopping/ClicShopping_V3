@@ -12,7 +12,6 @@
   namespace ClicShopping\Apps\Customers\Customers\Module\ClicShoppingAdmin\Dashboard;
 
   use ClicShopping\OM\HTML;
-  use ClicShopping\OM\CLICSHOPPING;
   use ClicShopping\OM\Registry;
 
   use ClicShopping\Apps\Customers\Customers\Customers as CustomersApp;
@@ -43,7 +42,7 @@
       }
     }
 
-    public function getOutput()
+    public function getOutput() :string
     {
       $days = [];
       for ($i = 0; $i < 15; $i++) {
@@ -72,109 +71,111 @@
 
       $output = <<<EOD
 <div class="{$content_width}">
-  <div class="card-deck mb-3">
+  <div class="card mb-3">
     <div class="card">
-      <div class="card-body">
-        <h6 class="card-title"><i class="fa fa-female"></i> {$chart_label_link}</h6>
-        <p class="card-text"><div id="d_total_customers_app" class="col-md-12" style="width:100%; height: 200px;"></div></p>
+      <div class="card-block">
+        <div class="card-body">
+          <h6 class="card-title"><i class="fa fa-coins"></i> {$chart_label_link}</h6>
+          <p class="card-text">
+            <div class="col-md-12">
+              <canvas id="d_total_customers_app" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
+            </div>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<script type="text/javascript">
-$(function() {
-  var data = {
-    labels: $data_labels,
-    series: [ $data ]
-  };
 
-  var options = {
-    fullWidth: true,
-    height: '250px',
-    showPoint: false,
-    showArea: true,
-    axisY: {
-      labelInterpolationFnc: function skipLabels(value, index) {
-        return index % 2  === 0 ? value : null;
-      }
+<script>
+var ctx = document.getElementById('d_total_customers_app');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: $data_labels,
+        datasets: [{
+            label: 'Customers',
+            data: $data,
+            backgroundColor: [                
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)',
+                'rgba(235, 101, 26, 0.2)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 0.2)'                                            
+            ],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        maintainAspectRatio: true,
+        legend: {
+          display: false
+        },        
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        xAxes: [{
+          reverse: true,
+          gridLines: {
+            color: "rgba(0,0,0,0.05)"
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            stepSize: 1
+          },
+          display: true,
+          borderDash: [5, 5],
+          gridLines: {
+            color: "rgba(0,0,0,0.050)",
+            fontColor: "#fff"
+          }
+        }]
     }
-  }
-
-  var chart = new Chartist.Bar('#d_total_customers_app', data, options);
-
-  chart.on('draw', function(context) {
-    if (context.type === 'bar') {
-      context.element.attr({
-        style: 'stroke: #FAA09D; stroke-width: 20px'
-    
-      });
-    } else if (context.type === 'area') {
-      context.element.attr({
-        style: 'fill: blue;'
-      });
-    }
-  });
 });
 
+function beforePrintHandler () {
+    for (var id in Chart.instances) {
+        Chart.instances[id].resize();
+    }
+}
 </script>
 EOD;
-
       return $output;
     }
 
     public function Install()
     {
-      if ($this->lang->getId() != 2) {
-        $this->app->db->save('configuration', [
-            'configuration_title' => 'Souhaitez vous activer ce module ?',
-            'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS',
-            'configuration_value' => 'True',
-            'configuration_description' => 'Souhaitez vous activer ce module ?',
-            'configuration_group_id' => '6',
-            'sort_order' => '1',
-            'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
-            'date_added' => 'now()'
-          ]
-        );
-
-        $this->app->db->save('configuration', [
-            'configuration_title' => 'Veuillez selectionner la largeur de l\'affichage?',
-            'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH',
-            'configuration_value' => '6',
-            'configuration_description' => 'Veuillez indiquer un nombre compris entre 1 et 12',
-            'configuration_group_id' => '6',
-            'sort_order' => '1',
-            'set_function' => 'clic_cfg_set_content_module_width_pull_down',
-            'date_added' => 'now()'
-          ]
-        );
-
-        $this->app->db->save('configuration', [
-            'configuration_title' => 'Veuillez choisir votre interval d\'analyse',
-            'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_INTERVAL',
-            'configuration_value' => '30 Day',
-            'configuration_description' => 'interval d\'analyse',
-            'configuration_group_id' => '6',
-            'sort_order' => '1',
-            'set_function' => 'clic_cfg_set_boolean_value(array(\'7 Day\', \'14 Day\', \'30 Day\', \'90 Day\', \'182 Day\', \'365 Day\'))',
-            'date_added' => 'now()'
-          ]
-        );
-
-        $this->app->db->save('configuration', [
-            'configuration_title' => 'Ordre de tri d\'affichage',
-            'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_SORT_ORDER',
-            'configuration_value' => '45',
-            'configuration_description' => 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)',
-            'configuration_group_id' => '6',
-            'sort_order' => '99',
-            'set_function' => '',
-            'date_added' => 'now()'
-          ]
-        );
-
-      } else {
-
         $this->app->db->save('configuration', [
             'configuration_title' => 'Do you want to enable this Module ?',
             'configuration_key' => 'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS',
@@ -222,12 +223,12 @@ EOD;
             'date_added' => 'now()'
           ]
         );
-      }
     }
 
-    public function keys()
+    public function keys() :array
     {
-      return ['MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS',
+      return [
+        'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_STATUS',
         'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH',
         'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_INTERVAL',
         'MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_SORT_ORDER'

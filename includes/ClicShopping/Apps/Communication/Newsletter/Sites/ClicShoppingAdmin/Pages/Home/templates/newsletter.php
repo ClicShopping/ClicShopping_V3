@@ -161,7 +161,7 @@
            <td></td>
            <td><?php echo $Qnewsletters->valueInt('newsletters_id'); ?></td>
            <td></td>
-          <td scope="row"><strong><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></strong></td>
+          <td scope="row"><?php echo '<a href="' . $CLICSHOPPING_Newsletter->link('Newsletter&Preview&page=' . $page . '&nID=' . $Qnewsletters->valueInt('newsletters_id')) . '">' . $Qnewsletters->value('title') . '</a>'; ?></td>
           <td class="text-md-center"><?php echo number_format($Qnewsletters->value('content_length')) . ' bytes'; ?></td>
           <td class="text-md-center"><?php echo $Qnewsletters->value('module'); ?></td>
           <td class="text-md-center"><?php echo $newsletters_language['name']; ?></td>

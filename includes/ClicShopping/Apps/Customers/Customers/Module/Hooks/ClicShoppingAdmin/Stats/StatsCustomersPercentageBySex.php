@@ -30,7 +30,10 @@
 
     }
 
-    private function statsAverageCustomersMen()
+    /**
+     * @return float
+     */
+    private function statsAverageCustomersMen() :float
     {
       $numberByPerCentMen = '   ';
 
@@ -49,8 +52,10 @@
       return $numberByPerCentMen;
     }
 
-
-    private function statsAverageCustomersWomen()
+    /**
+     * @return float
+     */
+    private function statsAverageCustomersWomen() :float
     {
       $numberByPerCentWomen = '   ';
 
@@ -69,8 +74,10 @@
       return $numberByPerCentWomen;
     }
 
-
-    public function execute()
+    /**
+     * @return string
+     */
+    public function display() :string
     {
 
       $output = '

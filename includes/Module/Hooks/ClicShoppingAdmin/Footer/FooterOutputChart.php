@@ -11,19 +11,19 @@
 
   namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Footer;
 
-  class FooterOutputChartist
+  class FooterOutputChart
   {
     /**
-     * @return bool|string
+     * @return string
      */
     public function display(): string
     {
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output .= '<! -- Start Chartist -->' . "\n";
-        $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>' . "\n";
-        $output .= '<!-- End Chartist  -->' . "\n";
+        $output = '<! -- Start Chart -->' . "\n";
+        $output .= '<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>';
+        $output .= '<!-- End Chart  -->' . "\n";
       }
 
       return $output;

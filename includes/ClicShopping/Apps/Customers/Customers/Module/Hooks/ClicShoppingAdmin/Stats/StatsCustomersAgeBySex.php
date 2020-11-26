@@ -30,7 +30,10 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersAgeBySex');
     }
 
-    private function statsAgeCustomersMen()
+    /**
+     * @return int
+     */
+    private function statsAgeCustomersMen() :int
     {
       $statAnalyseCustomersMan = '    ';
 
@@ -49,8 +52,10 @@
       return $statAnalyseCustomersMan;
     }
 
-
-    private function statsAgeCustomersWomen()
+    /**
+     * @return int
+     */
+    private function statsAgeCustomersWomen() :int
     {
       $statAnalyseCustomersWomen = '    ';
 
@@ -70,9 +75,8 @@
     }
 
 
-    public function execute()
+    public function display() :string
     {
-
       $output = '
   <div class="card col-md-2 cardStatsInfo">
     <div class="card-block">

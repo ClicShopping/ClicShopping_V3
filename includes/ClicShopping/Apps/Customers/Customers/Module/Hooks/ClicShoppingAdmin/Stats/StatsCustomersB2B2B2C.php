@@ -29,7 +29,10 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/StatsCustomersB2B2B2C');
     }
 
-    private function statsCustomersB2C()
+    /**
+     * @return int
+     */
+    private function statsCustomersB2C() :int
     {
       $QstatCustomersB2C = $this->app->db->prepare('select count(customers_id) as count
                                                     from :table_customers
@@ -42,7 +45,10 @@
       return $statCustomersB2C;
     }
 
-    private function statCustomersB2B()
+    /**
+     * @return mixed
+     */
+    private function statCustomersB2B() :int
     {
       $QstatCustomersB2B = $this->app->db->prepare('select count(customers_id) as count
                                                     from :table_customers
@@ -55,9 +61,11 @@
       return $statCustomersB2B;
     }
 
-    public function execute()
+    /**
+     * @return string
+     */
+    public function display() :string
     {
-
       $output = '
   <div class="card col-md-2 cardStatsSuccess">
     <div class="card-block">
