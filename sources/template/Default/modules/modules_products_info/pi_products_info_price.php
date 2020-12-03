@@ -92,6 +92,8 @@
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton() ;
+          } else {
+            $submit_button = '';
           }
 
 // Display an input allowing for the customer to insert a quantity

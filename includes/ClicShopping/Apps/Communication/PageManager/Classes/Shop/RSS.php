@@ -138,7 +138,7 @@
                                     and language_id = :language_id
                                     limit 1
                                     ');
-      $Qsubmit->bindInt(':language_id', (int)$this->lang->getId());
+      $Qsubmit->bindInt(':language_id', $this->lang->getId());
       $Qsubmit->execute();
 
       if ($Qsubmit->fetch() !== false) {
@@ -237,7 +237,7 @@
                                       and p.products_id = p2c.products_id
                                       and p.products_archive = 0
                                       and language_id = :language_id
-                                      order by p.products_date_added des
+                                      order by p.products_date_added desc
                                       limit :limit
                                      ');
       }

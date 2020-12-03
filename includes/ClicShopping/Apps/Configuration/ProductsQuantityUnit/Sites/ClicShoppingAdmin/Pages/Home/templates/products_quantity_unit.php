@@ -37,27 +37,37 @@
     </div>
   </div>
   <div class="separator"></div>
+  <!-- //################################################################################################################ -->
+  <!-- //                                             LISTING                                                            -->
+  <!-- //################################################################################################################ -->
 
-  <table border="0" width="100%" cellspacing="0" cellpadding="2">
-    <td>
-      <table class="table table-sm table-hover table-striped">
-        <thead>
-        <tr class="dataTableHeadingRow">
-          <th><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_products_unit_quantity_status'); ?></th>
-          <th class="text-md-right"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_action'); ?>
-            &nbsp;
-          </th>
-        </tr>
-        </thead>
-        <tbody>
+  <table
+    id="table"
+    data-toggle="table"
+    data-sort-name="symbol"
+    data-sort-order="asc"
+    data-toolbar="#toolbar"
+    data-buttons-class="primary"
+    data-show-toggle="true"
+    data-show-columns="true"
+    data-mobile-responsive="true">
+
+    <thead class="dataTableHeadingRow">
+      <tr>
+            <th data-field="quantity_status" data-sortable="false"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_products_unit_quantity_status'); ?></th>
+            <th data-field="action" data-switchable="false"  class="text-md-right"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_action'); ?></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
         <?php
           $QproductsQuantityUnit = $CLICSHOPPING_ProductsQuantityUnit->db->prepare('select  SQL_CALC_FOUND_ROWS  *
-                                                                                from :table_products_quantity_unit
-                                                                                where language_id = :language_id
-                                                                                order by products_quantity_unit_id
-                                                                                limit :page_set_offset,
-                                                                                      :page_set_max_results
-                                                                                ');
+                                                                                    from :table_products_quantity_unit
+                                                                                    where language_id = :language_id
+                                                                                    order by products_quantity_unit_id
+                                                                                    limit :page_set_offset,
+                                                                                          :page_set_max_results
+                                                                                    ');
 
           $QproductsQuantityUnit->bindInt(':language_id', $CLICSHOPPING_Language->getId());
           $QproductsQuantityUnit->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
@@ -75,7 +85,7 @@
           if (DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID == $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) {
             echo '                <th scope="row"><strong>' . $QproductsQuantityUnit->value('products_quantity_unit_title') . ' (' . $CLICSHOPPING_ProductsQuantityUnit->getDef('text_default') . ')</strong></th>' . "\n";
           } else {
-            echo '                <th scope="row">' . $QproductsQuantityUnit->value('products_quantity_unit_title') . '</th>' . "\n";
+            echo '                <th>' . $QproductsQuantityUnit->value('products_quantity_unit_title') . '</th>' . "\n";
           }
         ?>
         <td class="text-md-right">
@@ -86,16 +96,17 @@
             echo '&nbsp;';
             echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Edit&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_edit')) . '</a>';
           ?>
-        </td>
-        </tbody>
-        </tr>
+                </td>
+              </tr>
         <?php
           } //enwhile
           } // end $listingTotalRow
         ?>
+        </tbody>
       </table>
     </td>
   </table>
+  <div class="separator"></div>
   <?php
     if ($listingTotalRow > 0) {
       ?>

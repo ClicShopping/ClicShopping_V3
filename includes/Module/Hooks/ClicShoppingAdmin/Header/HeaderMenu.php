@@ -170,7 +170,7 @@
 
 //--------------------------------------------------------------
 // level 4
-            if (isset($menu_sub[$third_level]['sub_menu'])) {
+              if (isset($menu_sub[$third_level]['sub_menu'])) {
 //              $output .= '<ul>';
 
               foreach ($menu_sub[$third_level]['sub_menu'] as $fourth_level) {

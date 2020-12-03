@@ -15,7 +15,7 @@
  ],
  "modules": {
    "AdminDashboard": {
-    "Customers": "Module\\ClicShoppingAdmin\\Dashboard\\TotalCustomers"
+    "TotalCustomers": "Module\\ClicShoppingAdmin\\Dashboard\\TotalCustomers"
    },
   "Hooks": {
    "ClicShoppingAdmin/StatsDashboard": {
