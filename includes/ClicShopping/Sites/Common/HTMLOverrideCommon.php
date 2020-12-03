@@ -64,7 +64,7 @@
      * @param string $length
      * @return mixed|string|string[]|null
      */
-    public static function cleanHtml($CatList, $length = '')
+    public static function cleanHtml($CatList, string $length = '')
     {
       $clean = strip_tags($CatList);
       $clean = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $clean);
@@ -78,6 +78,8 @@
           $clean = substr($clean, 0, $length - 3) . "...";
         }
       }
+
+      $clean = htmlspecialchars($clean, ENT_QUOTES | ENT_HTML5);
 
       return $clean;
     }
