@@ -73,7 +73,7 @@
         ?>
         <tr>
           <td><?php echo $Qconfiguration->value('configuration_title'); ?></td>
-          <td><?php echo htmlspecialchars($cfgValue); ?></td>
+          <td><?php echo htmlspecialchars($cfgValue, ENT_QUOTES | ENT_HTML5); ?></td>
           <td>
             <script>
                 $(document).ready(function () {

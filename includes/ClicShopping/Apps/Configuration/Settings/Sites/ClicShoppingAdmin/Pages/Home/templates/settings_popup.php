@@ -72,7 +72,7 @@
   }
 
   if ($cInfo->set_function) {
-    $value_field = CallUserFuncConfiguration::execute($cInfo->set_function, htmlspecialchars($cInfo->configuration_value), $cInfo->configuration_key);
+    $value_field = CallUserFuncConfiguration::execute($cInfo->set_function, htmlspecialchars($cInfo->configuration_value, ENT_QUOTES | ENT_HTML5), $cInfo->configuration_key);
   } else {
     $value_field = HTML::inputField('configuration[' . $cInfo->configuration_key . ']', $cInfo->configuration_value);
   }

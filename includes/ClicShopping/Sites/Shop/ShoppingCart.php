@@ -1236,7 +1236,7 @@
         $uprid = $this->getPrid($prid);
 
         if (is_numeric($uprid)) {
-          if (strpos($prid, '{') !== false) {
+          if (str_contains($prid, '{')) {
             $attributes_check = true;
             $attributes_ids = '';
 

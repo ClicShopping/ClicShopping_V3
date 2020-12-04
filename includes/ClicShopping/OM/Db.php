@@ -587,7 +587,7 @@
             continue;
           } elseif ($is_foreign === true) {
             foreach ($details as $d) {
-              if (strpos($d, '(') === false) {
+              if (!str_contains($d, '(')) {
                 $schema['foreign'][$field_name]['col'][] = $d;
 
                 continue;

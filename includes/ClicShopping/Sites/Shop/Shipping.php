@@ -34,7 +34,7 @@
         $code = null;
 
         if (isset($module) && is_array($module) && isset($module['id'])) {
-          if (strpos($module['id'], '\\') !== false) {
+          if (str_contains($module['id'], '\\')) {
             list($vendor, $app, $module) = explode('\\', $module['id']);
 
             $code = $vendor . '\\' . $app . '\\' . $module;
@@ -42,7 +42,7 @@
         }
 
         if (isset($code) && (in_array($code . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($code, $this->modules))) {
-          if (strpos($code, '\\') !== false) {
+          if (str_contains($code, '\\')) {
             $class = Apps::getModuleClass($code, 'Shipping');
 
             $include_modules[] = [
@@ -52,7 +52,7 @@
           }
         } else {
           foreach ($this->modules as $value) {
-            if (strpos($value, '\\') !== false) {
+            if (str_contains($value, '\\')) {
               $class = Apps::getModuleClass($value, 'Shipping');
 
               $include_modules[] = [
@@ -64,7 +64,7 @@
         }
 
         for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-          if (strpos($include_modules[$i]['class'], '\\') !== false) {
+          if (str_contains($include_modules[$i]['class'], '\\')) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
           }
         }
@@ -113,7 +113,7 @@
         $include_quotes = [];
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
 
             if (!is_null($module)) {
@@ -129,7 +129,7 @@
         $size = count($include_quotes);
 
         for ($i = 0; $i < $size; $i++) {
-          if (strpos($include_quotes[$i], '\\') !== false) {
+          if (str_contains($include_quotes[$i], '\\')) {
             $quotes = Registry::get('Shipping_' . str_replace('\\', '_', $include_quotes[$i]))->quote($method);
           }
 
@@ -147,7 +147,7 @@
     public function getFirst()
     {
       foreach ($this->modules as $value) {
-        if (strpos($value, '\\') !== false) {
+        if (str_contains($value, '\\')) {
           $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
         }
         if ($obj->enabled) {
@@ -176,7 +176,7 @@
         $obj = [];
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $obj = Registry::get('Shipping_' . str_replace('\\', '_', $value));
           }
 
@@ -229,7 +229,7 @@
 
         $CLICSHOPPING_SM = null;
 
-        if (strpos($m, '\\') !== false) {
+        if (str_contains($m, '\\')) {
           list($vendor, $app, $module) = explode('\\', $m);
 
           $module = $vendor . '\\' . $app . '\\' . $module;

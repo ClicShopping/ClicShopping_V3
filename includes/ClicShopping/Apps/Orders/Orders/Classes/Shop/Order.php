@@ -514,7 +514,7 @@
       }
 
       if (isset($_SESSION['payment'])) {
-        if (strpos($_SESSION['payment'], '\\') !== false) {
+        if (str_contains($_SESSION['payment'], '\\')) {
           $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
           if (Registry::exists($code)) {
@@ -802,7 +802,7 @@
       $CLICSHOPPING_OrderTotal = Registry::get('OrderTotal');
 
       if (isset($_SESSION['payment'])) {
-        if (strpos($_SESSION['payment'], '\\') !== false) {
+        if (str_contains($_SESSION['payment'], '\\')) {
           $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
           if (Registry::exists($code)) {
@@ -1176,7 +1176,7 @@
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Currencies = Registry::get('Currencies');
 
-      if (strpos($_SESSION['payment'], '\\') !== false) {
+      if (str_contains($_SESSION['payment'], '\\')) {
         $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
         if (Registry::exists($code)) {
@@ -1280,7 +1280,7 @@
         }
 
         if (isset($_SESSION['payment'])) {
-          if (strpos($_SESSION['payment'], '\\') !== false) {
+          if (str_contains($_SESSION['payment'], '\\')) {
             $code = 'Payment_' . str_replace('\\', '_', $_SESSION['payment']);
 
             if (Registry::exists($code)) {

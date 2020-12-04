@@ -25,7 +25,7 @@
         $this->modules = explode(';', MODULE_ORDER_TOTAL_INSTALLED);
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $class = Apps::getModuleClass($value, 'OrderTotal');
 
             Registry::set('OrderTotal_' . str_replace('\\', '_', $value), new $class);
@@ -41,7 +41,7 @@
       if (is_array($this->modules)) {
         foreach ($this->modules as $value) {
 
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));
           }
           if ($CLICSHOPPING_OTM->enabled) {
@@ -71,7 +71,7 @@
       $output_string = '';
       if (is_array($this->modules)) {
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_OTM = Registry::get('OrderTotal_' . str_replace('\\', '_', $value));
           }
 

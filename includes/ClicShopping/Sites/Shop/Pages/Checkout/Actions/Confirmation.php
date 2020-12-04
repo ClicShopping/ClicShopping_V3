@@ -110,7 +110,7 @@
 
       $CLICSHOPPING_Payment->update_status();
 
-      if (strpos($CLICSHOPPING_Payment->selected_module, '\\') !== false) {
+      if (str_contains($CLICSHOPPING_Payment->selected_module, '\\')) {
         $code = 'Payment_' . str_replace('\\', '_', $CLICSHOPPING_Payment->selected_module);
 
         if (Registry::exists($code)) {

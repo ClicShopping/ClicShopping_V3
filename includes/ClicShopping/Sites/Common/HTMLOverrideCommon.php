@@ -157,7 +157,7 @@
         return '<' . $matches[1] . preg_replace('#([^\s=]+)(\=([\'"]?)(.*?)\3)?(\s+|$)#s', ' $1$2', $matches[2]) . $matches[3] . '>';
       }, str_replace("\r", "", $input));
 
-      if(strpos($input, '</script>') !== false) {
+      if(str_contains($input, '</script>')) {
         $input = preg_replace_callback('#<script(.*?)>(.*?)</script>#is', function($matches) {
           return '<script' . $matches[1] .'>'. static::getMinifyJS($matches[2]) . '</script>';
         }, $input);

@@ -62,7 +62,7 @@
 
                 $reset_key_url = CLICSHOPPING::link(null, 'Account&PasswordReset&account=' . urlencode($email_address) . '&key=' . $reset_key);
 
-                if (strpos($reset_key_url, '&amp;') !== false) {
+                if (str_contains($reset_key_url, '&amp;')) {
                   $reset_key_url = str_replace('&amp;', '&', $reset_key_url);
                 }
 

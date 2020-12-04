@@ -225,7 +225,7 @@
         for ($i = 0, $n = strlen($random); $i < $n; $i++) {
           $char = substr($random, $i, 1);
 
-          if (strpos($base, $char) !== false) {
+          if (str_contains($base, $char)) {
             $rand_value .= $char;
           }
         }

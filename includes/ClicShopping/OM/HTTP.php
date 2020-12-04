@@ -56,7 +56,7 @@
     public static function redirect(string $url, ?string $http_response_code = null)
     {
       if ((strstr($url, "\n") === false) && (strstr($url, "\r") === false)) {
-        if (strpos($url, '&amp;') !== false) {
+        if (str_contains($url, '&amp;')) {
           $url = str_replace('&amp;', '&', $url);
         }
 

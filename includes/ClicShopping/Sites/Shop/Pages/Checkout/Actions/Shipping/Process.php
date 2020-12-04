@@ -51,7 +51,7 @@
 
             $CLICSHOPPING_SM = null;
 
-            if (strpos($_SESSION['shipping'], '\\') !== false) {
+            if (str_contains($_SESSION['shipping'], '\\')) {
 
               list($vendor, $app, $module) = explode('\\', $_SESSION['shipping']);
               list($module, $method) = explode('_', $module);

@@ -13,7 +13,6 @@
 
   class CcValidation
   {
-
     public string $cc_type;
     public string $cc_number;
     public string $cc_expiry_month;

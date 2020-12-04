@@ -235,7 +235,7 @@
         }
       }
 
-      while (strpos($link, '&&') !== false) {
+      while (str_contains($link, '&&')) {
         $link = str_replace('&&', '&', $link);
       }
 

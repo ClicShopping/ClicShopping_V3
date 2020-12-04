@@ -18,7 +18,7 @@
 
     public static function execute($function, $default = null, $key = null)
     {
-      if (strpos($function, '::') !== false) {
+      if (str_contains($function, '::')) {
         $class_method = explode('::', $function);
 
         return call_user_func(array($class_method[0], $class_method[1]), $default, $key);
@@ -26,7 +26,7 @@
         $function_name = $function;
         $function_parameter = '';
 
-        if (strpos($function, '(') !== false) {
+        if (str_contains($function, '(')) {
           $function_array = explode('(', $function, 2);
 
           $function_name = $function_array[0];

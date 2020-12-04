@@ -125,7 +125,7 @@
     for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
       $file = $directory_array[$i];
 
-      if (strpos($file, '\\') !== false) {
+      if (str_contains($file, '\\')) {
         $file_extension = '';
 
         $class = Apps::getModuleClass($file, $appModuleType);

@@ -155,7 +155,7 @@
         $padding = (int)TAX_DECIMAL_PLACES;
       }
 
-      if (strpos($value, '.') !== false) {
+      if (str_contains($value, '.')) {
         while (true) {
           if (substr($value, -1) == '0') {
             $value = substr($value, 0, -1);

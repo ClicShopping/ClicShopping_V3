@@ -90,7 +90,7 @@
         }
       }
 
-      if (isset($_SESSION['shipping']) && strpos($_SESSION['shipping']['id'], '\\') !== false) {
+      if (isset($_SESSION['shipping']) && str_contains($_SESSION['shipping']['id'], '\\')) {
         [$vendor, $app, $module] = explode('\\', $_SESSION['shipping']['id']);
         [$module, $method] = explode('_', $module);
 

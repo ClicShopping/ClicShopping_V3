@@ -154,7 +154,7 @@
         if (($req == 'A') && (count($_GET) > 1)) {
           $app = array_keys($_GET)[1];
 
-          if (strpos($app, '\\') !== false) {
+          if (str_contains($app, '\\')) {
             list($vendor, $app) = explode('\\', $app);
 
             if (Apps::exists($vendor . '\\' . $app) && ($page = Apps::getRouteDestination(null, $vendor . '\\' . $app)) !== null) {

@@ -333,7 +333,6 @@
         $Qorders->bindInt(':orders_id', $orders_id);
         $Qorders->bindValue(':class', 'ot_total');
         $Qorders->bindValue(':class1', 'TO');
-
       } else {
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS  o.orders_id,
                                                                                   o.customers_id,
@@ -382,7 +381,7 @@
           $Qcustomers->bindInt(':customers_id', $Qorders->valueInt('customers_id'));
           $Qcustomers->execute();
 
-          // select the last update by the admin name
+// select the last update by the admin name
           $Qhistory = $CLICSHOPPING_Orders->db->prepare('select osh.admin_user_name,
                                                                 osh.orders_id,
                                                                 o.orders_id,

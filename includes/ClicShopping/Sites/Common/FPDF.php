@@ -510,7 +510,7 @@
       elseif ($family == 'symbol' || $family == 'zapfdingbats')
         $style = '';
       $style = strtoupper($style);
-      if (strpos($style, 'U') !== false) {
+      if (str_contains($style, 'U')) {
         $this->underline = true;
         $style = str_replace('U', '', $style);
       } else
@@ -637,13 +637,13 @@
       if (is_string($border)) {
         $x = $this->x;
         $y = $this->y;
-        if (strpos($border, 'L') !== false)
+        if (str_contains($border, 'L'))
           $s .= sprintf('%.2F %.2F m %.2F %.2F l S ', $x * $k, ($this->h - $y) * $k, $x * $k, ($this->h - ($y + $h)) * $k);
-        if (strpos($border, 'T') !== false)
+        if (str_contains($border, 'T'))
           $s .= sprintf('%.2F %.2F m %.2F %.2F l S ', $x * $k, ($this->h - $y) * $k, ($x + $w) * $k, ($this->h - $y) * $k);
-        if (strpos($border, 'R') !== false)
+        if (str_contains($border, 'R'))
           $s .= sprintf('%.2F %.2F m %.2F %.2F l S ', ($x + $w) * $k, ($this->h - $y) * $k, ($x + $w) * $k, ($this->h - ($y + $h)) * $k);
-        if (strpos($border, 'B') !== false)
+        if (str_contains($border, 'B'))
           $s .= sprintf('%.2F %.2F m %.2F %.2F l S ', $x * $k, ($this->h - ($y + $h)) * $k, ($x + $w) * $k, ($this->h - ($y + $h)) * $k);
       }
       if ($txt !== '') {
@@ -695,11 +695,11 @@
           $b2 = 'LR';
         } else {
           $b2 = '';
-          if (strpos($border, 'L') !== false)
+          if (str_contains($border, 'L'))
             $b2 .= 'L';
-          if (strpos($border, 'R') !== false)
+          if (str_contains($border, 'R'))
             $b2 .= 'R';
-          $b = (strpos($border, 'T') !== false) ? $b2 . 'T' : $b2;
+          $b = (str_contains($border, 'T')) ? $b2 . 'T' : $b2;
         }
       }
       $sep = -1;
@@ -767,7 +767,7 @@
         $this->ws = 0;
         $this->_out('0 Tw');
       }
-      if ($border && strpos($border, 'B') !== false)
+      if ($border && str_contains($border, 'B'))
         $b .= 'B';
       $this->Cell($w, $h, substr($s, $j, $i - $j), $b, 2, $align, $fill);
       $this->x = $this->lMargin;

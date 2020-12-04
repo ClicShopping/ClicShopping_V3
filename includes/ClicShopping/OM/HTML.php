@@ -316,7 +316,7 @@
         $values = array($values);
       }
 
-      if (strpos($name, '[') !== false) {
+      if (str_contains($name, '[')) {
         $name_string = substr($name, 0, strpos($name, '['));
 
         if (isset($_GET[$name_string])) {
@@ -354,7 +354,7 @@
         $field .= '<input type="' . static::output($type) . '" name="' . static::outputProtected($name) . '"';
 
 
-        if (strpos($parameters, 'id=') === false) {
+        if (!str_contains($parameters, 'id=')) {
           $field .= ' id="' . static::output($name) . (count($values) > 1 ? '_' . $counter : '') . '"';
         } elseif (count($values) > 1) {
           $offset = strpos($parameters, 'id="');
@@ -455,7 +455,7 @@
 
       $field = '<textarea name="' . static::output($name) . '" cols="' . static::output($width) . '" rows="' . static::output($height) . '"';
 
-      if (strpos($parameters, 'id=') === false) {
+      if (!str_contains($parameters, 'id=')) {
         $field .= ' class="form-control" id="' . static::output($name) . '"';
       }
 
@@ -491,7 +491,7 @@
         $field .= ' required aria-required="true"';
       }
 
-      if (strpos($parameters, 'id=') === false) {
+      if (!str_contains($parameters, 'id=')) {
         $field .= ' id="' . static::output($name) . '"';
       }
 

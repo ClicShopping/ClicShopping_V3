@@ -37,7 +37,7 @@
 
           $this->selected_module = $module;
 
-          if (strpos($module, '\\') !== false) {
+          if (str_contains($module, '\\')) {
             $class = Apps::getModuleClass($module, 'Payment');
             $include_modules[] = ['class' => $module,
               'file' => $class
@@ -45,7 +45,7 @@
           }
         } else {
           foreach ($this->modules as $value) {
-            if (strpos($value, '\\') !== false) {
+            if (str_contains($value, '\\')) {
               $class = Apps::getModuleClass($value, 'Payment');
 
               $include_modules[] = ['class' => $value,
@@ -56,7 +56,7 @@
         }
 
         for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-          if (strpos($include_modules[$i]['class'], '\\') !== false) {
+          if (str_contains($include_modules[$i]['class'], '\\')) {
             Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
           }
         }
@@ -70,7 +70,7 @@
         }
 
         if ((!is_null($module)) && (in_array($module . '.' . substr(CLICSHOPPING::getIndex(), (strrpos(CLICSHOPPING::getIndex(), '.') + 1)), $this->modules) || in_array($module, $this->modules))) {
-          if (strpos($module, '\\') !== false) {
+          if (str_contains($module, '\\')) {
             $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $module));
 
             if (isset($CLICSHOPPING_PM->form_action_url)) {
@@ -94,7 +94,7 @@
     {
 
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $code = 'Payment_' . str_replace('\\', '_', $this->selected_module);
 
           if (Registry::exists($code)) {
@@ -130,7 +130,7 @@
           '  }' . "\n\n";
 
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $value));
 
             if ($CLICSHOPPING_PM->enabled) {
@@ -162,7 +162,7 @@
 
       if (is_array($this->modules)) {
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $value));
 
             if ($CLICSHOPPING_PM->enabled && method_exists($CLICSHOPPING_PM, 'checkout_initialization_method')) {
@@ -181,7 +181,7 @@
 
       if (is_array($this->modules)) {
         foreach ($this->modules as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $value));
 
             if ($CLICSHOPPING_PM->enabled) {
@@ -201,7 +201,7 @@
     public function pre_confirmation_check()
     {
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $this->selected_module));
 
           if ($CLICSHOPPING_PM->enabled) {
@@ -217,7 +217,7 @@
     public function confirmation()
     {
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $this->selected_module));
 
           if ($CLICSHOPPING_PM->enabled) {
@@ -233,7 +233,7 @@
     public function process_button()
     {
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $this->selected_module));
 
           if ($CLICSHOPPING_PM->enabled) {
@@ -249,7 +249,7 @@
     public function before_process()
     {
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $this->selected_module));
 
           if ($CLICSHOPPING_PM->enabled) {
@@ -265,7 +265,7 @@
     public function after_process()
     {
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $this->selected_module));
 
           if ($CLICSHOPPING_PM->enabled) {
@@ -281,7 +281,7 @@
     public function get_error()
     {
       if (is_array($this->modules)) {
-        if (strpos($this->selected_module, '\\') !== false) {
+        if (str_contains($this->selected_module, '\\')) {
           $CLICSHOPPING_PM = Registry::get('Payment_' . str_replace('\\', '_', $this->selected_module));
 
           if ($CLICSHOPPING_PM->enabled) {
@@ -306,7 +306,7 @@
 
         $CLICSHOPPING_PM = null;
 
-        if (strpos($m, '\\') !== false) {
+        if (str_contains($m, '\\')) {
           list($vendor, $app, $module) = explode('\\', $m);
 
           $module = $vendor . '\\' . $app . '\\' . $module;

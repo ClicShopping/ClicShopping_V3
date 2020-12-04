@@ -243,7 +243,7 @@
         $header_tags_array = explode(';', MODULE_HEADER_TAGS_INSTALLED);
 
         foreach ($header_tags_array as $header) {
-          if (strpos($header, '\\') !== false) {
+          if (str_contains($header, '\\')) {
             $class = Apps::getModuleClass($header, 'HeaderTags');
             $ad = new $class();
 
@@ -450,7 +450,7 @@
     public static function match(array $needles, string $haystack): bool
     {
       foreach ($needles as $needle) {
-        if (!empty($needle) && strpos($haystack, $needle) !== false) {
+        if (!empty($needle) && str_contains($haystack, $needle)) {
           return true;
         }
       }
@@ -622,11 +622,11 @@
 
         $search = $replace;
 
-        if (strpos($search, 'language') !== false) {
+        if (str_contains($search, 'language')) {
           $replace = substr($replace, 0, strpos($replace, 'language'));
         }
 
-        if (strpos($search, 'currency') !== false) {
+        if (str_contains($search, 'currency')) {
           $replace = substr($replace, 0, strpos($replace, 'currency'));
         }
 
