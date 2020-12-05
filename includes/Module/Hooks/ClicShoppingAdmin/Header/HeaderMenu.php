@@ -196,8 +196,10 @@
               $output .= '</li>';
             }
           }
-          $output .= '</ul>';
+
+          $output .= '</ul>'; //énd menu
         }
+
         if (is_null($menu_sub[$second_level]['link'])) {
           $output .= '</li>';
         }

@@ -18,7 +18,7 @@ module_footer_multi_template_account_box_address_book = Mon carnet d'adresse
 module_footer_multi_template_account_box_order_history = Mon historique
 module_footer_multi_template_account_box_logoff = Se déconnecter
 module_footer_multi_template_account_box_create_account = Créer un compte
-module_footer_multi_template_account_box_login = Se connecter
+module_footer_multi_template_account_box_login = Se connecter / Créer
 
 module_footer_multi_template_mailchimp_text = Abonnement Newsletter
 module_footer_multi_template_mailchimp_submit = Souscrire
