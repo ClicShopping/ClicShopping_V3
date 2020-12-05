@@ -9,7 +9,7 @@ modules_header_multi_template_account_logged_in = Connexion
 modules_header_multi_template_cart_no_contents = Aucun produits
 
 modules_header_multi_template_account_logoff = Se déconnecter
-modules_header_multi_template_account_login = Se connecter
+modules_header_multi_template_account_login = Se connecter / Créer
 modules_header_multi_template_account_register = S'enregistrer
 
 modules_header_multi_template_create_account = Créer un compte

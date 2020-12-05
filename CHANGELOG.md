@@ -1,7 +1,16 @@
-Version 3.2201
-Change ClicShopping version
-little quickly fix
 
+Version 3.2204
+- Fix rss files request sql errors
+- fix taxes
+- fix qty shopping cart
+
+---
+
+Version 3.2201
+- Change ClicShopping version
+- little quickly fix
+
+---
 Version 3.22
 
 See SQL upgrade directory to update your database from v3.2145

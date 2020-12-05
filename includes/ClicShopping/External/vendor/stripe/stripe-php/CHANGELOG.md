@@ -1,15 +1,5 @@
 # Changelog
 
-## 7.65.0 - 2020-11-19
-* [#1050](https://github.com/stripe/stripe-php/pull/1050) Added constants for `proration_behavior` on `Subscription`
-
-## 7.64.0 - 2020-11-18
-* [#1049](https://github.com/stripe/stripe-php/pull/1049) Update PHPDocs
-
-## 7.63.0 - 2020-11-17
-* [#1048](https://github.com/stripe/stripe-php/pull/1048) Update PHPDocs
-* [#1046](https://github.com/stripe/stripe-php/pull/1046) Force IPv4 resolving
-
 ## 7.62.0 - 2020-11-09
 * [#1041](https://github.com/stripe/stripe-php/pull/1041) Add missing constants on `Event`
 * [#1038](https://github.com/stripe/stripe-php/pull/1038) Update PHPDocs

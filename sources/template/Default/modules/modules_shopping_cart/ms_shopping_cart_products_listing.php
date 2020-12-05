@@ -143,9 +143,12 @@
             $stock_check = $CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity'] * $products_quantity_customers_group[$i]);
 
             $products_stock = '';
+            
             if (!empty($stock_check)) {
               $products_stock = '<p>' . $stock_check .'</p>';
             }
+          } else {
+            $products_stock = '';
           }
 
           $products_attributes = '';

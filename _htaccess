@@ -4,6 +4,15 @@
 
 #AcceptPathInfo on
 
+<FilesMatch "\.(s?p?html|cgi|pl|exe)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+   order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
 
 ##################################
 # Security
@@ -13,13 +22,13 @@
   <IfModule mod_headers.c>
 
 # prevent mime based attacks
-Header set X-Content-Type-Options "nosniff"
+#Header set X-Content-Type-Options "nosniff"
 
 # XSS Protection
-Header set X-XSS-Protection "1; mode=block"
+#Header set X-XSS-Protection "1; mode=block"
 
 #X Frame
-Header always set X-FRAME-OPTIONS "DENY"
+#Header always set X-FRAME-OPTIONS "DENY"
 </IfModule>
 ##################################
 # Bot
@@ -58,8 +67,6 @@ RewriteEngine On
 
 ## URL Canonicalization
 #to change in function your website
-#    RewriteCond %{HTTP_HOST} !^www.mysite.org$ [NC]
-#    RewriteRule ^(.*)$ https://www.mysite.org/$1 [L,R=301]
 
 #to change in function your website
 #RewriteBase /
@@ -67,8 +74,10 @@ RewriteEngine On
 #    RewriteCond %{REQUEST_FILENAME} !-f
 #    RewriteCond %{REQUEST_FILENAME} !-d
 
+#RewriteCond %{HTTP_HOST} ^figures-shop.com [NC]
+#RewriteCond %{REQUEST_URI} !
+#RewriteRule ^(.*)$ https://www.figures-shop.com/index.php/$1 [L,R=301,NC]
 #to change in function your website
-#RewriteRule . /index.php [L]
 </IfModule>
 
 ##################################

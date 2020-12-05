@@ -620,24 +620,23 @@
       $CLICSHOPPING_ProductsAttributes = Registry::get('ProductsAttributes');
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
-
+      
+      if (is_array($products)) {
 // Requetes SQL pour savoir si le groupe B2B a les prix affiches en HT ou TTC
-      if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
-//Group tax
-        $QgroupTax = $this->db->prepare('select group_order_taxe,
+        if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
+          $QgroupTax = $this->db->prepare('select group_order_taxe,
                                                 group_tax
                                          from :table_customers_groups
                                          where customers_group_id = :customers_group_id
                                        ');
-        $QgroupTax->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
-        $QgroupTax->execute();
+          $QgroupTax->bindInt(':customers_group_id', (int)$CLICSHOPPING_Customer->getCustomersGroupID());
+          $QgroupTax->execute();
+    
+          $group_tax = $QgroupTax->fetch();
+        } else {
+          $group_tax = false;
+        }
 
-        $group_tax = $QgroupTax->fetch();
-      } else {
-        $group_tax = false;
-      }
-
-      if (is_array($products)) {
         for ($i = 0, $n = count($products); $i < $n; $i++) {
   // Display an indicator to identify if the product belongs at a customer group or not.
           $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
@@ -747,28 +746,29 @@
 
             $shown_price = $shown_price['actual_shown_price'];
           } else {
-            $shown_price = 1;
-            $this->info['subtotal'] += Tax::addTax($this->products[$index]['final_price'], $this->products[$index]['tax']) * $this->products[$index]['qty'];
+            $shown_price = Tax::addTax($this->products[$index]['final_price'], $this->products[$index]['tax']) * $this->products[$index]['qty'];
+            $this->info['subtotal'] += $shown_price;
           }
 
           $products_tax = $this->products[$index]['tax'];
+          $products_tax_description = $this->products[$index]['tax_description'];
+  
+          if (((DISPLAY_PRICE_WITH_TAX == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && ($group_tax['group_tax'] == 'true'))) {
+            $this->info['tax'] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
 
-// tax control for B2B group setting
-          if ((DISPLAY_PRICE_WITH_TAX == 'true' && $CLICSHOPPING_Customer->getCustomersGroupID() == 0) || ($CLICSHOPPING_Customer->getCustomersGroupID() != 0 && $group_tax['group_tax'] == 'true')) {
-            $this->info['tax'] += $shown_price - ($shown_price / (($products_tax < 10) ? '1.0' . str_replace('.', '', $products_tax) : '1.' . str_replace('.', '', $products_tax)));
+            if (isset($this->info['tax_groups']["$products_tax_description"])) {
+              $this->info['tax_groups']["$products_tax_description"] += $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
 
-            if (isset($this->info['tax_groups']['products_tax_description'])) {
-              $this->info['tax_groups']['products_tax_description'] += $shown_price - ($shown_price / (($products_tax < 10) ? '1.0' . str_replace('.', '', $products_tax) : '1.' . str_replace('.', '', $products_tax)));
             } else {
-              $this->info['tax_groups']['products_tax_description'] = $shown_price - ($shown_price / (($products_tax < 10) ? '1.0' . str_replace('.', '', $products_tax) : '1.' . str_replace('.', '', $products_tax)));
+              $this->info['tax_groups']["$products_tax_description"] = $shown_price - ($shown_price / (($products_tax < 10) ? "1.0" . str_replace('.', '', $products_tax) : "1." . str_replace('.', '', $products_tax)));
             }
           } else {
             $this->info['tax'] += ($products_tax / 100) * $shown_price;
 
-            if (isset($this->info['tax_groups']['products_tax_description'])) {
-              $this->info['tax_groups']['products_tax_description'] += ($products_tax / 100) * $shown_price;
+            if (isset($this->info['tax_groups']["$products_tax_description"])) {
+              $this->info['tax_groups']["$products_tax_description"] += ($products_tax / 100) * $shown_price;
             } else {
-              $this->info['tax_groups']['products_tax_description'] = ($products_tax / 100) * $shown_price;
+              $this->info['tax_groups']["$products_tax_description"] = ($products_tax / 100) * $shown_price;
             }
           }
 

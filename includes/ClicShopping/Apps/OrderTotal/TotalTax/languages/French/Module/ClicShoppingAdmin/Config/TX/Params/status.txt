@@ -3,4 +3,3 @@ cfg_order_total_tax_status_description = Sélectionner True pour afficher le mod
 
 cfg_order_total_tax_status_true = True
 cfg_order_total_tax_status_false = False
-

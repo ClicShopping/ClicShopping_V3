@@ -86,7 +86,7 @@
         for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
           $data = '<tr>' . "\n";
           $data .= '<td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
-          $data .= '<td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
+          $data .= '<td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], 1) . ')';
 
           if (STOCK_CHECK == 'True') {
             $data .=  $CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty']);

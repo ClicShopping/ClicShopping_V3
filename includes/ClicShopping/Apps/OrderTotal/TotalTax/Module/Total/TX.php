@@ -76,7 +76,10 @@
         // take also the shipping taxe
 
         $compound_tax = false;
-
+        $gst_total = 0;
+        $pst_total = 0;
+        $hst_total = 0;
+        
         if ($CLICSHOPPING_Order->delivery['zone_id'] == 0) {
           $QzoneCheck = $CLICSHOPPING_Db->prepare('select zone_id
                                                     from :table_zones
@@ -243,7 +246,6 @@
 // **********************************
 // normal tax
 // ************************************
-
         foreach ($CLICSHOPPING_Order->info['tax_groups'] as $key => $value) {
           if ($value > 0) {
             $this->output[] = [

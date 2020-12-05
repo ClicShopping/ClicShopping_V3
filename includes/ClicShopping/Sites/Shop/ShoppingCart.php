@@ -695,7 +695,7 @@
      */
     public function getQuantity(string $item_id)
     {
-      return (isset($this->contents[$item_id]) ) ? $this->contents[$item_id]['qty'] : 1;
+      return (isset($this->contents[$item_id]) ) ? $this->contents[$item_id]['qty'] : 0;
     }
 
     /*
