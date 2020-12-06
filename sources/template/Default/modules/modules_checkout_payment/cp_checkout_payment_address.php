@@ -50,6 +50,8 @@
 // Autorise l'ajout dans le carnet d'adresse des clients B2B ou clients normaux
         if (AddressBook::countCustomersModifyAddressDefault() == 1) {
           $address_button = HTML::button(CLICSHOPPING::getDef('button_modify'), null, CLICSHOPPING::link(null, 'Checkout&PaymentAddress'), 'primary');
+        } else {
+          $address_button = '';
         }
 
         ob_start();

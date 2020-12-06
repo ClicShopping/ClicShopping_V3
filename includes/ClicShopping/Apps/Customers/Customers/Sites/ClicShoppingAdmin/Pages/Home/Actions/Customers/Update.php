@@ -49,14 +49,20 @@
 
       if (isset($_POST['customers_telephone'])) {
         $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
+      } else {
+        $customers_telephone = '';
       }
 
       if (isset($_POST['customers_fax'])) {
         $customers_fax = HTML::sanitize($_POST['customers_fax']);
+      } else {
+        $customers_fax = '';
       }
 
       if (isset($_POST['customers_newsletter'])) {
         $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
+      } else {
+        $customers_newsletter = 0;
       }
 
       if (isset($_POST['languages_id'])) {
@@ -86,7 +92,11 @@
       }
 
 // Autorisation aux clients de modifier Les informations de la société
-      if (isset($_POST['customers_modify_company'])) $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
+      if (isset($_POST['customers_modify_company'])) {
+        $customers_modify_company = HTML::sanitize($_POST['customers_modify_company']);
+      } else {
+        $customers_modify_company = 0;
+      }
 
 // Informations sur le type de facturation
 
@@ -186,9 +196,7 @@
       }
 
       if (isset($_POST['customers_add_address'])) {
-        if (isset($_POST['customers_add_address'])) {
-          $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
-        }
+        $customers_add_address = HTML::sanitize($_POST['customers_add_address']);
       }
 
       if (!is_null($customers_dob)) {
@@ -352,9 +360,23 @@
         }
 
 // Autorisation aux clients de modifier informations société et adresse principal + Ajout adresse
-        if ($customers_modify_company !== 1) $customers_modify_company = 0;
-        if ($customers_modify_address_default !== 1) $customers_modify_address_default = 0;
-        if ($customers_add_address !== 1) $customers_add_address = 0;
+        if ($customers_modify_company == 1) {
+          $customers_modify_company = 0;
+        } else {
+          $customers_modify_company = 1;
+        }
+        
+        if ($customers_modify_address_default == 1) {
+          $customers_modify_address_default = 0;
+        } else {
+          $customers_modify_address_default = 1;
+        }
+        
+        if ($customers_add_address != 1) {
+          $customers_add_address = 0;
+        } else {
+          $customers_add_address = 1;
+        }
 
         $sql_data_array['customers_modify_company'] = $customers_modify_company;
         $sql_data_array['customers_modify_address_default'] = $customers_modify_address_default;

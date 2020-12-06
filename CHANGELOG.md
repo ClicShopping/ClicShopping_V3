@@ -1,11 +1,19 @@
 Version 3.3 beta
 
+add chartjs without jquery https://www.chartjs.org/
+fix strict mode
+fix taxes
 fix deprecated sql access
 fix session error (utf8)
 fix some strict element
 
+---
+ersion 3.2204
 
-
+Fix rss files request sql errors
+fix taxes
+fix qty shopping cart
+---
 Version 3.2201
 
 See SQL upgrade directory to update your database from v3.2145
