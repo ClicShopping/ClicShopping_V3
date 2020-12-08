@@ -121,7 +121,8 @@
         }
       }
 
-      $output = '<div class="headerLine"></div>';
+      $output = '<!-- Start Header Menu -->' . "\n";
+      $output .= '<div class="headerLine"></div>';
       $output .= '<div class="backgroundMenu">';
       $output .= '<span class="float-md-left">';
       $output .= '<nav class="main-nav" role="navigation">';
@@ -216,6 +217,7 @@
       $output .= '</span>';
       $output .= '</div>';
       $output .= '<div class="clearfix"></div>';
+      $output .= '<!-- End Header Menu -->' . "\n";
 
       return $output;
     }

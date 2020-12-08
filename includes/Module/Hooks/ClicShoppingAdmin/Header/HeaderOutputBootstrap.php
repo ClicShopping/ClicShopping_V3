@@ -19,8 +19,10 @@
     public function display(): string
     {
 //Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
+      $output = '<!-- Start Bootstrap -->' . "\n";
       $output = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">' . "\n";
-
+      $output .= '<!-- Start Bootstrap -->' . "\n";
+      
       return $output;
     }
   }

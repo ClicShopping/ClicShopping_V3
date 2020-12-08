@@ -18,7 +18,9 @@
      */
     public function display(): string
     {
-      $output = '<link rel="preconnect" href="https://fonts.gstatic.com/"  crossorigin="anonymous">' . "\n";
+      $output = '<!-- Start Google Font -->' . "\n";
+      $output .= '<link rel="preconnect" href="https://fonts.gstatic.com/"  crossorigin="anonymous">' . "\n";
+      $output .= '<!-- Start Google Font -->' . "\n";
 
       return $output;
     }

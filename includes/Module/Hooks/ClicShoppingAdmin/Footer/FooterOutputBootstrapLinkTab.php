@@ -44,7 +44,7 @@
           ' . "\n";
         $output .= '<!--Bootstrap Link tab end -->' . "\n";
       }
+      
       return $output;
-
     }
   }

@@ -23,8 +23,10 @@
       $output = '';
 
       if (isset($_SESSION['admin'])) {
-        $output = '<link rel="stylesheet preload" as="style"   href="' . CLICSHOPPING::link('css/tokenInput.css') . '" media="screen, print">' . "\n";
-      }
+        $output = '<!-- Start tokenInput -->' . "\n";
+        $output .= '<link rel="stylesheet preload" as="style"   href="' . CLICSHOPPING::link('css/tokenInput.css') . '" media="screen, print">' . "\n";
+        $output = '<!-- Start tokenInput -->' . "\n";
+        }
 
       return $output;
     }
