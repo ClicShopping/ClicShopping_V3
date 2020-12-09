@@ -84,7 +84,7 @@
                 });
             </script>
             <a
-              href="<?php echo $CLICSHOPPING_Settings->link('SettingsPopUp&Save&gID=' . $_GET['gID'] . '&cID=' . $Qconfiguration->valueInt('configuration_id')); ?>"
+              href="<?php echo $CLICSHOPPING_Settings->link('SettingsPopUp&Save&gID=' . HTML::sanitize($_GET['gID']) . '&cID=' .  HTML::sanitize($Qconfiguration->valueInt('configuration_id'))); ?>"
               data-toggle="modal" data-refresh="true"
               data-target="#myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Settings->getDef('icon_edit')); ?></a>
             <div class="modal fade" id="myModal_<?php echo $Qconfiguration->valueInt('configuration_id'); ?>"
