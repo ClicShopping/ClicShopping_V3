@@ -98,7 +98,7 @@
 
     public static function link($url, $element, $parameters = null)
     {
-      return '<a href="' . $url . '"' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
+      return '<a href="' . $url . '" ' . (!empty($parameters) ? ' ' . $parameters : '') . '>' . $element . '</a>';
     }
 
     /*
@@ -107,7 +107,7 @@
     * @param string $url url of image
     * @return string
     */
-    public static function getUrlFileExists($url) :bool
+    public static function getUrlFileExists(string $url) :bool
     {
       if (@file_get_contents($url, false, NULL, 0, 1)) {
         return true;
@@ -566,14 +566,15 @@
     {
       $CLICSHOPPING_Address = Registry::get('Address');
 
-      $countries_array = array(array('id' => '',
-        'text' => CLICSHOPPING::getDef('text_select')
-      )
-      );
+      $countries_array = [array('id' => '',
+        'text' => CLICSHOPPING::getDef('text_select'))
+      ];
+      
       $countries = $CLICSHOPPING_Address->getCountries();
 
       for ($i = 0, $n = count($countries); $i < $n; $i++) {
-        $countries_array[] = ['id' => $countries[$i]['countries_id'],
+        $countries_array[] = [
+          'id' => $countries[$i]['countries_id'],
           'text' => $countries[$i]['countries_name'],
           'iso' => $countries[$i]['countries_iso_code_2']
         ];
@@ -628,11 +629,11 @@
 
       foreach (DateTime::getTimeZones() as $zone => $zones_array) {
         foreach ($zones_array as $key => $value) {
-          $result[] = array(
+          $result[] = [
             'id' => $key,
             'text' => $value,
             'group' => $zone
-          );
+          ];
         }
       }
 
@@ -701,7 +702,7 @@
      * @param $class : css class
      * @return string $field, result of dropdown
      */
-    public static function selectField($name, $values, $default = null, $parameters = '', $required = false, $class = 'form-control')
+    public static function selectField($name, $values, $default = null, $parameters = '', $required = false, $class = 'form-control form-select')
     {
       $group = false;
 
@@ -818,7 +819,6 @@
 
     public static function button($title = null, $icon = null, $link = null, $style = null, $params = null, $size = null)
     {
-
       $types = ['submit', 'button', 'reset'];
       $styles = ['primary', 'info', 'success', 'warning', 'danger', 'inverse', 'link', 'new', 'secondary', 'dark', 'light', 'default'];
       $size_button = ['lg', 'md', 'sm'];

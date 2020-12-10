@@ -11,10 +11,11 @@
 
   namespace ClicShopping\Apps\Catalog\Manufacturers\Module\Hooks\ClicShoppingAdmin\Products;
 
-  use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
+  use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Catalog\Manufacturers\Manufacturers as ManufacturersApp;
+  use ClicShopping\Apps\Catalog\Manufacturers\Classes\ClicShoppingAdmin\ManufacturerAdmin;
 
   class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -38,8 +39,10 @@
       if (isset($_GET['Update']) && isset($_GET['Products'])) {
         $id = HTML::sanitize($_GET['pID']);
 
-        $sql_data_array = ['manufacturers_id' => (int)HTML::sanitize($_POST['manufacturers_id'])];
+        $manufacturers_id = ManufacturerAdmin::getManufacturerId($_POST['manufacturers_name']);
 
+        $sql_data_array = ['manufacturers_id' => (int)$manufacturers_id];
+        
         $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
       }
     }

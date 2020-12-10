@@ -16,7 +16,8 @@
   use ClicShopping\OM\CLICSHOPPING;
 
   use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
-
+  use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
+  
   class ProductsContentTab1 implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
@@ -28,37 +29,18 @@
       }
 
       $this->app = Registry::get('Suppliers');
+  
+      if (!Registry::exists('SupplierAdmin')) {
+        Registry::set('SupplierAdmin', new SupplierAdmin());
+      }
+  
+      $this->SupplierAdmin = Registry::get('SupplierAdmin');
+      
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Products/page_content_tab_1');
     }
+ 
 
-    private function getSupplier()
-    {
-      if (isset($_GET['pID'])) {
-        $pID = HTML::sanitize($_GET['pID']);
-
-        $Qproducts = $this->app->db->prepare('select suppliers_id
-                                              from :table_products
-                                              where products_id = :products_id
-                                            ');
-        $Qproducts->bindInt(':products_id', HTML::sanitize($pID));
-
-        $Qproducts->execute();
-
-        $Qsuppliers = $this->app->db->prepare('select suppliers_id,
-                                                       suppliers_name
-                                                from :table_suppliers
-                                                where suppliers_id = :suppliers_id
-                                              ');
-        $Qsuppliers->bindInt(':suppliers_id', $Qproducts->valueInt('suppliers_id'));
-        $Qsuppliers->execute();
-
-        $result = $Qsuppliers->fetchAll();
-
-        return $result;
-      }
-    }
-
-    public function display()
+    public function display() :string
     {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
@@ -66,13 +48,17 @@
         return false;
       }
 
-      $suppliers = $this->getSupplier();
-
-      if (is_array($suppliers) && count($suppliers) > 0) {
-        $suppliers_id = $suppliers[0]['suppliers_id'];
-        $suppliers_name = $suppliers[0]['suppliers_name'];
+      if (isset($_GET['pID'])) {
+        $pId = HTML::sanitize($_GET['pID']);
       } else {
-        $suppliers_id = null;
+        $pId = null;
+      }
+
+      $suppliers_array = $this->SupplierAdmin->getSupplier();
+
+      if (is_array($suppliers_array) && count($suppliers_array) > 0) {
+        $suppliers_name = $suppliers_array[0]['suppliers_name'];
+      } else {
         $suppliers_name = null;
       }
 
@@ -81,8 +67,9 @@
       $content .= '<div class="form-group row">';
       $content .= '<label for="' . $this->app->getDef('text_products_suppliers') . '" class="col-5 col-form-label">' . $this->app->getDef('text_products_suppliers') . '</label>';
       $content .= '<div class="col-md-5">';
-      $content .= HTML::inputField('suppliers_id', $suppliers_id . ' ' . $suppliers_name, 'id="supplier" class="token-input form-control"', null, null, null);
-      $content .= '<a href="' . $this->app->link('SuppliersPopUp') . '"  data-toggle="modal" data-refresh="true" data-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
+      $content .= HTML::inputField('suppliers_name', $suppliers_name, 'id="ajax_suppliers_name" list="supplier_list" class="form-control"');
+      $content .= '<datalist id="supplier_list"></datalist>';
+      $content .= '<a href="' . $this->app->link('SuppliersPopUp') . '"  data-bs-toggle="modal" data-refresh="true" data-bs-target="#myModal">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/create.gif', $this->app->getDef('text_create')) . '</a>';
       $content .= '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
       $content .= '<div class="modal-dialog">';
       $content .= '<div class="modal-content">';
@@ -96,7 +83,6 @@
 
       $suppliers_ajax = CLICSHOPPING::link('ajax/suppliers.php');
 
-
       $output = <<<EOD
 <!-- ######################## -->
 <!--  Start Supplier Hooks      -->
@@ -107,43 +93,54 @@ $('#tab1ContentRow2').append(
 );
 </script>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#supplier").tokenInput("{$suppliers_ajax}" ,
-        {
-          tokenLimit: 1,
-          resultsLimit: 5,
-          onResult: function (results) {
-            $.each(results, function (index, value) {
-              value.name = value.id + " " + value.name;
-            });
-            return results;
-          }
+<script>
+window.addEventListener("load", function(){
+	// Add a keyup event listener to our input element
+	document.getElementById('ajax_suppliers_name').addEventListener("keyup", function(event){hinterSupplier(event)});
+	// create one global XHR object
+	// so we can abort old requests when a new one is make
+	window.hinterSupplierXHR = new XMLHttpRequest();
+});
 
-        });
-  });
+// Autocomplete for form
+function hinterSupplier(event) {
+	var input = event.target;
+
+  var ajax_suppliers_name = document.getElementById('supplier_list'); //datalist id
+  
+	// minimum number of characters before we start to generate suggestions
+	var min_characters = 0;
+
+	if (!isNaN(input.value) || input.value.length < min_characters ) {
+		return;
+	} else {
+		window.hinterSupplierXHR.abort();
+		window.hinterSupplierXHR.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var response = JSON.parse( this.responseText );
+				
+        ajax_suppliers_name.innerHTML = "";
+          response.forEach(function(item) {
+// Create a new <option> element.
+            var option = document.createElement('option');
+            option.value = item.name;//get name
+            option.hidden = item.id; //get id
+
+            ajax_suppliers_name.appendChild(option);
+          });
+			}
+		};
+
+		window.hinterSupplierXHR.open("GET", "{$suppliers_ajax}?q=" + input.value, true);
+		window.hinterSupplierXHR.send()
+	}
+}
 </script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#supplier").tokenInput("{$suppliers_ajax}", {
-      prePopulate: [
-        {
-          id: {$suppliers_id},
-          name: "{$suppliers_id} {$suppliers_name}"
-        }
-      ],
-      tokenLimit: 1
-    });
-  });
-</script>
-
 <!-- ######################## -->
-<!--  End Supplier App      -->
+<!--  End Supplier App        -->
 <!-- ######################## -->
-
 EOD;
-      return $output;
 
+      return $output;
     }
   }

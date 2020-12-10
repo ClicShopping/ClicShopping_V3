@@ -15,11 +15,13 @@
   use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
+  use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
 
   class Update implements \ClicShopping\OM\Modules\HooksInterface
   {
     protected $app;
-
+    protected $supplierAdmin;
+    
     public function __construct()
     {
       if (!Registry::exists('Suppliers')) {
@@ -27,6 +29,12 @@
       }
 
       $this->app = Registry::get('Suppliers');
+  
+      if (!Registry::exists('SupplierAdmin')) {
+        Registry::set('SupplierAdmin', new SupplierAdmin());
+      }
+  
+      $this->supplierAdmin = Registry::get('SupplierAdmin');
     }
 
     public function execute()
@@ -38,13 +46,9 @@
       if (isset($_GET['Update']) && isset($_GET['Products'])) {
         $id = HTML::sanitize($_GET['pID']);
 
-        If (empty($_POST['suppliers_id']) && isset($_GET['Products'])) {
-          $suppliers_id = 0;
-        } else {
-          $suppliers_id = HTML::sanitize($_POST['suppliers_id']);
-        }
+        $suppliers_id = $this->supplierAdmin->getSupplierId($_POST['suppliers_name']);
 
-        $sql_data_array = ['suppliers_id' => $suppliers_id];
+        $sql_data_array = ['suppliers_id' => (int)$suppliers_id];
 
         $this->app->db->save('products', $sql_data_array, ['products_id' => (int)$id]);
       }

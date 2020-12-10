@@ -19,8 +19,6 @@
   define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
 // Set the level of error reporting
-  error_reporting(E_ALL & ~E_NOTICE);
-
   require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
   spl_autoload_register('ClicShopping\OM\CLICSHOPPING::autoload');
 

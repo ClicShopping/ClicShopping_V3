@@ -71,7 +71,10 @@
         $this->data[$group][] = $stack;
       }
     }
-
+  
+    /**
+     * @param string|null $group
+     */
     public function reset(?string $group = null)
     {
       if (isset($group)) {
@@ -85,9 +88,8 @@
 
     /**
      * Checks to see if a group in the stack contains messages
-     *
-     * @param string $group The name of the group to check
-     *
+     * @param string|null $group
+     * @return bool
      */
     public function exists(?string $group = null)
     {
@@ -100,9 +102,8 @@
 
     /**
      * Checks to see if the message stack contains messages
-     *
+     * @return bool
      */
-
     public function hasContent()
     {
       return !empty($this->data);

@@ -11,7 +11,8 @@
 
   use ClicShopping\OM\Registry;
   use ClicShopping\OM\CLICSHOPPING;
-
+  use ClicShopping\OM\HTML;
+  
   define('CLICSHOPPING_BASE_DIR', realpath(__DIR__ . '/../../includes/ClicShopping/') . '/');
 
   require_once(CLICSHOPPING_BASE_DIR . 'OM/CLICSHOPPING.php');
@@ -23,8 +24,8 @@
 
   $CLICSHOPPING_Db = Registry::get('Db');
 
-  if (isset($_REQUEST['q'])) {
-    $terms = strtolower($_GET['q']);
+  if (isset($_GET['q'])) {
+    $terms = HTML::sanitize(strtolower($_GET['q']));
 
     $Qcheck = $CLICSHOPPING_Db->prepare('select distinct suppliers_id as id,
                                                          suppliers_name as name
