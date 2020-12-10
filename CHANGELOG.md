@@ -6,9 +6,12 @@ fix taxes
 fix deprecated sql access
 fix session error (utf8)
 fix some strict element
+Remove token input script
+Boostrap 5 implementation 
+PHP 8 compatibility (php 7.4.x do not work now)
 
 ---
-ersion 3.2204
+Version 3.2204
 
 Fix rss files request sql errors
 fix taxes
