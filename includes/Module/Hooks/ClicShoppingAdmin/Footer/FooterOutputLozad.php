@@ -14,9 +14,9 @@
   class FooterOutputLozad
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $output = '';
 
@@ -27,6 +27,8 @@
         $output .= 'const observer = lozad(); observer.observe();';
         $output .= '</script>' . "\n";
         $output .= '<!--End Lazyload Script-->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

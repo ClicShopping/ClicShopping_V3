@@ -16,7 +16,7 @@
   class HeaderOutputStyleSheet
   {
     /**
-     * @return bool|string
+     * @return string
      */
     public function display(): string
     {

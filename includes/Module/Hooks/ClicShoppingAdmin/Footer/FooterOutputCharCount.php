@@ -16,9 +16,9 @@
   class FooterOutputCharCount
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $params = $_SERVER['QUERY_STRING'];
 
@@ -32,6 +32,8 @@
         $output .= '<!--count words  Script start-->' . "\n";
         $output .= '<script src="' . CLICSHOPPING::link('Shop/ext/javascript/charcount/charCount.min.js') . '"></script>' . "\n";
         $output .= '<!--End count words -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

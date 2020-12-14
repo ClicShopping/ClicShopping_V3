@@ -23,7 +23,7 @@
     protected string $_template = 'template/';
     protected string $_directoryTemplate = 'template/';
 
-    protected string $_dynamicTemplate = SITE_THEMA;
+    protected $_dynamicTemplate = SITE_THEMA;
     protected string $_directoryTemplateDefault = 'Default';
 
     protected string $_directoryIncludes = 'includes/';

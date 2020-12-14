@@ -18,7 +18,7 @@
     /**
      * @return bool|string
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $output = '';
 
@@ -29,6 +29,8 @@
         $output .= ' <link rel="stylesheet preload" as="style" href="' . CLICSHOPPING::link('css/smartmenus_customize.css') . '" media="screen, print">' . "\n";
         $output .= ' <link rel="stylesheet preload" as="style" href="' . CLICSHOPPING::link('css/smartmenus_customize_responsive.css') . '" media="screen, print">' . "\n";
         $output .= '<!-- Start SmatMenus -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

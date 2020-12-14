@@ -129,8 +129,8 @@
   }
 ?>
           <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_only_online'). ' ' . HTML::checkboxField('products_only_online', '', $check_products_only_online); ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer') . ' ' . $Qmanufacturer->value['manufacturers_name'] ?? ''; ?></div>
-          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers') . ' ' . $Qsupplier->value['suppliers_name']; ?></div>
+          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_manufacturer') . ' ' . $Qmanufacturer->value('manufacturers_name') ?? ''; ?></div>
+          <div class="col-md-12"><?php echo $CLICSHOPPING_Products->getDef('text_products_suppliers') . ' ' . $Qsupplier->value('suppliers_name'); ?></div>
 
 <?php
   if ($products['products_packaging'] == 0) $products_packaging = '';

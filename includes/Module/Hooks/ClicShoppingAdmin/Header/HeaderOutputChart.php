@@ -14,9 +14,9 @@
   class HeaderOutputChart
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $output = '';
 
@@ -25,6 +25,8 @@
         $output .= '<link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet" crossorigin="anonymous">' . "\n";
         $output .= '<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>' . "\n";
         $output .= '<!-- End Chart -->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

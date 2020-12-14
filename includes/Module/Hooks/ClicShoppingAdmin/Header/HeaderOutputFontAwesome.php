@@ -14,9 +14,9 @@
   class HeaderOutputFontAwesome
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $output = '';
 
@@ -24,6 +24,8 @@
         $output = '<!--FontAwesome Script start-->' . "\n";
         $output .= '<script defer rel="preconnect" src="https://kit.fontawesome.com/89fdf54890.js" crossorigin="anonymous"></script>' . "\n";
         $output .= '<!--End FontAwesomeScript-->' . "\n";
+      } else {
+        return false;
       }
 
       return $output;

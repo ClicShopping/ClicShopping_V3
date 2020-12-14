@@ -14,9 +14,9 @@
   class FooterOutputSortable
   {
     /**
-     * @return string
+     * @return string|bool
      */
-    public function display(): string
+    public function display(): string|bool
     {
       $params = $_SERVER['QUERY_STRING'];
 
@@ -32,6 +32,8 @@
           $output .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.min.js"></script>' . "\n";
           $output .= '<!--Sortable end -->' . "\n";
         }
+      } else {
+        return false;
       }
 
       return $output;
