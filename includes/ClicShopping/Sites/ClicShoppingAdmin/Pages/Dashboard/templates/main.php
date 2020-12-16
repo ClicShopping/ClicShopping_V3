@@ -101,6 +101,11 @@
       </div>
     </div>
   </span>
+  
+    <!-- ------------------------------------------------------------ //-->
+    <!--          ONGLET Statistics           //-->
+    <!-- ------------------------------------------------------------ //-->
+
     <span class="col-md-4 float-md-right" id="indexTabs" style="overflow: auto;">
 <style>
   .nav {
@@ -118,9 +123,6 @@
 
     <div class="tabsClicShopping">
       <div class="tab-content">
-<!-- ------------------------------------------------------------ //-->
-<!--          ONGLET Statistics           //-->
-<!-- ------------------------------------------------------------ //-->
         <div class="tab-pane active" id="tab1">
           <div class="mainTitle"><?php echo CLICSHOPPING::getDef('title_index_order'); ?></div>
           <div

@@ -51,28 +51,35 @@
         $month[date('M')] = 0;
       }
 
-      $Qorder = $this->app->db->prepare('select date_format(o.date_purchased, "%M") as dateday,
-                                             sum(ot.value) as total
-                                      from :table_orders o,
-                                           :table_orders_total ot
-                                      where date_sub(now(), interval 1.5 year) <= o.date_purchased
-                                      and (o.orders_status > 0 and o.orders_status <> 4)
-                                      and o.orders_id = ot.orders_id
-                                      and ot.class = "ST"
-                                      group by dateday
-                                      order by o.orders_id                                     
-                                     ');
+      $Qorder = $this->app->db->prepare("select date_format(o.date_purchased, '%b-%Y') as dateday,
+                                                sum(ot.value) as total
+                                        from :table_orders o,
+                                              :table_orders_total ot
+                                        where date_sub(curdate(), interval 11 month) <= o.date_purchased
+                                        and (o.orders_status > 0 and o.orders_status <> 4)
+                                        and o.orders_id = ot.orders_id
+                                        and ot.class = 'ST'
+                                        group by dateday
+                                        order by dateday
+                                        ");
+
+
       $Qorder->execute();
 
       while ($Qorder->fetch()) {
-        $month[$Qorder->value('dateday')] = $Qorder->valueDecimal('total');
+        $days[$Qorder->value('dateday')] = $Qorder->valueDecimal('total');
       }
-
-     // $month = array_reverse($month, true);
-
-      $data_labels = json_encode(array_keys($month));
-      $data = json_encode(array_values($month));
-
+      
+      $days = array_reverse($days, true);
+  
+      foreach ($days as $d => $r) {
+        $plot_days[] = $d;
+        $plot_revenue[] = $r;
+      }
+  
+      $data_labels = json_encode($plot_days);
+      $data = json_encode($plot_revenue);
+      
       $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_revenue_app_chart_link'));
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_REVENUE_APP_CONTENT_WIDTH;

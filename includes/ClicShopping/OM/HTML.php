@@ -938,9 +938,10 @@
       $countries = $CLICSHOPPING_Address->getCountries();
 
       for ($i = 0, $n = count($countries); $i < $n; $i++) {
-        $countries_array[] = array('id' => $countries[$i]['countries_iso_code_2'],
+        $countries_array[] = [
+          'id' => $countries[$i]['countries_iso_code_2'],
           'text' => $countries[$i]['countries_name']
-        );
+        ];
       }
 
       return HTML::selectMenu($name, $countries_array, $selected, $parameters);

@@ -45,35 +45,39 @@
     public function getOutput() :string
     {
       $month = [];
-
-      $Qorder = $this->app->db->prepare('select date_format(o.date_purchased, "%M") as dateday,
-                                                 sum(ot.value) as total
-                                          from :table_orders o,
-                                               :table_orders_total ot
-                                          where date_sub(now(), interval 12 month) <= o.date_purchased
-                                          and o.orders_status = 3
-                                          and o.orders_id = ot.orders_id
-                                          and (ot.class = :class)
-                                          group by dateday 
-                                          order by o.orders_id
-                                         ');
-      $Qorder->bindValue(':class', 'ST');
+  
+      $Qorder = $this->app->db->prepare("select date_format(o.date_purchased, '%M') as dateday,
+                                                sum(ot.value) as total
+                                        from :table_orders o,
+                                              :table_orders_total ot
+                                        where date_sub(curdate(), interval 12 month) <= o.date_purchased
+                                        and o.orders_status = 3
+                                        and o.orders_id = ot.orders_id
+                                        and ot.class = 'ST'
+                                        group by dateday
+                                        order by dateday
+                                        ");
+  
       $Qorder->execute();
-
       $total = 0;
 
       while ($Qorder->fetch()) {
-        $month[$Qorder->value('dateday')] = $total + $Qorder->valueDecimal('total');
-        $monthLabel[$Qorder->value('dateday')] = $total + $Qorder->valueDecimal('total');
-
-        $total = $month[$Qorder->value('dateday')];
+        $days[$Qorder->value('dateday')] = $Qorder->valueDecimal('total');
+        $total = $days[$Qorder->value('dateday')];
+        $total += $total;
       }
-
-      //$monthLabel = array_reverse($monthLabel, true);
-
-      $data_labels = json_encode(array_keys($monthLabel));
-      $data = json_encode(array_values($month));
-
+      
+      $days = array_reverse($days, true);
+  
+      foreach ($days as $d => $r) {
+        $plot_days[] = $d;
+        $plot_revenue[] = $total + $r;
+        $total += $r;
+      }
+  
+      $data_labels = json_encode($plot_days);
+      $data = json_encode($plot_revenue);
+      
       $chart_label_link = HTML::link('index.php?A&Orders\Orders&Orders', $this->app->getDef('module_admin_dashboard_total_month_app_chart_link'));
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_MONTH_APP_CONTENT_WIDTH;
@@ -139,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }],
         yAxes: [{
           ticks: {
-            stepSize: 100
+            stepSize: 500
           },
           display: true,
           borderDash: [5, 5],

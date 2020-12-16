@@ -343,7 +343,7 @@
         if ((is_long($item_count / 32) && $i >= 20) || ($i == 20)) {
           $pdf->AddPage();
 // Fields Name position
-          $Y_Fields_Name_position = 125;
+//          $Y_Fields_Name_position = 125;
 // Table position, under Fields Name
           $Y_Table_Position = 70;
           Common::outputTableHeadingPdf($Y_Table_Position - 6);

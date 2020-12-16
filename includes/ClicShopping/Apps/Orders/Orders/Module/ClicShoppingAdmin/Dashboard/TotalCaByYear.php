@@ -56,11 +56,10 @@
                                              :table_orders_total ot
                                         where  o.orders_id = ot.orders_id
                                         and o.orders_status = 3
-                                        and (ot.class = :class or class = :class1)
+                                        and ot.class = :class
                                         group by year
                                        ');
-      $Qorder->bindValue(':class', 'ot_subtotal');
-      $Qorder->bindValue(':class1', 'ST');
+      $Qorder->bindValue(':class', 'ST');
       $Qorder->execute();
 
       while ($Qorder->fetch()) {
