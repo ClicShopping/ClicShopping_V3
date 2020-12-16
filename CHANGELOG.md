@@ -9,6 +9,7 @@ fix some strict element
 Remove token input script
 Boostrap 5 implementation 
 PHP 8 compatibility (php 7.4.x do not work now)
+add vertical menu
 
 ---
 Version 3.2204

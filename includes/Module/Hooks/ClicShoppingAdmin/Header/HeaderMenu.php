@@ -15,6 +15,8 @@
   use ClicShopping\OM\HTML;
   use ClicShopping\OM\Registry;
 
+  use ClicShopping\Apps\Tools\AdministratorMenu\Classes\ClicShoppingAdmin\AdministratorMenu;
+
   class HeaderMenu
   {
     /**
@@ -22,88 +24,10 @@
      */
     public function display(): string
     {
-      $CLICSHOPPING_Db = Registry::get('Db');
-      $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
-      if (isset($_SESSION['admin']['access'])) {
-        if ($_SESSION['admin']['access'] === 1) {
-          $access_level = 0;
-        } elseif ($_SESSION['admin']['access'] === 2) {
-          $access_level = 2;
-        } elseif ($_SESSION['admin']['access'] === 3) {
-          $access_level = 2;
-        } else {
-          $access_level = 0;
-        }
-      } else {
-        $access_level = 0;
-      }
-
-      if ($access_level == 0) {
-        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
-                                                  am.link,
-                                                  am.parent_id,
-                                                  am.access,
-                                                  am.sort_order,
-                                                  am.image,
-                                                  am.b2b_menu,
-                                                  amd.label,
-                                                  ad.access
-                                            from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
-                                                :table_administrator_menu_description amd
-                                            where am.id = amd.id
-                                            and amd.language_id = :language_id
-                                            order by am.parent_id,
-                                                     am.sort_order
-                                            ');
-        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-
-      } elseif ($access_level == 2) {
-        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
-                                                am.link,
-                                                am.parent_id,
-                                                am.access,
-                                                am.sort_order,
-                                                am.image,
-                                                am.b2b_menu,
-                                                amd.label,
-                                                ad.access
-                                          from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
-                                              :table_administrator_menu_description amd
-                                          where am.id = amd.id
-                                          and amd.language_id = :language_id
-                                          and (am.access = 0 or am.access > 1)
-                                          order by am.parent_id,
-                                                   am.sort_order
-                                          ');
-
-        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-
-      } elseif ($access_level == 3) {
-        $Qmenus = $CLICSHOPPING_Db->prepare('select am.id,
-                                                am.link,
-                                                am.parent_id,
-                                                am.access,
-                                                am.sort_order,
-                                                am.image,
-                                                am.b2b_menu,
-                                                amd.label,
-                                                ad.access
-                                          from :table_administrator_menu am  left join :table_administrators ad on ad.access =  am.access,
-                                              :table_administrator_menu_description amd
-                                          where am.id = amd.id
-                                          and amd.language_id = :language_id
-                                          and (am.access = 0 and am.access > 2)
-                                          order by am.parent_id,
-                                                   am.sort_order
-                                          ');
-
-        $Qmenus->bindInt(':language_id', $CLICSHOPPING_Language->getId());
-      }
-
-      $Qmenus->setCache('menu-administrator');
-      $Qmenus->execute();
-
+      $Qmenus = AdministratorMenu::getHeaderMenu();
+      
       $menu_parent = [];
       $menu_sub = [];
 
