@@ -1,5 +1,11 @@
-INSERT INTO configuration VALUES('', 'Do you want to Display the sidebar Menu in Admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration.<br />', 10, 1, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
+
+#insert in your phpmyAdmin this request in function of your language
+
+#English
+INSERT INTO clic_configuration VALUES(null, 'Do you want to Display the sidebar Menu in Admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration horizontal or sidebar.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
+#french
+INSERT INTO clic_configuration VALUES(null, 'Souhqitez-vous afficher un menu vertical dans votre administration ', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Veuillez sélectionner un choix pour afficher un menu spécific, hozizontal (false) ou vertical (true) dans votre administration.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 

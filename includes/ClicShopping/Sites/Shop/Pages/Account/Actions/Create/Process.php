@@ -37,7 +37,6 @@
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
 
       if (isset($_POST['action']) && ($_POST['action'] == 'process') && isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
-
 // error checking when updating or adding an entry
         $error = false;
 
@@ -147,7 +146,8 @@
         }
 
         if ($error === false) {
-          $sql_data_array = ['customers_firstname' => $firstname,
+          $sql_data_array = [
+            'customers_firstname' => $firstname,
             'customers_lastname' => $lastname,
             'customers_email_address' => $email_address,
             'customers_newsletter' => (int)$newsletter,
@@ -166,7 +166,8 @@
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
 
 // save element in address book
-          $sql_data_array = ['customers_id' => (int)$customer_id,
+          $sql_data_array = [
+            'customers_id' => (int)$customer_id,
             'entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_telephone' => $telephone
@@ -181,7 +182,8 @@
 
           $CLICSHOPPING_Db->save('customers',$sql_data_array, $insert_array);
 
-          $sql_array = ['customers_info_id' => (int)$customer_id,
+          $sql_array = [
+            'customers_info_id' => (int)$customer_id,
             'customers_info_number_of_logons' => 0,
             'customers_info_date_account_created' => 'now()'
           ];

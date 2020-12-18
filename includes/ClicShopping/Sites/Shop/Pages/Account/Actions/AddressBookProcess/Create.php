@@ -31,7 +31,7 @@
         $_SESSION['process'] = true;
         $error = false;
 
-        if (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0))) {
+        if (isset($_POST['gender']) && (((ACCOUNT_GENDER == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() == 0)) || ((ACCOUNT_GENDER_PRO == 'true') && ($CLICSHOPPING_Customer->getCustomersGroupID() != 0)))) {
           $gender = HTML::sanitize($_POST['gender']);
           if (empty($gender)) $gender = 'm';
         } else {
@@ -265,7 +265,7 @@
           $new_address_book_id = $CLICSHOPPING_Db->lastInsertId();
 
 // register session variables
-          if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || ($_GET['edit'] == $CLICSHOPPING_Customer->getDefaultAddressID())) {
+          if ((isset($_POST['primary']) && ($_POST['primary'] == 'on')) || (isset($_GET['Edit']) && $_GET['Edit'] == $CLICSHOPPING_Customer->getDefaultAddressID())) {
             $CLICSHOPPING_Customer->setCountryID($country);
             $CLICSHOPPING_Customer->setZoneID(($zone_id > 0) ? (int)$zone_id : '0');
 
@@ -276,7 +276,8 @@
               CLICSHOPPING::redirect(null, 'Account&Main');
             }
 
-            $sql_data_array = ['customers_firstname' => $firstname,
+            $sql_data_array = [
+              'customers_firstname' => $firstname,
               'customers_lastname' => $lastname,
               'customers_cellular_phone' => $cellular_phone,
               'customers_fax' => $fax,
@@ -299,7 +300,7 @@
           }// end isset($_POST['primary']
         }// end $error
 
-        if (HTML::sanitize($_POST['shopping']) == 1) {
+        if (isset($_POST['shopping']) && HTML::sanitize($_POST['shopping']) == 1) {
           CLICSHOPPING::redirect(null, 'Cart');
         } else {
           CLICSHOPPING::redirect(null,'Account&AddressBook');
