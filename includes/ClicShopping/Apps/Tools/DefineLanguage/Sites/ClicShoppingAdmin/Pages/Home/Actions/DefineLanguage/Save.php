@@ -61,9 +61,12 @@
 // delete
         if (isset($_POST['delete']) && is_array($_POST['delete'])) {
           foreach ($_POST['delete'] as $key => $value) {
-            $this->app->db->delete(':table_languages_definitions', ['definition_key' => HTML::sanitize($key),
-                'content_group' => $content_group]
-            );
+            $sql_array = [
+              'definition_key' => HTML::sanitize($key),
+              'content_group' => $content_group
+            ];
+            
+            $this->app->db->delete(':table_languages_definitions', $sql_array);
           }
         }
 
@@ -100,13 +103,15 @@
   // add new_definition_key
         if (isset($new_definition_key) && is_array($_POST['new_definition_value'])) {
           foreach ($_POST['new_definition_value'] as $key => $value) {
-            $sql_data_array = ['content_group' => $content_group,
+            $sql_data_array = [
+              'content_group' => $content_group,
               'definition_key' => $new_definition_key,
               'languages_id' => $key,
               'definition_value' => $value
             ];
 
-            $where_array = ['content_group' => $content_group,
+            $where_array = [
+              'content_group' => $content_group,
               'definition_key' => $new_definition_key,
               'languages_id' => $key
             ];
@@ -137,7 +142,6 @@
           }
         }
 
-
         if (!$new_definition_key_error && isset($new_definition_values)) {
           $definition_values = array_merge($definition_values, $new_definition_values);
         }
@@ -149,7 +153,8 @@
         if (is_array($definition_values)) {
           foreach ($definition_values as $definition_key => $language_definition) {
             foreach ($language_definition as $language_id => $definition_value) {
-              $sql_data_array = ['content_group' => $content_group,
+              $sql_data_array = [
+                'content_group' => $content_group,
                 'definition_key' => $definition_key,
                 'languages_id' => $language_id,
                 'definition_value' => $definition_value
