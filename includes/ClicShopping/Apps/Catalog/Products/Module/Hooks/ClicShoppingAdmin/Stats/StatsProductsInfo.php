@@ -59,7 +59,7 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_info');
 
       $output = '
-  <div class="card col-md-2 cardStatsPrimary">
+  <div class="card col-md-2 col-12 cardStatsPrimary">
     <div class="card-block">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_products_info_title') . '</h4>
       <div class="card-text">

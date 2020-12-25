@@ -59,7 +59,7 @@
       }
 
       $output = '
-  <div class="card col-md-2 cardStatsWarning">
+  <div class="card col-md-2 col-12 cardStatsWarning">
     <div class="card-block">
       <h4 class="StatsTitle">' . $this->app->getDef('text_categories_alert') . '</h4>
       <div class="card-text">

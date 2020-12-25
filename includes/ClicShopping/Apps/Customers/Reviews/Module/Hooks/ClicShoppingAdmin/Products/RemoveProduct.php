@@ -28,11 +28,11 @@
 
       $this->app = Registry::get('Reviews');
     }
-
+  
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    private function removeReviews(int $id)
+    private function removeReviews(?int $id)
     {
       $Qreviews = $this->app->db->get('reviews', 'reviews_id', ['products_id' => $id]);
 

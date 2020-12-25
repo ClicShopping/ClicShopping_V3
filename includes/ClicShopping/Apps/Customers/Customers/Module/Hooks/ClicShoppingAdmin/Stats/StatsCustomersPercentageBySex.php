@@ -81,7 +81,7 @@
     {
 
       $output = '
-  <div class="card col-md-2 cardStatsPrimary">
+  <div class="card col-md-2 col-12 cardStatsPrimary">
     <div class="card-block">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_customers') . '</h4>
       <div class="card-text">

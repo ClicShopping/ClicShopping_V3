@@ -31,7 +31,7 @@
 ?>
   <br />
   </head>
-  <body>
+  <body id="body">
     <div class="<?php echo BOOTSTRAP_CONTAINER;?>" id="<?php echo BOOTSTRAP_CONTAINER;?>">
       <div class="bodyWrapper" id="bodyWrapper">
         <header class="page-header" id="page_header">

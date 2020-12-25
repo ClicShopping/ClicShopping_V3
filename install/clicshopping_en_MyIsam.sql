@@ -2727,7 +2727,7 @@ CREATE TABLE `clic_products` (
   `suppliers_id` int(11) DEFAULT NULL,
   `products_archive` tinyint(1) NOT NULL DEFAULT '0',
   `products_min_qty_order` int(4) NOT NULL DEFAULT '0',
-  `products_price_comparison` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `products_price_comparison` tinyint(1) NOT NULL DEFAULT '0',
   `products_dimension_width` decimal(5,2) NOT NULL DEFAULT '0.00',
   `products_dimension_height` decimal(5,2) NOT NULL DEFAULT '0.00',
   `products_dimension_depth` decimal(5,2) NOT NULL DEFAULT '0.00',

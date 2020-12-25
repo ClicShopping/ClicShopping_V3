@@ -23,7 +23,7 @@ orders_view char(1) default(1) not_null
 suppliers_id int
 products_archive tinyint(1) default(0) not_null
 products_min_qty_order int(4) default(0) not_null
-products_price_comparison char(1)  default(0) not_null
+products_price_comparison tinyint(1) default(0) not_null
 products_dimension_width decimal(5,2) default(0.00) not_null
 products_dimension_height decimal(5,2) default(0.00) not_null
 products_dimension_depth decimal(5,2) default(0.00) not_null

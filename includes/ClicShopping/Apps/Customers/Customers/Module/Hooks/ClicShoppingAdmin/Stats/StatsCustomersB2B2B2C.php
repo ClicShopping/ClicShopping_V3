@@ -67,7 +67,7 @@
     public function display() :string
     {
       $output = '
-  <div class="card col-md-2 cardStatsSuccess">
+  <div class="card col-md-2 col-12 cardStatsSuccess">
     <div class="card-block">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_customers') . '</h4>
       <div class="card-text">

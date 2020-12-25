@@ -15,7 +15,6 @@
    $CLICSHOPPING_Template = Registry::get('Template');
 ?>
       </div><!-- end bodyContent -->
-
 <?php
   if ($CLICSHOPPING_Template->hasBlocks('boxes_column_left')) {
 ?>
@@ -34,7 +33,6 @@
   }
 ?>
       </div><!-- end flex -->
-
       <div class="separator"></div>
 <?php //important before block ?>
       <footer class="page-footer" id="footer">

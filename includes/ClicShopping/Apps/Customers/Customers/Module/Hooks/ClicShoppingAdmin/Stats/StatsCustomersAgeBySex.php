@@ -78,7 +78,7 @@
     public function display() :string
     {
       $output = '
-  <div class="card col-md-2 cardStatsInfo">
+  <div class="card col-md-2 col-12 cardStatsInfo">
     <div class="card-block">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_average_age') . '</h4>
       <div class="card-text">

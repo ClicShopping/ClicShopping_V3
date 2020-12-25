@@ -62,7 +62,7 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_alert');
 
       $output = '
-  <div class="card col-md-2 cardStatsWarning">
+  <div class="card col-md-2 col-12 cardStatsWarning">
     <div class="card-block">
       <h4 class="StatsTitle">' . $this->app->getDef('text_products_alert_stock') . '</h4>
       <div class="card-text">
