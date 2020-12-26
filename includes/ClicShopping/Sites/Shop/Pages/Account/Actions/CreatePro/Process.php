@@ -528,7 +528,7 @@
           $CLICSHOPPING_Mail->addHtmlCkeditor($message);
           ;
           $from = STORE_OWNER_EMAIL_ADDRESS;
-          $CLICSHOPPING_Mail->send($name, $email_address, '', $from, $email_subject);
+          $CLICSHOPPING_Mail->send($name, $email_address, null, $from, $email_subject);
 
 // Administrator email
           if (EMAIL_INFORMA_ACCOUNT_ADMIN == 'true') {
@@ -549,7 +549,7 @@
             $admin_email_text_admin .= $admin_email_welcome . $admin_email_text_admin;
             $CLICSHOPPING_Mail->addHtmlCkeditor($admin_email_text_admin);
             ;
-            $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, '', $from, $email_subject_admin);
+            $CLICSHOPPING_Mail->send(STORE_NAME, $email_address, null, $from, $email_subject_admin);
           }
 
           $CLICSHOPPING_ActionRecorder->record();

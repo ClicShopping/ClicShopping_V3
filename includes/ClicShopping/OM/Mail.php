@@ -164,7 +164,7 @@
      * @return bool
      * @throws Exception
      */
-    public function addBCC($email_address, $name = null)
+    public function addBCC(string $email_address, $name = null)
     {
       return $this->phpMail->addBCC($email_address, $name);
     }
@@ -225,16 +225,16 @@
     }
 
     /**
-     * @param string $to_name
-     * @param string $to_addr
-     * @param string $from_name
-     * @param string $from_addr
+     * @param ?string $to_name
+     * @param ?string $to_addr
+     * @param ?string $from_name
+     * @param ?string $from_addr
      * @param string $subject
      * @param bool $reply_to
      * @return bool
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send(string $to_name = '', ?string $to_addr, ?string $from_name, ?string $from_addr, string $subject = '', bool $reply_to = false): bool
+    public function send(?string $to_name = null, ?string $to_addr = null, ?string $from_name = null, string $from_addr, string $subject = '', bool $reply_to = false): bool
     {
       if ((strstr($to_name, "\n") !== false) || (strstr($to_name, "\r") !== false)) {
         return false;
@@ -324,10 +324,10 @@
 
     /**
      * Do not send en email if it'excluded by the admin
-     * @param string|null $email
+     * @param string $email
      * @return bool
      */
-    public static function excludeEmailDomain(?string $email = '')
+    public static function excludeEmailDomain(string $email = '')
     {
       if( filter_var( $email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
         $array_domain = explode('@', $email);
@@ -351,7 +351,7 @@
     /**
      * Send email (text/html) using MIME
      * This is the central mail function. The SMTP Server should be configured
-     * @param string $to_name The name of the recipient
+     * @param string|null $to_name The name of the recipient
      * @param string|null $to_email_address The email address of the recipient
      * @param string $email_subject
      * @param string $email_text
@@ -360,7 +360,7 @@
      * @return false
      * @throws Exception
      */
-    public function clicMail(string $to_name = '', string|null $to_email_address, string $email_subject = '', string $email_text = '', ?string$from_email_name, ?string $from_email_address)
+    public function clicMail(?string $to_name = null, string|null $to_email_address = null, string $email_subject = '', string $email_text = '', ?string $from_email_name, ?string $from_email_address)
     {
       if (SEND_EMAILS != 'true') {
         return false;

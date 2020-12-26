@@ -113,7 +113,7 @@
 
     public function getDirectoryPathLanguage(): string
     {
-      return parent::getTemplateSource() . '/languages/';
+      return parent::getTemplateSource() . 'languages/';
     }
 
     /**
@@ -271,7 +271,8 @@
      */
     public static function getCatalogFiles(string $catalog_files = null): array
     {
-      $file_array = ['Account&AddressBook',
+      $file_array = [
+        'Account&AddressBook',
         'Account&Create',
         'Account&CreatePro',
         'Account&CreateProSuccess',

@@ -1316,10 +1316,10 @@
 
             if (is_array($email)) {
               foreach ($email as $key => $value) {
-                $this->mail->clicMail('', $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+                $this->mail->clicMail(null, $value[$key], $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
               }
             } else {
-              $this->mail->clicMail('', $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
+              $this->mail->clicMail(null, $email, $email_text_subject, $email_order, STORE_OWNER, STORE_OWNER_EMAIL_ADDRESS);
             }
           }
         }
