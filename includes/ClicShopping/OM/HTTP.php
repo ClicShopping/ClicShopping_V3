@@ -273,4 +273,51 @@
 
       return $uri;
     }
+  
+    /**
+     * Resolve relative / (Unix-like)absolute path
+     * @param string $path target path
+     * @param string $separator separator
+     * @return string
+     */
+    public static function getFullPath(string $path = '', string $separator = '/') :string
+    {
+      $systemroot = CLICSHOPPING::getSite('Shop');
+
+      $base = CLICSHOPPING::getSite('Shop');
+    
+      if ($base[0] === $separator && substr($base, 0, strlen($systemroot)) !== $systemroot) {
+        $base = $systemroot . substr($base, 1);
+      }
+      if ($base !== $systemroot) {
+        $base = rtrim($base, $separator);
+      }
+    
+      if ($path === '' || $path === '.' . $separator) return $base;
+    
+      if (substr($path, 0, 3) === '..' . $separator) {
+        $path = $base . $separator . $path;
+      }
+
+      if ($path !== $systemroot) {
+        $path = rtrim($path, $separator);
+      }
+    
+      // Absolute path
+      if ($path[0] === $separator || strpos($path, $systemroot) === 0) {
+        return $path;
+      }
+      
+      // Relative path from 'Here'
+      if (substr($path, 0, 2) === '.' . $separator || $path[0] !== '.') {
+        $arrn = preg_split($preg_separator, $path, -1, PREG_SPLIT_NO_EMPTY);
+        if ($arrn[0] !== '.') {
+          array_unshift($arrn, '.');
+        }
+        $arrn[0] = rtrim($base, $separator);
+        return join($separator, $arrn);
+      }
+
+      return $path;
+    }
   }
