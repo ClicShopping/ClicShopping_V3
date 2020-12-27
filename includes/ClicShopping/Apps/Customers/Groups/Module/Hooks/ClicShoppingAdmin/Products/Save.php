@@ -335,7 +335,7 @@
 
 
   // Prix TTC B2B ----------
-            if (($group_customer_price != $Qattributes->value('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
+            if (($group_customer_price != $Qattributes->valueDecimal('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
               if (empty($group_customer_price)) {
                 $group_customer_price = $products_price;
               }

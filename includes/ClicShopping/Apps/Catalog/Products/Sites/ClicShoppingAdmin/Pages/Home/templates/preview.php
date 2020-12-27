@@ -219,9 +219,9 @@
         $Qattributes->execute();
 
         if ($Qattributes->fetch()) {
-          $attributes_price = $Qattributes->value('customers_group_price') .' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
+          $attributes_price = $Qattributes->valueDecimal('customers_group_price') .' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
         } else {
-          $attributes_price =  $Qattributes->value('customers_group_price') . ' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
+          $attributes_price =  $Qattributes->valueDecimal('customers_group_price') . ' <strong>' . $CLICSHOPPING_Products->getDef('text_products_preview_price_public') . '</strong><br />';
         }
       }
 ?>
