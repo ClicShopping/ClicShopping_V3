@@ -481,7 +481,7 @@
      * HTML::selectMenu
      */
 
-    public static function selectMenu($name, array $values, $default = null, $parameters = '', $required = false, $class = 'form-control')
+    public static function selectMenu($name, array $values, $default = null, $parameters = '', $required = false, $class = 'form-select form-control')
     {
       $group = false;
 

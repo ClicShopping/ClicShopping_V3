@@ -355,12 +355,11 @@
      * @param string|null $to_email_address The email address of the recipient
      * @param string $email_subject
      * @param string $email_text
-     * @param string|null $from_email_name
-     * @param string|null $from_email_address The email address of the sender
-     * @return false
+     * @param string $from_email_name
+     * @param string $from_email_address The email address of the sender
      * @throws Exception
      */
-    public function clicMail(?string $to_name = null, string|null $to_email_address = null, string $email_subject = '', string $email_text = '', ?string $from_email_name, ?string $from_email_address)
+    public function clicMail(?string $to_name = null, string|null $to_email_address = null, string $email_subject = '', string $email_text = '', string $from_email_name = '', string $from_email_address = '')
     {
       if (SEND_EMAILS != 'true') {
         return false;

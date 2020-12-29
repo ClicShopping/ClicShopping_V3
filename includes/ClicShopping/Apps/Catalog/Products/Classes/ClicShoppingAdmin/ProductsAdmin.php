@@ -284,47 +284,53 @@
     /**
      * Shipping delay of the product
      *
-     * @param string $product_id , $language_id
-     * @return string $product['products_shipping_delay'], url of the product
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_shipping_delay'], url of the product
      *
      */
-    public function getProductsShippingDelay($id = '', int $language_id)
+    public function getProductsShippingDelay(string|int|null $id = null, int $language_id) :string|bool
     {
-      $Qproduct = $this->db->prepare('select products_shipping_delay
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                   ');
-      $Qproduct->bindInt(':products_id', $id);
-      $Qproduct->bindInt(':language_id', $language_id);
-
-      $Qproduct->execute();
-
-      return $Qproduct->value('products_shipping_delay');
+      if (!is_null($id)) {
+        $Qproduct = $this->db->prepare('select products_shipping_delay
+                                       from :table_products_description
+                                       where products_id = :products_id
+                                       and language_id = :language_id
+                                     ');
+        $Qproduct->bindInt(':products_id', $id);
+        $Qproduct->bindInt(':language_id', $language_id);
+  
+        $Qproduct->execute();
+  
+        return $Qproduct->value('products_shipping_delay');
+      } else {
+        return false;
+      }
     }
 
     /**
      * Description summary
      *
-     * @param string $product_id , $language_id
-     * @return string $product['products_description'], description name
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_description'], description name
      *
      */
-    public function getProductsDescriptionSummary($product_id = '', int $language_id): string
+    public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id): string|bool
     {
-      if (!$language_id) $language_id = $this->lang->getId();
-
-      $Qproduct = $this->db->prepare('select products_description_summary
-                                     from :table_products_description
-                                     where products_id = :products_id
-                                     and language_id = :language_id
-                                  ');
-      $Qproduct->bindInt(':products_id', $product_id);
-      $Qproduct->bindInt(':language_id', $language_id);
-
-      $Qproduct->execute();
-
-      return $Qproduct->value('products_description_summary');
+      if (!is_null($product_id)) {
+        if (!$language_id) $language_id = $this->lang->getId();
+  
+        $Qproduct = $this->db->prepare('select products_description_summary
+                                       from :table_products_description
+                                       where products_id = :products_id
+                                       and language_id = :language_id
+                                    ');
+        $Qproduct->bindInt(':products_id', $product_id);
+        $Qproduct->bindInt(':language_id', $language_id);
+  
+        $Qproduct->execute();
+  
+        return $Qproduct->value('products_description_summary');
+      }
     }
 
     /**
@@ -395,19 +401,27 @@
     /**
      * Description Name
      *
-     * @param string $product_id , $language_id
-     * @return string $product['products_description'], description name
+     * @param string|int|null $product_id , $language_id
+     * @return string|bool $product['products_description'], description name
      *
      */
-    public function getProductsDescription($product_id = '', int $language_id): string
+    public function getProductsDescription(string|int|null $product_id, int $language_id): string|bool
     {
+      if (!is_null($product_id)) {
+      
       if ($language_id == 0) $language_id = $this->lang->getId();
-      $Qproduct = Registry::get('Db')->get('products_description', 'products_description', ['products_id' => (int)$product_id,
-          'language_id' => (int)$language_id
-        ]
-      );
+      
+      $sql_array = [
+        'products_id' => (int)$product_id,
+        'language_id' => (int)$language_id
+        ];
+      
+      $Qproduct = Registry::get('Db')->get('products_description', 'products_description', $sql_array);
 
       return $Qproduct->value('products_description');
+      } else {
+        return false;
+      }
     }
 
     /**
@@ -596,7 +610,8 @@
 
       if ($Qimages->fetch() !== false) {
         do {
-          $Qduplicate = $this->db->get('products_images', 'id', ['image' => $Qimages->value('image'),
+          $Qduplicate = $this->db->get('products_images', 'id', [
+            'image' => $Qimages->value('image'),
             'products_id' => [
               'op' => '!=',
               'val' => (int)$product_id
@@ -655,10 +670,11 @@
      * url of the product
      *
      * @param string $product_id , $language_id
+     * @param int $language_id
      * @return string $Qproduct->value('products_url'), url of the product
      *
      */
-    public function getProductsUrl($product_id = '', int $language_id): string
+    public function getProductsUrl(string $product_id = '', int $language_id): string
     {
       if ($language_id == 0) $language_id = $this->lang->getId();
         $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
@@ -669,16 +685,20 @@
     /**
      * Return the manufacturers URL in the needed language
      *
-     * @param string $manufacturer_id , $language_id
+     * @param string|int|null $manufacturer_id , $language_id
      * @return string $Qmanufacturer->value('manufacturers_url'), url of manufacturers
      *
      */
-    public function getManufacturerUrl($manufacturer_id = '', int $language_id): string
+    public function getManufacturerUrl(string|int|null $manufacturer_id, int $language_id): string|bool
     {
-      if ($language_id == 0) $language_id = $this->lang->getId();
-      $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
-
-      return $Qmanufacturer->value('manufacturers_url');
+      if (!is_null($manufacturer_id)) {
+        if ($language_id == 0) $language_id = $this->lang->getId();
+        $Qmanufacturer = Registry::get('Db')->get('manufacturers_info', 'manufacturers_url', ['manufacturers_id' => (int)$manufacturer_id, 'languages_id' => (int)$language_id]);
+  
+        return $Qmanufacturer->value('manufacturers_url');
+      } else {
+        return false;
+      }
     }
 
     /**
@@ -1074,7 +1094,7 @@
      *
      */
 
-    public function save($id = null, $action)
+    public function save(string|int|null $id, $action)
     {
       $products_date_available = HTML::sanitize($_POST['products_date_available']);
       $products_date_available = (date('Y-m-d') < $products_date_available) ? $products_date_available : 'null';
@@ -1184,7 +1204,7 @@
 //  Save Data
 //---------------------------------------------------------------------------------------------
 //update
-      if (is_numeric($id) && $action == 'Update') {
+      if (is_numeric($id) && !is_null($id) && $action == 'Update') {
         $update_sql_data = ['products_last_modified' => 'now()'];
         $sql_data_array = array_merge($sql_data_array, $update_sql_data);
 
