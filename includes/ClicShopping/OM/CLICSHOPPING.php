@@ -596,7 +596,7 @@
       $exclude = array_merge($exclude, $array);
 
       foreach ($_GET as $key => $value) {
-        if (!in_array($key, $exclude, true)) {
+        if (!\in_array($key, $exclude, true)) {
           $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
         }
       }
@@ -639,13 +639,15 @@
      */
     public static function arrayToString(array $array, string $exclude = '', $equals = '=', string $separator = '&'): ?string
     {
-      if (!is_array($exclude)) $exclude = [];
+      if (!is_array($exclude)) {
+        $exclude = [];
+      }
 
       $get_string = '';
 
       if (is_array($array)) {
         foreach ($array as $key => $value) {
-          if ((!in_array($key, $exclude)) && ($key != 'x') && ($key != 'y')) {
+          if ((!\in_array($key, $exclude, true)) && ($key != 'x') && ($key != 'y')) {
             $get_string .= $key . $equals . $value . $separator;
           }
         }
