@@ -627,9 +627,11 @@
 
         $get_params = [];
 
-        foreach ($_GET as $key => $value) {
-          if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
-            $get_params[] = ($value) ? "$key=$value" : $key;
+        if (is_array($_GET)) {
+          foreach ($_GET as $key => $value) {
+            if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
+              $get_params[] = ($value) ? "$key=$value" : $key;
+            }
           }
         }
 

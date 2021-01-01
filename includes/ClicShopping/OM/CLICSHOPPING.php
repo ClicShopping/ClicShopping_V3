@@ -595,9 +595,11 @@
 
       $exclude = array_merge($exclude, $array);
 
-      foreach ($_GET as $key => $value) {
-        if (!\in_array($key, $exclude, true)) {
-          $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
+      if (is_array($_GET)) {
+        foreach ($_GET as $key => $value) {
+          if (!\in_array($key, $exclude, true)) {
+            $params .= $key . (!empty($value) ? '=' . $value : '') . '&';
+          }
         }
       }
 
