@@ -587,7 +587,6 @@ INSERT INTO configuration VALUES(118, 'Storage runtime', 'STORE_PAGE_PARSE_TIME'
 INSERT INTO configuration VALUES(119, 'File location for the execution stores', 'STORE_PAGE_PARSE_TIME_LOG', '/home/www/site/shop/includes/Work/Log/admin.log', 'Path and file name of the runtime.', 10, 2, '2008-09-15 10:07:36', '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(120, 'Date format executions', 'STORE_PARSE_DATE_TIME_FORMAT', '%d/%m/%Y %H:%M:%S', 'Date format executions.', 10, 3, NULL, '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO configuration VALUES(121, 'Display runtime', 'DISPLAY_PAGE_PARSE_TIME', 'false', 'displays the execution time of a page (storage runtime must be enabled and the selected location in the file for the execution storage).<br />', 10, 4, '2007-06-03 16:58:14', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
-INSERT INTO configuration VALUES(122, 'Queries database', 'STORE_DB_TRANSACTIONS', 'false', 'Stores queries the database with the runtime.<br />', 10, 5, '2007-06-03 16:58:22', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(125, 'Method of transmission of email', 'EMAIL_TRANSPORT', 'sendmail', 'Specifies whether the server uses a local connection to sendmail or SMTP connection via TCP / IP. For Windows Servers and MacOS, you should select SMTP.', 12, 1, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'sendmail\', \'gmail\', \'smtp\'))');
 INSERT INTO configuration VALUES(126, 'Newline header emails', 'EMAIL_LINEFEED', 'LF', 'Set the characters used to separate headers emails.', 12, 2, NULL, '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'LF\', \'CRLF\'))');
 INSERT INTO configuration VALUES(127, 'Use MIME HTML for sending emails', 'EMAIL_USE_HTML', 'false', 'Send emails in html or plain text.<br />', 12, 3, '2008-09-15 22:57:14', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
@@ -1499,6 +1498,7 @@ INSERT INTO configuration VALUES(1540, 'Do you want to activate the preloading (
 INSERT INTO configuration VALUES(1541, 'Do you want to convert all product images to Webp?', 'CONFIGURATION_CONVERT_IMAGE', 'false', 'All product images will be converted to Webp format. Please note that some server configuration does not accept this format', 4, 10, NULL, '2018-11-05 09:49:46', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(1542, 'Do you want to compress the HTML', 'CONFIGURATION_TEMPLATE_MINIFY_HTML', 'false', 'Compress the HTML code and JS inside the HTML (only catalog)', 43, 1, '2013-12-16 18:12:37', '2006-04-09 18:20:19', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO configuration VALUES(1543, 'Exclude specific email domains', 'CONFIGURATION_EXLCLUDE_EMAIL_DOMAIN', '', 'If the domain is caught, the email will not be sent. Please separate your domains with a comma "," <br> <br> <i> example: mail.ru, yandex.com', 12, 10, NULL, '2019-09-22 21:39:43', NULL, '');
+INSERT INTO configuration VALUES(1544, 'Do you want to Display the sidebar horizontal or vertical Menu in your admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration horizontal or sidebar.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
 
 INSERT INTO configuration_group VALUES(1, 'Store Setup', 'General Information on the Store.', 1, 1);
@@ -1514,7 +1514,7 @@ INSERT INTO configuration_group VALUES(10, 'Logging setup', 'Setting Logging opt
 INSERT INTO configuration_group VALUES(11, 'Setup Cache', 'Setting Cache  Options.', 11, 1);
 INSERT INTO configuration_group VALUES(12, 'Setup options mail', 'General setting for the mail client and emails in HTML format.', 12, 1);
 INSERT INTO configuration_group VALUES(13, 'Download Setup', 'Options downloadable products.', 13, 1);
-INSERT INTO configuration_group VALUES(14, 'Setup compression & optimization', 'Website compression  & optimization options.', 14, 1);
+INSERT INTO configuration_group VALUES(14, 'Setup compression & optimization', 'Website compression & optimization options.', 14, 1);
 INSERT INTO configuration_group VALUES(15, 'Session Setup', 'Session options', 15, 1);
 INSERT INTO configuration_group VALUES(16, 'Setup minimum values ​​for B2C customers', 'Minimum value for the field of B2C customers', 16, 1);
 INSERT INTO configuration_group VALUES(17, 'B2B Setup', 'General Setting B2B', 17, 1);
