@@ -1,15 +1,18 @@
 Version 3.3 beta
+Note : This version works only with php > 8.0
 
-add chartjs without jquery https://www.chartjs.org/
-fix strict mode
-fix taxes
-fix deprecated sql access
-fix session error (utf8)
-fix some strict element
-Remove token input script
-Boostrap 5 implementation 
-PHP 8 compatibility (php 7.4.x do not work now)
-add vertical menu in option
+- add chartjs without jquery https://www.chartjs.org/
+- fix strict mode
+- fix incompatibility with php 8  
+- fix taxes
+- fix deprecated sql access
+- fix session error (utf8)
+- fix some strict element
+- Remove token input script
+- Boostrap 5 implementation 
+- PHP 8 compatibility (php 7.4.x do not work now)
+- Add vertical menu in option
+- remove htaccess (see tip and trips on the forum)
 
 ---
 Version 3.2204
