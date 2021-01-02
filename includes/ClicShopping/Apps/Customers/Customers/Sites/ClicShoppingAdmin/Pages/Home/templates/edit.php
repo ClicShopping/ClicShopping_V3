@@ -412,24 +412,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?>"
-                         class="col-2 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?></label>
-                  <div class="col-md-2">
-                    <?php
-                      if ($processed === true) {
-                        echo $cInfo->customers_fax . HTML::hiddenField('customers_fax');
-                      } else {
-                        echo HTML::inputField('customers_fax', $cInfo->customers_fax, 'maxlength="32"');
-                      }
-                    ?>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div class="separator"></div>

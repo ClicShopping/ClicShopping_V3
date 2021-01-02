@@ -20,6 +20,7 @@ DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` 
 DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_SIZE`;
 DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_COLOR`;
 DELETE FROM `clic_configuration` WHERE `clic_configuration`.`configuration_key` = `BAR_CODE_EXTENSION`;
+ALTER TABLE `clic_customers` DROP `customers_fax`;
 
 Update db in function your language
 //english

@@ -177,19 +177,7 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('customers_cellular_phone', null, 'id="cellular" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number') . '"'); ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" id="CreateCustomerEntryFaxNumber">
-              <div class="col-md-5">
-                <div class="form-group row">
-                  <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?>"
-                         class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_fax_number'); ?></label>
-                  <div class="col-md-5">
-                    <?php echo HTML::inputField('customers_fax', null, 'id="fax" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_fax_number') . '"'); ?>
+                    <?php echo HTML::inputField('customers_cellular_phone', null, 'id="cellular" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number') . '"', 'phone'); ?>
                   </div>
                 </div>
               </div>

@@ -141,8 +141,6 @@ entry_telephone_number_error = &nbsp;<span class="errorText">min {{min_length}} 
 
 entry_cellular_phone_number = Cellular phone Number
 entry_cellular_phone_number_error =
-entry_fax_number = Fax Number
-entry_fax_number_error =
 entry_telephone = Phone Number
 
 entry_newsletter = Newsletter:
