@@ -32,11 +32,13 @@
                                                       from :table_customers
                                                       where customers_email_validation = 0
                                                       order by customers_lastname
-                                                    ');
+                                                      ');
+                                                      
   $QmailCustomers->execute();
 
   while ($QmailCustomers->fetch()) {
-    $customers[] = ['id' => $QmailCustomers->value('customers_email_address'),
+    $customers[] = [
+      'id' => $QmailCustomers->value('customers_email_address'),
       'text' => $QmailCustomers->value('customers_lastname') . ', ' . $QmailCustomers->value('customers_firstname') . ' (' . $QmailCustomers->value('customers_email_address') . ')'
     ];
   }
@@ -44,7 +46,16 @@
   if ($CLICSHOPPING_MessageStack->exists('main')) {
     echo $CLICSHOPPING_MessageStack->get('main');
   }
-
+  
+  if (isset($_GET['messageInfo'])) {
+    $replace = str_replace('_b', '<b', $_GET['messageInfo']);
+    $replace = str_replace('r_', 'r />', $replace);
+    
+    $message = htmlentities($replace, ENT_QUOTES | ENT_HTML5);
+  } else {
+    $message = $CLICSHOPPING_EMail->getDef('text_message_customer');
+  }
+  
   echo HTMLOverrideAdmin::getCkeditor();
 ?>
 <!-- body //-->
@@ -125,13 +136,7 @@
               }
               $('#elfinder').elfinder(options);
           </script>
-          <?php
-            if (isset($_GET['email_message'])) {
-              $message = $_GET['email_message'];
-            } else {
-              $message = $CLICSHOPPING_EMail->getDef('text_message_customer');
-            }
-          ?>
+
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">

@@ -883,9 +883,7 @@ INSERT INTO `clic_configuration` VALUES(531, 'Installed Template Block Groups', 
 INSERT INTO `clic_configuration` VALUES(534, 'Installed Modules', 'MODULE_BOXES_INSTALLED', '', 'List of box module filenames separated by a semi-colon. This is automatically updated. No need to edit.', 6, 0, NULL, '2011-01-17 19:45:47', NULL, NULL);
 INSERT INTO `clic_configuration` VALUES(536, 'Please indicate the type of default prefix for the model of the product', 'CONFIGURATION_PREFIX_MODEL', 'REF-', 'Please indicate the type of default prefix that you want on the product number.<br /><br /><i>ex : product model : <b>REF-</b>product number ', 7, 7, NULL, '2011-01-17 19:45:47', NULL, NULL);
 INSERT INTO `clic_configuration` VALUES(538, 'Do you want to show mobile phone', 'ACCOUNT_CELLULAR_PHONE', 'false', 'Display the the field cell phone number in the \"My Account\" and the registration form.<br />', 5, 6, '2006-10-23 01:16:20', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
-INSERT INTO `clic_configuration` VALUES(539, 'Do you want to  display the fax ?', 'ACCOUNT_FAX', 'false', 'Display the the Fax field in the \"My Account\" and the registration form.<br />', 5, 7, '2006-10-23 01:16:20', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(540, 'Do you want to  display mobile phone ?', 'ACCOUNT_CELLULAR_PHONE_PRO', 'false', 'Display the the field cell phone number in the \"My Account\" and the registration form.<br />', 18, 161, '2006-10-23 01:16:20', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
-INSERT INTO `clic_configuration` VALUES(541, 'Do you want to display the Fax ?', 'ACCOUNT_FAX_PRO', 'false', 'Display the the Fax field in the \"My Account\" and the registration form.<br />', 18, 162, '2006-10-23 01:16:20', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 INSERT INTO `clic_configuration` VALUES(542, 'Please indicate the color in RGB text editing invoices / orders', 'INVOICE_RGB', '158,11,14', 'Veuillez indiquer la couleur du texte au format RGB<br><br><font color=\"#FF0000\"><b>Note :</b>Each number must be separated by a comma(ex : 0,0,0 for the black)</font><br>', 26, 5, '2007-06-02 15:39:18', '2006-04-09 16:13:47', NULL, NULL);
 INSERT INTO `clic_configuration` VALUES(544, 'Default status for orders by type of quantity', 'DEFAULT_PRODUCTS_QUANTITY_UNIT_STATUS_ID', '1', 'When a new type of quantity is created, this status will be assigned.', 6, 0, NULL, '2006-04-09 16:13:48', NULL, NULL);
 INSERT INTO `clic_configuration` VALUES(562, 'Please indicate the maximum number of attributes to display in the file setting attributes', 'MAX_ROW_LISTS_OPTIONS', '17', 'Please indicate the maximum number of attributes to display', 21, 2, '1000-01-01 00:00:00', '1000-01-01 00:00:00', NULL, NULL);
@@ -2062,7 +2060,6 @@ CREATE TABLE `clic_customers` (
   `customers_email_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_default_address_id` int(11) DEFAULT NULL,
   `customers_telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customers_fax` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customers_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `customers_newsletter` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `languages_id` int(11) NOT NULL DEFAULT '1',

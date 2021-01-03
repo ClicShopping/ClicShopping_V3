@@ -13,6 +13,7 @@ Note : This version works only with php > 8.0
 - PHP 8 compatibility (php 7.4.x do not work now)
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
+- remove customer fax 
 
 ---
 Version 3.2204
