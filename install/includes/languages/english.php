@@ -193,7 +193,9 @@ define('TEXT_END_INSTALLATION_4','Directories  to change');
 define('TEXT_END_INSTALLATION_5','Please turn change the permissions of this file in Conf (all), Shop and ClicShoppingAdmin (conf.php)');
 define('TEXT_END_INSTALLATION_6',' to 444 (or 644 if this file is still writable)');
 
-define('TEXT_END_INSTALLATION_7','Increae the security ');
+define('TEXT_END_INSTALLATION_7','Increase the security ');
+define('TEXT_END_INSTALLATION_8','The best is to change the ClicShoppingAdéin directoyrépertoire et d\'y incorper un htacces ou password (tous les serveur n\'acceptent pas forcement cette approche)');
+
 define('TEXT_END_ACCESS_CATALOG','Go to your catalog');
 define('TEXT_END_ACCESS_ADMIN','Go to your administration');
 
