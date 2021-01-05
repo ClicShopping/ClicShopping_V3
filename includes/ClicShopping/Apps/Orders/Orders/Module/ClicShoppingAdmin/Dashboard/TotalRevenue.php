@@ -60,7 +60,7 @@
                                         and o.orders_id = ot.orders_id
                                         and ot.class = 'ST'
                                         group by dateday
-                                        order by dateday
+                                        order by date_purchased desc
                                         ");
 
 
@@ -71,7 +71,7 @@
       }
       
       $days = array_reverse($days, true);
-  
+
       foreach ($days as $d => $r) {
         $plot_days[] = $d;
         $plot_revenue[] = $r;

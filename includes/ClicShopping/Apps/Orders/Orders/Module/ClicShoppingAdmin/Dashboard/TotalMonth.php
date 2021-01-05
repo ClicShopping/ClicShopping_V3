@@ -50,12 +50,12 @@
                                                 sum(ot.value) as total
                                         from :table_orders o,
                                               :table_orders_total ot
-                                        where date_sub(curdate(), interval 12 month) <= o.date_purchased
+                                        where date_sub(curdate(), interval 11 month) <= o.date_purchased
                                         and o.orders_status = 3
                                         and o.orders_id = ot.orders_id
                                         and ot.class = 'ST'
                                         group by dateday
-                                        order by dateday
+                                        order by date_purchased desc
                                         ");
   
       $Qorder->execute();
