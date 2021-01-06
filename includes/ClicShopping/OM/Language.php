@@ -631,11 +631,14 @@
           foreach ($_GET as $key => $value) {
             if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
               $get_params[] = ($value) ? "$key=$value" : $key;
+            } else {
+              $get_params[] = '';
             }
           }
         }
 
         $get_params = implode('&', $get_params);
+
         if (!empty($get_params)) {
           $get_params .= '&';
         }

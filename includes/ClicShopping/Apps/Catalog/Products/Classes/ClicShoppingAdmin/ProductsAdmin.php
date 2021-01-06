@@ -674,12 +674,15 @@
      * @return string $Qproduct->value('products_url'), url of the product
      *
      */
-    public function getProductsUrl(string $product_id = '', int $language_id): string
+    public function getProductsUrl(?int $product_id, ?int $language_id): string
     {
-      if ($language_id == 0) $language_id = $this->lang->getId();
+      if (((is_null($language_id)) || $language_id == 0) && !is_null($product_id)) {
+        $language_id = $this->lang->getId();
+
         $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
 
-      return $Qproduct->value('products_url');
+        return $Qproduct->value('products_url');
+      }
     }
 
     /**
