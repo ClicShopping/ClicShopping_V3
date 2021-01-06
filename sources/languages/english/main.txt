@@ -119,8 +119,6 @@ entry_cellular_phone_number_error = Your Cellular phone Number must contain a mi
 entry_cellular_phone_number_error_pro = Your Cellular phone Number must contain a minimum of {{min_length}} characters.
 entry_phone_dgrp = Your phone number is important to contact you (payment, shipping problem ...)
 
-entry_fax_number_error =
-entry_fax_number_text =
 entry_newsletter_text =
 entry_newsletter_error =
 entry_password_error = Your Password must contain a minimum of {{min_length}} characters.
