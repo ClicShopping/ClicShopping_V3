@@ -8,6 +8,7 @@ use PhpXmlRpc\Helper\XMLParser;
 /**
  * A helper class to easily convert between Value objects and php native values
  * @todo implement an interface
+ * @todo add class constants for the options values
  */
 class Encoder
 {
@@ -22,7 +23,7 @@ class Encoder
      * This means that the remote communication end can decide which php code will get executed on your server, leaving
      * the door possibly open to 'php-injection' style of attacks (provided you have some classes defined on your server
      * that might wreak havoc if instances are built outside an appropriate context).
-     * Make sure you trust the remote server/client before eanbling this!
+     * Make sure you trust the remote server/client before enabling this!
      *
      * @author Dan Libby (dan@libby.com)
      *
@@ -41,16 +42,18 @@ class Encoder
                     $typ = key($xmlrpcVal->me);
                     switch ($typ) {
                         case 'dateTime.iso8601':
-                            $xmlrpcVal->scalar = $val;
-                            $xmlrpcVal->type = 'datetime';
-                            $xmlrpcVal->timestamp = \PhpXmlRpc\Helper\Date::iso8601Decode($val);
-
-                            return $xmlrpcVal;
+                            $xmlrpcVal = array(
+                                'xmlrpc_type' => 'datetime',
+                                'scalar' => $val,
+                                'timestamp' => \PhpXmlRpc\Helper\Date::iso8601Decode($val)
+                            );
+                            return (object)$xmlrpcVal;
                         case 'base64':
-                            $xmlrpcVal->scalar = $val;
-                            $xmlrpcVal->type = $typ;
-
-                            return $xmlrpcVal;
+                            $xmlrpcVal = array(
+                                'xmlrpc_type' => 'base64',
+                                'scalar' => $val
+                            );
+                            return (object)$xmlrpcVal;
                         default:
                             return $xmlrpcVal->scalarval();
                     }
@@ -135,6 +138,7 @@ class Encoder
         $type = gettype($phpVal);
         switch ($type) {
             case 'string':
+                /// @todo should we be stricter in the accepted dates (ie. reject more of invalid days & times)?
                 if (in_array('auto_dates', $options) && preg_match('/^[0-9]{8}T[0-9]{2}:[0-9]{2}:[0-9]{2}$/', $phpVal)) {
                     $xmlrpcVal = new Value($phpVal, Value::$xmlrpcDateTime);
                 } else {
@@ -177,7 +181,24 @@ class Encoder
                 if (is_a($phpVal, 'PhpXmlRpc\Value')) {
                     $xmlrpcVal = $phpVal;
                 } elseif (is_a($phpVal, 'DateTimeInterface')) {
-                    $xmlrpcVal = new Value($phpVal->format('Ymd\TH:i:s'), Value::$xmlrpcStruct);
+                    $xmlrpcVal = new Value($phpVal->format('Ymd\TH:i:s'), Value::$xmlrpcDateTime);
+                } elseif (in_array('extension_api', $options) && $phpVal instanceof \stdClass && isset($phpVal->xmlrpc_type)) {
+                    // Handle the 'pre-converted' base64 and datetime values
+                    if (isset($phpVal->scalar)) {
+                        switch ($phpVal->xmlrpc_type) {
+                            case 'base64':
+                                $xmlrpcVal = new Value($phpVal->scalar, Value::$xmlrpcBase64);
+                                break;
+                            case 'datetime':
+                                $xmlrpcVal = new Value($phpVal->scalar, Value::$xmlrpcDateTime);
+                                break;
+                            default:
+                                $xmlrpcVal = new Value();
+                        }
+                    } else {
+                        $xmlrpcVal = new Value();
+                    }
+
                 } else {
                     $arr = array();
                     foreach($phpVal as $k => $v) {
@@ -258,13 +279,13 @@ class Encoder
 
         // What if internal encoding is not in one of the 3 allowed? We use the broadest one, ie. utf8!
         if (!in_array(PhpXmlRpc::$xmlrpc_internalencoding, array('UTF-8', 'ISO-8859-1', 'US-ASCII'))) {
-            $options = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
+            $parserOptions = array(XML_OPTION_TARGET_ENCODING => 'UTF-8');
         } else {
-            $options = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
+            $parserOptions = array(XML_OPTION_TARGET_ENCODING => PhpXmlRpc::$xmlrpc_internalencoding);
         }
 
-        $xmlRpcParser = new XMLParser($options);
-        $xmlRpcParser->parse($xmlVal, XMLParser::RETURN_XMLRPCVALS, XMLParser::ACCEPT_REQUEST | XMLParser::ACCEPT_RESPONSE | XMLParser::ACCEPT_VALUE);
+        $xmlRpcParser = new XMLParser($parserOptions);
+        $xmlRpcParser->parse($xmlVal, XMLParser::RETURN_XMLRPCVALS, XMLParser::ACCEPT_REQUEST | XMLParser::ACCEPT_RESPONSE | XMLParser::ACCEPT_VALUE | XMLParser::ACCEPT_FAULT);
 
         if ($xmlRpcParser->_xh['isf'] > 1) {
             // test that $xmlrpc->_xh['value'] is an obj, too???
@@ -297,9 +318,20 @@ class Encoder
                 return $req;
             case 'value':
                 return $xmlRpcParser->_xh['value'];
+            case 'fault':
+                // EPI api emulation
+                $v = $xmlRpcParser->_xh['value'];
+                // use a known error code
+                /** @var Value $vc */
+                $vc = isset($v['faultCode']) ? $v['faultCode']->scalarval() : PhpXmlRpc::$xmlrpcerr['invalid_return'];
+                /** @var Value $vs */
+                $vs = isset($v['faultString']) ? $v['faultString']->scalarval() : '';
+                if (!is_int($vc) || $vc == 0) {
+                    $vc = PhpXmlRpc::$xmlrpcerr['invalid_return'];
+                }
+                return new Response(0, $vc, $vs);
             default:
                 return false;
         }
     }
-
 }

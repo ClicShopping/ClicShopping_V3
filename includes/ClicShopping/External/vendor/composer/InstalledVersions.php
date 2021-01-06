@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8cb31e530e97d6384355c30ceef47e539202a716',
+    'reference' => 'c7bb96afff0acd436f744f0262fe8380f5db6125',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8cb31e530e97d6384355c30ceef47e539202a716',
+      'reference' => 'c7bb96afff0acd436f744f0262fe8380f5db6125',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -104,12 +104,12 @@ private static $installed = array (
     ),
     'phpxmlrpc/phpxmlrpc' => 
     array (
-      'pretty_version' => '4.4.2',
-      'version' => '4.4.2.0',
+      'pretty_version' => '4.5.1',
+      'version' => '4.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9b400d2c102f2a55839af8f73279274ebe148526',
+      'reference' => '3181bfc64b0c8d0f314c6701fcab0b9d117c5e05',
     ),
     'psr/container' => 
     array (

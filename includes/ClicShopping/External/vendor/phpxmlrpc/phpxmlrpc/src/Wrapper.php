@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Gaetano Giunta
- * @copyright (C) 2006-2019 G. Giunta
+ * @copyright (C) 2006-2021 G. Giunta
  * @license code licensed under the BSD License: see file license.txt
  */
 
@@ -16,6 +16,7 @@ use PhpXmlRpc\Helper\Logger;
  * @todo use some better templating system for code generation?
  * @todo implement method wrapping with preservation of php objs in calls
  * @todo when wrapping methods without obj rebuilding, use return_type = 'phpvals' (faster)
+ * @todo add support for 'epivals' mode
  */
 class Wrapper
 {
@@ -28,12 +29,14 @@ class Wrapper
      * Notes:
      * - for php 'resource' types returns empty string, since resources cannot be serialized;
      * - for php class names returns 'struct', since php objects can be serialized as xmlrpc structs
-     * - for php arrays always return array, even though arrays sometimes serialize as json structs
+     * - for php arrays always return array, even though arrays sometimes serialize as structs...
      * - for 'void' and 'null' returns 'undefined'
      *
      * @param string $phpType
      *
      * @return string
+     *
+     * @todo support notation `something[]` as 'array'
      */
     public function php2XmlrpcType($phpType)
     {
@@ -53,6 +56,7 @@ class Wrapper
             case 'true':
                 return Value::$xmlrpcBoolean;
             case Value::$xmlrpcArray: // 'array':
+            case 'array[]';
                 return Value::$xmlrpcArray;
             case 'object':
             case Value::$xmlrpcStruct: // 'struct'
@@ -63,6 +67,9 @@ class Wrapper
                 return '';
             default:
                 if (class_exists($phpType)) {
+                    if (is_a($phpType, 'DateTimeInterface')) {
+                        return Value::$xmlrpcDateTime;
+                    }
                     return Value::$xmlrpcStruct;
                 } else {
                     // unknown: might be any 'extended' xmlrpc type
@@ -678,7 +685,7 @@ class Wrapper
      *                            - bool    debug               set it to 1 or 2 to see debug results of querying server for method synopsis
      *                            - int     simple_client_copy  set it to 1 to have a lightweight copy of the $client object made in the generated code (only used when return_source = true)
      *
-     * @return \closure|array|false false on failure, closure by default and array for return_source = true
+     * @return \closure|string[]|false false on failure, closure by default and array for return_source = true
      */
     public function wrapXmlrpcMethod($client, $methodName, $extraOptions = array())
     {
@@ -885,7 +892,7 @@ class Wrapper
      * @param string $newFuncName
      * @param array $mSig
      * @param string $mDesc
-     * @return array
+     * @return string[] keys: source, docstring
      */
     public function buildWrapMethodSource($client, $methodName, array $extraOptions, $newFuncName, $mSig, $mDesc='')
     {
@@ -1106,7 +1113,12 @@ class Wrapper
         // (this provides for future expansion or subclassing of client obj)
         if ($verbatimClientCopy) {
             foreach ($client as $fld => $val) {
-                if ($fld != 'debug' && $fld != 'return_type') {
+                /// @todo in php 8.0, curl handles became objects, but they have no __set_state, thus var_export will
+                ///        fail for xmlrpc_curl_handle. So we disabled copying it.
+                ///        We should examine in depth if this change can have side effects - at first sight if the
+                ///        client's curl handle is not set, all curl options are (re)set on each http call, so there
+                ///        should be no loss of state...
+                if ($fld != 'debug' && $fld != 'return_type' && $fld != 'xmlrpc_curl_handle') {
                     $val = var_export($val, true);
                     $code .= "\$client->$fld = $val;\n";
                 }

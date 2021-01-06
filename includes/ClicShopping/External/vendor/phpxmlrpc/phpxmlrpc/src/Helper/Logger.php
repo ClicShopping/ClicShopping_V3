@@ -2,6 +2,9 @@
 
 namespace PhpXmlRpc\Helper;
 
+/**
+ * @todo make constructor private to force users to go through `instance()`
+ */
 class Logger
 {
     protected static $instance = null;
@@ -59,6 +62,7 @@ class Logger
 
     /**
      * Writes a message to the error log
+     * @param string $message
      */
     public function errorLog($message)
     {
