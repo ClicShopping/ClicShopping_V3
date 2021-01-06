@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '09f5d2f9fa6ffe0dce9c260dc9d72752c30c24de',
+    'reference' => '8cb31e530e97d6384355c30ceef47e539202a716',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '09f5d2f9fa6ffe0dce9c260dc9d72752c30c24de',
+      'reference' => '8cb31e530e97d6384355c30ceef47e539202a716',
     ),
     'darkghosthunter/preloader' => 
     array (
@@ -188,12 +188,12 @@ private static $installed = array (
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.65.0',
-      'version' => '7.65.0.0',
+      'pretty_version' => 'v7.67.0',
+      'version' => '7.67.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd4a22eeec7654efb8476fe8bea95b1e9928025a6',
+      'reference' => '935d2c67912007f6d17b6c08a62050252c509129',
     ),
     'symfony/console' => 
     array (

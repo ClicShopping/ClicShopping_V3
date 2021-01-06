@@ -1,5 +1,16 @@
 # Changelog
 
+## 7.67.0 - 2020-12-09
+* [#1060](https://github.com/stripe/stripe-php/pull/1060) Improve PHPDocs for `Discount`
+* [#1059](https://github.com/stripe/stripe-php/pull/1059) Upgrade PHPStan to 0.12.59
+* [#1057](https://github.com/stripe/stripe-php/pull/1057) Bump PHP-CS-Fixer and update code
+
+## 7.66.1 - 2020-12-01
+* [#1054](https://github.com/stripe/stripe-php/pull/1054) Improve error message for invalid keys in StripeClient
+
+## 7.66.0 - 2020-11-24
+* [#1053](https://github.com/stripe/stripe-php/pull/1053) Update PHPDocs
+
 ## 7.65.0 - 2020-11-19
 * [#1050](https://github.com/stripe/stripe-php/pull/1050) Added constants for `proration_behavior` on `Subscription`
 
