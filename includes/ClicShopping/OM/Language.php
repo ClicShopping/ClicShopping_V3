@@ -94,6 +94,9 @@
       setlocale(LC_NUMERIC, $system_locale_numeric);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLocale()
     {
       $code = $this->getCode();
@@ -504,13 +507,17 @@
       $response_encoding = 'UTF-8';
       $response_bom = ' without BOM';
       $handle = @fopen($filename, "r");
+
       if ((filesize($filename)) > 2) {
         $bom = fread($handle, 3);
+
         if ($bom == b"\xEF\xBB\xBF") {
           $response_bom = '-BOM';
         }
+
         $contents = fread($handle, filesize($filename));
         $response_encoding = mb_detect_encoding($contents, "UTF-8, ISO-8859-1", true);
+
         if ($response_encoding . $response_bom != 'UTF-8 without BOM') {
 // error message
           error_log('ERROR: ' . $filename . ' file is not UTF-8 without BOM encoding');
@@ -665,19 +672,18 @@
 
       $languages_array = [];
 
-      $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
+      $arraay = [
+        'languages_id',
         'name',
         'code',
         'image',
         'directory'
-      ],
-        null,
-        'sort_order'
-      );
-
+      ];
+      $Qlanguages = Registry::get('Db')->get('languages', $arraay, null, 'sort_order');
 
       while ($Qlanguages->fetch()) {
-        $languages_array[] = ['id' => $Qlanguages->valueInt('languages_id'),
+        $languages_array[] = [
+          'id' => $Qlanguages->valueInt('languages_id'),
           'name' => $Qlanguages->value('name'),
           'code' => $Qlanguages->value('code'),
           'image' => $Qlanguages->value('image'),
@@ -697,7 +703,8 @@
      */
     public function getLanguagesName($id)
     {
-      $Qlanguages = Registry::get('Db')->get('languages', ['languages_id',
+      $Qlanguages = Registry::get('Db')->get('languages', [
+        'languages_id',
         'name'
       ],
         ['languages_id' => (int)$id]

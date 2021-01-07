@@ -135,5 +135,9 @@
       </div>
       <?php
     } // end $listingTotalRow
-  ?>
+ ?>
+    <div class="separator"></div>
+    <div class="alert alert-info">
+      <?php echo $CLICSHOPPING_Langues->getDef('text_help'); ?>
+    </div>
 </div>
