@@ -65,8 +65,9 @@
       $endform = '</form>';
 
       if(is_array($CLICSHOPPING_Category->getCategories())) {
-        $categories_dropdown = HTML::form('categoriesDropdown', null, null, 'id="categoriesDropdown"', ['tokenize' => true]);
-        $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_Category->getCategories(), $cPath, 'onchange="this.form.submit();"');
+        $categories_dropdown = HTML::form('categoriesDropdown', 'index.php', null, 'id="categoriesDropdown"', ['tokenize' => true]);
+
+        $categories_dropdown .= HTML::selectField('cPath', $CLICSHOPPING_CategoryTree->getShopCategoryTree(), $cPath, 'onchange="this.form.submit();"');
         $categories_dropdown .= '</form>';
       } else {
         $categories_dropdown = '';
