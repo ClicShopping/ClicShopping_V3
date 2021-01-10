@@ -580,14 +580,16 @@
      */
     public function getLanguageText($tag = ' - ')
     {
+      $get_params = [];
+
       if (!isset($_GET['Checkout'])) {
         $languages_string = '';
 
-        $get_params = [];
-
-        foreach ($_GET as $key => $value) {
-          if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
-            $get_params[] = ($value) ? "$key=$value" : $key;
+        if (is_array($_GET)) {
+          foreach ($_GET as $key => $value) {
+            if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
+              $get_params[] = ($value) ? "$key=$value" : $key;
+            }
           }
         }
 
@@ -614,6 +616,8 @@
      */
     public function getFlag()
     {
+      $get_params = [];
+
       if (!isset($_GET['Checkout'])) {
 // If only one language is selected
         if (CLICSHOPPING::getSite('Shop') == 'Shop') {
@@ -632,32 +636,26 @@
 
         $content = '';
 
-        $get_params = [];
-
         if (is_array($_GET)) {
           foreach ($_GET as $key => $value) {
             if (($key != 'language') && ($key != Registry::get('Session')->getName()) && ($key != 'x') && ($key != 'y')) {
               $get_params[] = ($value) ? "$key=$value" : $key;
-            } else {
-              $get_params[] = '';
             }
           }
         }
-
-        $get_params = implode('&', $get_params);
-
-        if (!empty($get_params)) {
-          $get_params .= '&';
-        }
-
-        foreach ($languages as $value) {
-          $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
-        }
-
-        return $content;
-      } else {
-        return '';
       }
+
+      $get_params = implode('&', $get_params);
+
+      if (!empty($get_params)) {
+        $get_params .= '&';
+      }
+
+      foreach ($languages as $value) {
+        $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
+      }
+
+      return $content;
     }
 
     /**

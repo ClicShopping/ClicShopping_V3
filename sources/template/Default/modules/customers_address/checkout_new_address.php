@@ -118,7 +118,7 @@
         <div class="form-group row">
           <label for="InputTelephone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_telephone_number'); ?></label>
           <div class="col-sm-6 col-md-4">
-            <?php echo HTML::inputField('telephone', null, ' id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"'); ?>
+            <?php echo HTML::inputField('customers_telephone', null, ' id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"'); ?>
           </div>
         </div>
       </div>

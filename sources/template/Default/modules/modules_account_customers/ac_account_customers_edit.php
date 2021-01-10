@@ -55,7 +55,6 @@
           $customers_email_address = $account['customers_email_address'];
           $customers_telephone = $account['customers_telephone'];
           $customers_cellular_phone = $account['customers_cellular_phone'];
-          $customers_fax = $account['customers_fax'];
           $customers_company = $account['customers_company'];
           $customers_siret = $account['customers_siret'];
           $customers_ape = $account['customers_ape'];

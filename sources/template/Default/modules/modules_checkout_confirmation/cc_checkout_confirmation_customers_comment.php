@@ -36,14 +36,12 @@
      }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Order = Registry::get('Order');
       $CLICSHOPPING_Customer = Registry::get('Customer');
 
       if (isset($_GET['Checkout']) && isset($_GET['Confirmation']) && $CLICSHOPPING_Customer->isLoggedOn()) {
-
-         if (!is_null($CLICSHOPPING_Order->info['comments'])) {
+         if (!empty($CLICSHOPPING_Order->info['comments'])) {
           $content_width = (int)MODULE_CHECKOUT_CONFIRMATION_CUSTOMERS_COMMENT_CONTENT_WIDTH;
 
           $edit_comment = HTML::link(CLICSHOPPING::link(null, 'Checkout&Billing'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_customers_comment_text_edit') . ')</span>');

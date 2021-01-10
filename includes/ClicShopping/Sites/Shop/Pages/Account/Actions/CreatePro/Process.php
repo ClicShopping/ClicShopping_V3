@@ -120,17 +120,12 @@
 
         if (isset($_POST['country'])) $country = HTML::sanitize($_POST['country']);
 
-        if (isset($_POST['telephone'])) $telephone = HTML::sanitize($_POST['telephone']);
+        if (isset($_POST['customers_telephone'])) $telephone = HTML::sanitize($_POST['customers_telephone']);
 
         if (isset($_POST['cellular_phone']) && ACCOUNT_CELLULAR_PHONE_PRO == 'true') {
           $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
         } else {
           $cellular_phone = null;
-        }
-        if (isset($_POST['fax']) && ACCOUNT_FAX_PRO == 'true') {
-          $fax = HTML::sanitize($_POST['fax']);
-        } else {
-          $fax = null;
         }
 
         if (isset($_POST['newsletter'])) {
@@ -431,7 +426,6 @@
           ];
 
           if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = $cellular_phone;
-          if (ACCOUNT_FAX_PRO == 'true') $sql_data_array['customers_fax'] = $fax;
 
           if ($QcustomersGroup->fetch() !== false) $sql_data_array['customers_group_id'] = ACCOUNT_GROUP_DEFAULT_PRO;
           if ($QcustomersGroup->fetch() !== false) $sql_data_array['customers_options_order_taxe'] = $customers_group['group_order_taxe'];
@@ -456,7 +450,8 @@
             'entry_street_address' => $street_address,
             'entry_postcode' => $postcode,
             'entry_city' => $city,
-            'entry_country_id' => (int)$country
+            'entry_country_id' => (int)$country,
+            'entry_telephone' => $telephone
           ];
 
           if (ACCOUNT_CELLULAR_PHONE_PRO == 'true') $sql_data_array['customers_cellular_phone'] = $cellular_phone;

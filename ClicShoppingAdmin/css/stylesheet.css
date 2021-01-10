@@ -577,7 +577,6 @@ span.adminformAideContent {
 .adminformAide {
     background-color: #FAFAD2;
     color: #333333;
-
     border-bottom: dashed 0.0625rem #CCCCCC;
     border-top: dashed 0.0625rem #CCCCCC;
     border-left: dashed 0.0625rem #CCCCCC;
@@ -598,7 +597,6 @@ span.adminformAideContent {
     background-color: #F4F4F4;
 }
 
-
 .centerInputFields {
     height: 1.875rem;
     padding-top: 0.625rem;
@@ -610,7 +608,6 @@ div.spaceRow {
     height: 0.9375rem !important;
     width: 100%;
 }
-
 
 div.separator {
     padding-top: 0.625rem !important;
@@ -808,4 +805,9 @@ input:checked + .slider:before {
 
 .progress {
     background-color: limegreen;
+}
+
+.dashboard {
+    padding-right:0.5rem!important;
+    padding-top:0.5rem!important;
 }

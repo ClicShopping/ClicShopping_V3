@@ -60,26 +60,18 @@
         }
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_TELEPHONE_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_TELEPHONE_PRO_MIN_LENGTH > 0))) {
-          if (isset($_POST['telephone'])) {
-            $telephone = HTML::sanitize($_POST['telephone']);
+          if (isset($_POST['customers_telephone'])) {
+            $telephone = HTML::sanitize($_POST['customers_telephone']);
           } else {
             $telephone = '';
           }
         }
 
         if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_CELLULAR_PHONE == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_CELLULAR_PHONE_PRO == 'true'))) {
-          if (isset($_POST['cellular_phone'])) {
-            $cellular_phone = HTML::sanitize($_POST['cellular_phone']);
+          if (isset($_POST['customers_cellular_phone'])) {
+            $cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
           } else {
             $cellular_phone = '';
-          }
-        }
-
-        if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_FAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_FAX_PRO == 'true'))) {
-          if (isset($_POST['fax'])) {
-            $fax = HTML::sanitize($_POST['fax']);
-          } else {
-            $fax = '';
           }
         }
 
@@ -225,7 +217,8 @@
         } // end else
 
         if ($error === false) {
-          $sql_data_array = ['entry_firstname' => $firstname,
+          $sql_data_array = [
+            'entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_street_address' => $street_address,
             'entry_postcode' => $postcode,
@@ -280,7 +273,6 @@
               'customers_firstname' => $firstname,
               'customers_lastname' => $lastname,
               'customers_cellular_phone' => $cellular_phone,
-              'customers_fax' => $fax,
               'customers_telephone' => $telephone
             ];
 

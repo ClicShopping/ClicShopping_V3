@@ -53,12 +53,6 @@
         $customers_telephone = '';
       }
 
-      if (isset($_POST['customers_fax'])) {
-        $customers_fax = HTML::sanitize($_POST['customers_fax']);
-      } else {
-        $customers_fax = '';
-      }
-
       if (isset($_POST['customers_newsletter'])) {
         $customers_newsletter = HTML::sanitize($_POST['customers_newsletter']);
       } else {
@@ -330,11 +324,11 @@
       }
 
       if ($error === false) {
-        $sql_data_array = ['customers_firstname' => $customers_firstname,
+        $sql_data_array = [
+          'customers_firstname' => $customers_firstname,
           'customers_lastname' => $customers_lastname,
           'customers_email_address' => $customers_email_address,
           'customers_telephone' => $customers_telephone,
-          'customers_fax' => $customers_fax,
           'customers_newsletter' => $customers_newsletter,
           'languages_id' => (int)$language_id,
           'customers_cellular_phone' => $customers_cellular_phone,

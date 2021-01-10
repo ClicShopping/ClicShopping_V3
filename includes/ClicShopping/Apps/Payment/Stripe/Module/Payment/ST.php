@@ -92,10 +92,15 @@
             $this->update_status();
           }
         }
-
-        if (defined('CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY') && defined('CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY')) {
-          $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
-          $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
+        
+        if (defined('CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD')) {
+          if (CLICSHOPPING_APP_STRIPE_ST_SERVER_PROD == 'True') {
+            $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_KEY;
+            $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_KEY;
+          } else {
+            $this->private_key = CLICSHOPPING_APP_STRIPE_ST_PRIVATE_TEST_KEY;
+            $this->public_key = CLICSHOPPING_APP_STRIPE_ST_PUBLIC_TEST_KEY;
+          }
         } else {
           $this->enabled = false;
         }
@@ -259,11 +264,11 @@ pre_confirmation_check()
       $content .= '<input type="hidden" id="intent_id" value="' . HTML::output($stripe_payment_intent_id) . '" />' .
                   '<input type="hidden" id="secret" value="' . HTML::output($this->intent->client_secret) . '" />';
       $content .= '<div id="stripe_table_new_card">' .
-                  '<div class="form-group"><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
+                  '<div><label for="cardholder-name" class="control-label">' . $this->app->getDef('text_stripe_credit_card_owner') . '</label>' .
                   '<div><input type="text" id="cardholder-name" class="form-control" value="' . HTML::output($CLICSHOPPING_Order->billing['firstname'] . ' ' . $CLICSHOPPING_Order->billing['lastname']) . '" required></text></div>
                   </div>' .
                   '<div class="separator"></div>' .
-                  '<div class="form-group"><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
+                  '<div><label for="card-element" class="control-label">' . $this->app->getDef('text_stripe_credit_card_type') . '</label>' .
                   '<div id="card-element" class="col-md-5"></div>
                   </div>';
 
@@ -317,7 +322,8 @@ pre_confirmation_check()
         $new_order_status = CLICSHOPPING_APP_STRIPE_ST_ORDER_STATUS_ID;
       }
 
-      $sql_data_array = ['orders_id' => $orders_id,
+      $sql_data_array = [
+        'orders_id' => $orders_id,
         'orders_status_id' => (int)$new_order_status,
         'date_added' => 'now()',
         'customer_notified' => '0',

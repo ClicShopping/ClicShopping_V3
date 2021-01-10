@@ -38,15 +38,15 @@ use ClicShopping\OM\HTML;
         <div class="separator"></div>
 
         <div class="col-md-12">
-          <div class="form-group">
+          <div>
             <div class="col-md-12">
               <?php echo $CLICSHOPPING_Stripe->getDef('text_intro');  ?>
             </div>
           </div>
         </div>
 
-        <div class="col-md-12 text-md-center">
-          <div class="form-group">
+        <div class="col-md-12 text-center">
+          <div>
             <div class="col-md-12">
 <?php
   echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Payment\Stripe&Configure'));

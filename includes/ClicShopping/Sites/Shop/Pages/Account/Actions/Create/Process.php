@@ -50,12 +50,17 @@
         $email_address = HTML::sanitize($_POST['email_address']);
         $email_address_confirm = HTML::sanitize($_POST['email_address_confirm']);
 
-        if (isset($_POST['telephone'])) {
-          $telephone = HTML::sanitize($_POST['telephone']);
+        if (isset($_POST['customers_telephone'])) {
+          $telephone = HTML::sanitize($_POST['customers_telephone']);
         } else {
           $telephone = null;
         }
-
+  
+        if (isset($_POST['customers_cellular_phone'])) {
+          $cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
+        } else {
+          $cellular_phone = null;
+        }
         if (isset($_POST['newsletter'])) {
           $newsletter = HTML::sanitize($_POST['newsletter']);
         } else {
@@ -153,10 +158,11 @@
             'customers_newsletter' => (int)$newsletter,
             'languages_id' => (int)$CLICSHOPPING_Language->getId(),
             'customers_password' => Hash::encrypt($password),
+            'customers_telephone' => $telephone,
+            'customers_cellular_phone' => $cellular_phone,
             'member_level' => 1,
             'client_computer_ip' => HTTP::getIPAddress(),
             'provider_name_client' => HTTP::getProviderNameCustomer(),
-            'customers_telephone' => $telephone
           ];
 
           if (ACCOUNT_DOB == 'true') $sql_data_array['customers_dob'] = $dobDateTime->getRaw(false);
@@ -166,22 +172,23 @@
           $customer_id = $CLICSHOPPING_Db->lastInsertId();
 
 // save element in address book
-          $sql_data_array = [
+          $sql_data_array_book = [
             'customers_id' => (int)$customer_id,
             'entry_firstname' => $firstname,
             'entry_lastname' => $lastname,
             'entry_telephone' => $telephone
           ];
 
-          $CLICSHOPPING_Db->save('address_book', $sql_data_array);
+          $CLICSHOPPING_Db->save('address_book', $sql_data_array_book);
 
           $address_id = $CLICSHOPPING_Db->lastInsertId();
 
           $sql_data_array = ['customers_default_address_id' => (int)$address_id];
+          
           $insert_array = ['customers_id' => (int)$customer_id];
-
+          
           $CLICSHOPPING_Db->save('customers',$sql_data_array, $insert_array);
-
+          
           $sql_array = [
             'customers_info_id' => (int)$customer_id,
             'customers_info_number_of_logons' => 0,
@@ -204,7 +211,7 @@
 
           if (!empty(COUPON_CUSTOMER)) {
             $email_coupon_catalog = TemplateEmail::getTemplateEmailCouponCatalog();
-            $email_coupon = $email_coupon_catalog . COUPON_CUSTOMER;
+            $email_coupon = $email_coupon_catalog . HTML::sanitize(COUPON_CUSTOMER);
           } else {
             $email_coupon = '';
           }
@@ -229,7 +236,8 @@
             $email_subject_admin = CLICSHOPPING::getDef('admin_email_subject', ['store_name' => STORE_NAME]);
             $admin_email_welcome = CLICSHOPPING::getDef('admin_email_welcome');
 
-            $data_array = ['customer_name' => $lastname,
+            $data_array = [
+              'customer_name' => $lastname,
               'customer_firstame' => $firstname,
               'customer_mail' => $email_address
             ];

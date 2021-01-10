@@ -16,7 +16,6 @@
   use ClicShopping\Sites\Shop\Pages\Account\Classes\Notifications;
 
   class ac_account_customers_notifications {
-
     public $code;
     public $group;
     public string $title;
@@ -42,7 +41,6 @@
       $CLICSHOPPING_Template = Registry::get('Template');
 
       if (isset($_GET['Account']) &&  isset($_GET['Notifications'])) {
-
         $content_width = (int)MODULE_ACCOUNT_CUSTOMERS_NOTIFICATIONS_CONTENT_WIDTH;
         $global_notification = Notifications::getGlobalNotificationCustomer();
         $checkbox_notifications = HTML::checkboxField('product_global', '1', (($global_notification == '1') ? true : false));

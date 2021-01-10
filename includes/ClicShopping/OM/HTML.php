@@ -477,8 +477,6 @@
      * @param string $default The default value for the pull down menu field
      * @param string $parameters Additional parameters for the pull down menu field
      * @return string
-     * =========> template fonctionne pas
-     * HTML::selectMenu
      */
 
     public static function selectMenu($name, array $values, $default = null, $parameters = '', $required = false, $class = 'form-select form-control')
@@ -566,7 +564,8 @@
     {
       $CLICSHOPPING_Address = Registry::get('Address');
 
-      $countries_array = [array('id' => '',
+      $countries_array = [array(
+        'id' => '',
         'text' => CLICSHOPPING::getDef('text_select'))
       ];
       
@@ -994,7 +993,7 @@
      * @param string $name
      * @return string
      */
-    public static function replaceString(string $search=' ', string $replace='', string $name): string
+    public static function replaceString(string $search = '', string $replace = '', string $name = ''): string
     {
       return str_replace($search, $replace, $name);
     }

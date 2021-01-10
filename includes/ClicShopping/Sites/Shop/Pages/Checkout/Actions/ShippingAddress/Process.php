@@ -57,8 +57,8 @@
           $city = HTML::sanitize($_POST['city']);
           $country = HTML::sanitize($_POST['country']);
 
-          if (isset($_POST['telephone'])) {
-            $entry_telephone = HTML::sanitize($_POST['telephone']);
+          if (isset($_POST['customers_telephone'])) {
+            $entry_telephone = HTML::sanitize($_POST['customers_telephone']);
           } else {
             $entry_telephone = '';
           }
@@ -208,7 +208,8 @@
           }
 
           if ($error === false) {
-            $sql_data_array = ['customers_id' => (int)$CLICSHOPPING_Customer->getID(),
+            $sql_data_array = [
+              'customers_id' => (int)$CLICSHOPPING_Customer->getID(),
               'entry_firstname' => $firstname,
               'entry_lastname' => $lastname,
               'entry_street_address' => $street_address,

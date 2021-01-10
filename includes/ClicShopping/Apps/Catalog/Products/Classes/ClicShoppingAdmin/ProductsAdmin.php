@@ -669,12 +669,12 @@
     /**
      * url of the product
      *
-     * @param string $product_id , $language_id
+     * @param int|string $product_id , $language_id
      * @param int $language_id
      * @return string $Qproduct->value('products_url'), url of the product
      *
      */
-    public function getProductsUrl(?int $product_id, ?int $language_id): string
+    public function getProductsUrl(int|string $product_id, int $language_id): string|bool
     {
       if (((is_null($language_id)) || $language_id == 0) && !is_null($product_id)) {
         $language_id = $this->lang->getId();
@@ -682,6 +682,8 @@
         $Qproduct = Registry::get('Db')->get('products_description', 'products_url', ['products_id' => (int)$product_id, 'language_id' => (int)$language_id]);
 
         return $Qproduct->value('products_url');
+      } else {
+        return false;
       }
     }
 

@@ -148,7 +148,7 @@
           <label for="inputTelephone" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_telephone_number'); ?></label>
           <div class="col-md-8">
 <?php
-  echo HTML::inputField('telephone', $customers_telephone, 'id="inputTelephone" required aria-required="true" id="inputTelephone" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"', 'tel');
+  echo HTML::inputField('customers_telephone', $customers_telephone, 'id="inputTelephone" required aria-required="true" id="inputTelephone" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"', 'tel');
   if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ENTRY_TELEPHONE_MIN_LENGTH > 0)) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ENTRY_TELEPHONE_PRO_MIN_LENGTH > 0))) {
     echo '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_telephone_number_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_telephone_number_text') . '</span>': '');
   }
@@ -171,20 +171,6 @@
       </div>
     </div>
 
-<?php
-  }
-  if ((($CLICSHOPPING_Customer->getCustomersGroupID() == 0) && (ACCOUNT_FAX == 'true')) || (($CLICSHOPPING_Customer->getCustomersGroupID() != 0) && (ACCOUNT_FAX_PRO == 'true'))) {
-?>
-    <div class="row">
-      <div class="col-md-7">
-        <div class="form-group row">
-          <label for="inputFax" class="col-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_fax_number'); ?></label>
-          <div class="col-md-8">
-            <?php echo HTML::inputField('fax', $customers_fax, 'id="inputFax" placeholder="' . CLICSHOPPING::getDef('entry_fax_number') . '"', 'tel') . '&nbsp;' . (!is_null(CLICSHOPPING::getDef('entry_fax_number_text')) ? '<span class="text-warning">' . CLICSHOPPING::getDef('entry_fax_number_text') . '</span>': ''); ?>
-          </div>
-        </div>
-      </div>
-    </div>
 <?php
   }
 // ----------------------

@@ -38,7 +38,6 @@
                                                     customers_dob,
                                                     customers_email_address,
                                                     customers_telephone,
-                                                    customers_fax,
                                                     customers_cellular_phone,
                                                     customers_company,
                                                     customers_siret,

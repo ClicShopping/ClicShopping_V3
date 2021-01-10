@@ -51,10 +51,6 @@
         $customers_telephone = HTML::sanitize($_POST['customers_telephone']);
       }
 
-      if (isset($_POST['customers_fax'])) {
-        $customers_fax = HTML::sanitize($_POST['customers_fax']);
-      }
-
       if (isset($_POST['customers_cellular_phone'])) {
         $customers_cellular_phone = HTML::sanitize($_POST['customers_cellular_phone']);
       }
@@ -309,7 +305,6 @@
           'customers_dob' => $dobDateTime->getRaw(false),
           'customers_email_address' => $customers_email_address,
           'customers_telephone' => $customers_telephone,
-          'customers_fax' => $customers_fax,
           'customers_password' => $customers_password,
           'customers_newsletter' => 1,
           'languages_id' => (int)$customers_languages_id,

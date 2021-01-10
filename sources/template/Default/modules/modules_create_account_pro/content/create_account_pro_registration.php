@@ -349,7 +349,7 @@
               <div class="form-group row">
                 <label for="InputTelephone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_telephone_number'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::inputField('telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-toggle="tooltip" data-placement="right"  required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"'); ?>
+                  <?php echo HTML::inputField('telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right"  required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"'); ?>
                 </div>
               </div>
             </div>
@@ -363,21 +363,7 @@
               <div class="form-group row">
                 <label for="InputCellularPhone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_cellular_phone_number'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::inputField('cellular_phone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" id="InputCellularPhone" aria-describedby="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"'); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-<?php
-  }
-  if (ACCOUNT_FAX_PRO == 'true') {
-?>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group row">
-                <label for="InputFax" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_fax_number'); ?></label>
-                <div class="col-md-8">
-                  <?php echo HTML::inputField('fax', null, 'id="InputFax" autocomplete="tel" aria-describedby="' . CLICSHOPPING::getDef('entry_fax_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_fax_number') . '"'); ?>
+                  <?php echo HTML::inputField('cellular_phone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" id="InputCellularPhone" aria-describedby="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"'); ?>
                 </div>
               </div>
             </div>
@@ -470,7 +456,7 @@
                 <div class="form-group row">
                   <label for="InputEmail" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_email_address_text'); ?></label>
                   <div class="col-sm-6 col-md-6">
-                    <?php echo HTML::inputField('email_address', null, 'rel="txtTooltipEmailAddress" required aria-required="true" autocomplete="email" title="' . CLICSHOPPING::getDef('text_create_account_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email'); ?>
+                    <?php echo HTML::inputField('email_address', null, 'rel="txtTooltipEmailAddress" required aria-required="true" autocomplete="email" title="' . CLICSHOPPING::getDef('text_create_account_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email_address') . '" placeholder="' . CLICSHOPPING::getDef('entry_email_address') . '"', 'email'); ?>
                   </div>
                 </div>
               </div>

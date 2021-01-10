@@ -202,7 +202,6 @@ text_ccval_error_invalid_date = The expiry date entered for the credit card is i
 text_ccval_error_invalid_number = The credit card number entered is invalid.<br />Please check the number and try again.
 text_ccval_error_unknown_card = The first four digits of the number entered are: %s<br />If that number is correct, we do not accept that type of credit card.<br />If it is wrong, please try again.
 
-
 prices_logged_in_text = Please log in for prices.
 prices_logged_in_submit = Sorry you must be logged in for prices.
 prices_logged_in_buy_text = Please log in for Buy-now
