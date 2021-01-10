@@ -29,8 +29,7 @@
 
      $CLICSHOPPING_Template->useRecursiveModulesHooksForTemplate($source_folder,  $output,  $call, $hook_call);
 ?>
-  <br />
-  </head>
+   </head>
   <body id="body">
     <div class="<?php echo BOOTSTRAP_CONTAINER;?>" id="<?php echo BOOTSTRAP_CONTAINER;?>">
       <div class="bodyWrapper" id="bodyWrapper">
