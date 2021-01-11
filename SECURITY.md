@@ -8,7 +8,7 @@ currently being supported with security updates.
 | PHP Version | ClicShopping Version |
 | ------- | ------------------ |
 | +7.4.3   | 3.2145 |
-| +7.4.3   | alpha 3.3 |
+| +8.0| 3.3 beta |
 
 ## Reporting a Vulnerability
 
