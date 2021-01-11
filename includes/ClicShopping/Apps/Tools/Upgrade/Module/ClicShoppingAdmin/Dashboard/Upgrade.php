@@ -70,7 +70,7 @@
         $output = '<div class="col-md-' . $content_width . '">';
         $output .= '<div class="row alert alert-warning" role="alert">';
         $output .= '<span class="col-md-11"><strong>' . $this->app->getDef('module_admin_dashboard_clicshopping_update_app_text_warning_upgrade') . ' : ' . $current_version . '  => ' . $core_info->version . ' - ' . $core_info->date . '<br />'. $core_info->description . '  </strong></span>';
-        $output .= '<span class="col-md-1 text-md-right"><a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="noreferrer">' . HTML::button($this->app->getDef('module_admin_dashboard_clicshopping_update_app_button', 'primary')) . '</a></span>';
+        $output .= '<span class="col-md-1 text-end"><a href="https://github.com/ClicShopping/ClicShopping_V3/archive/master.zip" target="_blank" rel="noreferrer">' . HTML::button($this->app->getDef('module_admin_dashboard_clicshopping_update_app_button', 'primary')) . '</a></span>';
         $output .= '</div>';
         $output .= '</div>';
         $output .= '<div class="separator"></div>';

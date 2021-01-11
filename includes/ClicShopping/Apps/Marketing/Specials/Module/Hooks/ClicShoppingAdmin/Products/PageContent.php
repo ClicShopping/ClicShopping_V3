@@ -50,7 +50,7 @@
       $content .= '<span class="slider"></span>';
       $content .= '</label>';
       $content .= '</li>';
-      $content .= '<span style="padding-top:0.5rem">' . HTML::inputField('percentage_products_specials', '', 'placeholder="' . $this->app->getDef('text_products_specials_percentage') . ' "class="form-control-sm"') . '</span>';
+      $content .= '<span style="padding-top:0.5rem">' . HTML::inputField('percentage_products_specials', '', 'placeholder="' . $this->app->getDef('text_products_specials_percentage') . ' "class="form-control"') . '</span>';
       $content .= '</ul>';
       $content .= '</div>';
       $content .= '</div>';

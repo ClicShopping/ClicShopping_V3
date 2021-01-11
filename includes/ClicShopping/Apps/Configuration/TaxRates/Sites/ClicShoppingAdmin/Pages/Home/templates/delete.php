@@ -52,7 +52,7 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_TaxRates->getDef('text_info_delete_info'); ?><br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $trInfo->tax_description . '</strong>'; ?><br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxRates->getDef('button_cancel'), null, $CLICSHOPPING_TaxRates->link('TaxRates&page=' . (int)$_GET['page'] . '&tID=' . $trInfo->tax_rates_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

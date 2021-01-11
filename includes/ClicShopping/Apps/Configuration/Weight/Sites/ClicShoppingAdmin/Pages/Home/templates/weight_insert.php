@@ -40,7 +40,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/weight.png', $CLICSHOPPING_Weight->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Weight->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('status_tax_class', $CLICSHOPPING_Weight->link('Weight&WeightInsert&page=' . $page));
   echo HTML::button($CLICSHOPPING_Weight->getDef('button_insert'), null, null, 'primary') . ' ';

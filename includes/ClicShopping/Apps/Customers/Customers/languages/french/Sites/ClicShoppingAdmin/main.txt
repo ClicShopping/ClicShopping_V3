@@ -84,8 +84,6 @@ entry_telephone_number_error = &nbsp;<span class="errorText">min. {{min_length}}
 
 entry_cellular_phone_number = Numéro de téléphone cellulaire:
 entry_cellular_phone_number_error =
-entry_fax_number = Numéro de fax:
-entry_fax_number_error =
 entry_telephone = Téléphone
 
 entry_newsletter = Bulletin d'informations :

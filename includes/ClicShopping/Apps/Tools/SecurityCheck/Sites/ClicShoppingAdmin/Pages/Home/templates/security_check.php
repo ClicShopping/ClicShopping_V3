@@ -82,7 +82,7 @@
           <span
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/cybermarketing.gif', $CLICSHOPPING_SecurityCheck->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo $CLICSHOPPING_SecurityCheck->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_reset'), null, $CLICSHOPPING_SecurityCheck->link('SecurityCheck'), 'warning'); ?></span>
+          <span class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_SecurityCheck->getDef('button_reset'), null, $CLICSHOPPING_SecurityCheck->link('SecurityCheck'), 'warning'); ?></span>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@
             }
 
             echo '  <tr class="text-' . $secCheck->type .'">' . "\n" .
-              '    <td class="text-md-center">' . $secCheck->type . '</td>' . "\n" .
+              '    <td class="text-center">' . $secCheck->type . '</td>' . "\n" .
               '    <td valign="top" style="white-space: nowrap;">' . HTML::outputProtected($module['title']) . '</td>' . "\n" .
               '    <td>' . HTML::outputProtected($module['code']) . '</td>' . "\n" .
               '    <td>' . $output . '</td>' . "\n" .

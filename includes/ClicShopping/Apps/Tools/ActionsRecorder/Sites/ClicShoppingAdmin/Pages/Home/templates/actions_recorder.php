@@ -76,17 +76,17 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/modules_action_recorder.gif', $CLICSHOPPING_ActionsRecorder->getDef($CLICSHOPPING_ActionsRecorder->getDef('heading_title')), '40', '40'); ?></span>
           <span
             class="col-md-6 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ActionsRecorder->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
-            <div class="form-group">
-              <div class="controls">
+          <span class="col-md-4 text-end">
+            <div>
+              <div>
 <?php
-  echo HTML::form('search', $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('search', $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder'), 'post', '', ['session_id' => true]);
   echo HTML::selectField('module', $modules_list_array, null, 'onchange="this.form.submit();"');
 ?>
               </div>
             </div>
           </span>
-          <span class="col-md-1 text-md-right">
+          <span class="col-md-1 text-end">
             <?php echo HTML::button($CLICSHOPPING_ActionsRecorder->getDef('button_reset'), null, $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&Expire' . (isset($_POST['module']) && in_array($_POST['module'], $modules_array) ? '&module=' . $_POST['module'] : '')), 'danger'); ?>
           </span>
         </div>
@@ -97,7 +97,7 @@
   <div class="separator"></div>
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="date_added"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -112,7 +112,7 @@
         <th data-field="module" data-sortable="true"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_module'); ?></th>
         <th data-field="customer" data-sortable="true"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_customer'); ?></th>
         <th data-field="identifier" data-sortable="true"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_identifier'); ?></th>
-        <th data-field="date_added" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_date_added'); ?></th>
+        <th data-field="date_added" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_ActionsRecorder->getDef('table_heading_date_added'); ?></th>
       </tr>
     </thead>
     <tbody>
@@ -161,11 +161,11 @@
         ?>
         <tr>
           <th scope="row"
-              class="text-md-center"><?php echo(($Qactions->value('success') === 1) ? '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' : '<i class="fas fa-times fa-lg" aria-hidden="true"></i>'); ?></th>
+              class="text-center"><?php echo(($Qactions->value('success') === 1) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></th>
           <td><?php echo $module_title; ?></td>
           <td><?php echo $Qactions->valueProtected('user_name') . ' [' . (int)$Qactions->valueInt('user_id') . ']'; ?></td>
           <td><?php echo(!is_null($Qactions->value('identifier')) ? '<a href="' . $CLICSHOPPING_ActionsRecorder->link('ActionsRecorder&search=' . $Qactions->value('identifier')) . '"><u>' . $Qactions->valueProtected('identifier') . '</u></a>' : '(empty)'); ?></td>
-          <td class="text-md-center"><?php echo DateTime::toShort($Qactions->value('date_added'), true); ?></td>
+          <td class="text-center"><?php echo DateTime::toShort($Qactions->value('date_added'), true); ?></td>
         </tr>
         <?php
       }
@@ -176,9 +176,9 @@
   <div class="row">
     <div class="col-md-12">
       <div
-        class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qactions->getPageSetLabel($CLICSHOPPING_ActionsRecorder->getDef('text_display_number_of_link')); ?></div>
+        class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qactions->getPageSetLabel($CLICSHOPPING_ActionsRecorder->getDef('text_display_number_of_link')); ?></div>
       <div
-        class="float-md-right text-md-right"> <?php echo $Qactions->getPageSetLinks((isset($_POST['module']) && in_array($_POST['module'], $modules_array) && is_object($GLOBALS[$_POST['module']]) ? 'module=' . $_POST['module'] : null) . '&' . (isset($_POST['search']) && !empty($_POST['search']) ? 'search=' . $_POST['search'] : null)); ?></div>
+        class="float-end text-end"> <?php echo $Qactions->getPageSetLinks((isset($_POST['module']) && in_array($_POST['module'], $modules_array) && is_object($GLOBALS[$_POST['module']]) ? 'module=' . $_POST['module'] : null) . '&' . (isset($_POST['search']) && !empty($_POST['search']) ? 'search=' . $_POST['search'] : null)); ?></div>
     </div>
   </div>
 </div>

@@ -93,9 +93,9 @@
         <tr class="dataTableHeadingRow">
           <th><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_directories'); ?></th>
           <th
-            class="text-md-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_writable'); ?></th>
+            class="text-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_writable'); ?></th>
           <th
-            class="text-md-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_recommended'); ?></th>
+            class="text-center"><?php echo $CLICSHOPPING_SecDirPermissions->getDef('table_heading_recommended'); ?></th>
         </tr>
         <thead>
         <tbody>
@@ -107,9 +107,9 @@
                 <th
                   scope="row"><?php echo substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))); ?></th>
                 <td
-                  class="text-md-center"><?php echo $file['writable'] === true ? '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' : '<i class="fas fa-times fa-lg" aria-hidden="true"></i>'; ?></td>
+                  class="text-center"><?php echo $file['writable'] === true ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'; ?></td>
                 <td
-                  class="text-md-center"><?php echo(in_array(substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="fas fa-check fa-lg" aria-hidden="true"></i>' : '<i class="fas fa-times fa-lg" aria-hidden="true"></i>'); ?></td>
+                  class="text-center"><?php echo(in_array(substr($file['name'], strlen(CLICSHOPPING::getConfig('dir_root', 'Shop'))), $whitelist_array) ? '<i class="bi-check text-success"></i>' : '<i class="bi bi-x text-danger"></i>'); ?></td>
               </tr>
               <?php
             }

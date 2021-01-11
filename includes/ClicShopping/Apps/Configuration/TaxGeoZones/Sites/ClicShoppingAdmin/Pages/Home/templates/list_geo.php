@@ -35,7 +35,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_back'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones'), 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_insert'), null, $CLICSHOPPING_TaxGeoZones->link('InsertGeo&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage']), 'success');
@@ -52,7 +52,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="country"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -65,7 +65,7 @@
       <tr>
         <th data-field="country" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country'); ?></th>
         <th data-field="zone" data-sortable="true"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_country_zone'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_TaxGeoZones->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -112,7 +112,7 @@
             <th
               scope="row"><?php echo $Qzones->hasValue('countries_name') ? $Qzones->value('countries_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_all_countries'); ?></th>
             <td><?php echo $Qzones->hasValue('zone_name') ? $Qzones->value('zone_name') : $CLICSHOPPING_TaxGeoZones->getDef('text_selected'); ?></td>
-            <td class="text-md-right">
+            <td class="text-end">
               <?php
                 echo '<a href="' . $CLICSHOPPING_TaxGeoZones->link('EditGeo&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $Qzones->valueInt('association_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxGeoZones->getDef('icon_edit')) . '</a>';
                 echo '&nbsp;';
@@ -134,9 +134,9 @@
     <div class="row">
       <div class="col-md-12">
         <div
-          class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qzones->getPageSetLabel($CLICSHOPPING_TaxGeoZones->getDef('text_display_number_of_link')); ?></div>
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qzones->getPageSetLabel($CLICSHOPPING_TaxGeoZones->getDef('text_display_number_of_link')); ?></div>
         <div
-          class="float-md-right text-md-right"><?php echo $Qzones->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+          class="float-end text-end"><?php echo $Qzones->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
       </div>
     </div>
     <?php

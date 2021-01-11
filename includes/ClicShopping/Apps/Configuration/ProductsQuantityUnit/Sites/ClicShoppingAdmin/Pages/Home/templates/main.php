@@ -42,7 +42,7 @@
       <div class="separator"></div>
 
       <div class="col-md-12">
-        <div class="form-group">
+        <div>
           <div class="col-md-12">
             <?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('text_intro'); ?>
           </div>
@@ -50,8 +50,8 @@
         <div class="separator"></div>
         <div class="separator"></div
         <div class="col-md-12">
-          <div class="form-group">
-            <div class="col-md-12 text-md-center">
+          <div>
+            <div class="col-md-12 text-center">
               <?php
                 echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Configuration\ProductsQuantityUnit&Configure'));
                 echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_configure'), null, null, 'primary');

@@ -34,19 +34,19 @@
           <div
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></div>
           <div
-            class="col-md-3 pageHeading float-md-left"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></div>
+            class="col-md-3 pageHeading float-start"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></div>
           <div class="col-md-3">
-            <div class="form-group">
-              <div class="controls">
+            <div>
+              <div>
                 <?php
-                  echo HTML::form('search', $CLICSHOPPING_Customers->link('Customers'), 'post', 'role="form" class="form-inline"', ['session_id' => true]);
+                  echo HTML::form('search', $CLICSHOPPING_Customers->link('Customers'), 'post', 'role="form" ', ['session_id' => true]);
                   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Customers->getDef('heading_title_search') . '"');
                 ?>
                 </form>
               </div>
             </div>
           </div>
-          <div class="col-md-2 text-md-right">
+          <div class="col-md-2 text-end">
 <?php
   if (isset($_POST['search']) && !is_null($_POST['search'])) {
     echo HTML::button($CLICSHOPPING_Customers->getDef('button_reset'), null, $CLICSHOPPING_Customers->link('Customers&page=' . $page), 'warning');
@@ -55,7 +55,7 @@
           </div>
           </form>
 
-          <div class="col-md-3 text-md-right">
+          <div class="col-md-3 text-end">
 <?php
   if ((MODE_B2B_B2C == 'true')) {
     echo HTML::button($CLICSHOPPING_Customers->getDef('button_create_account'), null, $CLICSHOPPING_Customers->link('Create'), 'success');
@@ -69,8 +69,10 @@
   <div class="separator"></div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-deck">
-        <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsCustomersAgeBySex'); ?>
+      <div class="card card-block headerCard">
+        <div class="row">
+          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsCustomersAgeBySex', null, 'display'); ?>
+        </div>
       </div>
     </div>
   </div>
@@ -81,13 +83,13 @@
     echo HTML::form('delete_all', $CLICSHOPPING_Customers->link('Customers&DeleteAll&page=' . $page));
   ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Customers->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -112,15 +114,15 @@
             ?>
             <th data-field="company_b2b"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_company_b2b'); ?></th>
             <th data-field="group_name" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_entry_groups_name'); ?></th>
-            <th data-field="entry_validate" class="text-md-center"><?php echo $CLICSHOPPING_Customers->getDef('table_entry_validate'); ?></th>
+            <th data-field="entry_validate" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_entry_validate'); ?></th>
             <?php
           }
         ?>
-        <th data-field="email_validation" class="text-md-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_email_validation'); ?></th>
-        <th data-field="country" class="text-md-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_country'); ?></th>
-        <th data-field="number_review" class="text-md-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number_of_reviews'); ?></th>
-        <th data-field="account_created" class="text-md-right"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_account_created'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="email_validation" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_email_validation'); ?></th>
+        <th data-field="country" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_country'); ?></th>
+        <th data-field="number_review" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number_of_reviews'); ?></th>
+        <th data-field="account_created" class="text-end"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_account_created'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -272,7 +274,7 @@
           ?>
           <td><?php echo $Qcustomers->value('customers_company'); ?></td>
           <td><?php echo $cust_ret['customers_group_name']; ?></td>
-          <td class="text-md-center">
+          <td class="text-center">
             <?php
               if ($Qcustomers->valueInt('member_level') == 0) {
                 echo HTML::link(CLICSHOPPING::link('index.php?A&Customers\Members&Members'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/locked.gif', $CLICSHOPPING_Customers->getDef('approved_client')));
@@ -283,12 +285,12 @@
         }
 
         if ($Qcustomers->valueInt('customers_email_validation') == 0) {
-          $email_validation = '<i class="fas fa-check fa-lg" aria-hidden="true">';
+          $email_validation = '<i class="bi-check text-success"></i>';
         } else {
-          $email_validation = '<i class="fas fa-times fa-lg" aria-hidden="true"></i>';
+          $email_validation = '<i class="bi bi-x text-danger"></i>';
         }
         ?>
-        <td class="text-md-center"><?php echo $email_validation; ?></td>
+        <td class="text-center"><?php echo $email_validation; ?></td>
         <?php
         $QcustomersCountry = $CLICSHOPPING_Customers->db->prepare('select a.entry_country_id,
                                                                           c.countries_id,
@@ -319,15 +321,15 @@
         $Qreviews->bindInt(':customers_id', $Qcustomers->valueInt('customers_id'));
         $Qreviews->execute();
         ?>
-        <td class="text-md-center"><?php echo $Qreviews->valueInt('number_of_reviews'); ?></td>
+        <td class="text-center"><?php echo $Qreviews->valueInt('number_of_reviews'); ?></td>
         <?php
         if (!is_null($Qinfo->value('date_account_created'))) {
-          echo '<td class="text-md-right">' . DateTime::toShort($Qinfo->value('date_account_created')) . '</td>';
+          echo '<td class="text-end">' . DateTime::toShort($Qinfo->value('date_account_created')) . '</td>';
         } else {
-          echo '<td class="text-md-right"></td>';
+          echo '<td class="text-end"></td>';
         }
         ?>
-        <td class="text-md-right">
+        <td class="text-end">
           <?php
             if ($QcustColl->valueInt('customers_group_id') > 0) {
               echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Groups&Edit&cID=' . $QcustColl->valueInt('customers_group_id') . '&action=edit'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/group_client.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customers_group'), 16, 16));
@@ -359,9 +361,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Customers->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Customers->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"> <?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"> <?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

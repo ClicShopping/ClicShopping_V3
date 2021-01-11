@@ -87,7 +87,7 @@
       <div class="row">
         <span
           class="pageHeading col-md-8"><?php echo '&nbsp;' . $CLICSHOPPING_Settings->getDef('heading_title'); ?></span>
-        <span class="col-md-4 text-md-right">&nbsp;
+        <span class="col-md-4 text-end">&nbsp;
           <?php echo HTML::button($CLICSHOPPING_Settings->getDef('button_update'), null, null, 'success'); ?>
         </span>
       </div>
@@ -97,9 +97,9 @@
 
 
 <div style="padding:20px 10px 30px 10px;">
-  <div s class="text-md-left" style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
+  <div s class="text-start" style="font-weight: bold; font-size:12px;"><?php echo '&nbsp;' . $cInfo->configuration_title; ?></div>
   <div class="separator"></div>
-  <div class="text-md-left"><?php echo $cInfo->configuration_description; ?></div>
+  <div class="text-start"><?php echo $cInfo->configuration_description; ?></div>
   <div class="separator"></div>
   <div><?php echo $value_field; ?></div>
 </div>

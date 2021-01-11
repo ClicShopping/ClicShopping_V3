@@ -101,7 +101,7 @@
 
 
         foreach ($modules_shipping as $value) {
-          if (strpos($value, '\\') !== false) {
+          if (str_contains($value, '\\')) {
             $class = Apps::getModuleClass($value, 'Shipping');
 
             $include_modules[] = [
@@ -112,23 +112,23 @@
         }
 
         for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
-          if (strpos($include_modules[$i]['class'], '\\') !== false) {
+          if (str_contains($include_modules[$i]['class'], '\\')) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
             $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));
 
             if (($cInfo->customers_group_id != 0) && (in_array($module->code, $shipping_unallowed))) {
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="bi-check text-success"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
             } elseif ($cInfo->customers_group_id != 0 && !in_array($module->code, $shipping_unallowed)) {
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg text-danger" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="bi-check text-danger"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
             } elseif ($cInfo->customers_group_id == 0) {
               $content .= '<div class="col-md-12">';
-              $content .= '<span class="col-md-1"><i class="fas fa-check fa-lg" aria-hidden="true"></i></span>';
+              $content .= '<span class="col-md-1"><i class="bi-check text-success"></i></span>';
               $content .= '<span class="col-md-3">' . $module->title . '</span>';
               $content .= '</div>';
             } // end customers_group_id
@@ -152,7 +152,7 @@
 
 <script>
 $('#section_ShippingCustomerApp_content').appendTo('#customersTabs .tab-content');
-$('#customersTabs .nav-tabs').append('    <li class="nav-item"><a data-target="#section_ShippingCustomerApp_content" role="tab" data-toggle="tab" class="nav-link">{$tab_title}</a></li>');
+$('#customersTabs .nav-tabs').append('    <li class="nav-item"><a data-bs-target="#section_ShippingCustomerApp_content" role="tab" data-bs-toggle="tab" class="nav-link">{$tab_title}</a></li>');
 </script>
 <!-- ######################## -->
 <!--  End Customers Shiping Group App      -->

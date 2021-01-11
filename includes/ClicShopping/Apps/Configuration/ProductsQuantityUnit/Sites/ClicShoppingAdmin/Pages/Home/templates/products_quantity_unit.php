@@ -31,7 +31,7 @@
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'); ?></span>
           <span
-            class="col-md-9 text-md-right"><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_insert'), null, $CLICSHOPPING_ProductsQuantityUnit->link('Insert'), 'success', null, 'xs'); ?></span>
+            class="col-md-9 text-end"><?php echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_insert'), null, $CLICSHOPPING_ProductsQuantityUnit->link('Insert'), 'success', null, 'xs'); ?></span>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="symbol"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -55,7 +55,7 @@
     <thead class="dataTableHeadingRow">
       <tr>
             <th data-field="quantity_status" data-sortable="false"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_products_unit_quantity_status'); ?></th>
-            <th data-field="action" data-switchable="false"  class="text-md-right"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_action'); ?></th>
+            <th data-field="action" data-switchable="false"  class="text-end"><?php echo $CLICSHOPPING_ProductsQuantityUnit->getDef('table_heading_action'); ?></th>
       </tr>
     </thead>
     <tbody>
@@ -88,7 +88,7 @@
             echo '                <th>' . $QproductsQuantityUnit->value('products_quantity_unit_title') . '</th>' . "\n";
           }
         ?>
-        <td class="text-md-right">
+        <td class="text-end">
           <?php
             if ($QproductsQuantityUnit->valueInt('products_quantity_unit_id') > 1) {
               echo '<a href="' . $CLICSHOPPING_ProductsQuantityUnit->link('Delete&page=' . $page . '&oID=' . $QproductsQuantityUnit->valueInt('products_quantity_unit_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_ProductsQuantityUnit->getDef('icon_delete')) . '</a>';
@@ -113,9 +113,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QproductsQuantityUnit->getPageSetLabel($CLICSHOPPING_ProductsQuantityUnit->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QproductsQuantityUnit->getPageSetLabel($CLICSHOPPING_ProductsQuantityUnit->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $QproductsQuantityUnit->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $QproductsQuantityUnit->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

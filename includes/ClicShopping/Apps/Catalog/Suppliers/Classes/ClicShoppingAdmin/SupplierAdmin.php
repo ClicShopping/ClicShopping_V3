@@ -28,7 +28,7 @@
     /**
      * @return mixed
      */
-    public function getSupplier() :array
+    public function getSupplier() :array|bool
     {
       if (isset($_GET['pID'])) {
         $pID = HTML::sanitize($_GET['pID']);
@@ -52,6 +52,8 @@
         $result = $Qsuppliers->fetchAll();
       
         return $result;
+      } else {
+        return false;
       }
     }
     

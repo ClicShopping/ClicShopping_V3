@@ -48,7 +48,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/geo_zones.gif', $CLICSHOPPING_TaxGeoZones->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxGeoZones->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('zones', $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&UpdateGeoZone&List&zpage=' . $page . '&zID=' . $_GET['zID'] . '&spage=' . $_GET['spage'] . '&sID=' . $sInfo->association_id));
   echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_update'), null, null, 'success') . ' ';

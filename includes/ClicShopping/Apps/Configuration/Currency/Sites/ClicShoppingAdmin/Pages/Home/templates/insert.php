@@ -55,7 +55,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/currencies.gif', $CLICSHOPPING_Currency->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page), 'warning') . ' ';
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, null, 'success');

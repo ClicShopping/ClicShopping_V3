@@ -33,7 +33,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatus->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, $CLICSHOPPING_OrdersStatus->link('Insert'), 'success', null, 'xs'); ?></span>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_OrdersStatus->getDef('button_insert'), null, $CLICSHOPPING_OrdersStatus->link('Insert'), 'success', null, 'xs'); ?></span>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="status"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -57,7 +57,7 @@
     <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="status"><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_orders_status'); ?></th>
-        <th data-switchable="false"class="text-md-right"><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-switchable="false"class="text-end"><?php echo $CLICSHOPPING_OrdersStatus->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -91,7 +91,7 @@
             echo '                <th scope="row">' . $Qstatus->value('orders_status_name') . '</th>' . "\n";
           }
     ?>
-      <td class="text-md-right">
+      <td class="text-end">
         <?php
           if ($Qstatus->valueInt('orders_status_id') > 5) {
             echo '<a href="' . $CLICSHOPPING_OrdersStatus->link('Delete&page=' . (int)$page . '&oID=' . $Qstatus->valueInt('orders_status_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatus->getDef('image_delete')) . '</a>';
@@ -116,9 +116,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qstatus->getPageSetLabel($CLICSHOPPING_OrdersStatus->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qstatus->getPageSetLabel($CLICSHOPPING_OrdersStatus->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qstatus->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qstatus->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

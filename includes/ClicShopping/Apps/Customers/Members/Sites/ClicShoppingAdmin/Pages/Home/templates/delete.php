@@ -75,7 +75,7 @@
         class="col-md-12"><?php echo HTML::checkboxField('delete_reviews', 'on', true) . ' ' . $CLICSHOPPING_Members->getDef('text_delete_reviews', ['delete_number' => $cInfo->number_of_reviews]); ?>
         <br/><br/></div>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Members->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Members->getDef('button_cancel'), null, $CLICSHOPPING_Members->link('Members&page=' . $page . '&cID=' . $cInfo->customers_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

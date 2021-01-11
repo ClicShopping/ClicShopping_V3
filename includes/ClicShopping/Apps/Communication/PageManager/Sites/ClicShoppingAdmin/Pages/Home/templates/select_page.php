@@ -122,7 +122,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/page_manager.gif', $CLICSHOPPING_PageManager->getDef('heading_title_new'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_PageManager->getDef('heading_title_new'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::form('page_manager', $CLICSHOPPING_PageManager->link('Edit'), 'post', 'enctype="multipart/form-data"');
   echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_PageManager->link('PageManager&PageManager' . (isset($page) ? 'page=' . $page . '&' : '') . (!empty($bID) and $bID != '' ? 'bID=' . $bID : '')), 'warning') . '&nbsp;';

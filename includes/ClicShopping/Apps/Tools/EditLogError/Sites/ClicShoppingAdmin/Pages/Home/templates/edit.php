@@ -51,7 +51,7 @@
   echo HTML::outputProtected($log['date']);
 ?>
             </span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_EditLogError->getDef('button_back'), null, $CLICSHOPPING_EditLogError->link('LogError'), 'primary') . ' ';
 

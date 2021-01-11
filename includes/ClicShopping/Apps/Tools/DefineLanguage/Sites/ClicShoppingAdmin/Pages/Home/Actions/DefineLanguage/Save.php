@@ -174,6 +174,8 @@
         $path_to_file .= $groups[$i] . '/';
       }
 
+//      $file_name = $groups[count($groups) - 1] . '.txt';
+
       $path_name = str_replace('-', '/', substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . '.txt';
 
       for ($i = 0, $n = count($languages); $i < $n; $i++) {
@@ -211,6 +213,8 @@
 
             if (is_file($language_dir . $path_name) && FileSystem::isWritable($language_dir . $path_name)) {
               file_put_contents($language_dir . $path_name, $data . PHP_EOL, FILE_APPEND | LOCK_EX);
+            } else {
+             // $CLICSHOPPING_MessageStack->add($this->app->getDef('error_file_not_writeable', ['pathname' => $language_dir . $path_name]), 'warning');
             }
           } while ($Qdefinitions->fetch());
         }

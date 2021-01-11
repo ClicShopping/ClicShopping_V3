@@ -54,7 +54,7 @@
       $output .= '<div class="separator"></div>';
       $output .= '<table
         id="table"
-        data-toggle="table"
+        data-bs-toggle="table"
         data-sort-name="status"
         data-sort-order="asc"
         data-toolbar="#toolbar"
@@ -66,8 +66,8 @@
         '  <tr>' .
         '    <th data-field="status" data-switchable="false" data-sortable="true" width="20">&nbsp;</th>' .
         '    <th data-field="title">' . $this->app->getDef('module_admin_dashboard_admin_heading_title') . '</th>' .
-        '    <th data-field="date" class="text-md-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
-        '    <th data-field="action" data-switchable="false" class="text-md-right">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
+        '    <th data-field="date" class="text-center">' . $this->app->getDef('module_admin_dashboard_admin_logins_app_date') . '</th>' .
+        '    <th data-field="action" data-switchable="false" class="text-end">' . $this->app->getDef('module_admin_dashboard_admin_logins_action') . '</th>' .
         '  </tr>' .
         '</thead>';
       '<tbody>';
@@ -86,10 +86,10 @@
 
       while ($Qlogins->fetch()) {
         $output .= '  <tr class="dataTableRow backgroundBlank">' .
-          '    <td class="text-md-center"><i class="fas fa-' . (($Qlogins->valueInt('success') === 1) ? 'check fa-lg' : 'times fa-lg') . '"></i>&nbsp;' .
+          '    <td class="text-center"><i class="bi bi-' . (($Qlogins->valueInt('success') === 1) ? 'check' : 'bi-x') . '"></i>&nbsp;' .
           '    <td><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . $Qlogins->valueProtected('user_name') . '</a></td>' .
-          '    <td class="text-md-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .
-          '    <td class="text-md-right"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
+          '    <td class="text-center">' . DateTime::toShort($Qlogins->value('date_added')) . '</td>' .
+          '    <td class="text-end"><a href="' . CLICSHOPPING::link(null, 'A&Tools\ActionsRecorder&ActionsRecorder&module=ar_admin_login&aID=' . $Qlogins->valueInt('id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('module_admin_dashboard_admin_logins_icon_edit')) . '</a>&nbsp;' .
           '  </tr>';
       }
 

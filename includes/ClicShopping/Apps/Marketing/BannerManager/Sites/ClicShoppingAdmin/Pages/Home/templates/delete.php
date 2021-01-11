@@ -62,7 +62,7 @@
         <span
           class="col-md-3"><?php echo HTML::checkboxField('delete_image', 'on', true) . ' ' . $CLICSHOPPING_BannerManager->getDef('text_info_delete_image'); ?></span>
       </div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <br/><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_BannerManager->getDef('button_cancel'), null, $CLICSHOPPING_BannerManager->link('BannerManager&page=' . $page . '&bID=' . $_GET['bID']), 'warning', null, 'sm'); ?>
       </div>
     </div>

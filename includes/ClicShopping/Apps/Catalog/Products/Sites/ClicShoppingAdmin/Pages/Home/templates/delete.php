@@ -95,7 +95,7 @@
         <span class="col-sm-4"><br/><?php echo $product_categories_string; ?></span>
       </div>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

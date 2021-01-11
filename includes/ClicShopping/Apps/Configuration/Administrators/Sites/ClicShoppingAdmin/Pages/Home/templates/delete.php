@@ -52,9 +52,9 @@
         <span class="col-md-2"><?php echo HTML::outputProtected($Qadmin->value('name')); ?></span>
       </div>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span
-          class="text-md-center"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators&aID=' . $Qadmin->valueInt('id')), 'warning', null, 'sm'); ?></span>
+          class="text-center"><?php echo HTML::button($CLICSHOPPING_Administrators->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Administrators->getDef('button_cancel'), null, $CLICSHOPPING_Administrators->link('Administrators&aID=' . $Qadmin->valueInt('id')), 'warning', null, 'sm'); ?></span>
       </div>
     </div>
   </div>

@@ -231,15 +231,15 @@
               if (isset($action)) {
                 ?>
                 <span
-                  class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_back'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'primary'); ?></span>
+                  class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_back'), null, $CLICSHOPPING_DataBaseTables->link('DataBaseTables'), 'primary'); ?></span>
                 <?php
               } else {
 
                 ?>
                 <span
-                  class="col-md-2 text-md-right runUtf8"><?php echo HTML::selectMenu('action', $actions, '', 'id="sqlActionsMenu"') . '<span class="runUtf8" style="display: none;">&nbsp;' . HTML::selectMenu('from_charset', $mysql_charsets) . '</span>'; ?></span>
+                  class="col-md-2 text-end runUtf8"><?php echo HTML::selectMenu('action', $actions, '', 'id="sqlActionsMenu"') . '<span class="runUtf8" style="display: none;">&nbsp;' . HTML::selectMenu('from_charset', $mysql_charsets) . '</span>'; ?></span>
                 <span
-                  class="col-md-4 text-md-right"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_update'), null, null, 'success'); ?></span>
+                  class="col-md-4 text-end"><?php echo HTML::button($CLICSHOPPING_DataBaseTables->getDef('button_update'), null, null, 'success'); ?></span>
                 <?php
               }
             }

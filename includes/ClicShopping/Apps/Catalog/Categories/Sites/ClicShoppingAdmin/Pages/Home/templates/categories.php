@@ -39,34 +39,30 @@
           <span
             class="col-md-1 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Categories->getDef('heading_title'); ?></span>
           <span class="col-md-3">
-             <div class="form-group">
-               <div class="controls">
+             <div>
 <?php
-  echo HTML::form('search', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('search', $CLICSHOPPING_Categories->link('Categories'), 'post', '', ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Categories->getDef('heading_title') . '"');
 ?>
               </form>
-             </div>
            </div>
           </span>
-          <span class="col-md-3 text-md-center">
-             <div class="form-group">
-               <div class="controls">
+          <span class="col-md-3 text-center">
+             <div>
 <?php
   $current_category_id = 0;
 
   if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
   if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
-  echo HTML::form('goto', $CLICSHOPPING_Categories->link('Categories'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('goto', $CLICSHOPPING_Categories->link('Categories'), 'post', '', ['session_id' => true]);
   echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
   echo '</form>';
 ?>
               </form>
-             </div>
            </div>
           </span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   $cPath_back = '';
 
@@ -101,8 +97,10 @@
   <div class="separator"></div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-deck">
-        <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsCategories', null, 'display'); ?>
+      <div class="card card-block headerCard">
+        <div class="row">
+          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsCategories', null, 'display'); ?>
+        </div>
       </div>
     </div>
   </div>
@@ -121,7 +119,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="sort_order"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -134,10 +132,10 @@
       <tr>
         <th data-field="image" data-switchable="false"></th>
         <th data-field="id" data-sortable="true"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_categories_products'); ?></th>
-        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></th>
-        <th data-field="last_modified" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?></th>
-        <th data-field="sort_order" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_status'); ?></th>
+        <th data-field="last_modified" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_last_modified'); ?></th>
+        <th data-field="sort_order" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_sort_order'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Categories->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -184,14 +182,14 @@
       }
     ?>
       <tr>
-        <td><?php echo '<a href="' . $CLICSHOPPING_Categories->link('Categories&' . $CLICSHOPPING_CategoriesAdmin->getCategoriesPath($Qcategories->valueInt('categories_id'))) . '"'; ?><span class="text-primary"><i class="fas fa-folder fa-1x primary"></i></span></td>
+        <td><?php echo '<a href="' . $CLICSHOPPING_Categories->link('Categories&' . $CLICSHOPPING_CategoriesAdmin->getCategoriesPath($Qcategories->valueInt('categories_id'))) . '"'; ?><i class="bi bi-folder-fill text-primary"></i></td>
         <td><?php echo '<strong>' . $Qcategories->value('categories_name') . '</strong>'; ?></td>
         <td>
           <?php
           if ($Qcategories->valueInt('status') == 1) {
-            echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=0&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+            echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=0&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="bi-check text-success"></i>');
           } else {
-            echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=1&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+            echo HTML::link($CLICSHOPPING_Categories->link('Categories&SetFlag&flag=1&cID=' . $Qcategories->valueInt('categories_id') . '&cPath=' . $cPath), '<i class="bi bi-x text-danger"></i>');
           }
           ?>
         </td>
@@ -202,8 +200,8 @@
           }
           ?>
         </td>
-        <td class="text-md-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
-        <td class="text-md-right">
+        <td class="text-center"><?php echo $Qcategories->valueInt('sort_order'); ?></td>
+        <td class="text-end">
           <?php
           echo '<a href="' . $CLICSHOPPING_Categories->link('Edit&cPath=' . $cPath . '&cID=' . $Qcategories->valueInt('categories_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Categories->getDef('icon_edit')) . '</a>';
           echo '&nbsp;';

@@ -34,7 +34,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/products_length.png', $CLICSHOPPING_ProductsLength->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_products_length'), null, $CLICSHOPPING_ProductsLength->link('ProductsLengthInsert&page=' . $page), 'primary') . ' ';
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_insert_class'), null, $CLICSHOPPING_ProductsLength->link('ClassInsert&page=' . $page), 'success');
@@ -51,7 +51,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="symbol"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -67,7 +67,7 @@
         <th data-field="type" data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_type'); ?></th>
         <th data-field="class_to_id" data-sortable="true"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_to_id'); ?></th>
         <th data-field="rule"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_products_length_class_rule'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_ProductsLength->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -108,7 +108,7 @@
                 <td><?php echo $Qproducts_length->value('products_length_class_title'); ?></td>
                 <td><?php echo $products_length_class_title; ?></td>
                 <td><?php echo $Qproducts_length->value('products_length_class_rule'); ?></td>
-                <td class="text-md-right">
+                <td class="text-end">
                   <?php
                     echo HTML::link($CLICSHOPPING_ProductsLength->link('ClassEdit&page=' . $page . '&wID=' . $Qproducts_length->valueInt('products_length_class_id') . '&tID=' . $Qproducts_length->valueInt('products_length_class_to_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_ProductsLength->getDef('icon_edit')));
                     echo '&nbsp;';
@@ -134,9 +134,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts_length->getPageSetLabel($CLICSHOPPING_ProductsLength->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts_length->getPageSetLabel($CLICSHOPPING_ProductsLength->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qproducts_length->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qproducts_length->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

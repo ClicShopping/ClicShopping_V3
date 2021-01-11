@@ -15,32 +15,46 @@
   $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
   $CLICSHOPPING_Hooks = Registry::get('Hooks');
   $CLICSHOPPING_Language = Registry::get('Language');
+  
+  if (VERTICAL_MENU_CONFIGURATION == 'true') {
+?>
+<!-- vertical menu start -->
+                </div>
+              </div>
+            </div>
+<!-- end vertical menu -->
+<?php
+  }
 ?>
           </div>
         </div>
+<!-- end center page-->
+
         <div class="separator"></div>
         <div class="separator"></div>
         <footer id="footer">
           <nav class="navbar fixed-bottom navbar-light bg-faded footerCadre" role="navigation">
-            <div class="navbar-collapse text-md-left" id="footer-body">
+            <div class="navbar-collapse text-start" id="footer-body">
+              <div class="row">
 <?php
   if (isset($_SESSION['admin'])) {
     ?>
-            <span class="col-md-2 navbar-text">
-              <?php echo 'ClicShopping™ - V. ' . CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date('Y'); ?><br/>
-            </span>
-            <span class="col-md-7 navbar-text nav-item text-md-center">
-              <?php echo $CLICSHOPPING_Language->getLanguageText(); ?>
-            </span>
-            <span class="col-md-2 navbar-text text-md-right footerHelp go-top">Licence MIT - GPL2</span>
+              <span class="col-md-2 navbar-text">
+                <?php echo 'ClicShopping™ - V. ' . CLICSHOPPING::getVersion(); ?> - &copy; 2008 - <?php echo date('Y'); ?><br/>
+              </span>
+              <span class="col-md-7 navbar-text nav-item text-center">
+                <?php echo $CLICSHOPPING_Language->getLanguageText(); ?>
+              </span>
+              <span class="col-md-2 navbar-text text-end footerHelp go-top">Licence MIT - GPL2</span>
     <?php
   }
 ?>
-          </div>
-        </nav>
-      </footer>
-      <div class="separator"></div>
-    </div>
+              </div>
+            </div>
+          </nav>
+        </footer>
+        <div class="separator"></div>
+      </div>
 <?php
   $source_folder = CLICSHOPPING::getConfig('dir_root', 'Shop') . 'includes/Module/Hooks/ClicShoppingAdmin/Footer/';
   $file_get_output = 'FooterOutput*';

@@ -38,10 +38,10 @@
             if (MEMBER == 'true') {
           ?>
           <span class="col-md-2">
-            <div class="form-group">
-              <div class="controls">
+            <div>
+              <div>
 <?php
-  echo HTML::form('search', $CLICSHOPPING_Members->link('Members'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('search', $CLICSHOPPING_Members->link('Members'), 'post', '', ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Members->getDef('heading_title_search') . '"');
 ?>
                 </form>
@@ -52,7 +52,7 @@
             if (isset($_POST['search'])) {
               ?>
               <span
-                class="col-md-3 text-md-right"><?php echo HTML::button($CLICSHOPPING_Members->getDef('button_reset'), null, $CLICSHOPPING_Members->link('Members'), 'warning'); ?></span>
+                class="col-md-3 text-end"><?php echo HTML::button($CLICSHOPPING_Members->getDef('button_reset'), null, $CLICSHOPPING_Members->link('Members'), 'warning'); ?></span>
               <?php
             }
           ?>
@@ -65,7 +65,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"
@@ -77,8 +77,8 @@
         <th data-field="lastname"><?php echo $CLICSHOPPING_Members->getDef('table_heading_lastname'); ?></th>
         <th data-field="firstname"><?php echo $CLICSHOPPING_Members->getDef('table_heading_firstname'); ?></th>
         <th data-field="company"><?php echo $CLICSHOPPING_Members->getDef('table_heading_company'); ?></th>
-        <th data-field="account_created" class="text-md-right"><?php echo $CLICSHOPPING_Members->getDef('table_heading_account_created'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Members->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="account_created" class="text-end"><?php echo $CLICSHOPPING_Members->getDef('table_heading_account_created'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Members->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -174,8 +174,8 @@
           <td scope="row"><?php echo $Qcustomers->value('customers_lastname'); ?></td>
           <td><?php echo $Qcustomers->value('customers_firstname'); ?></td>
           <td><?php echo $Qcustomers->value('entry_company'); ?></td>
-          <td class="text-md-right"><?php echo DateTime::toShort($Qinfo->value('date_account_created')); ?></td>
-          <td class="text-md-right">
+          <td class="text-end"><?php echo DateTime::toShort($Qinfo->value('date_account_created')); ?></td>
+          <td class="text-end">
             <?php
               echo HTML::link($CLICSHOPPING_Members->link('AcceptMembers&cID=' . $Qcustomers->valueInt('customers_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/activate.gif', $CLICSHOPPING_Members->getDef('icon_activate')));
               echo '&nbsp;';
@@ -202,9 +202,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Members->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Members->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

@@ -103,7 +103,8 @@
         $suppliers_image = null;
       }
 
-      $sql_data_array = ['suppliers_name' => $suppliers_name,
+      $sql_data_array = [
+        'suppliers_name' => $suppliers_name,
         'suppliers_manager' => $suppliers_manager,
         'suppliers_phone' => $suppliers_phone,
         'suppliers_email_address' => $suppliers_email_address,
@@ -138,7 +139,8 @@
 
         $sql_data_array = ['suppliers_url' => HTML::sanitize($suppliers_url_array[$language_id])];
 
-        $insert_sql_data = ['suppliers_id' => (int)$suppliers_id,
+        $insert_sql_data = [
+          'suppliers_id' => (int)$suppliers_id,
           'languages_id' => (int)$language_id
         ];
 

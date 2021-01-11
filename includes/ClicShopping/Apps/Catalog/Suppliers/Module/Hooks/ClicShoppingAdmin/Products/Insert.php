@@ -15,7 +15,7 @@
   use ClicShopping\OM\HTML;
 
   use ClicShopping\Apps\Catalog\Suppliers\Suppliers as SuppliersApp;
-  use ClicShopping\Apps\Catalog\Suppliers\Classes\SupplierAdmin;
+  use ClicShopping\Apps\Catalog\Suppliers\Classes\ClicShoppingAdmin\SupplierAdmin;
   
   class Insert implements \ClicShopping\OM\Modules\HooksInterface
   {
@@ -29,10 +29,6 @@
       }
 
       $this->app = Registry::get('Suppliers');
-  
-      if (!Registry::exists('SupplierAdmin')) {
-        Registry::set('SupplierAdmin', new SupplierAdmin());
-      }
   
       if (!Registry::exists('SupplierAdmin')) {
         Registry::set('SupplierAdmin', new SupplierAdmin());

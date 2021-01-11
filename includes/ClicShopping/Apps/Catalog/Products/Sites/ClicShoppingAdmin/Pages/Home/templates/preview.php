@@ -70,7 +70,7 @@
     if ($Qproducts->valueInt('products_id') == 0) {
 ?>
     <div class="contentBody">
-      <div class="pageHeading text-md-center" valign="center" height="300"><?php echo  $CLICSHOPPING_Products->getDef('text_no_products'); ?></div>
+      <div class="pageHeading text-center" valign="center" height="300"><?php echo  $CLICSHOPPING_Products->getDef('text_no_products'); ?></div>
     </div>
 <?php
     } else {
@@ -82,7 +82,7 @@
             <div class="row">
               <span class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/produit.gif', $CLICSHOPPING_Products->getDef('heading_title'), '40', '40'); ?></span>
               <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
-              <span class="col-md-6 text-md-right">
+              <span class="col-md-6 text-end">
                 <?php echo HTML::button($CLICSHOPPING_Products->getDef('button_back'), null, $CLICSHOPPING_Products->link('Products'), 'primary'); ?>
                 <?php echo HTML::button($CLICSHOPPING_Products->getDef('button_new_product'), null, $CLICSHOPPING_Products->link('Edit&Insert&cPath='. $cPath), 'success'); ?>
               </span>
@@ -93,11 +93,11 @@
       <div class="separator"></div>
       <div class="row" id="tab1ContentRow2">
         <div class="col-md-12">
-          <span class="col-md-5 pageHeading float-md-left"><?php echo $CLICSHOPPING_Products->getDef('text_products_name')  . ' - '  . $products['products_name']; ?></span>
-          <span class="col-md-7 pageHeading float-md-right text-md-right"><strong><?php echo $CLICSHOPPING_Products->getDef('text_products_model') . ' ' . $products['products_model']; ?></strong></span>
+          <span class="col-md-5 pageHeading float-start"><?php echo $CLICSHOPPING_Products->getDef('text_products_name')  . ' - '  . $products['products_name']; ?></span>
+          <span class="col-md-7 pageHeading float-end text-end"><strong><?php echo $CLICSHOPPING_Products->getDef('text_products_model') . ' ' . $products['products_model']; ?></strong></span>
         </div>
         <div class="separator"></div>
-        <div class="col-md-12 text-md-center">
+        <div class="col-md-12 text-center">
 <?php
   if (!is_null($products['products_image'])) {
     echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $products['products_image'], $products['products_name']) . '<br />';
@@ -318,7 +318,7 @@
     } else {
 ?>
     <div class="contentBody">
-      <div class="pageHeading text-md-center" valign="center" height="300"><?php echo  $CLICSHOPPING_Products->getDef('text_no_products'); ?></div>
+      <div class="pageHeading text-center" valign="center" height="300"><?php echo  $CLICSHOPPING_Products->getDef('text_no_products'); ?></div>
     </div>
 <?php
   }

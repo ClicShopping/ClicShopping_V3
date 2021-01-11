@@ -47,7 +47,7 @@
               class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory()); ?></div>
             <div
               class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></div>
-            <div class="col-md-3 text-md-right">
+            <div class="col-md-3 text-end">
               <?php
                 echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
                 echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_temp'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCacheTemp'), 'warning', null, 'sm') . '&nbsp;';
@@ -59,7 +59,7 @@
             <div class="col-md-12 form-group row">
               <span class="col-md-4"></span>
               <span
-                class="col-md-4 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
+                class="col-md-4 text-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
               <span
                 class="col-md-4"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('text_search'), null, null, 'primary'); ?></span>
             </div>
@@ -111,6 +111,8 @@
       }
 ?>
       <div class="d-flex flex-wrap">
+        <div class="row">
+        
 <?php
     if ($count_file > 0) {
       for ($i = 0, $n = $count_file; $i < $n;  $i++) {
@@ -138,23 +140,23 @@
         if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true || !is_null($CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json'))) {
           if ($CLICSHOPPING_Github->getCacheFile($module_real_name . '.json') === true) {
             $result_module_real_name = $CLICSHOPPING_Github->getCacheFile($module_real_name . '.json');
-            $file_cache_information = '<span class="badge badge-primary"> - File Installed Cached</span>';
+            $file_cache_information = '<span class="badge bg-primary"> - File Installed Cached</span>';
 
             $item = $result_module_real_name;
             $content_module_name = $item->title . '.json';
-            $local_version = $CLICSHOPPING_Upgrade->getDef('text_installed_version') . ' <span class="badge badge-primary">' . $item->version . '</span>';
+            $local_version = $CLICSHOPPING_Upgrade->getDef('text_installed_version') . ' <span class="badge bg-primary">' . $item->version . '</span>';
             $description = $item->description;
             $installed_check = true;
           } else {
             $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
 
-            $file_cache_information = $CLICSHOPPING_Upgrade->getDef('text_local_version') . ' <span class="badge badge-info">  - Temp Cached</span>';
+            $file_cache_information = $CLICSHOPPING_Upgrade->getDef('text_local_version') . ' <span class="badge bg-info">  - Temp Cached</span>';
 
             $item = $result_module_real_name;
 
             if ($item !== false) {
               $content_module_name = $item->title . '.json';
-              $local_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+              $local_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge bg-info">' . $item->version . '</span>';
               $description = $item->description;
               $temp_check = true;
             } else {
@@ -168,16 +170,16 @@
               $result_module_real_name = $CLICSHOPPING_Github->getCacheFileTemp($module_real_name . '.json');
 
               if ($item !== false && is_object($item->version)) {
-                $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge badge-info">' . $item->version . '</span>';
+                $temp_version = $CLICSHOPPING_Upgrade->getDef('text_temp_version') . ' <span class="badge bg-info">' . $item->version . '</span>';
               } else {
                 $temp_version = 'Unkown';
               }
             }
           }
 
-          if ($content_module_name == $module_real_name . '.json') {
+          if ($content_module_name === $module_real_name . '.json') {
 ?>
-        <div class="col-md-4" style="padding-bottom:1rem;">
+        <div class="col-md-3 m-1" style="padding-bottom:1rem;">
           <div class="card shadow">
             <div class="card-header" style="height:70px;">
               <div class="col-md-12">
@@ -190,8 +192,8 @@
               <div class="card-text">
                 <div class="col-md-12" style="height:100px;"><?php echo $description; ?></div>
                 <div class="separator"></div>
-                <div class="col-md-6 float-md-left">
-                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal_<?php echo $i; ?>">
+                <div class="col-md-6 float-start">
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal_<?php echo $i; ?>">
                     <?php echo $CLICSHOPPING_Upgrade->getDef('button_more_infos'); ?>
                   </button>
                   <!-- Modal -->
@@ -208,7 +210,7 @@
                           <p><?php echo $description; ?></p>
                           <p>
     <?php
-            if (strtolower($item->type) == 'apps') {
+            if (strtolower($item->type) === 'apps') {
               echo '<strong>' . $CLICSHOPPING_Upgrade->getDef('text_activate') . '</strong> ' . HTTP::typeUrlDomain('ClicShoppingAdmin') . 'index.php?A&' . $item->module_directory . '\\' . $item->apps_name;
             }
     ?>
@@ -241,7 +243,7 @@
     ?>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             <?php echo $CLICSHOPPING_Upgrade->getDef('text_close'); ?>
                           </button>
                         </div>
@@ -249,7 +251,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="float-md-right">
+                <div class="float-end">
                   <div class="col-md-12">
 <?php
             if ($temp_check === true) {
@@ -264,14 +266,14 @@
                     $marketplace_link = $item->website_link_to_sell;
                   }
                   if ($error === true) {
-                    echo '<span class="text-md-right"> ' . $message . '</span>';
+                    echo '<span class="text-end"> ' . $message . '</span>';
                   } else {
-                    echo '<span class="text-md-right"><a href="' . $marketplace_link . '" target="_blank" rel="noreferrer" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
+                    echo '<span class="text-end"><a href="' . $marketplace_link . '" target="_blank" rel="noreferrer" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
                   }
                 }
               } else {
                 echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
-                echo '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
+                echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
               }
 
               echo HTML::hiddenField('githubLink', $link_html . '/archive/master.zip');
@@ -284,7 +286,7 @@
               }
 
               if (strtolower($item->is_core) == 'yes') {
-                echo '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
+                echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
               }
             }
 
@@ -296,7 +298,7 @@
 
             if ($local_version != -1) {
               if ($installed_check === true) {
-                echo '<span class="text-md-right">' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_setting'), null, $module, 'success', null, 'sm') . '</span>';
+                echo '<span class="text-end">' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_setting'), null, $module, 'success', null, 'sm') . '</span>';
               }
             }
 ?>
@@ -308,7 +310,7 @@
             <div class="card-footer">
               <div class="col-md-12"><?php echo $file_cache_information; ?></div>
               <div class="col-md-12 text-danger"><?php echo $local_version; ?></div>
-              <div class="col-md-12 float-md-right text-md-right text-primary"><?php echo $temp_version; ?></div>
+              <div class="col-md-12 float-end text-end text-primary"><?php echo $temp_version; ?></div>
             </div>
           </div>
         </div>
@@ -353,8 +355,8 @@
                 <div class="col-md-12">
                   <?php echo $CLICSHOPPING_Upgrade->getDef('text_server_version') . $current_version_github; ?>
                 </div>
-                <div class="col-md-6 float-md-left">
-                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#myModal_<?php echo $i; ?>">
+                <div class="col-md-6 float-start">
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal_<?php echo $i; ?>">
                     <?php echo $CLICSHOPPING_Upgrade->getDef('button_more_infos'); ?>
                   </button>
                   <!-- Modal -->
@@ -411,7 +413,7 @@
 ?>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             <?php echo $CLICSHOPPING_Upgrade->getDef('text_close'); ?>
                           </button>
                         </div>
@@ -419,17 +421,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 text-md-right float-md-right">
+                <div class="col-md-6 text-end float-end">
 <?php
               if (strtolower($result_content_module->is_free) != 'yes') {
-                echo '<span class="text-md-right"><a href="' . $result_content_module->website_link_to_sell . '" target="_blank" rel="noreferrer" class="btn btn-success btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
+                echo '<span class="text-end"><a href="' . $result_content_module->website_link_to_sell . '" target="_blank" rel="noreferrer" class="btn btn-success btn-sm active" role="button" aria-pressed="true">' . $CLICSHOPPING_Upgrade->getDef('button_not_free') . '</a></span>';
               } else {
                 echo HTML::form('install', $CLICSHOPPING_Upgrade->link('Upgrade&ModuleInstall'));
-                echo '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
+                echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_install'), null, null, 'warning', null, 'sm') . '</span>';
               }
 
               if (strtolower($result_content_module->is_core) == 'yes') {
-                echo '<span class="text-md-right"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
+                echo '<span class="text-end"> ' . HTML::button($CLICSHOPPING_Upgrade->getDef('button_core'), null, null, 'danger', null, 'sm') . '</span>';
               }
 
               echo HTML::hiddenField('type_module', $result_content_module->type_module);
@@ -471,6 +473,7 @@
     }
   }
 ?>
+      </div>
     </div>
     <div class="separator"></div>
     <div class="col-md-12">

@@ -39,7 +39,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/countries.gif', $CLICSHOPPING_Countries->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Countries->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Update&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->countries_id));
   echo HTML::button($CLICSHOPPING_Countries->getDef('button_update'), null, null, 'success') . ' ';
@@ -109,7 +109,6 @@
         foreach ($address_formats_array as $value) {
           ?>
           <div class="col-md-3">
-            <div class="card-deck">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">
@@ -123,7 +122,6 @@
                   </p>
                 </div>
               </div>
-            </div>
             <div class="separator"></div>
           </div>
           <?php

@@ -52,7 +52,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/mail.gif', $CLICSHOPPING_TemplateEmail->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TemplateEmail->getDef('heading_title'); ?></span>
-          <span class="col-md-9 text-md-right">
+          <span class="col-md-9 text-end">
 <?php
   echo HTML::form('template_emails', $CLICSHOPPING_TemplateEmail->link('TemplateEmail&Update&ID=' . $_GET['tID']));
   echo HTML::hiddenField('template_email', $_GET['tID']);
@@ -71,9 +71,9 @@
   <div>
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_TemplateEmail->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_TemplateEmail->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_TemplateEmail->getDef('tab_description'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_TemplateEmail->getDef('tab_description'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">

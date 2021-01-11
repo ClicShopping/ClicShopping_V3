@@ -59,15 +59,15 @@
       }
 
       $output = '
-  <div class="card col-md-2 col-12 cardStatsWarning">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsWarning">
       <h4 class="StatsTitle">' . $this->app->getDef('text_categories_alert') . '</h4>
       <div class="card-text">
         <div class="col-sm-12">
-          <span class="float-md-left">
-            <i class="fas fa-bell-slash fa-2x" aria-hidden="true"></i>
+          <span class="float-start">
+           <i class="bi bi-bell-fill"></i>
           </span>
-          <span class="float-md-right">
+          <span class="float-end">
             <div class="col-sm-12 StatsValue">' . $this->getCategoriesOn() . ' - ' . $this->app->getDef('text_categories_on') . '</div>
             <div class="col-sm-12 StatsValue">' . $this->getCategoriesOff() . ' - ' . $this->app->getDef('text_categories_off') . '</div>
           </span>

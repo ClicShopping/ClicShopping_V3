@@ -34,7 +34,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/stats_products_viewed.gif', $CLICSHOPPING_Products->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_delete'), $CLICSHOPPING_Products->link('Products&Update&resetViewed=0&page=' . $page), null, 'danger'); ?></span>
+          <span class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_delete'), $CLICSHOPPING_Products->link('Products&Update&resetViewed=0&page=' . $page), null, 'danger'); ?></span>
           </form>
         </div>
       </div>
@@ -44,7 +44,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -60,8 +60,8 @@
         <th data-switchable="false" width="50"></th>
         <th data-field="number" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_number'); ?></th>
         <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
-        <th data-field="viewed" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_viewed'); ?></th>
-        <th data-field="clear" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Products->getDef('table_heading_clear'); ?></th>
+        <th data-field="viewed" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_viewed'); ?></th>
+        <th data-field="clear" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Products->getDef('table_heading_clear'); ?></th>
       </tr>
     </thead>
     <tbody>
@@ -102,8 +102,8 @@
             <td><?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?></td>
             <td><?php echo $rows; ?>.</td>
             <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Preview&pID=' . $Qproducts->valueInt('products_id') . '?page=' . $page), $Qproducts->value('products_name')); ?></td>
-            <td class="text-md-center"><?php echo $Qproducts->valueInt('products_viewed'); ?>&nbsp;</td>
-            <td class="text-md-right"><?php echo HTML::link($CLICSHOPPING_Products->link('Products&UpdateStatsProductsViewed&resetViewed=1&products_id=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Products->getDef('image_delete'))); ?></td>
+            <td class="text-center"><?php echo $Qproducts->valueInt('products_viewed'); ?>&nbsp;</td>
+            <td class="text-end"><?php echo HTML::link($CLICSHOPPING_Products->link('Products&UpdateStatsProductsViewed&resetViewed=1&products_id=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_Products->getDef('image_delete'))); ?></td>
           </tr>
           <?php
         }
@@ -117,9 +117,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

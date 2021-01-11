@@ -53,11 +53,14 @@
                                         ');
   $Qseo->execute();
 
-  $seo = new ObjectInfo($Qseo->toArray());
-
-  $languages = $CLICSHOPPING_Language->getLanguages();
-
-  echo HTML::form('seo', $CLICSHOPPING_SEO->link('SEO&Update'));
+  $seoBject = $Qseo->toArray();
+  
+  if (is_array($seoBject)){
+    $seo = new ObjectInfo($Qseo->toArray());
+  
+    $languages = $CLICSHOPPING_Language->getLanguages();
+  
+    echo HTML::form('seo', $CLICSHOPPING_SEO->link('SEO&Update'));
 ?>
 <div class="contentBody">
   <div class="row">
@@ -68,7 +71,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/referencement.gif', $CLICSHOPPING_SEO->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_SEO->getDef('heading_title'); ?></span>
           <span
-            class="col-md-6 text-md-right"><?php echo HTML::button($CLICSHOPPING_SEO->getDef('button_update'), null, null, 'success'); ?></span>
+            class="col-md-6 text-end"><?php echo HTML::button($CLICSHOPPING_SEO->getDef('button_update'), null, null, 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -80,19 +83,19 @@
   <div id="pagesSubmitTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_SEO->getDef('tab_submit_default') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_SEO->getDef('tab_submit_default') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_products_info'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_products_info'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_products_new'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_products_new'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_specials'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_specials'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab5" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_reviews'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab5" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_reviews'); ?></a></li>
       <li
-         class="nav-item"><?php echo '<a href="#tab6" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_favorites'); ?></a></li>
+         class="nav-item"><?php echo '<a href="#tab6" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_favorites'); ?></a></li>
       <li
-         class="nav-item"><?php echo '<a href="#tab7" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_featured'); ?></a></li>
+         class="nav-item"><?php echo '<a href="#tab7" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_SEO->getDef('tab_submit_featured'); ?></a></li>
     </ul>
 
 
@@ -104,11 +107,11 @@
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_default'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_default'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -191,12 +194,12 @@
         <div class="tab-pane" id="tab2">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_products_info'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_products_info'); ?></div>
           </div>
 
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -271,11 +274,11 @@
 
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_products_new'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_products_new'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -351,11 +354,11 @@
 
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_specials'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_specials'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -427,11 +430,11 @@
         <div class="tab-pane" id="tab5">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_reviews'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_reviews'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -498,11 +501,11 @@
         <div class="tab-pane" id="tab6">
           <div class="col-md-12 mainTitle">
             <div
-               class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_favorites'); ?></div>
+               class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_favorites'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                           rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -571,11 +574,11 @@
         <div class="tab-pane" id="tab7">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_featured'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_SEO->getDef('text_pages_submit_information_featured'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                   <span class="col-md-3"></span>
                   <span class="col-md-3"><a href="https://www.google.fr/trends" target="_blank"
                                             rel="noreferrer"><?php echo $CLICSHOPPING_SEO->getDef('keywords_google_trend'); ?></a></span>
@@ -765,3 +768,5 @@
       ?>
     });
 </script>
+<?php
+  }

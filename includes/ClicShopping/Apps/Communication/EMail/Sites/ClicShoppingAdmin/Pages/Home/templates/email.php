@@ -70,7 +70,7 @@
 <?php
    if (SEND_EMAILS == 'true') {
 ?>
-              <div class="col-md-6 text-md-right">
+              <div class="col-md-6 text-end">
 <?php
                   echo HTML::form('mail', $CLICSHOPPING_EMail->link('SendEmailToUser&Process'));
                   echo HTML::button($CLICSHOPPING_EMail->getDef('button_send'), null, null, 'success');
@@ -87,7 +87,7 @@
   <div id="emailTab">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_EMail->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_EMail->getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -159,19 +159,19 @@
     <div class="separator"></div>
     <div class="row">
       <span class="col-sm-12">
-        <blockquote><i><a data-toggle="modal"
-                          data-target="#myModalWysiwyg"><?php echo $CLICSHOPPING_EMail->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
+        <blockquote><i><a data-bs-toggle="modal"
+                          data-bs-target="#myModalWysiwyg"><?php echo $CLICSHOPPING_EMail->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
         <div class="modal fade" id="myModalWysiwyg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span
+                <button type="button" class="close" data-bs-dismiss="modal"><span
                     aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"
                     id="myModalLabel"><?php echo $CLICSHOPPING_EMail->getDef('text_help_wysiwyg'); ?></h4>
               </div>
-              <div class="modal-body text-md-center">
+              <div class="modal-body text-center">
                 <img class="img-fluid"
                      src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
               </div>

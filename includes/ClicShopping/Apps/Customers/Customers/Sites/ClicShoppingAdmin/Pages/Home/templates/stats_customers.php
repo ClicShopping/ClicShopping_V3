@@ -38,7 +38,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -53,7 +53,7 @@
         <th data-field="number"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number'); ?></th>
         <th data-field="customer" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_customers'); ?></th>
         <th data-field="total_purchased" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_total_purchased'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-center" width="20"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;
+        <th data-field="action" data-switchable="false" class="text-center" width="20"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;
         </th>
       </tr>
     </thead>
@@ -96,18 +96,18 @@
             <td><?php echo $rows; ?>.</td>
             <td><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), $Qcustomers->value('customers_firstname') . ' ' . $Qcustomers->value('customers_lastname')); ?></td>
             <td
-              class="text-md-right"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;
+              class="text-end"><?php echo $CLICSHOPPING_Currencies->format($Qcustomers->valueInt('ordersum')); ?>&nbsp;
             </td>
             <?php
               if ($Qcustomers->valueInt('customers_group_id') > 0) {
                 ?>
                 <td
-                  class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers%5CCustomers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer'))); ?></td>
+                  class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers%5CCustomers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer'))); ?></td>
                 <?php
               } else {
                 ?>
                 <td
-                  class="text-md-right"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer'))); ?></td>
+                  class="text-end"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Customers\Customers&Customers&search=' . $Qcustomers->value('customers_lastname')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2c.gif', $CLICSHOPPING_Customers->getDef('icon_edit_customer'))); ?></td>
                 <?php
               }
             ?>
@@ -124,9 +124,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Customers->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcustomers->getPageSetLabel($CLICSHOPPING_Customers->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qcustomers->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

@@ -80,7 +80,7 @@
           class="col-sm-4"><br/><?php echo $CLICSHOPPING_Products->getDef('text_move', ['products_name' => $pInfo->products_name]) . '<br />' . HTML::selectMenu('move_to_category_id', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $cPath); ?></span>
       </div>
       <div class="separator"></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Products->getDef('button_move'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Products->getDef('button_cancel'), null, $CLICSHOPPING_Products->link('Products&cPath=' . $cPath . '&pID=' . $pInfo->products_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

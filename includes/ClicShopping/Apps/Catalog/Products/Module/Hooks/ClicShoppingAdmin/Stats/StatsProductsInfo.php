@@ -59,15 +59,15 @@
       $this->app->loadDefinitions('Module/Hooks/ClicShoppingAdmin/Stats/stats_products_info');
 
       $output = '
-  <div class="card col-md-2 col-12 cardStatsPrimary">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsPrimary">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_products_info_title') . '</h4>
       <div class="card-text">
         <div class="col-sm-12 StatsValue">
-          <span class="float-md-left">
-            <i class="fas fa-asterisk fa-2x" aria-hidden="true"></i>
+          <span class="float-start">
+            <i class="bi bi-archive-fill"></i>
           </span>
-          <span class="float-md-right">
+          <span class="float-end">
             <div class="StatsValue">' . $this->getProductsArchive() . ' - ' . $this->app->getDef('text_products_info_archive') . '</div>
             <div class="StatsValue">' . $this->getNumberOfProducts() . ' - ' . $this->app->getDef('text_products_info_total') . '</div>
           </span>

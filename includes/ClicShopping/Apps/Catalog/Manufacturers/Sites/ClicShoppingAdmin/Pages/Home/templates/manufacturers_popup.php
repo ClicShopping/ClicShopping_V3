@@ -38,7 +38,7 @@
           class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
         <span
           class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
-        <span class="col-md-4 text-md-right">
+        <span class="col-md-4 text-end">
            <div><?php echo HTML::button($CLICSHOPPING_Manufacturers->getDef('button_insert'), null, null, 'success', null, 'md', null, 'simple-post'); ?></div>
            <div id="simple-msg"></div>
          </span>
@@ -50,9 +50,9 @@
 <div>
   <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
     <li
-      class="nav-item"><?php echo '<a href="#tab20" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Manufacturers->getDef('tab_general') . '</a>'; ?></li>
+      class="nav-item"><?php echo '<a href="#tab20" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Manufacturers->getDef('tab_general') . '</a>'; ?></li>
     <li
-      class="nav-item"><?php echo '<a href="#tab21" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_visuel'); ?></a></li>
+      class="nav-item"><?php echo '<a href="#tab21" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_visuel'); ?></a></li>
   </ul>
   <div class="tabsClicShopping">
     <div class="tab-content">
@@ -64,7 +64,7 @@
       <div class="tab-pane active" id="tab20">
         <div class="col-md-12 mainTitle">
           <div
-            class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_general'); ?></div>
+            class="float-start"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_general'); ?></div>
         </div>
         <div class="adminformTitle">
 
@@ -109,7 +109,7 @@
       <div class="tab-pane" id="tab21">
         <div class="col-md-12 mainTitle">
           <div
-            class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_image'); ?></div>
+            class="float-start"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_image'); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="row">

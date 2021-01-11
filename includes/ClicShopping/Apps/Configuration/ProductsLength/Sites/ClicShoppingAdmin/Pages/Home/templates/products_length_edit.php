@@ -48,7 +48,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/products_length.png', $CLICSHOPPING_ProductsLength->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsLength->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('products_length_edit', $CLICSHOPPING_ProductsLength->link('ProductsLength&ProductsLengthUpdate&page=' . $page));
   echo HTML::button($CLICSHOPPING_ProductsLength->getDef('button_update'), null, null, 'success') . ' ';

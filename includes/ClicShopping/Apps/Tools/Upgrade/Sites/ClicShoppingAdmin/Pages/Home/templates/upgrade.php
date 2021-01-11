@@ -52,7 +52,7 @@
                 class="col-md-2"><?php echo HTML::selectMenu('install_module_template_directory', $CLICSHOPPING_Github->getModuleTemplateDirectory(), $template_directory); ?></span>
               <span
                 class="col-md-2"><?php echo HTML::inputField('module_search', '', 'id="search" placeholder="' . $CLICSHOPPING_Upgrade->getDef('text_search') . '"'); ?></span>
-              <span class="col-md-3 text-md-right">
+              <span class="col-md-3 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCache'), 'danger', null, 'sm') . '&nbsp;';
   echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_temp'), null, $CLICSHOPPING_Upgrade->link('Upgrade&ResetCacheTemp'), 'warning', null, 'sm') . '&nbsp;';
@@ -64,7 +64,7 @@
             <div class="col-md-12 form-group row">
               <span class="col-md-4"></span>
               <span
-                class="col-md-4 text-md-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
+                class="col-md-4 text-center"><?php echo $CLICSHOPPING_Github->getDropDownMenuSearchOption(); ?></span>
               <span
                 class="col-md-4"><?php echo HTML::button($CLICSHOPPING_Upgrade->getDef('text_search'), null, null, 'primary'); ?></span>
             </div>
@@ -91,7 +91,7 @@
     if ($new_version === true) {
 ?>
     <div class="row">
-      <span class="col-md-12 text-md-right">
+      <span class="col-md-12 text-end">
 <?php
   echo HTML::form('reset', $CLICSHOPPING_Upgrade->link('CoreReset'));
   echo HTML::button($CLICSHOPPING_Upgrade->getDef('button_reset_cache_core'), null, null, 'danger', null, 'sm');

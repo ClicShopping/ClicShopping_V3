@@ -31,7 +31,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_OrdersStatusInvoice->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_insert'), null, $CLICSHOPPING_OrdersStatusInvoice->link('Insert'), 'success', null, 'xs'); ?></span>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_OrdersStatusInvoice->getDef('button_insert'), null, $CLICSHOPPING_OrdersStatusInvoice->link('Insert'), 'success', null, 'xs'); ?></span>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="sort_order"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -55,7 +55,7 @@
     <thead class="dataTableHeadingRow">
     <tr>
       <th data-field="status"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_invoice_status'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_action'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_OrdersStatusInvoice->getDef('table_heading_action'); ?></th>
     </tr>
     </thead>
     <tbody>
@@ -90,7 +90,7 @@
         echo '                <td>' . $QordersStatusInvoice->value('orders_status_invoice_name') . '</td>' . "\n";
       }
     ?>
-      <td class="text-md-right">
+      <td class="text-end">
         <?php
           if ($QordersStatusInvoice->valueInt('orders_status_invoice_id') > 4) {
             echo HTML::link($CLICSHOPPING_OrdersStatusInvoice->link('Delete&page=' . $page . '&oID=' . $QordersStatusInvoice->valueInt('orders_status_invoice_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/delete.gif', $CLICSHOPPING_OrdersStatusInvoice->getDef('icon_delete')));
@@ -115,9 +115,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QordersStatusInvoice->getPageSetLabel($CLICSHOPPING_OrdersStatusInvoice->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QordersStatusInvoice->getPageSetLabel($CLICSHOPPING_OrdersStatusInvoice->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $QordersStatusInvoice->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $QordersStatusInvoice->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

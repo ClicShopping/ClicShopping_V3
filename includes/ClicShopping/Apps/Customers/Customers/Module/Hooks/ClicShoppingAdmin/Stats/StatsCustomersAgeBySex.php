@@ -78,15 +78,15 @@
     public function display() :string
     {
       $output = '
-  <div class="card col-md-2 col-12 cardStatsInfo">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsInfo">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_average_age') . '</h4>
       <div class="card-text">
         <div class="col-sm-12 StatsValue">
-          <span class="col-md-4 float-md-left">
-            <i class="fas fa-calendar fa-2x" aria-hidden="true"></i>
+          <span class="col-md-4 float-start">
+            <i class="bi bi-calendar"></i>
           </span>
-          <span class="col-md-8 float-md-right">
+          <span class="col-md-8 float-end">
             <div class="col-sm-12 StatsValue">' . $this->statsAgeCustomersMen() . ' - ' . $this->app->getDef('text_male') . '</div>
             <div class="col-sm-12 StatsValue">' . $this->statsAgeCustomersWomen() . ' - ' . $this->app->getDef('text_female') . '</div>
           </span>

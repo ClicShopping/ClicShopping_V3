@@ -617,6 +617,7 @@
     public function getFlag()
     {
       $get_params = [];
+      $content = '';
 
       if (!isset($_GET['Checkout'])) {
 // If only one language is selected
@@ -633,8 +634,6 @@
         } else {
           $languages = $this->getAll();
         }
-
-        $content = '';
 
         if (is_array($_GET)) {
           foreach ($_GET as $key => $value) {

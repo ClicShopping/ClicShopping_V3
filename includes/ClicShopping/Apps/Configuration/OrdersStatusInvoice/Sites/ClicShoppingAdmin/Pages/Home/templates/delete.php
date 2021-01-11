@@ -92,7 +92,7 @@
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $oInfo->orders_status_invoice_name . '</strong>'; ?><br/><br/>
       </div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <?php
           if ($remove_status) {
             ?>

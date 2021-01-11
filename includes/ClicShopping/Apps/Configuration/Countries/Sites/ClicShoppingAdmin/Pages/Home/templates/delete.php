@@ -53,7 +53,7 @@
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->countries_name . '</strong>'; ?><br/><br/></div>
       <div
         class="col-md-12"><?php echo $CLICSHOPPING_Countries->getDef('text_info_address_format') . '<br />' . $CLICSHOPPING_Address->getAddressFormatRadio($cInfo->address_format_id); ?></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Countries->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->countries_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

@@ -11,6 +11,9 @@
 
   namespace ClicShopping\OM\Module\Hooks\ClicShoppingAdmin\Header;
 
+  use ClicShopping\OM\CLICSHOPPING;
+  use ClicShopping\OM\HTTP;
+  
   class HeaderOutputBootstrap
   {
     /**
@@ -20,7 +23,9 @@
     {
 //Note : Could be relation with a meta tag allowing to implement a new boostrap theme : Must be installed
       $output = '<!-- Start Bootstrap -->' . "\n";
-      $output = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">' . "\n";
+      $output .= '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">' . "\n";
+      $output .= '<link rel="stylesheet" href="' . HTTP::getShopUrlDomain() . 'ext/javascript/bootstrap/css/bootstrap_icons_1.2.1.css'  . '" media="screen, print">';
+      $output .= '<link rel="stylesheet" href="' . CLICSHOPPING::link('css/bootstrap_icons_customize.css')  . '" media="screen, print">';
       $output .= '<!-- Start Bootstrap -->' . "\n";
       
       return $output;

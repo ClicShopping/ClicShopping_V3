@@ -61,9 +61,9 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/products_unit.png', $CLICSHOPPING_Modules->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Modules->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
-  echo '<span class="cols-xs-3 float-right">';
+  echo '<span class="cols-xs-3 float-end">';
   echo HTML::button(CLICSHOPPING::getDef('button_cancel'), null, $CLICSHOPPING_Modules->link('Modules&set=' . $set), 'warning') . '&nbsp;';
   echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'success');
   echo '</span>';
@@ -207,7 +207,7 @@
   <div id="orderTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . CLICSHOPPING::getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . CLICSHOPPING::getDef('tab_general') . '</a>'; ?></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">

@@ -39,7 +39,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="model"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -53,14 +53,14 @@
     <tr>
       <th data-switchable="false" width="20"></th>
       <th data-switchable="false" width="50"></th>
-      <th data-field="products" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
-      <th data-field="model" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_model'); ?></th>
-      <th data-field="replenishment" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_wahrehouse_time_replenishment'); ?></th>
-      <th data-field="warehouse" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse'); ?></th>
-      <th data-field="warehouse_row" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_row'); ?></th>
-      <th data-field="warehouse_level" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_level'); ?></th>
-      <th data-field="qty_left" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_qty_left'); ?></th>
-      <th data-field="action" data-switchable="false"  class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
+      <th data-field="products" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_products'); ?></th>
+      <th data-field="model" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_model'); ?></th>
+      <th data-field="replenishment" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_wahrehouse_time_replenishment'); ?></th>
+      <th data-field="warehouse" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse'); ?></th>
+      <th data-field="warehouse_row" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_row'); ?></th>
+      <th data-field="warehouse_level" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_warehouse_level'); ?></th>
+      <th data-field="qty_left" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_qty_left'); ?></th>
+      <th data-field="action" data-switchable="false"  class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?></th>
     </tr>
     </thead>
     <tbody>
@@ -134,9 +134,9 @@
             <td><?php echo $Qproducts->value('products_warehouse'); ?></td>
             <td><?php echo $Qproducts->value('products_warehouse_row'); ?></td>
             <td><?php echo $Qproducts->value('products_warehouse_level_location'); ?></td>
-            <td class="text-md-center"><strong><?php echo $Qproducts->value('products_quantity'); ?></strong></td>
+            <td class="text-center"><strong><?php echo $Qproducts->value('products_quantity'); ?></strong></td>
             <td
-              class="text-md-right"><?php echo HTML::link($CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit'))); ?></td>
+              class="text-end"><?php echo HTML::link($CLICSHOPPING_Products->link('Products&search=' . $Qproducts->value('products_name')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit'))); ?></td>
           </tr>
           <?php
         }
@@ -150,9 +150,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

@@ -187,7 +187,7 @@
       </div>
     </div>
     <div class="separator"></div>
-    <div class="col-md-12 text-md-center">
+    <div class="col-md-12 text-center">
       <?php echo HTML::button($CLICSHOPPING_Langues->getDef('button_insert'), null, null, 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Langues->getDef('button_cancel'), null, $CLICSHOPPING_Langues->link('Langues&page=' . $page), 'warning', null, 'sm'); ?>
     </div>
     <div class="separator"></div>

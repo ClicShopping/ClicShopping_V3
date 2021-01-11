@@ -48,7 +48,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/currencies.gif', $CLICSHOPPING_Currency->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_update'), null, null, 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . $page . '&cID=' . $cInfo->currencies_id), 'warning');
@@ -187,7 +187,7 @@
         if (DEFAULT_CURRENCY != $cInfo->code) {
           ?>
           <div class="separator"></div>
-          <div class="col-md-12 text-md-center">
+          <div class="col-md-12 text-center">
             <span class="col-md-3"></span>
             <ul class="list-group-slider list-group-flush">
               <span class="text-slider"><?php echo $CLICSHOPPING_Currency->getDef('text_info_set_as_default', ['text_set_default' => $CLICSHOPPING_Currency->getDef('text_set_default')]); ?></span>

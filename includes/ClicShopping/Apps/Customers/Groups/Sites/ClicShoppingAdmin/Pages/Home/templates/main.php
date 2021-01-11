@@ -40,15 +40,15 @@
     <div class="row">
       <div class="separator"></div>
       <div class="col-md-12">
-        <div class="form-group">
+        <div>
           <div class="col-md-12">
             <?php echo $CLICSHOPPING_Groups->getDef('text_intro'); ?>
           </div>
         </div>
         <div class="separator"></div>
         <div class="col-md-12">
-          <div class="form-group">
-            <div class="col-md-12 text-md-center">
+          <div>
+            <div class="col-md-12 text-center">
               <?php
                 echo HTML::form('configure', CLICSHOPPING::link(null, 'A&Customers\Groups&Configure'));
                 echo HTML::button($CLICSHOPPING_Groups->getDef('button_configure'), null, null, 'primary');

@@ -42,18 +42,18 @@
             class="col-md-1"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/group_client.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
           <span class="col-md-7 pageHeading"
                 width="60%"><?php echo '&nbsp;' . $CLICSHOPPING_Groups->getDef('heading_title'); ?></span>
-          <span class="col-md-2 text-md-right">
-            <div class="form-group">
-              <div class="controls">
+          <span class="col-md-2 text-end">
+            <div>
+              <div>
 <?php
-  echo HTML::form('search', $CLICSHOPPING_Groups->link('Groups'), 'post', 'role="form" class="form-inline"', ['session_id' => true]);
+  echo HTML::form('search', $CLICSHOPPING_Groups->link('Groups'), 'post', 'role="form" ', ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Groups->getDef('heading_title_search') . '"');
 ?>
                 </form>
               </div>
             </div>
           </span>
-          <span class="col-md-2 text-md-right">
+          <span class="col-md-2 text-end">
             <span class="col-md-6">
               <?php echo HTML::button($CLICSHOPPING_Groups->getDef('button_insert'), null, $CLICSHOPPING_Groups->link('Insert'), 'success'); ?>
             </span>
@@ -74,7 +74,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-order="asc"
     data-sort-name="name"
     data-toolbar="#toolbar"
@@ -86,7 +86,7 @@
     <thead class="dataTableHeadingRow">
       <tr>
         <th data-field="name" data-sortable="true"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_name'); ?></th>
-        <th data-field="color"class="text-md-center"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_color'); ?></th>
+        <th data-field="color"class="text-center"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_color'); ?></th>
         <th data-field="quantity"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_quantity_default'); ?></th>
         <?php
           if (B2B == 'true') {
@@ -99,7 +99,7 @@
             <?php
           }
         ?>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Groups->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
       <?php
@@ -139,15 +139,15 @@
             ?>
             <tr>
               <td scope="row"><?php echo $QustomersGroup->value('customers_group_name'); ?></td>
-              <td class="text-md-center">
+              <td class="text-center">
                 <table cellspacing="0" cellpadding="0" border="0" width="30px">
-                  <td class="text-md-center" bgcolor="<?php echo $QustomersGroup->value('color_bar'); ?>">&nbsp;</td>
+                  <td class="text-center" bgcolor="<?php echo $QustomersGroup->value('color_bar'); ?>">&nbsp;</td>
                 </table>
               </td>
               <td
-                class="text-md-left"><?php echo $QustomersGroup->valueInt('customers_group_quantity_default'); ?></td>
-              <td class="text-md-left"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
-              <td class="text-md-right">
+                class="text-start"><?php echo $QustomersGroup->valueInt('customers_group_quantity_default'); ?></td>
+              <td class="text-start"><?php echo $QustomersGroup->value('customers_group_discount'); ?>%</td>
+              <td class="text-end">
                 <?php
                   echo HTML::link($CLICSHOPPING_Groups->link('Edit&page=' . $page . '&cID=' . $QustomersGroup->valueInt('customers_group_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Groups->getDef('icon_edit')));
                   echo '&nbsp;';
@@ -174,9 +174,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QustomersGroup->getPageSetLabel($CLICSHOPPING_Groups->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $QustomersGroup->getPageSetLabel($CLICSHOPPING_Groups->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $QustomersGroup->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $QustomersGroup->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

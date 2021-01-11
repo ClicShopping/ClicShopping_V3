@@ -36,7 +36,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/settings.gif', $CLICSHOPPING_Settings->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Settings->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('administrator', $CLICSHOPPING_Settings->link('Settings&Update&aID=' . $Qadmin->valueInt('id')), 'post', 'autocomplete="off"');
   echo HTML::button($CLICSHOPPING_Settings->getDef('button_update'), null, null, 'success') . ' ';

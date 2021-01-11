@@ -41,7 +41,7 @@
         return false;
       }
 
-      $output = HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products'), null, 'class="btn btn-info btn-sm" role="button"><span class="fab fa-product-hunt" title="' . $this->app->getDef('heading_short_products') . '"') . ' ';
+      $output = HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products'), null, 'class="btn btn-info btn-sm" role="button"><span class="bi-shop" title="' . $this->app->getDef('heading_short_products') . '"') . ' ';
 
       return $output;
     }

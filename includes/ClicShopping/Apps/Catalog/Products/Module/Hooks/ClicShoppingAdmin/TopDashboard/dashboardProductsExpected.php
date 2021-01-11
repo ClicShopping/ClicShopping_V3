@@ -48,11 +48,11 @@
         $text_view = $this->app->getDef('text_view');
 
         $output = '
-<span style="padding-right:0.5rem; padding-top:0.5rem">
+<div class="col-md-2 col-12 m-1">
   <div class="card bg-primary">
     <div class="card-body">
       <div class="row">
-        <h5 class="card-title text-white"><i class="fas fas fa-info"  aria-hidden="true"></i> ' . $text . '</h5>
+        <h6 class="card-title text-white"><i class="bi bi-command"></i> ' . $text . '</h6>
       </div>
       <div class="col-md-12">
         <span class="text-white"><strong>' . $number_products_expected . '</strong></span>
@@ -60,7 +60,7 @@
       </div>
     </div>
   </div>
-</span>
+</div>
 ';
       }
 

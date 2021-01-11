@@ -34,7 +34,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/archive.gif', $CLICSHOPPING_Archive->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Archive->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
             <?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_archive'), null, $CLICSHOPPING_Archive->link('Archive'), 'success'); ?>
         </div>
       </div>
@@ -53,7 +53,7 @@
       ?>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
          aria-expanded="false">Install</a>
       <div class="dropdown-menu">
         <?php
@@ -78,7 +78,6 @@
         </div>
         <div class="adminformTitle">
           <div class="card-block">
-
             <p class="card-text">
               <?php
                 foreach ($CLICSHOPPING_Archive_Config->getInputParameters() as $cfg) {
@@ -96,7 +95,7 @@
             echo HTML::button($CLICSHOPPING_Archive->getDef('button_save'), null, null, 'success');
 
             if ($CLICSHOPPING_Archive->getConfigModuleInfo($current_module, 'is_uninstallable') === true) {
-              echo '<span class="float-md-right">' . HTML::button($CLICSHOPPING_Archive->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-toggle="modal" data-target="#ppUninstallModal"']) . '</span>';
+              echo '<span class="float-end">' . HTML::button($CLICSHOPPING_Archive->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-bs-toggle="modal" data-bs-target="#ppUninstallModal"']) . '</span>';
             }
           ?>
         </div>
@@ -108,7 +107,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title"><?php echo $CLICSHOPPING_Archive->getDef('dialog_uninstall_title'); ?></h4>
               </div>
@@ -118,7 +117,7 @@
               <div class="modal-footer">
                 <?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_delete'), null, $CLICSHOPPING_Archive->link('Configure&Delete&module=' . $current_module), 'danger'); ?>
                 <?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_uninstall'), null, $CLICSHOPPING_Archive->link('Configure&Uninstall&module=' . $current_module), 'danger'); ?>
-                <?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_cancel'), null, '#', 'warning', ['params' => 'data-dismiss="modal"']); ?>
+                <?php echo HTML::button($CLICSHOPPING_Archive->getDef('button_cancel'), null, '#', 'warning', ['params' => 'data-bs-dismiss="modal"']); ?>
               </div>
             </div>
           </div>

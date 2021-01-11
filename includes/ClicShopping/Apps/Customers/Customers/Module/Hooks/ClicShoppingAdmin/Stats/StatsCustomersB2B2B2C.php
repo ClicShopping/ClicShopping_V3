@@ -67,15 +67,15 @@
     public function display() :string
     {
       $output = '
-  <div class="card col-md-2 col-12 cardStatsSuccess">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsSuccess">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_customers') . '</h4>
       <div class="card-text">
         <div class="col-sm-12 StatsValue">
-          <span class="col-md-4 float-md-left">
-            <i class="fas fa-user-circle fa-2x" aria-hidden="true"></i>
+          <span class="col-md-4 float-start">
+            <i class="bi bi-person-fill"></i>
           </span>
-          <span class="col-md-8 float-md-right">
+          <span class="col-md-8 float-end">
             <div class="col-sm-12 StatsValue">' . $this->statsCustomersB2C() . ' - ' . $this->app->getDef('text_b2c') . '</div>
             <div class="col-sm-12 StatsValue">' . $this->statCustomersB2B() . ' - ' . $this->app->getDef('text_b2b') . '</div>
           </span>

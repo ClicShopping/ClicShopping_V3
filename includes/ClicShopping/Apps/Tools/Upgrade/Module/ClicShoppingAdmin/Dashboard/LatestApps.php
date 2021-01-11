@@ -57,7 +57,7 @@
         $output .= '<div class="separator"></div>';
         $output .= '<table
                       id="table"
-                      data-toggle="table"
+                      data-bs-toggle="table"
                       data-toolbar="#toolbar"
                       data-buttons-class="primary"
                       data-show-toggle="true"
@@ -67,7 +67,7 @@
         $output .= '<tr>';
         $output .= '<th data-field="logo">' . HTML::image(CLICSHOPPING::link('Shop/images/logo_clicshopping_24.webp'), 'ClicShopping') . '</th>';
         $output .= '<th data-field="title" data-switchable="false">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_tilte') . '</th>';
-        $output .= '<th data-field="date" class="text-right">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_date') . '</th>';
+        $output .= '<th data-field="date" class="text-end">' . $this->app->getDef('text_module_admin_dashboard_clicshopping_latest_apps_date') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';

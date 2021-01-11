@@ -33,7 +33,7 @@
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ServiceAPP->getDef('heading_title'); ?></span>
           <span
-            class="col-md-6 text-md-right"><?php echo '<span>' . HTML::button($CLICSHOPPING_ServiceAPP->getDef('button_service_admin'), null, $CLICSHOPPING_ServiceAPP->link('ServiceAPPAdmin'), 'success') . '</span>'; ?>
+            class="col-md-6 text-end"><?php echo '<span>' . HTML::button($CLICSHOPPING_ServiceAPP->getDef('button_service_admin'), null, $CLICSHOPPING_ServiceAPP->link('ServiceAPPAdmin'), 'success') . '</span>'; ?>
 
         </div>
       </div>

@@ -36,7 +36,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/client_editer.gif', $CLICSHOPPING_Customers->getDef('heading_title'), '40', '40'); ?></div>
           <div
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Customers->getDef('heading_title'); ?></div>
-          <div class="col-md-6 text-md-right" id="CreateCustomerButtonAction">
+          <div class="col-md-6 text-end" id="CreateCustomerButtonAction">
             <?php
               echo HTML::form('create_account', $CLICSHOPPING_Customers->link('Customers&Create')) . HTML::hiddenField('action', 'process');
               echo HTML::button($CLICSHOPPING_Customers->getDef('button_cancel'), null, $CLICSHOPPING_Customers->link('Customers'), 'warning') . '&nbsp;';
@@ -63,19 +63,19 @@
   <div class="createTabs">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Customers->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Customers->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_societe'); ?></a></li>
       <?php
         if (MODE_B2B_B2C == 'true') {
           ?>
           <li
-            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_orders'); ?></a></li>
+            class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_orders'); ?></a></li>
           <?php
         }
       ?>
       <li
-        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_options'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Customers->getDef('tab_options'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -84,7 +84,7 @@
         <!-- //################################################################################################################ -->
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
-            <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_personal'); ?></div>
+            <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_personal'); ?></div>
           </div>
           <div class="adminformTitle">
 
@@ -141,7 +141,6 @@
                         echo HTML::inputField('customers_dob', null, 'minlength="' . ENTRY_DOB_MIN_LENGTH . '"', 'date');
                       }
                     ?>
-                    <span class="input-group-addon"><span class="fas fa-calendar"></span></span>
                   </div>
                 </div>
               </div>
@@ -177,17 +176,16 @@
                   <label for="<?php echo $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('customers_cellular_phone', null, 'id="cellular" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number') . '"', 'phone'); ?>
+                    <?php echo HTML::inputField('customers_cellular_phone', null, 'id="cellular" placeholder="' . $CLICSHOPPING_Customers->getDef('entry_cellular_phone_number') . '"'); ?>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-
           <div class="separator"></div>
           <div class="col-md-12 mainTitle">
-            <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_address_default'); ?></div>
+            <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_address_default'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row" id="CreateCustomerEntryStreetAddress">
@@ -276,8 +274,8 @@
         <!-- -------------------------------------- //-->
         <div class="tab-pane" id="tab2">
           <div class="col-md-12 mainTitle" style="height:27px;" id="CreateCustomerCategoryCompany">
-            <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
-            <div class="text-md-right">
+            <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
+            <div class="text-end">
               <?php
                 if (MODE_B2B_B2C == 'true') {
                   ?>
@@ -374,7 +372,7 @@
             <!-- ------------------------------------ //-->
             <div class="tab-pane" id="tab3">
               <div class="col-md-12 mainTitle" style="height:27px;" id="CreateCustomerCategoryCompany">
-                <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
+                <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
               </div>
               <div class="adminformTitle">
                 <div class="row" id="CreateCustomerGroupName">
@@ -398,7 +396,7 @@
         <!-- ------------------------------------ //-->
         <div class="tab-pane" id="tab4">
           <div class="col-md-12 mainTitle" style="height:27px;">
-            <div class="text-md-left"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
+            <div class="text-start"><?php echo $CLICSHOPPING_Customers->getDef('category_company'); ?></div>
           </div>
           <div class="adminformTitle">
             <div class="row" id="CreateCustomerModifyAddressDefault">

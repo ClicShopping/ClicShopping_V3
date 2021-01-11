@@ -31,7 +31,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/currencies.gif', $CLICSHOPPING_Currency->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Currency->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_insert'), null, $CLICSHOPPING_Currency->link('Insert'), 'success') . ' ';
   echo HTML::button($CLICSHOPPING_Currency->getDef('button_update_all'), null, $CLICSHOPPING_Currency->link('Currency&UpdateAll&page=' . $page), 'info');
@@ -48,7 +48,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="value"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -61,11 +61,11 @@
     <tr>
       <th data-field="name" data-sortable="true"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_name'); ?></th>
       <th data-field="code"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_code'); ?></th>
-      <th data-field="surchage" class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_surcharge'); ?></th>
-      <th data-field="value" data-sortable="true" class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_value'); ?></th>
-      <th data-field="last_updated" class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_last_updated'); ?></th>
-      <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_status'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_action'); ?>&nbsp;</th>
+      <th data-field="surchage" class="text-end"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_surcharge'); ?></th>
+      <th data-field="value" data-sortable="true" class="text-end"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_value'); ?></th>
+      <th data-field="last_updated" class="text-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_last_updated'); ?></th>
+      <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_currency_status'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Currency->getDef('table_heading_action'); ?>&nbsp;</th>
     </tr>
     </thead>
     <tbody>
@@ -106,19 +106,19 @@
           }
           ?>
           <td><?php echo $Qcurrency->value('code'); ?></td>
-          <td class="text-md-right"><?php echo $Qcurrency->valueDecimal('surcharge'); ?></td>
-          <td class="text-md-right"><?php echo number_format($Qcurrency->valueDecimal('value'), 8); ?></td>
-          <td class="text-md-center"><?php echo DateTime::toShort($Qcurrency->value('last_updated')); ?></td>
-          <td class="text-md-center">
+          <td class="text-end"><?php echo $Qcurrency->valueDecimal('surcharge'); ?></td>
+          <td class="text-end"><?php echo number_format($Qcurrency->valueDecimal('value'), 8); ?></td>
+          <td class="text-center"><?php echo DateTime::toShort($Qcurrency->value('last_updated')); ?></td>
+          <td class="text-center">
             <?php
               if ($Qcurrency->valueInt('status') == 1) {
-                echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+                echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=0&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="bi-check text-success"></i>');
               } else {
-                echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=1&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+                echo HTML::link($CLICSHOPPING_Currency->link('Currency&SetFlag&flag=1&cID=' . $Qcurrency->valueInt('currencies_id') . '&page=' . $page), '<i class="bi bi-x text-danger"></i>');
               }
             ?>
           </td>
-          <td class="text-md-right">
+          <td class="text-end">
             <?php
               echo HTML::link($CLICSHOPPING_Currency->link('Edit&page=' . $page . '&cID=' . $Qcurrency->valueInt('currencies_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Currency->getDef('icon_edit')));
               echo '&nbsp;';
@@ -139,9 +139,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcurrency->getPageSetLabel($CLICSHOPPING_Currency->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qcurrency->getPageSetLabel($CLICSHOPPING_Currency->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qcurrency->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qcurrency->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

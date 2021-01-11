@@ -44,21 +44,22 @@
 
     public function getOutput()
     {
-      $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH;
-
       $link = CLICSHOPPING::link('ajax/map.php');
       $text_sale_total_ht = $this->app->getDef('text_sale_total_ht');
       $text_order_number = $this->app->getDef('text_order_number');
       $text_orders_status = $this->app->getDef('text_orders_status');
       $text_order_delivery = $this->app->getDef('text_order_delivery');
-
-      $output = '<div class="' . $content_width . '">';
-      $output .= '<div class="card">';
+  
+      $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_ORDER_MAP_APP_CONTENT_WIDTH;
+  
+      $output = '<div class="col-12 ' . $content_width . ' d-flex" style="padding-right:0.5rem; padding-top:0.5rem">';
+      $output .= '<div class="card flex-fill w-100">';
       $output .= '<div id="vmap"></div>';
       $output .= '<div class="separator"></div>';
       $output .= '</div>';
       $output .= '</div>';
-
+      $output .= '</div>';
+      
       $output .= '
 <script type="text/javascript"><!--
 $(document).ready(function() {

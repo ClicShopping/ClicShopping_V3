@@ -36,7 +36,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Item->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_Item->getDef('button_sort_order'), null, CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=shipping'), 'primary'); ?>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_Item->getDef('button_sort_order'), null, CLICSHOPPING::link(null, 'A&Configuration\Modules&Modules&set=shipping'), 'primary'); ?>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
             echo HTML::button($CLICSHOPPING_Item->getDef('button_save'), null, null, 'success');
 
             if ($CLICSHOPPING_Item->getConfigModuleInfo($current_module, 'is_uninstallable') === true) {
-              echo '<span class="float-md-right">' . HTML::button($CLICSHOPPING_Item->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-toggle="modal" data-target="#ppUninstallModal"']) . '</span>';
+              echo '<span class="float-end">' . HTML::button($CLICSHOPPING_Item->getDef('button_dialog_uninstall'), null, '#', 'warning', ['params' => 'data-bs-toggle="modal" data-bs-target="#ppUninstallModal"']) . '</span>';
             }
           ?>
 
@@ -84,7 +84,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title"><?php echo $CLICSHOPPING_Item->getDef('dialog_uninstall_title'); ?></h4>
               </div>
@@ -94,7 +94,7 @@
               <div class="modal-footer">
                 <?php echo HTML::button($CLICSHOPPING_Item->getDef('button_delete'), null, $CLICSHOPPING_Item->link('Configure&Delete&module=' . $current_module), 'danger'); ?>
                 <?php echo HTML::button($CLICSHOPPING_Item->getDef('button_uninstall'), null, $CLICSHOPPING_Item->link('Configure&Uninstall&module=' . $current_module), 'warning'); ?>
-                <?php echo HTML::button($CLICSHOPPING_Item->getDef('button_cancel'), null, '#', 'warning', ['params' => 'data-dismiss="modal"']); ?>
+                <?php echo HTML::button($CLICSHOPPING_Item->getDef('button_cancel'), null, '#', 'warning', ['params' => 'data-bs-dismiss="modal"']); ?>
               </div>
             </div>
           </div>

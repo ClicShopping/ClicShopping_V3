@@ -45,7 +45,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/products_unit.png', $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-2 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_ProductsQuantityUnit->getDef('heading_title'); ?></span>
-          <span class="col-md-9 text-md-right">
+          <span class="col-md-9 text-end">
 <?php
   echo HTML::form('status_products_quantity_unit', $CLICSHOPPING_ProductsQuantityUnit->link('ProductsQuantityUnit&Update&page=' . $page . '&oID=' . $oInfo->products_quantity_unit_id));
   echo HTML::button($CLICSHOPPING_ProductsQuantityUnit->getDef('button_update'), null, null, 'success') . ' ';

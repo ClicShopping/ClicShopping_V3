@@ -67,9 +67,9 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/produit.gif', $CLICSHOPPING_Products->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-1 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Products->getDef('heading_title'); ?></span>
-          <span class="col-sm-2 text-md-center">
-             <div class="form-group">
-               <div class="controls">
+          <span class="col-sm-2 text-center">
+             <div>
+               <div>
 <?php
   echo HTML::form('search', $CLICSHOPPING_Products->link('Products'), 'post', null, ['session_id' => true]);
   echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_Products->getDef('heading_title_search') . '"');
@@ -78,16 +78,16 @@
              </div>
             </div>
           </span>
-          <span class="col-sm-2 text-md-center">
-             <div class="form-group">
-               <div class="controls">
+          <span class="col-sm-2 text-center">
+             <div>
+               <div>
 <?php
   $current_category_id = 0;
 
   if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
   if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
 
-  echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', 'class="form-inline"', ['session_id' => true]);
+  echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', '', ['session_id' => true]);
   echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
 ?>
                </form>
@@ -95,7 +95,7 @@
             </div>
           </span>
 
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   if (isset($_GET['search']) || $current_category_id) {
     echo HTML::button($CLICSHOPPING_Products->getDef('button_back'), null, $CLICSHOPPING_Products->link('Products&' . $cPath_back . 'cID=' . $current_category_id), 'primary') . '&nbsp;';
@@ -113,8 +113,10 @@
   <div class="separator"></div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-deck">
-        <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsProductsOutOfStock', null, 'display'); ?>
+      <div class="card card-block headerCard">
+        <div class="row">
+          <?php echo $CLICSHOPPING_Hooks->output('Stats', 'StatsProductsOutOfStock', null, 'display'); ?>
+        </div>
       </div>
     </div>
   </div>
@@ -129,13 +131,13 @@
 
     echo HTML::form('delete_all', $CLICSHOPPING_Products->link('Products&DeleteAll&cPath=' . $current_category_id));
   ?>
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Products->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -152,15 +154,15 @@
         <th data-checkbox="true" data-field="state"></th>
         <th data-field="selected" data-sortable="true" data-visible="false" data-switchable="false"><?php echo $CLICSHOPPING_Products->getDef('id'); ?></th>
         <th data-switchable="false"></th>
-        <th data-field="products" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_categories_products'); ?></th>
-        <th data-field="sku" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_sku'); ?></th>
-        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_status'); ?></th>
-        <th data-field="price" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_price'); ?></th>
-        <th data-field="quantity" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_qty'); ?></th>
-        <th data-field="last_modified" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_last_modified'); ?>&nbsp;</th>
-        <th data-field="created" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_created'); ?>&nbsp;</th>
-        <th data-field="sort_order" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_sort_order'); ?>&nbsp;</th>
-        <th data-field="action" data-switchable="false" class="text-md-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="products" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_categories_products'); ?></th>
+        <th data-field="sku" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_sku'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_status'); ?></th>
+        <th data-field="price" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_price'); ?></th>
+        <th data-field="quantity" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_qty'); ?></th>
+        <th data-field="last_modified" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_last_modified'); ?>&nbsp;</th>
+        <th data-field="created" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_created'); ?>&nbsp;</th>
+        <th data-field="sort_order" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_sort_order'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-center"><?php echo $CLICSHOPPING_Products->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
       <tbody>
@@ -221,28 +223,28 @@
                <?php echo $CLICSHOPPING_Image->getSmallImageAdmin($Qproducts->valueInt('products_id')); ?>
               </td>
               <td><?php echo $Qproducts->value('products_name') . ' [' . $Qproducts->value('products_model') . ']'; ?></td>
-              <td class="text-md-left"><?php echo $Qproducts->value('products_sku'); ?></td>
-              <td class="text-md-center">
+              <td class="text-start"><?php echo $Qproducts->value('products_sku'); ?></td>
+              <td class="text-center">
                 <?php
                   if ($Qproducts->valueInt('products_status') === 1) {
-                    echo HTML::link($CLICSHOPPING_Products->link('Products&SetFlag&flag=0&pID=' . $Qproducts->valueInt('products_id') . '&cPath=' . $cPath), '<i class="fas fa-check fa-lg" aria-hidden="true"></i>');
+                    echo HTML::link($CLICSHOPPING_Products->link('Products&SetFlag&flag=0&pID=' . $Qproducts->valueInt('products_id') . '&cPath=' . $cPath), '<i class="bi-check text-success"></i>');
                   } else {
-                    echo HTML::link($CLICSHOPPING_Products->link('Products&SetFlag&flag=1&pID=' . $Qproducts->valueInt('products_id') . '&cPath=' . $cPath), '<i class="fas fa-times fa-lg" aria-hidden="true"></i>');
+                    echo HTML::link($CLICSHOPPING_Products->link('Products&SetFlag&flag=1&pID=' . $Qproducts->valueInt('products_id') . '&cPath=' . $cPath), '<i class="bi bi-x text-danger"></i>');
                   }
                 ?>
               </td>
-              <td class="text-md-center"><?php echo $Qproducts->value('products_price'); ?></td>
-              <td class="text-md-center"><?php echo $Qproducts->valueInt('products_quantity'); ?></td>
+              <td class="text-center"><?php echo $Qproducts->value('products_price'); ?></td>
+              <td class="text-center"><?php echo $Qproducts->valueInt('products_quantity'); ?></td>
               <?php
                 if (!is_null($Qproducts->value('products_last_modified'))) {
-                  echo '<td class="text-md-center">' . DateTime::toShort($Qproducts->value('products_last_modified')) . '</td>';
+                  echo '<td class="text-center">' . DateTime::toShort($Qproducts->value('products_last_modified')) . '</td>';
                 } else {
-                  echo '<td class="text-md-center"></td>';
+                  echo '<td class="text-center"></td>';
                 }
               ?>
-              <td class="text-md-left"><?php echo $Qproducts->value('admin_user_name'); ?></td>
-              <td class="text-md-right"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
-              <td class="text-md-right">
+              <td class="text-start"><?php echo $Qproducts->value('admin_user_name'); ?></td>
+              <td class="text-end"><?php echo $Qproducts->valueInt('products_sort_order'); ?></td>
+              <td class="text-end">
                 <?php
                   echo HTML::link($CLICSHOPPING_Products->link('Edit&cPath=' . $cPath . '&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_Products->getDef('icon_edit')));
                   echo '&nbsp;';

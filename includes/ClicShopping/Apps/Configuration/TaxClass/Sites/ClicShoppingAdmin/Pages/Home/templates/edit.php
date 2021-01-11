@@ -38,7 +38,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/tax_classes.gif', $CLICSHOPPING_TaxClass->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxClass->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('status_tax_class', $CLICSHOPPING_TaxClass->link('TaxClass&Update&page=' . $page . '&tID=' . $tcInfo->tax_class_id));
   echo HTML::button($CLICSHOPPING_TaxClass->getDef('button_update'), null, null, 'success') . ' ';

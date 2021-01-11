@@ -61,7 +61,7 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_Currency->getDef('text_info_delete_info'); ?><br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->title . '</strong>'; ?><br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo (($remove_currency) ? HTML::button($CLICSHOPPING_Currency->getDef('button_delete'), null, null, 'primary', null, 'sm') : '') . ' </span><span>' . HTML::button($CLICSHOPPING_Currency->getDef('button_cancel'), null, $CLICSHOPPING_Currency->link('Currency&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->currencies_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

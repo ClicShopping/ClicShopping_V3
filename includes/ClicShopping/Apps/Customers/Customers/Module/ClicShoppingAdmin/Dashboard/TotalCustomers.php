@@ -52,7 +52,7 @@
       $Qorders = $this->app->db->query('select date_format(customers_info_date_account_created, "%d") as dateday,
                                         count(customers_info_id) as total
                                         from :table_customers_info
-                                        where date_sub(curdate(), interval 7 day) <= customers_info_date_account_created
+                                        where date_sub(curdate(), interval 15 day) <= customers_info_date_account_created
                                         group by dateday
                                       ');
 
@@ -70,18 +70,16 @@
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_TOTAL_CUSTOMERS_APP_CONTENT_WIDTH;
 
       $output = <<<EOD
-<div class="{$content_width}">
-  <div class="card mb-3">
-    <div class="card">
-      <div class="card-block">
-        <div class="card-body">
-          <h6 class="card-title"><i class="fa fa-coins"></i> {$chart_label_link}</h6>
-          <p class="card-text">
-            <div class="col-md-12">
-              <canvas id="d_total_customers_app" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
-            </div>
-          </p>
-        </div>
+<div class="col-12 {$content_width} d-flex" style="padding-right:0.5rem; padding-top:0.5rem">
+  <div class="card flex-fill h-215">
+    <div class="card-block">
+      <div class="card-body">
+        <h6 class="card-title"><i class="bi bi-graph-up"></i> {$chart_label_link}</h6>
+        <p class="card-text">
+          <div class="col-md-12">
+            <canvas id="d_total_customers_app" class="col-md-12" style="display: block; width:100%; height: 215px;"></canvas>
+          </div>
+        </p>
       </div>
     </div>
   </div>

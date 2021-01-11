@@ -123,10 +123,10 @@
               $title .= '<div class="separator"></div>';
             }
 
-            $content = '<div class="d-flex flex-wrap">';
+            $content = '<div class="row">';
 
             while ($QcustomersGroup->fetch()) {
-              $content .= '<div class="col-md-4">';
+              $content .= '<div class="col-md-4 m-1">';
               $content .= '<div class="card cardPrice">';
 
               if ($QcustomersGroup->rowCount() > 0 && $products_array !== false) {

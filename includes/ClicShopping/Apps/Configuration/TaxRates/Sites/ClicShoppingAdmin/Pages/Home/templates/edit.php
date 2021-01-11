@@ -46,7 +46,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/tax_rates.gif', $CLICSHOPPING_TaxRates->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-7 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
-          <span class="col-md-4 text-md-right">
+          <span class="col-md-4 text-end">
 <?php
   echo HTML::form('tax_class', $CLICSHOPPING_TaxRates->link('TaxRates&Update&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')));
   echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_update'), null, null, 'success') . ' ';

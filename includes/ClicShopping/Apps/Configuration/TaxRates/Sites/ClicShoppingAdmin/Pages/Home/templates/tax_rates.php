@@ -34,7 +34,7 @@
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_TaxRates->getDef('heading_title'); ?></span>
           <span
-            class="col-md-7 text-md-right"><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, $CLICSHOPPING_TaxRates->link('Insert&page=' . $page), 'success'); ?></span>
+            class="col-md-7 text-end"><?php echo HTML::button($CLICSHOPPING_TaxRates->getDef('button_insert'), null, $CLICSHOPPING_TaxRates->link('Insert&page=' . $page), 'success'); ?></span>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
   <!-- //################################################################################################################ -->
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="zone"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -62,7 +62,7 @@
         <th data-field="rate"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_rate'); ?></th>
         <th data-field="description"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_tax_description'); ?></th>
         <th data-field="tax_erp"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_code_tax_erp'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_TaxRates->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
       <tbody>
@@ -103,7 +103,7 @@
                 <td><?php echo Tax::displayTaxRateValue($Qrates->valueDecimal('tax_rate')); ?></td>
                 <td><?php echo $Qrates->value('tax_description'); ?></td>
                 <td><?php echo $Qrates->value('code_tax_erp'); ?></td>
-                <td class="text-md-right">
+                <td class="text-end">
                   <?php
                     echo HTML::link($CLICSHOPPING_TaxRates->link('Edit&page=' . $page . '&tID=' . $Qrates->valueInt('tax_rates_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TaxRates->getDef('icon_edit')));
                     echo '&nbsp;';
@@ -125,9 +125,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qrates->getPageSetLabel($CLICSHOPPING_TaxRates->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qrates->getPageSetLabel($CLICSHOPPING_TaxRates->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qrates->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qrates->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

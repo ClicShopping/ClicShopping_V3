@@ -57,8 +57,8 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/newsletters.gif', $CLICSHOPPING_Newsletter->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Newsletter->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right"><span
-              class="col-md-1 text-md-right"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page . '&nID=' . $_GET['nID']), 'danger', null, 'xs'); ?></span>
+          <span class="col-md-6 text-end"><span
+              class="col-md-1 text-end"><?php echo HTML::button($CLICSHOPPING_Newsletter->getDef('button_cancel'), null, $CLICSHOPPING_Newsletter->link('Newsletter&page=' . $page . '&nID=' . $_GET['nID']), 'danger', null, 'xs'); ?></span>
         </div>
       </div>
     </div>

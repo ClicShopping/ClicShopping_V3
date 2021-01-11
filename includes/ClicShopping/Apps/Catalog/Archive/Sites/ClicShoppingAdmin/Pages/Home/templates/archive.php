@@ -40,10 +40,10 @@
           <div
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Archive->getDef('heading_title'); ?></div>
           <div class="col-md-2">
-            <div class="form-group">
-              <div class="controls">
+            <div>
+              <div>
                 <?php
-                  echo HTML::form('search', $CLICSHOPPING_Archive->link('Archive'), 'post', 'role="form" class="form-inline"', ['session_id' => true]);
+                  echo HTML::form('search', $CLICSHOPPING_Archive->link('Archive'), 'post', 'role="form" ', ['session_id' => true]);
                   echo HTML::inputField('search', null, 'id="inputKeywords" placeholder=" ' . $CLICSHOPPING_Archive->getDef('heading_title_search') . ' "');
                 ?>
                 </form>
@@ -67,13 +67,13 @@
   <!-- //################################################################################################################ -->
   <?php echo HTML::form('delete_all', $CLICSHOPPING_Archive->link('Archive&DeleteAll&page=' . $page)); ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_Archive->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -92,9 +92,9 @@
         <th data-switchable="false"></th>
         <th data-field="model" data-sortable="true"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_model_archives'); ?></th>
         <th data-field="products" data-sortable="true"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_products_archives'); ?></th>
-        <th data-field="date" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_date_archives'); ?></th>
-        <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_status'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_action'); ?>&nbsp;</th>
+        <th data-field="date" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_date_archives'); ?></th>
+        <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_status'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Archive->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -184,21 +184,21 @@
       <td><?php echo $Qproducts->value('products_name'); ?></td>
       <?php
         if (!is_null($Qproducts->value('last_modified'))) {
-          echo '<td class="text-md-center">' . DateTime::toShort($Qproducts->value('last_modified')) . '</td>';
+          echo '<td class="text-center">' . DateTime::toShort($Qproducts->value('last_modified')) . '</td>';
         } else {
-          echo '<td class="text-md-center"></td>';
+          echo '<td class="text-center"></td>';
         }
       ?>
-      <td class="text-md-center">
+      <td class="text-center">
         <?php
           if ($Qproducts->valueInt('products_status') == 1) {
-            echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=0&aID=' . $Qproducts->valueInt('products_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+            echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=0&aID=' . $Qproducts->valueInt('products_id')) . '"><i class="bi-check text-success"></i></a>';
           } else {
-            echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=1&aID=' . $Qproducts->valueInt('products_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+            echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&SetFlag&flag=1&aID=' . $Qproducts->valueInt('products_id')) . '"><i class="bi bi-x text-danger"></i></a>';
           }
         ?>
       </td>
-      <td class="text-md-right">
+      <td class="text-end">
         <?php
           echo '<a href="' . $CLICSHOPPING_Archive->link('Archive&Update&page=' . $page . '&aID=' . $Qproducts->valueInt('products_id')) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/unpack.gif', $CLICSHOPPING_Archive->getDef('icon_unpack')) . '</a>';
           echo '&nbsp;';
@@ -219,9 +219,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Archive->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Archive->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qproducts->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
       <?php

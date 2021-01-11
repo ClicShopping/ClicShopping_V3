@@ -32,7 +32,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/define_language.gif', $CLICSHOPPING_Groups->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Groups->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::form('customers', $CLICSHOPPING_Groups->link('Groups&Insert'), 'post', 'onSubmit="return check_form();"');
   echo HTML::button($CLICSHOPPING_Groups->getDef('button_insert'), null, null, 'success') . ' ';
@@ -67,11 +67,11 @@
   <div id="CustomersGroupTab" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Groups->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Groups->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_orders'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_orders'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_shipping'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Groups->getDef('tab_shipping'); ?></a></li>
     </ul>
 
     <div class="tabsClicShopping">

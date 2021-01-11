@@ -73,7 +73,7 @@
       <div
         class="col-md-12"><?php echo HTML::breakString($CLICSHOPPING_Backup->getDef('text_info_restore', ['restore' => $backup_directory . (($buInfo->compression != $CLICSHOPPING_Backup->getDef('text_no_extension')) ? substr($buInfo->file, 0, strrpos($buInfo->file, '.')) : $buInfo->file), ($buInfo->compression != $CLICSHOPPING_Backup->getDef('text_info_unpack')) ? $CLICSHOPPING_Backup->getDef('text_no_extension') : '']), 35, ' '); ?>
         <br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Backup->getDef('button_restore'), null, $CLICSHOPPING_Backup->link('Backup&RestoreNow&file=' . $buInfo->file), 'primary', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Backup->getDef('button_cancel'), null, $CLICSHOPPING_Backup->link('Backup'), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

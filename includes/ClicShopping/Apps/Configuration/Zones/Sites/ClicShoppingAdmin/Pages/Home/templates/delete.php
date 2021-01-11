@@ -54,7 +54,7 @@
       <div class="col-md-12"><?php echo $CLICSHOPPING_Zones->getDef('text_info_delete_info'); ?><br/><br/></div>
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $cInfo->zone_name . '</strong>'; ?><br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <span><br/><?php echo HTML::button($CLICSHOPPING_Zones->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_Zones->getDef('button_cancel'), null, $CLICSHOPPING_Zones->link('Zones&page=' . (int)$_GET['page'] . '&cID=' . $cInfo->zone_id), 'warning', null, 'sm'); ?></span>
       </div>
     </div>

@@ -28,7 +28,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/countries.gif', $CLICSHOPPING_Countries->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Countries->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Countries->getDef('button_cancel'), null, $CLICSHOPPING_Countries->link('Countries'), 'warning') . ' ';
   echo HTML::form('status_countries', $CLICSHOPPING_Countries->link('Countries&Insert&page=' . (int)$_GET['page']));
@@ -100,19 +100,17 @@
         foreach ($address_formats_array as $value) {
           ?>
           <div class="col-md-3">
-            <div class="card-deck">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <div class="col-md-12 custom-control custom-radio">
-                      <?php echo HTML::radioField('address_format_id', $value['address_format_id'], null, 'class="custom-control-input" id="addressLabel' . $value['address_format_id'] . '" name="addressLabel' . $value['address_format_id'] . '"'); ?>
-                      <label class="custom-control-label" for="addressLabel<?php echo $value['address_format_id']; ?>"><?php echo  $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id']; ?></label>
-                    </div>
-                  </h4>
-                  <p class="card-text">
-                    <strong><?php echo '<div class="col-md-12">&nbsp;' . $CLICSHOPPING_Address->getAddressFormatRadio($value['address_format_id']) . '</label></div>'; ?></strong>
-                  </p>
-                </div>
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <div class="col-md-12 custom-control custom-radio">
+                    <?php echo HTML::radioField('address_format_id', $value['address_format_id'], null, 'class="custom-control-input" id="addressLabel' . $value['address_format_id'] . '" name="addressLabel' . $value['address_format_id'] . '"'); ?>
+                    <label class="custom-control-label" for="addressLabel<?php echo $value['address_format_id']; ?>"><?php echo  $CLICSHOPPING_Countries->getDef('text_format') . ' ' . $value['address_format_id']; ?></label>
+                  </div>
+                </h4>
+                <p class="card-text">
+                  <strong><?php echo '<div class="col-md-12">&nbsp;' . $CLICSHOPPING_Address->getAddressFormatRadio($value['address_format_id']) . '</label></div>'; ?></strong>
+                </p>
               </div>
             </div>
             <div class="separator"></div>

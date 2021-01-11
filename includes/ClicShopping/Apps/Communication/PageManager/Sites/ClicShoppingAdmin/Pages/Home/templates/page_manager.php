@@ -33,7 +33,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/page_manager.gif', $CLICSHOPPING_PageManager->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_PageManager->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_PageManager->getDef('button_new'), null, $CLICSHOPPING_PageManager->link('SelectPage'), 'success');
 ?>
@@ -49,13 +49,13 @@
     echo HTML::form('delete_all', $CLICSHOPPING_PageManager->link('PageManager&DeleteAll&page=' . $page));
   ?>
 
-  <div id="toolbar">
+  <div id="toolbar" class="float-end">
     <button id="button" class="btn btn-danger"><?php echo $CLICSHOPPING_PageManager->getDef('button_delete'); ?></button>
   </div>
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"
@@ -79,15 +79,15 @@
 <?php
   if (MODE_B2B_B2C == 'true') {
 ?>
-          <th data-field="GROUP" data-sortable="group" class="text-md-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_customers_group'); ?></th>
+          <th data-field="GROUP" data-sortable="group" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_customers_group'); ?></th>
 <?php
   }
 ?>
-      <th data-field="status" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_status'); ?></th>
-      <th data-field="target" class="text-md-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_links_target'); ?></th>
-      <th data-field="page_type" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_page_type'); ?></th>
-      <th data-field="sort_order" data-sortable="true" class="text-md-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_sort_order'); ?></th>
-      <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_action'); ?></th>
+      <th data-field="status" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_status'); ?></th>
+      <th data-field="target" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_links_target'); ?></th>
+      <th data-field="page_type" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_page_type'); ?></th>
+      <th data-field="sort_order" data-sortable="true" class="text-center"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_sort_order'); ?></th>
+      <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_PageManager->getDef('table_heading_action'); ?></th>
     </tr>
     </thead>
     <tbody>
@@ -154,7 +154,7 @@
 <?php
     if (!empty($Qpages->valueInt('pages_id')) && $Qpages->valueInt('page_type') == 4 && empty($Qpages->value('externallink'))) {
 ?>
-      <td class="text-md-center"><?php echo '<a href="' . HTTP::getShopUrlDomain() . 'index.php?Info&Content&' . 'pagesId=' . $Qpages->valueInt('pages_id') . '" target="_blank" rel="noreferrer">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview_catalog.png', $CLICSHOPPING_PageManager->getDef('icon_preview')) . '</a>'; ?></td>
+      <td class="text-center"><?php echo '<a href="' . HTTP::getShopUrlDomain() . 'index.php?Info&Content&' . 'pagesId=' . $Qpages->valueInt('pages_id') . '" target="_blank" rel="noreferrer">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/preview_catalog.png', $CLICSHOPPING_PageManager->getDef('icon_preview')) . '</a>'; ?></td>
 <?php
     } else {
 ?>
@@ -186,12 +186,12 @@
 <?php
     }
 ?>
-    <td class="text-md-center">
+    <td class="text-center">
 <?php
     if ($Qpages->valueInt('status') == 1) {
-      echo '<a href="' . $CLICSHOPPING_PageManager->link('PageManager&SetFlag&flag=0&id=' . $Qpages->valueInt('pages_id')) . '"><i class="fas fa-check fa-lg" aria-hidden="true"></i></a>';
+      echo '<a href="' . $CLICSHOPPING_PageManager->link('PageManager&SetFlag&flag=0&id=' . $Qpages->valueInt('pages_id')) . '"><i class="bi-check text-success"></i></a>';
     } else {
-      echo '<a href="' . $CLICSHOPPING_PageManager->link('PageManager&SetFlag&flag=1&id=' . $Qpages->valueInt('pages_id')) . '"><i class="fas fa-times fa-lg" aria-hidden="true"></i></a>';
+      echo '<a href="' . $CLICSHOPPING_PageManager->link('PageManager&SetFlag&flag=1&id=' . $Qpages->valueInt('pages_id')) . '"><i class="bi bi-x text-danger"></i></a>';
     }
 ?>
     </td>
@@ -217,8 +217,8 @@
     }
 ?>
     <td><?php echo $page_box; ?></td>
-    <td class="text-md-center"><?php echo $Qpages->valueInt('sort_order'); ?></td>
-    <td class="text-md-right">
+    <td class="text-center"><?php echo $Qpages->valueInt('sort_order'); ?></td>
+    <td class="text-end">
 <?php
     echo '<a href="' . $CLICSHOPPING_PageManager->link('Edit&bID=' . $Qpages->valueInt('pages_id') . '&page=' . $page) . '">' . HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_PageManager->getDef('icon_edit')) . '</a>';
     echo '&nbsp;';
@@ -245,9 +245,9 @@
       <div class="row">
         <div class="col-md-12">
           <div
-            class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qpages->getPageSetLabel($CLICSHOPPING_PageManager->getDef('text_display_number_of_link')); ?></div>
+            class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qpages->getPageSetLabel($CLICSHOPPING_PageManager->getDef('text_display_number_of_link')); ?></div>
           <div
-            class="float-md-right text-md-right"><?php echo $Qpages->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
+            class="float-end text-end"><?php echo $Qpages->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y'))); ?></div>
         </div>
       </div>
 <?php

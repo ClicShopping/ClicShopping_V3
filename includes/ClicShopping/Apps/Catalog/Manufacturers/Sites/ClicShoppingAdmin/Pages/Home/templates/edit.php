@@ -46,7 +46,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/manufacturers.gif', $CLICSHOPPING_Manufacturers->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-4 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Manufacturers->getDef('heading_title'); ?></span>
-          <span class="col-md-7 text-md-right">
+          <span class="col-md-7 text-end">
 <?php
   if ($form_action == 'Update') echo HTML::hiddenField('manufacturers_id', HTML::sanitize($_GET['mID']));
 
@@ -91,13 +91,13 @@
   <div id="manufacturersTabs" style="overflow: auto;">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Manufacturers->getDef('tab_general') . '</a>'; ?></li>
+        class="nav-item"><?php echo '<a href="#tab1" role="tab" data-bs-toggle="tab" class="nav-link active">' . $CLICSHOPPING_Manufacturers->getDef('tab_general') . '</a>'; ?></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_description'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_description'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_visuel'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab3" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_visuel'); ?></a></li>
       <li
-        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_seo'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab4" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Manufacturers->getDef('tab_seo'); ?></a></li>
     </ul>
 
     <div class="tabsClicShopping">
@@ -110,7 +110,7 @@
         <div class="tab-pane active" id="tab1">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_general'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_general'); ?></div>
           </div>
           <div class="adminformTitle">
 
@@ -197,19 +197,19 @@
             <div class="separator"></div>
             <div class="row">
                 <span class="col-md-12">
-                  <blockquote><i><a data-toggle="modal"
-                                    data-target="#myModalWysiwyg"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
+                  <blockquote><i><a data-bs-toggle="modal"
+                                    data-bs-target="#myModalWysiwyg"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_wysiwyg'); ?></a></i></blockquote>
                   <div class="modal fade" id="myModalWysiwyg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                        aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal"><span
+                          <button type="button" class="close" data-bs-dismiss="modal"><span
                               aria-hidden="true">&times;</span></button>
                           <h4 class="modal-title"
                               id="myModalLabel"><?php echo $CLICSHOPPING_Manufacturers->getDef('text_help_wysiwyg'); ?></h4>
                         </div>
-                        <div class="modal-body text-md-center">
+                        <div class="modal-body text-center">
                           <img class="img-fluid"
                                src="<?php echo $CLICSHOPPING_Template->getImageDirectory() . '/wysiwyg.png'; ?>">
                         </div>
@@ -243,11 +243,11 @@
                 <div class="adminformAide">
                   <div class="row">
                     <span
-                      class="col-md-4 text-md-center float-md-left"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
-                    <span class="col-md-8 text-md-center float-md-right">
+                      class="col-md-4 text-center float-start"><?php echo HTMLOverrideAdmin::fileFieldImageCkEditor('manufacturers_image', null, '212', '212'); ?></span>
+                    <span class="col-md-8 text-center float-end">
                         <div
                           class="col-md-12"><?php echo $CLICSHOPPING_ProductsAdmin->getInfoImage($mInfo->manufacturers_image ?? null, $CLICSHOPPING_Manufacturers->getDef('text_products_image_vignette')); ?></div>
-                        <div class="col-md-12 text-md-right">
+                        <div class="col-md-12 text-end">
                           <?php echo $CLICSHOPPING_Manufacturers->getDef('text_manufacturers_image_delete') . ' ' . HTML::checkboxField('delete_image', 'yes', false); ?>
                         </div>
                         </span>
@@ -271,12 +271,12 @@
         <div class="tab-pane" id="tab4">
           <div class="col-md-12 mainTitle">
             <div
-              class="float-md-left"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo'); ?></div>
+              class="float-start"><?php echo $CLICSHOPPING_Manufacturers->getDef('title_manufacturer_seo'); ?></div>
           </div>
           <div class="adminformTitle">
             <div>&nbsp;</div>
             <div class="row">
-              <div class="col-md-12 text-md-center">
+              <div class="col-md-12 text-center">
                 <span class="col-md-3"></span>
                 <span class="col-md-3"><a href="https://www.google.fr/trends"
                                           target="_blank"><?php echo $CLICSHOPPING_Manufacturers->getDef('keywords_google_trend'); ?></a></span>

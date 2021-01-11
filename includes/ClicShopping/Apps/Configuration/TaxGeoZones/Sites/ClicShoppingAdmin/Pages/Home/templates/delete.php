@@ -57,7 +57,7 @@
       </div>
       <div class="separator"></div>
       <div class="col-md-12"><?php echo '<strong>' . $zInfo->geo_zone_name . '</strong>'; ?><br/><br/></div>
-      <div class="col-md-12 text-md-center">
+      <div class="col-md-12 text-center">
         <?php echo HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_delete'), null, null, 'danger', null, 'sm') . ' </span><span>' . HTML::button($CLICSHOPPING_TaxGeoZones->getDef('button_cancel'), null, $CLICSHOPPING_TaxGeoZones->link('TaxGeoZones&zpage=' . $_GET['zpage'] . '&zID=' . $_GET['zID']), 'warning', null, 'sm'); ?>
       </div>
     </div>

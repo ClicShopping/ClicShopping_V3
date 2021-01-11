@@ -46,12 +46,13 @@
 
       if ($Qcheck->fetch() === false) {
 
-        $sql_data_array = ['sort_order' => 1,
+        $sql_data_array = [
+          'sort_order' => 10,
           'link' => 'index.php?A&Catalog\Archive&Archive',
           'image' => 'archive.gif',
           'b2b_menu' => 0,
           'access' => 0,
-          'app_code' => 'app_products_archive'
+          'app_code' => 'app_catalog_archive'
         ];
 
         $insert_sql_data = ['parent_id' => 3];
@@ -77,7 +78,6 @@
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
 
           $CLICSHOPPING_Db->save('administrator_menu_description', $sql_data_array);
-
         }
 
         Cache::clear('menu-administrator');

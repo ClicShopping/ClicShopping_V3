@@ -306,7 +306,7 @@
 
         if (!isset($_GET['Checkout'])) {
           $currency_header .= HTML::form('currencies', CLICSHOPPING::link(), 'get', null, ['session_id' => true]);
-          $currency_header .= '<label for="CurrencyDropDown" class="sr-only">Currency</label>';
+          $currency_header .= '<label for="CurrencyDropDown" class="sr-only"></label>';
           $currency_header .= HTML::selectField('currency', $currencies_array, HTML::sanitize($_SESSION['currency']), 'id="CurrencyDropDown" class="' . $class . '" onchange="this.form.submit();"') . $hidden_get_variables;
           $currency_header .= '</form>';
         } else {

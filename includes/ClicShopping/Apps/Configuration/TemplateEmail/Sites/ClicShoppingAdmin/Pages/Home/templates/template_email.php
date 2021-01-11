@@ -56,7 +56,7 @@
 
   <table
     id="table"
-    data-toggle="table"
+    data-bs-toggle="table"
     data-sort-name="sort_order"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -70,8 +70,8 @@
         <th data-field="name"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_template_email_name'); ?></th>
         <th data-field="email_type"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_template_email_type'); ?></th>
         <th data-field="description"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_template_email_description'); ?></th>
-        <th data-field="customers_group" class="text-md-center"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_template_customer_groups'); ?></th>
-        <th data-field="action" data-switchable="false" class="text-md-right"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_action'); ?>&nbsp;
+        <th data-field="customers_group" class="text-center"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_template_customer_groups'); ?></th>
+        <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_TemplateEmail->getDef('table_heading_action'); ?>&nbsp;
         </th>
       </tr>
     </thead>
@@ -97,8 +97,8 @@
           <th scope="row"><?php echo $QtemplateEmail->value('template_email_name'); ?></th>
           <td><?php echo $template_email_type; ?></td>
           <td><?php echo $QtemplateEmail->value('template_email_short_description'); ?></td>
-          <td class="text-md-center"><?php echo $template_email_customer_group; ?></td>
-          <td class="text-md-right"><?php echo HTML::link($CLICSHOPPING_TemplateEmail->link('Edit&page=' . $page . '&tID=' . $QtemplateEmail->valueInt('template_email_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TemplateEmail->getDef('image_edit'))); ?></td>
+          <td class="text-center"><?php echo $template_email_customer_group; ?></td>
+          <td class="text-end"><?php echo HTML::link($CLICSHOPPING_TemplateEmail->link('Edit&page=' . $page . '&tID=' . $QtemplateEmail->valueInt('template_email_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_TemplateEmail->getDef('image_edit'))); ?></td>
         </tr>
         <?php
       }

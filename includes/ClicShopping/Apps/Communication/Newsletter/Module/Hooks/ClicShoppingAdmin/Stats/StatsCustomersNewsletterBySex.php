@@ -81,15 +81,15 @@
       }
 
       $output = '
-  <div class="card col-md-2 col-12 cardStatsPrimary">
-    <div class="card-block">
+  <div class="col-md-2 m-1">
+    <div class="card cardStatsPrimary">
       <h4 class="card-title StatsTitle">' . $this->app->getDef('text_average_newsletter') . '</h4>
       <div class="card-text">
         <div class="col-sm-12">
-          <span class="float-md-left">
-            <i class="fas fa-transgender fa-2x" aria-hidden="true"></i>
+          <span class="float-start">
+            <i class="bi bi-person-fill"></i>
           </span>
-          <span class="float-md-right">
+          <span class="float-end">
             <div class="StatsValue">' . $this->statsNewsletterCustomersMen() . '% ' . $this->app->getDef('text_male') . '</div>
             <div class="StatsValue">' . $this->statsNewsletterCustomersWomen() . '% ' . $this->app->getDef('text_female') . '</div>
           </span>
