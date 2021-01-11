@@ -14,7 +14,7 @@ Note : This version works only with php > 8.0
 - Add vertical menu in option
 - remove htaccess (see tip and trips on the forum)
 - remove customer fax 
-
+-- add varchar to 255 for sku
 ---
 Version 3.2204
 

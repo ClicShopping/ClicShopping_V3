@@ -1,6 +1,10 @@
 
 #insert in your phpmyAdmin this request in function of your language
 
+
+ALTER TABLE `clic_products` CHANGE `products_sku` `products_sku` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+
 #English
 INSERT INTO clic_configuration VALUES(null, 'Do you want to Display the sidebar Menu in Admin', 'VERTICAL_MENU_CONFIGURATION', 'false', 'Select a choice to display a specific menu in your admininistration horizontal or sidebar.<br />', 43, 100, '2007-05-20 01:00:47', '2006-04-09 16:13:48', NULL, 'clic_cfg_set_boolean_value(array(\'true\', \'false\'))');
 
