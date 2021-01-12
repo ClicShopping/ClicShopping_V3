@@ -1163,7 +1163,7 @@
       $products_sku = $this->getProductSKU();
       $products_ean = $this->getProductEAN();
 
-      if (is_numeric($_POST['products_status'])) {
+      if (isset($_POST['products_status'])) {
         $products_status = HTML::sanitize($_POST['products_status']);
       } else {
         $products_status = 0;
