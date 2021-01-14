@@ -249,7 +249,7 @@
                   <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_sku'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_sku'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('products_sku', $pInfo->products_sku, 'id="products_sku" maxlength="15"'); ?>
+                    <?php echo HTML::inputField('products_sku', $pInfo->products_sku, 'id="products_sku"'); ?>
                   </div>
                 </div>
               </div>
