@@ -1290,7 +1290,7 @@
      * @param int $products_id
      * @return bool
      */
-    public function getProductsStatus(?int $products_id) :bool
+    public function checkProductStatus(?int $products_id) :bool
     {
       $Qstatus = $this->db->prepare('select products_status 
                                     from :table_products 
