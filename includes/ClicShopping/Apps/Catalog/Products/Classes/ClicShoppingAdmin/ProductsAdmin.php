@@ -314,7 +314,7 @@
      * @return string|bool $product['products_description'], description name
      *
      */
-    public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id): string|bool
+    public function getProductsDescriptionSummary(string|int|null $product_id, int $language_id)
     {
       if (!is_null($product_id)) {
         if (!$language_id) $language_id = $this->lang->getId();
@@ -1247,7 +1247,7 @@
     {
 
       if ($include_deactivated) {
-        $Qproducts = $this->products->db->get([
+        $Qproducts = $this->products->get([
           'products p',
           'products_to_products p2c'
         ], [
@@ -1256,7 +1256,7 @@
             'p.products_id' => [
               'rel' => 'p2c.products_id'
             ],
-            'p2c.products_id' => (int)$products_id
+            'p2c.products_id' => $products_id
           ]
         );
       } else {
@@ -1270,19 +1270,40 @@
               'rel' => 'p2c.products_id'
             ],
             'p.products_status' => '1',
-            'p2c.products_id' => (int)$products_id
+            'p2c.products_id' => $products_id
           ]
         );
       }
 
       $products_count = $Qproducts->valueInt('total');
 
-      $Qchildren = $this->products->db->get('products', 'products_id', ['parent_id' => (int)$products_id]);
+      $Qchildren = $this->db->prepare->get('products', 'products_id', ['parent_id' => $products_id]);
 
       while ($Qchildren->fetch() !== false) {
         $products_count += call_user_func(__METHOD__, $Qchildren->valueInt('products_id'), $include_deactivated);
       }
 
       return $products_count;
+    }
+
+    /**
+     * @param int $products_id
+     * @return bool
+     */
+    public function getProductsStatus(?int $products_id) :bool
+    {
+      $Qstatus = $this->db->prepare('select products_status 
+                                    from :table_products 
+                                    where products_id = :products_id
+                                   ');
+      $Qstatus->bindInt(':products_id', $products_id);
+      $Qstatus->execute();
+      
+
+      if ($Qstatus->valueInt('products_status') == 0) {
+        return false;
+      } else {
+        return true;
+      }
     }
   }
