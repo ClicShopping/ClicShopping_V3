@@ -53,51 +53,63 @@
         if ($CLICSHOPPING_ProductsCommon->getProductsGroupView() == 1 ||  $CLICSHOPPING_ProductsCommon->getProductsView() == 1) {
 
 // display the price/weight
-           if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
-             $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
-             $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol;
-           } else {
-             $product_price_kilo = '';
-           }
+          if (!empty($CLICSHOPPING_ProductsCommon->getProductsPriceByWeight())) {
+            $weight_symbol = $CLICSHOPPING_ProductsCommon->getSymbolbyProducts($CLICSHOPPING_ProductsCommon->getWeightClassIdByProducts($CLICSHOPPING_ProductsCommon->getID()));
+            $product_price_kilo = CLICSHOPPING::getDef('text_products_info_price_by_weight') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsPriceByWeight() . ' / ' . $weight_symbol;
+          } else {
+            $product_price_kilo = '';
+          }
 // Products attributes
-           if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1 ) {
-             $clic_has_product_attributes = $CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID() );
-           }
+          if ($CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getId()) > 1) {
+            $clic_has_product_attributes = $CLICSHOPPING_ProductsAttributes->getHasProductAttributes($CLICSHOPPING_ProductsCommon->getID());
+          }
 
 // Minimum quantity to take an order
-           if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
-             $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
-           } else {
-             $min_order_quantity_products_display = '';
-           }
+          if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder() > 1) {
+            $min_order_quantity_products_display = CLICSHOPPING::getDef('min_qty_order_product') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsMinimumQuantityToTakeAnOrder();
+          } else {
+            $min_order_quantity_products_display = '';
+          }
 
 // display the differents prices before button
           $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
 
 // display a message in public function the customer group applied - before submit button
-           if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
-             $submit_button_view = $CLICSHOPPING_ProductsCommon->getProductsAllowingTakeAnOrderMessage();
-           }
+          if ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
+            $submit_button_view = $CLICSHOPPING_ProductsCommon->getProductsAllowingTakeAnOrderMessage();
+          }
 
 // display the differents buttons before minorder qty
           if (STOCK_ALLOW_CHECKOUT == 'true' && PRE_ORDER_AUTORISATION == 'true' && $CLICSHOPPING_ProductsCommon->getProductsQuantity() < 1) {
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_pre_order'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
-          } elseif(STOCK_ALLOW_CHECKOUT == 'true') {
+          } elseif (STOCK_ALLOW_CHECKOUT == 'true') {
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
             $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
           } elseif ($CLICSHOPPING_ProductsCommon->getProductsMinimumQuantity() != 0 && $CLICSHOPPING_ProductsCommon->getProductsQuantity() != 0) {
             $buy_button = HTML::button(CLICSHOPPING::getDef('button_cart'), null, null, 'success', null, 'lg');
             $CLICSHOPPING_ProductsCommon->getBuyButton($buy_button);
-            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton() ;
+            $submit_button = $CLICSHOPPING_ProductsCommon->getProductsBuyButton();
           } else {
             $submit_button = '';
           }
 
 // Display an input allowing for the customer to insert a quantity
-             $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+          if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
+            if ($CLICSHOPPING_ProductsCommon->getProductsOrdersView() != 0) {
+              $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+            } else {
+              $input_quantity = '';
+            }
+          } else {
+            if ($CLICSHOPPING_ProductsCommon->getPriceGroupView() != 0) {
+              $input_quantity = CLICSHOPPING::getDef('customer_quantity') . ' ' . $CLICSHOPPING_ProductsCommon->getProductsAllowingToInsertQuantity();
+            } else {
+              $input_quantity = '';
+            }
+          }
 
 // Quantity type
           if ($CLICSHOPPING_Customer->getCustomersGroupID() == 0) {
