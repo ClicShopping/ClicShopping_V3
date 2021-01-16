@@ -45,7 +45,7 @@
 
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-sort-name="status"
     data-sort-order="asc"
     data-toolbar="#toolbar"

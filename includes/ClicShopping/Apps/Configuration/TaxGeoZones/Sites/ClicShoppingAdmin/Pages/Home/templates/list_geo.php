@@ -52,7 +52,7 @@
 
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-sort-name="country"
     data-sort-order="asc"
     data-toolbar="#toolbar"

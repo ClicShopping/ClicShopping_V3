@@ -48,7 +48,7 @@
   <div class="separator"></div>
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-toolbar="#toolbar"
     data-buttons-class="primary"
     data-show-toggle="true"

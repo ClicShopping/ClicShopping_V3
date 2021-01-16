@@ -97,7 +97,7 @@
   <div class="separator"></div>
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-sort-name="date_added"
     data-sort-order="asc"
     data-toolbar="#toolbar"

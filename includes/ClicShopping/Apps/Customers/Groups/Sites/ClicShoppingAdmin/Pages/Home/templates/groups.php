@@ -74,7 +74,7 @@
 
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-sort-order="asc"
     data-sort-name="name"
     data-toolbar="#toolbar"

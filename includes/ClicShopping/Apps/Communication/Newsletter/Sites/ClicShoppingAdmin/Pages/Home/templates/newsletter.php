@@ -66,7 +66,7 @@
 
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-id-field="selected"
     data-select-item-name="selected[]"
     data-click-to-select="true"

@@ -71,7 +71,7 @@
 
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-toolbar="#toolbar"
     data-sort-name="groupe"
     data-sort-order="asc"

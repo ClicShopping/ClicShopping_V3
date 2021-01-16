@@ -45,7 +45,7 @@
   <div class="separator"></div>
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"
@@ -145,7 +145,7 @@
 
   <table
     id="table"
-    data-bs-toggle="table"
+    data-toggle="table"
     data-sort-name="number"
     data-sort-order="asc"
     data-toolbar="#toolbar"
