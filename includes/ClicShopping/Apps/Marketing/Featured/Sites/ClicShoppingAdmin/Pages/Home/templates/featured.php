@@ -58,7 +58,7 @@
     echo HTML::form('grouped', $CLICSHOPPING_Featured->link('Featured'), 'post', '');
 
     if (isset($_POST['customers_group_id'])) {
-      $customers_group_id = $_POST['customers_group_id'];
+      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
     } else {
       $customers_group_id = null;
     }

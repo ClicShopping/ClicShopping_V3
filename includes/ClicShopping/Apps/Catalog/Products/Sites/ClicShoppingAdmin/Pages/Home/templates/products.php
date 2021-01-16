@@ -44,6 +44,14 @@
 
   $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
+  $current_category_id = 0;
+
+  if (isset($_POST['cPath'])) {
+    $current_category_id = HTML::sanitize($_POST['cPath']);
+  } elseif (isset($_GET['cPath'])) {
+    $current_category_id = HTML::sanitize($_GET['cPath']);
+  }
+
   if (isset($_GET['error']) && $_GET['error'] == 'fileNotSupported') {
 ?>
     <div class="alert alert-warning"
@@ -82,11 +90,6 @@
              <div>
                <div>
 <?php
-  $current_category_id = 0;
-
-  if (isset($_POST['cPath'])) $current_category_id = HTML::sanitize($_POST['cPath']);
-  if (isset($_GET['cPath'])) $current_category_id = HTML::sanitize($_GET['cPath']);
-
   echo HTML::form('goto', $CLICSHOPPING_Products->link('Products'), 'post', '', ['session_id' => true]);
   echo HTML::selectField('cPath', $CLICSHOPPING_CategoriesAdmin->getCategoryTree(), $current_category_id, 'onchange="this.form.submit();"');
 ?>
@@ -175,10 +178,10 @@
           if (isset($_POST['search'])) {
             $search = HTML::sanitize($_POST['search']);
           } elseif (isset($_GET['search'])) {
-             $search = HTML::sanitize($_GET['search']);
+            $search = HTML::sanitize($_GET['search']);
           }
 
-          $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($search);
+          $Qproducts = $CLICSHOPPING_ProductsAdmin->getSearch($search, $current_category_id);
 
           $listingTotalRow = $Qproducts->getPageSetTotalRows();
 
@@ -192,9 +195,9 @@
                 $cPath = $Qproducts->valueInt('categories_id');
               } else {
                 if (isset($_POST['cPath'])) {
-                  $cPath = HTML::sanitize($_POST['cPath']);
+                  $cPath = $current_category_id;
                 } elseif (isset($_GET['cPath'])) {
-                  $cPath = HTML::sanitize($_GET['cPath']);
+                  $cPath = $current_category_id;
                 } else {
                   $cPath = '';
                 }
@@ -267,4 +270,19 @@
     </table>
    </form>
   <div><?php echo $CLICSHOPPING_Products->getDef('text_products') . '&nbsp;' . $products_count; ?></div>
+
+  <?php
+  if ($listingTotalRow > 0 && !isset($_POST['search']))  {
+    ?>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
+        <div
+          class="float-end text-end"> <?php echo $Qproducts->getPageSetLinks('Catalog\Products&Products&cPath=' . $current_category_id); ?></div>
+      </div>
+    </div>
+    <?php
+  } // end $listingTotalRow
+  ?>
 </div>

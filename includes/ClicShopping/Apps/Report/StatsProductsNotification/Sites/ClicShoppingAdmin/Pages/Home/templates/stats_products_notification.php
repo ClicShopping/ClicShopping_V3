@@ -211,13 +211,13 @@
               <td><?php echo $rows; ?>.</td>
               <td><?php echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $products['products_id'] . '&page=' . $page), $Qproducts->value('products_name')); ?></td>
               <td
-                class="text-center"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), $Qproducts->value('products_model')); ?></td>
+                class="text-center"><?php echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), $Qproducts->value('products_model')); ?></td>
               <td class="text-center"><?php echo $Qproducts->valueInt('count_notifications'); ?>&nbsp;</td>
               <td class=text-end">
                 <?php
                   echo HTML::link(CLICSHOPPING::link('StatsProductsNotification&show_customers&pID=' . $Qproducts->valueInt('products_id') . '&page=' . $page), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/client_b2b.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit_customer')));
                   echo '&nbsp;';
-                  echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Products&pID=' . $Qproducts->valueInt('products_id') . '&action=new_product'), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
+                  echo HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $CLICSHOPPING_StatsProductsNotification->getDef('icon_edit')));
                 ?>
             </tr>
             <?php

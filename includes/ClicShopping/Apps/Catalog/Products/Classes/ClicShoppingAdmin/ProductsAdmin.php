@@ -841,7 +841,8 @@
         $Qdescription->execute();
 
         while ($Qdescription->fetch()) {
-          $sql_array = ['products_id' => (int)$dup_products_id,
+          $sql_array = [
+            'products_id' => (int)$dup_products_id,
             'language_id' => (int)$Qdescription->valueInt('language_id'),
             'products_name' => $Qdescription->value('products_name'),
             'products_description' => $Qdescription->value('products_description'),
@@ -958,11 +959,11 @@
             if (($_POST['price' . $QcustomersGroup->valueInt('customers_group_id')] <> $Qattributes->valueDecimal('customers_group_price')) && ($Qattributes->valueInt('customers_group_id') == $QcustomersGroup->valueInt('customers_group_id'))) {
 
               $Qupdate = $this->db->prepare('update :table_products_groups
-                                                set customers_group_price = :customers_group_price,
-                                                    products_price = :products_price
-                                                where customers_group_id = :customers_group_id
-                                                and products_id = :products_id
-                                              ');
+                                            set customers_group_price = :customers_group_price,
+                                                products_price = :products_price
+                                            where customers_group_id = :customers_group_id
+                                            and products_id = :products_id
+                                          ');
               $Qupdate->bindInt(':customers_group_price', $_POST['price' . $QcustomersGroup->valueInt('customers_group_id')]);
               $Qupdate->bindInt(':products_price', $_POST['products_price']);
               $Qupdate->bindInt(':customers_group_id', (int)$Qattributes->valueInt('customers_group_id'));
@@ -1003,7 +1004,7 @@
      *
      */
 
-    public function getSearch($keywords = null)
+    public function getSearch($keywords = null, $current_category_id = 0)
     {
       if (isset($keywords) && !empty($keywords)) {
         $keywords = HTML::sanitize($keywords);
@@ -1037,25 +1038,14 @@
                                               or p.products_ean like :search
                                              )
                                          order by pd.products_name
-                                         limit :page_set_offset, :page_set_max_results
                                       ');
 
         $Qproducts->bindInt(':language_id', $this->lang->getId());
         $Qproducts->bindValue(':search', '%' . $keywords . '%');
-        $Qproducts->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
+
         $Qproducts->execute();
       } else {
-        $current_category_id = 0;
-
-        if (isset($_POST['cPath'])) {
-          $current_category_id = HTML::sanitize($_POST['cPath']);
-        } else {
-          if (isset($_GET['cPath'])) {
-            $current_category_id = HTML::sanitize($_GET['cPath']);
-          }
-        }
-
-        $Qproducts = $this->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
+        $Qproducts = $this->db->prepare('select SQL_CALC_FOUND_ROWS p.products_id,
                                                                      pd.products_name,
                                                                      p.products_model,
                                                                      p.products_ean,

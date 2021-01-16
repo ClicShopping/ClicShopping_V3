@@ -57,12 +57,12 @@
   if (MODE_B2B_B2C == 'true') {
 
     if (isset($_POST['customers_group_id'])) {
-      $customers_group_id = $_POST['customers_group_id'];
+      $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
     } else {
       $customers_group_id = null;
     }
 
-    echo HTML::form('grouped', $CLICSHOPPING_Favorites->link('Favorites'), 'post', '');
+    echo HTML::form('grouped', $CLICSHOPPING_Favorites->link('Favorites'));
     echo HTML::selectMenu('customers_group_id', GroupsB2BAdmin::getAllGroups(), $customers_group_id, 'onchange="this.form.submit();"');
     echo '</form>';
   }
@@ -138,8 +138,6 @@
     <tbody>
 <?php
   if (isset($_POST['customers_group_id'])) {
-    $customers_group_id = (int)$_POST['customers_group_id'];
-
     $Qfavorites = $CLICSHOPPING_Favorites->db->prepare('select  SQL_CALC_FOUND_ROWS p.products_id,
                                                                                     p.products_model,
                                                                                     p.products_image,

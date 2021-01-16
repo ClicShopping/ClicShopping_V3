@@ -205,8 +205,6 @@
         $Qorders->bindValue(':class1', 'TO'); //total order
 
       } elseif (isset($_POST['customers_group_id'])) {
-        $customers_group_id = (int)$_POST['customers_group_id'];
-
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                                 o.customers_id,
                                                                                 o.customers_name,
