@@ -31,39 +31,50 @@
 
       if (isset($_GET['reviews_id'])) {
         $review = $CLICSHOPPING_Reviews->getDataReviews($_GET['reviews_id']);
+        $date_added = '';
+        $customers_name  = '';
+        $reviews_rating = '';
+        $reviews_text = '';
+        $products_name = '';
+        $product_price = '';
+        $button_small_view_details = '';
+        $products_image = '';
+        $product_not_sell = '';
 
-        $date_added = $review['date_added'];
-        $customers_name = HTML::outputProtected(substr($review['customers_name'], 0, -4)) . ' ...';
-        $reviews_rating = $review['reviews_rating'];
-        $reviews_text = $review['reviews_text'];
-        $products_name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '" itemprop="url" class="productTitle"', '<span itemprop="name">' . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()) . '</span>');
+        if ($review !== false) {
+          $date_added = $review['date_added'];
+          $customers_name = HTML::outputProtected(substr($review['customers_name'], 0, -4)) . ' ...';
+          $reviews_rating = $review['reviews_rating'];
+          $reviews_text = $review['reviews_text'];
+          $products_name = HTML::link(CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()) . '" itemprop="url" class="productTitle"', '<span itemprop="name">' . HTML::outputProtected($CLICSHOPPING_ProductsCommon->getProductsName()) . '</span>');
 
-        $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
-        $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info', null, 'sm');
+          $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice();
+          $button_small_view_details = HTML::button(CLICSHOPPING::getDef('button_details'), '', CLICSHOPPING::link(null, 'Products&Description&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info', null, 'sm');
 
-        if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
-          $products_image = '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"') . '</h1>';
+          if (!is_null($CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()))) {
+            $products_image = '<h1>' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $CLICSHOPPING_ProductsCommon->getProductsImage($CLICSHOPPING_ProductsCommon->getID()), $CLICSHOPPING_ProductsCommon->getProductsName($CLICSHOPPING_ProductsCommon->getID()), (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"') . '</h1>';
+          }
+
+          if ($CLICSHOPPING_ProductsCommon->getProductsArchive() === 1 && is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
+            $product_price = '';
+            $product_not_sell = CLICSHOPPING::getDef('products_not_sell');
+          }
+
+    // templates
+          $this->page->setFile('reviews_info.php');
+    //Content
+          $this->page->data['content'] = $CLICSHOPPING_Template->getTemplateFiles('product_reviews_info');
+
+    //language
+          $CLICSHOPPING_Language->loadDefinitions('product_reviews_info');
+
+          $all_get = CLICSHOPPING::getAllGET([
+            'Products',
+            'Reviews'
+          ]);
+
+          $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, $all_get));
         }
-
-        if ($CLICSHOPPING_ProductsCommon->getProductsArchive() === 1 && is_numeric($CLICSHOPPING_ProductsCommon->getId())) {
-          $product_price = '';
-          $product_not_sell = CLICSHOPPING::getDef('products_not_sell');
-        }
-
-  // templates
-        $this->page->setFile('reviews_info.php');
-  //Content
-        $this->page->data['content'] = $CLICSHOPPING_Template->getTemplateFiles('product_reviews_info');
-
-  //language
-        $CLICSHOPPING_Language->loadDefinitions('product_reviews_info');
-
-        $all_get = CLICSHOPPING::getAllGET([
-          'Products',
-          'Reviews'
-        ]);
-
-        $CLICSHOPPING_Breadcrumb->add(CLICSHOPPING::getDef('navbar_title'), CLICSHOPPING::link(null, $all_get));
       }
     }
   }
