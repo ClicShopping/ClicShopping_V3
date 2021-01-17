@@ -1288,12 +1288,15 @@
                                    ');
       $Qstatus->bindInt(':products_id', $products_id);
       $Qstatus->execute();
-      
 
-      if ($Qstatus->valueInt('products_status') == 0) {
-        return false;
+      if ($Qstatus->fetch()) {
+        if ($Qstatus->valueInt('products_status') == 0) {
+          return false;
+        } else {
+          return true;
+        }
       } else {
-        return true;
+        return false;
       }
     }
   }
