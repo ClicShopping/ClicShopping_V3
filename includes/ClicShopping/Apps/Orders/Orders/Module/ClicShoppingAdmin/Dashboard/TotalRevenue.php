@@ -46,6 +46,9 @@
     public function getOutput()
     {
       $month = [];
+      $days = [];
+      $plot_days = [];
+      $plot_revenue = [];
 
       for ($i = 0; $i <= 12; $i++) {
         $month[date('M')] = 0;

@@ -58,7 +58,7 @@
         <span class="help-block"><?php echo TEXT_USERNAME_HELP; ?></span>
       </div>
 
-      <div class="form-group">
+      <div>
         <label for="password"><?php echo TEXT_PASSWORD; ?></label>
         <?php echo HTML::passwordField('DB_SERVER_PASSWORD', null, 'id="password"'); ?>
         <span class="help-block"><?php echo TEXT_PASSWORD_HELP; ?></span>
@@ -70,7 +70,7 @@
         <span class="help-block"><?php echo TEXT_DATABASE_HELP; ?></span>
       </div>
 
-      <div class="form-group">
+      <div>
         <label for="dbTablePrefix">Table Prefix</label>
         <?php echo HTML::inputField('DB_TABLE_PREFIX', 'clic_', 'id="dbTablePrefix"'); ?>
         <span class="help-block"><?php echo 'Prefix all table names in the database with this value'; ?></span>
@@ -139,7 +139,7 @@ $(function() {
 
     formSubmited = true;
 
-    $('#installModal .modal-body').html('<p><i class="fas fa-spinner fa-spin"></i> Testing database connection..</p>');
+    $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> Testing database connection..</p>');
 
     $('#installModal').modal({
       keyboard: false,
@@ -165,12 +165,12 @@ $(function() {
       if (('status' in response) && ('message' in response)) {
         if ((response.status == '1') && (response.message == 'success')) {
           if (doImport === true) {
-            $('#installModal .modal-body').html('<p><i class="fas fa-spinner fa-spin"></i> The database structure is now being imported. Please be patient during this procedure.</p>');
+            $('#installModal .modal-body').html('<p><i class="bi bi-arrow-repeat"></i> The database structure is now being imported. Please be patient during this procedure.</p>');
 
             $.post('rpc.php?action=dbImport', dbParams, function (response2) {
               if (('status' in response2) && ('message' in response2)) {
                 if ((response2.status == '1') && (response2.message == 'success')) {
-                  $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="fas fa-thumbs-up"></i> Database imported successfully. Proceeding to next step..</div>');
+                  $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="bi bi-hand-thumbs-up"></i> Database imported successfully. Proceeding to next step..</div>');
 
                   formSuccess = true;
 
@@ -180,26 +180,26 @@ $(function() {
                 } else {
                   $('#installModal').modal('hide');
 
-                  $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> There was a problem importing the database. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response2.message));
+                  $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response2.message));
 
                   formSubmited = false;
                 }
               } else {
                 $('#installModal').modal('hide');
 
-                $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
+                $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
 
                 formSubmited = false;
               }
             }, 'json').fail(function() {
               $('#installModal').modal('hide');
 
-              $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
+              $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem importing the database. Please verify the connection parameters and try again.</div>');
 
               formSubmited = false;
             });
           } else {
-            $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="fas fa-thumbs-up"></i> Database connection made successfully. Proceeding to next step..</div>');
+            $('#installModal .modal-body').html('<div class="alert alert-success" role="alert"><i class="bi bi-hand-thumbs-up"></i> Database connection made successfully. Proceeding to next step..</div>');
 
             formSuccess = true;
 
@@ -215,9 +215,9 @@ $(function() {
 
             var result_error = 'The database name of \'' + dbParams.name.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') + '\' does not exist. If you submit the form again with the same database name, an attempt will be made to create it.';
 
-            $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> <strong>%s</strong></div>'.replace('%s', result_error));
+            $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> <strong>%s</strong></div>'.replace('%s', result_error));
           } else {
-            $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> There was a problem connecting to the database server. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response.message));
+            $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. The following error had occured:<br><br><strong>%s</strong><br><br>Please verify the connection parameters and try again.</div>'.replace('%s', response.message));
           }
 
           formSubmited = false;
@@ -225,14 +225,14 @@ $(function() {
       } else {
         $('#installModal').modal('hide');
 
-        $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
+        $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
 
         formSubmited = false;
       }
     }, 'json').fail(function() {
       $('#installModal').modal('hide');
 
-      $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
+      $('#mBox').html('<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-circle-fill text-danger"></i> There was a problem connecting to the database server. Please verify the connection parameters and try again.</div>');
 
       formSubmited = false;
     });

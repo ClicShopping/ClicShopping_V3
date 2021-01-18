@@ -44,8 +44,10 @@
 
     public function getOutput() :string
     {
-      $month = [];
-  
+      $days = [];
+      $plot_days = [];
+      $plot_revenue = [];
+
       $Qorder = $this->app->db->prepare("select date_format(o.date_purchased, '%M') as dateday,
                                                 sum(ot.value) as total
                                         from :table_orders o,

@@ -43,8 +43,7 @@
 
 <div class="separator"></div>
 <?php echo HTML::form('form', 'verify.php'); ?>
-  <div class="col-md-12 text-md-right">
+  <div class="col-md-12 text-end">
     <?php echo HTML::button(TEXT_ACCEPT_LICENCE, null, null, 'success'); ?>
   </div>
 </form>
-

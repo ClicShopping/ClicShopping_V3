@@ -154,7 +154,7 @@ if (!empty($configfile_array) || !empty($warning_array) || !empty($directory_arr
 ?>
 
     <div id="detectHttps" class="alert alert-info" role="alert">
-      <p><i class="fas fa-spinner fa-spin fa-fw"></i> Please wait, detecting web server environment..</p>
+      <p><i class="bi bi-arrow-repeat fa-fw"></i> Please wait, detecting web server environment..</p>
     </div>
 
     <div id="jsOn" style="display: none;">
@@ -228,8 +228,8 @@ $(function() {
         <tbody>
           <tr>
             <td><?php echo PHP_VERSION; ?></td>
-            <td class="text-md-right" width="25">
-              <?php echo ((version_compare(phpversion(), '7.3.3', '>')) ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>'); ?></td>
+            <td class="text-end" width="25">
+              <?php echo ((version_compare(phpversion(), '7.3.3', '>')) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
           </tr>
         </tbody>
       </table>
@@ -244,8 +244,8 @@ if (function_exists('ini_get')) {
         <tbody>
           <tr>
             <td>file_uploads</td>
-            <td class="text-md-right"><?php echo (((int)ini_get('file_uploads') === 0) ? 'Off' : 'On'); ?></td>
-            <td class="text-md-right"><?php echo (((int)ini_get('file_uploads') === 1) ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>'); ?></td>
+            <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 0) ? 'Off' : 'On'); ?></td>
+            <td class="text-end"><?php echo (((int)ini_get('file_uploads') === 1) ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'); ?></td>
           </tr>
         </tbody>
       </table>
@@ -256,23 +256,23 @@ if (function_exists('ini_get')) {
         <tbody>
           <tr>
             <td>PDO MySQL / Maria Db</td>
-            <td class="text-md-right"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>'; ?></td>
+            <td class="text-end"><?php echo extension_loaded('pdo') && extension_loaded('pdo_mysql') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-danger"></i>'; ?></td>
           </tr>
           <tr>
             <td>cURL</td>
-            <td class="text-md-right"><?php echo extension_loaded('curl') ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-warning"></i>'; ?></td>
+            <td class="text-end"><?php echo extension_loaded('curl') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           <tr>
             <td>Zip</td>
-            <td class="text-md-right"><?php echo extension_loaded('zip') ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-warning"></i>'; ?></td>
+            <td class="text-end"><?php echo extension_loaded('zip') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           <tr>
             <td>GD</td>
-            <td class="text-md-right"><?php echo extension_loaded('gd') ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-warning"></i>'; ?></td>
+            <td class="text-end"><?php echo extension_loaded('gd') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
           <tr>
             <td>OpenSSL</td>
-            <td class="text-md-right"><?php echo extension_loaded('openssl') ? '<i class="fas fa-thumbs-up text-success"></i>' : '<i class="fas fa-exclamation-circle text-warning"></i>'; ?></td>
+            <td class="text-end"><?php echo extension_loaded('openssl') ? '<i class="bi bi-hand-thumbs-up text-success"></i>' : '<i class="bi bi-exclamation-circle-fill text-warning"></i>'; ?></td>
           </tr>
         </tbody>
       </table>
