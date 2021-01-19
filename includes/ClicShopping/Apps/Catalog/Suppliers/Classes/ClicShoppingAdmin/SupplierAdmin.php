@@ -64,19 +64,23 @@
      * @return string $supplier['supplier_description'],  description of the supplier
      *
      */
-    public function getSupplierUrl(int $supplier_id, int $language_id): string
+    public function getSupplierUrl(?int $supplier_id, int $language_id): string
     {
-      $Qsuppliers = $this->db->prepare('select suppliers_url
-                                         from :table_suppliers_info
-                                         where suppliers_id = :suppliers_id
-                                         and languages_id = :language_id
-                                       ');
-      $Qsuppliers->bindInt(':suppliers_id', $supplier_id);
-      $Qsuppliers->bindInt(':language_id', $language_id);
+      if (!is_null($supplier_id)) {
+        $Qsuppliers = $this->db->prepare('select suppliers_url
+                                           from :table_suppliers_info
+                                           where suppliers_id = :suppliers_id
+                                           and languages_id = :language_id
+                                         ');
+        $Qsuppliers->bindInt(':suppliers_id', $supplier_id);
+        $Qsuppliers->bindInt(':language_id', $language_id);
 
-      $Qsuppliers->execute();
+        $Qsuppliers->execute();
 
-      return $Qsuppliers->value('suppliers_url');
+        return $Qsuppliers->value('suppliers_url');
+      } else {
+        return '';
+      }
     }
   
     /**
