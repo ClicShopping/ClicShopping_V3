@@ -106,7 +106,7 @@
         <th data-checkbox="true" data-field="state"></th>
         <th data-field="selected" data-sortable="true" data-visible="false"  data-switchable="false"><?php echo $CLICSHOPPING_Customers->getDef('id'); ?></th>
         <th data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_customers_id'); ?></th>
-        <th data-field="lastname"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_lastname'); ?></th>
+        <th data-field="lastname" data-sortable="true"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_lastname'); ?></th>
         <th data-field="company"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_company'); ?></th>
         <?php
           // Permettre le changement de groupe en mode B2B
@@ -121,7 +121,7 @@
         <th data-field="email_validation" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_entry_email_validation'); ?></th>
         <th data-field="country" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_country'); ?></th>
         <th data-field="number_review" class="text-center"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_number_of_reviews'); ?></th>
-        <th data-field="account_created" class="text-end"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_account_created'); ?></th>
+        <th data-field="account_created" data-sortable="true" class="text-end"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_account_created'); ?></th>
         <th data-field="action" data-switchable="false" class="text-end"><?php echo $CLICSHOPPING_Customers->getDef('table_heading_action'); ?>&nbsp;</th>
       </tr>
     </thead>
@@ -142,42 +142,42 @@
          ";
 
         $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select  SQL_CALC_FOUND_ROWS c.customers_id,
-                                                                                c.customers_company,
-                                                                                c.customers_lastname,
-                                                                                c.customers_firstname,
-                                                                                c.customers_group_id,
-                                                                                a.entry_company,
-                                                                                c.customers_email_address,
-                                                                                a.entry_country_id,
-                                                                                c.member_level,
-                                                                                c.customers_email_validation
-                                                    from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
-                                                    where ' . $search . '
-                                                    and c.customers_default_address_id = a.address_book_id
-                                                    and c.customer_guest_account = 0
-                                                    order by c.customers_id DESC
-                                                    limit :page_set_offset, :page_set_max_results
-                                                    ');
+                                                                                        c.customers_company,
+                                                                                        c.customers_lastname,
+                                                                                        c.customers_firstname,
+                                                                                        c.customers_group_id,
+                                                                                        a.entry_company,
+                                                                                        c.customers_email_address,
+                                                                                        a.entry_country_id,
+                                                                                        c.member_level,
+                                                                                        c.customers_email_validation
+                                                            from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
+                                                            where ' . $search . '
+                                                            and c.customers_default_address_id = a.address_book_id
+                                                            and c.customer_guest_account = 0
+                                                            order by c.customers_id ASC
+                                                            limit :page_set_offset, :page_set_max_results
+                                                            ');
 
         $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qcustomers->execute();
       } else {
         $Qcustomers = $CLICSHOPPING_Customers->db->prepare('select SQL_CALC_FOUND_ROWS c.customers_id,
-                                                                              c.customers_company,
-                                                                              c.customers_lastname,
-                                                                              c.customers_firstname,
-                                                                              c.customers_group_id,
-                                                                              a.entry_company,
-                                                                              c.customers_email_address,
-                                                                              a.entry_country_id,
-                                                                              c.member_level,
-                                                                              c.customers_email_validation
-                                                    from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
-                                                    where c.customers_default_address_id = a.address_book_id
-                                                    and c.customer_guest_account = 0
-                                                    order by c.customers_id desc
-                                                    limit :page_set_offset, :page_set_max_results
-                                                    ');
+                                                                                        c.customers_company,
+                                                                                        c.customers_lastname,
+                                                                                        c.customers_firstname,
+                                                                                        c.customers_group_id,
+                                                                                        a.entry_company,
+                                                                                        c.customers_email_address,
+                                                                                        a.entry_country_id,
+                                                                                        c.member_level,
+                                                                                        c.customers_email_validation
+                                                              from :table_customers c left join :table_address_book a on c.customers_id = a.customers_id
+                                                              where c.customers_default_address_id = a.address_book_id
+                                                              and c.customer_guest_account = 0
+                                                              order by c.customers_id ASC
+                                                              limit :page_set_offset, :page_set_max_results
+                                                              ');
 
         $Qcustomers->setPageSet((int)MAX_DISPLAY_SEARCH_RESULTS_ADMIN);
         $Qcustomers->execute();
