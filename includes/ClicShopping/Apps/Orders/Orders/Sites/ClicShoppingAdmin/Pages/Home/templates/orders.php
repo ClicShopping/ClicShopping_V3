@@ -97,9 +97,13 @@
 ?>
             </span>
           </div>
-          <div class="cleafix"></div>
-          <div
-            class="col-md-2 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
+<?php
+          if (isset($_POST['customers_group_id']) || isset($_POST['orders_id']) || isset($_POST['status'])) {
+?>
+          <div class="col-md-2 text-end"><?php echo HTML::button($CLICSHOPPING_Orders->getDef('button_reset'), null, $CLICSHOPPING_Orders->link('Orders'), 'warning'); ?></div>
+<?php
+  }
+?>
         </div>
       </div>
     </div>
@@ -205,6 +209,7 @@
         $Qorders->bindValue(':class1', 'TO'); //total order
 
       } elseif (isset($_POST['customers_group_id'])) {
+        $customers_group_id = HTML::sanitize($_POST['customers_group_id']);
         $Qorders = $CLICSHOPPING_Orders->db->prepare('select SQL_CALC_FOUND_ROWS o.orders_id,
                                                                                 o.customers_id,
                                                                                 o.customers_name,

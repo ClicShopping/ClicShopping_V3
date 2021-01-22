@@ -186,7 +186,6 @@
       $listingTotalRow = $Qcustomers->getPageSetTotalRows();
 
       if ($listingTotalRow > 0) {
-
         while ($Qcustomers->fetch()) {
 // suppression du membre non approuvé
           $Qinfo = $CLICSHOPPING_Customers->db->prepare('select customers_info_date_account_created as date_account_created,
