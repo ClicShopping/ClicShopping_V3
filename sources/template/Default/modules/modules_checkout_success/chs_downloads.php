@@ -103,7 +103,7 @@
               }
 
               $download .=  '<td>' . CLICSHOPPING::getDef('table_heading_download_date') . ' ' . DateTime::toLong($download_expiry) . '</td>' . "\n" .
-                            '<td class="text-md-right">' . $Qdownloads->valueInt('download_count') . ' ' . CLICSHOPPING::getDef('table_heading_download_count')  . '</td>' . "\n" .
+                            '<td class="text-end">' . $Qdownloads->valueInt('download_count') . ' ' . CLICSHOPPING::getDef('table_heading_download_count')  . '</td>' . "\n" .
                             '</tr>' . "\n";
             } while ($Qdownloads->fetch());
           }

@@ -23,20 +23,20 @@
   padding-left: 3px;
   overflow: hidden;
   text-transform: uppercase;
-  font-weight: normal;
+
 }
 
 .card-title.boxeTitleCurrencies {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
-  font-size: 0.6875rem;
-  font-weight: normal;
+
+
 }
 
 .card-text.boxeContentsCurrencies {
   overflow: hidden;
-  font-size: 0.75rem;
+
   text-align: center;
   padding-bottom: 0.5rem;
   padding-top: 0.10rem;

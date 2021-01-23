@@ -106,7 +106,7 @@
             $data .= '<div class="boxeBannerContentsWhatsNew">' . $what_new_banner . '</div>';
             $data .= '<div class="card boxeContainerWhatsNew">';
             $data .= '<div class="card-header boxeHeadingWhatsNew"><span class="card-title boxeTitleWhatsNew">' . HTML::link(CLICSHOPPING::link(null,'Products&ProductsNew'), CLICSHOPPING::getDef('module_boxes_whats_new_box_title'))  . '</span></div>';
-            $data .= '<div class="card-block  text-md-center boxeContentArroundWhatsNew">';
+            $data .= '<div class="card-block  text-center boxeContentArroundWhatsNew">';
             $data .= '<div class="separator"></div>';
 
             while ($Qproducts->fetch()) {

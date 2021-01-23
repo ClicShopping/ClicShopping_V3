@@ -33,7 +33,7 @@
     <div class="separator"></div>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountRegistrationPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_company'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -157,7 +157,7 @@
 ?>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountProRegistrationCategoryAddressProPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_address_pro'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -338,7 +338,7 @@
 ?>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountProRegistrationContactPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_contact'); ?></h3></span>
       </div>
       <div class="card-block">
@@ -349,7 +349,7 @@
               <div class="form-group row">
                 <label for="InputTelephone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_telephone_number'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::inputField('telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right"  required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"'); ?>
+                  <?php echo HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right"  required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_telephone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_telephone_number') . '"'); ?>
                 </div>
               </div>
             </div>
@@ -363,7 +363,7 @@
               <div class="form-group row">
                 <label for="InputCellularPhone" class="col-sm-6 col-md-4 col-form-label"><?php echo CLICSHOPPING::getDef('entry_cellular_phone_number'); ?></label>
                 <div class="col-md-8">
-                  <?php echo HTML::inputField('cellular_phone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" id="InputCellularPhone" aria-describedby="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"'); ?>
+                  <?php echo HTML::inputField('customers_cellular_phone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" id="InputCellularPhone" aria-describedby="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '" placeholder="' . CLICSHOPPING::getDef('entry_cellular_phone_number') . '"'); ?>
                 </div>
               </div>
             </div>
@@ -382,7 +382,7 @@
 ?>
       <div class="card">
         <div class="card-header">
-          <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+          <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
           <span class="modulesCreateAccountProRegistrationCategoryPersonnalPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_personal_pro'); ?></h3></span>
         </div>
         <div class="card-block">
@@ -511,7 +511,7 @@
 ?>
     <div class="card">
       <div class="card-header">
-        <span class="alert-warning float-md-right" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
+        <span class="alert-warning float-end" role="alert"><?php echo CLICSHOPPING::getDef('form_required'); ?></span>
         <span class="modulesCreateAccountProRegistrationPasswordPageHeader"><h3><?php echo CLICSHOPPING::getDef('category_password'); ?></h3></span>
       </div>
       <div class="card-block">

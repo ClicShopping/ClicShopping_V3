@@ -204,7 +204,7 @@
                   $products_options_content_display .= HTML::radioField('id[' . $QproductsOptionsName->valueInt('products_options_id') . ']', $value['id'], $selected_attribute, 'required aria-required="true" id="' . $value['text'] .'" class="custom-control-input" name="' . $value['text'] .'"');
                   $products_options_content_display .= '<label class="custom-control-label" for="' . $value['text'] .'">' . $products_attributes_image . $value['text']  . '</label>';
                   $products_options_content_display .= '</div>';
-                  $products_options_content_display .= '<label for="' . $value['text'] .'" class="sr-only">' . $value['text'] . '</label>';
+                  $products_options_content_display .= '<label for="' . $value['text'] .'" class="sr-only"></label>';
                   $products_options_content_display .= '</div>';
                 }
               }
@@ -271,11 +271,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_OPTIONS_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Affiche l\'option du produit à gauche ou à droite<br><br><i>(Valeur Left = Gauche <br>Valeur Right = Droite <br>Valeur None = Aucun)</i>',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

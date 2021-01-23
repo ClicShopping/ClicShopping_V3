@@ -22,7 +22,7 @@ use ClicShopping\OM\HTML;
 <?php
   foreach ( $products_options_name_array as $key => $value )  {
 ?>
-        <div class="form-group">
+        <div>
           <label class="col-md-3"><?php echo $key . ':'; ?></label>
           <div class="col-md-9">
             <?php echo HTML::selectMenu('id[' . $value . ']', $products_options_array[$value], $selected_attribute[$value]); ?>

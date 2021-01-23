@@ -9,16 +9,19 @@
  */
 
 .ModuleFrontPageboxContainerNewProducts {
-  padding-left: 0rem;
   padding-top: 0.625rem;
-  padding-right: 0rem;
+  padding-right: 0.5rem;
 }
 
+.ModuleFrontPageColNewProducts {
+  padding-right: 0.5rem;
+  min-width: 18.75rem;
+}
 
 .ModuleFrontPageProductsNewHeading h2 {
-  font-size:1.25rem;
+  padding-left: 0.5rem;
 }
 
-
-
-
+.ModulesFrontPageBoostrapColumn5Button {
+  padding-bottom: 0.5rem;
+}

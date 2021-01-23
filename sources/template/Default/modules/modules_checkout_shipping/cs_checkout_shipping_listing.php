@@ -61,8 +61,8 @@
 
             if (count($quotes) > 1 && count($quotes[0]) > 1 && is_array($quotes)) {
               $data .= '<div>';
-              $data .= '<span class="col-md-8 text-md-left moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
-              $data .= '<span class="col-md-4 text-md-right float-md-right moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
+              $data .= '<span class="col-md-8 text-start moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
+              $data .= '<span class="col-md-4 text-end float-end moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
               $data .= '</div>';
               $data .= '<div class="separator"></div>';
             } elseif ($_SESSION['free_shipping'] === false) {
@@ -117,7 +117,7 @@
                         $checked = true;
                       }
 
-                      $data .= '<td class="text-md-right">';
+                      $data .= '<td class="text-end">';
 
                       if (isset($quotes['error'])) {
                         $data .= '&nbsp;';
@@ -129,7 +129,7 @@
                       $data .= '</td>';
                       $data .= '</tr>';
                     } else {
-                      $data .= '<td class="text-md-right">';
+                      $data .= '<td class="text-end">';
                       $data .=  $CLICSHOPPING_Currencies->format(Tax::addTax($quote['methods'][$j]['cost'], $quote['tax'] ?? 0)) .  HTML::hiddenField('shipping', $quote['id'] . '_' . $quote['methods'][$j]['id']);
                       $data .= '</td>';
                     }

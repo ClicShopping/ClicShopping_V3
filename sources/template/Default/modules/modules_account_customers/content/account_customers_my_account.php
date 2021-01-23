@@ -19,8 +19,8 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-header">
       <div class="row">
         <div class="col moduleAccountCustomersMyAccountTitle"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_my_account_customer'); ?></h3></div>
-        <div class="col text-md-right">
-          <i class="fas fa-user fa-4x moduleAccountCustomersAccountIcon"></i>
+        <div class="col text-end">
+          <i class="bi bi-person-fill moduleAccountCustomersAccountIcon"></i>
         </div>
       </div>
     </div>
@@ -31,8 +31,8 @@ use ClicShopping\OM\CLICSHOPPING;
         <div class="separator"></div>
         <div class="moduleAccountCustomersMyAccountListAccount">
           <div class="col-md-12" id="accountCustomersMyAccountAddress">
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Edit'), CLICSHOPPING::getDef('module_account_customers_my_account_information')); ?></div>
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&AddressBook'), CLICSHOPPING::getDef('module_account_customers_my_account_address_book')); ?></div>
+            <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Edit'), CLICSHOPPING::getDef('module_account_customers_my_account_information')); ?></div>
+            <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&AddressBook'), CLICSHOPPING::getDef('module_account_customers_my_account_address_book')); ?></div>
             <div class="separator"></div>
             <div class="hr"></div>
             <div class="separator"></div>
@@ -40,7 +40,7 @@ use ClicShopping\OM\CLICSHOPPING;
   if (defined('MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS')) {
     if (MODULE_ACCOUNT_CUSTOMERS_MY_FEEDBACK_TITLE_STATUS == 'True') {
 ?>
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&MyFeedBack'), CLICSHOPPING::getDef('module_account_customers_my_account_my_feed_back')); ?></div>
+            <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&MyFeedBack'), CLICSHOPPING::getDef('module_account_customers_my_account_my_feed_back')); ?></div>
             <div class="hr"></div>
 <?php
     }
@@ -51,11 +51,11 @@ use ClicShopping\OM\CLICSHOPPING;
   if (defined('MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS') && MODULE_ACCOUNT_CUSTOMERS_PASSWORD_TITLE_STATUS == 'True') {
 ?>
             <div class="separator"></div>
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Password'), CLICSHOPPING::getDef('module_account_customers_my_account_password')); ?></div>
+            <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Password'), CLICSHOPPING::getDef('module_account_customers_my_account_password')); ?></div>
 <?php
   }
 ?>
-            <div><i class="fas fa-arrow-right fa-1x moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Gdpr'), CLICSHOPPING::getDef('module_account_customers_my_account_gdpr')); ?></div>
+            <div><i class="bi bi-arrow-right-square-fill moduleAccountCustomersAccountIconArrow"></i><?php echo HTML::link(CLICSHOPPING::link(null, 'Account&Gdpr'), CLICSHOPPING::getDef('module_account_customers_my_account_gdpr')); ?></div>
             <div class="separator"></div>
           </div>
         </div>

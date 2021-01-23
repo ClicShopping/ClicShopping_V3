@@ -8,18 +8,23 @@
  *
  */
 
+.ModulesProductsSpecialsBoostrapColumn5 {
+  min-width: 18.75rem;
+  padding-right: 0.5rem;
+}
+
 .ModulesProductsSpecialsBoostrapColumn5Image {
   text-align: center;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5Title h3 {
-  font-size: 0.6875rem;
   text-align:center;
   vertical-align:text-top;
   padding-top: 0.3125rem;
   height: 0.625rem;
   padding-left: 0.3125rem;
   padding-right:5px;
+  font-size: 0.875rem!important;
 }
 
 .ModulesProductsSpecialsBoostrapColumn5Title A {
@@ -27,12 +32,12 @@
 }
 
 .ModulesProductsSpecialsBoostrapColumn5ShortDescription h3 {
-  font-size:9px;
+
   text-align:center;
   padding-top: 0.3125rem;
   color: #7F736F;
   text-transform: lowercase;
-  font-weight: normal;
+
   padding-left: 0.3125rem;
   padding-right:5px;
 }
@@ -41,13 +46,13 @@
   color:#000000;
   text-align:center;
   vertical-align:text-top;
-  font-size: 0.75rem!important;
+
   padding-top: 0.625rem;
 }
 
 
 div.ModulesProductsSpecialsBoostrapColumn5StockImage {
-  font-size:9px;
+
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
@@ -57,7 +62,7 @@ div.ModulesProductsSpecialsBoostrapColumn5StockImage {
 
 
 div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
-  font-size:9px;
+
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
@@ -65,7 +70,7 @@ div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
 }
 
 .ModulesProductsSpecialsBoostrapColumn5QuantityMinOrder {
-  font-size:9px;
+
   text-align:center;
   color: #7F736F;
   padding-top: 0.625rem;
@@ -74,7 +79,7 @@ div.ModulesProductsSpecialsBoostrapColumn5ImageNewArrival  {
 
 
 .ModulesProductsSpecialsBoostrapColumn5ProductsQuantityUnit  {
-  font-size:9px;
+
   text-align:center;
   color: #7F736F;
   padding-top: 0.625rem;

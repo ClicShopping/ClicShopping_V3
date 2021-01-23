@@ -150,11 +150,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where do want to display the gallery position ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_POSITION',
-          'configuration_value' => 'float-md-right',
+          'configuration_value' => 'float-end',
           'configuration_description' => 'select the good value',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );
@@ -187,7 +187,7 @@
           'configuration_title' => 'Do you want to display a message like new / special/ featured, favorite ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_TICKER',
           'configuration_value' => 'False',
-          'configuration_description' => ' display a message like new / special/ featured, favorite on the product<br /><br />The delay can be set in Configuration / Shop / minimal, maximal values',
+          'configuration_description' => 'Display a message like new / special/ featured, favorite on the product<br /><br />The delay can be set in Configuration / Shop / minimal, maximal values',
           'configuration_group_id' => '6',
           'sort_order' => '9',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -211,7 +211,7 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Sort Order',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_GALLERY_SORT_ORDER',
-          'configuration_value' => '35',
+          'configuration_value' => '5',
           'configuration_description' => 'Sort Order(Lowest is displayed in first)',
           'configuration_group_id' => '6',
           'sort_order' => '3',

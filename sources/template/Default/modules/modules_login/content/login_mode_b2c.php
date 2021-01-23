@@ -21,11 +21,11 @@ use ClicShopping\OM\HTML;
       <div class="separator"></div>
       <div class="card-text">
         <div><?php echo CLICSHOPPING::getDef('text_intro_b2c'); ?></div>
-        <div class="text-md-right">
+        <div class="text-end">
           <div class="control-group">
             <div class="separator"></div>
-            <div class="controls">
-              <div class="buttonSet text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&Create'), 'primary'); ?></div>
+            <div>
+              <div class="buttonSet text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::link(null, 'Account&Create'), 'primary'); ?></div>
             </div>
           </div>
           <div class="separator"></div>

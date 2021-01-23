@@ -100,7 +100,7 @@
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsTitle">';
           $products_reviews_content .= '<span class="page-title moduleProductsInfoReviewsTitle"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
           $products_reviews_content .= '</div>';
-          $products_reviews_content .= '<div class="float-md-right">';
+          $products_reviews_content .= '<div class="float-end">';
           $products_reviews_content .= '';
           $products_reviews_content .= '</div>';
           $products_reviews_content .= '<div class="clearfix"></div>';
@@ -118,7 +118,7 @@
               $products_reviews_content .= '<span class="moduleProductsInfoTextReviewByName" itemprop="author">';
               $products_reviews_content .= '<a href="' . CLICSHOPPING::link(null, 'Products&ReviewsInfo&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')) . '">' . CLICSHOPPING::getDef('text_review_by', ['customer_name' => $customer_name]) . '</a>';
               $products_reviews_content .= '</span>';
-              $products_reviews_content .= '<span class="float-md-right" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">';
+              $products_reviews_content .= '<span class="float-end" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">';
               $products_reviews_content .= '<meta itemprop="worstRating" content = "1">';
               $products_reviews_content .= '<span class="col-md-12 productsInfoReviewsRating" itemprop="ratingValue">' . HTML::stars($Qreviews->valueInt('reviews_rating')) . '</span>';
               $products_reviews_content .= '</span>';
@@ -145,7 +145,7 @@
              $products_reviews_content .= '<div class="clearfix"></div>';
              $products_reviews_content .= '<div class="separator"></div>';
              $products_reviews_content .= '<span class="col-md-6">' . $details_button . '</span>';
-             $products_reviews_content .= '<span class="col-md-6 text-md-right">' . $write_button . '</span>';
+             $products_reviews_content .= '<span class="col-md-6 text-end">' . $write_button . '</span>';
            }
          }
 
@@ -154,7 +154,7 @@
           $products_reviews_content .= '<div class="separator"></div>';
           $products_reviews_content .= '<div class="col-md-12">';
           $products_reviews_content .= '<div class="moduleProductsInfoNoReview">' . CLICSHOPPING::getDef('text_info_no_reviews') . '</div>';
-          $products_reviews_content .= '<div class="text-md-right">' . $write_button . '</div>';
+          $products_reviews_content .= '<div class="text-end">' . $write_button . '</div>';
           $products_reviews_content .= '<div>';
         }
 

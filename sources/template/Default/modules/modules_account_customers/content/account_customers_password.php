@@ -64,10 +64,10 @@
 
    <div class="col-md-12">
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
           <span class="col-md-2"><?php echo $back_button;  ?></span>
-          <span class="col-md-2 float-md-right text-md-right"><?php echo $process_button;  ?></span>
+          <span class="col-md-2 float-end text-end"><?php echo $process_button;  ?></span>
         </div>
       </div>
     </div>

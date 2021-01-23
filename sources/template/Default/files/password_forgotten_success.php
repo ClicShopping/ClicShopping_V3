@@ -27,10 +27,10 @@
       <?php echo CLICSHOPPING::getDef('text_password_reset_initiated'); ?>
       <div class="separator"></div>
       <div class="control-group">
-        <div class="controls">
+        <div>
           <div class="buttonSet">
             <div class="buttonSet">
-              <span class="text-md-right"><label for="buttonContinue"><?php echo  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::redirect(null, 'Account&LogIn'), 'success'); ?></label></span>
+              <span class="text-end"><label for="buttonContinue"><?php echo  HTML::button(CLICSHOPPING::getDef('button_continue'), null, CLICSHOPPING::redirect(null, 'Account&LogIn'), 'success'); ?></label></span>
             </div>
           </div>
         </div>

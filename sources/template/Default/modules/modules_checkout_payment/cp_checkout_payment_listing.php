@@ -58,8 +58,8 @@
 
         if (count($selection) > 1) {
           $data .= '<div>';
-          $data .= '<span class="col-md-8 text-md-left moduleCheckoutPaymentListingMethod">' . CLICSHOPPING::getDef('module_checkout_payment_listing_text_select_payment_method') . '</span>';
-          $data .= '<span class="col-md-4 text-md-right float-md-right moduleCheckoutPaymentListingSelect">' .CLICSHOPPING::getDef('module_checkout_payment_listing_title_please_select') . '</span>';
+          $data .= '<span class="col-md-8 text-start moduleCheckoutPaymentListingMethod">' . CLICSHOPPING::getDef('module_checkout_payment_listing_text_select_payment_method') . '</span>';
+          $data .= '<span class="col-md-4 text-end float-end moduleCheckoutPaymentListingSelect">' .CLICSHOPPING::getDef('module_checkout_payment_listing_title_please_select') . '</span>';
           $data .= '</div>';
 
         } elseif ($_SESSION['free_shipping'] === false) {

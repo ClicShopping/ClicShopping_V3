@@ -13,12 +13,12 @@
 ?>
 <section class="boxe_currencies" id="boxe_currencies">
   <div class="separator"></div>
-  <div class="boxeBannerContentsCurrencies"><?php echo $categories_banner; ?></div>
+  <div class="boxeBannerContentsCurrencies"><?php echo $currencies_banner; ?></div>
   <div class="card boxeContainerCurrencies">
     <div class="card-header boxeHeadingCurrencies">
       <span class="card-title boxeTitleCurrencies"><?php echo CLICSHOPPING::getDef('module_boxes_currencies_box_title'); ?></span>
     </div>
-    <div class="card-block boxeContentArroundCurrencies">
+    <div class="card-body boxeContentArroundCurrencies">
       <div class="separator"></div>
       <div class="card-text boxeContentsCurrencies"><?php echo $output; ?></div>
     </div>

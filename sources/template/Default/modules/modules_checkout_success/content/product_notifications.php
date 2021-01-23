@@ -23,9 +23,9 @@ use ClicShopping\OM\html;
     </div>
     <div class="separator"></div>
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
-          <span class="float-md-right"><label for="buttonUpdate"><?php echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'info'); ?></label></span>
+          <span class="float-end"><label for="buttonUpdate"><?php echo HTML::button(CLICSHOPPING::getDef('button_update'), null, null, 'info'); ?></label></span>
         </div>
       </div>
     </div>

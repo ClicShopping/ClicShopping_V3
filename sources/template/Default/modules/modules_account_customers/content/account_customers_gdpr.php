@@ -21,7 +21,7 @@ use ClicShopping\OM\HTML;
   <div class="separator"></div>
   <div><?php echo CLICSHOPPING::getDef('module_account_customers_gdpr_account_intro'); ?></div>
   <div class="separator"></div>
-  <div class="form-group">
+  <div>
     <blockquote>
       <div class="separator"></div>
       <div id="gdpr">
@@ -45,10 +45,10 @@ use ClicShopping\OM\HTML;
 
   <div class="col-md-12">
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
           <span class="col-md-2"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary');  ?></span>
-          <span class="col-md-2 float-md-right text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
+          <span class="col-md-2 float-end text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
         </div>
       </div>
     </div>

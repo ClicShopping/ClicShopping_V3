@@ -17,7 +17,7 @@
   <div class="separator"></div>
   <div class="page-title AccountCustomersHistoryInfo"><h3><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_heading_billing_information'); ?></h3></div>
   <div class="card">
-    <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_number', ['order_id' => $_GET['order_id']]) . ' <span class="badge float-md-right">' . $CLICSHOPPING_Order->info['orders_status'] . '</span>'; ?></strong></div>
+    <div class="card-header"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_number', ['order_id' => $_GET['order_id']]) . ' <span class="badge float-end">' . $CLICSHOPPING_Order->info['orders_status'] . '</span>'; ?></strong></div>
     <div class="card-block">
       <div class="separator"></div>
       <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
@@ -27,15 +27,15 @@
 ?>
           <tr>
             <th colspan="2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_products'); ?></strong></th>
-            <th class="text-md-right"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_tax'); ?></strong></th>
-            <th class="text-md-right"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_total'); ?></strong></th>
+            <th class="text-end"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_tax'); ?></strong></th>
+            <th class="text-end"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_total'); ?></strong></th>
           </tr>
 <?php
   } else {
 ?>
           <tr>
             <th colspan="2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_products'); ?></strong></th>
-            <th class="text-md-right"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_total'); ?></strong></th>
+            <th class="text-end"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_order_total'); ?></strong></th>
           </tr>
         </thead>
        <tbody>
@@ -44,7 +44,7 @@
 
   for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
     echo '       <tr>' . "\n" .
-      '            <td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
+      '            <td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
       '            <td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
 
     if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
@@ -69,10 +69,10 @@
     echo '</td>' . "\n";
 
     if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
-      echo '            <td class="text-md-right" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
+      echo '            <td class="text-end" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
     }
 
-    echo '            <td class="text-md-right" valign="top">' . $CLICSHOPPING_Currencies->format(Tax::addTax($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax']) * $CLICSHOPPING_Order->products[$i]['qty'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . '</td>' . "\n" .
+    echo '            <td class="text-end" valign="top">' . $CLICSHOPPING_Currencies->format(Tax::addTax($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax']) * $CLICSHOPPING_Order->products[$i]['qty'], true, $CLICSHOPPING_Order->info['currency'], $CLICSHOPPING_Order->info['currency_value']) . '</td>' . "\n" .
       '          </tr>' . "\n";
   }
 ?>
@@ -85,12 +85,12 @@
   // --- Total order   -----
   // ----------------------
 ?>
-        <table width="100%" class="float-md-right">
+        <table width="100%" class="float-end">
 <?php
   for ($i=0, $n=count($CLICSHOPPING_Order->totals); $i<$n; $i++) {
     echo '              <tr>' . "\n" .
-      '                   <td class="text-md-right"  width="80%">' . $CLICSHOPPING_Order->totals[$i]['title'] . '&nbsp;</td>' . "\n" .
-      '                   <td class="text-md-right" width=20%">' . $CLICSHOPPING_Order->totals[$i]['text'] . '</td>' . "\n" .
+      '                   <td class="text-end"  width="80%">' . $CLICSHOPPING_Order->totals[$i]['title'] . '&nbsp;</td>' . "\n" .
+      '                   <td class="text-end" width=20%">' . $CLICSHOPPING_Order->totals[$i]['text'] . '</td>' . "\n" .
       '                 </tr>' . "\n";
   }
 ?>

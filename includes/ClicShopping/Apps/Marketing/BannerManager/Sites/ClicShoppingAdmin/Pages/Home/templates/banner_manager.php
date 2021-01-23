@@ -41,27 +41,20 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/banner_manager.gif', $CLICSHOPPING_BannerManager->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_BannerManager->getDef('heading_title'); ?></span>
-          <span class="col-md-4">
-              <div class="col-md-12">
-                <div>
-                  <div class="col-md-5 controls">
-                    <?php echo HTML::form('search', $CLICSHOPPING_BannerManager->link('BannerManager'), 'post', null, ['session_id' => true]); ?>
-                    <?php echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_BannerManager->getDef('heading_title_search') . '"'); ?>
-                    </form>
-                  </div>
-                </div>
+          <span class="col-md-2">
+            <?php echo HTML::form('search', $CLICSHOPPING_BannerManager->link('BannerManager'), 'post', null, ['session_id' => true]); ?>
+            <?php echo HTML::inputField('search', '', 'id="inputKeywords" placeholder="' . $CLICSHOPPING_BannerManager->getDef('heading_title_search') . '"'); ?>
+            </form>
+          </span>
 <?php
   if (isset($_POST['search']) && !is_null($_POST['search'])) {
     ?>
-    <div
-      class="col-md-5"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'danger'); ?></div>
+          <span class="col-md-1"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_reset'), null, $CLICSHOPPING_BannerManager->link('BannerManager'), 'warning'); ?></span>
     <?php
   }
 ?>
-              </div>
-            </span>
           <span
-            class="col-md-2 text-end"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
+            class="col-md-3 text-end"><?php echo HTML::button($CLICSHOPPING_BannerManager->getDef('button_new_banner'), null, $CLICSHOPPING_BannerManager->link('Insert'), 'success'); ?></span>
         </div>
       </div>
     </div>

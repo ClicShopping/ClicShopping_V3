@@ -34,7 +34,6 @@ td.ModulesShoppingCartProductsListingContent{
 }
 
 .btn-ShoppingCartRefresh {
-  font-size:0.80rem;
   padding-top: 0rem;
   padding-right: 0rem;
   padding-bottom: 0rem;
@@ -43,7 +42,7 @@ td.ModulesShoppingCartProductsListingContent{
 
 
 p.ModulesShoppingCartproductsListingOption {
-  font-weight: normal;
+
   font-size: xx-small;
   font-style : italic;
 }

@@ -67,7 +67,7 @@
 
           if ($reviews['customers_id'] == $CLICSHOPPING_Customer->getID()) {
             $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&ReviewsInfo&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $reviews_id), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
-            $delete_reviews .= HTML::button(null, 'fas fa-trash', null, 'danger', null, 'md');
+            $delete_reviews .= HTML::button(null, 'bi bi-trash2-fill', null, 'danger', null, 'md');
             $delete_reviews .= '</form>';
           }
 
@@ -130,11 +130,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_INFO_CONTENT_POSITION',
-          'configuration_value' => 'float-md-left',
+          'configuration_value' => 'float-start',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

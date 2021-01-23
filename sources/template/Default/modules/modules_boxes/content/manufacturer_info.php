@@ -18,7 +18,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-header boxeHeadingManufacturerInfo">
       <span class="card-title boxeTitleManufacturerInfo"><?php echo CLICSHOPPING::getDef('module_boxes_manufacturer_info_box_title'); ?></span>
     </div>
-    <div class="card-block boxeContentArroundManufacturerInfo">
+    <div class="card-body boxeContentArroundManufacturerInfo">
       <div class="separator"></div>
       <div class="card-text boxeContentsManufacturerInfo"><?php echo $manufacturer_info_string; ?></div>
     </div>

@@ -16,7 +16,7 @@ use ClicShopping\OM\HTML;
   <div class="separator"></div>
   <div class="control-group">
     <div class="buttonSet">
-      <div class="text-md-right">
+      <div class="text-end">
         <?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'primary', null, null, null, '"submit"'); ?>
       </div>
     </div>

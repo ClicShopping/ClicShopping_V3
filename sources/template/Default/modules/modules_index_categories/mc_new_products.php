@@ -214,6 +214,8 @@
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
+// Reviews
+                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
@@ -253,6 +255,8 @@
 // **************************
               if (!empty($CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id))) {
                 $submit_button = $CLICSHOPPING_ProductsCommon->getProductsExhausted($products_id);
+                $form = '';
+                $endform = '';
                 $min_quantity = 0;
                 $input_quantity = '';
                 $min_order_quantity_products_display = '';
@@ -260,8 +264,10 @@
 
 // See the button more view details
                $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_DELETE_BUY_BUTTON, $products_id);
+
 // Display the image
               $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_IMAGE_MEDIUM, $products_id);
+
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_INDEX_CATEGORIES_NEW_PRODUCTS_TICKER, $products_id, 'ModulesIndexCategoriesNewProductsProductsBootstrapTickerSpecial', 'ModulesIndexCategoriesNewProductsBootstrapTickerFavorite', 'ModulesIndexCategoriesNewProductsBootstrapTickerFeatured', 'ModulesIndexCategoriesNewProductsBootstrapTickerNew');
 

@@ -23,6 +23,7 @@
       <div class="page-title modulesAccountCustomersPasswordForgottenPageHeader"><h1><?php echo CLICSHOPPING::getDef('heading_title'); ?></h1></div>
 
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_login'); ?>
+      <div class="separator"></div>
     </div>
   </div>
 </section>

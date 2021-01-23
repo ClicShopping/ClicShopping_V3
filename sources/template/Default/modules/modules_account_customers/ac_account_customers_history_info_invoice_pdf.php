@@ -50,7 +50,7 @@
           $display_support = HistoryInfo::getDisplayHistoryInfoSupport();
 
           if ($display_support == 0) {
-            $print_invoice_pdf = HTML::link(CLICSHOPPING::link(null, 'Account&OrderInvoice&order_id=' . (int)$_GET['order_id'])  . '" target="_blank" rel="noopener"', HTML::Button(null, 'fas fa-file-pdf fa-4x HistoyInfoPDF'));
+            $print_invoice_pdf = HTML::link(CLICSHOPPING::link(null, 'Account&OrderInvoice&order_id=' . (int)$_GET['order_id'])  . '" target="_blank" rel="noopener"', HTML::Button(null, 'bi bi-printer-fill HistoyInfoPDF'));
           }
         }
 

@@ -62,8 +62,8 @@
             $data .= $Qreviews->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
             $data .= '</div>';
             $data .= '<div class="col-md-6">';
-            $data .= '<div class="float-md-right pagenav">' . $Qreviews->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info')), 'Shop') . '</div>';
-            $data .= '<span class="float-md-right">' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_result_page') . '</span>';
+            $data .= '<div class="float-end pagenav">' . $Qreviews->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info')), 'Shop') . '</div>';
+            $data .= '<span class="float-end">' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_result_page') . '</span>';
             $data .= '</div>';
             $data .= '</div>';
             $data .= '<div class="clearfix"></div>';
@@ -83,7 +83,7 @@
 
           if ($Qreviews->valueInt('customers_id') == $CLICSHOPPING_Customer->getID()) {
             $delete_reviews .= HTML::form('reviews', CLICSHOPPING::link(null, 'Products&Reviews&Delete&products_id=' . $CLICSHOPPING_ProductsCommon->getID() . '&reviews_id=' . $Qreviews->valueInt('reviews_id')), 'post', 'id="Reviews"', ['tokenize' => true, 'action' => 'process']);
-            $delete_reviews .= HTML::button(null, 'fas fa-trash', null, 'danger', null, 'md');
+            $delete_reviews .= HTML::button(null, 'bi bi-trash2-fill', null, 'danger', null, 'md');
             $delete_reviews .= '</form>';
           }
 
@@ -103,10 +103,10 @@
             $data .= $Qreviews->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
             $data .= '</div>';
             $data .= '<div class="col-md-6">';
-            $data .= '<div class="float-md-right pagenav"><ul class="pagination">' . $Qreviews->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info')), 'Shop') . '</ul></div>';
+            $data .= '<div class="float-end pagenav"><ul class="pagination">' . $Qreviews->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info')), 'Shop') . '</ul></div>';
             $data .= '</div>';
             $data .= '<div class="col-md-6">';
-            $data .= '<span class="float-md-right">' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_result_page') . '</span>';
+            $data .= '<span class="float-end">' . CLICSHOPPING::getDef('modules_products_reviews_listing_content_text_result_page') . '</span>';
             $data .= '</div>';
             $data .= '</div>';
             $data .= '<div>';
@@ -162,11 +162,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULES_PRODUCTS_REVIEWS_LISTING_CONTENT_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

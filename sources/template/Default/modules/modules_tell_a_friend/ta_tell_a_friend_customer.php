@@ -48,7 +48,7 @@
         }
 
         $first_name = HTML::inputField('from_name', $customer_name, 'required aria-required="true" id="inputFromName" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_customer_name') . '" minlength="' . ENTRY_FIRST_NAME_MIN_LENGTH . '"');
-        $customer_email = HTML::inputField('from_email_address', $customer_email, 'rel="txtTooltipEmailAddress" title="' . CLICSHOPPING::getDef('modules_tell_a_friend_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_customer_email') . '"', 'email');
+        $customer_email = HTML::inputField('from_email_address', $customer_email, 'rel="txtTooltipEmailAddress" title="' . CLICSHOPPING::getDef('modules_tell_a_friend_email_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="inputFromEmail" placeholder="' . CLICSHOPPING::getDef('modules_tell_a_friend_field_customer_email') . '"', 'email');
 
         $data = '<!-- ta_tell_a_friend_customer start -->' . "\n";
 

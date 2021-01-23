@@ -111,7 +111,7 @@
                 <div class="form-group row">
                   <label for="email" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_email') . '</label>
                   <div class="col-sm-6 col-md-4">
-                      ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
+                      ' . HTML::inputField('email', null, 'rel="txtTooltipEmailAddress" autocomplete="email" title="' . CLICSHOPPING::getDef('entry_email_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="InputEmail" aria-describedby="' . CLICSHOPPING::getDef('entry_email') . '" placeholder="' . CLICSHOPPING::getDef('entry_email') . '"', 'email') . '
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
                   <div class="form-group row">
                     <label for="inputTelephone" class="col-sm-6 col-md-4 col-form-label">' . CLICSHOPPING::getDef('entry_customers_phone') . '</label>
                     <div class="col-sm-6 col-md-4">
-                      ' . HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_customers_phone_dgrp') . '" data-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_phone') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_phone') . '"', 'phone') . '
+                      ' . HTML::inputField('customers_telephone', null, 'rel="txtTooltipPhone" autocomplete="tel" title="' . CLICSHOPPING::getDef('entry_customers_phone_dgrp') . '" data-bs-toggle="tooltip" data-placement="right" required aria-required="true" id="InputTelephone" aria-describedby="' . CLICSHOPPING::getDef('entry_customers_phone') . '" placeholder="' . CLICSHOPPING::getDef('entry_customers_phone') . '"', 'phone') . '
                     </div>
                   </div>
                 </div>

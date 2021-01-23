@@ -53,8 +53,9 @@
         $confirmation .= '<div class="col-md-' . $content_width . '">';
         $confirmation .= '<div class="separator"></div>';
         $confirmation .= '<div class="page-title moduleCheckoutConfirmationProductsListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_information') . '</h3></div>';
-
-        $confirmation .= '<div style="padding-left:15px; padding-right:15px;">';
+        $confirmation .= '<div class="separator"></div>';
+        $confirmation .= '<div class="separator"></div>';
+        $confirmation .= '<div>';
 
         if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
           $confirmation .= '<div class="card moduleCheckoutConfirmationProductsListingCard">';
@@ -66,8 +67,8 @@
           $confirmation .= '<div class="separator"></div>';
           $confirmation .= '<table width="100%">';
           $confirmation .= '<tr>';
-          $confirmation .= '<td class="text-md-right"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_tax')  . '</strong></td>';
-          $confirmation .= '<td class="text-md-right"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_total') . '</strong></td>';
+          $confirmation .= '<td class="text-end"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_tax')  . '</strong></td>';
+          $confirmation .= '<td class="text-end"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_total') . '</strong></td>';
           $confirmation .= '</tr>';
           $confirmation .= '</table>';
           $confirmation .= '</div>';
@@ -85,7 +86,7 @@
 
         for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
           $data = '<tr>' . "\n";
-          $data .= '<td class="text-md-right" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
+          $data .= '<td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
           $data .= '<td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], 1) . ')';
 
           if (STOCK_CHECK == 'True') {
@@ -117,10 +118,10 @@
           $data .=  '</td>' . "\n";
 
           if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
-            $data .= '<td class="text-md-right" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
+            $data .= '<td class="text-end" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
           }
 
-         $data .=  '<td  class="text-md-right" valign="top">';
+         $data .=  '<td  class="text-end" valign="top">';
          $data .= $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], $CLICSHOPPING_Order->products[$i]['qty']);
          $data .= '</td>' . "\n";
          $data .= '</tr>' . "\n";

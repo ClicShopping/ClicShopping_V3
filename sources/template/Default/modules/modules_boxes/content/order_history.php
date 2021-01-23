@@ -18,7 +18,7 @@ use ClicShopping\OM\CLICSHOPPING;
     <div class="card-header boxeHeadingHistory">
       <span class="card-title boxeTitleHistory"><?php echo CLICSHOPPING::getDef('module_boxes_order_history_box_title'); ?></span>
     </div>
-    <div class="card-block boxeContentArroundHistory">
+    <div class="card-body boxeContentArroundHistory">
       <div class="separator"></div>
       <div class="card-text boxeContentsHistory"><?php echo $customer_orders_string; ?></div>
     </div>

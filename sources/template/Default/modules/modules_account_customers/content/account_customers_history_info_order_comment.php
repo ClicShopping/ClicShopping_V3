@@ -32,7 +32,7 @@ use ClicShopping\OM\DateTime;
 
     echo '<div class="separator"></div>';
     echo '<div class="col-md-12">';
-    echo '<span class="col-md-4 text-muted"><i class="fas fa-arrow-right" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i>' . DateTime::toShort($value['date_added']) . '</span> ';
+    echo '<span class="col-md-4 text-muted"><i class="bi bi-arrow-right-square-fill" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i>' . DateTime::toShort($value['date_added']) . '</span> ';
     echo '<span class="col-md-8 modulesAccountCustomerHistoryInforOrderCommentStatusName">' . $value['orders_status_name'] . '</span>';
 
     if (!empty($customer_support['orders_status_support_name'])) {

@@ -30,7 +30,7 @@
     <div class="contenttext">
       <div class="col-md-12">
         <div class="page-title"><h1><?php echo CLICSHOPPING::getDef('heading_title_friends'); ?></h1></div>
-        <div class="inputRequirement float-md-right"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></div>
+        <div class="inputRequirement float-end"><?php echo CLICSHOPPING::getDef('form_required_information'); ?></div>
       </div>
       <div class="separator"></div>
       <?php echo $CLICSHOPPING_Template->getBlocks('modules_tell_a_friend'); ?>

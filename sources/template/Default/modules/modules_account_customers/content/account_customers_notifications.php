@@ -18,12 +18,18 @@ use ClicShopping\OM\HTML;
     <div class="separator"></div>
     <?php echo CLICSHOPPING::getDef('my_notifications_description'); ?>
     <div class="separator"></div>
+    <div class="separator"></div>
+    <div class="separator"></div>
     <div class="hr"></div>
     <div class="separator"></div>
+    <div class="separator"></div>
+    <div class="separator"></div>
     <h3><?php echo CLICSHOPPING::getDef('global_notifications_title'); ?></h3>
-
+    <div class="separator"></div>
+    <div class="separator"></div>
+    <div class="separator"></div>
       <div>
-        <span class="checkbox col-md-1 text-md-right">
+        <span class="checkbox col-md-1 text-end">
           <label><?php echo $checkbox_notifications; ?> </label>
         </span>
         <span class="col-md-6"><strong><?php echo CLICSHOPPING::getDef('global_notifications_title'); ?></strong></span>
@@ -34,11 +40,14 @@ use ClicShopping\OM\HTML;
 // ----------------------
   if ($global_notification != 1) {
 ?>
-  <div class="separator"></div>
-  <div class="hr"></div>
-  <div class="separator"></div>
-
-  <h3><?php echo CLICSHOPPING::getDef('notifications_title'); ?></h3>
+      <div class="separator"></div>
+      <div class="separator"></div>
+      <div class="separator"></div>
+      <div class="hr"></div>
+      <div class="separator"></div>
+      <div class="separator"></div>
+      <div class="separator"></div>
+      <h3><?php echo CLICSHOPPING::getDef('notifications_title'); ?></h3>
 <?php
   if ($row_count > 0 && !is_null($Qproducts)) {
 ?>
@@ -62,6 +71,9 @@ use ClicShopping\OM\HTML;
       }
     } else {
 ?>
+    <div class="separator"></div>
+    <div class="separator"></div>
+    <div class="separator"></div>
   <div class="alert alert-warning" role="alert">
     <?php echo CLICSHOPPING::getDef('notifications_non_existing'); ?>
   </div>
@@ -75,10 +87,10 @@ use ClicShopping\OM\HTML;
   <div class="separator"></div>
   <div class="col-md-12">
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
           <span class="col-md-2"><?php echo $button_back;  ?></span>
-          <span class="col-md-2 float-md-right text-md-right"><?php echo $button_process;  ?></span>
+          <span class="col-md-2 float-end text-end"><?php echo $button_process;  ?></span>
         </div>
       </div>
     </div>

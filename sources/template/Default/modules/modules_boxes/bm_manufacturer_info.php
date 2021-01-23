@@ -74,7 +74,7 @@
           $manufacturer_url = $CLICSHOPPING_Manufacturers->getManufacturerUrlRewrited()->getManufacturerUrl($Qmanufacturers->valueInt('manufacturers_id'));
 
           if (!empty($Qmanufacturers->value('manufacturers_image'))) {
-            $manufacturer_info_string .= '<span class="col-md-12 text-md-center">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qmanufacturers->value('manufacturers_image'), HTML::outputProtected($Qmanufacturers->value('manufacturers_name'))) . '</span>';
+            $manufacturer_info_string .= '<span class="col-md-12 text-center">' . HTML::image($CLICSHOPPING_Template->getDirectoryTemplateImages() . $Qmanufacturers->value('manufacturers_image'), HTML::outputProtected($Qmanufacturers->value('manufacturers_name'))) . '</span>';
           }
 
           if (!empty($Qmanufacturers->value('manufacturers_url'))) {

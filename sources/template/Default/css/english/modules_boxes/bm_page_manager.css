@@ -21,24 +21,15 @@
   padding-left: 3px;
   overflow: hidden;
   text-transform: uppercase;
-  font-weight: normal;
 }
 
 .card-title.boxeTitlePageManager {
   overflow: hidden;
   padding: 3px;
   text-transform: uppercase;
-  font-size: 0.6875rem;
-  font-weight: normal;
 }
 
-
 .card-text.boxeContentsPageManager {
-  overflow: hidden;
-  font-size: 0.75rem;
-  padding-bottom: 0.625rem;
-  padding-top: 0.625rem;
-  padding-right:0.1rem;
 }
 
 .card-footer.boxeBottomPageManager {
@@ -46,41 +37,27 @@
   padding: 0rem 0rem;
 }
 
-
 .card-block.boxeContentArroundPageManager {
-  padding: 0.5rem;
-  overflow: hidden;
-  padding-right:0.1rem;
-  padding-left:0.1rem;
 }
 
-
+ul.boxeListManagerPageManager {
+  padding-left: 0rem;
+}
 
 li.boxeContentsPageManager {
-  font-weight: normal;
-  margin:0 5px 0 5px;
-  list-style:none;
 }
 
 li.boxeContentsPageManager a {
-  padding:0 5px;
 }
 
-
 span.boxeListManagerPageManager{
-  padding:0px 0px;
 }
 
 li.boxeListManagerPageManager {
-  font-weight: normal;
-  margin:0px 0px 0px 0px;
-  list-style:none;
 }
 
 li.boxeListManagerPageManager a {
-  padding:0 5px;
 }
 
-
-div.boxeListManagerPageManager  {
+div.boxeListManagerPageManager {
 }

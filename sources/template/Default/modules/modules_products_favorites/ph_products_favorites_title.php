@@ -98,7 +98,7 @@
           'configuration_description' => 'Display the module on the left or on the right',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\' \'float-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\' \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

@@ -4,4 +4,6 @@
   <div class="contentTextPageManager">
    <?php echo $page_manager_front_page; ?>
   </div>
+  <div class="separator"></div>
+  <div class="separator"></div>
 </div>

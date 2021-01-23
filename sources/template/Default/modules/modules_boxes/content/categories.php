@@ -24,7 +24,7 @@
     <div class="card-header boxeHeadingCategories">
       <span class="card-title boxeTitleCategories"><?php echo CLICSHOPPING::getDef('module_boxes_categories_box_title'); ?></span>
     </div>
-    <div class="card-block boxeContentArroundCategories">
+    <div class="card-body boxeContentArroundCategories">
       <div class="card-text boxeContentsCategories"><?php echo $CLICSHOPPING_CategoryTree->getTree(); ?></div>
     </div>
   </div>

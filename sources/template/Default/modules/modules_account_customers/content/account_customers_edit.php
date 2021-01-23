@@ -28,7 +28,7 @@
 ?>
     <div class="row">
       <div class="col-md-12">
-        <p class="text-warning text-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
+        <p class="text-warning text-end"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
         <h3><?php echo CLICSHOPPING::getDef('text_category_personal_pro'); ?></h3>
       </div>
     </div>
@@ -37,7 +37,7 @@
 ?>
     <div class="row">
       <div class="col-md-12">
-        <p class="text-warning text-md-right"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
+        <p class="text-warning text-end"><?php echo CLICSHOPPING::getDef('form_required'); ?></p>
         <div class="page-title AccountCustomersEdit"><h1><?php echo CLICSHOPPING::getDef('module_account_customers_edit_title_account'); ?></h1></div>
       </div>
     </div>
@@ -308,10 +308,10 @@
 
   <div class="col-md-12">
     <div class="control-group">
-      <div class="controls">
+      <div>
         <div class="buttonSet">
           <span class="col-md-2"><?php echo HTML::button(CLICSHOPPING::getDef('button_back'), null, CLICSHOPPING::link(null, 'Account&Main'), 'primary');  ?></span>
-          <span class="col-md-2 float-md-right text-md-right"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
+          <span class="col-md-2 float-end text-end"><?php echo HTML::button(CLICSHOPPING::getDef('button_continue'), null, null, 'success');  ?></span>
         </div>
       </div>
     </div>

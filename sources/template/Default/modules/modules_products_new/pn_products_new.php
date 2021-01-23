@@ -17,7 +17,7 @@
 
   class pn_products_new {
     public $code;
-    public $group;
+    public string $group;
     public string $title;
     public string $description;
     public ?int $sort_order = 0;
@@ -45,7 +45,6 @@
 
       if (isset($_GET['Products']) && isset($_GET['ProductsNew'])) {
         if (MODULE_PRODUCTS_NEW_MAX_DISPLAY != 0 ) {
-
           $Qlisting = ProductsNewClass::getListing();
 
           $Qlisting->setPageSet((int)MODULE_PRODUCTS_NEW_MAX_DISPLAY);
@@ -55,25 +54,25 @@
 
           $new_prods_content = '<!-- New Products start -->' . "\n";
           $new_prods_content .= '<div class="clearfix"></div>';
+          $new_prods_content .= '<div class="separator"></div>';
           $new_prods_content .= '<div class="contentText">';
           $new_prods_content .= '<div class="ModulesProductsNewContainer">';
 
           if ($listingTotalRow > 0) {
-
-            $new_prods_content .= '<div class="col-md-5 float-md-left">';
+            $new_prods_content .= '<div class="col-md-5 float-start">';
             $new_prods_content .= '<div class="page-title ModulesProductsNewHeadingTitle">';
             $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') . '</h1>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
 
-            $new_prods_content .= '<div class="col-md-5 float-md-right">';
+            $new_prods_content .= '<div class="col-md-5 float-end">';
             $new_prods_content .= '<div style="padding-right:2em; padding-top:0.5rem;">';
             $new_prods_content .= '<div class="dropdown">';
-            $new_prods_content .= '<div class="btn-group btn-group-sm float-md-right">';
-            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
+            $new_prods_content .= '<div class="btn-group btn-group-sm float-end">';
+            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-start" aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
             $column_list = ProductsNewClass::getCountColumnList();
@@ -111,8 +110,8 @@
               $link = CLICSHOPPING::link(CLICSHOPPING::getIndex(), CLICSHOPPING::getAllGET(array('page', 'info', 'sort')));
               $new_prods_content .= '<strong>' . CLICSHOPPING::getDef('text_view') . '</strong>';
               $new_prods_content .= '<div class="btn-group">';
-              $new_prods_content .= '<a href="' . $link . '" id="list" class="btn btn-default btn-sm"><span class="fa fa-th-list"></span>' . CLICSHOPPING::getDef('text_view_list') . '</a>';
-              $new_prods_content .= '<a href="' . $link . '" id="grid" class="btn btn-default btn-sm"><span class="fa fa-th"></span>' . CLICSHOPPING::getDef('text_view_grid') . '</a>';
+              $new_prods_content .= '<a href="' . $link . '" id="list" class="btn btn-default btn-sm"><span class="bi bi-card-list"></span>' . CLICSHOPPING::getDef('text_view_list') . '</a>';
+              $new_prods_content .= '<a href="' . $link . '" id="grid" class="btn btn-default btn-sm"><span class="bi bi-grid-3x2-gap-fill"></span>' . CLICSHOPPING::getDef('text_view_grid') . '</a>';
               $new_prods_content .= '</div>';
             }
 */
@@ -129,9 +128,9 @@
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<div class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
-              $new_prods_content .= '<div class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
+              $new_prods_content .= '<div class="col-md-6 float-end">';
+              $new_prods_content .= '<div class="float-end pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
+              $new_prods_content .= '<div class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div style="padding-top:10px;"></div>';
@@ -188,6 +187,8 @@
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
+// Reviews
+                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
@@ -236,9 +237,11 @@
               }
 
 // See the button more view details
-               $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_PRODUCTS_NEW_DELETE_BUY_BUTTON, $products_id);
+              $button_small_view_details = $CLICSHOPPING_ProductsFunctionTemplate->getButtonViewDetails(MODULE_PRODUCTS_NEW_DELETE_BUY_BUTTON, $products_id);
+
 // Display the image
               $products_image = $CLICSHOPPING_ProductsFunctionTemplate->getImage(MODULE_PRODUCTS_NEW_IMAGE_MEDIUM, $products_id);
+
 // Ticker Image
               $products_image .= $CLICSHOPPING_ProductsFunctionTemplate->getTicker(MODULE_PRODUCTS_NEW_TICKER, $products_id, 'ModulesProductsNewBootstrapTickerSpecial', 'ModulesProductsNewBootstrapTickerFavorite', 'ModulesProductsNewBootstrapTickerFeatured', 'ModulesProductsNewBootstrapTickerNew');
 
@@ -301,20 +304,21 @@
 
             $new_prods_content .= '</div>';  // flex
           } else {
-            $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
+            $new_prods_content .= '<div class="separator"></div>';
+            $new_prods_content .= '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
           }
 
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
             if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
               $new_prods_content .= '<div class="clearfix"></div>';
-              $new_prods_content .= '<div style="padding-top:10px;"></div>';
+              $new_prods_content .= '<div class="separator"></div>';
               $new_prods_content .= '<div>';
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<span class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
-              $new_prods_content .= '<span class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
+              $new_prods_content .= '<div class="col-md-6 float-end">';
+              $new_prods_content .= '<span class="float-end pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
+              $new_prods_content .= '<span class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div class="clearfix"></div>';
@@ -323,7 +327,7 @@
 
           $new_prods_content .= '</div>';
         } else {
-          $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
+          $new_prods_content .= '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
         } // max display product
 
         $new_prods_content .= '</div>' . "\n";
@@ -362,7 +366,7 @@
           'configuration_title' => 'Please select your template ?',
           'configuration_key' => 'MODULE_PRODUCTS_NEW_TEMPLATE',
           'configuration_value' => 'template_bootstrap_column_5.php',
-          'configuration_description' => 'Select your template you want to display',
+          'configuration_description' => 'Select your template',
           'configuration_group_id' => '6',
           'sort_order' => '2',
           'set_function' => 'clic_cfg_set_multi_template_pull_down',
@@ -374,7 +378,7 @@
           'configuration_title' => 'Please indicate the number of product do you want to display',
           'configuration_key' => 'MODULE_PRODUCTS_NEW_MAX_DISPLAY',
           'configuration_value' => '6',
-          'configuration_description' => 'Veuillez indiquer le nombre maximum de produits à afficher.',
+          'configuration_description' => 'Indicate the number of product do you want to display',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',
@@ -410,7 +414,7 @@
           'configuration_title' => 'Do you want to remove words of your short description ?',
           'configuration_key' => 'MODULE_PRODUCTS_NEW_SHORT_DESCRIPTION_DELETE_WORLDS',
           'configuration_value' => '0',
-          'configuration_description' => 'Veuillez indiquer le nombre de mots à supprimer. Ce système est utitle avec le module des onglets<br><br><i>- 0 pour aucune suppression<br>- 50 pour les 50 premiers caractères</i>',
+          'configuration_description' => 'Indicate Remove words of your short description for the first caracters',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',

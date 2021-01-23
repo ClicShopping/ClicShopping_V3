@@ -159,7 +159,7 @@
 // ----------------------------------------------------------------//
             $products_price_content =  '<!-- Start products_archives -->' . "\n";
             $products_price_content .= '<div class="separator"></div>';
-            $products_price_content .= '<h3 class="text-md-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
+            $products_price_content .= '<h3 class="text-center">' . CLICSHOPPING::getDef('products_not_sell') . '</h3>';
             $products_price_content .= '<div class="buttonSet"><span class="buttonAction">'. HTML::button(CLICSHOPPING::getDef('button_continue'), CLICSHOPPING::link(), 'primary') . '</span></div>' . "\n";
             $products_price_content .= '<!-- products_archives end -->' . "\n";
           }
@@ -209,11 +209,11 @@
       $CLICSHOPPING_Db->save('configuration', [
           'configuration_title' => 'Where Do you want to display the module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_PRICE_POSITION',
-          'configuration_value' => 'float-md-none',
+          'configuration_value' => 'float-none',
           'configuration_description' => 'Select where you want display the module',
           'configuration_group_id' => '6',
           'sort_order' => '2',
-          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-md-right\', \'float-md-left\', \'float-md-none\'))',
+          'set_function' => 'clic_cfg_set_boolean_value(array(\'float-end\', \'float-start\', \'float-none\'))',
           'date_added' => 'now()'
         ]
       );

@@ -59,20 +59,20 @@
 
           if ($listingTotalRow > 0) {
 
-            $new_prods_content .= '<div class="col-md-5 float-md-left">';
+            $new_prods_content .= '<div class="col-md-5 float-start">';
             $new_prods_content .= '<div class="page-title ModulesProductsSpecialsHeadingTitle">';
             $new_prods_content .= '<h1>' . CLICSHOPPING::getDef('text_heading_title') . '</h1>';
             $new_prods_content .= '</div>';
             $new_prods_content .= '</div>';
 
-            $new_prods_content .= '<div class="col-md-5 float-md-right">';
+            $new_prods_content .= '<div class="col-md-5 float-end">';
             $new_prods_content .= '<div style="padding-right:2em; padding-top:0.5rem;">';
             $new_prods_content .= '<div class="dropdown">';
-            $new_prods_content .= '<div class="btn-group btn-group-sm float-md-right">';
-            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
+            $new_prods_content .= '<div class="btn-group btn-group-sm float-end">';
+            $new_prods_content .= '<button type="button" class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" id="dropdownMenu2" aria-haspopup="true" aria-expanded="false">';
             $new_prods_content .= CLICSHOPPING::getDef('text_sort_by');
             $new_prods_content .= '</button>';
-            $new_prods_content .= '<ul class="dropdown-menu text-md-left" aria-labelledby="dropdownMenu2">';
+            $new_prods_content .= '<ul class="dropdown-menu text-start" aria-labelledby="dropdownMenu2">';
 
 // number of sort criterias
             $column_list = SpecialsClass::getCountColumnList();
@@ -110,8 +110,8 @@
               $link = CLICSHOPPING::link(CLICSHOPPING::getIndex(), CLICSHOPPING::getAllGET(array('page', 'info', 'sort')));
               $new_prods_content .= '<strong>' . CLICSHOPPING::getDef('text_view') . '</strong>';
               $new_prods_content .= '<div class="btn-group">';
-              $new_prods_content .= '<a href="' . $link . '" id="list" class="btn btn-default btn-sm"><span class="fa fa-th-list"></span>' . CLICSHOPPING::getDef('text_view_list') . '</a>';
-              $new_prods_content .= '<a href="' . $link . '" id="grid" class="btn btn-default btn-sm"><span class="fa fa-th"></span>' . CLICSHOPPING::getDef('text_view_grid') . '</a>';
+              $new_prods_content .= '<a href="' . $link . '" id="list" class="btn btn-default btn-sm"><span class="bi bi-card-list"></span>' . CLICSHOPPING::getDef('text_view_list') . '</a>';
+              $new_prods_content .= '<a href="' . $link . '" id="grid" class="btn btn-default btn-sm"><span class="bi bi-grid-3x2-gap-fill"></span>' . CLICSHOPPING::getDef('text_view_grid') . '</a>';
               $new_prods_content .= '</div>';
             }
 */
@@ -128,12 +128,12 @@
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<div class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
-              $new_prods_content .= '<div class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
+              $new_prods_content .= '<div class="col-md-6 float-end">';
+              $new_prods_content .= '<div class="float-end pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</div>';
+              $new_prods_content .= '<div class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div style="padding-top:10px;"></div>';
+              $new_prods_content .= '<div class="separator"></div>';
               $new_prods_content .= '<div class="clearfix"></div>';
             }
           }
@@ -143,7 +143,6 @@
           $new_prods_content .= '<div class="boxContentsModulesProductsSpecials">';
 
           if ($listingTotalRow > 0) {
-
             $new_prods_content .= '<div class="d-flex flex-wrap">';
 
 // display number of short description
@@ -188,6 +187,8 @@
               $product_price = $CLICSHOPPING_ProductsCommon->getCustomersPrice($products_id);
 //Short description
               $products_short_description = $CLICSHOPPING_ProductsCommon->getProductsShortDescription($products_id, $delete_word, $products_short_description_number);
+// Reviews
+                $avg_reviews = '<span class="ModulesReviews">' . HTML::stars($CLICSHOPPING_Reviews->getAverageProductReviews($products_id)) . '</span>';
 
 // **************************
 // display the differents buttons before minorder qty
@@ -249,30 +250,30 @@
 //******************************************************************************************************************
 
 // products model
-              $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
+            $products_model = $CLICSHOPPING_ProductsFunctionTemplate->getProductsModel($products_id);
 // manufacturer
-              $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
+            $products_manufacturers = $CLICSHOPPING_ProductsFunctionTemplate->getProductsManufacturer($products_id);
 // display the price by kilo
-              $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
+            $product_price_kilo = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPriceByWeight($products_id);
 // display date available
-                $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
+            $products_date_available =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsDateAvailable($products_id);
 // display products only shop
-              $products_only_shop = $CLICSHOPPING_ProductsFunctionTemplate->getProductsOnlyTheShop($products_id);
+            $products_only_shop = $CLICSHOPPING_ProductsFunctionTemplate->getProductsOnlyTheShop($products_id);
 // display products only shop
-              $products_only_web = $CLICSHOPPING_ProductsFunctionTemplate->getProductsOnlyOnTheWebSite($products_id);
+            $products_only_web = $CLICSHOPPING_ProductsFunctionTemplate->getProductsOnlyOnTheWebSite($products_id);
 // display products packaging
-                $products_packaging = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPackaging($products_id);
+            $products_packaging = $CLICSHOPPING_ProductsFunctionTemplate->getProductsPackaging($products_id);
 // display shipping delay
-                $products_shipping_delay =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsShippingDelay($products_id);
+            $products_shipping_delay =  $CLICSHOPPING_ProductsFunctionTemplate->getProductsShippingDelay($products_id);
 // display products tag
-                $tag = $CLICSHOPPING_ProductsFunctionTemplate->getProductsHeadTag($products_id);
+            $tag = $CLICSHOPPING_ProductsFunctionTemplate->getProductsHeadTag($products_id);
 
-                $products_tag = '';
-                if (isset($tag) && is_array($tag)) {
-                  foreach ($tag as $value) {
-                    $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
-                  }
-                }
+            $products_tag = '';
+            if (isset($tag) && is_array($tag)) {
+              foreach ($tag as $value) {
+                $products_tag .= '#<span class="productTag">' . HTML::link(CLICSHOPPING::link(null, 'Search&keywords='. HTML::outputProtected(utf8_decode($value) .'&search_in_description=1&categories_id=&inc_subcat=1'), 'rel="nofollow"'), $value) . '</span> ';
+              }
+            }
 // display products volume
             $products_volume = $CLICSHOPPING_ProductsFunctionTemplate->getProductsVolume($products_id);
 // display products weight
@@ -301,20 +302,20 @@
 
             $new_prods_content .= '</div>';  // flex
           } else {
-            $new_prods_content .= '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
+            $new_prods_content .= '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
           }
 
           if (($listingTotalRow > 0) && ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3'))) {
             if ((PREV_NEXT_BAR_LOCATION == '2') || (PREV_NEXT_BAR_LOCATION == '3')) {
               $new_prods_content .= '<div class="clearfix"></div>';
               $new_prods_content .= '<div class="separator"></div>';
-              $new_prods_content .= '<div>';
+              $new_prods_content .= '<div class="col-md-12">';
               $new_prods_content .= '<div class="col-md-6 pagenumber hidden-xs">';
               $new_prods_content .=  $Qlisting->getPageSetLabel(CLICSHOPPING::getDef('text_display_number_of_items'));
               $new_prods_content .= '</div>';
-              $new_prods_content .= '<div class="col-md-6 float-md-right">';
-              $new_prods_content .= '<span class="float-md-right pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
-              $new_prods_content .= '<span class="text-md-right">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
+              $new_prods_content .= '<div class="col-md-6 float-end">';
+              $new_prods_content .= '<span class="float-end pagenav">'.  $Qlisting->getPageSetLinks(CLICSHOPPING::getAllGET(array('page', 'info', 'x', 'y')), 'Shop') . '</span>';
+              $new_prods_content .= '<span class="text-end">' . CLICSHOPPING::getDef('text_result_page') . '</span>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '</div>';
               $new_prods_content .= '<div class="clearfix"></div>';
@@ -323,7 +324,7 @@
 
           $new_prods_content .= '</div>';
         } else {
-          $new_prods_content = '<div class="text-md-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
+          $new_prods_content = '<div class="text-center alert alert-info">' . CLICSHOPPING::getDef('text_no_products') . '</div>';
         } // max display product
 
         $new_prods_content .= '</div>' . "\n";

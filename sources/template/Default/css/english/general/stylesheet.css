@@ -15,7 +15,6 @@
 
 body {
   margin: 0rem;
-  font-size: 1rem;
 }
 
 #bodyWrapper {
@@ -27,20 +26,19 @@ body {
    padding-bottom: 0.625rem;
 }
 
-#wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-/*  background-color:#ffffff;*/
+.frameWork {
 }
+
+#frameWork {
+}
+
 .wrapper {
-  overflow:hidden;
-  width:100%;
+}
+
+#wrapper {
 }
 
 .wrapper_w {
-  display:inline-block;
-  width: 100%;
 }
 
 .orderEdit {
@@ -58,7 +56,6 @@ form {
 /* style facture */
 /****************/
 .mainFacture {
-  font-size: 0.75rem;
   background-color: #DCDCDC;
 }
 
@@ -79,17 +76,13 @@ form {
 
 span.normalPrice{
   font-weight:normal;
-  font-size: 0.80rem;
 }
-
 
 span.specialPrice{
   font-weight:bold;
   padding-left: 0.5125rem;
   color:#ce060b;
-  font-size: 1rem;
 }
-
 
 div.EndDateFlashDiscount, span.EndDateFlashDiscount {
   font: 700 10px/8px Arial,Helvetica,sans-serif;
@@ -122,6 +115,7 @@ span.markProductOutOfStock {
 
 .HistoyInfoPDF {
   color: #E6290B;
+  font-size: 2rem;
 }
 
 /*************************************
@@ -239,7 +233,7 @@ span.ModulesTickerBootstrapTickerStockDanger {
   height: 30px;
   text-align: center;
   padding: 6px 0;
-  font-size: 12px;
+  font-size: 1rem;
   line-height: 1.428571429;
   border-radius: 15px;
 }

@@ -9,7 +9,7 @@
   <div class="EndDateFlashDiscountBoxe">
     <?php echo  $products_flash_discount; ?>
   </div>
-  <div class="text-md-center">
+  <div class="text-center">
     <label for="boxeProductsFavorites"><?php echo $button_small_view_details; ?></label>
   </div>
 </div>

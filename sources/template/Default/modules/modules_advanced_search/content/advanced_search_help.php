@@ -12,12 +12,12 @@
 use ClicShopping\OM\CLICSHOPPING;
 ?>
 <div class="col-md-<?php echo $content_width; ?>">
-  <a data-toggle="modal" data-target="#helpSearch" class="badge badge-light text-md-right"><?php echo CLICSHOPPING::getDef('module_advanced_search_help_title'); ?></a></div>
+  <a data-bs-toggle="modal" data-bs-target="#helpSearch" class="badge bg-light text-end"><?php echo CLICSHOPPING::getDef('module_advanced_search_help_title'); ?></a></div>
   <div class="modal fade" id="helpSearch" tabindex="-1" role="dialog" aria-labelledby="helpSearchLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
           <div class="modal-title advancedSearchHelpTitle">
             <span class="advancedSearchHelpTitle"><?php echo CLICSHOPPING::getDef('module_advanced_search_help_title'); ?></span>
           </div>

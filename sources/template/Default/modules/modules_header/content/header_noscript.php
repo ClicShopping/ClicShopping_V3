@@ -14,7 +14,7 @@
 <div class="col-md-<?php echo $content_width; ?> modulesHeaderNoscript">
   <noscript>
     <div class="alert alert-warning" role="alert">
-      <div class="modulesHeaderNoscriptInner text-md-center">
+      <div class="modulesHeaderNoscriptInner text-center">
         <?php echo CLICSHOPPING::getDef('module_header_noscript_text'); ?>
       </div>
     </div>
