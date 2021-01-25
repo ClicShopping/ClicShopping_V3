@@ -113,11 +113,15 @@
     {
       if (self::checkExecute() === true) {
           if (!is_null($library)) {
+          $result = '';
+
           $cmd = 'cd ' . self::$root . ' && composer show ' . $library;
           exec($cmd, $output, $return);
 
           if($return === 0) {
-            $result = $output[3];
+            if (isset($output)) {
+              $result = $output[3];
+            }
 
             return $result;
           }
@@ -151,6 +155,8 @@
      */
     public static function update($library = null)
     {
+      $result = '';
+
       if (self::checkExecute() === true) {
         if (is_null($library)) {
           $cmd = 'cd ' . self::$root . ' && composer update 2>&1';
@@ -161,7 +167,9 @@
           $cmd = 'cd ' . self::$root . ' && composer update  ' . $library . ' 2>&1';
           exec($cmd, $output, $return); // update dependencies
 
-          $result = $output[2];
+          if (isset($output)) {
+            $result = $output[2];
+          }
         }
 
         return $result;
@@ -176,6 +184,8 @@
      */
     public static function install($library = null)
     {
+      $result = '';
+
       if (self::checkExecute() === true) {
         if (is_null($library)) {
           $result = false;
@@ -183,7 +193,9 @@
           $cmd = 'cd ' . self::$root . ' && composer require  ' . $library . ' 2>&1';
           exec($cmd, $output, $return); // update dependencies
 
-          $result = $output[2];
+          if (isset($output)) {
+            $result = $output[2];
+          }
         }
 
         return $result;
@@ -198,10 +210,14 @@
     public static function remove($library = null): string
     {
       if (self::checkExecute() === true) {
+        $result = '';
+
         $cmd = 'cd ' . self::$root . ' && composer remove ' . $library . ' 2>&1';
         exec($cmd, $output, $return); // update dependencies
 
-        $result = $output[2];
+        if (isset($output)) {
+          $result = $output[2];
+        }
 
         return $result;
       }
@@ -214,10 +230,14 @@
     public static function clearCache(): string
     {
       if (self::checkExecute() === true) {
+        $result = '';
+
         $cmd = 'cd ' . self::$root . ' && composer clearcache 2>&1';
         exec($cmd, $output, $return);
 
-        $result = $output[2];
+        if (isset($output)) {
+          $result = $output[2];
+        }
 
         return $result;
       }

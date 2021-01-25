@@ -171,14 +171,10 @@
 
       $class = [];
 
-      if (CLICSHOPPING::getSite() === 'Shop') {
-        $class[] = 'lozad media-object';
-      } else {
-        $class[] = 'media-object';
-      }
+      $class[] = ' lozad media-object';
 
       if ($responsive === true) {
-        $class[] = 'img-fluid';
+        $class[] = ' img-fluid';
       }
 
       if (!empty($bootstrap_css)) {

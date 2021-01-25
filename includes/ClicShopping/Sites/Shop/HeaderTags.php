@@ -71,20 +71,14 @@
       $replace = '';   // replaces with nothing i.e. deletes
       $str = $string;
       $chars = preg_split('/&/', $str, -1);
+      $newstring = '';
 
-      foreach ($chars as $value) {
-        if( !isset($value[1]) ) $value[1] = 'NULL' ;
-        if( !isset($value[2]) ) $value[2] = 'NULL' ;
-
-        if (!is_null($value[1])) {
-          $newstring = "?" . $value[1];
-        }
-
-        if ($value[2] !== null) {
-          $newstring = $newstring . '&' . $value[2];
+      if (is_array($chars)) {
+        foreach ($chars as $value) {
+          $newstring = '?' .  ($value[1] ?? 'NULL') . '&' . ($value[2]?? 'NULL');
         }
       }
-
+      
       if ($newstring) {
         $canonical_link = $domain . preg_replace('#' . $search . '#', $replace, $string); // merges the variables and echoing them
       } else {
