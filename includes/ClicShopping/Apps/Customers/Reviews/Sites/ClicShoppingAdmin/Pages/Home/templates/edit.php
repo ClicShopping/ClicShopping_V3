@@ -106,7 +106,7 @@
         <!--          ONGLET Information General sur l'avis client          //-->
         <!-- //################################################################################################################ -->
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_general'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_general'); ?></div>
         </div>
         <div class="adminformTitle">
           <div>&nbsp;</div>
@@ -120,7 +120,7 @@
                 </div>
               </div>
             </div>
-            <span class="col-md-4 text-md-center float-md-right">
+            <span class="col-md-4 text-md-center float-end">
               <div class="adminformAide text-md-center">
                 <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $rInfo->products_image, $rInfo->products_name, (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"'); ?></td>
               </div>
@@ -169,7 +169,7 @@
         <!-- //################################################################################################################ -->
         <div>&nbsp;</div>
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_entry'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_entry'); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="row">
@@ -189,7 +189,7 @@
         <!-- //################################################################################################################ -->
         <div>&nbsp;</div>
         <div class="col-md-12 mainTitle">
-          <div class="float-md-left"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_rating'); ?></div>
+          <div class="float-start"><?php echo $CLICSHOPPING_Reviews->getDef('title_reviews_rating'); ?></div>
         </div>
         <div class="adminformTitle">
           <div class="row">

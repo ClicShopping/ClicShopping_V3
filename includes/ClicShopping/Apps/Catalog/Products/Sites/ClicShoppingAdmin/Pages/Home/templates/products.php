@@ -277,7 +277,7 @@
     <div class="row">
       <div class="col-md-12">
         <div
-          class="col-md-6 float-md-left pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
+          class="col-md-6 float-start pagenumber hidden-xs TextDisplayNumberOfLink"><?php echo $Qproducts->getPageSetLabel($CLICSHOPPING_Products->getDef('text_display_number_of_link')); ?></div>
         <div
           class="float-end text-end"> <?php echo $Qproducts->getPageSetLinks('Catalog\Products&Products&cPath=' . $current_category_id); ?></div>
       </div>
