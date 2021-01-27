@@ -650,8 +650,10 @@
         $get_params .= '&';
       }
 
-      foreach ($languages as $value) {
-        $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
+      if (isset($languages)) {
+        foreach ($languages as $value) {
+          $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
+        }
       }
 
       return $content;
