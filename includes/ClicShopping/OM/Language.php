@@ -619,6 +619,8 @@
       $get_params = [];
       $content = '';
 
+      $languages = '';
+
       if (!isset($_GET['Checkout'])) {
 // If only one language is selected
         if (CLICSHOPPING::getSite('Shop') == 'Shop') {
@@ -650,7 +652,7 @@
         $get_params .= '&';
       }
 
-      if (isset($languages)) {
+      if (is_array($languages)) {
         foreach ($languages as $value) {
           $content .= HTML::link(CLICSHOPPING::link(null, $get_params . 'language=' . $value['code']), $this->getImage($value['code'])) . '&nbsp;&nbsp;';
         }
