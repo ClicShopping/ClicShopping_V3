@@ -19,13 +19,9 @@
 .ModuleProductsSpecialsSplit {
 }
 
-
 div.ModulesProductsSpecialsHeadingTitle h1 {
-
-
   padding-left: 0.625rem;
 }
-
 
 /***************************
             Ticker
@@ -47,8 +43,6 @@ span.ModulesProductsSpecialsBootstrapTickerNew {
   transform: rotate(-45deg);
 }
 
-
-
 span.ModulesProductsSpecialsBootstrapTickerSpecial {
   font: 700 10px/8px Arial,Helvetica,sans-serif;
   color: #FFF;
@@ -65,8 +59,6 @@ span.ModulesProductsSpecialsBootstrapTickerSpecial {
   transform: rotate(-45deg);
 }
 
-
-
 span.ModulesProductsSpecialsBootstrapTickerFavorites {
   font: 700 10px/8px Arial,Helvetica,sans-serif;
   color: #FFF;
@@ -82,7 +74,6 @@ span.ModulesProductsSpecialsBootstrapTickerFavorites {
   top: 23px;
   transform: rotate(-45deg);
 }
-
 
 span.ModulesProductsSpecialsBootstrapTickerFeatured {
   font: 700 10px/8px Arial,Helvetica,sans-serif;

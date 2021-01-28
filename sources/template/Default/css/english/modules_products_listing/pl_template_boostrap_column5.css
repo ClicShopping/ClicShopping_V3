@@ -32,12 +32,10 @@
 }
 
 .ModulesProductsListingBoostrapColumn5ShortDescription h3 {
-
   text-align:center;
   padding-top: 0.3125rem;
   color: #7F736F;
   text-transform: lowercase;
-
   padding-left: 0.3125rem;
   padding-right:5px;
 }
@@ -46,13 +44,11 @@
   color:#000000;
   text-align:center;
   vertical-align:text-top;
-
   padding-top: 0.625rem;
 }
 
 
 .ModulesProductsListingBoostrapColumn5StockImage {
-
   text-align:center;
   vertical-align:text-top;
   color: #7F736F;
@@ -62,7 +58,6 @@
 
 
 .ModulesProductsListingBoostrapColumn5QuantityMinOrder {
-
   text-align:center;
   color: #7F736F;
   padding-top: 0.625rem;
@@ -71,7 +66,6 @@
 
 
 .ModulesProductsListingBoostrapColumn5ProductsQuantityUnit  {
-
   text-align:center;
   color: #7F736F;
   padding-top: 0.625rem;

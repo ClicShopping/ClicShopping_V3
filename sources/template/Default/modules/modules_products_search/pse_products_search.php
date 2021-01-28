@@ -52,7 +52,6 @@
         }
 
         if ($max_display != 0 && (isset($_GET['Search']) || isset($_GET['Q']))) {
-
           $products_template = MODULE_PRODUCTS_SEARCH_TEMPLATE;
 
           $new_prods_content = '<!-- products seach start -->' . "\n";

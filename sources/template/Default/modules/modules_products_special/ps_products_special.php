@@ -375,7 +375,7 @@
           'configuration_title' => 'Please indicate the number of product do you want to display',
           'configuration_key' => 'MODULE_PRODUCTS_SPECIAL_MAX_DISPLAY',
           'configuration_value' => '6',
-          'configuration_description' => 'Veuillez indiquer le nombre maximum de produits à afficher.',
+          'configuration_description' => 'Please, indicate the number of products do your want to display.',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',

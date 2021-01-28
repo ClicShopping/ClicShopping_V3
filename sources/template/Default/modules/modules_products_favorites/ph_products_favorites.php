@@ -462,7 +462,7 @@
           'configuration_title' => 'Veuillez indiquer une ordre tri selon les tarifs',
           'configuration_key' => 'MODULE_PRODUCTS_FAVORITES_LIST_PRICE',
           'configuration_value' => '0',
-          'configuration_description' => 'Cette option permet au client de choisir un ordre d\'affichage de ses produits.<br/ ><br /><strong>Note :</strong><br /><br />- 0 pour aucun Affichage<br />- Le plus petit nombre est montré en premier)',
+          'configuration_description' => 'This option allow to choose an order to display the product. Lowest is displayed in first; 0 for nothing',
           'configuration_group_id' => '6',
           'sort_order' => '6',
           'set_function' => '',

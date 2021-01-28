@@ -26,6 +26,3 @@
     </div>
   </div>
 </section>
-<?php
-  require_once($CLICSHOPPING_Template->getTemplateHeaderFooter('footer'));
-

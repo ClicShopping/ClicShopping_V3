@@ -11,13 +11,11 @@
 
 .passwordLogin a {
   color: #c0007a;
-
 }
 
 .passwordLogin a:hover {
   color: #c0007a;
   text-decoration:none;
-
 }
 
 h3.loginText{

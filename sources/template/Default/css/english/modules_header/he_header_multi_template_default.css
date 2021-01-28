@@ -100,3 +100,8 @@ a.headerMultiTemplateDefaultCartLink h2 {
 .headerMultiTemplateDefaultCurrencies {
   height: 30px;
 }
+
+.headerManufacturer{
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
