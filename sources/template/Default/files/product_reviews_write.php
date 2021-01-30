@@ -31,7 +31,7 @@
 
   require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb'));
 
-  echo HTML::form('product_reviews_write', CLICSHOPPING::link(null, 'Products&ReviewsWrite&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'id="productReviewsWrite"', ['tokenize' => true, 'action' => 'process']);
+  echo HTML::form('product_reviews_write', CLICSHOPPING::link(null, 'Products&ReviewsWrite&Process&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'post', 'onsubmit="var text = document.getElementById(\'productsReview\').value; if(text.length < ' . $min_caracters_to_write .') { alert(\'' . $message_alert . '\'); return false; } return true;"', ['tokenize' => true, 'action' => 'process']);
 ?>
   <section class="product_reviews_write" id="product_reviews_write">
     <div class="contentContainer">

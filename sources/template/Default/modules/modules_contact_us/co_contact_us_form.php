@@ -42,8 +42,10 @@
       if (isset($_GET['Info']) && isset($_GET['Contact']) && !isset($_GET['Success'])) {
 
         $content_width = (int)MODULE_CONTACT_US_FORM_CONTENT_WIDTH;
+        $min_caracters_to_write = 80;
+        $message_alert = CLICSHOPPING::getDef('entry_text_alert', ['textalert' => $min_caracters_to_write]);
 
-        $form = HTML::form('contact', CLICSHOPPING::link(null, 'Info&Contact&Process'), 'post', 'enctype="multipart/form-data"',  ['tokenize' => true, 'action' => 'process']);
+        $form =  HTML::form('contact', CLICSHOPPING::link(null, 'Info&Contact&Process'), 'post', 'onsubmit="var text = document.getElementById(\'messageAlert\').value; if(text.length < ' . $min_caracters_to_write .') { alert(\'' . $message_alert . '\'); return false; } return true;"', ['tokenize' => true, 'action' => 'process']);
 
         if ( isset($_GET['order_id']) && is_numeric($_GET['order_id'])) {
           $order_id = HTML::sanitize($_GET['order_id']);
@@ -247,7 +249,7 @@
                 </div>
              </div>
              <div class="col-md-10">
-                ' . HTML::textAreaField('enquiry', null, 50, 15, 'class="form-control inputContacUsFormTextArea" required aria-required="true" id="inputMessage" placeholder="' . CLICSHOPPING::getDef('entry_enquiry') . '"') . '
+                ' . HTML::textAreaField('enquiry', null, 50, 15, 'class="form-control inputContacUsFormTextArea" required aria-required="true" id="messageAlert" placeholder="' . CLICSHOPPING::getDef('entry_enquiry') . '"') . '
              </div>
            </div>
             ';
