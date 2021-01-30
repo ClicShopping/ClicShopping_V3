@@ -35,7 +35,6 @@
     }
 
     public function execute() {
-
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_Customer = Registry::get('Customer');
       $CLICSHOPPING_Hooks = Registry::get('Hooks');
@@ -44,9 +43,9 @@
       $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_COMMENT_POSITION;
 
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
-        $comment = HTML::textAreaField('review', null, 80, 10, 'required aria-required="true" id="inputReview"');
         $customer_name = HTML::outputProtected($CLICSHOPPING_Customer->getFirstName() . ' ' . $CLICSHOPPING_Customer->getLastName());
         $customer_group_id = $CLICSHOPPING_Customer->getCustomersGroupID();
+        $comment = HTML::textAreaField('review', null, 80, 10, 'required aria-required="true" id="productsReview"');
         $min_caracters_to_write = (int)REVIEW_TEXT_MIN_LENGTH;
 
         $data = '<!-- pr_products_reviews_write_comment start -->' . "\n";

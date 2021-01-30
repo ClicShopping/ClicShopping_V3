@@ -71,7 +71,6 @@
 
   echo HTML::form('update', $CLICSHOPPING_Reviews->link('Reviews&Update&page=' . $page . '&rID=' . $_GET['rID']), 'post', 'enctype="multipart/form-data"');
 ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css" rel="preload">
 
 <!-- body //-->
 <div class="contentBody">
@@ -83,7 +82,7 @@
             class="col-md-1 logoHeading"><?php echo HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'categories/reviews.gif', $CLICSHOPPING_Reviews->getDef('heading_title'), '40', '40'); ?></span>
           <span
             class="col-md-5 pageHeading"><?php echo '&nbsp;' . $CLICSHOPPING_Reviews->getDef('heading_title'); ?></span>
-          <span class="col-md-6 text-md-right">
+          <span class="col-md-6 text-end">
 <?php
   echo HTML::button($CLICSHOPPING_Reviews->getDef('button_cancel'), null, $CLICSHOPPING_Reviews->link('Reviews&page=' . $page . '&rID=' . $rInfo->reviews_id), 'warning') . '&nbsp;';
   echo HTML::hiddenField('language_id', $rInfo->languages_id);
@@ -98,7 +97,7 @@
   <div id="reviewsTab">
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
       <li
-        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-toggle="tab" class="nav-link">' . $CLICSHOPPING_Reviews->getDef('tab_general'); ?></a></li>
+        class="nav-item"><?php echo '<a href="#tab2" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Reviews->getDef('tab_general'); ?></a></li>
     </ul>
     <div class="tabsClicShopping">
       <div class="tab-content">
@@ -120,8 +119,8 @@
                 </div>
               </div>
             </div>
-            <span class="col-md-4 text-md-center float-end">
-              <div class="adminformAide text-md-center">
+            <span class="col-md-4 text-center float-end">
+              <div class="adminformAide text-center">
                 <td><?php echo HTML::image($CLICSHOPPING_Template->getDirectoryShopTemplateImages() . $rInfo->products_image, $rInfo->products_name, (int)SMALL_IMAGE_WIDTH, (int)SMALL_IMAGE_HEIGHT, 'hspace="5" vspace="5"'); ?></td>
               </div>
             </span>
@@ -196,23 +195,8 @@
             <div class="col-md-12">
               <span class="col-md-2"><?php echo $CLICSHOPPING_Reviews->getDef('entry_rating'); ?></span>
               <span class="col-md-10">
-                <?php echo $rInfo->reviews_rating; ?>
-<script>
-  $(function () {
-      $("#rateYo").rateYo({
-          rating: <?php echo $rInfo->reviews_rating; ?>,
-          fullStar: true,
-      })
-          .on("rateyo.set", function (e, data) {
-              document.getElementById("rateyoid").value = data.rating;
-          });
-  });
-</script>
-                  <div id="rateYo"></div>
-<?php echo HTML::hiddenField('reviews_rating', 1, 'id="rateyoid"'); ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>
-<script src="jquery.rateyo.js"></script>
-                  </span>
+                <?php echo '<i>' . HTML::stars($rInfo->reviews_rating) . '</i>'; ?>
+              </span>
             </div>
           </div>
         </div>
@@ -221,7 +205,15 @@
   </div>
 </div>
 
-<?php echo HTML::hiddenField('reviews_id', $rInfo->reviews_id) . HTML::hiddenField('products_id', $rInfo->products_id) . HTML::hiddenField('customers_name', $rInfo->customers_name) . HTML::hiddenField('products_name', $rInfo->products_name) . HTML::hiddenField('products_image', $rInfo->products_image) . HTML::hiddenField('date_added', $rInfo->date_added); ?></td>
+<?php
+  echo HTML::hiddenField('reviews_id', $rInfo->reviews_id) . HTML::hiddenField('products_id', $rInfo->products_id) .
+  HTML::hiddenField('customers_name', $rInfo->customers_name) .
+  HTML::hiddenField('products_name', $rInfo->products_name) .
+  HTML::hiddenField('products_image', $rInfo->products_image) .
+  HTML::hiddenField('date_added', $rInfo->date_added) .
+  HTML::hiddenField('languages_id', $rInfo->languages_id);
+?>
+</td>
 </form>
 
 

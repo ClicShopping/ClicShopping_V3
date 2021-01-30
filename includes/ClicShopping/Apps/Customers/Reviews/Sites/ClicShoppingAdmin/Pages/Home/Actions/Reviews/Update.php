@@ -25,13 +25,7 @@
       if (isset($_GET['rID'])) {
         $reviews_id = HTML::sanitize($_GET['rID']);
 
-        if (isset($_GET['id'])) {
-          $id = $_GET['id'];
-        }
 
-        if (isset($_POST['reviews_rating'])) {
-          $reviews_rating = HTML::sanitize($_POST['reviews_rating']);
-        }
 
         if (isset($_POST['reviews_text'])) {
           $reviews_text = HTML::sanitize($_POST['reviews_text']);
@@ -46,20 +40,20 @@
         }
 
         $sql_array = [
-          'reviews_rating' => (int)$reviews_rating,
           'status' => (int)$reviews_status,
           'last_modified' => 'now()'
         ];
 
         $CLICSHOPPING_Reviews->db->save('reviews', $sql_array, ['reviews_id' => (int)$reviews_id]);
 
-        $sql_array = ['reviews_text' => $reviews_text,
+        $sql_array = [
+          'reviews_text' => $reviews_text,
           'languages_id' => (int)$languages_id,
         ];
 
         $CLICSHOPPING_Reviews->db->save('reviews_description', $sql_array, ['reviews_id' => (int)$reviews_id]);
 
-        $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page . '&rID=' . $id);
+        $CLICSHOPPING_Reviews->redirect('Reviews&page=' . $page);
       }
     }
   }

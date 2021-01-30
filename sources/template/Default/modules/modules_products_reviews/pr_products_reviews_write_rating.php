@@ -35,7 +35,6 @@
     }
 
     public function execute() {
-
       if (isset($_GET['Products']) && isset($_GET['ReviewsWrite']) && !isset($_GET['Success'])) {
         $CLICSHOPPING_Template = Registry::get('Template');
 
@@ -43,9 +42,6 @@
         $text_position = MODULES_PRODUCTS_REVIEWS_WRITE_RATING_POSITION;
 
         $data = '<!-- pr_products_reviews_write start -->' . "\n";
-
-        $data .= HTMLOverrideCommon::starHeaderTagRateYo();
-        $rating = HTMLOverrideCommon::starTagRateYo(null, null, false, '40');
 
         ob_start();
         require_once($CLICSHOPPING_Template->getTemplateModules($this->group . '/content/products_reviews_write_rating'));

@@ -85,66 +85,6 @@
     }
 
     /**
-     * @return mixed
-     */
-    public static function starHeaderTagRateYo()
-    {
-      $CLICSHOPPING_Template = Registry::get('Template');
-
-      $header_tag = '<!--   Rate Yo start -->' . "\n";
-      $header_tag .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css" rel="preload">' . "\n";
-      $header_tag .= '<!--   Rate Yo  end -->' . "\n";
-      $CLICSHOPPING_Template->addBlock($header_tag, 'header_tags');
-
-      $footer_tag = '<!--   Rate Yo start -->' . "\n";
-      $footer_tag .= '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"></script>' . "\n";
-      $footer_tag .= '<!--   Rate Yo  end -->' . "\n";
-      $CLICSHOPPING_Template->addBlock($footer_tag, 'footer_scripts');
-    }
-
-    public static function starTagRateYo(int $rating = null, string $color = null, bool $readonly = true, int $size = 20): string
-    {
-
-      $star_rating = '<!--   Rate Yo start -->' . "\n";
-      $star_rating .= '<script> ';
-      $star_rating .= '$(function () { ';
-      $star_rating .= '$("#rateYo").rateYo({ ';
-
-      if (!is_null($rating)) {
-        $star_rating .= 'rating: ' . (int)$rating . ',  ';
-      } else {
-        $star_rating .= 'rating: 0, ';
-      }
-
-      $star_rating .= 'fullStar: true, ';
-      $star_rating .= 'starWidth: "' . $size . 'px", ';
-
-      if ($readonly === true) {
-        $star_rating .= 'readOnly: ' . $readonly . ', ';
-      }
-
-      if (!is_null($color)) {
-        $star_rating .= 'normalFill: "' . $color . '" ';
-      }
-
-      $star_rating .= '}) ';
-      $star_rating .= '.on("rateyo.set", function (e, data) { ';
-      $star_rating .= 'document.getElementById("rateyoid").value=data.rating; ';
-      $star_rating .= '}); ';
-      $star_rating .= '}); ';
-      $star_rating .= '</script>';
-      $star_rating .= '<span itemprop="ratingValue"><div id="rateYo"></div></span>';
-
-      if ($readonly === false) {
-        $star_rating .= parent::hiddenField('rating', 1, 'id="rateyoid"');
-      }
-
-      $star_rating .= '<!--   Rate Yo End -->' . "\n";
-
-      return $star_rating;
-    }
-
-    /**
      * Minify HTML
      * @param string $input
      * @return string|string[]|null

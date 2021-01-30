@@ -7,7 +7,6 @@
   <div class="col-md-12">
     <div class="separator"></div>
     <div class="modulesProductsReviewsCustomerAgreement">
-
       <ul class="list-group list-group-flush">
         <li class="list-group-item-slider">
           <?php echo CLICSHOPPING::getDef('text_privacy_conditions_description', ['store_name' => STORE_NAME, 'privacy_url' => CLICSHOPPING::link(SHOP_CODE_URL_CONFIDENTIALITY)]); ?>

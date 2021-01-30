@@ -40,14 +40,11 @@
       $CLICSHOPPING_ProductsCommon = Registry::get('ProductsCommon');
 
       if ($CLICSHOPPING_ProductsCommon->getID() && isset($_GET['Description']) && isset($_GET['Products'])) {
-
         $content_width = (int)MODULE_PRODUCTS_INFO_REVIEWS_CONTENT_WIDTH;
 
         $CLICSHOPPING_Db = Registry::get('Db');
         $CLICSHOPPING_Template = Registry::get('Template');
         $CLICSHOPPING_Language = Registry::get('Language');
-
-        $products_reviews_content = HTMLOverrideCommon::starHeaderTagRateYo();
 
 //*******************************************
 // products review
