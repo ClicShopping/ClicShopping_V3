@@ -272,7 +272,7 @@
           'configuration_title' => 'Do you want to display a message New / Special / Featured / Favorites?',
           'configuration_key' => 'MODULE_BOXES_PRODUCTS_FEATURED_TICKER',
           'configuration_value' => 'False',
-          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> < br /> <i> (Value true = Yes - Value false = No) </i>',
+          'configuration_description' => 'Display a message New / Promotion / Selection / Favorites superimposed on the image of the product? <br /> <br /> the duration is configurable in the Configuration menu / my shop / Minimum / maximum values <br /> <br /> <i> (Value true = Yes - Value false = No) </i>',
           'configuration_group_id' => '6',
           'sort_order' => '9',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
