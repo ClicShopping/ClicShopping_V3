@@ -20,8 +20,6 @@
 
   echo HTML::form('advanced_search', CLICSHOPPING::link(null, 'Search&Q'), 'post', 'id="advanced_search" role="form"', ['session_id' => true]);
 ?>
-
-<script src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/general.js')); ?>"></script>
 <section class="advanced_search" id="advanced_search">
   <div class="contentContainer">
     <div class="contentText">

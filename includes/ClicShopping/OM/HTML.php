@@ -455,7 +455,7 @@
         $field .= ' class="form-control" id="' . static::output($name) . '"';
       }
 
-      if (!empty($parameters)) {
+      if (!is_null($parameters)) {
         $field .= ' ' . $parameters;
       }
 

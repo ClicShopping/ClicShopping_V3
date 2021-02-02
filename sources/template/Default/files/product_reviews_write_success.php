@@ -21,8 +21,6 @@
   }
 // Do not touch the script below
 ?>
-<script type="text/javascript" src="<?php echo CLICSHOPPING::link($CLICSHOPPING_Template->getTemplateDefaultJavaScript('clicshopping/review_write.js.php')); ?>"></script>
-
 <?php require_once($CLICSHOPPING_Template->getTemplateFiles('breadcrumb')); ?>
 <section class="product_reviews_write_success" id="product_reviews_write_success">
   <div class="contentContainer">

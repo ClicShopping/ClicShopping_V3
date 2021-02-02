@@ -1,4 +1,3 @@
-
 /*
  *
  *  @copyright 2008 - https://www.clicshopping.org
@@ -9,9 +8,10 @@
  *
  */
 
-// Display a message inside input fields
-// address_book_details
+//Display a message inside input fields
+//address_book_details
 //create_account_registration
 //create_account_pro_registration
 //guest account
-$(document).ready(function(){$('input[rel="txtTooltipPhone"]').tooltip();$('input[rel="txtTooltipDob"]').tooltip();$('input[rel="txtTooltipEmailAddress"]').tooltip()});$('.productListTable tr:nth-child(even)').addClass('alt');
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) { return new bootstrap.Tooltip(tooltipTriggerEl)})
