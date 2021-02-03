@@ -42,7 +42,7 @@
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $categories_name_array = $_POST['categories_name'];
           $language_id = $languages[$i]['id'];
 

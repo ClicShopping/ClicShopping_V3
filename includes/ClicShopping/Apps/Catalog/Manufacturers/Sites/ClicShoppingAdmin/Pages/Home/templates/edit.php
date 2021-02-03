@@ -137,7 +137,7 @@
             <div id="manufacturersLanguage">
               <?php
                 $languages = $CLICSHOPPING_Language->getLanguages();
-                for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   ?>
                   <div class="form-group row">
                     <label for="code"
@@ -164,7 +164,7 @@
             <?php
               echo HTMLOverrideAdmin::getCkeditor();
 
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-1">
@@ -283,7 +283,7 @@
               </div>
             </div>
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
 
                 <div class="row">
@@ -355,7 +355,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
       <?php
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       ?>
         //default title
         $("#default_title_<?php echo $i?>").charCount({

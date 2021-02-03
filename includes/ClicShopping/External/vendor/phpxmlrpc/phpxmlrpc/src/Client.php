@@ -1198,8 +1198,8 @@ class Client
             if (!is_array($rets)) {
                 return false;       // bad return type from system.multicall
             }
-            $numRets = count($rets);
-            if ($numRets != count($reqs)) {
+            $numRets = \count($rets);
+            if ($numRets != \count($reqs)) {
                 return false;       // wrong number of return values.
             }
 
@@ -1243,7 +1243,7 @@ class Client
                 return false;       // bad return type from system.multicall
             }
             $numRets = $rets->count();
-            if ($numRets != count($reqs)) {
+            if ($numRets != \count($reqs)) {
                 return false;       // wrong number of return values.
             }
 

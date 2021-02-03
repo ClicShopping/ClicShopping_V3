@@ -4645,7 +4645,7 @@ class PHPMailer
         $currentHeaderValue = '';
         $parsedHeaders = [];
         $headerLineIndex = 0;
-        $headerLineCount = count($headerLines);
+        $headerLineCount = \count($headerLines);
         foreach ($headerLines as $headerLine) {
             $matches = [];
             if (preg_match('/^([^ \t]*?)(?::[ \t]*)(.*)$/', $headerLine, $matches)) {

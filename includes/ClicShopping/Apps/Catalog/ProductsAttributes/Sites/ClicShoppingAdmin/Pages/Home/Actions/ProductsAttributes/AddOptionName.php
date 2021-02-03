@@ -38,7 +38,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $option_name = HTML::sanitize($option_name_array[$languages[$i]['id']]);
 
         $Qupdate = $this->app->db->prepare('update :table_products_options

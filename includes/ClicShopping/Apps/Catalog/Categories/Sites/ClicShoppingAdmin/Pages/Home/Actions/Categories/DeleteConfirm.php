@@ -43,7 +43,7 @@
         $products = [];
         $products_delete = [];
 
-        for ($i = 0, $n = count($categories); $i < $n; $i++) {
+        for ($i = 0, $n = \count($categories); $i < $n; $i++) {
 
           $QproductIds = $this->app->db->get('products_to_categories', 'products_id', ['categories_id' => (int)$categories[$i]['id']]);
 
@@ -55,7 +55,7 @@
         foreach ($products as $key => $value) {
           $category_ids = '';
 
-          for ($i = 0, $n = count($value['categories']); $i < $n; $i++) {
+          for ($i = 0, $n = \count($value['categories']); $i < $n; $i++) {
             $category_ids .= "'" . (int)$value['categories'][$i] . "', ";
           }
 
@@ -76,7 +76,7 @@
           }
         }
 
-        for ($i = 0, $n = count($categories); $i < $n; $i++) {
+        for ($i = 0, $n = \count($categories); $i < $n; $i++) {
           $CLICSHOPPING_CategoriesAdmin->removeCategory($categories[$i]['id']);
         }
 

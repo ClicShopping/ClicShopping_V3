@@ -50,7 +50,7 @@
 
         $menu = $QMenuId->fetchAll();
 
-        $menu1 = count($menu);
+        $menu1 = \count($menu);
 
         for ($i = 0, $n = $menu1; $i < $n; $i++) {
           $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
@@ -72,7 +72,7 @@
 
         $menu = $QMenuId->fetchAll();
 
-        $menu1 = count($menu);
+        $menu1 = \count($menu);
 
         for ($i = 0, $n = $menu1; $i < $n; $i++) {
           $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
@@ -95,7 +95,7 @@
 
         $menu = $QMenuId->fetchAll();
 
-        $menu1 = count($menu);
+        $menu1 = \count($menu);
 
         for ($i = 0, $n = $menu1; $i < $n; $i++) {
           $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
@@ -118,7 +118,7 @@
 
         $menu = $QMenuId->fetchAll();
 
-        $menu1 = count($menu);
+        $menu1 = \count($menu);
 
         for ($i = 0, $n = $menu1; $i < $n; $i++) {
           $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);
@@ -140,7 +140,7 @@
 
         $menu = $QMenuId->fetchAll();
 
-        $menu1 = count($menu);
+        $menu1 = \count($menu);
 
         for ($i = 0, $n = $menu1; $i < $n; $i++) {
           $CLICSHOPPING_Db->delete('administrator_menu_description', ['id' => (int)$menu[$i]['id']]);

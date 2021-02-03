@@ -168,7 +168,7 @@ function build_remote_method_wrapper_code($client, $methodName, $xmlrpcFuncName,
     // param parsing
     $innerCode .= "\$encoder = new {$namespace}Encoder();\n";
     $plist = array();
-    $pCount = count($mSig);
+    $pCount = \count($mSig);
     for ($i = 1; $i < $pCount; $i++) {
         $plist[] = "\$p$i";
         $pType = $mSig[$i];

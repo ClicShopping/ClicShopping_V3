@@ -254,7 +254,7 @@
 
                         $inputs = '';
 
-                        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 
                           $QoptionsName = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_name
                                                                            from :table_products_options
@@ -322,7 +322,7 @@
                     echo HTML::form('options', $CLICSHOPPING_ProductsAttributes->link('ProductsAttributes&AddProductOptions&' . $page_info)) . HTML::hiddenField('products_options_id', $next_id);
 
                     $inputs = '';
-                    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                       $inputs .= '<div class="row">
                     <span class="col-md-1">' . $languages[$i]['code'] . ':</span>
                     <span class="col-md-11">&nbsp;' . HTML::inputField('option_name[' . $languages[$i]['id'] . ']') . '&nbsp;</span>
@@ -491,7 +491,7 @@
 
                   $inputs = '';
 
-                  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 
                     $QvaluesName = $CLICSHOPPING_ProductsAttributes->db->prepare('select products_options_values_name
                                                                         from :table_products_options_values
@@ -599,7 +599,7 @@
                         }
 
                         $inputs = '';
-                        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                           $inputs .= $languages[$i]['code'] . ':&nbsp;' . HTML::inputField('value_name[' . $languages[$i]['id'] . ']') . '<br />';
                         }
                       ?>

@@ -229,7 +229,7 @@
             <?php
               $languages = $CLICSHOPPING_Language->getLanguages();
 
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="form-group row">
                   <label for="code"

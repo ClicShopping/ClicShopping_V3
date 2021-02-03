@@ -59,7 +59,7 @@
 
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $manufacturers_url_array = $_POST['manufacturers_url'];
           $language_id = $languages[$i]['id'];
 

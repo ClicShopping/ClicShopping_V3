@@ -391,7 +391,7 @@ class XMLParser
 
                     // check if we are inside an array or struct:
                     // if value just built is inside an array, let's move it into array on the stack
-                    $vscount = count($this->_xh['valuestack']);
+                    $vscount = \count($this->_xh['valuestack']);
                     if ($vscount && $this->_xh['valuestack'][$vscount - 1]['type'] == 'ARRAY') {
                         $this->_xh['valuestack'][$vscount - 1]['values'][] = $this->_xh['value'];
                     }
@@ -468,7 +468,7 @@ class XMLParser
                     // add to array in the stack the last element built,
                     // unless no VALUE was found
                     if ($this->_xh['vt']) {
-                        $vscount = count($this->_xh['valuestack']);
+                        $vscount = \count($this->_xh['valuestack']);
                         $this->_xh['valuestack'][$vscount - 1]['values'][$this->_xh['valuestack'][$vscount - 1]['name']] = $this->_xh['value'];
                     } else {
                         Logger::instance()->errorLog('XML-RPC: ' . __METHOD__ . ': missing VALUE inside STRUCT in received xml');

@@ -327,7 +327,7 @@ class Server
         if (is_object($in)) {
             $numParams = $in->getNumParams();
         } else {
-            $numParams = count($in);
+            $numParams = \count($in);
         }
         foreach ($sigs as $curSig) {
             if (count($curSig) == $numParams + 1) {
@@ -1064,7 +1064,7 @@ class Server
                 $result[] = static::_xmlrpcs_multicall_do_call($server, $call);
             }
         } else {
-            $numCalls = count($req);
+            $numCalls = \count($req);
             for ($i = 0; $i < $numCalls; $i++) {
                 $result[$i] = static::_xmlrpcs_multicall_do_call_phpvals($server, $req[$i]);
             }

@@ -187,11 +187,11 @@
             $Qcurrent = $this->db->get('categories', 'parent_id', $insert_sql);
 
           if ($Qlast->valueInt('parent_id') === $Qcurrent->valueInt('parent_id')) {
-            for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
+            for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
               $cPath_new .= '_' . $cPath_array[$i];
             }
           } else {
-            for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
+            for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
               $cPath_new .= $cPath_array[$i];
             }
           }

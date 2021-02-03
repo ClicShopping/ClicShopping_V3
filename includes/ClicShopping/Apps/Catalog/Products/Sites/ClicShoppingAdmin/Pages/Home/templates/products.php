@@ -31,7 +31,7 @@
   $cPath_array = $CLICSHOPPING_CategoriesAdmin->getPathArray();
 
   if (isset($cPath_array) && count($cPath_array) > 0) {
-    for ($i = 0, $n = count($cPath_array) - 1; $i < $n; $i++) {
+    for ($i = 0, $n = \count($cPath_array) - 1; $i < $n; $i++) {
       if (empty($cPath_back)) {
         $cPath_back .= $cPath_array[$i];
       } else {

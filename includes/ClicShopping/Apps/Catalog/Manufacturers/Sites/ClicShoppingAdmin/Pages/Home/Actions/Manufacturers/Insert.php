@@ -63,7 +63,7 @@
       $manufacturers_id = $this->app->db->lastInsertId();
 
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $manufacturers_url_array = HTML::sanitize($_POST['manufacturers_url']);
         $manufacturer_description_array = HTML::sanitize($_POST['manufacturer_description']);
         $manufacturer_seo_title_array = HTML::sanitize($_POST['manufacturer_seo_title']);

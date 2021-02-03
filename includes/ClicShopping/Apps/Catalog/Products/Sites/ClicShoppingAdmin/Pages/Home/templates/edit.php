@@ -202,7 +202,7 @@
           </div>
           <div class="adminformTitle" id="tab1ContentRow1">
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="form-group row">
                   <label for="code"
@@ -290,7 +290,7 @@
               <label for="<?php echo $CLICSHOPPING_Products->getDef('text_products_url'); ?>"
                      class="col-5 col-form-label"><?php echo $CLICSHOPPING_Products->getDef('text_products_url') . ' <small>' . $CLICSHOPPING_Products->getDef('text_products_url_without_http') . '</small>'; ?></label>
               <?php
-                for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   ?>
                   <div class="form-group row">
                     <label for="code"
@@ -322,7 +322,7 @@
           </span>
             </div>
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="form-group row">
                   <label for="code"
@@ -538,7 +538,7 @@
         <script>
             var tax_rates = new Array();
             <?php
-            for ($i = 0, $n = count($tax_class_drop_down); $i < $n; $i++) {
+            for ($i = 0, $n = \count($tax_class_drop_down); $i < $n; $i++) {
               if ($tax_class_drop_down[$i]['id'] > 0) {
                 echo 'tax_rates["' . $tax_class_drop_down[$i]['id'] . '"] = ' . $tax->getTaxRateValue($tax_class_drop_down[$i]['id']) . ';' . "\n";
               }
@@ -837,7 +837,7 @@
             <div class="separator"></div>
             <div>
               <?php
-                for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   ?>
                   <div class="row" id="tab4ContentRow1">
                     <span
@@ -1169,7 +1169,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
               <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
                 //default title
                 $("#default_title_<?php echo $i?>").charCount({
@@ -1208,7 +1208,7 @@
               </div>
             </div>
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
 
                 <div class="row">

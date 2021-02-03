@@ -76,10 +76,10 @@
         $product_categories_string = '';
         $product_categories = $CLICSHOPPING_CategoriesAdmin->getGenerateCategoryPath($pInfo->products_id, 'product');
 
-        for ($i = 0, $n = count($product_categories); $i < $n; $i++) {
+        for ($i = 0, $n = \count($product_categories); $i < $n; $i++) {
           $category_path = '';
 
-          for ($j = 0, $k = count($product_categories[$i]); $j < $k; $j++) {
+          for ($j = 0, $k = \count($product_categories[$i]); $j < $k; $j++) {
             $category_path .= $product_categories[$i][$j]['text'] . '&nbsp;&gt;&nbsp;';
           }
 
