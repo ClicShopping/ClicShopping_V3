@@ -229,11 +229,16 @@
         $provider_client_ip = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
         $str = preg_split("/\./", $provider_client_ip);
         $i = \count($str);
-        $x = $i - 1;
-        $n = $i - 2;
-        $isp_provider_client = $str[$n] . '.' . $str[$x];
 
-        return $isp_provider_client;
+        $x = $str[0];
+
+        if ($i > 1) {
+          $n = $str[1];
+        } else {
+          $n = '';
+        }
+
+        return $x . '.' . $n;
       } else {
         return 'Unkown or localhost';
       }

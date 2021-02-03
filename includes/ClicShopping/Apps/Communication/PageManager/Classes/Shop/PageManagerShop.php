@@ -736,8 +736,6 @@
 
     /**
      * Get the general condition to include in the order
-     *
-     * @param string $customer_group
      * @return string page_manager_general_condition, the text of the general condition of sales
      *
      */
@@ -745,41 +743,11 @@
     {
       $general_condition = '';
 
-      $QpageManagerGeneralGroup = $this->db->prepare('select pages_id,
-                                                              customers_group_id
-                                                       from :table_pages_manager
-                                                       where customers_group_id = 99
-                                                       and page_type = 4
-                                                       and page_general_condition = 1
-                                                       and status = 1
-                                                     ');
-      $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
-      $QpageManagerGeneralGroup->execute();
-
-      if ($QpageManagerGeneralGroup->valueInt('customers_group_id') == 99) {
-        $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text,
-                                                                    pm.customers_group_id
-                                                           from :table_pages_manager pm,
-                                                                :table_pages_manager_description pmd
-                                                           where  pm.customers_group_id = 99
-                                                           and pm.page_general_condition = 1
-                                                           and pm.page_type = 4
-                                                           and pm.pages_id = :pages_id
-                                                           and pmd.language_id = :language_id
-                                                           and pmd.pages_id = pm.pages_id
-                                                           and pm.status = 1
-                                                           limit 1
-                                                          ');
-        $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
-        $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
-
-        $QpageManagerGeneralCondition->execute();
-
-      } else {
-
-        $QpageManagerGeneralGroup = $this->db->prepare('select pages_id
+      if (!is_null( $this->customer->getCustomersGroupID())) {
+        $QpageManagerGeneralGroup = $this->db->prepare('select pages_id,
+                                                                customers_group_id
                                                          from :table_pages_manager
-                                                         where customers_group_id <> 99
+                                                         where (customers_group_id = 99 or customers_group_id = :customers_group_id)
                                                          and page_type = 4
                                                          and page_general_condition = 1
                                                          and status = 1
@@ -787,55 +755,87 @@
         $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
         $QpageManagerGeneralGroup->execute();
 
-        if ($this->customer->getCustomersGroupID() == 0) {
-          $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text
-                                                               from :table_pages_manager pm,
-                                                                    :table_pages_manager_description pmd
-                                                               where  pm.customers_group_id = 0
-                                                               and pm.page_general_condition = 1
-                                                               and pm.page_type = 4
-                                                               and pm.pages_id = :pages_id
-                                                               and pmd.language_id = :language_id
-                                                               and pmd.pages_id = pm.pages_id
-                                                               and pm.status = 1
-                                                               limit 1
-                                                              ');
+        if ($QpageManagerGeneralGroup->valueInt('customers_group_id') == 99) {
+          $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text,
+                                                                      pm.customers_group_id
+                                                             from :table_pages_manager pm,
+                                                                  :table_pages_manager_description pmd
+                                                             where  pm.customers_group_id = 99
+                                                             and pm.page_general_condition = 1
+                                                             and pm.page_type = 4
+                                                             and pm.pages_id = :pages_id
+                                                             and pmd.language_id = :language_id
+                                                             and pmd.pages_id = pm.pages_id
+                                                             and pm.status = 1
+                                                             limit 1
+                                                            ');
           $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
           $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
-
 
           $QpageManagerGeneralCondition->execute();
         } else {
-          $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text,
-                                                                      pm.customers_group_id
-                                                               from :table_pages_manager pm,
-                                                                    :table_pages_manager_description pmd
-                                                               where  pm.customers_group_id = :customers_group_id
-                                                               and pm.page_general_condition = 1
-                                                               and pm.page_type = 4
-                                                               and pm.pages_id = :pages_id
-                                                               and pmd.language_id = :language_id
-                                                               and pmd.pages_id = pm.pages_id
-                                                               and pm.status = 1
-                                                               limit 1
-                                                              ');
-          $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
-          $QpageManagerGeneralCondition->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
-          $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
+          $QpageManagerGeneralGroup = $this->db->prepare('select pages_id
+                                                           from :table_pages_manager
+                                                           where (customers_group_id <> 99 or customers_group_id = :customers_group_id)
+                                                           and page_type = 4
+                                                           and page_general_condition = 1
+                                                           and status = 1
+                                                         ');
+          $QpageManagerGeneralGroup->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+          $QpageManagerGeneralGroup->execute();
 
-          $QpageManagerGeneralCondition->execute();
-        }
-      }
+          if ($this->customer->getCustomersGroupID() == 0) {
+            $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text
+                                                                 from :table_pages_manager pm,
+                                                                      :table_pages_manager_description pmd
+                                                                 where  pm.customers_group_id = 0
+                                                                 and pm.page_general_condition = 1
+                                                                 and pm.page_type = 4
+                                                                 and pm.pages_id = :pages_id
+                                                                 and pmd.language_id = :language_id
+                                                                 and pmd.pages_id = pm.pages_id
+                                                                 and pm.status = 1
+                                                                 limit 1
+                                                                ');
+            $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
+            $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
 
-      if ($QpageManagerGeneralCondition->fetch() !== false) {
-        if (!empty($QpageManagerGeneralCondition->value('pages_html_text'))) {
-          $general_condition = $QpageManagerGeneralCondition->value('pages_html_text');
+
+            $QpageManagerGeneralCondition->execute();
+          } else {
+            $QpageManagerGeneralCondition = $this->db->prepare('select pmd.pages_html_text,
+                                                                        pm.customers_group_id
+                                                                 from :table_pages_manager pm,
+                                                                      :table_pages_manager_description pmd
+                                                                 where  pm.customers_group_id = :customers_group_id
+                                                                 and pm.page_general_condition = 1
+                                                                 and pm.page_type = 4
+                                                                 and pm.pages_id = :pages_id
+                                                                 and pmd.language_id = :language_id
+                                                                 and pmd.pages_id = pm.pages_id
+                                                                 and pm.status = 1
+                                                                 limit 1
+                                                                ');
+            $QpageManagerGeneralCondition->bindInt(':language_id', $this->lang->getId());
+            $QpageManagerGeneralCondition->bindInt(':customers_group_id', $this->customer->getCustomersGroupID());
+            $QpageManagerGeneralCondition->bindInt(':pages_id', $QpageManagerGeneralGroup->valueInt('pages_id'));
+
+            $QpageManagerGeneralCondition->execute();
+          }
         }
+
+        if ($QpageManagerGeneralCondition->fetch() !== false) {
+          if (!empty($QpageManagerGeneralCondition->value('pages_html_text'))) {
+            $general_condition = $QpageManagerGeneralCondition->value('pages_html_text');
+          }
+        } else {
+          $general_condition = '';
+        }
+
+        return $general_condition;
       } else {
-        $general_condition = '';
+        return false;
       }
-
-      return $general_condition;
     }
 
     /**
