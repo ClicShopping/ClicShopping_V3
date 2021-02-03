@@ -193,11 +193,11 @@ function selectAll(FormName, SelectBox) {
         }
       }
 
-      if (count($audience) > 0) {
+      if (\count($audience) > 0) {
         if (isset($_GET['global']) && ($_GET['global'] == 'true')) {
           $confirm_button_string .= HTML::hiddenField('global', 'true');
         } else {
-          for ($i = 0, $n = count($chosen); $i < $n; $i++) {
+          for ($i = 0, $n = \count($chosen); $i < $n; $i++) {
             $confirm_button_string .= HTML::hiddenField('chosen[]', $chosen[$i]);
           }
         }
@@ -222,7 +222,7 @@ function selectAll(FormName, SelectBox) {
 
       $confirm_string .= '<table border="0" cellspacing="0" cellpadding="2">' . "\n" .
         '  <tr>' . "\n" .
-        '    <td class="main"><p style="color:#ff0000;"><strong>' . $this->app->getDef('text_count_customers', ['audience' => count($audience)]) . '</strong></p></td>' . "\n" .
+        '    <td class="main"><p style="color:#ff0000;"><strong>' . $this->app->getDef('text_count_customers', ['audience' => \count($audience)]) . '</strong></p></td>' . "\n" .
         '  </tr>' . "\n" .
         '  <tr>' . "\n" .
         '    <td>&nbsp;</td>' . "\n" .

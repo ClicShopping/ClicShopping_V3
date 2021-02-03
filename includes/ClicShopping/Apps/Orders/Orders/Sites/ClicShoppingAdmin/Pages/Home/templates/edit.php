@@ -331,7 +331,7 @@
               <td class="text-end"><?php echo $CLICSHOPPING_Orders->getDef('table_heading_total_including_tax'); ?></td>
             </tr>
             <?php
-              for ($i = 0, $n = count($order->products); $i < $n; $i++) {
+              for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
                 $products_id = $order->products[$i]['products_id'];
 
                 echo '    <tr class="dataTableRow">' . "\n" .
@@ -341,8 +341,8 @@
                   '      <td class="dataTableContent" valign="top">' . $order->products[$i]['qty'] . '&nbsp;x</td>' . "\n" .
                   '      <td class="dataTableContent" colspan="3" valign="top">' . $order->products[$i]['name'];
 
-                if (isset($order->products[$i]['attributes']) && (count($order->products[$i]['attributes']) > 0)) {
-                  for ($j = 0, $k = count($order->products[$i]['attributes']); $j < $k; $j++) {
+                if (isset($order->products[$i]['attributes']) && (\count($order->products[$i]['attributes']) > 0)) {
+                  for ($j = 0, $k = \count($order->products[$i]['attributes']); $j < $k; $j++) {
 // attributes reference
                     if ($order->products[$i]['attributes'][$j]['reference'] != '' || $order->products[$i]['attributes'][$j]['reference'] != 'null') {
                       $attributes_reference = '<strong> ' . $order->products[$i]['attributes'][$j]['reference'] . '</strong> - ';

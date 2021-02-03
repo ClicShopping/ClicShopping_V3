@@ -228,7 +228,7 @@
                 }
               }
 
-              for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+              for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
                 if (strpos($include_modules[$i]['class'], '\\') !== false) {
                   Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
                   $module = Registry::get('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']));
@@ -297,7 +297,7 @@
                 }
               }
 
-              for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+              for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
                 if (strpos($include_modules[$i]['class'], '\\') !== false) {
                   Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
                   $module = Registry::get('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']));

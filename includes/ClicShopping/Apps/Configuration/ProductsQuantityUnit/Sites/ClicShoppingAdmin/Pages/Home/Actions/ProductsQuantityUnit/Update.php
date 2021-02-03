@@ -33,7 +33,7 @@
         $products_quantity_unit_id = HTML::sanitize($_GET['oID']);
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $products_quantity_unit_title_array = $_POST['products_quantity_unit_title'];
           $language_id = $languages[$i]['id'];
 

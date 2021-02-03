@@ -26,7 +26,7 @@
         if (isset($_POST['formid']) && ($_POST['formid'] === $_SESSION['sessiontoken'])) {
           if (isset($_POST['products_id'])) {
 
-            for ($i = 0, $n = count($_POST['products_id']); $i < $n; $i++) {
+            for ($i = 0, $n = \count($_POST['products_id']); $i < $n; $i++) {
               $attributes = $_POST['id'][$_POST['products_id'][$i]] ?? '';
 
               $product_id = $CLICSHOPPING_ShoppingCart->getUprid($_POST['products_id'][$i], $attributes);

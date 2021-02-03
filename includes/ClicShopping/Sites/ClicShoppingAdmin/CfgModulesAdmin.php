@@ -106,7 +106,7 @@
 
       $modules_array = explode(';', $modules);
 
-      for ($i = 0, $n = count($modules_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
         $class = substr($modules_array[$i], 0, strrpos($modules_array[$i], '.'));
 
         if (isset($GLOBALS[$class]) && is_object($GLOBALS[$class])) {

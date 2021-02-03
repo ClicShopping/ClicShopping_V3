@@ -85,7 +85,7 @@
       for ($i = 0; $i < $this->numFiles; $i++) {
         $path = $this->getNameIndex($i);
         $pathBySlash = array_values(explode('/', $path));
-        $c = count($pathBySlash);
+        $c = \count($pathBySlash);
         $temp = &$Tree;
 
         for ($j = 0; $j < $c - 1; $j++) {
@@ -128,7 +128,7 @@
         }
       }
 
-      if (count($valid_files)) {
+      if (\count($valid_files)) {
         $zip = new \ZipArchive();
         if ($zip->open($destination, $overwrite ? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true) {
           return false;

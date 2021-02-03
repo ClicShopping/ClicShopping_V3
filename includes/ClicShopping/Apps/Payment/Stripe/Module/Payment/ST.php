@@ -189,7 +189,7 @@ pre_confirmation_check()
 
       $i = 0;
 
-      if (count($CLICSHOPPING_Order->products) < 7) {
+      if (\count($CLICSHOPPING_Order->products) < 7) {
         foreach ($CLICSHOPPING_Order->products as $product) {
           $i++;
 

@@ -349,7 +349,7 @@
      */
     public static function hasRoute(array $path): bool
     {
-      return array_slice(array_keys($_GET), 0, count($path)) == $path;
+      return array_slice(array_keys($_GET), 0, \count($path)) == $path;
     }
 
     /**

@@ -91,7 +91,7 @@
             // split apart the hash / salt
             $stack = explode(':', $hash, 2);
 
-            if (count($stack) === 2) {
+            if (\count($stack) === 2) {
               $result = (md5($stack[1] . $plain) === $stack[0]);
             } else {
               $result = false;

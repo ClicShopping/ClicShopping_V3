@@ -57,7 +57,7 @@
         $confirmation .= '<div class="separator"></div>';
         $confirmation .= '<div>';
 
-        if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
+        if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
           $confirmation .= '<div class="card moduleCheckoutConfirmationProductsListingCard">';
           $confirmation .= '<div class="card-header moduleCheckoutConfirmationProductsListingHeader"><strong>' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_heading_products')  . '</strong>';
           $confirmation .= HTML::link(CLICSHOPPING::link(null, 'Cart'), '<span class="orderEdit">(' . CLICSHOPPING::getDef('module_checkout_confirmation_products_listing_text_edit') . ')</span>');
@@ -84,7 +84,7 @@
         $confirmation .= '<div class="separator"></div>';
         $confirmation .= '<table width="100%">';
 
-        for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
+        for ($i=0, $n=\count($CLICSHOPPING_Order->products); $i<$n; $i++) {
           $data = '<tr>' . "\n";
           $data .= '<td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x</td>' . "\n";
           $data .= '<td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'] . ' (' . $CLICSHOPPING_Currencies->displayPrice($CLICSHOPPING_Order->products[$i]['final_price'], $CLICSHOPPING_Order->products[$i]['tax'], 1) . ')';
@@ -93,8 +93,8 @@
             $data .=  $CLICSHOPPING_ProductsCommon->getCheckStock($CLICSHOPPING_Order->products[$i]['id'], $CLICSHOPPING_Order->products[$i]['qty']);
           }
 
-          if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
-            for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
+          if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (\count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
+            for ($j=0, $n2=\count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
               $reference = '';
 
               if (!empty($CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'])) {
@@ -117,7 +117,7 @@
 
           $data .=  '</td>' . "\n";
 
-          if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
+          if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
             $data .= '<td class="text-end" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
           }
 

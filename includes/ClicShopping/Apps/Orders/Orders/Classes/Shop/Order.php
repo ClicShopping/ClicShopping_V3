@@ -637,7 +637,7 @@
           $group_tax = false;
         }
 
-        for ($i = 0, $n = count($products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($products); $i < $n; $i++) {
   // Display an indicator to identify if the product belongs at a customer group or not.
           $QproductsQuantityUnitId = $this->db->prepare('select products_quantity_unit_id_group
                                                          from :table_products_groups
@@ -891,7 +891,7 @@
 // orders total
       $order_totals = $CLICSHOPPING_OrderTotal->process();
 
-      for ($i = 0, $n = count($order_totals); $i < $n; $i++) {
+      for ($i = 0, $n = \count($order_totals); $i < $n; $i++) {
         $sql_data_array = [
           'orders_id' => (int)$this->insertID,
           'title' => $order_totals[$i]['title'],
@@ -905,7 +905,7 @@
       }
 
 // initialized for the email confirmation
-      for ($i = 0, $n = count($this->products); $i < $n; $i++) {
+      for ($i = 0, $n = \count($this->products); $i < $n; $i++) {
 // search the good model
         if ($CLICSHOPPING_Customer->getCustomersGroupID() != 0) {
           $QproductsModuleCustomersGroup = $this->db->prepare('select products_model_group
@@ -944,7 +944,7 @@
         $order_products_id = $this->db->lastInsertId();
 
         if (isset($this->products[$i]['attributes'])) {
-          for ($j = 0, $n2 = count($this->products[$i]['attributes']); $j < $n2; $j++) {
+          for ($j = 0, $n2 = \count($this->products[$i]['attributes']); $j < $n2; $j++) {
             $Qattributes = $CLICSHOPPING_ProductsAttributes->getAttributesDownloaded($this->products[$i]['id'], $this->products[$i]['attributes'][$j]['option_id'], $this->products[$i]['attributes'][$j]['value_id'], $this->lang->getId());
 
             $sql_data_array = [

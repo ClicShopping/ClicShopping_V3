@@ -56,7 +56,7 @@
     public function getOutput()
     {
       $result = static::checkVulnerabilities();
-      $count = count($result);
+      $count = \count($result);
 
       $content_width = 'col-md-' . (int)MODULE_ADMIN_DASHBOARD_COMPOSER_VULNERABILITIES_APP_CONTENT_WIDTH;
       $output = '';

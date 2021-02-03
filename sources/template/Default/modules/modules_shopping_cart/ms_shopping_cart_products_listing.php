@@ -69,7 +69,7 @@
         $shopping_cart .= '</thead>';
         $shopping_cart .= '<tbody>';
 
-        for ($i=0, $n=count($products); $i<$n; $i++) {
+        for ($i=0, $n=\count($products); $i<$n; $i++) {
 // Push all attributes information in an array
           if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
             foreach($products[$i]['attributes'] as $option => $value) {
@@ -91,7 +91,7 @@
         $products_name = null;
         $products_option = null;
 
-        for ($i=0, $n=count($products); $i<$n; $i++) {
+        for ($i=0, $n=\count($products); $i<$n; $i++) {
           $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($CLICSHOPPING_Prod::getProductID($products[$i]['id']));
 
           $products_name = HTML::hiddenField('products_id[]', $products[$i]['id']);

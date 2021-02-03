@@ -122,7 +122,7 @@
       $dir->close();
     }
 
-    for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
       $modules_array[] = ['id' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.')),
         'text' => substr($directory_array[$i], 0, strrpos($directory_array[$i], '.'))
       ];
@@ -134,7 +134,7 @@
     $values_customers_group_id[0] = ['id' => '0',
       'text' => $CLICSHOPPING_Newsletter->getDef('text_all_customers')
     ];
-    for ($i = 0, $n = count($customers_group); $i < $n; $i++) {
+    for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {
       $values_customers_group_id[$i + 1] = ['id' => $customers_group[$i]['id'],
         'text' => $customers_group[$i]['text']
       ];
@@ -147,7 +147,7 @@
       'text' => $CLICSHOPPING_Newsletter->getDef('text_all_languages')
     ];
 
-    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
         'text' => $languages[$i]['name']
       ];

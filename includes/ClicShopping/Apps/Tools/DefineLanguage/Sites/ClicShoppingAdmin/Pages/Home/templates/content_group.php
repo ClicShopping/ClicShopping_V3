@@ -55,7 +55,7 @@
     </div>
     <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist" id="myTab">
     <?php
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         echo '<li class="nav-item " ' . ($i === 0 ? 'active"' : '') . '><a href="#tab' . $i . '" data-bs-target="#section_general_content_' . $languages[$i]['directory'] . '" role="tab" data-bs-toggle="tab" class="nav-link">' . $CLICSHOPPING_Language->getImage($languages[$i]['code']) . '&nbsp;' . $languages[$i]['name'] . '</a></li>';
       }
 
@@ -66,7 +66,7 @@
   <div class="tabsClicShopping">
     <div class="tab-content">
       <?php
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           ?>
         <div class="adminformTitle tab-pane <?php echo($i === 0 ? 'active' : ''); ?>" id="section_general_content_<?php echo $languages[$i]['directory']; ?>">
             <table class="table table-hover">
@@ -162,7 +162,7 @@
                 </td>
                 <td>
                   <?php
-                    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                       $Tdefinitions = $CLICSHOPPING_DefineLanguage->db->prepare('select definition_key,
                                                                                         definition_value
                                                                                 from :table_languages_definitions
@@ -210,7 +210,7 @@
             </td>
             <td>
               <?php
-                for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                   ?>
                   <br/>
                   <p class="text-info"><strong><i>

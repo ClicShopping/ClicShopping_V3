@@ -33,7 +33,7 @@
       }
 
       if (is_array($xml)) {
-        if (count($xml) == 0) {
+        if (\count($xml) == 0) {
           return (string)$x->__toString(); // for CDATA
         }
 

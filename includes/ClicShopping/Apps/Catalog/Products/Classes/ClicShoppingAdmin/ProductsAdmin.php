@@ -74,7 +74,7 @@
     {
       $languages = $this->lang->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_id = $languages[$i]['id'];
 
         $sql_data_array = [
@@ -762,7 +762,7 @@
 
       $Qproducts->execute();
 
-      for ($i = 0, $iMax = count($multi_clone_categories_id_to); $i < $iMax; $i++) {
+      for ($i = 0, $iMax = \count($multi_clone_categories_id_to); $i < $iMax; $i++) {
         $clone_categories_id_to = $multi_clone_categories_id_to[$i];
 
         $sql_array = [

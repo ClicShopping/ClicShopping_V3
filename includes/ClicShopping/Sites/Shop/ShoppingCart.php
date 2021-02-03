@@ -1243,7 +1243,7 @@
 // strpos()+1 to remove up to and including the first { which would create an empty array element in explode()
             $attributes = explode('{', substr($prid, strpos($prid, '{') + 1));
 
-            for ($i = 0, $n = count($attributes); $i < $n; $i++) {
+            for ($i = 0, $n = \count($attributes); $i < $n; $i++) {
               $pair = explode('}', $attributes[$i]);
 
               if (is_numeric($pair[0]) && is_numeric($pair[1])) {

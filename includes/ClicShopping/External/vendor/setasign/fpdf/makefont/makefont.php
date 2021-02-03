@@ -156,7 +156,7 @@ function GetInfoFromType1($file, $embed, $map)
 	foreach($a as $line)
 	{
 		$e = explode(' ', rtrim($line));
-		if(count($e)<2)
+		if(\count($e)<2)
 			continue;
 		$entry = $e[0];
 		if($entry=='C')

@@ -170,15 +170,15 @@
       $groups = explode('-', $content_group);
       $path_to_file = '/';
 
-      for (($groups[0] == 'Apps' ? $i = 3 : $i = 1), $n = count($groups) - 1; $i < $n; $i++) {
+      for (($groups[0] == 'Apps' ? $i = 3 : $i = 1), $n = \count($groups) - 1; $i < $n; $i++) {
         $path_to_file .= $groups[$i] . '/';
       }
 
-//      $file_name = $groups[count($groups) - 1] . '.txt';
+//      $file_name = $groups[\count($groups) - 1] . '.txt';
 
       $path_name = str_replace('-', '/', substr($content_group, ($groups[0] != 'Apps' ? strlen($groups[0]) : strlen($groups[0] . '-' . $groups[1] . '-' . $groups[2])))) . '.txt';
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $language_dir = CLICSHOPPING::getConfig('dir_root', ($groups[0] == 'Apps' ? 'Shop' : $groups[0])) . ($groups[0] == 'Apps' ? 'includes/ClicShopping/Apps/' . $groups[1] . '/' . $groups[2] . '/' : 'includes/') . 'languages/' . $languages[$i]['directory'];
 
         if (!is_file($language_dir . $path_name)) {

@@ -33,7 +33,7 @@
         $orders_status_invoice_id = HTML::sanitize($_GET['oID']);
         $languages = $CLICSHOPPING_Language->getLanguages();
 
-        for ($i = 0, $n = count($languages); $i < $n; $i++) {
+        for ($i = 0, $n = \count($languages); $i < $n; $i++) {
           $orders_status_invoice_name_array = $_POST['orders_status_invoice_name'];
           $language_id = $languages[$i]['id'];
 

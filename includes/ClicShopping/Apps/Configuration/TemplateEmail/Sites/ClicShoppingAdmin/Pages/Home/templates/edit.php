@@ -94,7 +94,7 @@
             </div>
             <?php
               $languages = $CLICSHOPPING_Language->getLanguages();
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-8">
@@ -120,7 +120,7 @@
             </div>
             <?php
               $languages = $CLICSHOPPING_Language->getLanguages();
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-8">
@@ -152,7 +152,7 @@
           <div class="col-md-12 mainTitle"><?php echo $CLICSHOPPING_TemplateEmail->getDef('title_message'); ?></div>
           <div class="adminformTitle">
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-5">

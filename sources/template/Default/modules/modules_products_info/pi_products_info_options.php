@@ -137,7 +137,7 @@
                       $option_price_display_d = $option_price_display;
                     }
 
-                    $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
+                    $products_options_array[\count($products_options_array)-1]['text'] .= $option_price_display_d;
                   }
                 } // end while $products_options
 
@@ -175,7 +175,7 @@
                       $option_price_display_d = $option_price_display;
                     }
 
-                    $products_options_array[count($products_options_array)-1]['text'] .= $option_price_display_d;
+                    $products_options_array[\count($products_options_array)-1]['text'] .= $option_price_display_d;
                   }
                 } // end while $products_options
 

@@ -76,7 +76,7 @@
       $Qcheck->bindInt(':limit_attempts', $this->attempts);
       $Qcheck->execute();
 
-      if (count($Qcheck->fetchAll()) == $this->attempts) {
+      if (\count($Qcheck->fetchAll()) == $this->attempts) {
         return false;
       }
 

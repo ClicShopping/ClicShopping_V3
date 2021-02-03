@@ -50,7 +50,7 @@
 
       $manufacturer = ManufacturerAdmin::getManufacturerName($pId);
 
-      if (is_array($manufacturer) && count($manufacturer) > 0) {
+      if (is_array($manufacturer) && \count($manufacturer) > 0) {
         $manufacturers_name = $manufacturer[0]['manufacturers_name'];
       } else {
         $manufacturers_name = '';

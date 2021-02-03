@@ -33,7 +33,7 @@
     $dir->close();
   }
 
-  for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+  for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
     $file = $directory_array[$i];
 
 //    $CLICSHOPPING_Language->loadDefinitions($CLICSHOPPING_Template->getPathLanguageShopDirectory() . '/' . $CLICSHOPPING_Language->get('directory') . '/modules/action_recorder'  . $module_type . '/' . pathinfo($file, PATHINFO_FILENAME));

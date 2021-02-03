@@ -55,7 +55,7 @@
           }
         }
 
-        for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+        for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
           if (str_contains($include_modules[$i]['class'], '\\')) {
             Registry::set('Payment_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
           }
@@ -301,7 +301,7 @@
 
       $modules_array = explode(';', MODULE_PAYMENT_INSTALLED);
 
-      for ($i = 0, $n = count($modules_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
         $m = $modules_array[$i];
 
         $CLICSHOPPING_PM = null;

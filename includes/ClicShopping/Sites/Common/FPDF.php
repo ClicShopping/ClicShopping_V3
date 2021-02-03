@@ -471,12 +471,12 @@
       include($this->_getfontpath() . $file);
       if (!isset($name))
         $this->Error('Could not include font definition file');
-      $i = count($this->fonts) + 1;
+      $i = \count($this->fonts) + 1;
       $this->fonts[$fontkey] = array('i' => $i, 'type' => $type, 'name' => $name, 'desc' => $desc, 'up' => $up, 'ut' => $ut, 'cw' => $cw, 'enc' => $enc, 'file' => $file);
       if ($diff) {
         //Search existing encodings
         $d = 0;
-        $nb = count($this->diffs);
+        $nb = \count($this->diffs);
         for ($i = 1; $i <= $nb; $i++) {
           if ($this->diffs[$i] == $diff) {
             $d = $i;
@@ -536,7 +536,7 @@
             if (!isset($fpdf_charwidths[$fontkey]))
               $this->Error('Could not include font metric file');
           }
-          $i = count($this->fonts) + 1;
+          $i = \count($this->fonts) + 1;
           $name = $this->CoreFonts[$fontkey];
           $cw = $fpdf_charwidths[$fontkey];
           $this->fonts[$fontkey] = array('i' => $i, 'type' => 'core', 'name' => $name, 'up' => -100, 'ut' => 50, 'cw' => $cw);
@@ -567,7 +567,7 @@
     public function AddLink()
     {
       //Create a new internal link
-      $n = count($this->links) + 1;
+      $n = \count($this->links) + 1;
       $this->links[$n] = array(0, 0);
       return $n;
     }
@@ -872,7 +872,7 @@
         if (!method_exists($this, $mtd))
           $this->Error('Unsupported image type: ' . $type);
         $info = $this->$mtd($file);
-        $info['i'] = count($this->images) + 1;
+        $info['i'] = \count($this->images) + 1;
         $this->images[$file] = $info;
       } else
         $info = $this->images[$file];
@@ -1487,7 +1487,7 @@
           $this->_out($info['parms']);
         if (isset($info['trns']) && is_array($info['trns'])) {
           $trns = '';
-          for ($i = 0, $iMax = count($info['trns']); $i < $iMax; $i++)
+          for ($i = 0, $iMax = \count($info['trns']); $i < $iMax; $i++)
             $trns .= $info['trns'][$i] . ' ' . $info['trns'][$i] . ' ';
           $this->_out('/Mask [' . $trns . ']');
         }

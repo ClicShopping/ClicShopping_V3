@@ -49,7 +49,7 @@
         $dir->close();
       }
 
-      for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
         $file = $directory_array[$i];
 
         include($CLICSHOPPING_Template->getDirectoryPathModuleShop() . '/action_recorder/' . $file);

@@ -158,7 +158,7 @@
                     'last_modified' => filemtime($dir->path . '/' . $entry)
                   );
 
-                  $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
+                  $this->_listing[\count($this->_listing) - 1] = array_merge($this->_listing[\count($this->_listing) - 1], $stats);
                 }
               }
             } elseif (is_dir($dir->path . '/' . $entry)) {
@@ -180,7 +180,7 @@
                     'user_id' => fileowner($dir->path . '/' . $entry),
                     'group_id' => filegroup($dir->path . '/' . $entry),
                     'last_modified' => filemtime($dir->path . '/' . $entry));
-                  $this->_listing[count($this->_listing) - 1] = array_merge($this->_listing[count($this->_listing) - 1], $stats);
+                  $this->_listing[\count($this->_listing) - 1] = array_merge($this->_listing[\count($this->_listing) - 1], $stats);
                 }
               }
 
@@ -207,7 +207,7 @@
         $this->read();
       }
 
-      if (is_array($this->_listing) && (count($this->_listing) > 0)) {
+      if (is_array($this->_listing) && (\count($this->_listing) > 0)) {
         if ($sort_by_directories === true) {
           usort($this->_listing, array($this, '_sortListing'));
         }
@@ -227,7 +227,7 @@
         $this->read();
       }
 
-      return count($this->_listing);
+      return \count($this->_listing);
     }
 
     /**

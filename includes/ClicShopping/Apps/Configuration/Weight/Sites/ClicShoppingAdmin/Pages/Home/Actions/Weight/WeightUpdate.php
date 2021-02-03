@@ -33,7 +33,7 @@
       $weight_class_key = HTML::sanitize($_POST['weight_class_key']);
       $weight_class_id = HTML::sanitize($_POST['weight_class_id']);
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $weight_class_title_array = HTML::sanitize($_POST['weight_class_title']);
         $language_id = $languages[$i]['id'];
 

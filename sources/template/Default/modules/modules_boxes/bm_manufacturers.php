@@ -46,7 +46,7 @@
       if (!empty($manufacturers)) {
 // Display a list
           if (MODULE_BOXES_MANUFACTURERS_MANUFACTURERS_LIST == 'list') {
-            if (count($manufacturers) <= MODULE_BOXES_MANUFACTURERS_MAX_MANUFACTURERS_LIST) {
+            if (\count($manufacturers) <= MODULE_BOXES_MANUFACTURERS_MAX_MANUFACTURERS_LIST) {
               $manufacturers_list = '<ul style="list-style: none; margin: 0; padding: 0;">';
 
               foreach ($manufacturers as $m) {
@@ -68,7 +68,7 @@
 // Display a drop-down
           $manufacturers_array = [];
 
-          if (count($manufacturers) < 2) {
+          if (\count($manufacturers) < 2) {
             $manufacturers_array[] = ['id' => '',
                                       'text' => CLICSHOPPING::getDef('pull_down_default')
                                      ];

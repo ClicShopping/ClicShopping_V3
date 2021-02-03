@@ -49,7 +49,7 @@
 
       $products = $CLICSHOPPING_ShoppingCart->get_products();
 
-      for ($i=0, $n=count($products); $i<$n; $i++) {
+      for ($i=0, $n=\count($products); $i<$n; $i++) {
 
         $products_name_url = $CLICSHOPPING_ProductsFunctionTemplate->getProductsUrlRewrited()->getProductNameUrl($products[$i]['id']);
 

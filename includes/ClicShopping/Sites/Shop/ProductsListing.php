@@ -66,7 +66,7 @@
 
       $search_query = 'select SQL_CALC_FOUND_ROWS ';
 
-      for ($i = 0, $n = count($column_list); $i < $n; $i++) {
+      for ($i = 0, $n = \count($column_list); $i < $n; $i++) {
         switch ($column_list[$i]) {
           case 'PRODUCT_LIST_MODEL':
             $search_query .= ' p.products_model,';
@@ -300,8 +300,8 @@
 // ####### END B2B #######
       $search_query .= ' group by p.products_id ';
 
-      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > count($column_list))) {
-        for ($i = 0, $n = count($column_list); $i < $n; $i++) {
+      if ((!isset($_GET['sort'])) || (!preg_match('/^[1-8][ad]$/', $_GET['sort'])) || (substr($_GET['sort'], 0, 1) > \count($column_list))) {
+        for ($i = 0, $n = \count($column_list); $i < $n; $i++) {
           if ($column_list[$i] == 'PRODUCT_LIST_NAME') {
             $_GET['sort'] = $i + 1 . 'a';
 

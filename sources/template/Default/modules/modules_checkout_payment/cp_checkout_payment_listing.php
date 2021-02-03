@@ -56,7 +56,7 @@
         $data .= '<span class="page-title moduleCheckoutPaymentListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_payment_listing_table_heading_payment_method') . '</h3></span>';
         $data .= '<div class="separator"></div>';
 
-        if (count($selection) > 1) {
+        if (\count($selection) > 1) {
           $data .= '<div>';
           $data .= '<span class="col-md-8 text-start moduleCheckoutPaymentListingMethod">' . CLICSHOPPING::getDef('module_checkout_payment_listing_text_select_payment_method') . '</span>';
           $data .= '<span class="col-md-4 text-end float-end moduleCheckoutPaymentListingSelect">' .CLICSHOPPING::getDef('module_checkout_payment_listing_title_please_select') . '</span>';
@@ -71,12 +71,12 @@
 
         $radio_buttons = 0;
 
-        for ($i=0, $n=count($selection); $i<$n; $i++) {
+        for ($i=0, $n=\count($selection); $i<$n; $i++) {
           $data .= '<tr class="table-selection">';
           $data .= '<td><strong>' . $selection[$i]['module'] . '</strong></td>';
           $data .= '<td class="ClicShoppingModulesCheckoutPaymentRadio">';
 
-          if (count($selection) > 1) {
+          if (\count($selection) > 1) {
             $data .= '<span class="moduleCheckoutPaymentListingRadio">' . HTML::radioField('payment', $selection[$i]['id'], (isset($_SESSION['payment']) && ($selection[$i]['id'] == $_SESSION['payment'])), 'required aria-required="true"') . '</span>';
           } else {
             $data .= HTML::radioField('payment', $selection[$i]['id'], $selection[$i]['id'], 'required aria-required="true"');
@@ -92,7 +92,7 @@
             $data .= '<tr>';
             $data .= '<td colspan="2"><table border="0" cellspacing="0" cellpadding="2">';
 
-            for ($j=0, $n2=count($selection[$i]['fields']); $j<$n2; $j++) {
+            for ($j=0, $n2=\count($selection[$i]['fields']); $j<$n2; $j++) {
               $data .= '<tr>';
               $data .= '<td>' . $selection[$i]['fields'][$j]['title'] . '</td>';
               $data .= '<td>' . $selection[$i]['fields'][$j]['field'] . '</td>';

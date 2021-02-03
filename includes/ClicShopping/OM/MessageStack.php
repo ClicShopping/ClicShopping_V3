@@ -172,12 +172,12 @@
     {
       if (isset($group)) {
         if ($this->exists($group)) {
-          return count($this->data[$group]);
+          return \count($this->data[$group]);
         }
 
         return 0;
       }
 
-      return count($this->data);
+      return \count($this->data);
     }
   }

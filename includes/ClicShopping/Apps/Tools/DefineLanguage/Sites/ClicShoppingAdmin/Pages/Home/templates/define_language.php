@@ -114,7 +114,7 @@
           $Qcontents->execute();
           do {
             if ($Qcontents->valueInt('count') > 0) {
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 if ($languages[$i]['id'] == $Qcontents->value('languages_id')) {
                   $search_count .= ' [' . $languages[$i]['code'] . ':' . $Qcontents->valueInt('count') . ']';
                 }

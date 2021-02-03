@@ -48,7 +48,7 @@
             $CLICSHOPPING_OTM->output = [];
             $CLICSHOPPING_OTM->process();
 
-            for ($i = 0, $n = count($CLICSHOPPING_OTM->output); $i < $n; $i++) {
+            for ($i = 0, $n = \count($CLICSHOPPING_OTM->output); $i < $n; $i++) {
               if (!is_null($CLICSHOPPING_OTM->output[$i]['title']) && !is_null($CLICSHOPPING_OTM->output[$i]['text'])) {
                 $order_total_array[] = [
                   'code' => $CLICSHOPPING_OTM->code,
@@ -76,7 +76,7 @@
           }
 
           if ($CLICSHOPPING_OTM->enabled) {
-            $size = count($CLICSHOPPING_OTM->output);
+            $size = \count($CLICSHOPPING_OTM->output);
             for ($i = 0; $i < $size; $i++) {
               $output_string .= '              <tr>' . "\n" .
                 '                <td class="OrderTotalTitle">' . $CLICSHOPPING_OTM->output[$i]['title'] . '</td>' . "\n" .

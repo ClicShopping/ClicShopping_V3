@@ -356,7 +356,7 @@
           <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_name_page'); ?></div>
           <div class="adminformTitle">
 <?php
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     if ($page_error === true) {
       if ($languages_title_error == $languages[$i]['id']) {
 ?>
@@ -553,7 +553,7 @@
               <div class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('title_link'); ?></div>
               <div class="adminformTitle">
 <?php
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
 ?>
                     <div class="row">
                       <div class="col-md-5">
@@ -593,7 +593,7 @@
             class="mainTitle"><?php echo $CLICSHOPPING_PageManager->getDef('text_pages_information_description'); ?></div>
           <div class="adminformTitle">
 <?php
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     if (isset($pages_html_text[$languages[$i]['id']])) {
       $text_description = $pages_html_text[$languages[$i]['id']];
     } else {
@@ -665,7 +665,7 @@
               <script type="text/javascript">
                   $(document).ready(function () {
                     <?php
-                    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                     ?>
                       //default title
                       $("#default_title_<?php echo $i?>").charCount({
@@ -701,7 +701,7 @@
               </script>
               <div class="adminformTitle">
 <?php
-    for ($i = 0, $n = count($languages); $i < $n; $i++) {
+    for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       if (isset($bID)) {
         $title_tag = PageManagerAdmin::getPageManagerHeadTitleTag($bID, $languages[$i]['id']);
         $descrition_tag = PageManagerAdmin::getPageManagerHeadDescTag($bID, $languages[$i]['id']);

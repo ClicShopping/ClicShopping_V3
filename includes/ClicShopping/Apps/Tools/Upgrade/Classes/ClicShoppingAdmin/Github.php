@@ -317,7 +317,7 @@
         } else {
           $file_name = $module_name;
           $file_array = explode('.', $file_name);
-          $extension = count($file_array) - 1;
+          $extension = \count($file_array) - 1;
           $filename = substr($file_name, 0, strlen($file_name) - strlen($file_array[$extension]) - 1);
 
           $content_json_file = @file_get_contents($this->getGithubRepo() . $filename . '/contents/' . $this->ModuleInfosJson . '/' . $module_name . '?ref=master', true, $this->context);

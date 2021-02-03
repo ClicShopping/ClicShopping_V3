@@ -37,7 +37,7 @@
             $value = HTML::sanitize($value);
 
             $pages = '';
-            $count = count($value);
+            $count = \count($value);
 
             for ($i = 0; $i < $count; $i++) {
               $pages = "$pages$value[$i]";

@@ -153,7 +153,7 @@
 // ----------------------
 // Display a button if subcription is > 0
 // ----------------------
-      if (SEND_EMAILS == 'true' && $Qmail->valueInt('count') > 0) {
+      if (SEND_EMAILS == 'true' && $Qmail->valueInt('\count') > 0) {
         $send_button = '<span class="float-end">' . HTML::button($this->app->getDef('button_send'), null, $this->app->link('ConfirmSend&page=' . (int)$_GET['page'] . '&nID=' . $this->fileId . '&nlID=' . $this->languageId . '&cgID=' . $this->customerGroupId . '&ac=' . $this->createFile . '&at=' . $this->twitter . '&ana=' . $this->newsletterNoAccount), 'success', null) . '</span>';
       } else {
         $send_button = '';
@@ -183,7 +183,7 @@
 
       $confirm_string .= '<div id="newsletterBody">' . "\n";
       $confirm_string .= '<div class="text-center alert alert-info" id="newsletterAlert">';
-      $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('count') . '<strong></div>';
+      $confirm_string .= '<div id="newsletterCount"><strong>' . $this->app->getDef('text_count_customers') . ' ' . $Qmail->valueInt('\count') . '<strong></div>';
       $confirm_string .= '</div>' . "\n";
 
       $confirm_string .= $file_name . "\n";

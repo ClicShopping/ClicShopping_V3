@@ -92,7 +92,7 @@
         'text' => CLICSHOPPING::getDef('visitor_name')
       ];
 
-      for ($i = 0, $n = count($customers_group); $i < $n; $i++) {
+      for ($i = 0, $n = \count($customers_group); $i < $n; $i++) {
         $values_customers_group_id[$i + 1] = [
           'id' => $customers_group[$i]['id'],
           'text' => $customers_group[$i]['text']

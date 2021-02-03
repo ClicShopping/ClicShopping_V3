@@ -63,7 +63,7 @@
   $admin_dir = basename(CLICSHOPPING::getConfig('dir_root'));
 
   if ($admin_dir != 'ClicShoppingAdmin') {
-    for ($i = 0, $n = count($whitelist_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($whitelist_array); $i < $n; $i++) {
       if (substr($whitelist_array[$i], 0, 6) == 'ClicShoppingAdmin/') {
         $whitelist_array[$i] = $admin_dir . substr($whitelist_array[$i], 5);
       }

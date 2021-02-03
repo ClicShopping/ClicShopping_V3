@@ -289,7 +289,7 @@
   $item_count = 0;
 // Boucle sur les produits
 // Show the products information line by line
-  for ($i = 0, $n = count($order->products); $i < $n; $i++) {
+  for ($i = 0, $n = \count($order->products); $i < $n; $i++) {
 
 // Quantity
     $pdf->SetFont('Arial', '', 7);
@@ -301,8 +301,8 @@
     $prod_attribs = '';
 
     // Get attribs and concat
-    if ((isset($order->products[$i]['attributes'])) && (count($order->products[$i]['attributes']) > 0)) {
-      for ($j = 0, $n2 = count($order->products[$i]['attributes']); $j < $n2; $j++) {
+    if ((isset($order->products[$i]['attributes'])) && (\count($order->products[$i]['attributes']) > 0)) {
+      for ($j = 0, $n2 = \count($order->products[$i]['attributes']); $j < $n2; $j++) {
         if (!empty($order->products[$i]['attributes'][$j]['reference'])) {
           $reference = $order->products[$i]['attributes'][$j]['reference'] . ' / ';
         }
@@ -379,7 +379,7 @@
     }
   }
 
-  for ($i = 0, $n = count($order->totals); $i < $n; $i++) {
+  for ($i = 0, $n = \count($order->totals); $i < $n; $i++) {
     $pdf->SetY($Y_Table_Position + 5);
     $pdf->SetX(102);
 

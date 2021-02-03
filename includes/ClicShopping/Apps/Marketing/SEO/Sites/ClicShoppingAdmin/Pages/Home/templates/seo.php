@@ -118,7 +118,7 @@
               </div>
             </div>
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
             ?>
             <div class="row">
               <div class="col-md-5">
@@ -206,7 +206,7 @@
               </div>
             </div>
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
                 <div class="row">
                   <div class="col-md-5">
@@ -286,7 +286,7 @@
             </div>
 
             <?php
-            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
                 <div class="row">
                   <div class="col-md-5">
@@ -366,7 +366,7 @@
             </div>
 
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-5">
@@ -442,7 +442,7 @@
             </div>
 
             <?php
-              for ($i = 0, $n = count($languages); $i < $n; $i++) {
+              for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                 ?>
                 <div class="row">
                   <div class="col-md-5">
@@ -513,7 +513,7 @@
             </div>
 
             <?php
-            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
                 <div class="row">
                   <div class="col-md-5">
@@ -586,7 +586,7 @@
             </div>
 
             <?php
-            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
             <div class="row">
               <div class="col-md-5">
@@ -664,7 +664,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
       <?php
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
       ?>
         //default title
         $("#default_title_<?php echo $i; ?>").charCount({

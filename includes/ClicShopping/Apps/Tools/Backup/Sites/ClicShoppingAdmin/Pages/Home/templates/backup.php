@@ -90,7 +90,7 @@
 
           sort($contents);
 
-          for ($i = 0, $n = count($contents); $i < $n; $i++) {
+          for ($i = 0, $n = \count($contents); $i < $n; $i++) {
             $entry = $contents[$i];
 
             if ((!isset($_GET['file']) || (isset($_GET['file']) && ($_GET['file'] == $entry)))) {

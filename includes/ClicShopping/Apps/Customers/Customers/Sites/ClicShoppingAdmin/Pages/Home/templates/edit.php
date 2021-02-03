@@ -42,7 +42,7 @@
 
   $languages = $CLICSHOPPING_Language->getLanguages();
 
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     $values_languages_id[$i] = [
       'id' => $languages[$i]['id'],
       'text' => $languages[$i]['name']
@@ -144,7 +144,7 @@
       $Qzones = $CLICSHOPPING_Customers->db->get('zones', 'zone_name', ['zone_country_id' => $cInfo->entry_country_id], 'zone_name');
       $check = $Qzones->fetchAll();
 
-      if (count($check) > 0) {
+      if (\count($check) > 0) {
 ?>
         if (document.customers.elements['entry_state'].type != "hidden") {
             if (document.customers.entry_state.value.length < <?php echo ENTRY_STATE_MIN_LENGTH; ?>) {

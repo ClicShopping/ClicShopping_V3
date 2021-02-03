@@ -176,7 +176,7 @@
       if ($CLICSHOPPING_Order->content_type == 'mixed') {
         $number_of_items = 0;
 
-        for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+        for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
           $number_of_items += $CLICSHOPPING_Order->products[$i]['qty'];
 
           if (isset($CLICSHOPPING_Order->products[$i]['attributes'])) {

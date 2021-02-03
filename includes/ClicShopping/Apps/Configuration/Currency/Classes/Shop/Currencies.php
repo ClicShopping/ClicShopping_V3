@@ -290,7 +290,7 @@
      */
     public function getCurrenciesDropDown($class = '')
     {
-      if ((count($this->currencies) > 1)) {
+      if ((\count($this->currencies) > 1)) {
         reset($this->currencies);
         $currency_header = '';
 

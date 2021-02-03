@@ -37,7 +37,7 @@
           }
         }
 
-        if (count($GET_array) > 0) {
+        if (\count($GET_array) > 0) {
           foreach ($GET_array as $key => $value) {
             $_GET[$key] = $value;
           }

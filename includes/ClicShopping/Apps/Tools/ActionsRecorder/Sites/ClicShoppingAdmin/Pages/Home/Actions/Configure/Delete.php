@@ -55,7 +55,7 @@
 
         $menu = $QMenuId->fetchAll();
 
-        $menu1 = count($menu);
+        $menu1 = \count($menu);
 
         for ($i = 0, $n = $menu1; $i < $n; $i++) {
           $CLICSHOPPING_Db->delete('actions_recorder_description', ['id' => (int)$menu[$i]['id']]);

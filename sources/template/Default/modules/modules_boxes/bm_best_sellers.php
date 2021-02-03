@@ -161,7 +161,7 @@
 
       $best_sellers = $QBestSellers->fetchAll();
 
-      if (count($best_sellers) >= MODULE_BOXES_BEST_SELLERS_MIN_DISPLAY && count($best_sellers) <= MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY) {
+      if (\count($best_sellers) >= MODULE_BOXES_BEST_SELLERS_MIN_DISPLAY && \count($best_sellers) <= MODULE_BOXES_BEST_SELLERS_MAX_DISPLAY) {
         $position = 1;
 
         $bestsellers_list = '<ol class="olBestSellers">';

@@ -197,7 +197,7 @@
           </div>
 
           <?php
-            for ($i = 0, $n = count($languages); $i < $n; $i++) {
+            for ($i = 0, $n = \count($languages); $i < $n; $i++) {
               ?>
               <div class="col-md-12">
                 <div class="form-group row">

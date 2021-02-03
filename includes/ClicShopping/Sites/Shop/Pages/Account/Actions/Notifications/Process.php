@@ -54,7 +54,7 @@
 
           $CLICSHOPPING_MessageStack->add(CLICSHOPPING::getDef('success_notifications_updated'), 'success', 'notification');
 
-        } elseif (count($products) > 0) {
+        } elseif (\count($products) > 0) {
           $products_parsed = [];
 
           foreach ($products as $value) {
@@ -63,7 +63,7 @@
             }
           }
 
-          if (count($products_parsed) > 0) {
+          if (\count($products_parsed) > 0) {
             $Qcheck = $CLICSHOPPING_Db->prepare('select products_id
                                                  from :table_products_notifications
                                                  where customers_id = :customers_id

@@ -114,7 +114,7 @@
           if (is_numeric($cfg->sort_order)) {
             $counter = (int)$cfg->sort_order;
           } else {
-            $counter = count($result);
+            $counter = \count($result);
           }
 
           while (true) {

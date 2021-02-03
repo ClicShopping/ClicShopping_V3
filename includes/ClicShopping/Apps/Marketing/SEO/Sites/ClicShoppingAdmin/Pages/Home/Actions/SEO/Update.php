@@ -24,7 +24,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 // Language
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $languages_id = $i +1;
 
         $submit_defaut_language_title = HTML::sanitize($_POST['submit_defaut_language_title_'][$languages[$i]['id']] ?? '');

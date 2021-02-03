@@ -123,7 +123,7 @@
 
         $this->app->db->exec('drop table if exists ' . implode(', ', $drop_table_names));
 
-        for ($i = 0, $n = count($sql_array); $i < $n; $i++) {
+        for ($i = 0, $n = \count($sql_array); $i < $n; $i++) {
           $this->app->db->exec($sql_array[$i]);
         }
 

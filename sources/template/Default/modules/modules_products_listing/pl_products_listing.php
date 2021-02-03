@@ -74,7 +74,7 @@
         $lc_text = CLICSHOPPING::getDef('table_heading_date');
 
 // number of sort criterias
-            for ($col = 0, $n = count($column_list); $col < $n; $col++) {
+            for ($col = 0, $n = \count($column_list); $col < $n; $col++) {
               switch($column_list[$col]) {
                 case 'PRODUCT_LIST_MODEL':
                   $lc_text = CLICSHOPPING::getDef('table_heading_model');

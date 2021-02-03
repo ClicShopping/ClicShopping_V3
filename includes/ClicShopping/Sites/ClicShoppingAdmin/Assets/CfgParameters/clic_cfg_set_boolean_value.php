@@ -19,7 +19,7 @@
 
     $name = (!empty($key) ? 'configuration[' . $key . ']' : 'configuration_value');
 
-    for ($i = 0, $n = count($select_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($select_array); $i < $n; $i++) {
       $value = trim($select_array[$i]);
 
       if (str_contains($value, '\'')) {

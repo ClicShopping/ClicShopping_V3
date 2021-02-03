@@ -122,7 +122,7 @@
 
     $installed_modules = [];
 
-    for ($i = 0, $n = count($directory_array); $i < $n; $i++) {
+    for ($i = 0, $n = \count($directory_array); $i < $n; $i++) {
       $file = $directory_array[$i];
 
       if (str_contains($file, '\\')) {
@@ -169,7 +169,7 @@
 
           $keys_extra = [];
 
-          for ($j = 0, $k = count($module_keys); $j < $k; $j++) {
+          for ($j = 0, $k = \count($module_keys); $j < $k; $j++) {
 
             $Qkeys = $CLICSHOPPING_Db->get('configuration', [
               'configuration_title',

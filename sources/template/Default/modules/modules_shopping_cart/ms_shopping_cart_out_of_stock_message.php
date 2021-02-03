@@ -47,7 +47,7 @@
         $products = $CLICSHOPPING_ShoppingCart->get_products();
 
         if (STOCK_CHECK == 'true') {
-          for ($i = 0, $n = count($products); $i < $n; $i++) {
+          for ($i = 0, $n = \count($products); $i < $n; $i++) {
             $stock_check = $CLICSHOPPING_ProductsCommon->getCheckStock($products[$i]['id'], $products[$i]['quantity']);
 
             if (!empty($stock_check)) {

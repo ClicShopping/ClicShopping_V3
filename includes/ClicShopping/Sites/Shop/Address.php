@@ -379,7 +379,7 @@
     {
       $zones = self::getCountryZones($country_id);
 
-      if (count($zones) > 0) {
+      if (\count($zones) > 0) {
         $zones_select = array(['id' => '',
             'text' => CLICSHOPPING::getDef('text_selected')
           ]
@@ -513,7 +513,7 @@
       $Qzone->fetch();
 
       $all_zone = $Qzone->fetchAll();
-      $count = count($all_zone);
+      $count = \count($all_zone);
 
       if ($count > 0 && !empty($state) && !is_numeric($state)) {
         $Qzone = $this->db->prepare('select distinct zone_id

@@ -63,7 +63,7 @@
           }
         }
 
-        for ($i = 0, $n = count($include_modules); $i < $n; $i++) {
+        for ($i = 0, $n = \count($include_modules); $i < $n; $i++) {
           if (str_contains($include_modules[$i]['class'], '\\')) {
             Registry::set('Shipping_' . str_replace('\\', '_', $include_modules[$i]['class']), new $include_modules[$i]['file']);
           }
@@ -126,7 +126,7 @@
           }
         }
 
-        $size = count($include_quotes);
+        $size = \count($include_quotes);
 
         for ($i = 0; $i < $size; $i++) {
           if (str_contains($include_quotes[$i], '\\')) {
@@ -184,7 +184,7 @@
             if ($obj->enabled) {
               $quotes = $obj->quotes;
 
-              for ($i = 0, $n = count($quotes['methods'] ?: []); $i < $n; $i++) {
+              for ($i = 0, $n = \count($quotes['methods'] ?: []); $i < $n; $i++) {
                 if (isset($quotes['methods'][$i]['cost']) && !is_null($quotes['methods'][$i]['cost'])) {
                   $rates[] = [ 
                     'id' => $quotes['id'] . '_' . $quotes['methods'][$i]['id'],
@@ -200,7 +200,7 @@
 
         $cheapest = false;
 
-        for ($i = 0, $n = count($rates); $i < $n; $i++) {
+        for ($i = 0, $n = \count($rates); $i < $n; $i++) {
           if (is_array($cheapest)) {
             if ($rates[$i]['cost'] < $cheapest['cost']) {
               $cheapest = $rates[$i];
@@ -224,7 +224,7 @@
 
       $modules_array = explode(';', MODULE_SHIPPING_INSTALLED);
 
-      for ($i = 0, $n = count($modules_array); $i < $n; $i++) {
+      for ($i = 0, $n = \count($modules_array); $i < $n; $i++) {
         $m = $modules_array[$i];
 
         $CLICSHOPPING_SM = null;

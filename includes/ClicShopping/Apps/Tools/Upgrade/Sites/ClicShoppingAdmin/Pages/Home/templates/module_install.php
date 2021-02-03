@@ -79,7 +79,7 @@
 
     if (isset($module_directory)) {
       if (!empty($file_cache_temp_array[0])) {
-        $count_file = count($file_cache_temp_array);
+        $count_file = \count($file_cache_temp_array);
 
         if (is_array($file_cache_temp_array)) {
           foreach ($file_cache_temp_array as $value) {

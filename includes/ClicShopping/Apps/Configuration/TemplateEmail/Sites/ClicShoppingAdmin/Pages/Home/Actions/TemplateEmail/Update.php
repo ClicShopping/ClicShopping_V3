@@ -33,7 +33,7 @@
 
       $languages = $CLICSHOPPING_Language->getLanguages();
 
-      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
         $template_language_id = $languages[$i]['id'];
 
         $sql_data_array['template_email_name'] = HTML::sanitize($_POST['template_email_name'][$template_language_id]);

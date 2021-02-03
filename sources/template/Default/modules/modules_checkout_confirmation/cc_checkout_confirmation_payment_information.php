@@ -80,7 +80,7 @@
                 $display .=  '<div class="card-block moduleCheckoutConfirmationPaymentInformationCardBlock">';
                 $display .=  '<div class="separator"></div>';
 
-                for ($i=0, $n=count($confirmation['fields']); $i<$n; $i++) {
+                for ($i=0, $n=\count($confirmation['fields']); $i<$n; $i++) {
 
                   $field = '<span class="col-md-3">' . $confirmation['fields'][$i]['title'] . '</span>';
                   $field .= '<span class="col-md-3">' . $confirmation['fields'][$i]['field'] . '</span>';

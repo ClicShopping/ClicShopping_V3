@@ -23,7 +23,7 @@
       <table border="0" width="100%" cellspacing="0" cellpadding="2" class="table-hover order_confirmation">
         <thead>
 <?php
-  if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
+  if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
 ?>
           <tr>
             <th colspan="2"><strong><?php echo CLICSHOPPING::getDef('module_account_customers_history_info_invoice_products'); ?></strong></th>
@@ -42,13 +42,13 @@
 <?php
   }
 
-  for ($i=0, $n=count($CLICSHOPPING_Order->products); $i<$n; $i++) {
+  for ($i=0, $n=\count($CLICSHOPPING_Order->products); $i<$n; $i++) {
     echo '       <tr>' . "\n" .
       '            <td class="text-end" valign="top" width="30">' . $CLICSHOPPING_Order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
       '            <td valign="top">' . $CLICSHOPPING_Order->products[$i]['name'];
 
-    if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
-      for ($j=0, $n2=count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
+    if ( (isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (\count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
+      for ($j=0, $n2=\count($CLICSHOPPING_Order->products[$i]['attributes']); $j<$n2; $j++) {
 
         if (!empty($CLICSHOPPING_Order->products[$j]['attributes'][$j]['reference'])) {
           $reference = $CLICSHOPPING_Order->products[$j]['attributes'][$j]['reference'] . ' / ';
@@ -68,7 +68,7 @@
 
     echo '</td>' . "\n";
 
-    if (count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
+    if (\count($CLICSHOPPING_Order->info['tax_groups']) > 1) {
       echo '            <td class="text-end" valign="top">' . Tax::displayTaxRateValue($CLICSHOPPING_Order->products[$i]['tax']) . '</td>' . "\n";
     }
 
@@ -87,7 +87,7 @@
 ?>
         <table width="100%" class="float-end">
 <?php
-  for ($i=0, $n=count($CLICSHOPPING_Order->totals); $i<$n; $i++) {
+  for ($i=0, $n=\count($CLICSHOPPING_Order->totals); $i<$n; $i++) {
     echo '              <tr>' . "\n" .
       '                   <td class="text-end"  width="80%">' . $CLICSHOPPING_Order->totals[$i]['title'] . '&nbsp;</td>' . "\n" .
       '                   <td class="text-end" width=20%">' . $CLICSHOPPING_Order->totals[$i]['text'] . '</td>' . "\n" .

@@ -58,7 +58,7 @@
           $products_quantity_unit_inputs_string = '';
 
           $languages = $CLICSHOPPING_Language->getLanguages();
-          for ($i = 0, $n = count($languages); $i < $n; $i++) {
+          for ($i = 0, $n = \count($languages); $i < $n; $i++) {
             ?>
             <div class="row">
               <div class="col-md-5">

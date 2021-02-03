@@ -29,7 +29,7 @@
     'text' => $CLICSHOPPING_BannerManager->getDef('text_all_languages')
   ];
 
-  for ($i = 0, $n = count($languages); $i < $n; $i++) {
+  for ($i = 0, $n = \count($languages); $i < $n; $i++) {
     $values_languages_id[$i + 1] = ['id' => $languages[$i]['id'],
       'text' => $languages[$i]['name']
     ];
@@ -177,7 +177,7 @@
                   <label for="<?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_new_group'); ?>"
                          class="col-5 col-form-label"><?php echo $CLICSHOPPING_BannerManager->getDef('text_banners_new_group'); ?></label>
                   <div class="col-md-5">
-                    <?php echo HTML::inputField('new_banners_group', '', '', ((count($groups_array) > 0) ? false : true)); ?>
+                    <?php echo HTML::inputField('new_banners_group', '', '', ((\count($groups_array) > 0) ? false : true)); ?>
                   </div>
                 </div>
               </div>

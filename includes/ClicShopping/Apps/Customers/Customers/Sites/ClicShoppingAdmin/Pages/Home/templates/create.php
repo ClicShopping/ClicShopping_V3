@@ -443,7 +443,7 @@
                     <?php
                       $languages = $CLICSHOPPING_Language->getLanguages();
 
-                      for ($i = 0, $n = count($languages); $i < $n; $i++) {
+                      for ($i = 0, $n = \count($languages); $i < $n; $i++) {
                         $values_languages_id[$i] = [
                           'id' => $languages[$i]['id'],
                           'text' => $languages[$i]['name']

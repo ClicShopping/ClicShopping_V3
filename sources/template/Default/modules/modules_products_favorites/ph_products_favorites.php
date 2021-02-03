@@ -75,7 +75,7 @@
 // number of sort criterias
             $column_list = FavoritesClass::getCountColumnList();
 
-            for ($col = 0, $n = count($column_list); $col < $n; $col++) {
+            for ($col = 0, $n = \count($column_list); $col < $n; $col++) {
               switch ($column_list[$col]) {
                 case 'MODULE_PRODUCTS_FAVORITES_LIST_DATE_ADDED':
                   $lc_text = CLICSHOPPING::getDef('table_heading_date');

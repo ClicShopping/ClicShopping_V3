@@ -228,7 +228,7 @@
       if (!empty($_SERVER["REMOTE_ADDR"]) && $_SERVER["REMOTE_ADDR"] != '::1') { //check ip from share internet
         $provider_client_ip = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
         $str = preg_split("/\./", $provider_client_ip);
-        $i = count($str);
+        $i = \count($str);
         $x = $i - 1;
         $n = $i - 2;
         $isp_provider_client = $str[$n] . '.' . $str[$x];

@@ -59,7 +59,7 @@
             $data = '<div class="separator"></div>';
             $data .= '<span class="page-title moduleCheckoutShippingListingPageHeader"><h3>' . CLICSHOPPING::getDef('module_checkout_shipping_table_heading_shipping_method') . '</h3></span>';
 
-            if (count($quotes) > 1 && count($quotes[0]) > 1 && is_array($quotes)) {
+            if (\count($quotes) > 1 && \count($quotes[0]) > 1 && is_array($quotes)) {
               $data .= '<div>';
               $data .= '<span class="col-md-8 text-start moduleCheckoutShippingListingMethod">' . CLICSHOPPING::getDef('module_checkout_shipping_text_choose_shipping_method') . '</span>';
               $data .= '<span class="col-md-4 text-end float-end moduleCheckoutShippingListingSelect">' . CLICSHOPPING::getDef('module_checkout_shipping_title_please_select') . '</span>';
@@ -85,7 +85,7 @@
 
               foreach ($quotes as $n => $quote) {
                 if (is_array($quote['methods'])) {
-                  for ($j=0, $n2=count($quote['methods']); $j<$n2; $j++) {
+                  for ($j=0, $n2=\count($quote['methods']); $j<$n2; $j++) {
                     $data .= '<tr>' . "\n";
                     $data .= '<tr>';
                     $data .= '<td>';

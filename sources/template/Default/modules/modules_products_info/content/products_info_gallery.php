@@ -27,7 +27,7 @@
     $Qpi = $CLICSHOPPING_Db->get('products_images', ['image', 'htmlcontent'], ['products_id' => $CLICSHOPPING_ProductsCommon->getID()], 'sort_order');
     $pi = $Qpi->fetchAll();
 
-    $pi_total = count($pi);
+    $pi_total = \count($pi);
 
       if ($pi_total > 0) {
 ?>

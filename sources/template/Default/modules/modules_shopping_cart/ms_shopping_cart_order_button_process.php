@@ -42,7 +42,7 @@
 
       if (isset($_GET['Cart']) && $CLICSHOPPING_ShoppingCart->getCountContents() > 0) {
         if (is_array($CLICSHOPPING_NavigationHistory)) {
-          $back = count($CLICSHOPPING_NavigationHistory->path)-2;
+          $back = \count($CLICSHOPPING_NavigationHistory->path)-2;
         } else {
           $back = null;
         }

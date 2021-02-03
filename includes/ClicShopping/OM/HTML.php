@@ -351,8 +351,8 @@
 
 
         if (!str_contains($parameters, 'id=')) {
-          $field .= ' id="' . static::output($name) . (count($values) > 1 ? '_' . $counter : '') . '"';
-        } elseif (count($values) > 1) {
+          $field .= ' id="' . static::output($name) . (\count($values) > 1 ? '_' . $counter : '') . '"';
+        } elseif (\count($values) > 1) {
           $offset = strpos($parameters, 'id="');
           $field .= ' id="' . static::output(substr($parameters, $offset + 4, strpos($parameters, '"', $offset + 4) - ($offset + 4))) . '_' . $counter . '"';
         }
@@ -370,7 +370,7 @@
         $field .= ' />';
 
         if (!empty($selection_text)) {
-          $field .= '<label for="' . static::output($name) . (count($values) > 1 ? '_' . $counter : '') . '" class="fieldLabel">' . $selection_text . '</label>';
+          $field .= '<label for="' . static::output($name) . (\count($values) > 1 ? '_' . $counter : '') . '" class="fieldLabel">' . $selection_text . '</label>';
         }
 
         $field .= $separator;
@@ -567,7 +567,7 @@
       
       $countries = $CLICSHOPPING_Address->getCountries();
 
-      for ($i = 0, $n = count($countries); $i < $n; $i++) {
+      for ($i = 0, $n = \count($countries); $i < $n; $i++) {
         $countries_array[] = [
           'id' => $countries[$i]['countries_id'],
           'text' => $countries[$i]['countries_name'],
@@ -932,7 +932,7 @@
 
       $countries = $CLICSHOPPING_Address->getCountries();
 
-      for ($i = 0, $n = count($countries); $i < $n; $i++) {
+      for ($i = 0, $n = \count($countries); $i < $n; $i++) {
         $countries_array[] = [
           'id' => $countries[$i]['countries_iso_code_2'],
           'text' => $countries[$i]['countries_name']

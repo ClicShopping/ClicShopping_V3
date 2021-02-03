@@ -215,7 +215,7 @@
 
 // add category names or the manufacturer name to the breadcrumb trail
       if (isset($cPath_array)) {
-        for ($i = 0, $n = count($cPath_array); $i < $n; $i++) {
+        for ($i = 0, $n = \count($cPath_array); $i < $n; $i++) {
 
           $Qcategories = $CLICSHOPPING_Db->get('categories_description', 'categories_name', ['categories_id' => (int)$cPath_array[$i],
               'language_id' => $CLICSHOPPING_Language->getId()

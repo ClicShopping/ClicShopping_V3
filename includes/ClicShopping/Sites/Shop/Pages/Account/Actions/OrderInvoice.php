@@ -261,7 +261,7 @@
       $item_count = 0;
 // Boucle sur les produits
 // Show the products information line by line
-      for ($i = 0, $n = count($CLICSHOPPING_Order->products); $i < $n; $i++) {
+      for ($i = 0, $n = \count($CLICSHOPPING_Order->products); $i < $n; $i++) {
 
 // Quantity
         $pdf->SetFont('Arial', '', 7);
@@ -273,8 +273,8 @@
         $prod_attribs = '';
 
         // Get attribs and concat
-        if ((isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
-          for ($j = 0, $n2 = count($CLICSHOPPING_Order->products[$i]['attributes']); $j < $n2; $j++) {
+        if ((isset($CLICSHOPPING_Order->products[$i]['attributes'])) && (\count($CLICSHOPPING_Order->products[$i]['attributes']) > 0)) {
+          for ($j = 0, $n2 = \count($CLICSHOPPING_Order->products[$i]['attributes']); $j < $n2; $j++) {
 
             if (!empty($CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'])) {
               $reference = $CLICSHOPPING_Order->products[$i]['attributes'][$j]['reference'] . ' / ';
@@ -351,7 +351,7 @@
         }
       }
 
-      for ($i = 0, $n = count($CLICSHOPPING_Order->totals); $i < $n; $i++) {
+      for ($i = 0, $n = \count($CLICSHOPPING_Order->totals); $i < $n; $i++) {
         $pdf->SetY($Y_Table_Position + 5);
         $pdf->SetX(102);
 

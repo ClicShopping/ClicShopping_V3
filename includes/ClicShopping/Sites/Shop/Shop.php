@@ -156,7 +156,7 @@
 
 // get controller class name from namespace
           $page_namespace = explode('\\', $page);
-          $page_code = $page_namespace[count($page_namespace) - 1];
+          $page_code = $page_namespace[\count($page_namespace) - 1];
 
           if (class_exists('ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code)) {
             $class = 'ClicShopping\Apps\\' . $vendor_app . '\\' . $page . '\\' . $page_code;
@@ -195,12 +195,12 @@
         foreach ($paths as $path => $page) {
           $path_array = explode('&', $path);
 
-          if (count($path_array) <= count($route)) {
-            if ($path_array == array_slice($route, 0, count($path_array))) {
+          if (\count($path_array) <= \count($route)) {
+            if ($path_array == array_slice($route, 0, \count($path_array))) {
               $result[] = [
                 'path' => $path,
                 'destination' => $vendor_app . '/' . $page,
-                'score' => count($path_array)
+                'score' => \count($path_array)
               ];
             }
           }

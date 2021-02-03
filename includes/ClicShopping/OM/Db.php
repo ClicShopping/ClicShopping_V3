@@ -133,7 +133,7 @@
 
       $args = func_get_args();
 
-      if (count($args) > 1) {
+      if (\count($args) > 1) {
         $DbStatement = call_user_func_array(array($this, 'parent::query'), $args);
       } else {
         $DbStatement = parent::query($statement);
@@ -187,7 +187,7 @@
       }
 
       if (isset($limit)) {
-        if (is_array($limit) && (count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
+        if (is_array($limit) && (\count($limit) === 2) && is_numeric($limit[0]) && is_numeric($limit[1])) {
           $limit = implode(', ', $limit);
         } elseif (!is_numeric($limit)) {
           $limit = null;
