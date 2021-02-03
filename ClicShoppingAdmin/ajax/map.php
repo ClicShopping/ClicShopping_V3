@@ -45,9 +45,9 @@
 
   if (is_array($results)) {
     foreach ($results as $result) {
-      $json[strtolower($result['countries_iso_code_2'])] = ['total' => $result['total'],
+      $json[strtolower($result['countries_iso_code_2'])] = [
+        'total' => $result['total'],
         'amount' => $result['amount'],
-
       ];
     }
   }
